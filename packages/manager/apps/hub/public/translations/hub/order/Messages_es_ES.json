@@ -1,0 +1,21 @@
+{
+  "hub_order_tracking_title": "Último pedido",
+  "hub_order_tracking_see_all": "Ver mis pedidos",
+  "hub_order_tracking_error": "No es posible cargar el seguimiento de pedidos.",
+  "hub_order_tracking_order_id": "N.º {{orderId}}",
+  "order_tracking_history_DELIVERY": "Preparación del pedido",
+  "order_tracking_history_FRAUD_CHECK": "Validando el pedido...",
+  "order_tracking_history_FRAUD_DOCS_REQUESTED": "Pendiente de documentos justificantes",
+  "order_tracking_history_FRAUD_MANUAL_REVIEW": "Comprobación del pedido",
+  "order_tracking_history_FRAUD_REFUSED": "Pedido rechazado",
+  "order_tracking_history_INVOICE_IN_PROGRESS": "El pedido ya está disponible.",
+  "order_tracking_history_INVOICE_SENT": "La factura ya está disponible.",
+  "order_tracking_history_ORDER_ACCEPTED": "Pedido aceptado",
+  "order_tracking_history_ORDER_STARTED": "Registro del pedido",
+  "order_tracking_history_PAYMENT_CONFIRMED": "Pago validado",
+  "order_tracking_history_PAYMENT_INITIATED": "Validando el pago...",
+  "order_tracking_history_PAYMENT_RECEIVED": "Pago recibido",
+  "order_tracking_history_REGISTERED_PAYMENT_INITIATED": "Validando el pago...",
+  "order_tracking_history_custom_payment_waiting": "Pago no recibido",
+  "order_tracking_history_custom_creation": "Creación del pedido"
+}

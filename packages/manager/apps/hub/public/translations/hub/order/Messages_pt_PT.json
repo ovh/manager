@@ -1,0 +1,21 @@
+{
+  "hub_order_tracking_title": "Última encomenda",
+  "hub_order_tracking_see_all": "Ver as minhas encomendas",
+  "hub_order_tracking_error": "Não é possível recuperar o acompanhamento da encomenda",
+  "hub_order_tracking_order_id": "N.º {{orderId}}",
+  "order_tracking_history_DELIVERY": "Preparação da sua encomenda",
+  "order_tracking_history_FRAUD_CHECK": "Encomenda em curso de validação",
+  "order_tracking_history_FRAUD_DOCS_REQUESTED": "A aguardar documentos comprovativos",
+  "order_tracking_history_FRAUD_MANUAL_REVIEW": "Verificação da sua encomenda",
+  "order_tracking_history_FRAUD_REFUSED": "Encomenda recusada",
+  "order_tracking_history_INVOICE_IN_PROGRESS": "A sua encomenda está disponível",
+  "order_tracking_history_INVOICE_SENT": "A sua fatura está disponível",
+  "order_tracking_history_ORDER_ACCEPTED": "Encomenda aceite",
+  "order_tracking_history_ORDER_STARTED": "A sua encomenda foi registada",
+  "order_tracking_history_PAYMENT_CONFIRMED": "Pagamento validado",
+  "order_tracking_history_PAYMENT_INITIATED": "Pagamento em curso de validação",
+  "order_tracking_history_PAYMENT_RECEIVED": "Pagamento recebido",
+  "order_tracking_history_REGISTERED_PAYMENT_INITIATED": "Pagamento em curso de validação",
+  "order_tracking_history_custom_payment_waiting": "Sem pagamento",
+  "order_tracking_history_custom_creation": "Criação da sua nota de encomenda"
+}

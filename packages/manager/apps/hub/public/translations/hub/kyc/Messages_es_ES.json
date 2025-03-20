@@ -1,0 +1,9 @@
+{
+  "manager_hub_dashboard_kyc_banner_description": "Según la normativa vigente, es necesario verificar su identidad para contratar los servicios de OVHcloud. Por favor, añada sus documentos de identidad.",
+  "manager_hub_dashboard_kyc_banner_description_waiting": "Por favor, lea el mensaje de correo electrónico que le hemos enviado y realice la acción solicitada para verificar su identidad antes de realizar un pedido.",
+  "manager_hub_dashboard_kyc_banner_link": "Mis documentos",
+  "kyc_fraud_required_banner_text": "Es necesario comprobar su identidad. Para finalizar el pedido en curso, añada los documentos justificantes.",
+  "kyc_fraud_required_banner_link": "Mis documentos",
+  "kyc_fraud_open_banner_text": "Nuestro equipo está analizando el tratamiento de sus documentos. Para más información, puede consultar",
+  "kyc_fraud_open_banner_link": "Mis solicitudes de asistencia"
+}

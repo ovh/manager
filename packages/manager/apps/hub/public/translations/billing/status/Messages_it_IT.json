@@ -1,0 +1,12 @@
+{
+  "manager_billing_service_status": "Stato",
+  "manager_billing_service_status_auto": "Rinnovo automatico",
+  "manager_billing_service_status_automatic": "Rinnovo automatico",
+  "manager_billing_service_status_manual": "Rinnovo manuale",
+  "manager_billing_service_status_manualPayment": "Rinnovo manuale",
+  "manager_billing_service_status_pending_debt": "Fatture da pagare",
+  "manager_billing_service_status_delete_at_expiration": "Disattivazione richiesta",
+  "manager_billing_service_status_expired": "Disattivato",
+  "manager_billing_service_status_billing_suspended": "Fatturazione rinviata",
+  "manager_billing_service_status_forced_manual": "Rinnovo manuale"
+}
