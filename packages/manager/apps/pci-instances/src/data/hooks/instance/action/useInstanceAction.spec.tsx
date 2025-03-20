@@ -9,6 +9,7 @@ import { setupInstancesServer } from '@/__mocks__/instance/node';
 import { TInstanceDto } from '@/types/instance/api.type';
 import { TInstancesServerResponse } from '@/__mocks__/instance/handlers';
 import { TMutationFnType, useBaseInstanceAction } from './useInstanceAction';
+import { TInstance } from '@/types/instance/entity.type';
 
 // initializers
 const initQueryClient = () => {
@@ -81,7 +82,7 @@ const handleSuccess = vi.fn(
   (instance: TInstanceDto, queryClient: QueryClient) => () =>
     updateInstanceFromCache(queryClient, {
       projectId: fakeProjectId,
-      instance: { ...instance, status: 'ACTIVE' },
+      instance: { ...instance, pendingTask: true },
     }),
 );
 
@@ -97,7 +98,7 @@ describe('Considering the useInstanceAction hook', () => {
     ${fakeProjectId} | ${fakeInstance} | ${'unshelve'}    | ${fakeInstancesDto} | ${null}
     ${fakeProjectId} | ${fakeInstance} | ${'soft-reboot'} | ${fakeInstancesDto} | ${null}
   `(
-    'Given a projectId <$projectId> and an instanceId <$instanceId>',
+    'Given a projectId <$projectId> and an instanceId <$instance.id>',
     ({ projectId, instance, type, queryPayload, mutationPayload }: Data) => {
       afterEach(() => {
         server?.close();
@@ -166,6 +167,12 @@ describe('Considering the useInstanceAction hook', () => {
           await waitFor(() =>
             expect(useInstanceActionResult.current.isSuccess).toBeTruthy(),
           );
+
+          const cacheInstance = (useInstancesResult.current
+            .data as TInstance[]).find((elt) => elt.id === instance?.id);
+          expect(handleSuccess).toHaveBeenCalled();
+          expect(cacheInstance).toBeDefined();
+          expect(cacheInstance?.pendingTask).toBeTruthy();
         }
       });
     },
