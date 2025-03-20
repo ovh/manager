@@ -1,25 +1,21 @@
 import { describe, it } from 'vitest';
-import '@testing-library/jest-dom';
-import {
-  assertModalText,
-  assertModalVisibility,
-  getButtonByLabel,
-} from '@ovh-ux/manager-core-test-utils';
-import { waitFor, fireEvent } from '@testing-library/react';
+import { waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import {
   vrackServicesListMocks,
   vrackListMocks,
 } from '@ovh-ux/manager-network-common';
+import { WAIT_FOR_DEFAULT_OPTIONS } from '@ovh-ux/manager-core-test-utils';
 import {
-  assertModalTitle,
-  changeOdsSelectValueByTestId,
+  assertModalText,
+  assertModalVisibility,
+  changeOdsSelectValueByName,
   getButtonByIcon,
   labels,
   renderTest,
-} from '../../test-utils';
-
+  getButtonByLabel,
+} from '@/test-utils';
 import { urls } from '@/routes/routes.constants';
 
 describe('Vrack Services associate vrack test suite', () => {
@@ -31,39 +27,41 @@ describe('Vrack Services associate vrack test suite', () => {
 
     const actionMenuButton = await getButtonByIcon({
       container,
-      iconName: ODS_ICON_NAME.ELLIPSIS,
+      value: ODS_ICON_NAME.ellipsisVertical,
     });
-
-    await waitFor(() => fireEvent.click(actionMenuButton));
+    await waitFor(() => userEvent.click(actionMenuButton));
 
     const associateLink = await getButtonByLabel({
       container,
-      label: labels.common.associateVrackButtonLabel,
+      value: labels.common.associateVrackButtonLabel,
     });
-
-    await waitFor(() => fireEvent.click(associateLink));
+    await waitFor(() => userEvent.click(associateLink));
 
     await assertModalVisibility({ container, isVisible: true });
-    await assertModalTitle({
+    await assertModalText({
       container,
-      title: labels.associate.modalVrackAssociationTitle,
+      text: labels.associate.modalVrackAssociationTitle,
     });
-
     await assertModalText({
       container,
       text: labels.associate.modalVrackAssociationDescription,
     });
     await assertModalText({ container, text: vrackListMocks[0] });
-    await changeOdsSelectValueByTestId({
-      testId: 'select-vrack-input',
+
+    await changeOdsSelectValueByName({
+      container,
+      name: 'select-vrack-input',
       value: vrackListMocks[1],
     });
 
     const associateButton = await getButtonByLabel({
       container,
-      label: labels.associate.modalConfirmVrackAssociationButtonLabel,
+      value: labels.associate.modalConfirmVrackAssociationButtonLabel,
     });
-
+    await waitFor(
+      () => expect(associateButton).not.toBeDisabled(),
+      WAIT_FOR_DEFAULT_OPTIONS,
+    );
     await waitFor(() => userEvent.click(associateButton));
 
     await assertModalVisibility({ container, isVisible: false });
@@ -82,9 +80,12 @@ describe('Vrack Services associate vrack test suite', () => {
     await assertModalVisibility({ container, isVisible: true });
     await assertModalText({
       container,
-      text: 'modalVrackCreationDescriptionLine1',
+      text: labels.createVrack.modalVrackCreationDescriptionLine1,
     });
-    // await assertModalText({container, text: labels.createVrack.modalVrackCreationDescriptionLine1});
+    await getButtonByLabel({
+      container,
+      value: labels.createVrack.modalCreateNewVrackButtonLabel,
+    });
   });
 
   it('from dashboard, have disable action menu', async () => {
@@ -93,11 +94,14 @@ describe('Vrack Services associate vrack test suite', () => {
       nbVs: 3,
     });
 
-    await getButtonByIcon({
+    const button = await getButtonByIcon({
       container,
-      iconName: ODS_ICON_NAME.ELLIPSIS,
-      disabled: true,
+      value: ODS_ICON_NAME.ellipsisVertical,
     });
+    await waitFor(
+      () => expect(button).toBeDisabled(),
+      WAIT_FOR_DEFAULT_OPTIONS,
+    );
   });
 
   it('from dashboard, display error when get vrack is in error', async () => {
