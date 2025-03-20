@@ -7,7 +7,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import {
-  ActionsCell,
+  IpActionsCell,
   IpAlerts,
   IpAntiDdos,
   IpAttachedService,
@@ -117,7 +117,7 @@ export const IpDatagrid = () => {
     {
       id: 'action',
       label: '',
-      cell: (ip: string) => <ActionsCell ip={ip} />,
+      cell: (ip: string) => <IpActionsCell ip={ip} />,
     },
   ];
 
