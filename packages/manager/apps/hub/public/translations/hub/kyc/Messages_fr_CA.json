@@ -1,0 +1,9 @@
+{
+  "manager_hub_dashboard_kyc_banner_description": "Vous souhaitez commander un produit OVHcloud : la réglementation en vigueur nécessite une vérification de votre identité. Veuillez ajouter vos documents d'identité.",
+  "manager_hub_dashboard_kyc_banner_description_waiting": "Pour la vérification de votre identité avant de réaliser une commande, veuillez prendre connaissance de l'email envoyé par notre équipe et procéder à l'action demandée.",
+  "manager_hub_dashboard_kyc_banner_link": "Mes documents",
+  "kyc_fraud_required_banner_text": "Une vérification de votre identité est nécessaire. Afin de finaliser votre commande en cours, veuillez ajouter vos justificatifs.",
+  "kyc_fraud_required_banner_link": "Mes documents",
+  "kyc_fraud_open_banner_text": "Le traitement de vos documents est actuellement en cours d'analyse par notre équipe. Pour plus d'information, vous pouvez consulter",
+  "kyc_fraud_open_banner_link": "Mes demandes d'assistance."
+}
