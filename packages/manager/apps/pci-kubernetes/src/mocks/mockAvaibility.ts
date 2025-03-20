@@ -124,11 +124,11 @@ const handler = {
   },
 };
 
-export const mockedModule: {
+export const mockedModule = {
   useProductAvailability: (
     projectId: string,
     filter?: HookModule.ProductAvailabilityFilter,
-  ) => UseQueryResult<HookModule.TProductAvailability, Error>;
-} = new Proxy(HookModule, handler);
+  ) => mockAvailabilityWith3az,
+};
 
 export default mockedModule.useProductAvailability;
