@@ -15,7 +15,8 @@ export const useFormattedDate = (date: string | null, formatStr = 'PPpp') => {
     }
 
     const userLocale = getDateFnsLocale(i18n.language);
-    const locale = locales[userLocale] ?? locales.fr;
+    const locale =
+      locales[userLocale as keyof typeof dateFnsLocales] ?? locales.fr;
 
     return format(new Date(date), formatStr, {
       locale,
