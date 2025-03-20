@@ -1,0 +1,7 @@
+{
+  "dashboard_users_order_licences_title": "Order new licenses",
+  "dashboard_users_order_licences_quantity": "Number",
+  "dashboard_users_order_licences_type": "Type of licence",
+  "dashboard_users_order_licences_message_1": "By confirming, you will be redirected to the purchase order.",
+  "dashboard_users_order_licences_message_2": "Please return here once the payment has been processed to configure your new users."
+}

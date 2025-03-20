@@ -1,0 +1,13 @@
+{
+  "microsoft_office_licenses_order": "Order",
+  "microsoft_office_licenses_servicename": "Service name",
+  "microsoft_office_licenses_firstname": "First name",
+  "microsoft_office_licenses_lastname": "Name",
+  "microsoft_office_licenses_zipcode": "Postcode",
+  "microsoft_office_licenses_city": "City",
+  "microsoft_office_licenses_address": "Address",
+  "microsoft_office_licenses_phone": "Phone",
+  "microsoft_office_licenses_servicetype": "Type of service",
+  "microsoft_office_licenses_status": "Status",
+  "microsoft_office_licenses_displayName": "Display name"
+}

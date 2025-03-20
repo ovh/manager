@@ -135,8 +135,8 @@
   "sidebar_pci_cold_archive": "Cold Archive",
   "sidebar_loading": "Caricamento in corso...",
   "sidebar_no_result": "Nessun risultato trovato.",
-  "sidebar_back_home": "Torna alla home page",
-  "sidebar_search": "Ricerca",
+  "sidebar_back_home": "Tornare alla home page",
+  "sidebar_search": "Ricercare",
   "sidebar_show_all": "Visualizza tutto",
   "sidebar_account_all": "Tutti gli account",
   "sidebar_service_all": "Tutti i servizi",
@@ -192,7 +192,7 @@
   "sidebar_security_identity_operations_logs": "Logs Data Platform",
   "sidebar_assistance_carbon_calculator": "Il mio bilancio del carbonio",
   "sidebar_back_menu": "Torna al menu",
-  "sidebar_identity_security_operations": "Identità, Sicurezza &amp; Operazioni",
+  "sidebar_identity_security_operations": "Identità, sicurezza e operazioni",
   "sidebar_key-management-service": "Key Management Service",
   "sidebar_zimbra": "Zimbra Mail",
   "sidebar_pci_ai_dashboard": "AI Dashboard",
@@ -207,5 +207,6 @@
   "sidebar_vmware_vsphere": "Managed VMware vSphere",
   "sidebar_vmware_vcd": "Managed VCD",
   "sidebar_cloud_changelog": "Cloud Changelog",
-  "sidebar_hosting_and_collab_changelog": "Hosting &amp; Collab Changelog"
+  "sidebar_hosting_and_collab_changelog": "Hosting &amp; Collab Changelog",
+  "sidebar_license_office_list": "I tuoi account Microsoft 365"
 }
