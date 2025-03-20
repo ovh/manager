@@ -1,0 +1,18 @@
+{
+  "dashboard_users_table_firstName": "Imię",
+  "dashboard_users_table_lastName": " Nazwa",
+  "dashboard_users_table_activationEmail": "E-mail aktywacyjny",
+  "dashboard_users_table_licences": "Licencje",
+  "dashboard_users_table_status": "Status",
+  "dashboard_users_download_text": "Programy instalacyjne dla komputerów PC i MAC są dostępne na stronie <officeLink/>.",
+  "dashboard_users_download_info": "W przypadku smartphone'ów i tabletów należy skorzystać z App Store.",
+  "dashboard_users_download_id": "Po dodaniu nowej licencji otrzymasz e-mail z danymi do połączenia i do instalacji.",
+  "dashboard_users_status_creating": "Trwa tworzenie",
+  "dashboard_users_status_updating": "Aktualizacja",
+  "dashboard_users_status_deleting": "Trwa usuwanie",
+  "dashboard_users_status_ok": "Utworzone",
+  "dashboard_users_status_unconfigured": "Brak konfiguracji",
+  "dashboard_users_action_user_change_password": "Zmień hasło",
+  "dashboard_users_action_user_edit": "Edytuj konto",
+  "dashboard_users_action_user_delete": "Usuń konto"
+}
