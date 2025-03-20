@@ -5,7 +5,7 @@ import {
 import { useQueries } from '@tanstack/react-query';
 import { TProductAddonDetail } from '@/types/product.type';
 
-type UseAddonsParams = {
+type TUseAddonsParams = {
   ovhSubsidiary: string;
   projectId: string;
   addonFamily: string;
@@ -17,7 +17,7 @@ export const useAddons = ({
   projectId,
   addonFamily,
   select,
-}: UseAddonsParams) =>
+}: TUseAddonsParams) =>
   useQueries({
     queries: [
       getCatalogQuery(ovhSubsidiary),

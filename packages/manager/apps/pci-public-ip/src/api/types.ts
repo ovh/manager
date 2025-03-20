@@ -54,6 +54,7 @@ export type TFormState = {
   floatingGatewaySize: string;
   instance?: TInstance;
   ipAddress?: TIpAddress;
+  isSubmitting: boolean;
 };
 
 export type TStepState = {
