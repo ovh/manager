@@ -1,0 +1,15 @@
+{
+  "title": "AI Training",
+  "createNewJob": "Lançar um job",
+  "tableHeaderName": "Name",
+  "tableHeaderLocation": "Area",
+  "tableHeaderImage": "Imagem Docker",
+  "tableHeaderResources": "Recursos",
+  "tableHeaderDuration": "Duração",
+  "tableHeaderCreationDate": "Data de criação",
+  "tableHeaderStatus": "Estado",
+  "tableActionManage": "Gerir",
+  "tableActionRestart": "Reiniciar",
+  "tableActionStop": "Parar",
+  "tableActionDelete": "Suprimir"
+}

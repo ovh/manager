@@ -1,0 +1,14 @@
+{
+  "fieldDockerCommandLabel": "Encomendas",
+  "fieldDockedCommandDescription": "Introduza o comando Docker a executar no container.",
+  "commandInputLabel": "Encomendas Docker",
+  "commandInputHelper": "Introduza os argumentos (separados por espaços) que passarão ao comando Docker. As aspas simples (`) não são suportadas e devem ser substituídas por aspas.",
+  "commandSumupTitle": "Comando específico",
+  "formDockerCommandErrorPattern": "As aspas simples (`) não são suportadas e devem ser substituídas por aspas.",
+  "updateDockerCommandTitle": "Atualizar os comandos docker",
+  "updateDockerCommandButtonCancel": "Anular",
+  "updateDockerCommandButtonConfirm": "Confirmar",
+  "updateDockerToastErrorTitle": "Erro",
+  "updateDockerToastSuccessTitle": "Sucesso",
+  "updateDockerToastSuccessDescription": "A aplicação foi atualizada"
+}
