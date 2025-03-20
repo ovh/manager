@@ -1,0 +1,11 @@
+{
+  "manageOrganisationsTabDescription": "Mes organisations",
+  "manageOrganisationsOrderButtonLabel": "Ajouter une organisation",
+  "manageOrganisationsTabOrganisaton": "Organisation",
+  "manageOrganisationsTabType": "Type",
+  "manageOrganisationsTabSurname": "Nom",
+  "manageOrganisationsTabEmail": "Email",
+  "manageOrganisationsTabPhone": "Téléphone",
+  "manageOrganisationsTabAddress": "Adresse",
+  "manageOrganisationsTabNodata": "Aucun résultat"
+}
