@@ -79,7 +79,7 @@ const DatagridComponent = ({
   });
 
   const handlePollingSuccess = (instance?: TInstanceDto) => {
-    if (instance && !instance.pendingTask)
+    if (instance)
       updateInstanceFromCache(queryClient, {
         projectId,
         instance,
