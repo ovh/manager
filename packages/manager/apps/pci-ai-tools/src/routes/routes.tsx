@@ -390,6 +390,116 @@ export default [
           },
         ],
       },
+      {
+        path: 'training',
+        id: 'training',
+        ...lazyRouteConfig(() => import('@/pages/jobs/JobRoot.page')),
+        children: [
+          {
+            path: 'restart/:jobId',
+            id: 'training.restart',
+            ...lazyRouteConfig(() =>
+              import('@/pages/jobs/restart/Restart.modal'),
+            ),
+          },
+          {
+            path: 'stop/:jobId',
+            id: 'training.stop',
+            ...lazyRouteConfig(() => import('@/pages/jobs/kill/Kill.modal')),
+          },
+          {
+            path: 'delete/:jobId',
+            id: 'training.delete',
+            ...lazyRouteConfig(() =>
+              import('@/pages/jobs/delete/Delete.modal'),
+            ),
+          },
+        ],
+      },
+      {
+        path: 'training/onboarding',
+        id: 'training.onboarding',
+        ...lazyRouteConfig(() =>
+          import('@/pages/jobs/onboarding/Onboarding.page'),
+        ),
+      },
+      {
+        path: 'training/new',
+        id: 'create-job',
+        ...lazyRouteConfig(() => import('@/pages/jobs/create/Create.page')),
+        children: [
+          {
+            path: 'add-sshkey',
+            id: 'create-job.add-sshkey',
+            ...lazyRouteConfig(() =>
+              import('@/pages/_components/AddSSHKey.modal'),
+            ),
+          },
+        ],
+      },
+      {
+        path: 'training/:jobId',
+        ...lazyRouteConfig(() => import('@/pages/jobs/[jobId]/Job.layout')),
+        children: [
+          {
+            path: '',
+            id: 'training.dashboard',
+            ...lazyRouteConfig(() =>
+              import('@/pages/jobs/[jobId]/dashboard/Dashboard.page'),
+            ),
+            children: [
+              {
+                path: 'delete',
+                id: 'training.dashboard.delete',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/jobs/[jobId]/dashboard/delete/Delete.modal'),
+                ),
+              },
+            ],
+          },
+          {
+            path: 'containers',
+            id: 'training.containers',
+            ...lazyRouteConfig(() =>
+              import('@/pages/jobs/[jobId]/containers/Containers.page'),
+            ),
+            children: [
+              {
+                path: 'data-sync',
+                id: 'training.containers.data-sync',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/jobs/[jobId]/containers/dataSync/DataSync.modal'
+                  ),
+                ),
+              },
+              {
+                path: 'data-sync/:volumeId?',
+                id: 'training.containers.data-sync.volume',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/jobs/[jobId]/containers/dataSync/DataSync.modal'
+                  ),
+                ),
+              },
+            ],
+          },
+          {
+            path: 'public-git',
+            id: 'training.public-git',
+            ...lazyRouteConfig(() =>
+              import('@/pages/jobs/[jobId]/public-git/PublicGit.page'),
+            ),
+          },
+          {
+            path: 'logs',
+            id: 'training.logs',
+            ...lazyRouteConfig(() =>
+              import('@/pages/jobs/[jobId]/logs/Logs.page'),
+            ),
+          },
+        ],
+      },
     ],
   },
   {

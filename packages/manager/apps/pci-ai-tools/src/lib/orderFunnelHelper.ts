@@ -1,5 +1,9 @@
 import ai from '@/types/AI';
-import { NotebookOrderResult, OrderVolumes } from '@/types/orderFunnel';
+import {
+  JobOrderResult,
+  NotebookOrderResult,
+  OrderVolumes,
+} from '@/types/orderFunnel';
 
 export function humanizeFramework(
   framework: ai.capabilities.notebook.Framework,
@@ -75,4 +79,47 @@ export function getNotebookSpec(formResult: NotebookOrderResult) {
     });
   }
   return notebookInfos;
+}
+
+export function getJobSpec(formResult: JobOrderResult) {
+  const jobResource: ai.ResourcesInput =
+    formResult.flavor.type === ai.capabilities.FlavorTypeEnum.cpu
+      ? {
+          flavor: formResult.flavor.id,
+          cpu: Number(formResult.resourcesQuantity),
+        }
+      : {
+          flavor: formResult.flavor.id,
+          gpu: Number(formResult.resourcesQuantity),
+        };
+
+  const jobInfos: ai.job.JobSpecInput = {
+    resources: jobResource,
+    name: formResult.jobName,
+    image: formResult.image,
+    region: formResult.region.id,
+    unsecureHttp: formResult.unsecureHttp,
+    sshPublicKeys: formResult.sshKey,
+    // labels: formResult.labels,
+    command: formResult.dockerCommand,
+  };
+
+  if (formResult.volumes.length > 0) {
+    jobInfos.volumes = formResult.volumes.map((volume: OrderVolumes) => {
+      return {
+        cache: volume.cache,
+        mountPath: volume.mountPath,
+        permission: volume.permission,
+        volumeSource: volume.publicGit
+          ? { publicGit: volume.publicGit }
+          : {
+              dataStore: {
+                alias: volume.dataStore.alias,
+                container: volume.dataStore.container,
+              },
+            },
+      };
+    });
+  }
+  return jobInfos;
 }
