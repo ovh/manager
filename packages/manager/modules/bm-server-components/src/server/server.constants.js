@@ -33,9 +33,12 @@ export const NEW_RANGE = {
 
 export const SERVICE_TYPE = 'DEDICATED_SERVER';
 
+export const TAG_TAB_LABEL = 'Tags';
+
 export default {
   DC_2_ISO,
   NEW_RANGE,
   NO_AUTORENEW_COUNTRIES,
   SERVICE_TYPE,
+  TAG_TAB_LABEL,
 };
