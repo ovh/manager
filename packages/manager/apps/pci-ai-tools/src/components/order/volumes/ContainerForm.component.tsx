@@ -95,7 +95,7 @@ const ContainerForm = React.forwardRef<HTMLInputElement, ContainerFormProps>(
       <>
         <Form {...containerForm}>
           <div
-            className="flex flex-col w-full md:!flex-row md:!items-start gap-2"
+            className="flex flex-col w-full md:flex-row md:items-start gap-2"
             data-testid="datastore-form-container"
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2 w-full">
@@ -357,7 +357,7 @@ const ContainerForm = React.forwardRef<HTMLInputElement, ContainerFormProps>(
                 )}
               />
             </div>
-            <div className="flex flex-row justify-around md:!flex-col gap-2">
+            <div className="flex flex-row justify-around md:flex-col gap-2">
               <FormField
                 control={containerForm.control}
                 name="cache"
@@ -394,14 +394,14 @@ const ContainerForm = React.forwardRef<HTMLInputElement, ContainerFormProps>(
                 size="menu"
                 variant="menu"
                 mode="menu"
-                className="!shrink-0 mt-8 ml-2"
+                className="shrink-0 mt-8 ml-2"
                 onClick={containerForm.handleSubmit(onSubmit)}
                 disabled={
                   disabled ||
                   selectedVolumesList.length >= VOLUMES_CONFIG.maxVolumes
                 }
               >
-                <Plus className="!size-6" />
+                <Plus className="size-6" />
               </Button>
             </div>
           </div>

@@ -69,7 +69,7 @@ const Dashboard = () => {
         />
       </div>
       <div
-        className="flex flex-col lg:!grid lg:!grid-flow-col lg:!auto-cols-fr gap-2"
+        className="flex flex-col lg:grid lg:grid-flow-col lg:auto-cols-fr gap-2"
         data-testid="dashboard-container"
       >
         <Card>
@@ -114,7 +114,7 @@ const Dashboard = () => {
           </CardContent>
         </Card>
       </div>
-      <div className="flex flex-col lg:!grid lg:!grid-cols-3 gap-2">
+      <div className="flex flex-col lg:grid lg:grid-cols-3 gap-2">
         <Card className="lg:col-span-1">
           <BillingSupport />
           <div className="border-t my-2 pt-2 mx-6"></div>

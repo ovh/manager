@@ -45,7 +45,7 @@ export default function NotebooksList({ notebooks }: NotebooksListProps) {
               navigate('./new');
             }}
           >
-            <Plus className="!size-6" />
+            <Plus className="size-6" />
             {t('createNewNotebook')}
           </Button>
         </DataTable.Action>
