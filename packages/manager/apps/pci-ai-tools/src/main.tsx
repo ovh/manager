@@ -7,9 +7,9 @@ import {
 import initI18n from './i18n';
 import App from './App';
 
-import './index.css';
 import '@datatr-ux/ods-tailwind-config/style.css';
 import '@datatr-ux/uxlib/style.css';
+import './index.css';
 import '@/vite-hmr.ts';
 import { LoadingIndicatorProvider } from './contexts/LoadingIndicator.context';
 
