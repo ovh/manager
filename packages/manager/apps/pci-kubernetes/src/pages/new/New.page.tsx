@@ -2,7 +2,6 @@ import { useContext } from 'react';
 import { useHref, useNavigate, useParams } from 'react-router-dom';
 import { Translation, useTranslation } from 'react-i18next';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-
 import { ApiError } from '@ovh-ux/manager-core-api';
 import {
   PciDiscoveryBanner,
@@ -30,17 +29,22 @@ import { useClusterCreationStepper } from './useCusterCreationStepper';
 import { useCreateKubernetesCluster } from '@/api/hooks/useKubernetes';
 import { PAGE_PREFIX } from '@/tracking.constants';
 import stepsConfig from './steps/stepsConfig';
+import useHas3AZRegions from '@/hooks/useHas3AZRegions';
+import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
 
 export default function NewPage() {
   const { t } = useTranslation(['add', 'listing', 'stepper']);
-  const are3AZRegions = true;
+  const { contains3AZ } = useHas3AZRegions();
+  const is3AZAvailable = use3AZPlanAvailable();
+  const has3AZ = contains3AZ && is3AZAvailable;
+
   const { projectId } = useParams();
   const { data: project } = useProject();
   const { tracking } = useContext(ShellContext).shell;
   const navigate = useNavigate();
   const hrefBack = useHref('..');
   const hrefProject = useProjectUrl('public-cloud');
-  const stepper = useClusterCreationStepper(are3AZRegions);
+  const stepper = useClusterCreationStepper(has3AZ);
   const { addError, addSuccess } = useNotifications();
   const isDiscovery = isDiscoveryProject(project as TProject);
 
@@ -143,7 +147,7 @@ export default function NewPage() {
     stepper,
     createNewCluster,
     projectId,
-    are3AZRegions,
+    are3AZRegions: has3AZ,
   });
 
   return (

@@ -75,9 +75,12 @@ const PlanTile = ({
     (type === 'region' && plan.value === 'premium') ||
     (type === 'region-3-az' && plan.value === 'standard');
 
-  const plansToShow = useMemo(() => {
+  const sortedPlans = useMemo(() => {
     if (type === 'region-3-az') {
-      return plans.filter((plan) => plan.value !== 'standard');
+      return [...plans].sort((a) => (a.value === 'premium' ? -1 : 1));
+    }
+    if (type === 'region') {
+      return [...plans].sort((a) => (a.value === 'standard' ? -1 : 1));
     }
     return plans;
   }, [type, plans]);
@@ -86,7 +89,7 @@ const PlanTile = ({
     <form data-testid="form" onSubmit={onSubmitHandler}>
       <div className=" mt-6 grid grid-cols-1  lg:grid-cols-2  xl:grid-cols-3  gap-4">
         {!step.isLocked &&
-          plansToShow.map(({ content, ...plan }) => (
+          sortedPlans.map(({ content, ...plan }) => (
             <RadioTile
               disabled={planIsDisabled(plan)}
               key={plan.value}
