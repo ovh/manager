@@ -24,7 +24,7 @@ const CodeBlock = ({ code, toastMessage }: CodeBlockProps) => {
         size="menu"
         variant="menu"
         mode="menu"
-        className="absolute top-2 right-2 p-1 z-10 !shrink-0"
+        className="absolute top-2 right-2 p-1 z-10 shrink-0"
       >
         <Files className="w-4 h-4" />
         <span className="sr-only">copy</span>

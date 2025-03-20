@@ -24,7 +24,7 @@ const Configurations = () => {
           size="menu"
           variant="menu"
           mode="menu"
-          className="!shrink-0"
+          className="shrink-0"
           onClick={() => {
             navigator.clipboard.writeText(notebook.id);
             toast.toast({
