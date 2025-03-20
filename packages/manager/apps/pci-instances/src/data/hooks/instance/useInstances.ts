@@ -10,6 +10,7 @@ import {
 import { useCallback, useEffect, useMemo } from 'react';
 import { useProjectUrl } from '@ovh-ux/manager-react-components';
 import { Filter } from '@ovh-ux/manager-core-api';
+import isEqual from 'lodash.isequal';
 import { getInstances } from '@/data/api/instance';
 import { instancesQueryKey } from '@/utils';
 import { TInstanceDto } from '@/types/instance/api.type';
@@ -29,7 +30,10 @@ export type TUseInstancesQueryParams = DeepReadonly<{
 
 export type TUpdateInstanceFromCache = (
   queryClient: QueryClient,
-  payload: { projectId: string; instance: Partial<TInstanceDto> },
+  payload: {
+    projectId: string;
+    instance: Pick<TInstanceDto, 'id'> & Partial<TInstanceDto>;
+  },
 ) => void;
 
 const listQueryKeyPredicate = (projectId: string) => (query: Query) =>
@@ -42,26 +46,37 @@ export const updateInstanceFromCache: TUpdateInstanceFromCache = (
   payload,
 ) => {
   const { projectId, instance } = payload;
-  if (!instance.id) return;
-  queryClient.setQueriesData<InfiniteData<TInstanceDto[], number>>(
-    {
-      predicate: listQueryKeyPredicate(projectId),
-    },
-    (prevData) => {
-      if (!prevData) return undefined;
-      const updatedPages = prevData.pages.map((page) =>
-        page.map((prevInstance) =>
-          instance.id === prevInstance.id
-            ? {
-                ...prevInstance,
-                ...instance,
-              }
-            : prevInstance,
-        ),
-      );
-      return { ...prevData, pages: updatedPages };
-    },
-  );
+
+  const queries = queryClient.getQueriesData<InfiniteData<TInstanceDto[]>>({
+    predicate: listQueryKeyPredicate(projectId),
+  });
+
+  queries.forEach(([queryKey, queryData]) => {
+    if (!queryData) return;
+
+    let isPageModified = false;
+
+    const updatedPages = queryData.pages.map((page) =>
+      page.map((prevInstance) => {
+        if (prevInstance.id === instance.id) {
+          const mergedInstance = { ...prevInstance, ...instance };
+          isPageModified = !isEqual(mergedInstance, prevInstance);
+          return mergedInstance;
+        }
+        return prevInstance;
+      }),
+    );
+
+    if (!isPageModified) return;
+
+    queryClient.setQueryData<InfiniteData<TInstanceDto[], number>>(
+      queryKey,
+      (prevData) => {
+        if (!prevData) return undefined;
+        return { ...prevData, pages: updatedPages };
+      },
+    );
+  });
 };
 
 const getPendingTaskIds = (data?: TInstance[]): string[] =>
