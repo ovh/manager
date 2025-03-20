@@ -21,7 +21,7 @@ vi.mock('@/data/hooks/ip', () => ({
 }));
 
 vi.mock('../DatagridCells', () => ({
-  ActionsCell: ({ ip }: { ip: string }) => <div>{ip}</div>,
+  IpActionsCell: ({ ip }: { ip: string }) => <div>{ip}</div>,
   IpAlerts: ({ ip }: { ip: string }) => <div>{ip}</div>,
   IpAntiDdos: ({ ip }: { ip: string }) => <div>{ip}</div>,
   IpAttachedService: ({ ip }: { ip: string }) => <div>{ip}</div>,
