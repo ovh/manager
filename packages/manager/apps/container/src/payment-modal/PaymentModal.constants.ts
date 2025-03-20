@@ -8,14 +8,7 @@ export const PAYMENT_ALERTS = {
 };
 
 export const PaymentModalConfiguration: ModalToDisplayConfiguration = {
-  checks: {
-    excludedUrls: [
-      {
-        appName: 'dedicated',
-        appPath: '#/billing/payment/method',
-      },
-    ],
-  },
+  checks: {},
   data: {
     queryParams: {
       queryKey: ['me-payment-method'],
