@@ -5,7 +5,7 @@ import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
 import set from 'lodash/set';
 
-import { NO_AUTORENEW_COUNTRIES } from './server.constants';
+import { NO_AUTORENEW_COUNTRIES, TAG_TAB_LABEL } from './server.constants';
 
 export default class ServerCtrl {
   /* @ngInject */
@@ -45,6 +45,7 @@ export default class ServerCtrl {
 
   $onInit() {
     this.errorStatus = ['customer_error', 'ovh_error', 'error', 'cancelled'];
+    this.TAG_TAB_LABEL = TAG_TAB_LABEL;
 
     this.$scope.RENEW_URL = this.coreURLBuilder.buildURL(
       'dedicated',
