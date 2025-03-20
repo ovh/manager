@@ -1,26 +1,17 @@
 import React from 'react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
 import {
-  ODS_BUTTON_TYPE,
-  ODS_BUTTON_VARIANT,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-  ODS_CHECKBOX_BUTTON_SIZE,
-  ODS_ICON_SIZE,
+  ODS_TEXT_PRESET,
+  ODS_MESSAGE_COLOR,
   ODS_ICON_NAME,
 } from '@ovhcloud/ods-components';
 import {
-  OsdsText,
-  OsdsButton,
-  OsdsMessage,
-  OsdsCheckbox,
-  OsdsCheckboxButton,
-  OsdsLink,
-  OsdsIcon,
+  OdsText,
+  OdsButton,
+  OdsMessage,
+  OdsCheckbox,
+  OdsLink,
 } from '@ovhcloud/ods-components/react';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import { handleClick } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
@@ -54,79 +45,54 @@ export const OrderSubmitModalContent: React.FC<OrderSubmitModalContentProps> = (
   return (
     <>
       {isError && (
-        <OsdsMessage
-          color={ODS_THEME_COLOR_INTENT.error}
-          icon={ODS_ICON_NAME.ERROR_CIRCLE}
-          className="mb-6"
+        <OdsMessage
+          isDismissible={false}
+          color={ODS_MESSAGE_COLOR.critical}
+          className="block mb-6"
         >
-          <OsdsText
-            level={ODS_TEXT_LEVEL.body}
-            size={ODS_TEXT_SIZE._400}
-            color={ODS_THEME_COLOR_INTENT.text}
-          >
-            {error?.response?.data?.message}
-          </OsdsText>
-        </OsdsMessage>
+          {error?.response?.data?.message}
+        </OdsMessage>
       )}
-      <OsdsCheckbox
-        className="block"
-        checked={isContractAccepted}
-        onOdsCheckedChange={(event) =>
-          setIsContractAccepted(event.target.checked)
-        }
-      >
-        <OsdsCheckboxButton
-          size={ODS_CHECKBOX_BUTTON_SIZE.sm}
-          color={ODS_THEME_COLOR_INTENT.text}
-        >
-          <span slot="end">
-            <OsdsText
-              color={ODS_THEME_COLOR_INTENT.text}
-              level={ODS_TEXT_LEVEL.body}
-              size={ODS_TEXT_SIZE._400}
-            >
-              {t('modalConfirmContractsCheckboxLabel')}
-            </OsdsText>
-          </span>
-        </OsdsCheckboxButton>
-      </OsdsCheckbox>
+      <div className="flex">
+        <OdsCheckbox
+          name="confirm-contract"
+          inputId="confirm-contract"
+          isChecked={isContractAccepted}
+          onOdsChange={(event) => setIsContractAccepted(event.detail.checked)}
+        />
+        <label className="ml-3 cursor-pointer" htmlFor="confirm-contract">
+          <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+            {t('modalConfirmContractsCheckboxLabel')}
+          </OdsText>
+        </label>
+      </div>
       <ul>
         {contractList.map(({ name, url }) => (
           <li key={name}>
-            <OsdsLink
+            <OdsLink
               href={url}
-              target={OdsHTMLAnchorElementTarget._blank}
-              color={ODS_THEME_COLOR_INTENT.primary}
-            >
-              {name}
-              <OsdsIcon
-                className="ml-4"
-                color={ODS_THEME_COLOR_INTENT.primary}
-                size={ODS_ICON_SIZE.xxs}
-                name={ODS_ICON_NAME.EXTERNAL_LINK}
-              />
-            </OsdsLink>
+              target="_blank"
+              icon={ODS_ICON_NAME.externalLink}
+              label={name}
+            />
           </li>
         ))}
       </ul>
       {isPending && <LoadingText title={t('modalSubmitOrderWaitMessage')} />}
-      <OsdsButton
+      <OdsButton
         slot="actions"
-        type={ODS_BUTTON_TYPE.button}
-        variant={ODS_BUTTON_VARIANT.flat}
-        disabled={!isContractAccepted || undefined}
-        color={ODS_THEME_COLOR_INTENT.primary}
-        {...handleClick(() => {
+        type="button"
+        isDisabled={!isContractAccepted}
+        label={submitButtonLabel}
+        onClick={() => {
           trackClick({
             location: PageLocation.popup,
             buttonType: ButtonType.button,
             actions: ['order', 'confirm'],
           });
           sendOrder({ cartId, onSuccess, onError });
-        })}
-      >
-        {submitButtonLabel}
-      </OsdsButton>
+        }}
+      />
     </>
   );
 };

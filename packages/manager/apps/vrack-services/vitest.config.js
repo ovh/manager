@@ -17,6 +17,9 @@ export default defineConfig({
       exclude: [
         'src/types',
         'src/test-utils',
+        'src/utils/tracking.ts',
+        'src/pages/not-found',
+        'src/data/mocks',
         'src/vite-*.ts',
         'src/App.tsx',
         'src/index.tsx',

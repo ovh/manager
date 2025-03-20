@@ -1,56 +1,35 @@
 import React from 'react';
-import { OsdsButton, OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
+import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_SIZE,
-  ODS_BUTTON_TYPE,
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_TEXT_SIZE,
-  ODS_TEXT_LEVEL,
+  ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { handleClick } from '@ovh-ux/manager-react-components';
 
 export type EditButtonProps = React.PropsWithChildren<{
-  disabled?: boolean;
+  isDisabled?: boolean;
   onClick: () => void;
 }>;
 
 export const EditButton: React.FC<EditButtonProps> = ({
   children,
-  disabled,
-  onClick,
+  ...props
 }) => (
   <div className="flex items-center">
     <div className="grow">
-      <OsdsText
-        level={ODS_TEXT_LEVEL.body}
-        size={children ? ODS_TEXT_SIZE._600 : ODS_TEXT_SIZE._300}
-        color={ODS_THEME_COLOR_INTENT.text}
-      >
-        {children}
-      </OsdsText>
+      <OdsText preset={ODS_TEXT_PRESET.paragraph}>{children}</OdsText>
     </div>
     <div className="flex-none">
-      <OsdsButton
+      <OdsButton
+        {...props}
         className="ml-2"
-        inline
-        circle
-        color={ODS_THEME_COLOR_INTENT.primary}
-        variant={ODS_BUTTON_VARIANT.stroked}
-        type={ODS_BUTTON_TYPE.button}
+        type="button"
+        variant={ODS_BUTTON_VARIANT.ghost}
         size={ODS_BUTTON_SIZE.sm}
-        {...handleClick(onClick)}
-        disabled={disabled || undefined}
-        data-testid="edit-button"
-      >
-        <OsdsIcon
-          color={ODS_THEME_COLOR_INTENT.primary}
-          name={ODS_ICON_NAME.PEN}
-          size={ODS_ICON_SIZE.xs}
-        />
-      </OsdsButton>
+        label=""
+        icon={ODS_ICON_NAME.pen}
+      />
     </div>
   </div>
 );

@@ -1,21 +1,18 @@
 import { describe, it } from 'vitest';
-import '@testing-library/jest-dom';
-import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import userEvent from '@testing-library/user-event';
+import { waitFor } from '@testing-library/react';
+import { WAIT_FOR_DEFAULT_OPTIONS } from '@ovh-ux/manager-core-test-utils';
+import { urls } from '@/routes/routes.constants';
 import {
   assertModalVisibility,
   getButtonByLabel,
-} from '@ovh-ux/manager-core-test-utils';
-import { waitFor, fireEvent } from '@testing-library/react';
-
-import { urls } from '@/routes/routes.constants';
-import {
-  assertModalTitle,
+  assertModalText,
   changeInputValueByLabelText,
   getButtonByIcon,
-  getButtonByVariant,
   labels,
   renderTest,
-} from '../../../test-utils';
+} from '@/test-utils';
 
 describe('Vrack Services delete test suite', () => {
   it('should delete a vrack service', async () => {
@@ -26,39 +23,41 @@ describe('Vrack Services delete test suite', () => {
 
     const actionMenuButton = await getButtonByIcon({
       container,
-      iconName: ODS_ICON_NAME.ELLIPSIS,
+      value: ODS_ICON_NAME.ellipsisVertical,
     });
-
-    await waitFor(() => fireEvent.click(actionMenuButton));
+    await waitFor(() => userEvent.click(actionMenuButton));
 
     const deleteVrackService = await getButtonByLabel({
       container,
-      label: labels.common['action-deleteVrackServices'],
+      value: labels.actions.delete,
     });
+    await waitFor(() => userEvent.click(deleteVrackService));
 
-    await waitFor(() => fireEvent.click(deleteVrackService));
-
-    await assertModalTitle({
+    await assertModalText({
       container,
-      title: labels.common.modalDeleteVrackServicesHeadline,
+      text: labels.common.modalDeleteVrackServicesHeadline,
     });
-    await getButtonByVariant({
+    let submitButton = await getButtonByLabel({
       container,
-      variant: ODS_BUTTON_VARIANT.flat,
-      disabled: true,
+      value: labels.actions.delete,
+      nth: 2,
     });
+    expect(submitButton).toBeDisabled();
     await changeInputValueByLabelText({
       inputLabel: labels.common.modalDeleteVrackServicesInputLabel,
       value: 'TERMINATE',
     });
 
-    const submitButton = await getButtonByVariant({
+    submitButton = await getButtonByLabel({
       container,
-      variant: ODS_BUTTON_VARIANT.flat,
-      disabled: false,
+      value: labels.actions.delete,
+      nth: 2,
     });
-
-    await waitFor(() => fireEvent.click(submitButton));
+    await waitFor(
+      () => expect(submitButton).not.toBeDisabled(),
+      WAIT_FOR_DEFAULT_OPTIONS,
+    );
+    await waitFor(() => userEvent.click(submitButton));
 
     await assertModalVisibility({ container, isVisible: false });
   });
