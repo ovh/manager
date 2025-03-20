@@ -20,6 +20,7 @@
   "manager_billing_subscription_engagement_status_engaged_expired": "Terminé le {{ endDate }}",
   "manager_billing_subscription_engagement_status_commitement_pending": "Votre service sera engagé à partir du {{ nextBillingDate }}",
   "manager_billing_subscription_engagement_manage": "Gérer mon engagement",
+  "manager_billing_subscription_engagement_commit_cancel": "Annuler la demande d'engagement",
 
   "manager_billing_subscription_autorenew_none": "Aucun",
   "manager_billing_subscription_autorenew_every_1_month": "Tous les mois",
