@@ -1,24 +1,21 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
-  OsdsButton,
-  OsdsInput,
-  OsdsMessage,
-  OsdsModal,
-  OsdsSpinner,
-  OsdsText,
+  OdsButton,
+  OdsInput,
+  OdsMessage,
+  OdsModal,
+  OdsSpinner,
+  OdsText,
 } from '@ovhcloud/ods-components/react';
 import {
-  ODS_BUTTON_TYPE,
+  ODS_BUTTON_COLOR,
   ODS_BUTTON_VARIANT,
   ODS_INPUT_TYPE,
-  ODS_MESSAGE_TYPE,
+  ODS_MESSAGE_COLOR,
   ODS_SPINNER_SIZE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-  OdsInputValueChangeEvent,
+  ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
 import {
   ButtonType,
@@ -127,107 +124,90 @@ export default function EditSubnetModal() {
     subnet.vlan !== vlan;
 
   return (
-    <OsdsModal
-      dismissible
-      headline={t('modalSubnetUpdateHeadline')}
-      onOdsModalClose={onClose}
-    >
+    <OdsModal isOpen isDismissible onOdsClose={onClose}>
+      <OdsText preset={ODS_TEXT_PRESET.heading4}>
+        ={t('modalSubnetUpdateHeadline')}
+      </OdsText>
       {(isError || isUpdateError) && (
-        <OsdsMessage className="mb-8" type={ODS_MESSAGE_TYPE.error}>
-          <OsdsText
-            level={ODS_TEXT_LEVEL.body}
-            size={ODS_TEXT_SIZE._400}
-            color={ODS_THEME_COLOR_INTENT.text}
-          >
-            {t('subnetUpdateError', {
-              error: (error || updateError).response?.data?.message,
-            })}
-          </OsdsText>
-        </OsdsMessage>
+        <OdsMessage className="mb-8" color={ODS_MESSAGE_COLOR.critical}>
+          {t('subnetUpdateError', {
+            error: (error || updateError).response?.data?.message,
+          })}
+        </OdsMessage>
       )}
 
-      <OsdsText
-        color={ODS_THEME_COLOR_INTENT.text}
-        level={ODS_TEXT_LEVEL.body}
-        className="block mb-8"
-      >
+      <OdsText className="block mb-8" preset={ODS_TEXT_PRESET.paragraph}>
         {t('modalSubnetUpdateDescription')}
-      </OsdsText>
+      </OdsText>
 
       <FormField label={t('subnetUpdateDisplayNameInputLabel')} fullWidth>
-        <OsdsInput
-          disabled={disabledInputs}
+        <OdsInput
+          name="display-name-input"
+          isDisabled={disabledInputs}
           type={ODS_INPUT_TYPE.text}
           value={displayName}
           placeholder={t('subnetNamePlaceholder')}
-          onOdsValueChange={(e: OdsInputValueChangeEvent) =>
-            setDisplayName(e?.detail.value)
-          }
+          onOdsChange={(e) => setDisplayName(e?.detail.value as string)}
         />
       </FormField>
 
       <FormField label={t('cidrLabel')} fullWidth>
         <span slot="helper">
-          <OsdsText>{t('subnetRangeAdditionalText')}</OsdsText>
+          <OdsText>{t('subnetRangeAdditionalText')}</OdsText>
         </span>
-        <OsdsInput
-          disabled={disabledInputs}
+        <OdsInput
+          name="cidr-input"
+          isDisabled={disabledInputs}
           type={ODS_INPUT_TYPE.text}
           value={newCidr}
           placeholder={defaultCidr}
-          onOdsValueChange={(e: OdsInputValueChangeEvent) =>
-            setNewCidr(e?.detail.value)
-          }
-          error={!!newCidr && !isValidCidr(newCidr)}
+          onOdsChange={(e) => setNewCidr(e?.detail.value as string)}
+          hasError={!!newCidr && !isValidCidr(newCidr)}
         />
       </FormField>
 
       <FormField label={t('serviceRangeLabel')} fullWidth>
-        <OsdsInput
-          disabled={disabledInputs}
+        <OdsInput
+          name="service-range"
+          isDisabled={disabledInputs}
           type={ODS_INPUT_TYPE.text}
           value={serviceRange}
           placeholder={defaultServiceRange}
-          onOdsValueChange={(e: OdsInputValueChangeEvent) =>
-            setServiceRange(e?.detail.value)
-          }
+          onOdsChange={(e) => setServiceRange(e?.detail.value as string)}
         />
       </FormField>
 
       <FormField label={t('vlanNumberLabel')} fullWidth>
-        <OsdsInput
-          disabled={disabledInputs}
+        <OdsInput
+          name="vlan-option"
+          isDisabled={disabledInputs}
           type={ODS_INPUT_TYPE.number}
           value={vlan}
           placeholder={t('vlanNoVlanOptionLabel')}
-          onOdsValueChange={(e: OdsInputValueChangeEvent) =>
-            setVlan(Number(e?.detail.value) || null)
-          }
+          onOdsChange={(e) => setVlan(Number(e?.detail.value) || null)}
         />
       </FormField>
-      {isVrackServicesLoading && <OsdsSpinner size={ODS_SPINNER_SIZE.sm} />}
+      {isVrackServicesLoading && <OdsSpinner size={ODS_SPINNER_SIZE.sm} />}
       {isPending && <LoadingText title={t('subnetUpdatePending')} />}
-      <OsdsButton
-        disabled={isPending || undefined}
+      <OdsButton
+        isLoading={isPending}
         slot="actions"
-        type={ODS_BUTTON_TYPE.button}
+        type="button"
         variant={ODS_BUTTON_VARIANT.ghost}
-        color={ODS_THEME_COLOR_INTENT.info}
+        color={ODS_BUTTON_COLOR.primary}
         {...handleClick(onClose)}
-      >
-        {t('modalSubnetUpdateCancelButton')}
-      </OsdsButton>
-      <OsdsButton
-        disabled={
+        label={t('modalSubnetUpdateCancelButton')}
+      />
+      <OdsButton
+        isDisabled={
           (!!newCidr && !isValidCidr(newCidr)) ||
           (vlan && !isValidVlanNumber(vlan)) ||
           !hasDirtyInputs ||
           disabledInputs
         }
         slot="actions"
-        type={ODS_BUTTON_TYPE.button}
-        variant={ODS_BUTTON_VARIANT.flat}
-        color={ODS_THEME_COLOR_INTENT.info}
+        type="button"
+        color={ODS_BUTTON_COLOR.primary}
         {...handleClick(() => {
           trackClick({
             ...sharedTrackingParams,
@@ -243,9 +223,8 @@ export default function EditSubnetModal() {
             vs,
           });
         })}
-      >
-        {t('modalSubnetUpdateConfirmButton')}
-      </OsdsButton>
-    </OsdsModal>
+        label={t('modalSubnetUpdateConfirmButton')}
+      />
+    </OdsModal>
   );
 }

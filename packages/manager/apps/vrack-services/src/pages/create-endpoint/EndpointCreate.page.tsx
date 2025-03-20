@@ -2,11 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
-import { OsdsSelect, OsdsSelectOption } from '@ovhcloud/ods-components/react';
-import {
-  ODS_SELECT_SIZE,
-  OdsSelectValueChangeEvent,
-} from '@ovhcloud/ods-components';
+import { OdsSelect } from '@ovhcloud/ods-components/react';
 import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { ErrorBanner } from '@ovh-ux/manager-react-components';
 import {
@@ -124,35 +120,32 @@ export default function EndpointCreatePage() {
       }
     >
       <FormField label={t('serviceTypeLabel')} isLoading={isServiceListLoading}>
-        <OsdsSelect
-          inline
-          disabled={isPending || isServiceListLoading || undefined}
+        <OdsSelect
+          name="service-type-select"
+          isDisabled={isPending || isServiceListLoading}
           id={serviceTypeSelectName}
           value={serviceType}
-          onOdsValueChange={(e: OdsSelectValueChangeEvent) =>
-            setServiceType(e?.detail.value as string)
-          }
-          size={ODS_SELECT_SIZE.md}
+          onOdsChange={(e) => setServiceType(e?.detail.value as string)}
+          placeholder={t('serviceTypePlaceholder')}
         >
-          <span slot="placeholder">{t('serviceTypePlaceholder')}</span>
           {serviceListResponse?.data?.map((service) => (
-            <OsdsSelectOption
+            <option
               key={service.managedServiceType}
               value={service.managedServiceType}
             >
               {t(service.managedServiceType)}
-            </OsdsSelectOption>
+            </option>
           ))}
-        </OsdsSelect>
+        </OdsSelect>
       </FormField>
 
       <FormField
         label={t('serviceNameLabel')}
         isLoading={isIamResourcesLoading}
       >
-        <OsdsSelect
-          inline
-          disabled={
+        <OdsSelect
+          name="service-name"
+          isDisabled={
             isPending ||
             isServiceListLoading ||
             isIamResourcesLoading ||
@@ -160,12 +153,9 @@ export default function EndpointCreatePage() {
             undefined
           }
           id={serviceNameSelectName}
-          onOdsValueChange={(e: OdsSelectValueChangeEvent) =>
-            setManagedServiceURN(e?.detail.value as string)
-          }
-          size={ODS_SELECT_SIZE.md}
+          onOdsChange={(e) => setManagedServiceURN(e?.detail.value as string)}
+          placeholder={t('serviceNamePlaceholder')}
         >
-          <span slot="placeholder">{t('serviceNamePlaceholder')}</span>
           {serviceListResponse?.data
             ?.find((service) => service.managedServiceType === serviceType)
             ?.managedServiceURNs.map((serviceURN: string) => {
@@ -175,33 +165,30 @@ export default function EndpointCreatePage() {
               const label =
                 resource?.displayName || resource?.name || resource?.id;
               return (
-                <OsdsSelectOption key={serviceURN} value={serviceURN}>
+                <option key={serviceURN} value={serviceURN}>
                   {label}
-                </OsdsSelectOption>
+                </option>
               );
             })}
-        </OsdsSelect>
+        </OdsSelect>
       </FormField>
 
       <FormField label={t('subnetLabel')}>
-        <OsdsSelect
-          inline
-          disabled={isPending || undefined}
+        <OdsSelect
+          name="subnet"
+          isDisabled={isPending}
           id={subnetSelectName}
-          onOdsValueChange={(e: OdsSelectValueChangeEvent) =>
-            setCidr(e?.detail.value as string)
-          }
-          size={ODS_SELECT_SIZE.md}
+          onOdsChange={(e) => setCidr(e?.detail.value as string)}
+          placeholder={t('subnetPlaceholder')}
         >
-          <span slot="placeholder">{t('subnetPlaceholder')}</span>
           {vrackServices?.data?.currentState.subnets.map((subnet) => (
-            <OsdsSelectOption key={subnet.cidr} value={subnet.cidr}>
+            <option key={subnet.cidr} value={subnet.cidr}>
               {subnet.displayName
                 ? `${subnet.displayName} - ${subnet.cidr}`
                 : subnet.cidr}
-            </OsdsSelectOption>
+            </option>
           ))}
-        </OsdsSelect>
+        </OdsSelect>
       </FormField>
     </CreatePageLayout>
   );

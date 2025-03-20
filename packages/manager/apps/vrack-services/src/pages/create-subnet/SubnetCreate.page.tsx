@@ -2,20 +2,8 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
-import {
-  ODS_RADIO_BUTTON_SIZE,
-  ODS_INPUT_SIZE,
-  ODS_INPUT_TYPE,
-  OdsInputValueChangeEvent,
-} from '@ovhcloud/ods-components';
-import {
-  OsdsRadioButton,
-  OsdsRadio,
-  OsdsRadioGroup,
-  OsdsText,
-  OsdsInput,
-} from '@ovhcloud/ods-components/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_INPUT_TYPE } from '@ovhcloud/ods-components';
+import { OdsRadio, OdsText, OdsInput } from '@ovhcloud/ods-components/react';
 import { useOvhTracking, PageType } from '@ovh-ux/manager-react-shell-client';
 import {
   getVrackServicesResourceListQueryKey,
@@ -116,104 +104,73 @@ export default function SubnetCreate() {
       }
     >
       <FormField label={t('subnetNameLabel')}>
-        <OsdsInput
-          inline
-          disabled={isPending || undefined}
+        <OdsInput
+          isDisabled={isPending}
           name={displayNameInputName}
-          size={ODS_INPUT_SIZE.md}
           type={ODS_INPUT_TYPE.text}
           placeholder={t('subnetNamePlaceholder')}
-          onOdsValueChange={(e: OdsInputValueChangeEvent) =>
-            setDisplayName(e?.detail.value)
-          }
+          onOdsChange={(e) => setDisplayName(e?.detail.value as string)}
         />
       </FormField>
 
       <FormField label={t('cidrLabel')}>
         <span slot="helper">
-          <OsdsText>{t('subnetRangeAdditionalText')}</OsdsText>
+          <OdsText>{t('subnetRangeAdditionalText')}</OdsText>
         </span>
-        <OsdsInput
-          inline
-          disabled={isPending || undefined}
+        <OdsInput
+          isDisabled={isPending}
           name={cidrInputName}
-          size={ODS_INPUT_SIZE.md}
           type={ODS_INPUT_TYPE.text}
           placeholder={defaultCidr}
-          onOdsValueChange={(e: OdsInputValueChangeEvent) =>
-            setCidr(e?.detail.value)
-          }
-          error={!!cidr && !isValidCidr(cidr)}
+          onOdsChange={(e) => setCidr(e?.detail.value as string)}
+          hasError={!!cidr && !isValidCidr(cidr)}
         />
       </FormField>
 
       <FormField label={t('serviceRangeLabel')}>
         <span slot="helper">
-          <OsdsText>{t('serviceRangeAdditionalText')}</OsdsText>
+          <OdsText>{t('serviceRangeAdditionalText')}</OdsText>
         </span>
-        <OsdsInput
-          inline
-          disabled={isPending || undefined}
+        <OdsInput
+          isDisabled={isPending}
           placeholder={defaultServiceRange}
-          size={ODS_INPUT_SIZE.md}
           type={ODS_INPUT_TYPE.text}
           name={serviceRangeSelectName}
-          onOdsValueChange={(e: OdsInputValueChangeEvent) =>
-            setServiceRange(e?.detail.value)
-          }
+          onOdsChange={(e) => setServiceRange(e?.detail.value as string)}
         />
       </FormField>
 
       <FormField label={t('vlanLabel')}>
         <div slot="helper">
-          <OsdsText>{t('vlanAdditionalText')}</OsdsText>
+          <OdsText>{t('vlanAdditionalText')}</OdsText>
         </div>
-        <OsdsRadioGroup
-          id={vlanInputName}
+        <OdsRadio
+          inputId={noVlanOptionValue}
+          value={noVlanOptionValue}
           name={vlanInputName}
-          disabled={isPending || undefined}
-          onOdsValueChange={(event) => {
-            setHasVlan(event?.detail.newValue === vlanNumberOptionValue);
+          isDisabled={isPending}
+          onOdsChange={(event) => {
+            setHasVlan(event?.detail.value === vlanNumberOptionValue);
           }}
-        >
-          <OsdsRadio
-            checked={!hasVlan}
-            name={vlanInputName}
-            value={noVlanOptionValue}
-          >
-            <OsdsRadioButton
-              size={ODS_RADIO_BUTTON_SIZE.sm}
-              color={ODS_THEME_COLOR_INTENT.primary}
-            >
-              <span slot="end">{t('vlanNoVlanOptionLabel')}</span>
-            </OsdsRadioButton>
-          </OsdsRadio>
-          <OsdsRadio
-            checked={hasVlan}
-            name={vlanInputName}
-            value={vlanNumberOptionValue}
-          >
-            <OsdsRadioButton
-              size={ODS_RADIO_BUTTON_SIZE.sm}
-              color={ODS_THEME_COLOR_INTENT.primary}
-            >
-              <span slot="end">{t('vlanSelectVlanOptionLabel')}</span>
-            </OsdsRadioButton>
-          </OsdsRadio>
-        </OsdsRadioGroup>
+        />
+        <label htmlFor={noVlanOptionValue}>{t('vlanNoVlanOptionLabel')}</label>
+        <OdsRadio
+          inputId="vlan"
+          isChecked={hasVlan}
+          name={vlanInputName}
+          value={vlanNumberOptionValue}
+        />
+        <label htmlFor={vlanNumberOptionValue}>
+          {t('vlanSelectVlanOptionLabel')}
+        </label>
       </FormField>
-
       {hasVlan && (
         <FormField className="ml-8" label={t('vlanNumberLabel')}>
-          <OsdsInput
-            inline
-            disabled={isPending || undefined}
+          <OdsInput
+            isDisabled={isPending}
             name={vlanNumberInputName}
-            size={ODS_INPUT_SIZE.md}
             type={ODS_INPUT_TYPE.number}
-            onOdsValueChange={(e: OdsInputValueChangeEvent) =>
-              setVlan(Number(e?.detail.value))
-            }
+            onOdsChange={(e) => setVlan(Number(e?.detail.value))}
           />
         </FormField>
       )}

@@ -71,6 +71,7 @@ export default function SubnetDeleteModal() {
 
   return (
     <DeleteModal
+      isOpen
       closeModal={onClose}
       deleteInputLabel={t('modalDeleteSubnetInputLabel')}
       headline={t('modalDeleteSubnetHeadline')}

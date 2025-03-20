@@ -28,7 +28,7 @@ describe('Vrack Services endpoint creation page test suite', () => {
 
     await getButtonByVariant({
       container,
-      variant: ODS_BUTTON_VARIANT.flat,
+      variant: ODS_BUTTON_VARIANT.default,
       disabled: true,
     });
 
@@ -39,7 +39,7 @@ describe('Vrack Services endpoint creation page test suite', () => {
 
     await getButtonByVariant({
       container,
-      variant: ODS_BUTTON_VARIANT.flat,
+      variant: ODS_BUTTON_VARIANT.default,
       disabled: true,
     });
 
@@ -50,7 +50,7 @@ describe('Vrack Services endpoint creation page test suite', () => {
 
     await getButtonByVariant({
       container,
-      variant: ODS_BUTTON_VARIANT.flat,
+      variant: ODS_BUTTON_VARIANT.default,
       disabled: false,
     });
   });

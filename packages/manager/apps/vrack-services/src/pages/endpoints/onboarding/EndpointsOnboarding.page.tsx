@@ -16,9 +16,9 @@ export default function EndpointsOnboarding() {
     <OnboardingLayout
       secondaryButtonLabel={t('createEndpointButtonLabel')}
       secondaryOnClick={navigateToCreateEndpointPage}
-      secondaryButtonIcon={ODS_ICON_NAME.ADD}
+      secondaryButtonIcon={ODS_ICON_NAME.plus}
       secondaryButtonSize={ODS_BUTTON_SIZE.sm}
-      secondaryButtonIconPosition="start"
+      secondaryButtonIconPosition="left"
       secondaryButtonDisabled={
         !isEditable(vrackServices) || !hasSubnet(vrackServices) || undefined
       }

@@ -5,7 +5,6 @@ import React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { render, act, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { getButtonByLabel } from '@ovh-ux/manager-core-test-utils';
 import {
   OnboardingLayout,
@@ -34,7 +33,6 @@ describe('OnboardingLayout Component', () => {
 
     const title = getByText('onboarding-title');
     expect(title).toBeDefined();
-    expect(title).toHaveAttribute('size', ODS_TEXT_SIZE._600);
 
     const description = getByText('onboarding-description');
     expect(description).toBeDefined();
@@ -44,7 +42,6 @@ describe('OnboardingLayout Component', () => {
 
     const introTitle = getByText('onboarding-intro-title');
     expect(introTitle).toBeDefined();
-    expect(introTitle).toHaveAttribute('size', ODS_TEXT_SIZE._600);
 
     const primaryButton = await getButtonByLabel({
       label: 'onboarding-button-label',

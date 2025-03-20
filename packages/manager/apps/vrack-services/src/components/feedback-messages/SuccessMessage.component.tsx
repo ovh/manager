@@ -1,16 +1,10 @@
 import React from 'react';
+import { OdsLink, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 import {
-  OsdsLink,
-  OsdsMessage,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
-import {
-  ODS_MESSAGE_TYPE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
+  ODS_MESSAGE_COLOR,
+  ODS_TEXT_PRESET,
+  ODS_BUTTON_COLOR,
 } from '@ovhcloud/ods-components';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useVrackServicesList } from '@ovh-ux/manager-network-common';
 import { MessageData, MessagesContext } from './Messages.context';
 
@@ -21,31 +15,26 @@ export const SuccessMessage: React.FC<Partial<MessageData>> = ({
 }) => {
   const { hideMessage } = React.useContext(MessagesContext);
   return (
-    <OsdsMessage
-      type={ODS_MESSAGE_TYPE.success}
+    <OdsMessage
+      color={ODS_MESSAGE_COLOR.success}
       className="mb-8"
-      removable
-      onOdsRemoveClick={() => id && hideMessage(id)}
+      isDismissible
+      onOdsRemove={() => id && hideMessage(id)}
     >
-      <OsdsText
-        className="block"
-        level={ODS_TEXT_LEVEL.body}
-        size={ODS_TEXT_SIZE._400}
-        color={ODS_THEME_COLOR_INTENT.text}
-      >
+      <OdsText className="block" preset={ODS_TEXT_PRESET.paragraph}>
         {message}
-      </OsdsText>
+      </OdsText>
       {options?.linkLabel && options?.linkUrl && (
-        <OsdsLink
-          color={ODS_THEME_COLOR_INTENT.primary}
+        <OdsLink
+          color={ODS_BUTTON_COLOR.primary}
           href={options.linkUrl}
           className="ml-3"
-          target={OdsHTMLAnchorElementTarget._blank}
+          target="_blank"
         >
           {options.linkLabel}
-        </OsdsLink>
+        </OdsLink>
       )}
-    </OsdsMessage>
+    </OdsMessage>
   );
 };
 

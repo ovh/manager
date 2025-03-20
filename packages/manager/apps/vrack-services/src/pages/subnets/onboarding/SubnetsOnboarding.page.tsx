@@ -23,9 +23,9 @@ export default function SubnetsOnboarding() {
     <OnboardingLayout
       secondaryButtonLabel={t('createSubnetButtonLabel')}
       secondaryOnClick={navigateToCreateSubnetPage}
-      secondaryButtonIcon={ODS_ICON_NAME.ADD}
+      secondaryButtonIcon={ODS_ICON_NAME.plus}
       secondaryButtonSize={ODS_BUTTON_SIZE.sm}
-      secondaryButtonIconPosition="start"
+      secondaryButtonIconPosition="left"
       secondaryButtonDisabled={!isEditable(vs) || undefined}
       title={t('subnetsOnboardingTitle')}
       description={t('subnetsOnboardingDescription')}

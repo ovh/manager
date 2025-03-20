@@ -1,7 +1,7 @@
 import React from 'react';
 import { describe, expect, it } from 'vitest';
 import { render } from '@testing-library/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
 import { VrackServicesProductStatus } from '@ovh-ux/manager-network-common';
 import {
   ProductStatusChip,
@@ -14,9 +14,9 @@ const renderComponent = ({ productStatus }: ProductStatusChipProps) => {
 
 describe('ProductStatusChip Component', () => {
   it.each([
-    [VrackServicesProductStatus.ACTIVE, ODS_THEME_COLOR_INTENT.success],
-    [VrackServicesProductStatus.SUSPENDED, ODS_THEME_COLOR_INTENT.default],
-    [VrackServicesProductStatus.DRAFT, ODS_THEME_COLOR_INTENT.info],
+    [VrackServicesProductStatus.ACTIVE, ODS_BADGE_COLOR.success],
+    [VrackServicesProductStatus.SUSPENDED, ODS_BADGE_COLOR.neutral],
+    [VrackServicesProductStatus.DRAFT, ODS_BADGE_COLOR.information],
   ])('should display the %s status in the %s color', (status, color) => {
     const { getByText } = renderComponent({ productStatus: status });
     expect(getByText(status)).toHaveAttribute('color', color);

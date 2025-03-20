@@ -2,21 +2,19 @@ import React from 'react';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
-  ODS_MESSAGE_TYPE,
+  ODS_MESSAGE_COLOR,
   ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
+  ODS_TEXT_PRESET,
+  ODS_BUTTON_COLOR,
 } from '@ovhcloud/ods-components';
 import {
-  OsdsMessage,
-  OsdsIcon,
-  OsdsButton,
-  OsdsText,
+  OdsMessage,
+  OdsIcon,
+  OdsButton,
+  OdsText,
 } from '@ovhcloud/ods-components/react';
 import { Outlet, Navigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useVrackService } from '@ovh-ux/manager-network-common';
 import { PageLayout } from '@/components/layout-helpers';
 import { SubnetDatagrid } from './SubnetDatagrid.component';
@@ -38,36 +36,24 @@ export default function SubnetsListing() {
   return (
     <>
       <PageLayout noBreacrumb>
-        <OsdsMessage className="mt-4" type={ODS_MESSAGE_TYPE.info}>
-          <OsdsText
-            level={ODS_TEXT_LEVEL.body}
-            size={ODS_TEXT_SIZE._400}
-            color={ODS_THEME_COLOR_INTENT.text}
-          >
+        <OdsMessage className="mt-4" color={ODS_MESSAGE_COLOR.information}>
+          <OdsText preset={ODS_TEXT_PRESET.paragraph}>
             {t('betaSubnetLimitMessage')}
-          </OsdsText>
-        </OsdsMessage>
-        <OsdsButton
+          </OdsText>
+        </OdsMessage>
+        <OdsButton
           // Disabled because for the beta user can only have 1 subnet per vRack Services
-          disabled={hasSubnet(vs) || undefined}
+          isDisabled={hasSubnet(vs) || undefined}
           // TODO: Uncomment after the beta
           // disabled={!isEditable(vrackServices) || undefined}
           className="my-4"
-          inline
           size={ODS_BUTTON_SIZE.sm}
-          variant={ODS_BUTTON_VARIANT.stroked}
-          color={ODS_THEME_COLOR_INTENT.primary}
+          variant={ODS_BUTTON_VARIANT.outline}
+          color={ODS_BUTTON_COLOR.primary}
           onClick={navigateToCreateSubnetPage}
-        >
-          {t('createSubnetButtonLabel')}
-          <span slot="start">
-            <OsdsIcon
-              name={ODS_ICON_NAME.ADD}
-              size={ODS_ICON_SIZE.xs}
-              color={ODS_THEME_COLOR_INTENT.primary}
-            />
-          </span>
-        </OsdsButton>
+          label={t('createSubnetButtonLabel')}
+          icon={ODS_ICON_NAME.plus}
+        />
 
         <section>
           <SubnetDatagrid />

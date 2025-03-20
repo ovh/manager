@@ -1,21 +1,16 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
-  ODS_BUTTON_TYPE,
+  ODS_BUTTON_COLOR,
   ODS_BUTTON_VARIANT,
-  ODS_MESSAGE_TYPE,
-  ODS_SELECT_SIZE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-  OdsSelectValueChangeEvent,
+  ODS_MESSAGE_COLOR,
+  ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
 import {
-  OsdsText,
-  OsdsSelect,
-  OsdsSelectOption,
-  OsdsMessage,
-  OsdsButton,
+  OdsText,
+  OdsSelect,
+  OdsMessage,
+  OdsButton,
 } from '@ovhcloud/ods-components/react';
 import { useQueryClient } from '@tanstack/react-query';
 import {
@@ -83,65 +78,54 @@ export const AssociateVrack: React.FC<AssociateVrackProps> = ({
 
   return (
     <>
-      <OsdsText
-        className="block mb-4"
-        level={ODS_TEXT_LEVEL.body}
-        size={ODS_TEXT_SIZE._400}
-        color={ODS_THEME_COLOR_INTENT.text}
-      >
+      <OdsText className="block mb-4" preset={ODS_TEXT_PRESET.paragraph}>
         {t('modalVrackAssociationDescription')}
-      </OsdsText>
+      </OdsText>
       {isError && (
-        <OsdsMessage type={ODS_MESSAGE_TYPE.error}>
-          <OsdsText
-            level={ODS_TEXT_LEVEL.body}
-            size={ODS_TEXT_SIZE._400}
-            color={ODS_THEME_COLOR_INTENT.text}
-          >
+        <OdsMessage color={ODS_MESSAGE_COLOR.critical}>
+          <OdsText preset={ODS_TEXT_PRESET.paragraph}>
             {t('modalVrackAssociationError', {
               error: error?.response?.data?.message,
             })}
-          </OsdsText>
-        </OsdsMessage>
+          </OdsText>
+        </OdsMessage>
       )}
-      <OsdsSelect
-        className="mb-4"
-        size={ODS_SELECT_SIZE.md}
-        disabled={isPending || undefined}
-        onOdsValueChange={(event: OdsSelectValueChangeEvent) =>
-          setSelectedVrack(event.detail.value as string)
-        }
+      <OdsSelect
+        name="select-vrack-input"
         data-testid="select-vrack-input"
+        className="mb-4"
+        isDisabled={isPending}
+        onOdsChange={(event) => setSelectedVrack(event.detail.value as string)}
+        placeholder={t('vrackSelectPlaceholder')}
       >
-        <span slot="placeholder">{t('vrackSelectPlaceholder')}</span>
         {vrackList.map((vrack) => (
-          <OsdsSelectOption key={vrack} value={vrack}>
+          <option key={vrack} value={vrack}>
             {vrack}
-          </OsdsSelectOption>
+          </option>
         ))}
-      </OsdsSelect>
+      </OdsSelect>
       {isPending && (
         <LoadingText
           title={t('modalAssociateVrackWaitMessage')}
           description={t('addVrackServicesToVrack')}
         />
       )}
-      <OsdsButton
+      <OdsButton
         slot="actions"
-        disabled={isPending || undefined}
-        type={ODS_BUTTON_TYPE.button}
+        isLoading={isPending}
+        type="button"
         variant={ODS_BUTTON_VARIANT.ghost}
-        color={ODS_THEME_COLOR_INTENT.primary}
+        color={ODS_BUTTON_COLOR.primary}
         {...handleClick(closeModal)}
-      >
-        {t('modalAssociateCancelButton')}
-      </OsdsButton>
-      <OsdsButton
+        label={t('modalAssociateCancelButton')}
+      />
+      <OdsButton
         slot="actions"
-        type={ODS_BUTTON_TYPE.button}
-        variant={ODS_BUTTON_VARIANT.flat}
-        color={ODS_THEME_COLOR_INTENT.primary}
-        disabled={isPending || !selectedVrack || undefined}
+        type="button"
+        variant={ODS_BUTTON_VARIANT.default}
+        color={ODS_BUTTON_COLOR.primary}
+        isLoading={isPending}
+        isDisabled={!selectedVrack}
         {...handleClick(() => {
           trackClick({
             location: PageLocation.popup,
@@ -150,9 +134,8 @@ export const AssociateVrack: React.FC<AssociateVrackProps> = ({
           });
           associateVs({ vrackId: selectedVrack });
         })}
-      >
-        {t('modalConfirmVrackAssociationButtonLabel')}
-      </OsdsButton>
+        label={t('modalConfirmVrackAssociationButtonLabel')}
+      />
     </>
   );
 };
