@@ -76,7 +76,7 @@ const Datastore = () => {
         data-testid="create-datastore-button"
         onClick={() => navigate('./add')}
       >
-        <Plus className="!size-5" />
+        <Plus className="size-5" />
         {t('addButtonLabel')}
       </Button>
 

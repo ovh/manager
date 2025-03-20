@@ -49,7 +49,7 @@ const PrivateDocker = () => {
         className="sm"
         onClick={() => navigate('./add')}
       >
-        <Plus className="!size-5" />
+        <Plus className="size-5" />
         {t('addButtonLabel')}
       </Button>
 
