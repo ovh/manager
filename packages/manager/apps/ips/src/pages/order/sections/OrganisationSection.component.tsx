@@ -9,7 +9,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
 import { OrderSection } from '@/components/OrderSection/OrderSection.component';
-import { useOrganisationList } from '@/data/hooks/organisation';
+import { useGetOrganisationsList } from '@/data/hooks/organisation';
 import { OrderContext } from '../order.context';
 import { isAvailableOrganisation } from '../order.utils';
 
@@ -21,7 +21,7 @@ export const OrganisationSection: React.FC = () => {
   } = React.useContext(OrderContext);
   const { shell } = React.useContext(ShellContext);
   const { t } = useTranslation('order');
-  const { data, isLoading } = useOrganisationList();
+  const { organisations, isLoading } = useGetOrganisationsList();
 
   return (
     <OrderSection
@@ -39,7 +39,7 @@ export const OrganisationSection: React.FC = () => {
         <OdsSkeleton />
       ) : (
         <OdsSelect
-          key={data?.data.join('-')}
+          key={organisations.join('-')}
           className="block w-full max-w-[384px] mb-1"
           name="ip-organisation"
           onOdsChange={(event) =>
@@ -48,7 +48,7 @@ export const OrganisationSection: React.FC = () => {
           value={selectedOrganisation}
           placeholder={t('organisation_select_placeholder')}
         >
-          {data?.data
+          {organisations
             .filter(isAvailableOrganisation(selectedPlanCode))
             .map((orgId) => (
               <option key={orgId} value={orgId}>

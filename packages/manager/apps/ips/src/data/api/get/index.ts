@@ -8,4 +8,5 @@ export * from './ipSpam';
 export * from './ipAntihack';
 export * from './ipEdgeFirewall';
 export * from './ipGameFirewall';
-export * from './organisationList';
+export * from './organisationsList';
+export * from './organisationsDetails';
