@@ -12,7 +12,7 @@ export type TClusterCreationForm = {
   updatePolicy: UpdatePolicy;
   network: TNetworkFormState;
   nodePools?: NodePoolPrice[];
-
+  plan: 'standard' | 'premium';
   clusterName: string;
 };
 
@@ -34,6 +34,7 @@ export function useClusterCreationStepper() {
 
   const clusterNameStep = useStep({ isOpen: true });
   const locationStep = useStep();
+  const planStep = useStep();
   const versionStep = useStep();
   const networkStep = useStep();
   const nodeStep = useStep();
@@ -79,6 +80,22 @@ export function useClusterCreationStepper() {
         locationStep.check();
         locationStep.lock();
         versionStep.open();
+        planStep.open();
+      },
+    },
+    plan: {
+      step: planStep,
+      edit: () => {
+        planStep.unlock();
+        [versionStep, networkStep, nodeStep, confirmStep].forEach(stepReset);
+      },
+      submit: (plan: TClusterCreationForm['plan']) => {
+        setForm((f) => ({
+          ...f,
+          plan,
+        }));
+        planStep.check();
+        planStep.lock();
       },
     },
     version: {

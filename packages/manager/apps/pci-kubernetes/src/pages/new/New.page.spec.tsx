@@ -58,6 +58,11 @@ describe('NewPage', () => {
         submit: vi.fn(),
         edit: vi.fn(),
       },
+      plan: {
+        step: { isLocked: false },
+        submit: vi.fn(),
+        edit: vi.fn(),
+      },
       version: {
         step: { isLocked: false },
         submit: vi.fn(),

@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { useHref, useNavigate, useParams } from 'react-router-dom';
 import { Translation, useTranslation } from 'react-i18next';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
 import { ApiError } from '@ovh-ux/manager-core-api';
 import {
   PciDiscoveryBanner,
@@ -37,6 +38,7 @@ import { ClusterNameStep } from './steps/ClusterNameStep.component';
 import { ClusterConfirmationStep } from './steps/ClusterConfirmStep.component';
 import { useCreateKubernetesCluster } from '@/api/hooks/useKubernetes';
 import { PAGE_PREFIX } from '@/tracking.constants';
+import PlanStep from './steps/PlanStep.component';
 import NodePoolStep from './steps/NodePoolStep.component';
 
 export default function NewPage() {
@@ -211,7 +213,20 @@ export default function NewPage() {
           />
         </StepComponent>
         <StepComponent
+          edit={{
+            action: stepper.plan.edit,
+            label: tStepper('common_stepper_modify_this_step'),
+            isDisabled: isDiscovery || isCreationPending,
+          }}
+          title={t('kubernetes_add_plan_title')}
           order={3}
+          {...stepper.plan.step}
+        >
+          <PlanStep onSubmit={stepper.plan.submit} step={stepper.plan.step} />
+        </StepComponent>
+
+        <StepComponent
+          order={4}
           {...stepper.version.step}
           title={t('kubernetes_add_version_and_upgrade_policy_title')}
           edit={{
@@ -226,7 +241,7 @@ export default function NewPage() {
           />
         </StepComponent>
         <StepComponent
-          order={4}
+          order={5}
           {...stepper.network.step}
           title={tListing('kubernetes_add_private_network')}
           edit={{
@@ -242,7 +257,7 @@ export default function NewPage() {
           />
         </StepComponent>
         <StepComponent
-          order={5}
+          order={6}
           {...stepper.node.step}
           title={tListing('kube_common_node_pool_title_multiple')}
           edit={{
@@ -255,7 +270,7 @@ export default function NewPage() {
         </StepComponent>
 
         <StepComponent
-          order={6}
+          order={7}
           {...stepper.confirm.step}
           title={tStepper('common_stepper_submit_button_cluster')}
           edit={{

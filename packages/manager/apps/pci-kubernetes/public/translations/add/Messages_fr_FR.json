@@ -12,6 +12,7 @@
   "kubernetes_add_region_inprogress": "La région {{ name }} est en cours d'ajout…",
   "kubernetes_add_region_failed": "Une erreur est survenue lors de l'ajout de la région {{ name }} : {{ message }}",
   "kubernetes_add_region_title": "Sélectionnez une localisation",
+  "kubernetes_add_plan_title": "Sélectionnez un plan",
   "kubernetes_add_version_title": "Sélectionnez la version mineure de Kubernetes souhaitée",
   "kubernetes_add_deployment_mode_title": "Sélectionnez un mode de déploiement",
   "kubernetes_add_deployment_mode_description": "Sélectionnez une configuration optimale pour assurer la disponibilité, la résilience et la latence appropriées pour vos données selon vos cas d’usage.",
@@ -53,5 +54,19 @@
   "kube_add_billing_anti_affinity_title": "Facturation et anti-affinité",
   "kube_add_billing_anti_affinity_coming_soon_message_title": "Prix mensuels",
   "kube_add_billing_anti_affinity_coming_soon_message_description": "Les tarifications mensuelles seront prochainement disponibles avec l'arrivée des Saving Plans.",
-  "kubernetes_add_nodepool_name_placeholder": "Nom du pool de nœuds"
+  "kubernetes_add_nodepool_name_placeholder": "Nom du pool de nœuds",
+  "kube_add_plan_footer_standard": "Gratuit",
+  "kube_add_plan_title_standard": "Plan Standard",
+  "kube_add_plan_description_standard": "Bénéficiez de coûts optimisés pour vos ressources de calculs associés à la simplicité opérationnelle d'une solution Kubernetes managé gratuite à vie.",
+  "kube_add_plan_content_standard_control": "Control plane totallement géré/managé",
+  "kube_add_plan_content_standard_high_availability": "Haute disponibilité (mono AZ)",
+  "kube_add_plan_content_standard_auto_scaling": "Fonctionnalité de mise à l'échelle des noeuds",
+  "kube_add_plan_content_standard_version": "Jusqu'à 3 versions antérieures kubernetes supportées",
+  "kube_add_plan_title_premium": "Plan Premium",
+  "kube_add_plan_no_available_plan": "Indisponible",
+  "kube_add_plan_description_premium": "Bénéficiez d'un engagement de niveau de service et de déploiement multizones, idéal pour vos charges de travail exigent résilience et haute disponibilité.",
+  "kube_add_plan_content_premium_SLA": "Niveau de service (SLA) 99,99%",
+  "kube_add_plan_content_premium_3AZ_control_plane": "Control plane totalement managé Haute disponibilité (distribué sur 3 AZ)",
+  "kube_add_plan_content_premium_scaling": "Fonctionnalité de mise à l'échelle des noeuds",
+  "kube_add_plan_content_premium_version": "Jusqu'à 3 versions antérieures kubernetes supportées"
 }
