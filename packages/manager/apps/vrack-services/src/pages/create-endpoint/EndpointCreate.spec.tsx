@@ -1,16 +1,18 @@
 import { describe, it } from 'vitest';
-import '@testing-library/jest-dom';
-import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
-import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import { waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import {
+  WAIT_FOR_DEFAULT_OPTIONS,
+  assertTextVisibility,
+} from '@ovh-ux/manager-core-test-utils';
 import { vrackServicesListMocks } from '@ovh-ux/manager-network-common';
 import { iamResourcesMocks } from '@/data/mocks/iam';
 import {
   changeSelectValueByLabelText,
-  getButtonByVariant,
+  getButtonByLabel,
   labels,
   renderTest,
-} from '../../test-utils';
-
+} from '@/test-utils';
 import { urls } from '@/routes/routes.constants';
 
 describe('Vrack Services endpoint creation page test suite', () => {
@@ -26,32 +28,41 @@ describe('Vrack Services endpoint creation page test suite', () => {
 
     await assertTextVisibility(labels.endpoints.createEndpointPageDescription);
 
-    await getButtonByVariant({
+    let submitButton = await getButtonByLabel({
       container,
-      variant: ODS_BUTTON_VARIANT.flat,
-      disabled: true,
+      value: labels.endpoints.createEndpointButtonLabel,
     });
+    await waitFor(
+      () => expect(submitButton).toBeDisabled(),
+      WAIT_FOR_DEFAULT_OPTIONS,
+    );
 
     await changeSelectValueByLabelText({
       selectLabel: labels.endpoints.serviceNameLabel,
-      value: iamResourcesMocks[0].displayName,
+      value: iamResourcesMocks[0].urn,
     });
 
-    await getButtonByVariant({
+    submitButton = await getButtonByLabel({
       container,
-      variant: ODS_BUTTON_VARIANT.flat,
-      disabled: true,
+      value: labels.endpoints.createEndpointButtonLabel,
     });
+    expect(submitButton).toBeDisabled();
 
     await changeSelectValueByLabelText({
       selectLabel: labels.endpoints.subnetLabel,
       value: vrackServicesListMocks[20].currentState.subnets[0].cidr,
     });
 
-    await getButtonByVariant({
+    submitButton = await getButtonByLabel({
       container,
-      variant: ODS_BUTTON_VARIANT.flat,
-      disabled: false,
+      value: labels.endpoints.createEndpointButtonLabel,
     });
+    await waitFor(
+      () => expect(submitButton).not.toBeDisabled(),
+      WAIT_FOR_DEFAULT_OPTIONS,
+    );
+    await waitFor(() => userEvent.click(submitButton));
+
+    await assertTextVisibility(labels.endpoints.endpointsOnboardingDescription);
   });
 });

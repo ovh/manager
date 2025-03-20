@@ -1,123 +1,73 @@
-import { waitFor, screen, fireEvent } from '@testing-library/react';
+import { within, waitFor, screen, fireEvent } from '@testing-library/react';
+import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { WAIT_FOR_DEFAULT_OPTIONS } from '@ovh-ux/manager-core-test-utils';
 import '@testing-library/jest-dom';
-import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 
 export const DEFAULT_LISTING_ERROR = 'An error occured while fetching data';
-export const WAIT_FOR_DEFAULT_OPTIONS = {
-  timeout: 30_000,
-};
 
-// Form helpers
-// export const mockEditInputValue = async (value: string) => {
-//   const input = screen.getByLabelText('edit-input');
-//   const event = new CustomEvent('odsValueChange');
-//   Object.defineProperty(event, 'target', { value: { value } });
-//   await act(async () => waitFor(() => fireEvent(input, event)));
-// };
-
-// export const mockSubmitNewValue = async ({
-//   submitButtonLabel,
-//   value = 'new value',
-// }: {
-//   submitButtonLabel: string;
-//   value?: string;
-// }) => {
-//   await mockEditInputValue(value);
-//   const submitButton = screen.getByText(submitButtonLabel, { exact: true });
-//   return waitFor(() => userEvent.click(submitButton));
-// };
-
-export const getButtonByVariant = async ({
+const getOdsComponentByAttribute = <T, A = string>(
+  componentTag: string,
+  attribute: string,
+) => async ({
   container,
-  variant,
-  disabled,
-  nth = 0,
-}: {
-  container: HTMLElement;
-  variant: ODS_BUTTON_VARIANT;
-  disabled?: boolean;
-  nth?: number;
-}) => {
-  let button: HTMLElement;
-  await waitFor(() => {
-    const buttonList = container.querySelectorAll('osds-button');
-    button = Array.from(buttonList).filter((btn) =>
-      [variant].includes(btn.getAttribute('variant') as ODS_BUTTON_VARIANT),
-    )[nth];
-    return disabled
-      ? expect(button).toBeDisabled()
-      : expect(button).not.toBeDisabled();
-  }, WAIT_FOR_DEFAULT_OPTIONS);
-  return button;
-};
-
-export const assertModalTitle = ({
-  container,
-  title,
-}: {
-  container: HTMLElement;
-  title: string;
-}): Promise<HTMLElement> =>
-  waitFor(() => {
-    const modal = container.querySelector('osds-modal');
-    expect(modal).toHaveAttribute('headline', title);
-    return modal;
-  }, WAIT_FOR_DEFAULT_OPTIONS);
-
-export const changeOdsSelectValueByTestId = async ({
-  testId,
   value,
-}: {
-  testId: string;
-  value: string;
-}) => {
-  const input = screen.getByTestId(testId);
-  const event = new CustomEvent('odsValueChange', {
-    detail: { value },
-  });
-  return waitFor(() => fireEvent(input, event));
-};
-
-export const getButtonByIcon = async ({
-  container,
-  iconName,
-  disabled,
   nth = 0,
 }: {
   container: HTMLElement;
-  iconName: ODS_ICON_NAME;
-  disabled?: boolean;
+  value: A;
   nth?: number;
-}) => {
-  let button: HTMLElement;
+}): Promise<T> => {
+  let component = null as T;
   await waitFor(() => {
-    button = container
-      .querySelectorAll(`osds-icon[name="${iconName}"]`)
-      ?.[nth]?.closest('osds-button');
-    return disabled
-      ? expect(button).toHaveAttribute('disabled')
-      : expect(button).not.toHaveAttribute('disabled');
+    component = Array.from(
+      container.querySelectorAll(`${componentTag}[${attribute}="${value}"]`),
+    )[nth] as T;
+    return expect(component).toBeInTheDocument();
   }, WAIT_FOR_DEFAULT_OPTIONS);
-  return button;
+  return component;
 };
+
+export const getBadgeByLabel = getOdsComponentByAttribute<HTMLOdsBadgeElement>(
+  'ods-badge',
+  'label',
+);
+
+export const getLinkByLabel = getOdsComponentByAttribute<HTMLOdsLinkElement>(
+  'ods-link',
+  'label',
+);
+
+export const getButtonByLabel = getOdsComponentByAttribute<
+  HTMLOdsButtonElement
+>('ods-button', 'label');
+
+export const getButtonByIcon = getOdsComponentByAttribute<
+  HTMLOdsButtonElement,
+  ODS_ICON_NAME
+>('ods-button', 'icon');
 
 export const changeInputValueByLabelText = async ({
   inputLabel,
   value,
-  number = 0,
+  nth = 0,
 }: {
   inputLabel: string;
   value: string;
-  number?: number;
+  nth?: number;
 }) => {
-  const odsForm: HTMLElement = screen
+  const odsForm = screen
     .getAllByText(inputLabel)
-    [number]?.closest('osds-form-field');
-  const odsInput = odsForm.querySelector('osds-input');
-  const event = new CustomEvent('odsValueChange', {
+    [nth]?.closest('ods-form-field') as HTMLOdsFormFieldElement;
+  const odsInput = odsForm.querySelector('ods-input') as HTMLOdsInputElement;
+  odsInput.setAttribute('value', value);
+  const event = new CustomEvent('odsChange', {
     detail: { value },
   });
-  return waitFor(() => fireEvent(odsInput, event));
+  await waitFor(() => fireEvent(odsInput, event));
+  return waitFor(
+    () => expect(odsInput).toHaveAttribute('value', value),
+    WAIT_FOR_DEFAULT_OPTIONS,
+  );
 };
 
 export const changeSelectValueByLabelText = async ({
@@ -127,14 +77,41 @@ export const changeSelectValueByLabelText = async ({
   selectLabel: string;
   value: string;
 }) => {
-  const odsForm: HTMLElement = screen
-    .getByText(selectLabel)
-    ?.closest('osds-form-field');
-  const odsSelect = odsForm.querySelector('osds-select');
+  let odsSelect: HTMLOdsSelectElement;
+
+  await waitFor(() => {
+    const odsForm = screen.getByText(selectLabel)?.closest('ods-form-field');
+    odsSelect = odsForm?.querySelector('ods-select');
+    return expect(odsSelect).toBeInTheDocument();
+  }, WAIT_FOR_DEFAULT_OPTIONS);
+
+  odsSelect.setAttribute('value', value);
   const event = new CustomEvent('odsValueChange', {
     detail: { value },
   });
-  return waitFor(() => fireEvent(odsSelect, event));
+
+  await waitFor(() => fireEvent(odsSelect, event));
+  return odsSelect;
+};
+
+export const changeOdsSelectValueByName = async ({
+  container,
+  name,
+  value,
+}: {
+  container: HTMLElement;
+  name: string;
+  value: string;
+}) => {
+  const odsSelect = container.querySelector(
+    `ods-select[name="${name}"]`,
+  ) as HTMLOdsSelectElement;
+  odsSelect.setAttribute('value', value);
+  const event = new CustomEvent('odsValueChange', {
+    detail: { value },
+  });
+  await waitFor(() => fireEvent(odsSelect, event));
+  return odsSelect;
 };
 
 export const assertOsdFormInputInError = async ({
@@ -147,12 +124,12 @@ export const assertOsdFormInputInError = async ({
   waitFor(() => {
     const odsForm: HTMLElement = screen
       .getByText(inputLabel)
-      ?.closest('osds-form-field');
-    const odsInput: HTMLElement = odsForm.querySelector('osds-input');
+      ?.closest('ods-form-field');
+    const odsInput: HTMLElement = odsForm.querySelector('ods-input');
     if (inError) {
-      expect(odsInput).toHaveAttribute('error');
+      expect(odsInput).toHaveAttribute('has-error', '');
     } else {
-      expect(odsInput).toHaveAttribute('error', 'false');
+      expect(odsInput).toHaveAttribute('has-error', 'false');
     }
     return odsInput;
   }, WAIT_FOR_DEFAULT_OPTIONS);
@@ -169,7 +146,7 @@ export const clickOnRadioByName = async ({
   let odsRadio: HTMLElement;
   await waitFor(() => {
     const odsRadios: HTMLElement[] = Array.from(
-      container.querySelectorAll('osds-radio'),
+      container.querySelectorAll('ods-radio'),
     );
     odsRadio = odsRadios.find(
       (item) =>
@@ -180,7 +157,42 @@ export const clickOnRadioByName = async ({
 
   if (!odsRadio) return null;
 
-  await waitFor(() => fireEvent.click(odsRadio));
+  odsRadio.setAttribute('is-checked', '');
+  const event = new CustomEvent('odsChange', { detail: { value } });
+  await waitFor(() => fireEvent(odsRadio, event));
 
   return odsRadio;
 };
+
+export const assertModalVisibility = async ({
+  container,
+  isVisible,
+}: {
+  container: HTMLElement;
+  isVisible: boolean;
+}) =>
+  waitFor(() => {
+    const modal = container.querySelector('ods-modal');
+    return isVisible
+      ? expect(modal).toBeInTheDocument()
+      : expect(modal).not.toBeInTheDocument();
+  }, WAIT_FOR_DEFAULT_OPTIONS);
+
+export const assertModalText = ({
+  container,
+  text,
+}: {
+  container: HTMLElement;
+  text: string;
+}): Promise<void> =>
+  waitFor(
+    () =>
+      expect(
+        within(
+          container.querySelector('ods-modal') as HTMLOdsModalElement,
+        ).getByText(text, {
+          exact: false,
+        }),
+      ).toBeVisible(),
+    WAIT_FOR_DEFAULT_OPTIONS,
+  );

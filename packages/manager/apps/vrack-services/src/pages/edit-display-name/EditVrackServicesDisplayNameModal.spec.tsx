@@ -1,20 +1,18 @@
 import { describe, it } from 'vitest';
-import '@testing-library/jest-dom';
+import { waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { vrackServicesListMocks } from '@ovh-ux/manager-network-common';
+import { WAIT_FOR_DEFAULT_OPTIONS } from '@ovh-ux/manager-core-test-utils';
 import {
   assertModalVisibility,
-  changeInputValue,
-  getButtonByIcon,
-} from '@ovh-ux/manager-core-test-utils';
-import { waitFor, fireEvent } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import { vrackServicesListMocks } from '@ovh-ux/manager-network-common';
-import {
-  assertModalTitle,
-  getButtonByVariant,
+  changeInputValueByLabelText,
+  getButtonByLabel,
+  assertModalText,
   labels,
   renderTest,
-} from '../../test-utils';
+  getButtonByIcon,
+} from '@/test-utils';
 import { urls } from '@/routes/routes.constants';
 
 describe('Vrack Services edit name test suite', () => {
@@ -26,29 +24,34 @@ describe('Vrack Services edit name test suite', () => {
 
     const editButton = await getButtonByIcon({
       container,
-      iconName: ODS_ICON_NAME.PEN,
+      value: ODS_ICON_NAME.pen,
     });
 
-    await waitFor(() => fireEvent.click(editButton));
+    await waitFor(() => userEvent.click(editButton));
 
     await assertModalVisibility({ container, isVisible: true });
-    await assertModalTitle({
+    await assertModalText({
       container,
-      title: labels.common.modalUpdateVrackServicesHeadline.replace(
+      text: labels.common.modalUpdateVrackServicesHeadline.replace(
         '{{id}}',
         vrackServicesListMocks[0].id,
       ),
     });
 
-    await changeInputValue({ inputLabel: 'update-input', value: 'new name' });
-
-    const modifyButton = await getButtonByVariant({
-      container,
-      variant: ODS_BUTTON_VARIANT.flat,
+    await changeInputValueByLabelText({
+      inputLabel: labels.common.updateVrackServicesDisplayNameInputLabel,
+      value: 'new name',
     });
 
+    const modifyButton = await getButtonByLabel({
+      container,
+      value: labels.actions.confirm,
+    });
+    await waitFor(
+      () => expect(modifyButton).not.toBeDisabled(),
+      WAIT_FOR_DEFAULT_OPTIONS,
+    );
     await waitFor(() => userEvent.click(modifyButton));
-
     await assertModalVisibility({ container, isVisible: false });
   });
 });

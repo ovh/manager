@@ -1,18 +1,21 @@
 import { describe, it } from 'vitest';
-import '@testing-library/jest-dom';
-import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
-import { waitFor, fireEvent } from '@testing-library/react';
-import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import {
+  WAIT_FOR_DEFAULT_OPTIONS,
+  assertTextVisibility,
+} from '@ovh-ux/manager-core-test-utils';
+import { waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { vrackServicesListMocks } from '@ovh-ux/manager-network-common';
 import {
   assertOsdFormInputInError,
   changeInputValueByLabelText,
   clickOnRadioByName,
-  getButtonByVariant,
+  getButtonByLabel,
   labels,
   renderTest,
-} from '../../test-utils';
+} from '@/test-utils';
 import { urls } from '@/routes/routes.constants';
+import { vlanInputName, vlanNumberOptionValue } from './subnetCreate.constants';
 
 describe('Vrack Services subnets page test suite', () => {
   it('should create a subnet', async () => {
@@ -43,29 +46,44 @@ describe('Vrack Services subnets page test suite', () => {
       inputLabel: labels.subnets.cidrLabel,
       inError: false,
     });
-    await getButtonByVariant({
+    let submitButton = await getButtonByLabel({
       container,
-      variant: ODS_BUTTON_VARIANT.flat,
-      disabled: false,
+      value: labels.subnets.createSubnetButtonLabel,
+    });
+    await waitFor(
+      () => expect(submitButton).not.toBeDisabled(),
+      WAIT_FOR_DEFAULT_OPTIONS,
+    );
+
+    await clickOnRadioByName({
+      container,
+      name: vlanInputName,
+      value: vlanNumberOptionValue,
     });
 
-    clickOnRadioByName({ container, name: 'hasVlan', value: 'vlanNumber' });
-    await getButtonByVariant({
+    submitButton = await getButtonByLabel({
       container,
-      variant: ODS_BUTTON_VARIANT.flat,
-      disabled: true,
+      value: labels.subnets.createSubnetButtonLabel,
     });
+    await waitFor(
+      () => expect(submitButton).toBeDisabled(),
+      WAIT_FOR_DEFAULT_OPTIONS,
+    );
+
     await changeInputValueByLabelText({
       inputLabel: labels.subnets.vlanNumberLabel,
       value: '20',
     });
-    const submitButton = await getButtonByVariant({
+    submitButton = await getButtonByLabel({
       container,
-      variant: ODS_BUTTON_VARIANT.flat,
-      disabled: false,
+      value: labels.subnets.createSubnetButtonLabel,
     });
+    await waitFor(
+      () => expect(submitButton).not.toBeDisabled(),
+      WAIT_FOR_DEFAULT_OPTIONS,
+    );
 
-    await waitFor(() => fireEvent.click(submitButton));
+    await waitFor(() => userEvent.click(submitButton));
 
     await assertTextVisibility(labels.subnets.subnetDatagridDisplayNameLabel);
   });

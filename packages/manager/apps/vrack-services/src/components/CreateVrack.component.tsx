@@ -1,19 +1,16 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
-  ODS_BUTTON_TYPE,
+  ODS_TEXT_PRESET,
   ODS_BUTTON_VARIANT,
   ODS_SPINNER_SIZE,
-  ODS_MESSAGE_TYPE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
+  ODS_MESSAGE_COLOR,
 } from '@ovhcloud/ods-components';
 import {
-  OsdsText,
-  OsdsSpinner,
-  OsdsButton,
-  OsdsMessage,
+  OdsText,
+  OdsSpinner,
+  OdsButton,
+  OdsMessage,
 } from '@ovhcloud/ods-components/react';
 import {
   OrderDescription,
@@ -27,13 +24,12 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { useNavigate } from 'react-router-dom';
-import { handleClick } from '@ovh-ux/manager-react-components';
 import { useQueryClient } from '@tanstack/react-query';
 import {
   getVrackListQueryKey,
   useCreateCartWithVrack,
 } from '@ovh-ux/manager-network-common';
-import { DeliveringMessages } from '@/components/DeliveringMessages.component';
+import { DeliveringMessages } from '@/components/feedback-messages/DeliveringMessages.component';
 import { MessagesContext } from './feedback-messages/Messages.context';
 import { LoadingText } from './LoadingText.component';
 import { OrderSubmitModalContent } from './OrderSubmitModalContent.component';
@@ -75,25 +71,13 @@ export const CreateVrack: React.FC<CreateVrackProps> = ({ closeModal }) => {
 
   return (
     <>
-      <OsdsText
-        className="block mb-4"
-        level={ODS_TEXT_LEVEL.body}
-        size={ODS_TEXT_SIZE._400}
-        color={ODS_THEME_COLOR_INTENT.text}
-      >
+      <OdsText className="block mb-4" preset={ODS_TEXT_PRESET.paragraph}>
         {t('modalVrackCreationDescriptionLine1')}
-      </OsdsText>
-      <OsdsText
-        className="block mb-4"
-        level={ODS_TEXT_LEVEL.body}
-        size={ODS_TEXT_SIZE._400}
-        color={ODS_THEME_COLOR_INTENT.text}
-      >
+      </OdsText>
+      <OdsText className="block mb-4" preset={ODS_TEXT_PRESET.paragraph}>
         {t('modalVrackCreationDescriptionLine2')}
-      </OsdsText>
-      {areVrackOrdersLoading && (
-        <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
-      )}
+      </OdsText>
+      {areVrackOrdersLoading && <OdsSpinner size={ODS_SPINNER_SIZE.md} />}
       <DeliveringMessages
         messageKey="deliveringVrackMessage"
         orders={vrackDeliveringOrders}
@@ -102,27 +86,23 @@ export const CreateVrack: React.FC<CreateVrackProps> = ({ closeModal }) => {
         <LoadingText title={t('modalVrackCreationOrderWaitMessage')} />
       )}
       {(isVrackOrdersError || isError) && (
-        <OsdsMessage type={ODS_MESSAGE_TYPE.error}>
-          <OsdsText
-            level={ODS_TEXT_LEVEL.body}
-            size={ODS_TEXT_SIZE._400}
-            color={ODS_THEME_COLOR_INTENT.text}
-          >
-            {isVrackOrdersError
-              ? t('modalVrackCreationError', { error: vrackOrdersError })
-              : error?.response?.data?.message}
-          </OsdsText>
-        </OsdsMessage>
+        <OdsMessage
+          className="block"
+          isDismissible={false}
+          color={ODS_MESSAGE_COLOR.critical}
+        >
+          {isVrackOrdersError
+            ? t('modalVrackCreationError', { error: vrackOrdersError })
+            : error?.response?.data?.message}
+        </OdsMessage>
       )}
-      <OsdsButton
+      <OdsButton
         slot="actions"
-        type={ODS_BUTTON_TYPE.button}
+        type="button"
         variant={ODS_BUTTON_VARIANT.ghost}
-        color={ODS_THEME_COLOR_INTENT.primary}
-        {...handleClick(closeModal)}
-      >
-        {t('modalVrackCreationCancel')}
-      </OsdsButton>
+        label={t('modalVrackCreationCancel')}
+        onClick={closeModal}
+      />
       {data?.contractList?.length > 0 ? (
         <OrderSubmitModalContent
           submitButtonLabel={t('modalVrackCreationSubmitOrderButtonLabel')}
@@ -140,28 +120,24 @@ export const CreateVrack: React.FC<CreateVrackProps> = ({ closeModal }) => {
           }}
         />
       ) : (
-        <OsdsButton
+        <OdsButton
           slot="actions"
-          type={ODS_BUTTON_TYPE.button}
-          variant={ODS_BUTTON_VARIANT.flat}
-          color={ODS_THEME_COLOR_INTENT.primary}
-          disabled={
+          type="button"
+          isDisabled={
             areVrackOrdersLoading ||
             vrackDeliveringOrders.length > 0 ||
             isVrackOrdersError ||
-            isPending ||
-            undefined
+            isPending
           }
-          {...handleClick(async () => {
+          label={t('modalCreateNewVrackButtonLabel')}
+          onClick={() => {
             trackClick({
               ...trackingParams,
               actions: ['create-vrack', 'confirm'],
             });
             createCart();
-          })}
-        >
-          {t('modalCreateNewVrackButtonLabel')}
-        </OsdsButton>
+          }}
+        />
       )}
     </>
   );

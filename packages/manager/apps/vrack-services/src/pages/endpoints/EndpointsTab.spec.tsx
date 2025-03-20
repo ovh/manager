@@ -1,22 +1,22 @@
 import { describe, it } from 'vitest';
-import '@testing-library/jest-dom';
 import {
-  assertModalVisibility,
+  WAIT_FOR_DEFAULT_OPTIONS,
   assertTextVisibility,
-  getButtonByLabel,
 } from '@ovh-ux/manager-core-test-utils';
-import { waitFor, fireEvent, screen } from '@testing-library/react';
-import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { waitFor, screen } from '@testing-library/react';
+import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import userEvent from '@testing-library/user-event';
 import { vrackServicesListMocks } from '@ovh-ux/manager-network-common';
 import { iamResourcesMocks } from '@/data/mocks/iam';
 import {
-  assertModalTitle,
+  assertModalVisibility,
+  getButtonByLabel,
+  assertModalText,
   changeInputValueByLabelText,
   getButtonByIcon,
-  getButtonByVariant,
   labels,
   renderTest,
-} from '../../test-utils';
+} from '@/test-utils';
 import { urls } from '@/routes/routes.constants';
 
 describe('Vrack Services endpoints page test suite', () => {
@@ -30,7 +30,7 @@ describe('Vrack Services endpoints page test suite', () => {
       screen.getByText(labels.dashboard.endpointsTabLabel),
     );
 
-    await waitFor(() => fireEvent.click(enpointTab));
+    await waitFor(() => userEvent.click(enpointTab));
 
     await assertTextVisibility(labels.endpoints.endpointsOnboardingTitle);
   });
@@ -45,7 +45,7 @@ describe('Vrack Services endpoints page test suite', () => {
       screen.getByText(labels.dashboard.endpointsTabLabel),
     );
 
-    await waitFor(() => fireEvent.click(enpointTab));
+    await waitFor(() => userEvent.click(enpointTab));
     const urn =
       vrackServicesListMocks[1].currentState.subnets[0].serviceEndpoints[0]
         .managedServiceURN;
@@ -61,7 +61,7 @@ describe('Vrack Services endpoints page test suite', () => {
     );
   });
 
-  it('should edit a enpoint', async () => {
+  it('should edit an enpoint', async () => {
     const { container } = await renderTest({
       nbVs: 2,
       initialRoute: urls.endpointsListing.replace(
@@ -76,21 +76,19 @@ describe('Vrack Services endpoints page test suite', () => {
 
     const actionMenuButton = await getButtonByIcon({
       container,
-      iconName: ODS_ICON_NAME.ELLIPSIS,
+      value: ODS_ICON_NAME.ellipsisVertical,
     });
-
-    await waitFor(() => fireEvent.click(actionMenuButton));
+    await waitFor(() => userEvent.click(actionMenuButton));
 
     const editLink = await getButtonByLabel({
       container,
-      label: labels.endpoints['action-editServiceDisplayName'],
+      value: labels.endpoints['action-editServiceDisplayName'],
     });
+    await waitFor(() => userEvent.click(editLink));
 
-    await waitFor(() => fireEvent.click(editLink));
-
-    await assertModalTitle({
+    await assertModalText({
       container,
-      title: labels.endpoints.modalEndpointUpdateHeadline.replace(
+      text: labels.endpoints.modalEndpointUpdateHeadline.replace(
         '{{name}}',
         iamData!.name,
       ),
@@ -99,21 +97,23 @@ describe('Vrack Services endpoints page test suite', () => {
     await changeInputValueByLabelText({
       inputLabel: labels.endpoints.endpointUpdateDisplayNameInputLabel,
       value: 'new Name',
-      number: 1,
+      nth: 1,
     });
 
-    const submitButton = await getButtonByVariant({
+    const submitButton = await getButtonByLabel({
       container,
-      variant: ODS_BUTTON_VARIANT.flat,
-      disabled: false,
+      value: labels.actions.modify,
     });
-
-    await waitFor(() => fireEvent.click(submitButton));
+    await waitFor(
+      () => expect(submitButton).not.toBeDisabled(),
+      WAIT_FOR_DEFAULT_OPTIONS,
+    );
+    await waitFor(() => userEvent.click(submitButton));
 
     await assertModalVisibility({ container, isVisible: false });
   });
 
-  it('should delete a endpoint', async () => {
+  it('should delete an endpoint', async () => {
     const { container } = await renderTest({
       nbVs: 2,
       initialRoute: urls.endpointsListing.replace(
@@ -124,40 +124,41 @@ describe('Vrack Services endpoints page test suite', () => {
 
     const actionMenuButton = await getButtonByIcon({
       container,
-      iconName: ODS_ICON_NAME.ELLIPSIS,
+      value: ODS_ICON_NAME.ellipsisVertical,
     });
+    await waitFor(() => userEvent.click(actionMenuButton));
 
-    await waitFor(() => fireEvent.click(actionMenuButton));
-
-    const editLink = await getButtonByLabel({
+    const deleteLink = await getButtonByLabel({
       container,
-      label: labels.endpoints['action-deleteServiceEndpoint'],
+      value: labels.endpoints['action-deleteServiceEndpoint'],
     });
+    await waitFor(() => userEvent.click(deleteLink));
 
-    await waitFor(() => fireEvent.click(editLink));
+    await assertModalText({
+      container,
+      text: labels.endpoints.modalDeleteEndpointHeadline,
+    });
+    let deleteButton = await getButtonByLabel({
+      container,
+      value: labels.actions.delete,
+    });
+    expect(deleteButton).toBeDisabled();
 
-    await assertModalTitle({
-      container,
-      title: labels.endpoints.modalDeleteEndpointHeadline,
-    });
-    await getButtonByVariant({
-      container,
-      variant: ODS_BUTTON_VARIANT.flat,
-      disabled: true,
-    });
     await changeInputValueByLabelText({
       inputLabel: labels.endpoints.modalDeleteEndpointInputLabel,
       value: 'TERMINATE',
     });
 
-    const submitButton = await getButtonByVariant({
+    deleteButton = await getButtonByLabel({
       container,
-      variant: ODS_BUTTON_VARIANT.flat,
-      disabled: false,
+      value: labels.actions.delete,
     });
+    await waitFor(
+      () => expect(deleteButton).not.toBeDisabled(),
+      WAIT_FOR_DEFAULT_OPTIONS,
+    );
 
-    await waitFor(() => fireEvent.click(submitButton));
-
+    await waitFor(() => userEvent.click(deleteButton));
     await assertModalVisibility({ container, isVisible: false });
   });
 });
