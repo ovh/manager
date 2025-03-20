@@ -24,7 +24,7 @@ export function RegionChip({
   ...chipProps
 }: RegionChipProps) {
   return (
-    <OsdsChip class={className} size={ODS_CHIP_SIZE.sm} {...chipProps}>
+    <OsdsChip class={className} size={ODS_CHIP_SIZE.sm} inline {...chipProps}>
       <OsdsText level={ODS_TEXT_LEVEL.body} size={ODS_TEXT_SIZE._500}>
         {title}
       </OsdsText>
