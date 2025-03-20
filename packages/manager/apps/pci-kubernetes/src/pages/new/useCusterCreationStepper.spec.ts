@@ -18,7 +18,7 @@ vi.mock('./useStep', () => ({
 
 describe('useClusterCreationStepper', () => {
   it('should initialize with default form values', () => {
-    const { result } = renderHook(() => useClusterCreationStepper());
+    const { result } = renderHook(useClusterCreationStepper);
 
     expect(result.current.form).toEqual({
       region: null,
@@ -31,7 +31,7 @@ describe('useClusterCreationStepper', () => {
   });
 
   it('should update cluster name and progress step', () => {
-    const { result } = renderHook(() => useClusterCreationStepper());
+    const { result } = renderHook(useClusterCreationStepper);
 
     act(() => {
       result.current.clusterName.submit('MyCluster');

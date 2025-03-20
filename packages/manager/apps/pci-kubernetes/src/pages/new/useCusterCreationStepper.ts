@@ -22,7 +22,7 @@ const stepReset = (step: ReturnType<typeof useStep>) => {
   step.close();
 };
 
-export function useClusterCreationStepper(has3AZRegions: boolean) {
+export function useClusterCreationStepper(has3AZRegions = false) {
   const [form, setForm] = useState<TClusterCreationForm>({
     region: null,
     version: '',
