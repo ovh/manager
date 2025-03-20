@@ -17,8 +17,8 @@ import { useTranslation } from 'react-i18next';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useData } from '@/api/hooks/useData';
 import { RegionType, StepIdsEnum, TRegion } from '@/api/types';
-import { useOrderStore } from '@/pages/order/hooks/useStore';
-import { useActions } from '@/pages/order/hooks/useActions';
+import { useOrderStore } from '@/hooks/order/useStore';
+import { useActions } from '@/hooks/order/useActions';
 import { StepComponent } from '@/components/container/Step.component';
 import { FloatingIpSummary } from '@/pages/order/steps/FloatingIpSummary';
 
@@ -228,10 +228,6 @@ export const FloatingSteps = ({
         key={StepIdsEnum.FLOATING_SUMMARY}
         {...steps.get(StepIdsEnum.FLOATING_SUMMARY)}
         title={tOrder('pci_additional_ip_create_step_summary')}
-        next={{
-          action: On.next,
-          label: tOrder('pci_additional_ip_creating_floating_ip'),
-        }}
         order={4}
       >
         <FloatingIpSummary
