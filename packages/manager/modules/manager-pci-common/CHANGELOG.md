@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@2.3.3...@ovh-ux/manager-pci-common@2.4.0) (2025-03-20)
+
+
+### Features
+
+* **pci-cold-archive:** bump dependencies versions and refector ([13f81c7](https://github.com/ovh/manager/commit/13f81c7b4d5e3dc4142d36a866bb4ab2260b99cd))
+* **pci-common:** add endpoint for region details ([9da9239](https://github.com/ovh/manager/commit/9da92394c88687b85313da8fdf0a1fca90126626))
+* **pci-common:** export useRclone hook ([d0d8aae](https://github.com/ovh/manager/commit/d0d8aaedb625e601e053aac7f17b34a383d68327))
+
+
+
+
+
 ## [2.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@2.3.2...@ovh-ux/manager-pci-common@2.3.3) (2025-03-18)
 
 
