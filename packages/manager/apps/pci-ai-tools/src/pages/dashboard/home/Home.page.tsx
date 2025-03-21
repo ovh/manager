@@ -22,7 +22,7 @@ export default function Home() {
   const objectStoragePath = `/pci/projects/${projectId}/storages/objects`;
   const notebooksPath = `/pci/projects/${projectId}/ai-ml/notebooks`;
   const jobsPath = `/pci/projects/${projectId}/ai-ml/training`;
-  const appsPath = `/pci/projects/${projectId}/ai/apps`;
+  const appsPath = `/pci/projects/${projectId}/ai-ml/deploy`;
 
   const isOnbording: boolean =
     notebooks.length === 0 && jobs.length === 0 && apps.length === 0;
