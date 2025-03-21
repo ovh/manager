@@ -1,13 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { v6 } from '@ovh-ux/manager-core-api';
-import { getSnapshots, getVolume, TSnapshot, TVolume } from './snapshots';
-
-// Mock the API
-vi.mock('@ovh-ux/manager-core-api', () => ({
-  v6: {
-    get: vi.fn(),
-  },
-}));
+import { getSnapshots, getVolume } from './snapshots';
+import { TSnapshot, TVolume } from '../api.types';
 
 describe('Snapshots API', () => {
   const projectId = 'test-project-id';

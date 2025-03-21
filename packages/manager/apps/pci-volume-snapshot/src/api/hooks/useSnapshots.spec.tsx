@@ -4,8 +4,7 @@ import { Filter, FilterComparator } from '@ovh-ux/manager-core-api';
 import * as reactQuery from '@tanstack/react-query';
 import * as snapshotsData from '../data/snapshots';
 import * as helpers from '@/helpers';
-
-// Import the hooks after setting up the mocks
+import { TSnapshot, TVolume } from '../api.types';
 import {
   useAllSnapshots,
   useVolumeSnapshots,
@@ -20,8 +19,6 @@ vi.mock('@tanstack/react-query', async () => {
   >;
   return {
     ...actual,
-    // useQuery: vi.fn(),
-    // useQueries: vi.fn(),
   };
 });
 
@@ -38,7 +35,7 @@ vi.mock('@/helpers', () => ({
 }));
 
 // Sample data for testing
-const mockSnapshots: snapshotsData.TSnapshot[] = [
+const mockSnapshots: TSnapshot[] = [
   {
     id: 'snap-1',
     creationDate: '2023-01-01T00:00:00Z',
@@ -74,7 +71,7 @@ const mockSnapshots: snapshotsData.TSnapshot[] = [
   },
 ];
 
-const mockVolumes: Record<string, snapshotsData.TVolume> = {
+const mockVolumes: Record<string, TVolume> = {
   'vol-1': {
     id: 'vol-1',
     attachedTo: ['instance-1'],
@@ -115,11 +112,13 @@ const createWrapper = () => {
     },
   });
 
-  return ({ children }: { children: React.ReactNode }) => (
+  const Wrapper = ({ children }: { children: React.ReactNode }) => (
     <reactQuery.QueryClientProvider client={queryClient}>
       {children}
     </reactQuery.QueryClientProvider>
   );
+
+  return Wrapper;
 };
 
 describe('useSnapshots hooks', () => {
@@ -164,13 +163,14 @@ describe('useSnapshots hooks', () => {
       const error = new Error('Failed to fetch snapshots');
 
       // Setup the useQuery mock to return an error
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       vi.spyOn(reactQuery, 'useQuery').mockReturnValueOnce({
         data: undefined,
         isLoading: false,
         isPending: false,
         error,
         fetchStatus: 'idle',
-      } as any);
+      } as reactQuery.QueryObserverLoadingErrorResult<unknown, unknown>);
 
       const { result } = renderHook(() => useAllSnapshots('test-project'));
 
@@ -225,22 +225,22 @@ describe('useSnapshots hooks', () => {
 
     it('should handle volume fetch errors', async () => {
       // Mock useAllSnapshots
-      vi.spyOn(reactQuery, 'useQuery').mockReturnValueOnce({
+      vi.spyOn(reactQuery, 'useQuery').mockReturnValueOnce(({
         data: [],
         isPending: false,
         isLoading: false,
         error: null,
-      } as any);
+      } as unknown) as reactQuery.QueryObserverLoadingErrorResult<unknown, unknown>);
 
       const volumeError = new Error('Failed to fetch volume');
 
       // Mock useQueries with an error
-      vi.spyOn(reactQuery, 'useQueries').mockReturnValueOnce({
+      vi.spyOn(reactQuery, 'useQueries').mockReturnValueOnce(({
         isPending: false,
         isLoading: false,
         error: volumeError,
         data: [],
-      } as any);
+      } as unknown) as reactQuery.QueryObserverLoadingErrorResult<unknown, unknown>);
 
       const { result } = renderHook(() => useVolumeSnapshots('test-project'));
 
@@ -250,16 +250,16 @@ describe('useSnapshots hooks', () => {
 
     it('should deduplicate volume IDs when fetching volumes', async () => {
       // Mock useAllSnapshots
-      vi.spyOn(reactQuery, 'useQuery').mockReturnValueOnce({
+      vi.spyOn(reactQuery, 'useQuery').mockReturnValueOnce(({
         data: mockSnapshots,
         isPending: false,
         isLoading: false,
         error: null,
-      } as any);
+      } as unknown) as reactQuery.QueryObserverLoadingErrorResult<unknown, unknown>);
 
       // We want to check uniqueVolumeIds here, so override useQueries to spy on queries parameter
       const queriesSpyOn = vi.spyOn(reactQuery, 'useQueries');
-      queriesSpyOn.mockReturnValueOnce({
+      queriesSpyOn.mockReturnValueOnce(({
         isPending: false,
         isLoading: false,
         error: null,
@@ -267,7 +267,7 @@ describe('useSnapshots hooks', () => {
           ...snapshot,
           volume: mockVolumes[snapshot.volumeId],
         })),
-      } as any);
+      } as unknown) as reactQuery.QueryObserverLoadingErrorResult<unknown, unknown>);
 
       renderHook(() => useVolumeSnapshots('test-project'));
 
@@ -411,18 +411,18 @@ describe('useSnapshots hooks', () => {
     it('should pass loading and error states from useVolumeSnapshots', async () => {
       // Mock useVolumeSnapshots in loading state with error
       const testError = new Error('Test error');
-      vi.spyOn(reactQuery, 'useQuery').mockReturnValueOnce({
+      vi.spyOn(reactQuery, 'useQuery').mockReturnValueOnce(({
         isPending: false,
         isLoading: false,
         error: undefined,
         data: mockSnapshots,
-      } as any);
-      vi.spyOn(reactQuery, 'useQueries').mockReturnValueOnce({
+      } as unknown) as reactQuery.QueryObserverLoadingErrorResult<unknown, unknown>);
+      vi.spyOn(reactQuery, 'useQueries').mockReturnValueOnce(({
         isPending: true,
         isLoading: true,
         error: testError,
         data: undefined,
-      } as any);
+      } as unknown) as reactQuery.QueryObserverLoadingErrorResult<unknown, unknown>);
 
       // Set up parameters
       const pagination = { pageIndex: 0, pageSize: 10 };
