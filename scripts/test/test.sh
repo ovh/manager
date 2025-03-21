@@ -8,11 +8,12 @@ get_changed_packages() {
 main() {
     changed_packages=$(get_changed_packages)
     echo $changed_packages
-    turbo run test --concurrency=1 --filter=[HEAD^1]
-	# while read -r package; do
-    #      #turbo run test --concurrency=1 --filter=...$package[HEAD^1]
-    #      turbo run test --concurrency=1 --filter=[HEAD^1] --filter=$package
-	# done <<< "$changed_packages"
+    #turbo run test --concurrency=1 --filter=[HEAD^1]
+	while read -r package; do
+         turbo run test --concurrency=1 --filter=...$package[master...test/runtestcoverage] -- --ci --reporters=jest-html-reporter
+         #turbo run test --concurrency=1 --filter=[HEAD^1] --filter=$package
+         #turbo run test --concurrency=1 --filter=[master...test/runtestcoverage]
+	done <<< "$changed_packages"
 }
 
 main "${@}"

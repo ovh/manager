@@ -1,4 +1,8 @@
 module.exports = {
+  reporters: [
+    'default',
+    ['jest-html-reporter', { outputPath: 'test-report.html' }],
+  ],
   projects: [
     {
       preset: 'ts-jest',
