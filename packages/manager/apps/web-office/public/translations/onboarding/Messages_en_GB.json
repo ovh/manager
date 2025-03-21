@@ -1,0 +1,13 @@
+{
+  "web_office_onboarding_title": "Collaborative solutions",
+  "web_office_onboarding_description": "Whether you are in the office or on the go, share, edit and communicate with all your teams.",
+  "web_office_onboarding_description2": "Discover all our ready-to-use and secure collaborative solutions.",
+  "web_office_onboarding_order": "Order",
+  "web_office_onboarding_tutorial": "Tutorial",
+  "web_office_onboarding_guide1_title": "Managing a Microsoft 365 OVHcloud licence group (CSP1)",
+  "web_office_onboarding_guide1_description": "Find out how to subscribe to a Microsoft 365 licence and manage it in the OVHcloud Control Panel.",
+  "web_office_onboarding_guide2_title": "Manage an OVHcloud web_office 365 Reseller (CSP2) license group",
+  "web_office_onboarding_guide2_description": "Find out how to subscribe to and manage a web_office 365 Reseller service (CSP2) with OVHcloud",
+  "web_office_onboarding_guide3_title": "Using a remote desktop with Microsoft 365 Apps",
+  "web_office_onboarding_guide3_description": "Find out how to install and use Microsoft 365 Apps on a remote desktop (RDS) or shared computer."
+}

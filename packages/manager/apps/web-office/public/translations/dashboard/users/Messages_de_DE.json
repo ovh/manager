@@ -1,0 +1,18 @@
+{
+  "dashboard_users_table_firstName": "Vorname",
+  "dashboard_users_table_lastName": " Name",
+  "dashboard_users_table_activationEmail": "E-Mail zur Aktivierung",
+  "dashboard_users_table_licences": "Lizenzen",
+  "dashboard_users_table_status": "Status",
+  "dashboard_users_download_text": "Die Installationsprogramme für PC und MAC sind unter <officeLink/> verfügbar.",
+  "dashboard_users_download_info": "Für Smartphones und Tablets begeben Sie sich direkt in Ihren App Store.",
+  "dashboard_users_download_id": "Die Zugangsdaten für Verbindung und Installation werden Ihnen per E-Mail zugesandt, sobald Sie eine neue Lizenz hinzufügen.",
+  "dashboard_users_status_creating": "Wird erstellt",
+  "dashboard_users_status_updating": "Update",
+  "dashboard_users_status_deleting": "Wird gelöscht",
+  "dashboard_users_status_ok": "Erstellt",
+  "dashboard_users_status_unconfigured": "Nicht konfiguriert",
+  "dashboard_users_action_user_change_password": "Passwort ändern",
+  "dashboard_users_action_user_edit": "Account bearbeiten",
+  "dashboard_users_action_user_delete": "Account löschen"
+}
