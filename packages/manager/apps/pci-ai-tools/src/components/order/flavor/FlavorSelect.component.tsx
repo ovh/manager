@@ -52,7 +52,7 @@ const FlavorsSelect = React.forwardRef<HTMLTableElement, FlavorsSelectProps>(
     };
     return (
       <>
-        <Label className="scroll-m-20 text-xl font-semibold">
+        <Label className="scroll-m-20 text-xl font-bold">
           {t('fieldFlavorLabel')}
         </Label>
         <p className="text-sm">{t('fieldFlavorDescription')}</p>
