@@ -13,7 +13,7 @@
   "zimbra_domains_datagrid_status_label": "Estado",
   "zimbra_domains_datagrid_cname_label": "CNAME",
   "zimbra_domains_datagrid_cname_tooltip_title": "Verificação do domínio",
-  "zimbra_domains_datagrid_cname_tooltip": "Para confirmar que é o titular deste domínio, crie um registo CNAME: <br/><br/><strong>{{cname}}</strong> para <strong>ovh.com</strong> <br/><br/>Terá 48 horas para concluir este passo.",
+  "zimbra_domains_datagrid_cname_tooltip": "Para confirmar que é o titular deste domínio, crie um registo CNAME: <br/><br/><strong>{{cname}}</strong> para <strong>ovh.com</strong> <br/><br/>Tem 48 horas para concluir este passo.",
   "zimbra_domains_tooltip_diagnostics": "Diagnósticos",
   "zimbra_domains_delete_modal_content": "Quer mesmo eliminar o domínio do servidor Zimbra?",
   "zimbra_domains_delete_modal_message_disabled_part1": "Pelo menos uma conta de e-mail ainda está associada a este nome de domínio.",
