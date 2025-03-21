@@ -8,9 +8,11 @@ export default function ShellRoutingSync() {
   const { routing } = useContext(ShellContext).shell;
   useEffect(() => {
     routing.stopListenForHashChange();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   useEffect(() => {
     routing.onHashChange();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
   return null;
 }

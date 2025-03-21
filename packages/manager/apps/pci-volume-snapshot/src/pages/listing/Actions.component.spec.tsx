@@ -1,18 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render } from '@testing-library/react';
 import Actions from './Actions.component';
-import { TVolumeSnapshot } from '@/api/hooks/useSnapshots';
-
-// Mock dependencies
-vi.mock('react-i18next', () => ({
-  useTranslation: () => ({
-    t: (key: string) => key, // Return the key for easy testing
-  }),
-}));
-
-vi.mock('react-router-dom', () => ({
-  useHref: (to: string) => to,
-}));
+import { TVolumeSnapshot } from '@/api/api.types';
 
 // Mock ActionMenu component
 vi.mock('@ovh-ux/manager-react-components', () => ({
