@@ -8,7 +8,7 @@ import {
 
 type TileLabelProps = {
   title: string;
-  description: string;
+  description?: string;
 };
 
 const TileLabel: FC<PropsWithChildren<TileLabelProps>> = ({
@@ -26,15 +26,17 @@ const TileLabel: FC<PropsWithChildren<TileLabelProps>> = ({
         {title}
       </OsdsText>
     </div>
-    <div className="text-sm font-normal">
-      <OsdsText
-        level={ODS_THEME_TYPOGRAPHY_LEVEL.caption}
-        size={ODS_THEME_TYPOGRAPHY_SIZE._200}
-        color={ODS_THEME_COLOR_INTENT.text}
-      >
-        {description}
-      </OsdsText>
-    </div>
+    {description && (
+      <div className="text-sm font-normal">
+        <OsdsText
+          level={ODS_THEME_TYPOGRAPHY_LEVEL.caption}
+          size={ODS_THEME_TYPOGRAPHY_SIZE._200}
+          color={ODS_THEME_COLOR_INTENT.text}
+        >
+          {description}
+        </OsdsText>
+      </div>
+    )}
     <hr className="w-full border-solid border-0 border-b border-[--ods-color-blue-200]" />
     {children}
   </div>

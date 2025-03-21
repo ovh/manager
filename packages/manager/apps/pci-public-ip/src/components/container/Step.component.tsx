@@ -15,7 +15,7 @@ type TStepProps = {
   open: boolean;
   order?: number;
   showDisabledAction?: boolean;
-  next: { action?: (id: string) => void; label?: string };
+  next?: { action?: (id: string) => void; label?: string };
   onEdit?: (id: string) => void;
   children: JSX.Element | JSX.Element[];
 };
@@ -100,7 +100,7 @@ export const StepComponent = ({
             >
               {children}
             </div>
-            {(showDisabledAction || next.action) && !done && (
+            {(showDisabledAction || next?.action) && !done && (
               <div className="mt-6">
                 <OsdsButton
                   size={ODS_BUTTON_SIZE.md}

@@ -12,8 +12,8 @@ import {
 } from '@ovhcloud/ods-common-theming';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { StepIdsEnum } from '@/api/types';
-import { useOrderStore } from '@/pages/order/hooks/useStore';
-import { useActions } from '@/pages/order/hooks/useActions';
+import { useOrderStore } from '@/hooks/order/useStore';
+import { useActions } from '@/hooks/order/useActions';
 import { StepComponent } from '@/components/container/Step.component';
 import { PublicIp } from '@/types/publicip.type';
 import TileLabel from '@/components/tile/TileLabel.component';
@@ -21,6 +21,7 @@ import { useFailoverCatalog } from '@/api/hooks/useFailoverCatalog/useFailoverCa
 import PriceLabel from '@/components/PriceLabel.component';
 import { useAddons } from '@/api/hooks/useAddons/useAddons';
 import { sortProductByPrice } from '@/api/hooks/useAddons/useAddons.select';
+import { FLOATING_IP_ADDON_FAMILY } from '@/api/hooks/useAddons/useAddons.constant';
 
 type TPublicIp = {
   name: string;
@@ -61,7 +62,7 @@ export const IpTypeStep = ({
   const { addons: floatingIp, isFetching: isFloatingIpFetching } = useAddons({
     ovhSubsidiary,
     projectId,
-    addonFamily: 'floatingip',
+    addonFamily: FLOATING_IP_ADDON_FAMILY,
     select: sortProductByPrice,
   });
 

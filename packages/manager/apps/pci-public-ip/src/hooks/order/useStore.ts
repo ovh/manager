@@ -22,6 +22,7 @@ export const useOrderStore = create<Store>()((set) => {
       instance: null,
       ipAddress: null,
       floatingGatewaySize: null,
+      isSubmitting: false,
     },
     steps: new Map(),
     setSteps: (newSteps: Map<StepIdsEnum, TStepState>) => {

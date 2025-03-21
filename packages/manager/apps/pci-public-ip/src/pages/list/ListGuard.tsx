@@ -4,7 +4,7 @@ import { OsdsSpinner } from '@ovhcloud/ods-components/react';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { useAllFailoverIPs } from '@/api/hooks/useFailoverIP';
 import { useAllFloatingIP } from '@/api/hooks/useFloatingIP';
-import { useOrderStore } from '../order/hooks/useStore';
+import { useOrderStore } from '@/hooks/order/useStore';
 
 export default function ListGuard({
   projectId,

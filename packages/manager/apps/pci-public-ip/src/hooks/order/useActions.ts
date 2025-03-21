@@ -12,7 +12,7 @@ import { PCI_LEVEL2 } from '@/tracking.constants';
 import { useMe } from '@/api/hooks/useMe';
 import { createFloatingIp } from '@/api/hooks/useCreateFloatingIp';
 import { StepIdsEnum } from '@/api/types';
-import { useOrderStore } from '@/pages/order/hooks/useStore';
+import { useOrderStore } from './useStore';
 import { PublicIp } from '@/types/publicip.type';
 
 export const useActions = (projectId: string) => {
@@ -135,6 +135,8 @@ export const useActions = (projectId: string) => {
           openStep(StepIdsEnum.FLOATING_SUMMARY);
           break;
         case StepIdsEnum.FLOATING_SUMMARY:
+          setForm({ ...form, isSubmitting: true });
+
           doOrderFloatingIp()
             .then(() => {
               setFloatingIpCreation();
@@ -154,7 +156,8 @@ export const useActions = (projectId: string) => {
                   },
                 }),
               ),
-            );
+            )
+            .finally(() => setForm({ ...form, isSubmitting: false }));
           break;
         default:
       }
