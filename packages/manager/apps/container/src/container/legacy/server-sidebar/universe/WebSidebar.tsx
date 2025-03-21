@@ -47,33 +47,13 @@ export default function WebSidebar() {
   const getWebMenu = (features: Record<string, boolean>) => {
     const menu = [];
 
-    let domain_operations = {
-      id: 'domain_operations',
-      label: t('sidebar_domain_operations'),
-      href: navigation.getURL('web', '#/domain/operation'),
-      routeMatcher: new RegExp('^(/configuration)?/domain/operation'),
-      icon: getIcon('ovh-font ovh-font-config'),
-      ignoreSearch: true,
-    }
-
-    if(features['web-ongoing-operations']){
-      domain_operations = {
-        id: 'domain_operations',
-        label: t('sidebar_domain_operations'),
-        href: navigation.getURL('web-ongoing-operations', '#/domain'),
-        routeMatcher: new RegExp('^(/configuration)?/domain/operation'),
-        icon: getIcon('ovh-font ovh-font-config'),
-        ignoreSearch: true,
-      }
-    }
-
     if (features['web:domains']) {
       menu.push({
         id: 'domains',
         state: 'app.domain.all',
         label: t('sidebar_domain'),
         icon: getIcon('ovh-font ovh-font-domain'),
-        routeMatcher: new RegExp(`^(/configuration)?/(domain|all_dom|zone)`),
+        routeMatcher: new RegExp(`^(/configuration)?/(domain|all_dom|zone|dns|upload|tracking)`),
         async loader() {
           const allDom = features['web:domains:all-dom']
             ? await loadServices('/allDom')
@@ -91,7 +71,14 @@ export default function WebSidebar() {
               icon: getIcon('oui-icon oui-icon-list'),
               ignoreSearch: true,
             },
-            domain_operations,
+            {
+              id: 'domain_operations',
+              label: t('sidebar_domain_operations'),
+              href: navigation.getURL('web-ongoing-operations', '#/'),
+              routeMatcher: new RegExp('/'),
+              icon: getIcon('ovh-font ovh-font-config'),
+              ignoreSearch: true,
+            },
             ...allDom.map((item) => ({
               ...item,
               href: undefined,

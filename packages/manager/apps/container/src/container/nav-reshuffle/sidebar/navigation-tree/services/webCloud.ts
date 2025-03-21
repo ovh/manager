@@ -31,7 +31,7 @@ webCloudUniverse.children = [
         translation: 'sidebar_domain_operations',
         routing: {
           application: 'web-ongoing-operations',
-          hash: '#/domain',
+          hash: '#/',
         },
         features: ['web-ongoing-operations'],
       },

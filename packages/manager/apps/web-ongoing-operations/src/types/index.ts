@@ -50,5 +50,5 @@ export interface TArgument {
 
 export interface TOperationArguments {
   data: TArgument[];
-  actions: boolean;
+  actions?: boolean;
 }

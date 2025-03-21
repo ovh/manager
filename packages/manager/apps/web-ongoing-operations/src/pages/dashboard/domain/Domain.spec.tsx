@@ -21,7 +21,7 @@ vi.mock('react-router-dom', () => ({
 
 vi.mock('@/data/api/web-ongoing-operations', () => ({
   getmeTaskDomainList: vi.fn(),
-  getmeTaskDomainNicList: vi
+  getmeTaskDomainArgumentNames: vi
     .fn()
     .mockImplementation(() => Promise.resolve(['nic1', 'nic2'])),
 }));

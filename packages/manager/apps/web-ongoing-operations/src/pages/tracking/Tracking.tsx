@@ -8,7 +8,7 @@ import SubHeader from '@/components/SubHeader/SubHeader';
 import TrackingMessage from '@/components/Tracking/TrackingMessage';
 import TrackingFinalized from '@/components/Tracking/TrackingFinalized';
 import TrackingCard from '@/components/Tracking/TrackingCard';
-import { useDomain, useTracking } from '@/hooks/data/data';
+import { useDomain, useTracking } from '@/hooks/data/query';
 
 export default function TrackingTranfert() {
   const { t } = useTranslation('dashboard');
@@ -40,7 +40,11 @@ export default function TrackingTranfert() {
         title: t('domain_operations_dashboard_title'),
       }}
     >
-      <SubHeader domain={domain} />
+      <SubHeader
+        title={t('tracking_transfert_domain_title', {
+          t0: domain?.domain,
+        })}
+      />
       <div>
         <TrackingCard tracking={tracking} />
         {tracking.currentStep.step !== TrackingEnum.Finalization && (

@@ -3,11 +3,7 @@ import React, { PropsWithChildren } from 'react';
 import { vi } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import { OdsFileUpload } from '@ovhcloud/ods-components/react';
-import {
-  QueryClient,
-  QueryClientProvider,
-  useQuery,
-} from '@tanstack/react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import {
   OdsFileChangeEventDetail,
   OdsFileUploadCustomEvent,
@@ -20,9 +16,31 @@ vi.mock('react-router-dom', () => ({
   useParams: () => {
     return {
       id: '1',
-      type: 'corporationProof',
     };
   },
+}));
+
+vi.mock('@/hooks/data/query', () => ({
+  useDomain: vi.fn(() => {
+    return {
+      data: uploadDomain,
+      isLoading: false,
+    };
+  }),
+  useNicList: vi.fn(() => {
+    return {
+      data: ['corporationProof'],
+    };
+  }),
+}));
+
+vi.mock('@/hooks/modal/useOperationArguments', () => ({
+  useOperationArguments: vi.fn(() => {
+    return {
+      data: uploadArgument,
+      isLoading: false,
+    };
+  }),
 }));
 
 describe('Upload page', () => {
@@ -32,14 +50,11 @@ describe('Upload page', () => {
   );
 
   it('display the correct data related to the domain', async () => {
-    (useQuery as jest.Mock)
-      .mockImplementationOnce(() => ({ data: uploadDomain }))
-      .mockImplementationOnce(() => ({ data: uploadArgument }));
     render(<Upload />, { wrapper });
 
     await waitFor(() => {
       expect(
-        screen.getByText('tracking_transfert_domain_title'),
+        screen.getByText('domain_operations_upload_title'),
       ).toBeInTheDocument();
       expect(
         screen.getByText(
