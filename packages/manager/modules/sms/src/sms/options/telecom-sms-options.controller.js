@@ -29,12 +29,16 @@ export default class {
             },
           ]
         : []),
-      {
-        name: 'options_recredit',
-        sref: 'sms.service.options.recredit',
-        text: this.$translate.instant('sms_options_recredit'),
-        tracking: `${optionTrackingPrefix}recredit`,
-      },
+      ...(!this.isSmppAccount
+        ? [
+            {
+              name: 'options_recredit',
+              sref: 'sms.service.options.recredit',
+              text: this.$translate.instant('sms_options_recredit'),
+              tracking: `${optionTrackingPrefix}recredit`,
+            },
+          ]
+        : []),
       {
         name: 'options_blacklist',
         sref: 'sms.service.options.blacklist',
