@@ -37,6 +37,8 @@ export const OFFERS_WITHOUT_FREEDOM = [
   '20_GP',
   '60_GP',
   '300_GP',
+  'HOSTING_PRO',
+  '90_PLAN',
 ];
 
 export default {

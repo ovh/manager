@@ -59,6 +59,8 @@
                 data-description="{{:: 'hosting_order_upgrade_select_duration' | translate }}"
                 data-on-focus="$ctrl.getDurations()"
                 data-loading="$ctrl.loading.durations"
+                data-valid="$ctrl.durations.available"
+                data-prevent-next="true"
             >
                 <oui-radio-group
                     data-required

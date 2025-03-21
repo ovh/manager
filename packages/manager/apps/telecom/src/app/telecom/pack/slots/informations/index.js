@@ -7,6 +7,7 @@ import 'ovh-api-services';
 
 import controller from './informations.controller';
 import template from './informations.html';
+import service from '../../orderFollowUp/orderFollowUp.service';
 
 const moduleName = 'ovhManagerTelecomPackInformation';
 
@@ -19,6 +20,7 @@ angular
     'ui.router',
   ])
   .controller('PackInformationCtrl', controller)
+  .service('OrderFollowUpService', service)
   .run(/* @ngTranslationsInject:json ./translations */)
   .run(
     /* @ngInject */ ($templateCache) => {

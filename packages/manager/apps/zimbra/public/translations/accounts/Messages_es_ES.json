@@ -17,7 +17,7 @@
   "zimbra_account_account_order": "Contratar una cuenta",
   "zimbra_domains_tooltip_need_slot": "No hay ninguna cuenta disponible, puede contratar una si lo desea.",
   "zimbra_account_tooltip_need_domain": "En primer lugar, debe configurar un dominio",
-  "zimbra_account_tooltip_need_slot": "No hay ninguna cuenta disponible, puede contratar una si lo desea. ",
+  "zimbra_account_tooltip_need_slot": "No hay ninguna cuenta disponible, puede contratar una si lo desea.",
   "zimbra_account_delete_modal_content_step1": "Va a eliminar la cuenta de correo del servidor Zimbra.",
   "zimbra_account_delete_modal_content_step2": "¿Seguro/a que quiere eliminar la cuenta de correo del servidor Zimbra?",
   "zimbra_account_delete_modal_warn_message": "Atención: Esta acción es irreversible y conlleva la eliminación de los datos."
