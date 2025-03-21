@@ -306,6 +306,14 @@ $sidebar-font-size: 0.875rem;
   background-color: var(--ods-color-primary-300);
 }
 
+.sidebarLinkTitle {
+  display: block;
+  max-width: 13.5rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
 .hidden {
   visibility: hidden;
 }

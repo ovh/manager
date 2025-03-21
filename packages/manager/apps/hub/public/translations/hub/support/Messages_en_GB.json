@@ -1,0 +1,12 @@
+{
+  "hub_support_title": "Recent support tickets",
+  "hub_support_read": "Read",
+  "hub_support_state_open": "Open",
+  "hub_support_state_closed": "Closed",
+  "hub_support_state_unknown": "Unknown",
+  "hub_support_account_management": "Account management",
+  "hub_support_need_help": "Need help?",
+  "hub_support_need_help_more": "Need support using our products and services? Browse our guides.",
+  "hub_support_help": "Understanding and using OVHcloud solutions",
+  "hub_support_error": "Unable to retrieve support tickets"
+}

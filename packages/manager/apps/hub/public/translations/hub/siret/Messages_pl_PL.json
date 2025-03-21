@@ -1,0 +1,9 @@
+{
+  "manager_hub_dashboard_banner_siret_link": "kliknij tutaj, aby przeprowadzić aktualizację.",
+  "manager_hub_dashboard_banner_siret": "Prosimy o aktualizację numeru REGON Twojej firmy. Aktualizacja danych zajmie tylko kilka sekund. Sprawdź dane w wyciągu z rejestru handlowego i ",
+  "manager_hub_dashboard_modal_title": "Aktualizacja danych",
+  "manager_hub_dashboard_modal_siret_part_1": "Prosimy o aktualizację numeru REGON Twojej firmy.",
+  "manager_hub_dashboard_modal_siret_part_2": "Aktualizacja danych zajmie tylko kilka sekund. Dane znajdziesz w wyciągu z rejestru handlowego.",
+  "manager_hub_dashboard_modal_siret_link": "Aktualizuj",
+  "manager_hub_dashboard_modal_siret_cancel": "Nie teraz"
+}

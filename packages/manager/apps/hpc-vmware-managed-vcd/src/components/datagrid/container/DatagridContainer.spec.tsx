@@ -18,8 +18,8 @@ vi.mock('react-router-dom', () => ({
   }),
 }));
 
-vi.mock('@ovh-ux/manager-react-components', async (managerComonents) => {
-  const module = await managerComonents<
+vi.mock('@ovh-ux/manager-react-components', async (managerComponents) => {
+  const module = await managerComponents<
     typeof import('@ovh-ux/manager-react-components')
   >();
   return {
@@ -37,7 +37,9 @@ vi.mock('@ovh-ux/manager-react-components', async (managerComonents) => {
       sorting: { desc: false, id: 'value for id' },
       setSorting: vi.fn(),
     }),
-    ChangelogButton: vi.fn().mockReturnValue(<div></div>),
+    ChangelogButton: () => (
+      <div data-testid="changelog-button">Changelog Button</div>
+    ),
   };
 });
 
@@ -89,6 +91,9 @@ describe('DatagridContainer component unit test suite', () => {
 
       // and
       expect(getByText('value for id')).toBeDefined();
+
+      // and
+      if (!isEmbedded) expect(getByTestId('changelog-button')).toBeDefined();
     },
   );
 });

@@ -1,0 +1,9 @@
+{
+  "manager_hub_dashboard_kyc_banner_description": "Sie möchten ein OVHcloud Produkt bestellen: Aufgrund der geltenden Vorschriften muss Ihre Identität überprüft werden. Bitte fügen Sie Ihre Ausweisdokumente hinzu.",
+  "manager_hub_dashboard_kyc_banner_description_waiting": "Um Ihre Identität zu überprüfen, bevor Sie eine Bestellung aufgeben, lesen Sie bitte die E-Mail unseres Teams und führen Sie die angegebenen Schritte aus.",
+  "manager_hub_dashboard_kyc_banner_link": "Meine Dokumente",
+  "kyc_fraud_required_banner_text": "Es ist eine Identitätsüberprüfung erforderlich. Fügen Sie Ihre Belge hinzu, um die laufende Bestellung abzuschließen.",
+  "kyc_fraud_required_banner_link": "Meine Dokumente",
+  "kyc_fraud_open_banner_text": "Die Verarbeitung Ihrer Dokumente wird derzeit von unserem Team analysiert. Weitere Informationen finden Sie in",
+  "kyc_fraud_open_banner_link": "Meine Support-Anfragen."
+}

@@ -1,0 +1,9 @@
+{
+  "manager_hub_dashboard_banner_siret_link": "click here for the update.",
+  "manager_hub_dashboard_banner_siret": "To improve the quality of your data, we need to update your company’s SIRET number. This update will only take a few seconds. Please take your KBIS and ",
+  "manager_hub_dashboard_modal_title": "Update your contact details",
+  "manager_hub_dashboard_modal_siret_part_1": "To improve the quality of your data, we need to update your company’s SIRET number.",
+  "manager_hub_dashboard_modal_siret_part_2": "With your KBIS, this update will only take a few seconds.",
+  "manager_hub_dashboard_modal_siret_link": "Update",
+  "manager_hub_dashboard_modal_siret_cancel": "Not now"
+}
