@@ -13,25 +13,31 @@ export type TStorageObject = {
   name: string;
 };
 
+type S3ObjectDeleteParams = {
+  projectId: string;
+  containerId: string;
+  objectName: string;
+  containerRegion: string;
+  s3StorageType: string;
+  versionId?: string;
+};
+
 export const deleteS3Object = async ({
   projectId,
   containerId,
   objectName,
   containerRegion,
   s3StorageType,
-}: {
-  projectId: string;
-  containerId: string;
-  objectName: string;
-  containerRegion: string;
-  s3StorageType: string;
-}) => {
+  versionId,
+}: S3ObjectDeleteParams) => {
   const region = containerRegion || OPENIO_DEFAULT_REGION;
   const key = encodeURIComponent(objectName).replace(/\./g, '%2E');
 
-  return v6.delete(
-    `/cloud/project/${projectId}/region/${region}/${s3StorageType}/${containerId}/object/${key}`,
-  );
+  const baseUrl = `/cloud/project/${projectId}/region/${region}/${s3StorageType}/${containerId}/object/${key}`;
+  const versionParam = versionId ? `/version/${versionId}` : '';
+  const totalUrl = baseUrl + versionParam;
+
+  return v6.delete(totalUrl);
 };
 
 export const deleteSwiftObject = async ({

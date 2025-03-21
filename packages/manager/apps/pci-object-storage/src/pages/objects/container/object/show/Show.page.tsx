@@ -39,7 +39,9 @@ import {
   OdsPopover,
   OdsSpinner,
   OdsText,
+  OdsToggle,
 } from '@ovhcloud/ods-components/react';
+
 import {
   usePaginatedObjects,
   useServerContainer,
@@ -56,6 +58,9 @@ import {
   STORAGE_ASYNC_REPLICATION_LINK,
   TRACKING,
   MUMBAI_REGION_NAME,
+  STATUS_ENABLED,
+  STATUS_DISABLED,
+  STATUS_SUSPENDED,
 } from '@/constants';
 import { useGetRegion } from '@/api/hooks/useRegion';
 import { useStorage, useStorageEndpoint } from '@/api/hooks/useStorages';
@@ -63,6 +68,10 @@ import { TServerContainer } from '@/api/data/container';
 import { useGetEncriptionAvailability } from '@/api/hooks/useGetEncriptionAvailability';
 import LabelComponent from '@/components/Label.component';
 import { TRegion } from '@/api/data/region';
+
+import { useServerContainerObjects } from '@/api/hooks/useContainerObjects';
+
+import './style.scss';
 
 export type TContainer = {
   id: string;
@@ -101,6 +110,7 @@ export default function ObjectPage() {
   const { t: tVersioning } = useTranslation('containers/enable-versioning');
   const { t: tAdd } = useTranslation('containers/add');
   const { t: tDataEncryption } = useTranslation('containers/data-encryption');
+
   const objectStorageHref = useHref('..');
   const enableVersioningHref = useHref(
     `./enableVersioning?region=${searchParams.get('region')}`,
@@ -114,7 +124,7 @@ export default function ObjectPage() {
     searchParams.get('region'),
   );
 
-  const { storage: targetContainer } = useStorage(
+  const { storage: targetContainer, storages } = useStorage(
     project?.project_id,
     storageId,
     searchParams.get('region'),
@@ -150,6 +160,51 @@ export default function ObjectPage() {
       staticUrl: serverContainer?.staticUrl || serverContainer?.virtualHost,
     };
   }, [serverContainer, region, targetContainer, url]);
+
+  const [enableVersionsToggle, setEnableVersionsToggle] = useState(false);
+
+  const {
+    data: containerObjects,
+    isLoading: isObjectsLoading,
+    refetch: refetchContainerObjects,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+  } = useServerContainerObjects({
+    projectId: project?.project_id,
+    region: searchParams.get('region'),
+    name: storageId,
+    withVersions: enableVersionsToggle,
+    isS3StorageType: container?.s3StorageType,
+  });
+
+  useEffect(() => {
+    if (container?.s3StorageType) {
+      refetchContainerObjects();
+    }
+  }, [
+    storageId,
+    searchParams.get('region'),
+    enableVersionsToggle,
+    storages,
+    container,
+    searchParams.get('refetch'),
+    refetchContainerObjects,
+  ]);
+
+  const handleFetchNextPage = () => {
+    if (hasNextPage && !isFetchingNextPage) {
+      fetchNextPage();
+    }
+  };
+
+  const containerObjectsWithIndex = useMemo(() => {
+    if (!containerObjects && !container?.s3StorageType) return [];
+    return containerObjects?.map((object, index) => ({
+      ...object,
+      index: `${index}`,
+    }));
+  }, [containerObjects]);
 
   const shouldHideButton = useMemo(() => {
     return !container?.tags?.[BACKUP_KEY];
@@ -194,6 +249,38 @@ export default function ObjectPage() {
     container,
     isLocalZone: !!is.localZone,
   });
+
+  const objectsColumns = useDatagridColumn({
+    container,
+    isLocalZone: !!is.localZone,
+  });
+
+  const filterColumns = useMemo(
+    () => [
+      {
+        id: 'name',
+        label: tContainer(
+          'pci_projects_project_storages_containers_container_name_label',
+        ),
+        comparators: FilterCategories.String,
+      },
+      {
+        id: 'lastModified',
+        label: tContainer(
+          'pci_projects_project_storages_containers_container_lastModified_label',
+        ),
+        comparators: FilterCategories.Date,
+      },
+      {
+        id: 'storageClass',
+        label: tContainer(
+          'pci_projects_project_storages_containers_container_storage_class_label',
+        ),
+        comparators: FilterCategories.String,
+      },
+    ],
+    [], // Dependencies array - Empty means it memoizes once
+  );
   const navigate = useNavigate();
   const { clearNotifications } = useNotifications();
 
@@ -413,11 +500,11 @@ export default function ObjectPage() {
                       `pci_projects_project_storages_containers_update_versioning_${container.versioning.status}_label`,
                     )}
                     color={(() => {
-                      if (container.versioning.status === 'enabled')
+                      if (container.versioning.status === STATUS_ENABLED)
                         return 'success';
-                      if (container.versioning.status === 'disabled')
+                      if (container.versioning.status === STATUS_DISABLED)
                         return 'critical';
-                      if (container.versioning.status === 'suspended')
+                      if (container.versioning.status === STATUS_SUSPENDED)
                         return 'warning';
                       return 'information';
                     })()}
@@ -426,8 +513,8 @@ export default function ObjectPage() {
               )}
               {is.rightOffer &&
                 !is.localZone &&
-                (container.versioning?.status === 'suspended' ||
-                  container.versioning?.status === 'disabled') && (
+                (container.versioning?.status === STATUS_SUSPENDED ||
+                  container.versioning?.status === STATUS_DISABLED) && (
                   <Links
                     label={tVersioning(
                       'pci_projects_project_storages_containers_update_versioning_title',
@@ -544,94 +631,114 @@ export default function ObjectPage() {
             )}
 
             <div className="flex justify-center gap-4 ml-auto">
-              <OdsInput
-                name="searchField"
-                className="min-w-[15rem]"
-                value={searchField}
-                onOdsChange={({ detail }) =>
-                  setSearchField(detail.value as string)
-                }
-                onKeyDown={(event) => {
-                  if (event.key === 'Enter') {
-                    handleSearch();
-                  }
-                }}
-              />
-              <OdsButton
-                label=""
-                icon="magnifying-glass"
-                size="sm"
-                onClick={handleSearch}
-              />
+              {is.rightOffer &&
+                !is.localZone &&
+                container.versioning.status !== STATUS_DISABLED && (
+                  <>
+                    <OdsText>
+                      {tContainer(
+                        'pci_projects_project_storages_containers_container_show_versions',
+                      )}
+                    </OdsText>
+                    <OdsToggle
+                      class="my-toggle"
+                      name="enableVersionsToggle"
+                      onOdsChange={({ detail }) =>
+                        setEnableVersionsToggle(detail.value as boolean)
+                      }
+                    />
+                  </>
+                )}
 
-              <OdsButton
-                id="filterPopoverTrigger"
-                size="sm"
-                color="primary"
-                label={tFilter('common_criteria_adder_filter_label')}
-                variant="outline"
-                icon="filter"
-              />
-              <OdsPopover triggerId="filterPopoverTrigger">
-                <FilterAdd
-                  columns={[
-                    {
-                      id: 'name',
-                      label: tContainer(
-                        'pci_projects_project_storages_containers_container_name_label',
-                      ),
-                      comparators: FilterCategories.String,
-                    },
-                    {
-                      id: 'lastModified',
-                      label: tContainer(
-                        'pci_projects_project_storages_containers_container_lastModified_label',
-                      ),
-                      comparators: FilterCategories.Date,
-                    },
-                    {
-                      id: 'storageClass',
-                      label: tContainer(
-                        'pci_projects_project_storages_containers_container_storage_class_label',
-                      ),
-                      comparators: FilterCategories.String,
-                    },
-                  ]}
-                  onAddFilter={(addedFilter, column) => {
-                    setPagination({
-                      pageIndex: 0,
-                      pageSize: pagination.pageSize,
-                    });
-                    addFilter({
-                      ...addedFilter,
-                      label: column.label,
-                    });
-                  }}
-                />
-              </OdsPopover>
+              {!container?.s3StorageType && (
+                <>
+                  {' '}
+                  <OdsInput
+                    name="searchField"
+                    className="min-w-[15rem]"
+                    value={searchField}
+                    onOdsChange={({ detail }) =>
+                      setSearchField(detail.value as string)
+                    }
+                    onKeyDown={(event) => {
+                      if (event.key === 'Enter') {
+                        handleSearch();
+                      }
+                    }}
+                  />
+                  <OdsButton
+                    label=""
+                    icon="magnifying-glass"
+                    size="sm"
+                    onClick={handleSearch}
+                  />
+                  <OdsButton
+                    id="filterPopoverTrigger"
+                    size="sm"
+                    color="primary"
+                    label={tFilter('common_criteria_adder_filter_label')}
+                    variant="outline"
+                    icon="filter"
+                  />
+                  <OdsPopover triggerId="filterPopoverTrigger">
+                    <FilterAdd
+                      columns={filterColumns}
+                      onAddFilter={(addedFilter, column) => {
+                        setPagination({
+                          pageIndex: 0,
+                          pageSize: pagination.pageSize,
+                        });
+                        addFilter({
+                          ...addedFilter,
+                          label: column.label,
+                        });
+                      }}
+                    />
+                  </OdsPopover>
+                </>
+              )}
             </div>
           </div>
 
-          <div className="mt-8">
-            <FilterList filters={filters} onRemoveFilter={removeFilter} />
-          </div>
-
-          <div className="mt-8">
-            {isPending ? (
-              <OdsSpinner />
+          {container?.s3StorageType &&
+            (!isObjectsLoading ? (
+              <div className="mt-8">
+                <Datagrid
+                  columns={objectsColumns}
+                  hasNextPage={hasNextPage}
+                  items={containerObjectsWithIndex}
+                  onFetchNextPage={handleFetchNextPage}
+                  onSortChange={function Zu() {}}
+                  totalItems={containerObjects.length}
+                />
+              </div>
             ) : (
-              <Datagrid
-                columns={columns}
-                items={paginatedObjects?.rows || []}
-                totalItems={paginatedObjects?.totalRows || 0}
-                pagination={pagination}
-                onPaginationChange={setPagination}
-                sorting={sorting}
-                onSortChange={setSorting}
-                className="overflow-x-visible"
-              />
-            )}
-          </div>
+              <OdsSpinner />
+            ))}
+
+          {!container?.s3StorageType && (
+            <>
+              <div className="mt-8">
+                <FilterList filters={filters} onRemoveFilter={removeFilter} />
+              </div>
+              <div className="mt-8">
+                {isPending ? (
+                  <OdsSpinner />
+                ) : (
+                  <Datagrid
+                    columns={columns}
+                    items={paginatedObjects?.rows || []}
+                    totalItems={paginatedObjects?.totalRows || 0}
+                    pagination={pagination}
+                    onPaginationChange={setPagination}
+                    sorting={sorting}
+                    onSortChange={setSorting}
+                    className="overflow-x-visible"
+                  />
+                )}
+              </div>
+            </>
+          )}
 
           <div className="mt-8">
             <Tiles />

@@ -11,7 +11,19 @@ export type TObject = {
   s3StorageType: string;
   retrievalState: string;
   retrievalDate: string;
+  versionId?: string;
+  isLatest?: boolean;
+  isDeleteMarker?: boolean;
 };
+
+interface GetContainerObjectsParams {
+  projectId: string;
+  region: string;
+  name: string;
+  withVersions: boolean;
+  keyMarker: string | null;
+  versionIdMarker: string | null;
+}
 export type TServerContainer = {
   createdAt: string;
   encryption: {
@@ -51,4 +63,30 @@ export const getServerContainer = async (
 
   const { data } = await v6.get<TServerContainer>(url);
   return data;
+};
+
+export const getContainerObjects = async ({
+  projectId,
+  region,
+  name,
+  withVersions,
+  keyMarker,
+  versionIdMarker,
+}: GetContainerObjectsParams): Promise<{
+  objects: TObject[];
+}> => {
+  const url = `/cloud/project/${projectId}/region/${region}/storage/${name}/object`;
+
+  const { data } = await v6.get<TObject[]>(url, {
+    params: {
+      withVersions,
+      keyMarker,
+      limit: 10,
+      versionIdMarker,
+    },
+  });
+
+  return {
+    objects: data,
+  };
 };
