@@ -21,6 +21,7 @@ type DeleteObjectProps = {
   projectId: string;
   storage: TStorage;
   objectName: string;
+  versionId?: string;
   region: string;
   onError: (cause: Error) => void;
   onSuccess: () => void;
@@ -31,6 +32,7 @@ export const useDeleteObject = ({
   storage,
   objectName,
   region,
+  versionId,
   onError,
   onSuccess,
 }: DeleteObjectProps) => {
@@ -43,6 +45,7 @@ export const useDeleteObject = ({
           objectName,
           containerRegion: region,
           s3StorageType: storage.s3StorageType,
+          versionId,
         });
       }
 
