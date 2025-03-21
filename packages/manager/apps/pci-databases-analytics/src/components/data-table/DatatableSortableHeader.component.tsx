@@ -1,6 +1,6 @@
 import { ChevronDown, ChevronUp, ChevronsUpDown } from 'lucide-react';
 import { SortingColumn } from '@tanstack/react-table';
-import { Button } from '@/components/ui/button';
+import { Button } from '@datatr-ux/uxlib';
 
 interface SortableHeaderProps<TData> {
   column: SortingColumn<TData>;
@@ -25,7 +25,7 @@ export function DatatableSortableHeader<TData>({
   }`;
   return (
     <Button
-      variant="ghost"
+      mode="ghost"
       className={buttonClass}
       onClick={() => column.toggleSorting(sort === 'asc')}
     >

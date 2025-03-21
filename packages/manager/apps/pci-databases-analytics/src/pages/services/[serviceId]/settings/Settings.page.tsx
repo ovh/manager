@@ -1,16 +1,18 @@
 import { Outlet } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { useServiceData } from '../Service.context';
-import Maintenances from './_components/Maintenances.component';
-import IpsRestrictionsUpdate from './_components/IpRestrictionsUpdate.component';
-import AdvancedConfigurationUpdate from './_components/AdvancedConfigurationUpdate.component';
 import {
+  Card,
+  CardContent,
+  CardHeader,
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@/components/ui/accordion';
+} from '@datatr-ux/uxlib';
+import { useServiceData } from '../Service.context';
+import Maintenances from './_components/Maintenances.component';
+import IpsRestrictionsUpdate from './_components/IpRestrictionsUpdate.component';
+import AdvancedConfigurationUpdate from './_components/AdvancedConfigurationUpdate.component';
 import UpdateTable from './_components/UpdateTable.component';
 import ServiceConfiguration from './_components/ServiceConfiguration.component';
 import Guides from '@/components/guides/Guides.component';

@@ -2,18 +2,18 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
 import { Copy } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import {
+  Button,
   DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { useToast } from '@/components/ui/use-toast';
+  useToast,
+  Alert,
+} from '@datatr-ux/uxlib';
 import { useResetUserPassword } from '@/hooks/api/database/user/useResetUserPassword.hook';
-import { Alert } from '@/components/ui/alert';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import { useServiceData } from '../../Service.context';
 import { useGetUsers } from '@/hooks/api/database/user/useGetUsers.hook';
@@ -107,7 +107,7 @@ const ResetUserPassword = () => {
             <DialogClose asChild>
               <Button
                 type="button"
-                variant="outline"
+                mode="outline"
                 data-testid="reset-password-close-button"
               >
                 {t('resetUserPasswordButtonClose')}
@@ -118,7 +118,7 @@ const ResetUserPassword = () => {
               <DialogClose asChild>
                 <Button
                   type="button"
-                  variant="outline"
+                  mode="outline"
                   data-testid="reset-password-cancel-button"
                 >
                   {t('resetUserPasswordButtonCancel')}

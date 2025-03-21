@@ -7,6 +7,7 @@ import {
   waitFor,
 } from '@testing-library/react';
 
+import { useToast } from '@datatr-ux/uxlib';
 import Service, {
   breadcrumb as Breadcrumb,
 } from '@/pages/services/create/Create.page';
@@ -42,7 +43,6 @@ import { mockedPciProject } from '@/__tests__/helpers/mocks/pciProjects';
 import * as ProjectAPI from '@/data/api/project/project.api';
 import * as ServiceAPI from '@/data/api/database/service.api';
 import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
-import { useToast } from '@/components/ui/use-toast';
 import { PlanCode } from '@/types/cloud/Project';
 
 const mockedOrder = {
@@ -156,9 +156,11 @@ describe('Order funnel page', () => {
       addService: vi.fn((service) => service),
     }));
 
-    vi.mock('@/components/ui/use-toast', () => {
+    vi.mock('@datatr-ux/uxlib', async () => {
+      const mod = await vi.importActual('@datatr-ux/uxlib');
       const toastMock = vi.fn();
       return {
+        ...mod,
         useToast: vi.fn(() => ({
           toast: toastMock,
         })),

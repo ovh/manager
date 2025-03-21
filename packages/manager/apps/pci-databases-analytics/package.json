@@ -22,6 +22,9 @@
     "test-ui": "vitest --ui --coverage.enabled=true"
   },
   "dependencies": {
+    "@datatr-ux/ods-tailwind-config": "1.0.3",
+    "@datatr-ux/ovhcloud-types": "1.0.8",
+    "@datatr-ux/uxlib": "0.0.10-beta-2",
     "@hookform/resolvers": "^3.3.4",
     "@ovh-ux/manager-config": "^8.0.2",
     "@ovh-ux/manager-core-api": "^0.10.1",
@@ -100,5 +103,8 @@
     "CA",
     "EU",
     "US"
+  ],
+  "universes": [
+    "@ovh-ux/manager-public-cloud"
   ]
 }

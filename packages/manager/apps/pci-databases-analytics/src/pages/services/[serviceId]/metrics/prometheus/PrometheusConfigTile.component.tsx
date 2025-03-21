@@ -1,17 +1,19 @@
 import { useTranslation } from 'react-i18next';
 import { BarChart4 } from 'lucide-react';
 import { useState } from 'react';
-import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { useServiceData } from '../../Service.context';
 import {
+  Card,
+  CardContent,
+  CardHeader,
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@/components/ui/accordion';
-import { Badge } from '@/components/ui/badge';
+  Badge,
+  useToast,
+} from '@datatr-ux/uxlib';
+import { useServiceData } from '../../Service.context';
 import { cn } from '@/lib/utils';
-import { useToast } from '@/components/ui/use-toast';
 import { useEditService } from '@/hooks/api/database/service/useEditService.hook';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import { useGetPrometheusData } from '@/hooks/api/database/prometheus/useGetPrometheus.hook';
@@ -109,7 +111,7 @@ const PrometheusConfigTile = () => {
                       'px-2 py-0.5 text-xs',
                       !service.enablePrometheus && 'border border-gray-200',
                     )}
-                    variant={service.enablePrometheus ? 'success' : 'secondary'}
+                    variant={service.enablePrometheus ? 'success' : 'outline'}
                   >
                     {t(
                       service.enablePrometheus

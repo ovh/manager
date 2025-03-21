@@ -6,10 +6,10 @@ import {
   fireEvent,
   act,
 } from '@testing-library/react';
+import { useToast } from '@datatr-ux/uxlib';
 import * as serviceApi from '@/data/api/database/service.api';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import DeleteService from './DeleteService.component';
-import { useToast } from '@/components/ui/use-toast';
 import { mockedService } from '@/__tests__/helpers/mocks/services';
 import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
 import { TERMINATE_CONFIRMATION } from '@/configuration/polling.constants';
@@ -46,9 +46,11 @@ describe('Delete service modal', () => {
     vi.mock('@/data/api/database/integration.api', () => ({
       getServiceIntegrations: vi.fn(() => [mockedIntegrations]),
     }));
-    vi.mock('@/components/ui/use-toast', () => {
+    vi.mock('@datatr-ux/uxlib', async () => {
+      const mod = await vi.importActual('@datatr-ux/uxlib');
       const toastMock = vi.fn();
       return {
+        ...mod,
         useToast: vi.fn(() => ({
           toast: toastMock,
         })),

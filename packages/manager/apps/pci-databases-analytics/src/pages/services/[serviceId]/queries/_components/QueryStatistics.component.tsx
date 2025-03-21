@@ -1,11 +1,10 @@
 import { ColumnDef } from '@tanstack/react-table';
 import { useTranslation } from 'react-i18next';
 import { RotateCcw } from 'lucide-react';
+import { Button, useToast } from '@datatr-ux/uxlib';
 import { useServiceData } from '../../Service.context';
 import DataTable from '@/components/data-table';
 import * as database from '@/types/cloud/project/database';
-import { Button } from '@/components/ui/button';
-import { useToast } from '@/components/ui/use-toast';
 import { useGetQueryStatistics } from '@/hooks/api/database/query/useGetQueryStatistics.hook';
 import { useResetQueryStatistics } from '@/hooks/api/database/query/useResetQueryStatistics.hook';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
@@ -59,7 +58,7 @@ const QueryStatistics = () => {
       {service.capabilities.queryStatisticsReset && (
         <Button
           data-testid="query-statistics-reset-button"
-          variant="outline"
+          mode="outline"
           size="sm"
           onClick={() => handleResetButtonClicked()}
           disabled={

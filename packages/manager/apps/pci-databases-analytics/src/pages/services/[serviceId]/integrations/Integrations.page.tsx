@@ -2,11 +2,11 @@ import { useTranslation } from 'react-i18next';
 import { ColumnDef } from '@tanstack/react-table';
 import { Plus } from 'lucide-react';
 import { Outlet, useNavigate } from 'react-router-dom';
+import { Button } from '@datatr-ux/uxlib';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import * as database from '@/types/cloud/project/database';
 import { useServiceData } from '../Service.context';
 import DataTable from '@/components/data-table';
-import { Button } from '@/components/ui/button';
 import { POLLING } from '@/configuration/polling.constants';
 import { getColumns } from './_components/IntegrationListColumns.component';
 import { useGetServices } from '@/hooks/api/database/service/useGetServices.hook';
@@ -73,7 +73,7 @@ const Integrations = () => {
       {service.capabilities.integrations?.create && (
         <Button
           data-testid="integrations-add-button"
-          variant={'outline'}
+          mode={'outline'}
           size="sm"
           className="text-base"
           disabled={
