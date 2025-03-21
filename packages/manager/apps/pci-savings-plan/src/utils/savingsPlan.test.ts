@@ -1,4 +1,4 @@
-import { isValidSavingsPlanName } from './savingsPlan';
+import { isInstanceFlavor, isValidSavingsPlanName } from './savingsPlan';
 
 describe('isValidSavingsPlanName', () => {
   it('should return true for valid names', () => {
@@ -35,5 +35,15 @@ describe('isValidSavingsPlanName', () => {
         'Savings-Plan-GP-2024-09-05-dedsqdqsdqsdqsdsqdqsdqsdsqdqsdsqDd',
       ),
     ).toBe(false);
+  });
+});
+
+describe('isInstanceFlavor', () => {
+  it('should return true if the flavor is an instance', () => {
+    expect(isInstanceFlavor('b3-8')).toBe(true);
+  });
+
+  it('should return false if the flavor is not an instance', () => {
+    expect(isInstanceFlavor('Rancher')).toBe(false);
   });
 });
