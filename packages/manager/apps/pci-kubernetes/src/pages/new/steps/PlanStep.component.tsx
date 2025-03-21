@@ -1,5 +1,13 @@
-import { OsdsMessage } from '@ovhcloud/ods-components/react';
-import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
+import { OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
+import {
+  ODS_MESSAGE_TYPE,
+  ODS_TEXT_COLOR_INTENT,
+  ODS_TEXT_LEVEL,
+} from '@ovhcloud/ods-components';
+import {
+  ODS_THEME_TYPOGRAPHY_LEVEL,
+  ODS_THEME_TYPOGRAPHY_SIZE,
+} from '@ovhcloud/ods-common-theming';
 import { Check, XCircle, Clock12 } from 'lucide-react';
 import { Button } from '@datatr-ux/uxlib';
 import { useMemo, useState } from 'react';
@@ -160,7 +168,13 @@ PlanTile.Banner = function PlanTileBanner({ type }: { type: string }) {
     <>
       {type === 'region-3-az' && (
         <OsdsMessage className="mt-4" type={ODS_MESSAGE_TYPE.warning}>
-          {t('kube_add_plan_content_standard_3AZ_banner')}
+          <OsdsText
+            color={ODS_TEXT_COLOR_INTENT.text}
+            level={ODS_TEXT_LEVEL.body}
+            size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+          >
+            {t('kube_add_plan_content_standard_3AZ_banner')}
+          </OsdsText>
         </OsdsMessage>
       )}
       {type === 'region' && (
@@ -181,7 +195,7 @@ PlanTile.LockedView = function PlanTileLockedView({
   const plan = useMemo(() => plans.find((p) => p.value === value), [value]);
 
   return (
-    <RadioTile labelClassName="border-neutral-200">
+    <RadioTile labelClassName="border-primary-100">
       <div className="  px-4 py-2 flex-col w-full ">
         <h5 data-testid="plan-header-locked" className="capitalize font-bold">
           {t(plan.title)}
