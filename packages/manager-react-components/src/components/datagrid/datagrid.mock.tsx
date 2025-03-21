@@ -74,7 +74,7 @@ export const columnsSearchAndFilters = [
     label: 'Status',
     isFilterable: true,
     comparator: FilterCategories.Options,
-    options: [
+    filterOptions: [
       { label: 'Status #0', value: 'Status #0' },
       { label: 'Status #1', value: 'Status #1' },
     ],
