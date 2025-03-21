@@ -30,7 +30,6 @@ import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import { ResourceStatus } from '@/api/api.type';
 import { MailingListType } from '@/api/mailinglist';
 import { DATAGRID_REFRESH_INTERVAL, DATAGRID_REFRESH_ON_MOUNT } from '@/utils';
-import Loading from '@/components/Loading/Loading';
 import { BadgeStatus } from '@/components/BadgeStatus';
 import { ADD_MAILING_LIST } from '@/tracking.constant';
 
@@ -179,18 +178,15 @@ export default function MailingLists() {
               label={t('common:add_mailing_list')}
             />
           </div>
-          {isLoading ? (
-            <Loading />
-          ) : (
-            <Datagrid
-              columns={columns.map((column) => ({
-                ...column,
-                label: t(column.label),
-              }))}
-              items={items}
-              totalItems={items.length}
-            />
-          )}
+          <Datagrid
+            columns={columns.map((column) => ({
+              ...column,
+              label: t(column.label),
+            }))}
+            items={items}
+            totalItems={items.length}
+            isLoading={isLoading}
+          />
         </>
       )}
     </div>
