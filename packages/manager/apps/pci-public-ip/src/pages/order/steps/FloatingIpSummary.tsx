@@ -9,15 +9,19 @@ import {
   ODS_SPINNER_SIZE,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { useCatalogPrice } from '@ovh-ux/manager-react-components';
+import {
+  ODS_THEME_COLOR_INTENT,
+  ODS_THEME_TYPOGRAPHY_SIZE,
+} from '@ovhcloud/ods-common-theming';
 import { useTranslation, Trans } from 'react-i18next';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { useMe } from '@/api/hooks/useMe';
 import { useSubnets } from '@/api/hooks/useSubnets';
 import { useGateways } from '@/api/hooks/useGateways';
 import { TGateway } from '@/api/data/gateways';
-import { useSmallestGatewayByRegion } from '@/api/hooks/useAvailableGateway';
-import { CatalogPriceComponent } from '@/components/CatalogPrice.component';
+import { useAddons } from '@/api/hooks/useAddons/useAddons';
+import { filterProductRegionBySize } from '@/api/hooks/useAddons/useAddons.select';
+import PriceLabel from '@/components/PriceLabel.component';
 
 export const FloatingIpSummary = ({
   projectId,
@@ -30,9 +34,7 @@ export const FloatingIpSummary = ({
   networkId: string;
   onSelectedSizeChanged: (size: string) => void;
 }): JSX.Element => {
-  const context = useContext(ShellContext);
-
-  const { me } = useMe();
+  const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
   const { data: rawGateways, isPending: isGatewaysPending } = useGateways(
     projectId,
     ipRegion,
@@ -41,13 +43,23 @@ export const FloatingIpSummary = ({
     projectId,
     networkId,
   );
-  const selectedGateway = useSmallestGatewayByRegion(ipRegion);
+
+  const { addons: defaultGateways } = useAddons({
+    ovhSubsidiary,
+    projectId,
+    addonFamily: 'gateway',
+    select: (addons) => filterProductRegionBySize(addons, ipRegion),
+  });
+
+  const selectedGateway = defaultGateways[0];
 
   const { t: tOrder } = useTranslation('order');
 
   const [gateways, setGateways] = useState<TGateway[]>([]);
   const [gateway, setGateway] = useState<TGateway>(null);
   const [isSnatEnabled, setIsSnatEnabled] = useState(false);
+
+  const { getFormattedHourlyCatalogPrice } = useCatalogPrice(4);
 
   useEffect(() => {
     onSelectedSizeChanged(
@@ -108,19 +120,16 @@ export const FloatingIpSummary = ({
                         {
                           size: selectedGateway.size?.toUpperCase(),
                         },
-                      )}
-                      <span> (</span>
-                      {tOrder(
-                        'pci_additional_ip_create_summary_step_price',
                       )}{' '}
-                      <CatalogPriceComponent
-                        price={selectedGateway.price}
-                        user={me}
-                        maximumFractionDigits={4}
-                        interval="hour"
-                        locale={context.environment.getUserLocale()}
+                      ({tOrder('pci_additional_ip_create_summary_step_price')}{' '}
+                      <PriceLabel
+                        value={getFormattedHourlyCatalogPrice(
+                          selectedGateway.price,
+                        )}
+                        size={ODS_THEME_TYPOGRAPHY_SIZE._100}
+                        color={ODS_THEME_COLOR_INTENT.default}
                       />
-                      <span>).</span>
+                      ).
                     </OsdsText>
                   </p>
                 )}

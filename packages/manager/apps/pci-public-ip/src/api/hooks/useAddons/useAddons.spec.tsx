@@ -8,7 +8,10 @@ import {
 import { useAddons } from './useAddons';
 import { useQueryWrapper } from '@/__tests__/wrapper';
 import { availableProducts, catalog, regions } from '@/__mocks__/addons';
-import { sortProductByPrice } from './useAddons.select';
+import {
+  sortProductByPrice,
+  filterProductRegionBySize,
+} from './useAddons.select';
 
 vi.mock('@ovh-ux/manager-pci-common');
 
@@ -80,5 +83,21 @@ describe('useAddons', () => {
         },
       ]),
     );
+  });
+
+  it('should return empty when filter product by uknown region', async () => {
+    const { result } = renderHook(
+      () =>
+        useAddons({
+          ovhSubsidiary: 'FR',
+          projectId: 'projectId-test',
+          addonFamily: 'testAddon',
+          select: (addons) =>
+            filterProductRegionBySize(addons, 'REGION-uknown'),
+        }),
+      { wrapper: useQueryWrapper },
+    );
+
+    await waitFor(() => expect(result.current.addons).toEqual([]));
   });
 });

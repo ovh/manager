@@ -117,6 +117,7 @@ export const IpTypeStep = ({
                         })
                       : floatingIpPrice
                   }
+                  className="font-bold"
                 />
               </OsdsText>
             </div>
