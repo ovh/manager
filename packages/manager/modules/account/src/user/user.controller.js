@@ -11,6 +11,7 @@ export default class UserAccountCtrl {
     supportLevel,
     guides,
     trackClick,
+    canManageGdprRequests,
   ) {
     // dependencies injections
     this.$location = $location;
@@ -26,6 +27,7 @@ export default class UserAccountCtrl {
       this.$location.search().redirectTo || this.$location.search().redirectto;
     this.guides = guides;
     this.trackClick = trackClick;
+    this.canManageGdprRequests = canManageGdprRequests;
   }
 
   $onInit() {
