@@ -9,7 +9,7 @@ export type TVolumeSnapshot = TSnapshot & {
   volume?: TVolume | null;
 };
 
-export const useAllSnapshots = (projectId: string) =>
+export const useAllSnapshots = (projectId?: string) =>
   useQuery({
     queryKey: ['snapshots', projectId],
     enabled: !!projectId,

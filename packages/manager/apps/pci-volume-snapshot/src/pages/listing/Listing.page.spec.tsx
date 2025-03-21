@@ -10,6 +10,7 @@ import {
 import * as MRCApi from '@ovh-ux/manager-react-components';
 import { FilterComparator } from '@ovh-ux/manager-core-api';
 import { OdsInputChangeEvent } from '@ovhcloud/ods-components';
+import { is } from 'date-fns/locale';
 import * as SnapshotsApi from '@/api/hooks/useSnapshots';
 import ListingPage from './Listing.page';
 
@@ -108,6 +109,10 @@ vi.mock('@/api/hooks/useSnapshots', async (importOriginal) => {
   const actual = (await importOriginal()) || {};
   return {
     ...(typeof actual === 'object' && actual !== null ? actual : {}),
+    useAllSnapshots: vi.fn(() => ({
+      data: [{ id: '1' }],
+      isLoading: false,
+    })),
     usePaginatedVolumeSnapshot: vi.fn(() => ({
       paginatedSnapshots: {
         rows: [

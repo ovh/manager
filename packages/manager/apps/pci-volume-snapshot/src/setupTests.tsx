@@ -24,6 +24,7 @@ vi.mock('@ovh-ux/manager-pci-common', async () => {
       projectName: 'project-name',
       project_id: 'project-id',
     }),
+    PciAnnouncementBanner: () => <div data-testid="pci-announcement-banner" />,
   };
 });
 
