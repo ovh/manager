@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Badge } from '@datatr-ux/uxlib';
 import RadioTile from '@/components/radio-tile/RadioTile.component';
 import VersionSelector from './EngineTileVersion.component';
 import { Engine, Version } from '@/types/orderFunnel';
 import { humanizeEngine } from '@/lib/engineNameHelper';
 import * as database from '@/types/cloud/project/database';
-import { Badge } from '@/components/ui/badge';
 import { getTagVariant } from '@/lib/tagsHelper';
 import { EngineIcon } from '@/components/engine-icon/EngineIcon.component';
 

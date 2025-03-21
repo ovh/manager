@@ -1,8 +1,3 @@
-import { useTranslation } from 'react-i18next';
-import { useEffect, useState } from 'react';
-import { BookOpen } from 'lucide-react';
-import { useGetGuides } from '@/hooks/api/guides/useGetGuides.hook';
-import * as database from '@/types/cloud/project/database';
 import {
   CommandDialog,
   CommandEmpty,
@@ -10,11 +5,16 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from '../ui/command';
+  Button,
+  Skeleton,
+} from '@datatr-ux/uxlib';
+import { useTranslation } from 'react-i18next';
+import { useEffect, useState } from 'react';
+import { BookOpen } from 'lucide-react';
+import { useGetGuides } from '@/hooks/api/guides/useGetGuides.hook';
+import * as database from '@/types/cloud/project/database';
 import { useLocale } from '@/hooks/useLocale';
-import { Button } from '../ui/button';
 import { Guide } from '@/types/guide';
-import { Skeleton } from '../ui/skeleton';
 
 interface GuidesProps {
   section?: string;
@@ -66,7 +66,7 @@ const Guides = ({
     <>
       <Button
         data-testid="guide-open-button"
-        // variant="ghost"
+        mode="ghost"
         onClick={() => setOpen((prevValue) => !prevValue)}
         // className="text-primary-500 font-semibold"
         className="inline-flex items-center whitespace-nowrap rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2 relative text-sm text-muted-foreground justify-between max-w-40 gap-2"

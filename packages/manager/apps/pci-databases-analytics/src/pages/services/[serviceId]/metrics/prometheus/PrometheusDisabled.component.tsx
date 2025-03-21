@@ -1,6 +1,6 @@
 import { Loader2 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { Button } from '@/components/ui/button';
+import { Button } from '@datatr-ux/uxlib';
 import { useServiceData } from '../../Service.context';
 import * as database from '@/types/cloud/project/database';
 

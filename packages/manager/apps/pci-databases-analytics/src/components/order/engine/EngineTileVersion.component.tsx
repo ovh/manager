@@ -2,20 +2,18 @@ import { useState } from 'react';
 import { Check, ChevronsUpDown } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import {
+  Button,
   Popover,
+  Badge,
   PopoverContent,
   PopoverTrigger,
-} from '@/components/ui/popover';
-import {
   Command,
   CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandItem,
   CommandList,
-} from '@/components/ui/command';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
+} from '@datatr-ux/uxlib';
 import { Version } from '@/types/orderFunnel';
 import { getTagVariant } from '@/lib/tagsHelper';
 import { cn } from '@/lib/utils';
@@ -53,7 +51,7 @@ const VersionSelector = ({
         <Button
           data-testid="popover-trigger-button"
           disabled={versions.length === 1}
-          variant="outline"
+          mode="outline"
           size="sm"
           className="rounded-none justify-start w-full border border-[#bef1ff] font-normal text-[#4d5592] "
         >

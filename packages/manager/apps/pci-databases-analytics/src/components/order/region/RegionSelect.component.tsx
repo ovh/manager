@@ -1,11 +1,16 @@
 import { useTranslation } from 'react-i18next';
 import React, { useState } from 'react';
+import {
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  Badge,
+  ScrollArea,
+  ScrollBar,
+} from '@datatr-ux/uxlib';
 import RadioTile from '@/components/radio-tile/RadioTile.component';
-import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Region } from '@/types/orderFunnel';
-import { Badge } from '@/components/ui/badge';
 import { getTagVariant } from '@/lib/tagsHelper';
-import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import useHorizontalScroll from '@/hooks/useHorizontalScroll.hook';
 
 interface RegionsSelectProps {

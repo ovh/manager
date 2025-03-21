@@ -7,11 +7,11 @@ import {
   screen,
   waitFor,
 } from '@testing-library/react';
+import { useToast } from '@datatr-ux/uxlib';
 import { Locale } from '@/hooks/useLocale';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import * as database from '@/types/cloud/project/database';
 import { mockedService as mockedServiceOrig } from '@/__tests__/helpers/mocks/services';
-import { useToast } from '@/components/ui/use-toast';
 import { mockedIndex } from '@/__tests__/helpers/mocks/indexes';
 import * as indexesApi from '@/data/api/database/indexes.api';
 import DeleteIndexModal from './DeleteIndex.modal';
@@ -37,9 +37,11 @@ describe('DeleteIndex modal', () => {
         t: (key: string) => key,
       }),
     }));
-    vi.mock('@/components/ui/use-toast', () => {
+    vi.mock('@datatr-ux/uxlib', async () => {
+      const mod = await vi.importActual('@datatr-ux/uxlib');
       const toastMock = vi.fn();
       return {
+        ...mod,
         useToast: vi.fn(() => ({
           toast: toastMock,
         })),

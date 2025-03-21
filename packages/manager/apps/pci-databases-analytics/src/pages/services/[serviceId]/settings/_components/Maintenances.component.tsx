@@ -1,12 +1,16 @@
 import { useTranslation } from 'react-i18next';
+import {
+  Badge,
+  BadgeProps,
+  Skeleton,
+  Alert,
+  AlertDescription,
+  Button,
+  useToast,
+} from '@datatr-ux/uxlib';
 import { useServiceData } from '../../Service.context';
-import { Skeleton } from '@/components/ui/skeleton';
-import { Alert, AlertDescription } from '@/components/ui/alert';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
-import { Button } from '@/components/ui/button';
-import { Badge, BadgeProps } from '@/components/ui/badge';
 import * as database from '@/types/cloud/project/database';
-import { useToast } from '@/components/ui/use-toast';
 import { useGetMaintenances } from '@/hooks/api/database/maintenance/useGetMaintenances.hook';
 import { useApplyMaintenance } from '@/hooks/api/database/maintenance/useApplyMaintenance.hook';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
@@ -49,7 +53,7 @@ const Maintenances = () => {
   }
   if (maintenanceQuery.data.length === 0) {
     return (
-      <Alert variant="info">
+      <Alert variant="primary">
         <AlertDescription>
           {t('maintenancesNoPlannedMaintenance')}
         </AlertDescription>
@@ -70,7 +74,7 @@ const Maintenances = () => {
   ): BadgeProps['variant'] => {
     switch (status) {
       case database.service.maintenance.StatusEnum.ERROR:
-        return 'error';
+        return 'destructive';
       case database.service.maintenance.StatusEnum.APPLIED:
         return 'success';
       case database.service.maintenance.StatusEnum.APPLYING:
@@ -78,13 +82,13 @@ const Maintenances = () => {
       case database.service.maintenance.StatusEnum.PENDING:
       case database.service.maintenance.StatusEnum.SCHEDULED:
       default:
-        return 'default';
+        return 'primary';
     }
   };
   return (
     <div className="grid gap-2">
       {maintenanceQuery.data.map((maintenance) => (
-        <Alert variant="info" key={maintenance.id}>
+        <Alert variant="primary" key={maintenance.id}>
           <AlertDescription>
             <div className="flex flex-col items-stretch md:flex-row md:items-center justify-between gap-4">
               <div className="flex flex-col items-start w-full">

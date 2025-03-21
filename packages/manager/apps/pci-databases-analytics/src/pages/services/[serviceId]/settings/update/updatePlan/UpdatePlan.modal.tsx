@@ -2,31 +2,29 @@ import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ArrowRight } from 'lucide-react';
-import PlansSelect from '@/components/order/plan/PlanSelect.component';
-import { Button } from '@/components/ui/button';
 import {
+  Button,
   DialogClose,
   DialogContent,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
-import * as database from '@/types/cloud/project/database';
-import { useServiceData } from '@/pages/services/[serviceId]/Service.context';
-import { ScrollArea } from '@/components/ui/scroll-area';
-import {
+  ScrollArea,
   Form,
   FormControl,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form';
-import { useToast } from '@/components/ui/use-toast';
+  useToast,
+  Label,
+} from '@datatr-ux/uxlib';
+import PlansSelect from '@/components/order/plan/PlanSelect.component';
+import * as database from '@/types/cloud/project/database';
+import { useServiceData } from '@/pages/services/[serviceId]/Service.context';
 import { useEditService } from '@/hooks/api/database/service/useEditService.hook';
 import Price from '@/components/price/Price.component';
 import PriceUnitSwitch from '@/components/price-unit-switch/PriceUnitSwitch.component';
-import { Label } from '@/components/ui/label';
 import PricingDetails from '../_components/PricingDetails.component';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import { useGetAvailabilities } from '@/hooks/api/database/availability/useGetAvailabilities.hook';
@@ -186,7 +184,7 @@ const UpdatePlan = () => {
                 <Button
                   data-testid="update-plan-cancel-button"
                   type="button"
-                  variant="outline"
+                  mode="outline"
                 >
                   {t('updatePlanCancelButton')}
                 </Button>

@@ -2,8 +2,8 @@ import { useTranslation } from 'react-i18next';
 import { ColumnDef } from '@tanstack/react-table';
 import { Plus } from 'lucide-react';
 import { Outlet, useNavigate } from 'react-router-dom';
+import { Button } from '@datatr-ux/uxlib';
 import * as database from '@/types/cloud/project/database';
-import { Button } from '@/components/ui/button';
 import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import { useServiceData } from '../Service.context';
 import { POLLING } from '@/configuration/polling.constants';
@@ -65,7 +65,7 @@ const IndexPatterns = () => {
             service.capabilities.patterns?.create ===
             database.service.capability.StateEnum.disabled
           }
-          variant={'outline'}
+          mode={'outline'}
           size="sm"
           className="text-base"
           onClick={() => navigate('./add-pattern')}

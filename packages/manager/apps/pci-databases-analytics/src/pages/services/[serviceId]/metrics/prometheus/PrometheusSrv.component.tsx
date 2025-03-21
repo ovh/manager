@@ -1,5 +1,5 @@
+import { Table, TableBody } from '@datatr-ux/uxlib';
 import { PrometheusData } from '@/data/api/database/prometheus.api';
-import { Table, TableBody } from '@/components/ui/table';
 import * as database from '@/types/cloud/project/database';
 import PrometheusTableRow from './PrometheusTableRow.component';
 

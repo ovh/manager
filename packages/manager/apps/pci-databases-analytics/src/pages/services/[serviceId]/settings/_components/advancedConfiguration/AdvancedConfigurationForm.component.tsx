@@ -8,11 +8,6 @@ import {
 } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import * as database from '@/types/cloud/project/database';
-import {
-  AdvancedConfigurationProperty,
-  useAdvancedConfigurationForm,
-} from './useAdvancedConfigurationForm.hook';
 import {
   Form,
   FormControl,
@@ -21,32 +16,34 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Input } from '@/components/ui/input';
-import { useServiceData } from '../../../Service.context';
-import { useToast } from '@/components/ui/use-toast';
-import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
-import { Button } from '@/components/ui/button';
-import {
+  RadioGroup,
+  RadioGroupItem,
+  Input,
+  useToast,
+  ScrollArea,
+  ScrollBar,
+  Button,
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from '@/components/ui/popover';
-import {
   Command,
   CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandItem,
-} from '@/components/ui/command';
-import { cn } from '@/lib/utils';
-import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@/components/ui/accordion';
+  CommandList,
+} from '@datatr-ux/uxlib';
+import * as database from '@/types/cloud/project/database';
+import {
+  AdvancedConfigurationProperty,
+  useAdvancedConfigurationForm,
+} from './useAdvancedConfigurationForm.hook';
+import { useServiceData } from '../../../Service.context';
+import { cn } from '@/lib/utils';
 import { useEditAdvancedConfiguration } from '@/hooks/api/database/advancedConfiguration/useEditAdvancedConfiguration.hook';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 
@@ -204,7 +201,7 @@ const AdvancedConfigurationForm = ({
                         <Button
                           data-testid={`remove-property-${property.name}`}
                           className="text-red-500 rounded-full p-1 hover:text-red-500 absolute top-0 right-0"
-                          variant={'ghost'}
+                          mode={'ghost'}
                           type="button"
                           onClick={() => model.methods.removeProperty(property)}
                         >
@@ -224,11 +221,9 @@ const AdvancedConfigurationForm = ({
           <Popover open={open} onOpenChange={setOpen}>
             <PopoverTrigger asChild>
               <Button
-                variant="input"
-                size="input"
                 role="combobox"
                 aria-expanded={open}
-                className="justify-between"
+                className="text-text border border-input bg-background h-10 w-full rounded-md px-3 py-2 text-sm justify-between hover:bg-background active:bg-background"
               >
                 {value
                   ? model.lists.availableProperties.find(
@@ -241,11 +236,11 @@ const AdvancedConfigurationForm = ({
             <PopoverContent className="w-[--radix-popover-trigger-width] max-h-[--radix-popover-content-available-height] p-0">
               <Command>
                 <CommandInput placeholder="Search property..." />
-                <ScrollArea className="max-h-64 overflow-auto">
+                <CommandList>
                   <CommandEmpty>
                     {t('advancedConfigurationAddPropertyNotFound')}
                   </CommandEmpty>
-                  <CommandGroup>
+                  <CommandGroup className="max-h-64 overflow-auto">
                     {model.lists.availableProperties.map((property) => (
                       <CommandItem
                         key={property.name}
@@ -267,13 +262,13 @@ const AdvancedConfigurationForm = ({
                       </CommandItem>
                     ))}
                   </CommandGroup>
-                </ScrollArea>
+                </CommandList>
               </Command>
             </PopoverContent>
           </Popover>
           <Button
             data-testid="advanced-config-add-button"
-            variant={'ghost'}
+            mode={'ghost'}
             onClick={addProperty}
             className="text-primary rounded-full p-2 ml-2 hover:text-primary"
             disabled={isDisabled}
@@ -312,7 +307,7 @@ const AdvancedConfigurationForm = ({
           <Button
             data-testid="advanced-config-cancel-button"
             disabled={isPending}
-            variant="outline"
+            mode="outline"
             role="button"
             onClick={() => model.methods.reset()}
           >

@@ -2,16 +2,16 @@ import { ColumnDef } from '@tanstack/react-table';
 
 import { useTranslation } from 'react-i18next';
 import { MoreHorizontal } from 'lucide-react';
-import UserStatusBadge from '../../users/_components/UserStatusBadge.component';
-import FormattedDate from '@/components/formatted-date/FormattedDate.component';
-import { BackupWithExpiricyDate } from '../Backups.page';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { Button } from '@/components/ui/button';
+  Button,
+} from '@datatr-ux/uxlib';
+import UserStatusBadge from '../../users/_components/UserStatusBadge.component';
+import FormattedDate from '@/components/formatted-date/FormattedDate.component';
+import { BackupWithExpiricyDate } from '../Backups.page';
 import { useServiceData } from '../../Service.context';
 import * as database from '@/types/cloud/project/database';
 import DataTable from '@/components/data-table';

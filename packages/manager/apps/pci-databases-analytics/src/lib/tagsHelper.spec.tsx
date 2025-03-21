@@ -22,7 +22,7 @@ describe('tagsHelper', () => {
 
   it('getTagVariant should be info', () => {
     const tagVariant = getTagVariant('test' as database.capabilities.TagEnum);
-    expect(tagVariant).toBe('info');
+    expect(tagVariant).toBe('neutral');
   });
 
   it('updateTags should return same flavor', () => {

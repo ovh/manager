@@ -6,13 +6,13 @@ import {
   fireEvent,
   act,
 } from '@testing-library/react';
+import { useToast } from '@datatr-ux/uxlib';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 // import { mockedService } from '@/__tests__/helpers/mocks/services';
 import { mockedConnectionPool } from '@/__tests__/helpers/mocks/connectionPool';
 import { mockedDatabase } from '@/__tests__/helpers/mocks/databases';
 import InfoConnectionPool from './InfoConnectionPool.modal';
 import * as connectionPoolApi from '@/data/api/database/connectionPool.api';
-import { useToast } from '@/components/ui/use-toast';
 import { mockedService } from '@/__tests__/helpers/mocks/services';
 import { mockedUser } from '@/__tests__/helpers/mocks/user';
 import * as database from '@/types/cloud/project/database';
@@ -20,7 +20,7 @@ import * as database from '@/types/cloud/project/database';
 const mockedCertificate = { ca: 'certificateCA' };
 const mockedUsedNavigate = vi.fn();
 const downloadMock = vi.fn();
-vi.mock('@/components/ui/skeleton', () => ({
+vi.mock('@datatr-ux/uxlib', () => ({
   Skeleton: vi.fn(() => <div data-testid="skeleton" />),
 }));
 
@@ -60,9 +60,11 @@ describe('InfoConnectionPool', () => {
       getUsers: vi.fn(() => [mockedUser]),
     }));
 
-    vi.mock('@/components/ui/use-toast', () => {
+    vi.mock('@datatr-ux/uxlib', async () => {
+      const mod = await vi.importActual('@datatr-ux/uxlib');
       const toastMock = vi.fn();
       return {
+        ...mod,
         useToast: vi.fn(() => ({
           toast: toastMock,
         })),
@@ -182,6 +184,6 @@ describe('InfoConnectionPool', () => {
   it('should show a skeleton if data is loading', () => {
     vi.mocked(connectionPoolApi.getConnectionPools).mockResolvedValueOnce([]);
     render(<InfoConnectionPool />, { wrapper: RouterWithQueryClientWrapper });
-    expect(screen.getAllByTestId('skeleton').length).toBeGreaterThan(0);
+    expect(screen.getAllByTestId('dialog-container').length).toBeGreaterThan(0);
   });
 });

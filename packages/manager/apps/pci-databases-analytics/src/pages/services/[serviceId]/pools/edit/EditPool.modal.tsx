@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { Skeleton } from '@datatr-ux/uxlib';
 import { useServiceData } from '../../Service.context';
 import AddEditPool from '../_components/AddEditPool.component';
-import { Skeleton } from '@/components/ui/skeleton';
 import { useGetConnectionPools } from '@/hooks/api/database/connectionPool/useGetConnectionPools.hook';
 import { useGetDatabases } from '@/hooks/api/database/database/useGetDatabases.hook';
 import { useGetUsers } from '@/hooks/api/database/user/useGetUsers.hook';

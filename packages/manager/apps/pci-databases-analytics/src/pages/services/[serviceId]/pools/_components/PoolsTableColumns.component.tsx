@@ -2,20 +2,18 @@ import { useTranslation } from 'react-i18next';
 import { ColumnDef } from '@tanstack/react-table';
 
 import { MoreHorizontal } from 'lucide-react';
-import DataTable from '@/components/data-table';
 import {
   Tooltip,
   TooltipProvider,
   TooltipTrigger,
-} from '@/components/ui/tooltip';
-import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { Button } from '@/components/ui/button';
+  Button,
+} from '@datatr-ux/uxlib';
+import DataTable from '@/components/data-table';
 import { ConnectionPoolWithData } from '../Pools.page';
 import { useServiceData } from '../../Service.context';
 import * as database from '@/types/cloud/project/database';

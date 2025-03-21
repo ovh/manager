@@ -1,7 +1,5 @@
-import { Skeleton } from '../ui/skeleton';
-import { ScrollArea, ScrollBar } from '../ui/scroll-area';
+import { ScrollArea, ScrollBar, Skeleton, Badge } from '@datatr-ux/uxlib';
 import NavLink from '@/components/links/NavLink.component';
-import { Badge } from '../ui/badge';
 import useHorizontalScroll from '@/hooks/useHorizontalScroll.hook';
 
 export interface Tab {
@@ -37,7 +35,10 @@ const TabsMenu = ({ tabs }: TabsMenuProps) => {
               >
                 {tab.label}
                 {tab.count > 0 && (
-                  <Badge className="hidden md:block text-xs rounded-full">
+                  <Badge
+                    variant="primary"
+                    className="hidden md:block text-xs rounded-full"
+                  >
                     {tab.count}
                   </Badge>
                 )}

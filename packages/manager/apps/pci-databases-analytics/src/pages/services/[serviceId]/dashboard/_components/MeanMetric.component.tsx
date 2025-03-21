@@ -1,4 +1,4 @@
-import { Skeleton } from '@/components/ui/skeleton';
+import { Skeleton } from '@datatr-ux/uxlib';
 import { useMeanMetric } from '@/hooks/useMeanMetric';
 import { cn } from '@/lib/utils';
 import { useServiceData } from '../../Service.context';

@@ -13,15 +13,12 @@ import Integrations, {
 } from '@/pages/services/[serviceId]/integrations/Integrations.page';
 import * as database from '@/types/cloud/project/database';
 import { Locale } from '@/hooks/useLocale';
-import * as integrationApi from '@/data/api/database/integration.api';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import {
   mockedServiceInte,
   mockedService as mockedServiceOrig,
 } from '@/__tests__/helpers/mocks/services';
 import { mockedIntegrations } from '@/__tests__/helpers/mocks/integrations';
-import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
-import { useToast } from '@/components/ui/use-toast';
 import { CdbError } from '@/data/api/database';
 
 // Override mock to add capabilities
@@ -87,9 +84,11 @@ describe('Integrations page', () => {
       };
     });
 
-    vi.mock('@/components/ui/use-toast', () => {
+    vi.mock('@datatr-ux/uxlib', async () => {
+      const mod = await vi.importActual('@datatr-ux/uxlib');
       const toastMock = vi.fn();
       return {
+        ...mod,
         useToast: vi.fn(() => ({
           toast: toastMock,
         })),

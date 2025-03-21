@@ -1,9 +1,9 @@
 import { Loader2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { Button } from '@datatr-ux/uxlib';
 import PrometheusTargets from './PrometheusTargets.component';
 import PrometheusSrv from './PrometheusSrv.component';
-import { Button } from '@/components/ui/button';
 import { PrometheusData } from '@/data/api/database/prometheus.api';
 import { useServiceData } from '../../Service.context';
 import * as database from '@/types/cloud/project/database';
@@ -49,7 +49,7 @@ const PrometheusEnabled = ({
         </Button>
         <Button
           size="sm"
-          variant="outline"
+          mode="outline"
           disabled={
             isPending ||
             service.capabilities.service?.update !==

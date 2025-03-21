@@ -1,24 +1,24 @@
 import { useTranslation } from 'react-i18next';
 import { ReactNode, useEffect, useMemo, useState } from 'react';
 import { CalendarIcon, FilterIcon } from 'lucide-react';
-import { Input } from '../ui/input';
-import { Label } from '../ui/label';
-import { Button } from '../ui/button';
 import {
+  Input,
+  Label,
+  Button,
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '../ui/select';
-import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+  Calendar,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@datatr-ux/uxlib';
 import './translations';
-import { Calendar } from '../ui/calendar';
-import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
 import FormattedDate from '../formatted-date/FormattedDate.component';
 import { useDateFnsLocale } from '@/hooks/useDateFnsLocale.hook';
 import { Filter, FilterCategories, FilterComparator } from '@/lib/filters';
@@ -87,7 +87,7 @@ const DataTableDefaultFilterButton = ({
   return (
     <DropdownMenu open={filtersOpen} onOpenChange={setFiltersOpen}>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline">
+        <Button mode="outline">
           <FilterIcon className="size-4 md:mr-1" />
           <span className="hidden md:block">
             {t('common_criteria_adder_filter_label')}
@@ -145,7 +145,7 @@ const DataTableDefaultFilterButton = ({
             <Popover>
               <PopoverTrigger asChild>
                 <Button
-                  variant={'ghost'}
+                  mode={'ghost'}
                   className="text-left justify-start flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   <CalendarIcon className="mr-2 h-4 w-4" />

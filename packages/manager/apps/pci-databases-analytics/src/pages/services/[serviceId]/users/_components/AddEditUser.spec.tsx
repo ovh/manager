@@ -8,11 +8,11 @@ import {
   act,
 } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
+import { useToast } from '@datatr-ux/uxlib';
 import * as database from '@/types/cloud/project/database';
 import { Locale } from '@/hooks/useLocale';
 import * as usersApi from '@/data/api/database/user.api';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
-import { useToast } from '@/components/ui/use-toast';
 import AddEditUserModal from '@/pages/services/[serviceId]/users/_components/AddEditUser.component';
 import { mockedService } from '@/__tests__/helpers/mocks/services';
 import {
@@ -59,9 +59,11 @@ describe('AddEdit user form', () => {
         })),
       };
     });
-    vi.mock('@/components/ui/use-toast', () => {
+    vi.mock('@datatr-ux/uxlib', async () => {
+      const mod = await vi.importActual('@datatr-ux/uxlib');
       const toastMock = vi.fn();
       return {
+        ...mod,
         useToast: vi.fn(() => ({
           toast: toastMock,
         })),

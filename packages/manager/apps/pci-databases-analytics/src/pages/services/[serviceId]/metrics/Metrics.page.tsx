@@ -1,12 +1,10 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Outlet } from 'react-router-dom';
+import { Button, Label, Switch, Card, CardContent } from '@datatr-ux/uxlib';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import { useServiceData } from '../Service.context';
 import * as database from '@/types/cloud/project/database';
-import { Button } from '@/components/ui/button';
-import { Label } from '@/components/ui/label';
-import { Switch } from '@/components/ui/switch';
 import MetricChart from './_components/MetricChart.component';
 import { cn } from '@/lib/utils';
 import { POLLING } from '@/configuration/polling.constants';
@@ -14,7 +12,6 @@ import Guides from '@/components/guides/Guides.component';
 import { GuideSections } from '@/types/guide';
 import { useGetMetrics } from '@/hooks/api/database/metric/useGetMetrics.hook';
 import PrometheusConfigTile from './prometheus/PrometheusConfigTile.component';
-import { Card, CardContent } from '@/components/ui/card';
 
 export function breadcrumb() {
   return (
@@ -54,7 +51,7 @@ const Metrics = () => {
               {metricPeriods.map((periodValue, index) => (
                 <Button
                   data-testid="manage-period-button"
-                  variant={period === periodValue ? 'default' : 'outline'}
+                  mode={period === periodValue ? 'default' : 'outline'}
                   key={periodValue}
                   onClick={() => setPeriod(periodValue)}
                   size={'sm'}

@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next';
 import { ColumnDef } from '@tanstack/react-table';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { Plus } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Button } from '@datatr-ux/uxlib';
 import DataTable from '@/components/data-table';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import { useServiceData } from '../Service.context';
@@ -105,7 +105,7 @@ const Pools = () => {
       {service.capabilities.connectionPools?.create && (
         <Button
           data-testid="pools-add-button"
-          variant={'outline'}
+          mode={'outline'}
           size="sm"
           className="text-base"
           onClick={() => navigate('./add')}

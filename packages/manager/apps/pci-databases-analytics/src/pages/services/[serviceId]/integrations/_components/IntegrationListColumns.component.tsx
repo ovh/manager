@@ -1,13 +1,13 @@
 import { ColumnDef } from '@tanstack/react-table';
 import { MoreHorizontal } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { Button } from '@/components/ui/button';
 import {
+  Button,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+} from '@datatr-ux/uxlib';
 import * as database from '@/types/cloud/project/database';
 import { useServiceData } from '../../Service.context';
 import UserStatusBadge from '../../users/_components/UserStatusBadge.component';
