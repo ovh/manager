@@ -29,7 +29,10 @@ import {
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDatagridColumn } from '@/pages/listing/useDatagridColumn';
-import { usePaginatedVolumeSnapshot } from '@/api/hooks/useSnapshots';
+import {
+  useAllSnapshots,
+  usePaginatedVolumeSnapshot,
+} from '@/api/hooks/useSnapshots';
 
 export default function ListingPage() {
   const { t } = useTranslation(['volumes']);
@@ -48,6 +51,12 @@ export default function ListingPage() {
     id: 'creationDate',
     desc: true,
   });
+
+  const {
+    data: allSnapshots,
+    isLoading: isAllSnapshotPending,
+  } = useAllSnapshots(project?.project_id || '');
+
   const { paginatedSnapshots, isLoading } = usePaginatedVolumeSnapshot(
     projectId || '',
     pagination,
@@ -69,8 +78,15 @@ export default function ListingPage() {
     setSearchField('');
   };
 
+  const shouldRedirectToOnBoarding =
+    !isAllSnapshotPending && !!allSnapshots && allSnapshots.length === 0;
+
   return (
-    <RedirectionGuard condition={false} isLoading={false} route="">
+    <RedirectionGuard
+      condition={shouldRedirectToOnBoarding}
+      isLoading={isAllSnapshotPending}
+      route={'./onboarding'}
+    >
       <BaseLayout
         breadcrumb={
           <OdsBreadcrumb>
