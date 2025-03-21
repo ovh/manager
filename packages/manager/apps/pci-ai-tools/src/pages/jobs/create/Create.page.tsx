@@ -15,7 +15,7 @@ export function breadcrumb() {
   return (
     <BreadcrumbItem
       translationKey={`breadcrumb`}
-      namespace="pci-ai-training/jobs/create"
+      namespace="ai-tools/jobs/create"
     />
   );
 }
