@@ -3,7 +3,6 @@ import {
   REGEX_LEGACY_DATACENTER,
   REGEX_EXCLUDE_LEGACY_DATACENTER,
   MIGRATION_GUIDE,
-  EDGES_SIZES,
 } from './datacenter.constants';
 
 export default class {
@@ -32,14 +31,38 @@ export default class {
     return this.addDatacenter();
   }
 
-  loadDataCenterDetails(id) {
-    return this.DedicatedCloud.getDatacenterInfoNsxt(
+  loadVmCount(row) {
+    return this.DedicatedCloud.getDatacenterInfoVm(
       this.dedicatedCloud.serviceName,
-      id,
-    ).then(({ data }) => ({
-      edgesCount: data.length,
-      clusterSize: data[0]?.size ? EDGES_SIZES[data[0].size] : '',
-    }));
+      row.id,
+    )
+      .then((res) => ({
+        vm: {
+          loading: false,
+          error: false,
+          value: res?.data?.length || 0,
+        },
+      }))
+      .catch(() => ({
+        vm: { loading: false, error: true, value: null },
+      }));
+  }
+
+  loadLicensedVmCount(row) {
+    return this.DedicatedCloud.getDatacenterInfoVmLicensed(
+      this.dedicatedCloud.serviceName,
+      row.id,
+    )
+      .then((res) => ({
+        licensed: {
+          loading: false,
+          error: false,
+          value: res?.data?.length || 0,
+        },
+      }))
+      .catch(() => ({
+        licensed: { loading: false, error: true, value: null },
+      }));
   }
 
   loadDatacenters({ offset, pageSize }) {
@@ -60,6 +83,15 @@ export default class {
               datacenter.commercialName,
             );
           });
+
+        data.forEach((row) => {
+          Object.assign(row, {
+            vm: { loading: true },
+            licensed: { loading: true },
+          });
+          this.loadVmCount(row).then((res) => Object.assign(row, res));
+          this.loadLicensedVmCount(row).then((res) => Object.assign(row, res));
+        });
 
         return {
           data,

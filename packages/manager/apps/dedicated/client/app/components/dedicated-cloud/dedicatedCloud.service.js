@@ -336,6 +336,20 @@ class DedicatedCloudService {
     );
   }
 
+  getDatacenterInfoVm(serviceName, datacenterId, params = {}) {
+    return this.icebergQuery(
+      `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/vm`,
+      params,
+    );
+  }
+
+  getDatacenterInfoVmLicensed(serviceName, datacenterId, params = {}) {
+    return this.icebergQuery(
+      `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/vmLicensed`,
+      params,
+    );
+  }
+
   getDatacenterInfoNsxt(serviceName, datacenterId, params = {}) {
     return this.icebergQuery(
       `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/nsxtEdge`,

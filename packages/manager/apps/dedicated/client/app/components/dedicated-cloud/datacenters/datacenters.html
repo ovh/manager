@@ -18,10 +18,7 @@
             data-translate-values="{ href: $ctrl.migrationGuideUrl }"
         ></p>
     </oui-message>
-    <oui-datagrid
-        data-rows-loader="$ctrl.loadDatacenters($config)"
-        data-row-loader="$ctrl.loadDataCenterDetails($row.id)"
-    >
+    <oui-datagrid data-rows-loader="$ctrl.loadDatacenters($config)">
         <oui-datagrid-column
             data-title=":: 'dedicatedCloud_datacenters_title' | translate"
         >
@@ -75,15 +72,38 @@
             >
             </span>
         </oui-datagrid-column>
+
         <oui-datagrid-column
-            data-title=":: 'dedicatedCloud_datacenters_cluster' | translate"
+            data-title=":: 'dedicatedCloud_datacenters_number_vm' | translate"
         >
-            <span data-ng-bind="$row.clusterSize"></span>
+            <oui-skeleton data-ng-if="$row.vm.loading" size="s"></oui-skeleton>
+            <span
+                data-ng-if="!$row.vm.loading && !$row.vm.error"
+                data-ng-bind="$row.vm.value"
+            ></span>
+            <span
+                class="text-danger"
+                data-ng-if="$row.vm.error"
+                data-translate="dedicatedCloud_datacenters_error"
+            ></span>
         </oui-datagrid-column>
+
         <oui-datagrid-column
-            data-title=":: 'dedicatedCloud_datacenters_edges' | translate"
+            data-title=":: 'dedicatedCloud_datacenters_number_vm_licensed' | translate"
         >
-            <span data-ng-bind="$row.edgesCount"></span>
+            <oui-skeleton
+                data-ng-if="$row.licensed.loading"
+                size="s"
+            ></oui-skeleton>
+            <span
+                data-ng-if="!$row.licensed.loading && !$row.licensed.error"
+                data-ng-bind="$row.licensed.value"
+            ></span>
+            <span
+                class="text-danger"
+                data-ng-if="$row.licensed.error"
+                data-translate="dedicatedCloud_datacenters_error"
+            ></span>
         </oui-datagrid-column>
         <oui-action-menu data-compact data-placement="end">
             <oui-action-menu-item
