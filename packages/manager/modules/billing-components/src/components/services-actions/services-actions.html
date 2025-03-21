@@ -186,6 +186,7 @@
             external
             on-click="$ctrl.trackAction('go-to-configure-SMSautoreload')"
             data-navi-id="go-to-configure-SMSautoreload"
+            data-ng-if="!$ctrl.service.serviceId.includes('smpp-')"
         >
             <span
                 data-translate="billing_services_actions_menu_sms_renew"
