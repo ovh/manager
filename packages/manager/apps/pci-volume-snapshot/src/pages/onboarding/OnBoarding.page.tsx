@@ -12,31 +12,8 @@ import {
   OdsText,
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { TFunction } from 'i18next';
 import { useAllSnapshots } from '@/api/hooks/useSnapshots';
 import { TRANSFER_VOLUME_BACKUP_FROM_ONE_DATACENTRE_TO_ANOTHER_URL } from './onboarding.constants';
-
-const OnBoardingDescription = ({ t }: { t: TFunction }): JSX.Element => {
-  return (
-    <div className="flex flex-col text-center gap-6">
-      <OdsText>
-        {t('pci_projects_project_storages_snapshots_onboarding_content1')}
-      </OdsText>
-      <OdsText className="fw-bold">
-        {t('pci_projects_project_storages_snapshots_onboarding_content2')}
-      </OdsText>
-      <OdsText>
-        {t('pci_projects_project_storages_snapshots_onboarding_content3')}
-      </OdsText>
-      <OdsText>
-        {t('pci_projects_project_storages_snapshots_onboarding_content4')}
-      </OdsText>
-      <OdsText>
-        {t('pci_projects_project_storages_snapshots_onboarding_content5')}
-      </OdsText>
-    </div>
-  );
-};
 
 export default function OnBoardingPage() {
   const { t } = useTranslation(['onboarding', 'volumes']);
@@ -46,7 +23,7 @@ export default function OnBoardingPage() {
   const addSnapshotUrl = `${hrefProject}/storages/blocks`;
 
   const { data: allSnapshots, isLoading } = useAllSnapshots(
-    project?.project_id || '',
+    project?.project_id,
   );
 
   const shouldRedirectToListing =
@@ -81,7 +58,35 @@ export default function OnBoardingPage() {
           title={t('pci_projects_project_storages_snapshots_title', {
             ns: 'volumes',
           })}
-          description={<OnBoardingDescription t={t} />}
+          description={
+            <div className="flex flex-col text-center gap-6">
+              <OdsText>
+                {t(
+                  'pci_projects_project_storages_snapshots_onboarding_content1',
+                )}
+              </OdsText>
+              <OdsText className="fw-bold">
+                {t(
+                  'pci_projects_project_storages_snapshots_onboarding_content2',
+                )}
+              </OdsText>
+              <OdsText>
+                {t(
+                  'pci_projects_project_storages_snapshots_onboarding_content3',
+                )}
+              </OdsText>
+              <OdsText>
+                {t(
+                  'pci_projects_project_storages_snapshots_onboarding_content4',
+                )}
+              </OdsText>
+              <OdsText>
+                {t(
+                  'pci_projects_project_storages_snapshots_onboarding_content5',
+                )}
+              </OdsText>
+            </div>
+          }
           orderButtonLabel={t(
             'pci_projects_project_storages_snapshots_onboarding_action_label',
           )}

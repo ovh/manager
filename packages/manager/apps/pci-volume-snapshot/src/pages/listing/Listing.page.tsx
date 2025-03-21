@@ -55,7 +55,7 @@ export default function ListingPage() {
   const {
     data: allSnapshots,
     isLoading: isAllSnapshotPending,
-  } = useAllSnapshots(project?.project_id || '');
+  } = useAllSnapshots(project?.project_id);
 
   const { paginatedSnapshots, isLoading } = usePaginatedVolumeSnapshot(
     projectId || '',
@@ -85,7 +85,7 @@ export default function ListingPage() {
     <RedirectionGuard
       condition={shouldRedirectToOnBoarding}
       isLoading={isAllSnapshotPending}
-      route={'./onboarding'}
+      route="./onboarding"
     >
       <BaseLayout
         breadcrumb={

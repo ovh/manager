@@ -11,7 +11,7 @@ const ROUTE_PATHS = {
 
 const LayoutPage = lazy(() => import('@/pages/Layout'));
 const VolumeListPage = lazy(() => import('@/pages/listing/Listing.page'));
-const OnBoardingPage = lazy(() => import('@/pages/onboarding/OnBoarding.page'));
+const OnBoardingPage = lazy(() => import('@/pages/onboarding/Onboarding.page'));
 
 export default (
   <Route

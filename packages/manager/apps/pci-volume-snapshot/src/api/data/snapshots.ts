@@ -52,7 +52,9 @@ export interface TVolume {
     | 'high-speed-gen2';
 }
 
-export const getSnapshots = async (projectId: string): Promise<TSnapshot[]> => {
+export const getSnapshots = async (
+  projectId?: string,
+): Promise<TSnapshot[]> => {
   const { data } = await v6.get(`/cloud/project/${projectId}/volume/snapshot`);
   return data;
 };

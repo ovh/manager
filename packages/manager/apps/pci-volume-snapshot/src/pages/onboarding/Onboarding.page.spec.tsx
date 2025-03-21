@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { useAllSnapshots } from '@/api/hooks/useSnapshots';
 import { TSnapshot } from '@/api/data/snapshots';
-import OnBoardingPage from './OnBoarding.page';
+import OnBoardingPage from './Onboarding.page';
 
 vi.mock('@/api/hooks/useSnapshots', () => ({
   useAllSnapshots: vi.fn(),
