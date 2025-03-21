@@ -7,6 +7,7 @@ import {
   act,
 } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
+import { useToast } from '@datatr-ux/uxlib';
 import PrometheusConfigTile from './PrometheusConfigTile.component';
 import { useServiceData } from '../../Service.context';
 import * as database from '@/types/cloud/project/database';
@@ -15,7 +16,6 @@ import { CdbError } from '@/data/api/database';
 import * as serviceApi from '@/data/api/database/service.api';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
-import { useToast } from '@/components/ui/use-toast';
 
 const mockPrometheusData = {
   username: 'test-user',
@@ -33,9 +33,11 @@ vi.mock('@/data/api/database/prometheus.api', () => ({
 vi.mock('@/data/api/database/service.api', () => ({
   editService: vi.fn((s) => s),
 }));
-vi.mock('@/components/ui/use-toast', () => {
+vi.mock('@datatr-ux/uxlib', async () => {
+  const mod = await vi.importActual('@datatr-ux/uxlib');
   const toastMock = vi.fn();
   return {
+    ...mod,
     useToast: vi.fn(() => ({
       toast: toastMock,
     })),

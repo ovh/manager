@@ -3,28 +3,26 @@ import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslation } from 'react-i18next';
-import VersionSelector from '@/components/order/engine/EngineTileVersion.component';
-import { Button } from '@/components/ui/button';
 import {
+  Button,
   DialogClose,
   DialogContent,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
-import * as database from '@/types/cloud/project/database';
-import { Engine } from '@/types/orderFunnel';
-import { useServiceData } from '@/pages/services/[serviceId]/Service.context';
-import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form';
+  useToast,
+} from '@datatr-ux/uxlib';
+import VersionSelector from '@/components/order/engine/EngineTileVersion.component';
+import * as database from '@/types/cloud/project/database';
+import { Engine } from '@/types/orderFunnel';
+import { useServiceData } from '@/pages/services/[serviceId]/Service.context';
 import { useEditService } from '@/hooks/api/database/service/useEditService.hook';
-import { useToast } from '@/components/ui/use-toast';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import { useGetAvailabilities } from '@/hooks/api/database/availability/useGetAvailabilities.hook';
 import { useUpdateTree } from '../_components/useUpdateTree';
@@ -127,7 +125,7 @@ const UpdateVersion = () => {
                 <Button
                   data-testid="update-version-cancel-button"
                   type="button"
-                  variant="outline"
+                  mode="outline"
                 >
                   {t('updateVersionCancelButton')}
                 </Button>

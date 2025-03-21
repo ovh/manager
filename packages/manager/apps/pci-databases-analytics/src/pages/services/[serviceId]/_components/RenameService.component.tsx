@@ -1,25 +1,23 @@
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import * as database from '@/types/cloud/project/database';
-import {
+  Input,
+  Button,
   DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { useToast } from '@/components/ui/use-toast';
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+  useToast,
+} from '@datatr-ux/uxlib';
+import * as database from '@/types/cloud/project/database';
 import { useEditService } from '@/hooks/api/database/service/useEditService.hook';
 import { useTrackAction } from '@/hooks/useTracking';
 import { TRACKING } from '@/configuration/tracking.constants';
@@ -63,7 +61,6 @@ const RenameService = ({ service, onError, onSuccess }: RenameServiceProps) => {
       }
     },
   });
-  
 
   const onSubmit = form.handleSubmit((formValues) => {
     track(TRACKING.renameService.confirm(service.engine));
@@ -111,7 +108,7 @@ const RenameService = ({ service, onError, onSuccess }: RenameServiceProps) => {
                 <Button
                   data-testid="rename-service-cancel-button"
                   type="button"
-                  variant="outline"
+                  mode="outline"
                   onClick={() =>
                     track(TRACKING.renameService.cancel(service.engine))
                   }

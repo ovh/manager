@@ -7,8 +7,8 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { Button } from '@/components/ui/button';
+  Button,
+} from '@datatr-ux/uxlib';
 import { GenericUser } from '@/data/api/database/user.api';
 import { useServiceData } from '../../Service.context';
 import * as database from '@/types/cloud/project/database';

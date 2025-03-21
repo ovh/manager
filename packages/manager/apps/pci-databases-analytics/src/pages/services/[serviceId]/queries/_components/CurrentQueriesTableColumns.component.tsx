@@ -1,15 +1,15 @@
 import { useTranslation } from 'react-i18next';
 import { MoreHorizontal } from 'lucide-react';
 import { ColumnDef } from '@tanstack/react-table';
-import DataTable from '@/components/data-table';
-import { ExpandableSqlQuery } from './ExpandableSqlQuery.component';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { Button } from '@/components/ui/button';
+  Button,
+} from '@datatr-ux/uxlib';
+import DataTable from '@/components/data-table';
+import { ExpandableSqlQuery } from './ExpandableSqlQuery.component';
 import * as database from '@/types/cloud/project/database';
 import { useServiceData } from '../../Service.context';
 import { MENU_COLUMN_ID } from '@/components/data-table/DataTable.component';

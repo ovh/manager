@@ -2,28 +2,28 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { AlertCircle, ArrowRight } from 'lucide-react';
-import { useOrderFunnel } from './useOrderFunnel.hook';
-import { order } from '@/types/catalog';
-import * as database from '@/types/cloud/project/database';
-import { Button } from '@/components/ui/button';
 import {
+  Button,
   Card,
   CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
-import { useToast } from '@/components/ui/use-toast';
-import StorageConfig from '@/components/order/cluster-configuration/StorageConfig.component';
-import NodesConfig from '@/components/order/cluster-configuration/NodesConfig.component';
-import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form';
+  useToast,
+  Alert,
+  AlertDescription,
+} from '@datatr-ux/uxlib';
+import { useOrderFunnel } from './useOrderFunnel.hook';
+import { order } from '@/types/catalog';
+import * as database from '@/types/cloud/project/database';
+import StorageConfig from '@/components/order/cluster-configuration/StorageConfig.component';
+import NodesConfig from '@/components/order/cluster-configuration/NodesConfig.component';
 import { cn } from '@/lib/utils';
 import {
   ServiceCreationWithEngine,
@@ -41,7 +41,6 @@ import OrderSummary from './OrderSummary.component';
 import ErrorList from '@/components/order/error-list/ErrorList.component';
 import { FullCapabilities } from '@/hooks/api/database/capabilities/useGetFullCapabilities.hook';
 import usePciProject from '@/hooks/api/project/usePciProject.hook';
-import { Alert, AlertDescription } from '@/components/ui/alert';
 import OvhLink from '@/components/links/OvhLink.component';
 import { PlanCode } from '@/types/cloud/Project';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
@@ -158,7 +157,7 @@ const OrderFunnel = ({
                 <AlertCircle className="h-6 w-6" />
                 <p>{t('discoveryMode')}</p>
               </div>
-              <Button variant="default" type="button" asChild>
+              <Button type="button" asChild>
                 <OvhLink
                   className="hover:no-underline hover:text-primary-foreground"
                   application="public-cloud"

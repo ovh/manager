@@ -3,11 +3,14 @@ import { Check, Pen, X } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
+import {
+  Button,
+  Form,
+  FormField,
+  TableCell,
+  TimePicker,
+} from '@datatr-ux/uxlib';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
-import { Button } from '@/components/ui/button';
-import { Form, FormField } from '@/components/ui/form';
-import { TableCell } from '@/components/ui/table';
-import { TimePicker } from '@/components/ui/time-picker';
 
 interface TimeUpdateProps {
   initialValue: Date;
@@ -44,9 +47,7 @@ const TimeUpdate = ({
   ) : (
     <Button
       data-testid="edit-time-update-button"
-      variant="ghost"
-      size="table"
-      className="py-0 h-auto"
+      className="text-text p-0 bg-transparent hover:bg-primary-100 hover:text-primary-700 hover:font-semibold h-4 w-4 my-auto"
       onClick={() => setIsUpdate(true)}
       disabled={disabled}
     >
@@ -76,19 +77,15 @@ const TimeUpdate = ({
           <div className="flex gap-2 justify-end">
             <Button
               data-testid="submit-time-update-button"
-              variant="ghost"
-              size="table"
-              className="py-0 h-auto"
+              className="text-text p-0 bg-transparent hover:bg-primary-100 hover:text-primary-700 hover:font-semibold h-4 w-4 my-auto"
               onClick={handleSubmit}
             >
               <Check />
             </Button>
             <Button
               data-testid="cancel-time-update-button"
-              variant="ghost"
               type="reset"
-              size="table"
-              className="py-0 h-auto"
+              className="text-text p-0 bg-transparent hover:bg-primary-100 hover:text-primary-700 hover:font-semibold h-4 w-4 my-auto"
               onClick={handleReset}
             >
               <X />

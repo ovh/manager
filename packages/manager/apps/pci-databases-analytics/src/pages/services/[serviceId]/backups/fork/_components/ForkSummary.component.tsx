@@ -10,6 +10,13 @@ import {
   HelpCircle,
   MemoryStick,
 } from 'lucide-react';
+import {
+  Button,
+  Skeleton,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@datatr-ux/uxlib';
 import { humanizeEngine } from '@/lib/engineNameHelper';
 import * as database from '@/types/cloud/project/database';
 import { addStorage, formatStorage } from '@/lib/bytesHelper';
@@ -22,14 +29,7 @@ import {
   Region,
   Version,
 } from '@/types/orderFunnel';
-import { Skeleton } from '@/components/ui/skeleton';
 import { Network, Subnet } from '@/types/cloud/network';
-import { Button } from '@/components/ui/button';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/components/ui/popover';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 import { EngineIcon } from '@/components/engine-icon/EngineIcon.component';
 
@@ -67,11 +67,9 @@ const SourceDetails = ({ order, onSectionClicked }: ForkSummaryProps) => {
       <div className="flex items-center gap-2">
         <Button
           data-testid="source-section-button"
-          variant={'link'}
-          size={'link'}
           type="button"
           onClick={() => onSectionClicked('source')}
-          className="font-bold"
+          className="p-0 bg-transparent hover:bg-transparent font-bold text-primary underline-offset-4 hover:underline"
         >
           {t('summaryFieldSourceLabel')}
         </Button>
@@ -134,7 +132,7 @@ const EngineDetails = ({ order }: ForkSummaryProps) => {
   return (
     <div className="flex flex-col gap-2">
       <div className="">
-        <b>{t('summaryFieldEngineLabel')}</b>
+        <b className="mr-2">{t('summaryFieldEngineLabel')}</b>
         {order.engine && (
           <>
             <span>
@@ -144,6 +142,7 @@ const EngineDetails = ({ order }: ForkSummaryProps) => {
               engine={order.engine.name as database.EngineEnum}
               category={order.engine.category}
               iconSize={10}
+              className="ml-2 inline-flex w-fit"
             />
           </>
         )}
@@ -167,11 +166,9 @@ const PlanDetails = ({ order, onSectionClicked }: ForkSummaryProps) => {
     <div className="flex items-center gap-2">
       <Button
         data-testid="plan-section-button"
-        variant={'link'}
-        size={'link'}
         type="button"
         onClick={() => onSectionClicked('plan')}
-        className="font-bold"
+        className="p-0 bg-transparent hover:bg-transparent font-bold text-primary underline-offset-4 hover:underline"
       >
         {t('summaryFieldPlanLabel')}
       </Button>
@@ -190,11 +187,9 @@ const RegionDetails = ({ order, onSectionClicked }: ForkSummaryProps) => {
     <div className="flex items-center gap-2">
       <Button
         data-testid="region-section-button"
-        variant={'link'}
-        size={'link'}
         type="button"
         onClick={() => onSectionClicked('region')}
-        className="font-bold"
+        className="p-0 bg-transparent hover:bg-transparent font-bold text-primary underline-offset-4 hover:underline"
       >
         {t('summaryFieldRegionLabel')}
       </Button>
@@ -217,11 +212,9 @@ const FlavorDetails = ({ order, onSectionClicked }: ForkSummaryProps) => {
       <div className="flex items-center gap-2">
         <Button
           data-testid="flavor-section-button"
-          variant={'link'}
-          size={'link'}
           type="button"
           onClick={() => onSectionClicked('flavor')}
-          className="font-bold"
+          className="p-0 bg-transparent hover:bg-transparent font-bold text-primary underline-offset-4 hover:underline"
         >
           {t('summaryFieldFlavorLabel')}
         </Button>
@@ -268,11 +261,9 @@ const ClusterDetails = ({ order, onSectionClicked }: ForkSummaryProps) => {
     <div className="flex items-start flex-col gap-2">
       <Button
         data-testid="cluster-section-button"
-        variant={'link'}
-        size={'link'}
         type="button"
         onClick={() => onSectionClicked('cluster')}
-        className="font-bold"
+        className="p-0 bg-transparent hover:bg-transparent font-bold text-primary underline-offset-4 hover:underline"
       >
         {t('summaryFieldClusterLabel')}
       </Button>
@@ -311,11 +302,9 @@ const NetworkrDetails = ({ order, onSectionClicked }: ForkSummaryProps) => {
       <div className="divide-x-[0.5rem] divide-transparent">
         <Button
           data-testid="network-section-button"
-          variant={'link'}
-          size={'link'}
           type="button"
           onClick={() => onSectionClicked('options')}
-          className="font-bold"
+          className="p-0 bg-transparent hover:bg-transparent font-bold text-primary underline-offset-4 hover:underline"
         >
           {t('summaryFieldNetworkLabel')}
         </Button>
@@ -356,11 +345,9 @@ const IpsDetails = ({ order, onSectionClicked }: ForkSummaryProps) => {
     <div className="flex items-center gap-2">
       <Button
         data-testid="ips-section-button"
-        variant={'link'}
-        size={'link'}
         type="button"
         onClick={() => onSectionClicked('options')}
-        className="font-bold"
+        className="p-0 bg-transparent hover:bg-transparent font-bold text-primary underline-offset-4 hover:underline"
       >
         {t('summaryFieldIpsLabel')}
       </Button>

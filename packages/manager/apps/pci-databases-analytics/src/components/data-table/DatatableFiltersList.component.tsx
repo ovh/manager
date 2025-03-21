@@ -1,8 +1,7 @@
+import { Badge, Button } from '@datatr-ux/uxlib';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { X } from 'lucide-react';
-import { Badge } from '../ui/badge';
-import { Button } from '../ui/button';
 import './translations';
 import { useLocale } from '@/hooks/useLocale';
 import { useDataTableContext } from './DataTable.context';
@@ -74,10 +73,10 @@ export function DatatableFiltersList() {
   return (
     <div className="flex flex-wrap gap-2 mt-2">
       {columnFilters.filters?.map((filter, key) => (
-        <Badge variant="info" className="py-0.5" key={key}>
+        <Badge variant="primary" className="py-0.5" key={key}>
           <span>{getFilterContent(filter)}</span>
           <Button
-            variant="ghost"
+            mode="ghost"
             className="ml-2 p-0 size-4"
             onClick={() => columnFilters.removeFilter(filter)}
           >
