@@ -5,6 +5,7 @@ import {
   PRODUCT_IMAGES,
   PCI_FEATURES,
   DATABASE_UAPP_CONFIG,
+  DATAPLATFORM_CONFIG,
 } from './project.constants';
 
 export default class ProjectController {
@@ -55,6 +56,7 @@ export default class ProjectController {
     this.loadMessages();
     this.uAppActions = [];
     this.displayDatabaseLink();
+    this.addDataPlatformLink();
   }
 
   displayDatabaseLink() {
@@ -77,6 +79,20 @@ export default class ProjectController {
           ...DATABASE_UAPP_CONFIG,
           url,
         });
+      });
+    }
+  }
+
+  addDataPlatformLink() {
+    // Add dataplatform link if feature is activated
+    if (
+      this.pciFeatures.isFeatureAvailable(
+        PCI_FEATURES.PRODUCTS.ANALYTICS_DATA_PLATFORM,
+      )
+    ) {
+      this.uAppActions.push({
+        ...DATAPLATFORM_CONFIG,
+        url: DATAPLATFORM_CONFIG.url.replace('{projectId}', this.projectId),
       });
     }
   }
