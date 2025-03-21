@@ -34,5 +34,10 @@
   "commitment_month": "{{value}} mois",
   "commitment_price_month": "HT/mois",
   "cta_cancel": "Annuler",
-  "cta_plan": "Créer un Savings Plan"
+  "cta_plan": "Créer un Savings Plan",
+  "choose_deployment": "Choisissez un mode de déploiement",
+  "choose_deployment_description": "Sélectionnez  la configuration optimale pour garantir la disponibilité, la résilience et la latence appropriée de vos données en fonction de vos cas d'usage.",
+  "region": "Région",
+  "deployment_one_az": "Déploiement résilient et économique sur 1 zone de disponibilité.",
+  "deployment_three_az": "Déploiement haute résilience/haute disponibilité pour vos applications critiques sur 3 zones de disponibilité."
 }

@@ -19,6 +19,8 @@ export const useDefaultOfferId = (
       if (twelveMonthDefaultOffer) {
         setOfferIdSelected(twelveMonthDefaultOffer.id);
       }
+    } else {
+      setOfferIdSelected(undefined);
     }
   }, [pricingByDuration]);
 
