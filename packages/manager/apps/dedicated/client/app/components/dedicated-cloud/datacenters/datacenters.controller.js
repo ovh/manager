@@ -3,7 +3,6 @@ import {
   REGEX_LEGACY_DATACENTER,
   REGEX_EXCLUDE_LEGACY_DATACENTER,
   MIGRATION_GUIDE,
-  EDGES_SIZES,
 } from './datacenter.constants';
 
 export default class {
@@ -33,13 +32,28 @@ export default class {
   }
 
   loadDataCenterDetails(id) {
-    return this.DedicatedCloud.getDatacenterInfoNsxt(
-      this.dedicatedCloud.serviceName,
-      id,
-    ).then(({ data }) => ({
-      edgesCount: data.length,
-      clusterSize: data[0]?.size ? EDGES_SIZES[data[0].size] : '',
-    }));
+    return this.$q
+      .all({
+        vm: this.DedicatedCloud.getDatacenterInfoVm(
+          this.dedicatedCloud.serviceName,
+          id,
+        ),
+        licensed: this.DedicatedCloud.getDatacenterInfoVmLicensed(
+          this.dedicatedCloud.serviceName,
+          id,
+        ),
+      })
+      .then(({ vm, licensed }) => {
+        return {
+          nbVm: vm?.data?.length || 0,
+          nbVmLicensed: licensed?.data.length || 0,
+        };
+      })
+      .catch((error) => {
+        return {
+          error,
+        };
+      });
   }
 
   loadDatacenters({ offset, pageSize }) {
