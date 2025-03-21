@@ -9,7 +9,6 @@ import ovhManagerAdvices from '@ovh-ux/manager-advices';
 import trustedNic from '@ovh-ux/manager-trusted-nic';
 
 import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
-import billing from './billing';
 import contacts from './contacts';
 import creating from './creating';
 import dataProcessing from './data-processing';
@@ -47,7 +46,6 @@ angular
   .module(moduleName, [
     ovhManagerAdvices,
     trustedNic,
-    billing,
     contacts,
     creating,
     dataProcessing,
