@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.8.0...@ovh-ux/manager-veeam-backup-app@0.8.1) (2025-03-21)
+
+
+### Bug Fixes
+
+* **veeam-backup:** fix breadcrumb items keys ([0f6a4d5](https://github.com/ovh/manager/commit/0f6a4d5186aeb222c86fa457ba3285024447c1b9)), closes [#MANAGER-15391](https://github.com/ovh/manager/issues/MANAGER-15391)
+
+
+
+
+
 # [0.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.7.9...@ovh-ux/manager-veeam-backup-app@0.8.0) (2025-03-19)
 
 
