@@ -4,6 +4,7 @@ export const HOSTING_TASK_STATUS = {
   doing: 'doing',
   done: 'done',
   error: 'error',
+  ovherror: 'error',
   todo: 'todo',
   init: 'init',
 };
