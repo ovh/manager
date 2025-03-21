@@ -26,13 +26,16 @@ import {
   FilterTypeCategories,
   FilterComparator,
 } from '@ovh-ux/manager-core-api';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useDatagridColumn } from '@/pages/listing/useDatagridColumn';
 import { usePaginatedVolumeSnapshot } from '@/api/hooks/useSnapshots';
 
 export default function ListingPage() {
   const { t } = useTranslation(['volumes']);
+
+  const { shell } = useContext(ShellContext);
 
   const { projectId } = useParams();
   const hrefProject = useProjectUrl('public-cloud');
@@ -49,7 +52,7 @@ export default function ListingPage() {
     desc: true,
   });
   const { paginatedSnapshots, isLoading } = usePaginatedVolumeSnapshot(
-    projectId || '',
+    projectId,
     pagination,
     sorting,
     filters,
@@ -70,7 +73,7 @@ export default function ListingPage() {
   };
 
   return (
-    <RedirectionGuard condition={false} isLoading={false} route={''}>
+    <RedirectionGuard condition={false} isLoading={false} route="">
       <BaseLayout
         breadcrumb={
           <OdsBreadcrumb>
@@ -80,13 +83,13 @@ export default function ListingPage() {
             />
             <OdsBreadcrumbItem
               label={t('pci_projects_project_storages_snapshots_title')}
-              href={'#'}
+              href="#"
             />
           </OdsBreadcrumb>
         }
         header={{
           title: t('pci_projects_project_storages_snapshots_title'),
-          headerButton: <PciGuidesHeader category={'storage'} />,
+          headerButton: <PciGuidesHeader category="storage" />,
         }}
       >
         <div className="flex flex-col gap-5">
@@ -109,9 +112,13 @@ export default function ListingPage() {
                 className="xs:mb-0.5 sm:mb-0"
                 icon="plus"
                 label={t('pci_projects_project_storages_snapshots_add_label')}
-                onClick={() => {
-                  window.location.href = `${hrefProject}/storages/volume-backup/create`;
-                }}
+                onClick={() =>
+                  shell.navigation.navigateTo(
+                    'public-cloud',
+                    `#/pci/projects/${projectId}/storages/volume-backup/create`,
+                    {},
+                  )
+                }
               />
             </div>
             <div className="flex justify-center gap-4">
@@ -124,9 +131,11 @@ export default function ListingPage() {
                     onHandleSearch();
                   }
                 }}
-                onOdsChange={({ detail }) =>
-                  setSearchField(detail.value as string)
-                }
+                onOdsChange={({ detail }) => {
+                  if (detail.value != null) {
+                    setSearchField(String(detail.value));
+                  }
+                }}
                 data-testid="search-input"
               />
               <OdsButton
@@ -215,7 +224,7 @@ export default function ListingPage() {
           <div className="overflow-x-auto max-w-full">
             <Datagrid
               columns={columns}
-              items={isLoading ? [] : paginatedSnapshots.rows}
+              items={paginatedSnapshots.rows}
               totalItems={paginatedSnapshots.totalRows}
               pagination={pagination}
               onPaginationChange={setPagination}

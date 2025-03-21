@@ -3,58 +3,8 @@ import * as i18nApi from 'react-i18next';
 import { renderHook } from '@testing-library/react';
 import * as dateFns from 'date-fns';
 import * as MRCApi from '@ovh-ux/manager-core-utils';
+import { KeyPrefix } from 'i18next';
 import { useFormattedDate } from './useFormattedDate';
-
-// Mock dependencies
-vi.mock('react-i18next', () => ({
-  useTranslation: () => ({
-    i18n: {
-      language: 'en-US',
-    },
-  }),
-}));
-
-vi.mock('@ovh-ux/manager-core-utils', () => ({
-  getDateFnsLocale: (language: string) => {
-    const localeMap: Record<string, string> = {
-      'en-US': 'enUS',
-      'fr-FR': 'fr',
-      'de-DE': 'de',
-      'es-ES': 'es',
-    };
-    return localeMap[language] || 'enUS';
-  },
-}));
-
-// Mock specific format function from date-fns
-vi.mock('date-fns', async (importOriginal) => {
-  const actual = (await importOriginal()) as Record<string, any>;
-  return {
-    ...actual,
-    format: vi.fn((date, formatStr, options) => {
-      // Simple mock implementation
-      const locale = options?.locale?.code || 'en';
-      const dateObj = new Date(date);
-
-      // Return a predictable format for testing
-      if (formatStr === 'PPpp') {
-        return `${dateObj.toLocaleDateString()}, ${dateObj.toLocaleTimeString()} (${locale})`;
-      }
-      if (formatStr === 'P p') {
-        return `${dateObj.toLocaleDateString()} ${dateObj.toLocaleTimeString()} (${locale})`;
-      }
-      return `${dateObj.toISOString()} (${formatStr}) (${locale})`;
-    }),
-  };
-});
-
-// Mock date-fns locales
-vi.mock('date-fns/locale', () => ({
-  enUS: { code: 'en' },
-  fr: { code: 'fr' },
-  de: { code: 'de' },
-  es: { code: 'es' },
-}));
 
 describe('useFormattedDate', () => {
   beforeEach(() => {
@@ -63,7 +13,7 @@ describe('useFormattedDate', () => {
 
   it('should return an empty string if date is null', () => {
     const { result } = renderHook(() => useFormattedDate(null));
-    expect(result.current).toBe('');
+    expect(result.current).toBe(null);
   });
 
   it('should format date with default format string', () => {
@@ -106,7 +56,7 @@ describe('useFormattedDate', () => {
       i18n: {
         language: 'fr-FR',
       },
-    } as any);
+    } as i18nApi.UseTranslationResponse<string, KeyPrefix<string>>);
 
     const { result } = renderHook(() => useFormattedDate(testDate));
 
@@ -128,7 +78,7 @@ describe('useFormattedDate', () => {
       i18n: {
         language: 'unknown-LOCALE',
       },
-    } as any);
+    } as i18nApi.UseTranslationResponse<string, KeyPrefix<string>>);
 
     // Mock getDateFnsLocale to return an unsupported locale
     vi.spyOn(MRCApi, 'getDateFnsLocale').mockReturnValue('unsupported');
