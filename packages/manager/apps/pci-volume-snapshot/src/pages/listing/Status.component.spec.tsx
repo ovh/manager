@@ -1,30 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render } from '@testing-library/react';
 import StatusComponent from './Status.component';
-
-// Mock ODS component
-vi.mock('@ovhcloud/ods-components/react', () => ({
-  OdsBadge: ({
-    color,
-    label,
-    'data-testid': testId,
-  }: {
-    color: string;
-    label: string;
-    'data-testid': string;
-  }) => (
-    <div data-testid={testId} data-color={color}>
-      {label}
-    </div>
-  ),
-}));
-
-// Mock react-i18next
-vi.mock('react-i18next', () => ({
-  useTranslation: () => ({
-    t: (key: string) => key, // Return the key as the translation for easy testing
-  }),
-}));
+import { TSnapshot } from '@/api/api.types';
 
 describe('StatusComponent', () => {
   beforeEach(() => {
@@ -88,7 +65,7 @@ describe('StatusComponent', () => {
 
   it('renders with unknown status', () => {
     // Force an invalid status using type assertion
-    const invalidStatus = 'unknown_status' as any;
+    const invalidStatus = ('unknown_status' as unknown) as TSnapshot['status'];
     const { getByTestId } = render(<StatusComponent status={invalidStatus} />);
 
     const badge = getByTestId('status_badge');
