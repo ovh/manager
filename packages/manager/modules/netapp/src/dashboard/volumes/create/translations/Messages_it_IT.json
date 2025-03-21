@@ -14,7 +14,7 @@
   "netapp_volume_create_success": "Il volume è stato creato correttamente. Una volta configurate le regole di controllo degli accessi, sarà possibile effettuare l'accesso.",
   "netapp_volume_create_error": "Si è verificato un errore durante la creazione del volume: {{ message }}",
   "netapp_volume_mount_path": "Mount Path (opzionale)",
-  "netapp_volume_mount_path_format_error": "I caratteri speciali non sono autorizzati",
-  "netapp_volume_mount_path_character_limit_error": "Superato il numero massimo di caratteri di 255",
-  "netapp_volume_mount_path_already_used_error": "Il mount path è già in uso su un altro volume. Inserirne uno nuovo."
+  "netapp_volume_mount_path_format_error": "I caratteri speciali non sono autorizzati.",
+  "netapp_volume_mount_path_character_limit_error": "È stato superato il numero massimo di 255 caratteri",
+  "netapp_volume_mount_path_already_used_error": "Il mount path è già in uso su un altro volume. Inseriscine uno nuovo."
 }
