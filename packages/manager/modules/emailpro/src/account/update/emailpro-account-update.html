@@ -3,7 +3,7 @@
         data-wizard
         data-wizard-on-cancel="resetAction"
         data-wizard-on-finish="updateExchangeAccount"
-        data-wizard-title="$ctrl.exchange.billingPlan + '_ACTION_update_account_title' | translate"
+        data-wizard-title="$ctrl.exchange.billingPlan + ($ctrl.selectedAccount.canBeConfigured ? '_ACTION_update_account_title' : '_ACTION_add_account_title') | translate"
     >
         <div
             data-wizard-step
@@ -157,6 +157,7 @@
                     class="form-group"
                     data-ng-class="{
                         'has-error': $ctrl.simplePasswordFlag
+                                  || $ctrl.zimbraPasswordFlag
                                   || $ctrl.containsNameFlag
                                   || $ctrl.containsSamAccountNameFlag
                                   || $ctrl.containsSpace
@@ -181,7 +182,7 @@
                             data-oui-tooltip-placement="top"
                         />
                         <span
-                            class="help-block"
+                            class="help-block error"
                             data-ng-if="$ctrl.simplePasswordFlag"
                             data-translate="emailpro_ACTION_update_account_step1_password_weak"
                         ></span>
@@ -200,6 +201,32 @@
                             data-ng-if="$ctrl.containsSpace"
                             data-translate="emailpro_ACTION_update_account_step1_password_contains_space"
                         ></span>
+                        <div
+                            class="help-block account-zimbra-password-helper"
+                            data-ng-if="$ctrl.zimbraPasswordFlag"
+                        >
+                            <span
+                                data-translate="emailpro_ACTION_update_account_step1_password_zimbra_helper"
+                            ></span>
+                            <span
+                                >-
+                                <span
+                                    data-translate="emailpro_ACTION_update_account_step1_password_zimbra_helper_rule_1"
+                                ></span
+                            ></span>
+                            <span
+                                >-
+                                <span
+                                    data-translate="emailpro_ACTION_update_account_step1_password_zimbra_helper_rule_2"
+                                ></span
+                            ></span>
+                            <span
+                                >-
+                                <span
+                                    data-translate="emailpro_ACTION_update_account_step1_password_zimbra_helper_rule_3"
+                                ></span
+                            ></span>
+                        </div>
                     </div>
                 </div>
                 <div
