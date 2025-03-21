@@ -56,4 +56,5 @@ export interface User {
   auth: Auth;
   isTrusted: boolean;
   enterprise: boolean;
+  kycValidated: boolean;
 }

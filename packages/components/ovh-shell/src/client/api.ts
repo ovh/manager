@@ -209,10 +209,11 @@ export default function exposeApi(shellClient: ShellClient) {
           plugin: 'ux',
           method: 'showPreloader',
         }),
-      notifyModalActionDone: () =>
+      notifyModalActionDone: (id: string) =>
         shellClient.invokePluginMethod<void>({
           plugin: 'ux',
           method: 'notifyModalActionDone',
+          args: [id],
         }),
     },
     navigation: clientNavigation(shellClient),
