@@ -2,14 +2,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import React from 'react';
 import { render, renderHook } from '@testing-library/react';
 import { useDatagridColumn } from './useDatagridColumn';
-import { TVolumeSnapshot } from '@/api/hooks/useSnapshots';
-
-// Mock the hooks and components this hook depends on
-vi.mock('react-i18next', () => ({
-  useTranslation: () => ({
-    t: (key: string) => key, // Return the key as the translation
-  }),
-}));
+import { TVolumeSnapshot } from '@/api/api.types';
 
 vi.mock('@ovh-ux/manager-react-components', () => ({
   DataGridTextCell: ({ children }: { children: React.ReactNode }) => (

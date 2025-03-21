@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { useHref } from 'react-router-dom';
 import { ActionMenu } from '@ovh-ux/manager-react-components';
-import { TVolumeSnapshot } from '@/api/hooks/useSnapshots';
+import { TVolumeSnapshot } from '@/api/api.types';
 
 type ActionsProps = {
   snapshot: TVolumeSnapshot;
