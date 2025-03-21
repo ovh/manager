@@ -55,20 +55,21 @@
     "test:scripts": "make test"
   },
   "resolutions": {
-    "@babel/runtime": "7.22.15",
-    "@rollup/plugin-commonjs": "11.0.2",
-    "@types/react": "18.2.55",
-    "@uirouter/angularjs": "1.0.23",
+    "@babel/runtime": "^7.22.15",
+    "@rollup/plugin-commonjs": "^11.0.2",
     "chart.js": "^4.4.3",
-    "flatpickr": "4.6.9",
-    "graphql": "16.6.0",
+    "flatpickr": "^4.6.9",
+    "graphql": "^16.6.0",
     "lodash": "4.17.21",
     "lodash-es": "4.17.21",
     "rollup-plugin-sass": "1.12.16",
     "sass": "1.56.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.8.0",
     "@babel/helper-string-parser": "^7.18.10",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@babel/preset-react": "^7.26.3",
     "@commitlint/cli": "^19.7.1",
     "@commitlint/config-conventional": "^19.7.1",
     "@cucumber/cucumber": "^10.0.1",

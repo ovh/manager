@@ -14,7 +14,7 @@ import {
   Notifications,
   RedirectionGuard,
   useNotifications,
-  HeadersProps
+  HeadersProps,
 } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
@@ -132,10 +132,7 @@ export default function Listing() {
         </OdsMessage>
       }
     >
-      <BaseLayout
-        header={headerProps}
-        message={<Notifications />}
-      >
+      <BaseLayout header={headerProps} message={<Notifications />}>
         <div className="flex flex-col gap-4">
           <OdsButton
             className="w-fit"

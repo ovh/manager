@@ -16,9 +16,9 @@
   "zimbra_account_datagrid_status_label": "Status",
   "zimbra_account_account_order": "Order an account",
   "zimbra_domains_tooltip_need_slot": "No account available, please order one.",
-  "zimbra_account_tooltip_need_domain": "Please configure a domain first.",
+  "zimbra_account_tooltip_need_domain": "Please configure a domain first",
   "zimbra_account_tooltip_need_slot": "No account available, please order one.",
-  "zimbra_account_delete_modal_content_step1": "You are about to delete the Zimbra server email account.",
-  "zimbra_account_delete_modal_content_step2": "Are you sure you want to delete the mailbox from the Zimbra server?",
-  "zimbra_account_delete_modal_warn_message": "Warning: this action cannot be undone and will delete the data."
+  "zimbra_account_delete_modal_content_step1": "You are about to delete the Zimbra server email.",
+  "zimbra_account_delete_modal_content_step2": "Are you sure you want to delete the Zimbra server mailbox?",
+  "zimbra_account_delete_modal_warn_message": "Warning: this action is irreversible and will erase the data."
 }

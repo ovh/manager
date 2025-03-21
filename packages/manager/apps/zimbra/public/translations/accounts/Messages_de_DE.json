@@ -16,9 +16,9 @@
   "zimbra_account_datagrid_status_label": "Status",
   "zimbra_account_account_order": "Einen Account bestellen",
   "zimbra_domains_tooltip_need_slot": "Es sind keine Accounts verfügbar. Bitte bestellen Sie einen.",
-  "zimbra_account_tooltip_need_domain": "Bitte richten Sie zuerst eine Domain ein.",
+  "zimbra_account_tooltip_need_domain": "Konfigurieren Sie zuerst eine Domain.",
   "zimbra_account_tooltip_need_slot": "Es sind keine Accounts verfügbar. Bitte bestellen Sie einen.",
-  "zimbra_account_delete_modal_content_step1": "Sie sind im Begriff, den E-Mail-Account des Zimbra-Servers zu löschen.",
-  "zimbra_account_delete_modal_content_step2": "Sind Sie sicher, dass Sie den Posteingang des Servers Zimbra löschen möchten?",
-  "zimbra_account_delete_modal_warn_message": "Achtung: Diese Aktion kann nicht rückgängig gemacht werden und führt zum Löschen der Daten."
+  "zimbra_account_delete_modal_content_step1": "Sie sind im Begriff, den E-Mail-Account vom Zimbra-Server zu löschen.",
+  "zimbra_account_delete_modal_content_step2": "Sind Sie sicher, dass Sie das Postfach vom Zimbra-Server löschen möchten?",
+  "zimbra_account_delete_modal_warn_message": "Achtung: Diese Aktion kann nicht rückgängig gemacht werden und führt zur Löschung der Daten."
 }

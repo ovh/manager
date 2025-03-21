@@ -24,7 +24,7 @@ describe('Links component', () => {
     const linkElement = container.querySelector('[label="Next Page"]');
     expect(linkElement).toBeInTheDocument();
   });
-  it('renders a external link correctly', () => {
+  it('renders a external link correctly with label as prop', () => {
     const props = {
       href: 'https://www.ovhcloud.com/',
       target: '_blank',
@@ -33,6 +33,19 @@ describe('Links component', () => {
     };
 
     const { container } = render(<Links {...props} />);
+    const linkElement = container.querySelector('[label="External Page"]');
+
+    expect(linkElement).toBeInTheDocument();
+  });
+
+  it('renders a external link correctly with label as children', () => {
+    const props = {
+      href: 'https://www.ovhcloud.com/',
+      target: '_blank',
+      type: LinkType.external,
+    };
+
+    const { container } = render(<Links {...props}>External Page</Links>);
     const linkElement = container.querySelector('[label="External Page"]');
 
     expect(linkElement).toBeInTheDocument();
