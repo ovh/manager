@@ -101,6 +101,9 @@ vi.mock('@/api/domain', async (importActual) => {
     getDomainsZoneList: vi.fn(() => {
       return Promise.resolve(domainZone);
     }),
+    getDomainZoneByName: vi.fn(() => {
+      return Promise.resolve(domainZone);
+    }),
     postZimbraPlatformDomainsDiagnostic: vi.fn(() => {
       return Promise.resolve(domainsDiagnosticMock);
     }),
