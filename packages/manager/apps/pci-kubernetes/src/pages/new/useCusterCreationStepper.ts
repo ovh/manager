@@ -97,6 +97,7 @@ export function useClusterCreationStepper(has3AZRegions = false) {
         }));
         planStep.check();
         planStep.lock();
+        versionStep.open();
       },
     },
     version: {
