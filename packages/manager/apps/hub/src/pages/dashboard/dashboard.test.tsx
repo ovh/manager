@@ -992,11 +992,13 @@ describe('Layout.page', () => {
 
   describe('NotificationsEmailUnreachable component', () => {
     it('should render NotificationsEmailUnreachable component', async () => {
-      const { getByTestId, queryByTestId } = renderComponent(
+      const { findByTestId } = renderComponent(
         <NotificationsEmailUnreachable />,
       );
 
-      expect(getByTestId('email_unreachable_notifications')).not.toBeNull();
+      expect(
+        await findByTestId('email_unreachable_notifications'),
+      ).not.toBeNull();
     });
   });
 
