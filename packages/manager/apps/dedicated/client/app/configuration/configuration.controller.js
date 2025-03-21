@@ -33,11 +33,7 @@ angular.module('App').controller(
       if (isString(section)) {
         return section;
       }
-      return (
-        section[this.currentLanguage] ||
-        section[this.user.ovhSubsidiary] ||
-        section[this.fallbackLanguage]
-      );
+      return section[this.user.ovhSubsidiary] || section[this.fallbackLanguage];
     }
 
     buildingGuideURLs(universe) {
@@ -50,6 +46,7 @@ angular.module('App').controller(
           ),
         )
         .then((sectionNames) => {
+          console.log({ sectionNames });
           this.sections = sectionNames.reduce(
             (sections, sectionName) => ({
               ...sections,
