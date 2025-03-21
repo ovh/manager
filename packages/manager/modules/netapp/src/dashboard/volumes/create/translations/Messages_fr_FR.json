@@ -9,6 +9,8 @@
   "netapp_volume_mount_path_already_used_error": "Le mount path est déjà utilisé sur un autre volume. Veuillez en saisir un nouveau.",
   "netapp_volume_create_protocol": "Protocole",
   "netapp_volume_create_protocol_NFS": "NFSv3",
+  "netapp_volume_create_snapshot_selection": "Selectionner le snapshot a partir duquel vous souhaitez creer un volume",
+  "netapp_volume_create_snapshot_selection_placeholder": "Sélectionnez…",
   "netapp_volume_create_size": "Taille du volume",
   "netapp_volume_create_size_help": "La taille du volume se situe entre {{ minSize }} Go et {{ maxSize }} Go",
   "netapp_volume_create_size_required": "Veuillez saisir la taille du volume.",
