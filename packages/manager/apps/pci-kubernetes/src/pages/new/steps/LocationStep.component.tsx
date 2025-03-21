@@ -95,7 +95,7 @@ export function LocationStep({
                 type={LinkType.next}
               />
             </div>
-            <div className="grid grid-cols-4 gap-4 my-5">
+            <div className="grid md:grid-cols-4 gap-4 my-5">
               {tilesData.map(
                 ({ title, pillLabel, description, regionType }) => (
                   <KubeDeploymentTile

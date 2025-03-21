@@ -3,11 +3,11 @@ import { ReactNode } from 'react';
 import RadioTile from '../radio-tile/RadioTile.component';
 
 export interface KubeDeploymentTileProps {
-  readonly title: string;
-  readonly pillLabel: ReactNode;
-  readonly description: string;
-  readonly isSelected?: boolean;
-  readonly onSelectedDeployment: () => void;
+  title: string;
+  pillLabel: ReactNode;
+  description: string;
+  isSelected?: boolean;
+  onSelectedDeployment: () => void;
 }
 
 export function KubeDeploymentTile({
@@ -16,7 +16,7 @@ export function KubeDeploymentTile({
   description,
   onSelectedDeployment,
   isSelected,
-}: KubeDeploymentTileProps) {
+}: Readonly<KubeDeploymentTileProps>) {
   return (
     <RadioTile
       key={title}

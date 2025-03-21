@@ -33,11 +33,6 @@ export function KubeRegionSelector({
 
   const { contains3AZ } = useHas3AZRegions();
   const has3AZ = contains3AZ && featureFlipping3az;
-  if (isPending) {
-    return (
-      <OsdsSpinner data-testid="spinner" inline size={ODS_SPINNER_SIZE.md} />
-    );
-  }
 
   const regionFilter = useCallback(
     (region) => {
@@ -53,6 +48,12 @@ export function KubeRegionSelector({
     },
     [availability, selectedDeployment],
   );
+
+  if (isPending) {
+    return (
+      <OsdsSpinner data-testid="spinner" inline size={ODS_SPINNER_SIZE.md} />
+    );
+  }
 
   return (
     <div data-testid="region-selector" className="mt-6">

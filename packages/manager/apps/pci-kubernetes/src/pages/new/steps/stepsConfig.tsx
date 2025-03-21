@@ -1,4 +1,3 @@
-import { OsdsSpinner } from '@ovhcloud/ods-components';
 import { useClusterCreationStepper } from '../useCusterCreationStepper';
 import { ClusterConfirmationStep } from './ClusterConfirmStep.component';
 import { ClusterNameStep } from './ClusterNameStep.component';

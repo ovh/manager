@@ -4,7 +4,6 @@ import { Check, XCircle, Clock12 } from 'lucide-react';
 import { Button } from '@datatr-ux/uxlib';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { TFunction } from 'i18next';
 import RadioTile from '@/components/radio-tile/RadioTile.component';
 
 import { TClusterCreationForm } from '../useCusterCreationStepper';
@@ -65,9 +64,7 @@ const PlanTile = ({
   const [selected, setSelected] = useState<TClusterCreationForm['plan']>(
     type === 'region' ? 'standard' : 'premium',
   );
-  const { t } = (useTranslation(['add', 'stepper']) as unknown) as {
-    t: TFunction<'add'>;
-  };
+  const { t } = useTranslation(['add', 'stepper']);
 
   const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -257,8 +254,8 @@ PlanTile.Content = function PlanTileContent({
   disabled: boolean;
 }) {
   const { t } = useTranslation(['add']);
-  return contents.map((text, index) => (
-    <span className="flex items-start gap-1" key={index}>
+  return contents.map((text) => (
+    <span className="flex items-start gap-1" key={text}>
       <Check
         className={cn('shrink-0', {
           'text-neutral-600': disabled,
