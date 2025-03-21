@@ -41,6 +41,7 @@ export default class ExchangeAccountHomeController {
     officeAttach,
     OvhApiMe,
     ovhUserPref,
+    ouiDatagridService,
   ) {
     this.$filter = $filter;
     this.$q = $q;
@@ -61,6 +62,7 @@ export default class ExchangeAccountHomeController {
     this.officeAttach = officeAttach;
     this.OvhApiMe = OvhApiMe;
     this.ovhUserPref = ovhUserPref;
+    this.ouiDatagridService = ouiDatagridService;
   }
 
   $onInit() {
@@ -216,6 +218,7 @@ export default class ExchangeAccountHomeController {
   }
 
   fetchAccounts(parameters) {
+    this.isLoading = true;
     this.gridParameters = merge(this.gridParameters, parameters);
 
     this.gridParameters.searchValues = map(
@@ -282,49 +285,12 @@ export default class ExchangeAccountHomeController {
       })
       .finally(() => {
         this.initialAccountRetrieval = false;
+        this.isLoading = false;
       });
   }
 
   refreshList() {
-    return this.Exchange.fetchAccounts(
-      this.organization,
-      this.productId,
-      this.gridParameters.pageSize,
-      this.gridParameters.offset - 1,
-      this.gridParameters.searchValues,
-      this.gridParameters.accountTypeFilter,
-    )
-      .then((accounts) => {
-        const formattedAccounts = this.formatAccountsForDatagrid(
-          accounts,
-          this.gridParameters.sort,
-          this.gridParameters.criteria,
-        );
-
-        for (let i = 0; i < formattedAccounts.length; i += 1) {
-          this.accounts.splice(i, 1, formattedAccounts[i]);
-        }
-
-        for (
-          let i = formattedAccounts.length;
-          i < this.accounts.length;
-          i += 1
-        ) {
-          this.accounts.splice(i, 1);
-        }
-
-        if (this.gridColumnParametersAlreadyExist) {
-          return null;
-        }
-
-        return this.updateColumnsParameters();
-      })
-      .catch((error) => {
-        this.messaging.writeError(
-          this.$translate.instant('exchange_accounts_fetchAccounts_error'),
-          error,
-        );
-      });
+    return this.ouiDatagridService.refresh('exchangeAccountHome', true);
   }
 
   formatAccountsForDatagrid(accounts, sortingOptions, criteria) {
