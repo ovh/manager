@@ -1,7 +1,7 @@
 {
   "cloud_connect_diagnostics_id": "ID del diagnóstico",
   "cloud_connect_diagnostics_date": "Fecha",
-  "cloud_connect_diagnostics_name": "Apellido",
+  "cloud_connect_diagnostics_name": "Nombre",
   "cloud_connect_diagnostics_scope": "Scope",
   "cloud_connect_diagnostics_status": "Estado",
   "cloud_connect_diagnostics_status_todo": "Planificado",
