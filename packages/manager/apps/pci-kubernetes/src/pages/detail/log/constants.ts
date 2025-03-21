@@ -1,10 +1,16 @@
+import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
+
 export const TRACKING_PREFIX =
   'PublicCloud::projects::managed_kubernetes_cluster';
 export const TRACKING_SUFFIX = '_managed_kubernetes_cluster::kubernetes';
 
-export const LOGS_INFO: Record<string, string> = {
+type OvhSubsidiaryRecord = Partial<Record<OvhSubsidiary, string>>;
+
+export const LOGS_INFO: OvhSubsidiaryRecord = {
   DEFAULT:
     'https://help.ovhcloud.com/csm/en-gb-public-cloud-kubernetes-forwarding-audit-logs?id=kb_article_view&sysparm_article=KB0062280',
+  US:
+    'https://support.us.ovhcloud.com/hc/en-us/articles/29326025853715-Managed-Kubernetes-Service-Audit-Logs-Forwarding',
 };
 
 export const KUBERNETES_LOG_KINDS_KEYS = {
@@ -41,7 +47,7 @@ export const LOG_LIST_TRACKING_HITS = {
   UNSUBSCRIBE: `${TRACKING_PREFIX}::datagrid::button::unsubscribe${TRACKING_SUFFIX}`,
 };
 
-export const DATA_PLATFORM_GUIDE = {
+export const DATA_PLATFORM_GUIDE: OvhSubsidiaryRecord = {
   DEFAULT: 'https://www.ovhcloud.com/en-gb/logs-data-platform',
   DE: 'https://www.ovhcloud.com/de/logs-data-platform',
   ES: 'https://www.ovhcloud.com/es-es/logs-data-platform',
@@ -50,7 +56,7 @@ export const DATA_PLATFORM_GUIDE = {
   NL: 'https://www.ovhcloud.com/nl/logs-data-platform',
   PL: 'https://www.ovhcloud.com/pl/logs-data-platform',
   PT: 'https://www.ovhcloud.com/pt/logs-data-platform',
-  EN: 'https://www.ovhcloud.com/en-gb/logs-data-platform',
+  GB: 'https://www.ovhcloud.com/en-gb/logs-data-platform',
   CA: 'https://www.ovhcloud.com/en-ca/logs-data-platform',
   QC: 'https://www.ovhcloud.com/fr-ca/logs-data-platform',
   WS: 'https://www.ovhcloud.com/es/logs-data-platform',
@@ -61,5 +67,6 @@ export const DATA_PLATFORM_GUIDE = {
   SG: 'https://www.ovhcloud.com/en-sg/logs-data-platform',
   ASIA: 'https://www.ovhcloud.com/asia/logs-data-platform',
   IN: 'https://www.ovhcloud.com/en-in/logs-data-platform',
-  WW: 'https://www.ovhcloud.com/en/logs-data-platform',
+  US:
+    'https://us.ovhcloud.com/identity-security-operations/logs-data-platform/',
 };
