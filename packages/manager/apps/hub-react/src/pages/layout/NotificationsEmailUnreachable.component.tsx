@@ -29,11 +29,13 @@ export const NotificationsEmailUnreachable: FunctionComponent = () => {
     [user],
   );
 
-  if (isEmailUnreachable) {
-    shell.navigation.getURL('account', '/useraccount/infos', {}).then((url) => {
-      setNotificationLink(url as string);
-    });
+  shell.navigation.getURL('account', '#/useraccount/infos', {}).then((url) => {
+    console.debug('account url', notificationLink);
+    setNotificationLink(url as string);
+  });
 
+  console.debug('account notificationLink', notificationLink);
+  if (isEmailUnreachable) {
     return (
       <OsdsMessage
         className="rounded mt-5"
