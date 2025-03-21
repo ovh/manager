@@ -16,7 +16,6 @@ import ActionButtonRedirections from './ActionButtonRedirections.component';
 import { useGenerateUrl, usePlatform } from '@/hooks';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import { ResourceStatus } from '@/api/api.type';
-import Loading from '@/components/Loading/Loading';
 import { BadgeStatus } from '@/components/BadgeStatus';
 
 export type RedirectionsItem = {
@@ -117,18 +116,15 @@ export function Redirections() {
               label={t('common:add_redirection')}
             />
           </div>
-          {isLoading ? (
-            <Loading />
-          ) : (
-            <Datagrid
-              columns={columns.map((column) => ({
-                ...column,
-                label: t(column.label),
-              }))}
-              items={items}
-              totalItems={items.length}
-            />
-          )}
+          <Datagrid
+            columns={columns.map((column) => ({
+              ...column,
+              label: t(column.label),
+            }))}
+            items={items}
+            totalItems={items.length}
+            isLoading={isLoading}
+          />
         </>
       )}
     </div>
