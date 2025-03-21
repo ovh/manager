@@ -39,3 +39,13 @@ code {
   background-color: #f9f2f4 !important;
   border-radius: 6px !important;
 }
+
+osds-tile,
+osds-input {
+  border-width: var(--ods-size-input-md-border-width);
+  border-color: var(--ods-color-primary-200);
+}
+
+osds-input {
+  border-color: var(--ods-color-primary-200);
+}
