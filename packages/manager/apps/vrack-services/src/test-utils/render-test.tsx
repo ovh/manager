@@ -18,9 +18,13 @@ import {
   getAuthenticationMocks,
   toMswHandlers,
 } from '@ovh-ux/manager-core-test-utils';
+import {
+  NetworkConfigParams,
+  getNetworkConfig,
+} from '@ovh-ux/manager-network-common';
+import { GetIamMocksParams, getIamMocks } from '@/data/mocks/iam';
 import { translations, labels } from './test-i18n';
 import { TestApp } from './TestApp';
-import { ConfigParams, getConfig } from '../../mocks/handlers';
 
 const APP_NAME = 'vrack-services';
 
@@ -33,12 +37,14 @@ export const renderTest = async ({
 }: {
   initialRoute?: string;
 } & GetServicesMocksParams &
-  ConfigParams = {}) => {
+  GetIamMocksParams &
+  NetworkConfigParams = {}) => {
   ((global as unknown) as { server: SetupServer }).server?.resetHandlers(
     ...toMswHandlers([
       ...getAuthenticationMocks({ isAuthMocked: true }),
       ...getServicesMocks(mockParams),
-      ...getConfig(mockParams),
+      ...getNetworkConfig(mockParams),
+      ...getIamMocks(mockParams),
     ]),
   );
 

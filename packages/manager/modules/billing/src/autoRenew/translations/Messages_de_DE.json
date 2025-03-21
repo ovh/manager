@@ -142,7 +142,7 @@
   "billing_autorenew_service_type_LICENSE_OFFICE_PREPAID": "Office 365 Lizenzen",
   "billing_autorenew_service_type_MS_SERVICES_SHAREPOINT": "Microsoft Sharepoint ",
   "billing_autorenew_service_type_PACK_XDSL": "xDSL-Pakete",
-  "billing_autorenew_service_type_VRACK": "vRacks",
+  "billing_autorenew_service_type_VRACK": "vRack",
   "billing_autorenew_service_type_NUTANIX": "Nutanix",
   "billing_export_csv": "Export als CSV-Datei",
   "billing_common_link_new_window": "(neues Fenster)",

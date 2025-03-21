@@ -7,6 +7,8 @@ import {
 } from '@ovh-ux/manager-core-test-utils';
 import { waitFor, fireEvent, screen } from '@testing-library/react';
 import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { vrackServicesListMocks } from '@ovh-ux/manager-network-common';
+import { iamResourcesMocks } from '@/data/mocks/iam';
 import {
   assertModalTitle,
   changeInputValueByLabelText,
@@ -15,15 +17,13 @@ import {
   labels,
   renderTest,
 } from '../../test-utils';
-import vrackServicesList from '../../../mocks/vrack-services/get-vrack-services.json';
-import { iamResources } from '../../../mocks/iam/iam';
 import { urls } from '@/routes/routes.constants';
 
 describe('Vrack Services endpoints page test suite', () => {
   it('should display the endpoints onboarding if no endpoint exist', async () => {
     await renderTest({
       nbVs: 1,
-      initialRoute: urls.overview.replace(':id', vrackServicesList[0].id),
+      initialRoute: urls.overview.replace(':id', vrackServicesListMocks[0].id),
     });
 
     const enpointTab = await waitFor(() =>
@@ -38,7 +38,7 @@ describe('Vrack Services endpoints page test suite', () => {
   it('should display the endpoints listing if endpoint exist', async () => {
     await renderTest({
       nbVs: 2,
-      initialRoute: urls.overview.replace(':id', vrackServicesList[1].id),
+      initialRoute: urls.overview.replace(':id', vrackServicesListMocks[1].id),
     });
 
     const enpointTab = await waitFor(() =>
@@ -47,16 +47,16 @@ describe('Vrack Services endpoints page test suite', () => {
 
     await waitFor(() => fireEvent.click(enpointTab));
     const urn =
-      vrackServicesList[1].currentState.subnets[0].serviceEndpoints[0]
+      vrackServicesListMocks[1].currentState.subnets[0].serviceEndpoints[0]
         .managedServiceURN;
-    const iamData = iamResources.find((item) => item.urn === urn);
+    const iamData = iamResourcesMocks.find((item) => item.urn === urn);
 
     await assertTextVisibility(
       labels.endpoints.endpointDatagridManagedServiceURNLabel,
     );
     await assertTextVisibility(iamData!.displayName);
     await assertTextVisibility(
-      vrackServicesList[1].currentState.subnets[0].serviceEndpoints[0]
+      vrackServicesListMocks[1].currentState.subnets[0].serviceEndpoints[0]
         .endpoints[0].ip,
     );
   });
@@ -66,13 +66,13 @@ describe('Vrack Services endpoints page test suite', () => {
       nbVs: 2,
       initialRoute: urls.endpointsListing.replace(
         ':id',
-        vrackServicesList[1].id,
+        vrackServicesListMocks[1].id,
       ),
     });
     const urn =
-      vrackServicesList[1].currentState.subnets[0].serviceEndpoints[0]
+      vrackServicesListMocks[1].currentState.subnets[0].serviceEndpoints[0]
         .managedServiceURN;
-    const iamData = iamResources.find((item) => item.urn === urn);
+    const iamData = iamResourcesMocks.find((item) => item.urn === urn);
 
     const actionMenuButton = await getButtonByIcon({
       container,
@@ -118,7 +118,7 @@ describe('Vrack Services endpoints page test suite', () => {
       nbVs: 2,
       initialRoute: urls.endpointsListing.replace(
         ':id',
-        vrackServicesList[1].id,
+        vrackServicesListMocks[1].id,
       ),
     });
 

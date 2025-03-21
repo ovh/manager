@@ -5,8 +5,8 @@ import {
   getButtonByLabel,
 } from '@ovh-ux/manager-core-test-utils';
 import { waitFor, fireEvent } from '@testing-library/react';
+import { vrackServicesListMocks } from '@ovh-ux/manager-network-common';
 import { labels, renderTest } from '../../test-utils';
-import vrackServicesList from '../../../mocks/vrack-services/get-vrack-services.json';
 
 describe('Vrack Services overview page test suite', () => {
   it('should display the general informations of the vs', async () => {
@@ -16,7 +16,7 @@ describe('Vrack Services overview page test suite', () => {
 
     const vsInList = await getButtonByLabel({
       container,
-      label: vrackServicesList[0].iam.displayName,
+      label: vrackServicesListMocks[0].iam.displayName,
       isLink: true,
     });
 
@@ -26,9 +26,9 @@ describe('Vrack Services overview page test suite', () => {
     await assertTextVisibility(labels.dashboard.subnetsTabLabel);
     await assertTextVisibility(labels.dashboard.endpointsTabLabel);
     await assertTextVisibility(labels.dashboard.tileTitle);
-    await assertTextVisibility(vrackServicesList[0].currentState.region);
+    await assertTextVisibility(vrackServicesListMocks[0].currentState.region);
     await assertTextVisibility(labels.dashboard.DRAFT);
-    await assertTextVisibility(vrackServicesList[0].iam.displayName);
+    await assertTextVisibility(vrackServicesListMocks[0].iam.displayName);
     await assertTextVisibility('10 mars 2023');
   });
 
@@ -39,7 +39,7 @@ describe('Vrack Services overview page test suite', () => {
 
     const vsInList = await getButtonByLabel({
       container,
-      label: vrackServicesList[5].iam.displayName,
+      label: vrackServicesListMocks[5].iam.displayName,
       isLink: true,
     });
 
@@ -47,7 +47,7 @@ describe('Vrack Services overview page test suite', () => {
 
     await getButtonByLabel({
       container,
-      label: vrackServicesList[5].currentState.vrackId,
+      label: vrackServicesListMocks[5].currentState.vrackId,
       isLink: true,
     });
   });

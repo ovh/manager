@@ -28,8 +28,8 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { Contract, Order } from '@ovh-ux/manager-module-order';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+import { useSendOrder } from '@/data/hooks/useSendOrder';
 import { LoadingText } from '@/components/LoadingText.component';
-import { useSendOrder } from '@/data/hooks';
 
 export type OrderSubmitModalContentProps = {
   submitButtonLabel: string;

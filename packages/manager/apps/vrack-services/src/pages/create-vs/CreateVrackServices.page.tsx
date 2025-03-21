@@ -7,14 +7,14 @@ import {
   useFeatureAvailability,
   ErrorBanner,
 } from '@ovh-ux/manager-react-components';
-import { RegionFormField } from './RegionFormField.component';
-import { CreatePageLayout } from '@/components/layout-helpers';
-import { urls } from '@/routes/routes.constants';
-import { Region } from '@/types';
 import {
   getvrackServicesReferenceRegionList,
   getvrackServicesReferenceRegionListQueryKey,
-} from '@/data/api';
+  Region,
+} from '@ovh-ux/manager-network-common';
+import { RegionFormField } from './RegionFormField.component';
+import { CreatePageLayout } from '@/components/layout-helpers';
+import { urls } from '@/routes/routes.constants';
 
 export default function CreateVrackServicesPage() {
   const [selectedRegion, setSelectedRegion] = React.useState('');

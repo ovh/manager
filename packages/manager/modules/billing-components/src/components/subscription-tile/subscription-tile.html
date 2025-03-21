@@ -184,11 +184,11 @@
         <oui-tile-description>
             <oui-skeleton size="s" data-ng-if="$ctrl.isLoading"></oui-skeleton>
             <div
-                data-ng-if="!$ctrl.isLoading &&  $ctrl.canResiliate() && (!$ctrl.serviceInfos.shouldDeleteAtExpiration() || !$ctrl.serviceInfos.isResiliated()) && !$ctrl.serviceInfos.hasDebt() && !$ctrl.serviceInfos.hasPendingResiliation()"
+                data-ng-if="!$ctrl.isLoading && $ctrl.canResiliate() && (!$ctrl.serviceInfos.shouldDeleteAtExpiration() || !$ctrl.serviceInfos.isResiliated()) && !$ctrl.serviceInfos.hasDebt() && !$ctrl.serviceInfos.hasPendingResiliation()"
             >
                 <a
                     class="oui-link_icon"
-                    data-ng-if="$ctrl.resiliateLink && ($ctrl.serviceInfos.hasAdminRights($ctrl.user.auth.account) || $ctrl.serviceInfos.hasAdminRights($ctrl.user.nichandle))"
+                    data-ng-if="($ctrl.resiliateLink || $ctrl.isCustomResiliationHandled) && ($ctrl.serviceInfos.hasAdminRights($ctrl.user.auth.account) || $ctrl.serviceInfos.hasAdminRights($ctrl.user.nichandle))"
                     data-ng-href="{{:: !$ctrl.isCustomResiliationHandled && $ctrl.resiliateLink }}"
                     data-ng-click="$ctrl.handleClickResiliate($event)"
                     target="_top"

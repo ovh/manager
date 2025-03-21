@@ -23,11 +23,14 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { handleClick } from '@ovh-ux/manager-react-components';
-import { getVrackServicesResourceListQueryKey } from '@/data/api';
+import {
+  getVrackServicesResourceListQueryKey,
+  useDissociateVrack,
+  useVrackService,
+} from '@ovh-ux/manager-network-common';
 import { MessagesContext } from '@/components/feedback-messages/Messages.context';
 import { LoadingText } from '@/components/LoadingText.component';
 import { PageName } from '@/utils/tracking';
-import { useDissociateVrack, useVrackService } from '@/data/hooks';
 import { getDisplayName } from '@/utils/vrack-services';
 
 const sharedTrackingParams = {
