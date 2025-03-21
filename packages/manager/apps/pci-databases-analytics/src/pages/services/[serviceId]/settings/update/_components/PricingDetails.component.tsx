@@ -1,10 +1,6 @@
 import { HelpCircle } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/components/ui/popover';
+import { Popover, PopoverContent, PopoverTrigger } from '@datatr-ux/uxlib';
 import { ServicePricing } from '@/lib/pricingHelper';
 import * as database from '@/types/cloud/project/database';
 import Price from '@/components/price/Price.component';

@@ -9,7 +9,7 @@ import { mockedDatabase } from '@/__tests__/helpers/mocks/databases';
 import { mockedConnectionPool } from '@/__tests__/helpers/mocks/connectionPool';
 import { mockedUser } from '@/__tests__/helpers/mocks/user';
 
-vi.mock('@/components/ui/skeleton', () => ({
+vi.mock('@datatr-ux/uxlib', () => ({
   Skeleton: vi.fn(() => <div data-testid="skeleton" />),
 }));
 vi.mock('../_components/AddEditPool.component', () => ({

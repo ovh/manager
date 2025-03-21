@@ -1,18 +1,18 @@
 import { ColumnDef } from '@tanstack/react-table';
 import { MoreHorizontal } from 'lucide-react';
-import { toast } from 'sonner';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import * as database from '@/types/cloud/project/database';
-import { Button } from '@/components/ui/button';
-import ServiceStatusBadge from './ServiceStatusBadge.component';
 import {
+  Button,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+  useToast,
+} from '@datatr-ux/uxlib';
+import * as database from '@/types/cloud/project/database';
+import ServiceStatusBadge from './ServiceStatusBadge.component';
 import DataTable from '@/components/data-table';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 import { humanizeEngine } from '@/lib/engineNameHelper';
@@ -35,6 +35,7 @@ export const getColumns = ({
   const { t } = useTranslation('pci-databases-analytics/services');
   const track = useTrackAction();
   const { t: tRegions } = useTranslation('regions');
+  const toast = useToast();
   const columns: ColumnDef<database.Service>[] = [
     {
       id: 'description/id',
@@ -53,25 +54,19 @@ export const getColumns = ({
                 {description}
               </span>
             ) : (
-              <Button
-                asChild
-                variant="link"
-                className="justify-normal px-0 h-auto leading-4 font-semibold"
+              <Link
+                to={id}
+                onClick={() =>
+                  track(
+                    TRACKING.servicesList.serviceLinkClick(
+                      engine,
+                      nodes[0].region,
+                    ),
+                  )
+                }
               >
-                <Link
-                  to={id}
-                  onClick={() =>
-                    track(
-                      TRACKING.servicesList.serviceLinkClick(
-                        engine,
-                        nodes[0].region,
-                      ),
-                    )
-                  }
-                >
-                  {description}
-                </Link>
-              </Button>
+                {description}
+              </Link>
             )}
             <span className="text-sm whitespace-nowrap">{id}</span>
           </div>
@@ -262,8 +257,8 @@ export const getColumns = ({
                 onClick={() => {
                   track(TRACKING.servicesList.copyIdClick(service.engine));
                   navigator.clipboard.writeText(service.id);
-                  toast.success('Service id saved in clipboard', {
-                    dismissible: true,
+                  toast.toast({
+                    description: 'Service id saved in clipboard',
                   });
                 }}
               >

@@ -8,28 +8,25 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form';
-import { Button } from '@/components/ui/button';
-import * as database from '@/types/cloud/project/database';
-import {
+  Button,
   DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { useToast } from '@/components/ui/use-toast';
-import {
+  useToast,
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
-import { Input } from '@/components/ui/input';
+  Input,
+  Alert,
+  AlertTitle,
+} from '@datatr-ux/uxlib';
+import * as database from '@/types/cloud/project/database';
 import { useAddIntegrationForm } from './useAddIntegrationForm.hook';
-import { Alert, AlertTitle } from '@/components/ui/alert';
 import { useAddIntegration } from '@/hooks/api/database/integration/useAddIntegration.hook';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import { useServiceData } from '../../Service.context';
@@ -287,7 +284,7 @@ const AddIntegration = () => {
               <DialogClose asChild>
                 <Button
                   type="button"
-                  variant="outline"
+                  mode="outline"
                   data-testid="add-database-cancel-button"
                 >
                   {t('addIntegrationButtonCancel')}

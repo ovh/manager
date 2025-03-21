@@ -1,11 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import FormattedDate from '@/components/formatted-date/FormattedDate.component';
-import { Label } from '@/components/ui/label';
-import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
-import { Switch } from '@/components/ui/switch';
+import {
+  Label,
+  ScrollArea,
+  ScrollBar,
+  Switch,
+  Skeleton,
+} from '@datatr-ux/uxlib';
 import { useServiceData } from '../Service.context';
-import { Skeleton } from '@/components/ui/skeleton';
+import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import { POLLING } from '@/configuration/polling.constants';

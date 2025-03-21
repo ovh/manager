@@ -1,9 +1,8 @@
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
 import { useRouteError } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { Button, Alert, AlertDescription } from '@datatr-ux/uxlib';
 import errorImgSrc from '@/../public/assets/oops.png';
-import { Alert, AlertDescription } from '../ui/alert';
-import { Button } from '../ui/button';
 
 const ErrorBoundary = () => {
   const error = useRouteError();
@@ -30,7 +29,7 @@ const ErrorBoundary = () => {
             <img src={errorImgSrc} alt="" className="mw-100 inline mb-4" />
           </div>
           <h2>{t('manager_error_page_title')}</h2>
-          <Alert variant={'error'} className="mt-4 mb-4">
+          <Alert variant="destructive">
             <AlertDescription>
               <p className="text-red-500">{t('manager_error_page_default')}</p>
               <p className="text-red-500 font-semibold">{error.message}</p>
@@ -46,7 +45,7 @@ const ErrorBoundary = () => {
 
           <div className="flex flex-col items-stretch md:items-center md:flex-row justify-end gap-2">
             <Button
-              variant={'ghost'}
+              mode={'ghost'}
               size={'sm'}
               className="inline"
               onClick={() => navigateToHomepage()}
@@ -55,7 +54,7 @@ const ErrorBoundary = () => {
               {t('manager_error_page_action_home_label')}
             </Button>
             <Button
-              variant={'outline'}
+              mode={'outline'}
               size={'sm'}
               className="inline"
               onClick={() => reloadPage()}

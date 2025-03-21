@@ -17,19 +17,24 @@ import {
   ChangelogLinks,
   ChangelogButton,
 } from '@ovh-ux/manager-react-components';
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  Button,
+  useToast,
+  Alert,
+  AlertDescription,
+  Skeleton,
+} from '@datatr-ux/uxlib';
 import { useServiceData } from '../Service.context';
 import MetricChart from '../metrics/_components/MetricChart.component';
 import * as database from '@/types/cloud/project/database';
 import { POLLING } from '@/configuration/polling.constants';
-import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import ConnectionDetails from './_components/ConnectionDetails.component';
-import { Button } from '@/components/ui/button';
-import { useToast } from '@/components/ui/use-toast';
 import Maintenance from './_components/Maintenance.component';
 import Link from '@/components/links/Link.component';
 import OvhLink from '@/components/links/OvhLink.component';
-import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Skeleton } from '@/components/ui/skeleton';
 import Guides from '@/components/guides/Guides.component';
 import { GuideSections } from '@/types/guide';
 import { useGetVrack } from '@/hooks/api/network/useGetVrack.hook';
@@ -118,7 +123,7 @@ const Dashboard = () => {
           <Guides section={GuideSections.dashboard} engine={service.engine} />
         </div>
       </div>
-      <Alert variant="info">
+      <Alert variant="primary">
         <AlertDescription className="text-base">
           <div className="flex flex-col items-stretch  md:flex-row md:items-center justify-between gap-4">
             <div className="flex flex-row gap-5 items-center">
@@ -127,7 +132,6 @@ const Dashboard = () => {
             </div>
             <Button
               data-testid="dashboard-upgrade-button"
-              variant="default"
               type="button"
               asChild
             >
@@ -259,8 +263,7 @@ const Dashboard = () => {
               <Button
                 data-testid="dashboard-copy-id-button"
                 type="button"
-                size="table"
-                variant="table"
+                className="text-text p-0 bg-transparent hover:bg-primary-100 hover:text-primary-700 hover:font-semibold h-4 w-4 my-auto"
                 onClick={() => {
                   navigator.clipboard.writeText(service.id);
                   toast.toast({

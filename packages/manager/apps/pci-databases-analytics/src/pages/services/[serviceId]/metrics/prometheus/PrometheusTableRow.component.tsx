@@ -1,8 +1,6 @@
 import { Files } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { TableCell, TableRow } from '@/components/ui/table';
-import { Button } from '@/components/ui/button';
-import { useToast } from '@/components/ui/use-toast';
+import { TableCell, TableRow, Button, useToast } from '@datatr-ux/uxlib';
 
 interface PrometheusTableRowProps {
   name: string;
@@ -25,8 +23,7 @@ const PrometheusTableRow = ({ name, value }: PrometheusTableRowProps) => {
         <Button
           data-testid={`prometheus-copy-${name}-button`}
           type="button"
-          size="table"
-          variant="table"
+          className="text-text p-0 bg-transparent hover:bg-primary-100 hover:text-primary-700 hover:font-semibold h-4 w-4 my-auto"
           onClick={() => {
             navigator.clipboard.writeText(value);
             toast.toast({

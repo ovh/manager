@@ -1,18 +1,18 @@
 import { useMemo, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import Price from '@/components/price/Price.component';
-import PriceUnitSwitch from '@/components/price-unit-switch/PriceUnitSwitch.component';
-import { Button } from '@/components/ui/button';
 import {
+  Button,
   DialogClose,
   DialogContent,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { Label } from '@/components/ui/label';
-import { useToast } from '@/components/ui/use-toast';
+  Label,
+  useToast,
+} from '@datatr-ux/uxlib';
+import PriceUnitSwitch from '@/components/price-unit-switch/PriceUnitSwitch.component';
+import Price from '@/components/price/Price.component';
 import { useAddNode } from '@/hooks/api/database/node/useAddNode.hook';
 import { Pricing } from '@/lib/pricingHelper';
 import { useServiceData } from '@/pages/services/[serviceId]/Service.context';
@@ -114,7 +114,7 @@ const AddNode = () => {
             <Button
               data-testid="add-node-cancel-button"
               type="button"
-              variant="outline"
+              mode="outline"
             >
               {t('addNodeCancelButton')}
             </Button>

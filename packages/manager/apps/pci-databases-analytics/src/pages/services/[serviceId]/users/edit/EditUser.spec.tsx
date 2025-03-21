@@ -7,7 +7,7 @@ import { mockedDatabaseUser } from '@/__tests__/helpers/mocks/databaseUser';
 import * as usersApi from '@/data/api/database/user.api';
 import * as database from '@/types/cloud/project/database';
 
-vi.mock('@/components/ui/skeleton', () => ({
+vi.mock('@datatr-ux/uxlib', () => ({
   Skeleton: vi.fn(() => <div data-testid="skeleton" />),
 }));
 vi.mock('../_components/AddEditUser.component', () => ({

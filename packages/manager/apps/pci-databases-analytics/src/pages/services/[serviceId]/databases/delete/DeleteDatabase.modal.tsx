@@ -1,16 +1,16 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useEffect } from 'react';
-import { Button } from '@/components/ui/button';
 import {
+  Button,
   DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { useToast } from '@/components/ui/use-toast';
+  useToast,
+} from '@datatr-ux/uxlib';
 import { useDeleteDatabase } from '@/hooks/api/database/database/useDeleteDatabase.hook';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import { useGetDatabases } from '@/hooks/api/database/database/useGetDatabases.hook';
@@ -84,7 +84,7 @@ const DeleteDatabase = () => {
           <DialogClose asChild>
             <Button
               type="button"
-              variant="outline"
+              mode="outline"
               data-testid="delete-database-cancel-button"
             >
               {t('deleteDatabaseButtonCancel')}

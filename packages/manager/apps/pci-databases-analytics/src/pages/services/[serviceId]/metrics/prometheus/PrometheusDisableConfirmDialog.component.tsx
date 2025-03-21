@@ -8,7 +8,7 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from '@/components/ui/alert-dialog';
+} from '@datatr-ux/uxlib';
 
 interface PrometheusDisableConfirmDialogProps {
   onConfirm: () => void;

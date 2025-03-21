@@ -1,10 +1,10 @@
 import { useTranslation } from 'react-i18next';
+import { Badge } from '@datatr-ux/uxlib';
 import Price from '@/components/price/Price.component';
 import RadioTile from '@/components/radio-tile/RadioTile.component';
 import { compareStorage, formatStorage } from '@/lib/bytesHelper';
 import * as database from '@/types/cloud/project/database';
 import { Plan } from '@/types/orderFunnel';
-import { Badge } from '@/components/ui/badge';
 import { getTagVariant } from '@/lib/tagsHelper';
 
 export const PlanTile = ({
