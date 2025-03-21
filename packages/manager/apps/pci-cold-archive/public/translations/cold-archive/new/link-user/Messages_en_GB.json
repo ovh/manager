@@ -1,0 +1,18 @@
+{
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_title": "Link a user",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_description": "You can define access to your containers for your pre-defined users, or create new users and get your access keys.",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_select_field_user_label": "Select a user",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_select_list_has_credential": "Credentials generated",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_select_list_has_no_credential": "No credentials",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_select_field_user_cta_cancel": "Exit",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_select_field_user_cta_linked": "View credentials",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_create": "Create a new user",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_create_field_user_label": "User description",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_create_field_user_cta_create": "Create",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_create_field_user_cta_cancel": "Exit",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_user_description_label": "User description:",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_user_credential_banner_secret_key_field_label": "Your secret Object Storage key:",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_request_success": "The Object Storage credentials for the user {{userName}} have been generated.",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_request_fail": "The Object Storage credentials were not generated.",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_select": "Select an existing user"
+}
