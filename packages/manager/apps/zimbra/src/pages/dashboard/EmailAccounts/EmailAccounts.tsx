@@ -36,9 +36,12 @@ import {
 import LabelChip from '@/components/LabelChip';
 import { GUIDES_LIST } from '@/guides.constants';
 import ActionButtonEmail from './ActionButtonEmail.component';
-import { DATAGRID_REFRESH_INTERVAL, DATAGRID_REFRESH_ON_MOUNT } from '@/utils';
+import {
+  APIV2_DEFAULT_PAGESIZE,
+  DATAGRID_REFRESH_INTERVAL,
+  DATAGRID_REFRESH_ON_MOUNT,
+} from '@/utils';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
-import Loading from '@/components/Loading/Loading';
 import { BadgeStatus } from '@/components/BadgeStatus';
 import { ResourceStatus, AccountStatistics } from '@/api/api.type';
 import {
@@ -285,23 +288,18 @@ export default function EmailAccounts() {
               label={t('zimbra_account_account_order')}
             />
           </div>
-          {isLoading ? (
-            <Loading />
-          ) : (
-            <>
-              <Datagrid
-                columns={columns.map((column) => ({
-                  ...column,
-                  label: t(column.label),
-                }))}
-                items={items}
-                totalItems={items.length}
-                hasNextPage={!isFetchingNextPage && hasNextPage}
-                onFetchNextPage={fetchNextPage}
-              />
-              {isFetchingNextPage && <Loading />}
-            </>
-          )}
+          <Datagrid
+            columns={columns.map((column) => ({
+              ...column,
+              label: t(column.label),
+            }))}
+            items={items}
+            totalItems={items.length}
+            hasNextPage={hasNextPage}
+            onFetchNextPage={fetchNextPage}
+            isLoading={isLoading || isFetchingNextPage}
+            numberOfLoadingRows={APIV2_DEFAULT_PAGESIZE}
+          />
         </>
       )}
     </div>
