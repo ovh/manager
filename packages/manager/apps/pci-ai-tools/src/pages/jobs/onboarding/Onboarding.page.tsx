@@ -8,7 +8,7 @@ import { useLocale } from '@/hooks/useLocale';
 import OnboardingTile from '@/components/onboarding-tile/OnboardingTile.component';
 
 const Onboarding = () => {
-  const { t } = useTranslation('pci-ai-training/onboarding');
+  const { t } = useTranslation('ai-tools/jobs/onboarding');
   const locale = useLocale();
 
   return (
