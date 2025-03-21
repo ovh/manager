@@ -109,7 +109,9 @@ export default function ListingPage() {
                 className="xs:mb-0.5 sm:mb-0"
                 icon="plus"
                 label={t('pci_projects_project_storages_snapshots_add_label')}
-                onClick={() => true}
+                onClick={() => {
+                  window.location.href = `${hrefProject}/storages/volume-backup/create`;
+                }}
               />
             </div>
             <div className="flex justify-center gap-4">
