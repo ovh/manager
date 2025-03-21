@@ -71,10 +71,10 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
           'configuration',
           'displayedColumns',
         ]),
-        bills: /* @ngInject */ (OvhApiMe) =>
-          OvhApiMe.Bill()
-            .v6()
-            .query().$promise,
+        getBills: /* @ngInject */ ($http) => () =>
+          $http
+            .get('/me/bill', { serviceType: 'apiv6' })
+            .then(({ data }) => data),
         // Override ListLayoutHelper resources to use native filters for date
         resources: /* @ngInject */ ($transition$, iceberg) => {
           const { filter, pageSize, sort, sortOrder } = $transition$.params();
