@@ -31,6 +31,11 @@ ods-table td {
   line-height: unset !important;
 }
 
+// match height for datagrid loading rows
+tr:has(ods-skeleton) {
+  height: 65px !important;
+}
+
 // tag doesn't seems centered if line is bigger
 ods-tag.org-tag::part(tag) {
   transform: translateY(-10%);

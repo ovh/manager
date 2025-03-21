@@ -26,7 +26,6 @@ import LabelChip from '@/components/LabelChip';
 import { BadgeStatus } from '@/components/BadgeStatus';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import { DATAGRID_REFRESH_INTERVAL, DATAGRID_REFRESH_ON_MOUNT } from '@/utils';
-import Loading from '@/components/Loading/Loading';
 import { ADD_ORGANIZATION } from '@/tracking.constant';
 
 export type OrganizationItem = {
@@ -132,23 +131,17 @@ export default function Organizations() {
               label={t('common:add_organization')}
             />
           </div>
-          {isLoading ? (
-            <Loading />
-          ) : (
-            <>
-              <Datagrid
-                columns={columns.map((column) => ({
-                  ...column,
-                  label: t(column.label),
-                }))}
-                items={items}
-                totalItems={items.length}
-                hasNextPage={!isFetchingNextPage && hasNextPage}
-                onFetchNextPage={fetchNextPage}
-              />
-              {isFetchingNextPage && <Loading />}
-            </>
-          )}
+          <Datagrid
+            columns={columns.map((column) => ({
+              ...column,
+              label: t(column.label),
+            }))}
+            items={items}
+            totalItems={items.length}
+            hasNextPage={hasNextPage}
+            onFetchNextPage={fetchNextPage}
+            isLoading={isLoading || isFetchingNextPage}
+          />
         </>
       )}
     </div>

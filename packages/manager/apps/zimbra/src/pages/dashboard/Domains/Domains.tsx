@@ -29,7 +29,6 @@ import ActionButtonDomain from './ActionButtonDomain.component';
 import LabelChip from '@/components/LabelChip';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import { DATAGRID_REFRESH_INTERVAL, DATAGRID_REFRESH_ON_MOUNT } from '@/utils';
-import Loading from '@/components/Loading/Loading';
 import { DomainType } from '@/api/domain/type';
 import { AccountStatistics, ResourceStatus } from '@/api/api.type';
 import { BadgeStatus } from '@/components/BadgeStatus';
@@ -170,23 +169,17 @@ export default function Domains() {
               </OdsTooltip>
             )}
           </div>
-          {isLoading ? (
-            <Loading />
-          ) : (
-            <>
-              <Datagrid
-                columns={columns.map((column) => ({
-                  ...column,
-                  label: t(column.label),
-                }))}
-                items={items}
-                totalItems={items.length}
-                hasNextPage={!isFetchingNextPage && hasNextPage}
-                onFetchNextPage={fetchNextPage}
-              />
-              {isFetchingNextPage && <Loading />}
-            </>
-          )}
+          <Datagrid
+            columns={columns.map((column) => ({
+              ...column,
+              label: t(column.label),
+            }))}
+            items={items}
+            totalItems={items.length}
+            hasNextPage={hasNextPage}
+            onFetchNextPage={fetchNextPage}
+            isLoading={isLoading || isFetchingNextPage}
+          />
         </>
       )}
     </div>
