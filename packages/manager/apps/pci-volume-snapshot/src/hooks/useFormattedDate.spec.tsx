@@ -3,6 +3,7 @@ import * as i18nApi from 'react-i18next';
 import { renderHook } from '@testing-library/react';
 import * as dateFns from 'date-fns';
 import * as MRCApi from '@ovh-ux/manager-core-utils';
+import { KeyPrefix } from 'i18next';
 import { useFormattedDate } from './useFormattedDate';
 
 // Mock dependencies
@@ -28,7 +29,7 @@ vi.mock('@ovh-ux/manager-core-utils', () => ({
 
 // Mock specific format function from date-fns
 vi.mock('date-fns', async (importOriginal) => {
-  const actual = (await importOriginal()) as Record<string, any>;
+  const actual = (await importOriginal()) as Record<string, unknown>;
   return {
     ...actual,
     format: vi.fn((date, formatStr, options) => {
@@ -106,7 +107,7 @@ describe('useFormattedDate', () => {
       i18n: {
         language: 'fr-FR',
       },
-    } as any);
+    } as i18nApi.UseTranslationResponse<string, KeyPrefix<string>>);
 
     const { result } = renderHook(() => useFormattedDate(testDate));
 
@@ -128,7 +129,7 @@ describe('useFormattedDate', () => {
       i18n: {
         language: 'unknown-LOCALE',
       },
-    } as any);
+    } as i18nApi.UseTranslationResponse<string, KeyPrefix<string>>);
 
     // Mock getDateFnsLocale to return an unsupported locale
     vi.spyOn(MRCApi, 'getDateFnsLocale').mockReturnValue('unsupported');

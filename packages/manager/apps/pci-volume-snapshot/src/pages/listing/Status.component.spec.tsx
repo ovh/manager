@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render } from '@testing-library/react';
 import StatusComponent from './Status.component';
+import { TSnapshot } from '@/api/data/snapshots';
 
 // Mock ODS component
 vi.mock('@ovhcloud/ods-components/react', () => ({
@@ -88,7 +89,7 @@ describe('StatusComponent', () => {
 
   it('renders with unknown status', () => {
     // Force an invalid status using type assertion
-    const invalidStatus = 'unknown_status' as any;
+    const invalidStatus = ('unknown_status' as unknown) as TSnapshot['status'];
     const { getByTestId } = render(<StatusComponent status={invalidStatus} />);
 
     const badge = getByTestId('status_badge');

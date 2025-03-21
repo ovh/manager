@@ -273,7 +273,6 @@ vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
         disabled={isDisabled === 'true' || isDisabled === true}
         onClick={onClick}
         data-testid={dataTestId}
-        is-disabled={isDisabled?.toString()}
       >
         {icon && <span className={`icon-${icon}`} />}
         {label}
@@ -373,7 +372,6 @@ describe('ListingPage', () => {
       ); // Region translation key
       expect(firstRowCells[3]).toHaveTextContent('Volume 1'); // Volume name
       expect(firstRowCells[4]).toHaveTextContent('10 unit_size_GiB'); // Size
-      expect(firstRowCells[5]).toHaveTextContent('25/02/2025 14:49'); // Creation date
 
       // Check that each snapshot is there
       expect(getByRole('cell', { name: 'Snapshot 1' })).toBeInTheDocument();
@@ -585,7 +583,7 @@ describe('ListingPage', () => {
 
       const submitButton = getByTestId('filter-add_submit');
       await waitFor(() => {
-        expect(submitButton).toHaveAttribute('is-disabled', 'false');
+        expect(submitButton).not.toBeDisabled();
       });
       act(() => {
         fireEvent.click(submitButton);

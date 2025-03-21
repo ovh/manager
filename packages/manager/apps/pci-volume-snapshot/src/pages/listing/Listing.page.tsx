@@ -70,7 +70,7 @@ export default function ListingPage() {
   };
 
   return (
-    <RedirectionGuard condition={false} isLoading={false} route={''}>
+    <RedirectionGuard condition={false} isLoading={false} route="">
       <BaseLayout
         breadcrumb={
           <OdsBreadcrumb>
@@ -80,13 +80,13 @@ export default function ListingPage() {
             />
             <OdsBreadcrumbItem
               label={t('pci_projects_project_storages_snapshots_title')}
-              href={'#'}
+              href="#"
             />
           </OdsBreadcrumb>
         }
         header={{
           title: t('pci_projects_project_storages_snapshots_title'),
-          headerButton: <PciGuidesHeader category={'storage'} />,
+          headerButton: <PciGuidesHeader category="storage" />,
         }}
       >
         <div className="flex flex-col gap-5">
