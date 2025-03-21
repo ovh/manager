@@ -31,7 +31,7 @@ const RadioTile = ({
     <div
       role="radio"
       aria-checked={props.checked}
-      tabIndex={!disabled ? 0 : undefined}
+      {...(!disabled && { tabIndex: 0 })}
       onKeyDown={handleLabelKeyDown}
       data-testid="radio-tile-container"
     >
