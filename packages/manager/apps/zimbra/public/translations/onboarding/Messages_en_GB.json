@@ -1,9 +1,9 @@
 {
   "title": "Zimbra collaborative suite",
-  "description": "Communicate and collaborate in business with Zimbra suite",
+  "description": "Communicate and collaborate in your business with Zimbra suite",
   "orderButtonLabel": "Order",
   "orderButtonLink": "/#/dedicated/zimbra/order",
-  "moreInfoButtonLabel": "Discover the Zimbra solution",
+  "moreInfoButtonLabel": "Discover Zimbra",
   "moreInfoButtonLink": "/#/dedicated/zimbra/info",
   "guideCategory": "Tutorial",
   "guide1Title": "Getting started with Zimbra",
@@ -18,8 +18,8 @@
   "card_guide_category": "Tutorial",
   "card_guide_title_1": "Getting started with the Zimbra solution",
   "card_guide_title_2": "Configuring your Zimbra account",
-  "card_guide_title_3": "Master Zimbra webmail",
+  "card_guide_title_3": "Become a Zimbra webmail pro",
   "card_guide_description_1": "Find out how to create your first mailboxes and manage your service",
-  "card_guide_description_2": "Find out how to configure and use your Zimbra account on an external device (PC or smartphone)",
-  "card_guide_description_3": "Discover the features of the Zimbra web interface"
+  "card_guide_description_2": "Learn how to set up and use your Zimbra account on an external device (PC or smartphone)",
+  "card_guide_description_3": "Explore the Zimbra web interface and features"
 }

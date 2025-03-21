@@ -19,6 +19,6 @@
   "zimbra_account_tooltip_need_domain": "Konfigurieren Sie zuerst eine Domain.",
   "zimbra_account_tooltip_need_slot": "Es sind keine Accounts verfügbar. Bitte bestellen Sie einen.",
   "zimbra_account_delete_modal_content_step1": "Sie sind im Begriff, den E-Mail-Account vom Zimbra-Server zu löschen.",
-  "zimbra_account_delete_modal_content_step2": "Sind Sie sicher, dass Sie das Postfach vom Zimbra-Server löschen möchten?",
+  "zimbra_account_delete_modal_content_step2": "Sind Sie sicher, dass Sie das Postfach des Zimbra-Servers löschen möchten?",
   "zimbra_account_delete_modal_warn_message": "Achtung: Diese Aktion kann nicht rückgängig gemacht werden und führt zur Löschung der Daten."
 }
