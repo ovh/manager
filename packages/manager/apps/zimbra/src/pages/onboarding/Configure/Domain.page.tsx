@@ -9,13 +9,17 @@ import { useNotifications } from '@ovh-ux/manager-react-components';
 import AddDomainForm from '@/pages/dashboard/Domains/AddDomainForm.component';
 import { ONBOARDING_CONFIGURE_DOMAIN } from '@/tracking.constant';
 import { useDomains, useGenerateUrl, useOrganizationList } from '@/hooks';
+import Loading from '@/components/Loading/Loading';
 
 export const ConfigureDomain: React.FC = () => {
   const { trackPage } = useOvhTracking();
   const { addError } = useNotifications();
   const navigate = useNavigate();
-  const { data: organizations } = useOrganizationList({ gcTime: 0 });
-  const { data: domains } = useDomains();
+  const {
+    data: organizations,
+    isLoading: isLoadingOrgs,
+  } = useOrganizationList({ gcTime: 0 });
+  const { data: domains, isLoading: isLoadingDomains } = useDomains();
   const { t } = useTranslation(['onboarding', 'common']);
   const configureOrganizationUrl = useGenerateUrl('../organization', 'path');
   const configureEmailUrl = useGenerateUrl('../email_accounts', 'path');
@@ -24,17 +28,17 @@ export const ConfigureDomain: React.FC = () => {
 
   useEffect(() => {
     // domain already configured, redirect to emails
-    if (domains && domains.length) {
+    if (domains?.length) {
       next();
     }
   }, [domains]);
 
   useEffect(() => {
     // organisation not already configured, redirect to orgs
-    if (organizations && organizations.length) {
+    if (organizations?.length === 0) {
       previous();
     }
-  }, [domains]);
+  }, [organizations]);
 
   const onError = (error: ApiError) => {
     trackPage({
@@ -50,6 +54,10 @@ export const ConfigureDomain: React.FC = () => {
       true,
     );
   };
+
+  if (isLoadingOrgs || isLoadingDomains) {
+    return <Loading />;
+  }
 
   return (
     <AddDomainForm

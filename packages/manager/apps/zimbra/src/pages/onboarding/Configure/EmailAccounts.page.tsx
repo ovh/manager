@@ -39,11 +39,8 @@ import {
 } from '@/tracking.constant';
 import queryClient from '@/queryClient';
 import { getZimbraPlatformListQueryKey } from '@/api/platform';
-import {
-  AccountBodyParamsType,
-  formatAccountPayload,
-  postZimbraPlatformAccount,
-} from '@/api/account';
+import { formatAccountPayload, postZimbraPlatformAccount } from '@/api/account';
+import Loading from '@/components/Loading/Loading';
 
 export const ConfigureEmailAccounts: React.FC = () => {
   const navigate = useNavigate();
@@ -51,9 +48,16 @@ export const ConfigureEmailAccounts: React.FC = () => {
   const { trackClick, trackPage } = useOvhTracking();
   const { addSuccess } = useNotifications();
 
-  const { data: organizations } = useOrganizationList({ gcTime: 0 });
-  const { data: domains } = useDomains({ gcTime: 0 });
-  const { data: emailAccounts } = useAccountList({ gcTime: 0 });
+  const {
+    data: organizations,
+    isLoading: isLoadingOrgs,
+  } = useOrganizationList({ gcTime: 0 });
+  const { data: domains, isLoading: isLoadingDomains } = useDomains({
+    gcTime: 0,
+  });
+  const { data: emailAccounts, isLoading: isLoadingAccounts } = useAccountList({
+    gcTime: 0,
+  });
   const { data: platform, platformId } = usePlatform();
 
   const configureOrganizationUrl = useGenerateUrl('../organization', 'path');
@@ -89,26 +93,28 @@ export const ConfigureEmailAccounts: React.FC = () => {
   const accounts = methods.watch('accounts');
 
   useEffect(() => {
-    // no domain configured, redirect to domain page
-    if (domains && domains.length === 0) {
-      navigate(configureDomainUrl);
-    }
-    // domains are loaded, we can set the first domain
     methods.reset({
       accounts: [{ domain, offer: ZimbraOffer.STARTER }],
     });
+  }, [domain]);
+
+  useEffect(() => {
+    // no domain configured, redirect to domain page
+    if (domains?.length === 0) {
+      navigate(configureDomainUrl);
+    }
   }, [domains]);
 
   useEffect(() => {
     // no organization setup, redirect to org page
-    if (organizations && organizations.length === 0) {
+    if (organizations?.length === 0) {
       navigate(configureOrganizationUrl);
     }
   }, [organizations]);
 
   useEffect(() => {
     // emails already setup, redirect to emails page
-    if (emailAccounts && emailAccounts.length) {
+    if (emailAccounts?.length) {
       onClose();
     }
   }, [emailAccounts]);
@@ -174,6 +180,10 @@ export const ConfigureEmailAccounts: React.FC = () => {
 
     onClose();
   };
+
+  if (isLoadingOrgs || isLoadingDomains || isLoadingAccounts) {
+    return <Loading />;
+  }
 
   return (
     <FormProvider {...methods}>

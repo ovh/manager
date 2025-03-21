@@ -35,19 +35,20 @@ import {
   postZimbraPlatformOrganization,
 } from '@/api/organization';
 import queryClient from '@/queryClient';
+import Loading from '@/components/Loading/Loading';
 
 export const ConfigureOrganization: React.FC = () => {
   const { trackClick, trackPage } = useOvhTracking();
   const { addError } = useNotifications();
   const { platformId } = usePlatform();
   const navigate = useNavigate();
-  const { data: organizations } = useOrganizationList({ gcTime: 0 });
+  const { data: organizations, isLoading } = useOrganizationList({ gcTime: 0 });
   const { t } = useTranslation(['onboarding', 'organizations/form', 'common']);
   const configureDomainUrl = useGenerateUrl('../domain', 'path');
   const next = () => navigate(configureDomainUrl);
 
   useEffect(() => {
-    if (organizations && organizations.length) {
+    if (organizations?.length) {
       next();
     }
   }, [organizations]);
@@ -101,6 +102,10 @@ export const ConfigureOrganization: React.FC = () => {
     });
     addOrganization({ ...data, label: data.name.slice(0, 12) });
   };
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <form
