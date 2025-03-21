@@ -11,7 +11,7 @@ export const useFormattedDate = (date: string | null, formatStr = 'PPpp') => {
 
   return useMemo(() => {
     if (!date) {
-      return '';
+      return null;
     }
 
     const userLocale = getDateFnsLocale(i18n.language);
