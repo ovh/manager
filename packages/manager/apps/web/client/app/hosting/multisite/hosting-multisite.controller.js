@@ -192,11 +192,14 @@ angular
       };
 
       $scope.isMainDomain = function isMainDomain(hosting, domain) {
-        return ['ovh.net', 'hosting.ovh.net']
-          .map(
-            (suffix) => `${hosting.primaryLogin}.${hosting.cluster}.${suffix}`,
-          )
-          .some((mainDomain) => mainDomain === domain.name);
+        return hosting.defaultAttachedDomain
+          ? domain.name === hosting.defaultAttachedDomain
+          : ['ovh.net', 'hosting.ovh.net']
+              .map(
+                (suffix) =>
+                  `${hosting.primaryLogin}.${hosting.cluster}.${suffix}`,
+              )
+              .some((mainDomain) => mainDomain === domain.name);
       };
 
       $scope.isUpdateDomainDisabled = function isUpdateDomainDisabled(
@@ -215,10 +218,6 @@ angular
         if ($location.search().domain) {
           $scope.search.text = $location.search().domain;
         }
-
-        $scope.excludeAttachedDomains = [
-          $scope.hosting.cluster.replace(/^ftp/, $scope.hosting.primaryLogin),
-        ];
 
         return Hosting.getTabDomains(
           $stateParams.productId,
