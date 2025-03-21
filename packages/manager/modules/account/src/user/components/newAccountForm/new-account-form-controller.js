@@ -407,7 +407,7 @@ export default class NewAccountFormController {
       .then(() => {
         // We try to notify the container that the action required by the SIRET modal has been done
         // and we can switch to the next one if necessary
-        this.shell.ux.notifyModalActionDone();
+        this.shell.ux.notifyModalActionDone('SuggestionModal');
         if (
           this.model.managerLanguage &&
           this.originalManagerLanguage !== this.model.managerLanguage
