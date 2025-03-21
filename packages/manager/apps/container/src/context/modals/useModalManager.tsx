@@ -148,7 +148,9 @@ export const useModalManager = (
 
     if (data === undefined) return undefined;
 
-    return configuration?.data?.check ? configuration.data.check(data) : true;
+    return configuration?.data?.check
+      ? configuration.data.check(data, user)
+      : true;
   }, [configuration, data]);
 
   const { mutate: updatePreference } = useCreatePreference(
@@ -159,16 +161,18 @@ export const useModalManager = (
 
   useEffect(() => {
     if (
-      isUserMatchingCriterion === false ||
-      isOnExcludedPage === true ||
-      isOnIncludedPage === false ||
-      isFeatureAvailable === false ||
-      (urn && authorizations && isAuthorized === false) ||
-      isTimeToShowModal === false ||
-      isDataMatchingCriterion === false
+      !!configuration &&
+      (isUserMatchingCriterion === false ||
+        isOnExcludedPage === true ||
+        isOnIncludedPage === false ||
+        isFeatureAvailable === false ||
+        (urn && authorizations && isAuthorized === false) ||
+        isTimeToShowModal === false ||
+        isDataMatchingCriterion === false)
     ) {
       setIsDisplayed(false);
     } else if (
+      !!configuration &&
       isUserMatchingCriterion &&
       !isOnExcludedPage &&
       isOnIncludedPage &&
