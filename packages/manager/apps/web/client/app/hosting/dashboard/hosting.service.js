@@ -822,8 +822,8 @@ import union from 'lodash/union';
             () => {
               defer.resolve(durationsTab);
             },
-            () => {
-              defer.resolve(durationsTab);
+            (error) => {
+              defer.reject(error);
             },
           );
 
