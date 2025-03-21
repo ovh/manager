@@ -102,9 +102,7 @@ export default function AccountSidebar() {
         label: t('sidebar_billing'),
         href: navigation.getURL(
           isNewBillingAvailable ? 'new-billing' : 'dedicated',
-          region === 'US'
-            ? `${!isNewBillingAvailable ? '/billing' : ''}/payAsYouGo`
-            : `${!isNewBillingAvailable ? '/billing' : ''}/history`,
+          `${!isNewBillingAvailable ? '/billing' : ''}/history`,
         ),
         routeMatcher: new RegExp(
           '^/billing/(history|payAsYouGo|payments|refunds)',
