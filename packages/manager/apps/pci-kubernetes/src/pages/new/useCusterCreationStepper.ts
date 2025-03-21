@@ -12,7 +12,7 @@ export type TClusterCreationForm = {
   updatePolicy: UpdatePolicy;
   network: TNetworkFormState;
   nodePools?: NodePoolPrice[];
-
+  plan: 'standard' | 'premium';
   clusterName: string;
 };
 
@@ -22,18 +22,19 @@ const stepReset = (step: ReturnType<typeof useStep>) => {
   step.close();
 };
 
-export function useClusterCreationStepper() {
+export function useClusterCreationStepper(has3AZRegions = false) {
   const [form, setForm] = useState<TClusterCreationForm>({
     region: null,
     version: '',
     updatePolicy: null,
     network: null,
-
+    plan: null,
     clusterName: '',
   });
 
   const clusterNameStep = useStep({ isOpen: true });
   const locationStep = useStep();
+  const planStep = useStep();
   const versionStep = useStep();
   const networkStep = useStep();
   const nodeStep = useStep();
@@ -69,7 +70,9 @@ export function useClusterCreationStepper() {
       step: locationStep,
       edit: () => {
         locationStep.unlock();
-        [versionStep, networkStep, nodeStep, confirmStep].forEach(stepReset);
+        [planStep, versionStep, networkStep, nodeStep, confirmStep].forEach(
+          stepReset,
+        );
       },
       submit: (region: TLocalisation) => {
         setForm((f) => ({
@@ -78,6 +81,22 @@ export function useClusterCreationStepper() {
         }));
         locationStep.check();
         locationStep.lock();
+        (has3AZRegions ? planStep : versionStep).open();
+      },
+    },
+    plan: {
+      step: planStep,
+      edit: () => {
+        planStep.unlock();
+        [versionStep, networkStep, nodeStep, confirmStep].forEach(stepReset);
+      },
+      submit: (plan: TClusterCreationForm['plan']) => {
+        setForm((f) => ({
+          ...f,
+          plan,
+        }));
+        planStep.check();
+        planStep.lock();
         versionStep.open();
       },
     },
