@@ -709,6 +709,7 @@
   "hosting_tab_TASKS_status_DOING": "En proceso",
   "hosting_tab_TASKS_status_DONE": "Finalizada",
   "hosting_tab_TASKS_status_ERROR": "En error",
+  "hosting_tab_TASKS_status_OVHERROR": "En error",
   "hosting_tab_TASKS_status_TODO": "Planificada",
   "hosting_tab_TASKS_status_INIT": "Iniciada",
   "hosting_tab_TASKS_status_backup_FTP": "La copia de seguridad generada se enviará por correo electrónico y no se restaurará automáticamente en su espacio FTP.",
