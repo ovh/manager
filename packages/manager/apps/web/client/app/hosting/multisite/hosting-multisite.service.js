@@ -411,6 +411,7 @@ angular.module('services').service(
             `apiv6/hosting/web/${opts.serviceName}/tasks/${taskId}`,
             null,
             {
+              interval: 30000,
               successRule: { state: 'done' },
               namespace: 'hostingDomain.request',
             },
