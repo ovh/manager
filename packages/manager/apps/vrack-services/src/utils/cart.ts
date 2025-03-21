@@ -35,9 +35,3 @@ export const createVrackServicesCart = async ({
       hasVrack && vrackItem,
     ].filter(Boolean),
   });
-
-export const createVrackOnlyCart = async (ovhSubsidiary: string) =>
-  createCart({
-    ovhSubsidiary,
-    items: [vrackItem],
-  });

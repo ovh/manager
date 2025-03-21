@@ -6,8 +6,8 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { useNavigate } from 'react-router-dom';
+import { VrackServicesWithIAM } from '@ovh-ux/manager-network-common';
 import { urls } from '@/routes/routes.constants';
-import { VrackServicesWithIAM } from '@/types';
 import { isEditable } from '@/utils/vrack-services';
 
 export type UseVrackMenuItemsParams = {

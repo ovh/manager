@@ -7,11 +7,11 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { OsdsLink } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { VrackServicesWithIAM } from '@ovh-ux/manager-network-common';
 import { EditButton } from './EditButton.component';
 import { urls } from '@/routes/routes.constants';
 import { InfoIcon } from './InfoIcon.component';
 import { isEditable, getDisplayName } from '@/utils/vrack-services';
-import { VrackServicesWithIAM } from '@/types';
 
 export type DisplayNameProps = {
   isListing?: boolean;

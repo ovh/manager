@@ -17,10 +17,10 @@ import {
 import { Outlet, Navigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { useVrackService } from '@ovh-ux/manager-network-common';
 import { PageLayout } from '@/components/layout-helpers';
 import { SubnetDatagrid } from './SubnetDatagrid.component';
 import { useNavigateToCreateSubnetPage } from '../subnets.hook';
-import { useVrackService } from '@/data/hooks';
 import { urls } from '@/routes/routes.constants';
 import { hasSubnet } from '@/utils/vrack-services';
 

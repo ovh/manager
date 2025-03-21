@@ -9,8 +9,13 @@ import {
 } from '@ovhcloud/ods-components';
 import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { ErrorBanner } from '@ovh-ux/manager-react-components';
+import {
+  getVrackServicesResourceQueryKey,
+  useServiceList,
+  useUpdateVrackServices,
+  useVrackService,
+} from '@ovh-ux/manager-network-common';
 import { FormField } from '@/components/FormField.component';
-import { getVrackServicesResourceQueryKey } from '@/data/api';
 import { CreatePageLayout } from '@/components/layout-helpers';
 import {
   subnetSelectName,
@@ -21,10 +26,9 @@ import { urls } from '@/routes/routes.constants';
 import { PageName } from '@/utils/tracking';
 import { MessagesContext } from '@/components/feedback-messages/Messages.context';
 import {
-  useServiceList,
-  useUpdateVrackServices,
-  useVrackService,
-} from '@/data/hooks';
+  getIamResourceQueryKey,
+  getIamResource,
+} from '@/data/api/get/iamResource';
 
 export default function EndpointCreatePage() {
   const { t } = useTranslation('vrack-services/endpoints');
@@ -50,7 +54,10 @@ export default function EndpointCreatePage() {
     serviceListResponse,
     isServiceListLoading,
     serviceListError,
-  } = useServiceList(id);
+  } = useServiceList(id, {
+    getIamResourceQueryKey,
+    getIamResource,
+  });
 
   const {
     createEndpoint,
@@ -161,7 +168,7 @@ export default function EndpointCreatePage() {
           <span slot="placeholder">{t('serviceNamePlaceholder')}</span>
           {serviceListResponse?.data
             ?.find((service) => service.managedServiceType === serviceType)
-            ?.managedServiceURNs.map((serviceURN) => {
+            ?.managedServiceURNs.map((serviceURN: string) => {
               const resource = iamResources?.data?.find(
                 ({ urn }) => urn === serviceURN,
               );

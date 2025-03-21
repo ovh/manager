@@ -7,16 +7,19 @@ import {
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
-import { useVrackServicesList } from '@/data/hooks';
-import { ResourceStatus, VrackServicesWithIAM } from '@/types';
+import {
+  VrackServicesResourceStatus,
+  VrackServicesWithIAM,
+  useVrackServicesList,
+} from '@ovh-ux/manager-network-common';
 import { getDisplayName } from '@/utils/vrack-services';
 
 const shouldDisplayMessage = (vs: VrackServicesWithIAM) =>
-  vs.resourceStatus !== ResourceStatus.READY;
+  vs.resourceStatus !== VrackServicesResourceStatus.READY;
 
 const OperationMessage: React.FC<{ vs?: VrackServicesWithIAM }> = ({ vs }) => {
   const { t } = useTranslation('vrack-services');
-  const isError = vs?.resourceStatus === ResourceStatus.ERROR;
+  const isError = vs?.resourceStatus === VrackServicesResourceStatus.ERROR;
 
   if (!vs || !shouldDisplayMessage(vs)) {
     return null;

@@ -9,20 +9,22 @@ import { waitFor, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import {
+  vrackServicesListMocks,
+  vrackListMocks,
+} from '@ovh-ux/manager-network-common';
+import {
   assertModalTitle,
   changeOdsSelectValueByTestId,
   getButtonByIcon,
   labels,
   renderTest,
 } from '../../test-utils';
-import vrackServicesList from '../../../mocks/vrack-services/get-vrack-services.json';
 import { urls } from '@/routes/routes.constants';
-import { vrackList } from '../../../mocks/vrack/vrack';
 
 describe('Vrack Services associate another vrack test suite', () => {
   it('from dashboard should associate another vrack using vrack modal', async () => {
     const { container } = await renderTest({
-      initialRoute: urls.overview.replace(':id', vrackServicesList[5].id),
+      initialRoute: urls.overview.replace(':id', vrackServicesListMocks[5].id),
       nbVs: 6,
     });
 
@@ -52,11 +54,11 @@ describe('Vrack Services associate another vrack test suite', () => {
     });
     await assertModalText({
       container,
-      text: vrackServicesList[5].currentState.vrackId,
+      text: vrackServicesListMocks[5].currentState.vrackId,
     });
     await changeOdsSelectValueByTestId({
       testId: 'select-another-vrack',
-      value: vrackList[1],
+      value: vrackListMocks[1],
     });
 
     const associateButton = await getButtonByLabel({
@@ -73,7 +75,7 @@ describe('Vrack Services associate another vrack test suite', () => {
     const { container } = await renderTest({
       initialRoute: urls.overviewAssociateAnother.replace(
         ':id',
-        vrackServicesList[5].id,
+        vrackServicesListMocks[5].id,
       ),
       nbVs: 6,
       nbVrack: 0,
@@ -90,7 +92,7 @@ describe('Vrack Services associate another vrack test suite', () => {
     const { container } = await renderTest({
       initialRoute: urls.overviewAssociateAnother.replace(
         ':id',
-        vrackServicesList[5].id,
+        vrackServicesListMocks[5].id,
       ),
       nbVs: 6,
       getVrackKo: true,
