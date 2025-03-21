@@ -5,7 +5,7 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { useBytes } from '@ovh-ux/manager-pci-common';
-import { TVolumeSnapshot } from '@/api/hooks/useSnapshots';
+import { TVolumeSnapshot } from '@/api/api.types';
 import { useFormattedDate } from '@/hooks/useFormattedDate';
 import StatusComponent from './Status.component';
 import ActionsComponent from './Actions.component';

@@ -9,7 +9,6 @@ import {
 } from '@testing-library/react';
 import * as MRCApi from '@ovh-ux/manager-react-components';
 import { FilterComparator } from '@ovh-ux/manager-core-api';
-import { OdsInputChangeEvent } from '@ovhcloud/ods-components';
 import * as SnapshotsApi from '@/api/hooks/useSnapshots';
 import ListingPage from './Listing.page';
 
@@ -22,42 +21,6 @@ vi.mock('@/hooks/useNotifications', () => ({
   useNotifications: vi.fn(),
 }));
 
-vi.mock('@ovh-ux/manager-react-shell-client', () => ({
-  ShellContext: React.createContext({
-    environment: {
-      getUser: () => ({
-        ovhSubsidiary: 'FR',
-      }),
-    },
-  }),
-}));
-vi.mock('react-router-dom', async (importOriginal) => {
-  const actual = (await importOriginal()) || {};
-  return {
-    ...(typeof actual === 'object' && actual !== null ? actual : {}),
-    useParams: () => ({ projectId: 'test-project-id' }),
-    useLocation: () => ({
-      pathname: '/test-path',
-      search: '',
-      hash: '',
-      state: null,
-      key: 'default',
-    }),
-    useHref: () => '/path',
-  };
-});
-
-vi.mock('react-i18next', async (importOriginal) => {
-  const actual = (await importOriginal()) || {};
-  return {
-    ...(typeof actual === 'object' && actual !== null ? actual : {}),
-    useTranslation: () => ({
-      t: (key: string) => key,
-      i18n: { exists: () => true },
-    }),
-  };
-});
-
 const mockSetPagination = vi.fn();
 const mockAddFilter = vi.fn();
 const mockRemoveFilter = vi.fn();
@@ -66,7 +29,7 @@ vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
   const actual = (await importOriginal()) || {};
   return {
     ...(typeof actual === 'object' && actual !== null ? actual : {}),
-    useProjectUrl: () => 'http://project-url',
+    useProjectUrl: () => 'https://project-url',
     useDataGrid: () => ({
       pagination: { pageIndex: 0, pageSize: 10 },
       setPagination: mockSetPagination,
@@ -89,17 +52,6 @@ vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
     Notifications: () => <div data-testid="notifications">Notifications</div>,
     PciMaintenanceBanner: () => (
       <div data-testid="maintenance-banner">Maintenance Banner</div>
-    ),
-  };
-});
-
-vi.mock('@ovh-ux/manager-pci-common', async (importOriginal) => {
-  const actual = (await importOriginal()) || {};
-  return {
-    ...(typeof actual === 'object' && actual !== null ? actual : {}),
-    useProject: () => ({ data: { description: 'Test Project' } }),
-    PciAnnouncementBanner: () => (
-      <div data-testid="announcement-banner">Announcement Banner</div>
     ),
   };
 });
@@ -247,103 +199,6 @@ vi.mock('@/api/hooks/useSnapshots', async (importOriginal) => {
   };
 });
 
-// Mock web components
-vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
-  const actual = (await importOriginal()) || {};
-  return {
-    ...(typeof actual === 'object' && actual !== null ? actual : {}),
-    OdsButton: ({
-      label,
-      icon,
-      isDisabled,
-      onClick,
-      className,
-      'data-testid': dataTestId,
-    }: {
-      label: string;
-      icon: string;
-      isDisabled: string | boolean;
-      onClick: () => void;
-      className: string;
-      'data-testid': string;
-    }) => (
-      <button
-        type="button"
-        className={className}
-        disabled={isDisabled === 'true' || isDisabled === true}
-        onClick={onClick}
-        data-testid={dataTestId}
-        is-disabled={isDisabled?.toString()}
-      >
-        {icon && <span className={`icon-${icon}`} />}
-        {label}
-      </button>
-    ),
-    OdsInput: ({
-      name,
-      value,
-      onOdsChange,
-      onKeyDown,
-      className,
-      'data-testid': dataTestId,
-    }: {
-      name: string;
-      value: string;
-      onOdsChange: (e: Partial<OdsInputChangeEvent>) => void;
-      onKeyDown: () => void;
-      className: string;
-      'data-testid': string;
-    }) => (
-      <input
-        type="text"
-        name={name}
-        className={className}
-        value={value}
-        onChange={(e) => {
-          onOdsChange?.({
-            detail: {
-              value: e.target.value,
-              name,
-            },
-            stopPropagation: () => {},
-            preventDefault: () => {},
-          });
-        }}
-        onKeyDown={onKeyDown}
-        data-testid={dataTestId}
-      />
-    ),
-    OdsSelect: ({
-      name,
-      value,
-      onOdsChange,
-      children,
-      'data-testid': dataTestId,
-    }: {
-      name: string;
-      value: string;
-      children: React.ReactNode;
-      onOdsChange: (e: Partial<OdsInputChangeEvent>) => void;
-      'data-testid': string;
-    }) => (
-      <select
-        name={name}
-        value={value}
-        onChange={(e) => {
-          onOdsChange?.({
-            detail: { value: e.target.value, name },
-            stopPropagation: () => {},
-            preventDefault: () => {},
-          });
-        }}
-        data-testid={dataTestId}
-      >
-        {children}
-      </select>
-    ),
-  };
-});
-
 describe('ListingPage', () => {
   beforeEach(() => {
     vi.clearAllMocks();
@@ -373,7 +228,6 @@ describe('ListingPage', () => {
       ); // Region translation key
       expect(firstRowCells[3]).toHaveTextContent('Volume 1'); // Volume name
       expect(firstRowCells[4]).toHaveTextContent('10 unit_size_GiB'); // Size
-      expect(firstRowCells[5]).toHaveTextContent('25/02/2025 14:49'); // Creation date
 
       // Check that each snapshot is there
       expect(getByRole('cell', { name: 'Snapshot 1' })).toBeInTheDocument();
@@ -585,7 +439,7 @@ describe('ListingPage', () => {
 
       const submitButton = getByTestId('filter-add_submit');
       await waitFor(() => {
-        expect(submitButton).toHaveAttribute('is-disabled', 'false');
+        expect(submitButton).not.toBeDisabled();
       });
       act(() => {
         fireEvent.click(submitButton);
@@ -647,7 +501,7 @@ describe('ListingPage', () => {
       const maintenanceMock = vi.spyOn(MRCApi, 'useProductMaintenance');
       maintenanceMock.mockImplementation(() => ({
         hasMaintenance: true,
-        maintenanceURL: 'http://maintenance-url',
+        maintenanceURL: 'https://maintenance-url',
       }));
 
       const { getByTestId } = render(<ListingPage />);

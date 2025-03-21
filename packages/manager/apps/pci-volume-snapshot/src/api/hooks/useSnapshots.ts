@@ -2,30 +2,29 @@ import { useMemo } from 'react';
 import { useQuery, useQueries } from '@tanstack/react-query';
 import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
 import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
-import { getSnapshots, getVolume, TSnapshot, TVolume } from '../data/snapshots';
+import { getSnapshots, getVolume } from '../data/snapshots';
 import { paginateResults, sortResults } from '@/helpers';
+import { TVolumeSnapshot } from '@/api/api.types';
 
-export type TVolumeSnapshot = TSnapshot & {
-  volume?: TVolume | null;
-};
-
-export const useAllSnapshots = (projectId: string) =>
+export const useAllSnapshots = (projectId: string | undefined | null) =>
   useQuery({
     queryKey: ['snapshots', projectId],
     enabled: !!projectId,
-    queryFn: () => getSnapshots(projectId),
+    queryFn: () => getSnapshots(projectId || ''),
   });
 
-export const useVolumeSnapshots = (projectId: string) => {
+export const useVolumeSnapshots = (projectId: string | undefined | null) => {
   const { data: snapshots, isPending, isLoading } = useAllSnapshots(projectId);
 
-  const volumeIds = snapshots?.map((volume) => volume.volumeId);
-  const uniqueVolumeIds = [...new Set(volumeIds)];
+  const uniqueVolumeIds = [
+    ...new Set(snapshots?.map((volume) => volume.volumeId)),
+  ];
 
   return useQueries({
     queries: uniqueVolumeIds?.map((volumeId) => ({
       queryKey: ['snapshots', projectId, 'volume', volumeId],
-      queryFn: () => getVolume(projectId, volumeId),
+      enabled: !!projectId,
+      queryFn: () => getVolume(projectId || '', volumeId),
     })),
     combine: (volumes) => ({
       isPending: isPending || volumes.some((result) => result.isPending),
@@ -41,7 +40,7 @@ export const useVolumeSnapshots = (projectId: string) => {
 };
 
 export const usePaginatedVolumeSnapshot = (
-  projectId: string,
+  projectId: string | undefined | null,
   pagination: PaginationState,
   sorting: ColumnSort,
   filters: Filter[],

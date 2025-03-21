@@ -1,8 +1,8 @@
-import { OdsBadgeColor } from '@ovhcloud/ods-components';
 import { OdsBadge } from '@ovhcloud/ods-components/react';
-import { useEffect, useState } from 'react';
+import { OdsBadgeColor } from '@ovhcloud/ods-components';
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { TSnapshot } from '@/api/data/snapshots';
+import { TSnapshot } from '@/api/api.types';
 
 type StatusComponentProps = {
   status: TSnapshot['status'];
@@ -13,27 +13,21 @@ export default function StatusComponent({
 }: Readonly<StatusComponentProps>) {
   const { t } = useTranslation('volumes');
 
-  const statusGroup = ['error', 'error_deleting'].includes(status)
-    ? 'ERROR'
-    : status.toUpperCase();
+  const [badgeColor, statusGroup] = useMemo<[OdsBadgeColor, string]>(() => {
+    const group = ['error', 'error_deleting'].includes(status)
+      ? 'ERROR'
+      : status.toUpperCase();
 
-  const [badgeColor, setBadgeColor] = useState<OdsBadgeColor>('information');
-
-  useEffect(() => {
-    switch (statusGroup) {
+    switch (group) {
       case 'AVAILABLE':
-        setBadgeColor('success');
-        break;
+        return ['success', group];
       case 'CREATING':
       case 'DELETING':
-        setBadgeColor('warning');
-        break;
+        return ['warning', group];
       case 'ERROR':
-        setBadgeColor('critical');
-        break;
+        return ['critical', group];
       default:
-        setBadgeColor('information');
-        break;
+        return ['information', group];
     }
   }, [status]);
 
