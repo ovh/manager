@@ -11,12 +11,14 @@ import { ModeEnum } from '@/components/network/GatewayModeSelector.component';
 
 export interface NetworkStepProps {
   region: string;
+  type: string;
   onSubmit: (networkForm: TNetworkFormState) => void;
   step: StepState;
 }
 
 export function NetworkStep({
   region,
+  type,
   onSubmit,
   step,
 }: Readonly<NetworkStepProps>) {
@@ -30,7 +32,7 @@ export function NetworkStep({
 
   return (
     <>
-      <NetworkClusterStep region={region} onChange={setState} />
+      <NetworkClusterStep region={region} type={type} onChange={setState} />
       {!step.isLocked && (
         <OsdsButton
           className="mt-8 w-fit"
