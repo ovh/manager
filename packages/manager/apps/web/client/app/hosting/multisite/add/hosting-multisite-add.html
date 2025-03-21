@@ -15,7 +15,7 @@
         >
             <div
                 class="text-center"
-                data-ng-if="!model.hosting || !model.options || !model.capabilities"
+                data-ng-if="!isFreeOffer() && (!model.hosting || !model.options || !model.capabilities)"
             >
                 <oui-spinner></oui-spinner>
             </div>

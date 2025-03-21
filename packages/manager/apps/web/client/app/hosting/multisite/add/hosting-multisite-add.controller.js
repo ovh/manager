@@ -43,6 +43,9 @@ angular
       $scope.MAX_DOMAIN_LENGTH = WucValidator.MAX_DOMAIN_LENGTH;
 
       $scope.isStep1Valid = () => {
+        if ($scope.isFreeOffer()) {
+          return true;
+        }
         if (
           !$scope.model.options &&
           !$scope.model.moreThanOneDomainCountWithOneAttached
@@ -169,11 +172,12 @@ angular
 
       $scope.showMessagesNoDomainLeft = () => {
         return (
-          $scope.model.hosting &&
-          $scope.model.options &&
-          $scope.model.domainsCount >=
-            $scope.model.capabilities?.attachedDomains &&
-          !$scope.model.moreThanOneDomainCountWithOneAttached
+          $scope.isFreeOffer() ||
+          ($scope.model.hosting &&
+            $scope.model.options &&
+            $scope.model.domainsCount >=
+              $scope.model.capabilities?.attachedDomains &&
+            !$scope.model.moreThanOneDomainCountWithOneAttached)
         );
       };
 
@@ -303,14 +307,16 @@ angular
             }
           })
           .catch(({ data }) => {
-            $scope.resetAction();
-            Alerter.alertFromSWS(
-              $translate.instant(
-                'hosting_tab_DOMAINS_configuration_add_loading_error',
-              ),
-              data?.message,
-              $scope.alerts.main,
-            );
+            if (!$scope.isFreeOffer()) {
+              $scope.resetAction();
+              Alerter.alertFromSWS(
+                $translate.instant(
+                  'hosting_tab_DOMAINS_configuration_add_loading_error',
+                ),
+                data?.message,
+                $scope.alerts.main,
+              );
+            }
           });
       };
 
@@ -467,6 +473,9 @@ angular
       $scope.isStartingOffer = () => {
         return $scope.model.hosting.offer === HOSTING_OFFER.STARTER_OVH;
       };
+
+      $scope.isFreeOffer = () =>
+        $scope.model.hosting?.offer === HOSTING_OFFER.FREE_100_M;
 
       $scope.domainsAlreadyExists = (wwwNeeded) => {
         if (
