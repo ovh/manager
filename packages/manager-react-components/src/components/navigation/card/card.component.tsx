@@ -5,7 +5,7 @@ import { OdsBadge, OdsCard } from '@ovhcloud/ods-components/react';
 import { LinkType, Links } from '../../typography';
 import './translations/translations';
 
-export interface Badge {
+export interface IBadge {
   text: string;
 }
 
@@ -24,7 +24,7 @@ export interface CardProps {
     description?: string;
     category: string;
   };
-  badges?: Badge[];
+  badges?: IBadge[];
   hoverable?: boolean;
   onClick?: (event: React.MouseEvent) => void;
   trackingLabel?: string;
