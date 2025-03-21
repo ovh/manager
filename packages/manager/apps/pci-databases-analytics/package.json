@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-databases-analytics-app",
-  "version": "1.14.0",
+  "version": "1.14.1",
   "private": true,
   "description": "pci-databases-analytics",
   "repository": {
@@ -28,7 +28,7 @@
     "@ovh-ux/manager-react-components": "^1.45.0",
     "@ovh-ux/manager-react-shell-client": "^0.8.5",
     "@ovh-ux/request-tagger": "^0.4.0",
-    "@ovh-ux/shell": "^4.1.10",
+    "@ovh-ux/shell": "^4.1.11",
     "@ovhcloud/ods-common-core": "^17.1.0",
     "@ovhcloud/ods-components": "^17.1.0",
     "@ovhcloud/ods-theme-blue-jeans": "^17.1.0",
@@ -80,7 +80,7 @@
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",
-    "@ovh-ux/manager-vite-config": "^0.9.2",
+    "@ovh-ux/manager-vite-config": "^0.9.3",
     "@tanstack/react-query-devtools": "^5.51.21",
     "@testing-library/jest-dom": "^6.1.5",
     "@testing-library/react": "^14.1.2",

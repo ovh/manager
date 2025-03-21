@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-module-common-api",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "private": true,
   "description": "OVHcloud manager module common API (order, services, me, ...).",
   "repository": {

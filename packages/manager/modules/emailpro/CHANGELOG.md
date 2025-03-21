@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.16.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.16.1...@ovh-ux/manager-emailpro@3.16.2) (2025-03-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3786] ([1952946](https://github.com/ovh/manager/commit/195294632516194a99f582ee21497a47134d0e6b))
+
+
+
+
+
 ## [3.16.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.16.0...@ovh-ux/manager-emailpro@3.16.1) (2025-03-13)
 
 

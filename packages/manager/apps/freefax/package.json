@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-freefax-app",
-  "version": "9.0.15",
+  "version": "9.0.16",
   "private": true,
   "description": "Freefax standalone application.",
   "repository": {
@@ -80,7 +80,7 @@
     "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-webpack-config": "^7.0.6",
+    "@ovh-ux/manager-webpack-config": "^7.0.7",
     "webpack-merge": "^4.2.2"
   },
   "regions": [

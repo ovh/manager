@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.15.1...@ovh-ux/manager-react-components@2.16.0) (2025-03-21)
+
+### Bug Fixes
+
+- **core:** useovhtracking hook issus region ([775940a](https://github.com/ovh/manager/commit/775940a7e95858223339b88ba5c93c3df7ba90c3)), closes [#MANAGER-17245](https://github.com/ovh/manager/issues/MANAGER-17245)
+- **manager-react-components:** headers and changelog stories with router ([7a5fcd6](https://github.com/ovh/manager/commit/7a5fcd6262eb9f42f6d7da4fc2d6e336159a7f8f)), closes [#MANAGER-17245](https://github.com/ovh/manager/issues/MANAGER-17245)
+- **mrc:** display part of sentence as link ([043cbf9](https://github.com/ovh/manager/commit/043cbf90fce4f4c94bb8092a965780b85a9fc956)), closes [#15421](https://github.com/ovh/manager/issues/15421)
+
+### Features
+
+- **manager-react-component:** dropdown in filters ([#15822](https://github.com/ovh/manager/issues/15822)) ([096918e](https://github.com/ovh/manager/commit/096918e5ad817edb1fdafc8f79d5015c35aea101)), closes [#MANAGER-17325](https://github.com/ovh/manager/issues/MANAGER-17325)
+- **mrc:** add badge component ([ebe240e](https://github.com/ovh/manager/commit/ebe240e199170cbf0bd5ef1e6ce7bbdf23f15f67)), closes [#MANAGER-17134](https://github.com/ovh/manager/issues/MANAGER-17134)
+- **mrc:** add generic modal component ([#15816](https://github.com/ovh/manager/issues/15816)) ([b1490f7](https://github.com/ovh/manager/commit/b1490f7db960f647b54c365bd7a5f4a0d350f5f8)), closes [#MANAGER-16942](https://github.com/ovh/manager/issues/MANAGER-16942) [#15101](https://github.com/ovh/manager/issues/15101)
+- **mrc:** add testId to actionMenuItems ([a519484](https://github.com/ovh/manager/commit/a519484d8605fcd70c84293267d60df3bdedbc52)), closes [#16022](https://github.com/ovh/manager/issues/16022)
+
 ## [2.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.15.0...@ovh-ux/manager-react-components@2.15.1) (2025-03-14)
 
 ### Bug Fixes
