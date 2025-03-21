@@ -2,8 +2,20 @@
     data-heading="{{ :: 'logs_list_title' | translate }}"
     data-description="{{ :: $ctrl.description }}"
 >
-    <oui-back-button data-on-click="$ctrl.goBack()"> </oui-back-button>
+    <oui-back-button
+        data-on-click="$ctrl.goBack($ctrl.logSubscriptionApiData.params.kind)"
+    >
+    </oui-back-button>
 </oui-header>
+
+<log-select-kinds
+    data-ng-if="$ctrl.logKindsList.length > 1"
+    class="row"
+    data-kinds="$ctrl.logKindsList"
+    data-on-change="$ctrl.reloadSubscribedStreams()"
+    data-ng-model="$ctrl.logSubscriptionApiData.params.kind"
+>
+</log-select-kinds>
 
 <oui-button
     class="my-3"
@@ -126,24 +138,24 @@
                     data-variant="secondary"
                     data-ng-if="!$ctrl.streamSubscriptions.hasOwnProperty($row.streamId)"
                     data-ng-click="$ctrl.createLogSubscription($row.streamId)"
-                    data-disabled="$ctrl.streamLoading[$row.streamId]"
+                    data-disabled="$ctrl.streamLoading[$row.streamId] || $ctrl.streamLoading.all"
                 >
                     <span data-translate="list_button_subscribe"></span>
                     <oui-spinner
                         size="s"
-                        data-ng-if="$ctrl.streamLoading[$row.streamId]"
+                        data-ng-if="$ctrl.streamLoading[$row.streamId] || $ctrl.streamLoading.all"
                     ></oui-spinner>
                 </oui-button>
                 <oui-button
                     data-variant="secondary"
                     data-ng-if="$ctrl.streamSubscriptions.hasOwnProperty($row.streamId)"
                     data-ng-click="$ctrl.deleteLogSubscription($row.streamId)"
-                    data-disabled="$ctrl.streamLoading[$row.streamId]"
+                    data-disabled="$ctrl.streamLoading[$row.streamId] || $ctrl.streamLoading.all"
                 >
                     <span data-translate="list_button_unsubscribe"></span>
                     <oui-spinner
                         size="s"
-                        data-ng-if="$ctrl.streamLoading[$row.streamId]"
+                        data-ng-if="$ctrl.streamLoading[$row.streamId] || $ctrl.streamLoading.all"
                     ></oui-spinner>
                 </oui-button>
             </div>

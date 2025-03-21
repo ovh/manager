@@ -20,7 +20,7 @@ export default class LogToCustomerListCtrl {
   }
 
   $onInit() {
-    this.streamLoading = {};
+    this.streamLoading = { all: false };
     this.accountList = [];
     this.streams = [];
     this.streamSubscriptions = {};
@@ -44,6 +44,13 @@ export default class LogToCustomerListCtrl {
       .catch((error) => {
         this.alertError(error?.data?.message);
       });
+  }
+
+  reloadSubscribedStreams() {
+    this.streamLoading.all = true;
+    this.getSubscribedStreams().finally(() => {
+      this.streamLoading.all = false;
+    });
   }
 
   alertError(message = '') {

@@ -7,6 +7,7 @@ export default {
   transclude: {
     tile: '?tile',
     description: '?description',
+    kinds: '?kinds',
   },
   bindings: {
     logApiUrl: '<',

@@ -36,6 +36,14 @@ export default class LogToCustomerTileCtrl {
     this.loadStreams();
   }
 
+  async $onChanges({ kind }) {
+    if (kind) {
+      this.loading = true;
+      await this.getSubscribedStreams();
+      this.loading = false;
+    }
+  }
+
   loadStreams() {
     this.loading = true;
     this.streamSubscriptions = [];
