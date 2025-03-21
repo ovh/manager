@@ -5,10 +5,9 @@ export default {
   bindings: {
     goBack: '<',
     service: '<',
-    serviceType: '<',
     isEmpty: '<',
   },
   controller,
   template,
-  name: 'billingAutorenewTerminateVrack',
+  name: 'billingTerminateVrack',
 };
