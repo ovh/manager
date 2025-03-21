@@ -1,10 +1,15 @@
-import { ProductStatus, ResourceStatus, VrackServicesWithIAM } from '@/types';
+import {
+  VrackServicesProductStatus,
+  VrackServicesResourceStatus,
+  VrackServicesWithIAM,
+} from '@ovh-ux/manager-network-common';
 
 export const isEditable = (vs?: VrackServicesWithIAM) =>
-  vs?.resourceStatus === ResourceStatus.READY &&
-  [ProductStatus.ACTIVE, ProductStatus.DRAFT].includes(
-    vs?.currentState.productStatus,
-  );
+  vs?.resourceStatus === VrackServicesResourceStatus.READY &&
+  [
+    VrackServicesProductStatus.ACTIVE,
+    VrackServicesProductStatus.DRAFT,
+  ].includes(vs?.currentState.productStatus);
 
 export const hasSubnet = (vs?: VrackServicesWithIAM) =>
   vs?.currentState.subnets.length > 0;

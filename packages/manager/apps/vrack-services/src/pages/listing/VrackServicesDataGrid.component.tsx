@@ -9,12 +9,14 @@ import {
   DatagridColumn,
   useDataGrid,
 } from '@ovh-ux/manager-react-components';
+import {
+  VrackServicesWithIAM,
+  useVrackServicesList,
+} from '@ovh-ux/manager-network-common';
 import { DisplayName } from '@/components/display-name/DisplayName.component';
 import { VrackId } from '@/components/vrack-id/VrackId.component';
-import { useVrackServicesList } from '@/data/hooks';
 import { ProductStatusChip } from '@/components/ProductStatusChip.component';
 import { ActionCell } from './ActionCell.component';
-import { VrackServicesWithIAM } from '@/types';
 import { getDisplayName } from '@/utils/vrack-services';
 
 const sortVrackServicesListing = (

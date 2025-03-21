@@ -3,6 +3,7 @@ import '@testing-library/jest-dom';
 import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import { waitFor, fireEvent } from '@testing-library/react';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import { vrackServicesListMocks } from '@ovh-ux/manager-network-common';
 import {
   assertOsdFormInputInError,
   changeInputValueByLabelText,
@@ -11,14 +12,16 @@ import {
   labels,
   renderTest,
 } from '../../test-utils';
-import vrackServicesList from '../../../mocks/vrack-services/get-vrack-services.json';
 import { urls } from '@/routes/routes.constants';
 
 describe('Vrack Services subnets page test suite', () => {
   it('should create a subnet', async () => {
     const { container } = await renderTest({
       nbVs: 2,
-      initialRoute: urls.createSubnet.replace(':id', vrackServicesList[1].id),
+      initialRoute: urls.createSubnet.replace(
+        ':id',
+        vrackServicesListMocks[1].id,
+      ),
     });
 
     await assertTextVisibility(labels.subnets.subnetNameLabel);

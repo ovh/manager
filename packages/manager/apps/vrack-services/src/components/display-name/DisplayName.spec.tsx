@@ -4,12 +4,14 @@ import '@/test-utils/setupTests';
 import React from 'react';
 import { describe, expect, it } from 'vitest';
 import { render } from '@testing-library/react';
-import { DisplayName } from '@/components/display-name/DisplayName.component';
-import vrackServicesList from '../../../mocks/vrack-services/get-vrack-services.json';
 import '@testing-library/jest-dom';
-import { VrackServicesWithIAM } from '@/types';
+import {
+  VrackServicesWithIAM,
+  vrackServicesListMocks,
+} from '@ovh-ux/manager-network-common';
+import { DisplayName } from '@/components/display-name/DisplayName.component';
 
-const defaultVs = vrackServicesList[0] as VrackServicesWithIAM;
+const defaultVs = vrackServicesListMocks[0] as VrackServicesWithIAM;
 
 const renderComponent = ({
   isListing,
@@ -33,7 +35,7 @@ describe('DisplayName Component', () => {
   it('In listing, should display the display name with info icon', async () => {
     const { queryByTestId } = renderComponent({
       isListing: true,
-      vs: vrackServicesList[2] as VrackServicesWithIAM,
+      vs: vrackServicesListMocks[2] as VrackServicesWithIAM,
     });
     expect(queryByTestId('warning-icon')).toBeDefined();
   });
@@ -41,7 +43,7 @@ describe('DisplayName Component', () => {
   it('In listing, should display the display name with loader', async () => {
     const { queryByTestId } = renderComponent({
       isListing: true,
-      vs: vrackServicesList[3] as VrackServicesWithIAM,
+      vs: vrackServicesListMocks[3] as VrackServicesWithIAM,
     });
     expect(queryByTestId('vs-loader-operation-in-progress')).toBeDefined();
   });
@@ -56,7 +58,7 @@ describe('DisplayName Component', () => {
 
   it('In Dashboard, should display the display name with disabled edit action', async () => {
     const { queryByTestId } = renderComponent({
-      vs: vrackServicesList[2] as VrackServicesWithIAM,
+      vs: vrackServicesListMocks[2] as VrackServicesWithIAM,
     });
     expect(queryByTestId('edit-button')).toHaveProperty('disabled');
   });

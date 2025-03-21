@@ -2,7 +2,7 @@ import React from 'react';
 import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { OsdsSpinner } from '@ovhcloud/ods-components/react';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
-import { useVrackService } from '@/data/hooks';
+import { useVrackService } from '@ovh-ux/manager-network-common';
 import { urls } from '@/routes/routes.constants';
 
 export default function EndpointsTab() {

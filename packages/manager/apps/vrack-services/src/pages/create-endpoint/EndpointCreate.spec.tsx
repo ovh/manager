@@ -1,21 +1,17 @@
 import { describe, it } from 'vitest';
 import '@testing-library/jest-dom';
 import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
-import { waitFor, fireEvent } from '@testing-library/react';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-import { eligibleManagedServiceResponse } from 'mocks/vrack-services/vrack-services';
+import { vrackServicesListMocks } from '@ovh-ux/manager-network-common';
+import { iamResourcesMocks } from '@/data/mocks/iam';
 import {
-  assertOsdFormInputInError,
-  changeInputValueByLabelText,
   changeSelectValueByLabelText,
-  clickOnRadioByName,
   getButtonByVariant,
   labels,
   renderTest,
 } from '../../test-utils';
-import vrackServicesList from '../../../mocks/vrack-services/get-vrack-services.json';
+
 import { urls } from '@/routes/routes.constants';
-import { iamResources } from '../../../mocks/iam/iam';
 
 describe('Vrack Services endpoint creation page test suite', () => {
   it('should create an endpoint', async () => {
@@ -23,7 +19,7 @@ describe('Vrack Services endpoint creation page test suite', () => {
       nbVs: 21,
       initialRoute: urls.createEndpoint.replace(
         ':id',
-        vrackServicesList[20].id,
+        vrackServicesListMocks[20].id,
       ),
       nbEligibleService: 1,
     });
@@ -38,7 +34,7 @@ describe('Vrack Services endpoint creation page test suite', () => {
 
     await changeSelectValueByLabelText({
       selectLabel: labels.endpoints.serviceNameLabel,
-      value: iamResources[0].displayName,
+      value: iamResourcesMocks[0].displayName,
     });
 
     await getButtonByVariant({
@@ -49,7 +45,7 @@ describe('Vrack Services endpoint creation page test suite', () => {
 
     await changeSelectValueByLabelText({
       selectLabel: labels.endpoints.subnetLabel,
-      value: vrackServicesList[20].currentState.subnets[0].cidr,
+      value: vrackServicesListMocks[20].currentState.subnets[0].cidr,
     });
 
     await getButtonByVariant({
