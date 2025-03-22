@@ -20,8 +20,8 @@ export type ProductNavReshuffleContextType = {
   setNavigationTree: (tree: Node) => void;
 };
 
-const ProductNavReshuffleContext = createContext<
-  ProductNavReshuffleContextType
->({} as ProductNavReshuffleContextType);
+const ProductNavReshuffleContext = createContext<ProductNavReshuffleContextType | null>(
+  null,
+);
 
 export default ProductNavReshuffleContext;
