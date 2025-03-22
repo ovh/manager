@@ -18,7 +18,7 @@
     "start": "lerna exec --stream --scope='@ovh-ux/manager-pci-databases-analytics-app' --include-dependencies -- npm run build --if-present",
     "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-pci-databases-analytics-app' --include-dependencies -- npm run dev --if-present",
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-pci-databases-analytics-app' --include-dependencies -- npm run dev:watch --if-present",
-    "test": "vitest run",
+    "test": "vitest run --pool=threads",
     "test-ui": "vitest --ui --coverage.enabled=true"
   },
   "dependencies": {
@@ -89,7 +89,6 @@
     "@types/node": "^20.10.6",
     "@types/react": "^18.2.45",
     "@types/react-dom": "^18.2.18",
-    "@vitejs/plugin-react": "^4.2.1",
     "@vitest/coverage-v8": "^2.1.9",
     "@vitest/ui": "^2.1.9",
     "typescript": "^5.3.3",
