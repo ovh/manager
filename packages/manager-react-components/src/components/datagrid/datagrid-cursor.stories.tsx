@@ -10,6 +10,7 @@ import { useColumnFilters } from '../filters';
 import {
   columns,
   columnsFilters,
+  columnsVisibility,
   columnsSearchAndFilters,
 } from './datagrid.mock';
 import { ActionMenu } from '../navigation';
@@ -79,6 +80,8 @@ const DatagridStory = (args) => {
         onFetchNextPage={fetchNextPage}
         totalItems={data?.length}
         filters={{ filters, add: addFilter, remove: removeFilter }}
+        columnVisibility={args.columnVisibility}
+        onColumnVisibilityChange={args.onColumnVisibilityChange}
         topbar={args.topbar}
         isLoading={args.isLoading}
         {...(args.search
@@ -115,6 +118,7 @@ Basic.args = {
   totalItems: 20,
   isSortable: false,
   onFetchNextPage: true,
+  columnVisibility: [],
 };
 
 export const Empty = DatagridStory.bind({});
@@ -201,6 +205,18 @@ Filters.args = {
   columns: columnsFilters,
 };
 
+export const Visibility = DatagridStory.bind({});
+
+Visibility.args = {
+  columnVisibility: ['label', 'price'],
+  items: [...Array(10).keys()].map((_, i) => ({
+    label: `Item #${i}`,
+    price: Math.floor(1 + Math.random() * 100),
+  })),
+  columns: columnsVisibility,
+  onColumnVisibilityChange: undefined,
+};
+
 export const Topbar = DatagridStory.bind({});
 
 const TopbarComponent = () => (
@@ -220,6 +236,7 @@ Topbar.args = {
     onSearch: () => {},
   },
   topbar: <TopbarComponent />,
+  onColumnVisibilityChange: undefined,
 };
 
 export const WithSubComponent = DatagridStory.bind({});
