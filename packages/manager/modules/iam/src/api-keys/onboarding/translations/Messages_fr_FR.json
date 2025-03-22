@@ -1,0 +1,5 @@
+{
+  "iam_api_keys_onboarding_more_information": "En savoir plus",
+  "iam_api_keys_onboarding_description": "Toute application souhaitant communiquer avec l'API OVHcloud doit être déclarée à l'avance.",
+  "iam_api_keys_onboarding_description_bis": "Pour créer votre première clé, cliquez sur le bouton \"Créer une clé API\"."
+}
