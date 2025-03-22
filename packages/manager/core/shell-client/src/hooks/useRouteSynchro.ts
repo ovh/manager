@@ -7,11 +7,11 @@ export const useRouteSynchro = () => {
   const { shell } = React.useContext(ShellContext);
 
   React.useEffect(() => {
-    shell.routing.stopListenForHashChange();
+    shell?.routing?.stopListenForHashChange();
   }, []);
 
   React.useEffect(() => {
-    shell.routing.onHashChange();
+    shell?.routing?.onHashChange();
   }, [location]);
 };
 
