@@ -1,0 +1,18 @@
+{
+  "log_subscription_tile_title": "Ces logs sont transférés dans Logs Data Platform",
+  "log_subscription_serviceName_tile_label": "Nom du service",
+  "log_subscription_button_unsubscribe_label": "Se désabonner",
+  "log_subscription_empty_tile_title": "Flux",
+  "log_subscription_empty_tile_description": "En vous abonnant à ce flux, vous pouvez transférer vos logs directement dans Logs Data Platform d'OVHcloud qui vous permet de faire des recherches plus avancées, créer des alertes et des visualisations ou bien tout simplement les archiver.",
+  "log_subscription_empty_tile_button_know_more": "En savoir plus sur Logs Data Platform",
+  "log_subscription_empty_tile_button_subscribe": "S'abonner",
+  "log_subscription_list_title": "Utiliser vos logs",
+  "log_subscription_list_button_subscribe_more": "S'abonner sur un autre flux de données",
+  "log_subscription_terminate_modal_headline": "Se désabonner",
+  "log_subscription_terminate_modal_delete_input_label": "Veuillez entrer le mot « TERMINATE » pour vous désabonner du flux de données.",
+  "log_subscription_terminate_modal_confirm_button_label": "Se désabonner",
+  "log_subscription_unsubscribe_success": "Votre désabonnement a réussi.",
+  "log_subscription_unsubscribe_error": "Votre désabonnement a rencontré une erreur. {{error}}",
+  "log_subscription_subscribe_success": "Votre abonnement a réussi.",
+  "log_subscription_subscribe_error": "Votre abonnement a rencontré une erreur. {{error}}"
+}

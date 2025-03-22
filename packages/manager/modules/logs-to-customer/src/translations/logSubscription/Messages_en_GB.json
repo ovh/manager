@@ -1,0 +1,18 @@
+{
+  "log_subscription_tile_title": "These logs have been transferred to the Logs Data Platform",
+  "log_subscription_serviceName_tile_label": "Service name",
+  "log_subscription_button_unsubscribe_label": "Unsubscribe",
+  "log_subscription_empty_tile_title": "Streams",
+  "log_subscription_empty_tile_description": "Subscribing to this stream allows you to upload your logs directly to OVHcloud’s Logs Data Platform, where you can perform advanced searches, create alerts and visualisations, or simply archive them.",
+  "log_subscription_empty_tile_button_know_more": "Find out more about Logs Data Platform",
+  "log_subscription_empty_tile_button_subscribe": "Subscribe",
+  "log_subscription_list_title": "Use your logs",
+  "log_subscription_list_button_subscribe_more": "Subscribe to another data stream",
+  "log_subscription_terminate_modal_headline": "Unsubscribe",
+  "log_subscription_terminate_modal_delete_input_label": "Please enter the word “TERMINATE” to unsubscribe from the data stream.",
+  "log_subscription_terminate_modal_confirm_button_label": "Unsubscribe",
+  "log_subscription_unsubscribe_success": "You are unsubscribed!",
+  "log_subscription_unsubscribe_error": "Unable to unsubscribe you. {{error}}",
+  "log_subscription_subscribe_success": "You are subscribed!",
+  "log_subscription_subscribe_error": "Unable to complete subscription. {{error}}"
+}

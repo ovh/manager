@@ -1,0 +1,5 @@
+{
+  "log_tail_search_placeholder": "Ein Element hervorheben",
+  "log_tail_polling": "Warten auf Logs …",
+  "log_tail_error_get_logs": "Beim Abrufen der Logs ist ein Fehler aufgetreten."
+}

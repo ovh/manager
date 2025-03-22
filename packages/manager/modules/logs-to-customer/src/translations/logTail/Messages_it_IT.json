@@ -1,0 +1,5 @@
+{
+  "log_tail_search_placeholder": "Evidenziare un elemento",
+  "log_tail_polling": "In attesa dei log...",
+  "log_tail_error_get_logs": "Si è verificato un errore durante il recupero dei log"
+}

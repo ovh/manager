@@ -8,6 +8,7 @@ import {
 import { renderTestApp } from '@/utils/tests/renderTestApp';
 import { labels } from '@/utils/tests/init.i18n';
 import { okmsMock } from '@/mocks/kms/okms.mock';
+import { FEATURES } from '@/utils/feature-availability/feature-availability.constants';
 
 describe('KMS dashboard test suite', () => {
   it('should display an error if the API is KO', async () => {
@@ -22,13 +23,21 @@ describe('KMS dashboard test suite', () => {
   });
 
   it('should display the kms dashboard page', async () => {
-    await renderTestApp(`/${okmsMock[0].id}`);
+    await renderTestApp(`/${okmsMock[0].id}`, {
+      feature: FEATURES.LOGS,
+    });
 
     await waitFor(
-      () =>
+      () => {
         expect(
           screen.getAllByText(labels.dashboard.general_informations)[0],
-        ).toBeVisible(),
+        ).toBeVisible();
+        expect(screen.getByText(labels.dashboard.encrypted_keys)).toBeVisible();
+        expect(
+          screen.getByText(labels.dashboard.access_certificates),
+        ).toBeVisible();
+        expect(screen.getByText(labels.dashboard.logs)).toBeVisible();
+      },
 
       WAIT_FOR_DEFAULT_OPTIONS,
     );

@@ -1,0 +1,6 @@
+{
+  "log_stream_title_tile_label": "Streams",
+  "log_stream_button_graylog_watch_label": "Auf Graylog beobachten",
+  "log_stream_indexing_active": "Aktiv",
+  "log_stream_indexing_inactive": "Pausiert"
+}
