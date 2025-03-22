@@ -1,6 +1,9 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  ShellContext,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { Links, LinkType } from '@ovh-ux/manager-react-components';
 import { OdsSkeleton, OdsBadge } from '@ovhcloud/ods-components/react';
 import {
@@ -15,6 +18,7 @@ import {
   getBackupBadgeStatus,
 } from '@/utils/veeamBackupBadge';
 import TEST_IDS from '@/utils/testIds.constants';
+import { TRACKING } from '@/tracking.constants';
 
 type TTileProps = {
   vcdOrganization: VCDOrganization;
@@ -25,6 +29,7 @@ export default function BackupTileItem({
 }: Readonly<TTileProps>) {
   const { t } = useTranslation('dashboard');
   const { shell } = React.useContext(ShellContext);
+  const { trackClick } = useOvhTracking();
   const { data: vcdBackup, isLoading, error } = useVeeamBackup(
     getBackupIdFromOrganization(vcdOrganization),
   );
@@ -60,6 +65,8 @@ export default function BackupTileItem({
         type={LinkType.external}
         label={t('managed_vcd_dashboard_backup_link')}
         href={veeamHref}
+        data-testid={TEST_IDS.dashboardVeeamBackupLink}
+        onClickReturn={() => trackClick(TRACKING.dashboard.goToManageBackup)}
       />
     </div>
   );

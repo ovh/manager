@@ -6,6 +6,7 @@ import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import { OdsButton, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { ID_LABEL } from '../../dashboard.constants';
 import { VHOST_LABEL, VHOSTS_LABEL } from './datacentreCompute.constants';
 import {
@@ -20,6 +21,7 @@ import DatagridContainer from '@/components/datagrid/container/DatagridContainer
 import { subRoutes, urls } from '@/routes/routes.constant';
 import { FEATURES } from '@/utils/features.constants';
 import TEST_IDS from '@/utils/testIds.constants';
+import { TRACKING } from '@/tracking.constants';
 
 export default function ComputeListingPage() {
   const { id, vdcId } = useParams();
@@ -29,6 +31,7 @@ export default function ComputeListingPage() {
   const { data: features } = useFeatureAvailability([
     FEATURES.COMPUTE_SPECIAL_OFFER_BANNER,
   ]);
+  const { trackClick } = useOvhTracking();
 
   const columns = [
     {
@@ -96,7 +99,10 @@ export default function ComputeListingPage() {
           <OdsButton
             label={t('managed_vcd_vdc_compute_order_cta')}
             variant="outline"
-            onClick={() => navigate(subRoutes.order)}
+            onClick={() => {
+              trackClick(TRACKING.compute.addVirtualHost);
+              navigate(subRoutes.order);
+            }}
             data-testid={TEST_IDS.computeOrderCta}
           />
         }

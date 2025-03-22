@@ -50,7 +50,7 @@ export const Routes: any = [
             ),
             handle: {
               tracking: {
-                pageName: 'dashboard',
+                pageName: 'general-informations',
                 pageType: PageType.dashboard,
               },
             },
@@ -111,7 +111,7 @@ export const Routes: any = [
             ),
             handle: {
               tracking: {
-                pageName: 'datacentres',
+                pageName: 'datacenters',
                 pageType: PageType.listing,
               },
             },
@@ -125,7 +125,7 @@ export const Routes: any = [
         ),
         handle: {
           tracking: {
-            pageName: 'datacentre',
+            pageName: 'datacenter',
             pageType: PageType.dashboard,
           },
         },
@@ -140,7 +140,7 @@ export const Routes: any = [
             ),
             handle: {
               tracking: {
-                pageName: 'dashboard',
+                pageName: 'datacenter',
                 pageType: PageType.dashboard,
               },
             },
@@ -172,7 +172,7 @@ export const Routes: any = [
             ),
             handle: {
               tracking: {
-                pageName: 'dashboard',
+                pageName: 'storage',
                 pageType: PageType.listing,
               },
             },
@@ -202,7 +202,7 @@ export const Routes: any = [
             ),
             handle: {
               tracking: {
-                pageName: 'dashboard',
+                pageName: 'compute',
                 pageType: PageType.listing,
               },
             },
