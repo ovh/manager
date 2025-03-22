@@ -7,7 +7,7 @@
   "pci_projects_project_storages_containers_users_user_management": "Nutzerverwaltung",
   "pci_projects_project_storages_containers_users_user_description": "In diesem Abschnitt können Sie einen neuen Object Storage User hinzufügen, Ihren Zugriffsschlüssel und geheimen Schlüssel abrufen und die Zugriffsrichtlinien für User verwalten.",
   "pci_projects_project_storages_containers_users_user_description_warning": "Sobald Ihr User erstellt wurde, müssen im Bereich „User und Rollen“ die Object Storage Credentials für diesen User generiert werden.",
-  "pci_projects_project_storages_containers_users_add_user": "Nutzer hinzufügen",
+  "pci_projects_project_storages_containers_users_add_user": "User hinzufügen",
   "pci_projects_project_storages_containers_users_import_success_message": "Die JSON-Datei für den Nutzer {{user}} wurde komplett heruntergeladen.",
   "pci_projects_project_storages_containers_users_import_error_message": "Beim Herunterladen der JSON-Datei für den Nutzer ist ein Fehler aufgetreten: {{ message }}.",
   "pci_projects_project_storages_containers_users_accesskey": "Zugriffsschlüssel",

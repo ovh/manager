@@ -11,7 +11,7 @@
   "pci_projects_project_storages_containers_users_import_success_message": "Il download del file JSON associato all'utente {{user}} è stato effettuato correttamente.",
   "pci_projects_project_storages_containers_users_import_error_message": "Si è verificato un errore durante il download del file JSON associato all'utente: {{ message }}.",
   "pci_projects_project_storages_containers_users_accesskey": "Chiave di accesso",
-  "pci_projects_project_storages_containers_users_download_rclone_file": "Scarica il file Rclone",
+  "pci_projects_project_storages_containers_users_download_rclone_file": "Scaricare il file Rclone",
   "pci_projects_project_storages_containers_users_see_secret_key": "Mostra la chiave segreta",
   "pci_projects_project_storages_containers_users_show_secret_key_success": "La chiave segreta dell’utente {{user}} è {{secret}}.",
   "pci_projects_project_storages_containers_users_add_success_field_secret_key": "La tua chiave segreta:",
