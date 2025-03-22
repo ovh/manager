@@ -35,7 +35,7 @@ export const ManagerButton = ({
   const { t } = useTranslation('iam');
   const { isAuthorized } = useAuthorizationIam(iamActions, urn, isIamTrigger);
 
-  if (isAuthorized) {
+  if (isAuthorized || !(iamActions && urn)) {
     return (
       <OdsButton data-testid="manager-button" {...restProps} label={label} />
     );
