@@ -11,7 +11,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import { Instance } from '@/api/data/instance';
+import { canAttachVolume, Instance } from '@/api/data/instance';
 import { useInstances } from '@/api/hooks/useInstance';
 import { useAttachVolume, useVolume } from '@/api/hooks/useVolume';
 import NoInstanceWarningMessage from './NoInstanceAvailableWarningMessage';
@@ -21,22 +21,28 @@ export default function AttachStorage() {
   const { projectId, volumeId } = useParams();
   const { t } = useTranslation('attach');
   const { addError, addSuccess } = useNotifications();
-  const { data: volume } = useVolume(projectId, volumeId);
+  const { data: volume, isPending: isVolumePending } = useVolume(
+    projectId,
+    volumeId,
+  );
   const { data: dataInstances, isPending: isInstancesPending } = useInstances(
     projectId,
     volume?.region,
   );
-  const instances = useMemo(
-    () =>
-      !!dataInstances &&
+  const instances = useMemo(() => {
+    let filteredInstances = (dataInstances ?? []).filter(canAttachVolume);
+
+    if (
+      !!volume &&
       !!volume.availabilityZone &&
       volume.availabilityZone !== 'any'
-        ? dataInstances.filter(
-            (i) => i.availabilityZone === volume.availabilityZone,
-          )
-        : dataInstances,
-    [dataInstances, volume],
-  );
+    )
+      filteredInstances = filteredInstances.filter(
+        (i) => i.availabilityZone === volume.availabilityZone,
+      );
+
+    return filteredInstances;
+  }, [dataInstances, volume]);
   const [selectedInstance, setSelectedInstance] = useState<Instance>(null);
   const onClose = () => navigate('..');
 
@@ -105,7 +111,7 @@ export default function AttachStorage() {
     },
   });
 
-  const isPending = isInstancesPending || isAttachPending;
+  const isPending = isInstancesPending || isVolumePending || isAttachPending;
   const canAttach = !isPending && selectedInstance?.id;
 
   // redirect to listing if volume is already attached
