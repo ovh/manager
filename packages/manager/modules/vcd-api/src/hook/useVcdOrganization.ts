@@ -10,6 +10,8 @@ import { getVcdOrganization, getVmwareCloudDirectorBackup } from '../api';
 import { getRegionNameFromAzName } from './useVeeamBackup';
 import {
   BackupStatus,
+  UseOrganizationListReturn,
+  UseOrganizationWithBackupStatusListReturn,
   VCDOrganization,
   VCDOrganizationWithBackupStatus,
   VeeamBackup,
@@ -47,7 +49,11 @@ export const getBackupIdFromOrganization = (organization: VCDOrganization) =>
 
 export const organizationListQueryKey = [VCD_ORGANIZATION_ROUTE];
 
-export const useOrganizationList = ({ pageSize }: { pageSize?: number }) =>
+export const useOrganizationList = ({
+  pageSize,
+}: {
+  pageSize?: number;
+}): UseOrganizationListReturn =>
   useResourcesIcebergV2<VCDOrganization>({
     route: VCD_ORGANIZATION_ROUTE,
     queryKey: organizationListQueryKey,
@@ -58,7 +64,7 @@ export const useOrganizationWithBackupStatusList = ({
   pageSize,
 }: {
   pageSize?: number;
-}) => {
+}): UseOrganizationWithBackupStatusListReturn => {
   const { flattenData, isLoading, ...result } = useOrganizationList({
     pageSize,
   });
