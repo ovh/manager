@@ -44,5 +44,7 @@ jobs:
             echo "NO PR FOUND for branch $BRANCH"
           else
             echo "Base Branch is $BASE_BRANCH"
+            echo "current Branch is ${GITHUB_REF#refs/heads/}"
             echo "BASE_BRANCH=$BASE_BRANCH" >> $GITHUB_ENV
           fi
+          yarn test:coverage
