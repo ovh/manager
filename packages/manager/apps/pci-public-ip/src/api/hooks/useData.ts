@@ -1,13 +1,11 @@
 import { useCallback, useEffect, useState } from 'react';
 import { TInstance } from '@ovh-ux/manager-pci-common';
-import { TCountry, TIpType, TRegion } from '@/api/types';
-import { useIpTypes } from '@/api/hooks/useIpTypes';
+import { TCountry, TRegion } from '@/api/types';
 import { useFloatingRegions } from '@/api/hooks/useFloatingRegions';
 import { useCountries } from '@/api/hooks/useCountries';
 import { useInstances } from '@/api/hooks/useInstances';
 
 export type TDataState = {
-  ipTypes: TIpType[];
   countries: TCountry[];
   instances: {
     all: TInstance[];
@@ -23,13 +21,11 @@ enum IPType {
 }
 
 export const useData = (projectId: string, regionName: string) => {
-  const { ipTypes } = useIpTypes();
   const { countries } = useCountries(projectId, regionName);
   const { data: instances } = useInstances(projectId);
   const { floatingRegions: regions } = useFloatingRegions(projectId);
 
   const [dataState, setDataState] = useState<TDataState>({
-    ipTypes: [],
     countries: [],
     instances: {
       all: [],
@@ -48,7 +44,6 @@ export const useData = (projectId: string, regionName: string) => {
     );
     setDataState((prev) => ({
       ...prev,
-      ipTypes,
       countries,
       instances: {
         all: instances || [],
@@ -57,7 +52,7 @@ export const useData = (projectId: string, regionName: string) => {
       },
       regions,
     }));
-  }, [ipTypes, countries, instances, regions]);
+  }, [countries, instances, regions]);
 
   const getInstanceById = useCallback(
     (id: string): TInstance =>

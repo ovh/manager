@@ -1,20 +1,10 @@
-export enum IPTypeEnum {
-  FAILOVER = 'failover_ip',
-  FLOATING = 'floating_ip',
-}
+import { PublicIp } from '@/types/publicip.type';
 
 export enum RegionType {
   '1AZ' = 'region',
   '3AZ' = 'region-3-az',
   LZ = 'localzone',
 }
-
-export type TIpType = {
-  name: string;
-  label: string;
-  description: string;
-  price: string | number;
-};
 
 export type TIpAddress = {
   gatewayIp?: string;
@@ -58,7 +48,7 @@ export type TInstance = {
 };
 
 export type TFormState = {
-  ipType: IPTypeEnum;
+  ipType: PublicIp;
   failoverCountry?: TCountry;
   floatingRegion?: TRegion;
   floatingGatewaySize: string;

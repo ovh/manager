@@ -19,11 +19,11 @@ import HidePreloader from '@/core/HidePreloader';
 import { IpTypeStep } from '@/pages/order/steps/IpTypeStep';
 import { FailoverSteps } from '@/pages/order/steps/FailoverSteps';
 import { FloatingSteps } from '@/pages/order/steps/FloatingSteps';
-import { IPTypeEnum } from '@/api/types';
 import { useOrderStore } from '@/pages/order/hooks/useStore';
 import { useOrderParams } from '@/pages/order/hooks/useParams';
 import { initStartupSteps } from '@/pages/order/utils/startupSteps';
 import { useData } from '@/api/hooks/useData';
+import { PublicIp } from '@/types/publicip.type';
 
 export default function OrderPage(): JSX.Element {
   const { projectId } = useParams();
@@ -116,11 +116,8 @@ export default function OrderPage(): JSX.Element {
       <PciDiscoveryBanner project={project} />
 
       <div className="flex flex-col gap-y-4 mt-4">
-        <IpTypeStep
-          projectId={projectId}
-          regionName={context.environment.getRegion()}
-        />
-        {form.ipType === IPTypeEnum.FAILOVER ? (
+        <IpTypeStep projectId={projectId} />
+        {form.ipType === PublicIp.FAILOVER ? (
           <FailoverSteps
             projectId={projectId}
             regionName={context.environment.getRegion()}
