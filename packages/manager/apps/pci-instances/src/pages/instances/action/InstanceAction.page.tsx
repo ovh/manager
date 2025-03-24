@@ -13,6 +13,9 @@ import queryClient from '@/queryClient';
 import { isApiErrorResponse, replaceToSnakeCase } from '@/utils';
 import BaseInstanceActionPage from './BaseAction.page';
 import { RescueActionPage } from './RescueAction.page';
+import { useXX } from '@/data/hooks/instance/action/useXX';
+import { useProjectId } from '@/hooks/project/useProjectId';
+import { Spinner } from '@/components/spinner/Spinner.component';
 
 export type TSectionType =
   | 'delete'
@@ -31,9 +34,10 @@ const actionSectionRegex = /(?:rescue\/(start|end)|(?<!rescue\/)(start|stop|shel
 const InstanceAction: FC = () => {
   const { t } = useTranslation(['actions', 'common']);
   const navigate = useNavigate();
-  const { projectId, instanceId } = useParams() as {
-    projectId: string;
-    instanceId?: string;
+  const projectId = useProjectId();
+
+  const { instanceId } = useParams() as {
+    instanceId: string;
   };
   const { addError, addSuccess, addInfo } = useNotifications();
   const section = usePathMatch<TSectionType>(actionSectionRegex);
@@ -43,14 +47,12 @@ const InstanceAction: FC = () => {
     [section],
   );
 
-  const instance = useMemo(
-    () => getInstanceById(projectId, instanceId, queryClient),
-    [instanceId, projectId],
-  );
+  const { instance, isFetching, isError, isFetched } = useXX(instanceId);
 
   const instanceName = instance?.name;
 
-  const canExecuteAction = !!instanceId && !!instanceName && !!section;
+  // const canExecuteAction =
+  //   !!instanceId && !!section && !isError && !isLoading && !!instance;
 
   const executeSuccessCallback = useCallback((): void => {
     if (!instance) return;
@@ -114,16 +116,18 @@ const InstanceAction: FC = () => {
   };
 
   const handleUnknownError = useCallback(() => {
-    if (!canExecuteAction)
+    if (isError)
       addError(t('pci_instances_actions_instance_unknown_error_message'), true);
-  }, [addError, canExecuteAction, t]);
+  }, [addError, isError, t]);
 
   useEffect(() => {
     handleUnknownError();
-  }, [handleUnknownError, instanceId, instanceName, section]);
+  }, [handleUnknownError]);
+
+  console.log(isFetched && !instanceName);
 
   if (!instanceId || !section) return <NotFound />;
-  if (!instanceName) return <Navigate to={'..'} />;
+  if (isFetched && !instanceName) return <Navigate to={'..'} />;
 
   const title = t(`pci_instances_actions_${snakeCaseSection}_instance_title`);
 
@@ -139,7 +143,11 @@ const InstanceAction: FC = () => {
   return section === 'rescue/start' || section === 'rescue/end' ? (
     <RescueActionPage {...modalProps} section={section} />
   ) : (
-    <BaseInstanceActionPage {...modalProps} section={section} />
+    <BaseInstanceActionPage
+      {...modalProps}
+      isLoading={isFetching}
+      section={section}
+    />
   );
 };
 
