@@ -29,7 +29,9 @@ jobs:
       # This task is for running the jest tests outside microApps
       - name: Run tests Jest
         run: yarn test:jest
-      - name: Run tests Turbo
+      - name: Fetch all branches
+        run: git fetch --all
+      - name: GET BASE BRANCH
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: ${{ github.ref_name }}
@@ -45,4 +47,6 @@ jobs:
             echo "current Branch is ${GITHUB_REF#refs/heads/}"
             echo "BASE_BRANCH=$BASE_BRANCH" >> $GITHUB_ENV
           fi
-          yarn test:coverage
+      - name: Run Tests Coverage
+        run: ./scripts/test-coverage.sh
+        shell: bash
