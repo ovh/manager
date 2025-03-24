@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.21.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.21.1...@ovh-ux/manager-key-management-service-app@0.21.2) (2025-03-24)
+
+
+### Bug Fixes
+
+* **kms:** fix deactivate modal ([649dfc2](https://github.com/ovh/manager/commit/649dfc217b022244551b304a72de1f8f008278a1)), closes [#MANAGER-16452](https://github.com/ovh/manager/issues/MANAGER-16452)
+
+
+
+
+
 ## [0.21.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.21.0...@ovh-ux/manager-key-management-service-app@0.21.1) (2025-03-21)
 
 **Note:** Version bump only for package @ovh-ux/manager-key-management-service-app
