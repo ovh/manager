@@ -39,5 +39,8 @@
   "pci_additional_ip_price_per_month": "{{ price }}/mes",
   "pci_additional_ip_creating_floating_ip": "Crear una Floating IP",
   "pci_additional_ip_create_floating_ip_success": "Se está asignando una nueva Floating IP...",
-  "pci_additional_ip_create_floating_ip_error": "Se ha producido un error al asignar la Floating IP: {{ message }}"
+  "pci_additional_ip_create_floating_ip_error": "Se ha producido un error al asignar la Floating IP: {{ message }}",
+  "pci_floating_ip_price_per_hour": "desde ",
+  "pci_floating_ip_resume_hour": "Horario",
+  "pci_floating_ip_resume_price": "Precio: "
 }
