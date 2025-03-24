@@ -18,7 +18,7 @@ export function DatatableSortableHeader<TData>({
     icon = <ChevronDown className="ml-2 h-4 w-4" />;
   }
 
-  const buttonClass = `px-0 font-semibold hover:bg-transparent bg-transparent ${
+  const buttonClass = `px-0 font-semibold bg-transparent hover:bg-transparent active:bg-transparent active:text-primary-500 ${
     sort
       ? 'text-primary-500 hover:text-primary-500'
       : 'text-primary-800 hover:text-primary-800'
