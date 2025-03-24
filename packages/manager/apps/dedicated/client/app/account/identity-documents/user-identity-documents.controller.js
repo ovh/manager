@@ -151,12 +151,6 @@ export default class AccountUserIdentityDocumentsController {
 
   closeInformationModal() {
     this.handleInformationModal(false);
-    // We try to notify the container that the action required by the KYCIndiaModal has been done
-    // and we can switch to the next one if necessary
-    if (this.$injector.has('shellClient')) {
-      const shellClient = this.$injector.get('shellClient');
-      shellClient.ux.notifyModalActionDone('IdentityDocumentsModal');
-    }
   }
 
   addDocuments(proofType, documentType, files, isReset) {

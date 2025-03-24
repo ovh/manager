@@ -139,12 +139,6 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
           window.location.href = callbackUrl;
           return callbackUrl;
         }
-        // We try to notify the container that the action required by the PaymentModal has been done
-        // and we can switch to the next one if necessary
-        if ($injector.has('shellClient')) {
-          const shellClient = $injector.get('shellClient');
-          shellClient.ux.notifyModalActionDone('PaymentModal');
-        }
 
         return goPaymentList(
           {
@@ -198,6 +192,9 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
       },
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('billing_payment_method_add_title'),
+    },
+    onExit: /* @ngInject */ (shellClient) => {
+      shellClient.ux.notifyModalActionDone('PaymentModal');
     },
   });
 

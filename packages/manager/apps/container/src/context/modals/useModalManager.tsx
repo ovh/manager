@@ -159,16 +159,18 @@ export const useModalManager = (
 
   useEffect(() => {
     if (
-      isUserMatchingCriterion === false ||
-      isOnExcludedPage === true ||
-      isOnIncludedPage === false ||
-      isFeatureAvailable === false ||
-      (urn && authorizations && isAuthorized === false) ||
-      isTimeToShowModal === false ||
-      isDataMatchingCriterion === false
+      !!configuration &&
+      (isUserMatchingCriterion === false ||
+        isOnExcludedPage === true ||
+        isOnIncludedPage === false ||
+        isFeatureAvailable === false ||
+        (urn && authorizations && isAuthorized === false) ||
+        isTimeToShowModal === false ||
+        isDataMatchingCriterion === false)
     ) {
       setIsDisplayed(false);
     } else if (
+      !!configuration &&
       isUserMatchingCriterion &&
       !isOnExcludedPage &&
       isOnIncludedPage &&
