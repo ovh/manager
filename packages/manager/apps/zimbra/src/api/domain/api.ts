@@ -13,19 +13,17 @@ import { domainDiagnosticMock } from '../_mock_';
 
 export const getZimbraPlatformDomains = ({
   platformId,
-  organizationId,
+  searchParams,
   pageParam,
   pageSize = APIV2_DEFAULT_PAGESIZE,
 }: {
   platformId: string;
-  organizationId?: string;
+  searchParams?: string;
   pageParam?: unknown;
   pageSize?: number;
 }) =>
   fetchIcebergV2<DomainType[]>({
-    route: `${getApiPath(platformId)}domain${
-      organizationId ? `?organizationId=${organizationId}` : ''
-    }`,
+    route: `${getApiPath(platformId)}domain${searchParams}`,
     pageSize,
     cursor: pageParam as string,
   });

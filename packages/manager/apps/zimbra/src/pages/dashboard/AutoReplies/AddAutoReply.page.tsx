@@ -38,12 +38,7 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import {
-  useAccount,
-  useAccountList,
-  useDomains,
-  useGenerateUrl,
-} from '@/hooks';
+import { useAccount, useAccounts, useDomains, useGenerateUrl } from '@/hooks';
 import { AutoReplySchema, autoReplySchema } from '@/utils';
 import Loading from '@/components/Loading/Loading';
 import {
@@ -201,13 +196,11 @@ export default function AddAutoReply() {
     }
   }, [selectedDomain]);
 
-  const { data: orgAccounts, isLoading: isOrgAccountsLoading } = useAccountList(
-    {
-      enabled: !!formValues.sendCopy && !!selectedOrganizationId,
-      organizationId: selectedOrganizationId,
-      shouldFetchAll: true,
-    },
-  );
+  const { data: orgAccounts, isLoading: isOrgAccountsLoading } = useAccounts({
+    enabled: !!formValues.sendCopy && !!selectedOrganizationId,
+    organizationId: selectedOrganizationId,
+    shouldFetchAll: true,
+  });
 
   // @TODO: remove this when OdsSelect is fixed ODS-1565
   const [hackKeyOrgAccounts, setHackKeyOrgAccounts] = useState(Date.now());

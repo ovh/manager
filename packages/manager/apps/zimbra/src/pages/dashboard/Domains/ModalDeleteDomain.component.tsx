@@ -16,7 +16,7 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { useAccountList, useGenerateUrl, usePlatform } from '@/hooks';
+import { useAccounts, useGenerateUrl, usePlatform } from '@/hooks';
 import {
   deleteZimbraPlatformDomain,
   getZimbraPlatformDomainsQueryKey,
@@ -33,7 +33,7 @@ export default function ModalDeleteDomain() {
   const deleteDomainId = searchParams.get('deleteDomainId');
 
   const { platformId } = usePlatform();
-  const { data: accounts, isLoading } = useAccountList({
+  const { data: accounts, isLoading } = useAccounts({
     domainId: deleteDomainId,
   });
 

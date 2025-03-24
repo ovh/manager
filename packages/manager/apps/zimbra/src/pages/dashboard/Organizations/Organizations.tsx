@@ -19,7 +19,12 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { ResourceStatus } from '@/api/api.type';
-import { useOrganizationList, usePlatform, useGenerateUrl } from '@/hooks';
+import {
+  useOrganizations,
+  usePlatform,
+  useGenerateUrl,
+  useDebouncedValue,
+} from '@/hooks';
 import ActionButtonOrganization from './ActionButtonOrganization.component';
 import IdLink from './IdLink';
 import LabelChip from '@/components/LabelChip';
@@ -41,6 +46,7 @@ const columns: DatagridColumn<OrganizationItem>[] = [
     id: 'name',
     cell: (item: OrganizationItem) => <IdLink id={item.id} label={item.name} />,
     label: 'zimbra_organization_name',
+    isSearchable: true,
   },
   {
     id: 'label',
@@ -76,13 +82,22 @@ export default function Organizations() {
   const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
   const { platformUrn } = usePlatform();
+
+  const [
+    searchInput,
+    setSearchInput,
+    debouncedSearchInput,
+    setDebouncedSearchInput,
+  ] = useDebouncedValue('');
+
   const {
     data,
     fetchNextPage,
     hasNextPage,
     isLoading,
     isFetchingNextPage,
-  } = useOrganizationList({
+  } = useOrganizations({
+    organizationName: debouncedSearchInput,
     refetchInterval: DATAGRID_REFRESH_INTERVAL,
     refetchOnMount: DATAGRID_REFRESH_ON_MOUNT,
   });
@@ -115,8 +130,8 @@ export default function Organizations() {
     <div>
       <Outlet />
       {platformUrn && (
-        <>
-          <div className="flex items-center justify-between">
+        <Datagrid
+          topbar={
             <ManagerButton
               id="add-organization-btn"
               color={ODS_BUTTON_COLOR.primary}
@@ -126,23 +141,25 @@ export default function Organizations() {
               urn={platformUrn}
               iamActions={[IAM_ACTIONS.organization.create]}
               data-testid="add-organization-btn"
-              className="mb-6"
               icon={ODS_ICON_NAME.plus}
               label={t('common:add_organization')}
             />
-          </div>
-          <Datagrid
-            columns={columns.map((column) => ({
-              ...column,
-              label: t(column.label),
-            }))}
-            items={items}
-            totalItems={items.length}
-            hasNextPage={hasNextPage}
-            onFetchNextPage={fetchNextPage}
-            isLoading={isLoading || isFetchingNextPage}
-          />
-        </>
+          }
+          search={{
+            searchInput,
+            setSearchInput,
+            onSearch: (search) => setDebouncedSearchInput(search),
+          }}
+          columns={columns.map((column) => ({
+            ...column,
+            label: t(column.label),
+          }))}
+          items={items}
+          totalItems={items.length}
+          hasNextPage={hasNextPage}
+          onFetchNextPage={fetchNextPage}
+          isLoading={isLoading || isFetchingNextPage}
+        />
       )}
     </div>
   );
