@@ -9,9 +9,13 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { UpdateIamNameModal } from '@ovh-ux/manager-react-components';
-import { useServiceList } from '@/data/hooks';
+import { useServiceList } from '@ovh-ux/manager-network-common';
 import { PageName } from '@/utils/tracking';
 import { MessagesContext } from '@/components/feedback-messages/Messages.context';
+import {
+  getIamResourceQueryKey,
+  getIamResource,
+} from '@/data/api/get/iamResource';
 
 const sharedTrackingParams: TrackingClickParams = {
   location: PageLocation.popup,
@@ -24,7 +28,10 @@ export default function EditEndpointDisplayName() {
   const { t } = useTranslation('vrack-services/endpoints');
   const { trackClick, trackPage } = useOvhTracking();
   const navigate = useNavigate();
-  const { iamResources, refetchIamResources } = useServiceList(id);
+  const { iamResources, refetchIamResources } = useServiceList(id, {
+    getIamResourceQueryKey,
+    getIamResource,
+  });
 
   const resource = iamResources?.data.find((r) => r.urn === urn);
 

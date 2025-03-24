@@ -28,10 +28,11 @@ import {
   OsdsMessage,
 } from '@ovhcloud/ods-components/react';
 import { handleClick } from '@ovh-ux/manager-react-components';
+import { useCreateVrackServicesCart } from '@ovh-ux/manager-network-common';
 import { LoadingText } from '@/components/LoadingText.component';
 import { OrderSubmitModalContent } from '@/components/OrderSubmitModalContent.component';
 import { urls } from '@/routes/routes.constants';
-import { useCreateCart } from '@/data/hooks';
+import { useSendOrder } from '@/data/hooks/useSendOrder';
 
 const trackingParams: TrackingClickParams = {
   buttonType: ButtonType.button,
@@ -59,7 +60,7 @@ export default function CreateConfirmModal() {
     sendOrderError,
     isSendOrderPending,
     isSendOrderError,
-  } = useCreateCart();
+  } = useCreateVrackServicesCart(useSendOrder);
 
   const cancel = () => {
     trackClick({

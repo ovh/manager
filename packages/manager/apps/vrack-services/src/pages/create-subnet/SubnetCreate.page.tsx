@@ -17,11 +17,13 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useOvhTracking, PageType } from '@ovh-ux/manager-react-shell-client';
-import { FormField } from '@/components/FormField.component';
 import {
   getVrackServicesResourceListQueryKey,
   getVrackServicesResourceQueryKey,
-} from '@/data/api';
+  useUpdateVrackServices,
+  useVrackService,
+} from '@ovh-ux/manager-network-common';
+import { FormField } from '@/components/FormField.component';
 import { CreatePageLayout } from '@/components/layout-helpers';
 import {
   displayNameInputName,
@@ -36,15 +38,12 @@ import {
 } from './subnetCreate.constants';
 import { urls } from '@/routes/routes.constants';
 import { PageName } from '@/utils/tracking';
-import { MessagesContext } from '@/components/feedback-messages/Messages.context';
-import { useUpdateVrackServices, useVrackService } from '@/data/hooks';
 import { isValidVlanNumber } from '@/utils/vrack-services';
 import { isValidCidr } from '@/utils/cidr';
 
 export default function SubnetCreate() {
   const { t } = useTranslation('vrack-services/subnets');
   const { id } = useParams();
-  const { addSuccessMessage } = React.useContext(MessagesContext);
   const [displayName, setDisplayName] = React.useState<string | undefined>(
     undefined,
   );

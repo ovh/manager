@@ -33,7 +33,10 @@ import {
   handleClick,
   useFeatureAvailability,
 } from '@ovh-ux/manager-react-components';
-import { useVrackServicesList } from '@/data/hooks';
+import {
+  getVrackServicesResourceListQueryKey,
+  useVrackServicesList,
+} from '@ovh-ux/manager-network-common';
 import { VrackServicesDatagrid } from '@/pages/listing/VrackServicesDataGrid.component';
 import { PageLayout } from '@/components/layout-helpers';
 import { DeliveringMessages } from '@/components/DeliveringMessages.component';
@@ -41,7 +44,6 @@ import { betaVrackServicesLimit } from './listing.constants';
 import { urls } from '@/routes/routes.constants';
 import { SuccessMessages } from '@/components/feedback-messages/SuccessMessage.component';
 import { CHANGELOG_LINKS } from '@/utils/constants';
-import { getVrackServicesResourceListQueryKey } from '@/data/api';
 
 export default function Listing() {
   const { t } = useTranslation('vrack-services/listing');

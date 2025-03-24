@@ -8,8 +8,8 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { ActionMenu } from '@ovh-ux/manager-react-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { VrackServicesWithIAM } from '@ovh-ux/manager-network-common';
 import { urls } from '@/routes/routes.constants';
-import { VrackServicesWithIAM } from '@/types';
 import { isEditable } from '@/utils/vrack-services';
 
 export type SubnetsActionCellProps = {

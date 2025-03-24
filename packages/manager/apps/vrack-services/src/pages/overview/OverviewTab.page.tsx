@@ -9,7 +9,7 @@ import {
   Region,
   ErrorBanner,
 } from '@ovh-ux/manager-react-components';
-import { useVrackService } from '@/data/hooks';
+import { useVrackService } from '@ovh-ux/manager-network-common';
 import { formatDateString } from '@/utils/date';
 import { VrackId } from '@/components/vrack-id/VrackId.component';
 import { DisplayName } from '@/components/display-name/DisplayName.component';
