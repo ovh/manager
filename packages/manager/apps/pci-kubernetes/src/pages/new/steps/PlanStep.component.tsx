@@ -1,15 +1,17 @@
-import { OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
 import {
+  OsdsMessage,
+  OsdsText,
+  OsdsButton,
+} from '@ovhcloud/ods-components/react';
+import {
+  ODS_BUTTON_TYPE,
   ODS_MESSAGE_TYPE,
   ODS_TEXT_COLOR_INTENT,
   ODS_TEXT_LEVEL,
 } from '@ovhcloud/ods-components';
-import {
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
+import { ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
 import { Check, XCircle, Clock12 } from 'lucide-react';
-import { Button } from '@datatr-ux/uxlib';
+
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import RadioTile from '@/components/radio-tile/RadioTile.component';
@@ -128,7 +130,7 @@ const PlanTile = ({
                   />
                 )}
                 <RadioTile.Separator />
-                <div className="text-sm flex flex-col p-4">
+                <div className="text-sm flex flex-col py-4 px-6">
                   <PlanTile.Content
                     disabled={planIsDisabled(plan)}
                     contents={content}
@@ -148,15 +150,15 @@ const PlanTile = ({
         {step.isLocked && <PlanTile.LockedView value={selected} />}
       </div>
       {!step.isLocked && (
-        <Button
-          type="submit"
-          variant="primary"
-          disabled={!selected}
-          className=" mt-6 py-4 px-5 "
-          size="md"
+        <OsdsButton
+          className="mt-4"
+          type={ODS_BUTTON_TYPE.submit}
+          color={ODS_TEXT_COLOR_INTENT.primary}
+          inline
+          disabled={!selected || undefined}
         >
           {t('stepper:common_stepper_next_button_label')}
-        </Button>
+        </OsdsButton>
       )}
     </form>
   );
@@ -167,7 +169,7 @@ PlanTile.Banner = function PlanTileBanner({ type }: { type: string }) {
   return (
     <>
       {type === 'region-3-az' && (
-        <OsdsMessage className="mt-4" type={ODS_MESSAGE_TYPE.warning}>
+        <OsdsMessage className="mt-4" type={ODS_MESSAGE_TYPE.info}>
           <OsdsText
             color={ODS_TEXT_COLOR_INTENT.text}
             level={ODS_TEXT_LEVEL.body}
@@ -178,7 +180,7 @@ PlanTile.Banner = function PlanTileBanner({ type }: { type: string }) {
         </OsdsMessage>
       )}
       {type === 'region' && (
-        <OsdsMessage className="mt-4" type={ODS_MESSAGE_TYPE.warning}>
+        <OsdsMessage className="mt-4" type={ODS_MESSAGE_TYPE.info}>
           {t('kube_add_plan_content_premium_1AZ_banner')}
         </OsdsMessage>
       )}
@@ -196,7 +198,7 @@ PlanTile.LockedView = function PlanTileLockedView({
 
   return (
     <RadioTile labelClassName="border-primary-100">
-      <div className="  px-4 py-2 flex-col w-full ">
+      <div className="  p-6 flex-col w-full ">
         <h5 data-testid="plan-header-locked" className="capitalize font-bold">
           {t(plan.title)}
         </h5>
@@ -234,7 +236,7 @@ PlanTile.Header = function PlanTileHeader({
   };
 
   return (
-    <div className="  px-4 py-2 flex-col w-full ">
+    <div className=" px-6 py-4 flex-col w-full ">
       <h5
         data-testid="plan-header"
         className={`capitalize ${selected ? 'font-bold' : 'font-normal'}`}
@@ -291,7 +293,7 @@ PlanTile.Footer = function PlanTileFooter({
   const { t } = useTranslation(['add', 'stepper']);
   return (
     <div className=" mt-auto w-full rounded-b-md border-none bg-neutral-100">
-      <p className=" p-4 text-xl text-primary-600">
+      <p className=" p-6 text-xl text-primary-600">
         <strong data-testid={`plan-footer${value}`}>{t(content)}</strong>
       </p>
     </div>

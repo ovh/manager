@@ -31,6 +31,7 @@ import { PAGE_PREFIX } from '@/tracking.constants';
 import stepsConfig from './steps/stepsConfig';
 import useHas3AZRegions from '@/hooks/useHas3AZRegions';
 import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
+import '@datatr-ux/ods-tailwind-config/style.css';
 
 export default function NewPage() {
   const { t } = useTranslation(['add', 'listing', 'stepper']);
@@ -161,7 +162,7 @@ export default function NewPage() {
             },
             {
               href: hrefBack,
-              label: t('kube_list_title'),
+              label: t('listing:kube_list_title'),
             },
             {
               label: t('kubernetes_add'),
