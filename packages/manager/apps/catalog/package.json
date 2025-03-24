@@ -11,8 +11,6 @@
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "scripts": {
-    "beta-test:e2e": "tsc && node ../../../../scripts/run-playwright-bdd.js",
-    "beta-test:e2e:ci": "tsc && node ../../../../scripts/run-playwright-bdd.js --ci",
     "build": "tsc && vite build",
     "dev": "tsc && vite",
     "start": "lerna exec --stream --scope='@ovh-ux/manager-catalog-app' --include-dependencies -- npm run build --if-present",
@@ -22,7 +20,6 @@
     "test:watch": "vitest watch"
   },
   "dependencies": {
-    "@cucumber/cucumber": "^10.3.1",
     "@ovh-ux/manager-core-api": "^0.10.1",
     "@ovh-ux/manager-core-utils": "^0.3.0",
     "@ovh-ux/manager-react-components": "^1.41.1",
@@ -48,7 +45,6 @@
   "devDependencies": {
     "@ovh-ux/manager-tailwind-config": "^0.2.1",
     "@ovh-ux/manager-vite-config": "^0.9.3",
-    "@playwright/test": "^1.49.1",
     "@tanstack/react-query-devtools": "^5.51.21",
     "@vitejs/plugin-react": "^4.3.0",
     "@vitest/coverage-v8": "^2.1.9",
