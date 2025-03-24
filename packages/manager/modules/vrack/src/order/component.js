@@ -8,5 +8,6 @@ export default {
     goBack: '<',
     cart: '<',
     vrackContracts: '<',
+    isVrackOrderAutoPayAvailable: '<',
   },
 };
