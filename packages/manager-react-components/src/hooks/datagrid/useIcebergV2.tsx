@@ -1,8 +1,37 @@
-import { useEffect, useState } from 'react';
-import { IcebergFetchParamsV2, fetchIcebergV2 } from '@ovh-ux/manager-core-api';
-import { useInfiniteQuery } from '@tanstack/react-query';
+import React, { useEffect, useState } from 'react';
+import {
+  IcebergFetchParamsV2,
+  IcebergFetchResultV2,
+  fetchIcebergV2,
+} from '@ovh-ux/manager-core-api';
+import {
+  FetchNextPageOptions,
+  InfiniteData,
+  InfiniteQueryObserverResult,
+  useInfiniteQuery,
+} from '@tanstack/react-query';
 import { defaultPageSize } from './index';
 import { ColumnSort } from '../../components';
+
+export type UseResourcesIcebergV2Result<T> = {
+  data: InfiniteData<IcebergFetchResultV2<T>, unknown>;
+  fetchNextPage: (
+    options?: FetchNextPageOptions,
+  ) => Promise<
+    InfiniteQueryObserverResult<
+      InfiniteData<IcebergFetchResultV2<T>, unknown>,
+      Error
+    >
+  >;
+  hasNextPage: boolean;
+  flattenData: T[];
+  isError: boolean;
+  isLoading: boolean;
+  setSorting: React.Dispatch<React.SetStateAction<ColumnSort>>;
+  sorting: ColumnSort;
+  error: Error;
+  status: 'error' | 'success' | 'pending';
+};
 
 interface IcebergV2Hook<T> {
   queryKey: string[];
@@ -24,7 +53,7 @@ export function useResourcesIcebergV2<T = unknown>({
   queryKey,
   defaultSorting = undefined,
   shouldFetchAll = false,
-}: IcebergFetchParamsV2 & IcebergV2Hook<T>) {
+}: IcebergFetchParamsV2 & IcebergV2Hook<T>): UseResourcesIcebergV2Result<T> {
   const [flattenData, setFlattenData] = useState<T[]>([]);
   const [sorting, setSorting] = useState<ColumnSort>(defaultSorting);
   const {
