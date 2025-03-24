@@ -5,11 +5,10 @@ import {
   initShellContext,
 } from '@ovh-ux/manager-react-shell-client';
 import initI18n from './i18n';
+
+import './index.css';
 import App from './App';
 
-import '@datatr-ux/ods-tailwind-config/style.css';
-import '@datatr-ux/uxlib/style.css';
-import './index.css';
 import '@/vite-hmr.ts';
 import { LoadingIndicatorProvider } from './contexts/LoadingIndicator.context';
 
