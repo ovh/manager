@@ -12,7 +12,7 @@ main() {
          #turbo run test --concurrency=1 --filter=...$package[master...test/runtestcoverage]
          #turbo run test --concurrency=1 --filter=...$package[HEAD^1]
          #turbo run test --concurrency=1 --filter=$package[HEAD^1] -- --config=../../jest.config.js
-         turbo run test --concurrency=1 --filter=$package[${{ github.event.pull_request.base.ref }}...${GITHUB_REF#refs/heads/}]
+         turbo run test --concurrency=1 --filter=$package[$BASE_BRANCH...${GITHUB_REF#refs/heads/}]
 	done <<< "$changed_packages"
 }
 
