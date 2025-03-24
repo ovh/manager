@@ -119,6 +119,15 @@ export const OrderVeeamStep2: React.FC = () => {
     },
   ];
 
+  const allOrgsBackedUp = React.useMemo(
+    () =>
+      flattenData?.length > 0 &&
+      flattenData?.every((org) =>
+        [BackupStatus.active, BackupStatus.error].includes(org.backupStatus),
+      ),
+    [flattenData],
+  );
+
   return (
     <>
       <OdsText preset="heading-1" className="block mb-9">
@@ -133,19 +142,15 @@ export const OrderVeeamStep2: React.FC = () => {
           {error.message}
         </OdsMessage>
       )}
-      {!isLoading &&
-        flattenData?.length > 0 &&
-        flattenData?.every((org) =>
-          [BackupStatus.active, BackupStatus.error].includes(org.backupStatus),
-        ) && (
-          <OdsMessage className="mb-9" color="warning">
-            {t(
-              hasNextPage
-                ? 'all_organization_backed_up_message_fetch_next_page'
-                : 'all_organization_backed_up_message',
-            )}
-          </OdsMessage>
-        )}
+      {!isLoading && allOrgsBackedUp && (
+        <OdsMessage className="mb-9" color="warning">
+          {t(
+            hasNextPage
+              ? 'all_organization_backed_up_message_fetch_next_page'
+              : 'all_organization_backed_up_message',
+          )}
+        </OdsMessage>
+      )}
       <React.Suspense fallback={<Loading />}>
         {!isLoading && flattenData?.length > 0 && (
           <div className="mb-9">
