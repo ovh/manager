@@ -45,7 +45,7 @@ export type TNetworkFormState = {
 
 export type NetworkClusterStepProps = {
   region: string;
-  type;
+  type: string;
   onChange: (networkForm: TNetworkFormState) => void;
 };
 
@@ -116,6 +116,7 @@ export default function NetworkClusterStep({
             </OsdsMessage>
           )}
           <PrivateNetworkSelect
+            type={type}
             network={form.privateNetwork}
             networks={availablePrivateNetworks}
             onSelect={(privateNetwork) =>
