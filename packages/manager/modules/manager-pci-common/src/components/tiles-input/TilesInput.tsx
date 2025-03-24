@@ -17,11 +17,11 @@ export type TilesInputRenderProps<T> = RadioAdapterFactoryProps & {
   element: T;
 };
 
-export type TilesInputProps<T> = {
+export type TilesInputProps<T> = Pick<RadioFieldProps, 'label' | 'subtitle'> & {
   elements: T[];
   value: T | null;
   elementKey: (element: T) => KeyValue;
-  onChange: (value: T) => void;
+  onChange?: (value: T) => void;
   render: ComponentType<TilesInputRenderProps<T>>;
   inputProps?: (
     element: T,
@@ -30,13 +30,14 @@ export type TilesInputProps<T> = {
     'onChange'
   >;
   name: string;
-} & Omit<RadioFieldProps, 'children'>;
+  locked?: boolean;
+};
 
 export const TilesInput = <
   T extends string | number | Record<string, unknown>
 >({
   label,
-  elements,
+  elements: elementsProps,
   elementKey,
   value: selectedValue,
   onChange,
@@ -44,25 +45,34 @@ export const TilesInput = <
   render: Renderer,
   inputProps,
   subtitle,
-  ...radioAdapterProps
+  locked,
+  name,
 }: TilesInputProps<T>) => {
   const selectedValueKey = useMemo(
     () => (selectedValue !== null ? elementKey(selectedValue) : null),
     [elementKey, selectedValue],
   );
 
+  const elements = useMemo(() => {
+    if (!locked) return elementsProps;
+
+    if (selectedValue) return [selectedValue];
+
+    return [];
+  }, [elementsProps, selectedValue, locked]);
+
   return (
-    <RadioField label={label} subtitle={subtitle}>
+    <RadioField label={label} subtitle={subtitle} disabled={locked}>
       <div className="grid gap-6 p-6 m-0 grid-cols-1 md:grid-cols-3">
         {elements.map((element) => {
           const key = elementKey(element);
           return (
             <RadioAdapter
-              {...radioAdapterProps}
+              name={name}
               key={key}
               value={key}
               checked={key === selectedValueKey}
-              onChange={() => onChange(element)}
+              onChange={() => onChange?.(element)}
               render={(adapterProps) => (
                 <Renderer {...adapterProps} element={element} />
               )}

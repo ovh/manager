@@ -16,17 +16,23 @@ export const FeaturedDeploymentTilesInput = ({
   value,
   onChange,
   name,
+  ...otherProps
 }: FeaturedDeploymentTilesInputProps) => {
   const { deployments, isPending } = useFeaturedDeploymentModes();
 
-  return isPending ? (
-    <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
-  ) : (
-    <DeploymentTilesInput
-      value={value}
-      onChange={onChange}
-      deployments={deployments}
-      name={name}
-    />
+  return (
+    <div aria-live="polite" aria-busy={isPending}>
+      {isPending ? (
+        <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
+      ) : (
+        <DeploymentTilesInput
+          {...otherProps}
+          value={value}
+          onChange={onChange}
+          deployments={deployments}
+          name={name}
+        />
+      )}
+    </div>
   );
 };
