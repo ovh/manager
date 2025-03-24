@@ -284,5 +284,14 @@
   "manager_components_region_continent_PAR": "Western Europe",
   "manager_components_region_STO": "Stockholm",
   "manager_components_region_STO_micro": "Stockholm ({{ micro }})",
-  "manager_components_region_continent_STO": "Northern Europe"
+  "manager_components_region_continent_STO": "Northern Europe",
+  "manager_components_region_PHL": "Philadelphia",
+  "manager_components_region_PHL_micro": "Philadelphia ({{ micro }})",
+  "manager_components_region_continent_PHL": "North America",
+  "manager_components_region_CPH": "Copenhagen",
+  "manager_components_region_CPH_micro": "Copenhagen ({{ micro }})",
+  "manager_components_region_continent_CPH": "Northern Europe",
+  "manager_components_region_PHX": "Phoenix",
+  "manager_components_region_PHX_micro": "Phoenix ({{ micro }})",
+  "manager_components_region_continent_PHX": "North America"
 }
