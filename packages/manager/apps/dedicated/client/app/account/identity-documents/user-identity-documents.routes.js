@@ -24,5 +24,7 @@ export default /* @ngInject */ ($stateProvider) => {
         .then((needkyc) =>
           needkyc ? false : { state: 'app.account.user.dashboard' },
         ),
+    onExit: /* @ngInject */ (shellClient) =>
+      shellClient.ux.notifyModalActionDone('IdentityDocumentsModal'),
   });
 };
