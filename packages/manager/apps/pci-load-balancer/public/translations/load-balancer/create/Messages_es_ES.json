@@ -9,7 +9,7 @@
   "octavia_load_balancer_create_size_flavour_description_m": "Adaptado a la mayoría de los proyectos que requieren una capacidad de tráfico media.",
   "octavia_load_balancer_create_size_flavour_description_l": "Para aplicaciones con un gran volumen de tráfico. Ofrece un rendimiento óptimo para la gestión de grandes cargas.",
   "octavia_load_balancer_create_size_flavour_price_interval": " /hora",
-  "octavia_load_balancer_create_region_title": "Seleccione una región",
+  "octavia_load_balancer_create_region_title": "Seleccione una localización",
   "octavia_load_balancer_create_region_intro": "Seleccione la región de Public Cloud en la que desee alojar el Load Balancer. Elija entre las regiones de Public Cloud en las que se haya definido una red privada aquella en la que desea alojar el Load Balancer. ¿No encuentra la región que desea en la lista? Para saber más sobre la disponibilidad de las funciones según la región, ",
   "octavia_load_balancer_create_region_link": "Haga clic aquí",
   "octavia_load_balancer_create_floating_ip_title": "Asociar una IP pública",
