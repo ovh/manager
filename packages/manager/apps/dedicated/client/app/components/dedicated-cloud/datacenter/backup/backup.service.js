@@ -22,12 +22,14 @@ export default class BackupService {
     OvhApiDedicatedCloudDatacenter,
     OvhApiOrder,
     WucOrderCartService,
+    DedicatedCloud,
   ) {
     this.$http = $http;
     this.$q = $q;
     this.backupApi = OvhApiDedicatedCloudDatacenter.Backup().v6();
     this.cartApi = OvhApiOrder.Cart().v6();
     this.WucOrderCartService = WucOrderCartService;
+    this.DedicatedCloud = DedicatedCloud;
   }
 
   addConfigToCart(cartItem, datacenterId, offerType) {
@@ -117,22 +119,11 @@ export default class BackupService {
       .$promise;
   }
 
-  getCatalog(ovhSubsidiary) {
-    return this.$http
-      .get('/sws/dedicatedcloud/catalog', {
-        serviceType: 'aapi',
-        params: {
-          ovhSubsidiary,
-        },
-      })
-      .then((data) => get(data, 'data'));
-  }
-
-  getBackupOffers(serviceName, datacenterId, ovhSubsidiary, backup) {
+  getBackupOffers(serviceName, datacenterId, backup) {
     return this.$q
       .all([
         this.getOfferCapabilities(serviceName, datacenterId),
-        this.getCatalog(ovhSubsidiary),
+        this.DedicatedCloud.getCatalog(),
       ])
       .then(([backupOffers, catalog]) =>
         sortBy(
