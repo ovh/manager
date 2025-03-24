@@ -36,7 +36,7 @@ export function DataTable<TData>({
   const headerGroups = table.getHeaderGroups();
   return (
     <Table>
-      <TableHeader className="border bg-gray-50">
+      <TableHeader className="border bg-[#f7f8f8]">
         {headerGroups.map((headerGroup) => (
           <TableRow key={headerGroup.id}>
             {renderRowExpansion && (
@@ -50,7 +50,7 @@ export function DataTable<TData>({
               return (
                 <TableHead
                   key={header.id}
-                  className={`border font-semibold text-primary-800 ${
+                  className={`h-10 px-2 border font-semibold text-primary-800 ${
                     isEmptyHeader || renderRowExpansion
                       ? 'border-0' // Remove left border for empty headers and row extend column
                       : ''
@@ -93,7 +93,7 @@ export function DataTable<TData>({
                   </TableCell>
                 )}
                 {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id}>
+                  <TableCell key={cell.id} className="px-2 py-1">
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
                 ))}
