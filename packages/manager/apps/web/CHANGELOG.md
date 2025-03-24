@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.9.5...@ovh-ux/manager-web@19.10.0) (2025-03-24)
+
+
+### Bug Fixes
+
+* **web.hosting:** add 2 old code offer exclusion freedom offer ([477151e](https://github.com/ovh/manager/commit/477151e48d5366af2b9169b43b740e341249661a)), closes [#MANAGER-16042](https://github.com/ovh/manager/issues/MANAGER-16042)
+* **web.hosting:** add 30 seconds interval on task calls ([#15715](https://github.com/ovh/manager/issues/15715)) ([7372a28](https://github.com/ovh/manager/commit/7372a28ce88f9b5620d359d1d3079976ad71b3b4)), closes [#WEB-20105](https://github.com/ovh/manager/issues/WEB-20105)
+* **web.hosting:** replace call api v6 by jwt ([#15663](https://github.com/ovh/manager/issues/15663)) ([ff0f5f9](https://github.com/ovh/manager/commit/ff0f5f90a5494bd352a951e80fe1f008b5c69062)), closes [#WEB-19783](https://github.com/ovh/manager/issues/WEB-19783)
+* **web.hosting:** upgrade free offer to perso when attaching another domain ([#15938](https://github.com/ovh/manager/issues/15938)) ([c163172](https://github.com/ovh/manager/commit/c163172dbee6494e7d32bdd4c12af50ef5cd48bf)), closes [#WEB-20250](https://github.com/ovh/manager/issues/WEB-20250)
+* **web:** rely on default attached domain in multisites of a hosting ([#15591](https://github.com/ovh/manager/issues/15591)) ([9551108](https://github.com/ovh/manager/commit/955110815b2f9962d9245958d1f2d27d42b65c5a)), closes [#WEB-20059](https://github.com/ovh/manager/issues/WEB-20059)
+
+
+### Features
+
+* **web.domain:** add subdomain on domain part ([#15777](https://github.com/ovh/manager/issues/15777)) ([35f2e1d](https://github.com/ovh/manager/commit/35f2e1db875bb20d867dd49258659d9535a112fa)), closes [#WEB-20185](https://github.com/ovh/manager/issues/WEB-20185)
+* **web.hosting:** display error message for downgrade perf error ([#15885](https://github.com/ovh/manager/issues/15885)) ([263f44a](https://github.com/ovh/manager/commit/263f44af83c43bef7e0742fddb0af87e66ee6ffa)), closes [#WEB-20232](https://github.com/ovh/manager/issues/WEB-20232)
+* **web.hosting:** increase tic of poll for ovh config refreshing ([#15834](https://github.com/ovh/manager/issues/15834)) ([7f13f5d](https://github.com/ovh/manager/commit/7f13f5d8e81f2c5cb7ded8c3a1305c6291ab50a0)), closes [#WEB-19694](https://github.com/ovh/manager/issues/WEB-19694)
+* **web.hosting:** manage ovherror status on tasks tab ([#15680](https://github.com/ovh/manager/issues/15680)) ([b8d3c1d](https://github.com/ovh/manager/commit/b8d3c1dd238fae9db890aedbab5d19eaf2044cd0)), closes [#WEB-20076](https://github.com/ovh/manager/issues/WEB-20076)
+
+
+
+
+
 ## [19.9.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.9.4...@ovh-ux/manager-web@19.9.5) (2025-03-21)
 
 **Note:** Version bump only for package @ovh-ux/manager-web

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.16.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.16.2...@ovh-ux/manager-emailpro@3.16.3) (2025-03-24)
+
+
+### Bug Fixes
+
+* **web:** change translations for email copy ([#15774](https://github.com/ovh/manager/issues/15774)) ([8157884](https://github.com/ovh/manager/commit/8157884587f2287e3ded1c6cc3ee531cb6e166d3)), closes [#MANAGER-17097](https://github.com/ovh/manager/issues/MANAGER-17097)
+
+
+
+
+
 ## [3.16.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.16.1...@ovh-ux/manager-emailpro@3.16.2) (2025-03-21)
 
 

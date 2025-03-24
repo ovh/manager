@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@1.11.0...@ovh-ux/manager-email-domain@1.11.1) (2025-03-24)
+
+
+### Bug Fixes
+
+* **web:** change translations for email copy ([#15774](https://github.com/ovh/manager/issues/15774)) ([8157884](https://github.com/ovh/manager/commit/8157884587f2287e3ded1c6cc3ee531cb6e166d3)), closes [#MANAGER-17097](https://github.com/ovh/manager/issues/MANAGER-17097)
+
+
+
+
+
 # [1.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@1.10.0...@ovh-ux/manager-email-domain@1.11.0) (2025-03-10)
 
 

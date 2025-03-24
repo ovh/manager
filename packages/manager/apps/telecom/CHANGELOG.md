@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.6.8...@ovh-ux/manager-telecom@16.7.0) (2025-03-24)
+
+
+### Features
+
+* **telecom:** move order follow up ([#15394](https://github.com/ovh/manager/issues/15394)) ([a3a65a5](https://github.com/ovh/manager/commit/a3a65a53bfd7eb7feaee5a633a928c32802641a5)), closes [#UXCT-677](https://github.com/ovh/manager/issues/UXCT-677)
+
+
+
+
+
 ## [16.6.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.6.7...@ovh-ux/manager-telecom@16.6.8) (2025-03-21)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom
