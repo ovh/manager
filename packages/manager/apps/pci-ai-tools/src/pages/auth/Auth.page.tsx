@@ -31,7 +31,7 @@ export default function Auth() {
   const navigate = useNavigate();
   const projectData = usePciProject();
   const objectStoragePath = `/pci/projects/${projectId}/storages/objects`;
-  const notebooksPath = '../notebooks';
+  const notebooksPath = `/pci/projects/${projectId}/notebooks`;
   const jobsPath = `/pci/projects/${projectId}/training/jobs`;
   const appsPath = `/pci/projects/${projectId}/ai/apps`;
 
@@ -63,15 +63,15 @@ export default function Auth() {
 
   return (
     <>
-      {isProjectDiscoveryMode ? (
+      {!isProjectDiscoveryMode ? (
         <Alert variant="warning">
           <AlertDescription className="text-base">
             <div
               data-testid="discovery-container"
-              className="flex flex-row md:flex-col items-center justify-between gap-4"
+              className="flex flex-col sm:flex-row items-center justify-between gap-4"
             >
               <div className="flex flex-row gap-5 items-center">
-                <AlertCircle className="h-6 w-6" />
+                <AlertCircle className="shrink-0 size-6" />
                 <p>{t('discoveryMode')}</p>
               </div>
 
@@ -93,10 +93,10 @@ export default function Auth() {
           <AlertDescription className="text-base">
             <div
               data-testid="activate-container"
-              className="flex flex-row md:flex-col items-center justify-between gap-4"
+              className="flex flex-col sm:flex-row items-center justify-between gap-4"
             >
               <div className="flex flex-row gap-5 items-center">
-                <AlertCircle className="h-6 w-6" />
+                <AlertCircle className="shrink-0 size-6" />
                 <p>{t('authDescription')}</p>
               </div>
               <Button
