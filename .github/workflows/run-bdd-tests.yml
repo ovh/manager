@@ -30,4 +30,4 @@ jobs:
       - name: Run tests Jest
         run: yarn test:jest
       - name: Run tests Turbo
-        run: yarn test:turbo
+        run: yarn test:coverage
