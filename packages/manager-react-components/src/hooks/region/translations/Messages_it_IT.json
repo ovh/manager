@@ -281,5 +281,14 @@
   "manager_components_region_continent_SHA": "Europa Occidentale",
   "manager_components_region_continent_CA": "Nord America ",
   "manager_components_region_continent_MRS": "Europa Occidentale",
-  "manager_components_region_continent_PAR": "Europa occidentale"
+  "manager_components_region_continent_PAR": "Europa occidentale",
+  "manager_components_region_PHL": "Filadelfia",
+  "manager_components_region_PHL_micro": "Filadelfia ({{ micro }})",
+  "manager_components_region_continent_PHL": "Nord America ",
+  "manager_components_region_CPH": "Copenaghen",
+  "manager_components_region_CPH_micro": "Copenaghen ({{ micro }})",
+  "manager_components_region_continent_CPH": "Nord Europa",
+  "manager_components_region_PHX": "Phoenix",
+  "manager_components_region_PHX_micro": "Phoenix ({{ micro }})",
+  "manager_components_region_continent_PHX": "Nord America "
 }
