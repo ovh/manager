@@ -1,5 +1,5 @@
 name: Run Jest tests
-on: [push, pull_request]
+on: [push]
 
 jobs:
   test:
@@ -47,4 +47,4 @@ jobs:
             echo "current Branch is ${GITHUB_REF#refs/heads/}"
             echo "BASE_BRANCH=$BASE_BRANCH" >> $GITHUB_ENV
           fi
-          yarn test:coverage
+          ./script/test-coverage.sh $BASE_BRANCH
