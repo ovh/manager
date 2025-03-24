@@ -1,5 +1,5 @@
 name: Run Jest tests
-on: [push]
+on: [push, pull_request]
 
 jobs:
   test:
@@ -40,7 +40,7 @@ jobs:
         run: |
           BASE_BRANCH=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
             "https://api.github.com/repos/$REPO/pulls?state=open" \
-            --jq ".[] | select(.head.ref == \"$BRANCH\") | .base.ref")
+            jq ".[] | select(.head.ref == \"$BRANCH\") | .base.ref")
 
           if [[ -z "$BASE_BRANCH" ]]; then
             echo "NO PR FOUND for branch $BRANCH"
