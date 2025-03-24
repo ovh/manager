@@ -4,10 +4,16 @@ import {
   useNotifications,
   useTranslatedMicroRegions,
 } from '@ovh-ux/manager-react-components';
-import { Dispatch, SetStateAction, useEffect, useMemo } from 'react';
+import {
+  Dispatch,
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useMemo,
+} from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { OsdsLink } from '@ovhcloud/ods-components/react';
-import { Filter } from '@ovh-ux/manager-core-api';
+import { ApiError, Filter } from '@ovh-ux/manager-core-api';
 import { usePciUrl } from '@ovh-ux/manager-pci-common';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useQueryClient } from '@tanstack/react-query';
@@ -25,9 +31,13 @@ import { mapAddressesToListItems } from '@/pages/instances/mapper';
 import { Spinner } from '../spinner/Spinner.component';
 import { DeepReadonly } from '@/types/utils.type';
 import { TInstance } from '@/types/instance/entity.type';
-import { useInstancesPolling } from '@/data/hooks/instance/polling/useInstancesPolling';
+import {
+  shouldRetryAfter404Error,
+  useInstancesPolling,
+} from '@/data/hooks/instance/polling/useInstancesPolling';
 import { TInstanceDto } from '@/types/instance/api.type';
 import { useProjectId } from '@/hooks/project/useProjectId';
+import { getPartialDeletedInstanceDto } from './datagrid.constants';
 
 type TFilterWithLabel = Filter & { label: string };
 type TSorting = {
@@ -78,15 +88,40 @@ const DatagridComponent = ({
     filters,
   });
 
-  const handlePollingSuccess = (instance?: TInstanceDto) => {
-    if (instance)
+  const handlePollingSuccess = useCallback(
+    (instance?: TInstanceDto) => {
+      if (!instance) return;
+      const isDeleted = !instance.pendingTask && instance.status === 'DELETED';
+      const deletedInstance = getPartialDeletedInstanceDto(instance.id);
       updateInstanceFromCache(queryClient, {
         projectId,
-        instance,
+        instance: isDeleted ? deletedInstance : instance,
       });
-  };
+    },
+    [projectId, queryClient],
+  );
 
-  const pollingData = useInstancesPolling(pendingTasks, handlePollingSuccess);
+  const handlePollingError = useCallback(
+    (error: ApiError, instanceId: string) => {
+      if (error.response?.status === 404) {
+        const deletedInstance = getPartialDeletedInstanceDto(instanceId);
+        updateInstanceFromCache(queryClient, {
+          projectId,
+          instance: deletedInstance,
+        });
+      }
+    },
+    [projectId, queryClient],
+  );
+
+  const pollingData = useInstancesPolling(
+    pendingTasks,
+    {
+      onSuccess: handlePollingSuccess,
+      onError: handlePollingError,
+    },
+    { retry: shouldRetryAfter404Error },
+  );
 
   const datagridColumns: DatagridColumn<TInstance>[] = useMemo(
     () => [
@@ -170,7 +205,7 @@ const DatagridComponent = ({
           return (
             <StatusCell
               isLoading={
-                isRefetching || (!!pollingInstance && !pollingInstance.isError)
+                isRefetching || (!!pollingInstance && !pollingInstance.error)
               }
               instance={instance}
             />
