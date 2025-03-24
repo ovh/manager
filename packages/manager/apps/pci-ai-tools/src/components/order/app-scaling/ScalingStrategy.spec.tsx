@@ -19,7 +19,7 @@ describe('Scaling strategy component', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
     mockManagerReactShellClient();
-    vi.mock('@/hooks/api/catalog/useGetCatalog.hook', () => {
+    vi.mock('@/data/hooks/catalog/useGetCatalog.hook', () => {
       return {
         useGetCatalog: vi.fn(() => ({
           isSuccess: true,

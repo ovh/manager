@@ -23,7 +23,7 @@ describe('Partner Image Select component', () => {
     mockManagerReactShellClient();
   });
 
-  vi.mock('@/hooks/api/catalog/useGetCatalog.hook', () => {
+  vi.mock('@/data/hooks/catalog/useGetCatalog.hook', () => {
     return {
       useGetCatalog: vi.fn(() => ({
         isSuccess: true,
