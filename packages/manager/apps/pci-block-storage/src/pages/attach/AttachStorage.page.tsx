@@ -7,14 +7,14 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_VARIANT, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import { canAttachVolume, Instance } from '@/api/data/instance';
-import { useInstances } from '@/api/hooks/useInstance';
+import { useAttachableInstances } from '@/api/hooks/useInstance';
 import { useAttachVolume, useVolume } from '@/api/hooks/useVolume';
 import NoInstanceWarningMessage from './NoInstanceAvailableWarningMessage';
+import { TAttachableInstance } from '@/api/select/instances';
 
 export default function AttachStorage() {
   const navigate = useNavigate();
@@ -25,25 +25,13 @@ export default function AttachStorage() {
     projectId,
     volumeId,
   );
-  const { data: dataInstances, isPending: isInstancesPending } = useInstances(
-    projectId,
-    volume?.region,
+  const {
+    data: instances,
+    isPending: isInstancesPending,
+  } = useAttachableInstances(projectId, volumeId);
+  const [selectedInstance, setSelectedInstance] = useState<TAttachableInstance>(
+    null,
   );
-  const instances = useMemo(() => {
-    let filteredInstances = (dataInstances ?? []).filter(canAttachVolume);
-
-    if (
-      !!volume &&
-      !!volume.availabilityZone &&
-      volume.availabilityZone !== 'any'
-    )
-      filteredInstances = filteredInstances.filter(
-        (i) => i.availabilityZone === volume.availabilityZone,
-      );
-
-    return filteredInstances;
-  }, [dataInstances, volume]);
-  const [selectedInstance, setSelectedInstance] = useState<Instance>(null);
   const onClose = () => navigate('..');
 
   const selectRef = useRef(null);
@@ -65,8 +53,9 @@ export default function AttachStorage() {
 
   // select first instance available after loading
   useEffect(() => {
-    setSelectedInstance((instance) => instance || instances?.[0]);
-  }, [setSelectedInstance, instances]);
+    if (!!instances && instances.length)
+      setSelectedInstance((instance) => instance ?? instances[0]);
+  }, [instances]);
 
   const { attachVolume, isPending: isAttachPending } = useAttachVolume({
     projectId,

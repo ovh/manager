@@ -1,6 +1,6 @@
 import { OsdsLink, OsdsSkeleton } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useInstance } from '@/api/hooks/useInstance';
+import { useInstance } from '@ovh-ux/manager-pci-common';
 
 interface AttachedInstanceComponentProps {
   projectId: string;
