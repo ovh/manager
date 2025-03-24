@@ -159,22 +159,22 @@ const AddToken = () => {
                 <p>{t('formAddTokenFieldLabelDescription')}</p>
                 <div className="flex flex-row items-center gap-2 mt-2">
                   <p>{t('formAddTokenFieldLabelSample')}</p>
-                  <Badge size="sm" variant="primary">
+                  <Badge variant="primary">
                     {t('formAddTokenLabelBadge1')}
                   </Badge>
-                  <Badge size="sm" variant="primary">
+                  <Badge variant="primary">
                     {t('formAddTokenLabelBadge2')}
                   </Badge>
-                  <Badge size="sm" variant="primary">
+                  <Badge variant="primary">
                     {t('formAddTokenLabelBadge3')}
                   </Badge>
                 </div>
                 <div className="flex flex-row items-center gap-2 mt-2">
                   <p>{t('formAddTokenDefaultLabelsDescription')}</p>
-                  <Badge size="sm" variant="primary">
+                  <Badge variant="primary">
                     {t('formAddTokenDefaultLabelBadge1')}
                   </Badge>
-                  <Badge size="sm" variant="primary">
+                  <Badge variant="primary">
                     {t('formAddTokenDefaultLabelBadge2')}
                   </Badge>
                 </div>

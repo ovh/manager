@@ -67,7 +67,7 @@ const Users = () => {
           onClick={() => navigate('./add')}
           mode="outline"
         >
-          <Plus className="size-5" />
+          <Plus className="size-5 mr-2" />
           {t('addButtonLabel')}
         </Button>
       </div>

@@ -32,6 +32,7 @@ interface AILayoutProps {
 }
 // try to get project details from project id, redirect if the projectId is invalid
 export const Loader = async ({ params }: AILayoutProps) => {
+  console.log('in loader');
   const { projectId } = params;
   // check if we have a correct projectId
   try {
