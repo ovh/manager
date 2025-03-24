@@ -50,6 +50,7 @@ export default {
     isVpsMaintenance: '<',
     trackPage: '<',
     isSecondaryDnsAvailable: '<',
+    isLocalzone: '<',
   },
   controller,
   name: 'ovhManagerVpsDashboard',
