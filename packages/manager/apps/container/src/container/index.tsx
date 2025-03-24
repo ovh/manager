@@ -10,7 +10,8 @@ import { ProgressProvider } from '@/context/progress';
 import CookiePolicy from '@/cookie-policy/CookiePolicy';
 import SSOAuthModal from '@/sso-auth-modal/SSOAuthModal';
 import LiveChat from '@/components/LiveChat';
-import { ModalsProvider } from '@/context/modals';
+
+const ModalsProvider = React.lazy(() => import('@/context/modals/ModalsProvider'));
 
 export default function Container(): JSX.Element {
   const {

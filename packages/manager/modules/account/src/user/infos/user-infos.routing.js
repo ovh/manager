@@ -9,5 +9,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $translate.instant('user_infos'),
       fieldToFocus: /* @ngInject */ ($stateParams) => $stateParams.fieldToFocus,
     },
+    onExit: /* @ngInject */ (shellClient) =>
+      shellClient.ux.notifyModalActionDone('SuggestionModal'),
   });
 };
