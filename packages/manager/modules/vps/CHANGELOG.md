@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.46.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.46.2...@ovh-ux/manager-vps@2.46.3) (2025-03-24)
+
+
+### Bug Fixes
+
+* **dedicated,vps:** margin issues around sshkey component ([#14010](https://github.com/ovh/manager/issues/14010)) ([84c41fc](https://github.com/ovh/manager/commit/84c41fc188b02dc649af736885243429cfbfad8e)), closes [#MANAGER-15969](https://github.com/ovh/manager/issues/MANAGER-15969)
+
+
+
+
+
 ## [2.46.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.46.1...@ovh-ux/manager-vps@2.46.2) (2025-03-18)
 
 
