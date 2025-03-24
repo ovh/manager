@@ -48,5 +48,4 @@ jobs:
             echo "BASE_BRANCH=$BASE_BRANCH" >> $GITHUB_ENV
           fi
       - name: Run Tests Coverage
-        run: ./scripts/test-coverage.sh
-        shell: bash
+        run: yarn test:coverage
