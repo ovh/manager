@@ -15,17 +15,20 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { TNetwork } from '@/api/data/network';
+import { DeploymentMode } from '@/types';
 
 export type PrivateNetworkSelectProps = {
   network: TNetwork;
   onSelect: (network: TNetwork) => void;
   networks: TNetwork[];
+  type: string;
 };
 
 export default function PrivateNetworkSelect({
   network,
   onSelect,
   networks,
+  type,
 }: Readonly<PrivateNetworkSelectProps>) {
   const { t } = useTranslation('network-add');
 
@@ -73,15 +76,21 @@ export default function PrivateNetworkSelect({
           className="mt-4"
           name="privateNetwork"
           size={ODS_SELECT_SIZE.md}
-          value={network?.id || defaultNetwork.id}
+          value={
+            network?.id || type === DeploymentMode.MONO_ZONE
+              ? defaultNetwork.id
+              : networks[0].id
+          }
           onOdsValueChange={(ev) => {
             const networkId = `${ev.detail.value}`;
             onSelect(networks?.find((net) => net.id === networkId));
           }}
         >
-          <OsdsSelectOption value={defaultNetwork.id}>
-            {defaultNetwork.name}
-          </OsdsSelectOption>
+          {type === 'region' && (
+            <OsdsSelectOption value={defaultNetwork.id}>
+              {defaultNetwork.name}
+            </OsdsSelectOption>
+          )}
           {networks?.map((net) => (
             <OsdsSelectOption value={net.id} key={net.id}>
               {net.name}
