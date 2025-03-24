@@ -40,10 +40,13 @@ export function KubeRegionSelector({
         ({ name }) => name === 'kubernetes',
       );
 
-      return product.regions.some(({ name, type }) =>
-        selectedDeployment
-          ? name === region.name && type === selectedDeployment
-          : name === region.name,
+      return (
+        region.isMacro ||
+        product.regions.some(({ name, type }) =>
+          selectedDeployment
+            ? name === region.name && type === selectedDeployment
+            : name === region.name,
+        )
       );
     },
     [availability, selectedDeployment],

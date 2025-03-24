@@ -14,17 +14,13 @@ import {
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import {
   ODS_BUTTON_SIZE,
+  ODS_TEXT_COLOR_INTENT,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import clsx from 'clsx';
-import {
-  Links,
-  LinkType,
-  Subtitle,
-  TRegion,
-} from '@ovh-ux/manager-react-components';
+import { Links, LinkType, TRegion } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { KubeRegionSelector } from '@/components/region-selector/KubeRegionSelector.component';
 import { StepState } from '../useStep';
@@ -79,7 +75,14 @@ export function LocationStep({
       <div className={clsx(step.isLocked && 'hidden')}>
         {has3AZ && (
           <>
-            <Subtitle>{t('add:kubernetes_add_deployment_mode_title')}</Subtitle>
+            <OsdsText
+              className="mb-4 font-bold block"
+              color={ODS_TEXT_COLOR_INTENT.text}
+              level={ODS_TEXT_LEVEL.heading}
+              size={ODS_TEXT_SIZE._400}
+            >
+              {t('add:kubernetes_add_deployment_mode_title')}
+            </OsdsText>
             <div>
               <OsdsText
                 size={ODS_TEXT_SIZE._400}
@@ -112,9 +115,14 @@ export function LocationStep({
                 ),
               )}
             </div>
-            <Subtitle className="mb-6">
+            <OsdsText
+              className="mb-4 font-bold block"
+              color={ODS_TEXT_COLOR_INTENT.text}
+              level={ODS_TEXT_LEVEL.heading}
+              size={ODS_TEXT_SIZE._400}
+            >
               {t('add:kubernetes_add_region_title')}
-            </Subtitle>
+            </OsdsText>
           </>
         )}
         <KubeRegionSelector
