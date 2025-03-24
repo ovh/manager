@@ -42,6 +42,7 @@
     "i18next": "^23.8.2",
     "i18next-http-backend": "^2.5.2",
     "lucide-react": "^0.334.0",
+    "msw": "^2.7.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.52.1",
