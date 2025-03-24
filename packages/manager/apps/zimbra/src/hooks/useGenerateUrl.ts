@@ -1,5 +1,9 @@
-import { RelativeRoutingType, useHref } from 'react-router-dom';
-import { useOrganization } from '@/hooks';
+import {
+  RelativeRoutingType,
+  useHref,
+  useSearchParams,
+} from 'react-router-dom';
+import { buildURLWithSearchParams } from '@/utils';
 
 export const useGenerateUrl = (
   baseURL: string,
@@ -7,16 +11,17 @@ export const useGenerateUrl = (
   params?: Record<string, string | number>,
   relativeType: RelativeRoutingType = 'path',
 ) => {
-  const { data: organization } = useOrganization();
+  const [searchParams] = useSearchParams();
 
-  const queryParams = {
+  const urlSearchParams = {
+    organizationId: searchParams.get('organizationId'),
     ...params,
-    ...(organization?.id && { organizationId: organization.id }),
   };
 
-  const fullURL = `${baseURL}${Object.entries(queryParams)
-    .map(([key, value], index) => `${index === 0 ? '?' : ''}${key}=${value}`)
-    .join('&')}`;
+  const fullURL = buildURLWithSearchParams({
+    baseURL,
+    searchParams: urlSearchParams,
+  });
 
   if (type === 'href') {
     return useHref(fullURL, { relative: relativeType });

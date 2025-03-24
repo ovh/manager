@@ -7,15 +7,17 @@ import { APIV2_DEFAULT_PAGESIZE } from '@/utils';
 
 export const getZimbraPlatformOrganization = ({
   platformId,
+  searchParams,
   pageParam,
   pageSize = APIV2_DEFAULT_PAGESIZE,
 }: {
   platformId: string;
+  searchParams?: string;
   pageParam?: unknown;
   pageSize?: number;
 }) =>
   fetchIcebergV2<OrganizationType[]>({
-    route: `${getApiPath(platformId)}organization`,
+    route: `${getApiPath(platformId)}organization${searchParams}`,
     pageSize,
     cursor: pageParam as string,
   });

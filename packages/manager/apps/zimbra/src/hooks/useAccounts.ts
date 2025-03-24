@@ -3,33 +3,49 @@ import {
   UseInfiniteQueryOptions,
   UseInfiniteQueryResult,
 } from '@tanstack/react-query';
+import { useSearchParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { usePlatform } from '@/hooks';
 import {
-  getZimbraPlatformOrganization,
-  getZimbraPlatformOrganizationQueryKey,
-  OrganizationType,
-} from '@/api/organization';
-import { APIV2_MAX_PAGESIZE } from '@/utils';
+  AccountType,
+  getZimbraPlatformAccounts,
+  getZimbraPlatformAccountsQueryKey,
+} from '@/api/account';
+import { APIV2_MAX_PAGESIZE, buildURLSearchParams } from '@/utils';
 
-type UseOrganizationListParams = Omit<
+type UseAccountsParams = Omit<
   UseInfiniteQueryOptions,
   'queryKey' | 'queryFn' | 'select' | 'getNextPageParam' | 'initialPageParam'
 > & {
+  email?: string;
+  domainId?: string;
+  organizationId?: string;
   shouldFetchAll?: boolean;
 };
 
-export const useOrganizationList = (props: UseOrganizationListParams = {}) => {
-  const { shouldFetchAll, ...options } = props;
+export const useAccounts = (props: UseAccountsParams = {}) => {
+  const { domainId, organizationId, email, shouldFetchAll, ...options } = props;
   const { platformId } = usePlatform();
+  const [searchParams] = useSearchParams();
+
+  const urlSearchParams = buildURLSearchParams({
+    email,
+    organizationId: organizationId ?? searchParams.get('organizationId'),
+    domainId: domainId ?? searchParams.get('domainId'),
+  });
 
   const query = useInfiniteQuery({
     ...options,
     initialPageParam: null,
-    queryKey: getZimbraPlatformOrganizationQueryKey(platformId, shouldFetchAll),
+    queryKey: getZimbraPlatformAccountsQueryKey(
+      platformId,
+      urlSearchParams,
+      shouldFetchAll,
+    ),
     queryFn: ({ pageParam }) =>
-      getZimbraPlatformOrganization({
+      getZimbraPlatformAccounts({
         platformId,
+        searchParams: urlSearchParams,
         pageParam,
         ...(shouldFetchAll ? { pageSize: APIV2_MAX_PAGESIZE } : {}),
       }),
@@ -42,7 +58,7 @@ export const useOrganizationList = (props: UseOrganizationListParams = {}) => {
       lastPage.cursorNext,
     select: (data) =>
       data?.pages.flatMap(
-        (page: UseInfiniteQueryResult<OrganizationType[]>) => page.data,
+        (page: UseInfiniteQueryResult<AccountType[]>) => page.data,
       ),
   });
 
