@@ -3,12 +3,12 @@ import {
   RegionSelector,
   RegionSelectorProps,
   TRegion,
+  useProductAvailability,
 } from '@ovh-ux/manager-pci-common';
 import { OsdsSpinner } from '@ovhcloud/ods-components/react';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import './KubeRegionSelector.css';
 import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
-import { mockedModule } from '@/mocks/mockAvaibility';
 import useHas3AZRegions from '@/hooks/useHas3AZRegions';
 
 export interface KubeRegionSelectorProps {
@@ -22,12 +22,9 @@ export function KubeRegionSelector({
   onSelectRegion,
   selectedDeployment,
 }: Readonly<KubeRegionSelectorProps>) {
-  const { data: availability, isPending } = mockedModule.useProductAvailability(
-    projectId,
-    {
-      product: 'kubernetes',
-    },
-  );
+  const { data: availability, isPending } = useProductAvailability(projectId, {
+    product: 'kubernetes',
+  });
 
   const featureFlipping3az = use3AZPlanAvailable();
 
