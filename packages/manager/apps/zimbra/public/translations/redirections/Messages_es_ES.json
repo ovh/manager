@@ -5,7 +5,7 @@
   "zimbra_redirections_organization": "Organización",
   "zimbra_redirections_datagrid_tooltip_modification": "Modificar",
   "zimbra_redirections_datagrid_tooltip_delete": "Eliminar",
-  "zimbra_redirections_account_title": "Gestión de las redirecciones",
+  "zimbra_redirections_account_title": "Gestionar las redirecciones",
   "zimbra_redirections_status": "Estado",
   "zimbra_redirections_delete_modal_content": "¿Quiere eliminar la redirección?",
   "zimbra_redirections_add_header": "Por favor, complete los datos para la redirección.",

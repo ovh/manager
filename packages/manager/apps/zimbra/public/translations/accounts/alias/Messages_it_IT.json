@@ -8,6 +8,6 @@
   "zimbra_account_alias_add_description": "Creare un alias per l’account <strong>{{ account }}</strong>",
   "zimbra_account_alias_add_success_message": "La tua richiesta di creazione dell'alias è stata presa in carico. Sarà elaborata entro pochi minuti.",
   "zimbra_account_alias_add_error_message": "Impossibile completare la richiesta di creazione dell'alias: {{ error }}",
-  "zimbra_account_alias_delete_success_message": "La tua richiesta di eliminazione dell’alias è stata presa in carico. Sarà elaborata entro pochi minuti.",
+  "zimbra_account_alias_delete_success_message": "La tua richiesta di eliminazione dell'alias è stata presa in carico. Sarà elaborata entro pochi minuti.",
   "zimbra_account_alias_delete_error_message": "La tua richiesta di eliminazione dell’alias non è andata a buon fine: {{ error }}"
 }

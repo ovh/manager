@@ -11,7 +11,7 @@ angular
   ) {
     const self = this;
     const deferred = {};
-    const ticOfPoll = 1000;
+    let ticOfPoll = 1000;
     const usedTaskFunction = [
       'ovhConfig/rollback',
       'ovhConfig/update',
@@ -88,6 +88,7 @@ angular
         $q.all(setToPoll).finally(() => {
           isPolling = $timeout(() => {
             pollDeferred(serviceName);
+            ticOfPoll *= 2;
           }, ticOfPoll);
         });
       } else {

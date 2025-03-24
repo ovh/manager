@@ -77,6 +77,41 @@
                         </div>
                     </div>
                 </li>
+                <li class="oui-tile__item">
+                    <div class="oui-tile__definition">
+                        <div
+                            class="oui-tile__term"
+                            data-translate="pack_xdsl_followUp_label"
+                        ></div>
+                        <div class="oui-tile__description">
+                            <div class="mb-3">
+                                <p
+                                    class="text-default"
+                                    data-ng-class="{ 'description-title-fullHeight' : !PackInformation.actualOrder.doneDateLocale }"
+                                    data-translate="telecom_pack_xdsl_order_follow_up_step_name_{{PackInformation.actualOrder.name}}"
+                                ></p>
+
+                                <p
+                                    class="text-default"
+                                    data-ng-if="PackInformation.actualOrder.doneDateLocale"
+                                    data-ng-bind="PackInformation.actualOrder.doneDateLocale"
+                                ></p>
+                            </div>
+                            <a
+                                class="oui-button oui-button_icon-right oui-button_secondary oui-button_block"
+                                data-ui-sref="telecom.packs.pack.order-follow-up({ packName: Pack.pack.packName })"
+                            >
+                                <span
+                                    data-translate="pack_xdsl_followUp_label_step_name_detail"
+                                ></span>
+                                <span
+                                    class="oui-icon oui-icon-chevron-right"
+                                    aria-hidden="true"
+                                ></span>
+                            </a>
+                        </div>
+                    </div>
+                </li>
                 <!-- PACK NAME -->
                 <li class="oui-tile__item">
                     <div class="oui-tile__definition">
