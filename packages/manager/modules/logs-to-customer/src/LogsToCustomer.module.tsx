@@ -39,7 +39,7 @@ export interface ILogsToCustomerModule {
   };
 }
 
-export default function LogsToCustomerModule({
+export function LogsToCustomerModule({
   logApiUrls,
   logApiVersion,
   logIamActions,

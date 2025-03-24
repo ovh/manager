@@ -1,6 +1,6 @@
 import React from 'react';
-import LogsToCustomerModule from '@ovh-ux/logs-to-customer/src/LogsToCustomer.module';
 import { apiUrlMocks } from './test.constant';
+import { LogsToCustomerModule } from '../LogsToCustomer.module';
 
 export const MockedAppPageLabel = 'mocked app page';
 

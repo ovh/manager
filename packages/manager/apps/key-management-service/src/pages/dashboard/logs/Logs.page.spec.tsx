@@ -5,10 +5,10 @@ import {
   useFeatureAvailability,
   UseFeatureAvailabilityResult,
 } from '@ovh-ux/manager-react-components';
+import { LogsToCustomerModule } from '@ovh-ux/logs-to-customer';
 import { UseQueryResult } from '@tanstack/react-query';
 import { Navigate } from 'react-router-dom';
 import { ApiResponse } from '@ovh-ux/manager-core-api';
-import LogsToCustomerModule from '@ovh-ux/logs-to-customer/src/LogsToCustomer.module';
 import KmsLogs from './Logs.page';
 import { FEATURES } from '@/utils/feature-availability/feature-availability.constants';
 import { OKMS } from '@/types/okms.type';

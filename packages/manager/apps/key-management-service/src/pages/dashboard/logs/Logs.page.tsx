@@ -1,4 +1,4 @@
-import LogsToCustomerModule from '@ovh-ux/logs-to-customer/src/LogsToCustomer.module';
+import { LogsToCustomerModule } from '@ovh-ux/logs-to-customer';
 import {
   RedirectionGuard,
   useFeatureAvailability,
