@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [20.19.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.19.2...@ovh-ux/manager-dedicated@20.19.3) (2025-03-24)
+
+
+### Bug Fixes
+
+* **dedicated,vps:** margin issues around sshkey component ([#14010](https://github.com/ovh/manager/issues/14010)) ([84c41fc](https://github.com/ovh/manager/commit/84c41fc188b02dc649af736885243429cfbfad8e)), closes [#MANAGER-15969](https://github.com/ovh/manager/issues/MANAGER-15969)
+* **dedicated:** prevent breaking words ([#15908](https://github.com/ovh/manager/issues/15908)) ([e418cf7](https://github.com/ovh/manager/commit/e418cf77bd8374a03c06df369f908a1293184245)), closes [#MANAGER-17147](https://github.com/ovh/manager/issues/MANAGER-17147)
+
+
+
+
+
 ## [20.19.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.19.1...@ovh-ux/manager-dedicated@20.19.2) (2025-03-21)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated

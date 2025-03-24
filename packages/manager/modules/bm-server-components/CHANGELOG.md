@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.7.0...@ovh-ux/manager-bm-server-components@2.7.1) (2025-03-24)
+
+
+### Bug Fixes
+
+* **dedicated,vps:** margin issues around sshkey component ([#14010](https://github.com/ovh/manager/issues/14010)) ([84c41fc](https://github.com/ovh/manager/commit/84c41fc188b02dc649af736885243429cfbfad8e)), closes [#MANAGER-15969](https://github.com/ovh/manager/issues/MANAGER-15969)
+* **dedicated:** change default netboot rescue value ([#15904](https://github.com/ovh/manager/issues/15904)) ([9755514](https://github.com/ovh/manager/commit/9755514123b62dda0c5b464e81195ddb43831724)), closes [#MANAGER-17379](https://github.com/ovh/manager/issues/MANAGER-17379)
+
+
+
+
+
 # [2.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.6.0...@ovh-ux/manager-bm-server-components@2.7.0) (2025-03-03)
 
 

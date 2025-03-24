@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.31.3...@ovh-ux/manager-billing@0.32.0) (2025-03-24)
+
+
+### Bug Fixes
+
+* **billing:** remove s from vracks ([#16089](https://github.com/ovh/manager/issues/16089)) ([b3b1501](https://github.com/ovh/manager/commit/b3b150122044a4d16b71eb5ba558293b7c375f3d)), closes [#MANAGER-17131](https://github.com/ovh/manager/issues/MANAGER-17131)
+
+
+### Features
+
+* **billing:** move terminate vrack to billing-components module ([#15909](https://github.com/ovh/manager/issues/15909)) ([b2422ef](https://github.com/ovh/manager/commit/b2422efc204a166a04f1d04a1e81e4f5c256eeaa)), closes [#MANAGER-17133](https://github.com/ovh/manager/issues/MANAGER-17133)
+
+
+
+
+
 ## [0.31.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.31.2...@ovh-ux/manager-billing@0.31.3) (2025-02-24)
 
 

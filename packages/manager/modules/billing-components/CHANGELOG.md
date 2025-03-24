@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.10.0...@ovh-ux/manager-billing-components@4.11.0) (2025-03-24)
+
+
+### Features
+
+* **billing-component:** remove feature-flipping when custom action is specified ([#15867](https://github.com/ovh/manager/issues/15867)) ([5fb0bb3](https://github.com/ovh/manager/commit/5fb0bb349c2bb4752ccafa1e59d4cd691f885dc0)), closes [#MANAGER-17324](https://github.com/ovh/manager/issues/MANAGER-17324)
+* **billing:** move terminate vrack to billing-components module ([#15909](https://github.com/ovh/manager/issues/15909)) ([b2422ef](https://github.com/ovh/manager/commit/b2422efc204a166a04f1d04a1e81e4f5c256eeaa)), closes [#MANAGER-17133](https://github.com/ovh/manager/issues/MANAGER-17133)
+
+
+
+
+
 # [4.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.9.1...@ovh-ux/manager-billing-components@4.10.0) (2025-03-17)
 
 
