@@ -9,5 +9,7 @@
   "pci_projects_project_storages_blocks_block_volume-edit_bootable_label": "Amorçable",
   "pci_projects_project_storages_blocks_block_volume-edit_bootable_help": "Définir un volume comme amorçable permet d'utiliser ce volume au démarrage de votre instance.",
 
-  "pci_projects_project_storages_blocks_block_volume-edit_cancel_label": "Annuler"
+  "pci_projects_project_storages_blocks_block_volume-edit_cancel_label": "Annuler",
+
+  "pci_projects_project_storages_blocks_add_submit_price_text": "Montant estimé : {{price}} HT/mois"
 }

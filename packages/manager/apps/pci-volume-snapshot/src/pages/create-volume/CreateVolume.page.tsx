@@ -9,12 +9,13 @@ import {
 import {
   OdsBreadcrumb,
   OdsBreadcrumbItem,
+  OdsSpinner,
 } from '@ovhcloud/ods-components/react';
 import { useParams, useHref, useNavigate } from 'react-router-dom';
 import { useProject } from '@ovh-ux/manager-pci-common';
 import PciStorageVolumeEdit from '@/pages/create-volume/PciStorageVolumeEdit';
-import { useVolumeSnapshots } from '@/api/hooks/useSnapshots';
-import { TSnapshot } from '@/api/data/snapshots';
+import { TVolumeSnapshot, useVolumeSnapshots } from '@/api/hooks/useSnapshots';
+import { TSnapshot, TVolume } from '@/api/data/snapshots';
 
 export default function CreateVolumePage() {
   const { t } = useTranslation(['create-volume', 'volumes']);
@@ -25,13 +26,23 @@ export default function CreateVolumePage() {
   const hrefListing = useHref('./../..');
   const goBack = () => navigate('./../..');
 
+  // TODO: update
   const { data: allSnapshots, error, isLoading } = useVolumeSnapshots(
     projectId || 'NO_PROJECT_ID',
   );
-  const snapshot: TSnapshot | null = useMemo(
+  const snapshot: TVolumeSnapshot | null = useMemo(
     () => allSnapshots.find((d) => d.id === snapshotId) || null,
     [allSnapshots, snapshotId],
   );
+
+  if (!snapshot) {
+    // TODO: error handling
+    return <p>TODO: Error handling</p>;
+  }
+
+  console.group('[default] CreateVolumePage');
+  console.log('snapshot: ', snapshot);
+  console.groupEnd();
 
   const handleSubmit = () => {
     console.log('[CreateVolume] handleSubmit.');
@@ -67,15 +78,20 @@ export default function CreateVolumePage() {
           headerButton: <PciGuidesHeader category={'storage'} />,
         }}
       >
-        <PciStorageVolumeEdit
-          isLoading={isLoading}
-          snapshot={snapshot as TSnapshot}
-          onSubmit={handleSubmit}
-          onCancel={goBack}
-          submitLabel={t(
-            'pci_projects_project_storages_snapshots_snapshot_create-volume_submit_label',
-          )}
-        />
+        {!snapshot?.volume ? (
+          <OdsSpinner />
+        ) : (
+          <PciStorageVolumeEdit
+            projectId={projectId || ''}
+            volume={snapshot.volume}
+            suggestedName={snapshot.name}
+            onSubmit={handleSubmit}
+            onCancel={goBack}
+            submitLabel={t(
+              'pci_projects_project_storages_snapshots_snapshot_create-volume_submit_label',
+            )}
+          />
+        )}
       </BaseLayout>
     </RedirectionGuard>
   );

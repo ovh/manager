@@ -7,5 +7,7 @@
   "pci_projects_project_storages_blocks_block_volume-edit_size_unit": "GB",
   "pci_projects_project_storages_blocks_block_volume-edit_bootable_label": "Volume de arranque",
   "pci_projects_project_storages_blocks_block_volume-edit_bootable_help": "Definir um volume como volume de arranque permite utilizar esse volume ao iniciar a instância.",
-  "pci_projects_project_storages_blocks_block_volume-edit_cancel_label": "Anular"
+  "pci_projects_project_storages_blocks_block_volume-edit_cancel_label": "Anular",
+
+  "pci_projects_project_storages_blocks_add_submit_price_text": "Montante estimado: {{price}}/mês + IVA"
 }
