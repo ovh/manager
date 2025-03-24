@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-BASE_BRANCH=$1
-
 get_changed_packages() {
   node_modules/.bin/lerna changed --all -l --json | jq -r '.[].name'
 }

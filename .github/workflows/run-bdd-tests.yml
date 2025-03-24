@@ -39,7 +39,8 @@ jobs:
           REPO: ${{ github.repository }}
         run: |
           BASE_BRANCH=$(curl -s -H "Authorization: $GITHUB_TOKEN" "https://api.github.com/repos/$REPO/pulls?state=open" | jq ".[] | select(.head.ref == \"$BRANCH\") | .base.ref")
-
+          export BASE_BRANCH=$BASE_BRANCH
+          pwd
           if [[ -z "$BASE_BRANCH" ]]; then
             echo "NO PR FOUND for branch $BRANCH"
           else
@@ -47,4 +48,4 @@ jobs:
             echo "current Branch is ${GITHUB_REF#refs/heads/}"
             echo "BASE_BRANCH=$BASE_BRANCH" >> $GITHUB_ENV
           fi
-          ./script/test-coverage.sh $BASE_BRANCH
+          yarn test:coverage
