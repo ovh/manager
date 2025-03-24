@@ -15,7 +15,7 @@ import { imagesRescueSelector } from '@/data/hooks/image/selector/image.selector
 
 type TRescueActionPageProps = 'rescue/start' | 'rescue/end';
 
-export const RescueActionPage: FC<{
+export type TCustomModalActionPage = {
   title: string;
   section: TRescueActionPageProps;
   projectId: string;
@@ -23,7 +23,9 @@ export const RescueActionPage: FC<{
   handleMutationSuccess: () => void;
   handleModalClose: () => void;
   instance: TInstanceDto;
-}> = ({
+};
+
+export const RescueActionPage: FC<TCustomModalActionPage> = ({
   title,
   section,
   projectId,
