@@ -1,21 +1,29 @@
 import { VCD_MIGRATION_STATUS } from '../../app/components/dedicated-cloud/dedicatedCloud.constant';
+import '../../../../../../components/ng-ovh-feature-flipping/src';
 import '../../app/components/dedicated-cloud/dedicatedCloud.service';
 
 describe('DedicatedCloud service test suites', () => {
-  beforeEach(() => {
-    angular.mock.module('ovhManagerPccService', ($provide) => {
-      // mocks for dependencies
-      $provide.value('iceberg', {});
-      $provide.value('OvhApiDedicatedCloud', {});
-      $provide.value('OvhHttp', {});
-      $provide.value('Poller', {});
-      $provide.value('Poll', {});
-      $provide.value('coreConfig', {});
-    });
-  });
-
   let DedicatedCloud;
   let $httpBackend;
+  const coreConfigSpy = {
+    getUser: jest.fn(),
+  };
+
+  beforeEach(() => {
+    angular.mock.module(
+      'ovhManagerPccService',
+      'ngOvhFeatureFlipping',
+      ($provide) => {
+        // mocks for dependencies
+        $provide.value('iceberg', {});
+        $provide.value('OvhApiDedicatedCloud', {});
+        $provide.value('OvhHttp', {});
+        $provide.value('Poller', {});
+        $provide.value('Poll', {});
+        $provide.value('coreConfig', coreConfigSpy);
+      },
+    );
+  });
 
   beforeEach(() => {
     angular.mock.inject([
@@ -138,6 +146,88 @@ describe('DedicatedCloud service test suites', () => {
         expect(vcdState.state).toBe(state);
       });
       $httpBackend.flush();
+    },
+  );
+
+  it.each([
+    {
+      isEnterprise: true,
+      isTrusted: true,
+      expectedCatalogURL:
+        '/order/catalog/formatted/privateCloudEnterprise?ovhSubsidiary=GB',
+    },
+    {
+      isEnterprise: false,
+      isTrusted: true,
+      expectedCatalogURL:
+        '/order/catalog/private/privateCloud?catalogName=private_cloud_snc&ovhSubsidiary=GB',
+    },
+    {
+      isEnterprise: true,
+      isTrusted: false,
+      expectedCatalogURL:
+        '/order/catalog/formatted/privateCloudEnterprise?ovhSubsidiary=GB',
+    },
+    {
+      isEnterprise: false,
+      isTrusted: false,
+      expectedCatalogURL:
+        '/order/catalog/formatted/privateCloud?ovhSubsidiary=GB',
+    },
+  ])(
+    'should get the right catalog when isEnterprise=$isEnterprise and isTrusted=$isTrusted',
+    ({ isEnterprise, isTrusted, expectedCatalogURL }) => {
+      $httpBackend
+        .expectGET('/feature/dedicated-cloud:enterprise-catalog/availability')
+        .respond(200, { 'dedicated-cloud:enterprise-catalog': isEnterprise });
+      $httpBackend
+        .expectGET(expectedCatalogURL)
+        .respond(200, { data: ['catalog'] });
+      coreConfigSpy.getUser.mockReturnValue({
+        ovhSubsidiary: 'GB',
+        isTrusted,
+      });
+
+      const promise = DedicatedCloud.getCatalog();
+      $httpBackend.flush();
+
+      promise.then((catalog) => {
+        expect(catalog).toEqual(['catalog']);
+      });
+    },
+  );
+
+  it.each([
+    {
+      isTrusted: true,
+      expectedCatalogURL:
+        '/order/catalog/private/privateCloud?catalogName=private_cloud_snc&ovhSubsidiary=GB',
+    },
+    {
+      isTrusted: false,
+      expectedCatalogURL:
+        '/order/catalog/formatted/privateCloud?ovhSubsidiary=GB',
+    },
+  ])(
+    'should return the given catalog when feature flipping catalog enterprise fails (snc=$isTrusted)',
+    ({ isTrusted, expectedCatalogURL }) => {
+      $httpBackend
+        .expectGET('/feature/dedicated-cloud:enterprise-catalog/availability')
+        .respond(500);
+      $httpBackend
+        .expectGET(expectedCatalogURL)
+        .respond(200, { data: ['catalog'] });
+      coreConfigSpy.getUser.mockReturnValue({
+        ovhSubsidiary: 'GB',
+        isTrusted,
+      });
+
+      const promise = DedicatedCloud.getCatalog();
+      $httpBackend.flush();
+
+      promise.then((catalog) => {
+        expect(catalog).toEqual(['catalog']);
+      });
     },
   );
 });
