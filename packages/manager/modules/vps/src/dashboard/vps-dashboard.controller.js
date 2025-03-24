@@ -442,11 +442,17 @@ export default class {
                 serviceName: this.serviceName,
               },
             ),
-            isAvailable: () => !this.loaders.ip && !this.isMigrationInProgress,
+            isAvailable: () =>
+              !this.loaders.ip &&
+              !this.isMigrationInProgress &&
+              !this.isLocalzone,
           },
           displayIps: {
             text: this.$translate.instant('vps_dashboard_ips_additional'),
-            isAvailable: () => !this.loaders.ip && !this.isMigrationInProgress,
+            isAvailable: () =>
+              !this.loaders.ip &&
+              !this.isMigrationInProgress &&
+              !this.isLocalzone,
           },
           manageSla: {
             text: this.$translate.instant('vps_common_manage'),
