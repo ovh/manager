@@ -44,6 +44,9 @@ export type TInstanceDto = {
   availabilityZone: string | null;
 };
 
+export type TPartialInstanceDto = Pick<TInstanceDto, 'id'> &
+  Partial<TInstanceDto>;
+
 export type TRetrieveInstancesQueryParams = DeepReadonly<{
   limit: number;
   sort: string;
