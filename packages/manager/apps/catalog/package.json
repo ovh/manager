@@ -18,7 +18,8 @@
     "start": "lerna exec --stream --scope='@ovh-ux/manager-catalog-app' --include-dependencies -- npm run build --if-present",
     "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-catalog-app' --include-dependencies -- npm run dev --if-present",
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-catalog-app' --include-dependencies -- npm run dev:watch --if-present",
-    "test": "jest"
+    "test": "vitest run",
+    "test:watch": "vitest watch"
   },
   "dependencies": {
     "@cucumber/cucumber": "^10.3.1",
@@ -49,8 +50,10 @@
     "@ovh-ux/manager-vite-config": "^0.9.3",
     "@playwright/test": "^1.49.1",
     "@tanstack/react-query-devtools": "^5.51.21",
-    "@types/jest": "^29.5.5",
-    "ts-jest": "^29.1.1"
+    "@vitejs/plugin-react": "^4.3.0",
+    "@vitest/coverage-v8": "^2.1.9",
+    "vite": "^5.4.12",
+    "vitest": "^2.1.9"
   },
   "regions": [
     "CA",

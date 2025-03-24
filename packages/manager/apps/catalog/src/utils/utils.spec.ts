@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import { products as productsData } from './mocks/test-products.mock.json';
 import {
   getUniverses,
