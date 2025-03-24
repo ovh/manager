@@ -26,7 +26,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import {
   useDomain,
   useGenerateUrl,
-  useOrganizationList,
+  useOrganizations,
   usePlatform,
   useOdsModalOverflowHack,
 } from '@/hooks';
@@ -59,7 +59,7 @@ export default function ModalEditDomain() {
   const {
     data: organizations,
     isLoading: isLoadingOrganizations,
-  } = useOrganizationList({ shouldFetchAll: true });
+  } = useOrganizations({ shouldFetchAll: true });
 
   const { addError, addSuccess } = useNotifications();
 

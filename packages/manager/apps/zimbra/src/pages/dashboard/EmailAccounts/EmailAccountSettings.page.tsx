@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useSearchParams } from 'react-router-dom';
@@ -17,6 +17,7 @@ import {
   ODS_BUTTON_VARIANT,
   ODS_INPUT_TYPE,
   ODS_MESSAGE_COLOR,
+  ODS_SPINNER_SIZE,
   ODS_TEXT_PRESET,
   OdsSelectChangeEvent,
 } from '@ovhcloud/ods-components';
@@ -29,14 +30,13 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { useGenerateUrl, usePlatform } from '@/hooks';
+import { useDomains, useGenerateUrl, usePlatform } from '@/hooks';
 import {
   AccountBodyParamsType,
   AccountType,
   postZimbraPlatformAccount,
   putZimbraPlatformAccount,
 } from '@/api/account';
-import { DomainType } from '@/api/domain';
 import {
   AddEmailAccountSchema,
   addEmailAccountSchema,
@@ -50,12 +50,12 @@ import {
   EDIT_EMAIL_ACCOUNT,
 } from '@/tracking.constant';
 import { getZimbraPlatformListQueryKey } from '@/api/platform';
+import { ResourceStatus } from '@/api/api.type';
+import Loading from '@/components/Loading/Loading';
 
 export default function EmailAccountSettings({
-  domains = [],
   editAccountDetail = null,
 }: Readonly<{
-  domains: DomainType[];
   editAccountDetail: AccountType;
 }>) {
   const { trackClick, trackPage } = useOvhTracking();
@@ -76,6 +76,23 @@ export default function EmailAccountSettings({
   const onClose = () => {
     return navigate(goBackUrl);
   };
+
+  const { data: domains, isLoading: isLoadingDomains } = useDomains({
+    shouldFetchAll: true,
+  });
+
+  // @TODO: remove this when OdsSelect is fixed ODS-1565
+  const [hackDomains, setHackDomains] = useState([]);
+  const [hackKeyDomains, setHackKeyDomains] = useState(Date.now());
+
+  useEffect(() => {
+    setHackDomains(
+      (domains || []).filter(
+        (domain) => domain.resourceStatus === ResourceStatus.READY,
+      ),
+    );
+    setHackKeyDomains(Date.now());
+  }, [domains]);
 
   const { mutate: addOrEditEmailAccount, isPending: isSending } = useMutation({
     mutationFn: (params: AccountBodyParamsType) => {
@@ -185,7 +202,7 @@ export default function EmailAccountSettings({
   });
 
   const setSelectedOrganization = (e: OdsSelectChangeEvent) => {
-    const organizationLabel = domains.find(
+    const organizationLabel = domains?.find(
       ({ currentState }) => currentState.name === e?.detail?.value,
     )?.currentState.organizationLabel;
     setSelectedDomainOrganization(organizationLabel);
@@ -232,26 +249,36 @@ export default function EmailAccountSettings({
                 control={control}
                 name="domain"
                 render={({ field }) => (
-                  <OdsSelect
-                    id={name}
-                    name={field.name}
-                    hasError={!!errors[field.name]}
-                    value={field.value}
-                    className="w-1/2"
-                    placeholder={t('common:select_domain')}
-                    onOdsChange={(e) => {
-                      field.onChange(e);
-                      setSelectedOrganization(e);
-                    }}
-                    onOdsBlur={field.onBlur}
-                    data-testid="select-domain"
-                  >
-                    {domains.map(({ currentState: domain }) => (
-                      <option key={domain.name} value={domain.name}>
-                        {domain.name}
-                      </option>
-                    ))}
-                  </OdsSelect>
+                  <div className="flex flex-1">
+                    <OdsSelect
+                      key={hackKeyDomains}
+                      id={name}
+                      name={field.name}
+                      hasError={!!errors[field.name]}
+                      value={field.value}
+                      placeholder={t('common:select_domain')}
+                      onOdsChange={(e) => {
+                        field.onChange(e);
+                        setSelectedOrganization(e);
+                      }}
+                      onOdsBlur={field.onBlur}
+                      isDisabled={isLoadingDomains}
+                      className="w-full"
+                      data-testid="select-domain"
+                    >
+                      {hackDomains.map(({ currentState: domain }) => (
+                        <option key={domain.name} value={domain.name}>
+                          {domain.name}
+                        </option>
+                      ))}
+                    </OdsSelect>
+                    {isLoadingDomains && (
+                      <Loading
+                        className="flex justify-center"
+                        size={ODS_SPINNER_SIZE.sm}
+                      />
+                    )}
+                  </div>
                 )}
               />
             </div>
