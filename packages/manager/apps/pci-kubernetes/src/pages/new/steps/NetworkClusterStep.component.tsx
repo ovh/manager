@@ -35,6 +35,7 @@ import LoadBalancerSelect from '@/components/create/LoadBalancerSelect.component
 import { LoadBalancerWarning } from '@/components/network/LoadBalancerWarning.component';
 
 import { KUBECONFIG_3AZ_GATEWAY } from '@/constants';
+import { DeploymentMode } from '@/types';
 
 export type TNetworkFormState = {
   privateNetwork?: TNetwork;
@@ -45,7 +46,7 @@ export type TNetworkFormState = {
 
 export type NetworkClusterStepProps = {
   region: string;
-  type;
+  type: string;
   onChange: (networkForm: TNetworkFormState) => void;
 };
 
@@ -84,7 +85,7 @@ export default function NetworkClusterStep({
         />
       ) : (
         <>
-          {type === 'region-3-az' && (
+          {type === DeploymentMode.MULTI_ZONES && (
             <OsdsMessage
               type={ODS_MESSAGE_TYPE.info}
               color={ODS_TEXT_COLOR_INTENT.info}
@@ -116,6 +117,7 @@ export default function NetworkClusterStep({
             </OsdsMessage>
           )}
           <PrivateNetworkSelect
+            type={type}
             network={form.privateNetwork}
             networks={availablePrivateNetworks}
             onSelect={(privateNetwork) =>
