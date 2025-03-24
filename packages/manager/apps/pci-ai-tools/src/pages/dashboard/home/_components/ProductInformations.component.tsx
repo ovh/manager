@@ -42,13 +42,13 @@ export default function ProductInformations({
         </OvhLink>
       )}
       {showConsumptionInfos && (
-        <div className="flex flew-row font-semibold gap-2 mt-2">
-          <Badge variant="success" className="px-3 py-3.5 rounded-md">
+        <div className="flex flew-row gap-2 mt-2">
+          <Badge variant="success">
             {t('ai-product-active', {
               number: active,
             })}
           </Badge>
-          <Badge variant="warning" className="px-3 py-3.5 rounded-md">
+          <Badge variant="warning">
             {t('ai-product-stopped', {
               number: stopped,
             })}
