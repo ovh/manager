@@ -7,13 +7,22 @@ import { ORDER_PARAMETERS, RESOURCE_UPGRADE_TYPES } from './upgrade.constants';
 
 export default class {
   /* @ngInject */
-  constructor($http, $q, $translate, $window, OvhApiDedicatedCloud, User) {
+  constructor(
+    $http,
+    $q,
+    $translate,
+    $window,
+    OvhApiDedicatedCloud,
+    User,
+    DedicatedCloud,
+  ) {
     this.$q = $q;
     this.$http = $http;
     this.$translate = $translate;
     this.$window = $window;
     this.OvhApiDedicatedCloud = OvhApiDedicatedCloud;
     this.User = User;
+    this.DedicatedCloud = DedicatedCloud;
   }
 
   $onInit() {
@@ -33,14 +42,7 @@ export default class {
   fetchCatalog() {
     return this.$q
       .all({
-        catalog: this.$http
-          .get('/sws/dedicatedcloud/catalog', {
-            serviceType: 'aapi',
-            params: {
-              ovhSubsidiary: this.ovhSubsidiary,
-            },
-          })
-          .then((data) => get(data, 'data')),
+        catalog: this.DedicatedCloud.getCatalog(),
         expressURL: this.User.getUrlOf('express_order'),
         service: this.OvhApiDedicatedCloud.v6().get({
           serviceName: this.productId,
