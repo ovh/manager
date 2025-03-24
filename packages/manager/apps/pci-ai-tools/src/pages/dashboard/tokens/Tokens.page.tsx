@@ -45,11 +45,10 @@ const Tokens = () => {
       <p>{t('tokenParagraphe2')}</p>
       <p>{t('tokenParagraphe3')}</p>
       <Button
-        className="sm"
         data-testid="create-token-button"
         onClick={() => navigate('./add')}
       >
-        <Plus className="size-5" />
+        <Plus className="size-5 mr-2" />
         {t('addButtonLabel')}
       </Button>
       {tokenQuery.isSuccess ? (

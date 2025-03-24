@@ -26,7 +26,6 @@ export function DatatableSortableHeader<TData>({
   return (
     <Button
       mode="ghost"
-      variant="neutral"
       className={buttonClass}
       onClick={() => column.toggleSorting(sort === 'asc')}
     >

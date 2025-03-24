@@ -21,7 +21,7 @@ export default function Home() {
   const { notebooks, jobs, apps } = useDashboardData();
   const regionQuery = useGetRegions(projectId);
   const objectStoragePath = `/pci/projects/${projectId}/storages/objects`;
-  const notebooksPath = '../notebooks';
+  const notebooksPath = `/pci/projects/${projectId}/notebooks`;
   const jobsPath = `/pci/projects/${projectId}/training/jobs`;
   const appsPath = `/pci/projects/${projectId}/ai/apps`;
 

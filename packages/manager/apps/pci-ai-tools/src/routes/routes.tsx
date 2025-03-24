@@ -30,6 +30,7 @@ export default [
       },
       {
         path: 'dashboard',
+        id: 'dashboard',
         ...lazyRouteConfig(() => import('@/pages/dashboard/Dashboard.layout')),
         children: [
           {
