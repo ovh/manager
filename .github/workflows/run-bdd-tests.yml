@@ -38,12 +38,11 @@ jobs:
           BRANCH: ${{ github.ref_name }}
           REPO: ${{ github.repository }}
         run: |
-          BASE_BRANCH=$(gh api repos/$REPO/pulls \
-          --jq ".[] | select(.head.ref == \"$BRANCH\") | .base.ref" \
-          --paginate)
+          BASE_BRANCH=$(gh api repos/$REPO/pulls --jq ".[] | select(.head.ref == \"$BRANCH\") | .base.ref" --paginate)
 
           if [[ -z "$BASE_BRANCH" ]]; then
             echo "NO PR FOUND for branch $BRANCH"
           else
             echo "Base Branch is $BASE_BRANCH"
             echo "BASE_BRANCH=$BASE_BRANCH" >> $GITHUB_ENV
+          fi
