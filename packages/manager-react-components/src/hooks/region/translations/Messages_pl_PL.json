@@ -281,5 +281,14 @@
   "manager_components_region_continent_SHA": "Europa Zachodnia",
   "manager_components_region_continent_CA": "Ameryka Północna",
   "manager_components_region_continent_MRS": "Europa Zachodnia",
-  "manager_components_region_continent_PAR": "Europa Zachodnia"
+  "manager_components_region_continent_PAR": "Europa Zachodnia",
+  "manager_components_region_PHL": "Filadelfia",
+  "manager_components_region_PHL_micro": "Filadelfia ({{micro}})",
+  "manager_components_region_continent_PHL": "Ameryka Północna",
+  "manager_components_region_CPH": "Kopenhaga",
+  "manager_components_region_CPH_micro": "Kopenhaga ({{micro}})",
+  "manager_components_region_continent_CPH": "Europa Północna",
+  "manager_components_region_PHX": "Phoenix",
+  "manager_components_region_PHX_micro": "Phoenix ({{micro}})",
+  "manager_components_region_continent_PHX": "Ameryka Północna"
 }
