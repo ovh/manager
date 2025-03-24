@@ -31,16 +31,10 @@ const resolveServicePacks = /* @ngInject */ (
   );
 
 const resolveServicePacksWithPrices = /* @ngInject */ (
-  currentUser,
   ovhManagerPccServicePackService,
   hosts,
   servicePacks,
-) =>
-  ovhManagerPccServicePackService.getPrices(
-    currentUser.ovhSubsidiary,
-    hosts,
-    servicePacks,
-  );
+) => ovhManagerPccServicePackService.getPrices(hosts, servicePacks);
 
 const resolveServicePackToOrder = /* @ngInject */ ($transition$) =>
   $transition$.params().servicePackToOrder;
