@@ -31,6 +31,8 @@ jobs:
         run: yarn test:jest
       - name: Run tests Turbo
         run: |
+          BASE_BRANCH="${{ github.event.pull_request.base.ref }}"
+          echo "The base branch is: $BASE_BRANCH"
           BASE_BRANCH="${{ github.base_ref }}"
           echo "The base branch is: $BASE_BRANCH"
-          yarn test:coverage
+          echo "The base branch is: $(jq -r .'pull_request.base.ref' $GITHUB_EVENT_PATH)"
