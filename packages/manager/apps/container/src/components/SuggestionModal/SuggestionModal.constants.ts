@@ -35,7 +35,10 @@ export const SuggestionModalConfiguration: ModalToDisplayConfiguration = {
     intervalInSeconds: 24 * 60 * 60,
     excludedUrls: [
       {
-        appName: 'account',
+        appName: (environment: Environment) =>
+          environment.getApplicationURL('new-billing')
+            ? 'new-account'
+            : 'dedicated',
         appPath: '#/useraccount/infos',
       },
     ],
