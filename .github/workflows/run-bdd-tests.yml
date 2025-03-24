@@ -29,9 +29,6 @@ jobs:
       # This task is for running the jest tests outside microApps
       - name: Run tests Jest
         run: yarn test:jest
-      - name: get base ref
-        run: |
-          echo The base branch is: '${{ toJSON(github) }}'
       - name: Run tests Turbo
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -39,7 +36,7 @@ jobs:
           REPO: ${{ github.repository }}
         run: |
           BASE_BRANCH=$(curl -s -H "Authorization: $GITHUB_TOKEN" "https://api.github.com/repos/$REPO/pulls?state=open" | jq ".[] | select(.head.ref == \"$BRANCH\") | .base.ref")
-          export BASE_BRANCH=$BASE_BRANCH
+          export BASE_BRANCH=${$BASE_BRANCH//\"/}
           pwd
           if [[ -z "$BASE_BRANCH" ]]; then
             echo "NO PR FOUND for branch $BRANCH"
