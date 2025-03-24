@@ -40,6 +40,7 @@ jobs:
           BASE_BRANCH=$(curl -s -H "Authorization: $GITHUB_TOKEN" "https://api.github.com/repos/$REPO/pulls?state=open" | jq ".[] | select(.head.ref == \"$BRANCH\") | .base.ref")
           export BASE_BRANCH="${BASE_BRANCH//\"/}"
           pwd
+          ls -arlt
           if [[ -z "$BASE_BRANCH" ]]; then
             echo "NO PR FOUND for branch $BRANCH"
           else
