@@ -1483,4 +1483,15 @@ export default /* @ngInject */ function VpsService(
       .post(`/services/${serviceId}/upgrade/${planCode}/execute`, params)
       .then(({ data }) => data);
   };
+
+  this.vpsCapabilities = function vpsCapabilities(serviceName, stateVps) {
+    return $http
+      .get(`/vps/capabilities/${serviceName}`, {
+        serviceType: 'aapi',
+        params: {
+          modelName: stateVps.model.name,
+        },
+      })
+      .then(({ data }) => data);
+  };
 }
