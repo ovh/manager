@@ -2,9 +2,9 @@ import { render, waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
 import { UseQueryResult } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
-import * as useInstanceModule from '@/api/hooks/useInstance';
+import * as pciCommonModule from '@ovh-ux/manager-pci-common';
+import { TInstance } from '@ovh-ux/manager-pci-common';
 import DetachStorage from '@/pages/detach/DetachStorage.page';
-import { Instance } from '@/api/data/instance';
 import * as useVolumeModule from '@/api/hooks/useVolume';
 import { TVolume } from '@/api/data/volume';
 
@@ -22,16 +22,12 @@ vi.mock('react-router-dom', () => ({
   useParams: vi.fn(),
 }));
 
-vi.mock('@/api/hooks/useInstance', () => ({
-  useInstance: vi.fn(),
-}));
-
 describe('DetachStorage', () => {
   it('renders spinner when data is pending', () => {
     vi.mocked(useParams).mockReturnValue({ projectId: '1', volumeId: '1' });
-    vi.spyOn(useInstanceModule, 'useInstance').mockReturnValue({
+    vi.spyOn(pciCommonModule, 'useInstance').mockReturnValue({
       isPending: true,
-    } as UseQueryResult<Instance>);
+    } as UseQueryResult<TInstance>);
     vi.spyOn(useVolumeModule, 'useVolume').mockReturnValue({
       isPending: true,
     } as UseQueryResult<TVolume>);
@@ -41,10 +37,10 @@ describe('DetachStorage', () => {
   });
 
   it('renders volume and instance names when data is available', async () => {
-    vi.spyOn(useInstanceModule, 'useInstance').mockReturnValue({
+    vi.spyOn(pciCommonModule, 'useInstance').mockReturnValue({
       data: { name: 'Instance 1' },
       isPending: false,
-    } as UseQueryResult<Instance>);
+    } as UseQueryResult<TInstance>);
     vi.spyOn(useVolumeModule, 'useVolume').mockReturnValue({
       data: { name: 'Volume 1', attachedTo: ['Instance 1'] },
       isPending: false,
