@@ -249,10 +249,30 @@ export default /* @ngInject */ ($stateProvider) => {
             productId: serverName,
           },
         ),
-      goToTagManager: /* @ngInject */ ($state, serverName) => () => {
-        $state.go('app.dedicated-cluster.cluster.node.tag-manager', {
-          productId: serverName,
-        });
+      goToTagManager: /* @ngInject */ ($state, serverName) => (reload) => {
+        $state.go(
+          'app.dedicated-cluster.cluster.node.dashboard.tag-manager',
+          {
+            productId: serverName,
+          },
+          { reload },
+        );
+      },
+      goToTagAssign: /* @ngInject */ ($state, serverName) => () => {
+        $state.go(
+          'app.dedicated-cluster.cluster.node.dashboard.tag-manager.assign',
+          {
+            productId: serverName,
+          },
+        );
+      },
+      goToTagUnassign: /* @ngInject */ ($state, serverName) => () => {
+        $state.go(
+          'app.dedicated-cluster.cluster.node.dashboard.tag-manager.unassign',
+          {
+            productId: serverName,
+          },
+        );
       },
       getOrderPrivateBandwidthLink: /* @ngInject */ (
         $state,
