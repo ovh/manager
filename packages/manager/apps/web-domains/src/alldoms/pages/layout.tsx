@@ -1,11 +1,12 @@
 import React, { useEffect, useContext } from 'react';
 import { defineCurrentPage } from '@ovh-ux/request-tagger';
-import { Outlet, useLocation, useMatches } from 'react-router-dom';
+import { Navigate, Outlet, useLocation, useMatches } from 'react-router-dom';
 import {
   useOvhTracking,
   useRouteSynchro,
   ShellContext,
 } from '@ovh-ux/manager-react-shell-client';
+import { useGetAllDomServiceList } from '../hooks/data/query';
 
 export default function Layout() {
   const location = useLocation();
@@ -13,6 +14,7 @@ export default function Layout() {
   const matches = useMatches();
   const { trackCurrentPage } = useOvhTracking();
   useRouteSynchro();
+  const { data, isLoading } = useGetAllDomServiceList();
 
   useEffect(() => {
     const match = matches.slice(-1);
@@ -27,5 +29,12 @@ export default function Layout() {
     shell.ux.hidePreloader();
   }, []);
 
-  return <Outlet />;
+  return (
+    <>
+      <Outlet />
+      {!data && !isLoading && (
+        <Navigate key={location.pathname} to="onboarding" replace={true} />
+      )}
+    </>
+  );
 }
