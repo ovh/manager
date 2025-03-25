@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { getSubnetGateways } from '@/api/data/gateways';
-import { queryKeyBuilder } from '@/utils/utils';
+import { queryKeyBuilder } from '@/utils/query';
 
 export const useSubnetGateways = (
   projectId: string,

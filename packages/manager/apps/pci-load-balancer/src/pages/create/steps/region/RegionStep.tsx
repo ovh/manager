@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import {
   OsdsLink,
   OsdsMessage,
@@ -22,12 +22,18 @@ import {
   usePCICommonContextFactory,
   PCICommonContext,
   TRegion,
+  TDeployment,
+  DeploymentTilesInput,
+  TProductAvailabilityRegion,
+  usePCIFeatureAvailability,
+  getDeploymentComingSoonKey,
+  DEPLOYMENT_FEATURES,
+  DEPLOYMENT_MODES_TYPES,
 } from '@ovh-ux/manager-pci-common';
 import { REGION_AVAILABILITY_LINK } from '@/constants';
 import { StepsEnum, useCreateStore } from '@/pages/create/store';
 import { useTracking } from '@/pages/create/hooks/useTracking';
 import { useGetRegionPrivateNetworks } from '@/api/hook/useNetwork';
-import { TProductAvailabilityRegion } from '@/types/region.type';
 
 export type TRegionStepProps = {
   regions: TProductAvailabilityRegion[];
@@ -61,6 +67,37 @@ export const RegionStep = ({
   }, [regions]);
 
   const metaProps = usePCICommonContextFactory({ has3AZ });
+
+  const [
+    selectedRegionGroup,
+    setSelectedRegionGroup,
+  ] = useState<TDeployment | null>(null);
+
+  const filteredRegions = useMemo(
+    () =>
+      selectedRegionGroup
+        ? regions.filter(({ type }) => type === selectedRegionGroup.name)
+        : regions,
+    [regions, selectedRegionGroup],
+  );
+
+  const { data: deploymentAvailability } = usePCIFeatureAvailability(
+    DEPLOYMENT_FEATURES,
+  );
+
+  const deployments = useMemo<TDeployment[]>(
+    () =>
+      DEPLOYMENT_MODES_TYPES.filter((mode) => mode !== 'localzone').map(
+        (deployment) => ({
+          name: deployment,
+          comingSoon:
+            deploymentAvailability?.get(
+              getDeploymentComingSoonKey(deployment),
+            ) || false,
+        }),
+      ),
+    [deploymentAvailability],
+  );
 
   const handleSelectRegion = async (region?: TRegion) => {
     store.set.region(null);
@@ -105,6 +142,12 @@ export const RegionStep = ({
         label: t('pci-common:common_stepper_modify_this_step'),
       }}
     >
+      <DeploymentTilesInput
+        name="deployment"
+        value={selectedRegionGroup}
+        onChange={setSelectedRegionGroup}
+        deployments={deployments}
+      />
       <div className="mb-4">
         <OsdsText
           size={ODS_TEXT_SIZE._400}
@@ -128,7 +171,8 @@ export const RegionStep = ({
           projectId={projectId}
           onSelectRegion={handleSelectRegion}
           regionFilter={(region) =>
-            region.isMacro || regions?.some(({ name }) => name === region.name)
+            region.isMacro ||
+            filteredRegions?.some(({ name }) => name === region.name)
           }
         />
       </PCICommonContext.Provider>

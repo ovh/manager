@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { getFloatingIps } from '@/api/data/floating-ips';
-import { queryKeyBuilder } from '@/utils/utils';
+import { queryKeyBuilder } from '@/utils/query';
 
 export const useFloatingIps = (projectId: string, region?: string) =>
   useQuery({

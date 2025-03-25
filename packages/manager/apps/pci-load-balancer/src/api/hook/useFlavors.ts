@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { getFlavors } from '@/api/data/flavors';
 import { TProductAddonDetail } from '@/types/product.type';
-import { queryKeyBuilder } from '@/utils/utils';
+import { queryKeyBuilder } from '@/utils/query';
 
 export const useGetFlavor = (
   projectId: string,
