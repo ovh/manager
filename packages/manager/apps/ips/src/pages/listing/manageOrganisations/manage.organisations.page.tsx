@@ -8,7 +8,7 @@ import {
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
 import Loading from '@/components/Loading/Loading';
-import { ManageOrganisationsDatagrid } from '@/pages/listing/manageOrganisations/manageOrganisationsDataGrid.component';
+import { ManageOrganisationsDatagrid } from '@/pages/listing/components/OrganisationsDatagrid/manageOrganisationsDataGrid.component';
 
 export default function ManageOrganisationsPage() {
   const { t } = useTranslation('manage-organisations');
