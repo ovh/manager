@@ -129,7 +129,7 @@ describe('NewPage', () => {
       screen.getByText('kubernetes_add_version_and_upgrade_policy_title'),
     ).toBeInTheDocument();
     expect(
-      screen.getByText('kubernetes_add_private_network'),
+      screen.getByText('listing:kubernetes_add_private_network'),
     ).toBeInTheDocument();
   });
 });

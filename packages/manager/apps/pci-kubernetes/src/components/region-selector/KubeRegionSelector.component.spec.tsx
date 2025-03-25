@@ -1,17 +1,19 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi, Mock } from 'vitest';
+import { useProductAvailability } from '@ovh-ux/manager-pci-common';
 import { KubeRegionSelector } from './KubeRegionSelector.component';
-import { mockedModule } from '@/mocks/mockAvaibility';
 import useHas3AZRegions from '@/hooks/useHas3AZRegions';
 import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
 import { RegionType } from '@/pages/new/steps/LocationStep.component';
 import { wrapper } from '@/wrapperRenders';
 
-vi.mock('@/mocks/mockAvaibility', () => ({
-  mockedModule: {
+vi.mock('@ovh-ux/manager-pci-common', async (importOriginal) => {
+  const actual: any = await importOriginal();
+  return {
+    ...actual,
     useProductAvailability: vi.fn(),
-  },
-}));
+  };
+});
 
 vi.mock('@/hooks/useHas3AZRegions', () => ({
   default: vi.fn(),
@@ -30,7 +32,7 @@ describe('KubeRegionSelector', () => {
     });
   });
   it('renders the spinner when data is loading', () => {
-    vi.mocked(mockedModule.useProductAvailability as Mock).mockReturnValue({
+    vi.mocked(useProductAvailability as Mock).mockReturnValue({
       data: null,
       isPending: true,
     });
@@ -49,7 +51,7 @@ describe('KubeRegionSelector', () => {
   });
 
   it('renders the RegionSelector when data is available', () => {
-    vi.mocked(mockedModule.useProductAvailability as Mock).mockReturnValue({
+    vi.mocked(useProductAvailability as Mock).mockReturnValue({
       data: {
         products: [
           {

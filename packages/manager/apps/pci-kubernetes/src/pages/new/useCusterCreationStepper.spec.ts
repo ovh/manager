@@ -23,6 +23,7 @@ describe('useClusterCreationStepper', () => {
     expect(result.current.form).toEqual({
       region: null,
       version: '',
+      plan: null,
       updatePolicy: null,
       network: null,
 

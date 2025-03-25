@@ -8,12 +8,14 @@ import {
 import {
   OsdsButton,
   OsdsDivider,
+  OsdsChip,
   OsdsText,
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import {
   ODS_BUTTON_SIZE,
+  ODS_CHIP_SIZE,
   ODS_TEXT_COLOR_INTENT,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
@@ -62,7 +64,18 @@ export function LocationStep({
     title: t(`add:kubernetes_add_region_title_${regionType}`),
     pillLabel:
       regionType === RegionType.Region3Az ? (
-        <Region3AZChip showTooltip={false} />
+        <div className="flex gap-4">
+          <Region3AZChip showTooltip={false} />
+          <div className="flex items-baseline gap-3">
+            <OsdsChip
+              color={ODS_THEME_COLOR_INTENT.success}
+              size={ODS_CHIP_SIZE.sm}
+              inline
+            >
+              {t('add:kubernetes_add_deployment_mode_card_beta')}
+            </OsdsChip>
+          </div>
+        </div>
       ) : (
         <RegionGlobalzoneChip showTooltip={false} />
       ),
