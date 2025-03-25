@@ -21,11 +21,12 @@ import RadioTile from '@/components/radio-tile/RadioTile.component';
 import { TClusterCreationForm } from '../useCusterCreationStepper';
 import { StepState } from '../useStep';
 import { cn } from '@/helpers';
-import { DEPLOYMENT_MODE_TYPES } from '@/constants';
+
+import { DeploymentMode } from '@/types';
 
 type Plan = {
   title: string;
-  type: 'region' | 'region-3-az';
+  type: DeploymentMode;
   description: string;
   content: string[];
   footer?: string;
@@ -46,7 +47,7 @@ const plans: Plan[] = [
       'kube_add_plan_content_standard_100',
     ],
     value: 'standard',
-    type: DEPLOYMENT_MODE_TYPES.MONO_ZONE,
+    type: DeploymentMode.MONO_ZONE,
   },
   {
     title: 'kube_add_plan_title_premium',
@@ -60,7 +61,7 @@ const plans: Plan[] = [
       'kube_add_plan_content_premium_version',
       'kube_add_plan_content_premium_500',
     ],
-    type: DEPLOYMENT_MODE_TYPES.MULTI_ZONES,
+    type: DeploymentMode.MULTI_ZONES,
     value: 'premium',
   },
 ];
@@ -72,10 +73,10 @@ const PlanTile = ({
 }: {
   onSubmit: (plan: TClusterCreationForm['plan']) => void;
   step: StepState;
-  type: string;
+  type: DeploymentMode;
 }) => {
   const [selected, setSelected] = useState<TClusterCreationForm['plan']>(
-    type === DEPLOYMENT_MODE_TYPES.MONO_ZONE ? 'standard' : 'premium',
+    type === DeploymentMode.MONO_ZONE ? 'standard' : 'premium',
   );
   const { t } = useTranslation(['add', 'stepper']);
 
@@ -85,13 +86,13 @@ const PlanTile = ({
   };
 
   const planIsDisabled = (plan) =>
-    (type === DEPLOYMENT_MODE_TYPES.MONO_ZONE && plan.value === 'premium') ||
-    (type === DEPLOYMENT_MODE_TYPES.MULTI_ZONES && plan.value === 'standard');
+    (type === DeploymentMode.MONO_ZONE && plan.value === 'premium') ||
+    (type === DeploymentMode.MULTI_ZONES && plan.value === 'standard');
 
   const getSortOrder = (typeRegion: string) => {
     const priority = {
-      [DEPLOYMENT_MODE_TYPES.MULTI_ZONES]: 'premium',
-      [DEPLOYMENT_MODE_TYPES.MONO_ZONE]: 'standard',
+      [DeploymentMode.MULTI_ZONES]: 'premium',
+      [DeploymentMode.MONO_ZONE]: 'standard',
     };
     return priority[type]
       ? (a) => (a.value === priority[typeRegion] ? -1 : 1)
@@ -167,7 +168,7 @@ const PlanTile = ({
   );
 };
 
-PlanTile.Banner = function PlanTileBanner({ type }: { type: string }) {
+PlanTile.Banner = function PlanTileBanner({ type }: { type: DeploymentMode }) {
   const { t } = useTranslation(['add']);
   return (
     <OsdsMessage
@@ -181,7 +182,7 @@ PlanTile.Banner = function PlanTileBanner({ type }: { type: string }) {
         color={ODS_THEME_COLOR_INTENT.text}
         className="block"
       >
-        {type === DEPLOYMENT_MODE_TYPES.MULTI_ZONES
+        {type === DeploymentMode.MULTI_ZONES
           ? t('kube_add_plan_content_standard_3AZ_banner')
           : t('kube_add_plan_content_premium_1AZ_banner')}
       </OsdsText>
@@ -221,7 +222,7 @@ PlanTile.Header = function PlanTileHeader({
   description: string;
   disabled: boolean;
   value: string;
-  type: string;
+  type: DeploymentMode;
 }) {
   const { t } = useTranslation(['add']);
 
@@ -246,9 +247,7 @@ PlanTile.Header = function PlanTileHeader({
       </h5>
       <div className="mt-2 flex flex-col">
         {renderWarningMessage(
-          disabled &&
-            value === 'premium' &&
-            type === DEPLOYMENT_MODE_TYPES.MONO_ZONE,
+          disabled && value === 'premium' && type === DeploymentMode.MONO_ZONE,
           XCircle,
           'kube_add_plan_no_available_plan',
           'text-critical-500',
@@ -256,7 +255,7 @@ PlanTile.Header = function PlanTileHeader({
         {renderWarningMessage(
           disabled &&
             value === 'standard' &&
-            type === DEPLOYMENT_MODE_TYPES.MULTI_ZONES,
+            type === DeploymentMode.MULTI_ZONES,
           Clock12,
           'kube_add_plan_content_standard_very_soon',
           'text-warning-500',
