@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.112.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.111.1...@ovh-ux/manager-container-app@0.112.0) (2025-03-25)
+
+
+### Features
+
+* **container:** fix text wrapping lvl1 on pnr ([#15918](https://github.com/ovh/manager/issues/15918)) ([b7b1180](https://github.com/ovh/manager/commit/b7b11805eb26927b8ea435a65e711f6f58c6fdc6)), closes [#MANAGER-17317](https://github.com/ovh/manager/issues/MANAGER-17317)
+
+
+
+
+
 ## [0.111.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.111.0...@ovh-ux/manager-container-app@0.111.1) (2025-03-21)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app

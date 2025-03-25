@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.10.4...@ovh-ux/manager-hub-app@0.11.0) (2025-03-25)
+
+
+### Bug Fixes
+
+* **hub:** fix hub changelog ([#16203](https://github.com/ovh/manager/issues/16203)) ([23d5c30](https://github.com/ovh/manager/commit/23d5c30feb615e65a1c2119fb47f0f918c59ece3)), closes [#MANAGER-15693](https://github.com/ovh/manager/issues/MANAGER-15693)
+* **hub:** fix release hub package ([#16184](https://github.com/ovh/manager/issues/16184)) ([01195fb](https://github.com/ovh/manager/commit/01195fba697afb2753a7052743c76b1c11244fc8)), closes [#MANAGER-15693](https://github.com/ovh/manager/issues/MANAGER-15693)
+
+
+### Features
+
+* **hub:** remove angularjs hub ([#15799](https://github.com/ovh/manager/issues/15799)) ([370a10f](https://github.com/ovh/manager/commit/370a10f0840e8a25618cb6626b7ab722a879d1d8)), closes [#MANAGER-15693](https://github.com/ovh/manager/issues/MANAGER-15693)
+
+
+
+
+
 ## [0.10.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-react-app@0.10.3...@ovh-ux/manager-hub-react-app@0.10.4) (2025-03-21)
 
 **Note:** Version bump only for package @ovh-ux/manager-hub-react-app

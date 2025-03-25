@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.9.2...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.10.0) (2025-03-25)
+
+
+### Features
+
+* **managed-vcd:** remove a duplicated changelog button ([#15932](https://github.com/ovh/manager/issues/15932)) ([2090cf0](https://github.com/ovh/manager/commit/2090cf011e78a7ef9443513afd3b01172c904f9e)), closes [#MANAGER-17177](https://github.com/ovh/manager/issues/MANAGER-17177)
+
+
+
+
+
 ## [0.9.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.9.1...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.9.2) (2025-03-24)
 
 **Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-managed-vcd-app

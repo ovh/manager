@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.11.0...@ovh-ux/manager-billing-components@4.12.0) (2025-03-25)
+
+
+### Features
+
+* **billing:** add link to cancel pending commitment request ([#15667](https://github.com/ovh/manager/issues/15667)) ([8001783](https://github.com/ovh/manager/commit/80017835d0f51f91be7a2b3b22bc9cc92401d859)), closes [#MANAGER-17057](https://github.com/ovh/manager/issues/MANAGER-17057)
+
+
+
+
+
 # [4.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.10.0...@ovh-ux/manager-billing-components@4.11.0) (2025-03-24)
 
 
