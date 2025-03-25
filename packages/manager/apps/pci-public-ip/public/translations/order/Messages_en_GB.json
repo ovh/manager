@@ -13,7 +13,7 @@
   "pci_additional_ip_create_step_attach_instance_label": "Select an instance",
   "pci_additional_ip_create_action_label": "Generate purchase order",
   "pci_additional_ip_create_create_instance": "<a href=\"{{ url }}\">Create an instance</a>",
-  "pci_additional_ip_create_step_summary": "Summary",
+  "pci_additional_ip_create_step_summary": "Invoicing",
   "pci_additional_ip_select_network_label": "Select a network/IP",
   "pci_additional_ip_select_network_placeholder": "Select a network/IP",
   "pci_additional_ip_failover_ip": "Additional IP (OVHcloud)",
