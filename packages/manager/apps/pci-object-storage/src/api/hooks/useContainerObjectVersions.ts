@@ -1,16 +1,18 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 
-import { getContainerObjects } from '@/api/data/container';
+import { getObjectVersions } from '../data/objects';
 import { ITEMS_PER_PAGE } from '@/constants';
 
-export const getContainerObjectsQueryKey = ({
+export const getObjectVersionsQueryKey = ({
   projectId,
   region,
   containerName,
+  key,
 }: {
   projectId: string;
   region: string;
   containerName: string;
+  key: string;
 }) => [
   'project',
   projectId,
@@ -18,39 +20,40 @@ export const getContainerObjectsQueryKey = ({
   region,
   'server-container-objects',
   containerName,
+  key,
 ];
 
-interface UseServerContainerObjectsParams {
+interface UseObjectVersionsParams {
   projectId: string;
   region: string;
   name: string;
-  withVersions: boolean;
+  key: string;
   isS3StorageType: string;
 }
 
-export const useServerContainerObjects = ({
+export const useServerContainerObjectVersions = ({
   projectId,
   region,
   name,
-  withVersions,
+  key,
   isS3StorageType,
-}: UseServerContainerObjectsParams) => {
+}: UseObjectVersionsParams) => {
   return useInfiniteQuery({
-    queryKey: getContainerObjectsQueryKey({
+    queryKey: getObjectVersionsQueryKey({
       projectId,
       region,
       containerName: name,
+      key,
     }),
     queryFn: ({ pageParam }) =>
-      getContainerObjects({
+      getObjectVersions({
         projectId,
         region,
         name,
-        withVersions,
-        keyMarker: pageParam?.keyMarker,
+        key,
         versionIdMarker: pageParam?.versionIdMarker,
       }),
-    initialPageParam: { keyMarker: null, versionIdMarker: null },
+    initialPageParam: { versionIdMarker: null },
     enabled: !!projectId && !!name && !!region && !!isS3StorageType,
     staleTime: 0,
 

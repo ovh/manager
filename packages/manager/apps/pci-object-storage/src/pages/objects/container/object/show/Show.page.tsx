@@ -15,6 +15,7 @@ import {
   Links,
   LinkType,
   Notifications,
+  PciGuidesHeader,
   PciMaintenanceBanner,
   useColumnFilters,
   useDataGrid,
@@ -47,7 +48,7 @@ import {
   useServerContainer,
 } from '@/api/hooks/useContainer';
 import { useDatagridColumn } from './useDatagridColumn';
-import { Tiles } from './Tiles';
+
 import {
   BACKUP_KEY,
   NO_ENCRYPTION_VALUE,
@@ -199,8 +200,8 @@ export default function ObjectPage() {
   };
 
   const containerObjectsWithIndex = useMemo(() => {
-    if (!containerObjects && !container?.s3StorageType) return [];
-    return containerObjects?.map((object, index) => ({
+    if (!containerObjects || !container?.s3StorageType) return [];
+    return containerObjects.map((object, index) => ({
       ...object,
       index: `${index}`,
     }));
@@ -253,6 +254,8 @@ export default function ObjectPage() {
   const objectsColumns = useDatagridColumn({
     container,
     isLocalZone: !!is.localZone,
+    shouldSeeVersions: true,
+    enableVersionsToggle,
   });
 
   const filterColumns = useMemo(
@@ -279,7 +282,7 @@ export default function ObjectPage() {
         comparators: FilterCategories.String,
       },
     ],
-    [], // Dependencies array - Empty means it memoizes once
+    [],
   );
   const navigate = useNavigate();
   const { clearNotifications } = useNotifications();
@@ -337,7 +340,10 @@ export default function ObjectPage() {
           <OdsBreadcrumbItem href="" label={container?.name} />
         </OdsBreadcrumb>
       }
-      header={{ title: container?.name }}
+      header={{
+        title: container.name,
+        headerButton: <PciGuidesHeader category="objectStorage" />,
+      }}
       backLinkLabel={`
         ${tCommon('common_back_button_back_to')} ${tContainer(
         'pci_projects_project_storages_containers_container_back_button_label',
@@ -708,7 +714,6 @@ export default function ObjectPage() {
                   hasNextPage={hasNextPage}
                   items={containerObjectsWithIndex}
                   onFetchNextPage={handleFetchNextPage}
-                  onSortChange={function Zu() {}}
                   totalItems={containerObjects.length}
                 />
               </div>
@@ -739,10 +744,6 @@ export default function ObjectPage() {
               </div>
             </>
           )}
-
-          <div className="mt-8">
-            <Tiles />
-          </div>
         </>
       )}
       <Suspense>
