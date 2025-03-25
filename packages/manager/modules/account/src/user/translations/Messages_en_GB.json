@@ -609,5 +609,6 @@
   "user_account_advanced_title": "Advanced settings",
   "user_account_guides_header": "Guides",
   "user_account_guides_header_account_informations_guides": "Account information",
-  "user_account_security_double_auth_sso_info": "Two-factor authentication is not available when using single sign-on (SSO), which already offers enhanced security."
+  "user_account_security_double_auth_sso_info": "Two-factor authentication is not available when using single sign-on (SSO), which already offers enhanced security.",
+  "user_account_gdpr_features_title": "Personal data &amp; account management"
 }
