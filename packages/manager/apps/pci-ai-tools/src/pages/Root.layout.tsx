@@ -14,15 +14,8 @@ import { useTrackPageAuto } from '@/hooks/useTracking';
 import { useLoadingIndicatorContext } from '@/contexts/LoadingIndicator.context';
 import { getProject } from '@/data/api/project/project.api';
 import { USER_INACTIVITY_TIMEOUT } from '@/configuration/polling.constants';
-import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import PageLayout from '@/components/page-layout/PageLayout.component';
 import { UserActivityProvider } from '@/contexts/UserActivityContext';
-
-export function breadcrumb() {
-  return (
-    <BreadcrumbItem translationKey="Notebooks" namespace="pci-ai-notebooks" />
-  );
-}
 
 interface AILayoutProps {
   params: {
@@ -32,7 +25,6 @@ interface AILayoutProps {
 }
 // try to get project details from project id, redirect if the projectId is invalid
 export const Loader = async ({ params }: AILayoutProps) => {
-  console.log('in loader');
   const { projectId } = params;
   // check if we have a correct projectId
   try {

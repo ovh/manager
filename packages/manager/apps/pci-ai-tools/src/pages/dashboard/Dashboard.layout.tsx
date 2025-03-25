@@ -1,13 +1,20 @@
 import { Outlet, useParams } from 'react-router-dom';
 import { DashboardHeader } from './_components/DashboardHeader.component';
 import DashboardTabs from './_components/DashboardTabs.component';
-
 import { DashboardLayoutContext } from './Dashboard.context';
 import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import { POLLING } from '@/configuration/polling.constants';
 import { useGetNotebooks } from '@/data/hooks/ai/notebook/useGetNotebooks.hook';
 import { useGetJobs } from '@/data/hooks/ai/job/useGetJobs.hook';
 import { useGetApps } from '@/data/hooks/ai/app/useGetApps.hook';
+import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
+import Breadcrumb from '@/components/breadcrumb/Breadcrumb.component';
+
+export function breadcrumb() {
+  return (
+    <BreadcrumbItem translationKey="crumb-dashboard" namespace="ai-tools" />
+  );
+}
 
 export default function DashboardLayout() {
   const { projectId } = useParams();
@@ -42,6 +49,7 @@ export default function DashboardLayout() {
 
   return (
     <>
+      <Breadcrumb />
       <DashboardHeader />
       <DashboardTabs />
       <div className="space-y-2">
