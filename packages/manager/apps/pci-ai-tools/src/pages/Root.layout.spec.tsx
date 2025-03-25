@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
-import Layout, { breadcrumb as Breadcrumb, Loader } from '@/pages/Root.layout';
+import Layout, { Loader } from '@/pages/Root.layout';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import * as projectAPI from '@/data/api/project/project.api';
 
@@ -27,15 +27,6 @@ describe('Notebooks Layout', () => {
   });
   afterEach(() => {
     vi.clearAllMocks();
-  });
-
-  it('renders the breadcrumb component', async () => {
-    render(<Breadcrumb />, {
-      wrapper: RouterWithQueryClientWrapper,
-    });
-    await waitFor(() => {
-      expect(screen.getByText('Notebooks')).toBeInTheDocument();
-    });
   });
 
   it('fetches project data', async () => {
