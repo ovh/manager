@@ -185,3 +185,9 @@ export type TOidcProvider = {
   usernameClaim?: string;
   usernamePrefix?: string;
 };
+
+export enum DeploymentMode {
+  MULTI_ZONES = 'region-3-az',
+  MONO_ZONE = 'region',
+  LOCAL_ZONE = 'localzone',
+}
