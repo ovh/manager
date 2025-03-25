@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.15.2...@ovh-ux/manager-pci-common@0.16.0) (2025-03-25)
+
+### Features
+
+* **pci-common:** add deployment tiles ([4384d37](https://github.com/ovh/manager/commit/4384d37454ac6f813cbc108ca60825b66aa75d64))
+* **pci-common:** bump node version 22 ([711100b](https://github.com/ovh/manager/commit/711100b4960842346a3fc4b27a984751cefbde3b))
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3803] ([da0e0de](https://github.com/ovh/manager/commit/da0e0de297e0aa8b6a7378892d5c539db3898680))
+
 ## [0.15.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.15.1...@ovh-ux/manager-pci-common@0.15.2) (2025-02-10)
 
 ### Bug Fixes
