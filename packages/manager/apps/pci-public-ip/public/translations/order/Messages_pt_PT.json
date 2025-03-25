@@ -13,7 +13,7 @@
   "pci_additional_ip_create_step_attach_instance_label": "Selecione uma instância",
   "pci_additional_ip_create_action_label": "Gerar nota de encomenda",
   "pci_additional_ip_create_create_instance": "<a href=\"{{ url }}\">Criar uma instância</a>",
-  "pci_additional_ip_create_step_summary": "Resumo",
+  "pci_additional_ip_create_step_summary": "Faturação",
   "pci_additional_ip_select_network_label": "Escolha uma rede/IP",
   "pci_additional_ip_select_network_placeholder": "Escolha uma rede/IP",
   "pci_additional_ip_failover_ip": "Additional IP (OVHcloud)",
