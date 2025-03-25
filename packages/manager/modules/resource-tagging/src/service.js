@@ -7,6 +7,12 @@ export default class ovhManagerResourceTaggingService {
     this.$q = $q;
   }
 
+  /**
+   * get tag list with format {key:value, key2:value2} as param
+   * Transform it to [{key: key, value: value, displayName: key:value, type: custom|ovhcloud},...]
+   * @param {*} tags
+   * @returns Array of formatted tag list
+   */
   static getFormattedTags(tags) {
     if (!tags) return [];
     return Object.keys(tags)
@@ -21,6 +27,12 @@ export default class ovhManagerResourceTaggingService {
       }));
   }
 
+  /**
+   * Check if given key and value are inside hard coded default ovhcloud tags
+   * @param {*} key
+   * @param {*} value
+   * @returns true if its a default ovhcloud tag
+   */
   static isDefaultTag(key, value) {
     const defaultKey = OVHCLOUD_TAGS.find((tag) => tag.key === key);
     if (!defaultKey) return false;
@@ -38,12 +50,24 @@ export default class ovhManagerResourceTaggingService {
     });
   }
 
+  /**
+   * Get all unique tags formatted like this [{key: 'key', values: ['value1', 'value2', ..]}]
+   * 1 - Get all user iam resources
+   * 2 - Keep only resources with iam tags defined
+   * 3 - Create user tags Array :
+   * Tags array is implemented with default hard coded tags. (cannot be empty)
+   * Then for each user resource, check if key already exist on tags array.
+   *    If not, create a new tag object and push it to the tags array
+   *    If key already exist, concat the new value in the array of values linked to this key.
+   *    Flatten the values to keep only unique values using a Set
+   * @returns Array of tags
+   */
   getAllUserTags() {
     return this.getAllUserResources().then((allResources) => {
       const resourcesWithTags = allResources.filter(
         (resource) => !!resource.tags,
       );
-      const allTags = [];
+      const allTags = OVHCLOUD_TAGS;
       resourcesWithTags.forEach((resource) => {
         Object.keys(resource.tags).forEach((key) => {
           if (key.startsWith('ovh:')) return;
@@ -69,6 +93,10 @@ export default class ovhManagerResourceTaggingService {
     });
   }
 
+  /**
+   * Get user iam resources. loop until response don't have next cursor
+   * @returns all user iam resources
+   */
   getAllUserResources() {
     const deferred = this.$q.defer();
     const allResources = [];
@@ -84,6 +112,15 @@ export default class ovhManagerResourceTaggingService {
     return deferred.promise;
   }
 
+  /**
+   * To use with getAllUserResources.
+   * Loop in case of next cursor, and concat response
+   * @param {*} deferred
+   * @param {*} allResources
+   * @param {*} data
+   * @param {*} headers
+   * @returns void
+   */
   getNextUserResources(deferred, allResources, data, headers) {
     const newAllResources = [...allResources, ...data];
 

@@ -11,7 +11,7 @@ export default /* @ngInject */ ($stateProvider) => {
       layout: 'modal',
       resolve: {
         breadcrumb: () => null,
-        resourceUrn: /* @ngInject */ (server) => server.iam.urn,
+        resourceUrn: /* @ngInject */ (server) => server?.iam?.urn,
         goBack: /* @ngInject */ (goToTagManager) => () => goToTagManager(true),
       },
     },

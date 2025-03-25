@@ -1,5 +1,5 @@
 import { defineCustomElement as defineCombobox } from '@ovhcloud/ods-components/dist/components/ods-combobox';
-import { TAG_REGEX } from './constants';
+import { TAG_ASSIGN_FORM, TAG_REGEX } from './constants';
 
 export default class ovhManagerResourceTaggingAssignModalController {
   /* @ngInject */
@@ -21,23 +21,24 @@ export default class ovhManagerResourceTaggingAssignModalController {
   }
 
   $onInit() {
+    this.TAG_ASSIGN_FORM = TAG_ASSIGN_FORM;
     this.TAG_REGEX = TAG_REGEX;
     this.ovhManagerResourceTaggingService.getAllUserTags().then((tags) => {
       this.tags = tags;
-      this.keys = tags.map((tag) => tag.key);
+      this.keys = tags.map(({ key }) => key);
       this.values = [];
       this.loading = false;
     });
   }
 
   updateModel(event) {
-    if (event.detail.name === 'tag-key') {
+    if (event.detail.name === TAG_ASSIGN_FORM.KEY) {
       this.model.key = event.detail.value;
       this.model.value = '';
       this.values =
-        this.tags.find((tag) => tag.key === event.detail.value)?.values || [];
+        this.tags.find(({ key }) => key === event.detail.value)?.values || [];
     }
-    if (event.detail.name === 'tag-value')
+    if (event.detail.name === TAG_ASSIGN_FORM.VALUE)
       this.model.value = event.detail.value;
 
     this.addTagForm[event.detail.name].$setValidity(
@@ -49,8 +50,8 @@ export default class ovhManagerResourceTaggingAssignModalController {
   }
 
   $postLink() {
-    this.addTagForm['tag-key'].$setValidity('pattern', false);
-    this.addTagForm['tag-value'].$setValidity('pattern', false);
+    this.addTagForm[TAG_ASSIGN_FORM.KEY].$setValidity('pattern', false);
+    this.addTagForm[TAG_ASSIGN_FORM.VALUE].$setValidity('pattern', false);
     this.$timeout(() => {
       this.$element.on('odsChange', (evt) => {
         this.updateModel(evt);
