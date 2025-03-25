@@ -53,6 +53,12 @@ export const KUBE_INSTALL_URL = {
     'https://support.us.ovhcloud.com/hc/en-us/articles/1500004918182-Installing-the-Kubernetes-Dashboard-on-OVHcloud-Managed-Kubernetes',
 };
 
+export const DEPLOYMENT_MODE_TYPES = {
+  MULTI_ZONES: 'region-3-az',
+  MONO_ZONE: 'region',
+  LOCAL_ZONE: 'localzone',
+} as const;
+
 export const PROCESSING_STATUS = [
   'INSTALLING',
   'DELETING',
