@@ -1,6 +1,6 @@
 import React from 'react';
 import { OdsBadge } from '@ovhcloud/ods-components/react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { ODS_BADGE_SIZE } from '@ovhcloud/ods-components';
 
 interface LabelChipProps {
@@ -9,18 +9,17 @@ interface LabelChipProps {
 }
 
 const LabelChip: React.FC<LabelChipProps> = ({ id, children }) => {
-  const navigate = useNavigate();
+  const [, setSearchParams] = useSearchParams();
   const location = useLocation();
+  const navigate = useNavigate();
 
   const handleLinkClick = () => {
-    const searchParams = new URLSearchParams(location.search);
-    searchParams.set('organizationId', id);
-    if (location.pathname.includes('organization')) {
+    if (location.pathname.endsWith('organizations')) {
       navigate(`..?organizationId=${id}`);
     } else {
-      navigate({
-        pathname: location.pathname,
-        search: searchParams.toString(),
+      setSearchParams((prev) => {
+        prev.set('organizationId', id);
+        return prev;
       });
     }
   };

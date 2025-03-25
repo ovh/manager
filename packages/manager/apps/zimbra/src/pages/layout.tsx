@@ -16,7 +16,7 @@ export default function Layout() {
   useEffect(() => {
     trackCurrentPage();
     shell.routing.onHashChange();
-  }, [location.pathname]);
+  }, [location.pathname, location.search]);
 
   useEffect(() => {
     shell.ux.hidePreloader();

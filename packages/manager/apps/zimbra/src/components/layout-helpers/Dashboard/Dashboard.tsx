@@ -181,10 +181,10 @@ export const Dashboard: React.FC = () => {
                   actionType: 'navigation',
                   actions: [UNSELECT_ORGANIZATION],
                 });
-                if (searchParams.has('organizationId')) {
-                  searchParams.delete('organizationId');
-                  setSearchParams(searchParams);
-                }
+                setSearchParams((prev) => {
+                  prev.delete('organizationId');
+                  return prev;
+                });
               }}
               className="ml-6 font-normal org-tag"
               size={ODS_TAG_SIZE.lg}
