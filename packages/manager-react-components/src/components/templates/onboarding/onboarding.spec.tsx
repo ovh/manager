@@ -1,4 +1,5 @@
 import React from 'react';
+import { vitest } from 'vitest';
 import { waitFor } from '@testing-library/react';
 import { render } from '../../../utils/test.provider';
 import {
@@ -8,10 +9,14 @@ import {
 import { OdsText } from '@ovhcloud/ods-components/react';
 import placeholderSrc from './../../../../public/assets/placeholder.png';
 import { Card } from '../../navigation/card/card.component';
+import { useAuthorizationIam } from '../../../hooks/iam';
+import { IamAuthorizationResponse } from '../../../hooks/iam/iam.interface';
 
 const setupSpecTest = async (props: OnboardingLayoutProps) =>
   waitFor(() => render(<OnboardingLayout {...props} />));
-
+vitest.mock('../../../hooks/iam');
+const mockedHook =
+  useAuthorizationIam as unknown as jest.Mock<IamAuthorizationResponse>;
 const customTitle = 'onboarding title';
 const imgAltText = 'img alt text';
 const descriptionText = 'description text';
@@ -77,6 +82,30 @@ describe('specs:onboarding', () => {
       });
 
       expect(screen.getByAltText(imgAltText)).toBeVisible();
+    });
+
+    it('disable order button with false value for useAuthorizationIam', async () => {
+      mockedHook.mockReturnValue({
+        isAuthorized: false,
+        isLoading: true,
+        isFetched: true,
+      });
+
+      const screen = await setupSpecTest({
+        title: customTitle,
+        orderHref: 'https://example.com/order',
+        orderButtonLabel: orderBtnLabel,
+        orderIam: {
+          urn: 'urn:v1:eu:resource:vrackServices:vrs-bby-zkm-3a9-tlk',
+          iamActions: ['vrackServices:apiovh:resource/edit'],
+        },
+      });
+
+      const orderButton = screen.container.querySelector(
+        `[label="${orderBtnLabel}"]`,
+      );
+      expect(orderButton).toBeVisible();
+      expect(orderButton).toHaveAttribute('is-disabled', 'true');
     });
 
     it('displays order button correctly', async () => {
