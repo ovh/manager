@@ -28,5 +28,6 @@
   "kubernetes_network_form_gateway_mode_auto": "Puerta de enlace predeterminada definida según la configuración DHCP de la red privada (recomendado)",
   "kubernetes_network_form_gateway_mode_custom": "Puerta de enlace predeterminada sobrecargada estáticamente",
   "kubernetes_network_form_gateway_mode_custom_placeholder": "Dirección IP de la puerta de enlace predeterminada",
-  "kubernetes_network_form_rebuild": "Atención: cambiar la estrategia de enrutamiento saliente implica redesplegar los nodos de su clúster mediante un procedimiento de «rolling update»."
+  "kubernetes_network_form_rebuild": "Atención: cambiar la estrategia de enrutamiento saliente implica redesplegar los nodos de su clúster mediante un procedimiento de «rolling update».",
+  "kubernetes_network_form_notify_users": "Para desplegar Managed Kubernetes en una región con 3 zonas de disponibilidad (3-AZ), es necesaria una red privada con una puerta de enlace asociada. Asegúrese de que su red privada cumple este requisito para garantizar un funcionamiento óptimo."
 }
