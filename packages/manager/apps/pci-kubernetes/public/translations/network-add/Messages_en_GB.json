@@ -28,5 +28,6 @@
   "kubernetes_network_form_gateway_mode_auto": "Default gateway set according to your private network DHCP configuration (recommended)",
   "kubernetes_network_form_gateway_mode_custom": "Default gateway statically overloaded",
   "kubernetes_network_form_gateway_mode_custom_placeholder": "IP address of your default gateway",
-  "kubernetes_network_form_rebuild": "Warning: To change the outgoing routing strategy, you need to redeploy your cluster’s nodes using a rolling update process."
+  "kubernetes_network_form_rebuild": "Warning: To change the outgoing routing strategy, you need to redeploy your cluster’s nodes using a rolling update process.",
+  "kubernetes_network_form_notify_users": "To deploy the Managed Kubernetes Service in a region with 3 availability zones (3-AZ), a private network with an attached gateway is mandatory. Ensure that your private network meets this requirement to ensure optimal operation."
 }
