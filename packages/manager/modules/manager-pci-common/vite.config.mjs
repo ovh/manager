@@ -17,7 +17,7 @@ export default defineConfig({
   ...baseConfig,
   resolve: {
     alias: {
-      '@/': pathSrc,
+      '@': pathSrc,
     },
   },
   plugins: [

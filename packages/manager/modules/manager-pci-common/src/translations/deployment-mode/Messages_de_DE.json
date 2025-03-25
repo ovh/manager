@@ -1,0 +1,13 @@
+{
+  "deployment_mode_title": "Bereitstellungsmodus auswählen",
+  "deployment_mode_description": "Wählen Sie eine optimale Konfiguration aus, um die Verfügbarkeit, Resilienz und Latenz zu gewährleisten, die für Ihre Daten am besten geeignet sind. <Link>Mehr erfahren</Link>",
+  "deployment_mode_card_title_region": "1-AZ Region",
+  "deployment_mode_card_description_region": "Resiliente und kostengünstige Bereitstellung in 1 Verfügbarkeitszone.",
+  "deployment_mode_card_title_region-3-az": "3-AZ Region",
+  "deployment_mode_card_description_region-3-az": "Bereitstellung mit hoher Resilienz/Hochverfügbarkeit für kritische Anwendungen in 3 Verfügbarkeitszonen.",
+  "deployment_mode_card_title_localzone": "Local Zone",
+  "deployment_mode_card_description_localzone": "Bereitstellung Ihrer Anwendungen nah an Ihren Benutzern bei geringer Latenz und geringem Datenspeicherbedarf.",
+  "deployment_mode_card_beta": "Beta",
+  "deployment_mode_card_beta_price": "Kostenlos",
+  "deployment_mode_card_coming_soon": "Demnächst verfügbar"
+}
