@@ -13,9 +13,8 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useParams, useHref, useNavigate } from 'react-router-dom';
 import { useProject } from '@ovh-ux/manager-pci-common';
-import PciStorageVolumeEdit from '@/pages/create-volume/PciStorageVolumeEdit';
+import PciStorageVolumeEdit from './PciStorageVolumeEdit.component';
 import { TVolumeSnapshot, useVolumeSnapshots } from '@/api/hooks/useSnapshots';
-import { TSnapshot, TVolume } from '@/api/data/snapshots';
 
 export default function CreateVolumePage() {
   const { t } = useTranslation(['create-volume', 'volumes']);
@@ -36,13 +35,12 @@ export default function CreateVolumePage() {
   );
 
   if (!snapshot) {
-    // TODO: error handling
-    return <p>TODO: Error handling</p>;
+    return <OdsSpinner />;
   }
-
-  console.group('[default] CreateVolumePage');
-  console.log('snapshot: ', snapshot);
-  console.groupEnd();
+  //
+  // console.group('[default] CreateVolumePage');
+  // console.log('snapshot: ', snapshot);
+  // console.groupEnd();
 
   const handleSubmit = () => {
     console.log('[CreateVolume] handleSubmit.');
