@@ -49,7 +49,7 @@ const RadioTile = ({
         <label
           id={labelId}
           className={cn(
-            'flex flex-col  h-full w-full group text-primary-400 border-2 border-primary-100 rounded-md',
+            'flex flex-col  h-full w-full group text-primary-600 border-2 border-primary-100 rounded-md',
             {
               'border-primary-600  selected': !disabled && props.checked,
               'border-primary-100 bg-white': !disabled && !props.checked,
