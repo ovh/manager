@@ -29,14 +29,13 @@ const RadioTile = ({
   };
   return (
     <div
-      className={cn('flex', tileClassName)}
       role="radio"
       aria-checked={props.checked}
-      tabIndex={0}
+      {...(!disabled && { tabIndex: 0 })}
       onKeyDown={handleLabelKeyDown}
       data-testid="radio-tile-container"
     >
-      <div>
+      <div className={cn(tileClassName)}>
         <input
           onChange={(e) => (props.onChange ? props.onChange(e) : null)}
           className="hidden"
@@ -50,14 +49,12 @@ const RadioTile = ({
         <label
           id={labelId}
           className={cn(
-            'flex flex-col  h-full w-full group text-primary-400 border-2 border-primary-100 rounded-md',
+            'flex flex-col  h-full w-full group text-primary-600 border-2 border-primary-100 rounded-md',
             {
               'border-primary-600  selected': !disabled && props.checked,
               'border-primary-100 bg-white': !disabled && !props.checked,
-              'bg-gray-neutral-200 border-neutral-200': disabled,
               'hover:shadow-sm hover:border-primary-600 hover:bg-primary-100 cursor-pointer': !disabled,
-              'bg-neutral-100': disabled,
-              'text-neutral-800': disabled,
+              'bg-neutral-100 border-neutral-100 text-neutral-800': disabled,
             },
 
             labelClassName,

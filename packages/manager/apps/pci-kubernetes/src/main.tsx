@@ -8,13 +8,13 @@ import {
 import App from './App';
 
 import '@ovh-ux/manager-pci-common/dist/style.css';
-import './index.css';
 
+import './index.css';
 import '@/vite-hmr.ts';
 import { useAppStore } from './store';
+import { worker } from './mocks/browsers';
 
-import '@datatr-ux/ods-tailwind-config/style.css';
-import '@datatr-ux/uxlib/style.css';
+worker.start();
 
 const init = async (
   appName: string,
