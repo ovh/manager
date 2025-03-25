@@ -13,10 +13,10 @@ export default class ApplicationsController {
    * @returns {Promise}
    */
   deleteApplication(id) {
-    this.trackClick(TAG.APPLICATIONS__DELETE);
+    this.trackClick(TAG.API_KEYS__DELETE);
     this.goTo({
       name: 'iam.api-keys.delete',
-      params: { application: id },
+      params: { apiKey: id },
     });
   }
 }

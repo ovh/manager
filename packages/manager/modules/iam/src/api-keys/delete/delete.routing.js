@@ -2,7 +2,7 @@ import { ENTITY, TAG } from '../../iam.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('iam.api-keys.delete', {
-    url: '/delete/{application:string}',
+    url: '/delete/{apiKey:string}',
     views: {
       modal: { component: 'iamDeleteEntity' },
     },
@@ -17,30 +17,26 @@ export default /* @ngInject */ ($stateProvider) => {
        *   type: string
        * }|null}
        */
-      entity: /* @ngInject */ (application) => {
-        if (application) {
-          return { data: application, type: ENTITY.APPLICATION };
-        }
-        return null;
-      },
+      entity: /* @ngInject */ (apiKey) =>
+        apiKey ? { data: apiKey, type: ENTITY.API_KEY } : null,
 
       /**
-       * The application to delete if an id is provided
+       * The api key to delete if an id is provided
        * @returns {Object|null}
        */
-      application: /* @ngInject */ ($transition$, IAMService) => {
-        const { application: id } = $transition$.params();
-        return id ? IAMService.getApplication(id) : null;
+      apiKey: /* @ngInject */ ($transition$, IAMService) => {
+        const { apiKey: id } = $transition$.params();
+        return id ? IAMService.getApiKey(id) : null;
       },
 
       /**
        * Whether the entity requires a statement
        * @returns {boolean}
        */
-      statement: /* @ngInject */ (entity) => entity.type === ENTITY.APPLICATION,
+      statement: /* @ngInject */ (entity) => entity.type === ENTITY.API_KEY,
     },
     atInternet: {
-      rename: TAG.DELETE_APPLICATION,
+      rename: TAG.DELETE_API_KEY,
     },
   });
 };

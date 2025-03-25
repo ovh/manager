@@ -15,10 +15,10 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('iam_api_keys'),
-      apiKeys: /* @ngInject */ (IAMService) => IAMService.getApplications(),
+      apiKeys: /* @ngInject */ (IAMService) => IAMService.getApiKeys(),
     },
     atInternet: {
-      rename: TAG.APPLICATIONS, // TODO : rename after tracking implementation
+      rename: TAG.API_KEYS,
     },
   });
 };
