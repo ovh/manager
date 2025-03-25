@@ -15,6 +15,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { TNetwork } from '@/api/data/network';
+import { DeploymentMode } from '@/types';
 
 export type PrivateNetworkSelectProps = {
   network: TNetwork;
@@ -76,7 +77,7 @@ export default function PrivateNetworkSelect({
           name="privateNetwork"
           size={ODS_SELECT_SIZE.md}
           value={
-            network?.id || type === 'region'
+            network?.id || type === DeploymentMode.MONO_ZONE
               ? defaultNetwork.id
               : networks[0].id
           }
