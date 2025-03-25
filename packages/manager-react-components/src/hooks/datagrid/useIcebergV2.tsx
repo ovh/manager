@@ -5,40 +5,31 @@ import {
   fetchIcebergV2,
 } from '@ovh-ux/manager-core-api';
 import {
-  FetchNextPageOptions,
   InfiniteData,
-  InfiniteQueryObserverResult,
   useInfiniteQuery,
+  UseInfiniteQueryOptions,
+  UseInfiniteQueryResult,
 } from '@tanstack/react-query';
 import { defaultPageSize } from './index';
 import { ColumnSort } from '../../components';
 
 export type UseResourcesIcebergV2Result<T> = {
-  data: InfiniteData<IcebergFetchResultV2<T>, unknown>;
-  fetchNextPage: (
-    options?: FetchNextPageOptions,
-  ) => Promise<
-    InfiniteQueryObserverResult<
-      InfiniteData<IcebergFetchResultV2<T>, unknown>,
-      Error
-    >
-  >;
-  hasNextPage: boolean;
   flattenData: T[];
-  isError: boolean;
-  isLoading: boolean;
   setSorting: React.Dispatch<React.SetStateAction<ColumnSort>>;
   sorting: ColumnSort;
-  error: Error;
-  status: 'error' | 'success' | 'pending';
-};
+} & UseInfiniteQueryResult<InfiniteData<IcebergFetchResultV2<T>>, Error>;
 
-interface IcebergV2Hook<T> {
+export type IcebergV2HookParams<T> = {
   queryKey: string[];
   defaultSorting?: ColumnSort;
   sort?: (sorting: ColumnSort, data: T[]) => T[];
   shouldFetchAll?: boolean;
-}
+} & Omit<
+  UseInfiniteQueryOptions<IcebergFetchResultV2<T>>,
+  // select needs to be omitted because of flattenData
+  // @TODO: deprecate flattenData and let user do it via select
+  'queryFn' | 'getNextPageParam' | 'initialPageParam' | 'select'
+>;
 
 export const API_V2_MAX_PAGE_SIZE = 9999;
 
@@ -47,57 +38,47 @@ export const API_V2_MAX_PAGE_SIZE = 9999;
  */
 export const getResourcesIcebergV2 = fetchIcebergV2;
 
-export function useResourcesIcebergV2<T = unknown>({
+export function useResourcesIcebergV2<T>({
   route,
   pageSize = defaultPageSize,
   queryKey,
   defaultSorting = undefined,
   shouldFetchAll = false,
-}: IcebergFetchParamsV2 & IcebergV2Hook<T>): UseResourcesIcebergV2Result<T> {
-  const [flattenData, setFlattenData] = useState<T[]>([]);
+  ...options
+}: IcebergFetchParamsV2 &
+  IcebergV2HookParams<T>): UseResourcesIcebergV2Result<T> {
+  const [flattenData, setFlattenData] = useState([]);
   const [sorting, setSorting] = useState<ColumnSort>(defaultSorting);
-  const {
-    data,
-    fetchNextPage,
-    hasNextPage,
-    isError,
-    isLoading,
-    error,
-    status,
-  } = useInfiniteQuery({
+
+  const query = useInfiniteQuery({
     initialPageParam: null,
     queryKey: [...queryKey, shouldFetchAll ? 'all' : ''].filter(Boolean),
     queryFn: ({ pageParam }) =>
       fetchIcebergV2<T>({
         route,
         pageSize: shouldFetchAll ? API_V2_MAX_PAGE_SIZE : pageSize,
-        cursor: pageParam,
+        cursor: pageParam as string,
       }),
     staleTime: Infinity,
     retry: false,
     getNextPageParam: (lastPage) => lastPage.cursorNext,
+    ...options,
   });
 
   useEffect(() => {
-    const flatten = data?.pages.map((page) => page.data).flat() as T[];
+    const flatten = query.data?.pages.flatMap((page) => page.data);
     setFlattenData(flatten);
 
     // fetch next page if needed
-    if (shouldFetchAll && hasNextPage) {
-      fetchNextPage();
+    if (shouldFetchAll && query.hasNextPage) {
+      query.fetchNextPage();
     }
-  }, [data]);
+  }, [query.data]);
 
   return {
-    data,
-    fetchNextPage,
-    hasNextPage,
+    ...query,
     flattenData,
-    isError,
-    isLoading,
     setSorting,
     sorting,
-    error,
-    status,
   };
 }
