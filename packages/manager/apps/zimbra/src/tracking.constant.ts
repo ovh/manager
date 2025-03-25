@@ -1,17 +1,17 @@
 export const LEVEL2 = {
   EU: {
     config: {
-      level2: '',
+      level2: '0',
     },
   },
   CA: {
     config: {
-      level2: '',
+      level2: '0',
     },
   },
   US: {
     config: {
-      level2: '',
+      level2: '0',
     },
   },
 };
