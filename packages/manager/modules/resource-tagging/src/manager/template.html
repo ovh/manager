@@ -11,7 +11,7 @@
             <oui-button
                 variant="secondary"
                 type="button"
-                data-on-click="$ctrl.goToAssignTags()"
+                data-on-click="$ctrl.goToTagAssign()"
             >
                 <span
                     data-translate="manager_components_resource_tagging_manager_action_assign_tag"
@@ -20,7 +20,7 @@
             <oui-button
                 variant="secondary"
                 type="button"
-                data-on-click="$ctrl.goToUnassignTags($selectedRows)"
+                data-on-click="$ctrl.goToTagUnassign($selectedRows)"
                 data-disabled="!$selectedRows.length"
             >
                 <span
@@ -43,7 +43,7 @@
         <oui-action-menu data-compact data-placement="top-end">
             <oui-action-menu-item
                 disabled="$isSelected"
-                data-on-click="$ctrl.goToUnassignTags()"
+                data-on-click="$ctrl.goToTagUnassign()"
             >
                 <span
                     data-translate="manager_components_resource_tagging_manager_action_unassign_tag"
