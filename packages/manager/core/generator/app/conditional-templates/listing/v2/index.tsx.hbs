@@ -1,4 +1,4 @@
-import React, { useState, useEffect, } from 'react';
+import React, { useState, useEffect, startTransition } from 'react';
 import { useTranslation } from 'react-i18next';
 import { {{#if isPCI }}useParams, {{/if}} useNavigate, useLocation } from 'react-router-dom';
 
@@ -44,9 +44,9 @@ export default function Listing() {
   });
 
   const navigateToDashboard = (label: string) => {
-    let path =
+    const path =
       location.pathname.indexOf('pci') > -1 ? `${location.pathname}/` : '/';
-    navigate(`${path}${label}`);
+    startTransition(() => navigate(`${path}${label}`));
   };
 
   // Code to remove and declare definition columns in const variable

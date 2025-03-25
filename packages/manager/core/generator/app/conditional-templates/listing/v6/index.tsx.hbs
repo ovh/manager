@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, startTransition } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FilterCategories } from '@ovh-ux/manager-core-api';
 import { {{#if isPCI }} useParams, {{/if}} useNavigate, useLocation } from 'react-router-dom';
@@ -53,7 +53,7 @@ export default function Listing() {
   const navigateToDashboard = (label: string) => {
     const path =
       location.pathname.indexOf('pci') > -1 ? `${location.pathname}/` : '/';
-    navigate(`${path}${label}`);
+    startTransition(() => navigate(`${path}${label}`));
   };
 
   // Code to remove
