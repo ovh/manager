@@ -23,5 +23,8 @@
   "billing_contact": "{{code}} Facturation",
   "technical_contact": "{{code}} Technique",
   "terminated_service": "Le service a été résilié.",
-  "space_summary": "{{usedSpaceInGB}} Go ({{percent}}% de {{quotaInTB}} To)"
+  "space_summary": "{{usedSpaceInGB}} Go ({{percent}}% de {{quotaInTB}} To)",
+  "storage_primary": "Primaire",
+  "storage_secondary": "Secondaire",
+  "error_api": "Erreur"
 }
