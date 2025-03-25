@@ -1,0 +1,10 @@
+{
+  "gdpr_erasure_confirm_title": "Confirm request",
+  "gdpr_erasure_confirm_banner_title": "Warning: Confirming will log you out, and you’ll lose access to the deleted account.",
+  "gdpr_erasure_confirm_banner_description": "Closing the account will permanently delete it. Otherwise, we’ll open a support ticket, and an advisor will contact you as soon as possible.",
+  "gdpr_erasure_confirm_resend_code": "Retrieve your code",
+  "gdpr_erasure_confirm_input_code_prompt": "Please enter the code sent to your email.",
+  "gdpr_erasure_confirm_form_submit": "Confirm",
+  "gdpr_erasure_confirm_form_cancel": "Cancel",
+  "gdpr_erasure_confirm_form_message_invalid_format": "Please enter a valid format. Check that the field does not have any open (&lt;) or close (>) angle brackets."
+}

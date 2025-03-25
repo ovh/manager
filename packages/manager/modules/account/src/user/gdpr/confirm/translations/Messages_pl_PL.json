@@ -1,0 +1,10 @@
+{
+  "gdpr_erasure_confirm_title": "Potwierdź zlecenie",
+  "gdpr_erasure_confirm_banner_title": "Uwaga, po potwierdzeniu zostaniesz wylogowana/-y i nie będziesz mieć więcej dostępu do usuniętego konta.",
+  "gdpr_erasure_confirm_banner_description": "Zamknięcie konta kończy w sposób ostateczny jego funkcjonowanie. W przeciwnym razie zostanie utworzone zgłoszenie z prośbą o wsparcie i jeden z doradców skontaktuje się z Tobą tak szybko, jak to możliwe.",
+  "gdpr_erasure_confirm_resend_code": "Odzyskaj kod",
+  "gdpr_erasure_confirm_input_code_prompt": "Wpisz kod, który został do Ciebie wysłany e-mailem.",
+  "gdpr_erasure_confirm_form_submit": "Zatwierdź",
+  "gdpr_erasure_confirm_form_cancel": "Anuluj",
+  "gdpr_erasure_confirm_form_message_invalid_format": "Użyj poprawnego formatu. Upewnij się, że pole nie zawiera znaków: (&lt;) lub (>)."
+}
