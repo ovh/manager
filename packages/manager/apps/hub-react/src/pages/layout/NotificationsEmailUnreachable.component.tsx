@@ -31,7 +31,10 @@ export const NotificationsEmailUnreachable: FunctionComponent = () => {
   );
 
   const notificationLinkAsync = useMemo(
-    () => navigation.getURL('dedicated', '#/useraccount/infos', {}),
+    () =>
+      navigation.getURL('dedicated', '#/useraccount/infos', {
+        fieldToFocus: 'ovh_field_email',
+      }),
     [],
   );
 
@@ -57,7 +60,7 @@ export const NotificationsEmailUnreachable: FunctionComponent = () => {
                       <OsdsLink
                         href={notificationLink}
                         color={ODS_THEME_COLOR_INTENT.primary}
-                        target={OdsHTMLAnchorElementTarget._blank}
+                        target={OdsHTMLAnchorElementTarget._parent}
                       ></OsdsLink>
                     ),
                   }}

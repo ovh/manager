@@ -95,6 +95,11 @@ export default class NewAccountFormController {
       })
       .finally(() => {
         this.loading = false;
+        this.$timeout(() => {
+          if (this.fieldToFocus) {
+            this.$anchorScroll(this.fieldToFocus);
+          }
+        });
       });
   }
 
@@ -533,13 +538,6 @@ export default class NewAccountFormController {
     const isSiretEnterprise =
       this.model.legalform === USER_TYPE_ENTERPRISE &&
       this.model.country === 'FR';
-    if (
-      isSiretEnterprise &&
-      this.fieldToFocus &&
-      !this.model.companyNationalIdentificationNumber
-    ) {
-      this.$anchorScroll(this.fieldToFocus);
-    }
     return isSiretEnterprise;
   }
 
