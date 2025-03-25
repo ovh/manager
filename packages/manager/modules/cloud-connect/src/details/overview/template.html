@@ -518,9 +518,16 @@
                     <span
                         data-translate="{{'cloud_connect_region_' + configurations[0].region}}"
                     ></span>
-                    <span class="oui-badge oui-badge_info">
+                    <span
+                        class="oui-badge"
+                        data-ng-class="{
+                        'oui-badge_info': configurations[0].regionType === $ctrl.REGION_TYPE['1AZ'],
+                        'oui-badge_best-seller':  configurations[0].regionType === $ctrl.REGION_TYPE['3AZ']
+                    }"
+                    >
                         <span
-                            data-translate="{{'cloud_connect_region_type_'+configurations[0].regionType}}"
+                            data-translate="cloud_connect_region_AZ_type"
+                            data-translate-values="{regionType: configurations[0].regionType}"
                         ></span>
                     </span>
                 </h4>
