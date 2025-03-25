@@ -12,18 +12,18 @@
         <div data-ovh-alert="resourcetagging.assign"></div>
         <div class="mb-4">
             <label
-                for="tag-key"
+                data-ng-attr-for="{{:: $ctrl.TAG_ASSIGN_FORM.KEY}}"
                 data-translate="manager_components_resource_tagging_assign_modal_key_label"
             >
             </label>
             <ods-combobox
                 class="tag-combobox"
-                name="tag-key"
+                name="{{:: $ctrl.TAG_ASSIGN_FORM.KEY }}"
                 add-new-element-label="{{:: 'manager_components_resource_tagging_assign_modal_add' | translate}}"
                 no-result-label="{{:: 'manager_components_resource_tagging_assign_modal_no_result' | translate}}"
                 placeholder="{{:: 'manager_components_resource_tagging_assign_modal_placeholder' | translate}}"
                 data-ng-model="$ctrl.model.key"
-                has-error="{{$ctrl.addTagForm['tag-key'].$touched && $ctrl.addTagForm['tag-key'].$invalid}}"
+                has-error="{{$ctrl.addTagForm[$ctrl.TAG_ASSIGN_FORM.KEY].$touched && $ctrl.addTagForm[$ctrl.TAG_ASSIGN_FORM.KEY].$invalid}}"
             >
                 <ods-combobox-item
                     data-ng-repeat="key in $ctrl.keys"
@@ -34,27 +34,27 @@
             </ods-combobox>
             <span
                 class="text-error"
-                data-ng-if="$ctrl.addTagForm['tag-key'].$touched && $ctrl.addTagForm['tag-key'].$invalid"
+                data-ng-if="$ctrl.addTagForm[$ctrl.TAG_ASSIGN_FORM.KEY].$touched && $ctrl.addTagForm[$ctrl.TAG_ASSIGN_FORM.KEY].$invalid"
                 data-translate="manager_components_resource_tagging_assign_modal_field_error"
             >
             </span>
         </div>
         <div class="mb-4">
             <label
-                for="tag-value"
+                data-ng-attr-for="{{:: $ctrl.TAG_ASSIGN_FORM.VALUE}}"
                 data-translate="manager_components_resource_tagging_assign_modal_value_label"
             >
             </label>
             <ods-combobox
                 class="tag-combobox"
-                name="tag-value"
+                name="{{:: $ctrl.TAG_ASSIGN_FORM.VALUE}}"
                 add-new-element-label="{{:: 'manager_components_resource_tagging_assign_modal_add' | translate}}"
                 no-result-label="{{:: 'manager_components_resource_tagging_assign_modal_no_result' | translate}}"
                 placeholder="{{:: 'manager_components_resource_tagging_assign_modal_placeholder' | translate}}"
                 data-ng-model="$ctrl.model.value"
                 value="{{$ctrl.model.value}}"
                 is-disabled="{{!$ctrl.model.key}}"
-                has-error="{{$ctrl.addTagForm['tag-value'].$touched && $ctrl.addTagForm['tag-value'].$invalid}}"
+                has-error="{{$ctrl.addTagForm[$ctrl.TAG_ASSIGN_FORM.VALUE].$touched && $ctrl.addTagForm[$ctrl.TAG_ASSIGN_FORM.VALUE].$invalid}}"
             >
                 <ods-combobox-item
                     data-ng-repeat="value in $ctrl.values"
@@ -65,7 +65,7 @@
             </ods-combobox>
             <span
                 class="text-error"
-                data-ng-if="$ctrl.addTagForm['tag-value'].$touched && $ctrl.addTagForm['tag-value'].$invalid"
+                data-ng-if="$ctrl.addTagForm[$ctrl.TAG_ASSIGN_FORM.VALUE].$touched && $ctrl.addTagForm[$ctrl.TAG_ASSIGN_FORM.VALUE].$invalid"
                 data-translate="manager_components_resource_tagging_assign_modal_field_error"
             >
             </span>
