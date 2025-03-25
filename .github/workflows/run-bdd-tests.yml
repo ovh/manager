@@ -7,6 +7,8 @@ jobs:
     steps:
       - name: Checkout latest code
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - name: Use Node.js 22.x
         uses: actions/setup-node@v3
         with:
@@ -29,8 +31,6 @@ jobs:
       # This task is for running the jest tests outside microApps
       - name: Run tests Jest
         run: yarn test:jest
-      - name: Run tests Jest
-        run: yarn exec turbo -- run test --concurrency=1 --filter="@ovh-ux/manager-documentation[origin/master...origin/test/testcoverage]"
       - name: GET BASE BRANCH
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

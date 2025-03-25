@@ -8,7 +8,7 @@ main() {
     changed_packages=$(get_changed_packages)
     echo $changed_packages
 	while read -r package; do
-        yarn exec turbo -- run test --concurrency=1 --filter=$package[origin/master...${GITHUB_REF}]
+        yarn exec turbo -- run test --concurrency=1 --filter=$package[origin/master...${GITHUB_REF#refs/heads/}]
 	done <<< "$changed_packages"
 }
 
