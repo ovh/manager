@@ -14,7 +14,6 @@
   "server_configuration_netboot_option_harddisk": "Boot from the hard disk",
   "server_configuration_netboot_option_rescue": "Boot in rescue mode ",
   "server_configuration_netboot_option_network": "Boot in network mode",
-  "server_configuration_netboot_configuration": "Configuration:",
   "server_configuration_netboot_rescue_help": "Rescue mode is useful for diagnosing hardware faults on a dedicated server.",
   "server_configuration_netboot_rescue_help_link": "Access the hardware diagnostic guide.",
   "server_configuration_netboot_rescue_choice": "Rescue available:",

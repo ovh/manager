@@ -1,5 +1,6 @@
 {
   "nutanix_title": "Nutanix on OVHcloud",
+  "nutanix_order": "Contratar",
   "nutanix_guides": "Guías",
   "nutanix_guides_main": "Guías Nutanix",
   "nutanix_cluster_list_name": "Nombre del cluster",
@@ -13,8 +14,5 @@
   "nutanix_cluster_list_prism_central_url": "URL Prism Central",
   "nutanix_cluster_admin_interface": "Interfaz de administración",
   "nutanix_cluster_list_localisation_value": "{{dcName}} (rack {{rackName}})",
-  "nutanix_order": "Contratar",
-  "nutanix_cluster_list_pack_type": "Tipo de pack",
-  "nutanix_cluster_list_pack_type_details": "Ver el detalle",
   "nutanix_cluster_unit_gbps": "{{t0}} Gb/s"
 }
