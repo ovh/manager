@@ -12,6 +12,12 @@ import {
   usePCICommonContextFactory,
   PCICommonContext,
   TLocalisation,
+  TDeployment,
+  DeploymentTilesInput,
+  usePCIFeatureAvailability,
+  getDeploymentComingSoonKey,
+  DEPLOYMENT_FEATURES,
+  DEPLOYMENT_MODES_TYPES,
 } from '@ovh-ux/manager-pci-common';
 import { useTranslation } from 'react-i18next';
 import { useCallback, useEffect, useMemo, useState } from 'react';
@@ -75,6 +81,39 @@ export const FloatingSteps = ({
   const has3AZ = isRegionWith3AZ(DataState.regions);
   const metaProps = usePCICommonContextFactory({ has3AZ });
 
+  const [
+    selectedRegionGroup,
+    setSelectedRegionGroup,
+  ] = useState<TDeployment | null>(null);
+
+  const regions = useMemo(
+    () =>
+      selectedRegionGroup
+        ? DataState.regions.filter(
+            ({ type }) => type === selectedRegionGroup.name,
+          )
+        : DataState.regions,
+    [DataState, selectedRegionGroup],
+  );
+
+  const { data: deploymentAvailability } = usePCIFeatureAvailability(
+    DEPLOYMENT_FEATURES,
+  );
+
+  const deployments = useMemo<TDeployment[]>(
+    () =>
+      DEPLOYMENT_MODES_TYPES.filter((mode) => mode !== RegionType.LZ).map(
+        (deployment) => ({
+          name: deployment,
+          comingSoon:
+            deploymentAvailability?.get(
+              getDeploymentComingSoonKey(deployment),
+            ) || false,
+        }),
+      ),
+    [deploymentAvailability],
+  );
+
   const onSelectRegion = useCallback(
     (region: TLocalisation) => {
       // to reset the previews selection if the region is Macro
@@ -120,13 +159,18 @@ export const FloatingSteps = ({
         onEdit={On.edit}
         order={2}
       >
+        <DeploymentTilesInput
+          name="deployment"
+          value={selectedRegionGroup}
+          onChange={setSelectedRegionGroup}
+          deployments={deployments}
+        />
         <PCICommonContext.Provider value={metaProps}>
           <RegionSelector
             projectId={projectId}
             onSelectRegion={onSelectRegion}
             regionFilter={(region) =>
-              region.isMacro ||
-              DataState.regions.some(({ name }) => name === region.name)
+              region.isMacro || regions.some(({ name }) => name === region.name)
             }
           />
         </PCICommonContext.Provider>
