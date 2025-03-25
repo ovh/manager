@@ -63,7 +63,7 @@ export default function Auth() {
 
   return (
     <>
-      {!isProjectDiscoveryMode ? (
+      {isProjectDiscoveryMode ? (
         <Alert variant="warning">
           <AlertDescription className="text-base">
             <div
