@@ -27,6 +27,7 @@
   "kubernetes_add_name": "Nom",
   "kubernetes_add_region_title_region": "Région 1-AZ",
   "kubernetes_add_region_title_region-3-az": "Région 3-AZ",
+  "kubernetes_add_deployment_mode_card_beta": "Beta",
   "kubernetes_add_region_description_region": "Déploiement résilient et économique sur 1 zone de disponibilité.",
   "kubernetes_add_region_description_region-3-az": "Déploiement haute résilience/haute disponibilité pour vos applications critiques sur 3 zones de disponibilité.",
   "kubernetes_add_cluster_name_input_pattern_validation_error": "Le nom doit commencer par un caractère alphabétique, se terminer par un caractère alphanumérique et les seuls caractères spéciaux autorisés sont les tirets et les underscores.",
