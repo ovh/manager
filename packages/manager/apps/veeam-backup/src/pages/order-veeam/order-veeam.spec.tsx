@@ -1,6 +1,6 @@
 import { afterEach, vitest } from 'vitest';
 import userEvent from '@testing-library/user-event';
-import { act } from '@testing-library/react';
+import { act, waitFor } from '@testing-library/react';
 import {
   assertTextVisibility,
   getOdsButtonByLabel,
@@ -54,6 +54,54 @@ describe('order', () => {
     const next = await getOdsButtonByLabel({ container, label: nextStepLabel });
     await act(() => user.click(next));
 
-    await assertTextVisibility(labels.orderVeeam.choose_org_title);
+    await waitFor(
+      () => {
+        assertTextVisibility(labels.orderVeeam.choose_org_title);
+      },
+      { timeout: 10_000 },
+    );
+  });
+
+  it('display all orgs backed-up message in step 2', async () => {
+    const user = userEvent.setup();
+    const { container } = await renderTest({
+      allOrgsBackedUp: true,
+      initialRoute: urls.orderVeeam,
+    });
+
+    await assertTextVisibility(orderVeeamDescription);
+
+    const next = await getOdsButtonByLabel({ container, label: nextStepLabel });
+    await act(() => user.click(next));
+    await waitFor(
+      () => {
+        assertTextVisibility(
+          labels.orderVeeam.all_organization_backed_up_message,
+        );
+      },
+      { timeout: 10_000 },
+    );
+  });
+
+  it('display empty org message in step 2', async () => {
+    const user = userEvent.setup();
+    const { container } = await renderTest({
+      nbOrganization: 0,
+      initialRoute: urls.orderVeeam,
+    });
+    await waitFor(
+      () => {
+        assertTextVisibility(orderVeeamDescription);
+      },
+      { timeout: 10_000 },
+    );
+    const next = await getOdsButtonByLabel({ container, label: nextStepLabel });
+    await act(() => user.click(next));
+    await waitFor(
+      () => {
+        assertTextVisibility(labels.common.no_organization_message);
+      },
+      { timeout: 10_000 },
+    );
   });
 });

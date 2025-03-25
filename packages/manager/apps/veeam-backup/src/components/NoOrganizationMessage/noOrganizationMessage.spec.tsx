@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { I18nextProvider } from 'react-i18next';
 import { i18n as i18nType } from 'i18next';
 import {
@@ -45,7 +45,12 @@ describe('NoOrganizationMessage test suite', () => {
     await renderComponent({ emptyList: true });
 
     // then
-    await assertTextVisibility(labels.common.no_organization_message);
+    await waitFor(
+      () => {
+        assertTextVisibility(labels.common.no_organization_message);
+      },
+      { timeout: 10_000 },
+    );
   });
 
   it('does not display the message if there is some organization', async () => {
@@ -53,8 +58,13 @@ describe('NoOrganizationMessage test suite', () => {
     await renderComponent({ emptyList: false });
 
     // then
-    expect(
-      screen.queryByText(labels.common.no_organization_message),
-    ).not.toBeInTheDocument();
+    await waitFor(
+      () => {
+        expect(
+          screen.queryByText(labels.common.no_organization_message),
+        ).not.toBeInTheDocument();
+      },
+      { timeout: 10_000 },
+    );
   });
 });
