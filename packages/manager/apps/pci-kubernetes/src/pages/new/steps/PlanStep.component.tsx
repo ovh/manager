@@ -7,7 +7,6 @@ import {
   ODS_BUTTON_TYPE,
   ODS_MESSAGE_TYPE,
   ODS_TEXT_COLOR_INTENT,
-  ODS_TEXT_LEVEL,
 } from '@ovhcloud/ods-components';
 import {
   ODS_THEME_COLOR_INTENT,
@@ -22,6 +21,7 @@ import RadioTile from '@/components/radio-tile/RadioTile.component';
 import { TClusterCreationForm } from '../useCusterCreationStepper';
 import { StepState } from '../useStep';
 import { cn } from '@/helpers';
+import { DEPLOYMENT_MODE_TYPES } from '@/constants';
 
 type Plan = {
   title: string;
@@ -46,7 +46,7 @@ const plans: Plan[] = [
       'kube_add_plan_content_standard_100',
     ],
     value: 'standard',
-    type: 'region',
+    type: DEPLOYMENT_MODE_TYPES.MONO_ZONE,
   },
   {
     title: 'kube_add_plan_title_premium',
@@ -60,7 +60,7 @@ const plans: Plan[] = [
       'kube_add_plan_content_premium_version',
       'kube_add_plan_content_premium_500',
     ],
-    type: 'region-3-az',
+    type: DEPLOYMENT_MODE_TYPES.MULTI_ZONES,
     value: 'premium',
   },
 ];
@@ -75,7 +75,7 @@ const PlanTile = ({
   type: string;
 }) => {
   const [selected, setSelected] = useState<TClusterCreationForm['plan']>(
-    type === 'region' ? 'standard' : 'premium',
+    type === DEPLOYMENT_MODE_TYPES.MONO_ZONE ? 'standard' : 'premium',
   );
   const { t } = useTranslation(['add', 'stepper']);
 
@@ -85,13 +85,13 @@ const PlanTile = ({
   };
 
   const planIsDisabled = (plan) =>
-    (type === 'region' && plan.value === 'premium') ||
-    (type === 'region-3-az' && plan.value === 'standard');
+    (type === DEPLOYMENT_MODE_TYPES.MONO_ZONE && plan.value === 'premium') ||
+    (type === DEPLOYMENT_MODE_TYPES.MULTI_ZONES && plan.value === 'standard');
 
   const getSortOrder = (typeRegion: string) => {
     const priority = {
-      'region-3-az': 'premium',
-      region: 'standard',
+      [DEPLOYMENT_MODE_TYPES.MULTI_ZONES]: 'premium',
+      [DEPLOYMENT_MODE_TYPES.MONO_ZONE]: 'standard',
     };
     return priority[type]
       ? (a) => (a.value === priority[typeRegion] ? -1 : 1)
@@ -181,7 +181,7 @@ PlanTile.Banner = function PlanTileBanner({ type }: { type: string }) {
         color={ODS_THEME_COLOR_INTENT.text}
         className="block"
       >
-        {type === 'region-3-az'
+        {type === DEPLOYMENT_MODE_TYPES.MULTI_ZONES
           ? t('kube_add_plan_content_standard_3AZ_banner')
           : t('kube_add_plan_content_premium_1AZ_banner')}
       </OsdsText>
@@ -246,13 +246,17 @@ PlanTile.Header = function PlanTileHeader({
       </h5>
       <div className="mt-2 flex flex-col">
         {renderWarningMessage(
-          disabled && value === 'premium' && type === 'region',
+          disabled &&
+            value === 'premium' &&
+            type === DEPLOYMENT_MODE_TYPES.MONO_ZONE,
           XCircle,
           'kube_add_plan_no_available_plan',
           'text-critical-500',
         )}
         {renderWarningMessage(
-          disabled && value === 'standard' && type === 'region-3-az',
+          disabled &&
+            value === 'standard' &&
+            type === DEPLOYMENT_MODE_TYPES.MULTI_ZONES,
           Clock12,
           'kube_add_plan_content_standard_very_soon',
           'text-warning-500',
