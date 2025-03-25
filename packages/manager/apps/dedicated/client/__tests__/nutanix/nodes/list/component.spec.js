@@ -12,6 +12,12 @@ describe('ovhManagerNutanixAllNodes component tests suite', () => {
     getUser: jest.fn().mockReturnValue({ ovhSubsidiary: 'FR' }),
   };
 
+  const mockNutanixNode = {
+    getNodeDetails: jest
+      .fn()
+      .mockResolvedValue(CLUSTER_RESPONSE_MOCK.targetSpec.nodes[0]),
+  };
+
   angular.module('ovhManagerCore', []);
   beforeEach(() => {
     angular.mock.module(
@@ -20,6 +26,7 @@ describe('ovhManagerNutanixAllNodes component tests suite', () => {
       'ovhManagerNutanixAllNodes',
       ($provide) => {
         $provide.value('coreConfig', mockCoreConfig);
+        $provide.value('NutanixNode', mockNutanixNode);
       },
     );
   });

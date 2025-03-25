@@ -104,7 +104,7 @@
             data-service-name="$ctrl.serviceName"
             data-server="$row.name"
             data-has-only-minimum-node=":: $ctrl.hasOnlyMinimumNode"
-            data-initial-commitment-size="$ctrl.cluster.targetSpec.initialCommitmentSize"
+            data-initial-commitment-size="$ctrl.cluster.targetSpec.metadata.initialCommitmentSize"
             data-on-power-on="$ctrl.onPowerOn($row.name)"
             data-on-power-off="$ctrl.powerOffNode($row.name)"
             data-on-install="$ctrl.installNode($row.name)"
