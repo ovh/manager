@@ -16,6 +16,10 @@ import { FilterWithLabel } from '../filters/interface';
 import { FilterAdd, FilterList } from '../filters';
 import { ColumnFilter } from '../filters/filter-add.component';
 import './translations';
+import {
+  ColumnsVisibility,
+  VisibilityManagement,
+} from './visibility/visibility-management.component';
 
 type ColumnFilterProps = {
   key: string;
@@ -37,6 +41,7 @@ export interface FilterProps {
 }
 
 export interface DatagridTopbarProps {
+  columnsVisibility?: ColumnsVisibility[];
   filtersColumns?: ColumnFilter[];
   isSearchable?: boolean;
   filters?: FilterProps;
@@ -45,6 +50,7 @@ export interface DatagridTopbarProps {
 }
 
 export const DatagridTopbar = <T,>({
+  columnsVisibility,
   filters,
   filtersColumns,
   isSearchable,
@@ -53,10 +59,16 @@ export const DatagridTopbar = <T,>({
 }: DatagridTopbarProps) => {
   const { t } = useTranslation('filters');
   const filterPopoverRef = useRef(null);
+  const hasVisibilityFeature = columnsVisibility?.some(
+    (col) => col.enableHiding,
+  );
 
   return (
     <>
-      {(isSearchable || filtersColumns?.length > 0 || topbar) && (
+      {(isSearchable ||
+        filtersColumns?.length > 0 ||
+        topbar ||
+        hasVisibilityFeature) && (
         <div id="container" className="flex flex-wrap justify-between py-6">
           <div id="left-side" className="w-full md:w-auto md:order-1">
             {topbar && <div>{topbar}</div>}
@@ -129,6 +141,11 @@ export const DatagridTopbar = <T,>({
                       }}
                     />
                   </OdsPopover>
+                </div>
+              )}
+              {hasVisibilityFeature && (
+                <div className={filtersColumns?.length > 0 && 'ml-[10px]'}>
+                  <VisibilityManagement columnsVisibility={columnsVisibility} />
                 </div>
               )}
             </div>
