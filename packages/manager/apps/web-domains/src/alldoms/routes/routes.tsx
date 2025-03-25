@@ -16,7 +16,7 @@ const lazyRouteConfig = (importFn: CallableFunction): Partial<RouteObject> => {
   };
 };
 
-export const Routes: any = [
+export const Routes = [
   {
     path: urls.alldomsRoot,
     ...lazyRouteConfig(() => import('@/alldoms/pages/layout')),

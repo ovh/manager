@@ -1,7 +1,22 @@
 {
   "title": "Dashboard page",
-  "error_service": "No services info",
-  "general_informations": "Informations générales",
-  "tab2": "Tab 2",
-  "back_link": "Retour à la liste"
+  "allDom_table_header_serviceName": "Nom du alldom",
+  "allDom_table_header_renewMode": "Mode de renouvellement",
+  "allDom_table_header_type": "Type",
+  "allDom_table_header_register_domain": "Nombre de domaines enregistrés",
+  "allDom_table_header_authorized_domain": "Nombre de domaines autorisés",
+  "allDom_table_header_expirationDate": "Date d'expiration",
+  "allDom_table_header_nicAdmin": "Contact administrateur",
+  "allDom_table_header_nicTech": "Contact technique",
+  "allDom_table_header_nicBilling": "Contact facturation",
+  "allDom_table_status_automaticForcedProduct": "Renouvellement auto",
+  "allDom_table_status_automaticV2012": "Renouvellement auto",
+  "allDom_table_status_automaticV2014": "Renouvellement auto",
+  "allDom_table_status_automaticV2016": "Renouvellement auto",
+  "allDom_table_status_manual": "Renouvellement manuel",
+  "allDom_table_status_option": "Renouvellement manuel",
+  "allDom_table_status_oneShot": "Renouvellement manuel",
+  "allDom_table_type_french": "FR",
+  "allDom_table_type_french+international": "FR + International",
+  "allDom_table_type_international": "International"
 }

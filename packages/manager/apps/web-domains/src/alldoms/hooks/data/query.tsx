@@ -1,9 +1,19 @@
 import { useQuery } from '@tanstack/react-query';
-import { getallDomList } from '@/alldoms/data/api/web-domains';
+import {
+  getAllDomainAttachedToAllDom,
+  getallDomList,
+} from '@/alldoms/data/api/web-domains';
 
 export const useGetAllDomServiceList = () => {
-  return useQuery<number[]>({
+  return useQuery<string[]>({
     queryKey: ['list'],
     queryFn: () => getallDomList(),
+  });
+};
+
+export const useGetAllDomainAttachedToAllDom = (serviceName: string) => {
+  return useQuery<string[]>({
+    queryKey: [serviceName],
+    queryFn: () => getAllDomainAttachedToAllDom(serviceName),
   });
 };
