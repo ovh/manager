@@ -14,6 +14,7 @@ export const webFeatures = [
   'web:domains',
   'web:domains:all-dom',
   'web:domains:zone',
+  'web:domains:operations',
   'web-ongoing-operations',
   'hosting',
   'private-database',
@@ -71,7 +72,15 @@ export default function WebSidebar() {
               icon: getIcon('oui-icon oui-icon-list'),
               ignoreSearch: true,
             },
-            {
+            features['web:domains:operations'] && {
+              id: 'domain_operations',
+              label: t('sidebar_domain_operations'),
+              href: navigation.getURL('web', '#/domain/operation'),
+              routeMatcher: new RegExp('^(/configuration)?/domain/operation'),
+              icon: getIcon('ovh-font ovh-font-config'),
+              ignoreSearch: true,
+            },
+            features['web-ongoing-operations'] && {
               id: 'domain_operations',
               label: t('sidebar_domain_operations'),
               href: navigation.getURL('web-ongoing-operations', '#/'),
