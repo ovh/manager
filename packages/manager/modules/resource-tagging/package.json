@@ -12,9 +12,13 @@
   "author": "OVH SAS",
   "main": "./src/index.js",
   "dependencies": {
+    "@ovhcloud/ods-components": "18.6.0-alpha.2",
+    "@ovhcloud/ods-themes": "18.6.0-alpha.2",
     "bootstrap4": "twbs/bootstrap#v4.6.2"
   },
   "peerDependencies": {
+    "@ovh-ux/manager-ng-apiv2-helper": "^0.1.0",
+    "@ovh-ux/ng-ovh-utils": "^14.0.17",
     "@ovh-ux/ng-translate-async-loader": "^2.1.4",
     "@ovh-ux/ui-kit": "^6.10.0",
     "angular": "^1.7.5",

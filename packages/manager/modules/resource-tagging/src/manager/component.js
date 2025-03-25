@@ -5,8 +5,8 @@ export default {
   bindings: {
     tags: '<',
     goBack: '<',
-    goToAssignTags: '<',
-    goToUnassignTags: '<',
+    goToTagAssign: '<',
+    goToTagUnassign: '<',
   },
   template,
   controller,
