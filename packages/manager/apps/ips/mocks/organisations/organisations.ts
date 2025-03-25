@@ -1,6 +1,8 @@
 import { Handler } from '@ovh-ux/manager-core-test-utils';
+import { PathParams } from 'msw';
 
-export const organisationMockList = ['ARIN-1', 'ARIN-2', 'RIPE-1', 'RIPE-2'];
+import organisationsList from './get-organisations.json';
+import organisationsDetails from './get-organisations-details.json';
 
 export type GetOrganisationMocksParams = {
   nbOrganisation?: number;
@@ -17,8 +19,17 @@ export const getOrganisationMocks = ({
       ? {
           message: 'Get organisation KO',
         }
-      : organisationMockList.slice(0, nbOrganisation),
+      : organisationsList.slice(0, nbOrganisation),
     api: 'v6',
     status: getOrganisationKo ? 400 : 200,
+  },
+  {
+    url: '/me/ipOrganisation/:orgId',
+    response: (_: unknown, params: PathParams) => {
+      return organisationsDetails.find(
+        ({ organisationId }) => organisationId === params.orgId,
+      );
+    },
+    api: 'v6',
   },
 ];
