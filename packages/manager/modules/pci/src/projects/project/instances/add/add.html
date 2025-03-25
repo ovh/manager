@@ -1162,15 +1162,8 @@
                     data-translate="pci_projects_project_instances_add_billing_gateway_detail_{{$ctrl.defaultGateway.size}}_size"
                 ></span>
                 <span
-                    data-ng-if="!$ctrl.shouldShow3AZRegionData"
                     data-translate="pci_projects_project_instances_add_billing_gateway_detail_price_monthly"
                     data-translate-values="{gatewayPrice: $ctrl.defaultGateway.pricePerHour/100000000 +''+$ctrl.currency}"
-                >
-                </span>
-                <span
-                    data-ng-if="$ctrl.shouldShow3AZRegionData"
-                    data-translate="pci_projects_project_instances_add_billing_gateway_detail_price_monthly_3az"
-                    data-translate-values="{gatewayPrice: $ctrl.defaultGateway.pricePerHour/100000000 +''+$ctrl.currency, location: $ctrl.model.location, datacenter: $ctrl.model.datacenter.name }"
                 >
                 </span>
             </p>
