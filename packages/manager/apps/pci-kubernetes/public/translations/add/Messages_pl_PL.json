@@ -62,7 +62,7 @@
   "kube_add_plan_title_standard": "Plan Standard",
   "kube_add_plan_description_standard": "Skorzystaj z darmowego planu kontroli. Płacisz wyłącznie za węzły robocze (VM), bez umowy terminowej i gwarantowanej SLA. Idealny do korzystania z Kubernetesa w niższej cenie.",
   "kube_add_plan_content_standard_control": "W pełni zarządzany control plane",
-  "kube_add_plan_content_standard_high_availability": "Wysoka dostępność (1 AZ)",
+  "kube_add_plan_content_standard_high_availability": "Wysoka dostępność (1-AZ)",
   "kube_add_plan_content_standard_SLO": "99,5% SLO",
   "kube_add_plan_content_standard_auto_scaling": "Funkcja skalowania puli węzłów (Autoscaler)",
   "kube_add_plan_content_standard_ETCD": "ETCD o pojemności do 400 MB",

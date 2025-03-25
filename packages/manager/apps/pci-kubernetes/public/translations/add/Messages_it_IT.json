@@ -62,7 +62,7 @@
   "kube_add_plan_title_standard": "Piano Standard",
   "kube_add_plan_description_standard": "Approfitta di un piano di controllo gratuito. Paga solo i tuoi nodi di lavoro (VMs), senza impegno né SLA garantito. Ideale per utilizzare Kubernetes a costi contenuti.",
   "kube_add_plan_content_standard_control": "Control plane totalmente gestito",
-  "kube_add_plan_content_standard_high_availability": "High availability (1 AZ)",
+  "kube_add_plan_content_standard_high_availability": "Alta disponibilità (1-AZ)",
   "kube_add_plan_content_standard_SLO": "99,5% SLO",
   "kube_add_plan_content_standard_auto_scaling": "Funzionalità di scaling dei pool di nodi (Autoscaler)",
   "kube_add_plan_content_standard_ETCD": "ETCD con capacità fino a 400 MB",

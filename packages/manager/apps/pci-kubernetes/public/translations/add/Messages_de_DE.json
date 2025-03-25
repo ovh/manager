@@ -62,7 +62,7 @@
   "kube_add_plan_title_standard": "Standardplan",
   "kube_add_plan_description_standard": "Profitieren Sie von einem kostenlosen Monitoringplan. Bezahlen Sie nur Ihre Worker-Nodes (VMs) ohne Vertragsbindung oder garantierte SLA. Ideal für den kostengünstigen Einsatz von Kubernetes.",
   "kube_add_plan_content_standard_control": "Vollständig verwaltetes planares Steuerelement",
-  "kube_add_plan_content_standard_high_availability": "Hohe Verfügbarkeit (1 AZ)",
+  "kube_add_plan_content_standard_high_availability": "Hohe Verfügbarkeit (1-AZ)",
   "kube_add_plan_content_standard_SLO": "99,5% SLO",
   "kube_add_plan_content_standard_auto_scaling": "Funktion zum Skalieren von Node-Pools (Autoscaler)",
   "kube_add_plan_content_standard_ETCD": "ETCD mit einer Kapazität von bis zu 400 MB",
