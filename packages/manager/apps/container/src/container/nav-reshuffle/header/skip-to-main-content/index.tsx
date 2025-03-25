@@ -21,7 +21,7 @@ const SkipToMainContent = (props: Props) => {
 
   const handleGlobalKeyDown = (event: KeyboardEvent) => {
     if (isFirstTabDone === true) return;
-    if (event.key === "Tab" && isFirstTabDone === false) {
+    if (event.key === "Tab") {
       setIsButtonDisplayed(true);
       setIsFirstTabDone(true);
       event.stopPropagation();
