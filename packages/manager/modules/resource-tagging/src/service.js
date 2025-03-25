@@ -43,7 +43,7 @@ export default class ovhManagerResourceTaggingService {
       const resourcesWithTags = allResources.filter(
         (resource) => !!resource.tags,
       );
-      const allTags = [];
+      const allTags = OVHCLOUD_TAGS;
       resourcesWithTags.forEach((resource) => {
         Object.keys(resource.tags).forEach((key) => {
           if (key.startsWith('ovh:')) return;
