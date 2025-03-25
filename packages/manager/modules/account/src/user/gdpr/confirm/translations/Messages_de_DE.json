@@ -1,0 +1,10 @@
+{
+  "gdpr_erasure_confirm_title": "Anfrage bestätigen",
+  "gdpr_erasure_confirm_banner_title": "Hinweis: Nach der Bestätigung werden Sie abgemeldet und haben keinen Zugriff mehr auf den gelöschten Account.",
+  "gdpr_erasure_confirm_banner_description": "Mit der Schließung des Accounts wird dessen Betrieb endgültig eingestellt. Andernfalls wird eine Support-Anfrage erstellt und ein Berater wird sich schnellstmöglich bei Ihnen melden.",
+  "gdpr_erasure_confirm_resend_code": "Den Code abrufen",
+  "gdpr_erasure_confirm_input_code_prompt": "Geben Sie den Code ein, den Sie per E-Mail erhalten haben.",
+  "gdpr_erasure_confirm_form_submit": "Bestätigen",
+  "gdpr_erasure_confirm_form_cancel": "Abbrechen",
+  "gdpr_erasure_confirm_form_message_invalid_format": "Bitte wählen Sie ein gültiges Format. Stellen Sie sicher, dass das Feld keine öffnende spitze Klammer (&lt;) oder schließende spitze Klammer (>) enthält."
+}
