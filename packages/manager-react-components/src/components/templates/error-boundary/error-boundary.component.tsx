@@ -31,9 +31,9 @@ export interface ErrorBoundaryProps {
   /** application name to redirect */
   redirectionApp: string;
   /** Trigger the preloader hiding */
-  isPreloaderHide: boolean;
+  isPreloaderHide?: boolean;
   /** Trigger the routes sync beetween shell and the app */
-  isRouteShellSync: boolean;
+  isRouteShellSync?: boolean;
 }
 
 export const ErrorBoundary = ({
