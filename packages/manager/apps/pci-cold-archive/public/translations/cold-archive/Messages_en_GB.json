@@ -15,7 +15,7 @@
   "pci_projects_project_storages_cold_archives_guides_manage-your-data_title": "Download your data via CLI",
   "pci_projects_project_storages_cold_archives_guides_manage-your-data_description": "Download your data via S3-compatible API, CLI or SDK ",
   "pci_projects_project_storages_cold_archive_container_label": "Containers",
-  "pci_projects_project_storages_cold_archive_containers_creation_date_label": "Creation date",
+  "pci_projects_project_storages_cold_archive_containers_creation_date_label": "Created on",
   "pci_projects_project_storages_cold_archive_containers_add_container_label": "Create a container",
   "pci_projects_project_storages_cold_archive_containers_manage_container_label": "Manage your containers via CLI",
   "pci_projects_project_storages_cold_archive_containers_status_label": "Status",

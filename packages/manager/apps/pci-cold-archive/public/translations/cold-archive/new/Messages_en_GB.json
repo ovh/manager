@@ -9,7 +9,7 @@
   "pci_projects_project_storages_cold_archive_add_step_name_archive_localisation_banner_info": "Your container will be created in the following location: Roubaix (RBX).",
   "pci_projects_project_storages_cold_archive_add_step_link_user_archive_header": "Attach a user to your container",
   "pci_projects_project_storages_cold_archive_add_action_create": "Create a container",
-  "pci_projects_project_storages_cold_archive_add_action_cancel": "Exit",
+  "pci_projects_project_storages_cold_archive_add_action_cancel": "Cancel",
   "pci_projects_project_storages_cold_archive_add_action_create_pending": "Creating container...",
   "pci_projects_project_storages_cold_archive_add_action_create_archive_create_request_success_linked_user": "The {{container}} container has been created. The Object Storage user {{ userName }} is the administrator for this container.",
   "pci_projects_project_storages_cold_archive_add_action_create_archive_create_request_success_no_linked_user": "The {{container}} container has been created.",

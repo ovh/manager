@@ -1,7 +1,7 @@
 {
   "pci_projects_project_storages_containers_container_cold_archive_flush_title": "Chcesz opróżnić archiwum?",
   "pci_projects_project_storages_containers_container_cold_archive_flush_description": "Za chwilę usuniesz obiekty z archiwum: {{containerName}}.",
-  "pci_projects_project_storages_containers_container_cold_archive_flush_terminate_input_label": "Aby potwierdzić, wprowadź \"TERMINATE\" w poniższym polu",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_terminate_input_label": "Aby potwierdzić, wprowadź „TERMINATE” w poniższym polu",
   "pci_projects_project_storages_containers_container_cold_archive_flush_submit_label": "Zatwierdź",
   "pci_projects_project_storages_containers_container_cold_archive_flush_cancel_label": "Anuluj",
   "pci_projects_project_storages_containers_container_cold_archive_flush_archive_erase_message": "Wszystkie dane z archiwum {{containerName}} zostaną utracone.",

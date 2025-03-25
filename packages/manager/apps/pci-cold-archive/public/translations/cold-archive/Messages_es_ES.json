@@ -24,7 +24,7 @@
   "pci_projects_project_storages_containers_status_restoring": "Restaurando...",
   "pci_projects_project_storages_containers_status_archived": "Archivado",
   "pci_projects_project_storages_containers_status_archiving": "Archivando...",
-  "pci_projects_project_storages_containers_status_deleting": "Eliminando...",
+  "pci_projects_project_storages_containers_status_deleting": "En proceso de eliminación",
   "pci_projects_project_storages_containers_status_flushed": "Vaciado",
   "pci_projects_project_storages_cold_archive_container_action_add_user": "Añadir un usuario",
   "pci_projects_project_storages_cold_archive_container_action_see_objects": "Ver los objetos",
