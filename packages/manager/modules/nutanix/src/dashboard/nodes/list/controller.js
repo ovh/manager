@@ -77,7 +77,7 @@ export default class NutanixAllNodesCtrl {
     this.hasOnlyMinimumNode =
       this.nodesMapped.filter(
         (node) => node.serviceStatus === SERVICE_STATES.ACTIVE,
-      ).length <= this.cluster.initialCommitmentSize;
+      ).length <= this.cluster.targetSpec.metadata.initialCommitmentSize;
   }
 
   onPowerOn(nodeName) {

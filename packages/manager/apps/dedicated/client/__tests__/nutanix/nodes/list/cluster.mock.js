@@ -109,6 +109,9 @@ export const CLUSTER_RESPONSE_MOCK = {
     iplb: 'loadbalancer-080153d447748b49c172506ec59eed4a',
     rackAwareness: false,
     infraVlanNumber: 1,
+    metadata: {
+      initialCommitmentSize: 3,
+    },
   },
   status: 'Active',
   iam: {
