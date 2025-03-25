@@ -1,4 +1,5 @@
 import { v6 } from '@ovh-ux/manager-core-api';
+import { ITEMS_PER_PAGE } from '@/constants';
 
 export type TObject = {
   key: string;
@@ -81,7 +82,7 @@ export const getContainerObjects = async ({
     params: {
       withVersions,
       keyMarker,
-      limit: 10,
+      limit: ITEMS_PER_PAGE + 1,
       versionIdMarker,
     },
   });

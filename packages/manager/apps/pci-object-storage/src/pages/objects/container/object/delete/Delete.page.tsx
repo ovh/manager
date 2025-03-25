@@ -24,6 +24,7 @@ export default function DeletePage() {
   const isSwift = searchParams.get('isSwift');
   const isVersioningDisabled = searchParams.get('isVersioningDisabled');
   const isVersioningSuspended = searchParams.get('isVersioningSuspended');
+  const isLastElement = searchParams.get('isLastElement');
 
   const [deleteConfirmation, setDeleteConfirmation] = useState(null);
   const [isTouched, setIsTouched] = useState(false);
@@ -66,7 +67,10 @@ export default function DeletePage() {
     isVersioningSuspended,
   ]);
 
-  const goBack = () => navigate(`../?region=${region}&refetch=true`);
+  const goBack = () =>
+    !isLastElement
+      ? navigate(`../?region=${region}&refetch=true`)
+      : navigate(`../../${storageId}?region=${region}&refetch=true`);
 
   const onCancel = goBack;
   const onClose = goBack;

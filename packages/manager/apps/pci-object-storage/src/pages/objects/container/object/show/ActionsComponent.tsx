@@ -3,7 +3,7 @@ import { ShellContext, useTracking } from '@ovh-ux/manager-react-shell-client';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { useContext } from 'react';
+import { useContext, useMemo } from 'react';
 import {
   STATUS_DISABLED,
   STATUS_SUSPENDED,
@@ -19,10 +19,16 @@ export default function ActionsComponent({
   object,
   container,
   isLocalZone,
+  shouldSeeVersions,
+  enableVersionsToggle,
+  isLastElement,
 }: Readonly<{
   object: TIndexedObject;
   container: TContainer;
   isLocalZone: boolean;
+  shouldSeeVersions?: boolean;
+  enableVersionsToggle?: boolean;
+  isLastElement?: boolean;
 }>) {
   const { t } = useTranslation('container');
 
@@ -30,6 +36,15 @@ export default function ActionsComponent({
   const navigate = useNavigate();
 
   const { projectId } = useParams();
+
+  const shouldShowVersionsAction = useMemo(() => {
+    return enableVersionsToggle
+      ? object.isLatest && shouldSeeVersions
+      : object.isLatest !== false &&
+          !isLocalZone &&
+          shouldSeeVersions &&
+          container.versioning?.status !== STATUS_DISABLED;
+  }, [shouldSeeVersions, isLocalZone, container.versioning?.status]);
 
   const handleDownload = async () => {
     tracking?.trackClick({
@@ -45,11 +60,24 @@ export default function ActionsComponent({
 
   const items = [
     !object.isDeleteMarker && {
-      id: 1,
+      id: 0,
       label: t(
         'pci_projects_project_storages_containers_container_download_label',
       ),
       onClick: handleDownload,
+    },
+    shouldShowVersionsAction && {
+      id: 1,
+      label: t(
+        'pci_projects_project_storages_containers_container_show_versions',
+      ),
+      onClick: () => {
+        const baseUrl = `./${encodeName(
+          object.name || object.key,
+        )}/versions?region=${container.region}`;
+
+        navigate(baseUrl);
+      },
     },
     {
       id: 2,
@@ -75,6 +103,7 @@ export default function ActionsComponent({
           container.versioning?.status === STATUS_SUSPENDED
             ? '&isVersioningSuspended=true'
             : '';
+        const isLastElementParam = isLastElement ? '&isLastElement=true' : '';
 
         navigate(
           baseUrl +
@@ -82,7 +111,8 @@ export default function ActionsComponent({
             isLocalZoneParam +
             isSwiftParam +
             isVersioningDisabledParam +
-            isVersioningSuspendedParam,
+            isVersioningSuspendedParam +
+            isLastElementParam,
         );
       },
     },

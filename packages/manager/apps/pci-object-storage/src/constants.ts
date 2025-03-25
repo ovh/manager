@@ -442,3 +442,4 @@ export const STATUS_ENABLED = 'enabled';
 export const STATUS_SUSPENDED = 'suspended';
 
 export const PERMANENTLY_DELETE_MSG = 'PERMANENTLY DELETE';
+export const ITEMS_PER_PAGE = 10;
