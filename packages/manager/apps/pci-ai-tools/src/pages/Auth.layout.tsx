@@ -6,7 +6,6 @@ interface AuthLayoutProps {
   params: {
     projectId: string;
   };
-  request: Request;
 }
 // check if the user has authentication
 export const Loader = async ({ params }: AuthLayoutProps) => {
@@ -22,9 +21,5 @@ export const Loader = async ({ params }: AuthLayoutProps) => {
 };
 
 export default function Layout() {
-  return (
-    <>
-      <Outlet />
-    </>
-  );
+  return <Outlet />;
 }
