@@ -133,6 +133,5 @@
   "pci_project_instances_instance_add_3_az_region_select_auto_title": "Elegir por mí",
   "pci_project_instances_instance_add_3_az_region_select_auto_description": "Si elegimos por usted, no podrá cambiar la instancia de zona. Para poder cambiar, deberá detener la instancia y volver a crearla en la zona que desee.",
   "pci_project_instances_instance_add_3_az_region_select_manual_title": "Elegir yo mismo mi zona de disponibilidad",
-  "pci_projects_project_instances_3az_add_success_message": "La instancia {{ instance }} se ha añadido correctamente a la zona de disponibilidad: {{ zone }}",
-  "pci_projects_project_instances_add_billing_gateway_detail_price_monthly_3az": "(por {{gatewayPrice}}/hora + IVA durante la fase beta de {{location}} ({{datacenter}}))"
+  "pci_projects_project_instances_3az_add_success_message": "La instancia {{ instance }} se ha añadido correctamente a la zona de disponibilidad: {{ zone }}"
 }
