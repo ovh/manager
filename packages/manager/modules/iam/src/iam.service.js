@@ -11,7 +11,7 @@ export const URL = {
   RESOURCE_GROUP: '/engine/api/v2/iam/resourceGroup',
   RESOURCE_TYPE: '/engine/api/v2/iam/reference/resource/type',
   PERMISSIONS_GROUPS: '/engine/api/v2/iam/permissionsGroup',
-  APPLICATIONS: '/me/api/application',
+  API_KEY: '/me/api/application',
 };
 
 export default class IAMService {
@@ -437,11 +437,11 @@ export default class IAMService {
   }
 
   /**
-   * Retrieves a list of all applications.
-   * @returns {Promise<Object[]>} A Promise that resolves to an array of application objects, or null if an application fetch fails.
+   * Retrieves a list of all api keys.
+   * @returns {Promise<Object[]>} A Promise that resolves to an array of api key objects, or null if an api key fetch fails.
    */
-  getApplications() {
-    return this.iceberg(URL.APPLICATIONS, {})
+  getApiKeys() {
+    return this.iceberg(URL.API_KEY, {})
       .query()
       .expand('CachedObjectList-Pages')
       .execute(null, true)
@@ -449,20 +449,20 @@ export default class IAMService {
   }
 
   /**
-   * Retrieves the details of a specific application.
-   * @param {string} id The unique identifier of the application.
-   * @returns {Promise<Object>} A Promise that resolves to the application object.
+   * Retrieves the details of a specific api key.
+   * @param {string} id The unique identifier of the api key.
+   * @returns {Promise<Object>} A Promise that resolves to the api key object.
    */
-  getApplication(id) {
-    return this.$http.get(`${URL.APPLICATIONS}/${id}`).then(({ data }) => data);
+  getApiKey(id) {
+    return this.$http.get(`${URL.API_KEY}/${id}`).then(({ data }) => data);
   }
 
   /**
-   * Deletes an application.
-   * @param {string} id The unique identifier of the application to be deleted.
+   * Deletes an api key.
+   * @param {string} id The unique identifier of the api key to be deleted.
    * @returns {Promise} A Promise that resolves when the deletion is complete.
    */
-  deleteApplication(id) {
-    return this.$http.delete(`${URL.APPLICATIONS}/${id}`);
+  deleteApiKey(id) {
+    return this.$http.delete(`${URL.API_KEY}/${id}`);
   }
 }

@@ -3,7 +3,7 @@ import angular from 'angular';
 import deleteEntity from '../../components/deleteEntity';
 import routing from './delete.routing';
 
-const moduleName = 'ovhManagerIAMDashboardApplicationsDelete';
+const moduleName = 'ovhManagerIAMApiKeysDelete';
 
 angular.module(moduleName, [deleteEntity]).config(routing);
 
