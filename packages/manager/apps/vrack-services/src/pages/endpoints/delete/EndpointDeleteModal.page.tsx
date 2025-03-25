@@ -67,6 +67,7 @@ export default function EndpointsDeleteModal() {
 
   return (
     <DeleteModal
+      isOpen
       closeModal={onClose}
       deleteInputLabel={t('modalDeleteEndpointInputLabel')}
       headline={t('modalDeleteEndpointHeadline')}

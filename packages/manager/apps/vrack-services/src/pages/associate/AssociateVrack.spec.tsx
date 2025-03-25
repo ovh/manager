@@ -31,7 +31,7 @@ describe('Vrack Services associate vrack test suite', () => {
 
     const actionMenuButton = await getButtonByIcon({
       container,
-      iconName: ODS_ICON_NAME.ELLIPSIS,
+      iconName: ODS_ICON_NAME.ellipsisVertical,
     });
 
     await waitFor(() => fireEvent.click(actionMenuButton));
@@ -95,7 +95,7 @@ describe('Vrack Services associate vrack test suite', () => {
 
     await getButtonByIcon({
       container,
-      iconName: ODS_ICON_NAME.ELLIPSIS,
+      iconName: ODS_ICON_NAME.ellipsisVertical,
       disabled: true,
     });
   });

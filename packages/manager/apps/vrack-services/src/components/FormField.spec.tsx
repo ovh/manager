@@ -1,7 +1,7 @@
 import React from 'react';
-import { describe, expect, it, vi } from 'vitest';
-import { render, waitFor } from '@testing-library/react';
-import { FormField } from './FormField.component';
+import { describe, expect, it } from 'vitest';
+import { render } from '@testing-library/react';
+import { FormField, FormFieldProps } from './FormField.component';
 
 const renderComponent = ({
   children,
@@ -12,16 +12,8 @@ const renderComponent = ({
   helperText,
   visualHint,
   error,
-}: React.PropsWithChildren<{
-  className?: string;
-  label: string;
-  fullWidth?: boolean;
-  isLoading?: boolean;
-  helperText?: string;
-  visualHint?: string;
-  error?: string;
-}>) => {
-  return render(
+}: FormFieldProps) =>
+  render(
     <FormField
       className={className}
       label={label}
@@ -34,39 +26,25 @@ const renderComponent = ({
       {children}
     </FormField>,
   );
-};
 
 describe('FormField Component', () => {
   it('should display an inline form field', async () => {
-    const { getByText } = renderComponent({
+    const { asFragment } = renderComponent({
       label: 'form-field-label',
       children: 'form-field-children',
       helperText: 'form-field-helper-text',
       visualHint: 'form-field-visual-hint',
     });
 
-    await waitFor(() => {
-      const labelElement = getByText('form-field-label');
-      expect(labelElement).toBeInTheDocument();
-      const OsdsFormField = labelElement.closest('osds-form-field');
-      expect(OsdsFormField).toHaveAttribute('inline');
-      expect(getByText('form-field-children')).toBeDefined();
-      expect(getByText('form-field-helper-text')).toBeDefined();
-      expect(getByText('form-field-visual-hint')).toBeDefined();
-    });
+    expect(asFragment()).toMatchSnapshot();
   });
 
-  it('should display form field', async () => {
-    const { getByText } = renderComponent({
+  it('should display a block form field', async () => {
+    const { asFragment } = renderComponent({
       label: 'form-field-label',
       fullWidth: true,
     });
 
-    await waitFor(() => {
-      const labelElement = getByText('form-field-label');
-      expect(labelElement).toBeInTheDocument();
-      const OsdsFormField = labelElement.closest('osds-form-field');
-      expect(OsdsFormField).not.toHaveAttribute('inline');
-    });
+    expect(asFragment()).toMatchSnapshot();
   });
 });

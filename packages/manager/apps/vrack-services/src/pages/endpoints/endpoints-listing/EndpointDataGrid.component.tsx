@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { OsdsSpinner } from '@ovhcloud/ods-components/react';
+import { OdsSpinner } from '@ovhcloud/ods-components/react';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { useParams } from 'react-router-dom';
 import {
@@ -95,7 +95,7 @@ export const EndpointDatagrid: React.FC = () => {
 
   return isServiceListLoading || isIamResourcesLoading || isLoading ? (
     <div>
-      <OsdsSpinner inline size={ODS_SPINNER_SIZE.lg} />
+      <OdsSpinner size={ODS_SPINNER_SIZE.lg} />
     </div>
   ) : (
     <Datagrid

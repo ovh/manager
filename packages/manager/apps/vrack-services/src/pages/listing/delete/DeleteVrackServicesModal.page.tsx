@@ -28,6 +28,7 @@ export default function DeleteVrackServicesModal() {
 
   return (
     <DeleteServiceModal
+      isOpen
       closeModal={onClose}
       deleteInputLabel={t('modalDeleteVrackServicesInputLabel')}
       headline={t('modalDeleteVrackServicesHeadline')}

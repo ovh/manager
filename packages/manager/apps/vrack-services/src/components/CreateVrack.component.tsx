@@ -1,19 +1,17 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
-  ODS_BUTTON_TYPE,
+  ODS_BUTTON_COLOR,
+  ODS_TEXT_PRESET,
   ODS_BUTTON_VARIANT,
   ODS_SPINNER_SIZE,
-  ODS_MESSAGE_TYPE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
+  ODS_MESSAGE_COLOR,
 } from '@ovhcloud/ods-components';
 import {
-  OsdsText,
-  OsdsSpinner,
-  OsdsButton,
-  OsdsMessage,
+  OdsText,
+  OdsSpinner,
+  OdsButton,
+  OdsMessage,
 } from '@ovhcloud/ods-components/react';
 import {
   OrderDescription,
@@ -75,25 +73,13 @@ export const CreateVrack: React.FC<CreateVrackProps> = ({ closeModal }) => {
 
   return (
     <>
-      <OsdsText
-        className="block mb-4"
-        level={ODS_TEXT_LEVEL.body}
-        size={ODS_TEXT_SIZE._400}
-        color={ODS_THEME_COLOR_INTENT.text}
-      >
+      <OdsText className="block mb-4" preset={ODS_TEXT_PRESET.paragraph}>
         {t('modalVrackCreationDescriptionLine1')}
-      </OsdsText>
-      <OsdsText
-        className="block mb-4"
-        level={ODS_TEXT_LEVEL.body}
-        size={ODS_TEXT_SIZE._400}
-        color={ODS_THEME_COLOR_INTENT.text}
-      >
+      </OdsText>
+      <OdsText className="block mb-4" preset={ODS_TEXT_PRESET.paragraph}>
         {t('modalVrackCreationDescriptionLine2')}
-      </OsdsText>
-      {areVrackOrdersLoading && (
-        <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
-      )}
+      </OdsText>
+      {areVrackOrdersLoading && <OdsSpinner size={ODS_SPINNER_SIZE.md} />}
       <DeliveringMessages
         messageKey="deliveringVrackMessage"
         orders={vrackDeliveringOrders}
@@ -102,27 +88,22 @@ export const CreateVrack: React.FC<CreateVrackProps> = ({ closeModal }) => {
         <LoadingText title={t('modalVrackCreationOrderWaitMessage')} />
       )}
       {(isVrackOrdersError || isError) && (
-        <OsdsMessage type={ODS_MESSAGE_TYPE.error}>
-          <OsdsText
-            level={ODS_TEXT_LEVEL.body}
-            size={ODS_TEXT_SIZE._400}
-            color={ODS_THEME_COLOR_INTENT.text}
-          >
+        <OdsMessage color={ODS_MESSAGE_COLOR.critical}>
+          <OdsText preset={ODS_TEXT_PRESET.paragraph}>
             {isVrackOrdersError
               ? t('modalVrackCreationError', { error: vrackOrdersError })
               : error?.response?.data?.message}
-          </OsdsText>
-        </OsdsMessage>
+          </OdsText>
+        </OdsMessage>
       )}
-      <OsdsButton
+      <OdsButton
         slot="actions"
-        type={ODS_BUTTON_TYPE.button}
+        type="button"
         variant={ODS_BUTTON_VARIANT.ghost}
-        color={ODS_THEME_COLOR_INTENT.primary}
+        color={ODS_BUTTON_COLOR.primary}
         {...handleClick(closeModal)}
-      >
-        {t('modalVrackCreationCancel')}
-      </OsdsButton>
+        label={t('modalVrackCreationCancel')}
+      />
       {data?.contractList?.length > 0 ? (
         <OrderSubmitModalContent
           submitButtonLabel={t('modalVrackCreationSubmitOrderButtonLabel')}
@@ -140,17 +121,15 @@ export const CreateVrack: React.FC<CreateVrackProps> = ({ closeModal }) => {
           }}
         />
       ) : (
-        <OsdsButton
+        <OdsButton
           slot="actions"
-          type={ODS_BUTTON_TYPE.button}
-          variant={ODS_BUTTON_VARIANT.flat}
-          color={ODS_THEME_COLOR_INTENT.primary}
-          disabled={
+          type="button"
+          color={ODS_BUTTON_COLOR.primary}
+          isDisabled={
             areVrackOrdersLoading ||
             vrackDeliveringOrders.length > 0 ||
             isVrackOrdersError ||
-            isPending ||
-            undefined
+            isPending
           }
           {...handleClick(async () => {
             trackClick({
@@ -159,9 +138,8 @@ export const CreateVrack: React.FC<CreateVrackProps> = ({ closeModal }) => {
             });
             createCart();
           })}
-        >
-          {t('modalCreateNewVrackButtonLabel')}
-        </OsdsButton>
+          label={t('modalCreateNewVrackButtonLabel')}
+        />
       )}
     </>
   );
