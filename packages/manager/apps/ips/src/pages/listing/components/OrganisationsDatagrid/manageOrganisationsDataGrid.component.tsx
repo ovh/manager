@@ -12,7 +12,7 @@ import {
   OrganisationsPhoneCell,
   OrganisationsAddressCell,
   OrganisationsActionsCell,
-} from '../components/DatagridCells';
+} from '../DatagridCells';
 
 export const ManageOrganisationsDatagrid: React.FC = () => {
   const { t } = useTranslation('manage-organisations');
@@ -80,10 +80,10 @@ export const ManageOrganisationsDatagrid: React.FC = () => {
           className="pb-[200px] -mx-6"
           columns={columns}
           items={paginatedOrgList.map((orgName) => ({ org: orgName }))}
-          totalItems={organisations.length}
+          totalItems={organisations?.length}
           numberOfLoadingRows={10}
           onFetchNextPage={loadMoreIps}
-          hasNextPage={numberOfPageDisplayed * pageSize < organisations.length}
+          hasNextPage={numberOfPageDisplayed * pageSize < organisations?.length}
           resetExpandedRowsOnItemsChange={true}
           noResultLabel={t('manageOrganisationsTabNodata')}
         />
