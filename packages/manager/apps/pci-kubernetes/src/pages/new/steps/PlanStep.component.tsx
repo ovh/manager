@@ -9,7 +9,10 @@ import {
   ODS_TEXT_COLOR_INTENT,
   ODS_TEXT_LEVEL,
 } from '@ovhcloud/ods-components';
-import { ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
+import {
+  ODS_THEME_COLOR_INTENT,
+  ODS_THEME_TYPOGRAPHY_SIZE,
+} from '@ovhcloud/ods-common-theming';
 import { Check, XCircle, Clock12 } from 'lucide-react';
 
 import { useMemo, useState } from 'react';
@@ -167,24 +170,22 @@ const PlanTile = ({
 PlanTile.Banner = function PlanTileBanner({ type }: { type: string }) {
   const { t } = useTranslation(['add']);
   return (
-    <>
-      {type === 'region-3-az' && (
-        <OsdsMessage className="mt-4" type={ODS_MESSAGE_TYPE.info}>
-          <OsdsText
-            color={ODS_TEXT_COLOR_INTENT.text}
-            level={ODS_TEXT_LEVEL.body}
-            size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-          >
-            {t('kube_add_plan_content_standard_3AZ_banner')}
-          </OsdsText>
-        </OsdsMessage>
-      )}
-      {type === 'region' && (
-        <OsdsMessage className="mt-4" type={ODS_MESSAGE_TYPE.info}>
-          {t('kube_add_plan_content_premium_1AZ_banner')}
-        </OsdsMessage>
-      )}
-    </>
+    <OsdsMessage
+      removable
+      className="mt-4"
+      type={ODS_MESSAGE_TYPE.info}
+      color={ODS_THEME_COLOR_INTENT.info}
+    >
+      <OsdsText
+        size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+        color={ODS_THEME_COLOR_INTENT.text}
+        className="block"
+      >
+        {type === 'region-3-az'
+          ? t('kube_add_plan_content_standard_3AZ_banner')
+          : t('kube_add_plan_content_premium_1AZ_banner')}
+      </OsdsText>
+    </OsdsMessage>
   );
 };
 
