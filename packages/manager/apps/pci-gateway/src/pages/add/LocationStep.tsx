@@ -3,9 +3,16 @@ import {
   RegionSelector,
   usePCICommonContextFactory,
   PCICommonContext,
+  TDeployment,
+  DeploymentTilesInput,
+  TProductAvailabilityRegion,
+  usePCIFeatureAvailability,
+  getDeploymentComingSoonKey,
+  DEPLOYMENT_FEATURES,
+  DEPLOYMENT_MODES_TYPES,
 } from '@ovh-ux/manager-pci-common';
 import { useTranslation } from 'react-i18next';
-import { useContext, useMemo } from 'react';
+import { useContext, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { OsdsIcon, OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
 import {
@@ -17,7 +24,7 @@ import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { StepsEnum, useNewGatewayStore } from '@/pages/add/useStore';
-import { RegionType, TProductAvailabilityRegion } from '@/types/region';
+import { RegionType } from '@/types/region';
 
 const isRegionWith3AZ = (regions: TProductAvailabilityRegion[]) =>
   regions.some((region) => region.type === RegionType['3AZ']);
@@ -42,6 +49,37 @@ export const LocationStep = ({
   const has3AZ = useMemo(() => isRegionWith3AZ(regions), [regions]);
 
   const metaProps = usePCICommonContextFactory({ has3AZ });
+
+  const [
+    selectedRegionGroup,
+    setSelectedRegionGroup,
+  ] = useState<TDeployment | null>(null);
+
+  const filteredRegions = useMemo(
+    () =>
+      selectedRegionGroup
+        ? regions.filter(({ type }) => type === selectedRegionGroup.name)
+        : regions,
+    [regions, selectedRegionGroup],
+  );
+
+  const { data: deploymentAvailability } = usePCIFeatureAvailability(
+    DEPLOYMENT_FEATURES,
+  );
+
+  const deployments = useMemo<TDeployment[]>(
+    () =>
+      DEPLOYMENT_MODES_TYPES.filter((mode) => mode !== RegionType.LZ).map(
+        (deployment) => ({
+          name: deployment,
+          comingSoon:
+            deploymentAvailability?.get(
+              getDeploymentComingSoonKey(deployment),
+            ) || false,
+        }),
+      ),
+    [deploymentAvailability],
+  );
 
   return (
     <StepComponent
@@ -100,12 +138,18 @@ export const LocationStep = ({
         isDisabled: false,
       }}
     >
+      <DeploymentTilesInput
+        name="deployment"
+        value={selectedRegionGroup}
+        onChange={setSelectedRegionGroup}
+        deployments={deployments}
+      />
       <PCICommonContext.Provider value={metaProps}>
         <RegionSelector
           projectId={projectId}
           onSelectRegion={(region) => store.updateForm.regionName(region?.name)}
           regionFilter={(r) =>
-            r.isMacro || regions.some(({ name }) => name === r.name)
+            r.isMacro || filteredRegions.some(({ name }) => name === r.name)
           }
         />
       </PCICommonContext.Provider>
