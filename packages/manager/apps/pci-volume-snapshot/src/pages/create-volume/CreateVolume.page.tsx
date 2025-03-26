@@ -17,7 +17,7 @@ import PciStorageVolumeEdit from './PciStorageVolumeEdit.component';
 import { TVolume, TVolumeSnapshot } from '@/api/api.types';
 import { useVolumeSnapshots } from '@/api/hooks/useSnapshots';
 import { useCreateVolume } from '@/api/hooks/useVolume';
-import { NewVolumeData } from '@/api/data/volume';
+import { TNewVolumeData } from '@/api/data/volume';
 
 export default function CreateVolumePage() {
   const { t } = useTranslation(['create-volume', 'volumes']);
@@ -48,7 +48,7 @@ export default function CreateVolumePage() {
         ),
       );
     },
-    onError: (err: Error, newVolumeData: NewVolumeData) => {
+    onError: (err: Error, newVolumeData: TNewVolumeData) => {
       goBack();
       addError(
         t(

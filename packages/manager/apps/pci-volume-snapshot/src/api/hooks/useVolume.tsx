@@ -1,21 +1,21 @@
 import { useMutation } from '@tanstack/react-query';
 import queryClient from '@/queryClient';
 import { TVolume } from '@/api/api.types';
-import { createVolume, NewVolumeData } from '@/api/data/volume';
+import { createVolume, TNewVolumeData } from '@/api/data/volume';
 
-export interface CreateVolumeArguments {
+export type TCreateVolumeArguments = {
   projectId: string;
   onSuccess: (newVolume: TVolume) => void;
-  onError: (err: Error, newVolumeData: NewVolumeData) => void;
-}
+  onError: (err: Error, newVolumeData: TNewVolumeData) => void;
+};
 
 export const useCreateVolume = ({
   projectId,
   onSuccess,
   onError,
-}: CreateVolumeArguments) => {
+}: TCreateVolumeArguments) => {
   const mutation = useMutation({
-    mutationFn: (newVolumeData: NewVolumeData) =>
+    mutationFn: (newVolumeData: TNewVolumeData) =>
       createVolume(projectId, newVolumeData),
     onError,
     onSuccess: async (newVolume: TVolume) => {
@@ -26,7 +26,7 @@ export const useCreateVolume = ({
     },
   });
   return {
-    createVolume: (newVolumeData: NewVolumeData) =>
+    createVolume: (newVolumeData: TNewVolumeData) =>
       mutation.mutate(newVolumeData),
     ...mutation,
   };

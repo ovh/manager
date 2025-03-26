@@ -4,17 +4,17 @@ import {
   useCatalogPrice,
   convertHourlyPriceToMonthly,
 } from '@ovh-ux/manager-react-components';
-import { TVolumePricing } from '@/api/data/catalog';
+import { TVolumePricing } from '@/api/api.types';
 
-export interface PriceEstimateProps {
+export type TPriceEstimateProps = {
   volumeCapacity: number;
   pricing: TVolumePricing;
-}
+};
 
 export default function PriceEstimate({
   volumeCapacity,
   pricing,
-}: PriceEstimateProps) {
+}: TPriceEstimateProps) {
   const { t } = useTranslation('volume-edit');
   const { getFormattedCatalogPrice } = useCatalogPrice(3, {
     hideTaxLabel: true,

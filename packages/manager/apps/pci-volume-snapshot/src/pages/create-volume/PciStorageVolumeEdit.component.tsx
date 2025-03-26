@@ -8,17 +8,17 @@ import {
   OdsQuantity,
 } from '@ovhcloud/ods-components/react';
 import { useTranslatedMicroRegions } from '@ovh-ux/manager-react-components';
-import { TVolume } from '@/api/api.types';
+import { TVolume, TVolumePricing } from '@/api/api.types';
 import PriceEstimate from './PriceEstimate.component';
 import BadgeRegionType from './BadgeRegionType.component';
 import { useVolumeCatalog } from '@/api/hooks/useCatalog';
 import { getVolumeMaxSize } from '@/api/data/quota';
 import { useRegionsQuota } from '@/api/hooks/useQuota';
-import { VOLUME_MIN_SIZE } from '@/constants';
-import { TVolumePricing } from '@/api/data/catalog';
-
-const DEFAULT_MAX_SIZE = 4000;
-const VOLUME_NAME_MAX_LENGTH = 255;
+import {
+  VOLUME_MIN_SIZE,
+  DEFAULT_MAX_SIZE,
+  VOLUME_NAME_MAX_LENGTH,
+} from '@/constants';
 
 export interface PciStorageVolumeEditProps {
   projectId: string;
@@ -214,12 +214,8 @@ export default function PciStorageVolumeEdit({
           label={t(
             'pci_projects_project_storages_blocks_block_volume-edit_cancel_label',
           )}
-        ></OdsButton>
-        <OdsButton
-          type="submit"
-          label={submitLabel}
-          isDisabled={hasError}
-        ></OdsButton>
+        />
+        <OdsButton type="submit" label={submitLabel} isDisabled={hasError} />
       </div>
     </form>
   );
