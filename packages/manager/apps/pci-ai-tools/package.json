@@ -52,20 +52,20 @@
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",
+    "@ovh-ux/manager-vite-config": "^0.9.1",
     "@testing-library/react": "^14.1.2",
     "@testing-library/user-event": "^13.2.1",
-    "@ovh-ux/manager-vite-config": "^0.9.1",
     "@types/node": "^20.10.6",
     "@types/react": "^18.2.45",
     "@types/react-dom": "^18.2.18",
     "@vitejs/plugin-react": "^4.2.1",
+    "@vitest/coverage-v8": "^2.1.9",
     "@vitest/ui": "^2.1.9",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.49",
     "typescript": "^5.3.3",
     "vite": "^5.4.12",
-    "vitest": "^2.1.9",
-    "@vitest/coverage-v8": "^2.1.9"
+    "vitest": "^2.1.9"
   },
   "regions": [
     "CA",
