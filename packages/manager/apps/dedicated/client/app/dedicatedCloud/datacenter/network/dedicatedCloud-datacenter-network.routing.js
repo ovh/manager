@@ -1,7 +1,7 @@
 import { NSXT_EDGE_PLAN_CODE } from '../../../components/dedicated-cloud/datacenter/network/onboarding/dedicatedCloud-datacenter-network-onboarding.constants';
 import {
   NETWORK_LABEL,
-  NSX_EDGE_RELOCATE_FEATURE_AVAILABLE,
+  NSX_EDGE_RELOCATE_FEATURE,
 } from '../dedicatedCloud-datacenter.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -54,11 +54,9 @@ export default /* @ngInject */ ($stateProvider) => {
         breadcrumb: () => NETWORK_LABEL,
         isNsxEdgeRelocateAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
           ovhFeatureFlipping
-            .checkFeatureAvailability(NSX_EDGE_RELOCATE_FEATURE_AVAILABLE)
+            .checkFeatureAvailability(NSX_EDGE_RELOCATE_FEATURE)
             .then((featureAvailability) =>
-              featureAvailability.isFeatureAvailable(
-                NSX_EDGE_RELOCATE_FEATURE_AVAILABLE,
-              ),
+              featureAvailability.isFeatureAvailable(NSX_EDGE_RELOCATE_FEATURE),
             ),
         goToRelocate: /* @ngInject */ ($state) => (nsxtEdgeId) =>
           $state.go(
