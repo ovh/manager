@@ -2,8 +2,8 @@ import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   BaseLayout,
-  PciGuidesHeader,
   RedirectionGuard,
+  useNotifications,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import {
@@ -14,10 +14,14 @@ import {
 import { useParams, useHref, useNavigate } from 'react-router-dom';
 import { useProject } from '@ovh-ux/manager-pci-common';
 import PciStorageVolumeEdit from './PciStorageVolumeEdit.component';
+import { TVolume } from '@/api/data/snapshots';
 import { TVolumeSnapshot, useVolumeSnapshots } from '@/api/hooks/useSnapshots';
+import { useCreateVolume } from '@/api/hooks/useVolume';
+import { NewVolumeData } from '@/api/data/volume';
 
 export default function CreateVolumePage() {
   const { t } = useTranslation(['create-volume', 'volumes']);
+  const { addError, addSuccess } = useNotifications();
   const navigate = useNavigate();
   const { projectId, snapshotId } = useParams();
   const hrefProject = useProjectUrl('public-cloud');
@@ -25,8 +29,7 @@ export default function CreateVolumePage() {
   const hrefListing = useHref('./../..');
   const goBack = () => navigate('./../..');
 
-  // TODO: update
-  const { data: allSnapshots, error, isLoading } = useVolumeSnapshots(
+  const { data: allSnapshots } = useVolumeSnapshots(
     projectId || 'NO_PROJECT_ID',
   );
   const snapshot: TVolumeSnapshot | null = useMemo(
@@ -34,16 +37,41 @@ export default function CreateVolumePage() {
     [allSnapshots, snapshotId],
   );
 
+  const { createVolume } = useCreateVolume({
+    projectId: projectId || '',
+    onSuccess: (newVolume: TVolume) => {
+      goBack();
+      addSuccess(
+        t(
+          'pci_projects_project_storages_snapshots_snapshot_create-volume_success_message',
+          { volume: newVolume.name },
+        ),
+      );
+    },
+    onError: (err: Error, newVolumeData: NewVolumeData) => {
+      goBack();
+      addError(
+        t(
+          'pci_projects_project_storages_snapshots_snapshot_create-volume_error_post',
+          { volume: newVolumeData.name, message: err },
+        ),
+      );
+    },
+  });
+
   if (!snapshot) {
     return <OdsSpinner />;
   }
-  //
-  // console.group('[default] CreateVolumePage');
-  // console.log('snapshot: ', snapshot);
-  // console.groupEnd();
 
-  const handleSubmit = () => {
-    console.log('[CreateVolume] handleSubmit.');
+  const handleSubmit = (editedVolume: Partial<TVolume>) => {
+    createVolume({
+      snapshotId: snapshot.id,
+      name: editedVolume.name,
+      region: snapshot.region,
+      size: editedVolume.size,
+      type: snapshot.volume?.type,
+      bootable: snapshot.volume?.bootable,
+    });
   };
 
   return (
@@ -73,7 +101,6 @@ export default function CreateVolumePage() {
           title: t(
             'pci_projects_project_storages_snapshots_snapshot_create-volume_title',
           ),
-          headerButton: <PciGuidesHeader category={'storage'} />,
         }}
       >
         {!snapshot?.volume ? (

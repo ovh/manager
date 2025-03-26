@@ -11,7 +11,7 @@ export interface PriceEstimateProps {
   pricing: TVolumePricing;
 }
 
-export default function PriceEstimateComponent({
+export default function PriceEstimate({
   volumeCapacity,
   pricing,
 }: PriceEstimateProps) {

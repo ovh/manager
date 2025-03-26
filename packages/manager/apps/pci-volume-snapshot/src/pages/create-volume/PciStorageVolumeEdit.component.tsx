@@ -9,7 +9,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useTranslatedMicroRegions } from '@ovh-ux/manager-react-components';
 import { TVolume } from '@/api/data/snapshots';
-import PriceEstimateComponent from './PriceEstimate.component';
+import PriceEstimate from './PriceEstimate.component';
 import BadgeRegionType from './BadgeRegionType.component';
 import { useVolumeCatalog } from '@/api/hooks/useCatalog';
 import { getVolumeMaxSize } from '@/api/data/quota';
@@ -24,7 +24,7 @@ export interface PciStorageVolumeEditProps {
   volume: TVolume;
   suggestedName?: string;
   submitLabel: string;
-  onSubmit: () => void;
+  onSubmit: (editedVolume: Partial<TVolume>) => void;
   onCancel: () => void;
 }
 
@@ -66,20 +66,29 @@ export default function PciStorageVolumeEdit({
     suggestedName || volume.name || '',
   );
 
+  const errorState = {
+    nameIsMissing: !volumeName,
+    isMinError: volumeSize < minVolumeSize,
+    isMaxError: volumeSize > maxVolumeSize,
+  };
+  const hasSizeError = errorState.isMinError || errorState.isMaxError;
+  const hasError = hasSizeError || errorState.nameIsMissing;
+
   const handleSubmit = useCallback(
     (e: FormEvent) => {
       e.preventDefault();
       e.stopPropagation();
-      onSubmit();
+      if (hasError) {
+        return;
+      }
+      onSubmit({
+        name: volumeName,
+        size: volumeSize,
+        bootable: volume.bootable,
+      });
     },
-    [onSubmit],
+    [onSubmit, volume, hasError, volumeName, volumeSize],
   );
-
-  const errorState = {
-    isMinError: volumeSize < minVolumeSize,
-    isMaxError: volumeSize > maxVolumeSize,
-  };
-  const hasError = errorState.isMinError || errorState.isMaxError;
 
   return (
     <form className="flex flex-col" onSubmit={handleSubmit}>
@@ -112,14 +121,21 @@ export default function PciStorageVolumeEdit({
         </OdsText>
         <OdsInput
           name="volume_name"
+          className="w-[30em] max-w-full"
           value={volumeName}
+          hasError={errorState.nameIsMissing}
           onOdsChange={(e) => setVolumeName(e.detail.value as string)}
         />
+        {errorState.nameIsMissing && (
+          <OdsText className="text-critical">
+            {t('common_field_error_required', { ns: 'global' })}
+          </OdsText>
+        )}
       </OdsFormField>
       <div className="flex items-end mt-6 mb-3">
         <OdsFormField>
           <OdsText
-            className={`font-bold-class ${hasError ? 'text-critical' : ''}`}
+            className={`font-bold-class ${hasSizeError ? 'text-critical' : ''}`}
             preset="caption"
             slot="label"
           >
@@ -127,29 +143,28 @@ export default function PciStorageVolumeEdit({
               'pci_projects_project_storages_blocks_block_volume-edit_size_label',
             )}
           </OdsText>
-          <OdsQuantity
-            name="volume_size"
-            value={volumeSize}
-            min={minVolumeSize}
-            max={maxVolumeSize}
-            hasError={hasError}
-            onOdsChange={(e) => setVolumeSize(e.detail.value as number)}
-          />
+          <div className="flex items-center">
+            <OdsQuantity
+              name="volume_size"
+              value={volumeSize}
+              min={minVolumeSize}
+              max={maxVolumeSize}
+              hasError={hasSizeError}
+              onOdsChange={(e) => setVolumeSize(e.detail.value as number)}
+            />
+            <OdsText className="pl-4 inline">
+              {t(
+                'pci_projects_project_storages_blocks_block_volume-edit_size_unit',
+              )}
+            </OdsText>
+          </div>
         </OdsFormField>
-        <OdsText>
-          {t(
-            'pci_projects_project_storages_blocks_block_volume-edit_size_unit',
-          )}
-        </OdsText>
       </div>
 
-      {!hasError && !!pricing && (
-        <div className="mb-6">
+      {!hasSizeError && !!pricing && (
+        <div className="mb-4">
           {pricing && (
-            <PriceEstimateComponent
-              volumeCapacity={volumeSize}
-              pricing={pricing}
-            />
+            <PriceEstimate volumeCapacity={volumeSize} pricing={pricing} />
           )}
         </div>
       )}
@@ -168,7 +183,7 @@ export default function PciStorageVolumeEdit({
 
       <OdsText
         preset="caption"
-        className={`block ${hasError ? 'text-critical' : ''}`}
+        className={`block ${hasSizeError ? 'text-critical' : ''}`}
       >
         {t('pci_projects_project_storages_blocks_block_volume-edit_size_help')}
       </OdsText>
@@ -182,7 +197,11 @@ export default function PciStorageVolumeEdit({
             'pci_projects_project_storages_blocks_block_volume-edit_cancel_label',
           )}
         ></OdsButton>
-        <OdsButton type="submit" label={submitLabel}></OdsButton>
+        <OdsButton
+          type="submit"
+          label={submitLabel}
+          isDisabled={hasError}
+        ></OdsButton>
       </div>
     </form>
   );
