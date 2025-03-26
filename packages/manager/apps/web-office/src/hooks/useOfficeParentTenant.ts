@@ -24,5 +24,6 @@ export const useOfficeParentTenant = () => {
     queryFn: isPrepaid
       ? () => getParentTenant(serviceName)
       : () => getOfficeLicenseDetails(serviceName),
+    enabled: !!serviceName,
   });
 };
