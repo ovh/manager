@@ -1,5 +1,9 @@
 import { InstallationFormValues } from '@/types/form.type';
 import { installationInitialErrors } from '@/context/installationInitialValues.constants';
+import {
+  DEFAULT_APPLICATION_SERVER,
+  DEFAULT_HANA_SERVER,
+} from '@/utils/defaultServers.constants';
 
 export const mockedValues: InstallationFormValues = {
   serviceName: 'pcc-145-239-132-226',
@@ -7,9 +11,10 @@ export const mockedValues: InstallationFormValues = {
   datacenterId: 869,
   datacenterName: 'datacenter869GG',
   clusterName: 'Cluster1',
+  clusterId: 1006,
   applicationVersion: 'S/4HANA 2023',
   applicationType: 'JAVA',
-  deploymentType: 'High Availability',
+  deploymentType: 'Standard',
   sapSid: 'SAP',
   sapHanaSid: 'HAN',
   masterSapPassword: 'PasswordMaster1!',
@@ -26,6 +31,17 @@ export const mockedValues: InstallationFormValues = {
   firewallService: true,
   firewallServer: false,
   firewallDatabase: false,
+  network: '',
+  netmask: '',
+  gateway: '',
+  passwordCrypted: false,
+  thickDatastorePolicy: '',
+  hanaServerOva: '',
+  hanaServerDatastore: '',
+  applicationServerOva: '',
+  applicationServerDatastore: '',
+  hanaServers: [DEFAULT_HANA_SERVER],
+  applicationServers: [DEFAULT_APPLICATION_SERVER],
   bucketBackint: {
     id: 'backintContainerId',
     endpoint: 'https://backint.endpoint.ok',
