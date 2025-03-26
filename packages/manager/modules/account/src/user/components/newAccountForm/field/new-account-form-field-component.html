@@ -1,4 +1,5 @@
 <div
+    data-ng-attr-id="{{ 'ovh_field_group_' + $ctrl.rule.fieldName }}"
     data-ng-class="{ 'oui-field': $ctrl.rule.hasBottomMargin,
                     'col-sm-12': $ctrl.rule.fieldName !== $ctrl.FIELD_NAME_LIST.city && $ctrl.rule.fieldName !== $ctrl.FIELD_NAME_LIST.zip,
                     'col-sm-6': $ctrl.rule.fieldName === $ctrl.FIELD_NAME_LIST.city || $ctrl.rule.fieldName === $ctrl.FIELD_NAME_LIST.zip,
