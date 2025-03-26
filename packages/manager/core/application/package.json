@@ -14,8 +14,7 @@
   ],
   "scripts": {
     "build": "tsc",
-    "dev": "tsc",
-    "start:watch": "tsc -w"
+    "dev": "tsc"
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^8.2.1",

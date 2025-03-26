@@ -12,14 +12,10 @@
   "author": "OVH SAS",
   "scripts": {
     "build": "webpack --env production",
-    "dev": "webpack-dev-server",
-    "dev:watch": "yarn run dev",
-    "start": "lerna exec --stream --scope='@ovh-ux/manager-iam-app' --include-dependencies -- npm run build --if-present",
-    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-iam-app' --include-dependencies -- npm run dev --if-present",
-    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-iam-app' --include-dependencies -- npm run dev:watch --if-present",
     "test": "jest --runInBand",
     "test:coverage": "jest --coverage",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "start": "webpack-dev-server"
   },
   "dependencies": {
     "@ovh-ux/manager-at-internet-configuration": "^1.5.0",
