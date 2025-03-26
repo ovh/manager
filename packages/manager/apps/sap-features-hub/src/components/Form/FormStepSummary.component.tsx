@@ -21,7 +21,10 @@ export const FormStepSummary = ({ step, ...props }: FormStepSummaryProps) => {
         {step.fields.map((field, i) => (
           <React.Fragment key={`field_${field.label}_${i}`}>
             {field.type === 'subtitle' ? (
-              <OdsText preset="heading-4" class="my-2">
+              <OdsText
+                preset={field.isMinor ? 'paragraph' : 'heading-4'}
+                class={`my-2 ${field.isMinor ? 'summary__minor-subtitle' : ''}`}
+              >
                 {field.label}
               </OdsText>
             ) : (
