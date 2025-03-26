@@ -1,6 +1,11 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { v6 } from '@ovh-ux/manager-core-api';
-import { getSnapshots, getVolume } from './snapshots';
+import {
+  getSnapshots,
+  getSnapshot,
+  deleteSnapshot,
+  getVolume,
+} from './snapshots';
 import { TSnapshot, TVolume } from '../api.types';
 
 describe('Snapshots API', () => {
@@ -68,6 +73,92 @@ describe('Snapshots API', () => {
       vi.mocked(v6.get).mockRejectedValue(apiError);
 
       await expect(getSnapshots(projectId)).rejects.toThrow('API Error');
+    });
+  });
+
+  describe('getSnapshot', () => {
+    const snapshotId = 'snap-1';
+
+    it('should call the API with the correct URL', async () => {
+      // Mock API response
+      const mockResponse = { data: {} };
+      vi.mocked(v6.get).mockResolvedValue(mockResponse);
+
+      await getSnapshot(projectId, snapshotId);
+
+      expect(v6.get).toHaveBeenCalledTimes(1);
+      expect(v6.get).toHaveBeenCalledWith(
+        `/cloud/project/${projectId}/volume/snapshot/${snapshotId}`,
+      );
+    });
+
+    it('should return the data from the API response', async () => {
+      // Sample snapshot data
+      const mockSnapshot: TSnapshot = {
+        id: 'snap-1',
+        creationDate: '2023-01-01T00:00:00Z',
+        name: 'Snapshot 1',
+        description: 'Test snapshot 1',
+        size: 20,
+        volumeId: 'vol-1',
+        region: 'us-east-1',
+        status: 'available',
+        planCode: 'snapshot.standard',
+      };
+
+      // Mock API response
+      vi.mocked(v6.get).mockResolvedValue({ data: mockSnapshot });
+
+      const result = await getSnapshot(projectId, snapshotId);
+
+      expect(result).toEqual(mockSnapshot);
+      expect(result.id).toBe('snap-1');
+      expect(result.name).toBe('Snapshot 1');
+    });
+
+    it('should throw an error if the API call fails', async () => {
+      // Mock API error
+      const apiError = new Error('API Error');
+      vi.mocked(v6.get).mockRejectedValue(apiError);
+
+      await expect(getSnapshot(projectId, snapshotId)).rejects.toThrow(
+        'API Error',
+      );
+    });
+  });
+
+  describe('deleteSnapshot', () => {
+    const snapshotId = 'snap-1';
+
+    it('should call the API with the correct URL', async () => {
+      // Mock API response
+      const mockResponse = { data: undefined };
+      vi.mocked(v6.delete).mockResolvedValue(mockResponse);
+
+      await deleteSnapshot(projectId, snapshotId);
+
+      expect(v6.delete).toHaveBeenCalledTimes(1);
+      expect(v6.delete).toHaveBeenCalledWith(
+        `/cloud/project/${projectId}/volume/snapshot/${snapshotId}`,
+      );
+    });
+
+    it('should return the data from the API response', async () => {
+      // Mock API response
+      vi.mocked(v6.delete).mockResolvedValue({ data: undefined });
+
+      const result = await deleteSnapshot(projectId, snapshotId);
+      expect(result).toBeUndefined();
+    });
+
+    it('should throw an error if the API call fails', async () => {
+      // Mock API error
+      const apiError = new Error('API Error');
+      vi.mocked(v6.delete).mockRejectedValue(apiError);
+
+      await expect(deleteSnapshot(projectId, snapshotId)).rejects.toThrow(
+        'API Error',
+      );
     });
   });
 

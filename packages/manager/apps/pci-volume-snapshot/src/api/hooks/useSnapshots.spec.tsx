@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { renderHook, waitFor } from '@testing-library/react';
+import { renderHook, waitFor, render } from '@testing-library/react';
 import { Filter, FilterComparator } from '@ovh-ux/manager-core-api';
 import * as reactQuery from '@tanstack/react-query';
 import * as snapshotsData from '../data/snapshots';
@@ -9,7 +9,11 @@ import {
   useAllSnapshots,
   useVolumeSnapshots,
   usePaginatedVolumeSnapshot,
+  useVolumeSnapshot,
+  useDeleteSnapshot,
 } from './useSnapshots';
+import * as queryClient from '@/queryClient';
+import { createWrapper } from '@/wrapperRenders';
 
 // Mock react-query before importing the components that use it
 vi.mock('@tanstack/react-query', async () => {
@@ -26,6 +30,8 @@ vi.mock('@tanstack/react-query', async () => {
 vi.mock('../data/snapshots', () => ({
   getSnapshots: vi.fn(),
   getVolume: vi.fn(),
+  getSnapshot: vi.fn(),
+  deleteSnapshot: vi.fn(),
 }));
 
 // Mock helpers
@@ -33,6 +39,20 @@ vi.mock('@/helpers', () => ({
   paginateResults: vi.fn(),
   sortResults: vi.fn(),
 }));
+
+// Mock invalidateQueries function
+vi.mock('@/queryClient', async () => {
+  const actual = (await vi.importActual('@/queryClient')) as Record<
+    string,
+    unknown
+  >;
+  return {
+    ...actual,
+    default: {
+      invalidateQueries: vi.fn(),
+    },
+  };
+});
 
 // Sample data for testing
 const mockSnapshots: TSnapshot[] = [
@@ -71,6 +91,18 @@ const mockSnapshots: TSnapshot[] = [
   },
 ];
 
+const mockSnapshot: TSnapshot = {
+  id: 'snap-1',
+  volumeId: 'vol-1',
+  name: 'Test Snapshot',
+  creationDate: '2023-01-01T00:00:00Z',
+  description: 'Test snapshot',
+  size: 20,
+  region: 'us-east-1',
+  status: 'available',
+  planCode: 'snapshot.standard',
+};
+
 const mockVolumes: Record<string, TVolume> = {
   'vol-1': {
     id: 'vol-1',
@@ -102,30 +134,12 @@ const mockVolumes: Record<string, TVolume> = {
   },
 };
 
-// Create a wrapper with QueryClientProvider for testing hooks
-const createWrapper = () => {
-  const queryClient = new reactQuery.QueryClient({
-    defaultOptions: {
-      queries: {
-        retry: false,
-      },
-    },
-  });
-
-  const Wrapper = ({ children }: { children: React.ReactNode }) => (
-    <reactQuery.QueryClientProvider client={queryClient}>
-      {children}
-    </reactQuery.QueryClientProvider>
-  );
-
-  return Wrapper;
-};
-
 describe('useSnapshots hooks', () => {
   beforeEach(() => {
     vi.clearAllMocks();
 
-    // Default mocks
+    // Setup mocks
+    vi.mocked(snapshotsData.getSnapshot).mockResolvedValue(mockSnapshot);
     vi.mocked(snapshotsData.getSnapshots).mockResolvedValue(mockSnapshots);
     vi.mocked(
       snapshotsData.getVolume,
@@ -457,6 +471,253 @@ describe('useSnapshots hooks', () => {
         totalRows: 0,
         pageCount: 0,
       });
+    });
+  });
+
+  describe('useVolumeSnapshot', () => {
+    beforeEach(() => {
+      vi.clearAllMocks();
+    });
+
+    it('should fetch snapshot and volume data successfully', async () => {
+      // Render the hook
+      const { result } = renderHook(
+        () => useVolumeSnapshot('test-project', 'snap-1'),
+        { wrapper: createWrapper() },
+      );
+
+      // Initially should be in loading state
+      expect(result.current.isLoading).toBe(true);
+
+      // Wait for the query to resolve
+      await waitFor(() => expect(result.current.isSuccess).toBe(true));
+
+      // Verify API calls
+      expect(snapshotsData.getSnapshot).toHaveBeenCalledWith(
+        'test-project',
+        'snap-1',
+      );
+      expect(snapshotsData.getVolume).toHaveBeenCalledWith(
+        'test-project',
+        'vol-1',
+      );
+
+      // Verify returned data
+      expect(result.current.data).toEqual({
+        ...mockSnapshot,
+        volume: mockVolumes['vol-1'],
+      });
+    });
+
+    it('should handle error when snapshot fetch fails', async () => {
+      vi.spyOn(console, 'error').mockImplementation(() => undefined);
+
+      // Setup error response
+      const error = new Error('Failed to fetch snapshot');
+      vi.mocked(snapshotsData.getSnapshot).mockRejectedValue(error);
+
+      function Page() {
+        const { status } = useVolumeSnapshot('test-project', 'snap-1');
+
+        return <div>{status}</div>;
+      }
+
+      const Wrapper = createWrapper();
+
+      const rendered = render(
+        <Wrapper>
+          <Page />
+        </Wrapper>,
+      );
+
+      await waitFor(() => rendered.getByText('error boundary'));
+    });
+
+    it('should be in loading state initially', async () => {
+      // Setup delayed resolution
+      vi.mocked(snapshotsData.getSnapshot).mockImplementation(
+        () =>
+          new Promise((resolve) =>
+            setTimeout(
+              () =>
+                resolve({
+                  id: 'snap-1',
+                  volumeId: 'vol-1',
+                  creationDate: '2023-01-01T00:00:00Z',
+                  name: 'Test Snapshot',
+                  description: 'Test snapshot',
+                  size: 20,
+                  region: 'us-east-1',
+                  status: 'available',
+                  planCode: 'snapshot.standard',
+                }),
+              1000,
+            ),
+          ),
+      );
+
+      // Render the hook
+      const { result } = renderHook(
+        () => useVolumeSnapshot('test-project', 'snap-1'),
+        { wrapper: createWrapper() },
+      );
+
+      // Verify loading state
+      expect(result.current.isLoading).toBe(true);
+    });
+
+    it('should propagate error from volume fetch', async () => {
+      vi.spyOn(console, 'error').mockImplementation(() => undefined);
+
+      const volumeError = new Error('Failed to fetch volume');
+      vi.mocked(snapshotsData.getVolume).mockRejectedValue(volumeError);
+
+      // Setup error response
+      const error = new Error('Failed to fetch snapshot');
+      vi.mocked(snapshotsData.getSnapshot).mockRejectedValue(error);
+
+      function Page() {
+        const { status } = useVolumeSnapshot('test-project', 'snap-1');
+
+        return <div>{status}</div>;
+      }
+
+      const Wrapper = createWrapper();
+
+      const rendered = render(
+        <Wrapper>
+          <Page />
+        </Wrapper>,
+      );
+
+      await waitFor(() => rendered.getByText('error boundary'));
+    });
+  });
+
+  describe('useDeleteSnapshot', () => {
+    beforeEach(() => {
+      vi.clearAllMocks();
+
+      // Default mock implementation for deleteSnapshot
+      vi.mocked(snapshotsData.deleteSnapshot).mockResolvedValue(undefined);
+    });
+
+    it('should call deleteSnapshot with correct parameters', async () => {
+      const onSuccess = vi.fn();
+      const onError = vi.fn();
+
+      const { result } = renderHook(
+        () =>
+          useDeleteSnapshot({
+            projectId: 'test-project',
+            onSuccess,
+            onError,
+          }),
+        { wrapper: createWrapper() },
+      );
+
+      // Call deleteSnapshot function
+      result.current.deleteSnapshot('snap-1');
+
+      // Verify deleteSnapshot was called with correct params
+      await waitFor(() =>
+        expect(snapshotsData.deleteSnapshot).toHaveBeenCalledWith(
+          'test-project',
+          'snap-1',
+        ),
+      );
+    });
+
+    it('should invalidate cache and call onSuccess when deletion is successful', async () => {
+      const onSuccess = vi.fn();
+      const onError = vi.fn();
+
+      const { result } = renderHook(
+        () =>
+          useDeleteSnapshot({
+            projectId: 'test-project',
+            onSuccess,
+            onError,
+          }),
+        { wrapper: createWrapper() },
+      );
+
+      // Call deleteSnapshot function
+      result.current.deleteSnapshot('snap-1');
+
+      // Wait for the mutation to complete
+      await waitFor(() => expect(result.current.isPending).toBe(false));
+
+      // Verify cache invalidation was called
+      expect(queryClient.default.invalidateQueries).toHaveBeenCalledWith({
+        queryKey: ['snapshots', 'test-project'],
+      });
+
+      // Verify onSuccess callback was called
+      expect(onSuccess).toHaveBeenCalledTimes(1);
+      expect(onError).not.toHaveBeenCalled();
+    });
+
+    it('should call onError when deletion fails', async () => {
+      const onSuccess = vi.fn();
+      const onError = vi.fn();
+      const error = new Error('Failed to delete snapshot');
+
+      // Mock deleteSnapshot to reject with error
+      vi.mocked(snapshotsData.deleteSnapshot).mockRejectedValue(error);
+
+      const { result } = renderHook(
+        () =>
+          useDeleteSnapshot({
+            projectId: 'test-project',
+            onSuccess,
+            onError,
+          }),
+        { wrapper: createWrapper() },
+      );
+
+      // Call deleteSnapshot function
+      result.current.deleteSnapshot('snap-1');
+
+      // Wait for the mutation to complete with error
+      await waitFor(() => expect(result.current.isError).toBe(true));
+
+      // Verify onError callback was called with the error
+      expect(onError).toHaveBeenCalledWith(error, 'snap-1', undefined);
+      expect(onSuccess).not.toHaveBeenCalled();
+
+      // Verify cache invalidation was NOT called
+      expect(queryClient.default.invalidateQueries).not.toHaveBeenCalled();
+    });
+
+    it('should return isLoading state during deletion', async () => {
+      const onSuccess = vi.fn();
+      const onError = vi.fn();
+
+      // Create a delayed resolution for deleteSnapshot
+      vi.mocked(snapshotsData.deleteSnapshot).mockImplementation(
+        () =>
+          new Promise((resolve) => setTimeout(() => resolve(undefined), 100)),
+      );
+
+      const { result } = renderHook(
+        () =>
+          useDeleteSnapshot({
+            projectId: 'test-project',
+            onSuccess,
+            onError,
+          }),
+        { wrapper: createWrapper() },
+      );
+
+      // Verify initial state
+      await waitFor(() => expect(result.current.isPending).toBe(false));
+
+      // Call deleteSnapshot function
+      result.current.deleteSnapshot('snap-1');
+
+      // Verify loading state during deletion
+      await waitFor(() => expect(result.current.isPending).toBe(true));
     });
   });
 });
