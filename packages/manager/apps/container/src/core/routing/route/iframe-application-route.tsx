@@ -8,18 +8,24 @@ import { appendSlash, removeHashbang } from './utils';
 export interface IFrameApplicationRouteProps {
   iframeRef: RefObject<HTMLIFrameElement>;
   appConfig: Application;
+  secondaryIframeRef: RefObject<HTMLIFrameElement>;
+  secondaryAppConfig: Application;
 }
 
 export function IFrameApplicationRoute({
   iframeRef,
   appConfig,
+  secondaryIframeRef,
+  secondaryAppConfig,
 }: IFrameApplicationRouteProps): JSX.Element {
   const location = useLocation();
   const navigate = useNavigate();
   const { setApplication } = useContainer();
 
   const [newIFrameURL, setNewIframeURL] = useState(null);
+  const [newSecondaryIFrameURL, setSecondaryNewIframeURL] = useState(null);
   const [iframeLocation, setIframeLocation] = useState(null);
+  const [secondaryIframeLocation, setSecondaryIframeLocation] = useState(null);
 
   useEffect(() => {
     setApplication(appConfig);
@@ -69,7 +75,13 @@ export function IFrameApplicationRoute({
       )}`;
       const oldHash = `${location.pathname}${location.search}`;
       if (newHash !== oldHash) {
-        navigate(newHash, { replace: true });
+        if(appConfig.container.fallbackApp && appConfig.container.hashes.includes(newHash)) {
+          iframeRef.current.style.display = 'none';
+          secondaryIframeRef.current.style.display = 'auto';
+        } else {
+          secondaryIframeRef.current.style.display = 'none';
+          navigate(newHash, { replace: true });
+        }
       }
     }
   };
@@ -80,8 +92,22 @@ export function IFrameApplicationRoute({
 
   // listen for iframe location changes
   useEffect(() => {
-    const onIframeHashUpdate = () =>
+    if(appConfig.container.fallbackApp) {
+      const newURL = new URL(appendSlash(secondaryAppConfig.url));
+      setSecondaryNewIframeURL(newURL.href);
+      if(secondaryIframeRef.current && newURL !== null) {
+        const {
+          location: currentIframeLocation,
+        } = secondaryIframeRef.current.contentWindow;
+        if (currentIframeLocation.href !== newURL.href) {
+          currentIframeLocation.replace(newURL);
+        }
+      }
+    }
+    const onIframeHashUpdate = () => {
       setIframeLocation({ ...iframeRef.current.contentWindow.location });
+      setSecondaryIframeLocation({...secondaryIframeRef.current.contentWindow.location});
+    }
     window.addEventListener('ovh-routing-hash-change', onIframeHashUpdate);
     return () =>
       window.removeEventListener('ovh-routing-hash-change', onIframeHashUpdate);

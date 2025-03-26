@@ -20,6 +20,7 @@ import MfaEnrollment from '@/container/mfa-enrollment/MfaEnrollment';
 
 function LegacyContainer(): JSX.Element {
   const iframeRef = useRef(null);
+  const secondaryIframeRef = useRef(null);
   const [iframe, setIframe] = useState<HTMLIFrameElement>(null);
   const { betaVersion } = useContainer();
 
@@ -77,6 +78,7 @@ function LegacyContainer(): JSX.Element {
                 <>
                   <IFrameAppRouter
                     iframeRef={iframeRef}
+                    secondaryIframeRef={secondaryIframeRef}
                     configuration={applications}
                   />
                   {isMfaEnrollmentVisible && (
@@ -92,6 +94,13 @@ function LegacyContainer(): JSX.Element {
                     role="document"
                     src="about:blank"
                     ref={iframeRef}
+                  ></iframe>
+                  <iframe
+                    title="secondary-app"
+                    role="document"
+                    src="about:blank"
+                    ref={secondaryIframeRef}
+                    loading='lazy'
                   ></iframe>
                 </>
               </Preloader>
