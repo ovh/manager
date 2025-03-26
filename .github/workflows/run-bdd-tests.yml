@@ -41,7 +41,7 @@ jobs:
       - name: GET BASE BRANCH
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: ${{ github.ref_name }}
+          BRANCH: ${GITHUB_REF#refs/heads/}
           REPO: ${{ github.repository }}
         run: |
           BASE_BRANCH=$(curl -s -H "Authorization: $GITHUB_TOKEN" "https://api.github.com/repos/$REPO/pulls?state=open" | jq ".[] | select(.head.ref == \"$BRANCH\") | .base.ref")
