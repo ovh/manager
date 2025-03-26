@@ -33,7 +33,7 @@ export const NotificationsEmailUnreachable: FunctionComponent = () => {
   const notificationLinkAsync = useMemo(
     () =>
       navigation.getURL('dedicated', '#/useraccount/infos', {
-        fieldToFocus: 'ovh_field_email',
+        fieldToFocus: 'ovh_form_content_contact',
       }),
     [],
   );
