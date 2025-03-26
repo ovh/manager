@@ -105,16 +105,16 @@ inquirer
         const appId = await getApplicationId(packageName);
         await concurrently(
           [
-            `VITE_CONTAINER_APP=${appId} yarn workspace ${containerPackageName} run start:dev`,
-            `CONTAINER=1 yarn workspace ${packageName} run start:dev`,
+            `VITE_CONTAINER_APP=${appId} turbo run start --filter=${containerPackageName}`,
+            `CONTAINER=1 turbo run start --filter=${packageName}`,
           ],
           {
             raw: true,
           },
         );
       } else {
-        await execa('yarn', ['workspace', packageName, 'run', 'start:dev'], {
-          stdio: 'inherit',
+        await concurrently([`turbo run start --filter=${packageName}`], {
+          raw: true,
         });
       }
     } catch (error) {
