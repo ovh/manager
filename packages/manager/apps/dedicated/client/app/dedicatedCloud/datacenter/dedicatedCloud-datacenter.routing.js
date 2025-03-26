@@ -1,4 +1,5 @@
 import {
+  NSX_EDGE_FEATURE,
   NSX_COMPATIBLE_COMMERCIAL_RANGE,
   MIN_NSX_EDGES,
   MAX_NSX_EDGES,
@@ -42,6 +43,12 @@ export default /* @ngInject */ ($stateProvider) => {
         DedicatedCloud.getDatacenterInfoProxy(productId, datacenterId).then(
           ({ commercialRangeName }) => commercialRangeName,
         ),
+      isNsxEdgeAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability(NSX_EDGE_FEATURE)
+          .then((featureAvailability) =>
+            featureAvailability.isFeatureAvailable(NSX_EDGE_FEATURE),
+          ),
       isNsxtCompatible: /* @ngInject */ (commercialRangeName) =>
         NSX_COMPATIBLE_COMMERCIAL_RANGE.some(
           (range) =>

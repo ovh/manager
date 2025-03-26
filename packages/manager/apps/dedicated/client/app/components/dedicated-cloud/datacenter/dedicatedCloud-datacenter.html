@@ -46,7 +46,7 @@
             ><span data-translate="dedicatedCloud_tab_datastore"></span
         ></oui-header-tabs-item>
         <oui-header-tabs-item
-            data-ng-if=":: $ctrl.isNsxtCompatible"
+            data-ng-if=":: $ctrl.isNsxEdgeAvailable && $ctrl.isNsxtCompatible"
             data-state="{{:: $ctrl.networkState }}"
             ><span data-ng-bind=":: $ctrl.NETWORK_LABEL"></span
         ></oui-header-tabs-item>
