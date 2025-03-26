@@ -16,6 +16,7 @@ export default {
     dedicatedCloudPCCMigrationState: '<?',
     dedicatedCloudVCDMigrationState: '<?',
     vcdTrackingPrefix: '<?',
+    isNsxEdgeAvailable: '<',
     isNsxtCompatible: '<',
   },
   controller,

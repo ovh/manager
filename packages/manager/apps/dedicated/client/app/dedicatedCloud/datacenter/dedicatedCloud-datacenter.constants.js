@@ -1,5 +1,5 @@
-export const NSX_EDGE_RELOCATE_FEATURE_AVAILABLE =
-'dedicated-cloud:nsxEdgeRelocate';
+export const NSX_EDGE_FEATURE = 'dedicated-cloud:nsxEdge';
+export const NSX_EDGE_RELOCATE_FEATURE = `${NSX_EDGE_FEATURE}:relocate`;
 
 export const MIN_NSX_EDGES = 2;
 export const MAX_NSX_EDGES = 10;
@@ -50,5 +50,6 @@ export default {
   DATACENTER_NETWORK_SITE_WEB_LINK,
   NSXT_EDGE_CORE_PLAN_CODE,
   NSXT_EDGE_PRICING_MODE,
-  NSX_EDGE_RELOCATE_FEATURE_AVAILABLE,
+  NSX_EDGE_FEATURE,
+  NSX_EDGE_RELOCATE_FEATURE,
 };

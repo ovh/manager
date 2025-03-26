@@ -25,6 +25,7 @@ export default {
     goToRelocateNsxtEdge: '<',
     hasMaximumNsx: '<',
     goToAddNsx: '<',
+    isNsxEdgeAvailable: '<',
     isNsxEdgeRelocateAvailable: '<',
   },
   controller,

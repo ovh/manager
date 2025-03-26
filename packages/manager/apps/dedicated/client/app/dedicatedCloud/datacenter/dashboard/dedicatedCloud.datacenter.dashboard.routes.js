@@ -1,4 +1,4 @@
-import { NSX_EDGE_RELOCATE_FEATURE_AVAILABLE } from '../dedicatedCloud-datacenter.constants';
+import { NSX_EDGE_RELOCATE_FEATURE } from '../dedicatedCloud-datacenter.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
@@ -26,11 +26,9 @@ export default /* @ngInject */ ($stateProvider) => {
           ),
         isNsxEdgeRelocateAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
           ovhFeatureFlipping
-            .checkFeatureAvailability(NSX_EDGE_RELOCATE_FEATURE_AVAILABLE)
+            .checkFeatureAvailability(NSX_EDGE_RELOCATE_FEATURE)
             .then((featureAvailability) =>
-              featureAvailability.isFeatureAvailable(
-                NSX_EDGE_RELOCATE_FEATURE_AVAILABLE,
-              ),
+              featureAvailability.isFeatureAvailable(NSX_EDGE_RELOCATE_FEATURE),
             ),
         hostOrderLink: /* @ngInject */ (
           coreURLBuilder,
