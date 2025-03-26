@@ -5,7 +5,7 @@ import {
   DeploymentTilesInput,
   DeploymentTilesInputProps,
 } from '@/components/deployment-tiles-input/DeploymentTilesInput';
-import { useFeaturedDeploymentModes } from '@/api/hook/useFeaturedDeploymentModes';
+import { useFeaturedDeploymentModes } from '@/api/hook';
 
 export type FeaturedDeploymentTilesInputProps = Omit<
   DeploymentTilesInputProps,

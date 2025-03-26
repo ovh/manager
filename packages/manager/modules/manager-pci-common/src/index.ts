@@ -1,5 +1,6 @@
 export * from './api/data';
 export * from './api/hook';
+export * from './components/card/Card';
 export * from './components/accordion/Accordion.component';
 export * from './components/banner';
 export * from './components/region-selector';
@@ -15,4 +16,5 @@ export * from './components/shape-input/ShapeInput.component';
 export * from './components/deployment-mode-card';
 export * from './components/deployment-tiles-input';
 export * from './components/input-adapter';
+export * from './components/tiles-input';
 export * from './dto';
