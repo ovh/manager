@@ -26,8 +26,8 @@ import {
   FilterTypeCategories,
   FilterComparator,
 } from '@ovh-ux/manager-core-api';
-import { useContext, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Suspense, useContext, useState } from 'react';
+import { Outlet, useParams } from 'react-router-dom';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useDatagridColumn } from '@/pages/listing/useDatagridColumn';
 import { usePaginatedVolumeSnapshot } from '@/api/hooks/useSnapshots';
@@ -232,6 +232,9 @@ export default function ListingPage() {
               onSortChange={setSorting}
               isLoading={isLoading}
             />
+            <Suspense>
+              <Outlet />
+            </Suspense>
           </div>
         </div>
       </BaseLayout>
