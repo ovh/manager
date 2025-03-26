@@ -3,54 +3,32 @@ import {
   OdsFormField,
   OdsSelect,
   OdsSpinner,
-  OdsText,
 } from '@ovhcloud/ods-components/react';
-import {
-  OdsSelectChangeEventDetail,
-  OdsSelectCustomEvent,
-} from '@ovhcloud/ods-components';
-import { FormKey } from '@/types/form.type';
-
-export type SelectOptionsProps<T> = T extends Record<string, unknown>
-  ? {
-      options: T[];
-      optionValueKey: keyof T;
-      optionLabelKey?: keyof T;
-    }
-  : {
-      options: string[] | number[];
-      optionValueKey?: never;
-      optionLabelKey?: never;
-    };
+import { ControllerRenderProps, FieldValues } from 'react-hook-form';
+import { SelectOptionsProps } from '../Form/SelectField.component';
 
 type SelectFieldProps<T> = SelectOptionsProps<T> & {
-  name: FormKey;
+  field: ControllerRenderProps<FieldValues, string>;
   label: string;
   isDisabled?: boolean;
   isLoading?: boolean;
-  handleChange: (
-    event: OdsSelectCustomEvent<OdsSelectChangeEventDetail>,
-  ) => void;
   placeholder?: string;
   error?: string;
-  defaultValue?: string;
 };
 
 const getFormattedValue = (value: unknown) =>
   typeof value === 'number' ? value : String(value);
 
-export const SelectField = <T,>({
-  name,
+export const RhfSelectField = <T,>({
+  field,
   isDisabled = false,
   isLoading,
-  handleChange,
   options = [],
   label,
   optionLabelKey,
   optionValueKey,
   placeholder,
   error,
-  defaultValue,
 }: SelectFieldProps<T>) => {
   const sanitizedOptions = options.map((opt) =>
     typeof opt === 'object'
@@ -61,28 +39,23 @@ export const SelectField = <T,>({
       : { value: opt, label: String(opt) },
   );
 
-  const getDefaultValue = () => {
-    if (defaultValue) return defaultValue;
-    if (isLoading || sanitizedOptions.length !== 1) return undefined;
-    return String(sanitizedOptions[0].value);
-  };
-
   return (
     <OdsFormField error={error}>
-      <label htmlFor={name} slot="label">
-        <OdsText>{label}</OdsText>
+      <label htmlFor={field.name} slot="label">
+        {label}
       </label>
       <div className="flex items-center gap-4">
         <OdsSelect
           key={sanitizedOptions.map((opt) => opt.value).join('-')}
-          id={name}
-          name={name}
+          id={field.name}
+          name={field.name}
           placeholder={placeholder}
           isDisabled={isDisabled}
-          onOdsChange={handleChange}
           className="w-full max-w-md"
           hasError={!!error}
-          defaultValue={getDefaultValue()}
+          {...field}
+          onOdsChange={field.onChange}
+          onOdsBlur={field.onBlur}
         >
           {sanitizedOptions.map((opt) => (
             <option
