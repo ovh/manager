@@ -10,8 +10,10 @@
     "dev": {
       "dependsOn": ["^dev"]
     },
-    "dev:server": {
+    "start": {
       "persistent": true,
+      "cache": false,
+      "env": ["VITE_CONTAINER_APP", "CONTAINER"],
       "dependsOn": ["^dev"]
     }
   }
