@@ -16,11 +16,14 @@ export const FormFieldSummary = ({
 
   return (
     <div
-      className="flex items-start justify-between gap-x-4 max-w-sm"
+      className="flex items-start justify-between gap-x-4 max-w-md"
       {...props}
     >
       <OdsText className="max-w-60">{field.label}</OdsText>
-      <OdsText className="max-w-60" data-testid={testIds.summaryFieldValue}>
+      <OdsText
+        className="max-w-60 text-end"
+        data-testid={testIds.summaryFieldValue}
+      >
         {field.value ? valueText : FORM_LABELS.unknownText}
       </OdsText>
     </div>
