@@ -72,3 +72,15 @@ export type VMwareDatacentreCluster = {
   name: string;
   vmwareClusterId: string;
 };
+
+export type VMwareStoragePolicy = {
+  name: string;
+  description: string;
+  storagePolicyId: string;
+};
+
+export type DatacentrePortGroup = {
+  name: string;
+  description: string;
+  portgroupId: number;
+};
