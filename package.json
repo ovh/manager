@@ -29,7 +29,7 @@
     "build": "yarn run build:turbo",
     "build:turbo": "turbo run build --concurrency=5",
     "dev": "turbo run dev",
-    "clean": "lerna clean -y && yarn run clean:dist && rimraf node_modules",
+    "clean": "yarn run clean:dist && rimraf node_modules",
     "clean:dist": "rimraf \"packages/**/dist\"",
     "format": "run-p format:*",
     "format:css": "yarn run lint:css --fix",
@@ -50,8 +50,7 @@
     "release": "scripts/release/release.sh",
     "start": "node scripts/start-application.mjs",
     "test:jest": "jest --runInBand",
-    "test": "yarn lint",
-    "test:turbo": "turbo run test --concurrency=1",
+    "test": "turbo run test --concurrency=1",
     "test:scripts": "make test"
   },
   "resolutions": {
@@ -125,10 +124,11 @@
     "stylelint-config-standard": "^20.0.0",
     "stylelint-prettier": "^1.1.2",
     "stylelint-scss": "^3.18.0",
-    "turbo": "^1.4.3",
+    "turbo": "^2.5.1",
     "vite": "^5.4.18",
     "whatwg-fetch": "^3.6.2"
   },
+  "packageManager": "yarn@1.22.22",
   "engines": {
     "node": "^22",
     "yarn": ">=1.21.1"
