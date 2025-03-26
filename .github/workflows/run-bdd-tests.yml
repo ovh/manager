@@ -35,20 +35,20 @@ jobs:
       - name: GET BASE BRANCH
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: ${{ github.ref_name }}
+          BRANCH: ${GITHUB_REF#refs/heads/}
           REPO: ${{ github.repository }}
         run: |
           BASE_BRANCH=$(curl -s -H "Authorization: $GITHUB_TOKEN" "https://api.github.com/repos/$REPO/pulls?state=open" | jq ".[] | select(.head.ref == \"$BRANCH\") | .base.ref")
           
           if [[ -z "$BASE_BRANCH" ]]; then
-            echo "NO PR FOUND for branch $BRANCH"
+            echo "NO PR FOUND for branch $BRANCH from ${GITHUB_HEAD_REF}"
             export BASE_BRANCH="master"
-            export CURRENT_BRANCH="${{ github.head_ref }}"
+            export CURRENT_BRANCH=${GITHUB_REF#refs/heads/}
           else
             echo "Base Branch is $BASE_BRANCH"
-            echo "current Branch is ${{ github.head_ref }}"
+            echo "current Branch is ${GITHUB_REF#refs/heads/}"
             export BASE_BRANCH="${BASE_BRANCH//\"/}"
-            export CURRENT_BRANCH="${{ github.head_ref }}"
+            export CURRENT_BRANCH=${GITHUB_REF#refs/heads/}
             echo "BASE_BRANCH=$BASE_BRANCH" >> $GITHUB_ENV
             echo "CURRENT_BRANCH=$CURRENT_BRANCH" >> $GITHUB_ENV
           fi
