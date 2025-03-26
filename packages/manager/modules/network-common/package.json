@@ -20,7 +20,7 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc",
-    "start:watch": "tsc -w",
+    "start:watch": "turbo run dev:watch && yarn run dev:watch",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage"
   },

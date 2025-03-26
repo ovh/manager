@@ -21,9 +21,9 @@
     "dev": "tsc",
     "dev:watch": "tsc -w",
     "prepare": "tsc",
-    "start": "lerna exec --stream --scope='@ovh-ux/shell' --include-dependencies -- npm run build --if-present",
-    "start:dev": "lerna exec --stream --scope='@ovh-ux/shell' --include-dependencies -- npm run dev --if-present",
-    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/shell' --include-dependencies -- npm run dev:watch --if-present"
+    "start": "turbo run build",
+    "start:dev": "turbo run dev && yarn run dev",
+    "start:watch": "turbo run dev:watch && yarn run dev:watch"
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^8.0.2",

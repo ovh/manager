@@ -17,7 +17,7 @@
   "scripts": {
     "build": "echo core-test-utils",
     "dev": "tsc",
-    "start:watch": "tsc -w"
+    "start:watch": "turbo run dev:watch && yarn run dev:watch"
   },
   "devDependencies": {
     "@ovh-ux/manager-core-api": "^0.10.1",

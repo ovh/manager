@@ -15,7 +15,7 @@
     "build": "tsc",
     "dev": "tsc",
     "prepare": "tsc",
-    "start:watch": "tsc -w"
+    "start:watch": "turbo run dev:watch && yarn run dev:watch"
   },
   "dependencies": {
     "@ovh-ux/manager-core-sso": "^0.3.0",

@@ -12,7 +12,7 @@
   "scripts": {
     "build": "tsc && yarn copy-files",
     "copy-files": "cp ./assets-icon-svg/*.svg ./dist/assets-icon-svg/",
-    "start": "plop"
+    "start": "turbo run build"
   },
   "dependencies": {
     "@ovhcloud/ods-common-core": "17.2.2",

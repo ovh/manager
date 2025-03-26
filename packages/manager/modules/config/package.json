@@ -25,9 +25,9 @@
     "dev": "tsc",
     "dev:watch": "tsc --watch",
     "prepare": "yarn run build",
-    "start": "lerna exec --stream --scope='@ovh-ux/manager-config' --include-dependencies -- yarn run build",
-    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-config' --include-dependencies -- yarn run dev",
-    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-config' --include-dependencies -- yarn run dev:watch"
+    "start": "turbo run build",
+    "start:dev": "turbo run dev && yarn run dev",
+    "start:watch": "turbo run dev:watch && yarn run dev:watch"
   },
   "dependencies": {
     "@ovh-ux/ovh-reket": "^2.1.7",

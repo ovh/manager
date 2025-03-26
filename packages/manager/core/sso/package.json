@@ -15,7 +15,7 @@
     "build": "tsc",
     "dev": "tsc",
     "prepare": "tsc",
-    "start:watch": "tsc -w"
+    "start:watch": "turbo run dev:watch && yarn run dev:watch"
   },
   "devDependencies": {
     "typescript": "^5.1.6"

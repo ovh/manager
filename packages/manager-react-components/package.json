@@ -24,7 +24,7 @@
     "build:storybook": "storybook build",
     "prepare": "tsc && vite build",
     "prettier": "prettier --write \"src/**/*.{ts,tsx,js,mdx}\"",
-    "start": "rm -rf dist/.cache/storybook && storybook dev -p 6006",
+    "start": "turbo run build",
     "test": "vitest run",
     "test:cov": "vitest run --coverage",
     "test:watch": "vitest"
