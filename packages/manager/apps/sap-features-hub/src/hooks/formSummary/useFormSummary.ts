@@ -1,11 +1,40 @@
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { StepSummary } from '@/types/formStep.type';
+import { StepFieldSummary, StepSummary } from '@/types/formStep.type';
 import { FORM_LABELS } from '@/constants/form.constants';
 import { InstallationFormValues } from '@/types/form.type';
+import { LABELS } from '@/utils/label.constants';
+import { ServerConfigVM as VM } from '@/types/servers.type';
 
 export const useFormSummary = (values: InstallationFormValues) => {
   const { t } = useTranslation('installation');
+
+  const getVMFields = (vms: VM[]): StepFieldSummary[] =>
+    vms.reduce(
+      (fields, vm, index) =>
+        [
+          ...fields,
+          { type: 'subtitle', isMinor: true, label: `${t('vm')} ${index + 1}` },
+          { value: vm.name, label: t('server_config_input_vm_name') },
+          ...('role' in vm ? [{ value: vm.role, label: t('role') }] : []),
+          { value: vm.vcpus, label: FORM_LABELS.vcpus },
+          { value: vm.memory, label: t('ram') },
+          {
+            value: vm.rootPassword,
+            label: t('server_config_input_root_password'),
+            isSecretValue: true,
+          },
+          {
+            value: vm.ipAddress,
+            label: t('server_config_input_ipv4_address'),
+          },
+          {
+            value: vm.instanceNumber,
+            label: t('server_config_input_instance_number'),
+          },
+        ] as StepFieldSummary[],
+      [],
+    );
 
   const formSummary: StepSummary[] = useMemo(
     () => [
@@ -109,6 +138,53 @@ export const useFormSummary = (values: InstallationFormValues) => {
       },
       {
         id: '6',
+        title: t('vms'),
+        fields: [
+          {
+            value: values.network,
+            label: t('server_config_input_vmware_ports'),
+          },
+          {
+            value: values.netmask,
+            label: t('server_config_input_subnet_mask'),
+          },
+          {
+            value: values.gateway,
+            label: t('server_config_input_gateway_ip'),
+          },
+          {
+            value: values.thickDatastorePolicy,
+            label: t('server_config_input_thick_storage'),
+          },
+          {
+            value: values.passwordCrypted ? t('yes') : t('no'),
+            label: t('server_config_toggle_password_encryption'),
+          },
+          { type: 'subtitle', label: LABELS.SAP_HANA },
+          {
+            value: values.hanaServerOva,
+            label: t('server_config_input_ova_model'),
+          },
+          { value: values.hanaServerDatastore, label: FORM_LABELS.datastore },
+          ...(values.hanaServers?.length
+            ? getVMFields(values.hanaServers)
+            : []),
+          { type: 'subtitle', label: t('server_config_applications_servers') },
+          {
+            value: values.applicationServerOva,
+            label: t('server_config_input_ova_model'),
+          },
+          {
+            value: values.applicationServerDatastore,
+            label: FORM_LABELS.datastore,
+          },
+          ...(values.applicationServers?.length
+            ? getVMFields(values.applicationServers)
+            : []),
+        ],
+      },
+      {
+        id: '7',
         title: t('enablement_summary'),
         fields: [
           ...(!values.bucketBackint
