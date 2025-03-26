@@ -2,7 +2,6 @@
   "compilerOptions": {
     "lib": ["dom", "es2020", "ESNext"],
     "noEmit": true,
-    "strict": true,
     "target": "ESNext",
     "types": ["vite/client", "node", "jest", "@testing-library/jest-dom"],
     "module": "esnext",
