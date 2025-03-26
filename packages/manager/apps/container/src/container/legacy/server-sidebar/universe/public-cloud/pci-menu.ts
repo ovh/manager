@@ -14,7 +14,7 @@ export const features = [
   'object-storage',
   'databases-operational',
   'databases-streaming',
-  'databases-analysis',,
+  'databases-analysis',
   'pci-ai-dashboard',
   'pci-ai-notebooks',
   'pci-ai-training',
@@ -417,11 +417,6 @@ export function getPciProjectMenu(
           id: 'training',
           title: 'AI Training',
           href: getURL('public-cloud', `#/pci/projects/${projectId}/training`),
-        },
-        isFeaturesAvailable('pci-ai-training') && {
-          id: 'notebooks',
-          title: 'AI Notebooks',
-          href: getURL('public-cloud', `#/pci/projects/${projectId}/ai-tools/training`),
         },
         isFeaturesAvailable('ai-apps') && {
           id: 'apps',
