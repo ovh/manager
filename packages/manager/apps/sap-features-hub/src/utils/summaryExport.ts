@@ -1,8 +1,9 @@
 import { InstallationFormValues } from '@/types/form.type';
+import { getServersExport } from './serverExport';
 
 export const getSummaryJSON = (form: InstallationFormValues) => {
   return JSON.stringify({
-    applicationServers: [{}], // step not developed yet
+    applicationServers: getServersExport({ form, type: 'application' }),
     applicationType: form.applicationType,
     applicationVersion: form.applicationVersion,
     bucketBackint: form.bucketBackint ? { ...form.bucketBackint } : undefined,
@@ -20,7 +21,7 @@ export const getSummaryJSON = (form: InstallationFormValues) => {
       centralServices: form.firewallService,
       hanaDatabase: form.firewallDatabase,
     },
-    hanaServers: [{}], // step not developed yet
+    hanaServers: getServersExport({ form, type: 'hana' }),
     logsDataPlatform: form.logsDataPlatform
       ? { ...form.logsDataPlatform }
       : undefined,
