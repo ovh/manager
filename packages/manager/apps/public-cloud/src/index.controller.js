@@ -24,6 +24,7 @@ export default class PublicCloudController {
   }
 
   $onInit() {
+    console.log('Base Controller init');
     this.shell.ux.onRequestClientSidebarOpen(() =>
       this.$timeout(() => this.openSidebar()),
     );

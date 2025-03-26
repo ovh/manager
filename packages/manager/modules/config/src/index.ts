@@ -47,12 +47,22 @@ export const fetchConfiguration = async (
 
   return Reket.get(configurationURL, configRequestOptions)
     .then((config: Environment) => {
+      const { applications } = config;
+      applications['key-management-service'].container.hashes = [
+        '/key-management-service/create',
+        '/key-management-service/:keyId',
+      ];
+      applications['key-management-service'].container.fallbackApp =
+        'dedicated';
+      applications.dedicated.container.enabled = false;
+      applications.dedicated.publicURL =
+        'https://test-secondary-iframe-manager.eu.dtci.ovhcloud.tools/container/dedicated';
       environment.setRegion(config.region);
       environment.setUser(config.user);
       environment.setApplicationURLs(config.applicationURLs);
       environment.setUniverse(config.universe);
       environment.setMessage(config.message);
-      environment.setApplications(config.applications);
+      environment.setApplications(applications);
       return environment;
     })
     .catch((err) => {

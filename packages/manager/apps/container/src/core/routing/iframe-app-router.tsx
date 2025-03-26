@@ -9,16 +9,21 @@ import { Redirections } from './redirections';
 export interface IFrameAppRouterProps {
   configuration: Record<string, Application>;
   iframeRef: RefObject<HTMLIFrameElement>;
+  secondaryIframeRef: RefObject<HTMLIFrameElement>;
 }
 
 function makeRoute({
   id,
   appConfig,
   iframeRef,
+  secondaryIframeRef,
+  secondaryAppConfig,
 }: {
   id: string;
   appConfig: Application;
   iframeRef: RefObject<HTMLIFrameElement>;
+  secondaryIframeRef: RefObject<HTMLIFrameElement>;
+  secondaryAppConfig: Application;
 }) {
   const { hash, path } = appConfig.container;
   const normalizedHash = (hash || '').replace(/^\//, '');
@@ -29,7 +34,7 @@ function makeRoute({
       path={target}
       element={
         appConfig.container.enabled ? (
-          <IFrameApplicationRoute iframeRef={iframeRef} appConfig={appConfig} />
+          <IFrameApplicationRoute iframeRef={iframeRef} secondaryIframeRef={secondaryIframeRef} appConfig={appConfig} secondaryAppConfig={secondaryAppConfig} />
         ) : (
           <ExternalApplicationRoute appConfig={appConfig} />
         )
@@ -64,6 +69,7 @@ function makeDefaultRoute({
 export function IFrameAppRouter({
   configuration,
   iframeRef,
+  secondaryIframeRef,
 }: IFrameAppRouterProps): JSX.Element {
   /**
    * This is a temporary condition to ensure that the new pci-load-balancer µapp configuration
@@ -96,9 +102,13 @@ export function IFrameAppRouter({
   );
   const routes = useMemo(
     () =>
-      sortedConfiguration.map(([id, appConfig]) =>
-        makeRoute({ appConfig, iframeRef, id }),
-      ),
+      sortedConfiguration.map(([id, appConfig]) => {
+        let secondaryAppConfig;
+        if(appConfig.container.hashes) {
+          [, secondaryAppConfig] = sortedConfiguration.filter(([appName]) => appName === appConfig.container.fallbackApp)[0];
+        }
+        return makeRoute({ appConfig, iframeRef, id, secondaryIframeRef, secondaryAppConfig });
+      }),
     [sortedConfiguration],
   );
   const redirections = useMemo(() => Redirections(configuration), [configuration]);
