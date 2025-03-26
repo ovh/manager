@@ -83,6 +83,7 @@
 /packages/manager/modules/iam @ovh/dev-manager-enabler-all
 /packages/manager/modules/iplb @ovh/dev-manager-infra-all
 /packages/manager/modules/log-to-customer @ovh/dev-manager-enabler-all
+/packages/manager/modules/logs-to-customer @ovh/dev-manager-enabler-all
 /packages/manager/modules/manager-pci-common @ovh/dev-manager-pci-common-maintenance
 /packages/manager/modules/metrics @ovh/dev-manager-infra-all
 /packages/manager/modules/nasha @ovh/dev-manager-infra-all
