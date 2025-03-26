@@ -6,8 +6,39 @@ html {
   font-family: var(--ods-font-family-default);
 }
 
+.minor-subtitle {
+  @apply font-semibold;
+  color: var(--ods-color-heading);
+}
+
+.field__error::part(text) {
+  @apply font-semibold;
+  color: var(--ods-color-critical-500);
+}
+
 .ods-field-helper::part(text) {
   width: 100%;
   display: inline-block;
   text-align: start;
+}
+
+.form__accordion {
+  &::part(accordion) {
+    @apply rounded-lg;
+    border: 1px solid var(--ods-color-form-element-border-default);
+  }
+  &::part(summary) {
+    @apply border-none px-6 py-4;
+  }
+  &::part(content) {
+    @apply border-none pt-2;
+  }
+}
+
+.accordion__summary::part(text) {
+  @extend .minor-subtitle;
+}
+
+.summary__minor-subtitle::part(text) {
+  @extend .minor-subtitle;
 }

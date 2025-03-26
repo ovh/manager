@@ -4,6 +4,7 @@ import {
   SourceForm,
   OSConfigForm,
   FormKey,
+  ServerConfigForm,
 } from '@/types/form.type';
 
 export type FormStepData<T> = {
@@ -71,6 +72,26 @@ export const getOSConfigFormData = ({
     'firewallService',
     'firewallServer',
     'firewallDatabase',
+  ];
+  return getFormData({ values, errors, keys });
+};
+
+export const getServerConfigFormData = ({
+  values,
+  errors,
+}: FormStepData<InstallationForm>): FormStepData<ServerConfigForm> => {
+  const keys: Array<keyof ServerConfigForm> = [
+    'network',
+    'netmask',
+    'gateway',
+    'thickDatastorePolicy',
+    'passwordCrypted',
+    'hanaServerOva',
+    'hanaServerDatastore',
+    'applicationServerOva',
+    'applicationServerDatastore',
+    'hanaServers',
+    'applicationServers',
   ];
   return getFormData({ values, errors, keys });
 };
