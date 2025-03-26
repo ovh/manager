@@ -9,7 +9,7 @@ import { OdsToggleChangeEvent } from '@ovhcloud/ods-components';
 import { FormKey } from '@/types/form.type';
 import { testIds } from '@/utils/testIds.constants';
 
-export type ToggleFieldProps = {
+type ToggleFieldProps = {
   name: FormKey;
   label: string;
   checked: boolean;

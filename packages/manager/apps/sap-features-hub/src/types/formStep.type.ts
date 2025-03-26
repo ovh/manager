@@ -1,4 +1,4 @@
-export type StepId = '1' | '2' | '3' | '4' | '5' | '6' | '7';
+export type StepId = '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8';
 
 export type StepFieldData = {
   label: string;
@@ -7,12 +7,13 @@ export type StepFieldData = {
   type?: 'data';
 };
 
-export type StepFieldSubtitle = {
+export type StepFieldLabel = {
   type: 'subtitle';
+  isMinor?: boolean;
   label: string;
 };
 
-export type StepFieldSummary = StepFieldData | StepFieldSubtitle;
+export type StepFieldSummary = StepFieldData | StepFieldLabel;
 
 export type StepSummary = {
   id: StepId;

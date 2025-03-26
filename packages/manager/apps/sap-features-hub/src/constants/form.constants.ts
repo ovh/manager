@@ -12,6 +12,8 @@ export const FORM_LABELS = {
   unknownText: '-',
   secretText: '*****',
   endpoint: 'Endpoint',
+  datastore: 'Datastore',
+  vcpus: 'vCPUs',
   sids: 'SAP SIDs',
   sapSid: 'SAP SID',
   sapHanaSid: 'SAP HANA SID',
