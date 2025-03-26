@@ -76,11 +76,6 @@ export default function Listing() {
       label: t('key_management_service_listing_service_key_cell'),
     },
     {
-      id: 'region',
-      cell: DatagridCellRegion,
-      label: t('key_management_service_listing_region_cell'),
-    },
-    {
       id: 'status',
       cell: DatagridCellStatus,
       label: t('key_management_service_listing_status_cell'),
