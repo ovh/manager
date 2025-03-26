@@ -4,22 +4,10 @@ import { Application } from '@ovh-ux/manager-config';
 export function setupDevApplication(shell: Shell) {
   if (import.meta.env.DEV) {
     const devApp = import.meta.env.VITE_CONTAINER_APP;
-    const defaultApps = shell
+    const apps = shell
       .getPlugin('environment')
       .getEnvironment()
       .getApplications();
-    const aiToolsApp = {
-      'pci-ai-tools': {
-        container: defaultApps['pci-databases-analytics'].container,
-        publicURL: "https://www.ovh.com/manager/#/public-cloud",
-        universe: "public-cloud",
-        url: "https://www.ovh.com/manager/pci-ai-tools/"
-      }
-    };
-    const apps = {
-      ...defaultApps,
-      ...aiToolsApp
-    }; 
 
     if (!devApp) {
       throw new Error('Missing environment variable env.VITE_CONTAINER_APP');
