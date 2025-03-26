@@ -1,6 +1,12 @@
 
 name: Run Jest tests
-on: [push]
+on:
+  pull_request:
+    types: [labeled, opened, reopened, edited, unlabeled, synchronize]
+    branches:
+      - 'master'
+      - 'develop'
+      - 'release/**'
 
 jobs:
   test:
