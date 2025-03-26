@@ -1,4 +1,4 @@
-import { FormEvent, useCallback, useEffect, useMemo, useState } from 'react';
+import { FormEvent, useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   OdsButton,
@@ -15,7 +15,7 @@ import { useVolumeCatalog } from '@/api/hooks/useCatalog';
 import { getVolumeMaxSize } from '@/api/data/quota';
 import { useRegionsQuota } from '@/api/hooks/useQuota';
 import { VOLUME_MIN_SIZE, VOLUME_UNLIMITED_QUOTA } from '@/constants';
-import { TVolumeCatalog, TVolumePricing } from '@/api/data/catalog';
+import { TVolumePricing } from '@/api/data/catalog';
 
 const DEFAULT_MAX_SIZE = 4000;
 
