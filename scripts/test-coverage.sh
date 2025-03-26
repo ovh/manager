@@ -7,9 +7,13 @@ get_changed_packages() {
 main() {
     changed_packages=$(get_changed_packages)
     echo $changed_packages
-	while read -r package; do
-        yarn exec turbo -- run test --concurrency=1 --filter=$package[${BASE_BRANCH}...${CURRENT_BRANCH}]
-	done <<< "$changed_packages"
+  if [[ -z "$changed_packages" ]]; then
+	    while read -r package; do
+            yarn exec turbo -- run test --concurrency=1 --filter=$package[${BASE_BRANCH}...${CURRENT_BRANCH}]
+	    done <<< "$changed_packages"
+  else
+      echo "No changed packages identified"
+  fi
 }
 
 main "${@}"
