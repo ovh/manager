@@ -15,7 +15,7 @@ import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { Trans, useTranslation } from 'react-i18next';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { Await } from 'react-router-dom';
-import { USER_CERTIFICATES } from './layout.constants';
+import { USER_CERTIFICATES } from './dashboard.constants';
 
 export const NotificationsEmailUnreachable: FunctionComponent = () => {
   const { t } = useTranslation('hub/notifications');
