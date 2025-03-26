@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import queryClient from '@/queryClient';
-import { TVolume } from '@/api/data/snapshots';
+import { TVolume } from '@/api/api.types';
 import { createVolume, NewVolumeData } from '@/api/data/volume';
 
 export interface CreateVolumeArguments {

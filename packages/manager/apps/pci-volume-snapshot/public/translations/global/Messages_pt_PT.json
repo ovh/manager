@@ -1,5 +1,0 @@
-{
-  "common_field_error_required": "Preencha o campo.",
-  "common_field_error_min": "Introduza um valor superior ou igual a {{min}}.",
-  "common_field_error_max": "Introduza um valor inferior ou igual a {{max}}."
-}

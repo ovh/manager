@@ -1,5 +1,5 @@
 import { v6 } from '@ovh-ux/manager-core-api';
-import { TVolume } from '@/api/data/snapshots';
+import { TVolume } from '@/api/api.types';
 
 export type NewVolumeData = Partial<TVolume> & { snapshotId?: string };
 

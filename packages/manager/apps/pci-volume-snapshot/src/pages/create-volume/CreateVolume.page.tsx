@@ -14,8 +14,8 @@ import {
 import { useParams, useHref, useNavigate } from 'react-router-dom';
 import { useProject } from '@ovh-ux/manager-pci-common';
 import PciStorageVolumeEdit from './PciStorageVolumeEdit.component';
-import { TVolume } from '@/api/data/snapshots';
-import { TVolumeSnapshot, useVolumeSnapshots } from '@/api/hooks/useSnapshots';
+import { TVolume, TVolumeSnapshot } from '@/api/api.types';
+import { useVolumeSnapshots } from '@/api/hooks/useSnapshots';
 import { useCreateVolume } from '@/api/hooks/useVolume';
 import { NewVolumeData } from '@/api/data/volume';
 
@@ -75,7 +75,7 @@ export default function CreateVolumePage() {
   };
 
   return (
-    <RedirectionGuard condition={false} isLoading={false} route={''}>
+    <RedirectionGuard condition={false} isLoading={false} route="">
       <BaseLayout
         breadcrumb={
           <OdsBreadcrumb>
@@ -93,7 +93,7 @@ export default function CreateVolumePage() {
               label={t(
                 'pci_projects_project_storages_snapshots_snapshot_create-volume_title',
               )}
-              href={'#'}
+              href="#"
             />
           </OdsBreadcrumb>
         }

@@ -8,16 +8,17 @@ import {
   OdsQuantity,
 } from '@ovhcloud/ods-components/react';
 import { useTranslatedMicroRegions } from '@ovh-ux/manager-react-components';
-import { TVolume } from '@/api/data/snapshots';
+import { TVolume } from '@/api/api.types';
 import PriceEstimate from './PriceEstimate.component';
 import BadgeRegionType from './BadgeRegionType.component';
 import { useVolumeCatalog } from '@/api/hooks/useCatalog';
 import { getVolumeMaxSize } from '@/api/data/quota';
 import { useRegionsQuota } from '@/api/hooks/useQuota';
-import { VOLUME_MIN_SIZE, VOLUME_UNLIMITED_QUOTA } from '@/constants';
+import { VOLUME_MIN_SIZE } from '@/constants';
 import { TVolumePricing } from '@/api/data/catalog';
 
 const DEFAULT_MAX_SIZE = 4000;
+const VOLUME_NAME_MAX_LENGTH = 255;
 
 export interface PciStorageVolumeEditProps {
   projectId: string;
@@ -36,7 +37,7 @@ export default function PciStorageVolumeEdit({
   onSubmit,
   onCancel,
 }: Readonly<PciStorageVolumeEditProps>) {
-  const { t } = useTranslation(['volume-edit', 'global']);
+  const { t } = useTranslation(['volume-edit', 'pci-common']);
   const { translateMicroRegion } = useTranslatedMicroRegions();
   const { data: catalog } = useVolumeCatalog(projectId);
   const { region, pricing } = useMemo(() => {
@@ -68,11 +69,13 @@ export default function PciStorageVolumeEdit({
 
   const errorState = {
     nameIsMissing: !volumeName,
+    nameIsTooLong: volumeName.length > VOLUME_NAME_MAX_LENGTH,
     isMinError: volumeSize < minVolumeSize,
     isMaxError: volumeSize > maxVolumeSize,
   };
+  const hasNameError = errorState.nameIsMissing || errorState.nameIsTooLong;
   const hasSizeError = errorState.isMinError || errorState.isMaxError;
-  const hasError = hasSizeError || errorState.nameIsMissing;
+  const hasError = hasNameError || hasSizeError;
 
   const handleSubmit = useCallback(
     (e: FormEvent) => {
@@ -93,7 +96,7 @@ export default function PciStorageVolumeEdit({
   return (
     <form className="flex flex-col" onSubmit={handleSubmit}>
       <OdsFormField className="my-4 w-full">
-        <OdsText className={'font-bold-class text-critical'} preset="caption">
+        <OdsText className="font-bold-class text-critical" preset="caption">
           {t(
             'pci_projects_project_storages_blocks_block_volume-edit_region_label',
           )}
@@ -106,7 +109,7 @@ export default function PciStorageVolumeEdit({
         </div>
       </OdsFormField>
       <OdsFormField className="my-4 w-full">
-        <OdsText className={'font-bold-class text-critical'} preset="caption">
+        <OdsText className="font-bold-class text-critical" preset="caption">
           {t(
             'pci_projects_project_storages_blocks_block_volume-edit_type_label',
           )}
@@ -114,7 +117,7 @@ export default function PciStorageVolumeEdit({
         <OdsText>{volume.type}</OdsText>
       </OdsFormField>
       <OdsFormField className="my-4 w-full">
-        <OdsText className={'font-bold-class'} preset="caption">
+        <OdsText className="font-bold-class" preset="caption">
           {t(
             'pci_projects_project_storages_blocks_block_volume-edit_name_label',
           )}
@@ -123,12 +126,21 @@ export default function PciStorageVolumeEdit({
           name="volume_name"
           className="w-[30em] max-w-full"
           value={volumeName}
-          hasError={errorState.nameIsMissing}
+          maxlength={VOLUME_NAME_MAX_LENGTH}
+          hasError={hasNameError}
           onOdsChange={(e) => setVolumeName(e.detail.value as string)}
         />
         {errorState.nameIsMissing && (
-          <OdsText className="text-critical">
-            {t('common_field_error_required', { ns: 'global' })}
+          <OdsText className="text-critical leading-[0.8]" preset="caption">
+            {t('common_field_error_required', { ns: 'pci-common' })}
+          </OdsText>
+        )}
+        {errorState.nameIsTooLong && (
+          <OdsText className="text-critical leading-[0.8]" preset="caption">
+            {t('common_field_error_maxlength', {
+              maxlength: VOLUME_NAME_MAX_LENGTH,
+              ns: 'pci-common',
+            })}
           </OdsText>
         )}
       </OdsFormField>
@@ -171,13 +183,19 @@ export default function PciStorageVolumeEdit({
 
       {errorState.isMinError && (
         <OdsText className="block mb-2 text-critical" preset="caption">
-          {t('common_field_error_min', { min: minVolumeSize, ns: 'global' })}
+          {t('common_field_error_min', {
+            min: minVolumeSize,
+            ns: 'pci-common',
+          })}
         </OdsText>
       )}
 
       {errorState.isMaxError && (
         <OdsText className="block mb-2 text-critical" preset="caption">
-          {t('common_field_error_max', { max: maxVolumeSize, ns: 'global' })}
+          {t('common_field_error_max', {
+            max: maxVolumeSize,
+            ns: 'pci-common',
+          })}
         </OdsText>
       )}
 
@@ -191,7 +209,7 @@ export default function PciStorageVolumeEdit({
       <div className="flex mt-8 gap-4">
         <OdsButton
           type="button"
-          variant={'outline'}
+          variant="outline"
           onClick={onCancel}
           label={t(
             'pci_projects_project_storages_blocks_block_volume-edit_cancel_label',
