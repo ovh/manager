@@ -1,7 +1,8 @@
+import { getServersExport } from '@/utils/serverExport';
 import { mockedValues as mock } from './installationForm.mock';
 
 export const mockedJSONSummary = JSON.stringify({
-  applicationServers: [{}],
+  applicationServers: getServersExport({ form: mock, type: 'application' }),
   applicationType: mock.applicationType,
   applicationVersion: mock.applicationVersion,
   bucketBackint: { ...mock.bucketBackint },
@@ -19,7 +20,7 @@ export const mockedJSONSummary = JSON.stringify({
     centralServices: mock.firewallService,
     hanaDatabase: mock.firewallDatabase,
   },
-  hanaServers: [{}],
+  hanaServers: getServersExport({ form: mock, type: 'hana' }),
   logsDataPlatform: { ...mock.logsDataPlatform },
   osLicense: mock.osLicense,
   osUpdate: mock.osUpdate,

@@ -9,6 +9,7 @@ import { RhfInput } from './RhfInput.component';
 import { RhfPassword } from './RhfPassword.component';
 import { RhfToggle } from './RhfToggle.component';
 import { RhfFieldContext, useRhfFieldContext } from './RhfField.context';
+import { RhfQuantity } from './RhfQuantity.component';
 
 type RhfFieldProps = React.ComponentProps<typeof OdsFormField> & {
   controllerParams: UseControllerProps<FieldValues, string>;
@@ -41,7 +42,7 @@ export const RhfField = ({
   return (
     <RhfFieldContext.Provider value={contextValues}>
       <OdsFormField
-        className={`max-w-md ${className}`}
+        className={`max-w-md ${className || ''}`}
         error={hasError ? errorMessage : undefined}
         {...rest}
       ></OdsFormField>
@@ -112,3 +113,4 @@ RhfField.HelperAuto = RhfHelperAuto;
 RhfField.Input = RhfInput;
 RhfField.Password = RhfPassword;
 RhfField.Toggle = RhfToggle;
+RhfField.Quantity = RhfQuantity;
