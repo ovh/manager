@@ -8,7 +8,9 @@ vi.mock('react-router-dom', async () => {
   const mod = await vi.importActual('react-router-dom');
   return {
     ...mod,
-    useSearchParams: () => [new URLSearchParams({})],
+    useSearchParams: () => [
+      new URLSearchParams({ snapshotId: 'test-snapshot-id' }),
+    ],
     useParams: () => ({ projectId: 'project-id', kubeId: 'kube-id' }),
     useHref: vi.fn().mockImplementation((to: string) => to),
     useLocation: vi.fn(),
@@ -48,10 +50,10 @@ vi.mock('@ovh-ux/manager-react-components', async () => {
     Notifications: vi
       .fn()
       .mockReturnValue(<div data-testid="notifications"></div>),
-    useNotifications: () => ({
+    useNotifications: vi.fn(() => ({
       addError: vi.fn(),
       addSuccess: vi.fn(),
-    }),
+    })),
   };
 });
 
@@ -172,7 +174,8 @@ vi.mock('react-i18next', () => ({
       language: 'en-US',
     },
   }),
-  Trans: ({ children }: { children: string }) => children,
+  Trans: vi.fn(({ children }: { children: string }) => children),
+  Translation: vi.fn(({ children }) => children((key: string) => key)),
 }));
 
 vi.mock('date-fns', async (importOriginal) => {

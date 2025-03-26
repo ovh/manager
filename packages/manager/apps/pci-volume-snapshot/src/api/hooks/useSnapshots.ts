@@ -1,10 +1,28 @@
 import { useMemo } from 'react';
-import { useQuery, useQueries } from '@tanstack/react-query';
+import { useQuery, useQueries, useMutation } from '@tanstack/react-query';
 import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
-import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
-import { getSnapshots, getVolume } from '../data/snapshots';
+import { applyFilters, Filter, ApiError } from '@ovh-ux/manager-core-api';
+import {
+  getSnapshots,
+  getVolume,
+  getSnapshot,
+  deleteSnapshot,
+} from '../data/snapshots';
 import { paginateResults, sortResults } from '@/helpers';
 import { TVolumeSnapshot } from '@/api/api.types';
+import queryClient from '@/queryClient';
+
+export type TDeleteProps = Readonly<{
+  projectId: string;
+  onSuccess?: () => void;
+  onError?: (cause: ApiError) => void;
+}>;
+
+export const invalidateGetVolumeSnapshotsCache = (projectId: string) => {
+  queryClient.invalidateQueries({
+    queryKey: ['snapshots', projectId],
+  });
+};
 
 export const useAllSnapshots = (projectId: string | undefined | null) =>
   useQuery({
@@ -39,6 +57,23 @@ export const useVolumeSnapshots = (projectId: string | undefined | null) => {
   });
 };
 
+export const useVolumeSnapshot = (
+  projectId: string | undefined | null,
+  snapshotId: string | undefined | null,
+) =>
+  useQuery({
+    queryKey: ['snapshots', projectId, 'snapshot', snapshotId],
+    retry: false,
+    throwOnError: true,
+    queryFn: () =>
+      getSnapshot(projectId || '', snapshotId || '').then((snapshot) =>
+        getVolume(projectId || '', snapshot.volumeId).then((volume) => ({
+          ...snapshot,
+          volume,
+        })),
+      ),
+  });
+
 export const usePaginatedVolumeSnapshot = (
   projectId: string | undefined | null,
   pagination: PaginationState,
@@ -64,4 +99,26 @@ export const usePaginatedVolumeSnapshot = (
       error,
     };
   }, [snapshots, error, isLoading, isPending, pagination, sorting, filters]);
+};
+
+export const useDeleteSnapshot = ({
+  projectId,
+  onError,
+  onSuccess,
+}: TDeleteProps) => {
+  const mutation = useMutation({
+    mutationFn: (snapshotId: string) => deleteSnapshot(projectId, snapshotId),
+    onError,
+    onSuccess: () => {
+      invalidateGetVolumeSnapshotsCache(projectId);
+      if (onSuccess) {
+        onSuccess();
+      }
+    },
+  });
+
+  return {
+    deleteSnapshot: (snapshotId: string) => mutation.mutate(snapshotId),
+    ...mutation,
+  };
 };
