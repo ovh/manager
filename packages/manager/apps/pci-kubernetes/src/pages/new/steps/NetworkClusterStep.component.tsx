@@ -46,7 +46,7 @@ export type TNetworkFormState = {
 
 export type NetworkClusterStepProps = {
   region: string;
-  type: string;
+  type: DeploymentMode;
   onChange: (networkForm: TNetworkFormState) => void;
 };
 
@@ -146,30 +146,32 @@ export default function NetworkClusterStep({
               {shouldWarnSubnet && <LoadBalancerWarning />}
             </div>
           )}
-          {form.privateNetwork && form.subnet && (
-            <>
-              <GatewaySelector
-                className="mt-8"
-                onSelect={(gateway) =>
-                  setForm((network) => ({
-                    ...network,
-                    gateway,
-                  }))
-                }
-              />
-              <LoadBalancerSelect
-                projectId={projectId}
-                network={form.privateNetwork}
-                onSelect={(loadBalancersSubnet) =>
-                  setForm((network) => ({
-                    ...network,
-                    loadBalancersSubnet,
-                  }))
-                }
-              />
-              {shouldWarnLoadBalancerSubnet && <LoadBalancerWarning />}
-            </>
-          )}
+          {form.privateNetwork &&
+            form.subnet &&
+            type === DeploymentMode.MONO_ZONE && (
+              <>
+                <GatewaySelector
+                  className="mt-8"
+                  onSelect={(gateway) =>
+                    setForm((network) => ({
+                      ...network,
+                      gateway,
+                    }))
+                  }
+                />
+                <LoadBalancerSelect
+                  projectId={projectId}
+                  network={form.privateNetwork}
+                  onSelect={(loadBalancersSubnet) =>
+                    setForm((network) => ({
+                      ...network,
+                      loadBalancersSubnet,
+                    }))
+                  }
+                />
+                {shouldWarnLoadBalancerSubnet && <LoadBalancerWarning />}
+              </>
+            )}
         </>
       )}
     </>
