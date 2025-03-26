@@ -20,21 +20,11 @@
         data-ng-class="{'in-container': !$ctrl.isTopLevelApplication}"
     >
         <div class="h-100 d-flex flex-column overflow-hidden ng-cloak">
-            <!-- Skip to main content -->
-            <div class="skipnav">
-                <a
-                    class="oui-button oui-button_ghost"
-                    href
-                    data-translate="common_skip_to_main_content"
-                    data-ng-click="scrollTo('maincontent')"
-                >
-                </a>
-            </div>
-            <!-- /Skip to main content -->
             <div
                 class="container-fluid h-100 w-100"
                 style="overflow: auto"
                 data-ui-view="app"
+                id="mainview"
             >
                 <div class="row">
                     <div class="px-0 col-lg-12">
@@ -42,12 +32,9 @@
                         <div class="skiptarget">
                             <a id="maincontent" href>-</a>
                         </div>
-
+                        <!-- /Skip content target -->
                         <ovh-manager-banner-text></ovh-manager-banner-text>
                         <account-migration-notification></account-migration-notification>
-
-                        <!-- /Skip content target -->
-
                         <div
                             class="container-fluid px-md-5 px-3 mt-3"
                             id="topWebUniverse"
