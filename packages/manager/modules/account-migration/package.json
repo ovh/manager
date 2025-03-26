@@ -18,20 +18,20 @@
   "scripts": {
     "build": "rollup -c --environment BUILD:production",
     "dev": "rollup -c --environment BUILD:development",
-    "dev:watch": "yarn run dev --watch",
-    "prepare": "yarn run build",
-    "start": "lerna exec --stream --scope='@ovh-ux/manager-account-migration' --include-dependencies -- yarn run build",
-    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-account-migration' --include-dependencies -- yarn run dev",
-    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-account-migration' --include-dependencies -- yarn run dev:watch"
+    "dev:watch": "pnpm run dev --watch",
+    "prepare": "pnpm run build",
+    "start": "lerna exec --stream --scope='@ovh-ux/manager-account-migration' --include-dependencies -- pnpm run build",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-account-migration' --include-dependencies -- pnpm run dev",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-account-migration' --include-dependencies -- pnpm run dev:watch"
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^13.0.2",
     "lodash": "^4.17.15"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
-    "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
-    "@ovh-ux/ng-at-internet": "^5.9.1",
+    "@ovh-ux/manager-config": "^8.0.2",
+    "@ovh-ux/manager-core": "^13.0.5",
+    "@ovh-ux/ng-at-internet": "^6.0.9",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.0.5",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.0.5",
     "@ovh-ux/ng-translate-async-loader": "^2.1.4",

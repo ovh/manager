@@ -1,5 +1,6 @@
 import { TRegion as Region } from './useProjectRegions';
 
+export type { AxiosResponse } from 'axios';
 export * from './pci-project-provider';
 export * from './breadcrumb/useBreadcrumb';
 export * from './useCatalogPrice';

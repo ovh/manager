@@ -5,7 +5,6 @@
 $sidebar-font-size: 0.875rem;
 
 .sidebar {
-  @import '@ovh-ux/manager-hub/src/variables.scss';
   display: flex;
   position: relative;
   flex-direction: row;
@@ -15,7 +14,7 @@ $sidebar-font-size: 0.875rem;
   position: relative;
   color: white;
   gap: 0.125rem;
-  
+
   &_wrapper {
     height: 100%;
     width: 20rem;
@@ -37,7 +36,7 @@ $sidebar-font-size: 0.875rem;
 
   &_logo {
     display: flex;
-    
+
     img {
       height: 1.85rem;
     }
@@ -267,14 +266,14 @@ $sidebar-font-size: 0.875rem;
     .sidebar::-webkit-scrollbar {
       display: none;
     }
-    
+
     &_logo {
       display: none;
     }
     &_toggle_btn {
       display: none;
     }
-    
+
     &_wrapper {
       width: 100%;
     }

@@ -4,7 +4,8 @@ import useClickAway from 'react-use/lib/useClickAway';
 import Context from '@/context';
 import SidebarUserInfo from './SidebarUserInfo';
 
-import './sidebar.styles.scss';
+// @TODO fix styles imports
+// import './sidebar.styles.scss';
 
 const Sidebar = (): JSX.Element => {
   const ref = useRef();

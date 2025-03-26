@@ -24,10 +24,10 @@
     "build": "tsc",
     "dev": "tsc",
     "dev:watch": "tsc --watch",
-    "prepare": "yarn run build",
-    "start": "lerna exec --stream --scope='@ovh-ux/manager-config' --include-dependencies -- yarn run build",
-    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-config' --include-dependencies -- yarn run dev",
-    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-config' --include-dependencies -- yarn run dev:watch"
+    "prepare": "pnpm run build",
+    "start": "lerna exec --stream --scope='@ovh-ux/manager-config' --include-dependencies -- pnpm run build",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-config' --include-dependencies -- pnpm run dev",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-config' --include-dependencies -- pnpm run dev:watch"
   },
   "dependencies": {
     "@ovh-ux/ovh-reket": "^2.1.7",

@@ -3,7 +3,8 @@ import { useTranslation } from 'react-i18next';
 
 import Context from '@/context';
 
-import './sidebar.styles.scss';
+// @TODO fix styles imports
+// import './sidebar.styles.scss';
 
 const SidebarUserInfos = (): JSX.Element => {
   const { t } = useTranslation('restricted');

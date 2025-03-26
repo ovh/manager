@@ -21,11 +21,11 @@
   "scripts": {
     "build": "rollup -c --environment BUILD:production",
     "dev": "rollup -c --environment BUILD:development",
-    "dev:watch": "yarn run dev --watch",
-    "prepare": "yarn run build",
-    "start": "lerna exec --stream --scope='@ovh-ux/manager-core' --include-dependencies -- yarn run build",
-    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-core' --include-dependencies -- yarn run dev",
-    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-core' --include-dependencies -- yarn run dev:watch"
+    "dev:watch": "pnpm run dev --watch",
+    "prepare": "pnpm run build",
+    "start": "lerna exec --stream --scope='@ovh-ux/manager-core' --include-dependencies -- pnpm run build",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-core' --include-dependencies -- pnpm run dev",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-core' --include-dependencies -- pnpm run dev:watch"
   },
   "dependencies": {
     "@ovh-ux/ng-translate-async-loader": "^2.2.2",
@@ -37,8 +37,8 @@
     "@ovh-ux/manager-models": "^2.3.1"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
-    "@ovh-ux/manager-models": "^1.0.0",
+    "@ovh-ux/manager-config": "^8.0.2",
+    "@ovh-ux/manager-models": "^2.3.1",
     "@ovh-ux/ng-ovh-http": "^5.0.4",
     "@ovh-ux/ng-ovh-request-tagger": "^1.1.0",
     "@ovh-ux/ng-ovh-sso-auth": "^4.6.2",

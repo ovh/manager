@@ -3,7 +3,7 @@
   @import 'bootstrap/scss/_variables';
   @import 'bootstrap/scss/_mixins';
   @import 'bootstrap/scss/_utilities.scss';
-  @import '@ovh-ux/manager-hub/src/variables.scss';
+  @import '../../variables.scss';
   @import '@ovh-ux/ui-kit/dist/scss/_tokens';
 
   background-color: $p-200;

@@ -18,11 +18,11 @@
   "scripts": {
     "build": "rollup -c --environment BUILD:production",
     "dev": "rollup -c --environment BUILD:development",
-    "dev:watch": "yarn run dev --watch",
-    "prepare": "yarn run build",
-    "start": "lerna exec --stream --scope='@ovh-ux/manager-cloud-styles' --include-dependencies -- yarn run build",
-    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-cloud-styles' --include-dependencies -- yarn run dev",
-    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-cloud-styles' --include-dependencies -- yarn run dev:watch"
+    "dev:watch": "pnpm run dev --watch",
+    "prepare": "pnpm run build",
+    "start": "lerna exec --stream --scope='@ovh-ux/manager-cloud-styles' --include-dependencies -- pnpm run build",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-cloud-styles' --include-dependencies -- pnpm run dev",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-cloud-styles' --include-dependencies -- pnpm run dev:watch"
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^13.0.2",
@@ -30,6 +30,7 @@
     "bootstrap": "~3.3.7",
     "font-awesome": "^4.0.0",
     "ovh-common-style": "^3.2.2",
-    "ovh-ui-kit-bs": "^4.2.0"
+    "ovh-ui-kit-bs": "^4.2.0",
+    "rollup": "^4.18.0"
   }
 }

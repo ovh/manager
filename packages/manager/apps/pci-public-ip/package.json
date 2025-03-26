@@ -9,9 +9,9 @@
     "coverage": "vitest run --coverage",
     "dev": "vite",
     "lint": "eslint ./src",
-    "start": "lerna exec --stream --scope='@ovh-ux/manager-pci-public-ip-app' --include-dependencies -- npm run build --if-present",
-    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-pci-public-ip-app' --include-dependencies -- npm run dev --if-present",
-    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-pci-public-ip-app' --include-dependencies -- npm run dev:watch --if-present",
+    "start": "lerna exec --stream --scope='@ovh-ux/manager-pci-public-ip-app' --include-dependencies -- pnpm run build --if-present",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-pci-public-ip-app' --include-dependencies -- pnpm run dev --if-present",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-pci-public-ip-app' --include-dependencies -- pnpm run dev:watch --if-present",
     "test": "vitest run",
     "test:watch": "vitest watch"
   },

@@ -29,11 +29,11 @@
   "scripts": {
     "build": "rollup -c --environment BUILD:production",
     "dev": "rollup -c --environment BUILD:development",
-    "dev:watch": "yarn run dev --watch",
-    "prepare": "yarn run build",
-    "start": "lerna exec --stream --scope='@ovh-ux/ng-ovh-otrs' --include-dependencies -- yarn run build",
-    "start:dev": "lerna exec --stream --scope='@ovh-ux/ng-ovh-otrs' --include-dependencies -- yarn run dev",
-    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/ng-ovh-otrs' --include-dependencies -- yarn run dev:watch"
+    "dev:watch": "pnpm run dev --watch",
+    "prepare": "pnpm run build",
+    "start": "lerna exec --stream --scope='@ovh-ux/ng-ovh-otrs' --include-dependencies -- pnpm run build",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/ng-ovh-otrs' --include-dependencies -- pnpm run dev",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/ng-ovh-otrs' --include-dependencies -- pnpm run dev:watch"
   },
   "dependencies": {
     "draggable": "^4.2.0",
@@ -41,7 +41,8 @@
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^13.0.2",
-    "bootstrap": "^3.3.6"
+    "bootstrap": "^3.3.6",
+    "rollup": "^2.79.2"
   },
   "peerDependencies": {
     "angular": "^1.7.5",

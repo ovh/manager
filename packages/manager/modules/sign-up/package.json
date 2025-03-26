@@ -15,11 +15,11 @@
   "scripts": {
     "build": "rollup -c --environment BUILD:production",
     "dev": "rollup -c --environment BUILD:development",
-    "dev:watch": "yarn run dev --watch",
-    "prepare": "yarn run build",
-    "start": "lerna exec --stream --scope='@ovh-ux/sign-up' --include-dependencies -- yarn run build",
-    "start:dev": "lerna exec --stream --scope='@ovh-ux/sign-up' --include-dependencies -- yarn run dev",
-    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/sign-up' --include-dependencies -- yarn run dev:watch"
+    "dev:watch": "pnpm run dev --watch",
+    "prepare": "pnpm run build",
+    "start": "lerna exec --stream --scope='@ovh-ux/sign-up' --include-dependencies -- pnpm run build",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/sign-up' --include-dependencies -- pnpm run dev",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/sign-up' --include-dependencies -- pnpm run dev:watch"
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^8.0.2",
@@ -30,7 +30,7 @@
     "@ovh-ux/component-rollup-config": "^13.0.2"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
+    "@ovh-ux/manager-core": "^13.0.5",
     "@ovh-ux/ng-at-internet": "^5.9.1",
     "@ovh-ux/ng-translate-async-loader": "^2.1.4",
     "@ovh-ux/ui-kit": "^6.10.0",

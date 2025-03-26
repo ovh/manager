@@ -5,7 +5,7 @@
 @import 'bootstrap/scss/_grid.scss';
 
 .hub-main-view {
-  @import '@ovh-ux/manager-hub/src/variables.scss';
+  @import './variables.scss';
   @import './assets/theme/index.scss';
 
   .minw-0 {

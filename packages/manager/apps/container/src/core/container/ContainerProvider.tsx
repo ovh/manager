@@ -53,7 +53,7 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
       }))
       .catch(() => ({
         version: '',
-        livechat: undefined
+        livechat: undefined as boolean,
       }));
   };
 

@@ -1,7 +1,8 @@
 .manager-account-sidebar-user-infos {
-  @import '@ovh-ux/manager-hub/src/variables.scss';
-
+  @import '@ovh-ux/ui-kit/dist/scss/_tokens.scss';
   $circle-radius: 2.5rem;
+  $hub-border-radius-default: 6pt;
+  $hub-text-color: #4d5592;
 
   background-color: $p-000-white;
   box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.075);

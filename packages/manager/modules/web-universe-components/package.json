@@ -19,7 +19,7 @@
     "bootstrap": "^3.3.7"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
+    "@ovh-ux/manager-config": "^8.0.2",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.0.0",
     "@ovh-ux/ng-ovh-http": "^5.0.4",
     "@ovh-ux/ng-ovh-payment-method": "^9.3.0",

@@ -13,10 +13,10 @@
   "scripts": {
     "build": "webpack --env production",
     "dev": "webpack-dev-server",
-    "dev:watch": "yarn run dev",
-    "start": "lerna exec --stream --scope='@ovh-ux/manager-web' --include-dependencies -- npm run build --if-present",
-    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-web' --include-dependencies -- npm run dev --if-present",
-    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-web' --include-dependencies -- npm run dev --if-present"
+    "dev:watch": "pnpm run dev",
+    "start": "lerna exec --stream --scope='@ovh-ux/manager-web' --include-dependencies -- pnpm run build --if-present",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-web' --include-dependencies -- pnpm run dev --if-present",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-web' --include-dependencies -- pnpm run dev --if-present"
   },
   "dependencies": {
     "@ovh-ux/manager-account-migration": "^1.5.2",
@@ -114,7 +114,7 @@
     "matchmedia-ng": "^1.0.8",
     "moment": "^2.24.0",
     "ng-ckeditor": "^2.0.5",
-    "ng-slide-down": "TheRusskiy/ng-slide-down#^1.0.0",
+    "ng-slide-down": "TheRusskiy/ng-slide-down#v1.2.0",
     "oclazyload": "^1.1.0",
     "office-ui-fabric-core": "^11.0.0",
     "ovh-api-services": "^17.0.0",
@@ -140,7 +140,7 @@
     "webpack-merge": "^5.0.2"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-ng-apiv2-helper": "^0.1.0"
+    "@ovh-ux/manager-ng-apiv2-helper": "^0.2.1"
   },
   "regions": [
     "CA",

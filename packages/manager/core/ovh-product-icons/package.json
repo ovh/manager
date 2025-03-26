@@ -10,7 +10,7 @@
   "module": "dist/index",
   "types": "dist/index",
   "scripts": {
-    "build": "tsc && yarn copy-files",
+    "build": "tsc && pnpm copy-files",
     "copy-files": "cp ./assets-icon-svg/*.svg ./dist/assets-icon-svg/",
     "start": "plop"
   },

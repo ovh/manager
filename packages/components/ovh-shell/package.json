@@ -21,12 +21,13 @@
     "dev": "tsc",
     "dev:watch": "tsc -w",
     "prepare": "tsc",
-    "start": "lerna exec --stream --scope='@ovh-ux/shell' --include-dependencies -- npm run build --if-present",
-    "start:dev": "lerna exec --stream --scope='@ovh-ux/shell' --include-dependencies -- npm run dev --if-present",
-    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/shell' --include-dependencies -- npm run dev:watch --if-present"
+    "start": "lerna exec --stream --scope='@ovh-ux/shell' --include-dependencies -- pnpm run build --if-present",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/shell' --include-dependencies -- pnpm run dev --if-present",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/shell' --include-dependencies -- pnpm run dev:watch --if-present"
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^8.0.2",
+    "@ovh-ux/manager-core-sso": "^0.3.0",
     "@ovh-ux/ovh-at-internet": "^0.21.3",
     "@ovh-ux/ovh-reket": "^2.1.7",
     "@ovh-ux/request-tagger": "^0.4.0",

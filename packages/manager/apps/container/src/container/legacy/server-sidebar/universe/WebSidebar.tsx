@@ -80,7 +80,7 @@ export default function WebSidebar() {
             },
             ...allDom.map((item) => ({
               ...item,
-              href: undefined,
+              href: undefined as string,
               routeMatcher: new RegExp(`/all_dom/${item.serviceName}`),
               async loader() {
                 return loadServices(`/allDom/${item.serviceName}/domain`);
