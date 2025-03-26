@@ -110,3 +110,13 @@ export type TVolumeCatalog = {
   regions: TRegion[];
   models: TVolumeAddon[];
 };
+
+export type TRegionQuota = {
+  region: string;
+  volume: {
+    maxGigabytes: number;
+    usedGigabytes: number;
+    volumeCount: number;
+    maxVolumeCount: number;
+  };
+};

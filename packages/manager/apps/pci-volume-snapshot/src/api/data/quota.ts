@@ -1,29 +1,19 @@
 import { v6 } from '@ovh-ux/manager-core-api';
-import { TVolumePricing } from '@/api/data/catalog';
+import { TVolumePricing, TRegionQuota } from '@/api/api.types';
 import { VOLUME_UNLIMITED_QUOTA } from '@/constants';
-
-export interface RegionQuota {
-  region: string;
-  volume: {
-    maxGigabytes: number;
-    usedGigabytes: number;
-    volumeCount: number;
-    maxVolumeCount: number;
-  };
-}
 
 export const getRegionsQuota = async (
   projectId: string,
   region?: string,
-): Promise<RegionQuota> => {
-  const { data } = await v6.get<RegionQuota>(
+): Promise<TRegionQuota> => {
+  const { data } = await v6.get<TRegionQuota>(
     `/cloud/project/${projectId}/region/${region}/quota`,
   );
   return data;
 };
 
 export function getVolumeMaxSize(
-  regionQuota: RegionQuota,
+  regionQuota: TRegionQuota,
   pricing: TVolumePricing,
 ): number {
   let availableGigabytes = pricing.specs.volume?.capacity.max || 0;
