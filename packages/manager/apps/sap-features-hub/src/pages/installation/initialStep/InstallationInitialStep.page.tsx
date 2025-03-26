@@ -1,10 +1,8 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  useDatacentreClusters,
-  useVMwareDatacentres,
-  useVMwareServices,
-} from '@/hooks/vmwareServices/useVMwareServices';
+import { useVMwareServices } from '@/hooks/vmwareServices/useVMwareServices';
+import { useVMwareDatacentres } from '@/hooks/vmwareServices/useDatacentres';
+import { useClusters } from '@/hooks/vmwareServices/useClusters';
 import { SelectField } from '@/components/Form/SelectField.component';
 import { useFormSteps } from '@/hooks/formStep/useFormSteps';
 import { useInstallationFormContext } from '@/context/InstallationForm.context';
@@ -34,9 +32,9 @@ export default function InstallationInitialStep() {
     data: clusters,
     isLoading: isLoadingClusters,
     isError: isClustersError,
-  } = useDatacentreClusters({
+  } = useClusters({
     serviceName,
-    datacenterId: String(datacenterId),
+    datacenterId: datacenterId?.toString(),
   });
 
   const isError = React.useMemo(
@@ -97,7 +95,7 @@ export default function InstallationInitialStep() {
         handleChange={({ detail }) => {
           setValues((prev) => ({
             ...prev,
-            datacenterId: Number(detail.value),
+            datacenterId: detail.value ? Number(detail.value) : null,
             datacenterName:
               datacentres?.find((vdc) => `${vdc.datacenterId}` === detail.value)
                 ?.name || '',
@@ -119,9 +117,15 @@ export default function InstallationInitialStep() {
         }
         isLoading={!!datacenterId && isLoadingClusters}
         defaultValue={clusterName}
-        handleChange={({ detail }) =>
-          setValues((prev) => ({ ...prev, clusterName: detail.value }))
-        }
+        handleChange={({ detail }) => {
+          setValues((prev) => ({
+            ...prev,
+            clusterName: detail.value,
+            clusterId:
+              clusters?.find((cluster) => cluster?.name === detail.value)
+                ?.clusterId || null,
+          }));
+        }}
       />
     </InstallationFormLayout>
   );
