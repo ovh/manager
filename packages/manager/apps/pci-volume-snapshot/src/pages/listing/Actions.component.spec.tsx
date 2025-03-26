@@ -65,7 +65,10 @@ describe('Actions Component', () => {
     // Check second menu item (delete)
     const deleteItem = getByTestId('menu-item-2');
     expect(deleteItem).toBeInTheDocument();
-    expect(deleteItem).toHaveAttribute('href', '#');
+    expect(deleteItem).toHaveAttribute(
+      'href',
+      './delete?snapshotId=snapshot-123',
+    );
     expect(deleteItem).toHaveTextContent(
       'pci_projects_project_storages_snapshots_delete_label',
     );
