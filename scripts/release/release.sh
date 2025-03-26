@@ -29,15 +29,15 @@ version() {
 
   if "${DRY_RELEASE}"; then
     printf "%s\n" "Dry releasing"
-    node_modules/.bin/lerna version --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --allow-branch="${GIT_BRANCH}" --yes
+    npx --no "lerna@$LERNA_VERSION" -- version --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --allow-branch="${GIT_BRANCH}" --yes
   else
     printf "%s\n" "Releasing"
-    node_modules/.bin/lerna version --conventional-commits --no-commit-hooks --no-git-tag-version --no-push  --yes
+    npx --no "lerna@$LERNA_VERSION" -- version --conventional-commits --no-commit-hooks --no-git-tag-version --no-push  --yes
   fi
 }
 
 get_changed_packages() {
-  node_modules/.bin/lerna changed --all -p -l
+  npx --no "lerna@$LERNA_VERSION" -- changed --all -p -l
 }
 
 get_release_name() {

@@ -3,7 +3,17 @@ const execa = require('execa');
 const pSeries = require('p-series');
 const fs = require('fs');
 
-execa('lerna', ['ls', '-pl', '--json', '--toposort'])
+const { LERNA_VERSION } = process.env;
+
+if (!LERNA_VERSION) {
+  console.error('Please provide LERNA_VERSION environment variable');
+  process.exit(1);
+}
+
+const invokeLerna = (args) =>
+  execa('npx', ['--no', `lerna@${LERNA_VERSION}`, '--', ...args]);
+
+invokeLerna(['ls', '-pl', '--json', '--toposort'])
   .then(({ stdout }) => {
     const packages = JSON.parse(stdout);
 
@@ -43,7 +53,7 @@ execa('lerna', ['ls', '-pl', '--json', '--toposort'])
               console.log(`Publishing package ${pkg.name}`);
               return pSeries([
                 () =>
-                  execa('lerna', [
+                  invokeLerna([
                     'exec',
                     '--scope',
                     pkg.name,
@@ -55,7 +65,7 @@ execa('lerna', ['ls', '-pl', '--json', '--toposort'])
                     '--if-present',
                   ]),
                 () =>
-                  execa('lerna', [
+                  invokeLerna([
                     'exec',
                     '--scope',
                     pkg.name,
