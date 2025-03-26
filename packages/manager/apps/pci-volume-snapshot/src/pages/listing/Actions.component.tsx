@@ -18,7 +18,7 @@ export default function Actions({ snapshot }: Readonly<ActionsProps>) {
     },
     {
       id: 2,
-      href: useHref('#'),
+      href: useHref(`./delete?snapshotId=${snapshot.id}`),
       label: t('pci_projects_project_storages_snapshots_delete_label'),
     },
   ];
