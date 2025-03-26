@@ -38,7 +38,7 @@ const init = async (
     }
   });
 
-  ReactDOM.createRoot(document.getElementById('root')).render(
+  ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <React.StrictMode>
       <ShellProvider client={context}>
         <App />
