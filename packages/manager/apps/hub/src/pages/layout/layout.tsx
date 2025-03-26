@@ -64,6 +64,7 @@ export default function Layout() {
   }, [location]);
 
   useEffect(() => {
+    console.log('fake change');
     const getIsAccountSidebarVisible = async () => {
       const newValueIsAccountSidebarVisible = (await shell.ux.isAccountSidebarVisible()) as boolean;
       setIsAccountSidebarVisible(() => newValueIsAccountSidebarVisible);
