@@ -506,7 +506,7 @@
   "server_configuration_installation_progress_cancel_retry_ovh": "Reinstallare a partire da un template OVHcloud",
   "server_configuration_installation_progress_cancel_retry_gabarit": "Reinstallare uno dei tuoi template",
   "server_configuration_installation_progress_cancel_info": "Attenzione: l’operazione di annullamento potrebbe avere alcune conseguenze. È possibile che sia necessario reinstallare il server.",
-  "server_configuration_installation_progress_cancel_button_confirm": "Conferma",
+  "server_configuration_installation_progress_cancel_button_confirm": "Confermare",
   "server_configuration_installation_progress_cancel_button_cancel": "Annulla",
   "server_configuration_installation_progress_installation_error": "Si è verificato un errore l’installazione. L’installazione è stata interrotta. È necessario riavviare l’installazione del server {{t0}} : {{t1}}",
   "server_configuration_installation_progress_installation_error2": "Si è verificato un errore l’installazione. L’installazione è stata interrotta. Potrebbe essere necessario reinstallare il tuo server {{t0}} se l'installazione ha iniziato a eliminare i tuoi dati: {{t1}}",

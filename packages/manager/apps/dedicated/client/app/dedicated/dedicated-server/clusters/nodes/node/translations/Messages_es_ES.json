@@ -514,7 +514,7 @@
   "server_configuration_installation_progress_cancel_retry_ovh": "Reinstalar desde una plantilla de OVHcloud",
   "server_configuration_installation_progress_cancel_retry_gabarit": "Reinstalar una de sus plantillas",
   "server_configuration_installation_progress_cancel_info": "Atención: La cancelación puede tener consecuencias. Es posible que, aunque haya cancelado la operación, tenga que reinstalar el servidor.",
-  "server_configuration_installation_progress_cancel_button_confirm": "Confirme",
+  "server_configuration_installation_progress_cancel_button_confirm": "Confirmar",
   "server_configuration_installation_progress_cancel_button_cancel": "Cancelar",
   "server_configuration_installation_progress_installation_error": "Se ha producido un error durante la instalación. Se ha detenido la instalación. Es necesario volver a instalar el servidor {{t0}} : {{t1}}",
   "server_configuration_installation_progress_installation_error2": "Se ha producido un error durante la instalación. Se ha detenido la instalación. Si la instalación ha empezado a eliminar los datos, es posible que tenga que reinstalar el servidor {{t0}}: {{t1}}.",

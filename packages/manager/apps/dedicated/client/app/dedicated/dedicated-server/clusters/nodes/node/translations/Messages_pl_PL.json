@@ -514,7 +514,7 @@
   "server_configuration_installation_progress_cancel_retry_ovh": "Reinstalacja w oparciu o szablon OVHcloud",
   "server_configuration_installation_progress_cancel_retry_gabarit": "Reinstalacja jednego z szablonów",
   "server_configuration_installation_progress_cancel_info": "Uwaga, anulowanie może spowodować określone konsekwencje. Możliwe, że będziesz musiał samodzielnie przeprowadzić reinstalację serwera.",
-  "server_configuration_installation_progress_cancel_button_confirm": "Potwierdź",
+  "server_configuration_installation_progress_cancel_button_confirm": "Zatwierdź",
   "server_configuration_installation_progress_cancel_button_cancel": "Anuluj",
   "server_configuration_installation_progress_installation_error": "Wystąpił błąd podczas instalacji. Instalacja została wstrzymana. Należy rozpocząć od nowa instalację serwera {{t0}}: {{t1}}.",
   "server_configuration_installation_progress_installation_error2": "Wystąpił błąd podczas instalacji. Instalacja została wstrzymana. Możliwe, że będziesz musiał wykonać reinstalację serwera {{t0}}, jeśli w wyniku instalacji nastąpiło usunięcie danych: {{t1}}.",
