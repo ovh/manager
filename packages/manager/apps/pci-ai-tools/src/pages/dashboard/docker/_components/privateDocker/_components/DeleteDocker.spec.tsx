@@ -30,15 +30,13 @@ describe('DeleteDocker modal', () => {
   it('open and close delete docker modal', async () => {
     render(<DeleteDocker />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByTestId('delete-docker-modal')).toBeInTheDocument();
+      expect(screen.getByTestId('delete-docker-modal')).toBeTruthy();
     });
     act(() => {
       fireEvent.click(screen.getByTestId('delete-docker-cancel-button'));
     });
     await waitFor(() => {
-      expect(
-        screen.queryByTestId('delete-docker-modal'),
-      ).not.toBeInTheDocument();
+      expect(screen.queryByTestId('delete-docker-modal')).toBeNull();
     });
   });
 

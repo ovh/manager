@@ -35,27 +35,25 @@ describe('Docker page', () => {
     const translationKey = 'breadcrumb';
     render(<Breadcrumb />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByText(translationKey)).toBeInTheDocument();
+      expect(screen.getByText(translationKey)).toBeTruthy();
     });
   });
   it('renders and shows skeletons while loading', async () => {
     render(<Docker />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByTestId('docker-table-skeleton')).toBeInTheDocument();
+      expect(screen.getByTestId('docker-table-skeleton')).toBeTruthy();
     });
   });
   it('renders and shows buttons in the dockers page', async () => {
     render(<Docker />, { wrapper: RouterWithQueryClientWrapper });
-    expect(
-      screen.getByTestId('managed-private-registries-link'),
-    ).toBeInTheDocument();
-    expect(screen.getByTestId('create-docker-button')).toBeInTheDocument();
-    expect(screen.getByText(mockedRegistry.id)).toBeInTheDocument();
+    expect(screen.getByTestId('managed-private-registries-link')).toBeTruthy();
+    expect(screen.getByTestId('create-docker-button')).toBeTruthy();
+    expect(screen.getByText(mockedRegistry.id)).toBeTruthy();
   });
 
   it('trigger useNavigate on create button click', async () => {
     render(<Docker />, { wrapper: RouterWithQueryClientWrapper });
-    expect(screen.getByTestId('create-docker-button')).toBeInTheDocument();
+    expect(screen.getByTestId('create-docker-button')).toBeTruthy();
     act(() => {
       fireEvent.click(screen.getByTestId('create-docker-button'));
     });
@@ -67,7 +65,7 @@ describe('Docker page', () => {
   it('open delete docker modal using action table menu', async () => {
     render(<Docker />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByText(mockedRegistry.id)).toBeInTheDocument();
+      expect(screen.getByText(mockedRegistry.id)).toBeTruthy();
     });
     await openButtonInMenu(
       'docker-action-trigger',

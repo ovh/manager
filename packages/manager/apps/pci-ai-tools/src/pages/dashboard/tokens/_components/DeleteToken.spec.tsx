@@ -27,22 +27,20 @@ describe('DeleteToken modal', () => {
   it('renders skeleton while loading', async () => {
     render(<DeleteToken />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByTestId('dialog-container')).toBeInTheDocument();
+      expect(screen.getByTestId('dialog-container')).toBeTruthy();
     });
   });
 
   it('open and close delete token modal', async () => {
     render(<DeleteToken />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByTestId('delete-token-modal')).toBeInTheDocument();
+      expect(screen.getByTestId('delete-token-modal')).toBeTruthy();
     });
     act(() => {
       fireEvent.click(screen.getByTestId('delete-token-cancel-button'));
     });
     await waitFor(() => {
-      expect(
-        screen.queryByTestId('delete-token-modal'),
-      ).not.toBeInTheDocument();
+      expect(screen.queryByTestId('delete-token-modal')).toBeNull();
     });
   });
 
@@ -68,7 +66,7 @@ describe('DeleteToken modal', () => {
   it('refetch data on delete token success', async () => {
     render(<DeleteToken />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByTestId('delete-token-modal')).toBeInTheDocument();
+      expect(screen.getByTestId('delete-token-modal')).toBeTruthy();
     });
     act(() => {
       fireEvent.click(screen.getByTestId('delete-token-submit-button'));

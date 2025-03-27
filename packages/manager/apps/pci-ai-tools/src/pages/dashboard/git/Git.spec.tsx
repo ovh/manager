@@ -33,19 +33,19 @@ describe('Git page', () => {
     const translationKey = 'breadcrumb';
     render(<Breadcrumb />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByText(translationKey)).toBeInTheDocument();
+      expect(screen.getByText(translationKey)).toBeTruthy();
     });
   });
   it('renders and shows buttons in the git page', async () => {
     render(<Git />, { wrapper: RouterWithQueryClientWrapper });
-    expect(screen.getByTestId('create-git-button')).toBeInTheDocument();
+    expect(screen.getByTestId('create-git-button')).toBeTruthy();
     await waitFor(() => {
-      expect(screen.getByText(mockedGitWithRegion.alias)).toBeInTheDocument();
+      expect(screen.getByText(mockedGitWithRegion.alias)).toBeTruthy();
     });
   });
   it('trigger useNavigate on create button click', async () => {
     render(<Git />, { wrapper: RouterWithQueryClientWrapper });
-    expect(screen.getByTestId('create-git-button')).toBeInTheDocument();
+    expect(screen.getByTestId('create-git-button')).toBeTruthy();
     act(() => {
       fireEvent.click(screen.getByTestId('create-git-button'));
     });
@@ -56,7 +56,7 @@ describe('Git page', () => {
   it('open delete git modal using action table menu', async () => {
     render(<Git />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByText(mockedGitWithRegion.alias)).toBeInTheDocument();
+      expect(screen.getByText(mockedGitWithRegion.alias)).toBeTruthy();
     });
     await openButtonInMenu('git-action-trigger', 'git-action-delete-button');
     expect(mockedUsedNavigate).toHaveBeenCalledWith(

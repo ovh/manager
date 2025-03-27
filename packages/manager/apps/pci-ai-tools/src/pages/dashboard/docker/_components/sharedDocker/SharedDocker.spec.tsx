@@ -17,10 +17,10 @@ describe('SharedDocker page', () => {
     render(<SharedDocker regions={[mockedCapabilitiesRegionGRA]} />, {
       wrapper: RouterWithQueryClientWrapper,
     });
-    expect(screen.getByTestId('shared-docker-title')).toBeInTheDocument();
-    expect(screen.getByText(/^docker login/)).toBeInTheDocument();
-    expect(screen.getByText(/^docker tag/)).toBeInTheDocument();
-    expect(screen.getByText(/^docker push/)).toBeInTheDocument();
+    expect(screen.getByTestId('shared-docker-title')).toBeTruthy();
+    expect(screen.getByText('dockerLoginTitle')).toBeTruthy();
+    expect(screen.getByText('dockerTagTitle')).toBeTruthy();
+    expect(screen.getByText('dockerPushTitle')).toBeTruthy();
   });
 
   it('change region in sharedDocker', async () => {
@@ -33,9 +33,9 @@ describe('SharedDocker page', () => {
       },
     );
     await handleSelectOption('select-region-trigger', 'BHS');
-    expect(screen.getByTestId('shared-docker-title')).toBeInTheDocument();
-    expect(screen.getByText(/^docker login/)).toBeInTheDocument();
-    expect(screen.getByText(/^docker tag/)).toBeInTheDocument();
-    expect(screen.getByText(/^docker push/)).toBeInTheDocument();
+    expect(screen.getByTestId('shared-docker-title')).toBeTruthy();
+    expect(screen.getByText('dockerLoginTitle')).toBeTruthy();
+    expect(screen.getByText('dockerTagTitle')).toBeTruthy();
+    expect(screen.getByText('dockerPushTitle')).toBeTruthy();
   });
 });

@@ -7,7 +7,7 @@ describe('404 NotFound page', () => {
   it('should display Not Found pages', async () => {
     render(<NotFound />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByText('404 - route not found')).toBeInTheDocument();
+      expect(screen.getByText('404 - route not found')).toBeTruthy();
     });
   });
 });

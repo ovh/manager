@@ -19,6 +19,8 @@
   "cliInstallationTitle": "Installation",
   "cliCopy": "La commande a été copiée",
   "cliParagraphe2": "Sélectionnez la région que vous souhaitez utiliser :",
+  "codeCliTitle": "Commande pour installer la CLI",
+  "codeCliToastMessage": "Le code a été copié",
   "alertCli": "Veillez à bien redémarrer votre terminal afin de pouvoir utiliser ovhai.",
   "cliAuthentificationTitle": "Authentification",
   "cliParagraphe3": "L'authentification sur la plateforme peut se faire via tous les",

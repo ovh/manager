@@ -18,7 +18,9 @@ describe('OvhLink component', () => {
     );
     const anchorElement = screen.getByText('Link');
     await waitFor(() => {
-      expect(anchorElement).toHaveAttribute('href', '#mockedurl-app/some-path');
+      expect(anchorElement.getAttribute('href')).toBe(
+        '#mockedurl-app/some-path',
+      );
     });
   });
 });

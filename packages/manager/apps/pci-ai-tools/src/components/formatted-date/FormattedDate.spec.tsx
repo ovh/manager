@@ -35,7 +35,7 @@ describe('FormattedDate component', () => {
     vi.mocked(useShell().i18n.getLocale).mockResolvedValue(Locale.fr_FR);
     render(<FormattedDate date={date} />);
     await waitFor(() => {
-      expect(screen.getByText('08/06/2024')).toBeInTheDocument();
+      expect(screen.getByText('08/06/2024')).toBeTruthy();
     });
   });
   it('should render the date with PT locale', async () => {
@@ -51,9 +51,7 @@ describe('FormattedDate component', () => {
       />,
     );
     await waitFor(() => {
-      expect(
-        screen.getByText('8 de junho de 2024 às 12:42:50'),
-      ).toBeInTheDocument();
+      expect(screen.getByText('8 de junho de 2024 às 12:42:50')).toBeTruthy();
     });
   });
 
@@ -70,7 +68,7 @@ describe('FormattedDate component', () => {
       />,
     );
     await waitFor(() => {
-      expect(screen.getByText('8 June 2024 at 12:42:50')).toBeInTheDocument();
+      expect(screen.getByText('8 June 2024 at 12:42:50')).toBeTruthy();
     });
   });
 });

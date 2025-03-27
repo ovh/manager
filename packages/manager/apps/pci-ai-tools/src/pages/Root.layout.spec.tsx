@@ -41,7 +41,7 @@ describe('Notebooks Layout', () => {
       wrapper: RouterWithQueryClientWrapper,
     });
     await waitFor(() => {
-      expect(screen.getByTestId('pageLayout')).toBeInTheDocument();
+      expect(screen.getByTestId('pageLayout')).toBeTruthy();
     });
   });
 });

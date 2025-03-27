@@ -28,7 +28,7 @@ describe('DeleteGit modal', () => {
       fireEvent.click(screen.getByTestId('delete-git-cancel-button'));
     });
     await waitFor(() => {
-      expect(screen.queryByTestId('delete-git-modal')).not.toBeInTheDocument();
+      expect(screen.queryByTestId('delete-git-modal')).toBeNull();
     });
   });
 

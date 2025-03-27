@@ -25,7 +25,7 @@ describe('DeleteDatastore modal', () => {
   it('open and close add datastore modal', async () => {
     render(<DeleteDatastore />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByTestId('delete-datastore-modal')).toBeInTheDocument();
+      expect(screen.getByTestId('delete-datastore-modal')).toBeTruthy();
     });
   });
 
@@ -40,7 +40,7 @@ describe('DeleteDatastore modal', () => {
     });
     render(<DeleteDatastore />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByTestId('delete-datastore-modal')).toBeInTheDocument();
+      expect(screen.getByTestId('delete-datastore-modal')).toBeTruthy();
     });
     act(() => {
       fireEvent.click(screen.getByTestId('delete-datastore-submit-button'));
@@ -54,7 +54,7 @@ describe('DeleteDatastore modal', () => {
   it('refetch data on delete datastore success', async () => {
     render(<DeleteDatastore />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByTestId('delete-datastore-modal')).toBeInTheDocument();
+      expect(screen.getByTestId('delete-datastore-modal')).toBeTruthy();
     });
     act(() => {
       fireEvent.click(screen.getByTestId('delete-datastore-submit-button'));

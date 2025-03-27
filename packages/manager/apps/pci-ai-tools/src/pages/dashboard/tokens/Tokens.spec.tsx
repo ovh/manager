@@ -31,23 +31,23 @@ describe('Tokens page', () => {
     const translationKey = 'breadcrumb';
     render(<Breadcrumb />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByText(translationKey)).toBeInTheDocument();
+      expect(screen.getByText(translationKey)).toBeTruthy();
     });
   });
   it('renders and shows skeletons while loading', async () => {
     render(<Tokens />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByTestId('tokens-table-skeleton')).toBeInTheDocument();
+      expect(screen.getByTestId('tokens-table-skeleton')).toBeTruthy();
     });
   });
   it('renders and shows buttons in the user page', async () => {
     render(<Tokens />, { wrapper: RouterWithQueryClientWrapper });
-    expect(screen.getByTestId('create-token-button')).toBeInTheDocument();
+    expect(screen.getByTestId('create-token-button')).toBeTruthy();
   });
 
   it('trigger useNavigate on create button click', async () => {
     render(<Tokens />, { wrapper: RouterWithQueryClientWrapper });
-    expect(screen.getByTestId('create-token-button')).toBeInTheDocument();
+    expect(screen.getByTestId('create-token-button')).toBeTruthy();
     act(() => {
       fireEvent.click(screen.getByTestId('create-token-button'));
     });
@@ -58,7 +58,7 @@ describe('Tokens page', () => {
   it('open delete token modal', async () => {
     render(<Tokens />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByText(mockedToken.spec.name)).toBeInTheDocument();
+      expect(screen.getByText(mockedToken.spec.name)).toBeTruthy();
     });
     await openButtonInMenu(
       'token-action-trigger',
@@ -71,7 +71,7 @@ describe('Tokens page', () => {
   it('open renew token modal', async () => {
     render(<Tokens />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByText(mockedToken.spec.name)).toBeInTheDocument();
+      expect(screen.getByText(mockedToken.spec.name)).toBeTruthy();
     });
     await openButtonInMenu('token-action-trigger', 'token-action-renew-button');
     expect(mockedUsedNavigate).toHaveBeenCalledWith(

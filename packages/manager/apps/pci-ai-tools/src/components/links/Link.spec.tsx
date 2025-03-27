@@ -1,5 +1,4 @@
 import { act, fireEvent, render } from '@testing-library/react';
-import '@testing-library/jest-dom/vitest';
 import { vi } from 'vitest';
 import { BrowserRouter as Router } from 'react-router-dom';
 import * as useLoadingIndicator from '@/contexts/LoadingIndicator.context';
@@ -22,9 +21,9 @@ describe('Link', () => {
       </useLoadingIndicator.LoadingIndicatorProvider>,
     );
     const routerLink = container.querySelector('a');
-    expect(routerLink).toBeInTheDocument();
-    expect(routerLink).toHaveTextContent('Link');
-    expect(routerLink).toHaveAttribute('href', '/route');
+    expect(routerLink).toBeTruthy();
+    expect(routerLink.textContent).toBe('Link');
+    expect(routerLink.getAttribute('href')).toBe('/route');
   });
 
   it('should set loading indicator on click', async () => {
