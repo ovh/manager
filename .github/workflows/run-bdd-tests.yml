@@ -55,4 +55,4 @@ jobs:
             echo "CURRENT_BRANCH=$CURRENT_BRANCH" >> $GITHUB_ENV
           fi
       - name: Run Tests Coverage
-        run: yarn test:coverage
+        run: yarn exec turbo -- run test --concurrency=1 --filter=[origin/${BASE_BRANCH}...origin/${CURRENT_BRANCH}]
