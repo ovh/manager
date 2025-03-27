@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.20.0...@ovh-ux/manager-dedicated@20.21.0) (2025-03-27)
+
+
+### Features
+
+* **dedicated.pcc:** decommission 2API private cloud catalog ([6255ad5](https://github.com/ovh/manager/commit/6255ad5bc3e524b2c64c12a705c2485962d1875f)), closes [#MANAGER-17151](https://github.com/ovh/manager/issues/MANAGER-17151) [#INC0117252](https://github.com/ovh/manager/issues/INC0117252)
+
+
+
+
+
 # [20.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.19.3...@ovh-ux/manager-dedicated@20.20.0) (2025-03-25)
 
 
