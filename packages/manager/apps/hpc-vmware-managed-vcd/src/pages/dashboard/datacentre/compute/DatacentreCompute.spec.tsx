@@ -26,7 +26,7 @@ import TEST_IDS from '../../../../utils/testIds.constants';
 describe('Datacentre Compute Listing Page', () => {
   it('access and display compute listing page without banner info for special offer', async () => {
     const { getByText, queryByText } = await renderTest({
-      initialRoute: `/${organizationList[0].id}/datacentres/${datacentreList[0].id}`,
+      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}`,
       feature: { 'hpc-vmware-managed-vcd:compute-special-offer-banner': false },
     });
 
@@ -70,7 +70,7 @@ describe('Datacentre Compute Listing Page', () => {
 
   it('access and display compute listing page with banner info for special offer', async () => {
     const { getByText, getByTestId } = await renderTest({
-      initialRoute: `/${organizationList[0].id}/datacentres/${datacentreList[0].id}`,
+      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}`,
       feature: { 'hpc-vmware-managed-vcd:compute-special-offer-banner': true },
     });
 
@@ -89,7 +89,7 @@ describe('Datacentre Compute Listing Page', () => {
 
   it('display an error', async () => {
     await renderTest({
-      initialRoute: `/${organizationList[0].id}/datacentres/${datacentreList[0].id}/compute`,
+      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}/compute`,
       isComputeKO: true,
     });
 
