@@ -12,7 +12,7 @@ describe('BreadcrumbItem component', () => {
       <BreadcrumbItem translationKey={translationKey} namespace="namespace" />,
     );
     await waitFor(() => {
-      expect(screen.getByText(translationKey)).toBeInTheDocument();
+      expect(screen.getByText(translationKey)).toBeTruthy();
     });
   });
 });
