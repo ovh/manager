@@ -25,5 +25,6 @@
   "server_configuration_reverse_not_configured": "Not configured",
   "server_configuration_reverse_edit_button": "Edit",
   "server_configuration_reboot_successfull": "Your {{serverName}} server has been rebooted.",
-  "server_configuration_reboot_fail_task": "An error has occurred rebooting your server."
+  "server_configuration_reboot_fail_task": "An error has occurred rebooting your server.",
+  "nutanix_node_general_suspended": "Your service has been canceled"
 }

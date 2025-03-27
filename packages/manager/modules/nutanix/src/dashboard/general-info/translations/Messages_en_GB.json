@@ -17,10 +17,17 @@
   "nutanix_dashboard_cluster_redeploy": "Cluster redeployment",
   "nutanix_dashboard_cluster_redeploy_link": "Redeploy cluster",
   "nutanix_dashboard_cluster_deploying_info": "Redeploying cluster",
-  "nutanix_dashboard_cluster_admin_interface_info": "Please log in via Prism Central to manage your Nutanix cluster",
-  "nutanix_dashboard_cluster_type_of_pack": "Pack type",
   "nutanix_dashboard_cluster_redeploy_modal_header": "Cluster redeployment",
   "nutanix_dashboard_cluster_redeploy_modal_description": "You must uninstall your Nutanix licence from your cluster in Prism Central before redeploying your cluster.",
   "nutanix_dashboard_cluster_redeploy_modal_continue": "Continue",
-  "nutanix_dashboard_cluster_redeploy_modal_cancel": "Exit"
+  "nutanix_dashboard_cluster_redeploy_modal_cancel": "Cancel",
+  "nutanix_dashboard_cluster_manage_nodes": "Manage my nodes",
+  "nutanix_dashboard_cluster_number_of_nodes": "Number of nodes",
+  "nutanix_dashboard_cluster_buy_node": "Add nodes",
+  "nutanix_dashboard_cluster_total_suscribed": "nodes in initial subscription",
+  "nutanix_dashboard_cluster_one_node_to_deploy": "1 node to install",
+  "nutanix_dashboard_cluster_several_nodes_to_deploy": "{{numberOfNodes}} nodes to install",
+  "nutanix_dashboard_cluster_one_node_deployed": "1 node installed",
+  "nutanix_dashboard_cluster_several_nodes_deployed": "{{numberOfNodes}} nodes installed",
+  "nutanix_dashboard_cluster_add_node_max_node_tooltip": "You have reached the maximum number of nodes allowed in a cluster"
 }

@@ -15,6 +15,12 @@
   "nutanix_cluster_list_localisation_value": "{{dcName}} (Rack {{rackName}})",
   "nutanix_order": "Ordina",
   "nutanix_cluster_list_pack_type": "Tipo di pack",
-  "nutanix_cluster_list_pack_type_details": "Visualizza dettagli",
-  "nutanix_cluster_unit_gbps": "{{t0}} Gbps"
+  "nutanix_cluster_list_pack_type_details": "Visualizza i dettagli",
+  "nutanix_cluster_unit_gbps": "{{t0}} Gbps",
+  "nutanix_dashboard_technical_details_cpu_frequency_unit": "GHz",
+  "nutanix_dashboard_technical_details_ram_size_unit": "GB",
+  "nutanix_dashboard_technical_details_ram_frequency_unit": "MHz",
+  "nutanix_dashboard_service_status_active": "Attivo",
+  "nutanix_dashboard_service_status_suspended": "Sospeso",
+  "nutanix_dashboard_service_status_toSuspend": "Da sospendere"
 }
