@@ -91,7 +91,6 @@
   "domain_operations_update_key_firstname": "Mettre à jour le prénom avec un contenu valide",
   "domain_operations_update_key_name": "Mettre à jour le nom avec un contenu valide",
   "domain_operations_update_key_identificationNumber": "Mettre à jour le numéro d'identification avec un contenu valide",
-  "domain_operations_update_key_owner_email": "Mettre à jour l'email du contact propriétaire avec un contenu valide",
   "domain_operations_update_document_description": "Description",
   "domain_operations_relaunch_title": "Relancer l'opération",
   "domain_operations_relaunch_info": "Vous êtes sur le point de relancer l'opération <strong>{{t0}}</strong> sur le domaine <strong>{{t1}}</strong>.",
