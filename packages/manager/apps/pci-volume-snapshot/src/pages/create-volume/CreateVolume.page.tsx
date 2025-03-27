@@ -20,13 +20,20 @@ import { useCreateVolume } from '@/api/hooks/useVolume';
 import { TNewVolumeData } from '@/api/data/volume';
 import { ROUTE_PATHS } from '@/routes';
 
+function useParam(param: string): string {
+  const { [param]: paramValue } = useParams();
+  if (!paramValue) {
+    throw new Error(`Missing ${param} in URL.`);
+  }
+  return paramValue;
+}
+
 export default function CreateVolumePage() {
   const { t } = useTranslation(['create-volume', 'volumes']);
   const { addError, addSuccess } = useNotifications();
   const navigate = useNavigate();
-  const urlParams = useParams();
-  const projectId = urlParams.projectId as string;
-  const snapshotId = urlParams.snapshotId as string;
+  const projectId = useParam('projectId');
+  const snapshotId = useParam('snapshotId');
   const hrefProject = useProjectUrl('public-cloud');
   const { data: project } = useProject();
   const listingUrl = ROUTE_PATHS.ROOT.replace(':projectId', projectId);
