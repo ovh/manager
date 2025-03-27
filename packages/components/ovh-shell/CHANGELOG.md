@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0](https://github.com/ovh/manager/compare/@ovh-ux/shell@4.1.11...@ovh-ux/shell@4.2.0) (2025-03-27)
+
+
+### Features
+
+* updated ux plugin and user interfaces ([#16077](https://github.com/ovh/manager/issues/16077)) ([79367e4](https://github.com/ovh/manager/commit/79367e4ad57a83aa252cbd6f27ea6f261df8261a)), closes [#MANAGER-14722](https://github.com/ovh/manager/issues/MANAGER-14722)
+
+
+
+
+
 ## [4.1.11](https://github.com/ovh/manager/compare/@ovh-ux/shell@4.1.10...@ovh-ux/shell@4.1.11) (2025-03-21)
 
 **Note:** Version bump only for package @ovh-ux/shell

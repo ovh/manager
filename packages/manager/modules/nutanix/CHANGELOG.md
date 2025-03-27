@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@2.7.0...@ovh-ux/manager-nutanix@2.7.1) (2025-03-27)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([88d6cc0](https://github.com/ovh/manager/commit/88d6cc026b99730cd954457af8e147c18074a305))
+
+
+
+
+
 # [2.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@2.6.1...@ovh-ux/manager-nutanix@2.7.0) (2025-03-27)
 
 

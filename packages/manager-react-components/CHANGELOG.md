@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.16.0...@ovh-ux/manager-react-components@2.17.0) (2025-03-27)
+
+### Bug Fixes
+
+- **core:** shell client update use route synchro ([b18802c](https://github.com/ovh/manager/commit/b18802c5a7b502d3b1728a4b49ebf9542f8fa10e)), closes [#MANAGER-17173](https://github.com/ovh/manager/issues/MANAGER-17173)
+- **i18n:** add missing translations [CDS 3805] ([b5464b2](https://github.com/ovh/manager/commit/b5464b246b8c1bbed81beba5e64b0ea05f822be6))
+- **manager-react-components:** update error boundary component ([9600198](https://github.com/ovh/manager/commit/9600198bfebb3f3a77abb8b4ceef22f6ebb2b43b)), closes [#MANAGER-17173](https://github.com/ovh/manager/issues/MANAGER-17173)
+- **mrc:** label input on update name modal ([#16210](https://github.com/ovh/manager/issues/16210)) ([4f2303c](https://github.com/ovh/manager/commit/4f2303cf29fe737dbc1b414859c535d4613f3dae)), closes [#MANAGER-17546](https://github.com/ovh/manager/issues/MANAGER-17546) [#15941](https://github.com/ovh/manager/issues/15941)
+- remove unused translations [CDS] ([88d6cc0](https://github.com/ovh/manager/commit/88d6cc026b99730cd954457af8e147c18074a305))
+
+### Features
+
+- **manager-react-components:** add error boundary component ([c71e3a5](https://github.com/ovh/manager/commit/c71e3a58106ae7c2fe7ba7ee93324a21960c7978)), closes [#MANAGER-17173](https://github.com/ovh/manager/issues/MANAGER-17173)
+- **mrc.datagrid:** add column visibility ([#15683](https://github.com/ovh/manager/issues/15683)) ([eb4cdfd](https://github.com/ovh/manager/commit/eb4cdfd7e2eeff346669f03580f32f39ff0e183e)), closes [#MANAGER-16976](https://github.com/ovh/manager/issues/MANAGER-16976) [#14244](https://github.com/ovh/manager/issues/14244)
+- **mrc.onboardingLayout:** add iam on order cta ([#16055](https://github.com/ovh/manager/issues/16055)) ([a6044fc](https://github.com/ovh/manager/commit/a6044fc54d8b372d1032064982fd0068a7d9c245)), closes [#MANAGER-17109](https://github.com/ovh/manager/issues/MANAGER-17109) [#15417](https://github.com/ovh/manager/issues/15417)
+- **mrc.region:** add new regions ([#15669](https://github.com/ovh/manager/issues/15669)) ([635b837](https://github.com/ovh/manager/commit/635b8371628147a9a39cd82fbe4f11ee791484d0)), closes [#TAPC-2786](https://github.com/ovh/manager/issues/TAPC-2786)
+- **mrc:** add result type to resourceIcebergV2 ([96df93f](https://github.com/ovh/manager/commit/96df93fe52504a12675b9764417bfcb5643d3584)), closes [#16180](https://github.com/ovh/manager/issues/16180)
+- **mrc:** export badge component ([#16140](https://github.com/ovh/manager/issues/16140)) ([229784e](https://github.com/ovh/manager/commit/229784eec4766542f69b003fa09b15ee8db780cd)), closes [#MANAGER-17134](https://github.com/ovh/manager/issues/MANAGER-17134)
+- **mrc:** make useResourcesIcebergV2 more generic ([#16212](https://github.com/ovh/manager/issues/16212)) ([736383b](https://github.com/ovh/manager/commit/736383bc815305f8196535c7386ee78d2573f8c7)), closes [#13543](https://github.com/ovh/manager/issues/13543)
+
 # [2.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.15.1...@ovh-ux/manager-react-components@2.16.0) (2025-03-21)
 
 ### Bug Fixes

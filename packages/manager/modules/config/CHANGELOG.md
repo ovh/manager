@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@8.0.2...@ovh-ux/manager-config@8.1.0) (2025-03-27)
+
+
+### Features
+
+* updated ux plugin and user interfaces ([#16077](https://github.com/ovh/manager/issues/16077)) ([79367e4](https://github.com/ovh/manager/commit/79367e4ad57a83aa252cbd6f27ea6f261df8261a)), closes [#MANAGER-14722](https://github.com/ovh/manager/issues/MANAGER-14722)
+
+
+
+
+
 ## [8.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@8.0.1...@ovh-ux/manager-config@8.0.2) (2024-12-19)
 
 **Note:** Version bump only for package @ovh-ux/manager-config
