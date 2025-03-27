@@ -183,6 +183,13 @@ export default function LiveChat({
   let adrielly_url = generateAdriellyChatUrl({ level: 'standard'}, ovhSubsidiary, language);
   let snow_url = SNOW_INSTANCE_URL;
 
+  useEffect(() => {
+    console.log(window.location.hostname);
+    if (window.location.hostname.includes('labeu')) {
+      setSnowContext((prev) => ({ ...prev, live_agent_only: undefined }));
+    }
+  }, []);
+
   if (window.location.hostname.includes('labeu')) {
     adrielly_url = ADRIELLY_LABEU_CHAT_URL;
     snow_url = SNOW_LABEU_INSTANCE_URL;

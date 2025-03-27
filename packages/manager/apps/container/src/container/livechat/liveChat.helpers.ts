@@ -4,13 +4,14 @@ import { adriellyChatUrl } from './liveChat.constants';
 
 /**
  * Utility function to construct query parameters
- * @param {Record<string, string>} params - An object containing query parameters as key-value pairs
+ * @param {Record<string, string | undefined>} params - An object containing query parameters as key-value pairs
  * @returns {string} - A query string
  */
 export const constructQueryParams = (
-  params: Record<string, string>,
+  params: Record<string, string | undefined>,
 ): string => {
   return Object.entries(params)
+    .filter(([, value]) => value !== undefined)
     .map(([key, value]) => `sysparm_${key}=${encodeURIComponent(value)}`)
     .join('&');
 };
