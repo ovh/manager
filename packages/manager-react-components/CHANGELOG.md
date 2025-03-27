@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.46.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.45.0...@ovh-ux/manager-react-components@1.46.0) (2025-03-27)
+
+### Features
+
+- **mrc:** update region name ([#15670](https://github.com/ovh/manager/issues/15670)) ([53d6671](https://github.com/ovh/manager/commit/53d66713d64a6a62e9ed9fc0878c6bb3c67c31e8)), closes [#TAPC-2786](https://github.com/ovh/manager/issues/TAPC-2786)
+
 # [1.45.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.43.1...@ovh-ux/manager-react-components@1.45.0) (2025-02-12)
 
 ### Features
