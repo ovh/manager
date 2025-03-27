@@ -8,7 +8,6 @@ import {
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { getExpressOrderURL } from '@ovh-ux/manager-module-order';
-import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useForm, Controller } from 'react-hook-form';
@@ -83,7 +82,6 @@ export default function ModalOrderLicenses() {
         label: t('common:cta_cancel'),
         action: onClose,
         testid: 'cancel-btn',
-        variant: ODS_BUTTON_VARIANT.outline,
       }}
       primaryButton={{
         label: t('common:cta_confirm'),

@@ -26,7 +26,7 @@ import { OfficeServiceState } from '@/components/layout-helpers/Dashboard/Office
 const columns: DatagridColumn<LicenseType>[] = [
   {
     id: 'serviceName',
-    cell: (item) => {
+    cell: (item: LicenseType) => {
       const href = useGenerateUrl(urls.generalInformation, 'href', {
         serviceName: item.serviceName,
       });
@@ -38,7 +38,7 @@ const columns: DatagridColumn<LicenseType>[] = [
   },
   {
     id: 'displayName',
-    cell: (item) => (
+    cell: (item: LicenseType) => (
       <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.displayName}</OdsText>
     ),
     label: 'microsoft_office_licenses_displayName',
@@ -46,7 +46,7 @@ const columns: DatagridColumn<LicenseType>[] = [
   },
   {
     id: 'serviceType',
-    cell: (item) => (
+    cell: (item: LicenseType) => (
       <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.serviceType}</OdsText>
     ),
     label: 'microsoft_office_licenses_servicetype',
@@ -54,7 +54,7 @@ const columns: DatagridColumn<LicenseType>[] = [
   },
   {
     id: 'status',
-    cell: (item) => <OfficeServiceState state={item.status} />,
+    cell: (item: LicenseType) => <OfficeServiceState state={item.status} />,
     label: 'microsoft_office_licenses_status',
     isSortable: true,
   },
