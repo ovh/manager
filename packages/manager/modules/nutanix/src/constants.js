@@ -1,3 +1,6 @@
+export const PRODUCT_ID = 'nutanixPreprod';
+export const DEFAULT_OS_NODE_NUTANIX = 'none_64.en';
+
 export const NOT_SUBSCRIBED = 'notSubscribed';
 export const SERVER_OPTIONS = {
   BANDWIDTH: 'BANDWIDTH',
@@ -8,6 +11,33 @@ export const CLUSTER_STATUS = {
   DEPLOYING: 'deploying',
   ERROR: 'error',
 };
+
+export const NODE_STATUS = {
+  DEPLOYED: 'deployed',
+  DEPLOYING: 'deploying',
+  DEPLOY_CANCELLED: 'deploy_cancelled',
+  DEPLOY_FAILURE: 'deploy_failure',
+  UNDEPLOYED: 'undeployed',
+  UNDEPLOYING: 'undeploying',
+  UNDEPLOY_CANCELLED: 'undeploy_cancelled',
+  UNDEPLOY_FAILURE: 'undeploy_failure',
+  UNKNOWN: 'unknown',
+};
+
+export const NODE_POWER_STATES = {
+  POWEROFF: 'poweroff',
+};
+
+export const SERVICE_STATES = {
+  ACTIVE: 'active',
+  SUSPENDED: 'suspended',
+  TO_SUSPEND: 'toSuspend',
+  UNKNOWN: 'unknown',
+};
+
+export const MIN_NODES_BY_CLUSTER = 3;
+export const MAX_NODES_BY_CLUSTER = 15;
+
 export const NUTANIX_SERVICE_TYPE = 'NUTANIX';
 
 export const NUTANIX_ORDER_URL = {
@@ -51,9 +81,20 @@ export const NUTANIX_AUTHORIZATION_TYPE = {
   SUPPORT: 'SUPPORT',
 };
 
+export const NUTANIX_GUIDE_LINK =
+  'https://portal.nutanix.com/page/documents/list?type=software';
+
 export default {
+  NUTANIX_GUIDE_LINK,
+  NODE_POWER_STATES,
+  SERVICE_STATES,
+  PRODUCT_ID,
+  DEFAULT_OS_NODE_NUTANIX,
+  NUTANIX_ORDER_URL,
   CLUSTER_STATUS,
+  NODE_STATUS,
   NOT_SUBSCRIBED,
   SERVER_OPTIONS,
   NUTANIX_SERVICE_TYPE,
+  MAX_NODES_BY_CLUSTER,
 };

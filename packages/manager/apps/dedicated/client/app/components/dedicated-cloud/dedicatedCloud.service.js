@@ -37,6 +37,7 @@ class DedicatedCloudService {
     Poll,
     Poller,
     coreConfig,
+    ovhFeatureFlipping,
   ) {
     this.ListLayoutHelper = ListLayoutHelper;
     this.$http = $http;
@@ -48,6 +49,7 @@ class DedicatedCloudService {
     this.Poll = Poll;
     this.Poller = Poller;
     this.coreConfig = coreConfig;
+    this.ovhFeatureFlipping = ovhFeatureFlipping;
 
     this.dedicatedCloudCache = {
       all: 'UNIVERS_DEDICATED_CLOUD',
@@ -1714,6 +1716,30 @@ class DedicatedCloudService {
     return this.$http
       .get(`/dedicatedCloud/${serviceName}/location`)
       .then(({ data }) => data);
+  }
+
+  getCatalog() {
+    const { isTrusted, ovhSubsidiary } = this.coreConfig.getUser();
+    const feature = 'dedicated-cloud:enterprise-catalog';
+    return this.ovhFeatureFlipping
+      .checkFeatureAvailability(feature)
+      .then((featureAvailability) =>
+        featureAvailability.isFeatureAvailable(feature),
+      )
+      .catch(() => false)
+      .then((isEnterpriseCatalog) => {
+        const isSNC = !isEnterpriseCatalog && isTrusted;
+        const params = {
+          ovhSubsidiary,
+          catalogName: isSNC ? 'private_cloud_snc' : undefined,
+        };
+        const url = `/order/catalog/${
+          isSNC ? 'private' : 'formatted'
+        }/privateCloud${isEnterpriseCatalog ? 'Enterprise' : ''}`;
+        return this.$http
+          .get(url, { params, cache: true })
+          .then(({ data }) => data);
+      });
   }
 }
 

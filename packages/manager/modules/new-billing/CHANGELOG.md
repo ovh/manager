@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.32.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.32.0...@ovh-ux/manager-new-billing@0.32.1) (2025-03-25)
+
+
+### Bug Fixes
+
+* **billing:** restore sshKeySwitch directive ([#16102](https://github.com/ovh/manager/issues/16102)) ([aca6997](https://github.com/ovh/manager/commit/aca6997fcd819640b14f9fb631c75b624ab78497)), closes [#MANAGER-17509](https://github.com/ovh/manager/issues/MANAGER-17509)
+
+
+
+
+
 # [0.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.31.4...@ovh-ux/manager-new-billing@0.32.0) (2025-03-24)
 
 

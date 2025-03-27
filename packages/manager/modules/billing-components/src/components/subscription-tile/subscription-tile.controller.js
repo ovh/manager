@@ -147,6 +147,7 @@ export default class ServicesActionsCtrl {
           cancelResiliationLink,
           updateLink,
           warningLink,
+          cancelCommitmentLink,
         }) => {
           this.autorenewLink = autorenewLink;
           this.resiliateLink = resiliateLink;
@@ -154,6 +155,7 @@ export default class ServicesActionsCtrl {
           this.cancelResiliationLink = cancelResiliationLink;
           this.updateLink = updateLink;
           this.warningLink = warningLink;
+          this.cancelCommitmentLink = cancelCommitmentLink;
         },
       )
       .catch((error) =>

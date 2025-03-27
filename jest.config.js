@@ -46,7 +46,11 @@ module.exports = {
         },
       },
       moduleDirectories: ['node_modules'],
-      modulePathIgnorePatterns: ['/dist/', 'packages/manager/apps/container'],
+      modulePathIgnorePatterns: [
+        '/dist/',
+        'packages/manager/apps/container',
+        'packages/manager/apps/dedicated',
+      ],
     },
   ],
 };

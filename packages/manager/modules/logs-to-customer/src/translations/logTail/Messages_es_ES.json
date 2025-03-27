@@ -1,0 +1,5 @@
+{
+  "log_tail_search_placeholder": "Resaltar un elemento",
+  "log_tail_polling": "Buscando logs...",
+  "log_tail_error_get_logs": "Se ha producido un error al cargar los logs."
+}

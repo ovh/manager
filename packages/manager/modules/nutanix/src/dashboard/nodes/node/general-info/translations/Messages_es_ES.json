@@ -25,5 +25,6 @@
   "server_configuration_reverse_not_configured": "No configurado",
   "server_configuration_reverse_edit_button": "Editar",
   "server_configuration_reboot_successfull": "El servidor {{serverName}} se ha reiniciado.",
-  "server_configuration_reboot_fail_task": "Se ha producido un error al reiniciar el servidor."
+  "server_configuration_reboot_fail_task": "Se ha producido un error al reiniciar el servidor.",
+  "nutanix_node_general_suspended": "El servicio se ha dado de baja"
 }

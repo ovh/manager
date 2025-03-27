@@ -25,5 +25,6 @@
   "server_configuration_reverse_not_configured": "Nicht konfiguriert",
   "server_configuration_reverse_edit_button": "Bearbeiten",
   "server_configuration_reboot_successfull": "Ihr Server {{serverName}} wurde neu gestartet.",
-  "server_configuration_reboot_fail_task": "Beim Neustart Ihres Servers ist ein Fehler aufgetreten."
+  "server_configuration_reboot_fail_task": "Beim Neustart Ihres Servers ist ein Fehler aufgetreten.",
+  "nutanix_node_general_suspended": "Ihre Dienstleistung wurde gekündigt"
 }

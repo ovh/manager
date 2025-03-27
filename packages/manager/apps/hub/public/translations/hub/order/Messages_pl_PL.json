@@ -1,0 +1,21 @@
+{
+  "hub_order_tracking_title": "Ostatnie zamówienie ",
+  "hub_order_tracking_see_all": "Wyświetl moje zamówienia",
+  "hub_order_tracking_error": "Nie można pobrać informacji o zamówieniu",
+  "hub_order_tracking_order_id": "Nr {{orderId}}",
+  "order_tracking_history_DELIVERY": "Trwa przygotowywanie Twojego zamówienia.",
+  "order_tracking_history_FRAUD_CHECK": "Trwa potwierdzanie zamówienia.",
+  "order_tracking_history_FRAUD_DOCS_REQUESTED": "W oczekiwaniu na dokumenty potwierdzające tożsamość",
+  "order_tracking_history_FRAUD_MANUAL_REVIEW": "Trwa weryfikacja Twojego zamówienia.",
+  "order_tracking_history_FRAUD_REFUSED": "Zamówienie zostało odrzucone.",
+  "order_tracking_history_INVOICE_IN_PROGRESS": "Twoje zamówienie jest dostępne.",
+  "order_tracking_history_INVOICE_SENT": "Faktura jest dostępna.",
+  "order_tracking_history_ORDER_ACCEPTED": "Zamówienie przyjęte",
+  "order_tracking_history_ORDER_STARTED": "Trwa zapisywanie Twojego zamówienia.",
+  "order_tracking_history_PAYMENT_CONFIRMED": "Płatność zatwierdzona.",
+  "order_tracking_history_PAYMENT_INITIATED": "Trwa potwierdzanie płatności.",
+  "order_tracking_history_PAYMENT_RECEIVED": "Płatność otrzymana",
+  "order_tracking_history_REGISTERED_PAYMENT_INITIATED": "Trwa potwierdzanie płatności.",
+  "order_tracking_history_custom_payment_waiting": "Brak płatności",
+  "order_tracking_history_custom_creation": "Trwa tworzenie zamówienia."
+}

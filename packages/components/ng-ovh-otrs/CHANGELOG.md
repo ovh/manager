@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.6.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-otrs@9.5.1...@ovh-ux/ng-ovh-otrs@9.6.0) (2025-03-25)
+
+
+### Features
+
+* **dedicated:** ticket hide option intervention & hd replacement ui ([#15851](https://github.com/ovh/manager/issues/15851)) ([ab7147f](https://github.com/ovh/manager/commit/ab7147fad473d24b3a3ff2f51234a24b32aecca7)), closes [#MANAGER-15205](https://github.com/ovh/manager/issues/MANAGER-15205)
+
+
+
+
+
 ## [9.5.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-otrs@9.5.0...@ovh-ux/ng-ovh-otrs@9.5.1) (2024-11-28)
 
 **Note:** Version bump only for package @ovh-ux/ng-ovh-otrs

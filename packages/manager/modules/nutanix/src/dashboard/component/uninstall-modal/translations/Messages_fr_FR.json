@@ -1,0 +1,10 @@
+{
+  "nutanix_dashboard_uninstall_node_title": "Désinstaller le noeud",
+  "nutanix_dashboard_uninstall_node_description": "Vous aller désinstaller votre noeud {{serviceName}}. La désinstallation d'un noeud Nutanix peut avoir un impact sur votre cluster. Vérifier les pré-requis sur le portail de Nutanix pour réaliser cette action",
+  "nutanix_dashboard_uninstall_node_uninstall_guidelink": "Accéder au portail",
+  "nutanix_dashboard_uninstall_node_confirm": "Désinstaller",
+  "nutanix_dashboard_uninstall_node_cancel": "Annuler",
+  "nutanix_dashboard_uninstall_node_input_label": "Entrez \"{{magicword}}\" pour confirmer votre choix",
+  "nutanix_dashboard_uninstall_node_success_banner": "Votre demande de désinstallation a été prise en compte. Cette opération peut prendre jusqu'à 10 minutes",
+  "nutanix_dashboard_uninstall_node_error_banner": "La demande de désinstallation n'a pas abouti. Si l'erreur persiste, merci de contacter le support"
+}

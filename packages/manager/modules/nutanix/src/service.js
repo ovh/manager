@@ -9,6 +9,8 @@ import {
   NUTANIX_AUTHORIZATION_TYPE,
 } from './constants';
 import Cluster from './cluster.class';
+import Node from './node.class';
+import TechnicalDetails from './technical-details.class';
 
 export default class NutanixService {
   /* @ngInject */
@@ -38,7 +40,7 @@ export default class NutanixService {
   /**
    *
    * @param {string} nodeServiceName
-   * @param {clusrer[]} clusters
+   * @param {cluster[]} clusters
    * @returns {*} - cluster if found, null otherwise
    */
   static getClusterByNodeName(nodeServiceName, clusters = []) {
@@ -75,26 +77,53 @@ export default class NutanixService {
     return this.$http.get(`/services/${serviceId}`).then(({ data }) => data);
   }
 
+  getAllServicesDetails(serviceId) {
+    return this.$q
+      .all([
+        this.getServicesDetails(serviceId),
+        this.getServiceOptions(serviceId),
+      ])
+      .then(([serviceDetails, optionsDetails]) => ({
+        serviceDetails,
+        optionsDetails,
+      }));
+  }
+
+  static getServicesTotalPrice(serviceDetails, optionsDetails) {
+    const optionsPrices = optionsDetails.reduce((sum, service) => {
+      const price = service.billing?.pricing?.priceInUcents || 0;
+      return sum + price;
+    }, 0);
+
+    return {
+      priceInUcents:
+        optionsPrices + serviceDetails.billing?.pricing.priceInUcents,
+      currency: serviceDetails.billing?.pricing?.price?.currencyCode,
+    };
+  }
+
   getNodeHardwareInfo(nodeId) {
     return this.$http
       .get(`/dedicated/technical-details/${nodeId}`, {
         serviceType: 'aapi',
       })
       .then(({ data }) =>
-        data?.baremetalServers?.storage ? data?.baremetalServers : null,
+        data?.baremetalServers?.storage
+          ? new TechnicalDetails(data.baremetalServers, this.$translate)
+          : null,
       )
       .catch(() => null);
   }
 
   getClusterHardwareInfo(serviceId, nodeServiceId) {
-    return this.getClusterOptions(serviceId)
+    return this.getServiceOptions(serviceId)
       .then((options) => {
-        const optionsServiceId = [nodeServiceId, serviceId];
+        const optionsServiceId = new Set([nodeServiceId, serviceId]);
         options.forEach((option) => {
-          optionsServiceId.push(option.serviceId);
+          optionsServiceId.add(option.serviceId);
         });
         return this.$q.all(
-          optionsServiceId.map((optionServiceId) => {
+          [...optionsServiceId].map((optionServiceId) => {
             return this.getHardwareInfo(optionServiceId).then(
               (hardwareInfo) => {
                 return {
@@ -139,7 +168,7 @@ export default class NutanixService {
         });
       }
       if (hardwareInfo.nutanixCluster) {
-        // only one nutanix cluster, no need merge the reults
+        // only one nutanix cluster, no need merge the results
         nutanixCluster = hardwareInfo.nutanixCluster;
       }
     });
@@ -149,7 +178,7 @@ export default class NutanixService {
     };
   }
 
-  getClusterOptions(serviceId) {
+  getServiceOptions(serviceId) {
     return this.$http
       .get(`/services/${serviceId}/options`)
       .then(({ data }) => data);
@@ -167,10 +196,26 @@ export default class NutanixService {
       .then(({ data }) => data);
   }
 
-  getNodeDetails(nodes) {
+  getNodeDetails(cluster) {
     return this.$q
-      .all(nodes.map((node) => this.getServer(node.server)))
-      .then((res) => res);
+      .all(cluster.getNodes().map((node) => this.getServer(node.server)))
+      .then((nodes) => {
+        const nodesWithStatus = nodes;
+        cluster.getNodes().forEach((nodeDetail) => {
+          const nodeIndex = nodesWithStatus.findIndex(
+            (node) => node.name === nodeDetail.server,
+          );
+
+          if (nodeIndex < 0) return;
+
+          nodesWithStatus[nodeIndex] = new Node({
+            ...nodes[nodeIndex],
+            ...nodeDetail,
+          });
+        });
+
+        return nodesWithStatus;
+      });
   }
 
   getServer(nodeId) {
@@ -291,5 +336,52 @@ export default class NutanixService {
         authorizations.authorizedActions.includes(action),
       ),
     };
+  }
+
+  updateClusterNodePowerStateOn(nodeId) {
+    return this.$http
+      .put(`/dedicated/server/${nodeId}`, {
+        bootId: 1,
+        monitoring: false,
+        noIntervention: false,
+      })
+      .then(() => this.rebootClusterNode(nodeId));
+  }
+
+  getClusterNodePowerId(nodeId) {
+    return this.$http
+      .get(`/dedicated/server/${nodeId}/boot?bootType=power`)
+      .then(({ data }) => data[0]);
+  }
+
+  updateClusterNodePowerStateOff(nodeId) {
+    return this.getClusterNodePowerId(nodeId)
+      .then((powerId) =>
+        this.$http.put(`/dedicated/server/${nodeId}`, {
+          bootId: powerId,
+          monitoring: false,
+          noIntervention: false,
+        }),
+      )
+      .then(() => this.rebootClusterNode(nodeId));
+  }
+
+  rebootClusterNode(nodeId) {
+    return this.$http.post(`/dedicated/server/${nodeId}/reboot`);
+  }
+
+  installClusterNode(clusterId, nodeId, options) {
+    return this.$http.put(
+      `/nutanix/${clusterId}/nodes/${nodeId}/deploy`,
+      options,
+    );
+  }
+
+  reinstallClusterNode(clusterId, nodeId, options) {
+    return this.$http.put(`/nutanix/${clusterId}/nodes/${nodeId}`, options);
+  }
+
+  uninstallClusterNode(clusterId, nodeId) {
+    return this.$http.post(`/nutanix/${clusterId}/nodes/${nodeId}/terminate`);
   }
 }

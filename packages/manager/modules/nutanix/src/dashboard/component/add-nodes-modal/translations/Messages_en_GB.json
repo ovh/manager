@@ -1,0 +1,21 @@
+{
+  "nutanix_dashboard_add_nodes_title": "Order node(s)",
+  "nutanix_dashboard_add_nodes_actual_configuration": "Current configuration of the nodes in your cluster",
+  "nutanix_dashboard_add_nodes_server_model": "Server model:",
+  "nutanix_dashboard_add_nodes_cpu": "CPU:",
+  "nutanix_dashboard_add_nodes_memory": "Memory:",
+  "nutanix_dashboard_add_nodes_stokage": "Storage:",
+  "nutanix_dashboard_add_nodes_informations": "Information",
+  "nutanix_dashboard_add_nodes_price_preffix": "The price of an additional node is",
+  "nutanix_dashboard_add_nodes_price_suffix": "ex. VAT/month",
+  "nutanix_dashboard_add_nodes_number_of_nodes_available": "Your cluster currently consists of {{numberOfNodes}} nodes, and you can extend it to 15 nodes.",
+  "nutanix_dashboard_add_nodes_number_of_additional_nodes_to_command": "Number of additional nodes to order.",
+  "nutanix_dashboard_add_nodes_confirm": "Order now",
+  "nutanix_dashboard_add_nodes_cancel": "Cancel",
+  "nutanix_dashboard_add_nodes_success_banner": "Your node order has been initiated. If you have not yet finalized it, you can complete it by clicking on the following link: ",
+  "nutanix_dashboard_add_nodes_success_banner_link_label": "Finalize the order",
+  "nutanix_dashboard_add_nodes_informations_max_nodes": "Your cluster currently has {{currentNumberOfNodes}} nodes, and you can extend it to {{maxNumberOfNodes}} nodes.",
+  "nutanix_dashboard_add_nodes_error_too_many_nodes": "You are exceeding the maximum number of nodes allowed in a cluster",
+  "nutanix_dashboard_add_nodes_error_not_enough_nodes": "You must order at least 1 node",
+  "nutanix_dashboard_add_nodes_single_node_limit_alert": "You can only order one additional node at the moment, the simultaneous order of several nodes will be available soon"
+}

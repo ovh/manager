@@ -1,4 +1,5 @@
 import React from 'react';
+import { logsRoutes } from '@ovh-ux/logs-to-customer';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 import NotFound from '../pages/404';
 import { ROUTES_URLS } from './routes.constants';
@@ -168,6 +169,13 @@ export default [
                 },
               },
             ],
+          },
+          {
+            path: `${ROUTES_URLS.logs}/*`,
+            ...lazyRouteConfig(() =>
+              import('@/pages/dashboard/logs/Logs.page'),
+            ),
+            children: [...logsRoutes],
           },
         ],
       },

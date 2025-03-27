@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.3.0...@ovh-ux/manager-pci-object-storage-app@0.4.0) (2025-03-25)
+
+
+### Features
+
+* **object-storage:** add changelog button ([#15934](https://github.com/ovh/manager/issues/15934)) ([6f7535b](https://github.com/ovh/manager/commit/6f7535b835553ff996da1bc093b3cf3745d22792)), closes [#MANAGER-17177](https://github.com/ovh/manager/issues/MANAGER-17177)
+
+
+
+
+
+# [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.2.6...@ovh-ux/manager-pci-object-storage-app@0.3.0) (2025-03-24)
+
+
+### Features
+
+* **pci-object-storage:** show object versions and actions ([#15913](https://github.com/ovh/manager/issues/15913)) ([696f6d6](https://github.com/ovh/manager/commit/696f6d6e1cc935490eaa37fafd38e62f5b1d5045)), closes [#TAPC-1302](https://github.com/ovh/manager/issues/TAPC-1302) [#TAPC-2198](https://github.com/ovh/manager/issues/TAPC-2198) [#TAPC-3490](https://github.com/ovh/manager/issues/TAPC-3490)
+
+
+
+
+
 ## [0.2.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.2.5...@ovh-ux/manager-pci-object-storage-app@0.2.6) (2025-03-21)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app

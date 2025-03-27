@@ -32,5 +32,6 @@
   "manager_billing_subscription_resiliate": "Kündigen",
   "manager_billing_subscription_resiliate_my_engagement": "Meine Vertragsbindung kündigen",
   "manager_billing_subscription_pay_bill": "Begleichen",
-  "manager_billing_subscription_pay_bill_renew": "Verlängern"
+  "manager_billing_subscription_pay_bill_renew": "Verlängern",
+  "manager_billing_subscription_engagement_commit_cancel": "Abonnementbestellung mit fester Laufzeit stornieren"
 }

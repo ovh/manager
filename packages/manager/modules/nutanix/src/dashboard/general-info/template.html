@@ -139,6 +139,72 @@
                 </oui-tile-description>
             </oui-tile-definition>
 
+            <!-- number of nodes -->
+            <oui-tile-definition
+                term="{{:: 'nutanix_dashboard_cluster_number_of_nodes' | translate }}"
+            >
+                <oui-tile-description class="align-items-start">
+                    <div class="text-break">
+                        <span
+                            class="font-weight-bold text-break"
+                            data-ng-bind="$ctrl.cluster.targetSpec.metadata.initialCommitmentSize"
+                        ></span>
+                        <span
+                            data-translate="nutanix_dashboard_cluster_total_suscribed"
+                        ></span>
+                    </div>
+                    <div>
+                        <span
+                            data-ng-if="$ctrl.numberNodesToDeploy > 0"
+                            class="oui-badge oui-badge_warning text-break ml-n1"
+                            data-ng-pluralize
+                            data-count="$ctrl.numberNodesToDeploy"
+                            data-when="{
+                                'one': ('nutanix_dashboard_cluster_one_node_to_deploy'  | translate ),
+                                'other': ('nutanix_dashboard_cluster_several_nodes_to_deploy'  | translate:{numberOfNodes: $ctrl.numberNodesToDeploy}),
+                            }"
+                        ></span>
+                    </div>
+                    <div>
+                        <span
+                            data-ng-if="$ctrl.numberNodesDeployed > 0"
+                            class="oui-badge oui-badge_success text-break ml-n1"
+                            data-ng-pluralize
+                            data-count="$ctrl.numberNodesDeployed"
+                            data-when="{
+                                'one': ('nutanix_dashboard_cluster_one_node_deployed'  | translate ),
+                                'other': ('nutanix_dashboard_cluster_several_nodes_deployed'  | translate:{numberOfNodes: $ctrl.numberNodesDeployed}),
+                            }"
+                        ></span>
+                    </div>
+                    <div>
+                        <a
+                            class="oui-link_icon"
+                            data-ng-href="{{$ctrl.listingNodesPagesLink}}"
+                        >
+                            <span
+                                data-translate="nutanix_dashboard_cluster_manage_nodes"
+                            ></span>
+                            <span
+                                class="oui-icon oui-icon-arrow-right align-middle d-inline-block"
+                                aria-hidden="true"
+                            ></span>
+                        </a>
+                    </div>
+                </oui-tile-description>
+                <oui-action-menu data-compact data-placement="end">
+                    <oui-action-menu-item
+                        data-on-click="$ctrl.goToAddNode()"
+                        data-disabled="$ctrl.isMaxNodesReached"
+                        data-oui-tooltip="{{ $ctrl.addNodeTooltipContent }}"
+                    >
+                        <span
+                            data-translate="nutanix_dashboard_cluster_buy_node"
+                        ></span>
+                    </oui-action-menu-item>
+                </oui-action-menu>
+            </oui-tile-definition>
+
             <!-- Fault Tolerance Domain -->
             <oui-tile-definition
                 term="{{:: $ctrl.GENERAL_INFO_TILE_TITLE.FAULT_TOLENRANCE_DOMAIN }}"

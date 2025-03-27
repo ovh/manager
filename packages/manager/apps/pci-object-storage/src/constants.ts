@@ -436,3 +436,17 @@ export const X_CONTAINER_READ_PUBLIC_VALUE = '.r:*,.rlistings';
 export const BACKUP_KEY = 'ovh:backup';
 
 export const MUMBAI_REGION_NAME = 'AP-SOUTH-MUM';
+
+export const STATUS_DISABLED = 'disabled';
+export const STATUS_ENABLED = 'enabled';
+export const STATUS_SUSPENDED = 'suspended';
+
+export const PERMANENTLY_DELETE_MSG = 'PERMANENTLY DELETE';
+export const CHANGELOG_LINKS = {
+  changelog:
+    'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Public+Cloud+Storage',
+  roadmap:
+    'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Public+Cloud+Storage',
+  'feature-request':
+    'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+};
