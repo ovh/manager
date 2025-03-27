@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import {
@@ -19,10 +20,10 @@ export default function PriceEstimate({
   const { getFormattedCatalogPrice } = useCatalogPrice(3, {
     hideTaxLabel: true,
   });
-  const priceEstimate = convertHourlyPriceToMonthly(
-    pricing.price * volumeCapacity,
+  const priceEstimate = useMemo(
+    () => convertHourlyPriceToMonthly(pricing.price * volumeCapacity),
+    [pricing, volumeCapacity],
   );
-
   return (
     <OdsText color="text">
       {t('pci_projects_project_storages_blocks_add_submit_price_text', {

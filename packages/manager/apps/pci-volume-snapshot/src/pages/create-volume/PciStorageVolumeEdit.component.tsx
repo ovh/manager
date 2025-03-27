@@ -1,4 +1,5 @@
 import { FormEvent, useCallback, useMemo, useState } from 'react';
+import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 import {
   OdsButton,
@@ -147,7 +148,9 @@ export default function PciStorageVolumeEdit({
       <div className="flex items-end mt-6 mb-3">
         <OdsFormField>
           <OdsText
-            className={`font-bold-class ${hasSizeError ? 'text-critical' : ''}`}
+            className={clsx('font-bold-class', {
+              'text-critical': hasSizeError,
+            })}
             preset="caption"
             slot="label"
           >
@@ -201,7 +204,7 @@ export default function PciStorageVolumeEdit({
 
       <OdsText
         preset="caption"
-        className={`block ${hasSizeError ? 'text-critical' : ''}`}
+        className={clsx('block', { 'text-critical': hasSizeError })}
       >
         {t('pci_projects_project_storages_blocks_block_volume-edit_size_help')}
       </OdsText>
