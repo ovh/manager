@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.21.0...@ovh-ux/manager-dedicated@20.22.0) (2025-03-27)
+
+
+### Features
+
+* **nutanix:** add columns in listing node page ([fdbe560](https://github.com/ovh/manager/commit/fdbe56096dc3be6bdadc16249f411c8aa0c52a29)), closes [#MANAGER-15588](https://github.com/ovh/manager/issues/MANAGER-15588)
+* **nutanix:** add quick action on listing node ([4cbf0bc](https://github.com/ovh/manager/commit/4cbf0bc80573543b88a97fc92672af5ffad1024b)), closes [#MANAGER-15582](https://github.com/ovh/manager/issues/MANAGER-15582)
+* **nutanix:** manage node resiliated ([564497d](https://github.com/ovh/manager/commit/564497d8c821f1eca660ebd00609c13b3506f837)), closes [#MANAGER-16520](https://github.com/ovh/manager/issues/MANAGER-16520)
+
+
+
+
+
 # [20.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.20.0...@ovh-ux/manager-dedicated@20.21.0) (2025-03-27)
 
 

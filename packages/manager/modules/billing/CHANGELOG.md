@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.33.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.32.0...@ovh-ux/manager-billing@0.33.0) (2025-03-27)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 296] ([bf4b02c](https://github.com/ovh/manager/commit/bf4b02c0d647e0a157bc72917dfd79c8fcde0a2d))
+
+
+### Features
+
+* add node nutanix resilitate popin ([dead987](https://github.com/ovh/manager/commit/dead9877bc6b15b9a83cdb24ff46a8962d14c120)), closes [#MANAGER-15716](https://github.com/ovh/manager/issues/MANAGER-15716)
+
+
+
+
+
 # [0.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.31.3...@ovh-ux/manager-billing@0.32.0) (2025-03-24)
 
 
