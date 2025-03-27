@@ -181,10 +181,10 @@ export const useSavingsPlanCreate = (
         ],
       });
       const { data: refetchData } = await refetch();
-      if (refetchData?.length) {
+      if (refetchData?.length && onSuccess) {
         const foundPlan = refetchData?.find((data) => data.id === res.id);
         if (foundPlan) {
-          onSuccess?.(foundPlan);
+          onSuccess(foundPlan);
         }
         navigate(getSavingsPlansUrl(projectId));
       }
