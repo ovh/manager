@@ -1,21 +1,19 @@
 import { v6 } from '@ovh-ux/manager-core-api';
+import { TRegionBase } from '@/api/data/regions';
 
-export type TRegionAvailability = {
-  continentCode: 'ASIA' | 'EU' | 'NA' | 'US';
+export type TProductAvailabilityRegion = TRegionBase & {
   datacenter: string;
   enabled: boolean;
-  name: string;
-  type: 'localzone' | 'region' | 'region-3-az';
 };
 
 export type TProductAvailability = {
   plans: {
     code: string;
-    regions: TRegionAvailability[];
+    regions: TProductAvailabilityRegion[];
   }[];
   products: {
     name: string;
-    regions: TRegionAvailability[];
+    regions: TProductAvailabilityRegion[];
   }[];
 };
 
