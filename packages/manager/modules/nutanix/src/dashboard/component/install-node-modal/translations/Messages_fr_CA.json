@@ -1,0 +1,16 @@
+{
+  "nutanix_dashboard_install_node_title": "Installer le noeud",
+  "nutanix_dashboard_install_node_description": "Vous allez installer AOS et AHV sur votre noeud. Indiquez des adresses IP inutilisées dans le réseau de votre cluster.",
+  "nutanix_dashboard_install_node_tips": "Pour une installation simultanée sur plusieurs noeuds, veuillez utiliser l'API",
+  "nutanix_dashboard_install_node_label_ahv_ip": "IP du noeud",
+  "nutanix_dashboard_install_node_label_cvm_ip": "IP CVM",
+  "nutanix_dashboard_install_node_label_version_aos": "Version AOS",
+  "nutanix_dashboard_install_node_confirm": "Installer",
+  "nutanix_dashboard_install_node_cancel": "Annuler",
+  "nutanix_dashboard_install_node_success_banner": "Votre demande d'installation a été prise en compte. Cette opération peut prendre jusqu'à 1h",
+  "nutanix_dashboard_install_node_error_banner": "La demande d'installation n'a pas abouti. Si l'erreur persiste, merci de contacter le support",
+  "nutanix_dashboard_install_ip_unique_error": "Cette IP est déjà utilisée sur ce cluster",
+  "nutanix_dashboard_install_ip_not_in_cidr_subnet_error": "Les adresses ne sont pas sur le même réseau.",
+  "nutanix_dashboard_install_ip_format_error": "Le format de l'IP n'est pas correct",
+  "nutanix_dashboard_install_ip_tooltip": "L'adresse IP doit être incluse dans le sous-réseau du cluster."
+}
