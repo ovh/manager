@@ -18,7 +18,7 @@ describe('Route Modal component', () => {
       />,
     );
     await waitFor(() => {
-      expect(screen.getByTestId('dialog-container')).toBeInTheDocument();
+      expect(screen.getByTestId('dialog-container')).toBeTruthy();
     });
   });
 
@@ -32,7 +32,7 @@ describe('Route Modal component', () => {
       />,
     );
     await waitFor(() => {
-      expect(screen.getByText('HelloWorld')).toBeInTheDocument();
+      expect(screen.getByText('HelloWorld')).toBeTruthy();
     });
   });
 });

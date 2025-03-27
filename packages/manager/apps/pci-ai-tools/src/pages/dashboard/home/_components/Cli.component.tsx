@@ -1,17 +1,18 @@
 import {
   Alert,
+  Code,
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
+  useToast,
 } from '@datatr-ux/uxlib';
 import { AlertCircle } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import ai from '@/types/AI';
 import Link from '@/components/links/Link.component';
-import CodeBlock from '@/components/code-block/CodeBlock.component';
 
 interface CliProps {
   regions: ai.capabilities.Region[];
@@ -23,6 +24,7 @@ const Cli = ({ regions }: CliProps) => {
   const [selectedRegion, setSelectedRegion] = useState<ai.capabilities.Region>(
     regions[0],
   );
+  const toast = useToast();
   const curlUlr = `curl -s ${selectedRegion.cliInstallUrl}/install.sh | bash`;
   const userLink = './users';
   const tokenLink = './tokens';
@@ -48,7 +50,16 @@ const Cli = ({ regions }: CliProps) => {
           ))}
         </SelectContent>
       </Select>
-      <CodeBlock code={curlUlr} />
+      <Code
+        label={t('codeCliTitle')}
+        code={curlUlr}
+        lang="bash"
+        onCopied={() =>
+          toast.toast({
+            title: t('codeCliToastMessage'),
+          })
+        }
+      />
       <Alert variant="primary" className="border-0">
         <div className="flex flex-row gap-3 items-center">
           <AlertCircle className="size-5" />

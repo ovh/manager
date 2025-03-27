@@ -28,18 +28,18 @@ describe('Users page', () => {
     const translationKey = 'breadcrumb';
     render(<Breadcrumb />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByText(translationKey)).toBeInTheDocument();
+      expect(screen.getByText(translationKey)).toBeTruthy();
     });
   });
   it('renders and shows buttons in the user page', async () => {
     render(<Users />, { wrapper: RouterWithQueryClientWrapper });
-    expect(screen.getByTestId('manage-user-button')).toBeInTheDocument();
-    expect(screen.getByTestId('create-user-button')).toBeInTheDocument();
+    expect(screen.getByTestId('manage-user-button')).toBeTruthy();
+    expect(screen.getByTestId('create-user-button')).toBeTruthy();
   });
 
   it('trigger useNavigate on create button click', async () => {
     render(<Users />, { wrapper: RouterWithQueryClientWrapper });
-    expect(screen.getByTestId('create-user-button')).toBeInTheDocument();
+    expect(screen.getByTestId('create-user-button')).toBeTruthy();
     act(() => {
       fireEvent.click(screen.getByTestId('create-user-button'));
     });
