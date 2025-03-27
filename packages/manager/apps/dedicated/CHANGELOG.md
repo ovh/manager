@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.21.0...@ovh-ux/manager-dedicated@20.22.0) (2025-03-27)
+
+
+### Features
+
+* **nutanix:** add columns in listing node page ([fdbe560](https://github.com/ovh/manager/commit/fdbe56096dc3be6bdadc16249f411c8aa0c52a29)), closes [#MANAGER-15588](https://github.com/ovh/manager/issues/MANAGER-15588)
+* **nutanix:** add quick action on listing node ([4cbf0bc](https://github.com/ovh/manager/commit/4cbf0bc80573543b88a97fc92672af5ffad1024b)), closes [#MANAGER-15582](https://github.com/ovh/manager/issues/MANAGER-15582)
+* **nutanix:** manage node resiliated ([564497d](https://github.com/ovh/manager/commit/564497d8c821f1eca660ebd00609c13b3506f837)), closes [#MANAGER-16520](https://github.com/ovh/manager/issues/MANAGER-16520)
+
+
+
+
+
+# [20.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.20.0...@ovh-ux/manager-dedicated@20.21.0) (2025-03-27)
+
+
+### Features
+
+* **dedicated.pcc:** decommission 2API private cloud catalog ([6255ad5](https://github.com/ovh/manager/commit/6255ad5bc3e524b2c64c12a705c2485962d1875f)), closes [#MANAGER-17151](https://github.com/ovh/manager/issues/MANAGER-17151) [#INC0117252](https://github.com/ovh/manager/issues/INC0117252)
+
+
+
+
+
+# [20.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.19.3...@ovh-ux/manager-dedicated@20.20.0) (2025-03-25)
+
+
+### Features
+
+* **managed-vcd:** remove a duplicated changelog button ([#15932](https://github.com/ovh/manager/issues/15932)) ([2090cf0](https://github.com/ovh/manager/commit/2090cf011e78a7ef9443513afd3b01172c904f9e)), closes [#MANAGER-17177](https://github.com/ovh/manager/issues/MANAGER-17177)
+
+
+
+
+
 ## [20.19.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.19.2...@ovh-ux/manager-dedicated@20.19.3) (2025-03-24)
 
 

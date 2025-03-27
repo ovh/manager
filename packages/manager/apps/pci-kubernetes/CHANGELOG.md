@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.17.1...@ovh-ux/manager-pci-kubernetes-app@0.18.0) (2025-03-24)
+
+
+### Features
+
+* **pci.kubernetes:** enable LDP for US region ([#15726](https://github.com/ovh/manager/issues/15726)) ([356f7ca](https://github.com/ovh/manager/commit/356f7ca26d62d26e02bdd176228b782a434c324a)), closes [#MANAGER-17044](https://github.com/ovh/manager/issues/MANAGER-17044)
+
+
+
+
+
 ## [0.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.17.0...@ovh-ux/manager-pci-kubernetes-app@0.17.1) (2025-03-21)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app

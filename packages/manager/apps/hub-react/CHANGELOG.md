@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-react-app@0.10.4...@ovh-ux/manager-hub-react-app@0.11.0) (2025-03-25)
+
+
+### Bug Fixes
+
+* **hub-react:** add zimbra slot translation ([#15785](https://github.com/ovh/manager/issues/15785)) ([9cc51b3](https://github.com/ovh/manager/commit/9cc51b35790efe74192dbeb347bc115bdd197b43)), closes [#MANAGER-17300](https://github.com/ovh/manager/issues/MANAGER-17300)
+* **hub:** fix hub changelog ([#16203](https://github.com/ovh/manager/issues/16203)) ([23d5c30](https://github.com/ovh/manager/commit/23d5c30feb615e65a1c2119fb47f0f918c59ece3)), closes [#MANAGER-15693](https://github.com/ovh/manager/issues/MANAGER-15693)
+* **hub:** fix packages version ([#16176](https://github.com/ovh/manager/issues/16176)) ([1541025](https://github.com/ovh/manager/commit/1541025b4cc9f527a9e35477555b9aca190ef284)), closes [#MANAGER-15693](https://github.com/ovh/manager/issues/MANAGER-15693)
+* **hub:** fix release hub package ([#16184](https://github.com/ovh/manager/issues/16184)) ([01195fb](https://github.com/ovh/manager/commit/01195fba697afb2753a7052743c76b1c11244fc8)), closes [#MANAGER-15693](https://github.com/ovh/manager/issues/MANAGER-15693)
+
+
+### Features
+
+* **hub:** remove angularjs hub ([#15799](https://github.com/ovh/manager/issues/15799)) ([370a10f](https://github.com/ovh/manager/commit/370a10f0840e8a25618cb6626b7ab722a879d1d8)), closes [#MANAGER-15693](https://github.com/ovh/manager/issues/MANAGER-15693)
+
+
+
+
+
 ## [0.10.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-react-app@0.10.3...@ovh-ux/manager-hub-react-app@0.10.4) (2025-03-21)
 
 **Note:** Version bump only for package @ovh-ux/manager-hub-react-app

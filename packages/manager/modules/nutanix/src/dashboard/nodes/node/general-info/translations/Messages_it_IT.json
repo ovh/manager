@@ -25,5 +25,6 @@
   "server_configuration_reverse_not_configured": "Non configurato",
   "server_configuration_reverse_edit_button": "Modifica",
   "server_configuration_reboot_successfull": "Il server {{serverName}} è stato riavviato.",
-  "server_configuration_reboot_fail_task": "Si è verificato un errore nel riavvio del server. "
+  "server_configuration_reboot_fail_task": "Si è verificato un errore nel riavvio del server. ",
+  "nutanix_node_general_suspended": "Il servizio è stato disattivato"
 }

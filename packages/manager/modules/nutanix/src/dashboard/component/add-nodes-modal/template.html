@@ -1,0 +1,99 @@
+<oui-modal
+    data-on-dismiss="$ctrl.goBack()"
+    data-primary-action="$ctrl.onSubmit()"
+    data-primary-label="{{:: 'nutanix_dashboard_add_nodes_confirm' | translate }}"
+    data-primary-disabled="$ctrl.cancelSubscriptionForm.$invalid"
+    data-secondary-action="$ctrl.goBack()"
+    data-secondary-label="{{:: 'nutanix_dashboard_add_nodes_cancel' | translate }}"
+    data-heading="{{:: 'nutanix_dashboard_add_nodes_title' | translate }}"
+>
+    <div>
+        <p
+            class="oui-heading_4"
+            data-translate="nutanix_dashboard_add_nodes_actual_configuration"
+        ></p>
+        <div
+            data-ng-if="!$ctrl.isMultipleNodesOrderEnabled"
+            class="oui-message oui-message_warning mb-2"
+            role="alert"
+        >
+            <span
+                class="oui-message__icon oui-icon oui-icon-warning-circle"
+                aria-hidden="true"
+            ></span>
+            <p
+                class="oui-message__body"
+                data-translate="nutanix_dashboard_add_nodes_single_node_limit_alert"
+            ></p>
+        </div>
+        <div>
+            <strong
+                data-translate="nutanix_dashboard_add_nodes_server_model"
+            ></strong>
+            <span data-ng-bind="$ctrl.server.description"></span>
+        </div>
+        <div>
+            <strong data-translate="nutanix_dashboard_add_nodes_cpu"></strong>
+            <span data-ng-bind="$ctrl.nodeTechnicalDetails.cpu"></span>
+        </div>
+        <div>
+            <strong
+                data-translate="nutanix_dashboard_add_nodes_memory"
+            ></strong>
+            <span
+                data-ng-bind="$ctrl.nodeTechnicalDetails.memoryCapacity"
+            ></span>
+        </div>
+        <div>
+            <strong
+                data-translate="nutanix_dashboard_add_nodes_stokage"
+            ></strong>
+            <span
+                data-ng-bind="$ctrl.nodeTechnicalDetails.storageCapacity"
+            ></span>
+        </div>
+
+        <form class="mt-4" name="$ctrl.cancelSubscriptionForm" novalidate>
+            <p
+                class="oui-heading_4"
+                data-translate="nutanix_dashboard_add_nodes_informations"
+            ></p>
+
+            <div>
+                <div>
+                    <span
+                        data-translate="nutanix_dashboard_add_nodes_price_preffix"
+                    ></span>
+                    <span
+                        class="font-weight-bold"
+                        data-ng-bind="$ctrl.nodePriceText"
+                    ></span>
+                    <span
+                        data-translate="nutanix_dashboard_add_nodes_price_suffix"
+                    ></span>
+                </div>
+
+                <p
+                    class="font-weight-bold mt-2 mb-4"
+                    data-translate="nutanix_dashboard_add_nodes_informations_max_nodes"
+                    data-translate-values="$ctrl.informationsClusterNode"
+                ></p>
+
+                <oui-field
+                    data-ng-if="$ctrl.isMultipleNodesOrderEnabled"
+                    label="{{ 'nutanix_dashboard_add_nodes_number_of_additional_nodes_to_command' | translate }}"
+                    error-messages="$ctrl.customErrorMessages"
+                >
+                    <oui-numeric
+                        name="numberOfNodes"
+                        model="$ctrl.numberOfNodes"
+                        min="1"
+                        max="$ctrl.maxNodeToBuy"
+                        on-change="$ctrl.onChange(modelValue)"
+                    >
+                    </oui-numeric>
+                </oui-field>
+            </div>
+        </form>
+    </div>
+</oui-modal>

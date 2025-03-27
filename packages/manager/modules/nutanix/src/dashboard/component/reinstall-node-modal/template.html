@@ -1,0 +1,31 @@
+<oui-modal
+    data-on-dismiss="$ctrl.goBack()"
+    data-primary-action="$ctrl.onSubmit()"
+    data-primary-label="{{:: 'nutanix_dashboard_reinstall_node_confirm' | translate }}"
+    data-primary-disabled="$ctrl.reinstallNodeForm.$invalid"
+    data-loading="$ctrl.isLoading"
+    data-secondary-action="$ctrl.goBack()"
+    data-secondary-label="{{:: 'nutanix_dashboard_reinstall_node_cancel' | translate }}"
+    data-heading="{{:: 'nutanix_dashboard_reinstall_node_title' | translate }}"
+>
+    <div>
+        <p data-translate="nutanix_dashboard_reinstall_node_description"></p>
+
+        <oui-message type="info"
+            ><span data-translate="nutanix_dashboard_reinstall_node_tips"></span
+        ></oui-message>
+
+        <form class="mt-4" name="$ctrl.reinstallNodeForm" novalidate>
+            <oui-field
+                label="{{:: 'nutanix_dashboard_reinstall_node_label_version_aos' | translate }}"
+            >
+                <oui-select
+                    name="version"
+                    data-model="$ctrl.version"
+                    data-items=":: $ctrl.availableVersions"
+                    data-required
+                />
+            </oui-field>
+        </form>
+    </div>
+</oui-modal>

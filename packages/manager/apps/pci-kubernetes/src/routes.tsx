@@ -215,21 +215,14 @@ export default [
             handle: {
               tracking: 'logs',
             },
-            ...lazyRouteConfig(() => import('@/pages/detail/log/Logs.page'), {
-              disabledRegions: 'US',
-            }),
+            ...lazyRouteConfig(() => import('@/pages/detail/log/Logs.page')),
           },
           {
             path: 'logs/streams',
             handle: {
               tracking: 'streams',
             },
-            ...lazyRouteConfig(
-              () => import('@/pages/detail/log/Streams.page'),
-              {
-                disabledRegions: 'US',
-              },
-            ),
+            ...lazyRouteConfig(() => import('@/pages/detail/log/Streams.page')),
           },
         ],
       },

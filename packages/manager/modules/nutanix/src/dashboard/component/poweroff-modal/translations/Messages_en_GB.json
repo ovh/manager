@@ -1,0 +1,11 @@
+{
+  "nutanix_dashboard_poweroff_node_title": "Turn off node",
+  "nutanix_dashboard_poweroff_node_description": "Shutting down a Nutanix node can have an impact on your cluster. Please check the requirements on the Nutanix portal to carry out this action",
+  "nutanix_dashboard_poweroff_node_poweroff_guidelink": "Access the portal",
+  "nutanix_dashboard_poweroff_node_confirmation": "Are you sure you want to turn off your {{serviceName}} node?",
+  "nutanix_dashboard_poweroff_node_confirm": "Turn Off",
+  "nutanix_dashboard_poweroff_node_cancel": "Cancel",
+  "nutanix_dasboard_poweroff_node_input_label": "Enter \"{{magicword}}\" to confirm your choice",
+  "nutanix_dashboard_poweroff_node_success_banner": "Your extinction request has been processed. This may take up to 15 minutes",
+  "nutanix_dashboard_poweroff_node_error_banner": "Your extinction request has not been processed:"
+}

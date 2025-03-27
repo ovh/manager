@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.83.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.82.1...@ovh-ux/manager-pci@6.83.0) (2025-03-24)
+
+
+### Features
+
+* **pci:** remove angularJS billing code ([#15659](https://github.com/ovh/manager/issues/15659)) ([a67ee0a](https://github.com/ovh/manager/commit/a67ee0a979e61e7c9eee7636e992599a04b64906)), closes [#DTCORE-3135](https://github.com/ovh/manager/issues/DTCORE-3135)
+
+
+
+
+
 ## [6.82.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.82.0...@ovh-ux/manager-pci@6.82.1) (2025-03-18)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci

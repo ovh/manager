@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-hub-react-app",
-  "version": "0.10.4",
+  "version": "0.11.0",
   "private": true,
   "description": "OVHcloud Dashboard control panel.",
   "repository": {

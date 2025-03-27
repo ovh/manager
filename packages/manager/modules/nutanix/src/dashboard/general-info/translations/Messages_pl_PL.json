@@ -17,10 +17,17 @@
   "nutanix_dashboard_cluster_redeploy": "Ponowne wdrożenie klastra ",
   "nutanix_dashboard_cluster_redeploy_link": "Wdróż ponownie klaster",
   "nutanix_dashboard_cluster_deploying_info": "Trwa ponowne wdrożenie klastra",
-  "nutanix_dashboard_cluster_admin_interface_info": "Zaloguj się przez Prism Central, aby zarządzać klastrem Nutanix",
-  "nutanix_dashboard_cluster_type_of_pack": "Typ pakietu",
   "nutanix_dashboard_cluster_redeploy_modal_header": "Ponowne wdrożenie klastra ",
   "nutanix_dashboard_cluster_redeploy_modal_description": "Konieczne jest odinstalowanie licencji Nutanix na klastrze w Prism Central przed ponownym wdrożeniem klastra.",
   "nutanix_dashboard_cluster_redeploy_modal_continue": "Kontynuuj",
-  "nutanix_dashboard_cluster_redeploy_modal_cancel": "Anuluj"
+  "nutanix_dashboard_cluster_redeploy_modal_cancel": "Anuluj",
+  "nutanix_dashboard_cluster_manage_nodes": "Zarządzanie węzłami",
+  "nutanix_dashboard_cluster_number_of_nodes": "Liczba węzłów",
+  "nutanix_dashboard_cluster_buy_node": "Dodaj węzły",
+  "nutanix_dashboard_cluster_total_suscribed": "Węzły w pierwotnej subskrypcji",
+  "nutanix_dashboard_cluster_one_node_to_deploy": "1 węzeł do zainstalowania",
+  "nutanix_dashboard_cluster_several_nodes_to_deploy": "{{numberOfNodes}} węzłów do zainstalowania",
+  "nutanix_dashboard_cluster_one_node_deployed": "1 zainstalowany węzeł",
+  "nutanix_dashboard_cluster_several_nodes_deployed": "Liczba zainstalowanych węzłów: {{numberOfNodes}}",
+  "nutanix_dashboard_cluster_add_node_max_node_tooltip": "Osiągnąłeś maksymalną dozwoloną liczbę węzłów w klastrze"
 }

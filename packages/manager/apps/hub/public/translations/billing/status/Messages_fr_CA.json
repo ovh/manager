@@ -1,0 +1,12 @@
+{
+  "manager_billing_service_status": "Statut",
+  "manager_billing_service_status_auto": "Renouvellement automatique",
+  "manager_billing_service_status_automatic": "Renouvellement automatique",
+  "manager_billing_service_status_manual": "Renouvellement manuel",
+  "manager_billing_service_status_manualPayment": "Renouvellement manuel",
+  "manager_billing_service_status_pending_debt": "Facture à régler",
+  "manager_billing_service_status_delete_at_expiration": "Résiliation demandée",
+  "manager_billing_service_status_expired": "Résilié",
+  "manager_billing_service_status_billing_suspended": "Facturation reportée",
+  "manager_billing_service_status_forced_manual": "Renouvellement manuel forcé"
+}

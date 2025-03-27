@@ -2326,7 +2326,7 @@ const links = {
   },
   vmware: {
     changelog:
-      'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Infrastructure+Storage',
+      'https://github.com/orgs/ovh/projects/16/views/6?sliceBy%5Bvalue%5D=VMware+on+OVHcloud',
     roadmap:
       'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=VMware+on+OVHcloud',
     'feature-request':
@@ -2358,7 +2358,7 @@ const links = {
     changelog:
       'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Nutanix+on+OVHcloud',
     roadmap:
-      'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=VMware+on+OVHcloud',
+      'https://github.com/orgs/ovh/projects/16/views/1?sliceBy%5Bvalue%5D=Nutanix+on+OVHcloud&pane=info',
     'feature-request':
       'https://github.com/ovh/private-cloud-roadmap/issues/new',
   },

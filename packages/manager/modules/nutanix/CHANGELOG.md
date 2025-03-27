@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@2.6.1...@ovh-ux/manager-nutanix@2.7.0) (2025-03-27)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 296] ([bf4b02c](https://github.com/ovh/manager/commit/bf4b02c0d647e0a157bc72917dfd79c8fcde0a2d))
+* **nutanix:** fix node is deployed condition ([d8ce10c](https://github.com/ovh/manager/commit/d8ce10c563bf59dfbbcc1d29366d912cd917eecb)), closes [#MANAGER-15582](https://github.com/ovh/manager/issues/MANAGER-15582)
+* **nutanix:** update dashboard lazy loading url ([77ec5a4](https://github.com/ovh/manager/commit/77ec5a493e5e306e786faebadbfaffca557198df)), closes [#MANAGER-16492](https://github.com/ovh/manager/issues/MANAGER-16492)
+
+
+### Features
+
+* add node nutanix resilitate popin ([dead987](https://github.com/ovh/manager/commit/dead9877bc6b15b9a83cdb24ff46a8962d14c120)), closes [#MANAGER-15716](https://github.com/ovh/manager/issues/MANAGER-15716)
+* **nutanix:** add columns in listing node page ([fdbe560](https://github.com/ovh/manager/commit/fdbe56096dc3be6bdadc16249f411c8aa0c52a29)), closes [#MANAGER-15588](https://github.com/ovh/manager/issues/MANAGER-15588)
+* **nutanix:** add feature flipping to buy multiple node ([b60cf38](https://github.com/ovh/manager/commit/b60cf38d62867698a979418c2e202ba0f88814c3)), closes [#MANAGER-16995](https://github.com/ovh/manager/issues/MANAGER-16995)
+* **nutanix:** add install node popin ([75d866e](https://github.com/ovh/manager/commit/75d866efae873ef3348c6d5cc6a9abab0deceb6e)), closes [#MANAGER-15712](https://github.com/ovh/manager/issues/MANAGER-15712)
+* **nutanix:** add nodes sections on nutanix dashboard ([41d6ec1](https://github.com/ovh/manager/commit/41d6ec18d558decc64fa3863fec512c2b2231f88)), closes [#MANAGER-14695](https://github.com/ovh/manager/issues/MANAGER-14695)
+* **nutanix:** add nutanix node popin ([c7701c0](https://github.com/ovh/manager/commit/c7701c091598b26e249b25f205582e80608eca80)), closes [#MANAGER-14556](https://github.com/ovh/manager/issues/MANAGER-14556)
+* **nutanix:** add poweroff popins for node nutanix ([fa004c1](https://github.com/ovh/manager/commit/fa004c10768e8780e9287b70d990fc6eb0cd43b4)), closes [#MANAGER-15714](https://github.com/ovh/manager/issues/MANAGER-15714)
+* **nutanix:** add poweron popin for node nutanix ([eb7146e](https://github.com/ovh/manager/commit/eb7146ed10927097e75216f747f936508bd9d4cf)), closes [#MANAGER-16065](https://github.com/ovh/manager/issues/MANAGER-16065)
+* **nutanix:** add quick action on listing node ([4cbf0bc](https://github.com/ovh/manager/commit/4cbf0bc80573543b88a97fc92672af5ffad1024b)), closes [#MANAGER-15582](https://github.com/ovh/manager/issues/MANAGER-15582)
+* **nutanix:** add state banner on node listing page ([8113ab1](https://github.com/ovh/manager/commit/8113ab19d11508dd5ff2ed95ea376d389bf22919)), closes [#MANAGER-16556](https://github.com/ovh/manager/issues/MANAGER-16556)
+* **nutanix:** add uninstall node nutanix popin ([e30539d](https://github.com/ovh/manager/commit/e30539d8c274870cef32295af533eb89ffb9c4f5)), closes [#MANAGER-15717](https://github.com/ovh/manager/issues/MANAGER-15717)
+* **nutanix:** manage node resiliated ([564497d](https://github.com/ovh/manager/commit/564497d8c821f1eca660ebd00609c13b3506f837)), closes [#MANAGER-16520](https://github.com/ovh/manager/issues/MANAGER-16520)
+* **nutanix:** reinstall node popin ([162cacd](https://github.com/ovh/manager/commit/162cacd36d1b6fd47f2baeb5c43f7e11c337a858)), closes [#MANAGER-15715](https://github.com/ovh/manager/issues/MANAGER-15715)
+
+
+
+
+
 ## [2.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@2.6.0...@ovh-ux/manager-nutanix@2.6.1) (2025-03-18)
 
 

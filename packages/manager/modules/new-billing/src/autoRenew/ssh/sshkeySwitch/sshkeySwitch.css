@@ -1,0 +1,23 @@
+.sshkey-switch {
+  margin-bottom: 5px;
+  background: #dbdbdb;
+  border-radius: 4px;
+}
+
+.sshkey-switch span {
+  display: inline-block;
+  padding: 4px 10px;
+}
+
+.sshkey-switch span.active {
+  background: #59d2ef;
+  font-weight: bold;
+}
+
+.sshkey-switch span:first-child {
+  border-radius: 4px 0 0 4px;
+}
+
+.sshkey-switch span.active:last-child {
+  border-radius: 0 4px 4px 0;
+}
