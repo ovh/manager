@@ -9,6 +9,8 @@ export const rootSupportUrl = 'https://help.ovhcloud.com/';
 
 export const SUPPORT_URL_VIEW_TICKETS = `${rootSupportUrl}csm?id=csm_cases_requests&ovhSubsidiary=`;
 
+export const ZIMBRA_PASSWORD_REGEX = /^(?=.*[!@#$%^&*()\\[\]{}\-_+=~`|:;"'<>,./?])(?=.*\d)(?=.*[A-Z])(?=(.*)).{10,64}$/;
+
 export default {
   SIZE_UNIT,
   STATE_TASK_DOING,

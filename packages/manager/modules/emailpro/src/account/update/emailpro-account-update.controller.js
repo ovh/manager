@@ -2,6 +2,7 @@ import angular from 'angular';
 import head from 'lodash/head';
 import includes from 'lodash/includes';
 import set from 'lodash/set';
+import { ZIMBRA_PASSWORD_REGEX } from '../emailpro-constants';
 
 export default class EmailProUpdateAccountCtrl {
   /* @ngInject */
@@ -49,12 +50,10 @@ export default class EmailProUpdateAccountCtrl {
     if (
       this.simplePasswordFlag ||
       this.differentPasswordFlag ||
+      this.zimbraPasswordFlag ||
       this.containsNameFlag ||
       this.containsSpace
     ) {
-      return false;
-    }
-    if (account && /\s/.test(account.password)) {
       return false;
     }
     if (!account.canBeConfigured && !account.password) {
@@ -68,6 +67,10 @@ export default class EmailProUpdateAccountCtrl {
 
   isMxPlan() {
     return this.exchange.isMXPlan;
+  }
+
+  isZimbra() {
+    return this.exchange.isZimbra;
   }
 
   getModelToUpdate(originalValues, modifiedBuffer) {
@@ -149,6 +152,7 @@ export default class EmailProUpdateAccountCtrl {
   setPasswordsFlag(selectedAccount) {
     this.differentPasswordFlag = false;
     this.simplePasswordFlag = false;
+    this.zimbraPasswordFlag = false;
     this.containsNameFlag = false;
     this.containsSameAccountNameFlag = false;
     this.containsSpace = false;
@@ -165,24 +169,32 @@ export default class EmailProUpdateAccountCtrl {
     }
 
     if (selectedAccount.password.length > 0) {
-      this.simplePasswordFlag = !this.EmailProPassword.passwordSimpleCheck(
-        selectedAccount.password,
-        true,
-        this.newAccountOptions.minPasswordLength,
-      );
+      if (this.isZimbra()) {
+        this.zimbraPasswordFlag = !ZIMBRA_PASSWORD_REGEX.test(
+          selectedAccount.password,
+        );
+      } else {
+        this.simplePasswordFlag = !this.EmailProPassword.passwordSimpleCheck(
+          selectedAccount.password,
+          true,
+          this.newAccountOptions.minPasswordLength,
+        );
 
-      this.containsSpace = includes(selectedAccount.password, ' ');
+        this.containsSpace = includes(selectedAccount.password, ' ');
+      }
 
       /*
         see the password complexity requirements of Microsoft Windows Server (like EmailPro)
         https://technet.microsoft.com/en-us/library/hh994562%28v=ws.10%29.aspx
       */
       if (this.newAccountOptions.passwordComplexityEnabled) {
-        this.simplePasswordFlag =
-          this.simplePasswordFlag ||
-          !this.EmailProPassword.passwordComplexityCheck(
-            selectedAccount.password,
-          );
+        if (!this.isZimbra()) {
+          this.simplePasswordFlag =
+            this.simplePasswordFlag ||
+            !this.EmailProPassword.passwordComplexityCheck(
+              selectedAccount.password,
+            );
+        }
 
         if (selectedAccount.displayName) {
           this.containsNameFlag = this.EmailProPassword.passwordContainsName(
