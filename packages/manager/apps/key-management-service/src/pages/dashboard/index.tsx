@@ -21,7 +21,7 @@ import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
 import { getOkmsResourceQueryKey } from '@/data/api/okms';
 import { OKMS } from '@/types/okms.type';
 import { useOKMSById } from '@/data/hooks/useOKMS';
-import { CHANGELOG_LINKS } from '@/constants';
+import { CHANGELOG_LINKS, SERVICE_KEYS_LABEL } from '@/constants';
 
 export const OkmsContext = createContext<OKMS>(null);
 
@@ -78,7 +78,7 @@ export default function DashboardPage() {
     },
     {
       url: ROUTES_URLS.keys,
-      title: tDashboard('encrypted_keys'),
+      title: SERVICE_KEYS_LABEL,
     },
     {
       url: ROUTES_URLS.credentials,
@@ -94,7 +94,7 @@ export default function DashboardPage() {
     },
     {
       id: ROUTES_URLS.keys,
-      label: tServiceKeys('key_management_service_service_keys'),
+      label: SERVICE_KEYS_LABEL,
       navigateTo: `/${okmsId}/${ROUTES_URLS.keys}`,
     },
     {
