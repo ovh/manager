@@ -1,0 +1,11 @@
+{
+  "nutanix_dashboard_poweroff_node_title": "Eteindre le noeud",
+  "nutanix_dashboard_poweroff_node_description": "L'extinction d'un noeud Nutanix peut avoir un impact sur votre cluster, vérifiez les pré-requis sur le portail de Nutanix pour réaliser cette action",
+  "nutanix_dashboard_poweroff_node_poweroff_guidelink": "Accéder au portail",
+  "nutanix_dashboard_poweroff_node_confirmation": "Voulez-vous vraiment éteindre votre noeud {{serviceName}} ?",
+  "nutanix_dashboard_poweroff_node_confirm": "Eteindre",
+  "nutanix_dashboard_poweroff_node_cancel": "Annuler",
+  "nutanix_dasboard_poweroff_node_input_label": "Entrez \"{{magicword}}\" pour confirmer votre choix",
+  "nutanix_dashboard_poweroff_node_success_banner": "Votre demande d'extinction a été prise en compte. Cette opération peut prendre jusqu'à 15 minutes",
+  "nutanix_dashboard_poweroff_node_error_banner": "Votre demande d'extinction n'a pas été prise en compte :"
+}

@@ -16,5 +16,11 @@
   "nutanix_order": "Encomendar",
   "nutanix_cluster_list_pack_type": "Tipo de pack",
   "nutanix_cluster_list_pack_type_details": "Ver detalhes",
-  "nutanix_cluster_unit_gbps": "{{t0}} Gbps"
+  "nutanix_cluster_unit_gbps": "{{t0}} Gbps",
+  "nutanix_dashboard_technical_details_cpu_frequency_unit": "GHz",
+  "nutanix_dashboard_technical_details_ram_size_unit": "GB",
+  "nutanix_dashboard_technical_details_ram_frequency_unit": "MHz",
+  "nutanix_dashboard_service_status_active": "Ativo",
+  "nutanix_dashboard_service_status_suspended": "Suspenso",
+  "nutanix_dashboard_service_status_toSuspend": "A suspender"
 }
