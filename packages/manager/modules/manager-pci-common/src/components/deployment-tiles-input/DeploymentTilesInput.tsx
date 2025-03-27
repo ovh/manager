@@ -1,6 +1,6 @@
 import { Trans, useTranslation } from 'react-i18next';
 import { OdsBadge, OdsLink, OdsText } from '@ovhcloud/ods-components/react';
-import { PropsWithChildren, useContext, useMemo } from 'react';
+import { useContext, useMemo } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { DEPLOYMENT_MODES_URL } from './website-link';
 import { DeploymentModeCard } from '@/components/deployment-mode-card';
@@ -53,7 +53,7 @@ const DeploymentTileRenderer = ({
   );
 };
 
-const DescriptionLink = ({ children }: PropsWithChildren) => {
+const DescriptionLink = ({ children }: Readonly<{ children?: string }>) => {
   const shell = useContext(ShellContext);
   const ovhSubsidiary = useMemo(
     () => shell?.environment.getUser().ovhSubsidiary,
@@ -65,9 +65,8 @@ const DescriptionLink = ({ children }: PropsWithChildren) => {
       href={DEPLOYMENT_MODES_URL[ovhSubsidiary] ?? DEPLOYMENT_MODES_URL.DEFAULT}
       target="_blank"
       icon="external-link"
-    >
-      {children}
-    </OdsLink>
+      label={children}
+    />
   );
 };
 

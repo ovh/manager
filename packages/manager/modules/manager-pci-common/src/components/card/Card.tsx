@@ -9,7 +9,7 @@ export const Card = ({
 }: PropsWithChildren<ComponentProps<'div'>>) => (
   <div
     className={clsx(
-      'box-border border-solid rounded-lg border-[.125rem] border-[--ods-color-blue-100] w-full p-[16px] flex flex-col gap-4',
+      'box-border border-solid rounded-md border-[.125rem] border-[--ods-color-primary-100] w-full p-[16px] flex flex-col gap-4',
       className,
     )}
     {...otherProps}
