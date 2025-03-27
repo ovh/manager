@@ -19,8 +19,7 @@
   "scripts": {
     "build": "tsc && vite build",
     "dev": "tsc && vite build",
-    "prepare": "tsc && vite build",
-    "start:watch": "turbo run dev:watch && yarn run dev:watch"
+    "prepare": "tsc && vite build"
   },
   "devDependencies": {
     "typescript": "^5.8.2",

@@ -30,10 +30,7 @@
     "build": "rollup -c --environment BUILD:production",
     "dev": "rollup -c --environment BUILD:development",
     "dev:watch": "yarn run dev --watch",
-    "prepare": "yarn run build",
-    "start": "turbo run build",
-    "start:dev": "turbo run dev && yarn run dev",
-    "start:watch": "turbo run dev:watch && yarn run dev:watch"
+    "prepare": "yarn run build"
   },
   "dependencies": {
     "animated-scroll-to": "^1.2.2"

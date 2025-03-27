@@ -14,8 +14,7 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc",
-    "prepare": "tsc",
-    "start:watch": "turbo run dev:watch && yarn run dev:watch"
+    "prepare": "tsc"
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^8.0.2",

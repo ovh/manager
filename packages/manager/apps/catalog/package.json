@@ -14,10 +14,7 @@
     "beta-test:e2e": "tsc && node ../../../../scripts/run-playwright-bdd.js",
     "beta-test:e2e:ci": "tsc && node ../../../../scripts/run-playwright-bdd.js --ci",
     "build": "tsc && vite build",
-    "dev": "tsc && vite",
-    "start": "turbo run build",
-    "start:dev": "turbo run dev && yarn run dev",
-    "start:watch": "turbo run dev:watch && yarn run dev:watch",
+    "start": "tsc && vite",
     "test": "jest"
   },
   "dependencies": {

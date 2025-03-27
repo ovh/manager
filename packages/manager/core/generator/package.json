@@ -9,9 +9,7 @@
   "bin": {
     "omg": "./index.js"
   },
-  "scripts": {
-    "start": "turbo run build"
-  },
+  "scripts": {},
   "dependencies": {
     "axios": "^1.1.2",
     "inquirer": "^9.1.0",

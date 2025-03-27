@@ -14,10 +14,7 @@
     "beta-test:e2e": "tsc && npx playwright test --headed",
     "build": "tsc && vite build",
     "coverage": "jest --coverage -u --collectCoverageFrom='src/**/*.{ts,tsx}'",
-    "dev": "tsc && vite",
-    "start": "turbo run build",
-    "start:dev": "turbo run dev && yarn run dev",
-    "start:watch": "turbo run dev:watch && yarn run dev:watch",
+    "start": "tsc && vite",
     "test": "jest",
     "test:watch": "jest --watch"
   },

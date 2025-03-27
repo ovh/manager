@@ -10,11 +10,7 @@
   },
   "scripts": {
     "build": "webpack",
-    "dev": "webpack-dev-server",
-    "dev:watch": "yarn run dev",
-    "start": "turbo run build",
-    "start:dev": "turbo run dev && yarn run dev",
-    "start:watch": "turbo run dev:watch && yarn run dev:watch"
+    "start": "webpack-dev-server"
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^8.0.2",

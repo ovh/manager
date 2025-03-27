@@ -11,8 +11,7 @@
   "types": "dist/index",
   "scripts": {
     "build": "tsc && yarn copy-files",
-    "copy-files": "cp ./assets-icon-svg/*.svg ./dist/assets-icon-svg/",
-    "start": "turbo run build"
+    "copy-files": "cp ./assets-icon-svg/*.svg ./dist/assets-icon-svg/"
   },
   "dependencies": {
     "@ovhcloud/ods-common-core": "17.2.2",

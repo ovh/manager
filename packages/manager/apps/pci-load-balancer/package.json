@@ -7,11 +7,8 @@
   "scripts": {
     "build": "tsc --project tsconfig.build.json && vite build",
     "coverage": "vitest run --coverage",
-    "dev": "vite",
     "lint": "eslint ./src",
-    "start": "turbo run build",
-    "start:dev": "turbo run dev && yarn run dev",
-    "start:watch": "turbo run dev:watch && yarn run dev:watch",
+    "start": "vite",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
     "test:watch": "vitest",

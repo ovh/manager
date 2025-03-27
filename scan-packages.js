@@ -26,6 +26,64 @@ function scanPackages(dir, dryRun = true) {
             packageJson.scripts.start = packageJson.scripts.dev;
             delete packageJson.scripts.dev;
             delete packageJson.scripts['dev:watch'];
+            if (/\/apps\/container\//.test(fullPath)) {
+              packageJson.scripts.start = 'vite';
+            }
+            if (dryRun) {
+              console.log(`[DRY RUN] Would update ${packageJson.name}`);
+              console.log(packageJson.scripts);
+            } else {
+              fs.writeFileSync(
+                fullPath,
+                `${JSON.stringify(packageJson, null, 2)}\n`,
+              );
+              console.log(`Updated ${packageJson.name}`);
+            }
+          }
+          if (/\/modules\//.test(fullPath)) {
+            if (packageJson.scripts) {
+              delete packageJson.scripts['start:dev'];
+              delete packageJson.scripts['start:watch'];
+              delete packageJson.scripts.start;
+              // packageJson.scripts.start = packageJson.scripts.dev;
+              // delete packageJson.scripts.dev;
+              if (dryRun) {
+                console.log(`[DRY RUN] Would update ${packageJson.name}`);
+                console.log(packageJson.scripts);
+              } else {
+                fs.writeFileSync(
+                  fullPath,
+                  `${JSON.stringify(packageJson, null, 2)}\n`,
+                );
+                console.log(`Updated ${packageJson.name}`);
+              }
+            }
+          }
+          if (/\/core\//.test(fullPath)) {
+            if (packageJson.scripts) {
+              delete packageJson.scripts['start:dev'];
+              delete packageJson.scripts['start:watch'];
+              delete packageJson.scripts.start;
+              // packageJson.scripts.start = packageJson.scripts.dev;
+              // delete packageJson.scripts.dev;
+              if (dryRun) {
+                console.log(`[DRY RUN] Would update ${packageJson.name}`);
+                console.log(packageJson.scripts);
+              } else {
+                fs.writeFileSync(
+                  fullPath,
+                  `${JSON.stringify(packageJson, null, 2)}\n`,
+                );
+                console.log(`Updated ${packageJson.name}`);
+              }
+            }
+          }
+          if (/\/components\//.test(fullPath)) {
+            delete packageJson.scripts['start:dev'];
+            delete packageJson.scripts['start:watch'];
+            delete packageJson.scripts.start;
+            // packageJson.scripts.start = packageJson.scripts.dev;
+            // delete packageJson.scripts.dev;
             if (dryRun) {
               console.log(`[DRY RUN] Would update ${packageJson.name}`);
               console.log(packageJson.scripts);
@@ -48,7 +106,8 @@ function scanPackages(dir, dryRun = true) {
 }
 
 // Run with dry-run by default
-const dryRun = process.argv.includes('--dry-run') || process.argv.length === 2;
+const dryRun = process.argv.includes('--dry-run');
+console.log(dryRun);
 console.log(
   dryRun
     ? 'Dry run mode - no changes will be made'
