@@ -1,18 +1,18 @@
-import React from 'react';
+import { useContext, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { ShellContext } from '../ShellContext';
 
 export const useRouteSynchro = () => {
   const location = useLocation();
-  const { shell } = React.useContext(ShellContext);
+  const { shell } = useContext(ShellContext);
 
-  React.useEffect(() => {
-    shell.routing.stopListenForHashChange();
-  }, []);
+  useEffect(() => {
+    shell?.routing.stopListenForHashChange();
+  }, [shell?.routing]);
 
-  React.useEffect(() => {
-    shell.routing.onHashChange();
-  }, [location]);
+  useEffect(() => {
+    shell?.routing.onHashChange();
+  }, [location, shell?.routing]);
 };
 
 export default useRouteSynchro;

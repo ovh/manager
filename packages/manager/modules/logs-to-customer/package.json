@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/logs-to-customer",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "private": true,
   "description": "",
   "license": "BSD-3-Clause",
@@ -19,7 +19,7 @@
   "devDependencies": {
     "@ovh-ux/manager-core-api": "^0.10.1",
     "@ovh-ux/manager-core-test-utils": "^0.4.1",
-    "@ovh-ux/manager-react-components": "^2.15.1",
+    "@ovh-ux/manager-react-components": "^2.16.1",
     "@ovh-ux/manager-vite-config": "^0.9.2",
     "@ovhcloud/ods-components": "^18.4.1",
     "@ovhcloud/ods-themes": "^18.4.1",

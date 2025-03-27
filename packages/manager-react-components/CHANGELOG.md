@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.16.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.16.0...@ovh-ux/manager-react-components@2.16.1) (2025-03-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-react-components
+
 # [2.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.15.1...@ovh-ux/manager-react-components@2.16.0) (2025-03-21)
 
 ### Bug Fixes
