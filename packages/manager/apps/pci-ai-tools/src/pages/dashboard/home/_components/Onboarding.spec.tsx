@@ -45,14 +45,14 @@ describe('Home page', () => {
   it('renders and shows Home Page with Skeleton wguke loading', async () => {
     render(<Home />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByTestId('home-page-skeleton')).toBeInTheDocument();
+      expect(screen.getByTestId('home-page-skeleton')).toBeTruthy();
     });
   });
 
   it('renders and shows Home Page with Onboarding', async () => {
     render(<Home />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByTestId('onboarding-card')).toBeInTheDocument();
+      expect(screen.getByTestId('onboarding-card')).toBeTruthy();
     });
   });
 });

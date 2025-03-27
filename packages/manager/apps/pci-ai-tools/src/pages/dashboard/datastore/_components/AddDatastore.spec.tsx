@@ -31,21 +31,19 @@ describe('AddDatastore modal', () => {
 
   it('renders modal skeleton while loading', async () => {
     render(<AddDatastore />, { wrapper: RouterWithQueryClientWrapper });
-    expect(screen.getByTestId('dialog-container')).toBeInTheDocument();
+    expect(screen.getByTestId('dialog-container')).toBeTruthy();
   });
 
   it('open and close add datastore modal', async () => {
     render(<AddDatastore />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByTestId('add-datastore-modal')).toBeInTheDocument();
+      expect(screen.getByTestId('add-datastore-modal')).toBeTruthy();
     });
     act(() => {
       fireEvent.click(screen.getByTestId('add-datastore-cancel-button'));
     });
     await waitFor(() => {
-      expect(
-        screen.queryByTestId('add-datastore-modal'),
-      ).not.toBeInTheDocument();
+      expect(screen.queryByTestId('add-datastore-modal')).toBeNull();
     });
   });
 
@@ -60,7 +58,7 @@ describe('AddDatastore modal', () => {
       throw apiErrorMock;
     });
     await waitFor(() => {
-      expect(screen.getByTestId('add-datastore-modal')).toBeInTheDocument();
+      expect(screen.getByTestId('add-datastore-modal')).toBeTruthy();
     });
     act(() => {
       fireEvent.change(screen.getByTestId('datastore-alias-input'), {
@@ -113,7 +111,7 @@ describe('AddDatastore modal', () => {
   it('renders addToken and refresh getRegistries after added', async () => {
     render(<AddDatastore />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByTestId('add-datastore-modal')).toBeInTheDocument();
+      expect(screen.getByTestId('add-datastore-modal')).toBeTruthy();
     });
     act(() => {
       fireEvent.change(screen.getByTestId('datastore-alias-input'), {

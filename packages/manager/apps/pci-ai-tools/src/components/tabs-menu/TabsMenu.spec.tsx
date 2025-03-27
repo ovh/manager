@@ -16,13 +16,13 @@ describe('TabsMenu component', () => {
   });
   it('renders skeletons correctly', async () => {
     render(<TabsMenu.Skeleton />);
-    expect(screen.getByTestId('skeleton-container')).toBeInTheDocument();
+    expect(screen.getByTestId('skeleton-container')).toBeTruthy();
   });
 
   it('renders correctly with no tabs', () => {
     setup();
     const scrollArea = screen.getByTestId('tab-container');
-    expect(scrollArea).toBeEmptyDOMElement();
+    expect(scrollArea.innerHTML).toBe('');
   });
 
   it('renders tabs with labels and optional count badges', () => {
@@ -35,10 +35,10 @@ describe('TabsMenu component', () => {
 
     tabs.forEach((tab) => {
       const link = screen.getByText(tab.label);
-      expect(link).toBeInTheDocument();
+      expect(link).toBeTruthy();
       if (tab.count) {
         const badge = screen.getAllByText(tab.count.toString())[0];
-        expect(badge).toBeInTheDocument();
+        expect(badge).toBeTruthy();
       }
     });
   });

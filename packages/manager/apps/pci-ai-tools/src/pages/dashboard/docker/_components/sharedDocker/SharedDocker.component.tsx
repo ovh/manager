@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import {
   Alert,
+  Code,
   Popover,
   PopoverContent,
   PopoverTrigger,
@@ -12,10 +13,10 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
+  useToast,
 } from '@datatr-ux/uxlib';
 import ai from '@/types/AI';
 import OvhLink from '@/components/links/OvhLink.component';
-import CodeBlock from '@/components/code-block/CodeBlock.component';
 
 interface SharedDockerProps {
   regions: ai.capabilities.Region[];
@@ -25,6 +26,7 @@ const SharedDocker = ({ regions }: SharedDockerProps) => {
   const { t } = useTranslation('ai-tools/dashboard/docker');
   const { t: tRegions } = useTranslation('regions');
   const { projectId } = useParams();
+  const toast = useToast();
   const [selectedRegion, setSelectedRegion] = useState<ai.capabilities.Region>(
     regions[0],
   );
@@ -84,8 +86,16 @@ const SharedDocker = ({ regions }: SharedDockerProps) => {
         <p>{projectId}</p>
       </div>
       <p>{t('sharedDockerParagraphe4')}</p>
-
-      <CodeBlock code={dockerLogin} />
+      <Code
+        label={t('dockerLoginTitle')}
+        code={dockerLogin}
+        lang="docker"
+        onCopied={() =>
+          toast.toast({
+            title: t('sharedDockerCopy'),
+          })
+        }
+      />
       <span>
         {t('sharedDockerParagraphe5')}
         <OvhLink
@@ -100,8 +110,26 @@ const SharedDocker = ({ regions }: SharedDockerProps) => {
         {t('sharedDockerParagraphe5ter')}
       </span>
       <p>{t('sharedDockerParagraphe6')}</p>
-      <CodeBlock code={dockerTag} />
-      <CodeBlock code={dockerPush} />
+      <Code
+        label={t('dockerTagTitle')}
+        code={dockerTag}
+        lang="docker"
+        onCopied={() =>
+          toast.toast({
+            title: t('sharedDockerCopy'),
+          })
+        }
+      />
+      <Code
+        label={t('dockerPushTitle')}
+        code={dockerPush}
+        lang="docker"
+        onCopied={() =>
+          toast.toast({
+            title: t('sharedDockerCopy'),
+          })
+        }
+      />
       <p>{t('sharedDockerParagraphe7')}</p>
     </>
   );

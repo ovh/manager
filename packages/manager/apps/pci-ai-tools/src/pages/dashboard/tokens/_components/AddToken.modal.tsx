@@ -1,11 +1,11 @@
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
-import { Copy, HelpCircle } from 'lucide-react';
+import { HelpCircle } from 'lucide-react';
 import {
-  Alert,
   Badge,
   Button,
+  Code,
   DialogClose,
   DialogContent,
   DialogDescription,
@@ -83,18 +83,10 @@ const AddToken = () => {
     });
   });
 
-  const handleCopyPass = () => {
-    navigator.clipboard.writeText(newTokenValue);
-    toast.toast({
-      title: t('formTokenCopy'),
-    });
-  };
-
   const handleClose = () => {
     setNewTokenValue(undefined);
     navigate('../');
   };
-
   return (
     <RouteModal backUrl="../" isLoading={!regionsQuery.isSuccess}>
       <DialogContent className="sm:max-w-xl">
@@ -105,23 +97,23 @@ const AddToken = () => {
         </DialogHeader>
         <DialogDescription />
         {newTokenValue ? (
-          <div>
-            <Alert variant="success">
-              <p>{t('formTokenSuccess')}</p>
-              <div className="relative my-2 rounded bg-gray-100">
-                <Button
-                  data-testid="token-copy-button"
-                  onClick={() => handleCopyPass()}
-                  className="absolute top-0 right-0 m-2 p-2 text-sm bg-primary-500 text-white rounded hover:bg-primary-700 transition duration-300"
-                >
-                  <Copy className="size-4" />
-                  <span className="sr-only">copy</span>
-                </Button>
-                <pre className="p-4 bg-gray-100 rounded max-w-md overflow-auto">
-                  <code>{newTokenValue}</code>
-                </pre>
-              </div>
-            </Alert>
+          <>
+            <p>{t('formTokenSuccess')}</p>
+            <div
+              data-testid="code-container"
+              className="p-2 max-w-md md:max-w-lg"
+            >
+              <Code
+                code={newTokenValue}
+                label={t('formTokenLabel')}
+                theme="github-dark"
+                onCopied={() =>
+                  toast.toast({
+                    title: t('formTokenCopy'),
+                  })
+                }
+              />
+            </div>
             <DialogFooter className="flex justify-end mt-4">
               <DialogClose asChild onClick={() => handleClose()}>
                 <Button
@@ -133,7 +125,7 @@ const AddToken = () => {
                 </Button>
               </DialogClose>
             </DialogFooter>
-          </div>
+          </>
         ) : (
           <Form {...form}>
             <form onSubmit={onSubmit} className="flex flex-col gap-2">

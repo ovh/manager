@@ -6,7 +6,7 @@ describe('PageLayout component', () => {
   it('should display the page layout', async () => {
     render(<PageLayout />);
     await waitFor(() => {
-      expect(screen.getByTestId('pageLayout')).toBeInTheDocument();
+      expect(screen.getByTestId('pageLayout')).toBeTruthy();
     });
   });
 });

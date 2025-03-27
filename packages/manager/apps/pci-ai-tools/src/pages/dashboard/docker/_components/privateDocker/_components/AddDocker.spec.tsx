@@ -31,19 +31,19 @@ describe('AddDocker modal', () => {
 
   it('renders modal skeleton while loading', async () => {
     render(<AddDocker />, { wrapper: RouterWithQueryClientWrapper });
-    expect(screen.getByTestId('dialog-container')).toBeInTheDocument();
+    expect(screen.getByTestId('dialog-container')).toBeTruthy();
   });
 
   it('open and close add docker modal', async () => {
     render(<AddDocker />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByTestId('add-docker-modal')).toBeInTheDocument();
+      expect(screen.getByTestId('add-docker-modal')).toBeTruthy();
     });
     act(() => {
       fireEvent.click(screen.getByTestId('add-docker-cancel-button'));
     });
     await waitFor(() => {
-      expect(screen.queryByTestId('add-docker-modal')).not.toBeInTheDocument();
+      expect(screen.queryByTestId('add-docker-modal')).toBeNull();
     });
   });
 
@@ -58,7 +58,7 @@ describe('AddDocker modal', () => {
       throw apiErrorMock;
     });
     await waitFor(() => {
-      expect(screen.getByTestId('add-docker-modal')).toBeInTheDocument();
+      expect(screen.getByTestId('add-docker-modal')).toBeTruthy();
     });
     act(() => {
       fireEvent.change(screen.getByTestId('docker-username-input'), {
@@ -97,7 +97,7 @@ describe('AddDocker modal', () => {
   it('renders addToken and refresh getRegistries after added', async () => {
     render(<AddDocker />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByTestId('add-docker-modal')).toBeInTheDocument();
+      expect(screen.getByTestId('add-docker-modal')).toBeTruthy();
     });
     act(() => {
       fireEvent.change(screen.getByTestId('docker-username-input'), {

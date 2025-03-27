@@ -28,13 +28,13 @@ describe('Guides component', () => {
   it('renders the skeleton component while loading', async () => {
     render(<Guides />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByTestId('guide-skeleton')).toBeInTheDocument();
+      expect(screen.getByTestId('guide-skeleton')).toBeTruthy();
     });
   });
   it('renders the guide button, open with ctrl+k and close', async () => {
     render(<Guides />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByTestId('guide-open-button')).toBeInTheDocument();
+      expect(screen.getByTestId('guide-open-button')).toBeTruthy();
     });
     act(() => {
       fireEvent.keyDown(window, { key: 'k', ctrlKey: true });
@@ -45,7 +45,7 @@ describe('Guides component', () => {
       ctrlKey: true,
     });
     await waitFor(() => {
-      expect(screen.getByTestId('guide-header')).toBeInTheDocument();
+      expect(screen.getByTestId('guide-header')).toBeTruthy();
     });
     act(() => {
       fireEvent.keyDown(screen.getByTestId('guide-header'), {
@@ -54,7 +54,7 @@ describe('Guides component', () => {
       });
     });
     await waitFor(() => {
-      expect(screen.queryByTestId('guide-header')).not.toBeInTheDocument();
+      expect(screen.queryByTestId('guide-header')).toBeNull();
     });
   });
   it('open the guide component on button click and click on a guide', async () => {
@@ -66,14 +66,14 @@ describe('Guides component', () => {
       wrapper: RouterWithQueryClientWrapper,
     });
     await waitFor(() => {
-      expect(screen.getByTestId('guide-open-button')).toBeInTheDocument();
+      expect(screen.getByTestId('guide-open-button')).toBeTruthy();
     });
     act(() => {
       fireEvent.click(screen.getByTestId('guide-open-button'));
     });
     await waitFor(() => {
-      expect(screen.getByTestId('guide-header')).toBeInTheDocument();
-      expect(screen.getByTestId(mockedGuides.url)).toBeInTheDocument();
+      expect(screen.getByTestId('guide-header')).toBeTruthy();
+      expect(screen.getByTestId(mockedGuides.url)).toBeTruthy();
     });
     act(() => {
       fireEvent.click(screen.getByTestId(mockedGuides.url));

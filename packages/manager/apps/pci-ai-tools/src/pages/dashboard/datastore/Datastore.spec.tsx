@@ -35,22 +35,20 @@ describe('Datastore page', () => {
     const translationKey = 'breadcrumb';
     render(<Breadcrumb />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByText(translationKey)).toBeInTheDocument();
+      expect(screen.getByText(translationKey)).toBeTruthy();
     });
   });
   it('renders and shows buttons in the datastore page', async () => {
     render(<Datastore />, { wrapper: RouterWithQueryClientWrapper });
-    expect(screen.getByTestId('create-datastore-button')).toBeInTheDocument();
+    expect(screen.getByTestId('create-datastore-button')).toBeTruthy();
     await waitFor(() => {
-      expect(
-        screen.getByText(mockedDatastoreS3WithRegion.alias),
-      ).toBeInTheDocument();
+      expect(screen.getByText(mockedDatastoreS3WithRegion.alias)).toBeTruthy();
     });
   });
 
   it('trigger useNavigate on create button click', async () => {
     render(<Datastore />, { wrapper: RouterWithQueryClientWrapper });
-    expect(screen.getByTestId('create-datastore-button')).toBeInTheDocument();
+    expect(screen.getByTestId('create-datastore-button')).toBeTruthy();
     act(() => {
       fireEvent.click(screen.getByTestId('create-datastore-button'));
     });
@@ -62,9 +60,7 @@ describe('Datastore page', () => {
   it('open delete datastore modal using action table button', async () => {
     render(<Datastore />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(
-        screen.getByText(mockedDatastoreS3WithRegion.alias),
-      ).toBeInTheDocument();
+      expect(screen.getByText(mockedDatastoreS3WithRegion.alias)).toBeTruthy();
     });
     await openButtonInMenu(
       'datastore-action-trigger',

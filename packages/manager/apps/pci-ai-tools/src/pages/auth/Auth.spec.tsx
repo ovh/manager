@@ -37,15 +37,15 @@ describe('Auth behavior page', () => {
   it('renders the auth Page', async () => {
     render(<Auth />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByTestId('activate-container')).toBeInTheDocument();
-      expect(screen.getByTestId('activate-project-button')).toBeInTheDocument();
+      expect(screen.getByTestId('activate-container')).toBeTruthy();
+      expect(screen.getByTestId('activate-project-button')).toBeTruthy();
     });
   });
   it('renders the onboarding Page on activation', async () => {
     render(<Auth />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByTestId('activate-container')).toBeInTheDocument();
-      expect(screen.getByTestId('activate-project-button')).toBeInTheDocument();
+      expect(screen.getByTestId('activate-container')).toBeTruthy();
+      expect(screen.getByTestId('activate-project-button')).toBeTruthy();
     });
     act(() => {
       fireEvent.click(screen.getByTestId('activate-project-button'));
@@ -63,7 +63,7 @@ describe('Auth behavior page', () => {
     vi.mocked(ProjectAPI.getProject).mockResolvedValue(mockedDiscoveryProject);
     render(<Auth />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByTestId('discovery-container')).toBeInTheDocument();
+      expect(screen.getByTestId('discovery-container')).toBeTruthy();
     });
   });
 });

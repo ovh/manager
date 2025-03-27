@@ -17,7 +17,7 @@ export async function openButtonInMenu(triggerId: string, buttonId: string) {
   });
   const actionButton = screen.getByTestId(buttonId);
   await waitFor(() => {
-    expect(actionButton).toBeInTheDocument();
+    expect(actionButton).toBeTruthy();
   });
   act(() => {
     fireEvent.click(actionButton);
@@ -28,13 +28,13 @@ export async function handleOpenSelect(triggerId: string) {
   // Open select
   const selectTrigger = screen.getByTestId(triggerId);
   await waitFor(() => {
-    expect(selectTrigger).toBeInTheDocument();
+    expect(selectTrigger).toBeTruthy();
   });
   act(() => {
     fireEvent.focus(selectTrigger);
     fireEvent.keyDown(selectTrigger, { key: 'Enter', code: 13 });
   });
-  expect(selectTrigger).not.toHaveAttribute('data-state', 'closed');
+  expect(selectTrigger.getAttribute('data-state')).not.toBe('closed');
 }
 /**
  * Open a Select component and select the correct option
@@ -67,12 +67,12 @@ export async function handleOpenCombo(triggerId: string) {
   const selectTrigger = screen.getByTestId(triggerId);
   // Open select
   await waitFor(() => {
-    expect(selectTrigger).toBeInTheDocument();
+    expect(selectTrigger).toBeTruthy();
   });
   act(() => {
     fireEvent.click(selectTrigger);
   });
-  expect(selectTrigger).not.toHaveAttribute('data-state', 'closed');
+  expect(selectTrigger.getAttribute('data-state')).not.toBe('closed');
 }
 
 export async function handleSelectComboboxText(

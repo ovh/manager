@@ -27,20 +27,20 @@ describe('RenewToken modal', () => {
   it('renders skeleton while loading', async () => {
     render(<RenewToken />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByTestId('dialog-container')).toBeInTheDocument();
+      expect(screen.getByTestId('dialog-container')).toBeTruthy();
     });
   });
 
   it('open and close renew token modal', async () => {
     render(<RenewToken />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByTestId('renew-token-modal')).toBeInTheDocument();
+      expect(screen.getByTestId('renew-token-modal')).toBeTruthy();
     });
     act(() => {
       fireEvent.click(screen.getByTestId('renew-token-cancel-button'));
     });
     await waitFor(() => {
-      expect(screen.queryByTestId('renew-token-modal')).not.toBeInTheDocument();
+      expect(screen.queryByTestId('renew-token-modal')).toBeNull();
     });
   });
 
@@ -55,7 +55,7 @@ describe('RenewToken modal', () => {
     });
     render(<RenewToken />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByTestId('renew-token-modal')).toBeInTheDocument();
+      expect(screen.getByTestId('renew-token-modal')).toBeTruthy();
     });
     act(() => {
       fireEvent.click(screen.getByTestId('renew-token-submit-button'));
@@ -85,7 +85,7 @@ describe('RenewToken modal', () => {
       expect(useToast().toast).toHaveBeenCalledWith(successMsg);
     });
     await waitFor(() => {
-      expect(screen.getByTestId('renew-token-copy-button')).toBeInTheDocument();
+      expect(screen.getByTestId('renew-token-copy-button')).toBeTruthy();
     });
     act(() => {
       fireEvent.click(screen.getByTestId('renew-token-copy-button'));
@@ -98,7 +98,7 @@ describe('RenewToken modal', () => {
       fireEvent.click(screen.getByTestId('renew-token-close-button'));
     });
     await waitFor(() => {
-      expect(screen.queryByTestId('renew-token-modal')).not.toBeInTheDocument();
+      expect(screen.queryByTestId('renew-token-modal')).toBeNull();
     });
   });
 });

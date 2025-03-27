@@ -32,19 +32,19 @@ describe('AddGit modal', () => {
 
   it('renders modal skeleton while loading', async () => {
     render(<AddGit />, { wrapper: RouterWithQueryClientWrapper });
-    expect(screen.getByTestId('dialog-container')).toBeInTheDocument();
+    expect(screen.getByTestId('dialog-container')).toBeTruthy();
   });
 
   it('open and close add git modal', async () => {
     render(<AddGit />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByTestId('add-git-modal')).toBeInTheDocument();
+      expect(screen.getByTestId('add-git-modal')).toBeTruthy();
     });
     act(() => {
       fireEvent.click(screen.getByTestId('add-git-cancel-button'));
     });
     await waitFor(() => {
-      expect(screen.queryByTestId('add-git-modal')).not.toBeInTheDocument();
+      expect(screen.queryByTestId('add-git-modal')).toBeNull();
     });
   });
 
@@ -148,7 +148,7 @@ describe('AddGit modal', () => {
   it('renders addToken with sshkey and refresh getRegistries after added', async () => {
     render(<AddGit />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByTestId('add-git-modal')).toBeInTheDocument();
+      expect(screen.getByTestId('add-git-modal')).toBeTruthy();
     });
     act(() => {
       fireEvent.change(screen.getByTestId('git-alias-input'), {

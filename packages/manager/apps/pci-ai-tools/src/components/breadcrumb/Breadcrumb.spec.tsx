@@ -48,8 +48,8 @@ describe('Breadcrumb component', () => {
   it('should display the breadcrumb component', async () => {
     render(<Breadcrumb />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByText('description')).toBeInTheDocument();
-      expect(screen.getByText('users')).toBeInTheDocument();
+      expect(screen.getByText('description')).toBeTruthy();
+      expect(screen.getByText('users')).toBeTruthy();
     });
   });
 });

@@ -36,9 +36,7 @@ describe('Dashboard Layout', () => {
       wrapper: RouterWithQueryClientWrapper,
     });
     await waitFor(() => {
-      expect(
-        screen.getByTestId('dashboard-header-skeleton'),
-      ).toBeInTheDocument();
+      expect(screen.getByTestId('dashboard-header-skeleton')).toBeTruthy();
       expect(appAPI.getApps).toHaveBeenCalled();
       expect(jobAPI.getJobs).toHaveBeenCalled();
       expect(notebookAPI.getNotebooks).toHaveBeenCalled();
@@ -53,9 +51,9 @@ describe('Dashboard Layout', () => {
       wrapper: RouterWithQueryClientWrapper,
     });
     await waitFor(() => {
-      expect(screen.getByTestId('discovery-container')).toBeInTheDocument();
-      expect(screen.getByTestId('header-title')).toBeInTheDocument();
-      expect(screen.getByText('homeTab')).toBeInTheDocument();
+      expect(screen.getByTestId('discovery-container')).toBeTruthy();
+      expect(screen.getByTestId('header-title')).toBeTruthy();
+      expect(screen.getByText('homeTab')).toBeTruthy();
     });
   });
 });

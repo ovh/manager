@@ -39,7 +39,7 @@ describe('Auth Layout', () => {
       wrapper: RouterWithQueryClientWrapper,
     });
     await waitFor(() => {
-      expect(screen.getByText('/')).toBeInTheDocument();
+      expect(screen.getByText('/')).toBeTruthy();
     });
   });
 });

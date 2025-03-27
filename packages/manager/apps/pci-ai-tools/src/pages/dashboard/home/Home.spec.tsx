@@ -43,7 +43,7 @@ describe('Home page', () => {
   it('renders and shows Home Page', async () => {
     render(<Home />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByTestId('product-life-card')).toBeInTheDocument();
+      expect(screen.getByTestId('product-life-card')).toBeTruthy();
     });
   });
 });

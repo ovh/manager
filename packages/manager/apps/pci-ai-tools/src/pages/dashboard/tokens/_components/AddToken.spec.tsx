@@ -32,13 +32,13 @@ describe('AddToken modal', () => {
   it('open and close add token modal', async () => {
     render(<AddToken />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByTestId('add-token-modal')).toBeInTheDocument();
+      expect(screen.getByTestId('add-token-modal')).toBeTruthy();
     });
     act(() => {
       fireEvent.click(screen.getByTestId('add-token-cancel-button'));
     });
     await waitFor(() => {
-      expect(screen.queryByTestId('add-token-modal')).not.toBeInTheDocument();
+      expect(screen.queryByTestId('add-token-modal')).toBeNull();
     });
   });
 
@@ -73,11 +73,6 @@ describe('AddToken modal', () => {
   });
 
   it('renders addToken and display token, copy it and close the modal', async () => {
-    Object.assign(window.navigator, {
-      clipboard: {
-        writeText: vi.fn().mockImplementation(() => Promise.resolve()),
-      },
-    });
     const successMsg = {
       description: 'formTokenToastSuccessDescription',
       title: 'formTokenToastSuccessTitle',
@@ -100,22 +95,14 @@ describe('AddToken modal', () => {
       expect(tokensApi.addToken).toHaveBeenCalled();
       expect(useToast().toast).toHaveBeenCalledWith(successMsg);
     });
-
     await waitFor(() => {
-      expect(screen.getByTestId('token-copy-button')).toBeInTheDocument();
-    });
-    act(() => {
-      fireEvent.click(screen.getByTestId('token-copy-button'));
-    });
-    await waitFor(() => {
-      expect(window.navigator.clipboard.writeText).toHaveBeenCalled();
-      expect(useToast().toast).toHaveBeenCalled();
+      expect(screen.getByTestId('code-container')).toBeTruthy();
     });
     act(() => {
       fireEvent.click(screen.getByTestId('token-close-button'));
     });
     await waitFor(() => {
-      expect(screen.queryByTestId('add-token-modal')).not.toBeInTheDocument();
+      expect(screen.queryByTestId('add-token-modal')).toBeNull();
     });
   });
 });

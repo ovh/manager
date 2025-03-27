@@ -1,4 +1,3 @@
-import '@testing-library/jest-dom';
 import { vi } from 'vitest';
 import { PointerEvent } from './helpers/pointerEvent';
 
