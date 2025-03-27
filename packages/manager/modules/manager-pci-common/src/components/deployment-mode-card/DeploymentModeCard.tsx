@@ -22,9 +22,9 @@ export type DeploymentModeCardProps = Readonly<
 >;
 
 const backgroundStyle =
-  'peer-enabled:hover:bg-[--ods-color-blue-100] peer-checked:bg-[--ods-color-blue-100] peer-enabled:cursor-pointer';
+  'peer-enabled:hover:bg-[--ods-color-primary-100] peer-checked:bg-[--ods-color-primary-100] peer-enabled:cursor-pointer';
 const borderStyle =
-  'peer-enabled:hover:border-[--ods-color-blue-600] peer-checked:border-[--ods-color-blue-600] peer-focus-visible:border-[--ods-color-blue-600]';
+  'peer-enabled:hover:border-[--ods-color-primary-600] peer-checked:border-[--ods-color-primary-600] peer-focus-visible:border-[--ods-color-primary-600]';
 const disabledStyle = 'peer-disabled:opacity-50';
 
 export const DeploymentModeCard = ({
@@ -45,7 +45,7 @@ export const DeploymentModeCard = ({
         borderStyle,
         disabledStyle,
         // With tailwind 3 we can't style children from group, but we can style children from parent
-        'peer-checked:[&_.deployment-mode-card-title]:font-bold',
+        'peer-checked:[&_.deployment-mode-card-title::part(text)]:font-bold',
         className,
       )}
     >
@@ -59,7 +59,7 @@ export const DeploymentModeCard = ({
           <RegionChipByType type={name} />
         </div>
 
-        <div>
+        <div className="text-center">
           <CardDescription>
             {t(`deployment_mode_card_description_${name}`)}
           </CardDescription>
