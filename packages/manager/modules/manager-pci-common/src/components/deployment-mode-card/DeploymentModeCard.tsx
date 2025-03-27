@@ -59,7 +59,7 @@ export const DeploymentModeCard = ({
           <RegionChipByType type={name} showTooltip={false} />
         </div>
 
-        <div>
+        <div className="text-center">
           <CardDescription>
             {t(`deployment_mode_card_description_${name}`)}
           </CardDescription>

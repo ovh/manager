@@ -16,7 +16,7 @@ export const DEPLOYMENT_MODES_URL = {
   DE:
     'https://help.ovhcloud.com/csm/de-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066036',
   ES:
-    'https://help.ovhcloud.com/csm/es-es-documentation-public-cloud?id=kb_browse_cat&kb_id=574a8325551974502d4c6e78b7421938',
+    'https://help.ovhcloud.com/csm/es-es-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066024',
   FR:
     'https://help.ovhcloud.com/csm/fr-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066031',
   IT:
