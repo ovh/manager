@@ -37,7 +37,7 @@ vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
   };
 });
 
-const vdcRoute = `/${organizationList[0].id}/datacentres/${datacentreList[0].id}`;
+const vdcRoute = `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}`;
 const computeRoute = `${vdcRoute}/compute`;
 
 describe('Datacentre Compute Listing Page', () => {
