@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-vcd-api@0.3.3...@ovh-ux/manager-module-vcd-api@0.4.0) (2025-03-27)
+
+
+### Features
+
+* **vcd-api:** add type to organizations iceberg hooks ([0d53d0b](https://github.com/ovh/manager/commit/0d53d0b369607d29b7a422f6dd84968c2d9cb2f7)), closes [#MANAGER-15391](https://github.com/ovh/manager/issues/MANAGER-15391)
+
+
+
+
+
 ## [0.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-vcd-api@0.3.2...@ovh-ux/manager-module-vcd-api@0.3.3) (2025-03-21)
 
 **Note:** Version bump only for package @ovh-ux/manager-module-vcd-api
