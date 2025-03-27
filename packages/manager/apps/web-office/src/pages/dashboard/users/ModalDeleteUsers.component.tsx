@@ -83,7 +83,6 @@ export default function ModalDeleteUsers() {
         label: t('dashboard_users_delete_cta_cancel'),
         action: onClose,
         testid: 'cancel-btn',
-        variant: ODS_BUTTON_VARIANT.outline,
       }}
       primaryButton={{
         label: t('dashboard_users_delete_cta_confirm'),

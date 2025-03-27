@@ -83,7 +83,6 @@ export default function ModalOrderLicenses() {
         label: t('common:cta_cancel'),
         action: onClose,
         testid: 'cancel-btn',
-        variant: ODS_BUTTON_VARIANT.outline,
       }}
       primaryButton={{
         label: t('common:cta_confirm'),

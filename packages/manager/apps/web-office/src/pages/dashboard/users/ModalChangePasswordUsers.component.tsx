@@ -106,7 +106,6 @@ export default function ModalChangePasswordUsers() {
         label: t('common:cta_cancel'),
         action: handleCancelClick,
         testid: 'cancel-btn',
-        variant: ODS_BUTTON_VARIANT.outline,
       }}
       primaryButton={{
         label: t('common:cta_confirm'),
