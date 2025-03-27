@@ -9,8 +9,8 @@ import {
 } from '@ovhcloud/ods-components';
 import Loading from '@/components/Loading/Loading';
 import { urls } from '@/routes/routes.constant';
-import { IpDatagrid } from '../components';
-import { IpFilter, TypeFilter } from '../components/filters';
+import { IpDatagrid } from './components';
+import { IpFilter, TypeFilter } from './components/filters';
 import { ListingContextProvider } from '../listingContext';
 
 export type DashboardTabItemProps = {
