@@ -2,12 +2,15 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { Card, OnboardingLayout } from '@ovh-ux/manager-react-components';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import useGuideUtils from '@/hooks/guide/useGuideUtils';
 import vmwareBroadcomOVHCloud from '@/assets/VmwareBroadcomxOVHcloud.svg';
+import { TRACKING } from '@/tracking.constants';
 
 export default function Onboarding() {
   const { t } = useTranslation('onboarding');
   const link = useGuideUtils();
+  const { trackClick } = useOvhTracking();
 
   const tileList = [
     {
@@ -19,6 +22,7 @@ export default function Onboarding() {
       },
       href: link?.guideLink1,
       hrefLabel: t('managed_vcd_onboarding_guide1_link'),
+      tracking: 'guide_discover',
     },
     {
       id: 2,
@@ -29,6 +33,7 @@ export default function Onboarding() {
       },
       href: link?.guideLink2,
       hrefLabel: t('managed_vcd_onboarding_guide2_link'),
+      tracking: 'guide_tutorial',
     },
     {
       id: 3,
@@ -39,6 +44,7 @@ export default function Onboarding() {
       },
       href: link?.guideLink3,
       hrefLabel: t('managed_vcd_onboarding_guide3_link'),
+      tracking: 'guide_FAQ',
     },
   ];
 
@@ -65,6 +71,9 @@ export default function Onboarding() {
             href={tile.href}
             texts={tile.texts}
             hrefLabel={tile.hrefLabel}
+            onClick={() =>
+              trackClick(TRACKING.onboarding.guideClick(tile.tracking))
+            }
           />
         ))}
       </OnboardingLayout>
