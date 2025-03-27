@@ -15,6 +15,7 @@ export default class TelecomDashboardGuidesCtrl {
       'modemConfig',
       'modemReinit',
       'interruptedService',
+      'endOfCopper',
     ];
     this.links = pick(constant.guides, this.guides);
   }
