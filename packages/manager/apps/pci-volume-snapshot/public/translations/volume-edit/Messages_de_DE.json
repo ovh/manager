@@ -1,0 +1,22 @@
+{
+  "pci_projects_project_storages_blocks_block_volume-edit_region_label": "Standort",
+  "pci_projects_project_storages_blocks_block_volume-edit_type_label": "Volume-Typ",
+  "pci_projects_project_storages_blocks_block_volume-edit_name_label": "Volume-Name",
+  "pci_projects_project_storages_blocks_block_volume-edit_size_label": "Volume-Kapazität:",
+  "pci_projects_project_storages_blocks_block_volume-edit_size_help": "Die maximale Größe ist von Ihrem verfügbaren Quota abhängig.",
+  "pci_projects_project_storages_blocks_block_volume-edit_size_unit": "GB",
+  "pci_projects_project_storages_blocks_block_volume-edit_bootable_label": "Bootfähig",
+  "pci_projects_project_storages_blocks_block_volume-edit_bootable_help": "Indem Sie ein Volume als bootfähig definieren, kann es für den Start Ihrer Instanz verwendet werden.",
+  "pci_projects_project_storages_blocks_block_volume-edit_cancel_label": "Abbrechen",
+
+  "pci_project_flavors_zone_localzone": "Local Zone",
+  "pci_project_flavors_zone_localzone_tooltip": "Eine Local Zone ermöglicht die Bereitstellung der Public-Cloud-Produkte von OVHcloud in Rechenzentren, die sich in unmittelbarer Nähe der Endnutzer:innen befinden.",
+  "pci_project_flavors_zone_tooltip_link": "Mehr erfahren",
+  "pci_project_flavors_zone_global_region": "1-AZ",
+  "pci_project_flavors_zone_globalregions_tooltip": "Eine 1-AZ-Region („AZ“ steht für „Availability Zone“) besteht aus einem oder mehreren Rechenzentren, die sich am gleichen Standort befinden.",
+  "pci_project_flavors_zone_globalregions_tooltip_2": "Mit der bevorstehenden Einführung der 3-AZ-Regionen ändern wir den Namen des Bereitstellungstyps „Regionen“! Eine 1-AZ-Region („AZ“ steht für „Availability Zone“) besteht aus einem oder mehreren Rechenzentren, die sich am gleichen Standort befinden.",
+  "pci_project_flavors_zone_3az_region": "3-AZ",
+  "pci_project_flavors_zone_3az_tooltip": "Eine 3-AZ-Region besteht aus drei Availability Zones, die sich innerhalb des gleichen Ballungsgebiets befinden, aber einige Kilometer voneinander entfernt sind. Sie erfüllt höchste Anforderungen in puncto Resilienz und gewährleistet gleichzeitig eine extrem niedrige Latenz zwischen den AZs.",
+
+  "pci_projects_project_storages_blocks_add_submit_price_text": "Geschätzter Betrag: {{price}} / Monat (zzgl. MwSt.)"
+}

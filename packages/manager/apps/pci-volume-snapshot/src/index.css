@@ -9,3 +9,23 @@ html,
 button {
   font-family: var(--ods-font-family-default);
 }
+
+.caption-price::part(text) {
+  @apply font-bold;
+}
+
+.selected-tile-title::part(text) {
+  @apply font-bold;
+}
+
+.font-bold-class::part(text) {
+  @apply font-bold;
+}
+
+.text-critical::part(text) {
+  color: var(--ods-color-critical-400);
+}
+
+.badge-region-type::part(button) {
+  background-color: var(--ods-color-primary-100);
+}
