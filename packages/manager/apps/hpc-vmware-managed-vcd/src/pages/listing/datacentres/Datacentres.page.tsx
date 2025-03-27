@@ -7,6 +7,7 @@ import {
   getVcdDatacentresRoute,
   VCDDatacentre,
 } from '@ovh-ux/manager-module-vcd-api';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import DatagridContainer, {
   TDatagridContainerProps,
 } from '@/components/datagrid/container/DatagridContainer.component';
@@ -14,22 +15,25 @@ import { subRoutes, urls } from '@/routes/routes.constant';
 import { capitalize } from '@/utils/capitalize';
 import { ID_LABEL } from '@/pages/dashboard/dashboard.constants';
 import TEST_IDS from '@/utils/testIds.constants';
+import { TRACKING } from '@/tracking.constants';
 
 /* ========= datagrid cells ========= */
 const DatagridIdCell = (vcdDatacentre: VCDDatacentre) => {
   const navigate = useNavigate();
   const { id } = useParams();
+  const { trackClick } = useOvhTracking();
 
   return (
     <DataGridTextCell>
       <Links
-        onClickReturn={() =>
+        onClickReturn={() => {
+          trackClick(TRACKING.datacentreListing.details);
           navigate(
             urls.datacentreDashboard
               .replace(subRoutes.dashboard, id)
               .replace(subRoutes.vdcId, vcdDatacentre.id),
-          )
-        }
+          );
+        }}
         label={vcdDatacentre.currentState.name}
         data-testid={TEST_IDS.listingDatacentreNameLink}
       />

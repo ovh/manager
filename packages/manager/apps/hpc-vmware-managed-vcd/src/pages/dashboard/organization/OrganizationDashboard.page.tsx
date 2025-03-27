@@ -3,10 +3,13 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams, useResolvedPath } from 'react-router-dom';
 import { useVcdOrganization } from '@ovh-ux/manager-module-vcd-api';
 import { ChangelogButton } from '@ovh-ux/manager-react-components';
-import VcdDashboardLayout from '@/components/dashboard/layout/VcdDashboardLayout.component';
+import VcdDashboardLayout, {
+  DashboardTab,
+} from '@/components/dashboard/layout/VcdDashboardLayout.component';
 import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
 import { urls } from '@/routes/routes.constant';
 import { CHANGELOG_LINKS } from '@/utils/changelog.constants';
+import { TRACKING_TABS_ACTIONS } from '@/tracking.constants';
 
 export default function DashboardPage() {
   const { id } = useParams();
@@ -14,16 +17,18 @@ export default function DashboardPage() {
   const { data: vcdOrganisation } = useVcdOrganization({ id });
   const navigate = useNavigate();
 
-  const tabsList = [
+  const tabsList: DashboardTab[] = [
     {
       name: 'general_information',
       title: t('managed_vcd_dashboard_general_information'),
       to: useResolvedPath('').pathname,
+      trackingActions: TRACKING_TABS_ACTIONS.dashboard,
     },
     {
       name: 'datacentres',
       title: t('managed_vcd_dashboard_datacentres_title'),
       to: useResolvedPath('datacentres').pathname,
+      trackingActions: TRACKING_TABS_ACTIONS.datacentres,
     },
   ];
 
