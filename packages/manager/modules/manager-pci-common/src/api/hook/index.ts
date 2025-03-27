@@ -5,6 +5,7 @@ export * from './useFlavors';
 export * from './useInstance';
 export * from './useLogs';
 export * from './useOperation';
+export * from './usePCIFeatureAvailability';
 export * from './useProject';
 export * from './useRegions';
 export * from './useInstance';
