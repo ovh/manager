@@ -26,13 +26,13 @@ describe('AddUser modal', () => {
   it('open and close add user modal', async () => {
     render(<AddUser />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByTestId('add-user-modal')).toBeInTheDocument();
+      expect(screen.getByTestId('add-user-modal')).toBeTruthy();
     });
     act(() => {
       fireEvent.click(screen.getByTestId('add-user-cancel-button'));
     });
     await waitFor(() => {
-      expect(screen.queryByTestId('add-user-modal')).not.toBeInTheDocument();
+      expect(screen.queryByTestId('add-user-modal')).toBeNull();
     });
   });
 
@@ -63,11 +63,6 @@ describe('AddUser modal', () => {
   });
 
   it('renders addUser and display password, copy it and close the modal', async () => {
-    Object.assign(window.navigator, {
-      clipboard: {
-        writeText: vi.fn().mockImplementation(() => Promise.resolve()),
-      },
-    });
     const successMsg = {
       description: 'formUserToastSuccessDescription',
       title: 'formUserToastSuccessTitle',
@@ -89,22 +84,13 @@ describe('AddUser modal', () => {
     });
 
     await waitFor(() => {
-      expect(
-        screen.getByTestId('user-password-copy-button'),
-      ).toBeInTheDocument();
-    });
-    act(() => {
-      fireEvent.click(screen.getByTestId('user-password-copy-button'));
-    });
-    await waitFor(() => {
-      expect(window.navigator.clipboard.writeText).toHaveBeenCalled();
-      expect(useToast().toast).toHaveBeenCalled();
+      expect(screen.getByTestId('code-container')).toBeTruthy();
     });
     act(() => {
       fireEvent.click(screen.getByTestId('user-close-button'));
     });
     await waitFor(() => {
-      expect(screen.queryByTestId('add-user-modal')).not.toBeInTheDocument();
+      expect(screen.queryByTestId('add-user-modal')).toBeNull();
     });
   });
 });

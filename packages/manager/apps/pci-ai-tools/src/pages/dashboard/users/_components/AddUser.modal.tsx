@@ -1,10 +1,9 @@
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
-import { Copy } from 'lucide-react';
 import {
-  Alert,
   Button,
+  Code,
   DialogClose,
   DialogContent,
   DialogDescription,
@@ -70,13 +69,6 @@ const AddUser = () => {
     });
   });
 
-  const handleCopyPass = () => {
-    navigator.clipboard.writeText(newPass);
-    toast.toast({
-      title: t('formUserPasswordCopy'),
-    });
-  };
-
   const handleClose = () => {
     setNewPass(undefined);
     navigate('../');
@@ -84,7 +76,7 @@ const AddUser = () => {
 
   return (
     <RouteModal backUrl="../">
-      <DialogContent className="sm:max-w-xl">
+      <DialogContent>
         <DialogHeader>
           <DialogTitle data-testid="add-user-modal">
             {t(`formAddUserTitle`)}
@@ -92,23 +84,20 @@ const AddUser = () => {
         </DialogHeader>
         <DialogDescription />
         {newPass ? (
-          <div>
-            <Alert variant="success">
-              <p>{t('formUserPasswordSuccess')}</p>
-              <div className="relative my-2">
-                <Button
-                  data-testid="user-password-copy-button"
-                  onClick={() => handleCopyPass()}
-                  className="absolute top-0 right-0 m-2 p-2 text-sm bg-primary-500 text-white rounded hover:bg-primary-700 transition duration-300"
-                >
-                  <Copy className="size-4" />
-                  <span className="sr-only">copy</span>
-                </Button>
-                <pre className="p-4 bg-gray-100 rounded">
-                  <code>{newPass}</code>
-                </pre>
-              </div>
-            </Alert>
+          <>
+            <p>{t('formUserPasswordSuccess')}</p>
+            <div data-testid="code-container" className="p-2">
+              <Code
+                code={newPass}
+                label={t('formUserLabel')}
+                theme="github-dark"
+                onCopied={() =>
+                  toast.toast({
+                    title: t('formUserPasswordCopy'),
+                  })
+                }
+              />
+            </div>
             <DialogFooter className="flex justify-end mt-4">
               <DialogClose asChild onClick={() => handleClose()}>
                 <Button
@@ -120,7 +109,7 @@ const AddUser = () => {
                 </Button>
               </DialogClose>
             </DialogFooter>
-          </div>
+          </>
         ) : (
           <Form {...form}>
             <form onSubmit={onSubmit} className="flex flex-col gap-2">
