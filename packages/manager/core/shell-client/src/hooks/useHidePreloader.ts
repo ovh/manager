@@ -2,9 +2,9 @@ import { useContext, useEffect } from 'react';
 import { ShellContext } from '../ShellContext';
 
 export const useHidePreloader = () => {
-  const { ux } = useContext(ShellContext).shell;
+  const { shell } = useContext(ShellContext);
 
   useEffect(() => {
-    ux.hidePreloader();
-  }, [ux]);
+    shell?.ux.hidePreloader();
+  }, [shell?.ux]);
 };

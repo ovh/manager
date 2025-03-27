@@ -4,15 +4,15 @@ import { ShellContext } from '../ShellContext';
 
 export const useRouteSynchro = () => {
   const location = useLocation();
-  const { routing } = useContext(ShellContext).shell;
+  const { shell } = useContext(ShellContext);
 
   useEffect(() => {
-    routing.stopListenForHashChange();
-  }, [routing]);
+    shell?.routing.stopListenForHashChange();
+  }, [shell?.routing]);
 
   useEffect(() => {
-    routing.onHashChange();
-  }, [location, routing]);
+    shell?.routing.onHashChange();
+  }, [location, shell?.routing]);
 };
 
 export default useRouteSynchro;
