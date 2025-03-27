@@ -74,8 +74,8 @@ export const UpdateNameModal: React.FC<UpdateNameModalProps> = ({
           <OdsText preset={ODS_TEXT_PRESET.paragraph}>{description}</OdsText>
         )}
         <OdsFormField>
-          <label htmlFor="update-name-modal-input">
-            <OdsText preset={ODS_TEXT_PRESET.span}>{inputLabel}</OdsText>
+          <label slot="label" htmlFor="update-name-modal-input">
+            {inputLabel}
           </label>
           <OdsInput
             className="block"
