@@ -1,7 +1,14 @@
-import { redirect } from 'react-router-dom';
+import { Outlet, redirect } from 'react-router-dom';
 import queryClient from '@/query.client';
-import Notebooks from './Notebooks.page';
 import { getNotebooks } from '@/data/api/ai/notebook/notebook.api';
+import Breadcrumb from '@/components/breadcrumb/Breadcrumb.component';
+import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
+
+export function breadcrumb() {
+  return (
+    <BreadcrumbItem translationKey="crumb-notebook" namespace="ai-tools" />
+  );
+}
 
 interface NotebooksProps {
   params: {
@@ -17,13 +24,16 @@ export const Loader = async ({ params }: NotebooksProps) => {
     queryFn: () => getNotebooks({ projectId }),
   });
   if (notebooks.length === 0) {
-    return redirect(
-      `/pci/projects/${projectId}/ai/notebooks/notebooks/onboarding`,
-    );
+    return redirect(`/pci/projects/${projectId}/ai-ml/notebooks/onboarding`);
   }
   return null;
 };
 
 export default function Root() {
-  return <Notebooks />;
+  return (
+    <>
+      <Breadcrumb />
+      <Outlet />
+    </>
+  );
 }

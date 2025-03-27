@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
-import Root, { Loader } from '@/pages/notebooks/NotebookRoot.page';
+import Root, { Loader } from '@/pages/notebooks/NotebookRoot.layout';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import * as notebookApi from '@/data/api/ai/notebook/notebook.api';
 import { mockedNotebook } from '@/__tests__/helpers/mocks/notebook/notebook';

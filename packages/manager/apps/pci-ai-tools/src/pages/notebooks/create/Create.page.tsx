@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Outlet, useParams } from 'react-router-dom';
 import { Skeleton } from '@datatr-ux/uxlib';
-import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import Guides from '@/components/guides/Guides.component';
 import OrderFunnel from './_components/OrderFunnel.component';
 import { GuideSections } from '@/configuration/guide';
@@ -11,12 +10,13 @@ import { useGetCatalog } from '@/data/hooks/catalog/useGetCatalog.hook';
 import { useGetFramework } from '@/data/hooks/ai/notebook/capabilities/useGetFramework.hook';
 import { useGetEditor } from '@/data/hooks/ai/notebook/capabilities/useGetEditor.hook';
 import { useGetSshkey } from '@/data/hooks/sshkey/useGetSshkey.hook';
+import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 
 export function breadcrumb() {
   return (
     <BreadcrumbItem
-      translationKey={`breadcrumb`}
-      namespace="pci-ai-notebooks/notebooks/create"
+      translationKey="breadcrumb"
+      namespace="ai-tools/notebooks/create"
     />
   );
 }
