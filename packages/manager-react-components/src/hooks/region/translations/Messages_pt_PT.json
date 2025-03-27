@@ -281,8 +281,17 @@
   "manager_components_region_PAR": "Paris",
   "manager_components_region_PAR_micro": "Paris ({{ micro }})",
   "manager_components_region_location_PAR": "Europa Ocidental (França)",
-  "manager_components_region_continent_PAR": "Europa Ocidental",
   "manager_components_region_STO": "Estocolmo",
   "manager_components_region_STO_micro": "Estocolmo ({{ micro }})",
-  "manager_components_region_continent_STO": "Norte da Europa"
+  "manager_components_region_continent_STO": "Norte da Europa",
+  "manager_components_region_continent_PAR": "Europa Ocidental",
+  "manager_components_region_PHL": "Filadélfia",
+  "manager_components_region_PHL_micro": "Filadélfia ({{ micro }})",
+  "manager_components_region_continent_PHL": "América do Norte",
+  "manager_components_region_CPH": "Copenhaga",
+  "manager_components_region_CPH_micro": "Copenhaga ({{ micro }})",
+  "manager_components_region_continent_CPH": "Norte da Europa",
+  "manager_components_region_PHX": "Phoenix",
+  "manager_components_region_PHX_micro": "Phoenix ({{ micro }})",
+  "manager_components_region_continent_PHX": "América do Norte"
 }
