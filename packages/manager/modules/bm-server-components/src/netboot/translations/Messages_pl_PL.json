@@ -14,7 +14,6 @@
   "server_configuration_netboot_option_harddisk": "Uruchom z dysku twardego.",
   "server_configuration_netboot_option_rescue": "Uruchom w trybie diagnostycznym (Rescue).",
   "server_configuration_netboot_option_network": "Uruchom z sieci (Netboot).",
-  "server_configuration_netboot_configuration": "Konfiguracja:",
   "server_configuration_netboot_rescue_help": "Tryb rescue może być przydatny podczas diagnozowania usterek sprzętowych na serwerze dedykowanym.",
   "server_configuration_netboot_rescue_help_link": "Dostęp do przewodnika dotyczącego diagnostyki sprzętu.",
   "server_configuration_netboot_rescue_choice": "Dostępny tryb Rescue:",

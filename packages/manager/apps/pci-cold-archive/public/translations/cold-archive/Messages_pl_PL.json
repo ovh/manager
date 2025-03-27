@@ -19,7 +19,7 @@
   "pci_projects_project_storages_cold_archive_containers_add_container_label": "Utwórz kontener",
   "pci_projects_project_storages_cold_archive_containers_manage_container_label": "Zarządzaj kontenerami za pomocą CLI",
   "pci_projects_project_storages_cold_archive_containers_status_label": "Status",
-  "pci_projects_project_storages_containers_status_none": "Aktywna",
+  "pci_projects_project_storages_containers_status_none": "Aktywny",
   "pci_projects_project_storages_containers_status_restored": "Przywrócony",
   "pci_projects_project_storages_containers_status_restoring": "Trwa przywracanie",
   "pci_projects_project_storages_containers_status_archived": "Zarchiwizowany",

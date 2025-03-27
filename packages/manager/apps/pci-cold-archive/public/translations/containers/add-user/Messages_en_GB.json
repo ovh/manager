@@ -8,7 +8,7 @@
   "pci_projects_project_storages_coldArchive_containers_addUser_description_object_step_1": "Set your user's role on the {{value}} object.",
   "pci_projects_project_storages_coldArchive_containers_addUser_submit_label": "Confirm",
   "pci_projects_project_storages_coldArchive_containers_addUser_next_label": "Next",
-  "pci_projects_project_storages_coldArchive_containers_addUser_cancel_label": "Exit",
+  "pci_projects_project_storages_coldArchive_containers_addUser_cancel_label": "Cancel",
   "pci_projects_project_storages_coldArchive_containers_addUser_back_label": "Back",
   "pci_projects_project_storages_coldArchive_containers_addUser_right_admin": "Administrator",
   "pci_projects_project_storages_coldArchive_containers_addUser_right_readWrite": "Read and write",

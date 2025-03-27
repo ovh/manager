@@ -3,7 +3,7 @@
   "pci_projects_project_storages_cold_archive_add_title": "Archiv erstellen",
   "pci_projects_project_storages_cold_archive_add_description": "Ein Archiv ist ein Container (Bucket) und für Objekte und Dateien konzipiert, die unverändert langfristig und auf verlässliche Weise gespeichert werden sollen.",
   "pci_projects_project_storages_cold_archive_add_description_link": "Zu den Preisen.",
-  "pci_projects_project_storages_cold_archive_add_guides_title": "Anleitungen",
+  "pci_projects_project_storages_cold_archive_add_guides_title": "Guides",
   "pci_projects_project_storages_cold_archive_add_step_name_archive_header": "Benennen Sie Ihren Container",
   "pci_projects_project_storages_cold_archive_add_step_name_archive_header_selected": "Name des Containers: {{archiveName}}",
   "pci_projects_project_storages_cold_archive_add_step_name_archive_localisation_banner_info": "Ihr Container wird an diesem Standort erstellt: Roubaix (RBX).",

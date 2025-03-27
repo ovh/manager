@@ -26,6 +26,7 @@
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
     "angular-messages": "^1.7.x",
+    "angular-sanitize": "1.7.x",
     "angular-translate": "^2.18.1",
     "bootstrap": "^3.3.6",
     "lodash-es": "^4.17.15",

@@ -27,7 +27,7 @@
   "pci_projects_project_storages_containers_status_deleting": "Eliminazione in corso...",
   "pci_projects_project_storages_containers_status_flushed": "Svuotato",
   "pci_projects_project_storages_cold_archive_container_action_add_user": "Aggiungere un utente",
-  "pci_projects_project_storages_cold_archive_container_action_see_objects": "Visualizza gli oggetti",
+  "pci_projects_project_storages_cold_archive_container_action_see_objects": "Visualizzare gli oggetti",
   "pci_projects_project_storages_cold_archive_container_action_archive": "Archiviare",
   "pci_projects_project_storages_cold_archive_container_action_restore": "Ripristinare",
   "pci_projects_project_storages_cold_archive_container_action_delete_objects": "Eliminare gli oggetti",
@@ -39,5 +39,5 @@
   "pci_projects_project_storages_cold_archive_container_manage_description_2": "Per scaricare dati come foto, video e altri documenti, per esempio, è necessario utilizzare la CLI, il SDK o l'API compatibile con S3.",
   "pci_projects_project_storages_cold_archive_containers_container_manage_endpoint_label": "Endpoint",
   "pci_projects_project_storages_cold_archive_containers_container_manage_region_label": "Region",
-  "pci_projects_project_storages_cold_archive_containers_container_manage_close_label": "Chiudi"
+  "pci_projects_project_storages_cold_archive_containers_container_manage_close_label": "Chiudere"
 }

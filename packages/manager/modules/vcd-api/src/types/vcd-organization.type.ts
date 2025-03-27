@@ -1,3 +1,4 @@
+import { UseResourcesIcebergV2Result } from '@ovh-ux/manager-react-components';
 import { BillingType, ResourceStatus, Task, WithIam } from './vcd-utility.type';
 import { BackupStatus } from './veeam-backup.type';
 
@@ -41,4 +42,15 @@ export type VCDOrganization = WithIam<{
 
 export type VCDOrganizationWithBackupStatus = VCDOrganization & {
   backupStatus?: BackupStatus;
+};
+
+export type UseOrganizationListReturn = UseResourcesIcebergV2Result<
+  VCDOrganization
+>;
+
+export type UseOrganizationWithBackupStatusListReturn = Omit<
+  UseOrganizationListReturn,
+  'flattenData'
+> & {
+  flattenData: VCDOrganizationWithBackupStatus[];
 };

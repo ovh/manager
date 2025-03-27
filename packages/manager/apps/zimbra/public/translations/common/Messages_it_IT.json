@@ -70,7 +70,7 @@
   "useful_links": "Link utili",
   "number_of_accounts": "Numero di account",
   "no_email_account": "Al momento non disponi di nessuna casella email.",
-  "form_min_chars": "{{ value }} caratteri minimo",
+  "form_min_chars": "{{ value }} caratteri minimo.",
   "form_at_least_one_digit": "Deve contenere almeno una cifra",
   "form_at_least_one_uppercase": "Deve contenere almeno una lettera maiuscola",
   "form_at_least_one_special": "Deve contenere almeno un carattere speciale",
@@ -78,5 +78,5 @@
   "form_valid_domain": "Inserisci un dominio valido",
   "form_valid_account": "Inserisci un nome di account valido",
   "form_valid_date": "Inserisci una data valida",
-  "form_valid_number": "Inserisci un numero valido"
+  "form_valid_number": "Inserisci un numero valido."
 }

@@ -14,7 +14,6 @@
   "server_configuration_netboot_option_harddisk": "Von Festplatte booten",
   "server_configuration_netboot_option_rescue": "Im Rescue-Modus booten",
   "server_configuration_netboot_option_network": "Im Netzwerk-Modus booten",
-  "server_configuration_netboot_configuration": "Konfiguration:",
   "server_configuration_netboot_rescue_help": "Der Rescue-Modus kann nützlich sein, um auf einem Dedicated Server Hardwareprobleme zu diagnostizieren.",
   "server_configuration_netboot_rescue_help_link": "Sehen Sie sich die Anleitung für die Hardware-Diagnose an.",
   "server_configuration_netboot_rescue_choice": "Verfügbarer Rescue:",

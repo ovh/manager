@@ -12,7 +12,7 @@
   "pci_projects_project_storages_containers_toggle_fail": "Se ha producido un error: {{message}}",
   "pci_projects_project_storages_containers_containerType_label": "Tipo",
   "pci_projects_project_storages_containers_containerType_public": "Público",
-  "pci_projects_project_storages_containers_containerType_private": "Privado",
+  "pci_projects_project_storages_containers_containerType_private": "Privada",
   "pci_projects_project_storages_containers_containerType_static": "Estático",
   "pci_projects_project_storages_containers_storedObjects_label": "Número de objetos",
   "pci_projects_project_storages_containers_storedBytes_label": "Espacio utilizado",
@@ -40,5 +40,5 @@
   "pci_projects_project_storages_cold_archive_containers_status_restore_date": "Hasta {{ date }}",
   "pci_projects_project_storages_cold_archive_containers_status_restore_date_tooltip": "Fecha en la que los archivos restaurados se eliminarán de este contenedor.",
   "pci_projects_project_storages_cold_archive_containers_locked_until_label": "Bloqueado hasta el",
-  "pci_projects_project_storages_cold_archive_container_action_edit_retention": "Modificar la duración de retención"
+  "pci_projects_project_storages_cold_archive_container_action_edit_retention": "Modificar el período de retención"
 }

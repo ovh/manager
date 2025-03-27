@@ -1,3 +1,10 @@
+import {
+  CUSTOM_ACTION_WILDCARD_PATTERN,
+  CUSTOM_RESOURCE_TYPE,
+  WILDCARD,
+  ACTION_DESCRIPTION_UNDEFINED,
+} from '../../iam.constants';
+
 /**
  * @typedef {{
  *   description: string
@@ -45,13 +52,6 @@
  *   categories: string[]
  * }} RawAction
  */
-
-import {
-  CUSTOM_ACTION_WILDCARD_PATTERN,
-  CUSTOM_RESOURCE_TYPE,
-  WILDCARD,
-  ACTION_DESCRIPTION_UNDEFINED,
-} from '../../iam.constants';
 
 export default class ActionTrees extends Array {
   /**

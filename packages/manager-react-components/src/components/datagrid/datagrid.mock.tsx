@@ -45,6 +45,25 @@ export const columnsFilters = [
   },
 ];
 
+export const columnsVisibility = [
+  {
+    id: 'label',
+    cell: (item: Item) => {
+      return <DataGridTextCell>{item.label}</DataGridTextCell>;
+    },
+    label: 'Label',
+    enableHiding: false,
+  },
+  {
+    id: 'price',
+    cell: (item: Item) => {
+      return <DataGridTextCell>{item.price} €</DataGridTextCell>;
+    },
+    label: 'Price',
+    enableHiding: true,
+  },
+];
+
 export const columnsSearchAndFilters = [
   {
     id: 'label',
@@ -54,6 +73,7 @@ export const columnsSearchAndFilters = [
     label: 'Label',
     isFilterable: true,
     isSearchable: true,
+    enableHiding: true,
     comparator: FilterCategories.String,
   },
   {
@@ -64,6 +84,7 @@ export const columnsSearchAndFilters = [
     label: 'Price',
     isFilterable: true,
     isSearchable: true,
+    enableHiding: true,
     comparator: FilterCategories.String,
   },
   {
@@ -74,7 +95,7 @@ export const columnsSearchAndFilters = [
     label: 'Status',
     isFilterable: true,
     comparator: FilterCategories.Options,
-    options: [
+    filterOptions: [
       { label: 'Status #0', value: 'Status #0' },
       { label: 'Status #1', value: 'Status #1' },
     ],

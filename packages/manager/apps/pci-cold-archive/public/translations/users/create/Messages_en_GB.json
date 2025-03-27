@@ -2,7 +2,7 @@
   "pci_projects_project_users_add_title": "Add an Object Storage user",
   "pci_projects_project_users_add_short_description": "You can set access to your archives for your predefined users, or create new users and get your access keys.",
   "pci_projects_project_users_add_submit_label": "Create",
-  "pci_projects_project_users_add_cancel_label": "Exit",
+  "pci_projects_project_users_add_cancel_label": "Cancel",
   "pci_projects_project_users_add_description_label": "User description",
   "pci_projects_project_users_add_existing_user": "Select an existing user",
   "pci_projects_project_users_add_create_user": "Create a new user",

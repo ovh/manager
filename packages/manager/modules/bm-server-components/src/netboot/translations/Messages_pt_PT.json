@@ -14,7 +14,6 @@
   "server_configuration_netboot_option_harddisk": "Fazer boot no disco rígido",
   "server_configuration_netboot_option_rescue": "Fazer boot em modo rescue",
   "server_configuration_netboot_option_network": "Efetuar boot em modo network",
-  "server_configuration_netboot_configuration": "Configuração:",
   "server_configuration_netboot_rescue_help": "O rescue pode ser útil para diagnosticar avarias materiais num servidor dedicado.",
   "server_configuration_netboot_rescue_help_link": "Aceda ao manual de diagnóstico de hardware",
   "server_configuration_netboot_rescue_choice": "\"Rescue\" disponível:",
