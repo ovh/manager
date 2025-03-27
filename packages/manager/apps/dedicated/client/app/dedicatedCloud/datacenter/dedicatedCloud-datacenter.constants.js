@@ -1,8 +1,8 @@
 export const NSX_EDGE_RELOCATE_FEATURE_AVAILABLE =
-'dedicated-cloud:nsxEdgeRelocate';
+  'dedicated-cloud:nsxEdgeRelocate';
 
 export const MIN_NSX_EDGES = 2;
-export const MAX_NSX_EDGES = 10;
+export const MAX_NSX_EDGES = 4;
 
 export const NETWORK_LABEL = 'NSX Edge Nodes';
 export const NSX_COMPATIBLE_COMMERCIAL_RANGE = [
