@@ -7,11 +7,7 @@ import {
   OdsText,
   OdsRadio,
 } from '@ovhcloud/ods-components/react';
-import {
-  ODS_BUTTON_VARIANT,
-  ODS_INPUT_TYPE,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
+import { ODS_INPUT_TYPE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useNotifications } from '@ovh-ux/manager-react-components';
@@ -106,7 +102,6 @@ export default function ModalChangePasswordUsers() {
         label: t('common:cta_cancel'),
         action: handleCancelClick,
         testid: 'cancel-btn',
-        variant: ODS_BUTTON_VARIANT.outline,
       }}
       primaryButton={{
         label: t('common:cta_confirm'),

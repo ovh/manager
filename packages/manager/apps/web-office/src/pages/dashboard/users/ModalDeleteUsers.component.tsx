@@ -6,7 +6,6 @@ import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useMutation } from '@tanstack/react-query';
 import {
-  ODS_BUTTON_VARIANT,
   ODS_MESSAGE_COLOR,
   ODS_MODAL_COLOR,
   ODS_TEXT_PRESET,
@@ -83,7 +82,6 @@ export default function ModalDeleteUsers() {
         label: t('dashboard_users_delete_cta_cancel'),
         action: onClose,
         testid: 'cancel-btn',
-        variant: ODS_BUTTON_VARIANT.outline,
       }}
       primaryButton={{
         label: t('dashboard_users_delete_cta_confirm'),

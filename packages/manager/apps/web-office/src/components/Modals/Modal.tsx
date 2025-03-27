@@ -73,7 +73,7 @@ const Modal: React.FC<ModalProps> = ({
           onClick={!secondaryButton.isDisabled ? secondaryButton.action : null}
           isDisabled={secondaryButton.isDisabled}
           isLoading={secondaryButton.isLoading}
-          variant={secondaryButton.variant ?? ODS_BUTTON_VARIANT.outline}
+          variant={ODS_BUTTON_VARIANT.ghost}
           label={secondaryButton.label}
           className="mt-4"
         />
