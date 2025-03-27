@@ -1,6 +1,6 @@
 {
   "nutanix_dashboard_reinstall_node_title": "Reinstalar o nó",
-  "nutanix_dashboard_reinstall_node_description": "Vai reinstalar o AOS e o AHV no seu nó. Indique os endereços IP não utilizados na rede do seu cluster.",
+  "nutanix_dashboard_reinstall_node_description": "Vai reinstalar o AOS e o AHV no seu nó.",
   "nutanix_dashboard_reinstall_node_tips": "Para uma reinstalação simultânea em vários nós, utilize a API",
   "nutanix_dashboard_reinstall_node_label_ahv_ip": "IP do nó",
   "nutanix_dashboard_reinstall_node_label_cvm_ip": "IP CVM",

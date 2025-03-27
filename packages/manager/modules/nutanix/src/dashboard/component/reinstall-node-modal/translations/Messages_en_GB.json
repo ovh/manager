@@ -1,6 +1,6 @@
 {
   "nutanix_dashboard_reinstall_node_title": "Reinstall node",
-  "nutanix_dashboard_reinstall_node_description": "You are about to reinstall AOS and AHV on your node. Specify unused IP addresses in your cluster network.",
+  "nutanix_dashboard_reinstall_node_description": "You are about to reinstall AOS and AHV on your node.",
   "nutanix_dashboard_reinstall_node_tips": "For simultaneous re-installation on multiple nodes, please use the API",
   "nutanix_dashboard_reinstall_node_label_ahv_ip": "Node IP",
   "nutanix_dashboard_reinstall_node_label_cvm_ip": "CVM IP",
