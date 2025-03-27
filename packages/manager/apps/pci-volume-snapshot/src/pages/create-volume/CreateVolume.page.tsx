@@ -18,20 +18,22 @@ import { TVolume, TVolumeSnapshot } from '@/api/api.types';
 import { useVolumeSnapshots } from '@/api/hooks/useSnapshots';
 import { useCreateVolume } from '@/api/hooks/useVolume';
 import { TNewVolumeData } from '@/api/data/volume';
+import { ROUTE_PATHS } from '@/routes';
 
 export default function CreateVolumePage() {
   const { t } = useTranslation(['create-volume', 'volumes']);
   const { addError, addSuccess } = useNotifications();
   const navigate = useNavigate();
-  const { projectId, snapshotId } = useParams();
+  const urlParams = useParams();
+  const projectId = urlParams.projectId as string;
+  const snapshotId = urlParams.snapshotId as string;
   const hrefProject = useProjectUrl('public-cloud');
   const { data: project } = useProject();
-  const hrefListing = useHref('./../..');
-  const goBack = () => navigate('./../..');
+  const listingUrl = ROUTE_PATHS.ROOT.replace(':projectId', projectId);
+  const hrefListing = useHref(listingUrl);
+  const goBack = () => navigate(listingUrl);
 
-  const { data: allSnapshots } = useVolumeSnapshots(
-    projectId || 'NO_PROJECT_ID',
-  );
+  const { data: allSnapshots } = useVolumeSnapshots(projectId);
   const snapshot: TVolumeSnapshot | null = useMemo(
     () => allSnapshots.find((d) => d.id === snapshotId) || null,
     [allSnapshots, snapshotId],
@@ -107,7 +109,7 @@ export default function CreateVolumePage() {
           <OdsSpinner />
         ) : (
           <PciStorageVolumeEdit
-            projectId={projectId || ''}
+            projectId={projectId}
             volume={snapshot.volume}
             suggestedName={snapshot.name}
             onSubmit={handleSubmit}

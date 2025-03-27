@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom';
 import { ErrorBoundary } from '@/pages/Layout';
 import { LISTING, CREATE } from '@/tracking.constants';
 
-const ROUTE_PATHS = {
+export const ROUTE_PATHS = {
   ROOT: '/pci/projects/:projectId/storages/volume-snapshots',
   LISTING: '',
   CREATE_VOLUME: ':snapshotId/new-volume',

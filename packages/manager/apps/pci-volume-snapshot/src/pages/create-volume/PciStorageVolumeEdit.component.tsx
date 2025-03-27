@@ -9,7 +9,7 @@ import {
   OdsQuantity,
 } from '@ovhcloud/ods-components/react';
 import { useTranslatedMicroRegions } from '@ovh-ux/manager-react-components';
-import { TVolume, TVolumePricing } from '@/api/api.types';
+import { TRegion, TVolume, TVolumePricing } from '@/api/api.types';
 import PriceEstimate from './PriceEstimate.component';
 import BadgeRegionType from './BadgeRegionType.component';
 import { useVolumeCatalog } from '@/api/hooks/useCatalog';
@@ -20,6 +20,38 @@ import {
   DEFAULT_MAX_SIZE,
   VOLUME_NAME_MAX_LENGTH,
 } from '@/constants';
+
+function useStorageVolumeEditData(
+  projectId: string,
+  volume: TVolume,
+): {
+  region: TRegion | null;
+  pricing: TVolumePricing | null;
+  has3Az: boolean;
+} {
+  const { data: catalog } = useVolumeCatalog(projectId);
+
+  const { region, pricing } = useMemo(() => {
+    if (!catalog || !volume) {
+      return { region: null, pricing: null, has3Az: false };
+    }
+    const catalogVolume =
+      catalog.models.find((addon) => addon.name === volume.type) || null;
+    const regionPricing = (catalogVolume?.pricings || []).find((p) =>
+      p.regions.includes(volume.region),
+    );
+    return {
+      region: catalog.regions.find((r) => r.name === volume.region) || null,
+      pricing: regionPricing as TVolumePricing,
+    };
+  }, [catalog, volume]);
+
+  const has3Az =
+    !!catalog &&
+    catalog.filters.deployment.some((d) => d.name === 'region-3-az');
+
+  return { region, pricing, has3Az };
+}
 
 export interface PciStorageVolumeEditProps {
   projectId: string;
@@ -40,22 +72,11 @@ export default function PciStorageVolumeEdit({
 }: Readonly<PciStorageVolumeEditProps>) {
   const { t } = useTranslation(['volume-edit', 'pci-common']);
   const { translateMicroRegion } = useTranslatedMicroRegions();
-  const { data: catalog } = useVolumeCatalog(projectId);
-  const { region, pricing } = useMemo(() => {
-    if (!catalog || !volume) {
-      return { region: null, pricing: null };
-    }
-    const catalogVolume =
-      catalog.models.find((addon) => addon.name === volume.type) || null;
-    const regionPricing = (catalogVolume?.pricings || []).find((p) =>
-      p.regions.includes(volume.region),
-    );
-    return {
-      region: catalog.regions.find((r) => r.name === volume.region) || null,
-      pricing: regionPricing as TVolumePricing,
-    };
-  }, [catalog, volume]);
-  const { data: regionQuota } = useRegionsQuota(projectId, volume?.region);
+  const { region, pricing, has3Az } = useStorageVolumeEditData(
+    projectId,
+    volume,
+  );
+  const { data: regionQuota } = useRegionsQuota(projectId, volume.region);
   const [volumeSize, setVolumeSize] = useState(volume.size || VOLUME_MIN_SIZE);
   const minVolumeSize = volume.size;
   const maxVolumeSize = useMemo(() => {
@@ -106,7 +127,12 @@ export default function PciStorageVolumeEdit({
           <OdsText preset="span">
             {translateMicroRegion(volume?.region)}
           </OdsText>
-          {!!region && <BadgeRegionType regionType={region.type} />}
+          {!!region && (
+            <BadgeRegionType
+              regionType={region.type}
+              are3azRegionAvailable={has3Az}
+            />
+          )}
         </div>
       </OdsFormField>
       <OdsFormField className="my-4 w-full">
