@@ -22,7 +22,6 @@ export const useGetOrganisationsDetails = ({
     queryKey: getOrganisationsDetailsQueryKey({ org }),
     queryFn: () => getOrganisationsDetails({ org }),
     enabled,
-    staleTime: Number.POSITIVE_INFINITY,
     retry: false,
   });
 

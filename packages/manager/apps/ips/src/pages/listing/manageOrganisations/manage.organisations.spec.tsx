@@ -1,19 +1,55 @@
-import { describe, it } from 'vitest';
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import { getButtonByIcon, renderTest } from '@/test-utils';
-import { urls } from '@/routes/routes.constant';
+import React from 'react';
+import { describe, it, expect, vi } from 'vitest';
+import { render, waitFor } from '@testing-library/react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { organisationMockList } from '../../../../mocks';
+import { ManageOrganisationsDatagrid } from './components/OrganisationsDatagrid/manageOrganisationsDataGrid.component';
+
+const queryClient = new QueryClient();
+
+/** MOCKS */
+const useGetOrgListMock = vi.hoisted(() =>
+  vi.fn(() => ({ organisationMockList, isLoading: true, error: undefined })),
+);
+
+vi.mock('@/data/hooks/organisation', () => ({
+  useGetOrganisationsList: useGetOrgListMock,
+}));
+
+/** RENDER */
+const renderComponent = () => {
+  return render(
+    <QueryClientProvider client={queryClient}>
+      <ManageOrganisationsDatagrid />
+    </QueryClientProvider>,
+  );
+};
+
+vi.mock('./components/DatagridCells', () => ({
+  OrganisationsIdCell: ({ org }: { org: string }) => <div>{org}</div>,
+  OrganisationsTypeCell: ({ org }: { org: string }) => <div>{org}</div>,
+  OrganisationsSurnameCell: ({ org }: { org: string }) => <div>{org}</div>,
+  OrganisationsEmailCell: ({ org }: { org: string }) => <div>{org}</div>,
+  OrganisationsPhoneCell: ({ org }: { org: string }) => <div>{org}</div>,
+  OrganisationsAddressCell: ({ org }: { org: string }) => <div>{org}</div>,
+  OrganisationsActionsCell: ({ org }: { org: string }) => <div>{org}</div>,
+}));
 
 describe('Manage Organisations Page', () => {
-  it('should render a datagrid', async () => {
-    const { container } = await renderTest({
-      nbOrganisation: 3,
-      initialRoute: urls.manageOrganisations,
+  it('Should display columns', async () => {
+    useGetOrgListMock.mockReturnValue({
+      organisationMockList,
+      isLoading: false,
+      error: undefined,
     });
-
-    await getButtonByIcon({
-      container,
-      iconName: ODS_ICON_NAME.ellipsisVertical,
-      nth: 1,
+    const { getByText } = renderComponent();
+    await waitFor(() => {
+      expect(getByText('manageOrganisationsTabOrganisaton')).toBeDefined();
+      expect(getByText('manageOrganisationsTabType')).toBeDefined();
+      expect(getByText('manageOrganisationsTabSurname')).toBeDefined();
+      expect(getByText('manageOrganisationsTabEmail')).toBeDefined();
+      expect(getByText('manageOrganisationsTabPhone')).toBeDefined();
+      expect(getByText('manageOrganisationsTabAddress')).toBeDefined();
     });
   });
 });
