@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.16.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.16.1...@ovh-ux/manager-pci-common@0.16.2) (2025-03-27)
+
+### Bug Fixes
+
+* **pci-common:** center description and change ES link ([7bee8ad](https://github.com/ovh/manager/commit/7bee8ad8e532b561b69dfd061ef25d1a9bd82e51))
+
 ## [0.16.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.16.0...@ovh-ux/manager-pci-common@0.16.1) (2025-03-26)
 
 ### Bug Fixes
