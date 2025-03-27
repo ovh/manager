@@ -154,17 +154,6 @@ const ServicePackService = class ServicePack {
     );
   }
 
-  getCatalog(ovhSubsidiary) {
-    return this.$http
-      .get('/sws/dedicatedcloud/catalog', {
-        serviceType: 'aapi',
-        params: {
-          ovhSubsidiary,
-        },
-      })
-      .then((catalog) => catalog.data);
-  }
-
   static getAddonsFromCatalogForFamilyName(catalog, family) {
     return find(catalog.plans[0].addonsFamily, { family }).addons;
   }
@@ -204,8 +193,8 @@ const ServicePackService = class ServicePack {
     );
   }
 
-  getPrices(ovhSubsidiary, hosts, servicePacks) {
-    return this.getCatalog(ovhSubsidiary).then((catalog) => {
+  getPrices(hosts, servicePacks) {
+    return this.DedicatedCloud.getCatalog().then((catalog) => {
       const addons = {
         hourly: ServicePack.getAddonsFromCatalogForFamilyName(
           catalog,
