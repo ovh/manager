@@ -15,12 +15,14 @@ export interface AssistanceProps {
   nodeTree?: Node;
   isShort: boolean;
   selectedNode: Node;
+  isLoading: boolean;
 }
 
 const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
   nodeTree,
   selectedNode,
-  isShort
+  isShort,
+  isLoading
 }): JSX.Element => {
   const { t } = useTranslation('sidebar');
   const shell = useShell();
@@ -32,7 +34,7 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
   const urls = useURL(environment);
   const trackingPlugin = shell.getPlugin('tracking');
   const isEUOrCA = ['EU', 'CA'].includes(environment.getRegion());
-  const { closeNavigationSidebar } = useProductNavReshuffle();
+  const { closeNavigationSidebar, setIsAnimated } = useProductNavReshuffle();
 
   useEffect(() => {
     nodeTree.children.forEach((node: Node) => {
@@ -99,6 +101,7 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
         variant={ODS_BUTTON_VARIANT.ghost}
         size={ODS_BUTTON_SIZE.md}
         title={t('sidebar_assistance_title')}
+        onClick={() => setIsAnimated(true)}
         contrasted
       >
         <OsdsIcon
@@ -117,7 +120,7 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
   return (
     <ul className="mt-auto pb-3 flex-none" id="useful-links" role="menu" data-testid="assistance-sidebar">
       <li className="assistance_header px-3 mb-3">
-        <h2 className="flex justify-between">
+        <h2 className="flex justify-between whitespace-nowrap">
           <span>{t('sidebar_assistance_title')}</span>
         </h2>
       </li>
@@ -125,6 +128,7 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
         <AssistanceLinkItem
           key={`assistance_${node.id}`}
           node={node}
+          isLoading={isLoading}
           isSelected={node.id === selectedNode?.id}
         />
       ))}
