@@ -23,6 +23,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import React, {
   FC,
+  ReactNode,
   Suspense,
   useCallback,
   useContext,
@@ -32,7 +33,7 @@ import React, {
 } from 'react';
 
 import { MutationStatus, useMutationState } from '@tanstack/react-query';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import {
@@ -70,7 +71,7 @@ import LegalLinks from '../LegalLinks/LegalLinks';
 const COMMON_SPACING = 'my-4';
 
 export const DescriptionWrapper: React.FC<{
-  children: string;
+  children: string | ReactNode;
   className?: string;
 }> = ({ children, className }) => {
   return (
@@ -287,6 +288,7 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
         <DescriptionWrapper>
           {t('choose_ressource_description')}
         </DescriptionWrapper>
+        <DescriptionWrapper>{t('ressource_usage')}</DescriptionWrapper>
         <div className="flex flex-row  w-full overflow-x-auto">
           {resources.map((resource) => (
             <SimpleTile
@@ -350,6 +352,16 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
             ? t('select_quantity_description_instance')
             : t('select_quantity_description_rancher')}
         </DescriptionWrapper>
+
+        {!isInstance && (
+          <DescriptionWrapper className="mb-[12px]">
+            <Trans
+              i18nKey="create:select_quantity_description_rancher_info"
+              components={{ br: <br /> }}
+            />
+          </DescriptionWrapper>
+        )}
+
         <OdsCard className="flex flex-row items-center mr-5 p-4 text-center justify-between w-full mb-[32px] mt-[16px]">
           <OdsText>{t('quantity_label')}</OdsText>
           <OdsQuantity
