@@ -103,8 +103,8 @@ export default function ListingPage() {
             )}
             <PciAnnouncementBanner projectId={projectId} />
           </div>
-          <div className="sm:flex items-center justify-between">
-            <div className="sm:flex">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-5">
+            <div className="flex flex-col sm:flex-row gap-4">
               <OdsButton
                 size="sm"
                 color="primary"
@@ -124,7 +124,7 @@ export default function ListingPage() {
             <div className="flex justify-center gap-4">
               <OdsInput
                 name="searchField"
-                className="min-w-[15rem]"
+                className="md:min-w-[15rem]"
                 value={searchField}
                 onKeyDown={(event) => {
                   if (event.key === 'Enter') {
