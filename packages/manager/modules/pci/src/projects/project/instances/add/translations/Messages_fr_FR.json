@@ -147,6 +147,5 @@
   "pci_project_instances_instance_add_3_az_region_select_description": "Une zone de disponibilité par défaut a été sélectionnée. Vous avez la possibilité de personnaliser ce choix.",
   "pci_project_instances_instance_add_3_az_region_select_auto_title": "Choisir pour moi",
   "pci_project_instances_instance_add_3_az_region_select_auto_description": "Si nous choisissons pour vous, vous ne pourrez pas changer l’instance de zone. Vous devrez alors l’arrêter puis la recréer dans la zone de votre choix.",
-  "pci_project_instances_instance_add_3_az_region_select_manual_title": "Je choisis ma zone de disponibilité",
-  "pci_projects_project_instances_add_billing_gateway_detail_price_monthly_3az": "(au prix de {{gatewayPrice}} HT / heure durant la phase Beta de {{location}} ({{datacenter}}))"
+  "pci_project_instances_instance_add_3_az_region_select_manual_title": "Je choisis ma zone de disponibilité"
 }

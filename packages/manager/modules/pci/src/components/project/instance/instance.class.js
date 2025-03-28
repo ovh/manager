@@ -22,7 +22,7 @@ export default class Instance {
   }
 
   canAttachVolume() {
-    return this.isCapabilityEnabled(CAPABILITIES.VOLUME);
+    return this.isStarted() && this.isCapabilityEnabled(CAPABILITIES.VOLUME);
   }
 
   canBeResized() {

@@ -17,17 +17,10 @@
                 ></strong>
                 <span class="d-flex flex-column">
                     <span
-                        data-ng-class="{ 'h6': $ctrl.beta }"
                         data-translate="pci_project_flavors_billing_price_hourly"
-                        data-translate-values="{ price: $ctrl.formatPrice($ctrl.beta ? 0 : $ctrl.prices.hourly) }"
+                        data-translate-values="{ price: $ctrl.formatPrice($ctrl.prices.hourly) }"
                     ></span>
                 </span>
-
-                <span
-                    data-ng-if="$ctrl.beta"
-                    class="oui-badge oui-badge_s oui-badge_beta"
-                    data-ng-bind="$ctrl.BETA"
-                ></span>
             </p>
 
             <p class="d-flex align-items-baseline">

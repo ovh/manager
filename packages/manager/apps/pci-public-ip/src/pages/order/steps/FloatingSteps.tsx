@@ -4,11 +4,7 @@ import {
   OsdsSelectOption,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import {
-  ODS_ICON_NAME,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
+import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
 import {
@@ -16,13 +12,19 @@ import {
   usePCICommonContextFactory,
   PCICommonContext,
   TLocalisation,
+  TDeployment,
+  DeploymentTilesInput,
+  usePCIFeatureAvailability,
+  getDeploymentComingSoonKey,
+  DEPLOYMENT_FEATURES,
+  DEPLOYMENT_MODES_TYPES,
 } from '@ovh-ux/manager-pci-common';
 import { useTranslation } from 'react-i18next';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useData } from '@/api/hooks/useData';
 import { RegionType, StepIdsEnum, TRegion } from '@/api/types';
-import { useOrderStore } from '@/pages/order/hooks/useStore';
-import { useActions } from '@/pages/order/hooks/useActions';
+import { useOrderStore } from '@/hooks/order/useStore';
+import { useActions } from '@/hooks/order/useActions';
 import { StepComponent } from '@/components/container/Step.component';
 import { FloatingIpSummary } from '@/pages/order/steps/FloatingIpSummary';
 
@@ -79,6 +81,39 @@ export const FloatingSteps = ({
   const has3AZ = isRegionWith3AZ(DataState.regions);
   const metaProps = usePCICommonContextFactory({ has3AZ });
 
+  const [
+    selectedRegionGroup,
+    setSelectedRegionGroup,
+  ] = useState<TDeployment | null>(null);
+
+  const regions = useMemo(
+    () =>
+      selectedRegionGroup
+        ? DataState.regions.filter(
+            ({ type }) => type === selectedRegionGroup.name,
+          )
+        : DataState.regions,
+    [DataState, selectedRegionGroup],
+  );
+
+  const { data: deploymentAvailability } = usePCIFeatureAvailability(
+    DEPLOYMENT_FEATURES,
+  );
+
+  const deployments = useMemo<TDeployment[]>(
+    () =>
+      DEPLOYMENT_MODES_TYPES.filter((mode) => mode !== RegionType.LZ).map(
+        (deployment) => ({
+          name: deployment,
+          comingSoon:
+            deploymentAvailability?.get(
+              getDeploymentComingSoonKey(deployment),
+            ) || false,
+        }),
+      ),
+    [deploymentAvailability],
+  );
+
   const onSelectRegion = useCallback(
     (region: TLocalisation) => {
       // to reset the previews selection if the region is Macro
@@ -124,31 +159,21 @@ export const FloatingSteps = ({
         onEdit={On.edit}
         order={2}
       >
+        <DeploymentTilesInput
+          name="deployment"
+          value={selectedRegionGroup}
+          onChange={setSelectedRegionGroup}
+          deployments={deployments}
+        />
         <PCICommonContext.Provider value={metaProps}>
           <RegionSelector
             projectId={projectId}
             onSelectRegion={onSelectRegion}
             regionFilter={(region) =>
-              region.isMacro ||
-              DataState.regions.some(({ name }) => name === region.name)
+              region.isMacro || regions.some(({ name }) => name === region.name)
             }
           />
         </PCICommonContext.Provider>
-        {form.floatingRegion?.type === RegionType['3AZ'] && (
-          <OsdsMessage
-            color={ODS_THEME_COLOR_INTENT.warning}
-            icon={ODS_ICON_NAME.WARNING}
-            className="mt-6"
-          >
-            <OsdsText
-              level={ODS_TEXT_LEVEL.body}
-              size={ODS_TEXT_SIZE._400}
-              color={ODS_THEME_COLOR_INTENT.text}
-            >
-              {tOrder('pci_additional_ip_create_3az_price')}
-            </OsdsText>
-          </OsdsMessage>
-        )}
       </StepComponent>
       <StepComponent
         key={StepIdsEnum.FLOATING_INSTANCE}
@@ -247,10 +272,6 @@ export const FloatingSteps = ({
         key={StepIdsEnum.FLOATING_SUMMARY}
         {...steps.get(StepIdsEnum.FLOATING_SUMMARY)}
         title={tOrder('pci_additional_ip_create_step_summary')}
-        next={{
-          action: On.next,
-          label: tOrder('pci_additional_ip_creating_floating_ip'),
-        }}
         order={4}
       >
         <FloatingIpSummary

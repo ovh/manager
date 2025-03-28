@@ -12,7 +12,6 @@ export default {
     disabled: '<?',
     addons: '<?',
     onChange: '&',
-    beta: '<',
   },
   transclude: {
     hourlyPrice: '?pciProjectFlavorBillingHourlyPrice',

@@ -53,12 +53,10 @@ export const TileTechnicalInfo: React.FC<TileTechnicalInfoProps> = ({
 }) => (
   <SimpleTile onClick={onClick} isActive={isActive}>
     <div className="flex flex-col items-center justify-center">
-      <OdsText className="">
+      <OdsText>
         <span className="font-bold">{name}</span>
       </OdsText>
-      {technical && technical.bandwidth && (
-        <DisplayTechnicalInfo technical={technical} />
-      )}
+      {technical?.bandwidth && <DisplayTechnicalInfo technical={technical} />}
     </div>
   </SimpleTile>
 );

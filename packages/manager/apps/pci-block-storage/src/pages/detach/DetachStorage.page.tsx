@@ -14,7 +14,7 @@ import { useEffect } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import { useInstance } from '@/api/hooks/useInstance';
+import { useInstance } from '@ovh-ux/manager-pci-common';
 import { useDetachVolume, useVolume } from '@/api/hooks/useVolume';
 
 export default function DetachStorage() {

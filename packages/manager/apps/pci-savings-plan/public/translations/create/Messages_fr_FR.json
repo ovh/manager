@@ -10,7 +10,8 @@
   "select_quantity": "Indiquer le nombre de ressources",
   "select_quantity_description_instance": "Indiquez le nombre d'instances à inclure dans votre Savings Plan.",
   "select_quantity_description_rancher": "Indiquez le nombre de vCPU à inclure dans votre Savings Plan.",
-  "quantity_label": "Quantité",
+  "quantity_label_instance": "Nombre d'instance",
+  "quantity_label_rancher": "Nombre de vCPU",
   "quantity_banner": "La quantité maximale de ressources qu'il vous est possible de démarrer dépend du quota de votre projet Public Cloud",
   "quantity_banner_see_more": "En savoir plus",
   "quantity_banner_instance": "La quantité maximale de ressources qu'il vous est possible de démarrer dépend du quota de votre projet Public Cloud. Pour plus d'informations sur vos quotas, veuillez consulter la page suivante : ",
@@ -34,5 +35,10 @@
   "commitment_month": "{{value}} mois",
   "commitment_price_month": "HT/mois",
   "cta_cancel": "Annuler",
-  "cta_plan": "Créer un Savings Plan"
+  "cta_plan": "Créer un Savings Plan",
+  "choose_deployment": "Choisissez un mode de déploiement",
+  "choose_deployment_description": "Sélectionnez  la configuration optimale pour garantir la disponibilité, la résilience et la latence appropriée de vos données en fonction de vos cas d'usage.",
+  "region": "Région",
+  "deployment_one_az": "Déploiement résilient et économique sur 1 zone de disponibilité.",
+  "deployment_three_az": "Déploiement haute résilience/haute disponibilité pour vos applications critiques sur 3 zones de disponibilité."
 }

@@ -39,5 +39,12 @@
   "cta_cancel": "Cancelar",
   "cta_plan": "Crear un Savings Plan",
   "select_quantity_description_instance": "Por favor, indique el número de instancias que quiere incluir en su Savings Plan.",
-  "select_quantity_description_rancher": "Por favor, indique el número de vCPU que quiere incluir en su Savings Plan."
+  "select_quantity_description_rancher": "Por favor, indique el número de vCPU que quiere incluir en su Savings Plan.",
+  "quantity_label_instance": "Número de instancias",
+  "quantity_label_rancher": "Número de vCPU",
+  "choose_deployment": "Elija un modo de despliegue",
+  "choose_deployment_description": "Seleccione la configuración óptima para garantizar la disponibilidad, la resiliencia y la latencia adecuada de sus datos en función de sus casos de uso.",
+  "region": "Zona",
+  "deployment_one_az": "Implementación resiliente y económica en 1 zona de disponibilidad.",
+  "deployment_three_az": "Despliegue de alta resiliencia/alta disponibilidad para sus aplicaciones críticas en 3 zonas de disponibilidad."
 }

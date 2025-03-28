@@ -3,40 +3,30 @@ import {
   RegionSelector,
   usePCICommonContextFactory,
   PCICommonContext,
+  TDeployment,
+  DeploymentTilesInput,
+  TProductAvailabilityRegion,
+  usePCIFeatureAvailability,
+  getDeploymentComingSoonKey,
+  DEPLOYMENT_FEATURES,
+  DEPLOYMENT_MODES_TYPES,
 } from '@ovh-ux/manager-pci-common';
 import { useTranslation } from 'react-i18next';
-import { useContext, useEffect, useMemo, useState } from 'react';
-import { useParams, useSearchParams } from 'react-router-dom';
-import {
-  OsdsIcon,
-  OsdsLink,
-  OsdsMessage,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
+import { useContext, useMemo, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { OsdsIcon, OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
-import {
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
+import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { StepsEnum, useNewGatewayStore } from '@/pages/add/useStore';
-import { TAvailableRegion, useData } from '@/api/hooks/data';
 import { RegionType } from '@/types/region';
 
-type IState = {
-  regions: TAvailableRegion[];
-  region: TAvailableRegion;
-  regionsLink: string;
-};
-
-const isRegionWith3AZ = (regions: TAvailableRegion[]) =>
+const isRegionWith3AZ = (regions: TProductAvailabilityRegion[]) =>
   regions.some((region) => region.type === RegionType['3AZ']);
 
 /**
@@ -46,67 +36,55 @@ const isRegionWith3AZ = (regions: TAvailableRegion[]) =>
  * Not in migration scope
  * TODO : move groups(continent) from translation files
  */
-export const LocationStep = () => {
+export const LocationStep = ({
+  regions,
+}: {
+  regions: TProductAvailabilityRegion[];
+}) => {
   const { t } = useTranslation(['stepper', 'add']);
   const { projectId } = useParams();
-  const [searchParams] = useSearchParams();
   const { tracking } = useContext(ShellContext).shell;
   const store = useNewGatewayStore();
 
-  const sizes = useData(projectId);
-
-  const [state, setState] = useState<IState>({
-    region: undefined,
-    regions: [],
-    regionsLink: '',
-  });
-
-  useEffect(() => {
-    setState((prev) => ({
-      ...prev,
-      regions:
-        sizes.find((size) => size.payload === store.form.size)
-          ?.availableRegions || [],
-    }));
-  }, [sizes, store.form.size]);
-
-  useEffect(() => {
-    setState((prev) => ({ ...prev, regionsLink: `${projectId}/regions` }));
-  }, [projectId]);
-
-  useEffect(() => {
-    setState((prev) => ({
-      ...prev,
-      region: state.regions.find(
-        (region) => region.name === store.form.regionName,
-      ),
-    }));
-  }, [store.form.regionName]);
-
-  useEffect(() => {
-    const regionName = searchParams.get('region');
-    if (regionName) {
-      const targetRegion = state.regions.find(
-        (region) => region.name === regionName,
-      );
-      if (targetRegion) {
-        setState((prev) => ({
-          ...prev,
-          region: targetRegion,
-        }));
-        store.updateForm.regionName(targetRegion.name);
-      }
-    }
-  }, [searchParams, state.regions]);
-
-  const has3AZ = useMemo(() => isRegionWith3AZ(state.regions), [state.regions]);
+  const has3AZ = useMemo(() => isRegionWith3AZ(regions), [regions]);
 
   const metaProps = usePCICommonContextFactory({ has3AZ });
+
+  const [
+    selectedRegionGroup,
+    setSelectedRegionGroup,
+  ] = useState<TDeployment | null>(null);
+
+  const filteredRegions = useMemo(
+    () =>
+      selectedRegionGroup
+        ? regions.filter(({ type }) => type === selectedRegionGroup.name)
+        : regions,
+    [regions, selectedRegionGroup],
+  );
+
+  const { data: deploymentAvailability } = usePCIFeatureAvailability(
+    DEPLOYMENT_FEATURES,
+  );
+
+  const deployments = useMemo<TDeployment[]>(
+    () =>
+      DEPLOYMENT_MODES_TYPES.filter((mode) => mode !== RegionType.LZ).map(
+        (deployment) => ({
+          name: deployment,
+          comingSoon:
+            deploymentAvailability?.get(
+              getDeploymentComingSoonKey(deployment),
+            ) || false,
+        }),
+      ),
+    [deploymentAvailability],
+  );
 
   return (
     <StepComponent
       id={StepsEnum.LOCATION}
-      order={2}
+      order={1}
       isOpen={store.steps.get(StepsEnum.LOCATION).isOpen}
       isChecked={store.steps.get(StepsEnum.LOCATION).isChecked}
       isLocked={store.steps.get(StepsEnum.LOCATION).isLocked}
@@ -132,58 +110,49 @@ export const LocationStep = () => {
         </OsdsText>
       }
       next={{
-        action: store.form.regionName
-          ? (id) => {
-              store.updateStep.check(id as StepsEnum);
-              store.updateStep.lock(id as StepsEnum);
-              store.updateStep.open(StepsEnum.NETWORK);
-              tracking.trackClick({
-                name: 'public-gateway_add_select-region',
-                type: 'action',
-              });
-            }
-          : undefined,
-        label: t('stepper:Next'),
-        isDisabled: !state.region?.enabled,
+        action: (id) => {
+          store.updateStep.check(id as StepsEnum);
+          store.updateStep.lock(id as StepsEnum);
+          store.updateStep.open(StepsEnum.SIZE);
+          tracking.trackClick({
+            name: 'public-gateway_add_select-region',
+            type: 'action',
+          });
+        },
+        label: t('stepper:common_stepper_next_button_label'),
+        isDisabled: !store.form.regionName,
       }}
       edit={{
         action: (id) => {
           store.updateStep.unCheck(id as StepsEnum);
           store.updateStep.unlock(id as StepsEnum);
+          store.updateStep.close(StepsEnum.SIZE);
+          store.updateStep.unCheck(StepsEnum.SIZE);
+          store.updateStep.unlock(StepsEnum.SIZE);
 
-          store.updateStep.close(StepsEnum.NETWORK);
-
-          store.updateForm.name(undefined);
+          store.updateForm.size(undefined);
           store.updateForm.network(undefined, undefined);
+          store.updateStep.close(StepsEnum.NETWORK);
         },
         label: t('stepper:common_stepper_modify_this_step'),
         isDisabled: false,
       }}
     >
+      <DeploymentTilesInput
+        name="deployment"
+        value={selectedRegionGroup}
+        onChange={setSelectedRegionGroup}
+        deployments={deployments}
+      />
       <PCICommonContext.Provider value={metaProps}>
         <RegionSelector
           projectId={projectId}
           onSelectRegion={(region) => store.updateForm.regionName(region?.name)}
           regionFilter={(r) =>
-            r.isMacro || state.regions.some(({ name }) => name === r.name)
+            r.isMacro || filteredRegions.some(({ name }) => name === r.name)
           }
         />
       </PCICommonContext.Provider>
-      {state.region?.type === RegionType['3AZ'] && (
-        <OsdsMessage
-          color={ODS_THEME_COLOR_INTENT.warning}
-          icon={ODS_ICON_NAME.WARNING}
-          className="mt-6"
-        >
-          <OsdsText
-            level={ODS_TEXT_LEVEL.body}
-            size={ODS_TEXT_SIZE._400}
-            color={ODS_THEME_COLOR_INTENT.text}
-          >
-            {t('add:pci_projects_project_public_gateways_3az_price')}
-          </OsdsText>
-        </OsdsMessage>
-      )}
     </StepComponent>
   );
 };

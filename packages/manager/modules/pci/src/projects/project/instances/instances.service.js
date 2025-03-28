@@ -441,7 +441,10 @@ export default class PciProjectInstanceService {
     );
   }
 
-  getCompatiblesVolumes(projectId, { region }) {
+  getCompatiblesVolumes(
+    projectId,
+    { region, availabilityZone: instanceAvailabilityZone },
+  ) {
     return this.OvhApiCloudProjectVolume.v6()
       .query({
         serviceName: projectId,
@@ -451,7 +454,14 @@ export default class PciProjectInstanceService {
         map(volumes, (volume) => new BlockStorage(volume)),
       )
       .then((storages) =>
-        filter(storages, (storage) => storage.isAttachable()),
+        filter(
+          storages,
+          (storage) =>
+            storage.isAttachable() &&
+            (!instanceAvailabilityZone ||
+              storage.availabilityZone === 'any' ||
+              storage.availabilityZone === instanceAvailabilityZone),
+        ),
       );
   }
 

@@ -9,7 +9,7 @@
   "octavia_load_balancer_create_size_flavour_description_m": "Adaptado à maioria dos projetos que requerem uma capacidade de tráfego média.",
   "octavia_load_balancer_create_size_flavour_description_l": "Para aplicações de tráfego intenso, com excelente desempenho para suportar cargas de trabalho pesadas.",
   "octavia_load_balancer_create_size_flavour_price_interval": " /hora",
-  "octavia_load_balancer_create_region_title": "Selecione uma região",
+  "octavia_load_balancer_create_region_title": "Selecione uma localização",
   "octavia_load_balancer_create_region_intro": "Selecione a região Public Cloud onde ficará alojado o seu Load Balancer. De entre as regiões Public Cloud onde existe uma rede privada definida, selecione a região onde o Load Balancer ficará alojado. Não encontra a região que deseja na lista? Para saber mais sobre a disponibilidade das funções por região, ",
   "octavia_load_balancer_create_region_link": "Clique aqui",
   "octavia_load_balancer_create_floating_ip_title": "Associar um IP público",
@@ -43,6 +43,5 @@
   "octavia_load_balancer_create_size_flavour_description_2xl": "Perfeito para projetos que exigem um elevado nível de tráfego, proporcionando uma elevada capacidade de largura de banda para um desempenho robusto.",
   "octavia_load_balancer_create_size_flavour_description_3xl": "Concebido para ambientes críticos com grande tráfego, assegurando o máximo desempenho graças a uma elevada largura de banda.",
   "octavia_load_balancer_create_private_network": "Não existe nenhuma rede privada na região selecionada. Certifique-se de que <link /> antes de o Load Balancer ser criado.",
-  "octavia_load_balancer_create_private_network_label": "cria uma rede privada",
-  "octavia_load_balancer_create_region_3az_price": "O Load Balancer está atualmente em fase beta na zona de Paris (EU-WEST-PAR) e é, portanto, gratuito durante esse período."
+  "octavia_load_balancer_create_private_network_label": "cria uma rede privada"
 }

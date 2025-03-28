@@ -1,10 +1,9 @@
 import { v6 } from '@ovh-ux/manager-core-api';
-import { TInstance } from '@ovh-ux/manager-pci-common';
+import { TInstance, TRegion } from '@ovh-ux/manager-pci-common';
 import { FLOATING_IP_CREATE_DESCRIPTION, PROTOCOLS } from '@/constants';
 import { TPrivateNetwork, TSubnet } from '@/api/data/network';
-import { ListenerConfiguration } from '@/components/create/InstanceTable.component';
-import { TFloatingIp } from '@/api/data/floating-ips';
-import { TRegion } from '@/api/hook/useRegions';
+import { FloatingIpSelectionId } from '@/types/floating.type';
+import { ListenerConfiguration } from '@/types/listener.type';
 
 export enum LoadBalancerOperatingStatusEnum {
   ONLINE = 'online',
@@ -116,7 +115,7 @@ export type TCreateLoadBalancerParam = {
   projectId: string;
   flavor: TFlavor;
   region: TRegion;
-  floatingIp: TFloatingIp;
+  floatingIp: string | FloatingIpSelectionId;
   privateNetwork: TPrivateNetwork;
   subnet: TSubnet;
   gateways: { id: string }[];
@@ -166,15 +165,18 @@ export const createLoadBalancer = async ({
     },
   };
 
-  if (floatingIp.type === 'create') {
+  if (floatingIp === FloatingIpSelectionId.NEW) {
     network.private.floatingIpCreate = {
       description: `${FLOATING_IP_CREATE_DESCRIPTION} ${name}`,
     };
   }
 
-  if (!['create', 'none'].includes(floatingIp.type)) {
+  if (
+    FloatingIpSelectionId.NEW !== floatingIp &&
+    FloatingIpSelectionId.UNATTACHED !== floatingIp
+  ) {
     network.private.floatingIp = {
-      id: floatingIp.id,
+      id: floatingIp,
     };
   }
 

@@ -133,6 +133,5 @@
   "pci_project_instances_instance_add_3_az_region_select_auto_title": "Wybierz za mnie",
   "pci_project_instances_instance_add_3_az_region_select_auto_description": "Jeśli dokonamy wyboru za Ciebie, nie będziesz mógł zmienić instancji strefy. Będziesz musiał ją wyłączyć, a następnie uruchomić ponownie w wybranej strefie.",
   "pci_project_instances_instance_add_3_az_region_select_manual_title": "Wybieram strefę dostępności",
-  "pci_projects_project_instances_3az_add_success_message": "Instancja {{instance}} została dodana do strefy dostępności: {{zone}}",
-  "pci_projects_project_instances_add_billing_gateway_detail_price_monthly_3az": "(w cenie {{gatewayPrice}} netto/godz. w fazie beta {{location}} ({{datacenter}}))"
+  "pci_projects_project_instances_3az_add_success_message": "Instancja {{instance}} została dodana do strefy dostępności: {{zone}}"
 }

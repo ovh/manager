@@ -1,11 +1,9 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
-import { Instance } from '@/api/data/instance';
 
 export type TVolume = {
   id: string;
   attachedTo: string[];
-  instances?: Instance[];
   creationDate: string;
   name: string;
   description: string;

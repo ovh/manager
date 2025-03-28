@@ -42,7 +42,7 @@ export default class FlavorBillingController {
   }
 
   getPrice(price) {
-    return this.number * (price?.value || price);
+    return this.number * ('value' in price ? price.value : price);
   }
 
   formatPrice(price) {

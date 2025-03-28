@@ -1,7 +1,6 @@
 import { describe, Mock, vi } from 'vitest';
 import { StepComponent, TStepProps } from '@ovh-ux/manager-react-components';
 import { render, renderHook } from '@testing-library/react';
-import { OsdsSpinner } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { act } from 'react-dom/test-utils';
 import { SizeStep, TSizeStepProps } from './SizeStep';
@@ -9,7 +8,8 @@ import { wrapper } from '@/wrapperRenders';
 import { PRODUCT_LINK } from '@/constants';
 import SizeInputComponent from './input/SizeInput.component';
 import { useTracking } from '../../hooks/useTracking';
-import { StepsEnum, TAddon, useCreateStore } from '@/pages/create/store';
+import { StepsEnum, useCreateStore } from '@/pages/create/store';
+import { TProductAddonDetail } from '@/types/product.type';
 
 vi.mock('react-i18next', async () => {
   const { ...rest } = await vi.importActual('react-i18next');
@@ -82,24 +82,14 @@ vi.mock('./input/SizeInput.component', async () => {
 });
 
 const renderStep = (
-  {
-    addons = [],
-    isLoading = false,
-    ovhSubsidiary = '',
-  }: Partial<TSizeStepProps> = {
-    addons: [],
-    isLoading: false,
+  { ovhSubsidiary = '', projectId = 'projectId' }: Partial<TSizeStepProps> = {
     ovhSubsidiary: '',
+    projectId: 'projectId',
   },
 ) =>
-  render(
-    <SizeStep
-      addons={addons || []}
-      isLoading={isLoading || false}
-      ovhSubsidiary={ovhSubsidiary || undefined}
-    />,
-    { wrapper },
-  );
+  render(<SizeStep ovhSubsidiary={ovhSubsidiary} projectId={projectId} />, {
+    wrapper,
+  });
 const renderStore = () => renderHook(() => useCreateStore());
 
 describe('SizeStep', () => {
@@ -121,7 +111,7 @@ describe('SizeStep', () => {
       const call = (StepComponent as Mock).mock.calls[0][0] as TStepProps;
 
       expect(call.title).toBe(
-        'load-balancer/create | octavia_load_balancer_create_size_title',
+        'load-balancer/create,pci-common | octavia_load_balancer_create_size_title',
       );
 
       expect(call.isOpen).toBe(true);
@@ -130,15 +120,15 @@ describe('SizeStep', () => {
 
       expect(call.isLocked).toBe(false);
 
-      expect(call.order).toBe(1);
+      expect(call.order).toBe(2);
 
       expect(call.next.label).toBe(
-        'pci-common | common_stepper_next_button_label',
+        'load-balancer/create,pci-common | pci-common:common_stepper_next_button_label',
       );
       expect(call.next.isDisabled).toBe(true);
 
       expect(call.edit.label).toBe(
-        'pci-common | common_stepper_modify_this_step',
+        'load-balancer/create,pci-common | pci-common:common_stepper_modify_this_step',
       );
     });
 
@@ -146,12 +136,12 @@ describe('SizeStep', () => {
       const { getByText } = renderStep();
       expect(
         getByText(
-          'load-balancer/create | octavia_load_balancer_create_size_intro',
+          'load-balancer/create,pci-common | octavia_load_balancer_create_size_intro',
         ),
       ).toBeInTheDocument();
       expect(
         getByText(
-          'load-balancer/create | octavia_load_balancer_create_size_intro_link',
+          'load-balancer/create,pci-common | octavia_load_balancer_create_size_intro_link',
         ),
       ).toBeInTheDocument();
     });
@@ -173,28 +163,6 @@ describe('SizeStep', () => {
         ).toBe(PRODUCT_LINK.DEFAULT);
       });
     });
-
-    describe('Loading', () => {
-      it('should show spinner if isLoading', () => {
-        ((OsdsSpinner as unknown) as Mock).mockImplementationOnce(() => (
-          <div data-testid="spinner"></div>
-        ));
-
-        const { getByTestId } = renderStep({ isLoading: true });
-
-        expect(getByTestId('spinner')).toBeInTheDocument();
-      });
-
-      it('should show input if not isLoading', () => {
-        ((SizeInputComponent as unknown) as Mock).mockImplementationOnce(() => (
-          <div data-testid="input"></div>
-        ));
-
-        const { getByTestId } = renderStep();
-
-        expect(getByTestId('input')).toBeInTheDocument();
-      });
-    });
   });
 
   describe('Actions', () => {
@@ -210,7 +178,7 @@ describe('SizeStep', () => {
           const { getByText } = renderStep();
 
           const nextButton = getByText(
-            'pci-common | common_stepper_next_button_label',
+            'load-balancer/create,pci-common | pci-common:common_stepper_next_button_label',
           );
           expect(
             nextButton.attributes.getNamedItem('disabled').value,
@@ -219,12 +187,12 @@ describe('SizeStep', () => {
 
         test('Next button should be enabled if addon is set', () => {
           const { result } = renderStore();
-          act(() => result.current.set.addon({} as TAddon));
+          act(() => result.current.set.addon({} as TProductAddonDetail));
 
           const { getByText } = renderStep();
 
           const nextButton = getByText(
-            'pci-common | common_stepper_next_button_label',
+            'load-balancer/create,pci-common | pci-common:common_stepper_next_button_label',
           );
           expect(
             nextButton.attributes.getNamedItem('disabled')?.value,
@@ -236,7 +204,7 @@ describe('SizeStep', () => {
           const trackStepSpy = vi.fn();
 
           const { result } = renderStore();
-          act(() => result.current.set.addon({} as TAddon));
+          act(() => result.current.set.addon({} as TProductAddonDetail));
 
           (useTracking as Mock).mockImplementation(() => ({
             trackStep: trackStepSpy,
@@ -245,23 +213,23 @@ describe('SizeStep', () => {
           const { getByText } = renderStep();
 
           const nextButton = getByText(
-            'pci-common | common_stepper_next_button_label',
+            'load-balancer/create,pci-common | pci-common:common_stepper_next_button_label',
           );
 
           act(() => nextButton.click());
 
-          expect(trackStepSpy).toHaveBeenCalledWith(1);
+          expect(trackStepSpy).toHaveBeenCalledWith(2);
         });
         test("Prepare region's step on next click", () => {
           const { result } = renderStore();
           act(() => {
-            result.current.set.addon({} as TAddon);
+            result.current.set.addon({} as TProductAddonDetail);
           });
 
           const { getByText } = renderStep();
 
           const nextButton = getByText(
-            'pci-common | common_stepper_next_button_label',
+            'load-balancer/create,pci-common | pci-common:common_stepper_next_button_label',
           );
 
           const { check, lock, open } = { ...result.current };
@@ -274,7 +242,7 @@ describe('SizeStep', () => {
 
           expect(result.current.check).toHaveBeenCalledWith(StepsEnum.SIZE);
           expect(result.current.lock).toHaveBeenCalledWith(StepsEnum.SIZE);
-          expect(result.current.open).toHaveBeenCalledWith(StepsEnum.REGION);
+          expect(result.current.open).toHaveBeenCalledWith(StepsEnum.IP);
 
           result.current.check = check;
           result.current.lock = lock;
@@ -289,7 +257,7 @@ describe('SizeStep', () => {
           const { queryByText } = renderStep();
 
           const editButton = queryByText(
-            'pci-common | common_stepper_modify_this_step',
+            'load-balancer/create,pci-common | pci-common:common_stepper_modify_this_step',
           );
           expect(editButton).not.toBeInTheDocument();
         });
@@ -300,7 +268,7 @@ describe('SizeStep', () => {
           const { queryByText } = renderStep();
 
           const editButton = queryByText(
-            'pci-common | common_stepper_modify_this_step',
+            'load-balancer/create,pci-common | pci-common:common_stepper_modify_this_step',
           );
           expect(editButton).toBeInTheDocument();
         });
@@ -322,7 +290,7 @@ describe('SizeStep', () => {
           const { getByText } = renderStep();
 
           const editButton = getByText(
-            'pci-common | common_stepper_modify_this_step',
+            'load-balancer/create,pci-common | pci-common:common_stepper_modify_this_step',
           );
 
           act(() => editButton.click());
@@ -331,7 +299,7 @@ describe('SizeStep', () => {
           expect(result.current.uncheck).toHaveBeenCalledWith(StepsEnum.SIZE);
           expect(result.current.open).toHaveBeenCalledWith(StepsEnum.SIZE);
           expect(result.current.reset).toHaveBeenCalledWith(
-            StepsEnum.REGION,
+            StepsEnum.SIZE,
             StepsEnum.IP,
             StepsEnum.NETWORK,
             StepsEnum.INSTANCE,

@@ -46,7 +46,7 @@
             (($ctrl.currentStep > 1)
                 ? 'pci_projects_project_instances_add_region_selected_title'
                 : 'pci_projects_project_instances_add_region_title') | translate: {
-                    location: $ctrl.model.location
+                    location: $ctrl.model.location + ($ctrl.model.threeAzRegion.zone ? ' (' + $ctrl.model.threeAzRegion.zone + ')' : '')
                 }
             }}"
         data-valid="$ctrl.isRegionValid()"
@@ -55,6 +55,8 @@
         data-on-focus="$ctrl.onRegionFocus()"
         data-on-submit="$ctrl.onRegionChange()"
         data-editable="!$ctrl.isLoading"
+        data-loading="$ctrl.isInstancesAvailabilityFetching"
+        data-id="instances_add_region"
     >
         <cui-message-container
             data-messages="$ctrl.messages.region"
@@ -62,6 +64,14 @@
         <div
             data-ng-if="!$ctrl.displaySelectedRegion && $ctrl.currentStep === 1"
         >
+            <pci-project-deployment-mode-selector
+                data-on-change="$ctrl.onDeploymentModeChange(deploymentMode)"
+            ></pci-project-deployment-mode-selector>
+
+            <h4
+                data-translate="pci_projects_project_instances_add_region_title"
+            ></h4>
+
             <oui-tabs class="mb-4">
                 <oui-tabs-item
                     data-ng-repeat="(continent, datacentersLocation) in $ctrl.availableRegions track by continent"
@@ -70,7 +80,7 @@
                 >
                     <div class="container-fluid px-0">
                         <span
-                            ng-if="$ctrl.isSavingsPlanAvailable"
+                            ng-if="$ctrl.isSavingsPlanAvailable && ($ctrl.selectedDeploymentMode === null || $ctrl.selectedDeploymentMode.name === 'localzone')"
                             data-translate="pci_project_instances_instance_add_region_savings_plan_info"
                         ></span>
                         <div class="row">
@@ -1162,15 +1172,8 @@
                     data-translate="pci_projects_project_instances_add_billing_gateway_detail_{{$ctrl.defaultGateway.size}}_size"
                 ></span>
                 <span
-                    data-ng-if="!$ctrl.shouldShow3AZRegionData"
                     data-translate="pci_projects_project_instances_add_billing_gateway_detail_price_monthly"
                     data-translate-values="{gatewayPrice: $ctrl.defaultGateway.pricePerHour/100000000 +''+$ctrl.currency}"
-                >
-                </span>
-                <span
-                    data-ng-if="$ctrl.shouldShow3AZRegionData"
-                    data-translate="pci_projects_project_instances_add_billing_gateway_detail_price_monthly_3az"
-                    data-translate-values="{gatewayPrice: $ctrl.defaultGateway.pricePerHour/100000000 +''+$ctrl.currency, location: $ctrl.model.location, datacenter: $ctrl.model.datacenter.name }"
                 >
                 </span>
             </p>
@@ -1208,7 +1211,6 @@
             data-addons="$ctrl.addons"
             data-disabled="false"
             data-on-change="$ctrl.onBillingChange(billing)"
-            data-beta="$ctrl.shouldShow3AZRegionData"
         >
             <pci-project-flavor-billing-hourly-price
                 data-ng-if="$ctrl.shouldShowWindowsGen3Data()"

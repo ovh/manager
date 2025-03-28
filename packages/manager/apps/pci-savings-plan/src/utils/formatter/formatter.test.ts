@@ -17,6 +17,7 @@ describe('formatter utility functions', () => {
       const result = formatTechnicalInfo(technicalInfo);
       expect(result).toEqual({
         id: '1234',
+        code: `public_cloud-cloud-Technical Name.consumption-FR`,
         name: 'Technical Name',
         hourlyPrice: 1.3274,
         technical: {

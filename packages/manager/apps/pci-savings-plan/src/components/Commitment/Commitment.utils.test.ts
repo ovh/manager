@@ -8,4 +8,12 @@ describe('getDiffInPercent', () => {
   it('should return rounded percentage', () => {
     expect(getDiffInPercent(1386.29, 1056)).toBe('23');
   });
+
+  it('should return null if theres is invalid price', () => {
+    expect(getDiffInPercent(0, 51)).toBe(null);
+  });
+
+  it('should return null if theres is invalid price', () => {
+    expect(getDiffInPercent(100, 0)).toBe(null);
+  });
 });

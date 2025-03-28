@@ -1,17 +1,17 @@
 import { describe, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
-import * as useInstanceModule from '@/api/hooks/useInstance';
+import * as pciCommonModule from '@ovh-ux/manager-pci-common';
+import { TInstance } from '@ovh-ux/manager-pci-common';
 import AttachedInstanceComponent from '@/components/list/AttachedInstance.component';
-import { Instance } from '@/api/data/instance';
 
 describe('AttachedInstanceComponent', () => {
   it('renders OsdsSkeleton when data is loading', () => {
-    vi.spyOn(useInstanceModule, 'useInstance').mockReturnValue({
+    vi.spyOn(pciCommonModule, 'useInstance').mockReturnValue({
       data: {},
       isPending: true,
       isLoading: true,
-    } as UseQueryResult<Instance>);
+    } as UseQueryResult<TInstance>);
     const { getByTestId } = render(
       <AttachedInstanceComponent
         projectId="project1"
@@ -25,11 +25,11 @@ describe('AttachedInstanceComponent', () => {
   });
 
   it('renders instance name when data is loaded', async () => {
-    vi.spyOn(useInstanceModule, 'useInstance').mockReturnValue({
+    vi.spyOn(pciCommonModule, 'useInstance').mockReturnValue({
       data: { name: 'Instance1' },
       isPending: false,
       isLoading: false,
-    } as UseQueryResult<Instance>);
+    } as UseQueryResult<TInstance>);
     render(
       <AttachedInstanceComponent
         projectId="project1"
@@ -41,11 +41,11 @@ describe('AttachedInstanceComponent', () => {
   });
 
   it('renders correct instance link when data is loaded', async () => {
-    vi.spyOn(useInstanceModule, 'useInstance').mockReturnValue({
+    vi.spyOn(pciCommonModule, 'useInstance').mockReturnValue({
       data: { name: 'Instance1' },
       isPending: false,
       isLoading: false,
-    } as UseQueryResult<Instance>);
+    } as UseQueryResult<TInstance>);
 
     const { getByTestId } = render(
       <AttachedInstanceComponent

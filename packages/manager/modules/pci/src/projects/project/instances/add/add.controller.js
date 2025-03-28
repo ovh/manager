@@ -148,6 +148,7 @@ export default class PciInstancesAddController {
     this.globalRegionsUrl = this.PciProject.getDocumentUrl('GLOBAL_REGIONS');
     this.localZoneUrl = this.PciProject.getDocumentUrl('LOCAL_ZONE');
 
+    this.selectedDeploymentMode = null;
     this.model = {
       flavorGroup: null,
       image: null,
@@ -235,6 +236,10 @@ export default class PciInstancesAddController {
 
     this.regionsTypesAvailability = {};
     this.fetchRegionsTypesAvailability();
+
+    this.availableRegions = {};
+    this.unavailableRegions = {};
+    this.fetchInstancesAvailability();
   }
 
   get areLocalZonesFree() {
@@ -251,6 +256,16 @@ export default class PciInstancesAddController {
     return this.pciFeatures.isFeatureAvailable(
       PCI_FEATURES.PRODUCTS.SAVINGS_PLAN,
     );
+  }
+
+  onDeploymentModeChange(deploymentMode) {
+    this.selectedDeploymentMode = deploymentMode;
+    this.displaySelectedRegion = false;
+    if (this.instance.availabilityZone) {
+      delete this.instance.availabilityZone;
+    }
+    this.model.datacenter = null;
+    this.getFilteredRegions();
   }
 
   updateLocation(location, datacenters) {
@@ -342,36 +357,48 @@ export default class PciInstancesAddController {
     });
   }
 
-  getFilteredRegions() {
-    this.availableRegions = {};
-    this.unavailableRegions = {};
-
-    const planCode = `${this.model.flavorGroup.name}.consumption`;
-
+  fetchInstancesAvailability() {
+    this.isInstancesAvailabilityFetching = true;
     return this.PciProjectsProjectInstanceService.getProductAvailability(
       this.projectId,
       this.coreConfig.getUser().ovhSubsidiary,
+      'instance',
     ).then((productCapabilities) => {
-      // New plancodes has been introduced for localzones which will have region names after plan codes names like ***.consumption.EU-WEST-LZ-BRU-A
-      // So we need to consider all the plancodes which starts with "**flavorName**.consumption"
-      const productCapability = productCapabilities.plans?.filter((plan) =>
-        plan.code?.startsWith(planCode),
-      );
+      this.instancesProductCapabilities = productCapabilities;
+      this.isInstancesAvailabilityFetching = false;
+    });
+  }
 
-      // After fetching all the productCapabilities we need to combine all the regions of possible plans
-      // of "b38.consumption" "b38.consumption.EU-WEST-LZ-BRU-A" "b38.consumption.EU-SOUTH-LZ-MAD-A" into regionsAllowed
-      const productRegionsAllowed = productCapability?.flatMap(
-        ({ regions }) => regions,
-      );
+  getFilteredRegions() {
+    const availableRegions = {};
+    const unavailableRegions = {};
 
-      Object.entries(this.regions).forEach(([continent, locationsMap]) => {
-        // Create datacenters continent groups
-        this.availableRegions[continent] = {};
-        this.unavailableRegions[continent] = {};
-        Object.entries(locationsMap).forEach(([location, datacenters]) => {
+    const planCode = `${this.model.flavorGroup.name}.consumption`;
+
+    // New plancodes has been introduced for localzones which will have region names after plan codes names like ***.consumption.EU-WEST-LZ-BRU-A
+    // So we need to consider all the plancodes which starts with "**flavorName**.consumption"
+    const productCapability = this.instancesProductCapabilities.plans?.filter(
+      (plan) => plan.code?.startsWith(planCode),
+    );
+
+    // After fetching all the productCapabilities we need to combine all the regions of possible plans
+    // of "b38.consumption" "b38.consumption.EU-WEST-LZ-BRU-A" "b38.consumption.EU-SOUTH-LZ-MAD-A" into regionsAllowed
+    const productRegionsAllowed = productCapability?.flatMap(
+      ({ regions }) => regions,
+    );
+
+    Object.entries(this.regions).forEach(([continent, locationsMap]) => {
+      // Create datacenters continent groups
+      availableRegions[continent] = {};
+      unavailableRegions[continent] = {};
+      Object.entries(locationsMap).forEach(([location, datacenters]) => {
+        if (
+          !this.selectedDeploymentMode ||
+          datacenters[0]?.type === this.selectedDeploymentMode.name
+        ) {
           // Create datacenters location sub groups
-          this.availableRegions[continent][location] = [];
-          this.unavailableRegions[continent][location] = [];
+          availableRegions[continent][location] = [];
+          unavailableRegions[continent][location] = [];
           // Fill datacenters groups: a datacenter is considered available if
           // it is in a region where we have the capability to add an instance
           // and the selected flavor is available for the datacenter region
@@ -388,14 +415,17 @@ export default class PciInstancesAddController {
             );
 
             if (isDatacenterAvailable) {
-              this.availableRegions[continent][location].push(datacenter);
+              availableRegions[continent][location].push(datacenter);
             } else {
-              this.unavailableRegions[continent][location].push(datacenter);
+              unavailableRegions[continent][location].push(datacenter);
             }
           });
-        });
+        }
       });
     });
+
+    this.availableRegions = availableRegions;
+    this.unavailableRegions = unavailableRegions;
   }
 
   static hasRegions(locations) {
@@ -521,6 +551,15 @@ export default class PciInstancesAddController {
       delete this.instance.availabilityZone;
     }
     this.model.datacenter = null;
+    this.selectedDeploymentMode = null;
+    this.getFilteredRegions();
+
+    this.$timeout(() => {
+      const regionStepper = document.getElementById('instances_add_region');
+      if (regionStepper) {
+        regionStepper.scrollIntoView();
+      }
+    }, 0);
   }
 
   addRegions() {

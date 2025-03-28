@@ -13,6 +13,7 @@ import flavorsList from '../../../../components/project/flavors-list';
 import imagesList from '../../../../components/project/images-list';
 import sshKeys from '../../../../components/project/instance/ssh-keys';
 import trustedZoneBanner from '../../../../components/trusted-zone-banner';
+import deploymentModeSelector from '../../../../components/project/deployment-mode-selector';
 import PciProjectAdditionalIpService from '../../additional-ips/service';
 import PciPublicGatewaysService from '../../gateways/service';
 
@@ -34,6 +35,7 @@ angular
     imagesList,
     sshKeys,
     trustedZoneBanner,
+    deploymentModeSelector,
     PciProjectAdditionalIpService,
     PciPublicGatewaysService,
   ])

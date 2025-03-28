@@ -1,38 +1,24 @@
-import { v6 } from '@ovh-ux/manager-core-api';
+import { getInstancesByRegion as commonGetInstancesByRegion } from '@ovh-ux/manager-pci-common';
+import { TInstance } from '@/entity/instance';
 
-export interface Instance {
-  id: string;
-  name: string;
-  ipAddresses: IPAddress[];
-  created: string;
-  region: string;
-  monthlyBilling: MonthlyBilling | null;
-  status: string;
-  planCode: string;
-  operationIds: string[];
-  currentMonthOutgoingTraffic: number;
-  availabilityZone?: string;
-}
+export type TInstanceDTO = Pick<
+  TInstance,
+  'id' | 'status' | 'name' | 'availabilityZone'
+>;
 
-export interface MonthlyBilling {
-  since: string;
-  status: string;
-}
-
-export interface IPAddress {
-  ip: string;
-  type: string;
-  version: number;
-  networkId: string;
-  gatewayIp: string | null;
-}
-
-export const getInstance = async (
+export async function getInstancesByRegion(
   projectId: string,
-  instanceId: string,
-): Promise<Instance> => {
-  const { data } = await v6.get<Instance>(
-    `/cloud/project/${projectId}/instance/${instanceId}`,
-  );
-  return data;
-};
+  regionId: string,
+): Promise<TInstance[]> {
+  const instancesDTOs = (await commonGetInstancesByRegion(
+    projectId,
+    regionId,
+  )) as TInstanceDTO[];
+
+  return instancesDTOs.map(({ id, status, name, availabilityZone }) => ({
+    id,
+    status,
+    name,
+    availabilityZone,
+  }));
+}

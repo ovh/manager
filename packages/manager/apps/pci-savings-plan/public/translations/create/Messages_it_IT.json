@@ -37,7 +37,14 @@
   "commitment_month": "{{value}} mesi",
   "commitment_price_month": "+IVA/mese",
   "cta_cancel": "Annullare",
-  "cta_plan": "Creare un Savings Plan",
+  "cta_plan": "Crea un Savings Plan",
   "select_quantity_description_instance": "Indica il numero di istanze da includere nel tuo Savings Plan.",
-  "select_quantity_description_rancher": "Indica il numero di vCPU da includere nel tuo Savings Plan."
+  "select_quantity_description_rancher": "Indica il numero di vCPU da includere nel tuo Savings Plan.",
+  "quantity_label_instance": "Numero di istanze",
+  "quantity_label_rancher": "Numero di vCPU",
+  "choose_deployment": "Scegli una modalità di installazione",
+  "choose_deployment_description": "Seleziona la configurazione ottimale per garantire la disponibilità, la resilienza e la latenza adeguata dei dati in base alle modalità di utilizzo.",
+  "region": "Regione",
+  "deployment_one_az": "Installazione resiliente ed economica su 1 zona di disponibilità.",
+  "deployment_three_az": "Installazione ad alta resilienza/high availability per le applicazioni critiche su 3 zone di disponibilità."
 }
