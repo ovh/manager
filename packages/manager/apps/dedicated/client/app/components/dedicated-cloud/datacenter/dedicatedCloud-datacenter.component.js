@@ -10,6 +10,7 @@ export default {
     datastoresState: '<',
     drpAvailability: '<',
     drpState: '<',
+    virtualMachinesState: '<',
     hostsState: '<',
     newProductUrl: '<',
     dedicatedCloudPCCMigrationState: '<?',
