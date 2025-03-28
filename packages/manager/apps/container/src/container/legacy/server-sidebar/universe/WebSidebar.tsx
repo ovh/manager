@@ -14,6 +14,7 @@ export const webFeatures = [
   'web:domains',
   'web:domains:all-dom',
   'web:domains:zone',
+  'web:domains:operations',
   'hosting',
   'private-database',
   'email-pro',
@@ -70,7 +71,7 @@ export default function WebSidebar() {
               icon: getIcon('oui-icon oui-icon-list'),
               ignoreSearch: true,
             },
-            {
+            features['web:domains:operations'] && {
               id: 'domain_operations',
               label: t('sidebar_domain_operations'),
               href: navigation.getURL('web', '#/domain/operation'),
