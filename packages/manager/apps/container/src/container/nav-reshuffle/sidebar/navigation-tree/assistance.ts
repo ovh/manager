@@ -17,6 +17,7 @@ export const assistanceTree: Node = {
       url: 'hosting_and_collab_changelog',
       hasService: false,
       isExternal: true,
+      region: ['EU', 'CA'],
     },
     {
       id: 'marketplace',

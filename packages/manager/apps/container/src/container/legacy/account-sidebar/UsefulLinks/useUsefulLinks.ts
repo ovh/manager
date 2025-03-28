@@ -1,14 +1,13 @@
 import { Environment } from '@ovh-ux/manager-config';
+import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
 import constants from './constants';
 import { UsefulLink } from './Link/usefulLink';
 
 import { useShell } from '@/context/useApplicationContext';
 import useContainer from '@/core/container';
-import { ODS_ICON_NAME} from '@ovhcloud/ods-components'
-
 
 import getOdsIcon from '../getOdsIcon';
-import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
 import { getSvgIcon } from '../getSvgIcon';
 
 interface UseUsefulLinks {
@@ -35,32 +34,37 @@ const useUsefulLinks = (): UseUsefulLinks => {
         external: true,
         href: constants[region]?.cloud_changelog,
         tracking: `${trackingPrefix}::go-to-cloud-changelog`,
-        icon: getSvgIcon(OvhProductName.CLOUD_CHANGELOG)
+        icon: getSvgIcon(OvhProductName.CLOUD_CHANGELOG),
       },
-      {
-        id: 'hosting_and_collab_changelog',
-        external: true,
-        href: constants[region]?.hosting_and_collab_changelog,
-        tracking: `${trackingPrefix}::go-to-hosting-and-collab-changelog`,
-        icon: getSvgIcon(OvhProductName.HOSTING_CHANGELOG)
-      },
+      ...(isEUOrCA
+        ? [
+            {
+              id: 'hosting_and_collab_changelog',
+              external: true,
+              href: constants[region]?.hosting_and_collab_changelog,
+              tracking: `${trackingPrefix}::go-to-hosting-and-collab-changelog`,
+              icon: getSvgIcon(OvhProductName.HOSTING_CHANGELOG),
+            },
+          ]
+        : []),
       {
         id: 'helpCenter',
         external: true,
         href: constants[region]?.help[user.ovhSubsidiary],
         tracking: `${trackingPrefix}::go-to-helpcenter`,
-        icon: getOdsIcon(ODS_ICON_NAME.LIFEBUOY_CONCEPT),      },
+        icon: getOdsIcon(ODS_ICON_NAME.LIFEBUOY_CONCEPT),
+      },
       ...(isLivechatEnabled
         ? [
-          {
-            id: 'chatbot',
-            action: () => {
-              shell.getPlugin('ux').openLiveChat();
-              setChatbotReduced(false);
+            {
+              id: 'chatbot',
+              action: () => {
+                shell.getPlugin('ux').openLiveChat();
+                setChatbotReduced(false);
+              },
+              icon: getOdsIcon(ODS_ICON_NAME.SPEECH_BUBBLE_CONCEPT),
             },
-            icon: getOdsIcon(ODS_ICON_NAME.SPEECH_BUBBLE_CONCEPT),
-          },
-        ]
+          ]
         : []),
       {
         id: 'tasks',
@@ -72,7 +76,9 @@ const useUsefulLinks = (): UseUsefulLinks => {
       {
         id: 'tickets',
         external: isEUOrCA,
-        href: isEUOrCA ? constants[region].support.tickets(user.ovhSubsidiary) : navigation.getURL('dedicated', '#/ticket'),
+        href: isEUOrCA
+          ? constants[region].support.tickets(user.ovhSubsidiary)
+          : navigation.getURL('dedicated', '#/ticket'),
         tracking: `${trackingPrefix}::go-to-tickets`,
         icon: getOdsIcon(ODS_ICON_NAME.ENVELOP_CONCEPT),
       },
