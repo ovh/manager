@@ -43,7 +43,7 @@ describe('Configuration component', () => {
 
   it('renders Configuration', async () => {
     render(<Configurations />, { wrapper: RouterWithQueryClientWrapper });
-    expect(screen.getByTestId('configuration-container')).toBeInTheDocument();
+    expect(screen.getByTestId('configuration-container')).toBeTruthy();
   });
 
   it('renders and trigger copy Id in clipboard', async () => {
@@ -54,7 +54,7 @@ describe('Configuration component', () => {
     });
     render(<Configurations />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByText(mockedNotebook.id)).toBeInTheDocument();
+      expect(screen.getByText(mockedNotebook.id)).toBeTruthy();
     });
     act(() => {
       fireEvent.click(screen.getByTestId('dashboard-copy-id-button'));
@@ -72,8 +72,11 @@ describe('Configuration component', () => {
   it('open delete notebook modal', async () => {
     render(<Configurations />, { wrapper: RouterWithQueryClientWrapper });
     expect(
-      screen.getByTestId('notebook-config-delete-button'),
-    ).not.toBeDisabled();
+      screen
+        .getByTestId('notebook-config-delete-button')
+        .getAttribute('disabled'),
+    ).toBeNull();
+
     act(() => {
       fireEvent.click(screen.getByTestId('notebook-config-delete-button'));
     });

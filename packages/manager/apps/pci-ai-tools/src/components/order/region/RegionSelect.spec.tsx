@@ -27,19 +27,17 @@ describe('Region component', () => {
       />,
     );
     await waitFor(() => {
-      expect(
-        screen.getByTestId('regions-select-container'),
-      ).toBeInTheDocument();
+      expect(screen.getByTestId('regions-select-container')).toBeTruthy();
       expect(
         screen.getByTestId(
           `region-tile-radio-tile-${mockedCapabilitiesRegionGRA.id}`,
         ),
-      ).toBeInTheDocument();
+      ).toBeTruthy();
       expect(
         screen.getByTestId(
           `region-tile-radio-tile-${mockedCapabilitiesRegionBHS.id}`,
         ),
-      ).toBeInTheDocument();
+      ).toBeTruthy();
     });
   });
   it('should trigger callback when selected', async () => {
@@ -52,7 +50,7 @@ describe('Region component', () => {
     );
     const regionDataTestId = `region-tile-radio-tile-${mockedCapabilitiesRegionBHS.id}`;
     await waitFor(() => {
-      expect(screen.getByTestId(regionDataTestId)).toBeInTheDocument();
+      expect(screen.getByTestId(regionDataTestId)).toBeTruthy();
     });
     act(() => {
       fireEvent.click(screen.getByTestId(regionDataTestId));

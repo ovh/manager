@@ -18,8 +18,8 @@ describe('RadioTile component', () => {
       </RadioTile>,
     );
     await waitFor(() => {
-      expect(screen.getByText('title')).toBeInTheDocument();
-      expect(screen.getByText('content')).toBeInTheDocument();
+      expect(screen.getByText('title')).toBeTruthy();
+      expect(screen.getByText('content')).toBeTruthy();
     });
   });
 
@@ -70,9 +70,9 @@ describe('RadioTile component', () => {
       </RadioTile>,
     );
     await waitFor(() => {
-      expect(screen.getByTestId('radio-tile-label')).not.toHaveClass(
-        'selected',
-      );
+      expect(
+        screen.getByTestId('radio-tile-label').classList.contains('selected'),
+      ).toBe(false);
     });
     act(() => {
       rerender(
@@ -82,7 +82,9 @@ describe('RadioTile component', () => {
       );
     });
     await waitFor(() => {
-      expect(screen.getByTestId('radio-tile-label')).toHaveClass('selected');
+      expect(
+        screen.getByTestId('radio-tile-label').classList.contains('selected'),
+      ).toBe(true);
     });
   });
 });

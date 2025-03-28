@@ -51,6 +51,6 @@ describe('Resources component', () => {
 
   it('renders Resources', async () => {
     render(<Resources />, { wrapper: RouterWithQueryClientWrapper });
-    expect(screen.getByTestId('resources-container')).toBeInTheDocument();
+    expect(screen.getByTestId('resources-container')).toBeTruthy();
   });
 });

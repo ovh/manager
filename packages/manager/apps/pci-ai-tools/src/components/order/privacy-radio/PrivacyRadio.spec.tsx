@@ -20,7 +20,7 @@ describe('Privacy input component', () => {
       },
     );
     await waitFor(() => {
-      expect(screen.getByTestId('privacy-radio-container')).toBeInTheDocument();
+      expect(screen.getByTestId('privacy-radio-container')).toBeTruthy();
     });
     act(() => {
       fireEvent.click(screen.getByTestId('private-radio'));
@@ -38,7 +38,7 @@ describe('Privacy input component', () => {
       },
     );
     await waitFor(() => {
-      expect(screen.getByTestId('privacy-radio-container')).toBeInTheDocument();
+      expect(screen.getByTestId('privacy-radio-container')).toBeTruthy();
     });
     act(() => {
       fireEvent.click(screen.getByTestId('public-radio'));
