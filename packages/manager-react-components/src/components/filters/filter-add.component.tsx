@@ -49,7 +49,22 @@ export function FilterAdd({ columns, onAddFilter }: Readonly<FilterAddProps>) {
     [columns, selectedId],
   );
 
+  const isInputValid = useMemo(() => {
+    if (selectedColumn?.type === FilterTypeCategories.Date) {
+      return dateValue !== null;
+    }
+    if (selectedColumn?.type === FilterTypeCategories.Numeric) {
+      // 0 is a valid number (though falsy)
+      // Empty string is not a valid number (though Number('') === 0)
+      return !Number.isNaN(Number(value)) && value !== '';
+    }
+    return value !== '';
+  }, [selectedColumn, dateValue, value]);
+
   const submitAddFilter = () => {
+    if (!isInputValid) {
+      return;
+    }
     onAddFilter(
       {
         key: selectedId,
@@ -81,6 +96,23 @@ export function FilterAdd({ columns, onAddFilter }: Readonly<FilterAddProps>) {
         value={dateValue}
         data-testid="filter-add_value-date"
         onOdsChange={(e) => setDateValue(e.detail.value)}
+      />
+    );
+  } else if (selectedColumn?.type === FilterTypeCategories.Numeric) {
+    inputComponent = (
+      <OdsInput
+        name="filter-add_value-input"
+        className="border"
+        type={ODS_INPUT_TYPE.text}
+        value={value}
+        pattern="(\+|-)?[0-9]+([.][0-9]+)?"
+        data-testid="filter-add_value-numeric"
+        onOdsChange={(e) => setValue(`${e.detail.value}`)}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') {
+            submitAddFilter();
+          }
+        }}
       />
     );
   } else if (selectedColumn?.options?.length > 0) {
@@ -179,7 +211,7 @@ export function FilterAdd({ columns, onAddFilter }: Readonly<FilterAddProps>) {
         <OdsButton
           className="mt-4 w-full filter-add-button-submit"
           size={ODS_BUTTON_SIZE.sm}
-          isDisabled={!value && !dateValue}
+          isDisabled={!isInputValid}
           onClick={submitAddFilter}
           data-testid="filter-add_submit"
           label={t('common_criteria_adder_submit_label')}
