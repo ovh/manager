@@ -3,7 +3,7 @@
     "lib": ["dom", "es2021"],
     "noEmit": true,
     "target": "es2021",
-    "types": ["vite/client", "node", "jest"],
+    "types": ["vite/client", "node"],
     "module": "ES2020",
     "moduleResolution": "node",
     "removeComments": true,
