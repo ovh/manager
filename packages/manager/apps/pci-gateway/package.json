@@ -12,12 +12,13 @@
     "start": "lerna exec --stream --scope='@ovh-ux/manager-pci-gateway-app' --include-dependencies -- npm run build --if-present",
     "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-pci-gateway-app' --include-dependencies -- npm run dev --if-present",
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-pci-gateway-app' --include-dependencies -- npm run dev:watch --if-present",
-    "test": "vitest run"
+    "test": "vitest run",
+    "test:watch": "vitest dev"
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^8.1.0",
     "@ovh-ux/manager-core-api": "^0.10.1",
-    "@ovh-ux/manager-pci-common": "^0.15.2",
+    "@ovh-ux/manager-pci-common": "^0.16.2",
     "@ovh-ux/manager-react-components": "^1.45.0",
     "@ovh-ux/manager-react-core-application": "^0.11.16",
     "@ovh-ux/manager-react-shell-client": "^0.8.5",

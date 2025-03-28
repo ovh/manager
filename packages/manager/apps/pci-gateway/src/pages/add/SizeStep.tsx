@@ -1,11 +1,9 @@
 import { useTranslation } from 'react-i18next';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { OsdsText } from '@ovhcloud/ods-components/react';
 import {
   StepComponent,
   TilesInputComponent,
-  useCatalogPrice,
-  convertHourlyPriceToMonthly,
 } from '@ovh-ux/manager-react-components';
 import {
   ODS_THEME_COLOR_INTENT,
@@ -15,135 +13,86 @@ import {
 import { useParams } from 'react-router-dom';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { StepsEnum, useNewGatewayStore } from '@/pages/add/useStore';
-import { TSizeItem, useData } from '@/api/hooks/data';
+import { useRegionGatewayAddons } from '@/api/hooks/useGateways/useGateways';
+import { TProductAddonDetail } from '@/types/addon.type';
+import SizeLabel from '@/components/size/SizeLabel.component';
 
 export const SizeStep = (): JSX.Element => {
   const { projectId } = useParams();
 
-  const { t: tAdd } = useTranslation('add');
-  const { t: tStepper } = useTranslation('stepper');
+  const {
+    environment,
+    shell: { tracking },
+  } = useContext(ShellContext);
 
-  const sizes = useData(projectId);
-  const [size, setSize] = useState<TSizeItem>(undefined);
+  const { ovhSubsidiary } = environment.getUser();
 
-  const { tracking } = useContext(ShellContext).shell;
+  const { t } = useTranslation(['add', 'stepper', 'catalog-selector']);
+
+  const [size, setSize] = useState<TProductAddonDetail>();
   const store = useNewGatewayStore();
 
-  const {
-    getFormattedHourlyCatalogPrice,
-    getFormattedMonthlyCatalogPrice,
-  } = useCatalogPrice(4);
-
-  useEffect(() => {
-    if (sizes.length) {
-      store.updateForm.size(sizes[0].payload);
-    }
-  }, [sizes]);
-
-  useEffect(() => {
-    setSize(sizes.find(($size) => $size.payload === store.form.size));
-  }, [store.form.size, sizes]);
+  const addons = useRegionGatewayAddons(
+    ovhSubsidiary,
+    projectId,
+    store.form.regionName,
+  );
 
   return (
     <StepComponent
       id={StepsEnum.SIZE}
-      order={1}
+      order={2}
       isOpen={store.steps.get(StepsEnum.SIZE).isOpen}
       isChecked={store.steps.get(StepsEnum.SIZE).isChecked}
       isLocked={store.steps.get(StepsEnum.SIZE).isLocked}
-      title={tAdd('pci_projects_project_public_gateways_add_size_sub_title')}
+      title={t('pci_projects_project_public_gateways_add_size_sub_title')}
       subtitle={
         <OsdsText
           level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
           size={ODS_THEME_TYPOGRAPHY_SIZE._400}
           color={ODS_THEME_COLOR_INTENT.text}
         >
-          {tAdd('pci_projects_project_public_gateways_add_size_info')}
+          {t('pci_projects_project_public_gateways_add_size_info')}
         </OsdsText>
       }
       next={{
-        action: store.form.size
-          ? (id) => {
-              store.updateStep.check(id as StepsEnum);
-              store.updateStep.lock(id as StepsEnum);
-              store.updateStep.open(StepsEnum.LOCATION);
-              tracking.trackClick({
-                name: 'public-gateway_add_select-type',
-                type: 'action',
-              });
-            }
-          : undefined,
-        label: tStepper('common_stepper_next_button_label'),
-        isDisabled: false,
+        action: (id) => {
+          store.updateStep.check(id as StepsEnum);
+          store.updateStep.lock(id as StepsEnum);
+          store.updateStep.open(StepsEnum.NETWORK);
+          tracking.trackClick({
+            name: 'public-gateway_add_select-type',
+            type: 'action',
+          });
+        },
+        label: t('stepper:common_stepper_next_button_label'),
+        isDisabled: !store.form.size,
       }}
       edit={{
         action: (id) => {
           store.updateStep.unCheck(id as StepsEnum);
           store.updateStep.unlock(id as StepsEnum);
 
-          store.updateForm.regionName(undefined);
-          store.updateStep.close(StepsEnum.LOCATION);
-          store.updateStep.unCheck(StepsEnum.LOCATION);
-          store.updateStep.unlock(StepsEnum.LOCATION);
+          store.updateStep.unCheck(id as StepsEnum);
+          store.updateStep.unlock(id as StepsEnum);
 
-          store.updateForm.name(undefined);
-          store.updateForm.network(undefined, undefined);
           store.updateStep.close(StepsEnum.NETWORK);
+
+          store.updateForm.size(undefined);
+          store.updateForm.network(undefined, undefined);
         },
-        label: tStepper('common_stepper_modify_this_step'),
+        label: t('stepper:common_stepper_modify_this_step'),
         isDisabled: false,
       }}
     >
-      <TilesInputComponent<TSizeItem, string, string>
+      <TilesInputComponent<TProductAddonDetail, string, string>
         id="gateway-size-input"
         value={size}
-        items={sizes}
-        label={(item: TSizeItem) => (
-          <div className="grid grid-cols-1 gap-2 text-left text w-full">
-            <div className="">
-              <OsdsText
-                level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-                size={ODS_THEME_TYPOGRAPHY_SIZE._200}
-                color={ODS_THEME_COLOR_INTENT.text}
-              >
-                {item.label}
-              </OsdsText>
-            </div>
-            <div className="text-sm font-normal">
-              <OsdsText
-                level={ODS_THEME_TYPOGRAPHY_LEVEL.caption}
-                size={ODS_THEME_TYPOGRAPHY_SIZE._200}
-                color={ODS_THEME_COLOR_INTENT.text}
-              >
-                {item.bandwidthLabel}
-              </OsdsText>
-            </div>
-            <hr className="w-full border-solid border-0 border-b border-[--ods-color-blue-200]" />
-            <div className="text-sm mt-4 text-center">
-              <OsdsText
-                level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                size={ODS_THEME_TYPOGRAPHY_SIZE._200}
-                color={ODS_THEME_COLOR_INTENT.text}
-              >
-                {getFormattedHourlyCatalogPrice(item.hourlyPrice)}
-              </OsdsText>
-            </div>
-            <div className="text-sm text-center font-normal">
-              <OsdsText
-                level={ODS_THEME_TYPOGRAPHY_LEVEL.caption}
-                size={ODS_THEME_TYPOGRAPHY_SIZE._200}
-                color={ODS_THEME_COLOR_INTENT.text}
-              >
-                ~{' '}
-                {getFormattedMonthlyCatalogPrice(
-                  convertHourlyPriceToMonthly(item.hourlyPrice),
-                )}
-              </OsdsText>
-            </div>
-          </div>
-        )}
+        items={addons}
+        label={(props) => <SizeLabel {...props} />}
         onInput={(item) => {
-          store.updateForm.size(item.payload);
+          store.updateForm.size(item.size);
+          setSize(addons.find((addon) => addon.size === item.size));
         }}
       />
     </StepComponent>
