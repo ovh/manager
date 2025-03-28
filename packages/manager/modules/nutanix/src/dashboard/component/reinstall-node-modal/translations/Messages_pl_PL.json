@@ -1,6 +1,6 @@
 {
   "nutanix_dashboard_reinstall_node_title": "Reinstalacja węzła",
-  "nutanix_dashboard_reinstall_node_description": "Chcesz ponownie zainstalować AOS i AHV na Twoim węźle. Podaj nieużywane adresy IP w sieci klastra.",
+  "nutanix_dashboard_reinstall_node_description": "Chcesz ponownie zainstalować AOS i AHV na Twoim węźle.",
   "nutanix_dashboard_reinstall_node_tips": "W przypadku reinstalacji na kilku węzłach jednocześnie, skorzystaj z API",
   "nutanix_dashboard_reinstall_node_label_ahv_ip": "IP węzła",
   "nutanix_dashboard_reinstall_node_label_cvm_ip": "IP CVM",
