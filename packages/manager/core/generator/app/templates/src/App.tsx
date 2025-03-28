@@ -8,14 +8,7 @@ import {
   createRoutesFromElements,
 } from 'react-router-dom';
 import Routes from './routes/routes';
-
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 300_000,
-    },
-  },
-});
+import queryClient from './queryClient';
 
 function App() {
   const { shell } = useContext(ShellContext);
