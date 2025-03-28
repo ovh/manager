@@ -110,14 +110,10 @@ const LabelsForm = React.forwardRef<HTMLInputElement, LabelsFormProps>(
             <Plus className="size-6" />
           </Button>
         </div>
-        <div className="flex flex-wrap gap-2 mt-4 p-2">
+        <div className="flex flex-wrap gap-2 mt-2">
           {configuredLabels.map((label) => (
-            <Badge
-              className="py-4 px-2 rounded-md text-sm"
-              key={label.name}
-              variant="primary"
-            >
-              <div className="flex flex-row gap-1">
+            <Badge key={label.name} variant="primary">
+              <div className="flex flex-row gap-1 inline-flex items-center justify-center">
                 <span key={`span_${label.name}`}>
                   {`${label.name} = ${label.value}`}
                 </span>
@@ -125,17 +121,16 @@ const LabelsForm = React.forwardRef<HTMLInputElement, LabelsFormProps>(
                   data-testid={`button_${label.name}`}
                   key={`button_${label.name}`}
                   type="button"
-                  mode="ghost"
-                  className="inline-flex items-center justify-center h-3 w-3 px-2 py-2 rounded-full border border-primary bg-primary-100 hover:bg-primary-200"
+                  className="h-3 w-3 px-2 py-2 rounded-full border border-white hover:bg-primary-200 bg-transparent text-white"
                   onClick={() => removeLabel(label.name)}
                 >
-                  <X className="size-4" />
+                  <X className="text-white shrink-0 size-3 stroke-[3]" />
                 </Button>
               </div>
             </Badge>
           ))}
         </div>
-        <p className="mt-2 text-sm" data-testid="configured-labels">
+        <p className="text-sm mt-2" data-testid="configured-labels">
           {t('numberOfConfiguredLabels', {
             count: configuredLabels.length,
             max: CONFIGURATION_CONFIG.maxLabelNumber,

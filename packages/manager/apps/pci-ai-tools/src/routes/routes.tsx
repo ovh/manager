@@ -21,6 +21,7 @@ export const COMMON_PATH = '/pci/projects';
 export default [
   {
     path: '/pci/projects/:projectId/ai-ml',
+    id: 'rootlayout',
     ...lazyRouteConfig(() => import('@/pages/Root.layout')),
     children: [
       {
@@ -34,6 +35,7 @@ export default [
       },
       {
         path: '',
+        id: 'authlayout',
         ...lazyRouteConfig(() => import('@/pages/Auth.layout')),
         children: [
           {
@@ -186,14 +188,8 @@ export default [
             ],
           },
           {
-            path: 'notebooks/onboarding',
-            id: 'onboarding-notebooks',
-            ...lazyRouteConfig(() =>
-              import('@/pages/notebooks/onboarding/Onboarding.page'),
-            ),
-          },
-          {
             path: 'notebooks',
+            id: 'notebooksLayout',
             ...lazyRouteConfig(() =>
               import('@/pages/notebooks/NotebookRoot.layout'),
             ),
@@ -227,6 +223,13 @@ export default [
                     ),
                   },
                 ],
+              },
+              {
+                path: 'onboarding',
+                id: 'onboarding-notebooks',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/notebooks/onboarding/Onboarding.page'),
+                ),
               },
               {
                 path: 'new',

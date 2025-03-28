@@ -19,11 +19,11 @@ describe('Framework Version Selector component', () => {
       />,
     );
     await waitFor(() => {
+      expect(screen.getByTestId('fmk-tile-version-container')).toBeTruthy();
+      expect(screen.getByTestId('popover-trigger-button')).toBeTruthy();
       expect(
-        screen.getByTestId('fmk-tile-version-container'),
-      ).toBeInTheDocument();
-      expect(screen.getByTestId('popover-trigger-button')).toBeInTheDocument();
-      expect(screen.getByTestId('popover-trigger-button')).toBeDisabled();
+        screen.getByTestId('popover-trigger-button').getAttribute('disabled'),
+      ).not.toBeNull();
     });
   });
 });
