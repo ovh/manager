@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import {
   OsdsFormField,
   OsdsSelect,
@@ -19,20 +20,24 @@ export const PrivateNetworkPart = (): JSX.Element => {
   const { projectId } = useParams();
   const store = useCreateStore();
 
-  const { isFetching: isPrivateNetworksPending } = useGetRegionPrivateNetworks(
+  const { list: networks, isFetching } = useGetRegionPrivateNetworks(
     projectId,
-    store.region?.name,
+    store.region?.name || '',
   );
 
-  const {
-    data: privateNetworks,
-    list: privateNetworksList,
-  } = useGetRegionPrivateNetworks(projectId, store.region?.name);
+  useEffect(() => {
+    // set default private network
+    if (networks?.length > 0) {
+      store.set.privateNetwork(networks[0]);
+    }
+  }, [networks, store.set]);
 
   return (
     <>
-      {isPrivateNetworksPending ? (
-        <OsdsSpinner inline />
+      {isFetching ? (
+        <div className="mt-8">
+          <OsdsSpinner inline />
+        </div>
       ) : (
         <>
           <OsdsFormField className="mt-8" inline>
@@ -49,7 +54,7 @@ export const PrivateNetworkPart = (): JSX.Element => {
               value={store.privateNetwork?.id}
               error={false}
               onOdsValueChange={(event) => {
-                const targetNetwork = (privateNetworks || []).find(
+                const targetNetwork = (networks || []).find(
                   (ip) => ip.id === event.target.value,
                 );
                 store.set.privateNetwork(targetNetwork);
@@ -63,7 +68,7 @@ export const PrivateNetworkPart = (): JSX.Element => {
               >
                 {tCreate('octavia_load_balancer_create_private_network_field')}
               </OsdsText>
-              {privateNetworksList?.map((network) => (
+              {networks?.map((network) => (
                 <OsdsSelectOption value={network.id} key={network.id}>
                   {network.name}
                 </OsdsSelectOption>
