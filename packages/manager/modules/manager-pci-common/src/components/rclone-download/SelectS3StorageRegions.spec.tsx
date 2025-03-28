@@ -1,8 +1,8 @@
-import { TRegion } from '@ovh-ux/manager-react-components';
 import { UseQueryResult } from '@tanstack/react-query';
 import '@testing-library/jest-dom';
 import { render, screen, waitFor } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
+import { TRegion } from '@/api/data';
 import * as _useRegionHook from '../../api/hook/useRegions';
 import SelectS3StorageRegions from './SelectS3StorageRegions';
 

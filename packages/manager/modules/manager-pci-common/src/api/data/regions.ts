@@ -1,10 +1,16 @@
 import { fetchIcebergV6, v6 } from '@ovh-ux/manager-core-api';
 
-export type TRegion = {
+export type TRegionType = 'region' | 'localzone' | 'region-3-az' | string;
+
+export type TRegionBase = {
   name: string;
-  type: 'region' | 'localzone' | 'region-3-az' | string;
+  type: TRegionType;
+  availabilityZones: string[];
+  continentCode: 'ASIA' | 'EU' | 'NA' | 'US' | string;
+};
+
+export type TRegion = TRegionBase & {
   status: string;
-  continentCode: string;
   services: {
     name: string;
     status: string;

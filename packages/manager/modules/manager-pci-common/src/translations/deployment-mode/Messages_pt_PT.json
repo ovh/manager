@@ -1,0 +1,13 @@
+{
+  "deployment_mode_title": "Selecione um modo de implementação",
+  "deployment_mode_description": "Escolha uma configuração ótima para assegurar a disponibilidade, a resiliência e a latência adequadas aos seus dados, consoante o seu caso de utilização. <Link>Saber mais</Link>",
+  "deployment_mode_card_title_region": "Região 1-AZ",
+  "deployment_mode_card_description_region": "Implementação resiliente e económica numa zona de disponibilidade.",
+  "deployment_mode_card_title_region-3-az": "Região 3-AZ",
+  "deployment_mode_card_description_region-3-az": "Implementação de alta resiliência/alta disponibilidade para as suas aplicações críticas em 3 zonas de disponibilidade.",
+  "deployment_mode_card_title_localzone": "Local Zone",
+  "deployment_mode_card_description_localzone": "Implementação das suas aplicações mais próxima dos seus utilizadores para uma baixa latência e residência dos dados.",
+  "deployment_mode_card_beta": "Beta",
+  "deployment_mode_card_beta_price": "Grátis",
+  "deployment_mode_card_coming_soon": "Disponível em breve"
+}
