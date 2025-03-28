@@ -33,7 +33,6 @@ export default function StatusComponent({
 
   return (
     <OdsBadge
-      className="font-bold"
       color={badgeColor}
       data-testid="status_badge"
       label={t(`pci_projects_project_storages_snapshots_status_${statusGroup}`)}
