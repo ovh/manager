@@ -103,7 +103,15 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     layout: 'modal',
     resolve: {
-      goBack: /* @ngInject */ ($state) => () => $state.go('vrack.index'),
+      goBack: /* @ngInject */ ($state, $timeout, Alerter) => (
+        message = false,
+        type = 'success',
+      ) => {
+        if (message) {
+          Alerter.set(`alert-${type}`, message, null, 'InfoErrors');
+        }
+        return $state.go('vrack.index');
+      },
       service: /* @ngInject */ ($transition$) => $transition$.params().service,
       serviceType: /* @ngInject */ ($transition$) =>
         $transition$.params().serviceType,
