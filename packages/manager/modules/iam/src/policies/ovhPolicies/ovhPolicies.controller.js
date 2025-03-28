@@ -1,5 +1,6 @@
 import { AbstractCursorDatagridController } from '@ovh-ux/manager-ng-apiv2-helper';
-import { PAGE_SIZE, TAG } from '../../iam.constants';
+import { PAGE_SIZE } from '../../iam.constants';
+import { OVH_POLICIES_TRACKING_HITS } from './ovhPolicies.constants';
 
 export default class OvhPoliciesController extends AbstractCursorDatagridController {
   /* @ngInject */
@@ -27,7 +28,7 @@ export default class OvhPoliciesController extends AbstractCursorDatagridControl
    * @returns {Promise}
    */
   editPolicy({ id }) {
-    this.trackClick(TAG.POLICIES__EDIT);
+    this.trackClick(OVH_POLICIES_TRACKING_HITS.EDIT_POLICY);
     return this.goTo({
       name: 'iam.policy.edit',
       params: { policy: id },

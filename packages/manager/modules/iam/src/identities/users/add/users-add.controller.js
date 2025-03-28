@@ -1,3 +1,5 @@
+import { USERS_TRACKING_HITS } from '../users.constants';
+
 export default class IamUsersAddCtrl {
   /* @ngInject */
   constructor(
@@ -24,6 +26,7 @@ export default class IamUsersAddCtrl {
 
   $onInit() {
     this.$scope.addUser = this.addUser.bind(this);
+    this.$scope.trackPage(USERS_TRACKING_HITS.ADD_USER_MODAL);
 
     this.userGroupsService
       .getGroups()
@@ -45,11 +48,13 @@ export default class IamUsersAddCtrl {
   }
 
   addUser() {
+    this.$scope.trackClick(USERS_TRACKING_HITS.ADD_USER_CONFIRM);
     this.loader = true;
 
     this.usersService
       .addUser(this.user)
       .then(() => {
+        this.$scope.trackPage(USERS_TRACKING_HITS.ADD_USER_SUCCESS);
         this.alerter.success(
           this.$translate.instant('user_users_add_success_message', {
             login: this.user.login,
@@ -58,6 +63,7 @@ export default class IamUsersAddCtrl {
         );
       })
       .catch((err) => {
+        this.$scope.trackPage(USERS_TRACKING_HITS.ADD_USER_ERROR);
         if (err.status === 403) {
           return this.alerter.warning(
             `${this.$translate.instant(
@@ -86,6 +92,7 @@ export default class IamUsersAddCtrl {
   }
 
   close() {
+    this.$scope.trackClick(USERS_TRACKING_HITS.ADD_USER_CANCEL);
     this.$scope.resetAction();
   }
 }
