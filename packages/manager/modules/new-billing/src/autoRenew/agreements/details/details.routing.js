@@ -1,6 +1,3 @@
-import controller from './user-agreements-details.controller';
-import template from './user-agreements-details.html';
-
 export default /* @ngInject */ (
   $stateProvider,
   $urlServiceProvider,
@@ -9,9 +6,7 @@ export default /* @ngInject */ (
   if (coreConfigProvider.isRegion(['EU', 'CA'])) {
     $stateProvider.state('billing.autorenew.agreements.agreement', {
       url: '/details/{id:int}',
-      template,
-      controller,
-      controllerAs: 'ctrl',
+      component: 'userAgreementsDetails',
       resolve: {
         agreementId: /* @ngInject */ ($transition$) => $transition$.params().id,
         breadcrumb: /* @ngInject */ (agreementId) => agreementId.toString(),
