@@ -1,7 +1,7 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 import { TRegionBase } from '@/api/data/regions';
 
-export type TProductAvailabilityRegion = TRegionBase & {
+export type TRegionAvailability = TRegionBase & {
   datacenter: string;
   enabled: boolean;
 };
@@ -9,11 +9,11 @@ export type TProductAvailabilityRegion = TRegionBase & {
 export type TProductAvailability = {
   plans: {
     code: string;
-    regions: TProductAvailabilityRegion[];
+    regions: TRegionAvailability[];
   }[];
   products: {
     name: string;
-    regions: TProductAvailabilityRegion[];
+    regions: TRegionAvailability[];
   }[];
 };
 
