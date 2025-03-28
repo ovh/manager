@@ -30,7 +30,9 @@ export default function Modal({
   const [operationArgumentsUpdated, setOperationArgumentsUpdated] = useState<
     Record<string, string>
   >();
-  const [operationName, setOperationName] = useState(null);
+  const [operationName, setOperationName] = useState(
+    data.canRelaunch ? OperationName.CanRelaunch : null,
+  );
   const navigate = useNavigate();
   const putOperationName = (label: OperationName) => {
     setOperationName(label);

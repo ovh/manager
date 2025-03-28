@@ -111,6 +111,7 @@
   "domain_operations_update_key_firstname": "Mettre à jour le prénom avec un contenu valide",
   "domain_operations_update_key_name": "Mettre à jour le nom avec un contenu valide",
   "domain_operations_update_key_identificationNumber": "Mettre à jour le numéro d'identification avec un contenu valide",
+  "domain_operations_update_key_owner_email": "Mettre à jour l'email du titulaire avec un contenu valide",
   "domain_operations_modal_title": "Données de l'opération sur {{t0}}",
   "domain_operations_update_me_fields": "Modification du {{t0}}",
   "domain_operations_update_contact_not_me": "Seul(s) le(s) {{t0}} peuvent changer {{t1}}",
