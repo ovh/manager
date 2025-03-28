@@ -5,18 +5,19 @@ import {
 import {
   NETWORK_LABEL,
   DATACENTER_NETWORK_SITE_WEB_LINK,
-  NSXT_EDGE_PRICING_MODE,
 } from '../../../../../dedicatedCloud/datacenter/dedicatedCloud-datacenter.constants';
 import NETWORK_LOGO from './assets/network.png';
 
 export default class {
   /* @ngInject */
-  constructor($translate, coreConfig, RedirectionService) {
+  constructor($q, $translate, coreConfig, RedirectionService, DedicatedCloud) {
+    this.$q = $q;
     this.$translate = $translate;
     this.coreConfig = coreConfig;
     this.illustration = NETWORK_LOGO;
     this.expressOrderUrl = RedirectionService.getURL('expressOrder');
     this.NETWORK_LABEL = NETWORK_LABEL;
+    this.DedicatedCloud = DedicatedCloud;
   }
 
   $onInit() {
@@ -36,13 +37,35 @@ export default class {
       category: this.$translate.instant(guide.category),
     }));
 
-    this.orderLink = `${this.expressOrderUrl}?products=${JSURL.stringify([
+    this.loadPricingModeData();
+  }
+
+  loadPricingModeData() {
+    this.isLoading = true;
+    this.error = false;
+
+    return this.DedicatedCloud.getVCDPricingMode(this.productId)
+      .then((pricingMode) => {
+        this.pricingMode = pricingMode;
+        this.orderLink = this.generateOrderLink();
+      })
+      .catch(() => {
+        // Catch an error to notify unable to get pricing mode
+        this.error = true;
+      })
+      .finally(() => {
+        this.isLoading = false;
+      });
+  }
+
+  generateOrderLink() {
+    return `${this.expressOrderUrl}?products=${JSURL.stringify([
       {
         productId: 'privateCloud',
         serviceName: this.productId,
         planCode: NSXT_EDGE_PLAN_CODE,
         duration: 'P1M',
-        pricingMode: NSXT_EDGE_PRICING_MODE,
+        pricingMode: this.pricingMode,
         quantity: 1,
       },
     ])}`;
