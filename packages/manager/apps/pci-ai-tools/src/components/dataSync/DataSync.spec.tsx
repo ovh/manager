@@ -26,33 +26,31 @@ describe('Data Sync Component', () => {
       />,
       { wrapper: RouterWithQueryClientWrapper },
     );
-    expect(screen.getByTestId('datasync-modal')).toBeInTheDocument();
-    expect(
-      screen.getByText('dataSyncMountPathAlertDescription'),
-    ).toBeInTheDocument();
+    expect(screen.getByTestId('datasync-modal')).toBeTruthy();
+    expect(screen.getByText('dataSyncMountPathAlertDescription')).toBeTruthy();
   });
 
   it('renders Data sync Component', async () => {
     render(<DataSyncModal onSubmitSync={onSubmit} pending={false} />, {
       wrapper: RouterWithQueryClientWrapper,
     });
-    expect(screen.getByTestId('datasync-modal')).toBeInTheDocument();
-    expect(
-      screen.getByText('dataSyncGlobalAlertDescription'),
-    ).toBeInTheDocument();
+    expect(screen.getByTestId('datasync-modal')).toBeTruthy();
+    expect(screen.getByText('dataSyncGlobalAlertDescription')).toBeTruthy();
   });
 
   it('expect submit button to be disabled', async () => {
     render(<DataSyncModal onSubmitSync={onSubmit} pending={true} />, {
       wrapper: RouterWithQueryClientWrapper,
     });
-    expect(screen.getByTestId('datasync-modal')).toBeInTheDocument();
+    expect(screen.getByTestId('datasync-modal')).toBeTruthy();
     act(() => {
       fireEvent.click(screen.getByTestId('datasync-submit-button'));
     });
     await waitFor(() => {
-      expect(screen.getByTestId('datasync-submit-button')).toBeInTheDocument();
-      expect(screen.getByTestId('datasync-submit-button')).toBeDisabled();
+      expect(screen.getByTestId('datasync-submit-button')).toBeTruthy();
+      expect(
+        screen.getByTestId('datasync-submit-button').getAttribute('disabled'),
+      ).not.toBeNull();
     });
   });
 
@@ -60,7 +58,7 @@ describe('Data Sync Component', () => {
     render(<DataSyncModal onSubmitSync={onSubmit} pending={false} />, {
       wrapper: RouterWithQueryClientWrapper,
     });
-    expect(screen.getByTestId('datasync-modal')).toBeInTheDocument();
+    expect(screen.getByTestId('datasync-modal')).toBeTruthy();
     await handleSelectOption('select-datasync-trigger', 'push');
 
     act(() => {

@@ -27,7 +27,7 @@ describe('ResourcesSpec component', () => {
       { wrapper: RouterWithQueryClientWrapper },
     );
     await waitFor(() => {
-      expect(screen.getByTestId('update-flavor-button')).toBeInTheDocument();
+      expect(screen.getByTestId('update-flavor-button')).toBeTruthy();
     });
   });
 

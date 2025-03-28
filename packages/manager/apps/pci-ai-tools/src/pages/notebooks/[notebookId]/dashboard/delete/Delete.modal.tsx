@@ -8,7 +8,9 @@ const DeleteNotebookModal = () => {
   const notebookQuery = useGetNotebook(projectId, notebookId);
   return (
     <DeleteNotebook
-      onSuccess={() => navigate('../../notebooks')}
+      onSuccess={() => {
+        navigate('../../');
+      }}
       notebook={notebookQuery.data}
     />
   );

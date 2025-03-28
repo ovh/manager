@@ -1,4 +1,4 @@
-import { Skeleton } from '@datatr-ux/uxlib';
+import { Button, Skeleton } from '@datatr-ux/uxlib';
 import {
   Cpu,
   Globe,
@@ -12,7 +12,6 @@ import { bytesConverter } from '@/lib/bytesHelper';
 import { OrderVolumes } from '@/types/orderFunnel';
 import { humanizeFramework } from '@/lib/orderFunnelHelper';
 import ai from '@/types/AI';
-import LinkButton from '@/components/link-button/LinkButton.component';
 
 interface OrderSummaryProps {
   order: {
@@ -30,18 +29,22 @@ interface OrderSummaryProps {
   };
   onSectionClicked?: (target: string) => void;
 }
+const buttonClassName =
+  'p-0 bg-transparent hover:bg-transparent font-bold text-primary underline-offset-4 hover:underline';
+
 const NameDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
   const { t } = useTranslation('ai-tools/notebooks/create');
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col">
       <div className="flex items-center gap-2">
-        <LinkButton
+        <Button
           data-testid="name-section-button"
           type="button"
+          className={buttonClassName}
           onClick={() => onSectionClicked('name')}
         >
           {t('summaryFieldNameLabel')}
-        </LinkButton>
+        </Button>
         <span>{order.notebookName}</span>
       </div>
     </div>
@@ -53,13 +56,14 @@ const RegionDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
   const { t: tRegions } = useTranslation('regions');
   return (
     <div className="flex items-center gap-2">
-      <LinkButton
+      <Button
         data-testid="region-section-button"
         type="button"
+        className={buttonClassName}
         onClick={() => onSectionClicked('region')}
       >
         {t('summaryFieldRegionLabel')}
-      </LinkButton>
+      </Button>
       {order.region ? (
         <span>{tRegions(`region_${order.region.id}`)}</span>
       ) : (
@@ -72,16 +76,16 @@ const RegionDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
 const FlavorDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
   const { t } = useTranslation('ai-tools/notebooks/create');
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col">
       <div className="flex items-center gap-2">
-        <LinkButton
+        <Button
           data-testid="flavor-section-button"
           type="button"
+          className={buttonClassName}
           onClick={() => onSectionClicked('flavor')}
-          className="font-bold"
         >
           {t('summaryFieldFlavorLabel')}
-        </LinkButton>
+        </Button>
         {order.flavor ? (
           <span className="capitalize">{`${order.resourcesQuantity} ${order.flavor.id}`}</span>
         ) : (
@@ -90,7 +94,7 @@ const FlavorDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
       </div>
       {order.flavor && (
         <div>
-          <div className="flex items-center pl-4 gap-2">
+          <div className="flex items-center pl-4">
             <Cpu className="size-4" />
             <span>
               {t('summaryFieldFlavorCores', {
@@ -147,16 +151,16 @@ const FlavorDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
 const FrameworkDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
   const { t } = useTranslation('ai-tools/notebooks/create');
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col">
       <div className="flex items-center gap-2">
-        <LinkButton
+        <Button
           data-testid="framework-section-button"
           type="button"
           onClick={() => onSectionClicked('framework')}
-          className="font-bold"
+          className={buttonClassName}
         >
           {t('summaryFieldFrameworkLabel')}
-        </LinkButton>
+        </Button>
         {order.framework && (
           <>
             <span>{humanizeFramework(order.framework)}</span>
@@ -180,14 +184,14 @@ const EditorDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
   return (
     <div className="flex flex-col gap-2">
       <div className="flex items-center gap-2">
-        <LinkButton
+        <Button
           data-testid="editor-section-button"
           type="button"
           onClick={() => onSectionClicked('editor')}
-          className="font-bold"
+          className={buttonClassName}
         >
           {t('summaryFieldEditorLabel')}
-        </LinkButton>
+        </Button>
         {order.editor && (
           <>
             <span>{order.editor.name}</span>
@@ -210,14 +214,14 @@ const PrivacyDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
   return (
     <div className="flex flex-col gap-2">
       <div className="flex items-center gap-2">
-        <LinkButton
+        <Button
           data-testid="access-section-button"
           type="button"
           onClick={() => onSectionClicked('access')}
-          className="font-bold"
+          className={buttonClassName}
         >
           {t('summaryFieldPrivacyLabel')}
-        </LinkButton>
+        </Button>
         {order.unsecureHttp ? (
           <div className="flex flex-row gap-2 items-center">
             <span>{t('summaryFieldPublicLabel')}</span>
@@ -239,14 +243,14 @@ const VolumesDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
   return (
     <div className="flex flex-col gap-2">
       <div className="flex items-center gap-2">
-        <LinkButton
+        <Button
           data-testid="volumes-section-button"
           type="button"
           onClick={() => onSectionClicked('volumes')}
-          className="font-bold"
+          className={buttonClassName}
         >
           {t('summaryFieldVolumesLabel')}
-        </LinkButton>
+        </Button>
         <span>
           {t(`summaryFieldVolumes`, {
             count: order.volumes.length,
@@ -262,14 +266,14 @@ const LabelsDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
   const { t } = useTranslation('ai-tools/notebooks/create');
   return (
     <div className="flex items-center gap-2">
-      <LinkButton
+      <Button
         data-testid="labels-section-button"
         type="button"
         onClick={() => onSectionClicked('labels')}
-        className="font-bold"
+        className={buttonClassName}
       >
         {t('summaryFieldLabelsLabel')}
-      </LinkButton>
+      </Button>
       <span>
         {t(`summaryFieldLabels`, {
           count: Object.keys(order.labels).length,
@@ -284,14 +288,14 @@ const SshKeysDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
   const { t } = useTranslation('ai-tools/notebooks/create');
   return (
     <div className="flex items-center gap-2">
-      <LinkButton
+      <Button
         data-testid="sshKeys-section-button"
         type="button"
         onClick={() => onSectionClicked('sshKey')}
-        className="font-bold"
+        className={buttonClassName}
       >
         {t('summaryFieldSSHLabel')}
-      </LinkButton>
+      </Button>
       <span>
         {t(`summaryFieldSshKey`, {
           count: order.sshKey.length,
@@ -303,7 +307,7 @@ const SshKeysDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
 };
 const OrderSummary = ({ order, onSectionClicked }: OrderSummaryProps) => {
   return (
-    <div className="grid grid-cols-1 gap-2">
+    <div className="grid grid-cols-1">
       <NameDetails order={order} onSectionClicked={onSectionClicked} />
       <RegionDetails order={order} onSectionClicked={onSectionClicked} />
       <FlavorDetails order={order} onSectionClicked={onSectionClicked} />

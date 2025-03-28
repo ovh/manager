@@ -25,8 +25,8 @@ describe('ErrorList component', () => {
   it('should display Error', async () => {
     render(<ErrorList error={mockFieldErrors} />);
     await waitFor(() => {
-      expect(screen.getByText(requiredMessage)).toBeInTheDocument();
-      expect(screen.getByText(minLenghtdMessage)).toBeInTheDocument();
+      expect(screen.getByText(requiredMessage)).toBeTruthy();
+      expect(screen.getByText(minLenghtdMessage)).toBeTruthy();
     });
   });
 
@@ -34,7 +34,7 @@ describe('ErrorList component', () => {
     const mockedEmptyFieldErrors: FieldErrors = {};
     render(<ErrorList error={mockedEmptyFieldErrors} />);
     await waitFor(() => {
-      expect(screen.queryByRole('listitem')).not.toBeInTheDocument();
+      expect(screen.queryByRole('listitem')).toBeNull();
     });
   });
 
@@ -46,7 +46,7 @@ describe('ErrorList component', () => {
     };
     render(<ErrorList error={mockedNestedFieldErrors} />);
     await waitFor(() => {
-      expect(screen.queryByRole('listitem')).not.toBeInTheDocument();
+      expect(screen.queryByRole('listitem')).toBeNull();
     });
   });
 });

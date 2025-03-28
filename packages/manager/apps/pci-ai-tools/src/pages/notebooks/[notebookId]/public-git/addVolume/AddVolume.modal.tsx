@@ -38,7 +38,7 @@ import { useUpdateNotebook } from '@/data/hooks/ai/notebook/useUpdateNotebook.ho
 const AddVolume = () => {
   const { notebook, projectId } = useNotebookData();
   const { t } = useTranslation('ai-tools/components/public-git');
-  const { t: tForm } = useTranslation('components/volumes');
+  const { t: tForm } = useTranslation('ai-tools/components/volumes');
   const navigate = useNavigate();
   const toast = useToast();
 
