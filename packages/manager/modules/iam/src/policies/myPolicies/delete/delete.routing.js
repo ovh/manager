@@ -1,4 +1,5 @@
-import { ENTITY, TAG } from '../../../iam.constants';
+import { ENTITY } from '../../../iam.constants';
+import { MY_POLICIES_TRACKING_HITS } from '../myPolicies.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('iam.policies.myPolicies.delete', {
@@ -40,7 +41,7 @@ export default /* @ngInject */ ($stateProvider) => {
       statement: /* @ngInject */ (entity) => entity.type === ENTITY.POLICY,
     },
     atInternet: {
-      rename: TAG.DELETE_POLICY,
+      rename: MY_POLICIES_TRACKING_HITS.DELETE_POLICY_MODAL,
     },
   });
 };

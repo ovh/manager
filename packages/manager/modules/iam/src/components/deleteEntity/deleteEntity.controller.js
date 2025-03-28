@@ -152,7 +152,7 @@ export default class DeleteEntityController {
   trackDeleteEntityClick(tagKey) {
     const tag = this.tag?.[tagKey];
     if (tag) {
-      this.trackClick([this.tagPrefix, tag].filter(Boolean).join('::'));
+      this.trackClick([this.tagPrefix, tag].filter(Boolean).join(''));
     }
   }
 }

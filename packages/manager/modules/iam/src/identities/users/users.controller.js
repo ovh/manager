@@ -1,4 +1,5 @@
 import { get, map } from 'lodash-es';
+import { USERS_TRACKING_HITS } from './users.constants';
 
 export default class IamUsersCtrl {
   /* @ngInject */
@@ -12,6 +13,8 @@ export default class IamUsersCtrl {
     Alerter,
     $translate,
     $timeout,
+    trackClick,
+    trackPage,
   ) {
     this.$scope = $scope;
     this.$timeout = $timeout;
@@ -28,6 +31,8 @@ export default class IamUsersCtrl {
     this.usersLoading = true;
     this.identityProvider = null;
     this.descriptionMaxSize = 40;
+    this.$scope.trackPage = trackPage;
+    this.$scope.trackClick = trackClick;
 
     this.$scope.$on('iam.security.users.refresh', () => {
       this.$onInit();
@@ -97,6 +102,31 @@ export default class IamUsersCtrl {
       .finally(() => {
         this.usersLoading = false;
       });
+  }
+
+  createUser() {
+    this.$scope.trackClick(USERS_TRACKING_HITS.ADD_USER);
+    this.$scope.setAction('add/users-add');
+  }
+
+  updateUser(user) {
+    this.$scope.trackClick(USERS_TRACKING_HITS.UPDATE_USER);
+    this.$scope.setAction('update/users-update', user);
+  }
+
+  deleteUser(user) {
+    this.$scope.trackClick(USERS_TRACKING_HITS.DELETE_USER);
+    this.$scope.setAction('delete/users-delete', user);
+  }
+
+  enableUser(user) {
+    this.$scope.trackClick(USERS_TRACKING_HITS.ENABLE_USER);
+    this.$scope.setAction('enable/users-enable', user);
+  }
+
+  disableUser(user) {
+    this.$scope.trackClick(USERS_TRACKING_HITS.DISABLE_USER);
+    this.$scope.setAction('disable/users-disable', user);
   }
 
   onTransformItem(userId) {

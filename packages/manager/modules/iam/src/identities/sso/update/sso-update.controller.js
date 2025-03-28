@@ -1,3 +1,5 @@
+import { SSO_TRACKING_HITS } from '../sso.constants';
+
 export default class IamUsersSsoUpdateCtrl {
   /* @ngInject */
   constructor($scope, IamSsoService, Alerter, $translate) {
@@ -23,9 +25,11 @@ export default class IamUsersSsoUpdateCtrl {
   $onInit() {
     this.$scope.updateSso = this.updateSso.bind(this);
     this.initIdentityProvider();
+    this.$scope.trackPage(SSO_TRACKING_HITS.UPDATE_SSO_MODAL);
   }
 
   updateSso() {
+    this.$scope.trackClick(SSO_TRACKING_HITS.UPDATE_SSO_CONFIRM);
     this.loader = true;
 
     if (this.identityProvider == null) {
@@ -39,12 +43,14 @@ export default class IamUsersSsoUpdateCtrl {
     this.ssoService
       .updateIdentityProvider(this.identityProvider)
       .then(() => {
+        this.$scope.trackPage(SSO_TRACKING_HITS.UPDATE_SSO_SUCCESS);
         return this.alerter.success(
           this.$translate.instant('sso_update_success_message'),
           'iam-sso-alert',
         );
       })
       .catch((err) => {
+        this.$scope.trackPage(SSO_TRACKING_HITS.UPDATE_SSO_ERROR);
         if (err.status === 403) {
           return this.alerter.warning(
             `${this.$translate.instant(
@@ -83,6 +89,7 @@ export default class IamUsersSsoUpdateCtrl {
   }
 
   close() {
+    this.$scope.trackClick(SSO_TRACKING_HITS.UPDATE_SSO_CANCEL);
     this.$scope.resetAction();
   }
 }

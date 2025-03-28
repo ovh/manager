@@ -5,7 +5,7 @@
     <button
         type="button"
         class="btn btn-primary mb-4"
-        data-ng-click="setAction('add/users-groups-add', user)"
+        data-ng-click="$ctrl.createUserGroup()"
         data-ng-disabled="$ctrl.groupsLoading"
         data-ng-class="{'disabled': $ctrl.groupsLoading}"
     >
@@ -75,7 +75,7 @@
                                     <button
                                         type="button"
                                         class="btn btn-link"
-                                        data-ng-click="setAction('update/users-groups-update', group)"
+                                        data-ng-click="$ctrl.updateUserGroup(group)"
                                         data-translate="users_groups_update"
                                     ></button>
                                 </li>
@@ -83,7 +83,7 @@
                                     <button
                                         type="button"
                                         class="btn btn-link"
-                                        data-ng-click="setAction('delete/users-groups-delete', group)"
+                                        data-ng-click="$ctrl.deleteUserGroup(group)"
                                         data-translate="users_groups_delete"
                                     ></button>
                                 </li>

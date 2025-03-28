@@ -1,4 +1,5 @@
-import { TAG, API_KEY_URL } from '../iam.constants';
+import { API_KEY_URL } from '../iam.constants';
+import { API_KEYS_TRACKING_HITS } from './api-keys.constants';
 
 export default class ApplicationsController {
   /* @ngInject */
@@ -8,12 +9,12 @@ export default class ApplicationsController {
   }
 
   /**
-   * Go to resourceGroup deletion
+   * Go to API-keys deletion
    * @param {string} id The application id
    * @returns {Promise}
    */
   deleteApplication(id) {
-    this.trackClick(TAG.API_KEYS__DELETE);
+    this.trackClick(API_KEYS_TRACKING_HITS.DELETE);
     this.goTo({
       name: 'iam.api-keys.delete',
       params: { apiKey: id },
