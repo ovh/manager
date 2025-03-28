@@ -5,3 +5,5 @@ export const VEEAM_BACKUP_CONSUMPTION_PLAN_CODE = {
   SILVER: `${VEEAM_BACKUP_FAMILY_PLAN_CODE}-silver`,
   GOLD: `${VEEAM_BACKUP_FAMILY_PLAN_CODE}-gold`,
 };
+
+export const VEEAM_BACKUP_CONSUMPTION_VCD_VM_CODE = 'backup-veeam-vcd-vm';

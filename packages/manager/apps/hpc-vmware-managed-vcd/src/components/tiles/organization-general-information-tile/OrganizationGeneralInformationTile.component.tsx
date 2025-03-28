@@ -10,11 +10,13 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { VCDOrganization } from '@ovh-ux/manager-module-vcd-api';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { subRoutes } from '@/routes/routes.constant';
 import { iamActions } from '@/utils/iam.constants';
 import EditableTileItem from '../editable-tile-item/EditableTileItem.component';
 import DatacentresCount from './DatacentresCount.component';
 import TEST_IDS from '@/utils/testIds.constants';
+import { TRACKING } from '@/tracking.constants';
 
 type TTileProps = {
   vcdOrganization: VCDOrganization;
@@ -25,6 +27,7 @@ export default function OrganizationGenerationInformationTile({
 }: TTileProps) {
   const { t } = useTranslation('dashboard');
   const navigate = useNavigate();
+  const { trackClick } = useOvhTracking();
 
   return (
     <DashboardTile
@@ -96,6 +99,7 @@ export default function OrganizationGenerationInformationTile({
               label={t('managed_vcd_dashboard_management_interface_access')}
               target="_blank"
               data-testid={TEST_IDS.dashboardVcdInterfaceLink}
+              onClickReturn={() => trackClick(TRACKING.dashboard.goToVcdPortal)}
             />
           ),
         },

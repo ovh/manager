@@ -1,4 +1,4 @@
-import { APP_NAME } from '@/tracking.constant';
+import { APP_NAME } from '@/tracking.constants';
 
 export const FEATURES = {
   APP: APP_NAME,
