@@ -18,6 +18,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { Translation, useTranslation } from 'react-i18next';
 import {
+  Notifications,
   StepComponent,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
@@ -237,7 +238,9 @@ export default function NewPage(): JSX.Element {
         {tListing('kube_common_create_node_pool')}
       </OsdsText>
 
-      <div ref={store.steps.get(StepsEnum.NAME).ref}></div>
+      <Notifications />
+
+      <div ref={store.steps.get(StepsEnum.NAME).ref} className="mt-7"></div>
       <StepComponent
         id={StepsEnum.NAME}
         order={1}
@@ -343,6 +346,7 @@ export default function NewPage(): JSX.Element {
           <FlavorSelector
             projectId={projectId}
             region={cluster.region}
+            clusterId={clusterId}
             onSelect={(flavor) => {
               store.set.flavor(flavor);
             }}
