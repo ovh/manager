@@ -1,4 +1,4 @@
-import { TAG } from '../../iam.constants';
+import { RESOURCE_GROUPS_TRACKING_HITS } from './resourceGroups.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('iam.policies.resourceGroups', {
@@ -20,7 +20,7 @@ export default /* @ngInject */ ($stateProvider) => {
       cursors: /* @ngInject */ ($transition$) => $transition$.params().cursors,
     },
     atInternet: {
-      rename: TAG.RESOURCE_GROUPS,
+      rename: RESOURCE_GROUPS_TRACKING_HITS.LISTING_PAGE,
     },
   });
 };

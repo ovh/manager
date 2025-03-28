@@ -1,3 +1,5 @@
+import { SSO_TRACKING_HITS } from '../sso.constants';
+
 export default class IamUsersSsoDeleteCtrl {
   /* @ngInject */
   constructor($scope, $translate, Alerter, IamSsoService) {
@@ -5,26 +7,29 @@ export default class IamUsersSsoDeleteCtrl {
     this.ssoService = IamSsoService;
     this.alerter = Alerter;
     this.$translate = $translate;
-    this.user = $scope.currentActionData;
     this.loader = false;
   }
 
   $onInit() {
     this.$scope.deleteSso = this.deleteSso.bind(this);
+    this.$scope.trackPage(SSO_TRACKING_HITS.DELETE_SSO_MODAL);
   }
 
   deleteSso() {
+    this.$scope.trackClick(SSO_TRACKING_HITS.DELETE_SSO_CONFIRM);
     this.loader = true;
 
     this.ssoService
-      .deleteIdentityProvider(this.user)
+      .deleteIdentityProvider()
       .then(() => {
+        this.$scope.trackPage(SSO_TRACKING_HITS.DELETE_SSO_SUCCESS);
         return this.alerter.success(
           this.$translate.instant('sso_delete_success_message'),
           'iam-sso-alert',
         );
       })
       .catch((err) => {
+        this.$scope.trackPage(SSO_TRACKING_HITS.DELETE_SSO_ERROR);
         if (err.status === 403) {
           return this.alerter.warning(
             `${this.$translate.instant(
@@ -49,6 +54,7 @@ export default class IamUsersSsoDeleteCtrl {
   }
 
   close() {
+    this.$scope.trackClick(SSO_TRACKING_HITS.DELETE_SSO_CANCEL);
     this.$scope.resetAction();
   }
 }
