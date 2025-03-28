@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { useReket } from '@ovh-ux/ovh-reket';
 import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { capitalize } from '@/helpers';
@@ -13,6 +12,8 @@ import telecomShopConfig from '../order/shop-config/telecom';
 import OrderTrigger from '../order/OrderTrigger';
 import { ShopItem } from '../order/OrderPopupContent';
 import getIcon from './GetIcon';
+import { v6 } from '@ovh-ux/manager-core-api';
+import { Preference } from '@/types/preferences';
 
 const features = [
   'sms',
@@ -28,7 +29,6 @@ export default function TelecomSidebar() {
   const [menu, setMenu] = useState<SidebarMenuItem>(undefined);
   const [shopItems, setShopItems] = useState<ShopItem[]>([]);
   const shell = useShell();
-  const reketInstance = useReket();
   const { loadServices } = useServiceLoader('telecom');
   const { t, i18n } = useTranslation('sidebar');
   const navigation = shell.getPlugin('navigation');
@@ -42,13 +42,13 @@ export default function TelecomSidebar() {
       if (window.localStorage && window.localStorage.getItem(key) !== null) {
         resolve(['1', 'true'].includes(window.localStorage.getItem(key)));
       } else {
-        reketInstance
-          .get(`/me/preferences/manager/${key}`)
-          .then((result: { value: unknown }) => {
-            resolve(result?.value || false);
+        v6
+          .get<Preference>(`/me/preferences/manager/${key}`)
+          .then(({ data }) => {
+            resolve(data.value || false);
           })
-          .catch((error: { status: number }) => {
-            if (error.status === 404) {
+          .catch((error: any) => {
+            if (error?.response?.status === 404) {
               resolve(false);
             } else {
               reject(error);
