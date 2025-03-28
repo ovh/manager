@@ -11,9 +11,10 @@ export const AT_INTERNET_LEVEL2: Record<string, string> = {
   88: 'Manager-Hub',
   95: 'Manager-account-creation',
   98: 'Manager-HostedPrivateCloud',
-  120: 'Manager-Enterprise_solutions',
   99: 'Manager-Network',
+  120: 'Manager-Enterprise_solutions',
   130: 'Manager-Baremetal',
+  140: 'Manager-identity-security-operations',
 };
 
 export const AT_INTERNET_WEBSITE: Record<string, string> = {
