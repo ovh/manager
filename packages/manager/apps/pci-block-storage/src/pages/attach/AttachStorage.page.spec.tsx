@@ -3,8 +3,8 @@ import { render, screen, waitFor } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import AttachStorage from './AttachStorage.page';
-import * as useInstanceModule from '@/api/hooks/useInstance';
-import { Instance } from '@/api/data/instance';
+import { useAttachableInstances } from '@/api/hooks/useInstance';
+import { TAttachableInstance } from '@/api/select/instances';
 
 vi.mock('react-router-dom', () => ({
   useNavigate: vi.fn(),
@@ -33,20 +33,22 @@ vi.mock('@/api/hooks/useVolume', () => ({
     .mockReturnValue({ data: { attachedTo: [] }, isPending: false }),
 }));
 
+vi.mock('@/api/hooks/useInstance');
+
 describe('AttachStorage', () => {
   it('renders spinner when data is loading', () => {
     vi.mocked(useParams).mockReturnValue({ projectId: '1' });
-    vi.spyOn(useInstanceModule, 'useInstances').mockReturnValue({
+    vi.mocked(useAttachableInstances).mockReturnValue({
       isPending: true,
-    } as UseQueryResult<Instance[]>);
+    } as UseQueryResult<TAttachableInstance[]>);
     const { getByTestId } = render(<AttachStorage />);
     expect(getByTestId('attach-storage-spinner')).toBeInTheDocument();
   });
-  it('renders NoInstanceWarningMessage when no instances are available and not pending', async () => {
-    vi.spyOn(useInstanceModule, 'useInstances').mockReturnValue({
+  it('renders NoInstanceWarningMessage when no instances are available', async () => {
+    vi.mocked(useAttachableInstances).mockReturnValue({
       data: [],
       isPending: false,
-    } as UseQueryResult<Instance[]>);
+    } as UseQueryResult<TAttachableInstance[]>);
 
     const { getByTestId } = render(<AttachStorage />);
     await waitFor(() =>
@@ -57,10 +59,10 @@ describe('AttachStorage', () => {
   });
 
   it('does not render NoInstanceWarningMessage when instances are available', async () => {
-    vi.spyOn(useInstanceModule, 'useInstances').mockReturnValue({
+    vi.mocked(useAttachableInstances).mockReturnValue({
       data: [{ id: '1', name: 'Instance 1' }],
       isPending: false,
-    } as UseQueryResult<Instance[]>);
+    } as UseQueryResult<TAttachableInstance[]>);
 
     const { queryByTestId } = render(<AttachStorage />);
     await waitFor(() =>
@@ -71,10 +73,10 @@ describe('AttachStorage', () => {
   });
 
   it('does not render NoInstanceWarningMessage when instances are pending', () => {
-    vi.spyOn(useInstanceModule, 'useInstances').mockReturnValue({
+    vi.mocked(useAttachableInstances).mockReturnValue({
       data: undefined,
       isPending: true,
-    } as UseQueryResult<Instance[]>);
+    } as UseQueryResult<TAttachableInstance[]>);
 
     render(<AttachStorage />);
     expect(

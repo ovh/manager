@@ -2,22 +2,11 @@ import { describe, it } from 'vitest';
 import { renderHook } from '@testing-library/react';
 import { useDatagridColumn } from '@/hooks/useDatagridColumn';
 import { TVolume } from '@/api/data/volume';
-import { Instance } from '@/api/data/instance';
 
 const volumeTestData: TVolume[] = [
   {
     id: 'vol-01',
     attachedTo: ['inst-01', 'inst-02'],
-    instances: [
-      {
-        id: 'inst-01',
-        name: 'Instance 1',
-      },
-      {
-        id: 'inst-02',
-        name: 'Instance 2',
-      },
-    ] as Instance[],
     creationDate: '2022-01-01T00:00:00Z',
     name: 'Volume 1',
     description: 'Test volume 1',

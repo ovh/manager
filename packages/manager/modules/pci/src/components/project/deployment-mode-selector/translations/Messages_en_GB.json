@@ -1,0 +1,13 @@
+{
+  "deployment_mode_title": "Select a deployment mode",
+  "deployment_mode_description": "Pick the optimal configuration to ensure your data is always accessible, reliable, and has the right latency based on your use cases.",
+  "deployment_mode_card_title_region": "1-AZ Region",
+  "deployment_mode_card_description_region": "Resilient and low cost deployment in 1 availability zone.",
+  "deployment_mode_card_title_region-3-az": "3-AZ Region",
+  "deployment_mode_card_description_region-3-az": "High resilience/high availability deployment for your critical applications across 3 availability zones.",
+  "deployment_mode_card_title_localzone": "Local Zone",
+  "deployment_mode_card_description_localzone": "Deploy your applications as geographically close to your users as possible, for low latency and compliant data residency.",
+  "deployment_mode_card_beta": "Beta",
+  "deployment_mode_card_beta_price": "Free",
+  "deployment_mode_card_coming_soon": "Coming soon"
+}

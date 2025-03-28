@@ -1,30 +1,28 @@
 import { useQuery } from '@tanstack/react-query';
-import { getInstancesByRegion } from '@ovh-ux/manager-pci-common';
-import { getInstance, Instance } from '@/api/data/instance';
+import { useMemo } from 'react';
+import { getInstancesByRegion } from '@/api/data/instance';
+import { useVolume } from '@/api/hooks/useVolume';
+import { selectAttachableInstances } from '@/api/select/instances';
 
-export const getInstanceQueryKey = (projectId: string, instanceId: string) => [
-  'instance',
-  projectId,
-  instanceId,
-];
-
-export const useInstance = (projectId: string, instanceId: string) =>
-  useQuery({
-    queryKey: getInstanceQueryKey(projectId, instanceId),
-    queryFn: (): Promise<Instance> => getInstance(projectId, instanceId),
-    enabled: !!instanceId,
-  });
-
-export const getInstancesQueryKey = (projectId: string, region: string) => [
+const getInstancesQueryKey = (projectId: string, region?: string) => [
   'instances',
   projectId,
   region,
 ];
 
-export const useInstances = (projectId: string, region: string) =>
-  useQuery({
-    queryKey: getInstancesQueryKey(projectId, region),
-    queryFn: (): Promise<Instance[]> =>
-      getInstancesByRegion(projectId, region) as Promise<Instance[]>,
-    enabled: !!region,
+export const useAttachableInstances = (projectId: string, volumeId: string) => {
+  const { data: volume } = useVolume(projectId, volumeId);
+
+  const select = useMemo(
+    () =>
+      volume ? selectAttachableInstances(volume.availabilityZone) : undefined,
+    [volume],
+  );
+
+  return useQuery({
+    queryKey: getInstancesQueryKey(projectId, volume?.region),
+    queryFn: () => getInstancesByRegion(projectId, volume.region),
+    enabled: !!volume,
+    select,
   });
+};
