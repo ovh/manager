@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@2.7.1...@ovh-ux/manager-nutanix@2.7.2) (2025-03-28)
+
+
+### Bug Fixes
+
+* **dedicated-cloud:** fix nutanix os label on listing ([37bd8af](https://github.com/ovh/manager/commit/37bd8afbf8445a7b22d78bd1c58fbd312721bc5c)), closes [#MANAGER-16798](https://github.com/ovh/manager/issues/MANAGER-16798)
+* **i18n:** add missing translations [CDS 297] ([5d3e142](https://github.com/ovh/manager/commit/5d3e1426d70533061f0198b5374ce3a0126be659))
+
+
+
+
+
 ## [2.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@2.7.0...@ovh-ux/manager-nutanix@2.7.1) (2025-03-27)
 
 

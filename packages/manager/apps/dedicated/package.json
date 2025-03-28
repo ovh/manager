@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-dedicated",
-  "version": "20.22.1",
+  "version": "20.22.2",
   "private": true,
   "description": "OVHcloud Dedicated control panel.",
   "repository": {
@@ -47,7 +47,7 @@
     "@ovh-ux/manager-nasha": "^2.19.0",
     "@ovh-ux/manager-netapp": "^2.9.2",
     "@ovh-ux/manager-ng-layout-helpers": "^2.11.0",
-    "@ovh-ux/manager-nutanix": "^2.7.1",
+    "@ovh-ux/manager-nutanix": "^2.7.2",
     "@ovh-ux/manager-support": "^2.1.4",
     "@ovh-ux/manager-trusted-nic": "^1.2.1",
     "@ovh-ux/manager-veeam-cloud-connect": "^2.9.0",
