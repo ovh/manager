@@ -8,6 +8,6 @@ describe('BillingSupport component', () => {
     render(<BillingSupport />, {
       wrapper: RouterWithQueryClientWrapper,
     });
-    expect(screen.getByTestId('billing-support-container')).toBeInTheDocument();
+    expect(screen.getByTestId('billing-support-container')).toBeTruthy();
   });
 });

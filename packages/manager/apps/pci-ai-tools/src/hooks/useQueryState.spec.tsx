@@ -16,7 +16,7 @@ describe('useQueryState', () => {
     await waitFor(() => {
       expect(result.current[0]).toBe('value');
       expect(spy).toHaveBeenCalled();
-      expect(screen.getByText('/test?param=value')).toBeInTheDocument();
+      expect(screen.getByText('/test?param=value')).toBeTruthy();
     });
   });
   it('should remove the state from the url when undefined', async () => {
@@ -30,7 +30,7 @@ describe('useQueryState', () => {
     await waitFor(() => {
       expect(result.current[0]).toBe('value');
       expect(spy).toHaveBeenCalled();
-      expect(screen.getByText('/test?param=value')).toBeInTheDocument();
+      expect(screen.getByText('/test?param=value')).toBeTruthy();
     });
     // remove the state
     act(() => {
@@ -39,7 +39,7 @@ describe('useQueryState', () => {
     await waitFor(() => {
       expect(result.current[0]).toBe(undefined);
       expect(spy).toHaveBeenCalled();
-      expect(screen.getByText('/test')).toBeInTheDocument();
+      expect(screen.getByText('/test')).toBeTruthy();
     });
   });
 });
