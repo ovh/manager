@@ -1,4 +1,5 @@
-import { TAG, GUIDE } from '../../iam.constants';
+import { GUIDE } from '../../iam.constants';
+import { RESOURCE_GROUPS_TRACKING_HITS } from '../../policies/resourceGroups/resourceGroups.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('iam.resourceGroup.edit', {
@@ -23,7 +24,7 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     },
     atInternet: {
-      rename: TAG.EDIT_RESOURCE_GROUP,
+      rename: RESOURCE_GROUPS_TRACKING_HITS.UPDATE_RESOURCE_GROUP_PAGE,
     },
   });
 };

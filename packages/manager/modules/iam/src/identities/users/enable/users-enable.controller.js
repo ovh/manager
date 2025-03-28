@@ -1,3 +1,5 @@
+import { USERS_TRACKING_HITS } from '../users.constants';
+
 export default class IamUsersEnableCtrl {
   /* @ngInject */
   constructor($scope, IamUsersService, Alerter, $translate) {
@@ -10,15 +12,18 @@ export default class IamUsersEnableCtrl {
   }
 
   $onInit() {
+    this.$scope.trackPage(USERS_TRACKING_HITS.ENABLE_USER_MODAL);
     this.$scope.enableUser = this.enableUser.bind(this);
   }
 
   enableUser() {
+    this.$scope.trackClick(USERS_TRACKING_HITS.ENABLE_USER_CONFIRM);
     this.loader = true;
 
     this.usersService
       .enableUser(this.user)
       .then(() => {
+        this.$scope.trackPage(USERS_TRACKING_HITS.ENABLE_USER_SUCCESS);
         this.alerter.success(
           this.$translate.instant('user_users_enable_success_message', {
             login: this.user.login,
@@ -27,6 +32,7 @@ export default class IamUsersEnableCtrl {
         );
       })
       .catch((err) => {
+        this.$scope.trackPage(USERS_TRACKING_HITS.ENABLE_USER_ERROR);
         if (err.status === 403) {
           return this.alerter.warning(
             `${this.$translate.instant(
@@ -51,6 +57,7 @@ export default class IamUsersEnableCtrl {
   }
 
   close() {
+    this.$scope.trackClick(USERS_TRACKING_HITS.ENABLE_USER_CANCEL);
     this.$scope.resetAction();
   }
 }
