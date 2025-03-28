@@ -13,7 +13,7 @@
   "pci_additional_ip_create_step_attach_instance_label": "Wybierz instancję",
   "pci_additional_ip_create_action_label": "Złóż zamówienie",
   "pci_additional_ip_create_create_instance": "<a href=\"{{ url }}\">Utwórz instancję</a>",
-  "pci_additional_ip_create_step_summary": "Podsumowanie",
+  "pci_additional_ip_create_step_summary": "System fakturowania",
   "pci_additional_ip_select_network_label": "Wybierz sieć/IP",
   "pci_additional_ip_select_network_placeholder": "Wybierz sieć/IP",
   "pci_additional_ip_failover_ip": "Additional IP (OVHcloud)",
@@ -40,5 +40,7 @@
   "pci_additional_ip_creating_floating_ip": "Utwórz Floating IP",
   "pci_additional_ip_create_floating_ip_success": "Trwa przypisywanie nowego Floating IP...",
   "pci_additional_ip_create_floating_ip_error": "Nie udało się przypisać adresu floating IP: {{message}}",
-  "pci_additional_ip_create_3az_price": "Usługa Floating IP udostępniona jest obecnie w regionie Paryż (EU-WEST-PAR) bezpłatnie w wersji beta."
+  "pci_floating_ip_price_per_hour": "od ",
+  "pci_floating_ip_resume_hour": "Harmonogram",
+  "pci_floating_ip_resume_price": "Cena: "
 }

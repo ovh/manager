@@ -17,8 +17,8 @@ import { GUIDE_URLS, TRACKING_GUIDE_LINKS } from '@/pages/order/constants';
 import { useData } from '@/api/hooks/useData';
 import { useMe } from '@/api/hooks/useMe';
 import { StepIdsEnum, TCountry } from '@/api/types';
-import { useOrderStore } from '@/pages/order/hooks/useStore';
-import { useActions } from '@/pages/order/hooks/useActions';
+import { useOrderStore } from '@/hooks/order/useStore';
+import { useActions } from '@/hooks/order/useActions';
 import { StepComponent } from '@/components/container/Step.component';
 import { CountryInputComponent } from '@/components/input/CountryInput.component';
 
