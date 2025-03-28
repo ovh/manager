@@ -147,7 +147,7 @@ export const useMergedKubeFlavors = (projectId: string, region: string) => {
         const checkPriceMonthly = useMemo(
           () =>
             addonMonthly.pricings.find((p) => p.capacities.includes('renew')) ||
-            addonMonthly?.pricings?.[0],
+            addonMonthly.pricings[0],
           [addonMonthly],
         );
 
