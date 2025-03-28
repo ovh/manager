@@ -6,7 +6,6 @@ import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 import { ApiV2ListHelper } from '@ovh-ux/manager-ng-apiv2-helper';
 import service from './dashboard/vrack.service';
-import routing from './vrack.routing';
 
 const moduleName = 'ovhManagerVRack';
 
@@ -20,7 +19,6 @@ angular
     ApiV2ListHelper.moduleName,
   ])
   .service('vrackService', service)
-  .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

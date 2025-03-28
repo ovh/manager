@@ -2,12 +2,13 @@ import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 import {
   VRACK_TRACKING_PREFIX,
   VRACK_TRACKING_CONTEXT,
-} from './vrack.constant';
+  VRACK_DELETE_FEATURE,
+} from '../vrack.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('vrack.index', {
     url: `?${ListLayoutHelper.urlQueryParams}`,
-    component: 'managerListLayout',
+    component: 'vrackListing',
     params: ListLayoutHelper.stateParams,
     resolve: {
       ...ListLayoutHelper.stateResolves,
@@ -29,7 +30,6 @@ export default /* @ngInject */ ($stateProvider) => {
           };
         });
       },
-      staticResources: () => true,
       defaultFilterColumn: () => 'serviceName',
       columnConfig: /* @ngInject */ () => ({
         data: [
@@ -72,24 +72,15 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('vrack.dashboard', {
           vrackId,
         }),
-      topbarOptions: /* @ngInject */ ($translate, $state, atInternet) => ({
-        cta: {
-          type: 'button',
-          displayed: true,
-          disabled: false,
-          label: $translate.instant('vrack_order'),
-          value: $translate.instant('vrack_order'),
-          onClick: () => {
-            atInternet.trackClick({
-              name: `${VRACK_TRACKING_PREFIX}page::button::go-to-order::vrack-private-network`,
-              ...VRACK_TRACKING_CONTEXT,
-              type: 'action',
-            });
-            $state.go('vrack.order');
-          },
-        },
-      }),
       hideBreadcrumb: () => true,
+      isDeleteOptionsAvailable: /* @ngInject */ (ovhFeatureFlipping) => {
+        return ovhFeatureFlipping
+          .checkFeatureAvailability([VRACK_DELETE_FEATURE])
+          .then((featureAvailability) =>
+            featureAvailability.isFeatureAvailable(VRACK_DELETE_FEATURE),
+          )
+          .catch(() => false);
+      },
     },
     atInternet: {
       rename: `${VRACK_TRACKING_PREFIX}vrack-private-network::listing::manage_vrack-private-network`,
@@ -102,5 +93,46 @@ export default /* @ngInject */ ($stateProvider) => {
         .then((resources) =>
           resources.length === 0 ? { state: 'vrack.onboarding' } : false,
         ),
+  });
+  $stateProvider.state('vrack.index.terminateVrack', {
+    url: '/terminate-vrack?service&serviceType',
+    views: {
+      modal: {
+        component: 'billingTerminateVrack',
+      },
+    },
+    layout: 'modal',
+    resolve: {
+      goBack: /* @ngInject */ ($state, $timeout, Alerter) => (
+        message = false,
+        type = 'success',
+      ) => {
+        if (message) {
+          Alerter.set(`alert-${type}`, message, null, 'InfoErrors');
+        }
+        return $state.go('vrack.index');
+      },
+      service: /* @ngInject */ ($transition$) => $transition$.params().service,
+      serviceType: /* @ngInject */ ($transition$) =>
+        $transition$.params().serviceType,
+      isEmpty: /* @ngInject */ (OvhApiVrack, service) =>
+        OvhApiVrack.Aapi()
+          .services({ serviceName: service })
+          .$promise.then((allServicesParam) => {
+            const services = Object.entries(allServicesParam).filter(
+              ([, value]) => {
+                return Array.isArray(value) && value.length;
+              },
+            );
+            return !services.length;
+          })
+          .catch(() => {
+            return false;
+          }),
+      breadcrumb: () => null,
+    },
+    atInternet: {
+      ignore: true,
+    },
   });
 };
