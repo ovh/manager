@@ -1,4 +1,4 @@
-import { TAG } from '../../iam.constants';
+import { MY_POLICIES_TRACKING_HITS } from './myPolicies.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('iam.policies.myPolicies', {
@@ -20,7 +20,7 @@ export default /* @ngInject */ ($stateProvider) => {
       cursors: /* @ngInject */ ($transition$) => $transition$.params().cursors,
     },
     atInternet: {
-      rename: TAG.POLICIES,
+      rename: MY_POLICIES_TRACKING_HITS.LISTING_PAGE,
     },
   });
 };

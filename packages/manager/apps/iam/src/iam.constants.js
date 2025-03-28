@@ -1,17 +1,17 @@
 export const TRACKING = {
   EU: {
     config: {
-      level2: '85',
+      level2: '140',
     },
   },
   CA: {
     config: {
-      level2: '85',
+      level2: '140',
     },
   },
   US: {
     config: {
-      level2: '57',
+      level2: '140',
     },
   },
 };

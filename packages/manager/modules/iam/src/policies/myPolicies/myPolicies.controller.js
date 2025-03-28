@@ -1,5 +1,6 @@
 import { AbstractCursorDatagridController } from '@ovh-ux/manager-ng-apiv2-helper';
-import { PAGE_SIZE, TAG } from '../../iam.constants';
+import { PAGE_SIZE } from '../../iam.constants';
+import { MY_POLICIES_TRACKING_HITS } from './myPolicies.constants';
 
 export default class MyPoliciesController extends AbstractCursorDatagridController {
   /* @ngInject */
@@ -26,7 +27,7 @@ export default class MyPoliciesController extends AbstractCursorDatagridControll
    * @returns {Promise}
    */
   createPolicy() {
-    this.trackClick(TAG.POLICIES__ADD);
+    this.trackClick(MY_POLICIES_TRACKING_HITS.CREATE_POLICY);
     return this.goTo({ name: 'iam.policy.create' });
   }
 
@@ -36,7 +37,7 @@ export default class MyPoliciesController extends AbstractCursorDatagridControll
    * @returns {Promise}
    */
   editPolicy({ id }) {
-    this.trackClick(TAG.POLICIES__EDIT);
+    this.trackClick(MY_POLICIES_TRACKING_HITS.EDIT_POLICY);
     return this.goTo({
       name: 'iam.policy.edit',
       params: { policy: id },
@@ -49,7 +50,7 @@ export default class MyPoliciesController extends AbstractCursorDatagridControll
    * @returns {Promise}
    */
   deletePolicy({ id }) {
-    this.trackClick(TAG.POLICIES__DELETE);
+    this.trackClick(MY_POLICIES_TRACKING_HITS.DELETE_POLICY);
     return this.goTo({
       name: 'iam.policies.myPolicies.delete',
       params: { ...this.params, policy: id },

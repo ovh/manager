@@ -1,4 +1,5 @@
-import { TAG, GUIDE } from '../../iam.constants';
+import { GUIDE } from '../../iam.constants';
+import { MY_POLICIES_TRACKING_HITS } from '../../policies/myPolicies/myPolicies.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('iam.policy.create', {
@@ -18,7 +19,7 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     },
     atInternet: {
-      rename: TAG.ADD_POLICY,
+      rename: MY_POLICIES_TRACKING_HITS.CREATE_POLICY_PAGE,
     },
   });
 };

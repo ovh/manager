@@ -8,5 +8,6 @@ export default {
   bindings: {
     policiesGuides: '<',
     trackClick: '<',
+    trackPage: '<',
   },
 };
