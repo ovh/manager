@@ -133,7 +133,7 @@ export const useMergedKubeFlavors = (projectId: string, region: string) => {
           (_plan) => _plan.code === flavor.planCodes.hourly,
         );
 
-        // Bugfix: Issue with selecting the monthly price in the US
+        // Bugfix: Issue with selecting the correct monthly price in the US
         // -----------------------------------------------------------
         // Context: Normally, we take the first element of the `pricings` array
         // to determine the monthly price. However, for US offers, this first
@@ -141,13 +141,15 @@ export const useMergedKubeFlavors = (projectId: string, region: string) => {
         // for the entry containing 'renew' in `capacities`.
         //
         // Solution:
-        // - If the first entry (`pricings[0].price`) is greater than 0, we use it.
-        // - Otherwise, we search the `pricings` array for an entry where
-        //   `capacities` includes 'renew'.
-        const checkPriceMonthly =
-          addonMonthly?.pricings?.[0].price > 0
-            ? addonMonthly?.pricings?.[0]
-            : addonMonthly.pricings.find((p) => p.capacities.includes('renew'));
+        // - We first search the `pricings` array for an entry where `capacities`
+        //   includes 'renew' and return it if found.
+        // - If no such entry exists, we fallback to the first element of `pricings` (if available).
+        const checkPriceMonthly = useMemo(
+          () =>
+            addonMonthly.pricings.find((p) => p.capacities.includes('renew')) ||
+            addonMonthly?.pricings?.[0],
+          [addonMonthly],
+        );
 
         return {
           ...flavor,
