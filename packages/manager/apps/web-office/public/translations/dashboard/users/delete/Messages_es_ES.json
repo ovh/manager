@@ -1,0 +1,10 @@
+{
+  "dashboard_users_delete_title": "Eliminar la cuenta",
+  "dashboard_users_delete_confirm": "¿Seguro que quiere eliminar el usuario <strong> {{t0}}</strong>?",
+  "dashboard_users_delete_info1": "El usuario se eliminará inmediatamente después de la confirmación.",
+  "dashboard_users_delete_info2": "Como la facturación de nuestros productos Office 365 se basa en el consumo del mes anterior, recibirá una última factura por esta cuenta.",
+  "dashboard_users_delete_cta_cancel": "Cancelar",
+  "dashboard_users_delete_cta_confirm": "Eliminar",
+  "dashboard_users_delete_message_error": "Se ha producido un error al eliminar el usuario. {{ error }}",
+  "dashboard_users_delete_message_success": "El usuario se está eliminando."
+}
