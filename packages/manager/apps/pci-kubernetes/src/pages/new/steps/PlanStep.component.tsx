@@ -2,9 +2,11 @@ import {
   OsdsMessage,
   OsdsText,
   OsdsButton,
+  OsdsChip,
 } from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_TYPE,
+  ODS_CHIP_SIZE,
   ODS_MESSAGE_TYPE,
   ODS_TEXT_COLOR_INTENT,
 } from '@ovhcloud/ods-components';
@@ -239,12 +241,26 @@ PlanTile.Header = function PlanTileHeader({
 
   return (
     <div className=" px-6 py-4 flex-col w-full ">
-      <h5
-        data-testid="plan-header"
-        className={`capitalize ${selected ? 'font-bold' : 'font-normal'}`}
-      >
-        {t(title)}
-      </h5>
+      <div className="flex gap-4">
+        <h5
+          data-testid="plan-header"
+          className={`capitalize ${selected ? 'font-bold' : 'font-normal'}`}
+        >
+          {t(title)}
+        </h5>
+        {value === 'premium' && (
+          <div className="flex items-baseline gap-3">
+            <OsdsChip
+              color={ODS_THEME_COLOR_INTENT.success}
+              size={ODS_CHIP_SIZE.sm}
+              inline
+            >
+              {t('add:kubernetes_add_deployment_mode_card_beta')}
+            </OsdsChip>
+          </div>
+        )}
+      </div>
+
       <div className="mt-2 flex flex-col">
         {renderWarningMessage(
           disabled && value === 'premium' && type === DeploymentMode.MONO_ZONE,
