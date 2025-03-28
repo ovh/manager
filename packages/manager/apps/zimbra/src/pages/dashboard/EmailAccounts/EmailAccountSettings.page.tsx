@@ -50,6 +50,7 @@ import {
   EDIT_EMAIL_ACCOUNT,
 } from '@/tracking.constant';
 import { getZimbraPlatformListQueryKey } from '@/api/platform';
+import { formatAccountPayload } from '@/api/account/utils';
 
 export default function EmailAccountSettings({
   domains = [],
@@ -134,25 +135,9 @@ export default function EmailAccountSettings({
       actions: [trackingName, CONFIRM],
     });
 
-    const { account, domain } = data;
-
-    const payload: Record<string, unknown> = {
-      email: `${account}@${domain}`.toLowerCase(),
-    };
-
-    Object.entries(data).forEach(([key, value]) => {
-      if (
-        ![
-          'account',
-          'domain',
-          editEmailAccountId && data.password === '' ? 'password' : '',
-        ].includes(key)
-      ) {
-        payload[key] = value;
-      }
-    });
-
-    addOrEditEmailAccount(payload as AccountBodyParamsType);
+    addOrEditEmailAccount(
+      formatAccountPayload(data, editEmailAccountId && data.password === ''),
+    );
   };
 
   const handleCancelClick = () => {
