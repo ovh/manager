@@ -88,6 +88,7 @@ const defaultProps: CreatePlanFormProps = {
   technicalModel: 'b3-8',
   setTechnicalModel: mockSetTechnicalModel,
   onCreatePlan: mockOnCreatePlan,
+  isCreatePlanPending: false,
 };
 
 const setupSpecTest = async (props: CreatePlanFormProps = defaultProps) =>
