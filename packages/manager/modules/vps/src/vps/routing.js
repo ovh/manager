@@ -7,7 +7,11 @@ import {
   NEW_RANGE_VERSION,
 } from '../dashboard/vps-dashboard.constants';
 import { RANGES } from '../upscale/upscale.constants';
-import { FEATURE_CLOUDDATABASE, PRODUCT_NAME } from './constants';
+import {
+  FEATURE_CLOUDDATABASE,
+  NO_AVAILABLE_ON_LOCALZONE,
+  PRODUCT_NAME,
+} from './constants';
 
 import detailComponent from '../detail/vps-detail.component';
 import headerComponent from '../header/vps-header.component';
@@ -18,17 +22,23 @@ export default /* @ngInject */ ($stateProvider) => {
     redirectTo: 'vps.detail.dashboard',
     resolve: {
       connectedUser: /* @ngInject */ (OvhApiMe) => OvhApiMe.v6().get().$promise,
-      capabilities: /* @ngInject */ ($http, serviceName, stateVps) =>
-        $http
-          .get(`/vps/capabilities/${serviceName}`, {
-            serviceType: 'aapi',
-            params: {
-              modelName: stateVps.model.name,
-            },
-          })
-          .then(({ data: capabilities }) =>
-            capabilities.map((capability) => kebabCase(capability)),
-          ),
+      isLocalzone: /* @ngInject */ (VpsService, serviceName) =>
+        VpsService.isLocalzone(serviceName),
+      capabilities: /* @ngInject */ (
+        serviceName,
+        stateVps,
+        VpsService,
+        isLocalzone,
+      ) =>
+        VpsService.vpsCapabilities(serviceName, stateVps).then((data) => {
+          const capabilities = data.map((capability) => kebabCase(capability));
+          if (isLocalzone) {
+            return capabilities.filter(
+              (capability) => !NO_AVAILABLE_ON_LOCALZONE.includes(capability),
+            );
+          }
+          return capabilities;
+        }),
       defaultPaymentMethod: /* @ngInject */ (ovhPaymentMethod) =>
         ovhPaymentMethod.getDefaultPaymentMethod().catch(() => null),
       engagement: /* @ngInject */ (vps) =>
