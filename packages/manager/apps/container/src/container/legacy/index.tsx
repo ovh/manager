@@ -1,18 +1,12 @@
-import {
-  Suspense,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 
 import { IFrameMessageBus } from '@ovh-ux/shell';
 import { IFrameAppRouter } from '@/core/routing';
 
 import NavReshuffleBetaAccessModal from '@/container/common/pnr-beta-modal';
-import ApplicationContext from '@/context';
+import { useApplication } from '@/context';
 import { useProgress } from '@/context/progress';
-import { LegacyContainerProvider } from './context';
+import { LegacyContainerProvider } from './legacy.context';
 import LegacyHeader from './Header';
 import ServerSidebar from './server-sidebar';
 import SidebarOverlay from './server-sidebar/SidebarOverlay';
@@ -29,7 +23,7 @@ function LegacyContainer(): JSX.Element {
   const [iframe, setIframe] = useState<HTMLIFrameElement>(null);
   const { betaVersion } = useContainer();
 
-  const { shell } = useContext(ApplicationContext);
+  const { shell } = useApplication();
   const { isStarted: isProgressAnimating } = useProgress();
   const preloaderVisible = usePreloader(shell, iframe);
   const applications = shell
