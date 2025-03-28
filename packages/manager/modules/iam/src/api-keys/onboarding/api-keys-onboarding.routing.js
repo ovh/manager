@@ -1,4 +1,4 @@
-import { TAG } from '../../iam.constants';
+import { API_KEYS_TRACKING_HITS } from '../api-keys.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('iam.api-keys.onboarding', {
@@ -15,7 +15,7 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: () => null,
     },
     atInternet: {
-      rename: TAG.ONBOARDING,
+      rename: API_KEYS_TRACKING_HITS.ONBOARDING_PAGE,
     },
   });
 };

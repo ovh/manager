@@ -1,4 +1,5 @@
 import { get, map, set } from 'lodash-es';
+import { USER_GROUPS_TRACKING_HITS } from './users-groups-constants';
 
 export default class IamUserGroupsCtrl {
   /* @ngInject */
@@ -19,6 +20,8 @@ export default class IamUserGroupsCtrl {
   }
 
   $onInit() {
+    this.$scope.trackPage = this.trackPage;
+    this.$scope.trackClick = this.trackClick;
     this.groupIds = [];
     this.groupsArray = [];
     this.groupsLoading = true;
@@ -72,6 +75,21 @@ export default class IamUserGroupsCtrl {
       .finally(() => {
         this.groupsLoading = false;
       });
+  }
+
+  createUserGroup() {
+    this.$scope.trackClick(USER_GROUPS_TRACKING_HITS.ADD_USER_GROUP);
+    this.$scope.setAction('add/users-groups-add');
+  }
+
+  updateUserGroup(userGroup) {
+    this.$scope.trackClick(USER_GROUPS_TRACKING_HITS.UPDATE_USER_GROUP);
+    this.$scope.setAction('update/users-groups-update', userGroup);
+  }
+
+  deleteUserGroup(userGroup) {
+    this.$scope.trackClick(USER_GROUPS_TRACKING_HITS.DELETE_USER_GROUP);
+    this.$scope.setAction('delete/users-groups-delete', userGroup);
   }
 
   onTransformGroup(groupName) {
