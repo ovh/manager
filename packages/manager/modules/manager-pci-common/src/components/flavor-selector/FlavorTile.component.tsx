@@ -195,7 +195,7 @@ export function FlavorTile({
           )}
         </div>
         <hr className={separatorClass} />
-        {flavorPrice.monthly && (
+        {flavorPrice.monthly > 0 && (
           <OsdsText
             className="block"
             level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
