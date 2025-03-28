@@ -15,6 +15,7 @@ export const formatTechnicalInfo = (
 
     return {
       id: technicalInfo.id,
+      code: technicalInfo.code,
       name: technicalInfo.descriptions[0].longLabel,
       hourlyPrice: convertToPrice(
         technicalInfo.commercialRatingValues[0].ratingValue.prices[0].amount,

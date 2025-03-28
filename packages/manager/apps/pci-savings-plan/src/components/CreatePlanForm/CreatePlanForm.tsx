@@ -1,29 +1,18 @@
-import { usePciUrl } from '@ovh-ux/manager-pci-common';
 import { Subtitle, useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
   ODS_INPUT_TYPE,
-  ODS_SPINNER_SIZE,
   OdsInputChangeEvent,
 } from '@ovhcloud/ods-components';
 
 import {
   OdsButton,
-  OdsCard,
   OdsCheckbox,
   OdsInput,
-  OdsLink,
-  OdsMessage,
-  OdsQuantity,
-  OdsSpinner,
-  OdsTab,
-  OdsTabs,
   OdsText,
 } from '@ovhcloud/ods-components/react';
 import React, {
   FC,
-  Suspense,
   useCallback,
   useContext,
   useEffect,
@@ -34,12 +23,11 @@ import React, {
 import { MutationStatus, useMutationState } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-
 import {
   ButtonType,
   PageLocation,
-  useOvhTracking,
   ShellContext,
+  useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import clsx from 'clsx';
 import useTechnicalInfo, { usePricingInfo } from '@/hooks/useCatalogCommercial';
@@ -48,6 +36,7 @@ import {
   useSavingsPlanCreate,
   useServiceId,
 } from '@/hooks/useSavingsPlan';
+
 import rancherSrc from '../../assets/images/rancher.png';
 import serviceSrc from '../../assets/images/service.png';
 import {
@@ -59,13 +48,24 @@ import {
   InstanceTechnicalName,
   Resource,
   ResourceType,
-} from '../../types/CreatePlan.type';
-import { formatDate, toLocalDateUTC } from '../../utils/formatter/date';
-import { isValidSavingsPlanName } from '../../utils/savingsPlan';
-import Commitment from '../Commitment/Commitment';
-import SimpleTile from '../SimpleTile/SimpleTile';
-import { TileTechnicalInfo } from '../TileTechnicalInfo/TileTechnicalInfo';
+} from '@/types/CreatePlan.type';
+import { toLocalDateUTC } from '@/utils/formatter/date';
+import {
+  buildDisplayName,
+  DeploymentMode,
+  getInstanceDisplayName,
+  isValidSavingsPlanName,
+} from '../../utils/savingsPlan';
+import CommitmentWrapper from '../Commitment/CommitmentWrapper';
 import LegalLinks from '../LegalLinks/LegalLinks';
+import { Block } from '../SimpleTile/SimpleTile';
+import SelectDeployment from './SelectDeployment';
+import SelectModel from './SelectModel';
+import SelectQuantity, {
+  DEFAULT_QUANTITY,
+  MAX_QUANTITY,
+} from './SelectQuantity';
+import SelectResource from './SelectResource';
 
 const COMMON_SPACING = 'my-4';
 
@@ -78,10 +78,6 @@ export const DescriptionWrapper: React.FC<{
       <OdsText>{children}</OdsText>
     </div>
   );
-};
-
-const Block: React.FC<React.PropsWithChildren> = ({ children }) => {
-  return <div className="my-8">{children}</div>;
 };
 
 export type CreatePlanFormProps = {
@@ -104,29 +100,8 @@ export type CreatePlanFormProps = {
     size: number;
   }) => void;
   isDiscoveryProject: boolean;
-};
-
-export const getDescriptionInstanceKey = (resource: string) => {
-  return `select_model_description_instance_${resource}`;
-};
-
-const buildDisplayName = (instanceDisplayName: string) =>
-  `Savings-Plan-${instanceDisplayName}-${formatDate(new Date())}`;
-
-const getInstanceDisplayName = (
-  instanceTechnicalName: InstanceTechnicalName,
-) => {
-  switch (instanceTechnicalName) {
-    case InstanceTechnicalName.c3:
-      return 'CPU';
-    case InstanceTechnicalName.r3:
-      return 'RAM';
-    case InstanceTechnicalName.rancher:
-      return 'RANCHER';
-    case InstanceTechnicalName.b3:
-    default:
-      return 'GP';
-  }
+  setDeploymentMode: (deploymentMode: DeploymentMode) => void;
+  deploymentMode: DeploymentMode;
 };
 
 const CreatePlanForm: FC<CreatePlanFormProps> = ({
@@ -141,8 +116,9 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
   setTechnicalModel,
   onCreatePlan,
   isDiscoveryProject,
+  setDeploymentMode,
+  deploymentMode,
 }: CreatePlanFormProps) => {
-  const pciUrl = usePciUrl();
   const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
   const { t } = useTranslation('create');
@@ -218,8 +194,16 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
   const technicalInfoList = instancesInfo.filter(
     (item: InstanceInfo) => item.technicalName === instanceCategory,
   );
-  const [currentInstanceSelected] = technicalInfoList;
-  const activeInstance = currentInstanceSelected.technical?.find(
+  const [instanceSelected] = technicalInfoList;
+  // TODO: Api will add a new params region 3AZ to filters
+  // We will need to add it in the query
+  const filteredTechnicalInfo = instanceSelected.technical.filter((item) =>
+    deploymentMode === DeploymentMode['1AZ']
+      ? !item.code.includes('3AZ')
+      : item.code.includes('3AZ'),
+  );
+
+  const activeInstance = filteredTechnicalInfo?.find(
     (item) => item.name === technicalModel,
   );
 
@@ -232,6 +216,7 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
   // Change Between Instance And Rancher we reset the selectedModel
   const onChangeResource = (value: ResourceType) => {
     setSelectedResource(value);
+    setDeploymentMode(DeploymentMode['1AZ']);
     if (value === ResourceType.instance) {
       setInstanceCategory(instancesInfo[0].technicalName);
     } else {
@@ -263,10 +248,10 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
   const handleQuantityChange = useCallback(
     (event: OdsInputChangeEvent) => {
       const newValue = Number(event.detail.value);
-      if (newValue >= 1 && newValue <= 1000) {
+      if (newValue >= DEFAULT_QUANTITY && newValue <= MAX_QUANTITY) {
         setQuantity(newValue);
       } else {
-        setQuantity(1);
+        setQuantity(DEFAULT_QUANTITY);
       }
     },
     [setQuantity],
@@ -274,137 +259,42 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
 
   return (
     <div>
-      <Block>
-        {hasCreationErrorMessage && (
-          <OdsMessage color="danger" className="my-4">
-            <OdsText className="inline-block">
-              Une erreur est survenue lors de la création : &nbsp;
-              {hasCreationErrorMessage}
-            </OdsText>
-          </OdsMessage>
-        )}
-        <Subtitle>{t('choose_ressource')}</Subtitle>
-        <DescriptionWrapper>
-          {t('choose_ressource_description')}
-        </DescriptionWrapper>
-        <div className="flex flex-row  w-full overflow-x-auto">
-          {resources.map((resource) => (
-            <SimpleTile
-              className="py-5"
-              key={resource.value.toString()}
-              isActive={selectedResource === resource.value}
-              onClick={() => onChangeResource(resource.value)}
-            >
-              <img
-                className="w-16 h-16"
-                src={resource.img}
-                alt={resource.value}
-              />
-              <div>
-                <OdsText>{resource.label}</OdsText>
-              </div>
-            </SimpleTile>
-          ))}
-        </div>
-      </Block>
-      <Block>
-        <Subtitle>{t('select_model')}</Subtitle>
-        {isInstance && (
-          <div className="mb-[16px] mt-[12px]">
-            <OdsTabs slot="top">
-              {tabsList.map((tab) => (
-                <OdsTab
-                  key={`Ods-tab-bar-item-${tab.technicalName}`}
-                  isSelected={tab.technicalName === instanceCategory}
-                  onClick={() => setInstanceCategory(tab.technicalName)}
-                >
-                  {tab.label}
-                </OdsTab>
-              ))}
-            </OdsTabs>
-          </div>
-        )}
-        <DescriptionWrapper>
-          {t(getDescriptionInstanceKey(instanceCategory))}
-        </DescriptionWrapper>
-        {!isTechnicalInfoLoading ? (
-          <div className="flex flex-row w-full overflow-x-auto mb-[32px]">
-            {currentInstanceSelected.technical?.map(({ name, technical }) => (
-              <TileTechnicalInfo
-                key={name}
-                technical={technical}
-                name={name}
-                onClick={() => onSelectModel(name)}
-                isActive={technicalModel === name}
-              />
-            ))}
-          </div>
-        ) : (
-          <OdsSpinner size={ODS_SPINNER_SIZE.md} />
-        )}
-      </Block>
-      <Block>
-        <Subtitle>{t('select_quantity')}</Subtitle>
-        <DescriptionWrapper className="mb-[12px]">
-          {isInstance
-            ? t('select_quantity_description_instance')
-            : t('select_quantity_description_rancher')}
-        </DescriptionWrapper>
-        <OdsCard className="flex flex-row items-center mr-5 p-4 text-center justify-between w-full mb-[32px] mt-[16px]">
-          <OdsText>{t('quantity_label')}</OdsText>
-          <OdsQuantity
-            onOdsChange={handleQuantityChange}
-            value={quantity}
-            min={1}
-            max={1000}
-            name="quantity"
-          />
-        </OdsCard>
-        <OdsMessage className="my-4" isDismissible={false}>
-          <OdsText className="inline-block">
-            {t(
-              isInstance
-                ? 'quantity_banner_instance'
-                : 'quantity_banner_rancher',
-            )}
-            {isInstance && (
-              <OdsLink
-                href={`${pciUrl}/quota`}
-                target="_blank"
-                icon={ODS_ICON_NAME.externalLink}
-                label={t('quantity_banner_instance_link')}
-              />
-            )}
-          </OdsText>
-        </OdsMessage>
-      </Block>
-      <Block>
-        <Subtitle>{t('select_commitment')}</Subtitle>
-        <DescriptionWrapper>
-          {t('select_commitment_description')}
-        </DescriptionWrapper>
-        <Suspense>
-          {!isPricingLoading && !isTechnicalInfoLoading ? (
-            pricingByDuration?.map((pricing) => {
-              return (
-                <Commitment
-                  key={pricing.id}
-                  onClick={() => setOfferIdSelected(pricing.id)}
-                  isActive={offerIdSelected === pricing.id}
-                  duration={pricing.duration}
-                  price={pricing.price?.toString()}
-                  quantity={quantity}
-                  hourlyPriceWithoutCommitment={
-                    activeInstance?.hourlyPrice || 0
-                  }
-                />
-              );
-            })
-          ) : (
-            <OdsSpinner size={ODS_SPINNER_SIZE.md} />
-          )}
-        </Suspense>
-      </Block>
+      <SelectResource
+        resources={resources}
+        selectedResource={selectedResource}
+        onChangeResource={onChangeResource}
+        hasCreationErrorMessage={hasCreationErrorMessage}
+      />
+      {isInstance && (
+        <SelectDeployment
+          setDeploymentMode={setDeploymentMode}
+          deploymentMode={deploymentMode}
+        />
+      )}
+      <SelectModel
+        technicalInfo={filteredTechnicalInfo}
+        isInstance={isInstance}
+        tabsList={tabsList}
+        instanceCategory={instanceCategory}
+        setInstanceCategory={setInstanceCategory}
+        isTechnicalInfoLoading={isTechnicalInfoLoading}
+        technicalModel={technicalModel}
+        onSelectModel={onSelectModel}
+      />
+      <SelectQuantity
+        isInstance={isInstance}
+        quantity={quantity}
+        handleQuantityChange={handleQuantityChange}
+      />
+      <CommitmentWrapper
+        pricingByDuration={pricingByDuration}
+        isPricingLoading={isPricingLoading}
+        isTechnicalInfoLoading={isTechnicalInfoLoading}
+        setOfferIdSelected={setOfferIdSelected}
+        offerIdSelected={offerIdSelected}
+        quantity={quantity}
+        activeInstance={activeInstance}
+      />
       <Block>
         <Subtitle>{t('choose_name')}</Subtitle>
         <OdsInput
@@ -474,6 +364,10 @@ export const CreatePlanFormContainer = ({
     DEFAULT_PRODUCT_CODE,
   );
 
+  const [deploymentMode, setDeploymentMode] = useState<DeploymentMode>(
+    DeploymentMode['1AZ'],
+  );
+
   const {
     data: technicalList = [],
     isLoading: isTechnicalInfoLoading,
@@ -481,11 +375,16 @@ export const CreatePlanFormContainer = ({
     productCode: instanceCategory,
   });
 
+  const computedTechnicalModel =
+    deploymentMode === DeploymentMode['1AZ']
+      ? technicalModel
+      : `${technicalModel} ${deploymentMode}`;
+
   const {
     data: pricingByDuration = [],
     isLoading: isPricingLoading,
   } = usePricingInfo({
-    productSizeCode: technicalModel,
+    productSizeCode: computedTechnicalModel,
   });
 
   useEffect(() => {
@@ -570,6 +469,8 @@ export const CreatePlanFormContainer = ({
       setTechnicalModel={setTechnicalModel}
       technicalModel={technicalModel}
       isDiscoveryProject={isDiscoveryProject}
+      setDeploymentMode={setDeploymentMode}
+      deploymentMode={deploymentMode}
     />
   );
 };
