@@ -9,7 +9,7 @@ import NetworkClusterStep, {
 } from './NetworkClusterStep.component';
 import { ModeEnum } from '@/components/network/GatewayModeSelector.component';
 import { DeploymentMode } from '@/types';
-import { isMonoZone, isMultiZones } from '@/helpers';
+import { isMonoDeploymentZone, isMultiDeploymentZones } from '@/helpers';
 
 export interface NetworkStepProps {
   region: string;
@@ -32,8 +32,8 @@ export function NetworkStep({
     state.gateway?.ip;
   const hasPrivateNetwork = state.privateNetwork;
   const isValid =
-    (isMonoZone(type) && (!hasPrivateNetwork || isGatewayValid)) ||
-    (isMultiZones(type) && hasPrivateNetwork);
+    (isMonoDeploymentZone(type) && (!hasPrivateNetwork || isGatewayValid)) ||
+    (isMultiDeploymentZones(type) && hasPrivateNetwork);
 
   return (
     <>
