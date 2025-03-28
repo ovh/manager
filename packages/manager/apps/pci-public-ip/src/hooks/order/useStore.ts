@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { IPTypeEnum, StepIdsEnum, TFormState, TStepState } from '@/api/types';
+import { StepIdsEnum, TFormState, TStepState } from '@/api/types';
 
 type Store = {
   form: TFormState;
@@ -16,12 +16,13 @@ type Store = {
 export const useOrderStore = create<Store>()((set) => {
   return {
     form: {
-      ipType: IPTypeEnum.FAILOVER,
+      ipType: null,
       failoverCountry: null,
       floatingRegion: null,
       instance: null,
       ipAddress: null,
       floatingGatewaySize: null,
+      isSubmitting: false,
     },
     steps: new Map(),
     setSteps: (newSteps: Map<StepIdsEnum, TStepState>) => {

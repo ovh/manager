@@ -1,23 +1,39 @@
 import { useEffect, useState, useContext } from 'react';
 import {
+  OsdsButton,
   OsdsMessage,
   OsdsSpinner,
   OsdsText,
+  OsdsTile,
 } from '@ovhcloud/ods-components/react';
 import {
+  ODS_BUTTON_SIZE,
   ODS_ICON_NAME,
   ODS_SPINNER_SIZE,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { useCatalogPrice } from '@ovh-ux/manager-react-components';
+import {
+  ODS_THEME_COLOR_INTENT,
+  ODS_THEME_TYPOGRAPHY_SIZE,
+} from '@ovhcloud/ods-common-theming';
 import { useTranslation, Trans } from 'react-i18next';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { useMe } from '@/api/hooks/useMe';
 import { useSubnets } from '@/api/hooks/useSubnets';
 import { useGateways } from '@/api/hooks/useGateways';
 import { TGateway } from '@/api/data/gateways';
-import { useSmallestGatewayByRegion } from '@/api/hooks/useAvailableGateway';
-import { CatalogPriceComponent } from '@/components/CatalogPrice.component';
+import { useAddons } from '@/api/hooks/useAddons/useAddons';
+import { filterProductRegionBySize } from '@/api/hooks/useAddons/useAddons.select';
+import PriceLabel from '@/components/PriceLabel.component';
+import {
+  FLOATING_IP_ADDON_FAMILY,
+  GATEWAY_ADDON_FAMILY,
+} from '@/api/hooks/useAddons/useAddons.constant';
+import TileLabel from '@/components/tile/TileLabel.component';
+import { TProductAddonDetail } from '@/types/product.type';
+import { useActions } from '@/hooks/order/useActions';
+import { useOrderStore } from '@/hooks/order/useStore';
+import { StepIdsEnum } from '@/api/types';
 
 export const FloatingIpSummary = ({
   projectId,
@@ -30,9 +46,7 @@ export const FloatingIpSummary = ({
   networkId: string;
   onSelectedSizeChanged: (size: string) => void;
 }): JSX.Element => {
-  const context = useContext(ShellContext);
-
-  const { me } = useMe();
+  const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
   const { data: rawGateways, isPending: isGatewaysPending } = useGateways(
     projectId,
     ipRegion,
@@ -41,13 +55,38 @@ export const FloatingIpSummary = ({
     projectId,
     networkId,
   );
-  const selectedGateway = useSmallestGatewayByRegion(ipRegion);
 
-  const { t: tOrder } = useTranslation('order');
+  const addonsParams = {
+    ovhSubsidiary,
+    projectId,
+    select: (addons: TProductAddonDetail[]) =>
+      filterProductRegionBySize(addons, ipRegion),
+  };
+
+  const { addons: defaultGateways } = useAddons({
+    ...addonsParams,
+    addonFamily: GATEWAY_ADDON_FAMILY,
+  });
+
+  const { addons: floatingIps, isFetching: isFloatingIpFetching } = useAddons({
+    ...addonsParams,
+    addonFamily: FLOATING_IP_ADDON_FAMILY,
+  });
+  const { On } = useActions(projectId);
+  const { form } = useOrderStore();
+
+  const selectedGateway = defaultGateways[0];
+
+  const { t } = useTranslation('order');
 
   const [gateways, setGateways] = useState<TGateway[]>([]);
   const [gateway, setGateway] = useState<TGateway>(null);
   const [isSnatEnabled, setIsSnatEnabled] = useState(false);
+
+  const isSearchingGateway = isGatewaysPending || isSubnetsPending;
+  const isActionOnProgress = isSearchingGateway || form.isSubmitting;
+
+  const { getFormattedHourlyCatalogPrice } = useCatalogPrice(4);
 
   useEffect(() => {
     onSelectedSizeChanged(
@@ -80,9 +119,22 @@ export const FloatingIpSummary = ({
   }, [rawGateways, rawSubnets]);
 
   return (
-    <>
-      {!isGatewaysPending && !isSubnetsPending ? (
-        <div>
+    <div>
+      <OsdsTile color={ODS_THEME_COLOR_INTENT.primary} className="mb-6" inline>
+        <TileLabel title={t('pci_floating_ip_resume_hour')}>
+          <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
+            <strong>{t('pci_floating_ip_resume_price')}</strong>
+            <PriceLabel
+              value={getFormattedHourlyCatalogPrice(floatingIps[0]?.price)}
+              isLoading={isFloatingIpFetching}
+              size={ODS_THEME_TYPOGRAPHY_SIZE._100}
+              className="font-normal"
+            />
+          </OsdsText>
+        </TileLabel>
+      </OsdsTile>
+      {!isSearchingGateway && (
+        <div className="mb-6">
           {gateways.length === 0 && (
             <OsdsMessage
               icon={ODS_ICON_NAME.WARNING}
@@ -95,7 +147,7 @@ export const FloatingIpSummary = ({
                     className="font-sans"
                   >
                     <Trans
-                      t={tOrder}
+                      t={t}
                       i18nKey="pci_additional_ip_create_summary_step_missing_components_description"
                     />
                   </OsdsText>
@@ -103,24 +155,21 @@ export const FloatingIpSummary = ({
                 {selectedGateway && (
                   <p>
                     <OsdsText className="font-sans">
-                      {tOrder(
+                      {t(
                         'pci_additional_ip_create_summary_step_gateway_size_and_price',
                         {
                           size: selectedGateway.size?.toUpperCase(),
                         },
-                      )}
-                      <span> (</span>
-                      {tOrder(
-                        'pci_additional_ip_create_summary_step_price',
                       )}{' '}
-                      <CatalogPriceComponent
-                        price={selectedGateway.price}
-                        user={me}
-                        maximumFractionDigits={4}
-                        interval="hour"
-                        locale={context.environment.getUserLocale()}
+                      ({t('pci_additional_ip_create_summary_step_price')}{' '}
+                      <PriceLabel
+                        value={getFormattedHourlyCatalogPrice(
+                          selectedGateway.price,
+                        )}
+                        size={ODS_THEME_TYPOGRAPHY_SIZE._100}
+                        color={ODS_THEME_COLOR_INTENT.default}
                       />
-                      <span>).</span>
+                      ).
                     </OsdsText>
                   </p>
                 )}
@@ -137,7 +186,7 @@ export const FloatingIpSummary = ({
                 color={ODS_THEME_COLOR_INTENT.text}
                 size={ODS_TEXT_SIZE._400}
               >
-                {tOrder('pci_additional_ip_create_step_summary_banner2', {
+                {t('pci_additional_ip_create_step_summary_banner2', {
                   gatewayName: gateway.name,
                 })}
               </OsdsText>
@@ -149,13 +198,27 @@ export const FloatingIpSummary = ({
               icon={ODS_ICON_NAME.INFO}
               color={ODS_THEME_COLOR_INTENT.info}
             >
-              <p>{tOrder('pci_additional_ip_create_step_summary_banner3')}</p>
+              <p>{t('pci_additional_ip_create_step_summary_banner3')}</p>
             </OsdsMessage>
           )}
         </div>
-      ) : (
-        <OsdsSpinner size={ODS_SPINNER_SIZE.sm} inline={true} />
       )}
-    </>
+      {isActionOnProgress && (
+        <div>
+          <OsdsSpinner size={ODS_SPINNER_SIZE.sm} inline />
+        </div>
+      )}
+      <div className="mt-6">
+        <OsdsButton
+          size={ODS_BUTTON_SIZE.md}
+          color={ODS_THEME_COLOR_INTENT.primary}
+          className="w-fit"
+          {...(isActionOnProgress && { disabled: true })}
+          onClick={() => On.next(StepIdsEnum.FLOATING_SUMMARY)}
+        >
+          {t('pci_additional_ip_creating_floating_ip')}
+        </OsdsButton>
+      </div>
+    </div>
   );
 };
