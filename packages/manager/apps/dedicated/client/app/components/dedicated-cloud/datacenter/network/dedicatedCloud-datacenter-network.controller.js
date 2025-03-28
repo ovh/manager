@@ -1,10 +1,7 @@
 import {
   NETWORK_LABEL,
   MIN_NSX_EDGES,
-  NSXT_EDGE_CATALOG,
   DATACENTER_NETWORK_SITE_WEB_LINK,
-  NSXT_EDGE_CORE_PLAN_CODE,
-  NSXT_EDGE_PRICING_MODE,
 } from '../../../../dedicatedCloud/datacenter/dedicatedCloud-datacenter.constants.js';
 
 export default class DedicatedCloudDatacenterNetworkTab {
@@ -13,9 +10,11 @@ export default class DedicatedCloudDatacenterNetworkTab {
     DedicatedCloud,
     $translate,
     ovhManagerPccDatacenterService,
+    DedicatedCloudDatacenterNetwork,
     coreConfig,
   ) {
     this.DedicatedCloud = DedicatedCloud;
+    this.DedicatedCloudDatacenterNetwork = DedicatedCloudDatacenterNetwork;
     this.coreConfig = coreConfig;
     this.$translate = $translate;
     this.ovhManagerPccDatacenterService = ovhManagerPccDatacenterService;
@@ -31,11 +30,19 @@ export default class DedicatedCloudDatacenterNetworkTab {
     this.loadComsumptionOfOption();
     this.getNsxtEdgePendingTask();
     const { ovhSubsidiary } = this.coreConfig.getUser();
-    this.fetchVcpuPrice(ovhSubsidiary);
+    this.fetchVcpuTextPrice();
 
     this.guideUrl =
       DATACENTER_NETWORK_SITE_WEB_LINK[ovhSubsidiary] ||
       DATACENTER_NETWORK_SITE_WEB_LINK.GB;
+  }
+
+  fetchVcpuTextPrice() {
+    this.DedicatedCloudDatacenterNetwork.fetchVcpuTextPrice(
+      this.productId,
+    ).then((vcpuTextPrice) => {
+      this.vcpuTextPrice = vcpuTextPrice;
+    });
   }
 
   loadComsumptionOfOption() {
@@ -56,30 +63,6 @@ export default class DedicatedCloudDatacenterNetworkTab {
       this.datacenterId,
       paginationParams,
     );
-  }
-
-  setVcpuTextPrice(price, currency) {
-    this.vcpuTextPrice = new Intl.NumberFormat(this.userLanguage, {
-      style: 'currency',
-      currency,
-    }).format(price / 1e8);
-  }
-
-  fetchVcpuPrice(ovhSubsidiary) {
-    this.ovhManagerPccDatacenterService
-      .getOrderCatalog(NSXT_EDGE_CATALOG, ovhSubsidiary)
-      .then((data) => {
-        const { price } = data.addons
-          .find((addon) => addon.planCode === NSXT_EDGE_CORE_PLAN_CODE)
-          .pricings.find(
-            (pricing) =>
-              pricing.mode === NSXT_EDGE_PRICING_MODE &&
-              pricing.description === 'Consumption',
-          );
-        const currency = data.locale.currencyCode;
-
-        this.setVcpuTextPrice(price, currency);
-      });
   }
 
   pollNsxtTask(taskId) {

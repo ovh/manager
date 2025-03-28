@@ -3,6 +3,7 @@ import template from './dedicatedCloud-datacenter-network.html';
 
 export default {
   bindings: {
+    productId: '<',
     network: '<',
     serviceName: '<',
     datacenterId: '<',

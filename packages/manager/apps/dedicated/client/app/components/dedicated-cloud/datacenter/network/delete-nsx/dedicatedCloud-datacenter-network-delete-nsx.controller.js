@@ -43,7 +43,7 @@ export default class DedicatedCloudDatacenterNetworkDeleteNsxCtrl {
         nsxtEdgeId: this.nsxtEdgeId,
       })
       .then((data) => {
-        this.hasResilienceModeError = data;
+        this.hasResilienceModeError = !data;
       });
   }
 

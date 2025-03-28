@@ -14,7 +14,16 @@
             class="mt-2 mb-4"
         ></div>
         <div class="d-flex justify-content-center">
+            <oui-button
+                data-ng-if="$ctrl.isLoading"
+                data-variant="primary"
+                size="l"
+                data-disabled
+            >
+                <oui-spinner size="s"></oui-spinner>
+            </oui-button>
             <a
+                data-ng-if="!$ctrl.isLoading"
                 class="oui-button oui-button_primary oui-button_l text-light"
                 data-translate="dedicatedCloud_datacenter_network_onboarding_cta_activate"
                 data-ng-href="{{:: $ctrl.orderLink }}"

@@ -1,9 +1,4 @@
-import {
-  NSXT_EDGE_CATALOG,
-  DATACENTER_NETWORK_SITE_WEB_LINK,
-  NSXT_EDGE_CORE_PLAN_CODE,
-  NSXT_EDGE_PRICING_MODE,
-} from '../../../../../dedicatedCloud/datacenter/dedicatedCloud-datacenter.constants.js';
+import { DATACENTER_NETWORK_SITE_WEB_LINK } from '../../../../../dedicatedCloud/datacenter/dedicatedCloud-datacenter.constants.js';
 
 import { TRACKING_SUFFIX } from './dedicatedCloud-datacenter-manage-nsx.constants';
 import {
@@ -16,7 +11,7 @@ export default class {
   constructor(
     coreConfig,
     DedicatedCloud,
-    ovhManagerPccDatacenterService,
+    DedicatedCloudDatacenterNetwork,
     $translate,
     coreURLBuilder,
   ) {
@@ -26,14 +21,13 @@ export default class {
     this.coreURLBuilder = coreURLBuilder;
     this.NSX_RESOURCES = NSX_RESOURCES;
     this.TRACKING_SUFFIX = TRACKING_SUFFIX;
-    this.ovhManagerPccDatacenterService = ovhManagerPccDatacenterService;
+    this.DedicatedCloudDatacenterNetwork = DedicatedCloudDatacenterNetwork;
     this.vcpuTextPrice = '-';
-    this.userLanguage = coreConfig.getUserLocale().replace('_', '-');
   }
 
   $onInit() {
     const { ovhSubsidiary } = this.coreConfig.getUser();
-    this.fetchVcpuPrice(ovhSubsidiary);
+    this.fetchVcpuTextPrice();
 
     this.loading = false;
     this.nsxSizes = Object.keys(EDGES_SIZES);
@@ -79,27 +73,11 @@ export default class {
       });
   }
 
-  setVcpuTextPrice(price, currency) {
-    this.vcpuTextPrice = new Intl.NumberFormat(this.userLanguage, {
-      style: 'currency',
-      currency,
-    }).format(price / 1e8);
-  }
-
-  fetchVcpuPrice(ovhSubsidiary) {
-    this.ovhManagerPccDatacenterService
-      .getOrderCatalog(NSXT_EDGE_CATALOG, ovhSubsidiary)
-      .then((data) => {
-        const { price } = data.addons
-          .find((addon) => addon.planCode === NSXT_EDGE_CORE_PLAN_CODE)
-          .pricings.find(
-            (pricing) =>
-              pricing.mode === NSXT_EDGE_PRICING_MODE &&
-              pricing.description === 'Consumption',
-          );
-        const currency = data.locale.currencyCode;
-
-        this.setVcpuTextPrice(price, currency);
-      });
+  fetchVcpuTextPrice() {
+    this.DedicatedCloudDatacenterNetwork.fetchVcpuTextPrice(
+      this.productId,
+    ).then((vcpuTextPrice) => {
+      this.vcpuTextPrice = vcpuTextPrice;
+    });
   }
 }
