@@ -1,4 +1,4 @@
-import { aapi } from '@ovh-ux/manager-core-api';
+import { aapi, v6 } from '@ovh-ux/manager-core-api';
 import { AxiosResponse } from 'axios';
 import {
   BillingService,
@@ -27,3 +27,11 @@ export const getBillingServices: () => Promise<
           [],
       };
 };
+
+export const getPendingEngagement = (
+  serviceId: string | number,
+): Promise<boolean> =>
+  v6
+    .get(`/services/${serviceId}/billing/engagement/request`)
+    .then(() => true)
+    .catch(() => false);
