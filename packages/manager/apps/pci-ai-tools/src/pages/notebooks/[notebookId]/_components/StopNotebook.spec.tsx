@@ -31,7 +31,7 @@ describe('Stop notebook modal', () => {
       wrapper: RouterWithQueryClientWrapper,
     });
     await waitFor(() => {
-      expect(screen.queryByTestId('stop-notebook-modal')).toBeInTheDocument();
+      expect(screen.queryByTestId('stop-notebook-modal')).toBeTruthy();
     });
   });
 

@@ -9,12 +9,17 @@ import {
 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import { Card, CardContent, CardHeader, useToast } from '@datatr-ux/uxlib';
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  Code,
+  useToast,
+} from '@datatr-ux/uxlib';
 import { useNotebookData } from '../Notebook.context';
 import Resources from './_components/Resources.component';
 import Configurations from './_components/Configuration.component';
 import { getAIApiErrorMessage } from '@/lib/apiHelper';
-import CliCodeBlock from '@/components/cli-code-block/CliCodeBlock.component';
 import LifeCycle from './_components/LifeCycle.component';
 import Labels from './_components/Labels.component';
 import AccessLink from './_components/AccessLink.component';
@@ -136,7 +141,18 @@ const Dashboard = () => {
           </CardHeader>
           <CardContent>
             {command && (
-              <CliCodeBlock title={t('cliCodeTitle')} code={command.command} />
+              <Code
+                label={t('cliCodeTitle')}
+                code={command.command}
+                theme="github-dark"
+                lang="bash"
+                onCopied={() =>
+                  toast({
+                    title: t('cliEquivalentToastMessage'),
+                  })
+                }
+                lineNumbers={true}
+              />
             )}
           </CardContent>
         </Card>

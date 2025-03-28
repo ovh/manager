@@ -28,13 +28,13 @@ describe('Logs page', () => {
     render(<Logs.Skeleton itemCount={24} maxWidth={17} minWidth={9} />, {
       wrapper: RouterWithQueryClientWrapper,
     });
-    expect(screen.getByTestId('skeleton-container')).toBeInTheDocument();
+    expect(screen.getByTestId('skeleton-container')).toBeTruthy();
   });
 
   it('renders Logs', async () => {
     render(<Logs logs={mockedLogs} />, {
       wrapper: RouterWithQueryClientWrapper,
     });
-    expect(screen.getByTestId('logs-area')).toBeInTheDocument();
+    expect(screen.getByTestId('logs-area')).toBeTruthy();
   });
 });

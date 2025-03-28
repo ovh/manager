@@ -4,8 +4,16 @@ import { mockedUsedNavigate } from '@/__tests__/helpers/mockRouterDomHelper';
 import { mockManagerReactShellClient } from '@/__tests__/helpers/mockShellHelper';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedNotebook } from '@/__tests__/helpers/mocks/notebook/notebook';
-import Notebooks from './Notebooks.page';
+import Notebooks, { Loader } from './Notebooks.page';
 import { openButtonInMenu } from '@/__tests__/helpers/unitTestHelper';
+import * as notebookApi from '@/data/api/ai/notebook/notebook.api';
+
+const NotebookProps = {
+  params: {
+    projectId: 'projectId',
+  },
+  request: new Request('https://my-api.com/endpoint'),
+};
 
 describe('Notebooks List page', () => {
   beforeEach(() => {
@@ -21,29 +29,34 @@ describe('Notebooks List page', () => {
     }));
   });
 
+  it('fetches notebook data', async () => {
+    Loader(NotebookProps);
+    await waitFor(() => {
+      expect(notebookApi.getNotebooks).toHaveBeenCalled();
+    });
+  });
+
   it('should display Notebooks pages and skeleton', async () => {
     render(<Notebooks />, { wrapper: RouterWithQueryClientWrapper });
-    expect(
-      screen.getByTestId('notebook-list-table-skeleton'),
-    ).toBeInTheDocument();
+    expect(screen.getByTestId('notebook-list-table-skeleton')).toBeTruthy();
     await waitFor(() => {
-      expect(screen.getByTestId('guide-skeleton')).toBeInTheDocument();
+      expect(screen.getByTestId('guide-skeleton')).toBeTruthy();
     });
   });
 
   it('should display notebooks list table and add button', async () => {
     render(<Notebooks />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByTestId('create-notebook-button')).toBeInTheDocument();
-      expect(screen.getByText(mockedNotebook.id)).toBeInTheDocument();
-      expect(screen.getByText(mockedNotebook.spec.name)).toBeInTheDocument();
+      expect(screen.getByTestId('create-notebook-button')).toBeTruthy();
+      expect(screen.getByText(mockedNotebook.id)).toBeTruthy();
+      expect(screen.getByText(mockedNotebook.spec.name)).toBeTruthy();
     });
   });
 
   it('open start notebook modal from action table button', async () => {
     render(<Notebooks />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByText(mockedNotebook.id)).toBeInTheDocument();
+      expect(screen.getByText(mockedNotebook.id)).toBeTruthy();
     });
     await openButtonInMenu(
       'notebooks-action-trigger',
@@ -55,7 +68,7 @@ describe('Notebooks List page', () => {
   it('open stop notebook modal from action table button', async () => {
     render(<Notebooks />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByText(mockedNotebook.id)).toBeInTheDocument();
+      expect(screen.getByText(mockedNotebook.id)).toBeTruthy();
     });
     await openButtonInMenu(
       'notebooks-action-trigger',
@@ -67,7 +80,7 @@ describe('Notebooks List page', () => {
   it('open delete notebook Modal from action table button', async () => {
     render(<Notebooks />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByText(mockedNotebook.id)).toBeInTheDocument();
+      expect(screen.getByText(mockedNotebook.id)).toBeTruthy();
     });
     await openButtonInMenu(
       'notebooks-action-trigger',
@@ -79,7 +92,7 @@ describe('Notebooks List page', () => {
   it('go to manage notebook from action table button', async () => {
     render(<Notebooks />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByText(mockedNotebook.id)).toBeInTheDocument();
+      expect(screen.getByText(mockedNotebook.id)).toBeTruthy();
     });
     await openButtonInMenu(
       'notebooks-action-trigger',

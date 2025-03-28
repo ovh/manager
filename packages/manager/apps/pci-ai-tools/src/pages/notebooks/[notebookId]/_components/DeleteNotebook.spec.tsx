@@ -31,7 +31,7 @@ describe('Delete notebook modal', () => {
       wrapper: RouterWithQueryClientWrapper,
     });
     await waitFor(() => {
-      expect(screen.queryByTestId('delete-notebook-modal')).toBeInTheDocument();
+      expect(screen.queryByTestId('delete-notebook-modal')).toBeTruthy();
     });
   });
 

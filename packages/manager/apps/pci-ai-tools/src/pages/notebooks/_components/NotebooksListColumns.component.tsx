@@ -31,7 +31,6 @@ import {
   isRunningNotebook,
   isStoppedNotebook,
 } from '@/lib/statusHelper';
-import LinkButton from '@/components/link-button/LinkButton.component';
 
 interface NotebooksListColumnsProps {
   onStartClicked: (notebook: ai.notebook.Notebook) => void;
@@ -65,12 +64,7 @@ export const getColumns = ({
                 {spec.name}
               </span>
             ) : (
-              <LinkButton
-                asChild
-                className="justify-normal px-0 h-auto leading-4 font-semibold"
-              >
-                <Link to={id}>{spec.name}</Link>
-              </LinkButton>
+              <Link to={id}>{spec.name}</Link>
             )}
             <span className="text-sm whitespace-nowrap">{id}</span>
           </div>

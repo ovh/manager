@@ -37,11 +37,11 @@ describe('Containers component', () => {
       />,
       { wrapper: RouterWithQueryClientWrapper },
     );
+    expect(screen.getByText(mockedDatastoreVolume.mountPath)).toBeTruthy();
+    expect(screen.getByTestId('general-data-sync-button')).toBeTruthy();
     expect(
-      screen.getByText(mockedDatastoreVolume.mountPath),
-    ).toBeInTheDocument();
-    expect(screen.getByTestId('general-data-sync-button')).toBeInTheDocument();
-    expect(screen.getByTestId('general-data-sync-button')).toBeDisabled();
+      screen.getByTestId('general-data-sync-button').getAttribute('disabled'),
+    ).not.toBeNull();
   });
 
   it('renders and trigger copy mountpath in clipboard', async () => {
@@ -60,9 +60,7 @@ describe('Containers component', () => {
       { wrapper: RouterWithQueryClientWrapper },
     );
     await waitFor(() => {
-      expect(
-        screen.getByText(mockedDatastoreVolume.mountPath),
-      ).toBeInTheDocument();
+      expect(screen.getByText(mockedDatastoreVolume.mountPath)).toBeTruthy();
     });
     act(() => {
       fireEvent.click(screen.getByTestId('containers-copy-mountpath-button'));
@@ -85,7 +83,7 @@ describe('Containers component', () => {
       { wrapper: RouterWithQueryClientWrapper },
     );
     await waitFor(() => {
-      expect(screen.queryByTestId('add-volume-button')).not.toBeInTheDocument();
+      expect(screen.queryByTestId('add-volume-button')).toBeNull();
     });
     act(() => {
       fireEvent.click(screen.getByTestId('general-data-sync-button'));

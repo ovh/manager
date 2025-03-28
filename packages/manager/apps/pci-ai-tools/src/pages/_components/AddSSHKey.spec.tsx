@@ -32,7 +32,7 @@ describe('Add SSHKey modal', () => {
       wrapper: RouterWithQueryClientWrapper,
     });
     await waitFor(() => {
-      expect(screen.queryByTestId('add-sshKey-modal')).toBeInTheDocument();
+      expect(screen.queryByTestId('add-sshKey-modal')).toBeTruthy();
     });
   });
 
@@ -41,12 +41,8 @@ describe('Add SSHKey modal', () => {
       wrapper: RouterWithQueryClientWrapper,
     });
     await waitFor(() => {
-      expect(
-        screen.queryByTestId('ssh-key-name-field-label'),
-      ).toBeInTheDocument();
-      expect(
-        screen.queryByTestId('ssh-key-value-input-field'),
-      ).toBeInTheDocument();
+      expect(screen.queryByTestId('ssh-key-name-field-label')).toBeTruthy();
+      expect(screen.queryByTestId('ssh-key-value-input-field')).toBeTruthy();
     });
     act(() => {
       fireEvent.change(screen.getByTestId('ssh-key-input-field'), {

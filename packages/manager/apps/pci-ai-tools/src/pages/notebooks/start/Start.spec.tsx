@@ -21,10 +21,8 @@ describe('Notebooks list start modal', () => {
     });
 
     await waitFor(() => {
-      expect(screen.getByTestId('start-notebook-modal')).toBeInTheDocument();
-      expect(
-        screen.getByTestId('start-notebook-submit-button'),
-      ).toBeInTheDocument();
+      expect(screen.getByTestId('start-notebook-modal')).toBeTruthy();
+      expect(screen.getByTestId('start-notebook-submit-button')).toBeTruthy();
     });
   });
 });

@@ -38,30 +38,18 @@ describe('Volume Form component', () => {
     );
     await waitFor(() => {
       // should not be in the DOM as not Datastore configured
-      expect(
-        screen.queryByTestId('no-datastore-info-container'),
-      ).not.toBeInTheDocument();
-      expect(
-        screen.queryByTestId('dashboard-datastore-link'),
-      ).not.toBeInTheDocument();
-      expect(
-        screen.queryByTestId('object-storage-link'),
-      ).not.toBeInTheDocument();
+      expect(screen.queryByTestId('no-datastore-info-container')).toBeNull();
+      expect(screen.queryByTestId('dashboard-datastore-link')).toBeNull();
+      expect(screen.queryByTestId('object-storage-link')).toBeNull();
 
       // should be in the DOM
-      expect(
-        screen.getByTestId('datastore-form-container'),
-      ).toBeInTheDocument();
-      expect(screen.getByTestId('datastore-add-button')).toBeInTheDocument();
-      expect(screen.getByTestId('datastore-list')).toBeInTheDocument();
-      expect(
-        screen.getByTestId('public-git-form-container'),
-      ).toBeInTheDocument();
-      expect(screen.getByTestId('public-git-add-button')).toBeInTheDocument();
-      expect(screen.getByTestId('public-git-list')).toBeInTheDocument();
-      expect(
-        screen.getByTestId('volumes-configured-labels'),
-      ).toBeInTheDocument();
+      expect(screen.getByTestId('datastore-form-container')).toBeTruthy();
+      expect(screen.getByTestId('datastore-add-button')).toBeTruthy();
+      expect(screen.getByTestId('datastore-list')).toBeTruthy();
+      expect(screen.getByTestId('public-git-form-container')).toBeTruthy();
+      expect(screen.getByTestId('public-git-add-button')).toBeTruthy();
+      expect(screen.getByTestId('public-git-list')).toBeTruthy();
+      expect(screen.getByTestId('volumes-configured-labels')).toBeTruthy();
     });
   });
 
@@ -84,9 +72,7 @@ describe('Volume Form component', () => {
     );
 
     await waitFor(() => {
-      expect(
-        screen.getByTestId('select-container-combobox'),
-      ).toBeInTheDocument();
+      expect(screen.getByTestId('select-container-combobox')).toBeTruthy();
     });
 
     // Select Container
@@ -133,9 +119,7 @@ describe('Volume Form component', () => {
 
     // Chech that Branch input is displayed
     await waitFor(() => {
-      expect(
-        screen.getByTestId('git-container-input-field'),
-      ).toBeInTheDocument();
+      expect(screen.getByTestId('git-container-input-field')).toBeTruthy();
 
       act(() => {
         fireEvent.change(screen.getByTestId('git-container-input-field'), {
@@ -225,7 +209,7 @@ describe('Volume Form component', () => {
     });
 
     await waitFor(() => {
-      expect(screen.getByText('mountPathError')).toBeInTheDocument();
+      expect(screen.getByText('mountPathError')).toBeTruthy();
     });
   });
 

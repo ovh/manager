@@ -61,7 +61,7 @@ const AddVolume = () => {
     DataStoresWithContainers
   >();
   const [inputValue, setInputValue] = useState('');
-  const { t } = useTranslation('components/volumes');
+  const { t } = useTranslation('ai-tools/components/volumes');
   const navigate = useNavigate();
   const toast = useToast();
 

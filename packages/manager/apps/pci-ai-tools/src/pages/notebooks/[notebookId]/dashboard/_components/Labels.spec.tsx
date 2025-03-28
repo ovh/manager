@@ -46,13 +46,13 @@ describe('Configuration component', () => {
 
   it('renders Configuration', async () => {
     render(<Labels />, { wrapper: RouterWithQueryClientWrapper });
-    expect(screen.getByTestId('labels-container')).toBeInTheDocument();
+    expect(screen.getByTestId('labels-container')).toBeTruthy();
   });
 
   it('trigger add label onSuccess', async () => {
     render(<Labels />, { wrapper: RouterWithQueryClientWrapper });
-    expect(screen.getByTestId('labels-container')).toBeInTheDocument();
-    expect(screen.getByTestId('label-add-button')).toBeInTheDocument();
+    expect(screen.getByTestId('labels-container')).toBeTruthy();
+    expect(screen.getByTestId('label-add-button')).toBeTruthy();
 
     act(() => {
       fireEvent.change(screen.getByTestId('key-input-field'), {
@@ -79,8 +79,8 @@ describe('Configuration component', () => {
 
   it('trigger delete label onSuccess', async () => {
     render(<Labels />, { wrapper: RouterWithQueryClientWrapper });
-    expect(screen.getByTestId('labels-container')).toBeInTheDocument();
-    expect(screen.getByTestId('button_key')).toBeInTheDocument();
+    expect(screen.getByTestId('labels-container')).toBeTruthy();
+    expect(screen.getByTestId('button_key')).toBeTruthy();
     act(() => {
       fireEvent.click(screen.getByTestId('button_key'));
     });

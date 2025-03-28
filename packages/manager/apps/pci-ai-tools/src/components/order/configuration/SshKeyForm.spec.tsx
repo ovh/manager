@@ -25,10 +25,10 @@ describe('SSHKey Form component', () => {
       />,
     );
     await waitFor(() => {
-      expect(screen.getByTestId('ssh-key-container')).toBeInTheDocument();
-      expect(screen.getByTestId('ssh-key-select')).toBeInTheDocument();
-      expect(screen.getByTestId('ssh-key-add-button')).toBeInTheDocument();
-      expect(screen.getByTestId('ssh-key-configured')).toBeInTheDocument();
+      expect(screen.getByTestId('ssh-key-container')).toBeTruthy();
+      expect(screen.getByTestId('ssh-key-select')).toBeTruthy();
+      expect(screen.getByTestId('ssh-key-add-button')).toBeTruthy();
+      expect(screen.getByTestId('ssh-key-configured')).toBeTruthy();
     });
   });
 
@@ -46,8 +46,8 @@ describe('SSHKey Form component', () => {
     });
     await waitFor(() => {
       expect(onChange).toHaveBeenCalled();
-      expect(screen.getByText(mockedSshKeyBis.name)).toBeInTheDocument();
-      expect(screen.queryByText(mockedSshKey.name)).not.toBeInTheDocument();
+      expect(screen.getByText(mockedSshKeyBis.name)).toBeTruthy();
+      expect(screen.queryByText(mockedSshKey.name)).toBeNull();
     });
   });
 
@@ -60,8 +60,8 @@ describe('SSHKey Form component', () => {
       />,
     );
     await waitFor(() => {
-      expect(screen.getByTestId('ssh-key-add-button')).toBeInTheDocument();
-      expect(screen.getByTestId('ssh-key-remove-button-0')).toBeInTheDocument();
+      expect(screen.getByTestId('ssh-key-add-button')).toBeTruthy();
+      expect(screen.getByTestId('ssh-key-remove-button-0')).toBeTruthy();
     });
     act(() => {
       fireEvent.click(screen.getByTestId('ssh-key-remove-button-0'));

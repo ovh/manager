@@ -187,7 +187,7 @@ const PublicGitForm = React.forwardRef<HTMLInputElement, PublicGitFormProps>(
               </li>
             ))}
         </ul>
-        <p data-testid="volumes-configured-labels">
+        <p className="mt-2" data-testid="volumes-configured-labels">
           {t('numberOfConfiguredVolumes', {
             count: selectedVolumesList.length,
             max: VOLUMES_CONFIG.maxVolumes,

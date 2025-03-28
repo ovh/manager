@@ -36,28 +36,24 @@ describe('Notebook Header component', () => {
     render(<NotebookHeader.Skeleton />, {
       wrapper: RouterWithQueryClientWrapper,
     });
-    expect(screen.getByTestId('notebook-header-skeleton')).toBeInTheDocument();
+    expect(screen.getByTestId('notebook-header-skeleton')).toBeTruthy();
   });
 
   it('renders NotebookHeader and trigger stop modal', async () => {
     render(<NotebookHeader notebook={runningNotebook} />, {
       wrapper: RouterWithQueryClientWrapper,
     });
-    expect(screen.getByTestId('notebook-header-container')).toBeInTheDocument();
-    expect(screen.getByTestId('open-stop-modal-button')).toBeInTheDocument();
-    expect(
-      screen.queryByTestId('open-start-modal-button'),
-    ).not.toBeInTheDocument();
+    expect(screen.getByTestId('notebook-header-container')).toBeTruthy();
+    expect(screen.getByTestId('open-stop-modal-button')).toBeTruthy();
+    expect(screen.queryByTestId('open-start-modal-button')).toBeNull();
 
     fireEvent.click(screen.getByTestId('open-stop-modal-button'));
     await waitFor(() => {
-      expect(screen.getByTestId('stop-notebook-modal')).toBeInTheDocument();
+      expect(screen.getByTestId('stop-notebook-modal')).toBeTruthy();
     });
     fireEvent.click(screen.getByTestId('stop-notebook-cancel-button'));
     await waitFor(() => {
-      expect(
-        screen.queryByTestId('stop-notebook-modal'),
-      ).not.toBeInTheDocument();
+      expect(screen.queryByTestId('stop-notebook-modal')).toBeNull();
     });
   });
 
@@ -65,21 +61,17 @@ describe('Notebook Header component', () => {
     render(<NotebookHeader notebook={stroppedNotebook} />, {
       wrapper: RouterWithQueryClientWrapper,
     });
-    expect(screen.getByTestId('notebook-header-container')).toBeInTheDocument();
-    expect(screen.getByTestId('open-start-modal-button')).toBeInTheDocument();
-    expect(
-      screen.queryByTestId('open-stop-modal-button'),
-    ).not.toBeInTheDocument();
+    expect(screen.getByTestId('notebook-header-container')).toBeTruthy();
+    expect(screen.getByTestId('open-start-modal-button')).toBeTruthy();
+    expect(screen.queryByTestId('open-stop-modal-button')).toBeNull();
 
     fireEvent.click(screen.getByTestId('open-start-modal-button'));
     await waitFor(() => {
-      expect(screen.getByTestId('start-notebook-modal')).toBeInTheDocument();
+      expect(screen.getByTestId('start-notebook-modal')).toBeTruthy();
     });
     fireEvent.click(screen.getByTestId('start-notebook-cancel-button'));
     await waitFor(() => {
-      expect(
-        screen.queryByTestId('start-notebook-modal'),
-      ).not.toBeInTheDocument();
+      expect(screen.queryByTestId('start-notebook-modal')).toBeNull();
     });
   });
 });

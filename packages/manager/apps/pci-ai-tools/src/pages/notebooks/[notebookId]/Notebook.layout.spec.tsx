@@ -79,7 +79,7 @@ describe('Notebook Layout', () => {
       wrapper: RouterWithQueryClientWrapper,
     });
     await waitFor(() => {
-      expect(screen.getByText('dashboardTab')).toBeInTheDocument();
+      expect(screen.getByText('dashboardTab')).toBeTruthy();
     });
   });
 
@@ -88,7 +88,7 @@ describe('Notebook Layout', () => {
       wrapper: RouterWithQueryClientWrapper,
     });
     await waitFor(() => {
-      expect(screen.getByText(mockedNotebook.spec.name)).toBeInTheDocument();
+      expect(screen.getByText(mockedNotebook.spec.name)).toBeTruthy();
     });
   });
 
@@ -100,11 +100,9 @@ describe('Notebook Layout', () => {
       wrapper: RouterWithQueryClientWrapper,
     });
     await waitFor(() => {
-      expect(
-        screen.getByTestId('notebook-header-container'),
-      ).toBeInTheDocument();
+      expect(screen.getByTestId('notebook-header-container')).toBeTruthy();
     });
-    expect(screen.getByText(mockedNotebook.spec.name)).toBeInTheDocument();
+    expect(screen.getByText(mockedNotebook.spec.name)).toBeTruthy();
   });
 
   it('renders fully service layout', async () => {
@@ -115,12 +113,8 @@ describe('Notebook Layout', () => {
       wrapper: RouterWithQueryClientWrapper,
     });
     await waitFor(() => {
-      expect(
-        screen.getByTestId('notebook-header-container'),
-      ).toBeInTheDocument();
-      expect(
-        screen.getByText(mockedNotebookWithVol.spec.name),
-      ).toBeInTheDocument();
+      expect(screen.getByTestId('notebook-header-container')).toBeTruthy();
+      expect(screen.getByText(mockedNotebookWithVol.spec.name)).toBeTruthy();
     });
   });
 });
