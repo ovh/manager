@@ -172,23 +172,27 @@ const PlanTile = ({
 
 PlanTile.Banner = function PlanTileBanner({ type }: { type: DeploymentMode }) {
   const { t } = useTranslation(['add']);
+  const [open, setOpen] = useState(true);
   return (
-    <OsdsMessage
-      removable
-      className="mt-4"
-      type={ODS_MESSAGE_TYPE.info}
-      color={ODS_THEME_COLOR_INTENT.info}
-    >
-      <OsdsText
-        size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-        color={ODS_THEME_COLOR_INTENT.text}
-        className="block"
+    open && (
+      <OsdsMessage
+        removable
+        onOdsRemoveClick={() => setOpen(false)}
+        className="mt-4"
+        type={ODS_MESSAGE_TYPE.info}
+        color={ODS_THEME_COLOR_INTENT.info}
       >
-        {type === DeploymentMode.MULTI_ZONES
-          ? t('kube_add_plan_content_standard_3AZ_banner')
-          : t('kube_add_plan_content_premium_1AZ_banner')}
-      </OsdsText>
-    </OsdsMessage>
+        <OsdsText
+          size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+          color={ODS_THEME_COLOR_INTENT.text}
+          className="block"
+        >
+          {type === DeploymentMode.MULTI_ZONES
+            ? t('kube_add_plan_content_standard_3AZ_banner')
+            : t('kube_add_plan_content_premium_1AZ_banner')}
+        </OsdsText>
+      </OsdsMessage>
+    )
   );
 };
 
@@ -212,7 +216,6 @@ PlanTile.LockedView = function PlanTileLockedView({
 };
 
 PlanTile.Header = function PlanTileHeader({
-  selected,
   title,
   description,
   disabled,
@@ -242,10 +245,7 @@ PlanTile.Header = function PlanTileHeader({
   return (
     <div className=" px-6 py-4 flex-col w-full ">
       <div className="flex gap-4">
-        <h5
-          data-testid="plan-header"
-          className={`capitalize ${selected ? 'font-bold' : 'font-normal'}`}
-        >
+        <h5 data-testid="plan-header" className="capitalize font-bold">
           {t(title)}
         </h5>
         {value === 'premium' && (
