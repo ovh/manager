@@ -1,5 +1,5 @@
 export const NSX_EDGE_RELOCATE_FEATURE_AVAILABLE =
-'dedicated-cloud:nsxEdgeRelocate';
+  'dedicated-cloud:nsxEdgeRelocate';
 
 export const MIN_NSX_EDGES = 2;
 export const MAX_NSX_EDGES = 10;
@@ -14,7 +14,6 @@ export const NSX_COMPATIBLE_COMMERCIAL_RANGE = [
 
 export const NSXT_EDGE_CATALOG = 'privateCloud';
 export const NSXT_EDGE_CORE_PLAN_CODE = 'pcc-option-edge-nsxt-core';
-export const NSXT_EDGE_PRICING_MODE = 'pcc-servicepack-vrops-nsxt';
 
 export const DATACENTER_NETWORK_SITE_WEB_LINK = {
   FR: 'https://www.ovhcloud.com/fr/hosted-private-cloud/vmware/nsx/',
@@ -49,6 +48,5 @@ export default {
   NSXT_EDGE_CATALOG,
   DATACENTER_NETWORK_SITE_WEB_LINK,
   NSXT_EDGE_CORE_PLAN_CODE,
-  NSXT_EDGE_PRICING_MODE,
   NSX_EDGE_RELOCATE_FEATURE_AVAILABLE,
 };

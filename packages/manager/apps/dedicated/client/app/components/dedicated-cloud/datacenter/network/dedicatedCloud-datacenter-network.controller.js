@@ -4,17 +4,18 @@ import {
   NSXT_EDGE_CATALOG,
   DATACENTER_NETWORK_SITE_WEB_LINK,
   NSXT_EDGE_CORE_PLAN_CODE,
-  NSXT_EDGE_PRICING_MODE,
 } from '../../../../dedicatedCloud/datacenter/dedicatedCloud-datacenter.constants.js';
 
 export default class DedicatedCloudDatacenterNetworkTab {
   /* @ngInject */
   constructor(
+    $q,
     DedicatedCloud,
     $translate,
     ovhManagerPccDatacenterService,
     coreConfig,
   ) {
+    this.$q = $q;
     this.DedicatedCloud = DedicatedCloud;
     this.coreConfig = coreConfig;
     this.$translate = $translate;
@@ -66,17 +67,23 @@ export default class DedicatedCloudDatacenterNetworkTab {
   }
 
   fetchVcpuPrice(ovhSubsidiary) {
-    this.ovhManagerPccDatacenterService
-      .getOrderCatalog(NSXT_EDGE_CATALOG, ovhSubsidiary)
-      .then((data) => {
-        const { price } = data.addons
+    return this.$q
+      .all([
+        this.ovhManagerPccDatacenterService.getOrderCatalog(
+          NSXT_EDGE_CATALOG,
+          ovhSubsidiary,
+        ),
+        this.DedicatedCloud.getVCDPricingMode(this.productId),
+      ])
+      .then(([catalogData, pricingMode]) => {
+        const { price } = catalogData.addons
           .find((addon) => addon.planCode === NSXT_EDGE_CORE_PLAN_CODE)
           .pricings.find(
             (pricing) =>
-              pricing.mode === NSXT_EDGE_PRICING_MODE &&
+              pricing.mode === pricingMode &&
               pricing.description === 'Consumption',
           );
-        const currency = data.locale.currencyCode;
+        const currency = catalogData.locale.currencyCode;
 
         this.setVcpuTextPrice(price, currency);
       });

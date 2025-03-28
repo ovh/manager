@@ -3,6 +3,7 @@ import template from './dedicatedCloud-datacenter-add-nsx.html';
 
 export default {
   bindings: {
+    productId: '<',
     goBack: '<',
     serviceName: '<',
     datacenterId: '<',
