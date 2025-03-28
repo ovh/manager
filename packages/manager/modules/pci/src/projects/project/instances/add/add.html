@@ -485,6 +485,16 @@
                     target="_top"
                 ></a>
             </div>
+
+            <oui-message
+                data-type="info"
+                data-ng-if="$ctrl.is3AZRegion() && $ctrl.model.number > 1"
+                class="mt-3"
+            >
+                <span
+                    data-translate="pci_projects_project_instances_add_numInstances_3az_help"
+                ></span>
+            </oui-message>
         </oui-field>
 
         <oui-checkbox
