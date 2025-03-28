@@ -1,0 +1,10 @@
+{
+  "gdpr_erasure_confirm_title": "Confirmar o pedido",
+  "gdpr_erasure_confirm_banner_title": "Atenção: após a confirmação, será desconectado e deixará de ter acesso à conta eliminada.",
+  "gdpr_erasure_confirm_banner_description": "O encerramento da conta põe definitivamente termo ao seu funcionamento. Caso contrário, será criado um pedido de assistência e um conselheiro entrará em contacto consigo o mais rapidamente possível.",
+  "gdpr_erasure_confirm_resend_code": "Obter o código",
+  "gdpr_erasure_confirm_input_code_prompt": "Introduza o código que recebeu por e-mail.",
+  "gdpr_erasure_confirm_form_submit": "Confirmar",
+  "gdpr_erasure_confirm_form_cancel": "Anular",
+  "gdpr_erasure_confirm_form_message_invalid_format": "Introduza um formato válido. Verifique se o campo não contém um parêntesis angular de abertura (&lt;) ou um parêntesis angular de fecho (>)."
+}
