@@ -15,6 +15,10 @@ export const features = [
   'databases-operational',
   'databases-streaming',
   'databases-analysis',
+  'pci-ai-dashboard',
+  'pci-ai-notebooks',
+  'pci-ai-training',
+  'pci-ai-deploy',
   'pci-databases-analytics-operational',
   'pci-databases-analytics-streaming',
   'pci-databases-analytics-analysis',
@@ -353,13 +357,49 @@ export function getPciProjectMenu(
       'notebooks',
       'training',
       'ai-apps',
-      'pci-ai-endpoints'
+      'pci-ai-endpoints',
+      'pci-ai-dashboard',
+      'pci-ai-notebooks',
+      'pci-ai-training',
+      'pci-ai-deploy',
     )
   ) {
     pciMenu.push({
       id: 'ai',
       title: 'AI & Machine Learning',
       subItems: [
+        isFeaturesAvailable('pci-ai-dashboard') && {
+          id: 'pci-dashboard',
+          title: 'AI Dashboard',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/ai-ml/dashboard`,
+          ),
+        },
+        isFeaturesAvailable('pci-ai-notebooks') && {
+          id: 'pci-notebooks',
+          title: 'AI Notebooks',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/ai-ml/notebook`,
+          ),
+        },
+        isFeaturesAvailable('pci-ai-training') && {
+          id: 'pci-training',
+          title: 'AI Training',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/ai-ml/training`,
+          ),
+        },
+        isFeaturesAvailable('pci-ai-deploy') && {
+          id: 'pci-deploy',
+          title: 'AI Deploy',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/ai-ml/deploy`,
+          ),
+        },
         isFeaturesAvailable('ai-dashboard') && {
           id: 'dashboard',
           title: 'AI Dashboard',

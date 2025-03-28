@@ -41,6 +41,7 @@
 /packages/manager/apps/pci @ovh/dev-manager-pci-all
 /packages/manager/apps/pci-* @ovh/dev-manager-pci-all
 /packages/manager/apps/pci-ai-endpoints @ovh/dev-manager-pci-all
+/packages/manager/apps/pci-ai-tools @ovh/dev-manager-pci-aidatabase
 /packages/manager/apps/pci-databases-analytics @ovh/dev-manager-pci-aidatabase
 /packages/manager/apps/procedures @ovh/dev-manager-gcj-all
 /packages/manager/apps/public-cloud @ovh/dev-manager-pci-all
