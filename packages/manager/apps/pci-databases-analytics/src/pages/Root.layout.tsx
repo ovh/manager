@@ -2,12 +2,12 @@ import { useEffect } from 'react';
 import { Outlet, useLocation, redirect, useMatches } from 'react-router-dom';
 import { useRouting, useShell } from '@ovh-ux/manager-react-shell-client';
 import { defineCurrentPage } from '@ovh-ux/request-tagger';
+import { Toaster } from '@datatr-ux/uxlib';
 import PageLayout from '@/components/page-layout/PageLayout.component';
 import Breadcrumb, {
   BreadcrumbHandleParams,
 } from '@/components/breadcrumb/Breadcrumb.component';
 import * as database from '@/types/cloud/project/database';
-import { Toaster } from '@/components/ui/toaster';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import queryClient from '@/query.client';
 import { UserActivityProvider } from '@/contexts/UserActivityContext';

@@ -3,29 +3,28 @@ import { useTranslation } from 'react-i18next';
 import { z } from 'zod';
 import { SubmitHandler } from 'react-hook-form';
 import { InfoIcon, MinusCircle, PlusCircle } from 'lucide-react';
-import { UserAcl } from '@/types/cloud/project/database/opensearch';
 import {
+  Input,
+  Button,
+  ScrollArea,
+  Badge,
   FormControl,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form';
-import { useAclsSelectForm } from './useAclsSelectForm.hook';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { ScrollArea } from '@/components/ui/scroll-area';
-import { Badge } from '@/components/ui/badge';
-import {
   Select,
   SelectContent,
   SelectGroup,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
+  Alert,
+  AlertDescription,
+} from '@datatr-ux/uxlib';
+import { UserAcl } from '@/types/cloud/project/database/opensearch';
+import { useAclsSelectForm } from './useAclsSelectForm.hook';
 import { USER_CONFIG } from './user.constants';
-import { Alert, AlertDescription } from '@/components/ui/alert';
 
 interface AclsSelectProps {
   value: UserAcl[];
@@ -84,6 +83,7 @@ const AclsSelect = React.forwardRef<HTMLInputElement, AclsSelectProps>(
     const errors = useMemo(
       () =>
         Object.entries(form.formState.errors)
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
           .map(([_, error]) => error?.message)
           .filter((message): message is string => Boolean(message)),
       [form.formState.errors],
@@ -91,7 +91,7 @@ const AclsSelect = React.forwardRef<HTMLInputElement, AclsSelectProps>(
 
     return (
       <>
-        <Alert variant="info">
+        <Alert variant="primary">
           <InfoIcon className="h-6 w-6" />
           <AlertDescription>
             <p>{t('formUserAclPatternAlertInfo')}</p>
@@ -150,7 +150,7 @@ const AclsSelect = React.forwardRef<HTMLInputElement, AclsSelectProps>(
           />
           <Button
             ref={addAclBtnRef}
-            variant={'ghost'}
+            mode={'ghost'}
             type="button"
             onClick={form.handleSubmit(handleAddAcl)}
             data-testid="acl-select-submit-button"
@@ -181,7 +181,7 @@ const AclsSelect = React.forwardRef<HTMLInputElement, AclsSelectProps>(
                 >
                   <Button
                     className="text-destructive rounded-full p-2 ml-2 hover:text-destructive h-8 w-8"
-                    variant={'ghost'}
+                    mode={'ghost'}
                     type="button"
                     onClick={() => handleRemoveAcl(index)}
                   >

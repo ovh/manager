@@ -2,7 +2,6 @@ import React, { ReactElement, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { flexRender } from '@tanstack/react-table';
 import { ChevronDown, ChevronUp } from 'lucide-react';
-import { useDataTableContext } from './DataTable.context';
 import {
   Table,
   TableBody,
@@ -10,8 +9,9 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table';
-import { Button } from '../ui/button';
+  Button,
+} from '@datatr-ux/uxlib';
+import { useDataTableContext } from './DataTable.context';
 
 export const MENU_COLUMN_ID = 'actions_menu_column';
 
@@ -36,7 +36,7 @@ export function DataTable<TData>({
   const headerGroups = table.getHeaderGroups();
   return (
     <Table>
-      <TableHeader className="border bg-gray-50">
+      <TableHeader className="border bg-[#f7f8f8]">
         {headerGroups.map((headerGroup) => (
           <TableRow key={headerGroup.id}>
             {renderRowExpansion && (
@@ -50,7 +50,7 @@ export function DataTable<TData>({
               return (
                 <TableHead
                   key={header.id}
-                  className={`border font-semibold text-primary-800 ${
+                  className={`h-10 px-2 border font-semibold text-primary-800 ${
                     isEmptyHeader || renderRowExpansion
                       ? 'border-l-0' // Remove left border for empty headers and row extend column
                       : ''
@@ -80,7 +80,7 @@ export function DataTable<TData>({
                 {renderRowExpansion && (
                   <TableCell>
                     <Button
-                      variant="ghost"
+                      mode="ghost"
                       onClick={() => toggleRowExpansion(row.id)}
                       data-testid="table-row-expand-button"
                     >
@@ -93,7 +93,7 @@ export function DataTable<TData>({
                   </TableCell>
                 )}
                 {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id}>
+                  <TableCell key={cell.id} className="px-2 py-1">
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
                 ))}

@@ -3,33 +3,30 @@ import { useState } from 'react';
 
 import { ChevronDown, ChevronRight, HelpCircle } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
 import {
-  Dialog,
+  Button,
   DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { Input } from '@/components/ui/input';
-import {
+  Input,
   Form,
   FormControl,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import {
+  RadioGroup,
+  RadioGroupItem,
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from '@/components/ui/popover';
-import { Switch } from '@/components/ui/switch';
-import { useToast } from '@/components/ui/use-toast';
+  Switch,
+  useToast,
+  ScrollArea,
+} from '@datatr-ux/uxlib';
 
 import { useNamespaceForm } from './formNamespace/useNamespaceForm.hook';
 
@@ -42,7 +39,6 @@ import {
 } from '@/hooks/api/database/namespace/useAddNamespace.hook';
 import { useEditNamespace } from '@/hooks/api/database/namespace/useEditNamespace.hook';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
-import { ScrollArea } from '@/components/ui/scroll-area';
 import RouteModal from '@/components/route-modal/RouteModal';
 
 interface AddEditNamespaceModalProps {
@@ -322,7 +318,7 @@ const AddEditNamespace = ({
               <div className="w-full rounded-md border-2 mt-2">
                 <Button
                   type="button"
-                  variant="ghost"
+                  mode={'ghost'}
                   className="flex flex-row justify-between w-full font-semibold hover:text-primary"
                   onClick={() =>
                     setAdvancedConfiguration(!advancedConfiguration)
@@ -574,7 +570,7 @@ const AddEditNamespace = ({
                   <Button
                     data-testid="add-edit-namespaces-cancel-button"
                     type="button"
-                    variant="outline"
+                    mode="outline"
                   >
                     {t('formNamespaceButtonCancel')}
                   </Button>

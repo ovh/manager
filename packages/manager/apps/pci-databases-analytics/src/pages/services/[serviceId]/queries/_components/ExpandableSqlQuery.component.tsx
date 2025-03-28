@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { ChevronRight, ChevronDown } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import {
+  Button,
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from '@/components/ui/collapsible';
+} from '@datatr-ux/uxlib';
 
 interface ExpandableSqlQueryProps {
   sqlQuery: string;
@@ -37,7 +37,6 @@ export const ExpandableSqlQuery: React.FC<ExpandableSqlQueryProps> = ({
           {isCollapsible && (
             <CollapsibleTrigger asChild>
               <Button
-                variant="ghost"
                 size="sm"
                 className="mr-2 h-auto p-0 flex items-center justify-center"
               >
