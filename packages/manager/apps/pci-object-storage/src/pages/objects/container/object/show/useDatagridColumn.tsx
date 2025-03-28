@@ -8,14 +8,13 @@ import { format } from 'date-fns';
 import { getDateFnsLocale } from '@ovh-ux/manager-core-utils';
 import * as dateFnsLocales from 'date-fns/locale';
 import { useRef } from 'react';
-import { OdsBadge, OdsLink } from '@ovhcloud/ods-components/react';
-import { createSearchParams, useHref } from 'react-router-dom';
 import clsx from 'clsx';
 import ActionsComponent from './ActionsComponent';
 import { TObject } from '@/api/data/container';
 import { TContainer } from '@/pages/objects/container/object/show/Show.page';
 
 import { shouldShowVersions } from './useShouldShowVersions';
+import { NameCell } from './NameCell';
 
 export type TIndexedObject = TObject & { index: string };
 
@@ -49,39 +48,16 @@ export const useDatagridColumn = ({
           versioningStatus: container.versioning?.status,
         });
 
+        const name = props.name || props.key;
+
         return (
-          <div
-            className={clsx({
-              'is-latest': props.versionId && props.isLatest,
-              'ml-6': props.versionId && !props.isLatest,
-            })}
-          >
-            <div className="flex flex-col">
-              {isLink ? (
-                <OdsLink
-                  color="primary"
-                  href={useHref({
-                    pathname: `./${props.name || props.key}/versions`,
-                    search: `?${createSearchParams({
-                      region: container.region,
-                    })}`,
-                  })}
-                  label={props.name || props.key}
-                />
-              ) : (
-                <DataGridTextCell>{props.name || props.key}</DataGridTextCell>
-              )}
-              {props.isDeleteMarker && (
-                <OdsBadge
-                  className="mt-3"
-                  size="sm"
-                  label={t(
-                    'pci_projects_project_storages_containers_container_delete_marker',
-                  )}
-                />
-              )}
-            </div>
-          </div>
+          <NameCell
+            props={props}
+            isLink={isLink}
+            name={name}
+            containerRegion={container.region}
+            t={t}
+          />
         );
       },
       label: t('pci_projects_project_storages_containers_container_name_label'),

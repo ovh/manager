@@ -35,7 +35,8 @@ import { useServerContainerObjectVersions } from '@/api/hooks/useContainerObject
 import { TContainer } from '../show/Show.page';
 
 export default function ObjectPage() {
-  const { storageId, objectName } = useParams();
+  const { storageId, objectName: encodedObjectName } = useParams();
+  const objectName = decodeURIComponent(atob(encodedObjectName));
 
   const [searchParams] = useSearchParams();
   const { data: project } = useProject();

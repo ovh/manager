@@ -53,5 +53,6 @@
   "pci_projects_project_storages_containers_container_storage_class_STANDARD_IA": "Standard AI",
   "pci_projects_project_storages_containers_container_enable_encryption": "Verschlüsselung aktivieren (SSE-OMK)",
   "pci_projects_project_storages_containers_container_delete_marker": "Löschmarker",
-  "pci_projects_project_storages_containers_container_show_versions": "Versionen anzeigen"
+  "pci_projects_project_storages_containers_container_show_versions": "Versionen anzeigen",
+  "pci_projects_project_storages_containers_container_back_to_versions": "Zurück zu meinen Artikeln"
 }
