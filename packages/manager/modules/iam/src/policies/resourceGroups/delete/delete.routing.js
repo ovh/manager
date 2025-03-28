@@ -1,4 +1,5 @@
-import { ENTITY, TAG } from '../../../iam.constants';
+import { ENTITY } from '../../../iam.constants';
+import { RESOURCE_GROUPS_TRACKING_HITS } from '../resourceGroups.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('iam.policies.resourceGroups.delete', {
@@ -41,7 +42,7 @@ export default /* @ngInject */ ($stateProvider) => {
         entity.type === ENTITY.RESOURCE_GROUP,
     },
     atInternet: {
-      rename: TAG.DELETE_RESOURCE_GROUP,
+      rename: RESOURCE_GROUPS_TRACKING_HITS.DELETE_RESOURCE_GROUP_MODAL,
     },
   });
 };

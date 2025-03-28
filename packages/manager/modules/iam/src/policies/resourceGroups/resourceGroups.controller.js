@@ -1,5 +1,6 @@
 import { AbstractCursorDatagridController } from '@ovh-ux/manager-ng-apiv2-helper';
-import { PAGE_SIZE, TAG } from '../../iam.constants';
+import { PAGE_SIZE } from '../../iam.constants';
+import { RESOURCE_GROUPS_TRACKING_HITS } from './resourceGroups.constants';
 
 export default class ResourceGroupsController extends AbstractCursorDatagridController {
   /* @ngInject */
@@ -23,7 +24,7 @@ export default class ResourceGroupsController extends AbstractCursorDatagridCont
    * @returns {Promise}
    */
   createResourceGroup() {
-    this.trackClick(TAG.RESOURCE_GROUPS__ADD);
+    this.trackClick(RESOURCE_GROUPS_TRACKING_HITS.ADD_RESOURCE_GROUP);
     return this.goTo({ name: 'iam.resourceGroup.create' });
   }
 
@@ -33,7 +34,7 @@ export default class ResourceGroupsController extends AbstractCursorDatagridCont
    * @returns {Promise}
    */
   editResourceGroup({ id }) {
-    this.trackClick(TAG.RESOURCE_GROUPS__EDIT);
+    this.trackClick(RESOURCE_GROUPS_TRACKING_HITS.UPDATE_RESOURCE_GROUP);
     return this.goTo({
       name: 'iam.resourceGroup.edit',
       params: { resourceGroup: id },
@@ -46,7 +47,7 @@ export default class ResourceGroupsController extends AbstractCursorDatagridCont
    * @returns {Promise}
    */
   deleteResourceGroup({ id }) {
-    this.trackClick(TAG.RESOURCE_GROUPS__DELETE);
+    this.trackClick(RESOURCE_GROUPS_TRACKING_HITS.DELETE_RESOURCE_GROUP);
     this.goTo({
       name: 'iam.policies.resourceGroups.delete',
       params: { resourceGroup: id },

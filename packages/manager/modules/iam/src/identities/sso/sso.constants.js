@@ -1,0 +1,25 @@
+const SSO_TRACKING_PREFIX = 'identity-security-operation::identity::sso::';
+
+export const SSO_TRACKING_HITS = {
+  LISTING_PAGE: `${SSO_TRACKING_PREFIX}listing`,
+  GO_TO_DETAIL: `${SSO_TRACKING_PREFIX}datagrid::button::detail_sso`,
+  DETAIL_PAGE: `${SSO_TRACKING_PREFIX}detail`,
+  CREATE_SSO: `${SSO_TRACKING_PREFIX}datagrid::button::create_sso`,
+  CREATE_SSO_MODAL: `${SSO_TRACKING_PREFIX}pop-up::create_sso`,
+  CREATE_SSO_CANCEL: `${SSO_TRACKING_PREFIX}pop-up::button::create_sso::cancel`,
+  CREATE_SSO_CONFIRM: `${SSO_TRACKING_PREFIX}pop-up::button::create_sso::validate`,
+  CREATE_SSO_SUCCESS: `${SSO_TRACKING_PREFIX}banner-info::create_sso_success`,
+  CREATE_SSO_ERROR: `${SSO_TRACKING_PREFIX}banner-info::create_sso_error`,
+  UPDATE_SSO: `${SSO_TRACKING_PREFIX}datagrid::button::update_sso`,
+  UPDATE_SSO_MODAL: `${SSO_TRACKING_PREFIX}pop-up::update_sso`,
+  UPDATE_SSO_CANCEL: `${SSO_TRACKING_PREFIX}pop-up::button::update_sso::cancel`,
+  UPDATE_SSO_CONFIRM: `${SSO_TRACKING_PREFIX}pop-up::button::update_sso::validate`,
+  UPDATE_SSO_SUCCESS: `${SSO_TRACKING_PREFIX}banner-info::update_sso_success`,
+  UPDATE_SSO_ERROR: `${SSO_TRACKING_PREFIX}banner-info::update_sso_error`,
+  DELETE_SSO: `${SSO_TRACKING_PREFIX}datagrid::button::delete_sso`,
+  DELETE_SSO_MODAL: `${SSO_TRACKING_PREFIX}pop-up::delete_sso`,
+  DELETE_SSO_CANCEL: `${SSO_TRACKING_PREFIX}pop-up::button::delete_sso::cancel`,
+  DELETE_SSO_CONFIRM: `${SSO_TRACKING_PREFIX}pop-up::button::delete_sso::validate`,
+  DELETE_SSO_SUCCESS: `${SSO_TRACKING_PREFIX}banner-info::delete_sso_success`,
+  DELETE_SSO_ERROR: `${SSO_TRACKING_PREFIX}banner-info::delete_sso_error`,
+};

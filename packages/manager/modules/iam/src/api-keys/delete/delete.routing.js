@@ -1,4 +1,5 @@
-import { ENTITY, TAG } from '../../iam.constants';
+import { ENTITY } from '../../iam.constants';
+import { API_KEYS_TRACKING_HITS } from '../api-keys.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('iam.api-keys.delete', {
@@ -36,7 +37,7 @@ export default /* @ngInject */ ($stateProvider) => {
       statement: /* @ngInject */ (entity) => entity.type === ENTITY.API_KEY,
     },
     atInternet: {
-      rename: TAG.DELETE_API_KEY,
+      rename: API_KEYS_TRACKING_HITS.DELETE_MODAL,
     },
   });
 };

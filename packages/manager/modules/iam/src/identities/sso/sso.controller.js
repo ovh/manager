@@ -1,3 +1,5 @@
+import { SSO_TRACKING_HITS } from './sso.constants';
+
 export default class IamSsoCtrl {
   /* @ngInject */
   constructor(coreConfig, IamSsoService, $scope, $state, $timeout) {
@@ -14,6 +16,8 @@ export default class IamSsoCtrl {
   }
 
   $onInit() {
+    this.$scope.trackPage = this.trackPage;
+    this.$scope.trackClick = this.trackClick;
     this.initIdentityProvider();
 
     this.$scope.resetAction = function resetAction() {
@@ -34,6 +38,26 @@ export default class IamSsoCtrl {
         }, 300);
       }
     }.bind(this);
+  }
+
+  goToDetails() {
+    this.$scope.trackClick(SSO_TRACKING_HITS.GO_TO_DETAIL);
+    this.goToSSODetails();
+  }
+
+  createSSO() {
+    this.$scope.trackClick(SSO_TRACKING_HITS.CREATE_SSO);
+    this.$scope.setAction('add/sso-add');
+  }
+
+  updateSSO() {
+    this.$scope.trackClick(SSO_TRACKING_HITS.UPDATE_SSO);
+    this.$scope.setAction('update/sso-update');
+  }
+
+  deleteSSO() {
+    this.$scope.trackClick(SSO_TRACKING_HITS.DELETE_SSO);
+    this.$scope.setAction('delete/sso-delete');
   }
 
   initIdentityProvider() {

@@ -1,4 +1,4 @@
-import { TAG } from '../iam.constants';
+import { API_KEYS_TRACKING_HITS } from './api-keys.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('iam.api-keys', {
@@ -18,7 +18,7 @@ export default /* @ngInject */ ($stateProvider) => {
       apiKeys: /* @ngInject */ (IAMService) => IAMService.getApiKeys(),
     },
     atInternet: {
-      rename: TAG.API_KEYS,
+      rename: API_KEYS_TRACKING_HITS.LISTING_PAGE,
     },
   });
 };

@@ -7,7 +7,7 @@
             id="btnSso"
             type="button"
             class="btn btn-primary my-4"
-            data-ng-click="setAction('add/sso-add', user)"
+            data-ng-click="$ctrl.createSSO()"
             data-ng-if="$ctrl.identityProvider == null"
         >
             <span data-translate="sso_add"></span>
@@ -47,7 +47,7 @@
                         <td>
                             <a
                                 data-ng-bind="$ctrl.identityProvider.ssoServiceUrl"
-                                data-ng-click="$ctrl.goToSSODetails()"
+                                data-ng-click="$ctrl.goToDetails()"
                             >
                             </a>
                         </td>
@@ -80,14 +80,14 @@
                                             type="button"
                                             class="btn btn-link"
                                             data-translate="sso_details"
-                                            data-ng-click="$ctrl.goToSSODetails()"
+                                            data-ng-click="$ctrl.goToDetails()"
                                         ></button>
                                     </li>
                                     <li>
                                         <button
                                             type="button"
                                             class="btn btn-link"
-                                            data-ng-click="setAction('update/sso-update', user)"
+                                            data-ng-click="$ctrl.updateSSO()"
                                             data-translate="sso_update"
                                         ></button>
                                     </li>
@@ -95,7 +95,7 @@
                                         <button
                                             type="button"
                                             class="btn btn-link"
-                                            data-ng-click="setAction('delete/sso-delete', user)"
+                                            data-ng-click="$ctrl.deleteSSO()"
                                             data-translate="sso_delete"
                                         ></button>
                                     </li>

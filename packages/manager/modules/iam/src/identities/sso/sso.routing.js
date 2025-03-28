@@ -1,3 +1,5 @@
+import { SSO_TRACKING_HITS } from './sso.constants';
+
 import ssoDetailsTemplate from './details/sso-details.html';
 import ssoDetailsController from './details/sso-details.controller';
 
@@ -14,6 +16,9 @@ export default /* @ngInject */ ($stateProvider) => {
       goToSSODetails: /* @ngInject */ ($state) => () =>
         $state.go(ssoDetailState),
     },
+    atInternet: {
+      rename: SSO_TRACKING_HITS.LISTING_PAGE,
+    },
   });
 
   $stateProvider.state(ssoDetailState, {
@@ -25,6 +30,9 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('sso_detail_title'),
       goToSSOList: /* @ngInject */ ($state) => () => $state.go(ssoListState),
+    },
+    atInternet: {
+      rename: SSO_TRACKING_HITS.DETAIL_PAGE,
     },
   });
 };
