@@ -53,5 +53,6 @@
   "pci_projects_project_storages_containers_container_storage_class_STANDARD_IA": "AI Standard",
   "pci_projects_project_storages_containers_container_enable_encryption": "Enable Encryption (SSE-OMK)",
   "pci_projects_project_storages_containers_container_delete_marker": "Deletion marker",
-  "pci_projects_project_storages_containers_container_show_versions": "See versions"
+  "pci_projects_project_storages_containers_container_show_versions": "See versions",
+  "pci_projects_project_storages_containers_container_back_to_versions": "Back to my items"
 }
