@@ -48,13 +48,9 @@ describe('Flavor table select component', () => {
       />,
     );
     await waitFor(() => {
-      expect(screen.getByTestId('flavor-select-table')).toBeInTheDocument();
-      expect(
-        screen.getByTestId('flavor-select-table-header'),
-      ).toBeInTheDocument();
-      expect(
-        screen.getByTestId('flavor-select-table-body'),
-      ).toBeInTheDocument();
+      expect(screen.getByTestId('flavor-select-table')).toBeTruthy();
+      expect(screen.getByTestId('flavor-select-table-header')).toBeTruthy();
+      expect(screen.getByTestId('flavor-select-table-body')).toBeTruthy();
     });
   });
   it('should trigger callback when selected', async () => {
@@ -68,7 +64,7 @@ describe('Flavor table select component', () => {
     );
     const flavorRowTestId = `flavor-table-row-${mockedOrderFlavorGPU.id}`;
     await waitFor(() => {
-      expect(screen.getByTestId(flavorRowTestId)).toBeInTheDocument();
+      expect(screen.getByTestId(flavorRowTestId)).toBeTruthy();
     });
     act(() => {
       fireEvent.click(screen.getByTestId(flavorRowTestId));
@@ -88,7 +84,7 @@ describe('Flavor table select component', () => {
     );
     const flavorRowTestId = `flavor-table-row-${mockedOrderFlavorGPU.id}`;
     await waitFor(() => {
-      expect(screen.getByTestId(flavorRowTestId)).toBeInTheDocument();
+      expect(screen.getByTestId(flavorRowTestId)).toBeTruthy();
     });
     act(() => {
       fireEvent.keyDown(screen.getByTestId(flavorRowTestId), {
@@ -111,7 +107,7 @@ describe('Flavor table select component', () => {
     );
     const flavorRowTestId = `flavor-table-row-${mockedOrderFlavorGPU.id}`;
     await waitFor(() => {
-      expect(screen.getByTestId(flavorRowTestId)).toBeInTheDocument();
+      expect(screen.getByTestId(flavorRowTestId)).toBeTruthy();
     });
     act(() => {
       fireEvent.keyDown(screen.getByTestId(flavorRowTestId), {

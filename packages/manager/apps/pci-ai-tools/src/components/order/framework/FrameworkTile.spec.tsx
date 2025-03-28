@@ -27,10 +27,8 @@ describe('Framework Tile component', () => {
     await waitFor(() => {
       expect(
         screen.getByTestId(`fmk-radio-tile-${mockedFrameworkBis.id}`),
-      ).toBeInTheDocument();
-      expect(
-        screen.getByTestId('fmk-tile-version-container'),
-      ).toBeInTheDocument();
+      ).toBeTruthy();
+      expect(screen.getByTestId('fmk-tile-version-container')).toBeTruthy();
     });
   });
 
@@ -45,7 +43,7 @@ describe('Framework Tile component', () => {
     );
     const fmkRadioTileId = `fmk-radio-tile-${mockedFrameworkBis.id}`;
     await waitFor(() => {
-      expect(screen.getByTestId(fmkRadioTileId)).toBeInTheDocument();
+      expect(screen.getByTestId(fmkRadioTileId)).toBeTruthy();
     });
     act(() => {
       fireEvent.click(screen.getByTestId(fmkRadioTileId));

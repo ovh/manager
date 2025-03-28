@@ -55,7 +55,6 @@ export const NotebookHeader = ({
                   type="button"
                   variant="primary"
                   className="h-8 w-8 rounded-full p-1"
-                  // size="roundedIcon"
                   onClick={() => setIsStartOpen(true)}
                 >
                   <PlayIcon className="size-3 fill-white mx-auto" />
@@ -65,9 +64,8 @@ export const NotebookHeader = ({
           </div>
           <div className="flex gap-2 flex-wrap">
             <NotebookStatusBadge status={notebook.status.state} />
-
             <Button
-              className="capitalize font-semibold flex flex-row gap-1 items-center h-6 rounded-md px-2.5 py-0.5 text-sm"
+              className="capitalize flex flex-row gap-1 items-center h-6 rounded-md px-2.5 py-0.5 text-xs"
               type="button"
               variant="primary"
               disabled={
@@ -85,16 +83,14 @@ export const NotebookHeader = ({
                 </div>
               </A>
             </Button>
-            <Badge className="capitalize text-text rounded-md text-sm bg-transparent font-semibold border border-neutral-100 px-2.5 py-0.5 h-6">
-              {notebook.spec.env.frameworkId}
-            </Badge>
-            <Badge className="capitalize rounded-md text-sm bg-transparent text-text font-semibold border border-neutral-100 px-2.5 py-0.5 h-6">
+            <Badge variant="outline">{notebook.spec.env.frameworkId}</Badge>
+            <Badge variant="outline">
               {notebook.spec.env.frameworkVersion}
             </Badge>
-            <Badge className="capitalize rounded-md text-sm bg-transparent text-text font-semibold border border-neutral-100 px-2.5 py-0.5 h-6">
+            <Badge variant="outline" className="capitalize">
               {tRegions(`region_${notebook.spec.region}`)}
             </Badge>
-            <Badge className="capitalize rounded-md text-sm bg-transparent text-text font-semibold border border-neutral-100 px-2.5 py-0.5 h-6">
+            <Badge className="capitalize" variant="outline">
               {notebook.spec.unsecureHttp ? (
                 <div className="flex flex-row gap-1 items-center">
                   <span>{t('publicAccessLabel')}</span>

@@ -21,10 +21,8 @@ describe('Notebooks list delete modal', () => {
     });
 
     await waitFor(() => {
-      expect(screen.getByTestId('delete-notebook-modal')).toBeInTheDocument();
-      expect(
-        screen.getByTestId('delete-notebook-submit-button'),
-      ).toBeInTheDocument();
+      expect(screen.getByTestId('delete-notebook-modal')).toBeTruthy();
+      expect(screen.getByTestId('delete-notebook-submit-button')).toBeTruthy();
     });
   });
 });

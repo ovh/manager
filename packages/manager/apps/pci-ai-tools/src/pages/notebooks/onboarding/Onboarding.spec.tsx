@@ -25,9 +25,9 @@ describe('Onboarding page', () => {
   it('renders the onboarding Page', async () => {
     render(<Onboarding />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByTestId('onbaording-container')).toBeInTheDocument();
-      expect(screen.getByTestId('create-notebook-link')).toBeInTheDocument();
-      expect(screen.getByTestId('guide-open-button')).toBeInTheDocument();
+      expect(screen.getByTestId('onbaording-container')).toBeTruthy();
+      expect(screen.getByTestId('create-notebook-link')).toBeTruthy();
+      expect(screen.getByTestId('guide-open-button')).toBeTruthy();
     });
   });
 });

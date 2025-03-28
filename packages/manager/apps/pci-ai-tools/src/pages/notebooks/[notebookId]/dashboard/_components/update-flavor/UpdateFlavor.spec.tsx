@@ -57,7 +57,7 @@ describe('Update Flavor modal', () => {
 
   it('renders skeleton while loading', async () => {
     render(<UpdateFlavor />, { wrapper: RouterWithQueryClientWrapper });
-    expect(screen.getByTestId('dialog-container')).toBeInTheDocument();
+    expect(screen.getByTestId('dialog-container')).toBeTruthy();
   });
 
   it('trigger onError on API Error', async () => {

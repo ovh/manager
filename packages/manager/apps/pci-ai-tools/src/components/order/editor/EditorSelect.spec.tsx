@@ -27,9 +27,7 @@ describe('Editor Select component', () => {
       />,
     );
     await waitFor(() => {
-      expect(
-        screen.getByTestId('editors-select-container'),
-      ).toBeInTheDocument();
+      expect(screen.getByTestId('editors-select-container')).toBeTruthy();
     });
   });
   it('should trigger callback when selected', async () => {
@@ -41,15 +39,13 @@ describe('Editor Select component', () => {
       />,
     );
     await waitFor(() => {
-      expect(
-        screen.getByTestId('editors-select-container'),
-      ).toBeInTheDocument();
+      expect(screen.getByTestId('editors-select-container')).toBeTruthy();
       expect(
         screen.getByTestId(`editor-radio-tile-${mockedEditor.id}`),
-      ).toBeInTheDocument();
+      ).toBeTruthy();
       expect(
         screen.getByTestId(`editor-radio-tile-${mockedEditorBis.id}`),
-      ).toBeInTheDocument();
+      ).toBeTruthy();
     });
     act(() => {
       fireEvent.click(

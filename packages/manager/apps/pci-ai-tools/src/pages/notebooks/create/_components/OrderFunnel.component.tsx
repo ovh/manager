@@ -51,7 +51,6 @@ import OrderSummary from './OrderSummary.component';
 import OrderPrice from '@/components/order/price/OrderPrice.component';
 import CliEquivalent from './CliEquivalent.component';
 import publicCatalog from '@/types/Catalog';
-import LinkButton from '@/components/link-button/LinkButton.component';
 
 interface OrderFunnelProps {
   regions: ai.capabilities.Region[];
@@ -102,7 +101,7 @@ const OrderFunnel = ({
         title: t('successCreatingNotebookTitle'),
         description: t('successCreatingNotebookDescription'),
       });
-      navigate(`../notebooks/${notebook.id}`);
+      navigate(`../${notebook.id}`);
     },
   });
 
@@ -500,7 +499,7 @@ const OrderFunnel = ({
               )}
             </CardContent>
             <CardFooter className="flex flex-col gap-4">
-              <LinkButton
+              <Button
                 data-testid="cli-command-button"
                 type="button"
                 disabled={isPendingCommand}
@@ -508,10 +507,10 @@ const OrderFunnel = ({
                   getCliCommand();
                   cliEquivalentModale.open();
                 }}
-                className="flex flex-row gap-2 items-center underline"
+                className="flex flex-row gap-2 items-center underline bg-transparent hover:bg-transparent font-bold text-primary underline-offset-4 hover:underline"
               >
                 {t('cliCode')} <TerminalSquare className="size-4 stroke-2" />
-              </LinkButton>
+              </Button>
               <Button
                 type="submit"
                 data-testid="order-submit-button"

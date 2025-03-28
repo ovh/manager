@@ -50,7 +50,7 @@ describe('Add Volume', () => {
 
   it('renders Add volume modal', async () => {
     render(<AddVolume />, { wrapper: RouterWithQueryClientWrapper });
-    expect(screen.getByTestId('add-volume-modal')).toBeInTheDocument();
+    expect(screen.getByTestId('add-volume-modal')).toBeTruthy();
   });
 
   it('trigger onError on API Error', async () => {
@@ -65,9 +65,7 @@ describe('Add Volume', () => {
     );
 
     await waitFor(() => {
-      expect(
-        screen.getByTestId('select-container-combobox'),
-      ).toBeInTheDocument();
+      expect(screen.getByTestId('select-container-combobox')).toBeTruthy();
     });
 
     // Select Container
@@ -106,9 +104,7 @@ describe('Add Volume', () => {
     );
 
     await waitFor(() => {
-      expect(
-        screen.getByTestId('select-container-combobox'),
-      ).toBeInTheDocument();
+      expect(screen.getByTestId('select-container-combobox')).toBeTruthy();
     });
 
     // Select Container

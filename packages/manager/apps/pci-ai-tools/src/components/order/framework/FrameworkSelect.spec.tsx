@@ -30,13 +30,13 @@ describe('Framework Select component', () => {
       />,
     );
     await waitFor(() => {
-      expect(screen.getByTestId('fmk-select-container')).toBeInTheDocument();
+      expect(screen.getByTestId('fmk-select-container')).toBeTruthy();
       expect(
         screen.getByTestId(`fmk-radio-tile-${mockedFramework.id}`),
-      ).toBeInTheDocument();
+      ).toBeTruthy();
       expect(
         screen.getByTestId(`fmk-radio-tile-${mockedFrameworkBis.id}`),
-      ).toBeInTheDocument();
+      ).toBeTruthy();
     });
   });
 
@@ -53,7 +53,7 @@ describe('Framework Select component', () => {
     );
     const fmkRadioTileId = `fmk-radio-tile-${mockedFrameworkBis.id}`;
     await waitFor(() => {
-      expect(screen.getByTestId(fmkRadioTileId)).toBeInTheDocument();
+      expect(screen.getByTestId(fmkRadioTileId)).toBeTruthy();
     });
     act(() => {
       fireEvent.click(screen.getByTestId(fmkRadioTileId));

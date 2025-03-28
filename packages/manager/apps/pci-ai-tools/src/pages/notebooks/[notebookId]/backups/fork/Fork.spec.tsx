@@ -50,12 +50,12 @@ describe('Fork backup modal', () => {
 
   it('renders modal skeleton while loading', async () => {
     render(<Fork />, { wrapper: RouterWithQueryClientWrapper });
-    expect(screen.getByTestId('dialog-container')).toBeInTheDocument();
+    expect(screen.getByTestId('dialog-container')).toBeTruthy();
   });
 
   it('renders Fork modal', async () => {
     render(<Fork />, { wrapper: RouterWithQueryClientWrapper });
-    expect(screen.getByTestId('fork-modal')).toBeInTheDocument();
+    expect(screen.getByTestId('fork-modal')).toBeTruthy();
   });
 
   it('trigger onError on API Error', async () => {
@@ -78,7 +78,7 @@ describe('Fork backup modal', () => {
 
   it('trigger onSuccess on summit click', async () => {
     render(<Fork />, { wrapper: RouterWithQueryClientWrapper });
-    expect(screen.getByTestId('fork-modal')).toBeInTheDocument();
+    expect(screen.getByTestId('fork-modal')).toBeTruthy();
     act(() => {
       fireEvent.click(screen.getByTestId('fork-backup-submit-button'));
     });

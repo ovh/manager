@@ -31,9 +31,9 @@ describe('OrderPrice component', () => {
       <OrderPrice minuteConverter={60} quantity={1} price={mockedPricing} />,
     );
     await waitFor(() => {
-      expect(screen.getByTestId('order-price-container')).toBeInTheDocument();
-      expect(screen.getByTestId('pricing-ttc')).toBeInTheDocument();
-      expect(screen.getByTestId('pricing-ht')).toBeInTheDocument();
+      expect(screen.getByTestId('order-price-container')).toBeTruthy();
+      expect(screen.getByTestId('pricing-ttc')).toBeTruthy();
+      expect(screen.getByTestId('pricing-ht')).toBeTruthy();
     });
   });
 });

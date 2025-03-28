@@ -19,21 +19,19 @@ describe('Labels Form component', () => {
   it('should display the Labels Form', async () => {
     render(<LabelsForm configuredLabels={[mockedLabel]} />);
     await waitFor(() => {
-      expect(screen.getByTestId('labels-form-container')).toBeInTheDocument();
-      expect(screen.getByTestId('key-input-field')).toBeInTheDocument();
-      expect(screen.getByTestId('value-input-field')).toBeInTheDocument();
-      expect(screen.getByTestId('label-add-button')).toBeInTheDocument();
-      expect(screen.getByTestId('configured-labels')).toBeInTheDocument();
-      expect(
-        screen.getByTestId(`button_${mockedLabel.name}`),
-      ).toBeInTheDocument();
+      expect(screen.getByTestId('labels-form-container')).toBeTruthy();
+      expect(screen.getByTestId('key-input-field')).toBeTruthy();
+      expect(screen.getByTestId('value-input-field')).toBeTruthy();
+      expect(screen.getByTestId('label-add-button')).toBeTruthy();
+      expect(screen.getByTestId('configured-labels')).toBeTruthy();
+      expect(screen.getByTestId(`button_${mockedLabel.name}`)).toBeTruthy();
     });
   });
 
   it('should display error when trying to add a existing key label', async () => {
     render(<LabelsForm configuredLabels={[mockedLabel]} />);
     await waitFor(() => {
-      expect(screen.getByTestId('label-add-button')).toBeInTheDocument();
+      expect(screen.getByTestId('label-add-button')).toBeTruthy();
     });
     act(() => {
       fireEvent.change(screen.getByTestId('key-input-field'), {
@@ -49,14 +47,14 @@ describe('Labels Form component', () => {
       fireEvent.click(screen.getByTestId('label-add-button'));
     });
     await waitFor(() => {
-      expect(screen.getByText('existingKeyError')).toBeInTheDocument();
+      expect(screen.getByText('existingKeyError')).toBeTruthy();
     });
   });
 
   it('should trigger on add when adding label', async () => {
     render(<LabelsForm configuredLabels={[mockedLabel]} onAdd={onAdd} />);
     await waitFor(() => {
-      expect(screen.getByTestId('label-add-button')).toBeInTheDocument();
+      expect(screen.getByTestId('label-add-button')).toBeTruthy();
     });
     act(() => {
       fireEvent.change(screen.getByTestId('key-input-field'), {
@@ -79,7 +77,7 @@ describe('Labels Form component', () => {
   it('should trigger on change when adding label', async () => {
     render(<LabelsForm configuredLabels={[mockedLabel]} onChange={onChange} />);
     await waitFor(() => {
-      expect(screen.getByTestId('label-add-button')).toBeInTheDocument();
+      expect(screen.getByTestId('label-add-button')).toBeTruthy();
     });
     act(() => {
       fireEvent.change(screen.getByTestId('key-input-field'), {
@@ -107,9 +105,7 @@ describe('Labels Form component', () => {
         onChange={onChange}
       />,
     );
-    expect(
-      screen.getByTestId(`button_${mockedLabel.name}`),
-    ).toBeInTheDocument();
+    expect(screen.getByTestId(`button_${mockedLabel.name}`)).toBeTruthy();
     act(() => {
       fireEvent.click(screen.getByTestId(`button_${mockedLabel.name}`));
     });

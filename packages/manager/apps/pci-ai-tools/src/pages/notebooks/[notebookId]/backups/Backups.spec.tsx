@@ -35,26 +35,24 @@ describe('Backups page', () => {
     const translationKey = 'breadcrumb';
     render(<Breadcrumb />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByText(translationKey)).toBeInTheDocument();
+      expect(screen.getByText(translationKey)).toBeTruthy();
     });
   });
 
   it('renders Skeleton while loading', async () => {
     render(<Backups />, { wrapper: RouterWithQueryClientWrapper });
-    expect(
-      screen.getByTestId('backup-list-table-skeleton'),
-    ).toBeInTheDocument();
+    expect(screen.getByTestId('backup-list-table-skeleton')).toBeTruthy();
   });
 
   it('renders backups page', async () => {
     render(<Backups />, { wrapper: RouterWithQueryClientWrapper });
-    expect(screen.getByText(mockedBackup.id)).toBeInTheDocument();
+    expect(screen.getByText(mockedBackup.id)).toBeTruthy();
   });
 
   it('open fork backup modal using action table', async () => {
     render(<Backups />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByText(mockedBackup.id)).toBeInTheDocument();
+      expect(screen.getByText(mockedBackup.id)).toBeTruthy();
     });
     await openButtonInMenu(
       'backup-action-trigger',

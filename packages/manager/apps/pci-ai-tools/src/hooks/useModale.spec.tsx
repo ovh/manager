@@ -11,7 +11,7 @@ describe('useModale', () => {
     await waitFor(() => {
       expect(result.current.isOpen).toBe(false);
       expect(result.current.value).toBe(undefined);
-      expect(screen.getByText('/test')).toBeInTheDocument();
+      expect(screen.getByText('/test')).toBeTruthy();
     });
   });
 
@@ -33,7 +33,7 @@ describe('useModale', () => {
       expect(result.current.value).toBe(DEFAULT_OPEN_VALUE);
       expect(
         screen.getByText(`${page}?${modalkey}=${DEFAULT_OPEN_VALUE}`),
-      ).toBeInTheDocument();
+      ).toBeTruthy();
     });
   });
 
@@ -56,7 +56,7 @@ describe('useModale', () => {
       expect(result.current.value).toBe(customValue);
       expect(
         screen.getByText(`${page}?${modalkey}=${customValue}`),
-      ).toBeInTheDocument();
+      ).toBeTruthy();
     });
   });
 
@@ -78,7 +78,7 @@ describe('useModale', () => {
     await waitFor(() => {
       expect(result.current.isOpen).toBe(false);
       expect(result.current.value).toBe(undefined);
-      expect(screen.getByText(`${page}`)).toBeInTheDocument();
+      expect(screen.getByText(`${page}`)).toBeTruthy();
     });
   });
 

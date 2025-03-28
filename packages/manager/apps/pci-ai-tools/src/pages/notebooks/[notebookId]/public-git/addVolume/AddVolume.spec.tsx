@@ -49,7 +49,7 @@ describe('Add Volume', () => {
 
   it('renders Add volume modal', async () => {
     render(<AddVolume />, { wrapper: RouterWithQueryClientWrapper });
-    expect(screen.getByTestId('add-public-git-modal')).toBeInTheDocument();
+    expect(screen.getByTestId('add-public-git-modal')).toBeTruthy();
   });
 
   it('trigger onError on API Error', async () => {

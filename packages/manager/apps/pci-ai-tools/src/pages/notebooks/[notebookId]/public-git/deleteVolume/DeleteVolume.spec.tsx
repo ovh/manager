@@ -48,7 +48,7 @@ describe('Add Volume', () => {
   it('renders Delete volume modal', async () => {
     vi.mocked(useParams).mockReturnValue({ volumeId: 'volumeId' });
     render(<DeleteVolume />, { wrapper: RouterWithQueryClientWrapper });
-    expect(screen.getByTestId('delete-public-git-modal')).toBeInTheDocument();
+    expect(screen.getByTestId('delete-public-git-modal')).toBeTruthy();
   });
 
   it('trigger onError on API Error', async () => {
