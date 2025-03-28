@@ -3,7 +3,7 @@ import { FieldError, FieldErrors } from 'react-hook-form';
 import { ZodObject, ZodRawShape } from 'zod';
 import { ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import { SigningAlgorithms, TOidcProvider } from '@/types';
+import { DeploymentMode, SigningAlgorithms, TOidcProvider } from '@/types';
 import { NodePool } from '@/api/data/kubernetes';
 
 export const REFETCH_INTERVAL_DURATION = 15_000;
@@ -203,3 +203,8 @@ export function generateUniqueName(
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
+
+export const isMonoZone = (type: DeploymentMode) =>
+  type === DeploymentMode.MONO_ZONE;
+export const isMultiZones = (type: DeploymentMode) =>
+  type === DeploymentMode.MULTI_ZONES;

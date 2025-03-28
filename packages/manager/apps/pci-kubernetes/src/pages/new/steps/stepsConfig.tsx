@@ -57,6 +57,7 @@ const stepsConfig = ({
     titleKey: 'listing:kubernetes_add_private_network',
     extraProps: {
       region: stepper.form.region?.name,
+      type: stepper.form.region?.type,
     },
   },
   {

@@ -37,6 +37,9 @@ export const STATUS = {
 
 export const CONFIG_FILENAME = 'kubeconfig';
 
+export const KUBECONFIG_3AZ_GATEWAY =
+  'https://help.ovhcloud.com/csm/fr-public-cloud-kubernetes-using-vrack?id=kb_article_view&sysparm_article=KB0055392';
+
 export const VERSIONS_GUIDE_URL =
   'https://docs.ovh.com/gb/en/kubernetes/eos-eol-policies/';
 

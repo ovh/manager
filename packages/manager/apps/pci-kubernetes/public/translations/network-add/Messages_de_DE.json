@@ -28,5 +28,6 @@
   "kubernetes_network_form_gateway_mode_auto": "Standardgateway, das entsprechend der DHCP-Konfiguration Ihres privaten Netzwerks festgelegt wird (empfohlen)",
   "kubernetes_network_form_gateway_mode_custom": "Standardgateway statisch überladen",
   "kubernetes_network_form_gateway_mode_custom_placeholder": "IP-Adresse Ihres Standardgateways",
-  "kubernetes_network_form_rebuild": "Achtung: Um die Strategie für das ausgehende Routing zu ändern, müssen die Nodes Ihres Clusters in einem Rolling-Update neu bereitgestellt werden."
+  "kubernetes_network_form_rebuild": "Achtung: Um die Strategie für das ausgehende Routing zu ändern, müssen die Nodes Ihres Clusters in einem Rolling-Update neu bereitgestellt werden.",
+  "kubernetes_network_form_notify_users": "Um Managed Kubernetes Service in einer Region mit 3 Verfügbarkeitszonen (3-AZ) zu deployen, ist ein privates Netzwerk mit angeschlossenem Gateway erforderlich. Stellen Sie sicher, dass Ihr privates Netzwerk diese Anforderungen erfüllt, um einen optimalen Betrieb zu gewährleisten."
 }
