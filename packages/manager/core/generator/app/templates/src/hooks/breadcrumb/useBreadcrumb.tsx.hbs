@@ -20,7 +20,6 @@ export interface BreadcrumbProps {
 export const usePciBreadcrumb = ({
   projectId,
   appName,
-  items,
 }: BreadcrumbProps) => {
   const { shell } = useContext(ShellContext);
   const [root, setRoot] = useState<BreadcrumbItem[]>([]);
@@ -67,7 +66,7 @@ export const useBreadcrumb = ({ rootLabel, appName }: BreadcrumbProps) => {
   useEffect(() => {
     const fetchRoot = async () => {
       try {
-        const response = await shell?.navigation.getURL(appName, '#/', {});
+        const response = await shell?.navigation.getURL(appName as string, '#/', {});
         const rootItem = {
           label: rootLabel,
           href: String(response),
