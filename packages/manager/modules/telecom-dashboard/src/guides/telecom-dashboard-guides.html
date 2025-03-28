@@ -100,5 +100,29 @@
                 ></span>
             </a>
         </li>
+        <li class="oui-tile__item oui-tile__item_button">
+            <a
+                class="oui-tile__button oui-button oui-button_icon-right oui-button_ghost oui-button_block"
+                title="{{ ::'telecom_dashboard_FAQ_end_of_copper' | translate }} {{ ::'telecom_dashboard_common_newtab' | translate }}"
+                target="_blank"
+                rel="noopener"
+                data-ng-href="{{ GuidesCtrl.links.endOfCopper }}"
+                data-ng-click="GuidesCtrl.trackRedirection(GuidesCtrl.links.endOfCopper)"
+            >
+                <span
+                    class="text-link"
+                    data-translate="telecom_dashboard_FAQ_end_of_copper"
+                >
+                </span>
+                <span
+                    class="oui-icon oui-icon-external-link"
+                    aria-hidden="true"
+                ></span>
+                <span
+                    class="oui-icon oui-icon-chevron-right"
+                    aria-hidden="true"
+                ></span>
+            </a>
+        </li>
     </ul>
 </div>

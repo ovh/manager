@@ -1,16 +1,13 @@
 import get from 'lodash/get';
 
+import { DICTIONNARY, TASK_STATUS } from '../pack-move.constant';
+
 export default class MoveMeetingCtrl {
   /* @ngInject */
-  constructor(
-    $scope,
-    $translate,
-    OvhApiConnectivityEligibilitySearch,
-    TucToast,
-  ) {
+  constructor($scope, $translate, MoveMeetingService, TucToast) {
     this.$scope = $scope;
     this.$translate = $translate;
-    this.OvhApiConnectivityEligibilitySearch = OvhApiConnectivityEligibilitySearch;
+    this.MoveMeetingService = MoveMeetingService;
     this.TucToast = TucToast;
   }
 
@@ -32,19 +29,40 @@ export default class MoveMeetingCtrl {
 
     this.loading = true;
     this.meetings = [];
-    return this.OvhApiConnectivityEligibilitySearch.v6()
-      .searchMeetings(this.$scope, {
-        eligibilityReference: this.eligibilityReference,
-        productCode: this.productCode,
-      })
-      .then((data) => {
-        if (data.result) {
-          this.meetingSlots.canBookFakeMeeting = data.result.canBookFakeMeeting;
-          this.meetingSlots.slots = data.result.meetingSlots;
+    this.installationType = this.selected.buildingDetails
+      ? DICTIONNARY[this.selected.buildingDetails.selectedPto]
+      : '';
+
+    return this.searchMeetings(
+      this.eligibilityReference,
+      this.productCode,
+      this.installationType,
+    );
+  }
+
+  searchMeetings(eligibilityReference, productCode, installationType) {
+    this.loading = true;
+    return this.MoveMeetingService.searchMeetings(
+      eligibilityReference,
+      productCode,
+      installationType,
+    )
+      .then(({ status, result }) => {
+        if (status === TASK_STATUS.PENDING) {
+          setTimeout(() => {
+            this.searchMeetings(
+              eligibilityReference,
+              productCode,
+              installationType,
+            );
+          }, 2000);
+        } else if (result) {
+          this.meetingSlots.canBookFakeMeeting = result.canBookFakeMeeting;
+          this.meetingSlots.slots = result.meetingSlots;
 
           let slots = [];
           let prevTitle;
-          data.result.meetingSlots.forEach((slot, index) => {
+          result.meetingSlots.forEach((slot, index) => {
             const title = moment(slot.startDate).format('ddd DD MMM YYYY');
             if (!prevTitle) {
               prevTitle = title;

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   IconLinkAlignmentType,
   LinkType,
@@ -12,7 +12,7 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { useDomains, useGenerateUrl, usePlatform, useAccount } from '@/hooks';
+import { useGenerateUrl, usePlatform, useAccount } from '@/hooks';
 import Loading from '@/components/Loading/Loading';
 import { urls } from '@/routes/routes.constants';
 import EmailAccountSettings from './EmailAccountSettings.page';
@@ -33,7 +33,6 @@ import TabsPanel, {
   computePathMatchers,
   TabItemProps,
 } from '@/components/layout-helpers/Dashboard/TabsPanel';
-import { ResourceStatus } from '@/api/api.type';
 
 export default function AddAndEditAccount() {
   const { trackClick } = useOvhTracking();
@@ -62,16 +61,6 @@ export default function AddAndEditAccount() {
     enabled: !!editEmailAccountId,
     gcTime: 0,
   });
-
-  const { data: domainList, isLoading: isLoadingDomainRequest } = useDomains({
-    shouldFetchAll: true,
-  });
-
-  const domains = useMemo(() => {
-    return domainList?.filter(
-      (domain) => domain.resourceStatus === ResourceStatus.READY,
-    );
-  }, [domainList]);
 
   const pathMatcherSettingsTabs = computePathMatchers(
     [urls.email_accounts_add, urls.email_accounts_edit],
@@ -106,7 +95,7 @@ export default function AddAndEditAccount() {
   );
 
   useEffect(() => {
-    if (!isLoadingEmailDetailRequest && !isLoadingDomainRequest && platformId) {
+    if ((!isLoadingEmailDetailRequest || !editEmailAccountId) && platformId) {
       setIsSettingsTab(activatedTabs(pathMatcherSettingsTabs, location));
       setIsAliasTab(activatedTabs(pathMatcherAliasTabs, location));
       setIsRedirectionsTab(
@@ -115,7 +104,7 @@ export default function AddAndEditAccount() {
       setIsAutoRepliesTab(activatedTabs(pathMatcherAutoRepliesTabs, location));
       setIsLoading(false);
     }
-  }, [isLoadingEmailDetailRequest, isLoadingDomainRequest, location.pathname]);
+  }, [isLoadingEmailDetailRequest, platformId, location]);
 
   const params = {
     editEmailAccountId,
@@ -200,10 +189,7 @@ export default function AddAndEditAccount() {
             </div>
           )}
           {isSettingsTab && (
-            <EmailAccountSettings
-              domains={domains}
-              editAccountDetail={editAccountDetail}
-            />
+            <EmailAccountSettings editAccountDetail={editAccountDetail} />
           )}
           {isAliasTab && <EmailAccountsAlias />}
           {isRedirectionsTab && <Redirections />}

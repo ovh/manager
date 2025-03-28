@@ -906,5 +906,9 @@
   "email_tab_modal_delete_redirection_accounts": "<strong>{0}</strong> na <strong>{1}</strong>",
   "emails_common_continue_question": "Czy chcesz kontynuować?",
   "emails_common_account_name_conditions": "Uwaga, nazwa konta musi spełniać następujące wymagania: <br/>- Minimum {0} znaki<br/>- Maksimum {1} znaki<br/>- Brak spacji<br/>- Brak znaków akcentowanych<br/>- Brak znaków specjalnych za wyjątkiem ., - i _.",
-  "emailpro-mxplan_tab_domain_no_domains": "Brak wyników"
+  "emailpro-mxplan_tab_domain_no_domains": "Brak wyników",
+  "emailpro_ACTION_update_account_step1_password_zimbra_helper": "Twoje hasło musi zawierać co najmniej:",
+  "emailpro_ACTION_update_account_step1_password_zimbra_helper_rule_1": "10 znaków",
+  "emailpro_ACTION_update_account_step1_password_zimbra_helper_rule_2": "1 cyfrę i 1 znak specjalny ($, !, &amp;,...)",
+  "emailpro_ACTION_update_account_step1_password_zimbra_helper_rule_3": "1 dużą literę"
 }

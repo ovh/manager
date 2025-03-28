@@ -23,13 +23,13 @@ import {
   useDomains,
   useGenerateUrl,
   usePlatform,
-  useOrganizationList,
+  useOrganizations,
+  useDebouncedValue,
 } from '@/hooks';
 import ActionButtonDomain from './ActionButtonDomain.component';
 import LabelChip from '@/components/LabelChip';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import { DATAGRID_REFRESH_INTERVAL, DATAGRID_REFRESH_ON_MOUNT } from '@/utils';
-import Loading from '@/components/Loading/Loading';
 import { DomainType } from '@/api/domain/type';
 import { AccountStatistics, ResourceStatus } from '@/api/api.type';
 import { BadgeStatus } from '@/components/BadgeStatus';
@@ -53,6 +53,7 @@ const columns: DatagridColumn<DomainsItem>[] = [
       <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.name}</OdsText>
     ),
     label: 'common:domain',
+    isSearchable: true,
   },
   {
     id: 'organization',
@@ -92,6 +93,13 @@ export default function Domains() {
   const navigate = useNavigate();
   const isOverridedPage = useOverridePage();
 
+  const [
+    searchInput,
+    setSearchInput,
+    debouncedSearchInput,
+    setDebouncedSearchInput,
+  ] = useDebouncedValue('');
+
   const {
     data: domains,
     fetchNextPage,
@@ -99,13 +107,14 @@ export default function Domains() {
     isLoading,
     isFetchingNextPage,
   } = useDomains({
+    domainName: debouncedSearchInput,
     refetchInterval: DATAGRID_REFRESH_INTERVAL,
     refetchOnMount: DATAGRID_REFRESH_ON_MOUNT,
     enabled: !isOverridedPage,
   });
 
-  const { data: organizations } = useOrganizationList({
-    enabled: !isLoading && domains?.length === 0,
+  const { data: organizations } = useOrganizations({
+    enabled: !isOverridedPage,
   });
 
   const hrefAddDomain = useGenerateUrl('./add', 'path');
@@ -142,52 +151,50 @@ export default function Domains() {
     <div>
       <Outlet />
       {platformUrn && !isOverridedPage && (
-        <>
-          <div className="flex items-center justify-between">
-            <div id="tooltip-trigger-domain-btn">
-              <ManagerButton
-                id="add-domain-btn"
-                color={ODS_BUTTON_COLOR.primary}
-                size={ODS_BUTTON_SIZE.sm}
-                onClick={handleAddDomainClick}
-                urn={platformUrn}
-                iamActions={[IAM_ACTIONS.domain.create]}
-                data-testid="add-domain-btn"
-                className="mb-6"
-                isDisabled={isLoading || organizations?.length === 0}
-                icon={ODS_ICON_NAME.plus}
-                label={t('common:add_domain')}
-              />
+        <Datagrid
+          topbar={
+            <div className="flex items-center justify-between">
+              <div id="tooltip-trigger-domain-btn">
+                <ManagerButton
+                  id="add-domain-btn"
+                  color={ODS_BUTTON_COLOR.primary}
+                  size={ODS_BUTTON_SIZE.sm}
+                  onClick={handleAddDomainClick}
+                  urn={platformUrn}
+                  iamActions={[IAM_ACTIONS.domain.create]}
+                  data-testid="add-domain-btn"
+                  isDisabled={organizations?.length === 0}
+                  icon={ODS_ICON_NAME.plus}
+                  label={t('common:add_domain')}
+                />
+              </div>
+              {(isLoading || organizations?.length === 0) && (
+                <OdsTooltip
+                  role="tooltip"
+                  triggerId={'tooltip-trigger-domain-btn'}
+                >
+                  <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                    {t('zimbra_domains_tooltip_need_organization')}
+                  </OdsText>
+                </OdsTooltip>
+              )}
             </div>
-            {(isLoading || organizations?.length === 0) && (
-              <OdsTooltip
-                role="tooltip"
-                triggerId={'tooltip-trigger-domain-btn'}
-              >
-                <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                  {t('zimbra_domains_tooltip_need_organization')}
-                </OdsText>
-              </OdsTooltip>
-            )}
-          </div>
-          {isLoading ? (
-            <Loading />
-          ) : (
-            <>
-              <Datagrid
-                columns={columns.map((column) => ({
-                  ...column,
-                  label: t(column.label),
-                }))}
-                items={items}
-                totalItems={items.length}
-                hasNextPage={!isFetchingNextPage && hasNextPage}
-                onFetchNextPage={fetchNextPage}
-              />
-              {isFetchingNextPage && <Loading />}
-            </>
-          )}
-        </>
+          }
+          search={{
+            searchInput,
+            setSearchInput,
+            onSearch: (search) => setDebouncedSearchInput(search),
+          }}
+          columns={columns.map((column) => ({
+            ...column,
+            label: t(column.label),
+          }))}
+          items={items}
+          totalItems={items.length}
+          hasNextPage={hasNextPage}
+          onFetchNextPage={fetchNextPage}
+          isLoading={isLoading || isFetchingNextPage}
+        />
       )}
     </div>
   );

@@ -83,7 +83,9 @@ angular.module('App').controller(
       return this.privateDatabaseService
         .getUsers(this.productId)
         .then((users) => {
-          this.usersIds = users.sort((a, b) => a.localeCompare(b));
+          this.usersIds = users
+            .filter((user) => Boolean(user))
+            .sort((a, b) => a.localeCompare(b));
           this.users = this.usersIds.map((id) => ({ id }));
         })
         .catch((err) => {

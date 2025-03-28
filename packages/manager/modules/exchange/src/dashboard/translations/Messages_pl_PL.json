@@ -548,7 +548,7 @@
   "exchange_account_add_field_error_passwordConfirmation": "Różne hasła",
   "exchange_account_add_field_error_pattern": "Użyj poprawnego formatu.",
   "exchange_account_add_emailAddress_error_alreadyExists": "Konto z tym adresem e-mail już istnieje.",
-  "exchange_account_add_submit_success": "Konto {0} zostało utworzone. Będziesz mógł z niego korzystać po upływie kilku minut.",
+  "exchange_account_add_submit_success": "Konto {0} zostało utworzone. Będziesz mógł z niego korzystać po upływie kilku minut. Zalecamy odświeżenie strony.",
   "exchange_ACTION_add_account_legal_title": "Akceptuję warunki korzystania z usługi",
   "exchange_ACTION_add_account_legal_warning": "Przyjmuję do wiadomości, że OVH przystąpi do świadczenia usługi natychmiast po zatwierdzeniu mojego zamówienia i w związku z tym świadomie rezygnuję z mojego prawa do odstąpienia od umowy zgodnie z postanowieniami artykułu 27 Ustawy o prawach konsumenta.",
   "exchange_ACTION_add_account_title": "Dodaj konto Exchange",

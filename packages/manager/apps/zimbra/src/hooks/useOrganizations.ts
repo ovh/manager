@@ -3,51 +3,42 @@ import {
   UseInfiniteQueryOptions,
   UseInfiniteQueryResult,
 } from '@tanstack/react-query';
-import { useSearchParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { usePlatform } from '@/hooks';
 import {
-  AccountType,
-  getZimbraPlatformAccounts,
-  getZimbraPlatformAccountsQueryKey,
-} from '@/api/account';
-import { APIV2_MAX_PAGESIZE } from '@/utils';
+  getZimbraPlatformOrganization,
+  getZimbraPlatformOrganizationQueryKey,
+  OrganizationType,
+} from '@/api/organization';
+import { APIV2_MAX_PAGESIZE, buildURLSearchParams } from '@/utils';
 
-type UseAccountListParams = Omit<
+type UseOrganizationsParams = Omit<
   UseInfiniteQueryOptions,
   'queryKey' | 'queryFn' | 'select' | 'getNextPageParam' | 'initialPageParam'
 > & {
-  domainId?: string;
-  organizationId?: string;
+  organizationName?: string;
   shouldFetchAll?: boolean;
 };
 
-export const useAccountList = (props: UseAccountListParams = {}) => {
-  const { domainId, organizationId, shouldFetchAll, ...options } = props;
+export const useOrganizations = (props: UseOrganizationsParams = {}) => {
+  const { shouldFetchAll, organizationName, ...options } = props;
   const { platformId } = usePlatform();
-  const [searchParams] = useSearchParams();
-
-  const selectedOrganizationId =
-    organizationId ?? searchParams.get('organizationId');
-  const selectedDomainId = domainId ?? searchParams.get('domainId');
-
-  const queryParameters = {
-    ...(selectedOrganizationId && { organizationId: selectedOrganizationId }),
-    ...(selectedDomainId && { domainId: selectedDomainId }),
-  };
+  const searchParams = buildURLSearchParams({
+    organizationName,
+  });
 
   const query = useInfiniteQuery({
     ...options,
     initialPageParam: null,
-    queryKey: getZimbraPlatformAccountsQueryKey(
+    queryKey: getZimbraPlatformOrganizationQueryKey(
       platformId,
-      queryParameters,
+      searchParams,
       shouldFetchAll,
     ),
     queryFn: ({ pageParam }) =>
-      getZimbraPlatformAccounts({
+      getZimbraPlatformOrganization({
         platformId,
-        queryParameters,
+        searchParams,
         pageParam,
         ...(shouldFetchAll ? { pageSize: APIV2_MAX_PAGESIZE } : {}),
       }),
@@ -60,7 +51,7 @@ export const useAccountList = (props: UseAccountListParams = {}) => {
       lastPage.cursorNext,
     select: (data) =>
       data?.pages.flatMap(
-        (page: UseInfiniteQueryResult<AccountType[]>) => page.data,
+        (page: UseInfiniteQueryResult<OrganizationType[]>) => page.data,
       ),
   });
 

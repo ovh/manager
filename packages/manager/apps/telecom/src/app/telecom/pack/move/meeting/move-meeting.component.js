@@ -7,5 +7,6 @@ export default {
   bindings: {
     productCode: '<',
     eligibilityReference: '<',
+    selected: '<',
   },
 };

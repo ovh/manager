@@ -129,19 +129,20 @@ export function AutoReplies() {
               <Subtitle>{t('zimbra_auto_replies_account_title')}</Subtitle>
             </div>
           )}
-          <ManagerButton
-            id="add-auto-reply-btn"
-            data-testid="add-auto-reply-btn"
-            color={ODS_BUTTON_COLOR.primary}
-            size={ODS_BUTTON_SIZE.sm}
-            onClick={handleAddClick}
-            urn={platformUrn}
-            iamActions={[IAM_ACTIONS.autoReply.create]}
-            icon={ODS_ICON_NAME.plus}
-            label={t('common:add_auto_reply')}
-            className="mb-6"
-          ></ManagerButton>
           <Datagrid
+            topbar={
+              <ManagerButton
+                id="add-auto-reply-btn"
+                data-testid="add-auto-reply-btn"
+                color={ODS_BUTTON_COLOR.primary}
+                size={ODS_BUTTON_SIZE.sm}
+                onClick={handleAddClick}
+                urn={platformUrn}
+                iamActions={[IAM_ACTIONS.autoReply.create]}
+                icon={ODS_ICON_NAME.plus}
+                label={t('common:add_auto_reply')}
+              />
+            }
             columns={columns.map((column) => ({
               ...column,
               label: t(column.label),

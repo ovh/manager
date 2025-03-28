@@ -162,14 +162,15 @@ function OrderCatalogForm({
       },
     ];
 
-    setOrderURL(generateOrderURL({ baseURL: orderBaseURL, products }));
-  };
+    const expressOrderURL = generateOrderURL({
+      baseURL: orderBaseURL,
+      products,
+    });
 
-  useEffect(() => {
-    if (orderURL) {
-      window.open(orderURL, '_blank', 'noopener,noreferrer');
-    }
-  }, [orderURL]);
+    setOrderURL(expressOrderURL);
+
+    window.open(expressOrderURL, '_blank', 'noopener,noreferrer');
+  };
 
   if (!catalog) {
     return <></>;

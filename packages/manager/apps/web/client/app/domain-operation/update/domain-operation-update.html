@@ -74,7 +74,7 @@
                                     <a
                                         target="_blank"
                                         title="{{::('domain_operations_update_nicowner_click_' + arg.key | translate) + ' (' + ('core_new_window' | translate) + ')'}}"
-                                        data-ng-href="{{ ctrl.contactUrl + '/' + arg.value + '/' + (arg.fields.length ? ctrl.constructor.getNicParams(arg) : '')}}"
+                                        data-ng-href="{{ ctrl.contactUrl + '/' + ctrl.operation.domain + '/contact-management/edit-contact/'+arg.value+'/'}}"
                                     >
                                         <span
                                             data-ng-bind="'domain_operations_update_nicowner_click_' + arg.key | translate"

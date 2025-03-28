@@ -72,6 +72,7 @@ const CONTEXT = {
 };
 
 const ONT_SHIPPING_CONTACT = '/me/contact/';
+const TASK_STATUS = { PENDING: 'pending' };
 
 export {
   ELIGIBILITY_LINE_STATUS,
@@ -88,4 +89,5 @@ export {
   DICTIONNARY,
   ONT_SHIPPING_CONTACT,
   CONTEXT,
+  TASK_STATUS,
 };

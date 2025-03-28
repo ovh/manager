@@ -548,7 +548,7 @@
   "exchange_account_add_field_error_passwordConfirmation": "Passwords are different.",
   "exchange_account_add_field_error_pattern": "Please enter a valid format.",
   "exchange_account_add_emailAddress_error_alreadyExists": "An account with this email address already exists.",
-  "exchange_account_add_submit_success": "The {0} account has been created. You will be able to use it in a few minutes.",
+  "exchange_account_add_submit_success": "The {0} account has been created. You will be able to use it in a few minutes, so please refresh the page.",
   "exchange_ACTION_add_account_legal_title": "I accept the terms of use",
   "exchange_ACTION_add_account_legal_warning": "I accept that OVH will set up the service immediately on validating my order, and I therefore explicitly renounce my right to cancel under the provisions of Article L.121-21-8 of the French consumer code.",
   "exchange_ACTION_add_account_title": "Add an Exchange account",

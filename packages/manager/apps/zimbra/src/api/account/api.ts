@@ -7,26 +7,20 @@ import { APIV2_DEFAULT_PAGESIZE } from '@/utils';
 
 export const getZimbraPlatformAccounts = ({
   platformId,
-  queryParameters,
+  searchParams,
   pageParam,
   pageSize = APIV2_DEFAULT_PAGESIZE,
 }: {
   platformId: string;
-  queryParameters?: {
-    organizationId?: string;
-    domainId?: string;
-  };
+  searchParams?: string;
   pageParam?: unknown;
   pageSize?: number;
-}) => {
-  const params = new URLSearchParams(queryParameters).toString();
-  const queryString = params ? `?${params}` : '';
-  return fetchIcebergV2<AccountType[]>({
-    route: `${getApiPath(platformId)}account${queryString}`,
+}) =>
+  fetchIcebergV2<AccountType[]>({
+    route: `${getApiPath(platformId)}account${searchParams}`,
     pageSize,
     cursor: pageParam as string,
   });
-};
 
 export const getZimbraPlatformAccountDetail = async (
   platformId: string,

@@ -56,5 +56,6 @@
   "telecom_dashboard_ftth_eligibility_migrate": "Migrer vers la fibre",
   "telecom_dashboard_ftth_eligibility_access_more": "Voir plus d'accès",
   "telecom_dashboard_ftth_eligibility_support": "Contacter le support",
-  "telecom_dashboard_ftth_eligibility_not_yet_eligible": "Non éligible pour le moment"
+  "telecom_dashboard_ftth_eligibility_not_yet_eligible": "Non éligible pour le moment",
+  "telecom_dashboard_FAQ_end_of_copper": "Fin du cuivre - migrer l'offre xDSL vers la Fibre ?"
 }
