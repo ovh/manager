@@ -1,0 +1,34 @@
+/* targeting mobile and tablet devices */
+@media (max-width: 990px) {
+  .container-badges {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    .ios {
+      width: 200px;
+    }
+
+    .android {
+      width: 230px;
+    }
+
+    .windows {
+      width: 200px;
+    }
+  }
+}
+
+@media (min-width: 991px) {
+  .ios {
+    width: 170px;
+  }
+
+  .android {
+    width: 210px;
+  }
+
+  .windows {
+    width: 200px;
+  }
+}

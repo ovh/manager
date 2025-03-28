@@ -116,11 +116,8 @@ export default /* @ngInject */ ($stateProvider) => {
           'telecom.telephony.billingAccount.line.dashboard.phone.order',
           $transition$.params(),
         ),
-      softphoneBetaEligibility: /* @ngInject */ (
-        $stateParams,
-        SoftphoneService,
-      ) =>
-        SoftphoneService.getsoftphoneBetaEligibility(
+      softphoneStatus: /* @ngInject */ ($stateParams, SoftphoneService) =>
+        SoftphoneService.getSoftphoneStatus(
           $stateParams.billingAccount,
           $stateParams.serviceName,
         ),
