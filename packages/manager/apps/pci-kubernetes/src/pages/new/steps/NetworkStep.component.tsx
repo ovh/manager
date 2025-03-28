@@ -8,10 +8,12 @@ import NetworkClusterStep, {
   TNetworkFormState,
 } from './NetworkClusterStep.component';
 import { ModeEnum } from '@/components/network/GatewayModeSelector.component';
+import { DeploymentMode } from '@/types';
+import { isMonoZone, isMultiZones } from '@/helpers';
 
 export interface NetworkStepProps {
   region: string;
-  type: string;
+  type: DeploymentMode;
   onSubmit: (networkForm: TNetworkFormState) => void;
   step: StepState;
 }
@@ -28,7 +30,10 @@ export function NetworkStep({
     !state.gateway?.isEnabled ||
     state.gateway?.mode === ModeEnum.AUTO ||
     state.gateway?.ip;
-  const isValid = !state.privateNetwork || isGatewayValid;
+  const hasPrivateNetwork = state.privateNetwork;
+  const isValid =
+    (isMonoZone(type) && (!hasPrivateNetwork || isGatewayValid)) ||
+    (isMultiZones(type) && hasPrivateNetwork);
 
   return (
     <>
