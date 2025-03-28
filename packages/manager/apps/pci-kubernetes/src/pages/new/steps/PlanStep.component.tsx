@@ -22,7 +22,7 @@ import RadioTile from '@/components/radio-tile/RadioTile.component';
 
 import { TClusterCreationForm } from '../useCusterCreationStepper';
 import { StepState } from '../useStep';
-import { cn } from '@/helpers';
+import { cn, isMonoDeploymentZone, isMultiDeploymentZones } from '@/helpers';
 
 import { DeploymentMode } from '@/types';
 
@@ -78,7 +78,7 @@ const PlanTile = ({
   type: DeploymentMode;
 }) => {
   const [selected, setSelected] = useState<TClusterCreationForm['plan']>(
-    type === DeploymentMode.MONO_ZONE ? 'standard' : 'premium',
+    isMonoDeploymentZone(type) ? 'standard' : 'premium',
   );
   const { t } = useTranslation(['add', 'stepper']);
 
@@ -88,8 +88,8 @@ const PlanTile = ({
   };
 
   const planIsDisabled = (plan) =>
-    (type === DeploymentMode.MONO_ZONE && plan.value === 'premium') ||
-    (type === DeploymentMode.MULTI_ZONES && plan.value === 'standard');
+    (isMonoDeploymentZone(type) && plan.value === 'premium') ||
+    (isMultiDeploymentZones(type) && plan.value === 'standard');
 
   const getSortOrder = (typeRegion: string) => {
     const priority = {
@@ -172,23 +172,27 @@ const PlanTile = ({
 
 PlanTile.Banner = function PlanTileBanner({ type }: { type: DeploymentMode }) {
   const { t } = useTranslation(['add']);
+  const [open, setOpen] = useState(true);
   return (
-    <OsdsMessage
-      removable
-      className="mt-4"
-      type={ODS_MESSAGE_TYPE.info}
-      color={ODS_THEME_COLOR_INTENT.info}
-    >
-      <OsdsText
-        size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-        color={ODS_THEME_COLOR_INTENT.text}
-        className="block"
+    open && (
+      <OsdsMessage
+        removable
+        onOdsRemoveClick={() => setOpen(false)}
+        className="mt-4"
+        type={ODS_MESSAGE_TYPE.info}
+        color={ODS_THEME_COLOR_INTENT.info}
       >
-        {type === DeploymentMode.MULTI_ZONES
-          ? t('kube_add_plan_content_standard_3AZ_banner')
-          : t('kube_add_plan_content_premium_1AZ_banner')}
-      </OsdsText>
-    </OsdsMessage>
+        <OsdsText
+          size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+          color={ODS_THEME_COLOR_INTENT.text}
+          className="block"
+        >
+          {isMultiDeploymentZones(type)
+            ? t('kube_add_plan_content_standard_3AZ_banner')
+            : t('kube_add_plan_content_premium_1AZ_banner')}
+        </OsdsText>
+      </OsdsMessage>
+    )
   );
 };
 
@@ -212,7 +216,6 @@ PlanTile.LockedView = function PlanTileLockedView({
 };
 
 PlanTile.Header = function PlanTileHeader({
-  selected,
   title,
   description,
   disabled,
@@ -242,10 +245,7 @@ PlanTile.Header = function PlanTileHeader({
   return (
     <div className=" px-6 py-4 flex-col w-full ">
       <div className="flex gap-4">
-        <h5
-          data-testid="plan-header"
-          className={`capitalize ${selected ? 'font-bold' : 'font-normal'}`}
-        >
+        <h5 data-testid="plan-header" className="capitalize font-bold">
           {t(title)}
         </h5>
         {value === 'premium' && (
@@ -263,15 +263,13 @@ PlanTile.Header = function PlanTileHeader({
 
       <div className="mt-2 flex flex-col">
         {renderWarningMessage(
-          disabled && value === 'premium' && type === DeploymentMode.MONO_ZONE,
+          disabled && value === 'premium' && isMonoDeploymentZone(type),
           XCircle,
           'kube_add_plan_no_available_plan',
           'text-critical-500',
         )}
         {renderWarningMessage(
-          disabled &&
-            value === 'standard' &&
-            type === DeploymentMode.MULTI_ZONES,
+          disabled && value === 'standard' && isMultiDeploymentZones(type),
           Clock12,
           'kube_add_plan_content_standard_very_soon',
           'text-warning-500',

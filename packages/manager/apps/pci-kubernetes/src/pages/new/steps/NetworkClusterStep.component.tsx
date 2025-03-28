@@ -36,6 +36,7 @@ import { LoadBalancerWarning } from '@/components/network/LoadBalancerWarning.co
 
 import { KUBECONFIG_3AZ_GATEWAY } from '@/constants';
 import { DeploymentMode } from '@/types';
+import { isMonoDeploymentZone, isMultiDeploymentZones } from '@/helpers';
 
 export type TNetworkFormState = {
   privateNetwork?: TNetwork;
@@ -85,7 +86,7 @@ export default function NetworkClusterStep({
         />
       ) : (
         <>
-          {type === DeploymentMode.MULTI_ZONES && (
+          {isMultiDeploymentZones(type) && (
             <OsdsMessage
               type={ODS_MESSAGE_TYPE.info}
               color={ODS_TEXT_COLOR_INTENT.info}
@@ -146,32 +147,30 @@ export default function NetworkClusterStep({
               {shouldWarnSubnet && <LoadBalancerWarning />}
             </div>
           )}
-          {form.privateNetwork &&
-            form.subnet &&
-            type === DeploymentMode.MONO_ZONE && (
-              <>
-                <GatewaySelector
-                  className="mt-8"
-                  onSelect={(gateway) =>
-                    setForm((network) => ({
-                      ...network,
-                      gateway,
-                    }))
-                  }
-                />
-                <LoadBalancerSelect
-                  projectId={projectId}
-                  network={form.privateNetwork}
-                  onSelect={(loadBalancersSubnet) =>
-                    setForm((network) => ({
-                      ...network,
-                      loadBalancersSubnet,
-                    }))
-                  }
-                />
-                {shouldWarnLoadBalancerSubnet && <LoadBalancerWarning />}
-              </>
-            )}
+          {form.privateNetwork && form.subnet && isMonoDeploymentZone(type) && (
+            <>
+              <GatewaySelector
+                className="mt-8"
+                onSelect={(gateway) =>
+                  setForm((network) => ({
+                    ...network,
+                    gateway,
+                  }))
+                }
+              />
+              <LoadBalancerSelect
+                projectId={projectId}
+                network={form.privateNetwork}
+                onSelect={(loadBalancersSubnet) =>
+                  setForm((network) => ({
+                    ...network,
+                    loadBalancersSubnet,
+                  }))
+                }
+              />
+              {shouldWarnLoadBalancerSubnet && <LoadBalancerWarning />}
+            </>
+          )}
         </>
       )}
     </>

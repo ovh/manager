@@ -204,7 +204,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export const isMonoZone = (type: DeploymentMode) =>
+export const isMonoDeploymentZone = (type: DeploymentMode) =>
   type === DeploymentMode.MONO_ZONE;
-export const isMultiZones = (type: DeploymentMode) =>
+export const isMultiDeploymentZones = (type: DeploymentMode) =>
   type === DeploymentMode.MULTI_ZONES;
