@@ -157,6 +157,7 @@ export default class PciInstancesAddController {
 
     this.globalRegionsUrl = this.PciProject.getDocumentUrl('GLOBAL_REGIONS');
     this.localZoneUrl = this.PciProject.getDocumentUrl('LOCAL_ZONE');
+    this.zone3azUrl = this.PciProject.getDocumentUrl('REGIONS_3AZ');
 
     this.selectedDeploymentMode = null;
     this.model = {
