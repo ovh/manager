@@ -78,12 +78,12 @@ export default function ListingPage() {
       condition={!isPending && allArchives?.length === 0}
       route="./onboarding"
     >
-      <div className="flex flex-col gap-8">
+      <div className="flex flex-col gap-5">
         <div>
           <Notifications />
         </div>
 
-        <div className="sm:flex items-center justify-between">
+        <div className="sm:flex items-center justify-between gap-5">
           <div className="sm:flex">
             <OdsButton
               size="sm"
@@ -133,7 +133,7 @@ export default function ListingPage() {
             />
             <OdsInput
               name="searchField"
-              className="min-w-[15rem]"
+              className="md:min-w-[15rem]"
               value={searchField}
               onKeyDown={(event) => {
                 if (event.key === 'Enter') {
