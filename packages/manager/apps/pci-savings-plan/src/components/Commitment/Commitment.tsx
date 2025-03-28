@@ -56,14 +56,17 @@ const Commitment = ({
     <OdsCard
       className={clsx(
         'flex flex-row items-center mr-5 my-4 p-5 justify-between w-full cursor-pointer',
-        { 'border-[--ods-color-primary-500] border-2': isActive },
+        {
+          'border-[--ods-color-primary-500] border-2': isActive,
+          'hover:border-2': !isActive,
+        },
       )}
       onClick={onClickTracking}
       color="neutral"
     >
       <span className="flex flex-row items-center justify-center">
         <OdsText>{t('commitment_month', { value: duration })}</OdsText>
-        {diffInPercent && (
+        {diffInPercent !== null && (
           <OdsText className="ml-3  text-[16px]">
             <span className="text-[#AC246F] font-bold">
               {`- ${diffInPercent} %`}
@@ -73,7 +76,7 @@ const Commitment = ({
       </span>
       <span className="flex flex-col items-end justify-center">
         <div className="flex flex-row items-center justify-center">
-          {priceByMonthWithoutCommitment && (
+          {!!priceByMonthWithoutCommitment && (
             <OdsText className="line-through">
               {`~ ${getTextPrice(priceByMonthWithoutCommitment * CENTS_PRICE)}`}
             </OdsText>
