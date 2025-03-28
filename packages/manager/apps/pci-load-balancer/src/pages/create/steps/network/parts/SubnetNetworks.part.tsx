@@ -1,3 +1,5 @@
+import { useEffect, useContext, useMemo } from 'react';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   OsdsMessage,
   OsdsSpinner,
@@ -13,12 +15,13 @@ import { useTranslation } from 'react-i18next';
 import { useCatalogPrice } from '@ovh-ux/manager-react-components';
 import { useParams } from 'react-router-dom';
 import { useCreateStore } from '@/pages/create/store';
-import {
-  useGetSubnetGateways,
-  useSmallestGatewayByRegion,
-} from '@/api/hook/useGateways';
+import { useSubnetGateways } from '@/api/hook/useGateways/useGateways';
+import { FloatingIpSelectionId } from '@/types/floating.type';
+import { useRegionAddons } from '@/api/hook/useAddons/useAddons';
+import { GATEWAY_ADDON_FAMILY } from '@/api/hook/useGateways/useGateways.constant';
 
 export const SubnetNetworksPart = (): JSX.Element => {
+  const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
   const store = useCreateStore();
   const { t } = useTranslation('load-balancer/create');
 
@@ -26,13 +29,34 @@ export const SubnetNetworksPart = (): JSX.Element => {
 
   const { projectId } = useParams();
 
-  const { isFetching: isSubnetGatewaysFetching } = useGetSubnetGateways(
-    projectId,
-    store.region?.name,
-    store.subnet?.id,
-  );
+  const region = store.region?.name || '';
 
-  const gateway = useSmallestGatewayByRegion(store.region?.name, projectId);
+  const {
+    data: subnetGateways,
+    isFetching: isSubnetGatewaysFetching,
+  } = useSubnetGateways(projectId, region, store.subnet?.id);
+
+  const { addons } = useRegionAddons({
+    ovhSubsidiary,
+    projectId,
+    region,
+    addonFamily: GATEWAY_ADDON_FAMILY,
+  });
+
+  // the smallest gateway is always the first because it is already sorted by size
+  const gateway = useMemo(() => (addons ? addons[0] : null), [addons]);
+
+  useEffect(() => {
+    store.set.gateways(subnetGateways || []);
+  }, [subnetGateways, store.set]);
+
+  if (isSubnetGatewaysFetching) {
+    return (
+      <div className="mt-8">
+        <OsdsSpinner inline />
+      </div>
+    );
+  }
 
   if (isSubnetGatewaysFetching) {
     return <OsdsSpinner inline />;
@@ -42,7 +66,7 @@ export const SubnetNetworksPart = (): JSX.Element => {
     <>
       {store.subnet &&
         store.gateways.length === 0 &&
-        store.publicIp.type !== 'none' && (
+        store.publicIp !== FloatingIpSelectionId.UNATTACHED && (
           <OsdsMessage
             className="mt-8"
             type={ODS_MESSAGE_TYPE.info}

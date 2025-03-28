@@ -8,8 +8,10 @@ import {
   useColumnFilters,
   useDataGrid,
   useNotifications,
+  DatagridColumn,
+  DataGridTextCell,
 } from '@ovh-ux/manager-react-components';
-import { Suspense, useEffect, useRef, useState } from 'react';
+import { Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import {
   OsdsButton,
   OsdsIcon,
@@ -28,11 +30,14 @@ import {
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
 import { useL7Policies } from '@/api/hook/useL7Policy';
-import { useL7PoliciesDatagridColumn } from '@/pages/detail/listeners/l7/list/useL7PoliciesDatagridColumn';
+import OperatingStatusComponent from '@/components/listing/OperatingStatus.component';
+import ProvisioningStatusComponent from '@/components/listing/ProvisioningStatus.component';
+import { TL7Policy } from '@/api/data/l7Policies';
+import ActionsComponent from '@/pages/detail/listeners/l7/list/Actions.component';
+import DataGridLinkCell from '@/components/datagrid/DataGridLinkCell.component';
 
 export default function L7PoliciesList() {
-  const { t } = useTranslation('l7');
-  const { t: tFilter } = useTranslation('filter');
+  const { t } = useTranslation(['l7', 'load-balancer', 'filter']);
 
   const { projectId, region, listenerId } = useParams();
   const { pagination, setPagination, sorting, setSorting } = useDataGrid();
@@ -56,7 +61,93 @@ export default function L7PoliciesList() {
     clearNotifications();
   }, []);
 
-  const columns = useL7PoliciesDatagridColumn();
+  const columns: DatagridColumn<TL7Policy>[] = useMemo(
+    () => [
+      {
+        id: 'position',
+        cell: (props: TL7Policy) => (
+          <DataGridTextCell>
+            <span className="inline-block align-text-top">
+              {props.position}
+              <OsdsButton
+                className="inline-block align-bottom"
+                size={ODS_BUTTON_SIZE.sm}
+                color={ODS_THEME_COLOR_INTENT.text}
+                variant={ODS_BUTTON_VARIANT.ghost}
+                onClick={() => navigate(`../${props.id}/edit`)}
+              >
+                <OsdsIcon size={ODS_ICON_SIZE.xxs} name={ODS_ICON_NAME.PEN} />
+              </OsdsButton>
+            </span>
+          </DataGridTextCell>
+        ),
+        label: t('octavia_load_balancer_list_l7_policies_position'),
+      },
+      {
+        id: 'name',
+        cell: ({ id, name }: TL7Policy) => (
+          <DataGridLinkCell href={`../${id}/edit`}>{name}</DataGridLinkCell>
+        ),
+        label: t('octavia_load_balancer_list_l7_policies_name'),
+      },
+      {
+        id: 'action',
+        cell: (props: TL7Policy) => (
+          <DataGridTextCell>{props.action}</DataGridTextCell>
+        ),
+        label: t('octavia_load_balancer_list_l7_policies_action'),
+      },
+      {
+        id: 'attribute',
+        cell: (props: TL7Policy) => (
+          <DataGridTextCell>{props.attribute}</DataGridTextCell>
+        ),
+        label: t('octavia_load_balancer_list_l7_policies_attribute'),
+        isSortable: false,
+      },
+      {
+        id: 'redirectHttpCode',
+        cell: (props: TL7Policy) => (
+          <DataGridTextCell>{props.redirectHttpCode || '-'}</DataGridTextCell>
+        ),
+        label: t('octavia_load_balancer_list_l7_policies_redirect_code'),
+        isSortable: false,
+      },
+      {
+        id: 'provisioningStatus',
+        cell: (props: TL7Policy) => (
+          <ProvisioningStatusComponent
+            status={props.provisioningStatus}
+            className="w-fit"
+          />
+        ),
+        label: t('load-balancer:octavia_load_balancer_provisioning_status'),
+        isSortable: false,
+      },
+      {
+        id: 'operatingStatus',
+        cell: (props: TL7Policy) => (
+          <OperatingStatusComponent
+            status={props.operatingStatus}
+            className="w-fit"
+          />
+        ),
+        label: t('load-balancer:octavia_load_balancer_operating_status'),
+        isSortable: false,
+      },
+      {
+        id: 'actions',
+        cell: (props: TL7Policy) => (
+          <div className="min-w-16">
+            <ActionsComponent l7PoliciesId={props.id} />
+          </div>
+        ),
+        label: '',
+        isSortable: false,
+      },
+    ],
+    [t, navigate],
+  );
 
   return (
     <>
@@ -118,7 +209,7 @@ export default function L7PoliciesList() {
                 className="mr-2"
                 color={ODS_THEME_COLOR_INTENT.primary}
               />
-              {tFilter('common_criteria_adder_filter_label')}
+              {t('filter:common_criteria_adder_filter_label')}
             </OsdsButton>
             <OsdsPopoverContent>
               <FilterAdd
