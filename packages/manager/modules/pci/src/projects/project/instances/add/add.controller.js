@@ -133,6 +133,15 @@ export default class PciInstancesAddController {
         }
       },
     );
+
+    this.floatingIpPriceFormatter = new Intl.NumberFormat(
+      this.user.language.replace('_', '-'),
+      {
+        style: 'currency',
+        currency: this.user.currency.code,
+        maximumFractionDigits: 5,
+      },
+    );
   }
 
   $onInit() {
@@ -1190,6 +1199,7 @@ export default class PciInstancesAddController {
   onFloatingIpChange(value) {
     if (value !== null && !value?.id) {
       this.isCreateFloatingIPClicked = true;
+      this.getFloatingIpPrice();
       this.trackAddInstance(['add', 'create-floating-ip']);
     } else {
       this.selectedFloatingIP = value;
@@ -1325,6 +1335,39 @@ export default class PciInstancesAddController {
       }
     }
     return null;
+  }
+
+  getFloatingIpPrice() {
+    this.PciProjectsProjectInstanceService.getProductAvailability(
+      this.projectId,
+      this.coreConfig.getUser().ovhSubsidiary,
+      'floatingip',
+    ).then((productCapabilities) => {
+      const hourCapabilities = productCapabilities.plans.filter((plan) =>
+        plan.code.includes('hour'),
+      );
+
+      const flattenCode = hourCapabilities.flatMap((plan) =>
+        plan.regions.map((region) => ({
+          code: plan.code,
+          region: region.name,
+        })),
+      );
+
+      const activeCode =
+        flattenCode.find(
+          (code) => code.region === this.model.datacenter?.name,
+        ) || flattenCode?.[0];
+
+      const catalogPrice = this.catalog.addons.find(
+        (addon) => addon.planCode === activeCode?.code,
+      );
+
+      this.floatingIpPrice = this.getFormatedHourlyPrice(
+        catalogPrice?.pricings?.[0].price || 0,
+      );
+      return this.floatingIpPrice;
+    });
   }
 
   showNetworkNavigation() {
@@ -1961,5 +2004,9 @@ export default class PciInstancesAddController {
     if (!modelValue) {
       this.automatedBackup.schedule = null;
     }
+  }
+
+  getFormatedHourlyPrice(price) {
+    return this.floatingIpPriceFormatter.format(price / 100000000);
   }
 }
