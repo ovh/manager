@@ -1,7 +1,7 @@
-import { useContext, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import useContainer from '@/core/container/useContainer';
 import { useShell } from '@/context/useApplicationContext';
-import ProductNavReshuffleContext from './context';
+import ProductNavReshuffleContext, { ProductNavReshuffleContextType } from './product-nav-reshuffle.context';
 import { Node } from '@/container/nav-reshuffle/sidebar/navigation-tree/node';
 import { MOBILE_WIDTH_RESOLUTION } from '@/container/common/constants';
 import { useMediaQuery } from 'react-responsive';
@@ -15,9 +15,8 @@ type Props = {
 export const ProductNavReshuffleProvider = ({
   children = null,
 }: Props): JSX.Element => {
-  let pnrContext = useContext(ProductNavReshuffleContext);
-  const location = useLocation();
 
+  const location = useLocation();
   const [currentNavigationNode, setCurrentNavigationNode] = useState<Node>(null);
   const [navigationTree, setNavigationTree] = useState({});
   const { betaVersion } = useContainer();
@@ -99,8 +98,8 @@ export const ProductNavReshuffleProvider = ({
     setIsLocationChangesOnce(true);
   }, [location])
 
-  pnrContext = {
-    // onboarding
+  const pnrContext = {
+   // onboarding
     onboardingOpenedState,
     openOnboarding,
     startOnboarding,
@@ -121,7 +120,7 @@ export const ProductNavReshuffleProvider = ({
     isMobile,
     isAnimated,
     setIsAnimated
-  };
+  } satisfies ProductNavReshuffleContextType;
 
   return (
     <ProductNavReshuffleContext.Provider value={pnrContext}>
