@@ -4,10 +4,16 @@ import style from './style.module.scss';
 import SidebarLinkTag from './SidebarLinkTag';
 import { Node } from './navigation-tree/node';
 import StaticLink from '@/container/nav-reshuffle/sidebar/StaticLink';
-import { OsdsIcon } from '@ovhcloud/ods-components/react';
+import {
+  OsdsIcon,
+  OsdsSkeleton,
+  OsdsSpinner,
+} from '@ovhcloud/ods-components/react';
 import {
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
+  ODS_SKELETON_SIZE,
+  ODS_SPINNER_SIZE,
 } from '@ovhcloud/ods-components';
 import { SvgIconWrapper } from '@ovh-ux/ovh-product-icons/utils/SvgIconWrapper';
 
@@ -19,16 +25,18 @@ export type SidebarLinkProps = {
   handleOnEnter?(node: Node): void;
   id?: string;
   isShortText?: boolean;
+  isLoading?: boolean;
 };
 
 const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
   hasService = false,
   node = {},
   linkParams = {},
-  handleOnClick = () => { },
-  handleOnEnter = () => { },
+  handleOnClick = () => {},
+  handleOnEnter = () => {},
   id = '',
   isShortText = false,
+  isLoading = false,
 }: SidebarLinkProps): JSX.Element => {
   const { t } = useTranslation('sidebar');
 
@@ -44,7 +52,9 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
     />
   ) : (
     <button
-      className={`${style['button-as-div']} relative`}
+      className={`${style.button_as_div} ${
+        isShortText ? style.button_as_div_short : ''
+      } relative`}
       title={t(node.translation)}
       onKeyUp={(e) => {
         if (e.key === 'Enter') {
@@ -56,16 +66,47 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
       data-testid={id}
       role="button"
     >
-      <span className='flex gap-2 align-items-center'>
-        <SvgIconWrapper name={node.svgIcon} height={32} width={32} className='p-1 fill-white block' />
-        {!isShortText && <span className={`${style.sidebarLinkTitle}`}>{t(node.translation)}</span>}
+      <span className="flex gap-2 align-items-center justify-start whitespace-nowrap">
+        <span className={style.button_as_div_icon}>
+          <SvgIconWrapper
+            name={node.svgIcon}
+            height={32}
+            width={32}
+            className={`p-1 fill-white transition-all duration-200O shrink-0 ${
+              isLoading ? 'hidden' : 'block'
+            }`}
+          />
+          {isLoading && isShortText && (
+            <OsdsSpinner
+              className={`h-[32px] w-[32px] transition-all duration-200O shrink-0`}
+              size={ODS_SPINNER_SIZE.sm}
+              contrasted
+            />
+          )}
+        </span>
+        {!isShortText && (
+          <span className={style.sidebarLinkTitle}>
+            {isLoading ? (
+              <OsdsSkeleton
+                inline={true}
+                className="mx-2"
+                size={ODS_SKELETON_SIZE.xs}
+                randomized
+              />
+            ) : (
+              <>{t(node.translation)}</>
+            )}
+          </span>
+        )}
       </span>
       <span className="flex justify-end align-items-center">
         {hasService && (
           <OsdsIcon
             name={ODS_ICON_NAME.SHAPE_DOT}
             size={ODS_ICON_SIZE.xs}
-            className={`${style.sidebarLinkTag} ${isShortText ? 'absolute -top-1.5 right-2.5' : ''}`}
+            className={`${style.sidebarLinkTag} ${
+              isShortText ? 'absolute -top-1.5 right-2.5' : ''
+            }`}
           />
         )}
         {!isShortText && node.children ? (
@@ -76,7 +117,7 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
         ) : null}
         {!isShortText && <SidebarLinkTag node={node} />}
       </span>
-    </button >
+    </button>
   );
 };
 

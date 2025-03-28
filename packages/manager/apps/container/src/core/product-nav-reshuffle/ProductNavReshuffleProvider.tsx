@@ -1,11 +1,12 @@
-import { useContext, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import useContainer from '@/core/container/useContainer';
 import { useShell } from '@/context/useApplicationContext';
-import ProductNavReshuffleContext from './context';
+import ProductNavReshuffleContext, { ProductNavReshuffleContextType } from './product-nav-reshuffle.context';
 import { Node } from '@/container/nav-reshuffle/sidebar/navigation-tree/node';
 import { MOBILE_WIDTH_RESOLUTION } from '@/container/common/constants';
 import { useMediaQuery } from 'react-responsive';
 import useOnboarding, { ONBOARDING_OPENED_STATE_ENUM } from '../onboarding';
+import { useLocation } from 'react-router-dom';
 
 type Props = {
   children: JSX.Element | JSX.Element[];
@@ -14,8 +15,8 @@ type Props = {
 export const ProductNavReshuffleProvider = ({
   children = null,
 }: Props): JSX.Element => {
-  let pnrContext = useContext(ProductNavReshuffleContext);
 
+  const location = useLocation();
   const [currentNavigationNode, setCurrentNavigationNode] = useState<Node>(null);
   const [navigationTree, setNavigationTree] = useState({});
   const { betaVersion } = useContainer();
@@ -23,6 +24,8 @@ export const ProductNavReshuffleProvider = ({
   const [isMobile, setIsMobile] = useState(useMediaQuery({
     query: `(max-width: ${MOBILE_WIDTH_RESOLUTION}px)`,
   }));
+  const [isAnimated, setIsAnimated] = useState(false);
+  const [isLocationChangesOnce, setIsLocationChangesOnce] = useState(false);
 
   const onboarding = useOnboarding();
 
@@ -89,8 +92,14 @@ export const ProductNavReshuffleProvider = ({
     }
   }, []);
 
-  pnrContext = {
-    // onboarding
+  useEffect(() => {
+    if (isAnimated) return;
+    if (isLocationChangesOnce) setIsAnimated(true);
+    setIsLocationChangesOnce(true);
+  }, [location])
+
+  const pnrContext = {
+   // onboarding
     onboardingOpenedState,
     openOnboarding,
     startOnboarding,
@@ -109,7 +118,9 @@ export const ProductNavReshuffleProvider = ({
     navigationTree,
     setNavigationTree,
     isMobile,
-  };
+    isAnimated,
+    setIsAnimated
+  } satisfies ProductNavReshuffleContextType;
 
   return (
     <ProductNavReshuffleContext.Provider value={pnrContext}>
