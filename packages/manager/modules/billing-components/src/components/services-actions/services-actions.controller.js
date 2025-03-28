@@ -46,8 +46,6 @@ export default class ServicesActionsCtrl {
     })
       .then((links) => {
         this.autorenewLink = links.autorenewLink;
-        this.billingManagementAvailabilityAndHaveAutorenewLink =
-          links.billingManagementAvailabilityAndHaveAutorenewLink;
         this.commitmentLink = links.commitmentLink;
         this.cancelCommitmentLink = links.cancelCommitmentLink;
         this.cancelResiliationLink = links.cancelResiliationLink;
@@ -57,6 +55,84 @@ export default class ServicesActionsCtrl {
         this.resiliateLink = links.resiliateLink;
         this.buyingLink = links.buyingLink;
         this.renewLink = links.renewLink;
+
+        this.canDisplayMenu =
+          !this.isLoading &&
+          ((links.billingManagementAvailabilityAndHaveAutorenewLink &&
+            this.service.serviceType !== this.SERVICE_TYPE.NUTANIX) ||
+            (this.service.serviceType === this.SERVICE_TYPE.NUTANIX &&
+              this.service.status === this.SERVICE_ACTIVE_STATUS) ||
+            this.service.canBeEngaged ||
+            this.service.hasPendingEngagement);
+
+        this.canDisplayWarnPayBillMenuEntry =
+          this.autorenewLink &&
+          this.service.hasDebt() &&
+          !this.service.hasBillingRights(this.user.nichandle);
+        this.canDisplayPayBillMenuEntry =
+          this.service.hasDebt() &&
+          this.service.hasBillingRights(this.user.nichandle);
+        this.canDisplayRenewManagementMenuEntries =
+          links.billingManagementAvailabilityAndHaveAutorenewLink &&
+          !this.service.hasParticularRenew() &&
+          !this.service.hasPendingResiliation() &&
+          !this.service.hasDebt();
+        this.canDisplayRenewConfigurationMenuEntry =
+          !this.service.isOneShot() &&
+          !this.service.hasForcedRenew() &&
+          !this.service.isResiliated() &&
+          this.service.canHandleRenew() &&
+          !this.service.hasEngagement();
+        this.canDisplayAnticipateRenewMenuEntry =
+          !this.service.isOneShot() &&
+          !this.service.hasManualRenew() &&
+          this.service.canHandleRenew() &&
+          !this.service.canBeEngaged &&
+          !this.service.hasPendingEngagement;
+        this.canDisplayRenewManuallyMenuEntry =
+          this.service.hasManualRenew() &&
+          !(
+            typeof this.service.isInDebt === 'function' &&
+            this.service.isInDebt()
+          ) &&
+          this.service.canHandleRenew();
+        this.canDisplayManageCommitmentMenuEntry =
+          this.service.canBeEngaged &&
+          !this.service.hasPendingEngagement &&
+          !this.service.isSuspended();
+        this.canDisplayCancelCommitmentMenuEntry = this.service.hasPendingEngagement;
+        this.canDisplayExchangeSpecificMenuEntries =
+          this.service.serviceType === this.SERVICE_TYPE.EXCHANGE;
+        this.canDisplayXdslSpecificResiliationMenuEntry =
+          this.service.serviceType === this.SERVICE_TYPE.PACK_XDSL &&
+          (!this.service.shouldDeleteAtExpiration() ||
+            !this.service.isResiliated()) &&
+          !this.service.hasDebt() &&
+          !this.service.hasPendingResiliation();
+        this.canDisplayXdslResiliationMenuEntry =
+          this.resiliateLink &&
+          this.service.hasAdminRights(this.user.auth.account);
+        this.canDisplayResiliationMenuEntries =
+          this.canResiliate() &&
+          (!this.service.shouldDeleteAtExpiration() ||
+            !this.service.isResiliated()) &&
+          !this.service.hasDebt() &&
+          !this.service.hasPendingResiliation();
+        this.canDisplayResiliationMenuEntry =
+          (this.resiliateLink || this.isCustomResiliationHandled) &&
+          (this.service.hasAdminRights(this.user.auth.account) ||
+            this.service.hasAdminRights(this.user.nichandle));
+        this.canDisplayDeleteMenuEntry =
+          this.autorenewLink && this.service.canBeDeleted();
+        this.canDisplaySmsSpecificMenuEntries =
+          this.service.serviceType === this.SERVICE_TYPE.SMS;
+        this.canDisplayCancelResiliationMenuEntry =
+          this.service.serviceType !== this.SERVICE_TYPE.VRACK &&
+          this.cancelResiliationLink &&
+          (this.service.canBeUnresiliated(this.user.nichandle) ||
+            this.service.canCancelResiliationByEndRule());
+        this.canDisplayViewServiceMenuEntry =
+          this.service.url && !this.service.isByoipService();
       })
       .finally(() => {
         this.isLoading = false;
