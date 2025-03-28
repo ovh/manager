@@ -54,8 +54,7 @@
   "user_account_menu_useful_links_tasks": "État du réseau et incidents",
   "user_account_menu_useful_links_tickets": "Mes demandes d'assistance",
   "user_account_menu_useful_links_createTicket": "Créer un ticket",
-  "user_account_menu_useful_links_cloud_changelog": "Cloud Changelog",
-  "user_account_menu_useful_links_hosting_and_collab_changelog": "Hosting & Collab Changelog",
+  "user_account_menu_useful_links_roadmap_changelog": "Roadmap & Changelog",
   "user_account_menu_beta_feedback": "Donnez votre avis !",
   "user_account_menu_beta_feedback_text": "Aidez-nous à améliorer OVHcloud"
 }
