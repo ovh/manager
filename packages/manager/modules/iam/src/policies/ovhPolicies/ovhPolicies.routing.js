@@ -1,4 +1,4 @@
-import { TAG } from '../../iam.constants';
+import { OVH_POLICIES_TRACKING_HITS } from './ovhPolicies.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('iam.policies.ovhPolicies', {
@@ -20,7 +20,7 @@ export default /* @ngInject */ ($stateProvider) => {
       cursors: /* @ngInject */ ($transition$) => $transition$.params().cursors,
     },
     atInternet: {
-      rename: TAG.POLICIES,
+      rename: OVH_POLICIES_TRACKING_HITS.LISTING_PAGE,
     },
   });
 };

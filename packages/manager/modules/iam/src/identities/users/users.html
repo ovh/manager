@@ -31,7 +31,7 @@
             id="btnAddUser"
             type="button"
             class="btn btn-primary my-4"
-            data-ng-click="setAction('add/users-add', user)"
+            data-ng-click="$ctrl.createUser()"
             data-ng-disabled="$ctrl.usersLoading"
             data-ng-class="{'disabled': $ctrl.usersLoading}"
         >
@@ -127,7 +127,7 @@
                                         <button
                                             type="button"
                                             class="btn btn-link"
-                                            data-ng-click="setAction('update/users-update', user)"
+                                            data-ng-click="$ctrl.updateUser(user)"
                                             data-translate="user_users_update"
                                         ></button>
                                     </li>
@@ -135,7 +135,7 @@
                                         <button
                                             type="button"
                                             class="btn btn-link"
-                                            data-ng-click="setAction('delete/users-delete', user)"
+                                            data-ng-click="$ctrl.deleteUser(user)"
                                             data-translate="user_users_delete"
                                         ></button>
                                     </li>
@@ -143,7 +143,7 @@
                                         <button
                                             type="button"
                                             class="btn btn-link"
-                                            data-ng-click="setAction('enable/users-enable', user)"
+                                            data-ng-click="$ctrl.enableUser(user)"
                                             data-translate="user_users_enable"
                                         ></button>
                                     </li>
@@ -151,7 +151,7 @@
                                         <button
                                             type="button"
                                             class="btn btn-link"
-                                            data-ng-click="setAction('disable/users-disable', user)"
+                                            data-ng-click="$ctrl.disableUser(user)"
                                             data-translate="user_users_disable"
                                         ></button>
                                     </li>
