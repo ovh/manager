@@ -15,9 +15,9 @@ import {
   getOrganisationSelect,
 } from '@/test-utils';
 import {
-  organisationMockList,
   resourceMockList,
   vrackMockList,
+  organisationMockList,
 } from '../../../mocks';
 import { IpOffer, IpVersion } from './order.constant';
 import { ipParkingOptionValue } from '@/data/hooks/useServiceList';
@@ -32,7 +32,7 @@ describe('Order', async () => {
       organisation: organisationMockList[2],
       offer: IpOffer.blockAdditionalIp,
       expectedOrderLink:
-        "https://www.ovh.com/fr/order/express/#/express/review?products=~(~(configuration~(~(label~'destination~value~'pn-000001)~(label~'country~value~'DE)~(label~'organisation~value~'RIPE-1)~(label~'datacenter~value~'LIM))~duration~'P1M~planCode~'ip-v4-s30-ripe~pricingMode~'default~productId~'ip~quantity~1~serviceName~null~datacenter~'LIM))",
+        "https://www.ovh.com/fr/order/express/#/express/review?products=~(~(configuration~(~(label~'destination~value~'pn-000001)~(label~'country~value~'DE)~(label~'organisation~value~'RIPE_1)~(label~'datacenter~value~'LIM))~duration~'P1M~planCode~'ip-v4-s30-ripe~pricingMode~'default~productId~'ip~quantity~1~serviceName~null~datacenter~'LIM))",
     },
     {
       case: 'vRack in UK',
@@ -42,7 +42,7 @@ describe('Order', async () => {
       organisation: organisationMockList[3],
       offer: IpOffer.blockAdditionalIp,
       expectedOrderLink:
-        "https://www.ovh.com/fr/order/express/#/express/review?products=~(~(configuration~(~(label~'destination~value~'pn-000002)~(label~'country~value~'UK)~(label~'organisation~value~'RIPE-2)~(label~'datacenter~value~'ERI))~duration~'P1M~planCode~'ip-v4-s30-ripe~pricingMode~'default~productId~'ip~quantity~1~serviceName~null~datacenter~'ERI))",
+        "https://www.ovh.com/fr/order/express/#/express/review?products=~(~(configuration~(~(label~'destination~value~'pn-000002)~(label~'country~value~'UK)~(label~'organisation~value~'RIPE_2)~(label~'datacenter~value~'ERI))~duration~'P1M~planCode~'ip-v4-s30-ripe~pricingMode~'default~productId~'ip~quantity~1~serviceName~null~datacenter~'ERI))",
     },
     {
       case: 'vRack in CA',
@@ -52,7 +52,7 @@ describe('Order', async () => {
       organisation: organisationMockList[0],
       offer: IpOffer.blockAdditionalIp,
       expectedOrderLink:
-        "https://www.ovh.com/fr/order/express/#/express/review?products=~(~(configuration~(~(label~'destination~value~'pn-000001)~(label~'country~value~'CA)~(label~'organisation~value~'ARIN-1)~(label~'datacenter~value~'BHS))~duration~'P1M~planCode~'ip-v4-s30-arin~pricingMode~'default~productId~'ip~quantity~1~serviceName~null~datacenter~'BHS))",
+        "https://www.ovh.com/fr/order/express/#/express/review?products=~(~(configuration~(~(label~'destination~value~'pn-000001)~(label~'country~value~'CA)~(label~'organisation~value~'ARIN_1)~(label~'datacenter~value~'BHS))~duration~'P1M~planCode~'ip-v4-s30-arin~pricingMode~'default~productId~'ip~quantity~1~serviceName~null~datacenter~'BHS))",
     },
     {
       case: 'Parking + Additional IP',
@@ -71,7 +71,7 @@ describe('Order', async () => {
       offer: IpOffer.blockAdditionalIp,
       organisation: organisationMockList[0],
       expectedOrderLink:
-        "https://www.ovh.com/fr/order/express/#/express/review?products=~(~(configuration~(~(label~'destination~value~'parking)~(label~'country~value~'FR)~(label~'organisation~value~'ARIN-1)~(label~'datacenter~value~'PAR))~duration~'P1M~planCode~'ip-v4-s30-ripe~pricingMode~'default~productId~'ip~quantity~1~serviceName~null~datacenter~'PAR))",
+        "https://www.ovh.com/fr/order/express/#/express/review?products=~(~(configuration~(~(label~'destination~value~'parking)~(label~'country~value~'FR)~(label~'organisation~value~'ARIN_1)~(label~'datacenter~value~'PAR))~duration~'P1M~planCode~'ip-v4-s30-ripe~pricingMode~'default~productId~'ip~quantity~1~serviceName~null~datacenter~'PAR))",
     },
     {
       case: 'Dedicated Cloud',
@@ -96,7 +96,7 @@ describe('Order', async () => {
       offer: IpOffer.blockAdditionalIp,
       organisation: organisationMockList[0],
       expectedOrderLink:
-        "https://www.ovh.com/fr/order/express/#/express/review?products=~(~(configuration~(~(label~'destination~value~'ns1111111.ip-111-222-333.net)~(label~'country~value~'CA)~(label~'organisation~value~'ARIN-1))~duration~'P1M~planCode~'ip-v4-s30-arin~pricingMode~'default~productId~'ip~quantity~1~serviceName~null~datacenter~null))",
+        "https://www.ovh.com/fr/order/express/#/express/review?products=~(~(configuration~(~(label~'destination~value~'ns1111111.ip-111-222-333.net)~(label~'country~value~'CA)~(label~'organisation~value~'ARIN_1))~duration~'P1M~planCode~'ip-v4-s30-arin~pricingMode~'default~productId~'ip~quantity~1~serviceName~null~datacenter~null))",
     },
     {
       case: 'VPS',
