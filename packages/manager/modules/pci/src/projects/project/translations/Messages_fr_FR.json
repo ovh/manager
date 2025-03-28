@@ -8,6 +8,7 @@
   "pci_projects_project_create_cluster_kubernetes": "Créer un cluster Kubernetes",
   "pci_projects_project_create_private_registry": "Créer un registre privé",
   "pci_projects_project_create_cluster_database": "Créer une base de données",
+  "pci_projects_project_create_dataplatform": "Créer une Data Platform",
   "pci_projects_project_create_ai_notebook": "Créer un AI Notebook",
   "pci_projects_project_activate_private_networks": "Gérer les réseaux privés (vRack)",
   "pci_projects_project_buy_ip_failover": "Gérer les IPs Failover",
