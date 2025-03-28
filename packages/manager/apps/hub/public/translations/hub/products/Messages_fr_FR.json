@@ -1,5 +1,5 @@
 {
-  "manager_hub_dashboard_services": "Mes produits et services",
+  "manager_hub_dashboard_services": "Mes Offres et Services",
   "manager_hub_products_ALL_DOM": "Pack AllDom",
   "manager_hub_products_CDN_DEDICATED": "CDN",
   "manager_hub_products_CLOUD_PROJECT": "Projets PCI",
@@ -71,6 +71,6 @@
   "manager_hub_products_XDSL": "xDSL",
   "manager_hub_products_WEB_PAA_S_SUBSCRIPTION": "Web PaaS",
   "manager_hub_products_ZIMBRA_SLOT": "Zimbra Starter",
-  "manager_hub_products_see_less": "Voir moins de services",
-  "manager_hub_products_see_more": "Voir tous les produits et services"
+  "manager_hub_products_see_less": "Voir moins d'offres et services",
+  "manager_hub_products_see_more": "Voir toutes les offres et services"
 }
