@@ -52,6 +52,7 @@
     "test:jest": "jest --runInBand",
     "test": "yarn lint",
     "test:turbo": "turbo run test --concurrency=1",
+    "test:coverage": "scripts/test-coverage.sh",
     "test:scripts": "make test"
   },
   "resolutions": {
