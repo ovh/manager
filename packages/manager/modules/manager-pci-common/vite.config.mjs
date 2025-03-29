@@ -1,4 +1,3 @@
-import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vitest/config';
 import dts from 'vite-plugin-dts';
 import path from 'path';
@@ -21,7 +20,7 @@ export default defineConfig({
     },
   },
   plugins: [
-    react(),
+    ...baseConfig.plugins,
     dts({
       root: __dirname,
       insertTypesEntry: true,
@@ -44,6 +43,7 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'jsdom',
+    cache: true,
   },
   build: {
     outDir: path.resolve(__dirname, 'dist'),

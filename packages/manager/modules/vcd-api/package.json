@@ -21,7 +21,7 @@
     "build": "tsc",
     "dev": "tsc",
     "start:watch": "tsc -w",
-    "test": "vitest run",
+    "test": "vitest run --pool=threads",
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "@ovh-ux/manager-core-test-utils": "^0.4.1",
-    "@vitejs/plugin-react": "^4.3.3",
+    "@vitejs/plugin-react-swc": "^3.8.1",
     "@vitest/coverage-v8": "^2.1.9",
     "msw": "2.1.7",
     "typescript": "^5.1.6",
