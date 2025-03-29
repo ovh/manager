@@ -22,7 +22,7 @@ import TEST_IDS from '../../../../utils/testIds.constants';
 describe('Datacentre Storage Listing Page', () => {
   it('access and display storage listing page', async () => {
     await renderTest({
-      initialRoute: `/${organizationList[0].id}/datacentres/${datacentreList[0].id}`,
+      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}`,
     });
 
     // access storage tab
@@ -58,7 +58,7 @@ describe('Datacentre Storage Listing Page', () => {
 
   it('display an error', async () => {
     await renderTest({
-      initialRoute: `/${organizationList[0].id}/datacentres/${datacentreList[0].id}/storage`,
+      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}/storage`,
       isStorageKO: true,
     });
 

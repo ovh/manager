@@ -5,8 +5,9 @@ import { useVcdOrganization } from '@ovh-ux/manager-module-vcd-api';
 import { ChangelogButton } from '@ovh-ux/manager-react-components';
 import VcdDashboardLayout from '@/components/dashboard/layout/VcdDashboardLayout.component';
 import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
-import { urls } from '@/routes/routes.constant';
+import { subRoutes, urls } from '@/routes/routes.constant';
 import { CHANGELOG_LINKS } from '@/utils/changelog.constants';
+import { VIRTUAL_DATACENTERS_LABEL } from './organizationDashboard.constants';
 
 export default function DashboardPage() {
   const { id } = useParams();
@@ -22,8 +23,8 @@ export default function DashboardPage() {
     },
     {
       name: 'datacentres',
-      title: t('managed_vcd_dashboard_datacentres_title'),
-      to: useResolvedPath('datacentres').pathname,
+      title: VIRTUAL_DATACENTERS_LABEL,
+      to: useResolvedPath(subRoutes.virtualDatacenters).pathname,
     },
   ];
 
@@ -45,6 +46,10 @@ export default function DashboardPage() {
     {
       id,
       label: serviceName,
+    },
+    {
+      id: subRoutes.virtualDatacenters,
+      label: VIRTUAL_DATACENTERS_LABEL,
     },
   ];
 
