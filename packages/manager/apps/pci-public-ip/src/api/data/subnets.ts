@@ -6,13 +6,19 @@ export type TSubnet = {
   id: string;
 };
 
-export const getSubnetsUrl = (projectId: string, networkId: string) =>
-  `/cloud/project/${projectId}/network/private/${networkId}/subnet`;
+export const getSubnetsUrl = (
+  projectId: string,
+  region: string,
+  networkId: string,
+) => `/cloud/project/${projectId}/region/${region}/network/${networkId}/subnet`;
 
 export const getSubnets = async (
   projectId: string,
+  region: string,
   networkId: string,
 ): Promise<TSubnet[]> => {
-  const { data } = await v6.get<TSubnet[]>(getSubnetsUrl(projectId, networkId));
+  const { data } = await v6.get<TSubnet[]>(
+    getSubnetsUrl(projectId, region, networkId),
+  );
   return data;
 };
