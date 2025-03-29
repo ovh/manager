@@ -15,8 +15,8 @@
   "nasha_components_partition_zfs_options_custom_template_selection": "Personalizar su configuración.",
   "nasha_components_partition_zfs_template_selection_title": "Seleccionar plantilla",
   "nasha_components_partition_zfs_template_selection_placeholder": "Elija una plantilla...",
-  "nasha_components_partition_zfs_options_template_1_description": "Compartir archivos de gran tamaño (imágenes, vídeos, streaming...)",
+  "nasha_components_partition_zfs_options_template_1_description": "Compartir archivos de gran tamaño (imágenes, vídeos, contendidos en streaming...)",
   "nasha_components_partition_zfs_options_template_2_description": "Imágenes de máquinas virtuales en ZFS.",
   "nasha_components_partition_zfs_options_template_3_description": "Almacenamiento de la base de datos.",
-  "nasha_components_partition_zfs_options_template_4_description": "Plantilla predeterminada para el uso compartido de archivos."
+  "nasha_components_partition_zfs_options_template_4_description": "Modelo predeterminado para el uso compartido de archivos."
 }
