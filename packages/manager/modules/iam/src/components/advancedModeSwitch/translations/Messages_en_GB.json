@@ -1,5 +1,0 @@
-{
-  "iam_advanced_mode_switch_toggle_label": "Advanced mode",
-  "iam_advanced_mode_switch_popover": "Advanced mode allows you to display your policies in read-only mode. These policies cannot be edited or deleted.",
-  "iam_advanced_mode_switch_error": "An error occurred: {{message}}"
-}

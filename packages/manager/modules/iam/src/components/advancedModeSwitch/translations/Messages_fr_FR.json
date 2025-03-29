@@ -1,5 +1,0 @@
-{
-  "iam_advanced_mode_switch_toggle_label": "Mode Avancé",
-  "iam_advanced_mode_switch_popover": "Le mode avancé vous permet d'afficher vos politiques en \"read-only\". Ces politiques ne sont ni éditables, ni supprimables.",
-  "iam_advanced_mode_switch_error": "Une erreur est survenue: {{ message }}"
-}

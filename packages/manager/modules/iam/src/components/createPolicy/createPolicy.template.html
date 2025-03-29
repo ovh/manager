@@ -30,7 +30,7 @@
             data-text="{{:: 'iam_create_policy_header_guide_text' | translate }}"
         >
             <oui-guide-menu-item
-                data-ng-repeat="guide in $ctrl.onboardingGuides track by $index"
+                data-ng-repeat="guide in $ctrl.policiesGuides track by $index"
                 data-href="{{:: guide.link }}"
                 data-on-click="$ctrl.onGuideClick(guide.key)"
                 data-external
