@@ -29,10 +29,11 @@ const config = {
     },
     borderRadius: {
       none: '0',
-      sm: 'var(--ods-size-border-radius-01)',
-      DEFAULT: 'var(--ods-size-border-radius-01)',
-      md: 'var(--ods-size-border-radius-02)',
-      lg: 'var(--ods-size-border-radius-02)',
+      sm: 'var(--ods-border-radius-sm, var(--ods-size-border-radius-01, 4px))',
+      DEFAULT:
+        'var(--ods-border-radius-sm, var(--ods-size-border-radius-01, 4px))',
+      md: 'var(--ods-border-radius-md, var(--ods-size-border-radius-02, 8px))',
+      lg: 'var(--ods-border-radius-lg, var(--ods-size-border-radius-02, 16px))',
       full: '50%',
     },
   },
