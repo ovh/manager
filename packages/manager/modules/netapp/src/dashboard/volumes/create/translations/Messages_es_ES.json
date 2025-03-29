@@ -13,8 +13,8 @@
   "netapp_volume_create_size_maximum_error": "Tamaño máximo autorizado: {{ maxSize }} GB",
   "netapp_volume_create_success": "El volumen se ha creado correctamente. Una vez configuradas las reglas de control de acceso, ya podrá conectarse.",
   "netapp_volume_create_error": "Se ha producido un error al crear el volumen. {{ message }}",
-  "netapp_volume_mount_path": "Mount path (opcional)",
+  "netapp_volume_mount_path": "Mount Path (opcional)",
   "netapp_volume_mount_path_format_error": "No se permiten caracteres especiales",
   "netapp_volume_mount_path_character_limit_error": "Se ha superado el número máximo de 255 caracteres",
-  "netapp_volume_mount_path_already_used_error": "El mount path (ruta de montaje) ya está en uso en otro volumen. Por favor, introduzca uno nuevo."
+  "netapp_volume_mount_path_already_used_error": "El mount path ya está en uso en otro volumen. Introduzca uno nuevo."
 }
