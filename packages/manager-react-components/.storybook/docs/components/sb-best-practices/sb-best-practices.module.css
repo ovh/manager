@@ -1,0 +1,12 @@
+.best-practices__do-table,
+.best-practices__dont-table {
+  width: 100%;
+}
+
+.best-practices__do-table__cell {
+  background-color: var(--ods-color-success-050);
+}
+
+.best-practices__dont-table__cell {
+  background-color: var(--ods-color-critical-050);
+}
