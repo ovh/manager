@@ -79,6 +79,7 @@ export function FilterAdd({ columns, onAddFilter }: Readonly<FilterAddProps>) {
         name="filter-add_value-input"
         className="border"
         value={dateValue}
+        key={dateValue?.toISOString() /* fix ods value not refreshing */}
         data-testid="filter-add_value-date"
         onOdsChange={(e) => setDateValue(e.detail.value)}
       />
