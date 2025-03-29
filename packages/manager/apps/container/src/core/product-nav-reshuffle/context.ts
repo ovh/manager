@@ -1,5 +1,6 @@
 import { createContext } from 'react';
 import { Node } from '@/container/nav-reshuffle/sidebar/navigation-tree/node';
+import { MutableRefObject } from 'react';
 
 export type ProductNavReshuffleContextType = {
   isAccountSidebarOpened: boolean;
@@ -18,6 +19,9 @@ export type ProductNavReshuffleContextType = {
   closeNavigationSidebar: () => void;
   setCurrentNavigationNode: (node: Node) => void;
   setNavigationTree: (tree: Node) => void;
+  isFirstTabDone: boolean;
+  setIsFirstTabDone: (isFirstTabDone: boolean) => void;
+  firstFocusableElement: MutableRefObject<any>;
 };
 
 const ProductNavReshuffleContext = createContext<
