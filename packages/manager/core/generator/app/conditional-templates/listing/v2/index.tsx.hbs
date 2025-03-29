@@ -21,7 +21,7 @@ export default function Listing() {
   const { t } = useTranslation('listing');
   const myConfig = appConfig;
   const serviceKey = myConfig.listing?.datagrid?.serviceKey;
-  const [columns, setColumns] = useState([]);
+  const [columns, setColumns] = useState<any>([]);
   const navigate = useNavigate();
   const location = useLocation();
   {{#if isPCI }}
@@ -54,7 +54,7 @@ export default function Listing() {
     if (status === 'success' && data?.pages[0].data.length === 0) {
       navigate(urls.onboarding);
     } else if (status === 'success' && data?.pages.length > 0 && !flattenData) {
-      const tmp = Object.keys(data?.pages[0].data[0])
+      const tmp = Object.keys(data?.pages[0].data[0] as object)
         .filter((element) => element !== 'iam')
         .map((element) => ({
           id: element,
