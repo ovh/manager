@@ -1,6 +1,7 @@
 import get from 'lodash/get';
 
 export default /* @ngInject */ function UserAccountAgreementsController(
+  $injector,
   $scope,
   $translate,
   Alerter,

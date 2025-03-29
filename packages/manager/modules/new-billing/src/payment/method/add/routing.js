@@ -128,6 +128,7 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
         $transition$.params().redirectResult,
       onPaymentMethodAdded: /* @ngInject */ (
         $transition$,
+        $injector,
         $translate,
         goPaymentList,
         RedirectionService,
@@ -191,6 +192,9 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
       },
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('billing_payment_method_add_title'),
+    },
+    onExit: /* @ngInject */ (shellClient) => {
+      shellClient.ux.notifyModalActionDone('PaymentModal');
     },
   });
 
