@@ -52,7 +52,7 @@ const UserAccountMenu = ({
 
   const onTrackNavigation = (name: string) => {
     trackingPlugin.trackClick({
-      name: name,
+      name,
       type: 'navigation',
     });
   };
@@ -72,7 +72,7 @@ const UserAccountMenu = ({
   const getUrl = (key: string, hash: string) =>
     shell.getPlugin('navigation').getURL(key, hash);
   const ssoLink = getUrl('iam', '#/dashboard/users');
-  let [supportLink, setSupportLink] = useState(
+  const [supportLink, setSupportLink] = useState(
     getUrl('dedicated', '#/useraccount/support/level'),
   );
 

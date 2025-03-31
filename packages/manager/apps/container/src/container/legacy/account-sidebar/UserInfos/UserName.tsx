@@ -15,7 +15,10 @@ const UserName = ({
   const { getUserDisplayName, isSubUser } = useUserInfos(user);
 
   return (
-    <p className={`${cssBaseClassName}_profile_link mb-1 ${isSubUser() && 'truncate'}`}>
+    <p
+      className={`${cssBaseClassName}_profile_link mb-1 ${isSubUser() &&
+        'truncate'}`}
+    >
       {getUserDisplayName()}
     </p>
   );

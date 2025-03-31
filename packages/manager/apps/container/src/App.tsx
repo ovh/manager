@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { HashRouter } from 'react-router-dom';
 
 import { useQuery } from '@tanstack/react-query';
@@ -9,10 +9,6 @@ import Backend from 'i18next-http-backend';
 import { initReactI18next } from 'react-i18next';
 import { Environment, fetchConfiguration } from '@ovh-ux/manager-config';
 
-import Container from '@/container';
-import { ApplicationProvider } from '@/context';
-import { setupDevApplication } from '@/core/dev';
-import { ContainerProvider } from '@/core/container';
 import { ErrorBanner } from '@ovh-ux/manager-react-components';
 
 import './app.scss';
@@ -20,6 +16,10 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_TEXT_LEVEL, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { OsdsIcon, OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
+import { ContainerProvider } from '@/core/container';
+import { setupDevApplication } from '@/core/dev';
+import { ApplicationProvider } from '@/context';
+import Container from '@/container';
 
 function reloadPage() {
   window.location.reload();
@@ -27,31 +27,31 @@ function reloadPage() {
 
 function setupI18n(locale: string) {
   i18n
-  .use(initReactI18next)
-  .use(Backend)
-  .use({
-    type: 'postProcessor',
-    name: 'normalize',
-    process: function process(value: string, key: string) {
-      if (!value) {
-        return value;
-      }
-      return value.replace(/&amp;/g, '&');
-    },
-  })
-  .init({
-    lng: locale,
-    fallbackLng: 'fr_FR',
-    ns: [], // namespaces to load by default
-    load: 'currentOnly',
-    backend: {
-      // path construction for async load, ns: namespace, lng: locale
-      loadPath: (lngs: string[], namespaces: string[]) => {
-        return `./translations/${namespaces[0]}/Messages_${lngs[0]}.json`;
+    .use(initReactI18next)
+    .use(Backend)
+    .use({
+      type: 'postProcessor',
+      name: 'normalize',
+      process: function process(value: string) {
+        if (!value) {
+          return value;
+        }
+        return value.replace(/&amp;/g, '&');
       },
-    },
-    postProcess: 'normalize',
-  });
+    })
+    .init({
+      lng: locale,
+      fallbackLng: 'fr_FR',
+      ns: [], // namespaces to load by default
+      load: 'currentOnly',
+      backend: {
+        // path construction for async load, ns: namespace, lng: locale
+        loadPath: (lngs: string[], namespaces: string[]) => {
+          return `./translations/${namespaces[0]}/Messages_${lngs[0]}.json`;
+        },
+      },
+      postProcess: 'normalize',
+    });
 }
 
 const App = () => {
@@ -60,7 +60,10 @@ const App = () => {
   const [shell, setShell] = useState<Shell>(null);
   const [statusPageURL, setStatusPageURL] = useState<string>();
 
-  const { error: responseError, isLoading, data } = useQuery<Environment, { environment: Environment, error: any }>({
+  const { error: responseError, isLoading, data } = useQuery<
+    Environment,
+    { environment: Environment; error: any }
+  >({
     queryKey: ['configuration'],
     queryFn: () => fetchConfiguration('shell'),
     staleTime: 0,
@@ -70,11 +73,9 @@ const App = () => {
   });
 
   useEffect(() => {
-    if((data || responseError) && !shell) {
+    if ((data || responseError) && !shell) {
       const shellObj = initShell(data || responseError.environment);
-      const environmentObj = shellObj
-        .getPlugin('environment')
-        .getEnvironment();
+      const environmentObj = shellObj.getPlugin('environment').getEnvironment();
       setupI18n(environmentObj.getUserLocale());
       const config = () => import(`./config-${environmentObj.getRegion()}.js`);
       setupDevApplication(shellObj);
@@ -93,12 +94,12 @@ const App = () => {
   }, [data, responseError]);
 
   useEffect(() => {
-    if(responseError && !error) {
-      const { error: errorObj, environment: environmentObj } = responseError;
+    if (responseError && !error) {
+      const { error: errorObj } = responseError;
       setError({
         data: {
-          message: `${errorObj.message}`
-        }
+          message: `${errorObj.message}`,
+        },
       });
       setStatusPageURL(errorObj?.details?.statusPageURL);
     } else if (error && !responseError && !isLoading) {
@@ -106,36 +107,49 @@ const App = () => {
     }
   }, [responseError, isLoading]);
 
-  if(!shell) {
+  if (!shell) {
     return <></>;
   }
 
-  return(
+  return (
     <>
-      {
-        !error ?
-          <>
-            <ApplicationProvider environment={environment} shell={shell}>
-              <ContainerProvider>
-                <HashRouter>
-                  <Container />
-                </HashRouter>
-              </ContainerProvider>
-            </ApplicationProvider>
-          </> :
-          <div className='error d-flex flex-col'>
-            <ErrorBanner error={error} onReloadPage={reloadPage} />
-            {
-              // classes to match MRC component's class
-              statusPageURL && <div className='max-w-[600px] mx-auto px-5 flex items-center gap-4'>
-                <OsdsIcon name={ODS_ICON_NAME.INFO_CIRCLE}></OsdsIcon>
-                <OsdsText color={ODS_THEME_COLOR_INTENT.text} level={ODS_TEXT_LEVEL.subheading}>Check <OsdsLink href={statusPageURL} color={ODS_THEME_COLOR_INTENT.primary} target={OdsHTMLAnchorElementTarget._blank}>Status page</OsdsLink> for more information</OsdsText>
-              </div>
-            }
-          </div>
-      }
+      {!error ? (
+        <>
+          <ApplicationProvider environment={environment} shell={shell}>
+            <ContainerProvider>
+              <HashRouter>
+                <Container />
+              </HashRouter>
+            </ContainerProvider>
+          </ApplicationProvider>
+        </>
+      ) : (
+        <div className="error d-flex flex-col">
+          <ErrorBanner error={error} onReloadPage={reloadPage} />
+          {// classes to match MRC component's class
+          statusPageURL && (
+            <div className="max-w-[600px] mx-auto px-5 flex items-center gap-4">
+              <OsdsIcon name={ODS_ICON_NAME.INFO_CIRCLE}></OsdsIcon>
+              <OsdsText
+                color={ODS_THEME_COLOR_INTENT.text}
+                level={ODS_TEXT_LEVEL.subheading}
+              >
+                Check{' '}
+                <OsdsLink
+                  href={statusPageURL}
+                  color={ODS_THEME_COLOR_INTENT.primary}
+                  target={OdsHTMLAnchorElementTarget._blank}
+                >
+                  Status page
+                </OsdsLink>{' '}
+                for more information
+              </OsdsText>
+            </div>
+          )}
+        </div>
+      )}
     </>
   );
-}
+};
 
 export default App;

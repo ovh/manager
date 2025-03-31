@@ -1,7 +1,6 @@
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-import useContainer from '@/core/container';
-import { useShell } from '@/context';
 import {
   OsdsText,
   OsdsRadioButton,
@@ -10,6 +9,8 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { ODS_RADIO_BUTTON_SIZE, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { useShell } from '@/context';
+import useContainer from '@/core/container';
 
 function NavReshuffleSwitchBack(): JSX.Element {
   const { t } = useTranslation('beta-modal');

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { OsdsSkeleton } from '@ovhcloud/ods-components/react';
-import { ODS_SKELETON_SIZE } from '@ovhcloud/ods-components';
 import { useLocation } from 'react-router-dom';
 import { useShell } from '@/context';
 import ServerSidebarVirtual from './SidebarVirtual';
@@ -61,10 +60,7 @@ export default function ServerSidebar({ menu }: { menu: SidebarMenuItem }) {
             className="flex justify-center h-[35px] m-auto"
             key={`menu_entries_skeleton_${index}`}
           >
-            <OsdsSkeleton
-              className="w-[20px] ml-1 mr-3"
-              inline
-            />
+            <OsdsSkeleton className="w-[20px] ml-1 mr-3" inline />
             <OsdsSkeleton inline />
           </div>
         ))}

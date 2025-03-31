@@ -1,20 +1,20 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Environment } from '@ovh-ux/manager-config';
+import { OsdsIcon } from '@ovhcloud/ods-components/react';
+import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useShell } from '@/context';
 import style from './style.module.scss';
 import SidebarLinkTag from './SidebarLinkTag';
 import { Node } from './navigation-tree/node';
-import { OsdsIcon } from '@ovhcloud/ods-components/react';
-import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
 export interface StaticLinkProps {
   hasService?: boolean;
   node?: Node;
   linkParams?: Record<string, string>;
-  handleClick?(e?:React.MouseEvent): void;
-  handleOnEnter?(node: Node, e?:React.KeyboardEvent): void;
+  handleClick?(e?: React.MouseEvent): void;
+  handleOnEnter?(node: Node, e?: React.KeyboardEvent): void;
   id?: string;
   isShortText?: boolean;
 }
@@ -68,13 +68,13 @@ const StaticLink: React.FC<ComponentProps<StaticLinkProps>> = ({
       id={id}
       data-testid={id}
       role="link"
-      className='d-flex items-center'
+      className="d-flex items-center"
     >
       {t(node.translation)}
       {node.isExternal && (
         <OsdsIcon
           name={ODS_ICON_NAME.EXTERNAL_LINK}
-          className='ml-1'
+          className="ml-1"
           contrasted
           size={ODS_ICON_SIZE.xxs}
           color={ODS_THEME_COLOR_INTENT.primary}
@@ -82,12 +82,12 @@ const StaticLink: React.FC<ComponentProps<StaticLinkProps>> = ({
       )}
       {!isShortText && <SidebarLinkTag node={node} />}
       {!isShortText && hasService && (
-          <OsdsIcon
-            name={ODS_ICON_NAME.SHAPE_DOT}
-            size={ODS_ICON_SIZE.xs}
-            data-testid={`static-link-count-${node.id}`}
-            className={`ml-auto ${style.sidebarLinkTag}`}
-          />
+        <OsdsIcon
+          name={ODS_ICON_NAME.SHAPE_DOT}
+          size={ODS_ICON_SIZE.xs}
+          data-testid={`static-link-count-${node.id}`}
+          className={`ml-auto ${style.sidebarLinkTag}`}
+        />
       )}
     </a>
   );

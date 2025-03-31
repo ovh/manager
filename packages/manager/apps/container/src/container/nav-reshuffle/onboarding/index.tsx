@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import useOnboarding from '@/core/onboarding';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 import OnboardingIntroduction from './introduction';
@@ -22,7 +22,7 @@ export const NavReshuffleOnboardingWidget = () => {
 
   return (
     <>
-      {(!isWalkMeVisible && showOnboarding) && <OnboardingIntroduction />}
+      {!isWalkMeVisible && showOnboarding && <OnboardingIntroduction />}
       {isWalkMeVisible && <OnboardingWalkMe />}
     </>
   );

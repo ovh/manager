@@ -1,3 +1,4 @@
+import React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import SidebarLinkTag from './SidebarLinkTag';
@@ -48,5 +49,5 @@ describe('SidebarLinkTag.component', () => {
     renderSidebarLinkTagComponent(nodeWithoutTag);
 
     expect(screen.queryByTestId(`static-link-tag-${node.id}`)).toBeNull();
-  })
+  });
 });

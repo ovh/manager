@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from 'react';
 import ModalsContext, { ModalsContextType } from './modals.context';
 
 import { useShell } from '@/context';

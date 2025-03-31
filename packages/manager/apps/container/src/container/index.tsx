@@ -31,7 +31,8 @@ export default function Container(): JSX.Element {
 
   const isNavReshuffle = betaVersion && useBeta;
 
-  const cookiePolicyHandler = (isApplied: boolean): void => setIsCookiePolicyApplied(isApplied);
+  const cookiePolicyHandler = (isApplied: boolean): void =>
+    setIsCookiePolicyApplied(isApplied);
 
   useEffect(() => {
     if (!isLoading) {

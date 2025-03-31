@@ -1,11 +1,8 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Shell } from '@ovh-ux/shell';
 import { useCookies } from 'react-cookie';
 import { useTranslation } from 'react-i18next';
 import { User } from '@ovh-ux/manager-config';
-import ovhCloudLogo from '../assets/images/logo-ovhcloud.png';
-import links from './links';
-import { useApplication } from '@/context';
 import { Subtitle, Links, LinksProps } from '@ovh-ux/manager-react-components';
 import {
   OsdsButton,
@@ -21,10 +18,13 @@ import {
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import { useApplication } from '@/context';
+import links from './links';
+import ovhCloudLogo from '../assets/images/logo-ovhcloud.png';
 
 type Props = {
   shell: Shell;
-  onValidate: Function
+  onValidate: (valid?: boolean) => void;
 };
 
 const ModalContent = ({ label }: { label: string }) => (
@@ -65,7 +65,7 @@ const CookiePolicy = ({ shell, onValidate }: Props): JSX.Element => {
     trackingPlugin.onUserConsentFromModal(agreed);
     setShow(false);
     onValidate();
-  }
+  };
 
   useEffect(() => {
     const isRegionUS = environment.getRegion() === 'US';
@@ -93,13 +93,17 @@ const CookiePolicy = ({ shell, onValidate }: Props): JSX.Element => {
             <div className="text-center m-4">
               <Subtitle>{t('cookie_policy_title')}</Subtitle>
             </div>
-            <div className='mb-3'>
+            <div className="mb-3">
               <ModalContent label={t('cookie_policy_description_1')} />
               <span className="inline-block">
                 <Links href={linksArray[0].href} label={linksArray[0].label} />
               </span>
             </div>
-            <ul><li><ModalContent label={t('cookie_policy_description_3')} /></li></ul>
+            <ul>
+              <li>
+                <ModalContent label={t('cookie_policy_description_3')} />
+              </li>
+            </ul>
             <ModalContent label={t('cookie_policy_description_2')} />
             <div>
               <ModalContent label={t('cookie_policy_description_4')} />
@@ -126,8 +130,7 @@ const CookiePolicy = ({ shell, onValidate }: Props): JSX.Element => {
             size={ODS_BUTTON_SIZE.sm}
             variant={ODS_BUTTON_VARIANT.flat}
             color={ODS_THEME_COLOR_INTENT.primary}
-            >
-
+          >
             {t('cookie_policy_accept')}
           </OsdsButton>
         </OsdsModal>

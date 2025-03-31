@@ -19,7 +19,6 @@ import MfaEnrollment from '@/container/mfa-enrollment/MfaEnrollment';
 function NavReshuffleContainer(): JSX.Element {
   const iframeRef = useRef(null);
   const [iframe, setIframe] = useState(null);
-  const [showOverlay, setShowOverlay] = useState(false);
   const shell = useShell();
   const { isStarted: isProgressAnimating } = useProgress();
   const applications = shell
@@ -72,7 +71,6 @@ function NavReshuffleContainer(): JSX.Element {
           <Header
             isSidebarExpanded={isNavigationSidebarOpened}
             onHamburgerMenuClick={() => onHamburgerMenuClick()}
-            onUserAccountMenuToggle={setShowOverlay}
           />
         </div>
         <div className={style.iframeContainer}>

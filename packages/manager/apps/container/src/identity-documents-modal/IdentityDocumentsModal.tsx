@@ -1,5 +1,5 @@
 import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-import { FunctionComponent, useEffect, useRef, useState } from 'react';
+import React, { FunctionComponent, useEffect, useRef, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import {
   OsdsButton,
@@ -13,7 +13,10 @@ import {
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
-import { trackingContext, trackingPrefix } from './IdentityDocumentsModal.constants';
+import {
+  trackingContext,
+  trackingPrefix,
+} from './IdentityDocumentsModal.constants';
 import { useShell } from '@/context';
 
 export const IdentityDocumentsModal: FunctionComponent = () => {
@@ -22,7 +25,7 @@ export const IdentityDocumentsModal: FunctionComponent = () => {
   const uxPlugin = shell.getPlugin('ux');
 
   const { t } = useTranslation('identity-documents-modal');
-  const legalInformationRef = useRef<any>(null);
+  const legalInformationRef = useRef<HTMLOsdsCollapsibleElement>(null);
 
   const [showModal, setShowModal] = useState<boolean>(true);
 

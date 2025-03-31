@@ -44,10 +44,10 @@ export default function TelecomSidebar() {
       } else {
         reketInstance
           .get(`/me/preferences/manager/${key}`)
-          .then((result: any) => {
+          .then((result: { value: unknown }) => {
             resolve(result?.value || false);
           })
-          .catch((error: any) => {
+          .catch((error: { status: number }) => {
             if (error.status === 404) {
               resolve(false);
             } else {

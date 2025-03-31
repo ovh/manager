@@ -1,24 +1,24 @@
-import ProjectSelector from '../ProjectSelector/ProjectSelector';
-import { PciProject } from '../ProjectSelector/PciProject';
 import { fetchIcebergV6 } from '@ovh-ux/manager-core-api';
 import { OsdsButton } from '@ovhcloud/ods-components/react';
 import { useQuery } from '@tanstack/react-query';
-import { useState, useEffect } from 'react';
-import { Node } from '../navigation-tree/node';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useShell } from '@/context';
-import { shouldHideElement } from '@/container/nav-reshuffle/sidebar/utils';
 import { Location, useLocation } from 'react-router-dom';
-import style from '../style.module.scss';
-import SubTreeSection from '@/container/nav-reshuffle/sidebar/SubTree/SubTreeSection';
-import { PUBLICCLOUD_UNIVERSE_ID } from '../navigation-tree/services/publicCloud';
-import { useDefaultPublicCloudProject } from '@/container/nav-reshuffle/data/hooks/defaultPublicCloudProject/useDefaultPublicCloudProject';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_TYPE,
   ODS_BUTTON_VARIANT,
 } from '@ovhcloud/ods-components';
+import ProjectSelector from '../ProjectSelector/ProjectSelector';
+import { PciProject } from '../ProjectSelector/PciProject';
+import { Node } from '../navigation-tree/node';
+import { useShell } from '@/context';
+import { shouldHideElement } from '@/container/nav-reshuffle/sidebar/utils';
+import style from '../style.module.scss';
+import SubTreeSection from '@/container/nav-reshuffle/sidebar/SubTree/SubTreeSection';
+import { PUBLICCLOUD_UNIVERSE_ID } from '../navigation-tree/services/publicCloud';
+import { useDefaultPublicCloudProject } from '@/container/nav-reshuffle/data/hooks/defaultPublicCloudProject/useDefaultPublicCloudProject';
 
 export interface PublicCloudPanelProps {
   rootNode: Node;
@@ -70,10 +70,7 @@ export const PublicCloudPanel: React.FC<ComponentProps<
     },
   });
 
-  const {
-    data: defaultPciProject,
-    status: defaultPciProjectStatus,
-  } = useDefaultPublicCloudProject({
+  const { data: defaultPciProject } = useDefaultPublicCloudProject({
     select: (defaultProjectId: string | null): PciProject | null => {
       return defaultProjectId !== null
         ? pciProjects?.find(
@@ -114,12 +111,10 @@ export const PublicCloudPanel: React.FC<ComponentProps<
       }
       if (project) {
         setSelectedPciProject(project);
+      } else if (defaultPciProject !== null) {
+        setSelectedPciProject(defaultPciProject);
       } else {
-        if (defaultPciProject !== null) {
-          setSelectedPciProject(defaultPciProject);
-        } else {
-          setSelectedPciProject(pciProjects[0]);
-        }
+        setSelectedPciProject(pciProjects[0]);
       }
     }
   }, [rootNode, containerURL, pciProjects]);
@@ -128,7 +123,7 @@ export const PublicCloudPanel: React.FC<ComponentProps<
     if (
       selectedPciProject &&
       rootNode.id === PUBLICCLOUD_UNIVERSE_ID &&
-      containerURL.appId != rootNode.routing?.application
+      containerURL.appId !== rootNode.routing?.application
     ) {
       navigationPlugin.navigateTo(
         rootNode.routing.application,

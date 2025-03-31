@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useShell } from '@/context';
 import { languages, regions } from './eloquant.constants';
 
@@ -8,13 +8,12 @@ const EloquantSurvey = () => {
   const locale = environment.getUserLocale();
   const region = environment.getRegion();
   const user = environment.getUser();
-  
+
   const regionTerm = regions[region as keyof typeof regions];
 
   useEffect(() => {
-    const { short, long } = languages.find(
-      (lang) => lang.code === locale,
-    ) || {};
+    const { short, long } =
+      languages.find((lang) => lang.code === locale) || {};
 
     window.surveyLanguage = short;
 
@@ -28,11 +27,11 @@ const EloquantSurvey = () => {
     script.defer = true;
     script.src = url;
 
-    script.onload = function () {
+    script.onload = () => {
       const elq = window.elqwebtrigger;
       // This condition is used to choose the correct publication according the language, and especially to display the popin's title in the correct language
       // The condition is defined in the first publication's step => Capture3
-      elq.set('condition.language', function () {
+      elq.set('condition.language', () => {
         return long;
       });
 
@@ -40,11 +39,11 @@ const EloquantSurvey = () => {
       // Do not forget to choose it during the publication's step "Parameters" => Capture1
       // If the website exposes a javascript variable which may be used to fill this data, the following line of code is not necessary.
       // Only fill the checkbox "variable javascript" and enter the name of the website variable.
-      elq.set('urlparameter.region', function () {
+      elq.set('urlparameter.region', () => {
         return regionTerm;
       });
 
-      elq.set('urlparameter.nic_handle', function() {
+      elq.set('urlparameter.nic_handle', () => {
         return user.nichandle;
       });
     };

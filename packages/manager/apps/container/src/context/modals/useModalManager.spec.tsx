@@ -1,4 +1,4 @@
-import { PropsWithChildren } from 'react';
+import React, { PropsWithChildren } from 'react';
 import { describe, it, vi } from 'vitest';
 import { renderHook, waitFor } from '@testing-library/react';
 import {
@@ -14,12 +14,17 @@ import * as useTimeModule from '@/hooks/time/useTime';
 import { useModalManager } from '@/context/modals/useModalManager';
 import { ModalToDisplayConfiguration } from '@/types/modal-configuration.type';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type UseAuthorizationIamResult = UseQueryResult<any> & {
+  isAuthorized: boolean;
+};
+
 const mocks = vi.hoisted(() => ({
   href: 'https://fake-manager.com/manager/dedicated/#/account',
   user: {
     kycValidated: false,
   },
-  useQuery: vi.fn((options: any) => ({
+  useQuery: vi.fn(() => ({
     data: true,
   })),
 }));
@@ -31,14 +36,10 @@ Object.defineProperty(window, 'location', {
   writable: true,
 });
 
-const useFeatureAvailabilitySpy = vi
-  .spyOn(MRC, 'useFeatureAvailability');
-const useAccountUrnSpy = vi
-  .spyOn(useAccountUrnModule, 'useAccountUrn');
-const useAuthorizationIamSpy = vi
-  .spyOn(MRC, 'useAuthorizationIam');
-const usePreferencesSpy = vi
-  .spyOn(usePreferencesModule, 'usePreferences');
+const useFeatureAvailabilitySpy = vi.spyOn(MRC, 'useFeatureAvailability');
+const useAccountUrnSpy = vi.spyOn(useAccountUrnModule, 'useAccountUrn');
+const useAuthorizationIamSpy = vi.spyOn(MRC, 'useAuthorizationIam');
+const usePreferencesSpy = vi.spyOn(usePreferencesModule, 'usePreferences');
 const useTimeSpy = vi.spyOn(useTimeModule, 'useTime');
 vi.mock('@tanstack/react-query', async (importOriginal) => {
   const originalModule: typeof import('@tanstack/react-query') = await importOriginal();
@@ -97,7 +98,7 @@ describe('useModalManager', () => {
     useAuthorizationIamSpy.mockReturnValue({
       isAuthorized: false,
       isLoading: true,
-    } as UseQueryResult<any> & { isAuthorized: boolean });
+    } as UseAuthorizationIamResult);
     usePreferencesSpy.mockClear();
     usePreferencesSpy.mockReturnValue({
       isLoading: true,
@@ -225,7 +226,7 @@ describe('useModalManager', () => {
 
     useAuthorizationIamSpy.mockReturnValue({
       isAuthorized: true,
-    } as UseQueryResult<any> & { isAuthorized: boolean });
+    } as UseAuthorizationIamResult);
 
     rerender();
 
@@ -310,10 +311,7 @@ describe('useModalManager', () => {
       expect(useAccountUrnSpy).toHaveBeenCalledWith({
         enabled: false,
       });
-      expect(useAuthorizationIamSpy).toHaveBeenCalledWith(
-        [],
-        undefined,
-      );
+      expect(useAuthorizationIamSpy).toHaveBeenCalledWith([], undefined);
       expect(usePreferencesSpy).toHaveBeenCalledWith(
         'LAST_MODAL_TO_DISPLAY_DISPLAY_TIME',
         {
@@ -339,10 +337,7 @@ describe('useModalManager', () => {
       expect(useAccountUrnSpy).toHaveBeenCalledWith({
         enabled: false,
       });
-      expect(useAuthorizationIamSpy).toHaveBeenCalledWith(
-        [],
-        undefined,
-      );
+      expect(useAuthorizationIamSpy).toHaveBeenCalledWith([], undefined);
       expect(useTimeSpy).toHaveBeenCalledWith({
         enabled: true,
       });
@@ -362,10 +357,7 @@ describe('useModalManager', () => {
       expect(useAccountUrnSpy).toHaveBeenCalledWith({
         enabled: false,
       });
-      expect(useAuthorizationIamSpy).toHaveBeenCalledWith(
-        [],
-        undefined,
-      );
+      expect(useAuthorizationIamSpy).toHaveBeenCalledWith([], undefined);
       expect(result.current.isDisplayed).toBe(true);
     });
   });

@@ -1,14 +1,15 @@
+import React from 'react';
 import { render, screen, waitFor, act } from '@testing-library/react';
-import HeaderComponent from './index';
-import UserAccountMenu from './user-account-menu/Content';
+import { useReket } from '@ovh-ux/ovh-reket';
 import '@testing-library/jest-dom';
 import { vi } from 'vitest';
 import { KeyPairName } from '@ovh-ux/manager-config';
-import { LEGAL_FORMS } from '@/container/common/constants';
 import { fetchFeatureAvailabilityData } from '@ovh-ux/manager-react-components';
-import { useReket } from '@ovh-ux/ovh-reket';
+import { LEGAL_FORMS } from '@/container/common/constants';
 import { links as constantLinks } from './user-account-menu/constants';
 import UserAccountMenuButton from './user-account-menu/Button';
+import HeaderComponent from './index';
+import UserAccountMenu from './user-account-menu/Content';
 
 /**
  * Mocked Data
@@ -76,7 +77,8 @@ vi.mock('@/core/container', () => ({
 }));
 
 vi.mock('@/context', async (original) => ({
-  ...(await original()),  useShell: vi.fn(() => ({
+  ...(await original()),
+  useShell: vi.fn(() => ({
     getPlugin: vi.fn().mockReturnValue({
       getEnvironment: vi.fn().mockReturnValue({
         getApplications: vi.fn().mockReturnValue({}),
@@ -86,7 +88,7 @@ vi.mock('@/context', async (original) => ({
       }),
       onUserChange: vi.fn(),
       getLocale: vi.fn().mockReturnValue('en'),
-      getURL: vi.fn((key, _) => `https://mockedurl.mock/${key}`),
+      getURL: vi.fn((key) => `https://mockedurl.mock/${key}`),
       getAvailableLocales: vi.fn(() =>
         Array<KeyPairName>(
           { name: 'English', key: 'en_GB' },
@@ -116,7 +118,7 @@ vi.mock('@/context/header', () => ({
 }));
 
 vi.mock('react-i18next', async (importOriginal) => ({
-  ...((await importOriginal()) as object),
+  ...((await importOriginal()) as Record<string, unknown>),
   Trans: ({ i18nKey }: { i18nKey: string }) => i18nKey,
   useTranslation: () => ({
     t: (key: string) => key,

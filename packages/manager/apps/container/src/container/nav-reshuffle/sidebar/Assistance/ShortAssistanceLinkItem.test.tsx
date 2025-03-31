@@ -1,19 +1,10 @@
+import React from 'react';
 import { vi, it, describe } from 'vitest';
+import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
+import { render } from '@testing-library/react';
 import { ShortAssistanceLinkItem, Props } from './ShortAssistanceLinkItem';
 import { Node } from '../navigation-tree/node';
-import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
 import { mockShell } from '../mocks/sidebarMocks';
-import { render } from '@testing-library/react';
-
-const externalNode: Node = {
-  id: 'help',
-  idAttr: 'help-link',
-  translation: 'sidebar_assistance_help_center',
-  url: 'help',
-  hasService: false,
-  isExternal: true,
-  svgIcon: OvhProductName.HELPECENTER,
-};
 
 const node: Node = {
   id: 'carbon_calculator',
@@ -34,11 +25,14 @@ vi.mock('@/context', () => ({
 }));
 
 vi.mock('../style.module.scss', () => ({
-  default: new Proxy(new Object(), {
-    get(_, style) {
-      return style;
+  default: new Proxy(
+    {},
+    {
+      get(_, style) {
+        return style;
+      },
     },
-  }),
+  ),
 }));
 
 vi.mock('@ovh-ux/ovh-product-icons/utils/SvgIconWrapper', () => ({
@@ -46,18 +40,18 @@ vi.mock('@ovh-ux/ovh-product-icons/utils/SvgIconWrapper', () => ({
 }));
 
 vi.mock('@ovhcloud/ods-components/react', () => ({
-  OsdsLink: (props: any) => (<a data-testid={props["data-testid"]}>{props.children}</a>),
-  OsdsIcon: () => (<div data-testid="osds-icon"/>),
+  OsdsLink: (props: { 'data-testid': string; children: React.ReactNode }) => (
+    <a data-testid={props['data-testid']}>{props.children}</a>
+  ),
+  OsdsIcon: () => <div data-testid="osds-icon" />,
 }));
 
 const renderShortAssistanceLinkItem = (props: Props) => {
-  return render(
-    <ShortAssistanceLinkItem node={props.node} />,
-  );
+  return render(<ShortAssistanceLinkItem node={props.node} />);
 };
 
 const props: Props = {
-  node: node,
+  node,
 };
 
 describe('ShortAssistanceLinkItem.component', () => {
