@@ -32,6 +32,23 @@ describe('KMS listing test suite', () => {
     ).not.toBeInTheDocument();
   });
 
+  it('should display the listing table with all columns', async () => {
+    await renderTestApp();
+
+    const tableHeaders = [
+      labels.listing.key_management_service_listing_name_cell,
+      labels.listing.key_management_service_listing_id_cell,
+      labels.listing.key_management_service_listing_kmip_cell,
+      labels.listing.key_management_service_listing_service_key_cell,
+      labels.listing.key_management_service_listing_region_cell,
+      labels.listing.key_management_service_listing_status_cell,
+    ];
+
+    tableHeaders.forEach((header) => {
+      expect(screen.queryAllByText(header)).toHaveLength(1);
+    });
+  });
+
   it(`should navigate to the kms creation form on click on "${labels.listing.key_management_service_listing_add_kms_button}" button`, async () => {
     const { container } = await renderTestApp();
 
