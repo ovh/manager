@@ -12,13 +12,8 @@ export const useDefaultOfferId = (
   const [offerIdSelected, setOfferIdSelected] = useState<string>();
 
   useEffect(() => {
-    if (pricingByDuration.length) {
-      const twelveMonthDefaultOffer = pricingByDuration.find((p) =>
-        p.code.includes('12-months'),
-      );
-      if (twelveMonthDefaultOffer) {
-        setOfferIdSelected(twelveMonthDefaultOffer.id);
-      }
+    if (!pricingByDuration.length) {
+      setOfferIdSelected(undefined);
     }
   }, [pricingByDuration]);
 
