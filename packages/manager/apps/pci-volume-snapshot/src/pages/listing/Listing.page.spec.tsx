@@ -13,8 +13,8 @@ import * as SnapshotsApi from '@/api/hooks/useSnapshots';
 import ListingPage from './Listing.page';
 
 // Mock hooks and dependencies
-vi.mock('@/hooks/useTracking', () => ({
-  useTracking: vi.fn(),
+vi.mock('@/hooks/usePageTracking', () => ({
+  usePageTracking: vi.fn(),
 }));
 
 vi.mock('@/hooks/useNotifications', () => ({
