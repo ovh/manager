@@ -2,7 +2,7 @@ module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'jest-environment-jsdom',
   transform: {
-    '^.+\\.(js|jsx|mjs|cjs|ts|tsx)$': 'babel-jest',
+    '^.+\\.(js|jsx|mjs|cjs|ts|tsx)$': '@swc/jest',
   },
   transformIgnorePatterns: [
     'node_modules/(?!lodash-es|@ovhcloud|@stencil|@ovh-ux)',
