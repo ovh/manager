@@ -1,3 +1,4 @@
+import React from 'react';
 import { render, screen, act, renderHook } from '@testing-library/react';
 import { describe, it, expect, vi, Mock } from 'vitest';
 import OvhCloudPreloader from './OvhCloudPreloader';
@@ -15,20 +16,22 @@ let mockPlugin: {
 let mockShell: { getPlugin: Mock };
 let mockIframe: HTMLIFrameElement;
 
-
 describe('Preloader', () => {
-
   beforeEach(() => {
     mockPlugin = {
-      onShowPreloader: vi.fn((cb) => { showCallback = cb; }),
-      onHidePreloader: vi.fn((cb) => { hideCallback = cb; }),
+      onShowPreloader: vi.fn((cb) => {
+        showCallback = cb;
+      }),
+      onHidePreloader: vi.fn((cb) => {
+        hideCallback = cb;
+      }),
       removeOnShowPreloader: vi.fn(),
       removeOnHidePreloader: vi.fn(),
-      showPreloader: vi.fn()
+      showPreloader: vi.fn(),
     };
 
     mockShell = {
-      getPlugin: vi.fn(() => mockPlugin)
+      getPlugin: vi.fn(() => mockPlugin),
     };
 
     mockIframe = document.createElement('iframe');
@@ -62,7 +65,10 @@ describe('Preloader', () => {
 
   describe('usePreloader.hook', () => {
     it('should handle show/hide preloader events', async () => {
-      const { result } = renderHook(() => usePreloader(mockShell as any, mockIframe));
+      const { result } = renderHook(() =>
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        usePreloader(mockShell as any, mockIframe),
+      );
 
       expect(result.current).toBe(false);
 
@@ -88,7 +94,10 @@ describe('Preloader', () => {
     });
 
     it('should cleanup event listeners on unmount', () => {
-      const { unmount } = renderHook(() => usePreloader(mockShell as any, mockIframe));
+      const { unmount } = renderHook(() =>
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        usePreloader(mockShell as any, mockIframe),
+      );
 
       unmount();
 

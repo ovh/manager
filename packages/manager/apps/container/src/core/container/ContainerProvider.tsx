@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useReket } from '@ovh-ux/ovh-reket';
 import { Application } from '@ovh-ux/manager-config';
 import { fetchFeatureAvailabilityData } from '@ovh-ux/manager-react-components';
@@ -40,7 +40,7 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
       livechat: boolean;
     }
     const getBetaVersion = (value: CurrentContextAvailability) => {
-      if (value['pnr']) {
+      if (value.pnr) {
         return BETA;
       }
       return null;

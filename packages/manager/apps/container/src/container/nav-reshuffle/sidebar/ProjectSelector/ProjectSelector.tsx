@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 import { PciProject } from './PciProject';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const getProjectOption = (option: Record<string, any>): JSX.Element => {
   return (
     <div style={{ alignItems: 'center', display: 'flex' }}>
@@ -55,6 +56,7 @@ const ProjectSelector: React.FC<ComponentProps<Props>> = ({
   // Also, i don't want to disable the option "noImplicitAny"
   // Because this is done under unique circumstances and should not impact the rest of the codebase
   const selectStyles = {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     option: (provided: any, { isFocused }: { isFocused: boolean }) => ({
       ...provided,
       backgroundColor: isFocused
@@ -70,6 +72,7 @@ const ProjectSelector: React.FC<ComponentProps<Props>> = ({
         color: 'var(--ods-color-primary-700',
       },
     }),
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     control: (provided: any, { isFocused }: { isFocused: boolean }) => ({
       ...provided,
       cursor: 'pointer',
@@ -104,7 +107,7 @@ const ProjectSelector: React.FC<ComponentProps<Props>> = ({
             id: projectId,
             label: description || projectId,
           }))
-        : [])
+        : []),
     ]);
   }, [projects]);
 

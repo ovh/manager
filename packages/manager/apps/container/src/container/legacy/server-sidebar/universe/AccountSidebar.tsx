@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useReket } from '@ovh-ux/ovh-reket';
 import { useTranslation } from 'react-i18next';
 import { Environment } from '@ovh-ux/manager-config';
+import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import { useShell } from '@/context';
 import { sanitizeMenu, SidebarMenuItem } from '../sidebarMenu';
 import Sidebar from '../Sidebar';
@@ -9,7 +10,6 @@ import dedicatedShopConfig from '../order/shop-config/dedicated';
 import OrderTrigger from '../order/OrderTrigger';
 import { ShopItem } from '../order/OrderPopupContent';
 import { features } from './DedicatedSidebar';
-import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import constants from '../../account-sidebar/UsefulLinks/constants';
 
 const kycIndiaFeature = 'identity-documents';

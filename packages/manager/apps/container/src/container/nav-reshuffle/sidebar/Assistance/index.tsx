@@ -1,16 +1,8 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useURL, ContentURLS } from '@/container/common/urls-constants';
-import { useShell } from '@/context';
-import useProductNavReshuffle from '@/core/product-nav-reshuffle';
-import useContainer from '@/core/container';
-import { Node } from '../navigation-tree/node';
-import { AssistanceLinkItem } from './AssistanceLinkItem';
-import { ShortAssistanceLinkItem } from './ShortAssistanceLinkItem';
 import {
   OsdsButton,
   OsdsIcon,
-  OsdsMenuItem,
   OsdsPopover,
   OsdsPopoverContent,
 } from '@ovhcloud/ods-components/react';
@@ -20,6 +12,13 @@ import {
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
 } from '@ovhcloud/ods-components';
+import { useURL, ContentURLS } from '@/container/common/urls-constants';
+import { useShell } from '@/context';
+import useProductNavReshuffle from '@/core/product-nav-reshuffle';
+import useContainer from '@/core/container';
+import { Node } from '../navigation-tree/node';
+import { AssistanceLinkItem } from './AssistanceLinkItem';
+import { ShortAssistanceLinkItem } from './ShortAssistanceLinkItem';
 
 export interface AssistanceProps {
   nodeTree?: Node;
@@ -32,7 +31,7 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
   nodeTree,
   selectedNode,
   isShort,
-  isLoading
+  isLoading,
 }): JSX.Element => {
   const { t } = useTranslation('sidebar');
   const shell = useShell();
@@ -43,6 +42,13 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
   const trackingPlugin = shell.getPlugin('tracking');
   const isEUOrCA = ['EU', 'CA'].includes(environment.getRegion());
   const { closeNavigationSidebar, setIsAnimated } = useProductNavReshuffle();
+
+  const trackNode = (id: string) => {
+    trackingPlugin.trackClick({
+      name: `navbar_v3_entry_home::${id}`,
+      type: 'navigation',
+    });
+  };
 
   useEffect(() => {
     nodeTree.children.forEach((node: Node) => {
@@ -65,7 +71,6 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
           break;
         case 'help':
           node.onClick = () => trackNode('assistance_help_center');
-          node.url = node.url;
           node.isExternal = true;
           break;
         case 'tickets':
@@ -109,11 +114,16 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
     });
   };
 
-  if (isShort) return (
-      <OsdsPopover className='fixed z-[1000] left-[0.3rem] bottom-[4rem]' id="useful-links" role="menu">
+  if (isShort)
+    return (
+      <OsdsPopover
+        className="fixed z-[1000] left-[0.3rem] bottom-[4rem]"
+        id="useful-links"
+        role="menu"
+      >
         <OsdsButton
           slot="popover-trigger"
-          className='w-[4rem]'
+          className="w-[4rem]"
           color={ODS_THEME_COLOR_INTENT.primary}
           variant={ODS_BUTTON_VARIANT.ghost}
           size={ODS_BUTTON_SIZE.md}

@@ -1,4 +1,4 @@
-import { useMemo, RefObject } from 'react';
+import React, { useMemo, RefObject } from 'react';
 import { Navigate, Routes, Route } from 'react-router-dom';
 import { Application } from '@ovh-ux/manager-config';
 import { ExternalApplicationRoute } from './route/external-application-route';
@@ -101,7 +101,9 @@ export function IFrameAppRouter({
       ),
     [sortedConfiguration],
   );
-  const redirections = useMemo(() => Redirections(configuration), [configuration]);
+  const redirections = useMemo(() => Redirections(configuration), [
+    configuration,
+  ]);
 
   return (
     <Routes>
