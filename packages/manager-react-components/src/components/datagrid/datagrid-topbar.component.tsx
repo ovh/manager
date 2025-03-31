@@ -69,7 +69,7 @@ export const DatagridTopbar = <T,>({
         filtersColumns?.length > 0 ||
         topbar ||
         hasVisibilityFeature) && (
-        <div id="container" className="flex flex-wrap justify-between py-6">
+        <div id="container" className="flex flex-wrap justify-between pb-6">
           <div id="left-side" className="w-full md:w-auto md:order-1">
             {topbar && <div>{topbar}</div>}
           </div>
