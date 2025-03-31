@@ -7,6 +7,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import {
   BaseLayout,
+  ChangelogButton,
   Datagrid,
   PciGuidesHeader,
   RedirectionGuard,
@@ -31,6 +32,7 @@ import { Outlet, useParams } from 'react-router-dom';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useDatagridColumn } from '@/pages/listing/useDatagridColumn';
 import { usePaginatedVolumeSnapshot } from '@/api/hooks/useSnapshots';
+import { CHANGELOG_LINKS } from '@/constants';
 
 export default function ListingPage() {
   const { t } = useTranslation(['volumes']);
@@ -90,6 +92,7 @@ export default function ListingPage() {
         header={{
           title: t('pci_projects_project_storages_snapshots_title'),
           headerButton: <PciGuidesHeader category="storage" />,
+          changelogButton: <ChangelogButton links={CHANGELOG_LINKS} />,
         }}
       >
         <div className="flex flex-col gap-5">
