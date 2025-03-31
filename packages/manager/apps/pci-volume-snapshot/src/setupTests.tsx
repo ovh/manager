@@ -226,6 +226,11 @@ vi.mock('@ovh-ux/manager-react-shell-client', async () => {
       trackPage: vi.fn(),
       trackClick: vi.fn(),
     })),
+    useOvhTracking: vi.fn(() => ({
+      trackCurrentPage: vi.fn(),
+      trackPage: vi.fn(),
+      trackClick: vi.fn(),
+    })),
     ShellContext: React.createContext({
       environment: {
         getUser: () => ({
