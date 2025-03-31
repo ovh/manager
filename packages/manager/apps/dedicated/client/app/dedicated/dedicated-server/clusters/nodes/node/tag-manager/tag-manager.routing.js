@@ -19,6 +19,12 @@ export default /* @ngInject */ ($stateProvider) => {
             productId: serverName,
           });
         },
+        goToTagUnassign: /* @ngInject */ ($state, serverName) => (tags) => {
+          $state.go('.unassign', {
+            productId: serverName,
+            tags,
+          });
+        },
         tags: /* @ngInject */ (server) => server.iam?.tags,
       },
     },

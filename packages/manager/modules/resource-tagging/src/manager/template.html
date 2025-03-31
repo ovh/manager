@@ -1,3 +1,4 @@
+<div data-ovh-alert="resourcetagging.manager"></div>
 <div class="container-fluid">
     <oui-back-button on-click="$ctrl.goBack()"></oui-back-button>
     <oui-datagrid
@@ -43,7 +44,7 @@
         <oui-action-menu data-compact data-placement="top-end">
             <oui-action-menu-item
                 disabled="$isSelected"
-                data-on-click="$ctrl.goToTagUnassign()"
+                data-on-click="$ctrl.goToTagUnassign($row)"
             >
                 <span
                     data-translate="manager_components_resource_tagging_manager_action_unassign_tag"

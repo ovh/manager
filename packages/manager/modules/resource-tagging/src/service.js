@@ -51,6 +51,31 @@ export default class ovhManagerResourceTaggingService {
   }
 
   /**
+   * Remove tags from resource
+   * 1 - get all resource tags
+   * 2 - remove tags from resource tag object and use new object for put call
+   * @param {*} resourceUrn
+   * @param {*} tags
+   * @returns promise
+   */
+  unassignTags(resourceUrn, tags) {
+    return this.Apiv2Service.httpApiv2({
+      method: 'get',
+      url: `/engine/api/v2/iam/resource/${resourceUrn}`,
+    }).then(({ data: resource }) => {
+      const existingTags = resource.tags;
+      tags.forEach(({ key }) => delete existingTags[key]);
+      return this.Apiv2Service.httpApiv2({
+        method: 'put',
+        url: `/engine/api/v2/iam/resource/${resourceUrn}`,
+        data: {
+          tags: existingTags,
+        },
+      });
+    });
+  }
+
+  /**
    * Get all unique tags formatted like this [{key: 'key', values: ['value1', 'value2', ..]}]
    * 1 - Get all user iam resources
    * 2 - Keep only resources with iam tags defined

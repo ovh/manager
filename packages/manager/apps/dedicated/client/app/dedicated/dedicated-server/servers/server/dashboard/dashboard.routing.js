@@ -249,25 +249,12 @@ export default /* @ngInject */ ($stateProvider) => {
           productId: serverName,
         }),
       goToTagManager: /* @ngInject */ ($state, serverName) => (reload) => {
-        $state.go(
+        return $state.go(
           'app.dedicated-server.server.dashboard.tag-manager',
           {
             productId: serverName,
           },
           { reload },
-        );
-      },
-      goToTagAssign: /* @ngInject */ ($state, serverName) => () => {
-        $state.go('app.dedicated-server.server.dashboard.tag-manager.assign', {
-          productId: serverName,
-        });
-      },
-      goToTagUnassign: /* @ngInject */ ($state, serverName) => () => {
-        $state.go(
-          'app.dedicated-server.server.dashboard.tag-manager.unassign',
-          {
-            productId: serverName,
-          },
         );
       },
       technicalDetails: /* @ngInject */ ($http, serverName) =>
