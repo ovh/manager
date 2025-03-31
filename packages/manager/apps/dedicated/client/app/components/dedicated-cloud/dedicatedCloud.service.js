@@ -385,7 +385,7 @@ class DedicatedCloudService {
         },
       )
       .then(({ data }) =>
-        data.filter((item) => item.state !== TASK_STATUS.DOING),
+        data.filter((item) => item.state === TASK_STATUS.DOING),
       );
   }
 

@@ -17,5 +17,6 @@
   "dedicatedCloud_datacenter_network_guides": "Guides",
   "dedicatedCloud_network_site_web_description_link": "Accéder au site web",
   "dedicatedCloud_network_unable_have_minimum_nsx": "Vous ne pouvez pas avoir moins de {{minimumNsx}} NSX Edge",
-  "dedicatedCloud_network_included_in_offer": "Inclus dans l'offre standard"
+  "dedicatedCloud_network_included_in_offer": "Inclus dans l'offre standard",
+  "dedicatedCloud_network_unable_delete_not_developed_yet": "Cette fonctionnalité n'est pas encore disponible, en attendant merci de contacter le support"
 }
