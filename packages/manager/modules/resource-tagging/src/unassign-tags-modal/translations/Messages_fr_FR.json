@@ -1,0 +1,8 @@
+{
+  "manager_components_resource_tagging_unassign_modal_title": "Désassigner un/des tag(s) de la resource",
+  "manager_components_resource_tagging_unassign_modal_cancel": "Annuler",
+  "manager_components_resource_tagging_unassign_modal_unassign": "Confirmer",
+  "manager_components_resource_tagging_unassign_modal_description": "Etes-vous sûr de vouloir désassigner le/les tag(s) suivant(s) de la resource {{resourceName}} ?",
+  "manager_components_resource_tagging_unassign_modal_success": "Les tags ont bien été désassignés.",
+  "manager_components_resource_tagging_unassign_modal_error": "Un problème est survenu, veuillez réessayer : <br> {{message}}<br> request_id: {{requestId}}"
+}

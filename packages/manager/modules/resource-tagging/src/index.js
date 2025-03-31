@@ -7,6 +7,7 @@ import dashboardTile from './dashboard-tile';
 import listModal from './list-modal';
 import tagManager from './manager';
 import assignModal from './assign-tags-modal';
+import unassignModal from './unassign-tags-modal';
 import component from './component';
 import service from './service';
 
@@ -22,6 +23,7 @@ angular
     listModal,
     tagManager,
     assignModal,
+    unassignModal,
   ])
   .component('ovhManagerResourceTagging', component)
   .service('ovhManagerResourceTaggingService', service)
