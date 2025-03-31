@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.12.9...@ovh-ux/manager-pci-public-ip-app@0.13.0) (2025-03-31)
+
+
+### Features
+
+* **pci-public-ip:** add 3AZ deployment modes ([#15982](https://github.com/ovh/manager/issues/15982)) ([c4831e0](https://github.com/ovh/manager/commit/c4831e0e06aabc82064bc2c35c49c5e47c2a934d)), closes [#TAPC-3071](https://github.com/ovh/manager/issues/TAPC-3071)
+
+
+
+
+
 ## [0.12.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.12.8...@ovh-ux/manager-pci-public-ip-app@0.12.9) (2025-03-27)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-public-ip-app

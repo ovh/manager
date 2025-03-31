@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.11.8...@ovh-ux/manager-pci-block-storage-app@0.12.0) (2025-03-31)
+
+
+### Features
+
+* **pci-block-storage:** implement deployment modes from pci-common ([#15955](https://github.com/ovh/manager/issues/15955)) ([73f0050](https://github.com/ovh/manager/commit/73f0050c3fd13468a57138ebe1a892cbe0198f42)), closes [#TAPC-2847](https://github.com/ovh/manager/issues/TAPC-2847)
+* **pci-instances:** implement 3AZ global availability ([#16236](https://github.com/ovh/manager/issues/16236)) ([60c8754](https://github.com/ovh/manager/commit/60c87549c7c7ac2e50499364230c3e8862880b4e)), closes [#TAPC-2403](https://github.com/ovh/manager/issues/TAPC-2403)
+
+
+
+
+
 ## [0.11.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.11.7...@ovh-ux/manager-pci-block-storage-app@0.11.8) (2025-03-27)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-block-storage-app

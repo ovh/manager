@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-load-balancer-app@0.6.10...@ovh-ux/manager-pci-load-balancer-app@0.7.0) (2025-03-31)
+
+
+### Features
+
+* **pci-load-balancer:** add 3az deployment mode ([#15951](https://github.com/ovh/manager/issues/15951)) ([576c8af](https://github.com/ovh/manager/commit/576c8afabd482a0eb024f19ac5508d888046c9a7)), closes [#TAPC-2310](https://github.com/ovh/manager/issues/TAPC-2310)
+
+
+
+
+
 ## [0.6.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-load-balancer-app@0.6.9...@ovh-ux/manager-pci-load-balancer-app@0.6.10) (2025-03-27)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-load-balancer-app
