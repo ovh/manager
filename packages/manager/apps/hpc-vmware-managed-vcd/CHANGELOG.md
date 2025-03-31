@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.10.1...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.11.0) (2025-03-31)
+
+
+### Bug Fixes
+
+* **hpc-managed-vcd:** change data protection tile label ([daf1638](https://github.com/ovh/manager/commit/daf16380e14ff53d1a26c985bbdd693a2b1ef703)), closes [#MANAGER-17399](https://github.com/ovh/manager/issues/MANAGER-17399)
+
+
+### Features
+
+* **vcd:** add vcd b1 and b2a tracking ([760ebf3](https://github.com/ovh/manager/commit/760ebf3f58c91ae3324c0cf4b041d338e7fb8f70)), closes [#MANAGER-15832](https://github.com/ovh/manager/issues/MANAGER-15832)
+
+
+
+
+
 ## [0.10.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.10.0...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.10.1) (2025-03-27)
 
 **Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-managed-vcd-app
