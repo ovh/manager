@@ -11,6 +11,8 @@ import routing from './user-agreements.routes';
 import service from './user-agreements.service';
 import component from './user-agreements.component';
 
+import './user-agreements.style.less';
+
 const moduleName = 'ovhManagerBillingAgreements';
 
 angular
