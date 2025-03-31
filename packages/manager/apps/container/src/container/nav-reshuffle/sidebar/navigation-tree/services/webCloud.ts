@@ -176,8 +176,20 @@ webCloudUniverse.children = [
     idAttr: 'microsoft-link',
     universe: webCloudUniverse.id,
     translation: 'sidebar_microsoft',
-    features: ['web-office', 'exchange'],
+    features: ['office', 'web-office', 'exchange'],
     children: [
+      {
+        id: 'office',
+        idAttr: 'office-link',
+        universe: webCloudUniverse.id,
+        translation: 'sidebar_license_office',
+        serviceType: 'LICENSE_OFFICE',
+        routing: {
+          application: 'web',
+          hash: '#/office/license',
+        },
+        features: ['office'],
+      },
       {
         id: 'web-office',
         idAttr: 'web-office-link',
@@ -185,8 +197,8 @@ webCloudUniverse.children = [
         translation: 'sidebar_license_office',
         serviceType: 'LICENSE_OFFICE',
         routing: {
-          application: 'web',
-          hash: '#/web-office',
+          application: 'web-office',
+          hash: '#/',
         },
         features: ['web-office'],
       },
