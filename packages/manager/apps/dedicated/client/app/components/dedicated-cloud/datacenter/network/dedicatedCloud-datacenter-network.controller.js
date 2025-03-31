@@ -45,6 +45,13 @@ export default class DedicatedCloudDatacenterNetworkTab {
       .then((consumption) => {
         this.consumption = consumption;
       })
+      .catch((error) => {
+        if (error.status === 404) {
+          this.consumption = { price: { value: 0 } };
+        } else {
+          throw error;
+        }
+      })
       .finally(() => {
         this.consumptionLoading = false;
       });
