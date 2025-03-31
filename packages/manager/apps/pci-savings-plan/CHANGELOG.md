@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.11.15...@ovh-ux/manager-pci-savings-plan-app@1.12.0) (2025-03-31)
+
+
+### Features
+
+* **svp:** add 3az selection ([#16092](https://github.com/ovh/manager/issues/16092)) ([c1ee8d6](https://github.com/ovh/manager/commit/c1ee8d6817f87d99441fe8b1c5262d6ff310a923)), closes [#TAPC-2882](https://github.com/ovh/manager/issues/TAPC-2882)
+
+
+
+
+
 ## [1.11.15](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.11.14...@ovh-ux/manager-pci-savings-plan-app@1.11.15) (2025-03-27)
 
 

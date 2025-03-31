@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.84.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.83.0...@ovh-ux/manager-pci@6.84.0) (2025-03-31)
+
+
+### Features
+
+* **pci-instances:** implement 3AZ global availability ([#16236](https://github.com/ovh/manager/issues/16236)) ([60c8754](https://github.com/ovh/manager/commit/60c87549c7c7ac2e50499364230c3e8862880b4e)), closes [#TAPC-2403](https://github.com/ovh/manager/issues/TAPC-2403)
+
+
+
+
+
 # [6.83.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.82.1...@ovh-ux/manager-pci@6.83.0) (2025-03-24)
 
 

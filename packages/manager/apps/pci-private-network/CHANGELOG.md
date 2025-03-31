@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-network-app@0.15.9...@ovh-ux/manager-pci-private-network-app@0.16.0) (2025-03-31)
+
+
+### Features
+
+* **pci.private-network:** add 3az deployment mode ([#16188](https://github.com/ovh/manager/issues/16188)) ([bdd0638](https://github.com/ovh/manager/commit/bdd0638b2de9971bd973aed23cd95904b09dd680)), closes [#TAPC-2404](https://github.com/ovh/manager/issues/TAPC-2404)
+
+
+
+
+
 ## [0.15.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-network-app@0.15.8...@ovh-ux/manager-pci-private-network-app@0.15.9) (2025-03-27)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-private-network-app
