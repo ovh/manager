@@ -28,6 +28,6 @@
   "kubernetes_network_form_gateway_mode_auto": "Domyślna brama zdefiniowana zgodnie z konfiguracją DHCP Twojej prywatnej sieci (zalecane)",
   "kubernetes_network_form_gateway_mode_custom": "Domyślna brama statycznie przeciążona",
   "kubernetes_network_form_gateway_mode_custom_placeholder": "Adres IP domyślnej bramy",
-  "kubernetes_network_form_rebuild": "Uwaga: zmiana strategii routingu wychodzącego wymaga ponownego wdrożenia węzłów klastra zgodnie z procedurą rolling update.",
+  "kubernetes_network_form_rebuild": "Uwaga: zmiana strategii routingu wychodzącego wymaga ponownego wdrożenia węzłów klastra do aktualizacji rolling.",
   "kubernetes_network_form_notify_users": "Jeśli chcesz wdrożyć Managed Kubernetes Service w regionie z 3 strefami dostępności (3-AZ), obowiązkowa jest sieć prywatna z przypisaną bramą. Upewnij się, że Twoja prywatna sieć spełnia ten wymóg, aby zapewnić optymalne działanie."
 }
