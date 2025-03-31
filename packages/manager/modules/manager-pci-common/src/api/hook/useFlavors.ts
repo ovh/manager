@@ -132,6 +132,23 @@ export const useMergedKubeFlavors = (projectId: string, region: string) => {
         const plan = availability.plans?.find(
           (_plan) => _plan.code === flavor.planCodes.hourly,
         );
+
+        // Bugfix: Issue with selecting the correct monthly price in the US
+        // -----------------------------------------------------------
+        // Context: Normally, we take the first element of the `pricings` array
+        // to determine the monthly price. However, for US offers, this first
+        // value may not be correct. Instead, we need to specifically look
+        // for the entry containing 'renew' in `capacities`.
+        //
+        // Solution:
+        // - We first search the `pricings` array for an entry where `capacities`
+        //   includes 'renew' and return it if found.
+        // - If no such entry exists, we fallback to the first element of `pricings` (if available).
+        const priceMonthly =
+          addonMonthly &&
+          (addonMonthly.pricings.find((p) => p.capacities.includes('renew')) ||
+            addonMonthly.pricings[0]);
+
         return {
           ...flavor,
           blobs: addon?.blobs,
@@ -144,7 +161,7 @@ export const useMergedKubeFlavors = (projectId: string, region: string) => {
             ),
           },
           pricingsHourly: addon?.pricings?.[0],
-          pricingsMonthly: addonMonthly?.pricings?.[0],
+          pricingsMonthly: priceMonthly,
           isNew: addon?.blobs.tags.includes('is_new'),
           flavorCategory: FLAVOR_CATEGORIES.find((cat) =>
             cat.pattern.test(flavor.type),
