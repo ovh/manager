@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.16.3...@ovh-ux/manager-emailpro@3.17.0) (2025-03-31)
+
+
+### Features
+
+* **web.email:** zimbra password rules for mx plan ([#15647](https://github.com/ovh/manager/issues/15647)) ([b7eb2f0](https://github.com/ovh/manager/commit/b7eb2f0e202782cb7d3c7e070fc576c913adf12a)), closes [#MANAGER-15483](https://github.com/ovh/manager/issues/MANAGER-15483)
+
+
+
+
+
 ## [3.16.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.16.2...@ovh-ux/manager-emailpro@3.16.3) (2025-03-24)
 
 

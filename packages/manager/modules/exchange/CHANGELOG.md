@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.13.2...@ovh-ux/manager-exchange@4.14.0) (2025-03-31)
+
+
+### Features
+
+* **web.exchange:** add refresh account datagrid ([#15672](https://github.com/ovh/manager/issues/15672)) ([4ee8c0a](https://github.com/ovh/manager/commit/4ee8c0ab712b4420b6e3b0df0e4bcaaf88ea3841)), closes [#MANAGER-13454](https://github.com/ovh/manager/issues/MANAGER-13454)
+
+
+
+
+
 ## [4.13.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.13.1...@ovh-ux/manager-exchange@4.13.2) (2025-03-21)
 
 

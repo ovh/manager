@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.19.14...@ovh-ux/manager-zimbra-app@0.20.0) (2025-03-31)
+
+
+### Bug Fixes
+
+* **zimbra:** "Should not already be working" error ([f02ad43](https://github.com/ovh/manager/commit/f02ad43638787396670ddd1d08989f508f24e5cc)), closes [#MANAGER-17603](https://github.com/ovh/manager/issues/MANAGER-17603)
+* **zimbra:** put tracking level2 as unclassified ([48b4f2d](https://github.com/ovh/manager/commit/48b4f2dfc0d2a3f9b0315a687f47bfc22dc6dcd8)), closes [#MANAGER-17591](https://github.com/ovh/manager/issues/MANAGER-17591)
+* **zimbra:** render issue when searchParams change ([494a5e4](https://github.com/ovh/manager/commit/494a5e4d0ac3b747b4d4d0346144b8a6fd767829)), closes [#MANAGER-17590](https://github.com/ovh/manager/issues/MANAGER-17590)
+
+
+### Features
+
+* **zimbra:** add search to datagrids ([dfe2e8b](https://github.com/ovh/manager/commit/dfe2e8bd13a5fdf18add1712214e691dd2322db4)), closes [#MANAGER-17553](https://github.com/ovh/manager/issues/MANAGER-17553)
+* **zimbra:** use Datagrid loading state ([656d452](https://github.com/ovh/manager/commit/656d452434638db48f3318cef46cab6265152965)), closes [#MANAGER-17356](https://github.com/ovh/manager/issues/MANAGER-17356)
+
+
+
+
+
 ## [0.19.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.19.13...@ovh-ux/manager-zimbra-app@0.19.14) (2025-03-27)
 
 
