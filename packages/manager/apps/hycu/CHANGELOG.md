@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hycu-app@0.9.5...@ovh-ux/manager-hycu-app@0.10.0) (2025-03-31)
+
+
+### Features
+
+* **hycu:** change find out more us link ([cc246db](https://github.com/ovh/manager/commit/cc246db50da78498b2ae9b3fc9a5ee8a86015054)), closes [#MANAGER-16041](https://github.com/ovh/manager/issues/MANAGER-16041)
+
+
+
+
+
 ## [0.9.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-hycu-app@0.9.4...@ovh-ux/manager-hycu-app@0.9.5) (2025-03-27)
 
 **Note:** Version bump only for package @ovh-ux/manager-hycu-app

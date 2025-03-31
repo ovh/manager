@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.8.3...@ovh-ux/manager-veeam-backup-app@0.9.0) (2025-03-31)
+
+
+### Features
+
+* **veeam:** display consumed VMs ([e6e413b](https://github.com/ovh/manager/commit/e6e413bd7e25b57baa830d17887e6bdad4303de6)), closes [#MANAGER-17126](https://github.com/ovh/manager/issues/MANAGER-17126)
+
+
+
+
+
 ## [0.8.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.8.2...@ovh-ux/manager-veeam-backup-app@0.8.3) (2025-03-27)
 
 

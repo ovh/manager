@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.14.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.14.3...@ovh-ux/manager-iam@1.14.4) (2025-03-31)
+
+
+### Bug Fixes
+
+* **iam:** add missing resource type translation ([fadfc65](https://github.com/ovh/manager/commit/fadfc657b08664bd86169fa4664e7220c659670d)), closes [#MANAGER-17405](https://github.com/ovh/manager/issues/MANAGER-17405)
+
+
+
+
+
 ## [1.14.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.14.2...@ovh-ux/manager-iam@1.14.3) (2025-03-27)
 
 **Note:** Version bump only for package @ovh-ux/manager-iam
