@@ -23,6 +23,7 @@ export const webFeatures = [
   'emails:delegate',
   'emails',
   'exchange:web-dashboard',
+  'office',
   'office-reseller',
   'sharepoint',
   'web:microsoft',
@@ -258,7 +259,21 @@ export default function WebSidebar() {
                 ...service,
               }));
             },
-          }, features['web-office'] &&
+          },
+          features.office && {
+            id: 'office',
+            label: t('sidebar_license_office'),
+            icon: getIcon('ms-Icon ms-Icon--OfficeLogo'),
+            routeMatcher: new RegExp(`/office`),
+            async loader() {
+              const services = await loadServices('/license/office');
+              return services.map((service) => ({
+                icon: getIcon('ms-Icon ms-Icon--OfficeLogo'),
+                ...service,
+              }));
+            },
+          },
+          features['web-office'] &&
           {
             id: 'web-office',
             label: t('sidebar_license_office'),
