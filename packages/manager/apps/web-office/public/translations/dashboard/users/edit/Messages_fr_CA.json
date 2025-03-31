@@ -1,0 +1,7 @@
+{
+  "dashboard_users_edit_title": "Éditer le compte",
+  "dashboard_users_edit_form_helper_login_conditions": "Votre login doit contenir entre 3 et 20 caractères maximum. Il peut inclure des chiffres, des lettres et les caractères suivants : - _ ! # $ % &amp; ' ^ ` { }",
+  "dashboard_users_edit_form_helper_login_condition_exception": "Il peut également contenir des points, à condition qu'ils soient précédés d'un caractère autorisé et qu'ils ne soient pas suivis d'un autre point.",
+  "dashboard_users_edit_message_success": "Les modifications sur l'utilisateur sont en cours. Veuillez rafraîchir la page dans quelques instants.",
+  "dashboard_users_edit_message_error": "Une erreur est survenue lors de l'édition de l'utilisateur. {{ error }}"
+}

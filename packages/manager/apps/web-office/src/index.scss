@@ -1,0 +1,21 @@
+@tailwind utilities;
+
+@import '@ovhcloud/ods-themes/default';
+@import '@ovh-ux/manager-react-components/dist/style.css';
+
+html {
+  font-family: var(--ods-font-family-default);
+}
+
+.menu-item-button {
+  &::part(button) {
+    width: 100%;
+    justify-content: left;
+    height: 32px;
+    border-radius: 0;
+  }
+}
+
+ods-modal.max-height-modal::part(dialog) {
+  max-height: 90%;
+}

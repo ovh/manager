@@ -127,7 +127,7 @@
   "sidebar_email_delegated": "Delegowanie uprawnień do e-maili",
   "sidebar_pci_all": "Wszystkie moje projekty Public Cloud",
   "sidebar_tag_alpha": "Alpha",
-  "sidebar_tag_beta": "Wersja Beta",
+  "sidebar_tag_beta": "Wersja beta",
   "sidebar_tag_new": "Nowość",
   "sidebar_domain_operations": "Operacje w toku",
   "sidebar_pci_additional_ips": "Publiczne adresy IP",
@@ -188,12 +188,12 @@
   "sidebar_security_identity_operations": "Tożsamość, bezpieczeństwo i operacje",
   "sidebar_security_identity_operations_short": "ISO",
   "sidebar_security_identity_operations_kms": "Key Management Service",
-  "sidebar_security_identity_operations_iam": "Identity &amp; Access Management",
+  "sidebar_security_identity_operations_iam": "Zarządzanie tożsamością i dostępem",
   "sidebar_security_identity_operations_logs": "Logs Data Platform",
   "sidebar_assistance_carbon_calculator": "Mój ślad węglowy",
   "sidebar_back_menu": "Powrót do menu",
-  "sidebar_identity_security_operations": "Tożsamość, Bezpieczeństwo I Operacje",
-  "sidebar_key-management-service": "Usługa zarządzania kluczami",
+  "sidebar_identity_security_operations": "Tożsamość, bezpieczeństwo i operacje",
+  "sidebar_key-management-service": "Key Management Service",
   "sidebar_zimbra": "Zimbra Mail",
   "sidebar_pci_ai_dashboard": "AI Dashboard",
   "sidebar_security_operations": "Operacje",
@@ -207,5 +207,6 @@
   "sidebar_vmware_vsphere": "Managed VMware vSphere",
   "sidebar_vmware_vcd": "Managed VCD",
   "sidebar_cloud_changelog": "Cloud Changelog",
-  "sidebar_hosting_and_collab_changelog": "Hosting &amp; Collab Changelog"
+  "sidebar_hosting_and_collab_changelog": "Hosting &amp; Collab Changelog",
+  "sidebar_license_office_list": "Moje konta Microsoft 365"
 }
