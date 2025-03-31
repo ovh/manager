@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.16.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.16.2...@ovh-ux/manager-pci-common@0.16.3) (2025-03-31)
+
+### Bug Fixes
+
+* **pci-common:** check monthly price in useFlavors ([0159023](https://github.com/ovh/manager/commit/0159023696e34c1883f2f6679a4b3ab48454aa22))
+
 ## [0.16.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.16.1...@ovh-ux/manager-pci-common@0.16.2) (2025-03-27)
 
 ### Bug Fixes
