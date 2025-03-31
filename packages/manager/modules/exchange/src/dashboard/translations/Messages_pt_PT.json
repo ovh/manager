@@ -548,7 +548,7 @@
   "exchange_account_add_field_error_passwordConfirmation": "Palavras-passe diferentes",
   "exchange_account_add_field_error_pattern": "Introduza um formato válido.",
   "exchange_account_add_emailAddress_error_alreadyExists": "Uma conta com este e-mail já existe.",
-  "exchange_account_add_submit_success": "A criação da conta {0} foi bem-sucedida. Poderá utilizá-la dentro de alguns minutos.",
+  "exchange_account_add_submit_success": "A criação da conta {0} foi bem-sucedida. Poderá utilizá-la dentro de alguns minutos. Atualize a página, se necessário.",
   "exchange_ACTION_add_account_legal_title": "Aceito as condições de utilização",
   "exchange_ACTION_add_account_legal_warning": "Reconheço que a OVH procederá a execução imediata da prestação a contar a partir da validação do pagamento e, a este título, renuncio expressamente o exercício do meu direito de resolução, de acordo com o DL n.º 24/2014 de 14 de Fevereiro.",
   "exchange_ACTION_add_account_title": "Adicionar uma conta Exchange",

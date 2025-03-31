@@ -4,41 +4,46 @@ import {
   UseInfiniteQueryResult,
 } from '@tanstack/react-query';
 import { useEffect } from 'react';
-import { usePlatform, useOrganization } from '@/hooks';
+import { useSearchParams } from 'react-router-dom';
+import { usePlatform } from '@/hooks';
 
 import {
   DomainType,
   getZimbraPlatformDomains,
   getZimbraPlatformDomainsQueryKey,
 } from '@/api/domain';
-import { APIV2_MAX_PAGESIZE } from '@/utils';
+import { APIV2_MAX_PAGESIZE, buildURLSearchParams } from '@/utils';
 
 type UseDomainsParams = Omit<
   UseInfiniteQueryOptions,
   'queryKey' | 'queryFn' | 'select' | 'getNextPageParam' | 'initialPageParam'
 > & {
   organizationId?: string;
+  domainName?: string;
   shouldFetchAll?: boolean;
 };
 
 export const useDomains = (props: UseDomainsParams = {}) => {
-  const { organizationId, shouldFetchAll, ...options } = props;
+  const { organizationId, domainName, shouldFetchAll, ...options } = props;
   const { platformId } = usePlatform();
-  const { data: organization } = useOrganization();
-  const selectedOrganizationId = organization?.id;
+  const [searchParams] = useSearchParams();
+  const urlSearchParams = buildURLSearchParams({
+    organizationId: organizationId ?? searchParams.get('organizationId'),
+    domainName,
+  });
 
   const query = useInfiniteQuery({
     ...options,
     initialPageParam: null,
     queryKey: getZimbraPlatformDomainsQueryKey(
       platformId,
-      organizationId || selectedOrganizationId,
+      urlSearchParams,
       shouldFetchAll,
     ),
     queryFn: ({ pageParam }) =>
       getZimbraPlatformDomains({
         platformId,
-        organizationId: organizationId || selectedOrganizationId,
+        searchParams: urlSearchParams,
         pageParam,
         ...(shouldFetchAll ? { pageSize: APIV2_MAX_PAGESIZE } : {}),
       }),

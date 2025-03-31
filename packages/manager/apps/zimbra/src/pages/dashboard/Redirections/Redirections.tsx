@@ -16,7 +16,6 @@ import ActionButtonRedirections from './ActionButtonRedirections.component';
 import { useGenerateUrl, usePlatform } from '@/hooks';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import { ResourceStatus } from '@/api/api.type';
-import Loading from '@/components/Loading/Loading';
 import { BadgeStatus } from '@/components/BadgeStatus';
 
 export type RedirectionsItem = {
@@ -102,33 +101,29 @@ export function Redirections() {
               <Subtitle>{t('zimbra_redirections_account_title')}</Subtitle>
             </div>
           )}
-          <div className="flex items-center justify-between">
-            <ManagerButton
-              color={ODS_BUTTON_COLOR.primary}
-              inline-block
-              size={ODS_BUTTON_SIZE.sm}
-              onClick={handleAddEmailRedirectionClick}
-              urn={platformUrn}
-              iamActions={[IAM_ACTIONS.redirection.create]}
-              data-testid="add-redirection-btn"
-              id="add-redirection-btn"
-              className="mb-6"
-              icon={ODS_ICON_NAME.plus}
-              label={t('common:add_redirection')}
-            />
-          </div>
-          {isLoading ? (
-            <Loading />
-          ) : (
-            <Datagrid
-              columns={columns.map((column) => ({
-                ...column,
-                label: t(column.label),
-              }))}
-              items={items}
-              totalItems={items.length}
-            />
-          )}
+          <Datagrid
+            topbar={
+              <ManagerButton
+                color={ODS_BUTTON_COLOR.primary}
+                inline-block
+                size={ODS_BUTTON_SIZE.sm}
+                onClick={handleAddEmailRedirectionClick}
+                urn={platformUrn}
+                iamActions={[IAM_ACTIONS.redirection.create]}
+                data-testid="add-redirection-btn"
+                id="add-redirection-btn"
+                icon={ODS_ICON_NAME.plus}
+                label={t('common:add_redirection')}
+              />
+            }
+            columns={columns.map((column) => ({
+              ...column,
+              label: t(column.label),
+            }))}
+            items={items}
+            totalItems={items.length}
+            isLoading={isLoading}
+          />
         </>
       )}
     </div>

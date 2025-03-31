@@ -548,7 +548,7 @@
   "exchange_account_add_field_error_passwordConfirmation": "Passwörter stimmen nicht überein.",
   "exchange_account_add_field_error_pattern": "Bitte geben Sie ein gültiges Format ein.",
   "exchange_account_add_emailAddress_error_alreadyExists": "Es existiert bereits ein Account mit dieser E-Mail-Adresse.",
-  "exchange_account_add_submit_success": "Der Account {0} wurde erstellt. Sie können ihn in wenigen Minuten verwenden.",
+  "exchange_account_add_submit_success": "Der Account {0} wurde erstellt. Sie können ihn in einigen Minuten verwenden. Denken Sie daran, die Seite zu aktualisieren.",
   "exchange_ACTION_add_account_legal_title": "Ich akzeptiere die Nutzungsbedingungen",
   "exchange_ACTION_add_account_legal_warning": "Ich möchte, dass OVH die sofortige Lieferung der Dienstleistung nach Validierung der Bestellung durchführt, und bestätige, dass ich in diesem Fall auf mein Widerrufsrecht verzichte.",
   "exchange_ACTION_add_account_title": "Exchange Account hinzufügen",

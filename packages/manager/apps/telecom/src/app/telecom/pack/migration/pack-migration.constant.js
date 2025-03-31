@@ -55,6 +55,22 @@ export const CUSTOM_FIELD_FORM_RULES = {
   zipCode: { canBeNull: false },
 };
 
+export const FIBER_PTO = {
+  FIBER_PTO_YES: 'yes',
+  FIBER_PTO_YES_BUT_NOT_KNOWN: 'yesNotKnown',
+  FIBER_PTO_NO: 'no',
+  FIBER_PTO_MULTI_OTP: 'multiOtp',
+};
+
+export const DICTIONNARY = {
+  [FIBER_PTO.FIBER_PTO_YES]: 'activate',
+  [FIBER_PTO.FIBER_PTO_YES_BUT_NOT_KNOWN]: 'activate_undefined',
+  [FIBER_PTO.FIBER_PTO_NO]: 'create',
+  [FIBER_PTO.FIBER_PTO_MULTI_OTP]: 'multiOtp',
+};
+
+export const TASK_STATUS = { PENDING: 'pending' };
+
 export default {
   PROMO_DISPLAY,
   PROCESS_STEP,
@@ -69,4 +85,7 @@ export default {
   CUSTOM_FIELD_FORM,
   CUSTOM_SORT_FIELD_FORM,
   CUSTOM_FIELD_FORM_RULES,
+  FIBER_PTO,
+  DICTIONNARY,
+  TASK_STATUS,
 };

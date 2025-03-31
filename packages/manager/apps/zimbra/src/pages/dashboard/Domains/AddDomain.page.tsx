@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   LinkType,
   Links,
@@ -41,7 +41,7 @@ import {
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
-  useOrganizationList,
+  useOrganizations,
   usePlatform,
   useGenerateUrl,
   useDomains,
@@ -75,26 +75,20 @@ export default function AddDomain() {
   const [searchParams] = useSearchParams();
   const organizationId = searchParams.get('organizationId');
 
-  const { data: organizations, isLoading } = useOrganizationList({
+  const { data: organizations, isLoading } = useOrganizations({
     shouldFetchAll: true,
   });
 
-  const organizationOptions = useMemo(
-    () =>
-      organizations
-        ?.filter((org) => org.resourceStatus === ResourceStatus.READY)
-        .map((item) => (
-          <option key={item.id} value={item.id}>
-            {item.targetSpec?.name}
-          </option>
-        )) || [],
-    [organizations],
-  );
-
   // @TODO: remove this when OdsSelect is fixed ODS-1565
+  const [hackOrgs, setHackOrgs] = useState([]);
   const [hackKeyOrg, setHackKeyOrg] = useState(Date.now());
 
   useEffect(() => {
+    setHackOrgs(
+      (organizations || [])?.filter(
+        (org) => org.resourceStatus === ResourceStatus.READY,
+      ),
+    );
     setHackKeyOrg(Date.now());
   }, [organizations, organizationId]);
 
@@ -114,26 +108,17 @@ export default function AddDomain() {
     shouldFetchAll: true,
   });
 
-  const domainsOptions = useMemo(() => {
-    if (!existingDomains) {
-      return [];
-    }
-    return (domainZones || [])
-      .filter(
-        (zone: string) =>
-          !existingDomains.find((d) => zone === d.currentState.name),
-      )
-      .map((domain: string, index: number) => (
-        <option key={index} value={domain}>
-          {domain}
-        </option>
-      ));
-  }, [domainZones, existingDomains]);
-
   // @TODO: remove this when OdsSelect is fixed ODS-1565
+  const [hackDomains, setHackDomains] = useState([]);
   const [hackKeyDomains, setHackKeyDomains] = useState(Date.now());
 
   useEffect(() => {
+    setHackDomains(
+      (domainZones || []).filter(
+        (zone: string) =>
+          !(existingDomains || []).find((d) => zone === d.currentState.name),
+      ),
+    );
     setHackKeyDomains(Date.now());
   }, [domainZones, existingDomains]);
 
@@ -313,7 +298,11 @@ export default function AddDomain() {
                 onOdsChange={onChange}
                 onOdsBlur={onBlur}
               >
-                {organizationOptions}
+                {hackOrgs?.map((item) => (
+                  <option key={item.id} value={item.id}>
+                    {item.targetSpec?.name}
+                  </option>
+                )) || []}
               </OdsSelect>
               {isLoading && (
                 <Loading
@@ -381,7 +370,11 @@ export default function AddDomain() {
                     onOdsChange={onChange}
                     onOdsBlur={onBlur}
                   >
-                    {domainsOptions}
+                    {hackDomains.map((domain: string, index: number) => (
+                      <option key={index} value={domain}>
+                        {domain}
+                      </option>
+                    ))}
                   </OdsSelect>
                   {(isLoadingExistingDomains || isLoadingDomainZones) && (
                     <Loading

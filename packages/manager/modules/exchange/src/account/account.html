@@ -349,6 +349,14 @@
                     ></span>
                 </oui-action-menu-item>
             </oui-action-menu>
+            <oui-button
+                type="button"
+                data-disabled="$ctrl.isLoading"
+                class="float-right"
+                data-on-click="$ctrl.refreshList()"
+            >
+                <span class="oui-icon oui-icon-refresh"></span>
+            </oui-button>
         </oui-datagrid-topbar>
     </oui-datagrid>
 </div>

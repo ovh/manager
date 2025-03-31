@@ -548,7 +548,7 @@
   "exchange_account_add_field_error_passwordConfirmation": "Contraseñas diferentes.",
   "exchange_account_add_field_error_pattern": "Introduzca un formato válido.",
   "exchange_account_add_emailAddress_error_alreadyExists": "Ya existe una cuenta con esta dirección de correo electrónico.",
-  "exchange_account_add_submit_success": "La cuenta {0} se ha creado correctamente. Podrá empezar a utilizarla en unos minutos.",
+  "exchange_account_add_submit_success": "La cuenta {0} se ha creado correctamente. Podrá utilizarla en unos minutos. No olvide actualizar la página.",
   "exchange_ACTION_add_account_legal_title": "Acepto las condiciones de uso",
   "exchange_ACTION_add_account_legal_warning": "Acepto que OVH proceda a la ejecución inmediata del servicio una vez sea validado mi pedido y, por consiguiente, renuncio expresamente a ejercer mi derecho de desistimiento, con arreglo a lo dispuesto en los artículos 102 y 103 del Real Decreto Legislativo 1/2007, por el que se aprueba el texto refundido de la Ley General para la Defensa de los Consumidores y Usuarios y otras leyes complementarias.",
   "exchange_ACTION_add_account_title": "Añadir una cuenta Exchange",
