@@ -1,3 +1,4 @@
+import React from 'react';
 import { vi, it, describe } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import AssistanceSidebar, { AssistanceProps } from '.';
@@ -41,7 +42,7 @@ const props: AssistanceProps = {
   nodeTree: assistanceTree,
   isShort: false,
   selectedNode: null,
-  isLoading: false
+  isLoading: false,
 };
 
 const renderAssistanceSidebar = (props: AssistanceProps) => {
@@ -55,7 +56,7 @@ const renderAssistanceSidebar = (props: AssistanceProps) => {
   );
 };
 
-const id: string = 'assistance-sidebar';
+const id = 'assistance-sidebar';
 
 describe('AssistanceSidebar.component', () => {
   it('should render', () => {

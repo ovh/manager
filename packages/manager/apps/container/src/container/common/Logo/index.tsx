@@ -1,6 +1,7 @@
-import style from "./style.module.scss"
+import React from 'react';
+import style from './style.module.scss';
 
-export const Logo = (props: any): JSX.Element => {
+export const Logo = (props: React.SVGProps<SVGSVGElement>): JSX.Element => {
   return (
     <>
       <svg

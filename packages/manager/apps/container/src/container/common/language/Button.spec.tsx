@@ -1,23 +1,25 @@
+import React from 'react';
 import { it, vi, describe, expect } from 'vitest';
 import { render } from '@testing-library/react';
-import LanguageButton, { Props } from './Button';
 import { useTranslation } from 'react-i18next';
+import LanguageButton, { Props } from './Button';
 
 const handleClick = vi.fn();
 
 const props: Props = {
   show: false,
-  onClick: handleClick
+  onClick: handleClick,
 };
 
 const renderLanguageButton = (props: Props) => {
-  return render(<LanguageButton show={props.show} onClick={props.onClick} />)
-}
+  return render(<LanguageButton show={props.show} onClick={props.onClick} />);
+};
 
 describe('LanguageButton.component', () => {
-
   it('should render', () => {
-    expect(renderLanguageButton(props).getByTestId('languageButton')).not.toBeNull();
+    expect(
+      renderLanguageButton(props).getByTestId('languageButton'),
+    ).not.toBeNull();
   });
 
   it('should have the correct aria properties', () => {
@@ -37,7 +39,13 @@ describe('LanguageButton.component', () => {
     props.show = true;
     const { queryByTestId } = renderLanguageButton(props);
 
-    expect(queryByTestId('languageButton')).toHaveAttribute('aria-expanded', 'true');
-    expect(queryByTestId('languageButton')).toHaveAttribute('aria-haspopup', 'true');
+    expect(queryByTestId('languageButton')).toHaveAttribute(
+      'aria-expanded',
+      'true',
+    );
+    expect(queryByTestId('languageButton')).toHaveAttribute(
+      'aria-haspopup',
+      'true',
+    );
   });
 });

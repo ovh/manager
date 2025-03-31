@@ -9,9 +9,9 @@ import Navbar from './navbar/Navbar';
 function ShellHeader(): JSX.Element {
   return (
     <ApplicationContext.Consumer>
-      {({ environment }) => (
+      {() => (
         <Suspense fallback="">
-          <Navbar environment={environment} />
+          <Navbar />
           <AccountSidebar />
           <NotificationsSidebar />
         </Suspense>

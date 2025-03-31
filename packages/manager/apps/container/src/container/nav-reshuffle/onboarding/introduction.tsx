@@ -1,10 +1,10 @@
+import useClickAway from 'react-use/lib/useClickAway';
+import React, { useState, useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 import popoverStyle from '@/container/common/popover.module.scss';
 import modalStyle from '@/container/common/modal.module.scss';
 import { useShell } from '@/context/useApplicationContext';
-import useClickAway from 'react-use/lib/useClickAway';
-import { useState, useEffect, useRef } from 'react';
-import { useTranslation } from 'react-i18next';
 import style from './style.module.scss';
 import useOnboarding, {
   ONBOARDING_OPENED_STATE_ENUM,
@@ -36,7 +36,7 @@ export const OnboardingIntroduction = () => {
     variant: '[welcome_message]',
     detailedPlacement:
       productNavReshuffle.onboardingOpenedState ===
-        ONBOARDING_STATUS_ENUM.DISPLAYED
+      ONBOARDING_STATUS_ENUM.DISPLAYED
         ? '[new_visitor]'
         : '[returning_visitor]',
   };
@@ -64,9 +64,13 @@ export const OnboardingIntroduction = () => {
     });
   };
 
-  useClickAway(ref, () => {
-    productNavReshuffle.reduceOnboarding();
-  }, ['click']);
+  useClickAway(
+    ref,
+    () => {
+      productNavReshuffle.reduceOnboarding();
+    },
+    ['click'],
+  );
 
   useEffect(() => {
     if (isPopoverVisible) {
@@ -81,22 +85,26 @@ export const OnboardingIntroduction = () => {
   }, [isPopoverVisible]);
 
   useEffect(() => {
-    setIsPopoverVisible(productNavReshuffle.onboardingOpenedState === ONBOARDING_OPENED_STATE_ENUM.WELCOME);
+    setIsPopoverVisible(
+      productNavReshuffle.onboardingOpenedState ===
+        ONBOARDING_OPENED_STATE_ENUM.WELCOME,
+    );
   }, [productNavReshuffle.onboardingOpenedState]);
 
   useEffect(() => {
     if (refConfirm.current) {
       refConfirm.current.focus();
     }
-  })
+  });
 
   return (
     <>
       {isPopoverVisible && (
         <>
           <div
-            className={`${modalStyle.popoverClickAway} ${isPopoverVisible ? '' : modalStyle.hidden
-              }`}
+            className={`${modalStyle.popoverClickAway} ${
+              isPopoverVisible ? '' : modalStyle.hidden
+            }`}
           ></div>
           <div
             className={`${style.welcomePopover} ${popoverStyle.popover} oui-popover`}
@@ -117,7 +125,9 @@ export const OnboardingIntroduction = () => {
                 className="oui-button oui-button_ghost"
                 onClick={() => closeOnboarding()}
               >
-                {onboarding.shouldShowOnboardingNextTime ? t('onboarding_popover_later_hide_button') : t('onboarding_popover_do_not_show_again_button')}
+                {onboarding.shouldShowOnboardingNextTime
+                  ? t('onboarding_popover_later_hide_button')
+                  : t('onboarding_popover_do_not_show_again_button')}
               </button>
               <button
                 className="oui-button oui-button_primary"

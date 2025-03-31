@@ -1,6 +1,6 @@
+import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
 import illustration from '@/assets/images/sidebar/network.png';
 import { Node } from '../node';
-import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
 
 const networkUniverse: Node = {
   id: 'network',

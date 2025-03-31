@@ -11,7 +11,7 @@ const mockPlugins = vi.hoisted(() => ({
     getURL: vi.fn(
       (app, hash) => `https://www.ovh.com/manager/#/${hash.replace('#', app)}`,
     ),
-    navigateTo: vi.fn((app, hash) => {})
+    navigateTo: vi.fn(() => {}),
   },
   tracking: {
     trackClick: vi.fn(),
@@ -24,7 +24,7 @@ const mockPlugins = vi.hoisted(() => ({
 const mockShell = vi.hoisted(() => ({
   shell: {
     getPlugin: (plugin: string) => {
-      return mockPlugins[plugin as keyof typeof mockPlugins]
+      return mockPlugins[plugin as keyof typeof mockPlugins];
     },
   },
 }));
