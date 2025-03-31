@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.7.1...@ovh-ux/manager-telecom@16.8.0) (2025-03-31)
+
+
+### Features
+
+* **telecom.packxdsl:** add installation type for meeting display ([#16068](https://github.com/ovh/manager/issues/16068)) ([470692d](https://github.com/ovh/manager/commit/470692d5358ff35bee2156efb7901479dc7ead55)), closes [#UXCT-717](https://github.com/ovh/manager/issues/UXCT-717)
+
+
+
+
+
 ## [16.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.7.0...@ovh-ux/manager-telecom@16.7.1) (2025-03-27)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom

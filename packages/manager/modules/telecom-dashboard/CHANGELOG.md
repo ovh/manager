@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-dashboard@6.8.3...@ovh-ux/manager-telecom-dashboard@6.9.0) (2025-03-31)
+
+
+### Features
+
+* **telecom:** add guide link for migrate xdsl offer to fiber ([#16121](https://github.com/ovh/manager/issues/16121)) ([2642bb7](https://github.com/ovh/manager/commit/2642bb7530f8e7daa5b4561f0381dae7743505ea))
+
+
+
+
+
 ## [6.8.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-dashboard@6.8.2...@ovh-ux/manager-telecom-dashboard@6.8.3) (2025-03-06)
 
 

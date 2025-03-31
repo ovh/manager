@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.18.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.18.0...@ovh-ux/manager-sms@8.18.1) (2025-03-31)
+
+
+### Bug Fixes
+
+* **telecom.sms:** remove autocredit for smpp account ([d9e93a6](https://github.com/ovh/manager/commit/d9e93a606bf48b26a70542694a1c059a42ce9d66)), closes [#MANAGER-17527](https://github.com/ovh/manager/issues/MANAGER-17527)
+
+
+
+
+
 # [8.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.17.6...@ovh-ux/manager-sms@8.18.0) (2025-02-20)
 
 

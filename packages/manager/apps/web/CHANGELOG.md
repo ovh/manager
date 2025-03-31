@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.10.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.10.1...@ovh-ux/manager-web@19.10.2) (2025-03-31)
+
+
+### Bug Fixes
+
+* **manager-web:** update link to redirect to newest contact edit domains pages ([a20754f](https://github.com/ovh/manager/commit/a20754f96aa8a6fa873c8bbb43d20e46e397040a)), closes [#MANAGER-17510](https://github.com/ovh/manager/issues/MANAGER-17510)
+* **web:** a null value in rows break the display ([085da60](https://github.com/ovh/manager/commit/085da608227a0eeadd4d2b9edf6b70a9aedf44f4)), closes [#MANAGER-17615](https://github.com/ovh/manager/issues/MANAGER-17615)
+
+
+
+
+
 ## [19.10.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.10.0...@ovh-ux/manager-web@19.10.1) (2025-03-27)
 
 **Note:** Version bump only for package @ovh-ux/manager-web
