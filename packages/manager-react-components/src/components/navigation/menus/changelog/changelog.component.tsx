@@ -64,4 +64,41 @@ export const ChangelogButton: React.FC<ChangelogButtonProps> = ({
   );
 };
 
+export const ChangelogButtonWithoutTracking: React.FC<ChangelogButtonProps> = ({
+  links,
+  chapters = [],
+}) => {
+  const { t } = useTranslation('buttons');
+  return (
+    <>
+      <div id="navigation-menu-changelog-trigger">
+        <OdsButton
+          slot="menu-title"
+          variant={ODS_BUTTON_VARIANT.ghost}
+          size={ODS_BUTTON_SIZE.sm}
+          label={t('mrc_changelog_header')}
+          className="whitespace-nowrap"
+        ></OdsButton>
+      </div>
+
+      <OdsPopover
+        triggerId="navigation-menu-changelog-trigger"
+        with-arrow="true"
+      >
+        {Object.entries(links).map(([key, value]) => (
+          <div key={key}>
+            <Links
+              href={value}
+              target="_blank"
+              type={LinkType.external}
+              rel={LinkType.external}
+              label={t(`mrc_changelog_${key}`)}
+            />
+          </div>
+        ))}
+      </OdsPopover>
+    </>
+  );
+};
+
 export default ChangelogButton;
