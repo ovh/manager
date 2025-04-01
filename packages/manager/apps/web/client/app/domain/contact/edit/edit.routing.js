@@ -15,8 +15,20 @@ export default /* @ngInject */ ($stateProvider) => {
         ].join(' '),
       contactId: /* @ngInject */ ($transition$) =>
         $transition$.params().contactId,
-      contactInformations: /* @ngInject */ (contactId, ContactService) =>
-        ContactService.getDomainContactInformations(contactId),
+      contactInformations: /* @ngInject */ (
+        $state,
+        $transition$,
+        contactId,
+        ContactService,
+      ) =>
+        ContactService.getDomainContactInformations(contactId).catch((err) => {
+          const { productId } = $transition$.params();
+          if (err.status === 404) {
+            return $state.go('app.domain.product.contact', { productId });
+          }
+
+          throw err;
+        }),
       goBack: /* @ngInject */ ($state, Alerter, $timeout, atInternet) => (
         message = false,
         type = 'success',
