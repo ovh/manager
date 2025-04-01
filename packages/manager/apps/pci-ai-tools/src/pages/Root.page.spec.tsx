@@ -6,7 +6,7 @@ describe('Root page', () => {
   it('renders the page', async () => {
     render(<Root />);
     await waitFor(() => {
-      expect(screen.getByText('title')).toBeInTheDocument();
+      expect(screen.getByText('title')).toBeTruthy();
     });
   });
 });
