@@ -7,7 +7,6 @@ const moduleName = 'ovhManagerIAMAuditLogs';
 angular
   .module(moduleName, [dataStreams])
   .config(routing)
-  .service('accessPolicyLogsService', service)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .service('accessPolicyLogsService', service);
 
 export default moduleName;
