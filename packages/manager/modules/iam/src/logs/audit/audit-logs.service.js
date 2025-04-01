@@ -1,17 +1,16 @@
-// TODO update when implementing audit logs
 export const URL = {
-  LOG: '',
-  LOG_KIND: '',
-  LOG_SUSBSCRIPTION: '',
+  LOG: '/me/logs/audit/log/url',
+  LOG_KIND: '/me/logs/audit/log/kind',
+  LOG_SUSBSCRIPTION: '/me/logs/audit/log/subscription',
 };
 
 export default class IAMAuditLogsService {
   /* @ngInject */
-  constructor($q) {
-    this.$q = $q;
+  constructor($http) {
+    this.$http = $http;
   }
 
   getLogKinds() {
-    return this.$q.when(['default']);
+    return this.$http.get(URL.LOG_KIND).then(({ data }) => data);
   }
 }
