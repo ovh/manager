@@ -11,7 +11,6 @@ export default {
     guideUrl: '<',
     interfaces: '<',
     ola: '<',
-    optionPrice: '<',
     orderPrivateBandwidthLink: '<',
     orderPublicBandwidthLink: '<',
     server: '<',

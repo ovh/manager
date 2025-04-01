@@ -36,13 +36,6 @@ export default /* @ngInject */ ($stateProvider) => {
         }).$promise,
       guideUrl: /* @ngInject */ (DedicatedServerInterfacesService) =>
         DedicatedServerInterfacesService.getGuideUrl(),
-      optionPrice: /* @ngInject */ (olaService, server, serverName, ola) => {
-        // option price is only available for servers migrated to agora
-        if (ola.isAvailable() && (!ola.isActivated() || !ola.isConfigured())) {
-          return olaService.getOlaPrice(serverName, server);
-        }
-        return [];
-      },
       orderPrivateBandwidthLink: /* @ngInject */ ($state, serverName) =>
         $state.href(
           'app.dedicated-cluster.cluster.node.interfaces.bandwidth-private-order',
