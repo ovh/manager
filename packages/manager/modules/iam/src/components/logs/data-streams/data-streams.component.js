@@ -10,6 +10,7 @@ export default {
     goBack: '<',
     trackClick: '<',
     apiVersion: '<',
+    trackingHits: '<',
   },
   controller,
   template,
