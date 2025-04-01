@@ -1,11 +1,17 @@
 <oui-tile
-    data-heading="{{:: 'manager_components_resource_tagging_dashboard_tile_title' | translate }}"
+    data-heading="{{:: $ctrl.LABELS.TILE_TITLE }}"
     data-loading="$ctrl.loading"
 >
-    <oui-tile-definition
-        data-ng-if="$ctrl.formattedTags.length > 0"
-        data-term="{{ :: 'manager_components_resource_tagging_dashboard_tile_assigned' | translate }}"
-    >
+    <oui-tile-definition data-ng-if="$ctrl.formattedTags.length > 0">
+        <oui-tile-term>
+            <span
+                data-translate="manager_components_resource_tagging_dashboard_tile_assigned"
+            ></span>
+            <span
+                class="oui-badge oui-badge_beta"
+                data-ng-bind="$ctrl.LABELS.BETA"
+            ></span>
+        </oui-tile-term>
         <oui-tile-description class="mt-2 d-flex flex-row flex-wrap">
             <div
                 data-ng-repeat="tag in $ctrl.formattedTags track by $index"
@@ -58,6 +64,10 @@
                 data-icon-right="oui-icon-chevron-right"
                 data-on-click="$ctrl.goToTagManager()"
             >
+                <span
+                    class="oui-badge oui-badge_beta"
+                    data-ng-bind="$ctrl.LABELS.BETA"
+                ></span>
                 <span
                     data-translate="manager_components_resource_tagging_dashboard_tile_empty_button"
                 ></span>

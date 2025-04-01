@@ -1,5 +1,5 @@
 {
-  "manager_components_resource_tagging_dashboard_tile_title": "Tags",
+  "manager_components_resource_tagging_dashboard_tile_title": "Tags {{beta}}",
   "manager_components_resource_tagging_dashboard_tile_assigned": "Tags assignés",
   "manager_components_resource_tagging_dashboard_tile_assigned_button": "Gérer mes tags",
   "manager_components_resource_tagging_dashboard_tile_assigned_more": "Plus de tags",
