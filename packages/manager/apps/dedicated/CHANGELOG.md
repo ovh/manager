@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.22.3...@ovh-ux/manager-dedicated@20.23.0) (2025-04-01)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3785] ([#15852](https://github.com/ovh/manager/issues/15852)) ([169b86f](https://github.com/ovh/manager/commit/169b86f1713486cdaf53726c9cf5eb1b9d8d92c0)), closes [#MANAGER-16935](https://github.com/ovh/manager/issues/MANAGER-16935)
+
+
+### Features
+
+* **dedicated:** add customer survey banner ([#15772](https://github.com/ovh/manager/issues/15772)) ([7585352](https://github.com/ovh/manager/commit/75853520ac95cbe4725fd3657752b09ef94891f2)), closes [#MANAGER-16933](https://github.com/ovh/manager/issues/MANAGER-16933)
+
+
+
+
+
 ## [20.22.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.22.2...@ovh-ux/manager-dedicated@20.22.3) (2025-03-31)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated
