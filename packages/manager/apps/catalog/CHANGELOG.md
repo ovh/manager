@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.19.8...@ovh-ux/manager-catalog-app@1.20.0) (2025-04-01)
+
+
+### Features
+
+* **catalog:** migrate from jest to vitest ([#16159](https://github.com/ovh/manager/issues/16159)) ([8131f12](https://github.com/ovh/manager/commit/8131f1225d09cc7b702e4c58a159b75d6b8e6695)), closes [#MANAGER-16306](https://github.com/ovh/manager/issues/MANAGER-16306)
+* **catalog:** remove local playwright e2e tests ([#16160](https://github.com/ovh/manager/issues/16160)) ([fa842fa](https://github.com/ovh/manager/commit/fa842fa52b515a5263b4fe879f7d702cff62a33c)), closes [#MANAGER-17124](https://github.com/ovh/manager/issues/MANAGER-17124)
+
+
+
+
+
 ## [1.19.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.19.7...@ovh-ux/manager-catalog-app@1.19.8) (2025-03-27)
 
 **Note:** Version bump only for package @ovh-ux/manager-catalog-app

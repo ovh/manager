@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.113.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.112.2...@ovh-ux/manager-container-app@0.113.0) (2025-04-01)
+
+
+### Bug Fixes
+
+* **container:** on configuration page, count is not rendered ([#15987](https://github.com/ovh/manager/issues/15987)) ([94973c3](https://github.com/ovh/manager/commit/94973c35a73a705a22acdde200c3c038f47797b8)), closes [#MANAGER-15105](https://github.com/ovh/manager/issues/MANAGER-15105)
+
+
+### Features
+
+* **container:** add animations to pnr ([#14691](https://github.com/ovh/manager/issues/14691)) ([785deed](https://github.com/ovh/manager/commit/785deed5eb66d0e60407ae561db46982a2b8d754)), closes [#MANAGER-14461](https://github.com/ovh/manager/issues/MANAGER-14461) [#MANAGER-14921](https://github.com/ovh/manager/issues/MANAGER-14921) [#MANAGER-16831](https://github.com/ovh/manager/issues/MANAGER-16831) [#MANAGER-17318](https://github.com/ovh/manager/issues/MANAGER-17318)
+* **container:** change voip name in pnr ([#16018](https://github.com/ovh/manager/issues/16018)) ([7e27db6](https://github.com/ovh/manager/commit/7e27db6c4a2a2f49db3a205bbe4f010d4072b06f)), closes [#MANAGER-17349](https://github.com/ovh/manager/issues/MANAGER-17349)
+* **container:** frenchify some translations ([#15925](https://github.com/ovh/manager/issues/15925)) ([8426ed2](https://github.com/ovh/manager/commit/8426ed2d772bd90aad46ad693c01cb75e126b097)), closes [#MANAGER-17318](https://github.com/ovh/manager/issues/MANAGER-17318)
+* **container:** standardize contexts and context hooks ([#15872](https://github.com/ovh/manager/issues/15872)) ([1ffe4be](https://github.com/ovh/manager/commit/1ffe4beca694c77c399ae984b623a2163c04cda9)), closes [#MANAGER-17283](https://github.com/ovh/manager/issues/MANAGER-17283)
+
+
+
+
+
 ## [0.112.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.112.1...@ovh-ux/manager-container-app@0.112.2) (2025-04-01)
 
 
