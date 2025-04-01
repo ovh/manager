@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.12.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.12.2...@ovh-ux/manager-billing-components@4.12.3) (2025-04-01)
+
+
+### Bug Fixes
+
+* **billing:** use one time binding to avoid infinite digest ([#16086](https://github.com/ovh/manager/issues/16086)) ([d719678](https://github.com/ovh/manager/commit/d71967853889533d5c6db44d670a9aeb59b5618c)), closes [#MANAGER-17500](https://github.com/ovh/manager/issues/MANAGER-17500)
+
+
+
+
+
 ## [4.12.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.12.1...@ovh-ux/manager-billing-components@4.12.2) (2025-03-31)
 
 

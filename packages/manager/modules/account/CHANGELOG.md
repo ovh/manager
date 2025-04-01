@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.7.8...@ovh-ux/manager-account@0.8.0) (2025-04-01)
+
+
+### Features
+
+* **account:** prevent closing while uploading files for kycs ([#16000](https://github.com/ovh/manager/issues/16000)) ([7b3af35](https://github.com/ovh/manager/commit/7b3af350e461ef73922c0ac7df1fd834c364b08d)), closes [#MANAGER-16930](https://github.com/ovh/manager/issues/MANAGER-16930)
+
+
+
+
+
 ## [0.7.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.7.7...@ovh-ux/manager-account@0.7.8) (2025-03-27)
 
 **Note:** Version bump only for package @ovh-ux/manager-account

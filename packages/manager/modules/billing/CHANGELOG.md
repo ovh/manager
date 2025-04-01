@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.34.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.33.0...@ovh-ux/manager-billing@0.34.0) (2025-04-01)
+
+
+### Features
+
+* **billing:** remove bills retrieval from routing ([#15950](https://github.com/ovh/manager/issues/15950)) ([51f527a](https://github.com/ovh/manager/commit/51f527a10d40faec312d5851c4aaf34cdb5578b8)), closes [#MANAGER-17118](https://github.com/ovh/manager/issues/MANAGER-17118)
+
+
+
+
+
 # [0.33.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.32.0...@ovh-ux/manager-billing@0.33.0) (2025-03-27)
 
 
