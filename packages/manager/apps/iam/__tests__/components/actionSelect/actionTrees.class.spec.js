@@ -1,5 +1,5 @@
-import ActionTrees from '../../../../../../modules/iam/src/components/actionSelect/ActionTrees.class.js';
-import { CUSTOM_RESOURCE_TYPE } from '../../../../../../modules/iam/src/iam.constants';
+import ActionTrees from '../../../../../modules/iam/src/components/actionSelect/ActionTrees.class.js';
+import { CUSTOM_RESOURCE_TYPE } from '../../../../../modules/iam/src/iam.constants';
 
 describe('ActionTrees', () => {
   let actionTrees;

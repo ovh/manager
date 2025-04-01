@@ -1,7 +1,7 @@
 import '@ovh-ux/ui-kit';
 import '@uirouter/angularjs';
 import 'angular-translate';
-import '@ovh-ux/manager-log-to-customer';
+import ovhManagerLogToCustomer from '@ovh-ux/manager-log-to-customer';
 
 import audit from './audit';
 import accessPolicy from './access-policy';
@@ -14,11 +14,10 @@ const moduleName = 'ovhManagerIAMLogs';
 
 angular
   .module(moduleName, [
-    'ngTranslateAsyncLoader',
     'oui',
     'pascalprecht.translate',
     'ui.router',
-    'ovhManagerLogToCustomer',
+    ovhManagerLogToCustomer,
     dataStream,
     liveTail,
     audit,
