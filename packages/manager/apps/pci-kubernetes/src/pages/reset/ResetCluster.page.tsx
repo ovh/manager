@@ -1,5 +1,6 @@
 import {
   OsdsButton,
+  OsdsChip,
   OsdsFormField,
   OsdsIcon,
   OsdsMessage,
@@ -17,6 +18,7 @@ import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useNavigate, useParams } from 'react-router-dom';
 import {
   ODS_BUTTON_VARIANT,
+  ODS_CHIP_SIZE,
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
   ODS_MESSAGE_TYPE,
@@ -38,7 +40,11 @@ import {
 } from '@/api/hooks/useKubernetes';
 import { WORKER_NODE_POLICIES } from '@/constants';
 import { useGetCloudSchema } from '@/api/hooks/useCloud';
-import { getFormatedKubeVersion } from '@/helpers';
+import {
+  getFormatedKubeVersion,
+  isMonoDeploymentZone,
+  isMultiDeploymentZones,
+} from '@/helpers';
 import { useAvailablePrivateNetworks } from '@/api/hooks/useNetwork';
 import { KUBE_TRACK_PREFIX } from '@/tracking.constants';
 import { TNetwork } from '@/api/data/network';
@@ -50,12 +56,11 @@ import {
 import { ModeEnum } from '@/components/network/GatewayModeSelector.component';
 import { LoadBalancerWarning } from '@/components/network/LoadBalancerWarning.component';
 import { SelectComponent } from '@/components/input/Select.component';
+import { useRegionInformations } from '@/api/hooks/useRegionInformations';
+import MultiZoneInfo from '@/components/network/MultiZoneInfo.component';
 
 export default function ResetClusterPage() {
-  const { t: tReset } = useTranslation('reset');
-  const { t: tListing } = useTranslation('listing');
-  const { t } = useTranslation('network-add');
-
+  const { t } = useTranslation(['network-add', 'listing', 'reset', 'add']);
   const { addError, addSuccess } = useNotifications();
   const { projectId, kubeId } = useParams();
   const navigate = useNavigate();
@@ -80,6 +85,11 @@ export default function ResetClusterPage() {
     data: privateNetworks,
     isPending: isPendingPrivateNetworks,
   } = useAvailablePrivateNetworks(projectId, kubernetesCluster?.region);
+
+  const {
+    data: regionInformations,
+    isPending: isPendingRegionInformations,
+  } = useRegionInformations(projectId, kubernetesCluster?.region);
 
   const defaultNetwork = {
     id: 'none',
@@ -159,11 +169,12 @@ export default function ResetClusterPage() {
     isPendingCluster ||
     isPendingCloudSchema ||
     isPendingPrivateNetworks ||
+    isPendingRegionInformations ||
     isPendingResetCluster;
 
   return (
     <OsdsModal
-      headline={tReset('pci_projects_project_kubernetes_service_reset')}
+      headline={t('reset:pci_projects_project_kubernetes_service_reset')}
       color={ODS_TEXT_COLOR_INTENT.warning}
       onOdsModalClose={() => {
         tracking?.trackClick({
@@ -182,15 +193,21 @@ export default function ResetClusterPage() {
           />
         ) : (
           <div className="mt-6">
-            <OsdsMessage type={ODS_MESSAGE_TYPE.warning}>
-              <span
-                dangerouslySetInnerHTML={{
-                  __html: tReset(
-                    'pci_projects_project_kubernetes_service_reset_message',
-                  ),
-                }}
-              />
-            </OsdsMessage>
+            <div className="flex flex-col gap-4">
+              <OsdsMessage type={ODS_MESSAGE_TYPE.warning}>
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html: t(
+                      'reset:pci_projects_project_kubernetes_service_reset_message',
+                    ),
+                  }}
+                />
+              </OsdsMessage>
+
+              {isMultiDeploymentZones(regionInformations.type) && (
+                <MultiZoneInfo />
+              )}
+            </div>
 
             <OsdsFormField className="mt-6">
               <OsdsText
@@ -199,7 +216,7 @@ export default function ResetClusterPage() {
                 slot="label"
                 size={ODS_TEXT_SIZE._200}
               >
-                {tReset('pci_projects_project_kubernetes_service_reset_nodes')}
+                {t('reset:pci_projects_project_kubernetes_service_reset_nodes')}
               </OsdsText>
               <OsdsRadioGroup
                 value={formState.workerNodesPolicy}
@@ -224,13 +241,17 @@ export default function ResetClusterPage() {
                       slot="end"
                       size={ODS_TEXT_SIZE._400}
                     >
-                      {tReset(
-                        'pci_projects_project_kubernetes_service_reset_common_delete',
+                      {t(
+                        'reset:pci_projects_project_kubernetes_service_reset_common_delete',
                       )}
                     </OsdsText>
                   </OsdsRadioButton>
                 </OsdsRadio>
                 <OsdsRadio
+                  disabled={
+                    isMultiDeploymentZones(regionInformations?.type) ??
+                    undefined
+                  }
                   value={WORKER_NODE_POLICIES.REINSTALL}
                   className="mt-2"
                 >
@@ -243,9 +264,16 @@ export default function ResetClusterPage() {
                       slot="end"
                       size={ODS_TEXT_SIZE._400}
                     >
-                      {tReset(
-                        'pci_projects_project_kubernetes_service_reset_common_reinstall',
-                      )}
+                      <div className="flex items-center gap-2">
+                        {t(
+                          'reset:pci_projects_project_kubernetes_service_reset_common_reinstall',
+                        )}
+                        {isMultiDeploymentZones(regionInformations?.type) && (
+                          <OsdsChip size={ODS_CHIP_SIZE.sm} inline>
+                            {t('add:kube_add_plan_content_standard_very_soon')}
+                          </OsdsChip>
+                        )}
+                      </div>
                     </OsdsText>
                   </OsdsRadioButton>
                 </OsdsRadio>
@@ -259,8 +287,8 @@ export default function ResetClusterPage() {
                 color={ODS_THEME_COLOR_INTENT.text}
                 level={ODS_TEXT_LEVEL.body}
               >
-                {tReset(
-                  'pci_projects_project_kubernetes_service_reset_version',
+                {t(
+                  'reset:pci_projects_project_kubernetes_service_reset_version',
                 )}
               </OsdsText>
               <OsdsSelect
@@ -288,10 +316,15 @@ export default function ResetClusterPage() {
                 size={ODS_TEXT_SIZE._200}
                 slot="label"
               >
-                {tListing('kubernetes_add_private_network_label')}
+                {t('listing:kubernetes_add_private_network_label')}
               </OsdsText>
               <SelectComponent
-                value={formState.privateNetworkId || defaultNetwork?.id}
+                value={
+                  formState.privateNetworkId ||
+                  (isMonoDeploymentZone(regionInformations.type)
+                    ? defaultNetwork?.id
+                    : privateNetworks[0]?.clusterRegion?.openstackId)
+                }
                 onOdsValueChange={(event) => {
                   const value = `${event.detail.value}`;
                   setFormState({
@@ -302,9 +335,11 @@ export default function ResetClusterPage() {
                   });
                 }}
               >
-                <OsdsSelectOption value={defaultNetwork.id}>
-                  {defaultNetwork.name}
-                </OsdsSelectOption>
+                {isMonoDeploymentZone(regionInformations.type) && (
+                  <OsdsSelectOption value={defaultNetwork.id}>
+                    {defaultNetwork.name}
+                  </OsdsSelectOption>
+                )}
                 {privateNetworks?.map((network) => (
                   <OsdsSelectOption
                     key={network.id}
@@ -340,64 +375,66 @@ export default function ResetClusterPage() {
               </div>
             )}
 
-            {formState.privateNetworkId && formState.subnet && (
-              <>
-                <GatewaySelector
-                  initialValue={formState.gateway}
-                  className="mt-8"
-                  onSelect={(gateway) =>
-                    setFormState((prevState) => ({
-                      ...prevState,
-                      gateway,
-                    }))
-                  }
-                />
-
-                <OsdsText
-                  color={ODS_THEME_COLOR_INTENT.text}
-                  level={ODS_TEXT_LEVEL.heading}
-                  size={ODS_TEXT_SIZE._400}
-                  className="block my-8 flex items-center"
-                  onClick={() => setIsExpanded((e) => !e)}
-                >
-                  {t('kubernetes_network_form_load_balancers_subnet_toggler')}
-                  <OsdsIcon
-                    name={
-                      isExpanded
-                        ? ODS_ICON_NAME.CHEVRON_UP
-                        : ODS_ICON_NAME.CHEVRON_DOWN
-                    }
-                    color={ODS_THEME_COLOR_INTENT.primary}
-                    size={ODS_ICON_SIZE.sm}
-                    aria-hidden="true"
-                    className="ml-4"
-                  />
-                </OsdsText>
-
-                <div className={isExpanded ? 'block' : 'hidden'}>
-                  <SubnetSelector
-                    className="mt-6"
-                    title={t('kubernetes_network_form_load_balancers_subnet')}
-                    projectId={projectId}
-                    networkId={formState.privateNetworkId}
-                    region={
-                      getPrivateNetworkById(formState.privateNetworkId)
-                        ?.clusterRegion?.region
-                    }
-                    onSelect={(loadBalancersSubnet) =>
+            {formState.privateNetworkId &&
+              formState.subnet &&
+              isMonoDeploymentZone(regionInformations.type) && (
+                <>
+                  <GatewaySelector
+                    initialValue={formState.gateway}
+                    className="mt-8"
+                    onSelect={(gateway) =>
                       setFormState((prevState) => ({
                         ...prevState,
-                        loadBalancersSubnet,
+                        gateway,
                       }))
                     }
-                    allowsEmpty
-                    preselectedId={kubernetesCluster?.loadBalancersSubnetId}
                   />
 
-                  {shouldWarnLoadBalancerSubnet && <LoadBalancerWarning />}
-                </div>
-              </>
-            )}
+                  <OsdsText
+                    color={ODS_THEME_COLOR_INTENT.text}
+                    level={ODS_TEXT_LEVEL.heading}
+                    size={ODS_TEXT_SIZE._400}
+                    className="block my-8 flex items-center"
+                    onClick={() => setIsExpanded((e) => !e)}
+                  >
+                    {t('kubernetes_network_form_load_balancers_subnet_toggler')}
+                    <OsdsIcon
+                      name={
+                        isExpanded
+                          ? ODS_ICON_NAME.CHEVRON_UP
+                          : ODS_ICON_NAME.CHEVRON_DOWN
+                      }
+                      color={ODS_THEME_COLOR_INTENT.primary}
+                      size={ODS_ICON_SIZE.sm}
+                      aria-hidden="true"
+                      className="ml-4"
+                    />
+                  </OsdsText>
+
+                  <div className={isExpanded ? 'block' : 'hidden'}>
+                    <SubnetSelector
+                      className="mt-6"
+                      title={t('kubernetes_network_form_load_balancers_subnet')}
+                      projectId={projectId}
+                      networkId={formState.privateNetworkId}
+                      region={
+                        getPrivateNetworkById(formState.privateNetworkId)
+                          ?.clusterRegion?.region
+                      }
+                      onSelect={(loadBalancersSubnet) =>
+                        setFormState((prevState) => ({
+                          ...prevState,
+                          loadBalancersSubnet,
+                        }))
+                      }
+                      allowsEmpty
+                      preselectedId={kubernetesCluster?.loadBalancersSubnetId}
+                    />
+
+                    {shouldWarnLoadBalancerSubnet && <LoadBalancerWarning />}
+                  </div>
+                </>
+              )}
           </div>
         )}
       </slot>
@@ -413,7 +450,7 @@ export default function ResetClusterPage() {
         }}
         data-testid="reset-button_cancel"
       >
-        {tReset('pci_projects_project_kubernetes_service_reset_common_cancel')}
+        {t('reset:pci_projects_project_kubernetes_service_reset_common_cancel')}
       </OsdsButton>
       <OsdsButton
         slot="actions"
@@ -432,7 +469,9 @@ export default function ResetClusterPage() {
         }}
         data-testid="reset-button_submit"
       >
-        {tReset('pci_projects_project_kubernetes_service_reset_common_confirm')}
+        {t(
+          'reset:pci_projects_project_kubernetes_service_reset_common_confirm',
+        )}
       </OsdsButton>
     </OsdsModal>
   );

@@ -9,6 +9,8 @@ import {
   ODS_CHIP_SIZE,
   ODS_MESSAGE_TYPE,
   ODS_TEXT_COLOR_INTENT,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import {
   ODS_THEME_COLOR_INTENT,
@@ -109,6 +111,15 @@ const PlanTile = ({
   return (
     <form data-testid="form" onSubmit={onSubmitHandler}>
       {!step.isLocked && <PlanTile.Banner type={type} />}
+      <OsdsText
+        className="my-4  block"
+        size={ODS_TEXT_SIZE._400}
+        level={ODS_TEXT_LEVEL.body}
+        color={ODS_THEME_COLOR_INTENT.text}
+      >
+        {t('kube_add_plan_subtitle')}
+      </OsdsText>
+
       <div className=" mt-6 grid grid-cols-1  lg:grid-cols-2  xl:grid-cols-3  gap-4">
         {!step.isLocked && (
           <>
