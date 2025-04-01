@@ -14,6 +14,7 @@
     "build": "tsc && vite build",
     "coverage": "vitest run --coverage",
     "dev": "tsc && vite",
+    "lint": "eslint ./src",
     "start": "lerna exec --stream --scope='{{ packageName }}' --include-dependencies -- npm run build --if-present",
     "start:dev": "lerna exec --stream --scope='{{ packageName }}' --include-dependencies -- npm run dev --if-present",
     "start:watch": "lerna exec --stream --parallel --scope='{{ packageName }}' --include-dependencies -- npm run dev:watch --if-present",
@@ -24,6 +25,9 @@
     "@ovh-ux/manager-config": "*",
     "@ovh-ux/manager-core-api": "*",
     "@ovh-ux/manager-core-utils": "*",
+    {{#if this.isPCI }}
+    "@ovh-ux/manager-pci-common": "^2.4.2",
+    {{/if}}
     "@ovh-ux/manager-react-core-application": "*",
     "@ovh-ux/manager-react-shell-client": "*",
     "@ovh-ux/request-tagger": "*",
@@ -32,6 +36,7 @@
     "@ovh-ux/manager-react-components": "^2.2.0",
     "axios": "^1.1.2",
     "clsx": "^1.2.1",
+    "element-internals-polyfill": "^3.0.0",
     "i18next": "^23.8.2",
     "i18next-http-backend": "^2.4.2",
     "react": "^18.2.0",
@@ -41,19 +46,24 @@
     "tailwindcss": "^3.4.4"
   },
   "devDependencies": {
-    "@testing-library/dom": "^9.3.4",
-    "@testing-library/jest-dom": "^6.4.2",
-    "@testing-library/react": "^14.2.1",
+    "@testing-library/dom": "^10.1.0",
+    "@testing-library/jest-dom": "^6.4.6",
+    "@testing-library/react": "^16.0.0",
     "@tanstack/react-query-devtools": "^5.51.21",
     "@ovh-ux/manager-vite-config": "*",
-    "@vitest/coverage-v8": "^2.1.2",
+    "@vitest/coverage-v8": "^2.1.9",
     "typescript": "^5.1.6",
-    "vite": "^5.2.13",
-    "vitest": "^2.1.2"
+    "vite": "^6.0.7",
+    "vitest": "^2.1.9"
   },
   "regions": [
-    "CA",
-    "EU",
-    "US"
+    {{#each regions}}
+     "{{this}}"{{#unless @last}},{{/unless}}
+    {{/each}}
+  ],
+  "universes": [
+    {{#each universes}}
+     "{{this}}"{{#unless @last}},{{/unless}}
+    {{/each}}
   ]
 }
