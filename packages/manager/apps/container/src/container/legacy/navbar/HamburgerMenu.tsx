@@ -5,7 +5,7 @@ import { TRANSLATE_NAMESPACE } from './constants';
 import style from './navbar.module.scss';
 import { Universe } from '@/hooks/useUniverses';
 import { useShell } from '@/context';
-import { useLegacyContainer } from '@/container/legacy/context';
+import { useLegacyContainer } from '@/container/legacy/legacy.context';
 
 type Props = {
   universe?: string;
