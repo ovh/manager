@@ -1,0 +1,982 @@
+[
+  {
+    "id": "pn-1095481_2600",
+    "name": "test PP",
+    "vlanId": 2600,
+    "regions": [
+      {
+        "region": "EU-WEST-PAR",
+        "status": "ACTIVE",
+        "openstackId": "a0af6d66-dccc-4b6b-9899-fd98ba9fe04f"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_2600",
+    "name": "test Selmen",
+    "vlanId": 2600,
+    "regions": [
+      {
+        "region": "UK1",
+        "status": "ACTIVE",
+        "openstackId": "a0af6d66-dccc-4b6b-9899-fd98ba9fe04f"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_2103",
+    "name": "test",
+    "vlanId": 2103,
+    "regions": [
+      {
+        "region": "BHS5",
+        "status": "ACTIVE",
+        "openstackId": "19903114-b3f1-47f2-bdaa-125982d5c198"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_2111",
+    "name": "test1",
+    "vlanId": 2111,
+    "regions": [
+      {
+        "region": "BHS5",
+        "status": "ACTIVE",
+        "openstackId": "e055adfe-857b-457c-b7b5-56735888d81f"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_13",
+    "name": "test1",
+    "vlanId": 13,
+    "regions": [
+      {
+        "region": "BHS5",
+        "status": "ACTIVE",
+        "openstackId": "e131794c-cee0-4136-80c6-2f23f85de856"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_2808",
+    "name": "ghkghkjgk",
+    "vlanId": 2808,
+    "regions": [
+      {
+        "region": "DE1",
+        "status": "ACTIVE",
+        "openstackId": "afbe3174-2006-4042-986b-999400d8d40b"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_2806",
+    "name": "test-flo-aaa",
+    "vlanId": 2806,
+    "regions": [
+      {
+        "region": "DE1",
+        "status": "ACTIVE",
+        "openstackId": "b7e1d9bc-34d0-4b1b-8e0e-775327462cab"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_22",
+    "name": "test_alr_gra11",
+    "vlanId": 22,
+    "regions": [
+      {
+        "region": "GRA11",
+        "status": "ACTIVE",
+        "openstackId": "2d53645b-2c9b-44d4-994f-6e3d8a53fedc"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_2107",
+    "name": "BHS511",
+    "vlanId": 2107,
+    "regions": [
+      {
+        "region": "BHS5",
+        "status": "ACTIVE",
+        "openstackId": "28d8d59d-979d-4d45-93df-dbf9b0365e2a"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_2121",
+    "name": "test1",
+    "vlanId": 2121,
+    "regions": [
+      {
+        "region": "BHS5",
+        "status": "ACTIVE",
+        "openstackId": "dbf4947b-732a-4d3c-b337-9eebf2c8ed61"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_2120",
+    "name": "test1",
+    "vlanId": 2120,
+    "regions": [
+      {
+        "region": "BHS5",
+        "status": "ACTIVE",
+        "openstackId": "f4bb262d-8231-4a1a-ae5d-6ef5fd9c8f5b"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_2804",
+    "name": "test-flo-5",
+    "vlanId": 2804,
+    "regions": [
+      {
+        "region": "DE1",
+        "status": "ACTIVE",
+        "openstackId": "3e31fa97-3f6e-4475-a116-e8868fb654b1"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_2130",
+    "name": "test-flo",
+    "vlanId": 2130,
+    "regions": [
+      {
+        "region": "BHS5",
+        "status": "ACTIVE",
+        "openstackId": "97c1e57a-fef6-4cf5-8e82-c70f81af0430"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_2800",
+    "name": "DE1 network",
+    "vlanId": 2800,
+    "regions": [
+      {
+        "region": "DE1",
+        "status": "ACTIVE",
+        "openstackId": "ad331976-ba14-42b4-abf5-08f9af59e8ad"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_3001",
+    "name": "test1",
+    "vlanId": 3001,
+    "regions": [
+      {
+        "region": "WAW1",
+        "status": "ACTIVE",
+        "openstackId": "a32bfc34-fc86-4de8-98ed-6ba2709ca6ef"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_2110",
+    "name": "test1",
+    "vlanId": 2110,
+    "regions": [
+      {
+        "region": "BHS5",
+        "status": "ACTIVE",
+        "openstackId": "0493aafa-a357-46c5-8fe6-3d11c659c042"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_2131",
+    "name": "test",
+    "vlanId": 2131,
+    "regions": [
+      {
+        "region": "BHS5",
+        "status": "ACTIVE",
+        "openstackId": "0aab8bcd-9a03-46d2-a07c-8452286c67db"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_2115",
+    "name": "test1",
+    "vlanId": 2115,
+    "regions": [
+      {
+        "region": "BHS5",
+        "status": "ACTIVE",
+        "openstackId": "32bd3e6e-8de8-4a4e-bed7-00d17d56fcec"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_2108",
+    "name": "dfgsdgf",
+    "vlanId": 2108,
+    "regions": [
+      {
+        "region": "BHS5",
+        "status": "ACTIVE",
+        "openstackId": "622067c4-fffb-4a6d-b1d6-78680729ecca"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_3002",
+    "name": "test1",
+    "vlanId": 3002,
+    "regions": [
+      {
+        "region": "WAW1",
+        "status": "ACTIVE",
+        "openstackId": "176e7932-4fd0-41b5-bb0a-7adfc742a952"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_2119",
+    "name": "test1",
+    "vlanId": 2119,
+    "regions": [
+      {
+        "region": "BHS5",
+        "status": "ACTIVE",
+        "openstackId": "45d2987b-0c19-4f25-bad0-49323cef04f2"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_2133",
+    "name": "test",
+    "vlanId": 2133,
+    "regions": [
+      {
+        "region": "BHS5",
+        "status": "ACTIVE",
+        "openstackId": "5093f03c-85dd-4ff3-b8c0-18901829e7d7"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_2109",
+    "name": "Test-ALR-test",
+    "vlanId": 2109,
+    "regions": [
+      {
+        "region": "BHS5",
+        "status": "ACTIVE",
+        "openstackId": "aa69e78e-5d8c-460e-a13d-bc4722d5d7f0"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_1700",
+    "name": "GRA11",
+    "vlanId": 1700,
+    "regions": [
+      {
+        "region": "GRA11",
+        "status": "ACTIVE",
+        "openstackId": "e7ef1278-3513-45d6-805d-727844e3232a"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_21",
+    "name": "Test 2",
+    "vlanId": 21,
+    "regions": [
+      {
+        "region": "AP-SOUTH-MUM-1",
+        "status": "ACTIVE",
+        "openstackId": "e033748b-a817-4ebc-9281-dfca30e3117d"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_2105",
+    "name": "testQA",
+    "vlanId": 2105,
+    "regions": [
+      {
+        "region": "BHS5",
+        "status": "ACTIVE",
+        "openstackId": "0f85c131-45d4-4d50-b52b-9365b42b2415"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_1",
+    "name": "Test_ALRMUM",
+    "vlanId": 1,
+    "regions": [
+      {
+        "region": "AP-SOUTH-MUM-1",
+        "status": "ACTIVE",
+        "openstackId": "9c738f7c-9f37-4354-96ac-70484428e079"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_14",
+    "name": "test",
+    "vlanId": 14,
+    "regions": [
+      {
+        "region": "BHS5",
+        "status": "ACTIVE",
+        "openstackId": "1a152116-09b3-4625-8eea-75d8e8804fca"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_2802",
+    "name": "testpreprod",
+    "vlanId": 2802,
+    "regions": [
+      {
+        "region": "DE1",
+        "status": "ACTIVE",
+        "openstackId": "8a9eb98e-c335-48bd-a6d5-25d9be10eef1"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_20",
+    "name": "test alr",
+    "vlanId": 20,
+    "regions": [
+      {
+        "region": "RBX-A",
+        "status": "ACTIVE",
+        "openstackId": "9a92255a-0016-4b99-bbf9-a26740c746e5"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_18",
+    "name": "Test-ALR-SYD3",
+    "vlanId": 18,
+    "regions": [
+      {
+        "region": "AP-SOUTHEAST-SYD-2",
+        "status": "ACTIVE",
+        "openstackId": "0d31dda0-a327-4e22-b4ea-6b334d38fda0"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_2602",
+    "name": "test no cidr",
+    "vlanId": 2602,
+    "regions": [
+      {
+        "region": "UK1",
+        "status": "ACTIVE",
+        "openstackId": "72d8e937-ed18-4063-b67b-882dea6a8e36"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_3650",
+    "name": "test-sc-3",
+    "vlanId": 3650,
+    "regions": [
+      {
+        "region": "AP-SOUTH-MUM-1",
+        "status": "ACTIVE",
+        "openstackId": "5b2fbcba-1330-4e3e-8f9f-7d2aea49a2b2"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_3651",
+    "name": "test-sc-4",
+    "vlanId": 3651,
+    "regions": [
+      {
+        "region": "AP-SOUTH-MUM-1",
+        "status": "ACTIVE",
+        "openstackId": "61c67cd2-0a80-47b1-90d9-da501b51a62d"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_2135",
+    "name": "test",
+    "vlanId": 2135,
+    "regions": [
+      {
+        "region": "BHS5",
+        "status": "ACTIVE",
+        "openstackId": "8f58aa07-e48d-43ca-bc5e-c4eb3b40f2d7"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_2132",
+    "name": "test",
+    "vlanId": 2132,
+    "regions": [
+      {
+        "region": "BHS5",
+        "status": "ACTIVE",
+        "openstackId": "cfa93209-983f-4daf-a691-6ca6a73a0464"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_2122",
+    "name": "test1",
+    "vlanId": 2122,
+    "regions": [
+      {
+        "region": "BHS5",
+        "status": "ACTIVE",
+        "openstackId": "f75def11-3b9e-4617-92e7-565a208c4586"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_19",
+    "name": "Test_LBXL",
+    "vlanId": 19,
+    "regions": [
+      {
+        "region": "GRA-STAGING-A",
+        "status": "ACTIVE",
+        "openstackId": "bff374db-a155-4c7e-bc98-4be001d9ee57"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_3600",
+    "name": "Test-ALR-1601",
+    "vlanId": 3600,
+    "regions": [
+      {
+        "region": "RBX-A",
+        "status": "ACTIVE",
+        "openstackId": "dd2d8ff0-c9e1-4465-83fd-960919a82e3c"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_3003",
+    "name": "Test_ALR",
+    "vlanId": 3003,
+    "regions": [
+      {
+        "region": "WAW1",
+        "status": "ACTIVE",
+        "openstackId": "af339bb1-ac69-46c4-becd-d87a61e0a517"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_3652",
+    "name": "test-sc-6",
+    "vlanId": 3652,
+    "regions": [
+      {
+        "region": "AP-SOUTH-MUM-1",
+        "status": "ACTIVE",
+        "openstackId": "7addb0ef-375d-4d59-8568-178c8d2dea0d"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_15",
+    "name": "test",
+    "vlanId": 15,
+    "regions": [
+      {
+        "region": "BHS5",
+        "status": "ACTIVE",
+        "openstackId": "3517b6d5-ae96-4085-ab6f-d3728cb828de"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_2124",
+    "name": "test1",
+    "vlanId": 2124,
+    "regions": [
+      {
+        "region": "BHS5",
+        "status": "ACTIVE",
+        "openstackId": "b298ce86-b5f2-48d0-9d3c-3b915b260cfd"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_2123",
+    "name": "test1",
+    "vlanId": 2123,
+    "regions": [
+      {
+        "region": "BHS5",
+        "status": "ACTIVE",
+        "openstackId": "cdd4f285-0b34-4ab2-bad9-16c7dd7d2010"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_2126",
+    "name": "test1",
+    "vlanId": 2126,
+    "regions": [
+      {
+        "region": "BHS5",
+        "status": "ACTIVE",
+        "openstackId": "d05e7fbd-6cee-4461-b53c-abf7d3c41136"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_2117",
+    "name": "test1",
+    "vlanId": 2117,
+    "regions": [
+      {
+        "region": "BHS5",
+        "status": "ACTIVE",
+        "openstackId": "f2fb9887-0c25-454e-8d14-8291cea723d5"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_2127",
+    "name": "test1",
+    "vlanId": 2127,
+    "regions": [
+      {
+        "region": "BHS5",
+        "status": "ACTIVE",
+        "openstackId": "6fef7a6e-3177-4a06-bb12-5073622ce598"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_2125",
+    "name": "test1",
+    "vlanId": 2125,
+    "regions": [
+      {
+        "region": "BHS5",
+        "status": "ACTIVE",
+        "openstackId": "a161d479-1226-4a32-ba5f-c9f445622eb4"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_2805",
+    "name": "test",
+    "vlanId": 2805,
+    "regions": [
+      {
+        "region": "DE1",
+        "status": "ACTIVE",
+        "openstackId": "86c08c9d-3a6c-430c-ad28-a01d446d6797"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_17",
+    "name": "test",
+    "vlanId": 17,
+    "regions": [
+      {
+        "region": "BHS5",
+        "status": "ACTIVE",
+        "openstackId": "9bdb5262-2cac-4aca-9899-e0120fb4dd0e"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_2601",
+    "name": "aaa",
+    "vlanId": 2601,
+    "regions": [
+      {
+        "region": "UK1",
+        "status": "ACTIVE",
+        "openstackId": "c6782304-9328-4093-8414-492d41f5c35b"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_0",
+    "name": "vlan0",
+    "vlanId": 0,
+    "regions": [
+      {
+        "region": "BHS5",
+        "status": "ACTIVE",
+        "openstackId": "45eb1069-9efd-4b8d-9454-e0f3424274c6"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_2128",
+    "name": "Test-ALR-Test-1601",
+    "vlanId": 2128,
+    "regions": [
+      {
+        "region": "BHS5",
+        "status": "ACTIVE",
+        "openstackId": "a0f96500-089f-4d1b-983d-8efb005911ed"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_2300",
+    "name": "test1",
+    "vlanId": 2300,
+    "regions": [
+      {
+        "region": "SYD1",
+        "status": "ACTIVE",
+        "openstackId": "2cf078db-9ea6-4458-a240-605dfea85c18"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_2301",
+    "name": "test sydney",
+    "vlanId": 2301,
+    "regions": [
+      {
+        "region": "SYD1",
+        "status": "ACTIVE",
+        "openstackId": "5e95e4a6-4daf-47d2-8089-f8c79b530268"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_2100",
+    "name": "fffffff",
+    "vlanId": 2100,
+    "regions": [
+      {
+        "region": "BHS5",
+        "status": "ACTIVE",
+        "openstackId": "c7ea8ab4-88a5-489d-848a-cd014bb7fcb2"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_2134",
+    "name": "a",
+    "vlanId": 2134,
+    "regions": [
+      {
+        "region": "BHS5",
+        "status": "ACTIVE",
+        "openstackId": "a592449c-3d73-423d-a07b-22d89f8af51c"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_2102",
+    "name": "test",
+    "vlanId": 2102,
+    "regions": [
+      {
+        "region": "BHS5",
+        "status": "ACTIVE",
+        "openstackId": "c829791a-7b8f-48de-a644-738229c64c25"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_2807",
+    "name": "test-nico-preprod",
+    "vlanId": 2807,
+    "regions": [
+      {
+        "region": "DE1",
+        "status": "ACTIVE",
+        "openstackId": "12a37ad1-967e-4cec-a38b-e4324b3d7340"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_2",
+    "name": "test-sc",
+    "vlanId": 2,
+    "regions": [
+      {
+        "region": "AP-SOUTH-MUM-1",
+        "status": "ACTIVE",
+        "openstackId": "55ee2ccf-f52b-4f0b-84e8-9b372bb1d1e8"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_4",
+    "name": "test-sc-3",
+    "vlanId": 4,
+    "regions": [
+      {
+        "region": "AP-SOUTH-MUM-1",
+        "status": "ACTIVE",
+        "openstackId": "ef86f26e-7508-48fc-9c57-507d4bf437df"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_2118",
+    "name": "test1",
+    "vlanId": 2118,
+    "regions": [
+      {
+        "region": "BHS5",
+        "status": "ACTIVE",
+        "openstackId": "0db39b8c-143d-4b13-83d0-fec9b1b13af6"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_2116",
+    "name": "test1",
+    "vlanId": 2116,
+    "regions": [
+      {
+        "region": "BHS5",
+        "status": "ACTIVE",
+        "openstackId": "142c229a-35e6-45fb-8168-5c13ecca2dc5"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_2106",
+    "name": "test",
+    "vlanId": 2106,
+    "regions": [
+      {
+        "region": "BHS5",
+        "status": "ACTIVE",
+        "openstackId": "1c815098-2187-40c9-92d2-5871bb0414df"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_2700",
+    "name": "test1",
+    "vlanId": 2700,
+    "regions": [
+      {
+        "region": "SBG5",
+        "status": "ACTIVE",
+        "openstackId": "6d6f2f7a-e241-45d0-a97d-9d607ce1db44"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_3000",
+    "name": "test1",
+    "vlanId": 3000,
+    "regions": [
+      {
+        "region": "WAW1",
+        "status": "ACTIVE",
+        "openstackId": "e80bf366-4a01-4870-b259-635f6ca60996"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_3",
+    "name": "test-sc-2",
+    "vlanId": 3,
+    "regions": [
+      {
+        "region": "AP-SOUTH-MUM-1",
+        "status": "ACTIVE",
+        "openstackId": "d1621f0f-3a07-4403-b53b-66debc20c941"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_16",
+    "name": "test",
+    "vlanId": 16,
+    "regions": [
+      {
+        "region": "BHS5",
+        "status": "ACTIVE",
+        "openstackId": "75866513-3169-4607-bfeb-e4ec2d3bdad8"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_2114",
+    "name": "test1",
+    "vlanId": 2114,
+    "regions": [
+      {
+        "region": "BHS5",
+        "status": "ACTIVE",
+        "openstackId": "8a0da9e6-9970-400e-b084-f253159901bb"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "pn-1095481_2129",
+    "name": "test1",
+    "vlanId": 2129,
+    "regions": [
+      {
+        "region": "BHS5",
+        "status": "ACTIVE",
+        "openstackId": "d4281f7a-4e09-4c71-a076-9ae49bdba002"
+      }
+    ],
+    "type": "private",
+    "status": "ACTIVE"
+  }
+]
