@@ -6,6 +6,8 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
+  bash,
+  githubDark,
   useToast,
 } from '@datatr-ux/uxlib';
 import { AlertCircle } from 'lucide-react';
@@ -53,7 +55,8 @@ const Cli = ({ regions }: CliProps) => {
       <Code
         label={t('codeCliTitle')}
         code={curlUlr}
-        lang="bash"
+        lang={bash}
+        theme={githubDark}
         onCopied={() =>
           toast.toast({
             title: t('codeCliToastMessage'),

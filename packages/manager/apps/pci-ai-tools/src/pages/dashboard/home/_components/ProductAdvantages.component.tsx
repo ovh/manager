@@ -1,5 +1,5 @@
 import icons from '@/../public/assets/icons.data.json';
-import Icon from '@/components/icone/Icones.component';
+import Icon from '@/components/icon/Icon.component';
 
 interface ProductAdvantagesProps {
   iconeName: keyof typeof icons;

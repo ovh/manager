@@ -27,6 +27,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
+  githubDark,
   useToast,
 } from '@datatr-ux/uxlib';
 import ai from '@/types/AI';
@@ -57,14 +58,12 @@ const AddToken = () => {
       });
     },
     onAddEditSuccess(newToken) {
-      form.reset();
       toast.toast({
         title: t('formTokenToastSuccessTitle'),
         description: t(`formTokenToastSuccessDescription`, {
           description: newToken.spec.name,
         }),
       });
-      form.reset();
       setNewTokenValue(newToken.status.value);
     },
   };
@@ -84,6 +83,7 @@ const AddToken = () => {
   });
 
   const handleClose = () => {
+    form.reset();
     setNewTokenValue(undefined);
     navigate('../');
   };
@@ -106,7 +106,7 @@ const AddToken = () => {
               <Code
                 code={newTokenValue}
                 label={t('formTokenLabel')}
-                theme="github-dark"
+                theme={githubDark}
                 onCopied={() =>
                   toast.toast({
                     title: t('formTokenCopy'),
