@@ -31,7 +31,7 @@ jobs:
       # This task is for running the jest tests outside microApps
       - name: Run tests Jest
         run: yarn test:jest
-      - name: GET BASE BRANCH
+      - name: Run tests on changed packages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
