@@ -5,6 +5,7 @@ import legacy from '@vitejs/plugin-legacy';
 import svgr from 'vite-plugin-svgr';
 import yn from 'yn';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
+import { compression } from 'vite-plugin-compression2';
 import IframeHmrPlugin from './plugin/iframe-hmr.js';
 import viteOvhDevServerPlugin from './plugin/dev-server.js';
 import { getCommonTranslations } from './commonTranslations.js';
@@ -62,6 +63,11 @@ const getBaseConfig = (config) => {
     },
     plugins: [
       react(),
+      compression({
+        algorithm: 'brotliCompress',
+        deleteOriginalAssets: true,
+        exclude: /index[.]html$/,
+      }),
       legacy({
         targets: ['defaults'],
       }),
