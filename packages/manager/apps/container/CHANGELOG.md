@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.112.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.112.1...@ovh-ux/manager-container-app@0.112.2) (2025-04-01)
+
+
+### Bug Fixes
+
+* **container:** hide web collab changelog links for US ([#16170](https://github.com/ovh/manager/issues/16170)) ([20f2e0c](https://github.com/ovh/manager/commit/20f2e0c8805f4500150f0392e0b944defffec87e)), closes [#MANAGER-17558](https://github.com/ovh/manager/issues/MANAGER-17558) [#INC0120778](https://github.com/ovh/manager/issues/INC0120778)
+
+
+
+
+
 ## [0.112.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.112.0...@ovh-ux/manager-container-app@0.112.1) (2025-03-27)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app
