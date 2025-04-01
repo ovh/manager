@@ -9,31 +9,29 @@
   border-color: var(--border);
 }
 
-
-/* width */
+/*
+* Scrollbar
+*/
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
 }
-
-/* Track */
 ::-webkit-scrollbar-track {
   background: #f1f1f1;
 }
-
-/* Handle */
 ::-webkit-scrollbar-thumb {
   background: #888;
   border-radius: 5px;
 }
-
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
 
+/* 
+* Override headers colors and heights
+*/
 h1, h2, h3, h4, h5 {
-  color: hsla(233deg, 31%, 44%, 1);
+  @apply text-heading;
 }
 h1 {
   font-size: 3rem;
@@ -50,8 +48,4 @@ h4 {
 }
 h5 {
   font-size: 1rem;
-}
-/* fix the ODS menu group display */
-osds-menu-group {
-  display: flex;
 }

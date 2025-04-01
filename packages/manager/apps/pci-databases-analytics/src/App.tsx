@@ -7,8 +7,6 @@ import Router from './routes/Router';
 import Loading from './components/loading/Loading.component';
 import { useLoadingIndicatorContext } from './contexts/LoadingIndicator.context';
 import ProgressLoader from './components/loading/ProgressLoader.component';
-// Still needed for mrc components :(
-import '@ovhcloud/ods-theme-blue-jeans';
 
 function App() {
   const { loading } = useLoadingIndicatorContext();
