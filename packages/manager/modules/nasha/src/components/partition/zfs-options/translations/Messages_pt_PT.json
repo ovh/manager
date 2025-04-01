@@ -11,12 +11,12 @@
   "nasha_components_partition_zfs_options_sync_disabled_warning": "Os administradores apenas devem utilizar esta opção se compreenderem os riscos.",
   "nasha_components_partition_zfs_options_sync_standard_description": "Perfil seguro: combina a estabilidade com um desempenho adequado, os ficheiros são escritos primeiro e todos os elementos são limpos a seguir para garantir a estabilidade dos dados.",
   "nasha_components_partition_zfs_options_sync": "Sync",
-  "nasha_components_partition_zfs_options_title": "Modificar os parâmetros",
+  "nasha_components_partition_zfs_options_title": "Modificar as configurações ",
   "nasha_components_partition_zfs_options_custom_template_selection": "Personalizar as suas definições.",
   "nasha_components_partition_zfs_template_selection_title": "Selecionar o template",
   "nasha_components_partition_zfs_template_selection_placeholder": "Escolha um template...",
   "nasha_components_partition_zfs_options_template_1_description": "Partilha de ficheiros volumosos (imagens, vídeos, streaming...)",
   "nasha_components_partition_zfs_options_template_2_description": "Imagens de máquinas virtuais em ZFS.",
   "nasha_components_partition_zfs_options_template_3_description": "Armazenamento da base de dados.",
-  "nasha_components_partition_zfs_options_template_4_description": "Modelo padrão para compartilhamento de arquivos."
+  "nasha_components_partition_zfs_options_template_4_description": "Modelo padrão para partilha de ficheiros."
 }

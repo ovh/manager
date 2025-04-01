@@ -4,7 +4,7 @@
   "nasha_dashboard_partitions_action_edit_size": "Modifica la dimensione",
   "nasha_dashboard_partitions_action_show": "Modifica/Visualizza",
   "nasha_dashboard_partitions_action_snapshots": "Gestisci gli Snapshot",
-  "nasha_dashboard_partitions_action_zfs_options": "Impostazione dell'utilizzo (ZFS)",
+  "nasha_dashboard_partitions_action_zfs_options": "Configurare l'utilizzo (ZFS)",
   "nasha_dashboard_partitions_create": "Crea una partizione",
   "nasha_dashboard_partitions_list_description": "Descrizione",
   "nasha_dashboard_partitions_list_partition_name": "Nome della partizione",
