@@ -4,6 +4,8 @@ import { useShell } from '@ovh-ux/manager-react-shell-client';
 import Router from './routes/Router';
 import queryClient from './query.client';
 import { useLoadingIndicatorContext } from './contexts/LoadingIndicator.context';
+import ProgressLoader from './components/loading/ProgressLoader.component';
+import Loading from './components/loading/Loading.component';
 
 function App() {
   const { loading } = useLoadingIndicatorContext();
@@ -14,8 +16,8 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {loading && <h1>Loading</h1>}
-      <React.Suspense fallback={<></>}>
+      {loading && <ProgressLoader />}
+      <React.Suspense fallback={<Loading />}>
         <Router />
       </React.Suspense>
     </QueryClientProvider>

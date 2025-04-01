@@ -4,7 +4,7 @@ import odsPlugin from '@datatr-ux/ods-tailwind-config';
 module.exports = {
   content: [
     './src/**/*.{js,jsx,ts,tsx}',
-    '../../../../node_modules/@datatr-ux/uxlib/dist/index.js',
+    '../../../../node_modules/@datatr-ux/uxlib/**/*.{js,jsx,ts,tsx}',
   ],
   theme: {
     extend: {

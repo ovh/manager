@@ -16,6 +16,7 @@ import { getProject } from '@/data/api/project/project.api';
 import { USER_INACTIVITY_TIMEOUT } from '@/configuration/polling.constants';
 import PageLayout from '@/components/page-layout/PageLayout.component';
 import { UserActivityProvider } from '@/contexts/UserActivityContext';
+import Breadcrumb from '@/components/breadcrumb/Breadcrumb.component';
 
 interface AILayoutProps {
   params: {
@@ -73,6 +74,7 @@ export function useAIData() {
 export default function Layout() {
   return (
     <PageLayout>
+      <Breadcrumb />
       <UserActivityProvider timeout={USER_INACTIVITY_TIMEOUT}>
         <RoutingSynchronisation />
         <Outlet />

@@ -9,6 +9,7 @@ export const useGitForm = () => {
 
   const globalRules = z
     .string()
+    .trim()
     .min(GIT_CONFIG.other.min, {
       message: t('formGitErrorMinLength', {
         min: GIT_CONFIG.other.min,
@@ -18,8 +19,7 @@ export const useGitForm = () => {
       message: t('formGitErrorMaxLength', {
         max: GIT_CONFIG.other.max,
       }),
-    })
-    .trim();
+    });
 
   const nameRules = globalRules.regex(GIT_CONFIG.name.pattern, {
     message: t('formGitNameErrorPattern'),
