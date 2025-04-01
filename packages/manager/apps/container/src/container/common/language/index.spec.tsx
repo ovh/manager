@@ -1,4 +1,3 @@
-import React from 'react';
 import { it, vi, describe, expect } from 'vitest';
 import { render } from '@testing-library/react';
 import { KeyPairName } from '@ovh-ux/manager-config';

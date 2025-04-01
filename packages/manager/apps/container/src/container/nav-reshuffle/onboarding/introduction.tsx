@@ -1,5 +1,5 @@
 import useClickAway from 'react-use/lib/useClickAway';
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 import popoverStyle from '@/container/common/popover.module.scss';

@@ -1,4 +1,4 @@
-import React, { useMemo, RefObject } from 'react';
+import { useMemo, RefObject } from 'react';
 import { Navigate, Routes, Route } from 'react-router-dom';
 import { Application } from '@ovh-ux/manager-config';
 import { ExternalApplicationRoute } from './route/external-application-route';

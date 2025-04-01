@@ -107,13 +107,6 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
     });
   }, []);
 
-  const trackNode = (id: string) => {
-    trackingPlugin.trackClick({
-      name: `navbar_v3_entry_home::${id}`,
-      type: 'navigation',
-    });
-  };
-
   if (isShort)
     return (
       <OsdsPopover

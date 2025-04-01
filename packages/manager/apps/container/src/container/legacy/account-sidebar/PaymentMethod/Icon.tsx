@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { OsdsIcon } from '@ovhcloud/ods-components/react';
 import { ODS_ICON_SIZE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 

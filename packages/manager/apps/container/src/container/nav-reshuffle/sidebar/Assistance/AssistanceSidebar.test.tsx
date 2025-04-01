@@ -1,4 +1,3 @@
-import React from 'react';
 import { vi, it, describe } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import AssistanceSidebar, { AssistanceProps } from '.';

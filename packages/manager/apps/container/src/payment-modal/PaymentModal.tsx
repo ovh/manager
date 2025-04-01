@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './styles.scss';
 import {
   ODS_THEME_COLOR_INTENT,

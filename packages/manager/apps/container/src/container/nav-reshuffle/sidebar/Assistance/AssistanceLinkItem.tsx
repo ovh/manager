@@ -1,5 +1,5 @@
-import React, { FunctionComponent } from 'react';
 import { OsdsSkeleton } from '@ovhcloud/ods-components/react';
+import { FunctionComponent } from 'react';
 import { Node } from '../navigation-tree/node';
 import style from '../style.module.scss';
 import SidebarLink from '../SidebarLink';

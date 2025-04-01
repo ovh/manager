@@ -1,10 +1,4 @@
-import React, {
-  useEffect,
-  useState,
-  useMemo,
-  Suspense,
-  useCallback,
-} from 'react';
+import { useEffect, useState, useMemo, Suspense, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
 import { aapi } from '@ovh-ux/manager-core-api';
 import { useTranslation } from 'react-i18next';

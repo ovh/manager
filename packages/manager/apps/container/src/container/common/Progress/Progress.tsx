@@ -1,4 +1,3 @@
-import React from 'react';
 import { NProgress } from '@tanem/react-nprogress';
 import Container from './Container';
 import Bar from './Bar';

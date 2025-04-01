@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { useLocation } from 'react-router-dom';
 import { useShell } from '@/context/useApplicationContext';
@@ -121,6 +121,7 @@ export const ProductNavReshuffleProvider = ({
     isMobile,
     isAnimated,
     setIsAnimated,
+    // eslint-disable-next-line prettier/prettier
   } satisfies ProductNavReshuffleContextType;
 
   return (

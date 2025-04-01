@@ -1,4 +1,4 @@
-import React, { useState, Suspense } from 'react';
+import { useState, Suspense } from 'react';
 
 import { useMediaQuery } from 'react-responsive';
 import HamburgerMenu from './HamburgerMenu';

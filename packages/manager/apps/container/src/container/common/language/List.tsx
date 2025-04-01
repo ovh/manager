@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { KeyPairName } from '@ovh-ux/manager-config';
 import { useTranslation } from 'react-i18next';
 

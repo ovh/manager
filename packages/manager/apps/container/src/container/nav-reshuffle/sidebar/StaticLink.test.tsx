@@ -1,4 +1,3 @@
-import React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { render, fireEvent, act } from '@testing-library/react';
 import StaticLink, { StaticLinkProps } from './StaticLink';
