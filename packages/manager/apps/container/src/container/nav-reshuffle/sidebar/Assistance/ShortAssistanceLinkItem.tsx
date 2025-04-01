@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import React, { FunctionComponent } from 'react';
+import { FunctionComponent } from 'react';
 import { OsdsLink, OsdsIcon } from '@ovhcloud/ods-components/react';
 import {
   OdsHTMLAnchorElementRel,

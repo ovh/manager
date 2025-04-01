@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './styles.scss';
 import {
   ODS_THEME_COLOR_INTENT,
@@ -17,7 +17,11 @@ import { useShell } from '@/context';
 import { PAYMENT_ALERTS } from './constants';
 
 export interface IPaymentMethod {
-  icon?: unknown;
+  icon?: {
+    data?: string;
+    name: string;
+    url?: string;
+  };
   label: string;
   status: string;
   default: boolean;

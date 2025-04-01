@@ -1,4 +1,3 @@
-import React from 'react';
 import { vi, it, describe, expect } from 'vitest';
 import { render } from '@testing-library/react';
 import ProjectSelector, { Props } from './ProjectSelector';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { vi, it, describe, expect } from 'vitest';
 import { render, act, fireEvent } from '@testing-library/react';
 import { Node } from '../navigation-tree/node';

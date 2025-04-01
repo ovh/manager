@@ -220,8 +220,7 @@ if no curly brackets, that returns an array that contains only the path */
 export const splitPathIntoSegmentsWithoutRouteParams = (
   path: string,
 ): string[] => {
-  // eslint-disable-next-line no-useless-escape
-  const regex = /\/(?!{)[^\/]+(\/(?!{)[^\/]+)?/g;
+  const regex = /\/(?!{)[^/]+(\/(?!{)[^/]+)?/g;
   const matches = path.match(regex);
   return matches || [path];
 };

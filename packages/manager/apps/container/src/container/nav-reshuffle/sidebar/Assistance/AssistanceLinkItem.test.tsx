@@ -1,4 +1,3 @@
-import React from 'react';
 import { it, vi, describe } from 'vitest';
 import { render } from '@testing-library/react';
 import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';

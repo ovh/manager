@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   OsdsSpinner,
@@ -21,7 +21,7 @@ import {
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import style from './index.module.scss';
 import { SidebarMenuItem } from './sidebarMenu';
-import { useLegacyContainer } from '@/container/legacy/context';
+import { useLegacyContainer } from '../legacy.context';
 
 function ServerSidebarSearchField({
   item,

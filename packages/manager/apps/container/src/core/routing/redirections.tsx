@@ -1,4 +1,3 @@
-import React from 'react';
 import { Navigate, Route, useLocation, useParams } from 'react-router-dom';
 import { Application } from '@ovh-ux/manager-config';
 

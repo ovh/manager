@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { FocusEvent, useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { OsdsIcon } from '@ovhcloud/ods-components/react';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
@@ -47,7 +47,7 @@ const SubTree = ({
       className={`${style.subtree_content} ${
         isOpen ? style.subtree_content_open : style.subtree_content_close
       } ${isAnimated && style.subtree_content_animated}`}
-      onBlur={(e) => {
+      onBlur={(e: FocusEvent<HTMLDivElement>) => {
         const id = e.relatedTarget?.id.replace('-link', '');
         if (id === lastElement.id) {
           setFocusOnLast(true);

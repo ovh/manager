@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useShell } from '@/context';
 import { languages, regions } from './eloquant.constants';
 
