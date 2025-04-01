@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { AlertCircle, ArrowRight, BrainCircuit } from 'lucide-react';
 import {
   Alert,
@@ -26,14 +26,9 @@ import Onboarding from '../dashboard/home/_components/Onboarding.component';
 
 export default function Auth() {
   const { t } = useTranslation('ai-tools/dashboard/home');
-  const { projectId } = useParams();
   const toast = useToast();
   const navigate = useNavigate();
   const projectData = usePciProject();
-  const objectStoragePath = `/pci/projects/${projectId}/storages/objects`;
-  const notebooksPath = `/pci/projects/${projectId}/notebooks`;
-  const jobsPath = `/pci/projects/${projectId}/training/jobs`;
-  const appsPath = `/pci/projects/${projectId}/ai/apps`;
 
   const isProjectDiscoveryMode =
     projectData.data?.planCode === PlanCode.DISCOVERY;
@@ -51,7 +46,7 @@ export default function Auth() {
         title: t('formActiveUserToastSuccessTitle'),
         description: t(`formActiveUserToastSuccessDescription`),
       });
-      navigate('../');
+      navigate('../dashboard');
     },
   };
 
@@ -74,7 +69,6 @@ export default function Auth() {
                 <AlertCircle className="shrink-0 size-6" />
                 <p>{t('discoveryMode')}</p>
               </div>
-
               <Button variant="primary" mode="default" type="button" asChild>
                 <OvhLink
                   className="hover:no-underline hover:text-primary-foreground"
@@ -121,34 +115,26 @@ export default function Auth() {
             <ProductInformations
               img={storeImage}
               isInternalAppLink={false}
-              link={objectStoragePath}
               title={t('store-title')}
               productName={t('object-storage-title')}
-              showConsumptionInfos={false}
             />
             <ProductInformations
               img={exploreImage}
               isInternalAppLink={true}
-              link={notebooksPath}
               title={t('explore-title')}
               productName={t('notebooks-title')}
-              showConsumptionInfos={false}
             />
             <ProductInformations
               img={trainImage}
-              link={jobsPath}
               isInternalAppLink={false}
               title={t('train-title')}
               productName={t('training-title')}
-              showConsumptionInfos={false}
             />
             <ProductInformations
               img={deployImage}
               isInternalAppLink={false}
-              link={appsPath}
               title={t('deploy-title')}
               productName={t('ai-deploy-title')}
-              showConsumptionInfos={false}
             />
           </div>
         </CardContent>

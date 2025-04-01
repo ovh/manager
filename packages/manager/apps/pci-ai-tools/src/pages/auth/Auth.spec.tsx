@@ -52,7 +52,7 @@ describe('Auth behavior page', () => {
     });
     await waitFor(() => {
       expect(authApi.postAuthorization).toHaveBeenCalled();
-      expect(mockedUsedNavigate).toHaveBeenCalledWith('../');
+      expect(mockedUsedNavigate).toHaveBeenCalledWith('../dashboard');
     });
   });
   it('renders Auth with discovery banner', async () => {

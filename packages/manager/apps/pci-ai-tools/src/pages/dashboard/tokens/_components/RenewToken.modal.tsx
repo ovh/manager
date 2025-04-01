@@ -1,18 +1,19 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import {
-  Alert,
   Button,
+  Code,
   DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
+  docker,
+  githubDark,
   useToast,
 } from '@datatr-ux/uxlib';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
-import { Copy } from 'lucide-react';
 import { useRenewToken } from '@/data/hooks/ai/token/useRenewToken.hook';
 import RouteModal from '@/components/route-modal/RouteModal';
 import { useGetToken } from '@/data/hooks/ai/token/useGetToken.hook';
@@ -50,13 +51,6 @@ const RenewToken = () => {
     });
   };
 
-  const handleCopyPass = () => {
-    navigator.clipboard.writeText(newTokenValue);
-    toast.toast({
-      title: t('renewTokenCopy'),
-    });
-  };
-
   const handleClose = () => navigate('../');
 
   return (
@@ -76,22 +70,20 @@ const RenewToken = () => {
         </DialogHeader>
         {newTokenValue ? (
           <div>
-            <Alert variant="success">
-              <p>{t('renewTokenSuccess')}</p>
-              <div className="relative my-2 rounded bg-gray-100">
-                <Button
-                  data-testid="renew-token-copy-button"
-                  onClick={() => handleCopyPass()}
-                  className="absolute top-0 right-0 m-2 p-2 text-sm bg-primary-500 text-white rounded hover:bg-primary-700 transition duration-300"
-                >
-                  <Copy className="size-4" />
-                  <span className="sr-only">copy</span>
-                </Button>
-                <pre className="p-4 bg-gray-100 rounded max-w-sm overflow-auto">
-                  <code>{newTokenValue}</code>
-                </pre>
-              </div>
-            </Alert>
+            <p>{t('renewTokenSuccess')}</p>
+            <div data-testid="code-container" className="p-2">
+              <Code
+                code={newTokenValue}
+                label={t('formUserLabel')}
+                lang={docker}
+                theme={githubDark}
+                onCopied={() =>
+                  toast.toast({
+                    title: t('formUserPasswordCopy'),
+                  })
+                }
+              />
+            </div>
             <DialogFooter className="flex justify-end mt-4">
               <DialogClose asChild onClick={() => handleClose()}>
                 <Button

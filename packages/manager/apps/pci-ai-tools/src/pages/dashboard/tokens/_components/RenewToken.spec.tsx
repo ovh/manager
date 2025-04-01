@@ -85,14 +85,7 @@ describe('RenewToken modal', () => {
       expect(useToast().toast).toHaveBeenCalledWith(successMsg);
     });
     await waitFor(() => {
-      expect(screen.getByTestId('renew-token-copy-button')).toBeTruthy();
-    });
-    act(() => {
-      fireEvent.click(screen.getByTestId('renew-token-copy-button'));
-    });
-    await waitFor(() => {
-      expect(window.navigator.clipboard.writeText).toHaveBeenCalled();
-      expect(useToast().toast).toHaveBeenCalled();
+      expect(screen.getByTestId('code-container')).toBeTruthy();
     });
     act(() => {
       fireEvent.click(screen.getByTestId('renew-token-close-button'));

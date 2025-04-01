@@ -22,6 +22,8 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
+  docker,
+  githubDark,
   useToast,
 } from '@datatr-ux/uxlib';
 import ai from '@/types/AI';
@@ -90,7 +92,8 @@ const AddUser = () => {
               <Code
                 code={newPass}
                 label={t('formUserLabel')}
-                theme="github-dark"
+                lang={docker}
+                theme={githubDark}
                 onCopied={() =>
                   toast.toast({
                     title: t('formUserPasswordCopy'),

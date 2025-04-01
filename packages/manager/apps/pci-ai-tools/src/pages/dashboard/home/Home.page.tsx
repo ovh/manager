@@ -11,7 +11,6 @@ import ProductInformations from './_components/ProductInformations.component';
 import Guides from '@/components/guides/Guides.component';
 import { useDashboardData } from '../Dashboard.context';
 import Cli from './_components/Cli.component';
-// import Billing from './_components/Billing.components';
 import Onboarding from './_components/Onboarding.component';
 import { useGetRegions } from '@/data/hooks/ai/capabilities/useGetRegions.hook';
 
@@ -70,26 +69,30 @@ export default function Home() {
               link={objectStoragePath}
               title={t('store-title')}
               productName={t('object-storage-title')}
-              showConsumptionInfos={false}
             />
             <ProductInformations
               img={exploreImage}
-              isInternalAppLink={true}
+              isInternalAppLink={false}
               link={notebooksPath}
               title={t('explore-title')}
               productName={t('notebooks-title')}
-              showConsumptionInfos={!isOnbording}
               active={
-                notebooks?.filter(
-                  (nb) =>
-                    nb.status.state === ai.notebook.NotebookStateEnum.RUNNING,
-                ).length
+                isOnbording
+                  ? -1
+                  : notebooks?.filter(
+                      (nb) =>
+                        nb.status.state ===
+                        ai.notebook.NotebookStateEnum.RUNNING,
+                    ).length || 0
               }
               stopped={
-                notebooks?.filter(
-                  (nb) =>
-                    nb.status.state !== ai.notebook.NotebookStateEnum.RUNNING,
-                ).length
+                isOnbording
+                  ? -1
+                  : notebooks?.filter(
+                      (nb) =>
+                        nb.status.state !==
+                        ai.notebook.NotebookStateEnum.RUNNING,
+                    ).length || 0
               }
             />
             <ProductInformations
@@ -98,16 +101,19 @@ export default function Home() {
               isInternalAppLink={false}
               title={t('train-title')}
               productName={t('training-title')}
-              showConsumptionInfos={!isOnbording}
               active={
-                jobs?.filter(
-                  (job) => job.status.state === ai.job.JobStateEnum.RUNNING,
-                ).length
+                isOnbording
+                  ? -1
+                  : jobs?.filter(
+                      (job) => job.status.state === ai.job.JobStateEnum.RUNNING,
+                    ).length || 0
               }
               stopped={
-                jobs?.filter(
-                  (job) => job.status.state !== ai.job.JobStateEnum.RUNNING,
-                ).length
+                isOnbording
+                  ? -1
+                  : jobs?.filter(
+                      (job) => job.status.state !== ai.job.JobStateEnum.RUNNING,
+                    ).length || 0
               }
             />
             <ProductInformations
@@ -116,16 +122,19 @@ export default function Home() {
               link={appsPath}
               title={t('deploy-title')}
               productName={t('ai-deploy-title')}
-              showConsumptionInfos={!isOnbording}
               active={
-                apps?.filter(
-                  (app) => app.status.state === ai.app.AppStateEnum.RUNNING,
-                ).length
+                isOnbording
+                  ? -1
+                  : apps?.filter(
+                      (app) => app.status.state === ai.app.AppStateEnum.RUNNING,
+                    ).length || 0
               }
               stopped={
-                apps?.filter(
-                  (app) => app.status.state !== ai.app.AppStateEnum.RUNNING,
-                ).length
+                isOnbording
+                  ? -1
+                  : apps?.filter(
+                      (app) => app.status.state !== ai.app.AppStateEnum.RUNNING,
+                    ).length || 0
               }
             />
           </div>

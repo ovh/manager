@@ -1,6 +1,5 @@
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useEffect, useState } from 'react';
 import * as role from '@datatr-ux/ovhcloud-types/cloud/role/index';
 import ai from '@/types/AI';
 import user from '@/types/User';
@@ -16,14 +15,9 @@ import { useGetDatastoresWithRegions } from '@/data/hooks/ai/data/useGetDatastor
 const DashboardTabs = () => {
   const { projectId } = useParams();
   const { t } = useTranslation('ai-tools/dashboard');
-  const [regions, setRegions] = useState<ai.capabilities.Region[]>([]);
   const { isUserActive } = useUserActivityContext();
   const regionQuery = useGetRegions(projectId);
-
-  useEffect(() => {
-    if (!regionQuery.data) return;
-    setRegions(regionQuery.data);
-  }, [regionQuery.isSuccess]);
+  const regions = regionQuery.data || [];
 
   const { data: users } = useGetUsers(projectId, {
     refetchInterval: isUserActive && POLLING.USERS,
@@ -39,6 +33,7 @@ const DashboardTabs = () => {
 
   const { data: datastores } = useGetDatastoresWithRegions(projectId, regions, {
     refetchInterval: isUserActive && POLLING.DATASTORE,
+    enabled: !!regionQuery.data,
   });
 
   const tabs = [
