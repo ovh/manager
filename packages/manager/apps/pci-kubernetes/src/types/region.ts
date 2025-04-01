@@ -1,6 +1,6 @@
 import { DeploymentMode } from '.';
 
-export type AvailabilityZone = string;
+export type TAvailabilityZone = string;
 
 export type TContinentCode = 'AF' | 'ASIA' | 'EU' | 'NA' | 'US';
 
@@ -280,20 +280,20 @@ export type TServiceStatus = 'DOWN' | 'UP';
 export type TOpenstackRegionStatus = 'DOWN' | 'MAINTENANCE' | 'UP';
 export type TRegionType = DeploymentMode;
 
-export interface Service {
+export type TService = {
   endpoint: string;
   name: string;
   status: TServiceStatus;
-}
+};
 
-export interface TRegionInformations {
-  availabilityZones: AvailabilityZone[];
+export type TRegionInformations = {
+  availabilityZones: TAvailabilityZone[];
   continentCode: TContinentCode;
   countryCode: TCountryCode;
   datacenterLocation: string;
   ipCountries: IpCountry[];
   name: string;
-  services: Service[];
+  services: TService[];
   status: TOpenstackRegionStatus;
   type: TRegionType;
-}
+};
