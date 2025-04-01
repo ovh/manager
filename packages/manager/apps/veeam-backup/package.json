@@ -46,6 +46,11 @@
     "tailwindcss": "^3.4.4"
   },
   "devDependencies": {
+    "fs": "^0.0.1-security",
+    "xlsx": "^0.18.5",
+    "xlsx-style": "^0.8.13",
+    "esbuild": "^0.25.2",
+    "path": "^0.12.7",
     "@ovh-ux/manager-core-test-utils": "^0.4.1",
     "@ovh-ux/manager-vite-config": "^0.9.3",
     "@testing-library/jest-dom": "^6.5.0",
