@@ -1,0 +1,25 @@
+export const PCC_SURVEY_BASE_URL = 'https://s.elq.fr/ovhsat';
+
+export const PCC_SURVEY_KEY_URL = {
+  FR: 'ItF90t3',
+  GB: 'h8AlPg3',
+  IE: 'h8AlPg3',
+  NL: 'h8AlPg3',
+  CA: 'h8AlPg3',
+  AU: 'h8AlPg3',
+  SG: 'h8AlPg3',
+  ASIA: 'h8AlPg3',
+  EN: 'h8AlPg3',
+  IN: 'h8AlPg3',
+  PL: 'VNtz4zY',
+  PT: 'us6aCJU',
+  ES: 'il08Y3P',
+  WS: 'il08Y3P',
+  DE: 'kCWmKNA',
+  IT: 'jMvrcxa',
+  QC: 'ItF90t3',
+  MA: 'ItF90t3',
+  SN: 'ItF90t3',
+  TN: 'ItF90t3',
+  DEFAULT: 'h8AlPg3',
+};
