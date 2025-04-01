@@ -101,5 +101,5 @@
   "iam_resource_type_vmwareCloudDirector": "VCD on OVHcloud",
   "iam_resource_type_vmwareCloudDirector/virtualDataCenter": "VDC on OVHcloud",
   "iam_resource_type_vmwareCloudDirectorBackup": "VEEAM backup on OVHcloud",
-  "iam_resource_type_publicCloudProject/managedRegistry": "Public Cloud/Managed Registry project"
+  "iam_resource_type_publicCloudProject/managedRegistry": "Public Cloud project/Managed Registry"
 }
