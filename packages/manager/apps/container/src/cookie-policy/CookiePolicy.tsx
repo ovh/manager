@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Shell } from '@ovh-ux/shell';
 import { useCookies } from 'react-cookie';
 import { useTranslation } from 'react-i18next';

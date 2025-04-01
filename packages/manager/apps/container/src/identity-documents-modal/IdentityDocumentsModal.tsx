@@ -1,5 +1,5 @@
+import { FunctionComponent, useEffect, useRef, useState } from 'react';
 import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-import React, { FunctionComponent, useEffect, useRef, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import {
   OsdsButton,

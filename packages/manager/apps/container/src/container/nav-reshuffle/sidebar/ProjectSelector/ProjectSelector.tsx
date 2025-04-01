@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Select from 'react-select';
+import Select, { StylesConfig } from 'react-select';
 import { PciProject } from './PciProject';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -49,15 +49,8 @@ const ProjectSelector: React.FC<ComponentProps<Props>> = ({
   seeAllButton,
   seeAllLabel,
 }: Props): JSX.Element => {
-  // Important note :
-  // The any types in this bloc are there because the react select
-  // should expose its own types, it's not for us to define
-  // This should be updated once the lib is updated to expose the necessary typings
-  // Also, i don't want to disable the option "noImplicitAny"
-  // Because this is done under unique circumstances and should not impact the rest of the codebase
-  const selectStyles = {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    option: (provided: any, { isFocused }: { isFocused: boolean }) => ({
+  const selectStyles: StylesConfig<unknown> = {
+    option: (provided, { isFocused }: { isFocused: boolean }) => ({
       ...provided,
       backgroundColor: isFocused
         ? 'var(--ods-color-primary-075)'
@@ -72,8 +65,7 @@ const ProjectSelector: React.FC<ComponentProps<Props>> = ({
         color: 'var(--ods-color-primary-700',
       },
     }),
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    control: (provided: any, { isFocused }: { isFocused: boolean }) => ({
+    control: (provided, { isFocused }: { isFocused: boolean }) => ({
       ...provided,
       cursor: 'pointer',
       backgroundColor: isFocused

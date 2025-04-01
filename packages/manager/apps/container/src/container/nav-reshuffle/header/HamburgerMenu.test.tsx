@@ -1,4 +1,3 @@
-import React from 'react';
 import { it, vi, describe, expect } from 'vitest';
 import { render, fireEvent, act } from '@testing-library/react';
 import HamburgerMenu, { Props } from './HamburgerMenu';

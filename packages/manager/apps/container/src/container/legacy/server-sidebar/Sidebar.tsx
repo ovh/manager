@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
 import { OsdsSkeleton } from '@ovhcloud/ods-components/react';
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useShell } from '@/context';
 import ServerSidebarVirtual from './SidebarVirtual';

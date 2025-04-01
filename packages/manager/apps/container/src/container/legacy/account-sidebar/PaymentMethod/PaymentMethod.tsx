@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Environment } from '@ovh-ux/manager-config';
 import { OsdsSkeleton, OsdsIcon } from '@ovhcloud/ods-components/react';

@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import { Suspense } from 'react';
 
 import NotificationsSidebar from '@/container/common/notifications-sidebar';
 import AccountSidebar from '@/container/legacy/account-sidebar';

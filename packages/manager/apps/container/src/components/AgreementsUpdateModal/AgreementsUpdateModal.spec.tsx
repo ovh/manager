@@ -1,4 +1,3 @@
-import React from 'react';
 import { vi } from 'vitest';
 import { render } from '@testing-library/react';
 import AgreementsUpdateModal from '@/components/AgreementsUpdateModal/AgreementsUpdateModal.component';

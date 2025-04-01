@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 
 import { Environment } from '@ovh-ux/manager-config';
 import LegacyContainer from '@/container/legacy';

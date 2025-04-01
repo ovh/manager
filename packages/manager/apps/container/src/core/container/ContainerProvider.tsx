@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useReket } from '@ovh-ux/ovh-reket';
 import { Application } from '@ovh-ux/manager-config';
 import { fetchFeatureAvailabilityData } from '@ovh-ux/manager-react-components';

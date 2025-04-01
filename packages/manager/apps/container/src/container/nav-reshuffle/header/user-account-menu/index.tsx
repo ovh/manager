@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect } from 'react';
 
 import { useOvhPaymentMethod } from '@ovh-ux/ovh-payment-method';
 import { useReket } from '@ovh-ux/ovh-reket';

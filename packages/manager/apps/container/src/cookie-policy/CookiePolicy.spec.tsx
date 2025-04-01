@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, waitFor } from '@testing-library/react';
 import { it, vi, describe, expect } from 'vitest';
 import { initShell } from '@ovh-ux/shell';

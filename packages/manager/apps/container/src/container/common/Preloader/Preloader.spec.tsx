@@ -1,6 +1,6 @@
-import React from 'react';
 import { render, screen, act, renderHook } from '@testing-library/react';
 import { describe, it, expect, vi, Mock } from 'vitest';
+import { Shell } from '@ovh-ux/shell';
 import OvhCloudPreloader from './OvhCloudPreloader';
 import usePreloader from './usePreloader';
 
@@ -13,7 +13,7 @@ let mockPlugin: {
   removeOnHidePreloader: Mock;
   showPreloader: Mock;
 };
-let mockShell: { getPlugin: Mock };
+let mockShell: Partial<Shell>;
 let mockIframe: HTMLIFrameElement;
 
 describe('Preloader', () => {
@@ -66,8 +66,7 @@ describe('Preloader', () => {
   describe('usePreloader.hook', () => {
     it('should handle show/hide preloader events', async () => {
       const { result } = renderHook(() =>
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        usePreloader(mockShell as any, mockIframe),
+        usePreloader(mockShell as Shell, mockIframe),
       );
 
       expect(result.current).toBe(false);
@@ -95,8 +94,7 @@ describe('Preloader', () => {
 
     it('should cleanup event listeners on unmount', () => {
       const { unmount } = renderHook(() =>
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        usePreloader(mockShell as any, mockIframe),
+        usePreloader(mockShell as Shell, mockIframe),
       );
 
       unmount();

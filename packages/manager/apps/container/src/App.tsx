@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { HashRouter } from 'react-router-dom';
 
 import { useQuery } from '@tanstack/react-query';
@@ -20,6 +20,7 @@ import { ContainerProvider } from '@/core/container';
 import { setupDevApplication } from '@/core/dev';
 import { ApplicationProvider } from '@/context';
 import Container from '@/container';
+import { ApiError } from './types/error.type';
 
 function reloadPage() {
   window.location.reload();
@@ -62,7 +63,7 @@ const App = () => {
 
   const { error: responseError, isLoading, data } = useQuery<
     Environment,
-    { environment: Environment; error: any }
+    { environment: Environment; error?: ApiError }
   >({
     queryKey: ['configuration'],
     queryFn: () => fetchConfiguration('shell'),

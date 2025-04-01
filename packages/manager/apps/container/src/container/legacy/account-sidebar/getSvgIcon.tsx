@@ -1,4 +1,3 @@
-import React from 'react';
 import { SvgIconWrapper } from '@ovh-ux/ovh-product-icons/utils/SvgIconWrapper';
 
 export const getSvgIcon = (iconName: string): JSX.Element => {

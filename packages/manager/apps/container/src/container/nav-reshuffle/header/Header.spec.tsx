@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, screen, waitFor, act } from '@testing-library/react';
 import { useReket } from '@ovh-ux/ovh-reket';
 import '@testing-library/jest-dom';
