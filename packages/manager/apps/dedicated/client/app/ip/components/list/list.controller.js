@@ -96,6 +96,7 @@ export default class IpListController {
     let cancelFetch;
     let versionFilter = null;
     const { ipTypeFilter } = $location.search();
+    const user = coreConfig.getUser();
 
     if (Object.values(FILTER_OPTIONS).includes(parseInt(ipTypeFilter, 10))) {
       versionFilter = parseInt(ipTypeFilter, 10);
@@ -115,9 +116,12 @@ export default class IpListController {
     $scope.selected_option = versionFilter || FILTER_OPTIONS.ALL_IPS;
     $scope.PAGE_SIZE_MAX = PAGE_SIZE_MAX;
     $scope.poller = null;
+    // Used for customization of the delete label
+    $scope.deleteTranslationKey = `ip_table_manage_delete_ipblock${
+      user.ovhSubsidiary === 'US' ? '_us' : ''
+    }`;
 
-    this.securityUrl =
-      SECURITY_URL[coreConfig.getUser().ovhSubsidiary] || SECURITY_URL.DEFAULT;
+    this.securityUrl = SECURITY_URL[user.ovhSubsidiary] || SECURITY_URL.DEFAULT;
 
     function loadAdvancedModeConfig() {
       const savedConfig = localStorage.getItem(`${$scope.IP_LISTING_ID}Config`);
@@ -146,7 +150,7 @@ export default class IpListController {
         self.serviceType || $location.search().serviceType || null;
       $scope.params = self.params || null;
       $scope.isAdditionalIp = self.isAdditionalIp;
-      $scope.isAdmin = coreConfig.getUser().auth?.roles?.includes(ADMIN_ROLE);
+      $scope.isAdmin = user.auth?.roles?.includes(ADMIN_ROLE);
       $scope.isDeleteByoipServiceAvailable = self.isDeleteByoipServiceAvailable;
 
       $scope.tracking = {

@@ -4,7 +4,7 @@
         data-wizard-on-cancel="cancelAction"
         data-wizard-on-finish="deleteIpBlock"
         data-wizard-hide-cancel-button="loading"
-        data-wizard-title=":: ('ip_table_manage_delete_ipblock' | translate) + ADDITIONAL_IP"
+        data-wizard-title=":: (deleteTranslationKey | translate) + ADDITIONAL_IP"
     >
         <div data-wizard-step data-wizard-step-valid="!loading">
             <div data-ng-show="!loading">
@@ -13,7 +13,7 @@
                     data-translate="ip_table_manage_delete_ipblock_question2"
                     data-translate-values="{ t0: data.ipBlock.ipBlock }"
                 ></p>
-                <p data-translate="ip_table_manage_delete_ipblock_question"></p>
+                <p data-translate="{{::deleteQuestionTranslationKey}}"></p>
             </div>
 
             <div class="text-center" data-ng-show="loading">

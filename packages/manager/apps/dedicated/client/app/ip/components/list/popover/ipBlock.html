@@ -113,7 +113,7 @@
                 data-oui-tooltip="{{ !ipBlock.canBeTerminated ? ('ip_failover_impossible_delete' | translate) : '' }}"
                 data-oui-tooltip-placement="left"
                 data-ng-disabled="!ipBlock.canBeTerminated"
-                data-ng-bind=":: ('ip_table_manage_delete_ipblock' | translate) + ADDITIONAL_IP"
+                data-ng-bind=":: (deleteTranslationKey | translate) + ADDITIONAL_IP"
             ></button>
         </li>
 
@@ -125,7 +125,7 @@
                 data-ng-click="setAction('ip/byoip/delete/ip-ip-byoip-delete', { ipBlock: ipBlock, isDeleteByoipServiceAvailable }, 'info')"
                 data-oui-tooltip="{{ !ipBlock.canBeTerminated ? ('ip_failover_impossible_delete' | translate) : '' }}"
                 data-oui-tooltip-placement="left"
-                data-ng-bind=":: ('ip_table_manage_delete_ipblock' | translate) + ADDITIONAL_IP"
+                data-ng-bind=":: (deleteTranslationKey | translate) + ADDITIONAL_IP"
             ></button>
         </li>
 
