@@ -1,6 +1,5 @@
 import { ColumnDef } from '@tanstack/react-table';
 import { Plus } from 'lucide-react';
-import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { Button } from '@datatr-ux/uxlib';
@@ -30,21 +29,17 @@ const Git = () => {
   const { t } = useTranslation('ai-tools/dashboard/git');
   const navigate = useNavigate();
   const { projectId } = useParams();
-  const [regions, setRegions] = useState<ai.capabilities.Region[]>([]);
   const regionQuery = useGetRegions(projectId);
+  const regions = regionQuery.data || [];
   const { isUserActive } = useUserActivityContext();
   const datastoreQuery = useGetDatastoresWithRegions(projectId, regions, {
     refetchInterval: isUserActive && POLLING.DATASTORE,
+    enabled: !!regionQuery.data,
   });
   const columns: ColumnDef<DataStoresWithRegion>[] = getColumns({
     onDeleteClick: (git: DataStoresWithRegion) =>
       navigate(`./delete/${git.region}/${git.alias}`),
   });
-
-  useEffect(() => {
-    if (!regionQuery.data) return;
-    setRegions(regionQuery.data);
-  }, [regionQuery.isSuccess]);
 
   return (
     <>

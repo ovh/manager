@@ -13,6 +13,8 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
+  docker,
+  githubDark,
   useToast,
 } from '@datatr-ux/uxlib';
 import ai from '@/types/AI';
@@ -89,7 +91,8 @@ const SharedDocker = ({ regions }: SharedDockerProps) => {
       <Code
         label={t('dockerLoginTitle')}
         code={dockerLogin}
-        lang="docker"
+        lang={docker}
+        theme={githubDark}
         onCopied={() =>
           toast.toast({
             title: t('sharedDockerCopy'),
@@ -113,7 +116,8 @@ const SharedDocker = ({ regions }: SharedDockerProps) => {
       <Code
         label={t('dockerTagTitle')}
         code={dockerTag}
-        lang="docker"
+        lang={docker}
+        theme={githubDark}
         onCopied={() =>
           toast.toast({
             title: t('sharedDockerCopy'),
@@ -123,7 +127,8 @@ const SharedDocker = ({ regions }: SharedDockerProps) => {
       <Code
         label={t('dockerPushTitle')}
         code={dockerPush}
-        lang="docker"
+        lang={docker}
+        theme={githubDark}
         onCopied={() =>
           toast.toast({
             title: t('sharedDockerCopy'),
