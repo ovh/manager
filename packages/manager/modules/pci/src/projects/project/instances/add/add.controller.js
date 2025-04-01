@@ -1951,6 +1951,6 @@ export default class PciInstancesAddController {
     return Intl.NumberFormat(languageLocale, {
       style: 'currency',
       currency: this.user.currency.code,
-    }).format(price / 1000000);
+    }).format(price / 100000000);
   }
 }
