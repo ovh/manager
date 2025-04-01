@@ -9,10 +9,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        border: '#E5E5E5',
-        transparent: '#ffffff00',
+        // Override colors for ODS17 theme
+        'primary-50': '#f5feff',
+        heading: '#4d5693',
       },
       borderRadius: {
+        // Override radiuses for ODS17 theme
         sm: '0.25rem',
         DEFAULT: '0.25rem',
         md: '0.5rem',
