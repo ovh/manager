@@ -34,6 +34,7 @@ export const NEW_RANGE = {
 export const SERVICE_TYPE = 'DEDICATED_SERVER';
 
 export const TAG_TAB_LABEL = 'Tags';
+export const BETA_LABEL = 'Beta';
 
 export default {
   DC_2_ISO,
@@ -41,4 +42,5 @@ export default {
   NO_AUTORENEW_COUNTRIES,
   SERVICE_TYPE,
   TAG_TAB_LABEL,
+  BETA_LABEL,
 };
