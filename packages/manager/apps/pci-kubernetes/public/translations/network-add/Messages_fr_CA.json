@@ -28,5 +28,5 @@
   "kubernetes_network_form_load_balancers_subnet_description": "Il vous est possible de définir un sous-réseau spécifique pour vos Load Balancers. Cela est notamment nécessaire si le sous-réseau choisi pour votre cluster ne respecte pas les prérequis nécessaires à la création de Load Balancers managés OVHcloud.",
   "kubernetes_network_form_load_balancers_subnet_toggler": "Paramètres avancés",
   "kubernetes_network_form_rebuild": "Attention: changer la stratégie de routage sortant implique un redéploiement des noeuds de votre cluster en rolling update.",
-  "kubernetes_network_form_notify_users": "Pour déployer Managed Kubernetes Service dans une région avec 3 zones de disponibilité (3-AZ), un réseau privé avec une gateway attachée est obligatoire. Assurez-vous que votre réseau privé respecte cette exigence pour garantir un fonctionnement optimal."
+  "kubernetes_network_form_notify_users": "Pour déployer Managed Kubernetes Service dans une région avec 3 zones de disponibilité (3-AZ), un sous-réseau avec une gateway attachée est obligatoire. Assurez-vous que votre réseau privé respecte ce prérequis pour garantir un fonctionnement optimal."
 }

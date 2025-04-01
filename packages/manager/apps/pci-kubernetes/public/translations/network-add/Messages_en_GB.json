@@ -29,5 +29,5 @@
   "kubernetes_network_form_gateway_mode_custom": "Default gateway statically overloaded",
   "kubernetes_network_form_gateway_mode_custom_placeholder": "IP address of your default gateway",
   "kubernetes_network_form_rebuild": "Warning: changing the outgoing routing strategy involves redeploying the nodes in your cluster by rolling update.",
-  "kubernetes_network_form_notify_users": "To deploy the Managed Kubernetes Service in a region with 3 availability zones (3-AZ), a private network with an attached gateway is mandatory. Ensure that your private network meets this requirement to ensure optimal operation."
+  "kubernetes_network_form_notify_users": "To deploy the Managed Kubernetes Service in a region with 3 availability zones (3-AZ), a subnet with an attached gateway is mandatory. Ensure that your private network meets these requirements to ensure optimal operation."
 }

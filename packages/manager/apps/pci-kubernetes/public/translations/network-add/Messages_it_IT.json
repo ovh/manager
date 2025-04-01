@@ -29,5 +29,5 @@
   "kubernetes_network_form_gateway_mode_custom": "Gateway predefinito statico sovraccarico",
   "kubernetes_network_form_gateway_mode_custom_placeholder": "Indirizzo IP del gateway predefinito",
   "kubernetes_network_form_rebuild": "Attenzione: modificare la strategia di routing in uscita implica un nuovo deploy dei nodi del cluster in rolling update.",
-  "kubernetes_network_form_notify_users": "Per implementare il servizio Managed Kubernetes in una Region con 3 zone di disponibilità (3-AZ), è necessaria una rete privata con un gateway associato. Assicurati che la tua rete privata soddisfi questo requisito per garantire un funzionamento ottimale."
+  "kubernetes_network_form_notify_users": "Per implementare il servizio Managed Kubernetes in una Region con 3 zone di disponibilità (3-AZ), è necessaria una sottorete con un gateway associato. Assicurati che la tua rete privata rispetti questi prerequisiti per garantire un funzionamento ottimale."
 }
