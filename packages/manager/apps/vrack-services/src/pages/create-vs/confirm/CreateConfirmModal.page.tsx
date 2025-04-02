@@ -28,7 +28,6 @@ import { useCreateVrackServicesCart } from '@ovh-ux/manager-network-common';
 import { LoadingText } from '@/components/LoadingText.component';
 import { OrderSubmitModalContent } from '@/components/OrderSubmitModalContent.component';
 import { urls } from '@/routes/routes.constants';
-import { useSendOrder } from '@/data/hooks/useSendOrder';
 
 const trackingParams: TrackingClickParams = {
   buttonType: ButtonType.button,
@@ -56,7 +55,7 @@ export default function CreateConfirmModal() {
     sendOrderError,
     isSendOrderPending,
     isSendOrderError,
-  } = useCreateVrackServicesCart(useSendOrder);
+  } = useCreateVrackServicesCart();
 
   const cancel = () => {
     trackClick({

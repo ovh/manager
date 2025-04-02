@@ -12,6 +12,8 @@ import {
   getButtonByIcon,
   labels,
   renderTest,
+  assertDisabled,
+  assertEnabled,
 } from '@/test-utils';
 
 describe('Vrack Services delete test suite', () => {
@@ -37,26 +39,19 @@ describe('Vrack Services delete test suite', () => {
       container,
       text: labels.common.modalDeleteVrackServicesHeadline,
     });
-    let submitButton = await getButtonByLabel({
+    const submitButton = await getButtonByLabel({
       container,
       value: labels.actions.delete,
       nth: 2,
     });
-    expect(submitButton).toBeDisabled();
+    await assertDisabled(submitButton);
+
     await changeInputValueByLabelText({
       inputLabel: labels.common.modalDeleteVrackServicesInputLabel,
       value: 'TERMINATE',
     });
 
-    submitButton = await getButtonByLabel({
-      container,
-      value: labels.actions.delete,
-      nth: 2,
-    });
-    await waitFor(
-      () => expect(submitButton).not.toBeDisabled(),
-      WAIT_FOR_DEFAULT_OPTIONS,
-    );
+    await assertEnabled(submitButton);
     await waitFor(() => userEvent.click(submitButton));
 
     await assertModalVisibility({ container, isVisible: false });

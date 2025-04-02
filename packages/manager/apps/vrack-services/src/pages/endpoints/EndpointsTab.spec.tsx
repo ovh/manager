@@ -1,8 +1,5 @@
 import { describe, it } from 'vitest';
-import {
-  WAIT_FOR_DEFAULT_OPTIONS,
-  assertTextVisibility,
-} from '@ovh-ux/manager-core-test-utils';
+import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import { waitFor, screen } from '@testing-library/react';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import userEvent from '@testing-library/user-event';
@@ -16,6 +13,8 @@ import {
   getButtonByIcon,
   labels,
   renderTest,
+  assertDisabled,
+  assertEnabled,
 } from '@/test-utils';
 import { urls } from '@/routes/routes.constants';
 
@@ -104,10 +103,7 @@ describe('Vrack Services endpoints page test suite', () => {
       container,
       value: labels.actions.modify,
     });
-    await waitFor(
-      () => expect(submitButton).not.toBeDisabled(),
-      WAIT_FOR_DEFAULT_OPTIONS,
-    );
+    await assertEnabled(submitButton);
     await waitFor(() => userEvent.click(submitButton));
 
     await assertModalVisibility({ container, isVisible: false });
@@ -138,27 +134,20 @@ describe('Vrack Services endpoints page test suite', () => {
       container,
       text: labels.endpoints.modalDeleteEndpointHeadline,
     });
-    let deleteButton = await getButtonByLabel({
+    const deleteButton = await getButtonByLabel({
       container,
       value: labels.actions.delete,
     });
-    expect(deleteButton).toBeDisabled();
+    await assertDisabled(deleteButton);
 
     await changeInputValueByLabelText({
       inputLabel: labels.endpoints.modalDeleteEndpointInputLabel,
       value: 'TERMINATE',
     });
 
-    deleteButton = await getButtonByLabel({
-      container,
-      value: labels.actions.delete,
-    });
-    await waitFor(
-      () => expect(deleteButton).not.toBeDisabled(),
-      WAIT_FOR_DEFAULT_OPTIONS,
-    );
-
+    await assertEnabled(deleteButton);
     await waitFor(() => userEvent.click(deleteButton));
+
     await assertModalVisibility({ container, isVisible: false });
   });
 });

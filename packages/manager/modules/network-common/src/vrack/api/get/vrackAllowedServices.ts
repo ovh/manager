@@ -1,8 +1,12 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
-import {
-  AllowedServicesResponse,
-  GetVrackAllowedServicesParams,
-} from '../../types';
+import { AllowedService, AllowedServicesResponse } from '../../../types';
+
+export type GetVrackAllowedServicesParams = {
+  /** Filter on a specific service family */
+  serviceFamily: AllowedService;
+  /** The internal name of your vrack */
+  vrack: string;
+};
 
 export const getVrackAllowedServicesQueryKey = ({
   vrack,

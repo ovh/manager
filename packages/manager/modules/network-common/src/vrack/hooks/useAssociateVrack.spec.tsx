@@ -3,15 +3,16 @@ import { vi } from 'vitest';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useTask } from '@ovh-ux/manager-react-components';
 import { useAssociateVrack } from './useAssociateVrack';
-import { Status, associateVrackServices } from '../index';
+import { associateVrackServices } from '../api';
+import { Status } from '../../types';
 import '@testing-library/jest-dom';
 
 vi.mock('@ovh-ux/manager-react-components', () => ({
   useTask: vi.fn(),
 }));
 
-vi.mock('../index', async () => {
-  const actual = await vi.importActual<typeof import('../index')>('../index');
+vi.mock('../api', async () => {
+  const actual = await vi.importActual<typeof import('../api')>('../api');
   return {
     ...actual,
     associateVrackServices: vi.fn(),
