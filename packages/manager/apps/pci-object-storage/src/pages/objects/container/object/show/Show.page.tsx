@@ -94,6 +94,17 @@ export default function ObjectPage() {
   const [searchParams] = useSearchParams();
   const { data: project } = useProject();
 
+  const [prefixSearchFieldTemp, setPrefixSearchFieldTemp] = useState<
+    string | null
+  >(null);
+  const [prefixSearchField, setPrefixSearchField] = useState<string | null>(
+    null,
+  );
+
+  const handleSearchChange = (handleKey: string | null) => {
+    setPrefixSearchField(handleKey);
+  };
+
   const { tracking } = useContext(ShellContext).shell;
 
   const { hasMaintenance, maintenanceURL } = useProductMaintenance(
@@ -177,6 +188,7 @@ export default function ObjectPage() {
     name: storageId,
     withVersions: enableVersionsToggle,
     isS3StorageType: container?.s3StorageType,
+    prefix: prefixSearchField,
   });
 
   useEffect(() => {
@@ -706,20 +718,24 @@ export default function ObjectPage() {
             </div>
           </div>
 
-          {container?.s3StorageType &&
-            (!isObjectsLoading ? (
-              <div className="mt-8">
-                <Datagrid
-                  columns={objectsColumns}
-                  hasNextPage={hasNextPage}
-                  items={containerObjectsWithIndex}
-                  onFetchNextPage={handleFetchNextPage}
-                  totalItems={containerObjects.length}
-                />
-              </div>
-            ) : (
-              <OdsSpinner />
-            ))}
+          {container?.s3StorageType && (
+            <div className="mt-8">
+              <Datagrid
+                columns={objectsColumns}
+                hasNextPage={hasNextPage}
+                items={isObjectsLoading ? [] : containerObjectsWithIndex}
+                onFetchNextPage={handleFetchNextPage}
+                onSortChange={function Zu() {}}
+                totalItems={containerObjects?.length}
+                isLoading={isObjectsLoading}
+                search={{
+                  searchInput: prefixSearchFieldTemp,
+                  setSearchInput: setPrefixSearchFieldTemp,
+                  onSearch: handleSearchChange,
+                }}
+              />
+            </div>
+          )}
 
           {!container?.s3StorageType && (
             <>

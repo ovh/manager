@@ -83,6 +83,7 @@ export const useDatagridColumn = ({
         );
       },
       label: t('pci_projects_project_storages_containers_container_name_label'),
+      isSearchable: true,
     },
     {
       id: 'lastModified',
