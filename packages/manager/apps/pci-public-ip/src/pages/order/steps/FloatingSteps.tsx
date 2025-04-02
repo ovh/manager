@@ -14,10 +14,7 @@ import {
   TLocalisation,
   TDeployment,
   DeploymentTilesInput,
-  usePCIFeatureAvailability,
-  getDeploymentComingSoonKey,
-  DEPLOYMENT_FEATURES,
-  DEPLOYMENT_MODES_TYPES,
+  useFeaturedDeploymentModes,
 } from '@ovh-ux/manager-pci-common';
 import { useTranslation } from 'react-i18next';
 import { useCallback, useEffect, useMemo, useState } from 'react';
@@ -40,7 +37,7 @@ export const FloatingSteps = ({
 }): JSX.Element => {
   const { t: tOrder } = useTranslation('order');
   const { state: DataState, getInstanceById } = useData(projectId, regionName);
-  const { form, setForm, steps } = useOrderStore();
+  const { form, setForm, steps, reset } = useOrderStore();
   const [instanceCreationURL, setInstanceCreationURL] = useState('');
   const { On } = useActions(projectId);
   const nav = useNavigation();
@@ -78,6 +75,10 @@ export const FloatingSteps = ({
     }
   }, [selectedInstanceIpAddresses]);
 
+  useEffect(() => {
+    reset();
+  }, [reset]);
+
   const has3AZ = isRegionWith3AZ(DataState.regions);
   const metaProps = usePCICommonContextFactory({ has3AZ });
 
@@ -96,22 +97,11 @@ export const FloatingSteps = ({
     [DataState, selectedRegionGroup],
   );
 
-  const { data: deploymentAvailability } = usePCIFeatureAvailability(
-    DEPLOYMENT_FEATURES,
-  );
+  const { deployments: deploymentModes } = useFeaturedDeploymentModes();
 
   const deployments = useMemo<TDeployment[]>(
-    () =>
-      DEPLOYMENT_MODES_TYPES.filter((mode) => mode !== RegionType.LZ).map(
-        (deployment) => ({
-          name: deployment,
-          comingSoon:
-            deploymentAvailability?.get(
-              getDeploymentComingSoonKey(deployment),
-            ) || false,
-        }),
-      ),
-    [deploymentAvailability],
+    () => deploymentModes.filter(({ name }) => name !== RegionType.LZ),
+    [deploymentModes],
   );
 
   const onSelectRegion = useCallback(
