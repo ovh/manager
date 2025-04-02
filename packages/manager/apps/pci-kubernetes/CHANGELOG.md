@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.18.1...@ovh-ux/manager-pci-kubernetes-app@0.19.0) (2025-04-02)
+
+
+### Bug Fixes
+
+* **pci-kubernetes:** update package json ([#16299](https://github.com/ovh/manager/issues/16299)) ([be5415a](https://github.com/ovh/manager/commit/be5415a7ff508e12928d6ac53c17087e06efb94a)), closes [#TAPC-3574](https://github.com/ovh/manager/issues/TAPC-3574)
+
+
+### Features
+
+* **mrc:** bump version ([#16251](https://github.com/ovh/manager/issues/16251)) ([2f21862](https://github.com/ovh/manager/commit/2f218623919905e69d012c53474613785fe76991)), closes [#TAPC-2786](https://github.com/ovh/manager/issues/TAPC-2786)
+
+
+
+
+
 ## [0.18.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.18.0...@ovh-ux/manager-pci-kubernetes-app@0.18.1) (2025-03-27)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app
