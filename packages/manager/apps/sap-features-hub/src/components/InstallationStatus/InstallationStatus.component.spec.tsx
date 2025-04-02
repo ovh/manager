@@ -42,10 +42,7 @@ describe('SAPInstallationStatus component tests suite', () => {
 
       const badge = container.querySelector('ods-badge');
       expect(badge).toHaveAttribute('color', color);
-      expect(badge).toHaveAttribute(
-        'label',
-        `sap_hub_history_installation_${status}`,
-      );
+      expect(badge).toHaveAttribute('label', `status_${status}`);
     },
   );
 });
