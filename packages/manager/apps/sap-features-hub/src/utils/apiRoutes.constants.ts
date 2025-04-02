@@ -1,3 +1,4 @@
+import { TGetInstallationTaskParams } from '@/data/api/sapInstallations';
 import {
   TGetDatacentreParams,
   TGetClusterParams,
@@ -11,6 +12,12 @@ export const getVMwareDatacentreRoute = (serviceName: string) =>
 
 export const getVMwareSAPInstallationsRoute = (serviceName: string) =>
   `/dedicatedCloud/${serviceName}/sap`;
+
+export const getInstallationTaskDetailsRoute = ({
+  serviceName,
+  taskId,
+}: TGetInstallationTaskParams) =>
+  `/dedicatedCloud/${serviceName}/sap/${taskId}`;
 
 export const getVMwareStoragePolicyRoute = (serviceName: string) =>
   `/dedicatedCloud/${serviceName}/storagePolicy`;
