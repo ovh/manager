@@ -121,12 +121,12 @@ const GenericChart: React.FC<ChartProps> = ({
               {
                 value: t('dashboard_graph_included'),
                 type: 'square',
-                color: INCLUDED_COLOR,
+                color: areaChartColors.included.fill,
               },
               {
                 value: t('dashboard_graph_excluded'),
                 type: 'square',
-                color: EXCLUDED_COLOR,
+                color: areaChartColors.excluded.fill,
               },
             ]}
           />
