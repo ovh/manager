@@ -7,14 +7,12 @@ import {
   VMwareService,
   VMwareStoragePolicy,
 } from '@/types/vmwareService.type';
-import { TSAPInstallation } from '@/types/installation.type';
 import {
   getClusterIdsRoute,
   getClusterRoute,
   getDatacentrePortGroupRoute,
   getDatastoresRoute,
   getVMwareDatacentreRoute,
-  getVMwareSAPInstallationsRoute,
   getVMwareStoragePolicyRoute,
   getVsanDatastoresRoute,
   VMWARE_SERVICES_ROUTE,
@@ -86,8 +84,3 @@ export const getDatacentrePortGroup = async ({
   v6.get(getDatacentrePortGroupRoute({ serviceName, datacenterId }), {
     headers: cachedPaginationHeaders,
   });
-
-export const getSAPInstallations = async (
-  serviceName: string,
-): Promise<ApiResponse<TSAPInstallation[]>> =>
-  v6.get(getVMwareSAPInstallationsRoute(serviceName));

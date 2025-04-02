@@ -1,7 +1,7 @@
 import { useQueries, UseQueryResult } from '@tanstack/react-query';
 import { ApiResponse } from '@ovh-ux/manager-core-api';
 import { TSAPInstallation } from '@/types/installation.type';
-import { getSAPInstallations } from '@/data/api/vmwareServices';
+import { getSAPInstallations } from '@/data/api/sapInstallations';
 import { useVMwareServices } from '@/hooks/vmwareServices/useVMwareServices';
 
 export default function useInstallationHistory() {
