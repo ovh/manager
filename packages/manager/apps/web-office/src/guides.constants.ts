@@ -1,5 +1,5 @@
 export interface GuideLinks {
-  [key: string]: string | Guide;
+  [key: string]: string;
   FR?: string;
   GB?: string;
   DE?: string;
@@ -17,8 +17,12 @@ export interface GuideLinks {
 
 export interface Guide {
   key: string;
-  url: GuideLinks | string;
-  tracking: string;
+  url: GuideLinks;
+  tracking?: string;
+}
+
+export interface GuidesList {
+  [key: string]: Guide;
 }
 
 const helpRoot = 'https://docs.ovh.com/';
@@ -103,7 +107,7 @@ export const CTAS: Record<string, string> = {
   WS: 'https://ovhcloud.com/us-en/collaborative-tools/microsoft-365/',
 };
 
-export const GUIDES_LIST = {
+export const GUIDES_LIST: GuidesList = {
   office_cta_order: {
     key: 'web-office_onboarding_cta_order',
     url: CTAS,
