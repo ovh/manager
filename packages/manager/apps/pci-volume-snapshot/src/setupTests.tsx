@@ -46,7 +46,15 @@ vi.mock('@ovh-ux/manager-react-components', async () => {
       sorting: vi.fn(),
       setSorting: vi.fn(),
     }),
-    PciGuidesHeader: vi.fn().mockReturnValue(<div></div>),
+    PciGuidesHeader: vi.fn(() => <div></div>),
+    ChangelogButton: () => <div></div>,
+    RedirectionGuard: ({
+      children,
+      condition,
+    }: {
+      children: React.ReactNode;
+      condition: boolean;
+    }) => (condition ? <div>Redirected</div> : <div>{children}</div>),
     Notifications: vi
       .fn()
       .mockReturnValue(<div data-testid="notifications"></div>),
