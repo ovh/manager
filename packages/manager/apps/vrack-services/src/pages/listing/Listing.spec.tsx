@@ -1,8 +1,5 @@
 import { describe, it } from 'vitest';
-import {
-  WAIT_FOR_DEFAULT_OPTIONS,
-  assertTextVisibility,
-} from '@ovh-ux/manager-core-test-utils';
+import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import userEvent from '@testing-library/user-event';
 import { waitFor } from '@testing-library/react';
@@ -12,6 +9,8 @@ import {
   getButtonByIcon,
   labels,
   renderTest,
+  assertDisabled,
+  assertEnabled,
 } from '@/test-utils';
 
 describe('Vrack Services listing test suite', () => {
@@ -21,7 +20,7 @@ describe('Vrack Services listing test suite', () => {
     await assertTextVisibility(labels.onboarding.onboardingPageTitle);
   });
 
-  it.only('should show list of vrack services', async () => {
+  it('should show list of vrack services', async () => {
     const { container } = await renderTest({ nbVs: 7 });
 
     await getButtonByLabel({
@@ -41,14 +40,14 @@ describe('Vrack Services listing test suite', () => {
       value: labels.common['action-editDisplayName'],
       nth: 6,
     });
-    expect(editButton).toBeDisabled();
+    await assertDisabled(editButton);
 
     let deleteButton = await getButtonByLabel({
       container,
       value: labels.common['action-deleteVrackServices'],
       nth: 6,
     });
-    expect(deleteButton).toBeDisabled();
+    await assertDisabled(deleteButton);
 
     let goDetailsButton = await getButtonByLabel({
       container,
@@ -64,25 +63,12 @@ describe('Vrack Services listing test suite', () => {
     });
     await waitFor(() => userEvent.click(actionMenuActive));
 
-    const editDisplayNameModalButton = await getButtonByLabel({
-      container,
-      value: labels.common['action-editDisplayName'],
-      nth: 1,
-    });
-    await waitFor(
-      () => expect(editDisplayNameModalButton).not.toBeDisabled(),
-      WAIT_FOR_DEFAULT_OPTIONS,
-    );
-
     deleteButton = await getButtonByLabel({
       container,
       value: labels.common['action-deleteVrackServices'],
       nth: 1,
     });
-    await waitFor(
-      () => expect(deleteButton).not.toBeDisabled(),
-      WAIT_FOR_DEFAULT_OPTIONS,
-    );
+    await assertEnabled(deleteButton);
 
     goDetailsButton = await getButtonByLabel({
       container,
@@ -91,6 +77,12 @@ describe('Vrack Services listing test suite', () => {
     });
     expect(goDetailsButton).toBeEnabled();
 
+    const editDisplayNameModalButton = await getButtonByLabel({
+      container,
+      value: labels.common['action-editDisplayName'],
+      nth: 1,
+    });
+    await assertEnabled(editDisplayNameModalButton);
     await waitFor(() => userEvent.click(editDisplayNameModalButton));
 
     await assertModalText({
@@ -106,7 +98,6 @@ describe('Vrack Services listing test suite', () => {
       value: labels.actions.cancel,
     });
     await waitFor(() => userEvent.click(closeDisplayNameModal));
-
     await waitFor(() => userEvent.click(goDetailsButton));
 
     await assertTextVisibility(labels.dashboard.dashboardPageDescription);

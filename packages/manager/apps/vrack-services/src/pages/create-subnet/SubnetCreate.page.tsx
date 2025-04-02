@@ -180,7 +180,7 @@ export default function SubnetCreate() {
             slot="label"
             className="cursor-pointer"
           >
-            {t('vlanNoVlanOptionLabel')}
+            <OdsText>{t('vlanNoVlanOptionLabel')}</OdsText>
           </label>
         </div>
 
@@ -195,13 +195,13 @@ export default function SubnetCreate() {
             }
           />
           <label htmlFor="vlan" slot="label" className="cursor-pointer">
-            {t('vlanSelectVlanOptionLabel')}
+            <OdsText>{t('vlanSelectVlanOptionLabel')}</OdsText>
           </label>
         </div>
       </OdsFormField>
 
       {hasVlan && (
-        <OdsFormField className="block ml-8 mb-4 max-w-md">
+        <OdsFormField className="block mb-6 max-w-md">
           <label htmlFor={vlanNumberInputName} slot="label">
             {t('vlanNumberLabel')}
           </label>

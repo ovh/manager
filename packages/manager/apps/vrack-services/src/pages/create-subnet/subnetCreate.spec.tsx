@@ -1,8 +1,5 @@
 import { describe, it } from 'vitest';
-import {
-  WAIT_FOR_DEFAULT_OPTIONS,
-  assertTextVisibility,
-} from '@ovh-ux/manager-core-test-utils';
+import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import { waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vrackServicesListMocks } from '@ovh-ux/manager-network-common';
@@ -13,6 +10,8 @@ import {
   getButtonByLabel,
   labels,
   renderTest,
+  assertDisabled,
+  assertEnabled,
 } from '@/test-utils';
 import { urls } from '@/routes/routes.constants';
 import { vlanInputName, vlanNumberOptionValue } from './subnetCreate.constants';
@@ -46,14 +45,11 @@ describe('Vrack Services subnets page test suite', () => {
       inputLabel: labels.subnets.cidrLabel,
       inError: false,
     });
-    let submitButton = await getButtonByLabel({
+    const submitButton = await getButtonByLabel({
       container,
       value: labels.subnets.createSubnetButtonLabel,
     });
-    await waitFor(
-      () => expect(submitButton).not.toBeDisabled(),
-      WAIT_FOR_DEFAULT_OPTIONS,
-    );
+    await assertEnabled(submitButton);
 
     await clickOnRadioByName({
       container,
@@ -61,28 +57,13 @@ describe('Vrack Services subnets page test suite', () => {
       value: vlanNumberOptionValue,
     });
 
-    submitButton = await getButtonByLabel({
-      container,
-      value: labels.subnets.createSubnetButtonLabel,
-    });
-    await waitFor(
-      () => expect(submitButton).toBeDisabled(),
-      WAIT_FOR_DEFAULT_OPTIONS,
-    );
+    await assertDisabled(submitButton);
 
     await changeInputValueByLabelText({
       inputLabel: labels.subnets.vlanNumberLabel,
       value: '20',
     });
-    submitButton = await getButtonByLabel({
-      container,
-      value: labels.subnets.createSubnetButtonLabel,
-    });
-    await waitFor(
-      () => expect(submitButton).not.toBeDisabled(),
-      WAIT_FOR_DEFAULT_OPTIONS,
-    );
-
+    await assertEnabled(submitButton);
     await waitFor(() => userEvent.click(submitButton));
 
     await assertTextVisibility(labels.subnets.subnetDatagridDisplayNameLabel);

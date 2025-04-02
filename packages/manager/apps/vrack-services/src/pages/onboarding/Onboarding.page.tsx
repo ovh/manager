@@ -39,8 +39,6 @@ export default function OnboardingPage() {
     'vrack-services:order',
   ]);
 
-  console.log({ features });
-
   const tileList: CardProps[] = [
     {
       texts: {

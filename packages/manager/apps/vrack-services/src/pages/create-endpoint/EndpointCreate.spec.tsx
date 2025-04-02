@@ -1,10 +1,7 @@
 import { describe, it } from 'vitest';
 import { waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import {
-  WAIT_FOR_DEFAULT_OPTIONS,
-  assertTextVisibility,
-} from '@ovh-ux/manager-core-test-utils';
+import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import { vrackServicesListMocks } from '@ovh-ux/manager-network-common';
 import { iamResourcesMocks } from '@/data/mocks/iam';
 import {
@@ -12,6 +9,8 @@ import {
   getButtonByLabel,
   labels,
   renderTest,
+  assertDisabled,
+  assertEnabled,
 } from '@/test-utils';
 import { urls } from '@/routes/routes.constants';
 
@@ -28,39 +27,24 @@ describe('Vrack Services endpoint creation page test suite', () => {
 
     await assertTextVisibility(labels.endpoints.createEndpointPageDescription);
 
-    let submitButton = await getButtonByLabel({
+    const submitButton = await getButtonByLabel({
       container,
       value: labels.endpoints.createEndpointButtonLabel,
     });
-    await waitFor(
-      () => expect(submitButton).toBeDisabled(),
-      WAIT_FOR_DEFAULT_OPTIONS,
-    );
+    await assertDisabled(submitButton);
 
     await changeSelectValueByLabelText({
       selectLabel: labels.endpoints.serviceNameLabel,
       value: iamResourcesMocks[0].urn,
     });
-
-    submitButton = await getButtonByLabel({
-      container,
-      value: labels.endpoints.createEndpointButtonLabel,
-    });
-    expect(submitButton).toBeDisabled();
+    await assertDisabled(submitButton);
 
     await changeSelectValueByLabelText({
       selectLabel: labels.endpoints.subnetLabel,
       value: vrackServicesListMocks[20].currentState.subnets[0].cidr,
     });
 
-    submitButton = await getButtonByLabel({
-      container,
-      value: labels.endpoints.createEndpointButtonLabel,
-    });
-    await waitFor(
-      () => expect(submitButton).not.toBeDisabled(),
-      WAIT_FOR_DEFAULT_OPTIONS,
-    );
+    await assertEnabled(submitButton);
     await waitFor(() => userEvent.click(submitButton));
 
     await assertTextVisibility(labels.endpoints.endpointsOnboardingDescription);
