@@ -5,6 +5,20 @@ export const assistanceTree: Node = {
   translation: 'sidebar_assistance_title',
   children: [
     {
+      id: 'help',
+      translation: 'sidebar_assistance_help_center',
+      url: 'help',
+      hasService: false,
+      isExternal: true,
+    },
+    {
+      id: 'tickets',
+      translation: 'sidebar_assistance_tickets',
+      isExternal: true,
+      url: 'support',
+      hasService: false,
+    },
+    {
       id: 'cloud_changelog',
       translation: 'sidebar_cloud_changelog',
       url: 'cloud_changelog',
@@ -26,20 +40,6 @@ export const assistanceTree: Node = {
       hasService: false,
       isExternal: true,
       region: ['EU'],
-    },
-    {
-      id: 'help',
-      translation: 'sidebar_assistance_help_center',
-      url: 'help',
-      hasService: false,
-      isExternal: true,
-    },
-    {
-      id: 'tickets',
-      translation: 'sidebar_assistance_tickets',
-      isExternal: true,
-      url: 'support',
-      hasService: false,
     },
     {
       id: 'assistance_status',
