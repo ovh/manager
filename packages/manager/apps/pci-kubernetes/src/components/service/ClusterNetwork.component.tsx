@@ -177,6 +177,7 @@ export default function ClusterNetwork({
 
         {shouldLoadSubnets && (
           <OsdsButton
+            data-testid="cluster-network-edit-button"
             color={ODS_THEME_COLOR_INTENT.primary}
             variant={ODS_BUTTON_VARIANT.ghost}
             size={ODS_BUTTON_SIZE.sm}
