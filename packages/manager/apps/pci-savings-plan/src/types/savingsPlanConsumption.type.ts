@@ -1,33 +1,41 @@
+import { CurrencyCode } from '@ovh-ux/manager-react-components';
 import { z } from 'zod';
+
+const moneySchema = z.object({
+  currencyCode: z.nativeEnum(CurrencyCode),
+  priceInUcents: z.number().nullable(),
+  text: z.string(),
+  value: z.number(),
+});
 
 const flatFeeDetailSchema = z.object({
   id: z.string(),
   size: z.number(),
-  totalPrice: z.number(),
-  unitPrice: z.number(),
+  totalPrice: moneySchema,
+  unitPrice: moneySchema,
 });
 
 const flatFeeSchema = z.object({
   details: z.array(flatFeeDetailSchema),
-  totalPrice: z.number(),
+  totalPrice: moneySchema,
 });
 
 const overQuotaSchema = z.object({
   ids: z.array(z.string()),
   quantity: z.number(),
-  totalPrice: z.number(),
-  unitPrice: z.number(),
+  totalPrice: moneySchema,
+  unitPrice: moneySchema,
 });
 
 const feesSchema = z.object({
   flatFee: flatFeeSchema,
   overQuota: overQuotaSchema,
-  savedAmount: z.number(),
-  totalPrice: z.number(),
+  savedAmount: moneySchema,
+  totalPrice: moneySchema,
 });
 
 const periodSchema = z.object({
-  savingsPlansIds: z.array(z.string()).nullable(),
+  plansIds: z.array(z.string()).nullable(),
   begin: z.string(),
   consumptionSize: z.number().optional(),
   coverage: z.string(),
@@ -38,7 +46,7 @@ const periodSchema = z.object({
 });
 
 const subscriptionSchema = z.object({
-  activation: z.string(),
+  begin: z.string(),
   end: z.string(),
   id: z.string(),
   size: z.number(),
@@ -58,13 +66,12 @@ const savingsPlanConsumptionSchema = z.object({
     to: z.string(),
   }),
   projectId: z.string(),
-  totalSavings: z.number(),
+  totalSavings: moneySchema,
 });
 
 export type SavingsPlanConsumption = z.infer<
   typeof savingsPlanConsumptionSchema
 >;
-
 export type SavingsPlanFlavorConsumption = z.infer<typeof flavorSchema>;
 export type SavingsPlanPeriodConsumption = z.infer<typeof periodSchema>;
 export type SavingsPlanPeriod = SavingsPlanConsumption['period'];
