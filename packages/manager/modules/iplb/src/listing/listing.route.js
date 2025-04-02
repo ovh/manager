@@ -1,5 +1,6 @@
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 import { LB_DELETE_FEATURE } from '../home/iplb-home.constants';
+import { IPLB_GUIDES } from '../iplb.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('iplb.index', {
@@ -32,6 +33,8 @@ export default /* @ngInject */ ($stateProvider) => {
           )
           .catch(() => false);
       },
+      guideLinks: /* @ngInject */ (coreConfig) =>
+        IPLB_GUIDES[coreConfig.getUser().ovhSubsidiary] || IPLB_GUIDES.DEFAULT,
     },
     redirectTo: (transition) =>
       transition
