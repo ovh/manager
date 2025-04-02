@@ -1,6 +1,6 @@
 <oui-tile heading="{{:: 'manager_billing_subscription' | translate }}">
     <oui-tile-definition
-        term="{{:: 'manager_billing_subscription_creation' | translate }}"
+        term="{{:: ($ctrl.isUSRegion ? 'manager_billing_subscription_creation_region_us' : 'manager_billing_subscription_creation') | translate }}"
     >
         <oui-tile-description>
             <oui-skeleton size="s" data-ng-if="$ctrl.isLoading"></oui-skeleton>
@@ -32,7 +32,7 @@
                 <span
                     class="text-wrap d-block"
                     data-ng-if="!$ctrl.serviceInfos.hasEngagement() && !$ctrl.serviceInfos.hasPendingEngagement"
-                    data-translate="manager_billing_subscription_engagement_status_none"
+                    data-translate="{{:: $ctrl.isUSRegion ? 'manager_billing_subscription_engagement_status_none_region_us' : 'manager_billing_subscription_engagement_status_none' }}"
                 >
                 </span>
                 <span
@@ -122,7 +122,7 @@
                 >
                     <p>
                         <span
-                            data-translate="{{ 'manager_billing_subscription_resiliate_cancel' }}"
+                            data-translate="{{:: $ctrl.isUSRegion ? 'manager_billing_subscription_resiliate_cancel_region_us' : 'manager_billing_subscription_resiliate_cancel' }}"
                         ></span>
                         <span
                             aria-hidden="true"

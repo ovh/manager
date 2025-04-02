@@ -32,6 +32,7 @@ export default class ServicesActionsCtrl {
   }
 
   $onInit() {
+    this.isUSRegion = this.coreConfig.isRegion(['US']);
     this.billingLink = this.coreURLBuilder.buildURL(
       'dedicated',
       '#/billing/history',
