@@ -41,6 +41,7 @@ const Resources = () => {
           id="storage-slider"
           name="storage-slider"
           defaultValue={[0]}
+          disabled={true}
           value={[notebook.status.workspace.storageUsed]}
           min={0}
           max={notebook.status.workspace.storageFree}

@@ -185,7 +185,6 @@ export default [
           },
           {
             path: 'notebooks',
-            id: 'notebooksLayout',
             ...lazyRouteConfig(() =>
               import('@/pages/notebooks/NotebookRoot.layout'),
             ),
