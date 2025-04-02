@@ -5,7 +5,7 @@ import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { FilterComparator, applyFilters } from '@ovh-ux/manager-core-api';
 import { withRouter } from 'storybook-addon-react-router-v6';
 import { useSearchParams } from 'react-router-dom';
-import { Datagrid, DatagridColumn } from './datagrid.component';
+import { Datagrid } from './datagrid.component';
 import { useColumnFilters } from '../filters';
 import {
   columns,
@@ -22,6 +22,9 @@ interface Item {
   actions: React.ReactElement;
 }
 
+const pageSize = 10;
+const maxPages = 3;
+
 const DatagridStory = (args) => {
   const [sorting, setSorting] = useState<ColumnSort>();
   const [data, setData] = useState(args.items);
@@ -31,10 +34,21 @@ const DatagridStory = (args) => {
 
   const fetchNextPage = () => {
     const itemsIndex = data?.length;
-    const tmp = [...Array(10).keys()].map((_, i) => ({
+    const tmp = [...Array(pageSize).keys()].map((_, i) => ({
       label: `Item #${i + itemsIndex}`,
       price: Math.floor(1 + Math.random() * 100),
     }));
+    setData((previousParams: any) => [...previousParams, ...tmp]);
+  };
+
+  const fetchAllPages = () => {
+    const itemsIndex = data?.length;
+    const tmp = [...Array(pageSize * maxPages - itemsIndex).keys()].map(
+      (_, i) => ({
+        label: `Item #${i + itemsIndex}`,
+        price: Math.floor(1 + Math.random() * 100),
+      }),
+    );
     setData((previousParams: any) => [...previousParams, ...tmp]);
   };
 
@@ -76,8 +90,9 @@ const DatagridStory = (args) => {
       <Datagrid
         items={applyFilters(data, filters)}
         columns={args.columns}
-        hasNextPage={data?.length > 0 && data.length < 30}
+        hasNextPage={data?.length && data.length < maxPages * pageSize}
         onFetchNextPage={fetchNextPage}
+        onFetchAllPages={fetchAllPages}
         totalItems={data?.length}
         filters={{ filters, add: addFilter, remove: removeFilter }}
         columnVisibility={args.columnVisibility}
@@ -111,14 +126,13 @@ export const Basic = DatagridStory.bind({});
 
 Basic.args = {
   columns,
-  items: [...Array(10).keys()].map((_, i) => ({
+  items: [...Array(pageSize).keys()].map((_, i) => ({
     label: `Item #${i}`,
     price: Math.floor(1 + Math.random() * 100),
   })),
   totalItems: 20,
   isSortable: false,
   onFetchNextPage: true,
-  columnVisibility: [],
 };
 
 export const Empty = DatagridStory.bind({});
@@ -140,7 +154,7 @@ export const Sortable = DatagridStory.bind({});
 
 Sortable.args = {
   columns,
-  items: [...Array(10).keys()].map((_, i) => ({
+  items: [...Array(pageSize).keys()].map((_, i) => ({
     label: `Item #${i}`,
     price: Math.floor(1 + Math.random() * 100),
   })),
@@ -159,7 +173,7 @@ export const WithActions = DatagridStory.bind({});
 
 WithActions.args = {
   columns: [...columns, actionsColumns],
-  items: [...Array(8).keys()].map((_, i) => {
+  items: [...Array(pageSize).keys()].map((_, i) => {
     return {
       label: `Service #${i}`,
       price: Math.floor(1 + Math.random() * 100),
@@ -198,7 +212,7 @@ WithActions.args = {
 export const Filters = DatagridStory.bind({});
 
 Filters.args = {
-  items: [...Array(10).keys()].map((_, i) => ({
+  items: [...Array(pageSize).keys()].map((_, i) => ({
     label: `Item #${i}`,
     price: Math.floor(1 + Math.random() * 100),
   })),
@@ -209,7 +223,7 @@ export const Visibility = DatagridStory.bind({});
 
 Visibility.args = {
   columnVisibility: ['label', 'price'],
-  items: [...Array(10).keys()].map((_, i) => ({
+  items: [...Array(pageSize).keys()].map((_, i) => ({
     label: `Item #${i}`,
     price: Math.floor(1 + Math.random() * 100),
   })),
@@ -224,7 +238,7 @@ const TopbarComponent = () => (
 );
 
 Topbar.args = {
-  items: [...Array(10).keys()].map((_, i) => ({
+  items: [...Array(pageSize).keys()].map((_, i) => ({
     label: `Item #${i}`,
     price: Math.floor(1 + Math.random() * 100),
     status: `Status #${i}`,
@@ -243,7 +257,7 @@ export const WithSubComponent = DatagridStory.bind({});
 
 WithSubComponent.args = {
   columns,
-  items: [...Array(10).keys()].map((_, i) => ({
+  items: [...Array(pageSize).keys()].map((_, i) => ({
     label: `Item #${i}`,
     price: Math.floor(1 + Math.random() * 100),
   })),
@@ -257,7 +271,7 @@ export const WithDatagridSubComponent = DatagridStory.bind({});
 
 WithDatagridSubComponent.args = {
   columns,
-  items: [...Array(10).keys()].map((_, i) => ({
+  items: [...Array(pageSize).keys()].map((_, i) => ({
     label: `Item #${i}`,
     price: Math.floor(1 + Math.random() * 100),
   })),
