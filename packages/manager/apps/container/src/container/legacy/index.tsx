@@ -100,7 +100,6 @@ function LegacyContainer(): JSX.Element {
                     role="document"
                     src="about:blank"
                     ref={secondaryIframeRef}
-                    loading='lazy'
                   ></iframe>
                 </>
               </Preloader>

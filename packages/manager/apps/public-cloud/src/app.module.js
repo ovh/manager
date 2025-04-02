@@ -102,6 +102,7 @@ export default async (containerEl, shellClient) => {
     )
     .config(
       /* @ngInject */ (ssoAuthenticationProvider) => {
+        console.log('Inside module files');
         ssoAuthenticationProvider.setOnLogin(() => {
           shellClient.auth.login();
         });
