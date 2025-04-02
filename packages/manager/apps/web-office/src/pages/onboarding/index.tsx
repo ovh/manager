@@ -17,6 +17,7 @@ export default function Onboarding() {
       title={t('web_office_onboarding_title')}
       img={{
         src: onboardingImgSrc,
+        alt: '',
       }}
       description={
         <OdsText preset={ODS_TEXT_PRESET.paragraph} className="text-center">
@@ -29,39 +30,21 @@ export default function Onboarding() {
         GUIDES_LIST.office_cta_order.url.DEFAULT
       }
     >
-      <Card
-        href={
-          (GUIDES_LIST.office_onboarding1_guides.url[ovhSubsidiary] ||
-            GUIDES_LIST.office_onboarding1_guides.url.DEFAULT) as string
-        }
-        texts={{
-          title: t('web_office_onboarding_guide1_title'),
-          description: t('web_office_onboarding_guide1_description'),
-          category: t('web_office_onboarding_tutorial'),
-        }}
-      />
-      <Card
-        href={
-          (GUIDES_LIST.office_onboarding2_guides.url[ovhSubsidiary] ||
-            GUIDES_LIST.office_onboarding1_guides.url.DEFAULT) as string
-        }
-        texts={{
-          title: t('web_office_onboarding_guide2_title'),
-          description: t('web_office_onboarding_guide2_description'),
-          category: t('web_office_onboarding_tutorial'),
-        }}
-      />
-      <Card
-        href={
-          (GUIDES_LIST.office_onboarding3_guides.url[ovhSubsidiary] ||
-            GUIDES_LIST.office_onboarding1_guides.url.DEFAULT) as string
-        }
-        texts={{
-          title: t('web_office_onboarding_guide3_title'),
-          description: t('web_office_onboarding_guide3_description'),
-          category: t('web_office_onboarding_tutorial'),
-        }}
-      />
+      {[1, 2, 3].map((value: number) => (
+        <Card
+          key={GUIDES_LIST[`office_onboarding${value}_guides`].key}
+          href={
+            GUIDES_LIST[`office_onboarding${value}_guides`].url[
+              ovhSubsidiary
+            ] || GUIDES_LIST[`office_onboarding${value}_guides`].url.DEFAULT
+          }
+          texts={{
+            title: t(`web_office_onboarding_guide${value}_title`),
+            description: t(`web_office_onboarding_guide${value}_description`),
+            category: t('web_office_onboarding_tutorial'),
+          }}
+        />
+      ))}
     </OnboardingLayout>
   );
 }
