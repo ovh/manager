@@ -2,8 +2,9 @@ import 'moment';
 
 export default class OverTheBoxDetailsService {
   /* @ngInject */
-  constructor($http) {
+  constructor($http, iceberg) {
     this.$http = $http;
+    this.iceberg = iceberg;
   }
 
   loadStatistics(serviceName, metricsType, period) {
@@ -29,5 +30,13 @@ export default class OverTheBoxDetailsService {
 
   unlinkDevice(serviceName) {
     return this.$http.delete(`/overTheBox/${serviceName}/device`);
+  }
+
+  getIps(serviceName) {
+    return this.iceberg(`/overTheBox/${serviceName}/ips`)
+      .query()
+      .expand('CachedObjectList-Pages')
+      .execute()
+      .$promise.then(({ data: result }) => result);
   }
 }

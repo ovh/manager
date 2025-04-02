@@ -97,5 +97,9 @@
   "overTheBox_unlink_device_error": "Nous n'avons pas pu dissocier le périphérique : {{errorMessage}}",
   "overTheBox_unlink_device_success": "Votre périphérique a été dissocié avec succès.",
   "overTheBox_change_offer": "Changer d'offre",
-  "overTheBox_release_channel_deprecated": "Version dépréciée {{version}}"
+  "overTheBox_release_channel_deprecated": "Version dépréciée {{version}}",
+  "overTheBox_detail_ips": "IPs",
+  "overTheBox_detail_ip_v4": "IPv4",
+  "overTheBox_detail_ip_v6": "IPv6",
+  "overTheBox_model_ips_unknown": "IPs non trouvées"
 }
