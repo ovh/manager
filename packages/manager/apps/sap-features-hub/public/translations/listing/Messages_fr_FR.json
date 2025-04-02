@@ -6,11 +6,6 @@
   "sap_hub_history_application_type": "Type d'application",
   "sap_hub_history_deployment_type": "Type de déploiement",
   "sap_hub_history_installation_status": "Statut",
-  "sap_hub_history_installation_SUCCESS": "Succès",
-  "sap_hub_history_installation_PENDING": "En attente",
-  "sap_hub_history_installation_REVOKED": "Révoqué",
-  "sap_hub_history_installation_FAILURE": "Erreur",
-  "sap_hub_history_installation_STARTED": "En cours",
   "sap_hub_history_installation_RETRY": "Nouvelle tentative",
   "sap_hub_history_installation_see_detail": "Voir le détail"
 }
