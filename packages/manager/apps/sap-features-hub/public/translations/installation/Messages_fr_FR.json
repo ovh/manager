@@ -111,5 +111,10 @@
   "summary_title": "Validez la configuration de l'installation",
   "summary_subtitle": "Vérifiez les informations saisies avant de lancer l'installation. Vous pouvez également télécharger le fichier de la configuration de votre installation <DownloadLink label=\"ici\">{{label}}</DownloadLink>. Vous pourrez le réutiliser ultérieurement pour initialiser une nouvelle installation.",
   "summary_cta_submit": "Lancer l'installation",
-  "summary_api_error": "Le lancement de l'installation a échoué : {{ error }}"
+  "summary_api_error": "Le lancement de l'installation a échoué : {{ error }}",
+  "status_SUCCESS": "Succès",
+  "status_PENDING": "En attente",
+  "status_REVOKED": "Révoqué",
+  "status_FAILURE": "Erreur",
+  "status_STARTED": "En cours"
 }
