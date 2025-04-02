@@ -32,6 +32,7 @@ export interface SearchProps {
   searchInput: string;
   setSearchInput: React.Dispatch<React.SetStateAction<string>>;
   onSearch: (search: string) => void;
+  placeholder?: string;
 }
 
 export interface FilterProps {
@@ -79,37 +80,28 @@ export const DatagridTopbar = <T,>({
           >
             <div className="flex justify-end items-center">
               {isSearchable && (
-                <div data-testid="datagrid-topbar-search">
-                  <OdsInput
-                    isClearable
-                    onOdsClear={() => {
-                      search?.onSearch(null);
-                      search?.setSearchInput('');
-                    }}
-                    type={ODS_INPUT_TYPE.text}
-                    id="datagrid-searchbar"
-                    name="datagrid-searchbar"
-                    defaultValue={search?.searchInput}
-                    className="mr-[5px]"
-                    data-testid="datagrid-searchbar"
-                    onOdsChange={(event) =>
-                      search?.setSearchInput(event?.detail?.value?.toString())
-                    }
-                    onKeyDown={(event) => {
-                      if (event.key === 'Enter')
-                        search?.onSearch(search?.searchInput);
-                    }}
-                    value={search?.searchInput}
-                  />
-                  <OdsButton
-                    onClick={() => {
+                <OdsInput
+                  isClearable
+                  onOdsClear={() => {
+                    search?.onSearch(null);
+                    search?.setSearchInput('');
+                  }}
+                  type={ODS_INPUT_TYPE.search}
+                  id="datagrid-searchbar"
+                  name="datagrid-searchbar"
+                  placeholder={search?.placeholder}
+                  defaultValue={search?.searchInput}
+                  className="mr-[5px]"
+                  data-testid="datagrid-searchbar"
+                  onOdsChange={(event) =>
+                    search?.setSearchInput(event?.detail?.value?.toString())
+                  }
+                  onKeyDown={(event) => {
+                    if (event.key === 'Enter')
                       search?.onSearch(search?.searchInput);
-                    }}
-                    icon="magnifying-glass"
-                    size="sm"
-                    label=""
-                  />
-                </div>
+                  }}
+                  value={search?.searchInput}
+                />
               )}
               {filtersColumns?.length > 0 && (
                 <div
