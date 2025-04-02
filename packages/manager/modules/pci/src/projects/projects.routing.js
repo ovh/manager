@@ -141,7 +141,7 @@ export default /* @ngInject */ ($stateProvider) => {
               state = [targetedState.url, url.searchParams].join('?');
             }
             if (targetedState.isExternal) {
-              window.open(state);
+              window.top.location = state;
             } else {
               window.location = state;
             }

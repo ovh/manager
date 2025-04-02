@@ -25,7 +25,7 @@
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "@ovh-ux/manager-react-components": "^1.45.0"
+    "@ovh-ux/manager-react-components": "^1.46.0"
   },
   "devDependencies": {
     "@ovh-ux/manager-core-api": "^0.10.1",
