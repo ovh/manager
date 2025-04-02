@@ -1,7 +1,7 @@
 {
   "name": "@ovh-ux/manager-dedicated-servers-app",
-  "version": "0.0.0",
-  "description": "test",
+  "version": "0.1.0",
+  "description": "Dedicated server listing ",
   "private": true,
   "repository": {
     "type": "git",
