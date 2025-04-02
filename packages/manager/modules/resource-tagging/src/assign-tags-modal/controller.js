@@ -7,6 +7,7 @@ export default class ovhManagerResourceTaggingAssignModalController {
     ovhManagerResourceTaggingService,
     $timeout,
     $element,
+    $scope,
     Alerter,
     $translate,
   ) {
@@ -14,6 +15,7 @@ export default class ovhManagerResourceTaggingAssignModalController {
     this.$timeout = $timeout;
     this.$element = $element;
     this.$translate = $translate;
+    this.$scope = $scope;
     this.ovhManagerResourceTaggingService = ovhManagerResourceTaggingService;
     this.Alerter = Alerter;
     this.loading = true;
@@ -46,7 +48,7 @@ export default class ovhManagerResourceTaggingAssignModalController {
       TAG_REGEX.test(event.detail.value),
     );
 
-    this.$element.scope().$apply();
+    this.$scope.$apply();
   }
 
   $postLink() {
