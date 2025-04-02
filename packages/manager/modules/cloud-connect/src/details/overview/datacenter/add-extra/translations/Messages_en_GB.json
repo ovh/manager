@@ -14,10 +14,10 @@
   "cloud_connect_datacenter_add_routing_error": "An error has occurred adding the routing configuration: {{message}}",
   "cloud_connect_datacenter_add_routing_success": "Adding routing configuration. <a href=\"{{ tasksUrl }}\">Click here to view its status.</a>",
   "cloud_connect_datacenter_add_routing_bgp_area_placeholder": "Customer ASN",
-  "cloud_connect_datacenter_add_routing_bgp_ip_popover": "IP address of your router's BGP neighbor in the availability zone. This address must be part of the subnet configured in the 'Configuration AZ' section",
-  "cloud_connect_datacenter_add_routing_ip_help_message": "IPv4 address belonging to the availability zone.",
+  "cloud_connect_datacenter_add_routing_bgp_ip_popover": "The IP address for your router’s BGP neighbour in the availability zone. This address must be part of the subnet configured in the “AZ configuration” section",
+  "cloud_connect_datacenter_add_routing_ip_help_message": "The availability zone’s IPv4 address.",
   "cloud_connect_datacenter_add_routing_ip_invalid_message": "Enter a valid IPv4 block.",
   "cloud_connect_datacenter_add_routing_asn_helper": "Positive non null number outside of 65501",
-  "cloud_connect_datacenter_add_routing_asn_popover": "Your AS BGP number, which is configured on your router located in the availability zone.",
+  "cloud_connect_datacenter_add_routing_asn_popover": "Your AS BGP number, which is configured on your router situated in the AZ.",
   "cloud_connect_datacenter_add_routing_type_helper": "The router configuration can only be one type"
 }
