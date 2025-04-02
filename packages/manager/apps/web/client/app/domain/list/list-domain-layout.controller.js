@@ -21,6 +21,7 @@ import {
   DATE_FORMAT,
   LANGUAGE_OVERRIDE,
   PRODUCT_TYPE,
+  DOMAINS_GUIDES,
 } from './list-domain-layout.constants';
 
 import {
@@ -144,6 +145,11 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
     this.$scope.$on('domain.csv.export.error', () => {
       this.loading.domainsExportCsv = false;
     });
+
+    this.guides = DOMAINS_GUIDES.map((guide) => ({
+      title: this.$translate.instant(guide.translateKey),
+      href: guide.url[this.user.ovhSubsidiary] || guide.url.DEFAULT,
+    }));
 
     this.loadColumnConfig();
   }
