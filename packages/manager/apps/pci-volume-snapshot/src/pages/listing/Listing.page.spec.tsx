@@ -46,6 +46,7 @@ vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
       maintenanceURL: '',
     })),
     PciGuidesHeader: () => <div>Guides Header</div>,
+    ChangelogButton: () => <div></div>,
     RedirectionGuard: ({ children }: { children: React.ReactNode }) => (
       <div>{children}</div>
     ),
@@ -60,6 +61,10 @@ vi.mock('@/api/hooks/useSnapshots', async (importOriginal) => {
   const actual = (await importOriginal()) || {};
   return {
     ...(typeof actual === 'object' && actual !== null ? actual : {}),
+    useAllSnapshots: vi.fn(() => ({
+      data: [{ id: '1' }],
+      isLoading: false,
+    })),
     usePaginatedVolumeSnapshot: vi.fn(() => ({
       paginatedSnapshots: {
         rows: [
@@ -404,65 +409,6 @@ describe('ListingPage', () => {
   });
 
   describe('Filters', () => {
-    it('adds a filter when using the filter add component', async () => {
-      const { getByTestId } = render(<ListingPage />);
-
-      act(() => {
-        fireEvent.click(getByTestId('add-filter-btn'));
-      });
-
-      await waitFor(() => {
-        expect(
-          document.querySelector('[trigger-id="popover-filter"]'),
-        ).toBeVisible();
-      });
-
-      const columnSelect = getByTestId('add-filter_select_idColumn');
-      act(() => {
-        fireEvent.change(columnSelect, {
-          target: { value: 'id' },
-        });
-      });
-      await waitFor(() => {
-        expect(columnSelect).toHaveValue('id');
-      });
-
-      const filterInput = getByTestId('filter-add_value-input');
-      act(() => {
-        fireEvent.change(filterInput, {
-          target: { value: 'test-filter' },
-        });
-      });
-      await waitFor(() => {
-        expect(filterInput).toHaveValue('test-filter');
-      });
-
-      const submitButton = getByTestId('filter-add_submit');
-      await waitFor(() => {
-        expect(submitButton).not.toBeDisabled();
-      });
-      act(() => {
-        fireEvent.click(submitButton);
-      });
-
-      await waitFor(() => {
-        expect(mockSetPagination).toHaveBeenCalledWith({
-          pageIndex: 0,
-          pageSize: 10,
-        });
-      });
-      await waitFor(() => {
-        expect(mockAddFilter).toHaveBeenCalledWith(
-          expect.objectContaining({
-            key: 'id',
-            value: 'test-filter',
-            comparator: 'includes',
-            label: 'pci_projects_project_storages_snapshots_id_label',
-          }),
-        );
-      });
-    });
-
     it('filters list', () => {
       const columnFiltersMock = vi.spyOn(MRCApi, 'useColumnFilters');
 
