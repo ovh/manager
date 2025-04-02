@@ -433,7 +433,11 @@ export default function Changelog() {
                         target={OdsHTMLAnchorElementTarget._blank}
                         rel={OdsHTMLAnchorElementRel.external}
                         color={ODS_THEME_COLOR_INTENT.primary}
-                        href={EXTERNAL_LINKS.HELPCENTER.url}
+                        href={
+                          isRegionUS
+                            ? EXTERNAL_LINKS.HELPCENTER_US.url
+                            : EXTERNAL_LINKS.HELPCENTER.url
+                        }
                         onClick={() => {
                           trackClick(EXTERNAL_LINKS.BUG_BOUNTY.tracking);
                         }}

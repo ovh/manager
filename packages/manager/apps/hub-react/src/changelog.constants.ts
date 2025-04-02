@@ -128,6 +128,16 @@ export const EXTERNAL_LINKS: Record<string, ChangelogLinks> = {
       actionType: 'action',
     },
   },
+  HELPCENTER_US: {
+    url: 'https://support.us.ovhcloud.com/hc/en-us',
+    label_key: 'changelog_helpcenter_label',
+    tracking: {
+      location: PageLocation.page,
+      buttonType: ButtonType.externalLink,
+      actions: [`go-to-ovhcloud-help-center`],
+      actionType: 'action',
+    },
+  },
   BUG_BOUNTY: {
     url: 'https://yeswehack.com/programs/ovh#rules',
     label_key: 'changelog_bugbounty_label',
