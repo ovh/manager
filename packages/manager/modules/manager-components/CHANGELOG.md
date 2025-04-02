@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.23.3...@ovh-ux/manager-components@1.24.0) (2025-04-02)
+
+
+### Features
+
+* **pci:** update regions in public-cloud ([#16288](https://github.com/ovh/manager/issues/16288)) ([689c2c4](https://github.com/ovh/manager/commit/689c2c4f7c8224dd038b11f4b24965eaeacd187b)), closes [#TAPC-2786](https://github.com/ovh/manager/issues/TAPC-2786)
+
+
+
+
+
 ## [1.23.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.23.2...@ovh-ux/manager-components@1.23.3) (2025-03-06)
 
 

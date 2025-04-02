@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.85.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.84.0...@ovh-ux/manager-pci@6.85.0) (2025-04-02)
+
+
+### Bug Fixes
+
+* **pci-instances:** allow LZ and 3AZ backup images ([#16303](https://github.com/ovh/manager/issues/16303)) ([f5fdb3e](https://github.com/ovh/manager/commit/f5fdb3e4e3ca5d0e16aebe0fb17105fb47e302d1)), closes [#TAPC-3543](https://github.com/ovh/manager/issues/TAPC-3543)
+* **pci:** add missing translations [CDS 3793] ([#16141](https://github.com/ovh/manager/issues/16141)) ([4b163df](https://github.com/ovh/manager/commit/4b163df7059ca2e858917e1a7a3b79c9c8b376f4)), closes [#TAPC-1865](https://github.com/ovh/manager/issues/TAPC-1865)
+* **pci:** handle external links in new tabs to avoid infinite loop ([#16189](https://github.com/ovh/manager/issues/16189)) ([d458e7b](https://github.com/ovh/manager/commit/d458e7b1f6aaa6ebdf17f8ace99b164a866d046d)), closes [#DATATR-2078](https://github.com/ovh/manager/issues/DATATR-2078)
+* **pci:** inject correctly storage container service ([#16167](https://github.com/ovh/manager/issues/16167)) ([822bff5](https://github.com/ovh/manager/commit/822bff5dafa636d4d23f006c2f162375e986ca08)), closes [#DATATR-2075](https://github.com/ovh/manager/issues/DATATR-2075)
+
+
+### Features
+
+* **pci:** add dataplaform card ([#16114](https://github.com/ovh/manager/issues/16114)) ([728c217](https://github.com/ovh/manager/commit/728c217055a54c4882cfbf425e235e3b2d57e1df)), closes [#TAPC-3150](https://github.com/ovh/manager/issues/TAPC-3150)
+
+
+
+
+
 # [6.84.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.83.0...@ovh-ux/manager-pci@6.84.0) (2025-03-31)
 
 
