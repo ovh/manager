@@ -52,11 +52,7 @@ export const fetchConfiguration = async (
         '/key-management-service/create',
         '/key-management-service/:keyId',
       ];
-      applications['key-management-service'].container.fallbackApp =
-        'dedicated';
-      applications.dedicated.container.enabled = false;
-      applications.dedicated.publicURL =
-        'https://test-secondary-iframe-manager.eu.dtci.ovhcloud.tools/container/dedicated';
+      applications['key-management-service'].container.fallbackApp = 'zimbra';
       environment.setRegion(config.region);
       environment.setUser(config.user);
       environment.setApplicationURLs(config.applicationURLs);

@@ -93,14 +93,15 @@ export function IFrameApplicationRoute({
   // listen for iframe location changes
   useEffect(() => {
     if(appConfig.container.fallbackApp) {
-      const newURL = new URL(appendSlash(secondaryAppConfig.url));
+      const newURL = new URL(`${appendSlash(secondaryAppConfig.url)}#/`);
       setSecondaryNewIframeURL(newURL.href);
       if(secondaryIframeRef.current && newURL !== null) {
         const {
           location: currentIframeLocation,
         } = secondaryIframeRef.current.contentWindow;
         if (currentIframeLocation.href !== newURL.href) {
-          currentIframeLocation.replace(newURL);
+          console.log(`Setting URL ${newURL.href}`);
+          currentIframeLocation.href = newURL.href;
         }
       }
     }

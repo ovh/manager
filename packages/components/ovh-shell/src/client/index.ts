@@ -81,9 +81,9 @@ export function initStandaloneClientApi(
   }
 
   const url = buildURLIfStandalone(appConfig);
-  if (window.location.href !== url) {
-    window.location.href = url;
-  }
+  // if (window.location.href !== url) {
+  //   window.location.href = url;
+  // }
 
   const client = new StandaloneShellClient();
   client.setApplicationId(appId);

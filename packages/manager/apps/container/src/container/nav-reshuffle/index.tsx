@@ -103,7 +103,7 @@ function NavReshuffleContainer(): JSX.Element {
                 role="document"
                 src="about:blank"
                 ref={secondaryIframeRef}
-                loading="lazy"
+                sandbox="allow-scripts allow-top-navigation allow-forms allow-popups allow-same-origin allow-downloads"
               ></iframe>
             </>
           </Preloader>
