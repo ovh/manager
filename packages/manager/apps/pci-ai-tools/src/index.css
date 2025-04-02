@@ -49,3 +49,7 @@ h4 {
 h5 {
   font-size: 1rem;
 } 
+
+.shiki.showLines code .line::before {
+  width: 1.2rem;
+}
