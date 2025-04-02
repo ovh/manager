@@ -1,0 +1,86 @@
+import React, { useMemo } from 'react';
+
+import { useTranslation } from 'react-i18next';
+import { FormattedDate } from '@ovh-ux/manager-react-components';
+import { OdsText } from '@ovhcloud/ods-components/react';
+import { LABELS } from '@/utils/label.constants';
+import { FormFieldSummary } from '@/components/Form/FormFieldSummary.component';
+import { StepFieldData } from '@/types/formStep.type';
+import { useMockInstallationTaskDetails } from '@/hooks/installationDeployment/useApplicationVersions';
+
+export type InstallationDashboardInstallationSummaryProps = {
+  serviceName: string;
+  taskId: string;
+};
+
+export default function InstallationDashboardInstallationSummary({
+  serviceName,
+  taskId,
+}: InstallationDashboardInstallationSummaryProps) {
+  const { t } = useTranslation('dashboard/installation');
+
+  const {
+    data: installationTaskDetails,
+    isLoading,
+  } = useMockInstallationTaskDetails(serviceName, taskId);
+
+  const fields: StepFieldData[] = useMemo(
+    () =>
+      [
+        {
+          label: t('dashboard_installation_item_start_date'),
+          value: (
+            <FormattedDate dateString={installationTaskDetails?.startTime} />
+          ),
+        },
+        {
+          label: t('dashboard_installation_item_end_date'),
+          value: installationTaskDetails?.endTime && (
+            <FormattedDate dateString={installationTaskDetails?.endTime} />
+          ),
+        },
+        {
+          label: LABELS.VMWARE_ON_OVHCLOUD_SERVICE,
+          value: serviceName,
+        },
+        {
+          label: LABELS.SAP_SID,
+          value: installationTaskDetails?.sapSid,
+        },
+        {
+          label: LABELS.SAP_HANA_SID,
+          value: installationTaskDetails?.sapHanaSid,
+        },
+        {
+          label: t('dashboard_installation_item_application_version'),
+          value: installationTaskDetails?.applicationVersion,
+        },
+        {
+          label: t('dashboard_installation_item_application_type'),
+          value: installationTaskDetails?.applicationType,
+        },
+        {
+          label: t('dashboard_installation_item_deploiement_type'),
+          value: installationTaskDetails?.deploymentType,
+        },
+      ] as StepFieldData[],
+    [installationTaskDetails],
+  );
+
+  return (
+    <div className="flex flex-col gap-y-6">
+      <OdsText preset="heading-3">
+        {t('dashboard_installation_generals_informations')}
+      </OdsText>
+      <div className="flex flex-col gap-y-1">
+        {fields.map((field) => (
+          <FormFieldSummary
+            key={field.label}
+            field={field}
+            isLoading={isLoading}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}

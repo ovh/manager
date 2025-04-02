@@ -1,3 +1,5 @@
+import { IamObject } from '@ovh-ux/manager-react-components';
+
 export type TSAPInstallation = {
   startTime: string;
   serviceName: string;
@@ -17,3 +19,22 @@ export enum SAPInstallationStatus {
   started = 'STARTED',
   success = 'SUCCESS',
 }
+
+export type InstallationDetails = {
+  ansibleSapHanaStatus: SAPInstallationStatus;
+  ansibleSapSystemStatus: SAPInstallationStatus;
+  applicationType: 'ABAP' | 'JAVA';
+  applicationVersion: string;
+  cleanStatus: SAPInstallationStatus;
+  deploymentType: 'Distributed' | 'High-Availability' | 'Standard';
+  endTime: string | null;
+  errorMessage: string | null;
+  gatewayStatus: SAPInstallationStatus;
+  iam: IamObject;
+  sapHanaSid: string;
+  sapSid: string;
+  startTime: string;
+  status: SAPInstallationStatus;
+  taskId: string;
+  terraformStatus: SAPInstallationStatus;
+};

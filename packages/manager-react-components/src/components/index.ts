@@ -16,6 +16,8 @@ export * from './datagrid/useDatagrid';
 export * from './datagrid/useDatagridSearchParams';
 export * from './datagrid/clipboard-cell.component';
 
+export * from './formatted-date/FormattedDate';
+
 export * from './guides-header';
 
 export * from './notifications/notifications.component';
@@ -25,7 +27,6 @@ export * from './filters';
 
 export * from './ManagerButton/ManagerButton';
 export * from './ManagerText/ManagerText';
-
 export * from './pci-maintenance-banner';
 export * from './region/region.component';
 export * from './order';
