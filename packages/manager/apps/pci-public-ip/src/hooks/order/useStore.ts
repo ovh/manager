@@ -83,9 +83,6 @@ export const useOrderStore = create<Store>()((set) => {
         ...state,
         floatingIpCreation: true,
       })),
-    reset: () =>
-      set({
-        ...initialState,
-      }),
+    reset: () => set(initialState),
   };
 });
