@@ -347,7 +347,7 @@
     },
     "redirect": {
       "application": "public-cloud",
-      "path": "/pci/projects/{project}/databases-analytics/analysis/services/new?STEP_1=dashboard"
+      "path": "/pci/projects/{project}/databases-analytics/analysis/services/new?STEP_1=grafana"
     }
   },
   {
