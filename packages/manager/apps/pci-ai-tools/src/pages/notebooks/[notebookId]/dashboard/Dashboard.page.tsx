@@ -14,6 +14,8 @@ import {
   CardContent,
   CardHeader,
   Code,
+  bash,
+  githubDark,
   useToast,
 } from '@datatr-ux/uxlib';
 import { useNotebookData } from '../Notebook.context';
@@ -144,8 +146,8 @@ const Dashboard = () => {
               <Code
                 label={t('cliCodeTitle')}
                 code={command.command}
-                theme="github-dark"
-                lang="bash"
+                theme={githubDark}
+                lang={bash}
                 onCopied={() =>
                   toast({
                     title: t('cliEquivalentToastMessage'),
