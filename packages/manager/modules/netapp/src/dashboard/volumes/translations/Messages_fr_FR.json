@@ -42,5 +42,6 @@
   "netapp_volumes_manage_acl": "Gérer IP Access (ACL)",
   "netapp_volumes_delete_volume": "Supprimer le volume",
   "netapp_volumes_edit_volume_size": "Modifier la taille",
+  "netapp_volumes_edit_reserve_space": "Modifier l'espace réservé des snapshots",
   "netapp_volumes_mount_path_not_configurated": "Non configuré"
 }
