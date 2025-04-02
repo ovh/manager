@@ -19,7 +19,7 @@ interface NotebooksProps {
 export const Loader = async ({ params }: NotebooksProps) => {
   const { projectId } = params;
   const notebooks = await queryClient.fetchQuery({
-    queryKey: [projectId, 'ai/notebooks'],
+    queryKey: [projectId, 'ai', 'notebook'],
     queryFn: () => getNotebooks({ projectId }),
   });
   if (notebooks.length === 0) {

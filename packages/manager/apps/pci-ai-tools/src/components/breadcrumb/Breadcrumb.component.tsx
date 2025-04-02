@@ -35,7 +35,6 @@ function Breadcrumb(): JSX.Element {
   const matches = useMatches() as MatchWithBreadcrumb[];
   const [breadcrumbData, setBreadcrumbData] = React.useState([]);
 
-  console.log(matches);
   React.useEffect(() => {
     const breadcrumbArray = matches
       .filter((match) => Boolean(match.handle?.breadcrumb))

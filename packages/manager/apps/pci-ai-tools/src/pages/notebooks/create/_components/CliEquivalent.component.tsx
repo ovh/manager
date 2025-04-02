@@ -4,6 +4,9 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
+  ScrollArea,
+  bash,
+  githubDark,
   useToast,
 } from '@datatr-ux/uxlib';
 import { useTranslation } from 'react-i18next';
@@ -25,20 +28,22 @@ const CliEquivalent = ({ command, controller }: CliEquivalentModalProps) => {
             {t('cliEquivalentModalTitle')}
           </DialogTitle>
         </DialogHeader>
-        <div className="p-2 max-w-lg">
-          <Code
-            label={t('cliEquivalentModalDescription')}
-            code={command.command}
-            theme="github-dark"
-            lang="bash"
-            onCopied={() =>
-              toast.toast({
-                title: t('cliEquivalentModalToastMessage'),
-              })
-            }
-            lineNumbers={true}
-          />
-        </div>
+        <ScrollArea className="h-auto max-h-64">
+          <div className="p-2 max-w-lg">
+            <Code
+              label={t('cliEquivalentModalDescription')}
+              code={command.command}
+              theme={githubDark}
+              lang={bash}
+              onCopied={() =>
+                toast.toast({
+                  title: t('cliEquivalentModalToastMessage'),
+                })
+              }
+              lineNumbers={true}
+            />
+          </div>
+        </ScrollArea>
       </DialogContent>
     </Dialog>
   );
