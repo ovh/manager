@@ -13,6 +13,7 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { OKMS } from '@/types/okms.type';
 import { REST_ENDPOINT_LABEL, SWAGGER_UI_LABEL } from './RestApiTile.constants';
+import { DownloadKmsPublicCaLink } from '@/components/dashboard/downloadKmsPublicCaLink/DownloadKmsPublicCaLink';
 
 type RestApiTileProps = {
   okmsData?: OKMS;
@@ -26,7 +27,10 @@ const RestApiTile = ({ okmsData }: RestApiTileProps) => {
       id: 'restApi',
       label: REST_ENDPOINT_LABEL,
       value: (
-        <Clipboard className="block w-full" value={okmsData?.restEndpoint} />
+        <div className="flex flex-col gap-2">
+          <Clipboard className="block w-full" value={okmsData?.restEndpoint} />
+          <DownloadKmsPublicCaLink okms={okmsData} type={'publicCa'} />
+        </div>
       ),
     },
     {
