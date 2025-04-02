@@ -65,7 +65,7 @@ const Sidebar = (): JSX.Element => {
     setCurrentNavigationNode,
     closeNavigationSidebar,
     isMobile,
-    firstFocusableElement
+    firstFocusableElement,
     isAnimated,
     setIsAnimated,
     isNavigationSidebarOpened,
