@@ -274,11 +274,6 @@ export default class PciInstancesAddController {
 
   onDeploymentModeChange(deploymentMode) {
     this.selectedDeploymentMode = deploymentMode;
-    this.displaySelectedRegion = false;
-    if (this.instance.availabilityZone) {
-      delete this.instance.availabilityZone;
-    }
-    this.model.datacenter = null;
     this.getFilteredRegions();
   }
 
