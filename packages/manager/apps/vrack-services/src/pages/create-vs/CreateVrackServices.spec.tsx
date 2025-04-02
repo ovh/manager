@@ -1,8 +1,5 @@
 import { describe, it } from 'vitest';
-import {
-  WAIT_FOR_DEFAULT_OPTIONS,
-  assertTextVisibility,
-} from '@ovh-ux/manager-core-test-utils';
+import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {
@@ -11,6 +8,8 @@ import {
   renderTest,
   assertModalVisibility,
   getButtonByLabel,
+  assertDisabled,
+  assertEnabled,
 } from '@/test-utils';
 import { urls } from '@/routes/routes.constants';
 
@@ -26,11 +25,11 @@ describe('Vrack Services create page test suite', () => {
       labels.regionSelector['region-selector-city-name_eu-west-rbx'],
     );
 
-    let submitButton = await getButtonByLabel({
+    const submitButton = await getButtonByLabel({
       container,
       value: labels.create.createButtonLabel,
     });
-    expect(submitButton).toBeDisabled();
+    await assertDisabled(submitButton);
 
     await waitFor(() =>
       userEvent.click(
@@ -40,14 +39,7 @@ describe('Vrack Services create page test suite', () => {
       ),
     );
 
-    submitButton = await getButtonByLabel({
-      container,
-      value: labels.create.createButtonLabel,
-    });
-    await waitFor(
-      () => expect(submitButton).not.toBeDisabled(),
-      WAIT_FOR_DEFAULT_OPTIONS,
-    );
+    await assertEnabled(submitButton);
     await waitFor(() => userEvent.click(submitButton));
 
     await assertModalVisibility({ container, isVisible: true });
@@ -74,12 +66,11 @@ describe('Vrack Services create page test suite', () => {
       nbVs: 1,
     });
 
-    const createvrackButton = await getButtonByLabel({
+    const createVrackButton = await getButtonByLabel({
       container,
       value: labels.create.modalConfirmVrackButtonLabel,
     });
-
-    await waitFor(() => userEvent.click(createvrackButton));
+    await waitFor(() => userEvent.click(createVrackButton));
 
     await assertModalText({
       container,

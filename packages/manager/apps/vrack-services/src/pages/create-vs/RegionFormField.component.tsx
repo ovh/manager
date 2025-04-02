@@ -1,12 +1,8 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useQuery } from '@tanstack/react-query';
 import { OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
 import { ODS_SPINNER_SIZE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import {
-  getvrackServicesReferenceRegionListQueryKey,
-  getvrackServicesReferenceRegionList,
-} from '@ovh-ux/manager-network-common';
+import { useVrackServicesRegion } from '@ovh-ux/manager-network-common';
 import { RegionSelector } from '@/components/RegionSelector/region-selector.component';
 
 export type RegionFormFieldProps = {
@@ -19,11 +15,7 @@ export const RegionFormField: React.FC<RegionFormFieldProps> = ({
   setSelectedRegion,
 }) => {
   const { t } = useTranslation('vrack-services/create');
-  const { data, isLoading: isRegionLoading } = useQuery({
-    queryKey: getvrackServicesReferenceRegionListQueryKey,
-    queryFn: getvrackServicesReferenceRegionList,
-    staleTime: Infinity,
-  });
+  const { data, isLoading: isRegionLoading } = useVrackServicesRegion();
 
   return (
     <>

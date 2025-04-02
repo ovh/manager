@@ -2,7 +2,6 @@ import React from 'react';
 import { Navigate, useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
-  OdsText,
   OdsButton,
   OdsMessage,
   OdsSpinner,
@@ -10,7 +9,6 @@ import {
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
-  ODS_TEXT_PRESET,
   ODS_MESSAGE_COLOR,
   ODS_SPINNER_SIZE,
   ODS_ICON_NAME,
@@ -25,9 +23,9 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import {
-  PageLayout,
   ChangelogButton,
   useFeatureAvailability,
+  BaseLayout,
 } from '@ovh-ux/manager-react-components';
 import {
   getVrackServicesResourceListQueryKey,
@@ -61,7 +59,9 @@ export default function Listing() {
   const { data, isLoading } = useVrackServicesList();
 
   React.useEffect(() => {
-    setReachedBetaLimit(data?.data?.length >= betaVrackServicesLimit);
+    if (data?.data) {
+      setReachedBetaLimit(data.data.length >= betaVrackServicesLimit);
+    }
   }, [data?.data]);
 
   if (
@@ -75,26 +75,31 @@ export default function Listing() {
   }
 
   return (
-    <PageLayout>
-      <div className="flex items-center justify-between">
-        <OdsText preset={ODS_TEXT_PRESET.heading2} className="block mt-7 mb-5">
-          {t('listingTitle')}
-        </OdsText>
-        <ChangelogButton links={CHANGELOG_LINKS} />
-      </div>
-      <OdsText preset={ODS_TEXT_PRESET.paragraph} className="block mb-8">
-        {t('listingDescription')}
-      </OdsText>
-      <SuccessMessages />
-      {reachedBetaLimit && (
-        <OdsMessage
-          isDismissible={false}
-          className="block my-4"
-          color={ODS_MESSAGE_COLOR.information}
-        >
-          {t('betaVrackServicesLimitMessage')}
-        </OdsMessage>
-      )}
+    <BaseLayout
+      header={{
+        title: t('listingTitle'),
+        changelogButton: <ChangelogButton links={CHANGELOG_LINKS} />,
+      }}
+      description={t('listingDescription')}
+      message={
+        <>
+          <SuccessMessages />
+          <DeliveringMessages
+            messageKey="deliveringVrackServicesMessage"
+            orders={vrackServicesDeliveringOrders}
+          />
+          {reachedBetaLimit && (
+            <OdsMessage
+              isDismissible={false}
+              className="block my-4"
+              color={ODS_MESSAGE_COLOR.information}
+            >
+              {t('betaVrackServicesLimitMessage')}
+            </OdsMessage>
+          )}
+        </>
+      }
+    >
       {isSuccess && features['vrack-services:order'] && (
         <OdsButton
           className="block mb-8"
@@ -114,11 +119,6 @@ export default function Listing() {
           }}
         />
       )}
-
-      <DeliveringMessages
-        messageKey="deliveringVrackServicesMessage"
-        orders={vrackServicesDeliveringOrders}
-      />
       {isLoading || areOrdersLoading ? (
         <div>
           <OdsSpinner size={ODS_SPINNER_SIZE.lg} />
@@ -126,6 +126,6 @@ export default function Listing() {
       ) : (
         <VrackServicesDatagrid />
       )}
-    </PageLayout>
+    </BaseLayout>
   );
 }

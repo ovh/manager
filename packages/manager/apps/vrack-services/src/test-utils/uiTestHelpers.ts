@@ -27,6 +27,12 @@ const getOdsComponentByAttribute = <T, A = string>(
   return component;
 };
 
+export const assertDisabled = async (element: HTMLElement) =>
+  waitFor(() => expect(element).toBeDisabled(), WAIT_FOR_DEFAULT_OPTIONS);
+
+export const assertEnabled = async (element: HTMLElement) =>
+  waitFor(() => expect(element).toBeEnabled(), WAIT_FOR_DEFAULT_OPTIONS);
+
 export const getBadgeByLabel = getOdsComponentByAttribute<HTMLOdsBadgeElement>(
   'ods-badge',
   'label',
@@ -127,7 +133,9 @@ export const assertOsdFormInputInError = async ({
       ?.closest('ods-form-field');
     const odsInput: HTMLElement = odsForm.querySelector('ods-input');
     if (inError) {
-      expect(odsInput).toHaveAttribute('has-error', '');
+      expect(
+        ['', 'true'].includes(odsInput.getAttribute('has-error')),
+      ).toBeTruthy();
     } else {
       expect(odsInput).toHaveAttribute('has-error', 'false');
     }

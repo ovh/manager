@@ -6,7 +6,6 @@ import {
   vrackServicesListMocks,
   vrackListMocks,
 } from '@ovh-ux/manager-network-common';
-import { WAIT_FOR_DEFAULT_OPTIONS } from '@ovh-ux/manager-core-test-utils';
 import {
   assertModalText,
   assertModalVisibility,
@@ -15,6 +14,7 @@ import {
   getButtonByIcon,
   labels,
   renderTest,
+  assertEnabled,
 } from '@/test-utils';
 import { urls } from '@/routes/routes.constants';
 
@@ -63,11 +63,7 @@ describe('Vrack Services associate another vrack test suite', () => {
       container,
       value: labels.associate.modalConfirmVrackAssociationButtonLabel,
     });
-    await waitFor(
-      () => expect(associateButton).not.toBeDisabled(),
-      WAIT_FOR_DEFAULT_OPTIONS,
-    );
-
+    await assertEnabled(associateButton);
     await waitFor(() => userEvent.click(associateButton));
 
     await assertModalVisibility({ container, isVisible: false });

@@ -25,7 +25,7 @@ export const DisplayName: React.FC<DisplayNameProps> = ({
   const navigate = useNavigate();
 
   return isListing ? (
-    <div className="flex align-center text-center justify-center">
+    <div className="flex">
       <OdsLink
         className="overflow-hidden text-ellipsis max-w-[200px]"
         label={name}

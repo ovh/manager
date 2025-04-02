@@ -3,7 +3,6 @@ import { waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { vrackServicesListMocks } from '@ovh-ux/manager-network-common';
-import { WAIT_FOR_DEFAULT_OPTIONS } from '@ovh-ux/manager-core-test-utils';
 import {
   assertModalVisibility,
   changeInputValueByLabelText,
@@ -12,6 +11,7 @@ import {
   labels,
   renderTest,
   getButtonByIcon,
+  assertEnabled,
 } from '@/test-utils';
 import { urls } from '@/routes/routes.constants';
 
@@ -47,10 +47,7 @@ describe('Vrack Services edit name test suite', () => {
       container,
       value: labels.actions.confirm,
     });
-    await waitFor(
-      () => expect(modifyButton).not.toBeDisabled(),
-      WAIT_FOR_DEFAULT_OPTIONS,
-    );
+    await assertEnabled(modifyButton);
     await waitFor(() => userEvent.click(modifyButton));
     await assertModalVisibility({ container, isVisible: false });
   });

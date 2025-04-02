@@ -1,10 +1,16 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
-import { UpdateVrackServicesParams, VrackServices } from '../../types';
+import { TargetSpec, VrackServices } from '../../../types';
 
 export const updateVrackServicesQueryKey = (vrackServicesId: string) => [
   'put/vrackServices/resource',
   vrackServicesId,
 ];
+
+export type UpdateVrackServicesParams = {
+  checksum: string;
+  targetSpec: TargetSpec;
+  vrackServicesId: string;
+};
 
 /**
  * Operations on vRack Services : Update the vRack Services configuration

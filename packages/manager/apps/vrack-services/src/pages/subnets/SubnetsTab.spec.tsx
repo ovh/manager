@@ -1,11 +1,8 @@
 import { describe, it } from 'vitest';
-import {
-  WAIT_FOR_DEFAULT_OPTIONS,
-  assertTextVisibility,
-} from '@ovh-ux/manager-core-test-utils';
+import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import { waitFor, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { vrackServicesListMocks } from '@ovh-ux/manager-network-common';
 import {
   assertModalVisibility,
@@ -16,6 +13,8 @@ import {
   getButtonByLabel,
   labels,
   renderTest,
+  assertDisabled,
+  assertEnabled,
 } from '@/test-utils';
 import { urls } from '@/routes/routes.constants';
 
@@ -29,7 +28,6 @@ describe('Vrack Services subnets page test suite', () => {
     const subnetTab = await waitFor(() =>
       screen.getByText(labels.dashboard.subnetsTabLabel),
     );
-
     await waitFor(() => userEvent.click(subnetTab));
 
     await assertTextVisibility(labels.subnets.subnetsOnboardingTitle);
@@ -44,7 +42,6 @@ describe('Vrack Services subnets page test suite', () => {
     const subnetTab = await waitFor(() =>
       screen.getByText(labels.dashboard.subnetsTabLabel),
     );
-
     await waitFor(() => userEvent.click(subnetTab));
 
     await assertTextVisibility(labels.subnets.subnetDatagridDisplayNameLabel);
@@ -70,7 +67,7 @@ describe('Vrack Services subnets page test suite', () => {
       container,
       value: labels.subnets.createSubnetButtonLabel,
     });
-    expect(submitButton).toBeDisabled();
+    await assertDisabled(submitButton);
   });
 
   it('should edit a subnet', async () => {
@@ -86,21 +83,15 @@ describe('Vrack Services subnets page test suite', () => {
       container,
       value: ODS_ICON_NAME.ellipsisVertical,
     });
-    await waitFor(
-      () => expect(actionMenuButton).toBeEnabled(),
-      WAIT_FOR_DEFAULT_OPTIONS,
-    );
+    await assertEnabled(actionMenuButton);
     await waitFor(() => userEvent.click(actionMenuButton));
 
     const editLink = await getButtonByLabel({
       container,
       value: labels.subnets['action-editSubnet'],
     });
+    await assertEnabled(editLink);
     await waitFor(() => userEvent.click(editLink));
-    await waitFor(
-      () => expect(editLink).toBeEnabled(),
-      WAIT_FOR_DEFAULT_OPTIONS,
-    );
 
     await assertModalText({
       container,
@@ -126,14 +117,11 @@ describe('Vrack Services subnets page test suite', () => {
       inputLabel: labels.subnets.cidrLabel,
       inError: false,
     });
-    let submitButton = await getButtonByLabel({
+    const submitButton = await getButtonByLabel({
       container,
       value: labels.actions.modify,
     });
-    await waitFor(
-      () => expect(submitButton).toBeDisabled(),
-      WAIT_FOR_DEFAULT_OPTIONS,
-    );
+    await assertDisabled(submitButton);
 
     // new value is correct
     await changeInputValueByLabelText({
@@ -144,14 +132,7 @@ describe('Vrack Services subnets page test suite', () => {
       inputLabel: labels.subnets.cidrLabel,
       inError: false,
     });
-    submitButton = await getButtonByLabel({
-      container,
-      value: labels.actions.modify,
-    });
-    await waitFor(
-      () => expect(submitButton).not.toBeDisabled(),
-      WAIT_FOR_DEFAULT_OPTIONS,
-    );
+    await assertEnabled(submitButton);
     await waitFor(() => userEvent.click(submitButton));
     await assertModalVisibility({ container, isVisible: false });
   });
@@ -191,10 +172,7 @@ describe('Vrack Services subnets page test suite', () => {
       container,
       value: labels.actions.modify,
     });
-    await waitFor(
-      () => expect(submitButton).not.toBeDisabled(),
-      WAIT_FOR_DEFAULT_OPTIONS,
-    );
+    await assertEnabled(submitButton);
     await waitFor(() => userEvent.click(submitButton));
 
     await assertModalVisibility({ container, isVisible: true });
@@ -222,33 +200,24 @@ describe('Vrack Services subnets page test suite', () => {
       container,
       value: labels.subnets['action-deleteSubnet'],
     });
+    await assertEnabled(editLink);
     await waitFor(() => userEvent.click(editLink));
 
     await assertModalText({
       container,
       text: labels.subnets.modalDeleteSubnetHeadline,
     });
-    let submitButton = await getButtonByLabel({
+    const submitButton = await getButtonByLabel({
       container,
       value: labels.actions.delete,
     });
-    await waitFor(
-      () => expect(submitButton).toBeDisabled(),
-      WAIT_FOR_DEFAULT_OPTIONS,
-    );
+    await assertDisabled(submitButton);
     await changeInputValueByLabelText({
       inputLabel: labels.subnets.modalDeleteSubnetInputLabel,
       value: 'TERMINATE',
     });
 
-    submitButton = await getButtonByLabel({
-      container,
-      value: labels.actions.delete,
-    });
-    await waitFor(
-      () => expect(submitButton).not.toBeDisabled(),
-      WAIT_FOR_DEFAULT_OPTIONS,
-    );
+    await assertEnabled(submitButton);
     await waitFor(() => userEvent.click(submitButton));
 
     await assertModalVisibility({ container, isVisible: false });

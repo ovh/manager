@@ -19,7 +19,7 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { Contract, Order } from '@ovh-ux/manager-module-order';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
-import { useSendOrder } from '@/data/hooks/useSendOrder';
+import { useSendOrder } from '@ovh-ux/manager-network-common';
 import { LoadingText } from '@/components/LoadingText.component';
 
 export type OrderSubmitModalContentProps = {

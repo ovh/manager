@@ -1,7 +1,11 @@
 import { describe, it } from 'vitest';
 import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
-import { waitFor } from '@testing-library/react';
-import { getButtonByLabel, labels, renderTest } from '@/test-utils';
+import {
+  assertEnabled,
+  getButtonByLabel,
+  labels,
+  renderTest,
+} from '@/test-utils';
 
 describe('Vrack Services listing test suite', () => {
   it('order button should not appear if the feature is not available', async () => {
@@ -37,7 +41,7 @@ describe('Vrack Services listing test suite', () => {
       value: labels.onboarding.moreInfoButtonLabel,
     });
 
-    await waitFor(() => expect(orderButton).toBeEnabled());
+    await assertEnabled(orderButton);
     expect(moreInfoButton).toBeEnabled();
   });
 });

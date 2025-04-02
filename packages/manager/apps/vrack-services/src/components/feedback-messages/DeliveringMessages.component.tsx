@@ -21,6 +21,12 @@ export const DeliveringMessages: React.FC<DeliveringMessagesProps> = ({
     <>
       {orders.map((order) => {
         const date = new Date(order.date);
+        const hours = date.getHours();
+        const min = date.getMinutes();
+        const time = `${hours < 10 ? '0' : ''}${hours}:${
+          min < 10 ? '0' : ''
+        }${min}`;
+
         return (
           <OdsMessage
             className="block mt-5"
@@ -30,7 +36,7 @@ export const DeliveringMessages: React.FC<DeliveringMessagesProps> = ({
           >
             {t(messageKey, {
               date: date.toLocaleDateString(i18n.language.replace('_', '-')),
-              time: `${date.getHours()}:${date.getMinutes()}`,
+              time,
               status: t(`orderStatus-${order.status}`),
             })}
           </OdsMessage>

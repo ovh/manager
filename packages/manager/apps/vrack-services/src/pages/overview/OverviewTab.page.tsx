@@ -1,7 +1,11 @@
 import React from 'react';
-import { OdsSpinner, OdsCard } from '@ovhcloud/ods-components/react';
+import { OdsSpinner, OdsCard, OdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { ODS_SPINNER_SIZE, ODS_CARD_COLOR } from '@ovhcloud/ods-components';
+import {
+  ODS_SPINNER_SIZE,
+  ODS_CARD_COLOR,
+  ODS_TEXT_PRESET,
+} from '@ovhcloud/ods-components';
 import { Outlet } from 'react-router-dom';
 import { ovhLocaleToI18next } from '@ovh-ux/manager-react-shell-client';
 import {
@@ -54,15 +58,15 @@ export default function OverviewTab() {
                   id: 'region',
                   label: t('region'),
                   value: (
-                    <>
+                    <OdsText preset={ODS_TEXT_PRESET.paragraph}>
                       <div>
                         <Region
                           mode="region"
                           name={vrackServices?.currentState?.region?.toLowerCase()}
-                        ></Region>
+                        />
                       </div>
                       <div>{vrackServices?.currentState?.region}</div>
-                    </>
+                    </OdsText>
                   ),
                 },
                 {
@@ -73,9 +77,13 @@ export default function OverviewTab() {
                 {
                   id: 'createdAt',
                   label: t('createdAt'),
-                  value: formatDateString(
-                    vrackServices?.createdAt,
-                    ovhLocaleToI18next(i18n.language),
+                  value: (
+                    <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                      {formatDateString(
+                        vrackServices?.createdAt,
+                        ovhLocaleToI18next(i18n.language),
+                      )}
+                    </OdsText>
                   ),
                 },
               ]}
