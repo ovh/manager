@@ -360,23 +360,21 @@
                 <oui-radio-group
                     data-model="$ctrl.model.threeAzRegion.auto"
                     data-on-change="$ctrl.on3AzRegionChange(modelValue)"
-                    class="mb-3 three-az-region-auto"
+                    class="mb-3"
                 >
                     <oui-radio data-value="true" class="mb-3">
-                        <p
+                        <oui-radio-label
                             data-translate="pci_project_instances_instance_add_3_az_region_select_auto_title"
-                            class="m-0"
-                        ></p>
-                        <p
+                        ></oui-radio-label>
+                        <oui-radio-description
                             data-translate="pci_project_instances_instance_add_3_az_region_select_auto_description"
-                            class="three-az-region-auto__info"
-                        ></p>
+                        ></oui-radio-description>
                     </oui-radio>
 
-                    <oui-radio data-value="false" class="mt-3">
-                        <span
+                    <oui-radio data-value="false">
+                        <oui-radio-label
                             data-translate="pci_project_instances_instance_add_3_az_region_select_manual_title"
-                        ></span>
+                        ></oui-radio-label>
                     </oui-radio>
                     <div class="row auto-clear">
                         <oui-select-picker
