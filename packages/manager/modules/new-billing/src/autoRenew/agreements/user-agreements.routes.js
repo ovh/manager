@@ -70,7 +70,7 @@ export default /* @ngInject */ (
           $state.go('^', queryParams),
         page: /* @ngInject */ (queryParams) => parseInt(queryParams.page, 10),
         itemsPerPage: /* @ngInject */ (queryParams) =>
-          parseInt(queryParams.itemsPerPage, 10),
+          Math.min(parseInt(queryParams.itemsPerPage, 10), 300),
         state: /* @ngInject */ (queryParams) => queryParams.state,
         sorting: /* @ngInject */ (queryParams) =>
           !!queryParams.sorting && JSON.parse(queryParams.sorting),
