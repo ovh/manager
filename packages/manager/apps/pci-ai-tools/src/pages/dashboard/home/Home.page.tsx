@@ -21,7 +21,7 @@ export default function Home() {
   const regionQuery = useGetRegions(projectId);
   const objectStoragePath = `/pci/projects/${projectId}/storages/objects`;
   const notebooksPath = `/pci/projects/${projectId}/ai-ml/notebooks`;
-  const jobsPath = `/pci/projects/${projectId}/training/jobs`;
+  const jobsPath = `/pci/projects/${projectId}/ai-ml/training`;
   const appsPath = `/pci/projects/${projectId}/ai/apps`;
 
   const isOnbording: boolean =

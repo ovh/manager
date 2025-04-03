@@ -22,12 +22,12 @@ export const Loader = async ({ params }: JobLayoutProps) => {
   const { projectId, jobId } = params;
   return queryClient
     .fetchQuery({
-      queryKey: [projectId, 'ai/job', jobId],
+      queryKey: [projectId, 'ai', 'job', jobId],
       queryFn: () => getJob({ projectId, jobId }),
     })
     .then(
       () => null,
-      () => redirect(`/pci/projects/${projectId}/ai/notebooks/training`),
+      () => redirect(`/pci/projects/${projectId}/ai-ml/training`),
     );
 };
 
