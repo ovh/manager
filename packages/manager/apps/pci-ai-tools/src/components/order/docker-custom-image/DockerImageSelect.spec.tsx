@@ -17,11 +17,9 @@ describe('Docker custom image component', () => {
 
   it('should display docker customer image', async () => {
     render(<DockerCustomImageInput value={''} onChange={onChange} />);
-    expect(screen.getByTestId('docker-custom-image')).toBeInTheDocument();
-    expect(screen.getByTestId('docker-custom-image-input')).toBeInTheDocument();
-    expect(
-      screen.getByTestId('docker-custom-image-add-button'),
-    ).toBeInTheDocument();
+    expect(screen.getByTestId('docker-custom-image')).toBeTruthy();
+    expect(screen.getByTestId('docker-custom-image-input')).toBeTruthy();
+    expect(screen.getByTestId('docker-custom-image-add-button')).toBeTruthy();
   });
 
   it('should trigger on Change on trigger add cutom image', async () => {
