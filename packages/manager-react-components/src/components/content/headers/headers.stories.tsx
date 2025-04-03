@@ -4,7 +4,7 @@ import Headers, { HeadersProps } from './headers.component';
 import ActionMenu from '../../navigation/menus/action/action.component';
 import GuideButton from '../../navigation/menus/guide/guide.component';
 import {
-  ChangelogButtonWithoutTracking,
+  ChangelogButton,
   ChangelogLinks,
 } from '../../navigation/menus/changelog/changelog.component';
 
@@ -67,9 +67,10 @@ const HeadingWithHeaderButtons: HeadersProps = {
   description: 'description for subheader',
   headerButton: <GuideButton items={guideItems} />,
   changelogButton: (
-    <ChangelogButtonWithoutTracking
+    <ChangelogButton
       links={changelogLinks}
       chapters={changelogChapters}
+      isWithTracking={false}
     />
   ),
 };

@@ -4,7 +4,7 @@ import { withRouter } from 'storybook-addon-react-router-v6';
 import {
   ChangelogLinks,
   ChangelogButtonProps,
-  ChangelogButtonWithoutTracking,
+  ChangelogButton,
 } from './changelog.component';
 
 const changelogChapters: string[] = ['baremetal', 'server', 'dedicated'];
@@ -20,12 +20,13 @@ const changelogLinks: ChangelogLinks = {
 export const changelogButton: ChangelogButtonProps = {
   links: changelogLinks,
   chapters: changelogChapters,
+  isWithTracking: false,
 };
 
 const meta: Meta<ChangelogButtonProps> = {
   title: 'Navigation/Menus',
   decorators: [withRouter],
-  component: ChangelogButtonWithoutTracking,
+  component: ChangelogButton,
   argTypes: {},
   args: changelogButton,
 };
