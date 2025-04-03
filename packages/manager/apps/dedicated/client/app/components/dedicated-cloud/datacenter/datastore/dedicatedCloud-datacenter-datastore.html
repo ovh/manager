@@ -9,7 +9,7 @@
 <oui-datagrid data-rows-loader="$ctrl.loadDatastores($config)">
     <oui-datagrid-column
         data-title=":: 'dedicatedCloud_tab_datastores_id' | translate"
-        data-property="id"
+        data-property="filerId"
     >
     </oui-datagrid-column>
     <oui-datagrid-column
@@ -44,35 +44,50 @@
         data-title=":: 'dedicatedCloud_tab_datastores_billing' | translate"
     >
         <span
-            data-ng-bind="'dedicatedCloud_tab_datastores_billing_' + $row.billing | translate"
+            data-ng-bind="'dedicatedCloud_tab_datastores_billing_' + $row.billingType | translate"
         ></span>
     </oui-datagrid-column>
     <oui-datagrid-column
         data-title=":: 'dedicatedCloud_tab_datastores_status' | translate"
     >
         <span
-            data-ng-bind="'dedicatedCloud_tab_datastores_status_' + $row.status | translate"
+            data-ng-bind="'dedicatedCloud_tab_datastores_status_' + $row.state | translate"
         ></span>
     </oui-datagrid-column>
     <oui-datagrid-column
         data-title=":: 'dedicatedCloud_tab_datastores_location_datacenter' | translate"
     >
-        <span data-ng-bind="$row.location.datacenter"></span>
+        <oui-skeleton size="xs" data-ng-if="$row.asyncLoading"></oui-skeleton>
+        <span
+            data-ng-if="!$row.asyncLoading"
+            data-ng-bind="$row.location.datacenter"
+        ></span>
     </oui-datagrid-column>
     <oui-datagrid-column
         data-title=":: 'dedicatedCloud_tab_datastores_location_room' | translate"
     >
-        <span data-ng-bind="$row.location.room"></span>
+        <oui-skeleton size="xs" data-ng-if="$row.asyncLoading"></oui-skeleton>
+        <span
+            data-ng-if="!$row.asyncLoading"
+            data-ng-bind="$row.location.room"
+        ></span>
     </oui-datagrid-column>
     <oui-datagrid-column
         data-title=":: 'dedicatedCloud_tab_datastores_location_rack' | translate"
     >
-        <span data-ng-bind="$row.location.rack"></span>
+        <oui-skeleton size="xs" data-ng-if="$row.asyncLoading"></oui-skeleton>
+        <span
+            data-ng-if="!$row.asyncLoading"
+            data-ng-bind="$row.location.rack"
+        ></span>
     </oui-datagrid-column>
     <oui-datagrid-column
         data-title=":: 'dedicatedCloud_tab_datastores_consumption' | translate"
     >
-        <span data-ng-if="$row.billing === $ctrl.RESOURCE_BILLING_TYPES.hourly">
+        <oui-skeleton size="xs" data-ng-if="$row.asyncLoading"></oui-skeleton>
+        <span
+            data-ng-if="!$row.asyncLoading && $row.billingType === $ctrl.RESOURCE_BILLING_TYPES.hourly"
+        >
             <span
                 data-ng-if="$row.consumption == null || $row.consumption === 0"
                 data-translate="dedicatedCloud_tab_datastores_hourly_consumption_na"
@@ -98,10 +113,11 @@
     <oui-action-menu
         data-compact
         data-placement="end"
-        data-ng-if="($row.billing === $ctrl.RESOURCE_BILLING_TYPES.hourly && $row.status === 'DELIVERED') || $row.isGlobalCompatible"
+        data-disabled="$row.asyncLoading"
+        data-ng-if="($row.billingType === $ctrl.RESOURCE_BILLING_TYPES.hourly && $row.state === $ctrl.RESOURCE_STATES.delivered) || $row.isGlobalCompatible"
     >
         <oui-action-menu-item
-            data-ng-if="$row.billing === $ctrl.RESOURCE_BILLING_TYPES.hourly && $row.status === 'DELIVERED'"
+            data-ng-if="$row.billingType === $ctrl.RESOURCE_BILLING_TYPES.hourly && $row.state === $ctrl.RESOURCE_STATES.delivered"
             data-on-click="$ctrl.resourceUpgrade(
                 $row.id,
                 $ctrl.usesLegacyOrder ? 'filer' : $ctrl.RESOURCE_UPGRADE_TYPES.datastore,
