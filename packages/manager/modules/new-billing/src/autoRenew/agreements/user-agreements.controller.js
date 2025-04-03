@@ -130,6 +130,7 @@ export default class UserAccountAgreementsController {
 
   onSortChange({ name, order }) {
     this.onQueryParamsChange({
+      page: 1,
       sorting: JSON.stringify({ predicate: name, reverse: order === 'DESC' }),
     });
   }
@@ -139,6 +140,7 @@ export default class UserAccountAgreementsController {
       (criteria) => criteria.property === 'state',
     );
     this.onQueryParamsChange({
+      page: 1,
       state: stateCriteria?.value || null,
     });
   }
