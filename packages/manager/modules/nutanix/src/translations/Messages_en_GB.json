@@ -15,7 +15,7 @@
   "nutanix_cluster_admin_interface": "Administration interface",
   "nutanix_cluster_list_localisation_value": "{{dcName}} ({{rackName}} rack)",
   "nutanix_cluster_list_pack_type": "Pack type",
-  "nutanix_cluster_list_pack_type_details": "See details",
+  "nutanix_cluster_list_pack_type_details": "See more information",
   "nutanix_cluster_unit_gbps": "{{t0}} Gbps",
   "nutanix_dashboard_technical_details_cpu_frequency_unit": "GHz",
   "nutanix_dashboard_technical_details_ram_size_unit": "GB",
