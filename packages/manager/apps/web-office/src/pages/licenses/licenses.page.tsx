@@ -16,7 +16,7 @@ import {
 } from '@ovhcloud/ods-components';
 import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { CTAS } from '@/guides.constants';
+import { ORDER_URL } from '@/guides.constants';
 import { urls } from '@/routes/routes.constants';
 import { LicenseType } from '@/api/license';
 import { useOfficeLicenses, useGenerateUrl } from '@/hooks';
@@ -69,8 +69,8 @@ export default function Licenses() {
   const context = useContext(ShellContext);
   const { ovhSubsidiary } = context.environment.getUser();
 
-  const goOrder = () => {
-    const url = CTAS[ovhSubsidiary as OvhSubsidiary] || CTAS.DEFAULT;
+  const goToOrder = () => {
+    const url = ORDER_URL[ovhSubsidiary as OvhSubsidiary] || ORDER_URL.DEFAULT;
     window.open(url, '_blank');
   };
 
@@ -102,7 +102,7 @@ export default function Licenses() {
             <OdsButton
               color={ODS_BUTTON_COLOR.primary}
               variant={ODS_BUTTON_VARIANT.outline}
-              onClick={goOrder}
+              onClick={goToOrder}
               label={t('microsoft_office_licenses_order')}
               data-testid="licenses-order-button"
             ></OdsButton>
