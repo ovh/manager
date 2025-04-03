@@ -78,6 +78,23 @@ export function IFrameAppRouter({
     delete configuration['octavia-load-balancer'];
   }
 
+  /**
+   * This is a temporary fix
+   * TODO: remove after right permanent fix implemented
+   * 
+   * The quota and regions routes has no app prefix after
+   * the project id, thus the router consider quota as a standalone
+   * application, but can't find a config for regions.
+   * We added an extra entry to the configuration to simulate 
+   * the existence of an other app named regions.
+   */
+
+  if ('pci-quota' in configuration) {
+    configuration['pci-regions'] = JSON.parse(
+      JSON.stringify(configuration['pci-quota']).replace('quota', 'regions'),
+    );
+  }
+
   // We order applications configurations by hash size, as a configuration with a hash means we want a route to be
   // redirected to this application. As a result we need to have them first, so they take priority over routes from
   // which we want to be redirected
