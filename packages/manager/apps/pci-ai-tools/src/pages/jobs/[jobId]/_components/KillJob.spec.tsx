@@ -30,7 +30,7 @@ describe('Stop job modal', () => {
       wrapper: RouterWithQueryClientWrapper,
     });
     await waitFor(() => {
-      expect(screen.queryByTestId('kill-job-modal')).toBeInTheDocument();
+      expect(screen.queryByTestId('kill-job-modal')).toBeTruthy();
     });
   });
 

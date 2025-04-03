@@ -19,7 +19,7 @@
   "restartJobTitle": "Relancer un nouveau job",
   "restartJobConfirmation": "Vous pouvez lancer un nouveau job à partir des mêmes paramètres qu'un autre job. Voulez-vous relancer un job identique au job {{name}} ?",
   "cliTitle": "Commande CLI équivalente",
-  "cliDescription": "La commande suivante vous permet de lancer le même job grâce à notre CLI ovhai :",
+  "cliToastMessage": "Commande copiée",
   "restartJobButtonConfirm": "Relancer",
   "restartJobToastSuccessDescription": "Le job {{name}} a été démarré"
 }

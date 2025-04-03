@@ -74,7 +74,7 @@ describe('Job Layout', () => {
       wrapper: RouterWithQueryClientWrapper,
     });
     await waitFor(() => {
-      expect(screen.getByText('dashboardTab')).toBeInTheDocument();
+      expect(screen.getByText('dashboardTab')).toBeTruthy();
     });
   });
 
@@ -83,7 +83,7 @@ describe('Job Layout', () => {
       wrapper: RouterWithQueryClientWrapper,
     });
     await waitFor(() => {
-      expect(screen.getByText(mockedJob.spec.name)).toBeInTheDocument();
+      expect(screen.getByText(mockedJob.spec.name)).toBeTruthy();
     });
   });
 
@@ -95,9 +95,9 @@ describe('Job Layout', () => {
       wrapper: RouterWithQueryClientWrapper,
     });
     await waitFor(() => {
-      expect(screen.getByTestId('job-header-container')).toBeInTheDocument();
+      expect(screen.getByTestId('job-header-container')).toBeTruthy();
     });
-    expect(screen.getByText(mockedJob.spec.name)).toBeInTheDocument();
+    expect(screen.getByText(mockedJob.spec.name)).toBeTruthy();
   });
 
   it('renders fully service layout', async () => {
@@ -108,8 +108,8 @@ describe('Job Layout', () => {
       wrapper: RouterWithQueryClientWrapper,
     });
     await waitFor(() => {
-      expect(screen.getByTestId('job-header-container')).toBeInTheDocument();
-      expect(screen.getByText(mockedJobWithVol.spec.name)).toBeInTheDocument();
+      expect(screen.getByTestId('job-header-container')).toBeTruthy();
+      expect(screen.getByText(mockedJobWithVol.spec.name)).toBeTruthy();
     });
   });
 });
