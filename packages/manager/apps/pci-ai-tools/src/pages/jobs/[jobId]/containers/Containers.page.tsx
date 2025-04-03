@@ -8,7 +8,7 @@ export function breadcrumb() {
   return (
     <BreadcrumbItem
       translationKey="breadcrumb"
-      namespace="components/containers"
+      namespace="ai-tools/components/containers"
     />
   );
 }

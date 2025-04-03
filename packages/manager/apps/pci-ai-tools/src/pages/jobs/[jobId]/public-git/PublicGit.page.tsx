@@ -7,7 +7,7 @@ export function breadcrumb() {
   return (
     <BreadcrumbItem
       translationKey="breadcrumb"
-      namespace="components/public-git"
+      namespace="ai-tools/components/public-git"
     />
   );
 }

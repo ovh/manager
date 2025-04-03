@@ -1,17 +1,20 @@
 import { useTranslation } from 'react-i18next';
 import {
   Button,
+  Code,
   DialogClose,
   DialogContent,
   DialogFooter,
   DialogHeader,
   DialogTitle,
+  ScrollArea,
+  bash,
+  githubDark,
   useToast,
 } from '@datatr-ux/uxlib';
 import ai from '@/types/AI';
 import { getAIApiErrorMessage } from '@/lib/apiHelper';
 import RouteModal from '@/components/route-modal/RouteModal';
-import CodeBlock from '@/components/code-block/CodeBlock.component';
 import { useAddJob } from '@/data/hooks/ai/job/useAddJob.hook';
 
 interface RestartJobProps {
@@ -56,7 +59,7 @@ const RestartJob = ({ job, onError, onSuccess, onClose }: RestartJobProps) => {
   };
   return (
     <RouteModal backUrl="../" isLoading={!job?.id} onClose={onClose}>
-      <DialogContent className="sm:max-w-2xl">
+      <DialogContent className="sm:max-w-xl">
         <DialogHeader>
           <DialogTitle data-testid="restart-job-modal">
             {t('restartJobTitle')}
@@ -67,11 +70,23 @@ const RestartJob = ({ job, onError, onSuccess, onClose }: RestartJobProps) => {
             name: job?.spec.name,
           })}
         </p>
-        <div>
-          <p className="font-semibold">{t('cliTitle')}</p>
-          <p>{t('cliDescription')}</p>
-          <CodeBlock code={cliRestartCode} />
-        </div>
+        <ScrollArea className="h-auto max-h-64">
+          <div className="p-2 max-w-lg">
+            <Code
+              label={t('cliTitle')}
+              code={cliRestartCode}
+              theme={githubDark}
+              lang={bash}
+              onCopied={() =>
+                toast.toast({
+                  title: t('cliToastMessage'),
+                })
+              }
+              lineNumbers={true}
+            />
+          </div>
+        </ScrollArea>
+
         <DialogFooter className="flex justify-end">
           <DialogClose asChild>
             <Button

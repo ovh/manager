@@ -21,10 +21,8 @@ describe('Jobs list delete modal', () => {
     });
 
     await waitFor(() => {
-      expect(screen.getByTestId('restart-job-modal')).toBeInTheDocument();
-      expect(
-        screen.getByTestId('restart-job-submit-button'),
-      ).toBeInTheDocument();
+      expect(screen.getByTestId('restart-job-modal')).toBeTruthy();
+      expect(screen.getByTestId('restart-job-submit-button')).toBeTruthy();
     });
   });
 });

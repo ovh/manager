@@ -1,11 +1,34 @@
 import { useTranslation } from 'react-i18next';
-import { useParams, Outlet } from 'react-router-dom';
+import { useParams, Outlet, redirect } from 'react-router-dom';
 import { POLLING } from '@/configuration/polling.constants';
 import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import Guides from '@/components/guides/Guides.component';
 import { jobGuidesSections } from '@/configuration/guide';
 import JobsList from './_components/JobsListTable.component';
 import { useGetJobs } from '@/data/hooks/ai/job/useGetJobs.hook';
+import queryClient from '@/query.client';
+import { getJobs } from '@/data/api/ai/job/job.api';
+
+interface JobsProps {
+  params: {
+    projectId: string;
+  };
+  request: Request;
+}
+
+export const Loader = async ({ params }: JobsProps) => {
+  const { projectId } = params;
+  const jobs = await queryClient.fetchQuery({
+    queryKey: [projectId, 'ai/jobs'],
+    queryFn: () => getJobs({ projectId }),
+  });
+  if (jobs.length === 0) {
+    return redirect(
+      `/pci/projects/${projectId}/ai/notebooks/training/onboarding`,
+    );
+  }
+  return null;
+};
 
 const Jobs = () => {
   const { t } = useTranslation('ai-tools/jobs');
