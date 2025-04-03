@@ -25,9 +25,9 @@
     "prepare": "tsc && vite build",
     "prettier": "prettier --write \"src/**/*.{ts,tsx,js,mdx}\"",
     "start": "rm -rf dist/.cache/storybook && storybook dev -p 6006",
-    "test": "vitest run",
-    "test:cov": "vitest run --coverage",
-    "test:watch": "vitest"
+    "test": "TZ=UTC vitest run",
+    "test:cov": "TZ=UTC vitest run --coverage",
+    "test:watch": "TZ=UTC vitest"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx,json,css,md}": [
