@@ -16,9 +16,9 @@ export default function EndpointsOnboarding() {
     <PageLayout>
       <OnboardingLayout
         moreInfoButtonLabel={t('createEndpointButtonLabel')}
-        onmoreInfoButtonClick={navigateToCreateEndpointPage}
-        moreInfoIcon={ODS_ICON_NAME.plus}
-        isMoreInfoDisabled={
+        onMoreInfoButtonClick={navigateToCreateEndpointPage}
+        moreInfoButtonIcon={ODS_ICON_NAME.plus}
+        isMoreInfoButtonDisabled={
           !isEditable(vrackServices) || !hasSubnet(vrackServices)
         }
         title={t('endpointsOnboardingTitle')}
