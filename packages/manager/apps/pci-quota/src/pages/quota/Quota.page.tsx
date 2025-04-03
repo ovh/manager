@@ -237,18 +237,14 @@ export default function QuotaPage(): JSX.Element {
                     'pci_projects_project_quota_protect_contact_support',
                     { ns: 'quotas' },
                   )}`}
-                  onClick={() => {
-                    navigate('./increase/contact-support');
-                  }}
+                  onClick={() => navigate('./increase/contact-support')}
                 />
               )}
               {quotas?.length > 0 && serviceOptions?.length > 0 && (
                 <OdsButton
                   className="ml-4"
                   size="sm"
-                  onClick={() => {
-                    navigate('./increase/buy-credit');
-                  }}
+                  onClick={() => navigate('./increase/buy-credit')}
                   label={`${t('pci_projects_project_quota_protect_more_btn', {
                     ns: 'quotas',
                   })}`}
