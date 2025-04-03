@@ -23,12 +23,10 @@ describe('Docker Command component', () => {
       />,
     );
     await waitFor(() => {
-      expect(
-        screen.getByTestId('docker-command-form-container'),
-      ).toBeInTheDocument();
-      expect(screen.getByTestId('command-input-field')).toBeInTheDocument();
-      expect(screen.getByTestId('docker-command-button')).toBeInTheDocument();
-      expect(screen.getByTestId('docker-command-list')).toBeInTheDocument();
+      expect(screen.getByTestId('docker-command-form-container')).toBeTruthy();
+      expect(screen.getByTestId('command-input-field')).toBeTruthy();
+      expect(screen.getByTestId('docker-command-button')).toBeTruthy();
+      expect(screen.getByTestId('docker-command-list')).toBeTruthy();
     });
   });
 
@@ -36,9 +34,7 @@ describe('Docker Command component', () => {
     render(
       <DockerCommand commands={[]} onChange={onChange} disabled={false} />,
     );
-    expect(
-      screen.queryByTestId('docker-command-remove-button'),
-    ).not.toBeInTheDocument();
+    expect(screen.queryByTestId('docker-command-remove-button')).toBeNull();
     const newCommand = 'this is a new docker command';
     act(() => {
       fireEvent.change(screen.getByTestId('command-input-field'), {
@@ -61,9 +57,7 @@ describe('Docker Command component', () => {
         disabled={false}
       />,
     );
-    expect(
-      screen.getByTestId('docker-command-remove-button'),
-    ).toBeInTheDocument();
+    expect(screen.getByTestId('docker-command-remove-button')).toBeTruthy();
     act(() => {
       fireEvent.click(screen.getByTestId('docker-command-remove-button'));
     });

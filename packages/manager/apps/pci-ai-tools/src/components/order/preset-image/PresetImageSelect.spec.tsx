@@ -28,10 +28,10 @@ describe('Preset Image Select component', () => {
       />,
     );
     await waitFor(() => {
-      expect(screen.getByTestId('preset-image-select')).toBeInTheDocument();
+      expect(screen.getByTestId('preset-image-select')).toBeTruthy();
       expect(
         screen.getByTestId(`image-radio-tile-${mockedPresetImage.id}`),
-      ).toBeInTheDocument();
+      ).toBeTruthy();
     });
   });
 

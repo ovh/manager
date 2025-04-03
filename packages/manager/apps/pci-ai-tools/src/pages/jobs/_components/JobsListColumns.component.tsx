@@ -18,7 +18,6 @@ import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 import JobStatusBadge from './JobStatusBadge.component';
 import { isRunningJob, isStoppedJob } from '@/lib/statusHelper';
 import { convertSecondsToTimeString } from '@/lib/durationHelper';
-import LinkButton from '@/components/link-button/LinkButton.component';
 
 interface JobsListColumnsProps {
   onRestartClicked: (job: ai.job.Job) => void;
@@ -47,12 +46,7 @@ export const getColumns = ({
         const { id, spec } = row.original;
         return (
           <div className="flex flex-col flex-nowrap text-left">
-            <LinkButton
-              asChild
-              className="justify-normal px-0 h-auto leading-4 font-semibold"
-            >
-              <Link to={id}>{spec.name}</Link>
-            </LinkButton>
+            <Link to={id}>{spec.name}</Link>
             <span className="text-sm whitespace-nowrap">{id}</span>
           </div>
         );

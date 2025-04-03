@@ -43,15 +43,13 @@ describe('Public Git page', () => {
     const translationKey = 'breadcrumb';
     render(<Breadcrumb />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByText(translationKey)).toBeInTheDocument();
+      expect(screen.getByText(translationKey)).toBeTruthy();
     });
   });
 
   it('renders Public Git page', async () => {
     render(<PublicGit />, { wrapper: RouterWithQueryClientWrapper });
-    expect(
-      screen.getByText(mockedPublicGitVolume.mountPath),
-    ).toBeInTheDocument();
+    expect(screen.getByText(mockedPublicGitVolume.mountPath)).toBeTruthy();
   });
 
   it('renders and trigger copy mountpath in clipboard', async () => {
@@ -62,9 +60,7 @@ describe('Public Git page', () => {
     });
     render(<PublicGit />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(
-        screen.getByText(mockedPublicGitVolume.mountPath),
-      ).toBeInTheDocument();
+      expect(screen.getByText(mockedPublicGitVolume.mountPath)).toBeTruthy();
     });
     act(() => {
       fireEvent.click(screen.getByTestId('public-git-copy-mountpath-button'));

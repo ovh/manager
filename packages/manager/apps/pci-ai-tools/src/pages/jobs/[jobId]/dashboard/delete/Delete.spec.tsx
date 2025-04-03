@@ -21,10 +21,8 @@ describe('Job dashboard delete modal', () => {
     });
 
     await waitFor(() => {
-      expect(screen.getByTestId('delete-job-modal')).toBeInTheDocument();
-      expect(
-        screen.getByTestId('delete-job-submit-button'),
-      ).toBeInTheDocument();
+      expect(screen.getByTestId('delete-job-modal')).toBeTruthy();
+      expect(screen.getByTestId('delete-job-submit-button')).toBeTruthy();
     });
   });
 });

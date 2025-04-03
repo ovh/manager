@@ -21,8 +21,8 @@ describe('Jobs list stop modal', () => {
     });
 
     await waitFor(() => {
-      expect(screen.getByTestId('kill-job-modal')).toBeInTheDocument();
-      expect(screen.getByTestId('stop-job-submit-button')).toBeInTheDocument();
+      expect(screen.getByTestId('kill-job-modal')).toBeTruthy();
+      expect(screen.getByTestId('stop-job-submit-button')).toBeTruthy();
     });
   });
 });

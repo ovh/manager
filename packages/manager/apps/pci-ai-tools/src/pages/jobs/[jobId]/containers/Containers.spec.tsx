@@ -62,7 +62,7 @@ describe('Containers page', () => {
     const translationKey = 'breadcrumb';
     render(<Breadcrumb />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByText(translationKey)).toBeInTheDocument();
+      expect(screen.getByText(translationKey)).toBeTruthy();
     });
   });
 
@@ -74,9 +74,7 @@ describe('Containers page', () => {
     });
     render(<Containers />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(
-        screen.getByText(mockedDatastoreVolume.mountPath),
-      ).toBeInTheDocument();
+      expect(screen.getByText(mockedDatastoreVolume.mountPath)).toBeTruthy();
     });
     act(() => {
       fireEvent.click(screen.getByTestId('containers-copy-mountpath-button'));
@@ -104,9 +102,7 @@ describe('Containers page', () => {
   it('open data sync modal from action table button', async () => {
     render(<Containers />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(
-        screen.getByText(mockedDatastoreVolume.mountPath),
-      ).toBeInTheDocument();
+      expect(screen.getByText(mockedDatastoreVolume.mountPath)).toBeTruthy();
     });
     await openButtonInMenu(
       'container-action-trigger',

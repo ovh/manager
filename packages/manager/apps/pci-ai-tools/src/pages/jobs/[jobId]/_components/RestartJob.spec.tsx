@@ -30,7 +30,7 @@ describe('Restart job modal', () => {
       wrapper: RouterWithQueryClientWrapper,
     });
     await waitFor(() => {
-      expect(screen.queryByTestId('restart-job-modal')).toBeInTheDocument();
+      expect(screen.queryByTestId('restart-job-modal')).toBeTruthy();
     });
   });
 

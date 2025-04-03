@@ -93,27 +93,27 @@ describe('Order funnel page', () => {
     const translationKey = 'breadcrumb';
     render(<Breadcrumb />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByText(translationKey)).toBeInTheDocument();
+      expect(screen.getByText(translationKey)).toBeTruthy();
     });
   });
 
   it('renders the skeleton component while loading', async () => {
     render(<Job />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByTestId('order-funnel-skeleton')).toBeInTheDocument();
+      expect(screen.getByTestId('order-funnel-skeleton')).toBeTruthy();
     });
   });
 
   it('renders the order funnel', async () => {
     render(<Job />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByTestId('order-funnel-container')).toBeInTheDocument();
-      expect(screen.getByTestId('name-section')).toBeInTheDocument();
-      expect(screen.getByTestId('flavor-section')).toBeInTheDocument();
-      expect(screen.getByTestId('region-section')).toBeInTheDocument();
-      expect(screen.getByTestId('image-section')).toBeInTheDocument();
-      expect(screen.getByTestId('advance-config-section')).toBeInTheDocument();
-      expect(screen.getByTestId('order-submit-button')).toBeInTheDocument();
+      expect(screen.getByTestId('order-funnel-container')).toBeTruthy();
+      expect(screen.getByTestId('name-section')).toBeTruthy();
+      expect(screen.getByTestId('flavor-section')).toBeTruthy();
+      expect(screen.getByTestId('region-section')).toBeTruthy();
+      expect(screen.getByTestId('image-section')).toBeTruthy();
+      expect(screen.getByTestId('advance-config-section')).toBeTruthy();
+      expect(screen.getByTestId('order-submit-button')).toBeTruthy();
     });
   });
 
@@ -123,7 +123,7 @@ describe('Order funnel page', () => {
     });
     render(<Job />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByTestId('order-funnel-container')).toBeInTheDocument();
+      expect(screen.getByTestId('order-funnel-container')).toBeTruthy();
     });
     act(() => {
       fireEvent.click(screen.getByTestId('advanced-config-button'));
@@ -144,7 +144,7 @@ describe('Order funnel page', () => {
   it('trigger getCommand on Cli Command button click', async () => {
     render(<Job />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByTestId('order-funnel-container')).toBeInTheDocument();
+      expect(screen.getByTestId('order-funnel-container')).toBeTruthy();
     });
     act(() => {
       fireEvent.click(screen.getByTestId('cli-command-button'));
@@ -160,7 +160,7 @@ describe('Order funnel page', () => {
     });
     render(<Job />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByTestId('order-funnel-container')).toBeInTheDocument();
+      expect(screen.getByTestId('order-funnel-container')).toBeTruthy();
     });
     act(() => {
       fireEvent.click(screen.getByTestId('order-submit-button'));
@@ -178,7 +178,7 @@ describe('Order funnel page', () => {
   it('trigger add Job on click', async () => {
     render(<Job />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByTestId('order-funnel-container')).toBeInTheDocument();
+      expect(screen.getByTestId('order-funnel-container')).toBeTruthy();
     });
     act(() => {
       fireEvent.click(screen.getByTestId('order-submit-button'));

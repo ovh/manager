@@ -12,7 +12,7 @@ export function breadcrumb() {
   return (
     <BreadcrumbItem
       translationKey="breadcrumb"
-      namespace="pci-ai-notebooks/notebooks/notebook/logs"
+      namespace="ai-tools/notebooks/notebook/logs"
     />
   );
 }

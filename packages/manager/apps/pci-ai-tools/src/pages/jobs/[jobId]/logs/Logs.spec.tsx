@@ -32,17 +32,17 @@ describe('Logs page', () => {
     const translationKey = 'breadcrumb';
     render(<Breadcrumb />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByText(translationKey)).toBeInTheDocument();
+      expect(screen.getByText(translationKey)).toBeTruthy();
     });
   });
 
   it('renders skeleton while loading', async () => {
     render(<Logs />, { wrapper: RouterWithQueryClientWrapper });
-    expect(screen.getByTestId('skeleton-container')).toBeInTheDocument();
+    expect(screen.getByTestId('skeleton-container')).toBeTruthy();
   });
 
   it('renders Logs', async () => {
     render(<Logs />, { wrapper: RouterWithQueryClientWrapper });
-    expect(screen.getByTestId('logs-area')).toBeInTheDocument();
+    expect(screen.getByTestId('logs-area')).toBeTruthy();
   });
 });

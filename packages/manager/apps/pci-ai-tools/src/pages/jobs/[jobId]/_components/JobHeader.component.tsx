@@ -21,8 +21,6 @@ export const JobHeader = ({ job }: { job: ai.job.Job }) => {
   const { t: tRegions } = useTranslation('regions');
   const [isRestartOpen, setIsRestartOpen] = useState(false);
   const [isStopOpen, setIsStopOpen] = useState(false);
-  const classNameBagde =
-    'capitalize text-text rounded-md text-sm bg-transparent font-semibold border border-neutral-100 px-2.5 py-0.5 h-6';
   return (
     <>
       <div
@@ -60,12 +58,12 @@ export const JobHeader = ({ job }: { job: ai.job.Job }) => {
           </div>
           <div className="flex gap-2 flex-wrap">
             <JobStatusBadge status={job.status.state} />
-            <Badge className={classNameBagde}>{job.spec.image}</Badge>
+            <Badge variant="outline">{job.spec.image}</Badge>
 
-            <Badge className={classNameBagde}>
+            <Badge variant="outline">
               {tRegions(`region_${job.spec.region}`)}
             </Badge>
-            <Badge className={classNameBagde}>
+            <Badge variant="outline">
               {job.spec.unsecureHttp ? (
                 <div className="flex flex-row gap-1 items-center">
                   <span>{t('publicAccessLabel')}</span>

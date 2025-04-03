@@ -43,7 +43,7 @@ describe('Order summary', () => {
       { wrapper: RouterWithQueryClientWrapper },
     );
     await waitFor(() => {
-      expect(screen.getByText(mockedOrder.jobName)).toBeInTheDocument();
+      expect(screen.getByText(mockedOrder.jobName)).toBeTruthy();
     });
 
     act(() => {
