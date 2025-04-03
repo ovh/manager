@@ -19,7 +19,8 @@ const getSavingsPlanConsumption = async ({
     // `http://localhost:8080/proxy?projectId=${projectId}&year=${year}&month=${month}`,
     `http://localhost:8080/proxy?projectId=${projectId}&year=${year}&month=${month}&flavor=${flavor}`,
   );
-  const data = await response.json();
+  // const data = await response.json();
+  // return data;
   return savingsPlanConsumptionMocked;
 };
 
