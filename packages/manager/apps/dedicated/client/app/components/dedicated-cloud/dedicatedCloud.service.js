@@ -435,25 +435,6 @@ class DedicatedCloudService {
     return billingType === 'freeSpare';
   }
 
-  /* ------- SUB DATACENTER DATASTORES -------*/
-
-  getDatastores(serviceName, datacenterId, elementsByPage, elementsToSkip) {
-    return this.OvhHttp.get(
-      '/sws/dedicatedCloud/{serviceName}/datacenters/{datacenterId}/datastores',
-      {
-        rootPath: '2api',
-        urlParams: {
-          serviceName,
-          datacenterId,
-        },
-        params: {
-          count: elementsByPage,
-          offset: elementsToSkip,
-        },
-      },
-    );
-  }
-
   /* ------- SUB DATACENTER LICENCES -------*/
 
   getDatacenterLicence(serviceName, serviceUsesLegacyOrder) {

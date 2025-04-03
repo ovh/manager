@@ -4,6 +4,7 @@ import set from 'lodash/set';
 import {
   RESOURCE_BILLING_TYPES,
   RESOURCE_UPGRADE_TYPES,
+  RESOURCE_STATES,
 } from '../../resource/upgrade/upgrade.constants';
 
 import { DEDICATED_CLOUD_DATACENTER } from '../dedicatedCloud-datacenter.constants';
@@ -13,14 +14,11 @@ export default class {
   /* @ngInject */
   constructor(
     $q,
-    $translate,
-    DedicatedCloud,
     ovhManagerPccDatacenterService,
     ovhManagerPccDatacenterDatastoreService,
     coreConfig,
   ) {
     this.$q = $q;
-    this.DedicatedCloud = DedicatedCloud;
     this.ovhManagerPccDatacenterService = ovhManagerPccDatacenterService;
     this.ovhManagerPccDatacenterDatastoreService = ovhManagerPccDatacenterDatastoreService;
     this.DEDICATED_CLOUD_DATACENTER = DEDICATED_CLOUD_DATACENTER;
@@ -32,114 +30,104 @@ export default class {
   $onInit() {
     this.RESOURCE_BILLING_TYPES = RESOURCE_BILLING_TYPES;
     this.RESOURCE_UPGRADE_TYPES = RESOURCE_UPGRADE_TYPES;
+    this.RESOURCE_STATES = RESOURCE_STATES;
 
     this.noConsumptionResponse = new RegExp('no consumption', 'i');
-  }
-
-  fetchLegacyConsumption(datastores) {
-    return this.$q.all(
-      datastores.map((dc) => {
-        if (dc.billing === this.RESOURCE_BILLING_TYPES.hourly) {
-          return this.ovhManagerPccDatacenterDatastoreService
-            .fetchLegacyHourlyConsumption(
-              this.productId,
-              this.datacenterId,
-              dc.id,
-            )
-            .then((response) => {
-              set(dc, 'consumption', get(response, 'consumption.value'));
-              set(dc, 'consumptionLastUpdate', response.lastUpdate);
-              return dc;
-            })
-            .catch((err) => {
-              if (this.noConsumptionResponse.test(err.message)) {
-                set(dc, 'consumption', 0);
-              } else {
-                set(dc, 'consumption', null);
-              }
-
-              return dc;
-            });
-        }
-
-        return this.$q.when(dc);
-      }),
+    this.$serviceConsumption = this.ovhManagerPccDatacenterService.fetchConsumptionForService(
+      this.serviceId,
     );
   }
 
-  fetchConsumptionForDatastores(datastores) {
-    return (serviceConsumption) =>
-      this.$q.all(
-        serviceConsumption
-          ? datastores.map(
-              this.fetchConsumptionForDatastore(serviceConsumption),
-            )
-          : datastores,
-      );
+  fetchLegacyConsumption(datastore) {
+    if (datastore.billingType === this.RESOURCE_BILLING_TYPES.hourly) {
+      return this.ovhManagerPccDatacenterDatastoreService
+        .fetchLegacyHourlyConsumption(
+          this.productId,
+          this.datacenterId,
+          datastore.filerId,
+        )
+        .then((response) => {
+          set(datastore, 'consumption', get(response, 'consumption.value'));
+          set(datastore, 'consumptionLastUpdate', response.lastUpdate);
+        })
+        .catch((err) => {
+          if (this.noConsumptionResponse.test(err.message)) {
+            set(datastore, 'consumption', 0);
+          } else {
+            set(datastore, 'consumption', null);
+          }
+        });
+    }
+
+    return this.$q.when(datastore);
   }
 
-  fetchConsumptionForDatastore(serviceConsumption) {
-    return (datastore) => {
+  fetchConsumptionForDatastore(datastore) {
+    return (serviceConsumption) => {
       if (
-        datastore.billing === this.RESOURCE_BILLING_TYPES.hourly &&
-        datastore.status === 'DELIVERED'
+        datastore.billingType === this.RESOURCE_BILLING_TYPES.hourly &&
+        datastore.state === RESOURCE_STATES.delivered
       ) {
         const datastoreConsumption = this.ovhManagerPccDatacenterService.constructor.extractElementConsumption(
           serviceConsumption,
           {
-            id: datastore.id,
+            id: datastore.filerId,
             type: this.DEDICATED_CLOUD_DATACENTER.elementTypes.datastore,
           },
         );
 
-        return {
-          ...datastore,
-          consumption: get(datastoreConsumption, 'quantity', 0),
-          consumptionLastUpdate: serviceConsumption.lastUpdate,
-        };
+        const consumption = get(datastoreConsumption, 'quantity', 0);
+        set(datastore, 'consumption', consumption);
+        set(datastore, 'consumptionLastUpdate', serviceConsumption.lastUpdate);
+        return datastore;
       }
 
       return datastore;
     };
   }
 
-  chooseConsumptionFetchingMethod(datastores) {
+  chooseConsumptionFetchingMethod(datastore) {
     return !this.usesLegacyOrder
-      ? this.ovhManagerPccDatacenterService
-          .fetchConsumptionForService(this.serviceId)
-          .then(this.fetchConsumptionForDatastores(datastores))
-      : this.fetchLegacyConsumption(datastores);
+      ? this.$serviceConsumption.then(
+          this.fetchConsumptionForDatastore(datastore),
+        )
+      : this.fetchLegacyConsumption(datastore);
   }
 
-  fetchLocations(datastores) {
-    return this.$q.all(
-      datastores.map((datastore) => {
-        return this.ovhManagerPccDatacenterDatastoreService
-          .getDatastoreLocation(this.productId, datastore.dc, datastore.id)
-          .then((location) => ({ ...datastore, location }))
-          .catch(() => datastore);
-      }),
-    );
+  fetchLocation(datastore) {
+    return this.ovhManagerPccDatacenterDatastoreService
+      .getDatastoreLocation(this.productId, datastore.dc, datastore.filerId)
+      .then((location) => {
+        set(datastore, 'location', location);
+      })
+      .catch(() => null);
+  }
+
+  checkGlobalCompatibility(datastore) {
+    return this.ovhManagerPccDatacenterDatastoreService
+      .getDatastoreGlobalCompatibility(this.productId, datastore)
+      .then(({ data }) => {
+        set(datastore, 'isGlobalCompatible', data);
+      });
   }
 
   loadDatastores({ offset, pageSize }) {
-    return this.DedicatedCloud.getDatastores(
-      this.productId,
-      this.datacenterId,
-      pageSize,
-      offset - 1,
-    ).then((result) =>
-      this.chooseConsumptionFetchingMethod(result.list.results).then(
-        (datastoresWithConsumption) =>
-          this.fetchLocations(datastoresWithConsumption).then(
-            (datastoresWithLocation) => ({
-              data: datastoresWithLocation,
-              meta: {
-                totalCount: result.count,
-              },
-            }),
-          ),
-      ),
-    );
+    return this.ovhManagerPccDatacenterDatastoreService
+      .getDatastores(this.productId, this.datacenterId, pageSize, offset - 1)
+      .then(({ data, count }) => {
+        data.forEach((datastore) => {
+          set(datastore, 'asyncLoading', true);
+          this.$q
+            .all([
+              this.chooseConsumptionFetchingMethod(datastore),
+              this.fetchLocation(datastore),
+              this.checkGlobalCompatibility(datastore),
+            ])
+            .finally(() => {
+              set(datastore, 'asyncLoading', false);
+            });
+        });
+        return { data, meta: { totalCount: count } };
+      });
   }
 }
