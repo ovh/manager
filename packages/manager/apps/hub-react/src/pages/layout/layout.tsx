@@ -30,7 +30,6 @@ import Welcome from '@/components/welcome/Welcome.component';
 import Banner from '@/components/banner/Banner.component';
 import NotificationsCarousel from '@/pages/layout/NotificationsCarousel.component';
 import SiretBanner from '@/pages/layout/SiretBanner.component';
-import SiretModal from '@/pages/layout/SiretModal.component';
 import KycIndiaBanner from '@/pages/layout/KycIndiaBanner.component';
 import KycFraudBanner from '@/pages/layout/KycFraudBanner.component';
 import PaymentStatus from '@/pages/layout/PaymentStatus.component';
@@ -142,7 +141,6 @@ export default function Layout() {
                     <NotificationsCarousel />
                   </div>
                   <SiretBanner />
-                  <SiretModal />
                   <KycIndiaBanner />
                   <KycFraudBanner />
                   <HubDashboardSubtitle />
