@@ -169,7 +169,7 @@ export default function Consumption() {
   };
   return (
     <>
-      <OdsFormField className="w-1/4">
+      <OdsFormField className="w-full md:w-1/4">
         <label slot="label" htmlFor="period-select">
           {t('usage_period')}
         </label>
@@ -178,7 +178,6 @@ export default function Consumption() {
           name="period"
           value={selectedPeriod}
           onOdsChange={(e) => setSelectedPeriod(e.detail.value)}
-          className="w-1/3"
           data-testid="period-select"
         >
           {periodOptions.map((period) => (
@@ -188,8 +187,8 @@ export default function Consumption() {
           ))}
         </OdsSelect>
       </OdsFormField>
-      <div className="mt-12">
-        <ResponsiveContainer width="100%" height={400}>
+      <div className="mt-12 h-[400px] w-full overflow-hidden">
+        <ResponsiveContainer width="100%" height="100%">
           <AreaChart data={chartData} accessibilityLayer>
             <defs>
               <linearGradient id="colorBusiness" x1="0" y1="0" x2="0" y2="1">
