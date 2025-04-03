@@ -39,6 +39,12 @@ export default /* @ngInject */ ($stateProvider) => {
         'app.dedicatedCloud.details.datacenter.details.datastores',
       drpState: () => 'app.dedicatedCloud.details.datacenter.details.drp',
       hostsState: () => 'app.dedicatedCloud.details.datacenter.details.hosts',
+      virtualMachinesState: () =>
+        'app.dedicatedCloud.details.datacenter.details.virtualMachines',
+      goToVirtualMachines: /* @ngInject */ ($state) => () =>
+        $state.go(
+          'app.dedicatedCloud.details.datacenter.details.virtualMachines',
+        ),
       goToHosts: /* @ngInject */ ($state) => () =>
         $state.go('app.dedicatedCloud.details.datacenter.details.hosts'),
       goToDatastores: /* @ngInject */ ($state) => () =>
