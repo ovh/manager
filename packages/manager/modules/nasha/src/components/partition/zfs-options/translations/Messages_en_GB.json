@@ -11,12 +11,12 @@
   "nasha_components_partition_zfs_options_sync_disabled_warning": "Administrators should only use this option if they clearly understand the risks.",
   "nasha_components_partition_zfs_options_sync_standard_description": "Secured profile: A combination of high stability and performance. Files are written first, then all elements are cleaned to ensure data stability.",
   "nasha_components_partition_zfs_options_sync": "Sync",
-  "nasha_components_partition_zfs_options_title": "Modify settings",
-  "nasha_components_partition_zfs_options_custom_template_selection": "Customize settings.",
+  "nasha_components_partition_zfs_options_title": "Edit settings",
+  "nasha_components_partition_zfs_options_custom_template_selection": "Customise settings.",
   "nasha_components_partition_zfs_template_selection_title": "Select template",
-  "nasha_components_partition_zfs_template_selection_placeholder": "Choose a template...",
-  "nasha_components_partition_zfs_options_template_1_description": "Sharing large files (images, videos, streaming...)",
-  "nasha_components_partition_zfs_options_template_2_description": "Images of virtual machines on ZFS.",
+  "nasha_components_partition_zfs_template_selection_placeholder": "Choose a template",
+  "nasha_components_partition_zfs_options_template_1_description": "Large files sharing (images, videos, streaming)",
+  "nasha_components_partition_zfs_options_template_2_description": "Virtual machine images on ZFS.",
   "nasha_components_partition_zfs_options_template_3_description": "Database storage.",
-  "nasha_components_partition_zfs_options_template_4_description": "Default template for file sharing."
+  "nasha_components_partition_zfs_options_template_4_description": "Default file sharing template."
 }

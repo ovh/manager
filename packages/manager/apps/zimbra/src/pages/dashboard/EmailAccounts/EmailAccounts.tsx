@@ -213,7 +213,7 @@ export default function EmailAccounts() {
       <Outlet />
       {platformUrn && !isOverridedPage && (
         <>
-          <div className="flex gap-8">
+          <div className="flex gap-8 mb-6">
             <div>
               <OdsText preset={ODS_TEXT_PRESET.heading6} className="mr-4">
                 {t('common:webmail')}

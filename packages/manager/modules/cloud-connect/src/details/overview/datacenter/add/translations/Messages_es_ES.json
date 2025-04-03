@@ -5,12 +5,12 @@
   "cloud_connect_datacenter_add_select_asn": "Introduzca el ASN de OVHcloud",
   "cloud_connect_datacenter_add_network_address": "Introduzca una subred en /28",
   "cloud_connect_datacenter_add_network_address_placeholder": "Subred",
-  "cloud_connect_datacenter_add_success": "Añadir una configuración de zona de disponibilidad. <a href=\"{{ tasksUrl }}\">Haga clic aquí para ver el estado.</a>",
-  "cloud_connect_datacenter_add_error": "Error al agregar la configuración de zona de disponibilidad: {{message}}",
+  "cloud_connect_datacenter_add_success": "Añadir una configuración de la zona de disponibilidad. <a href=\"{{ tasksUrl }}\">Haga clic aquí para ver el estado.</a>",
+  "cloud_connect_datacenter_add_error": "Se ha producido un error al añadir la configuración de la zona de disponibilidad: {{message}}",
   "cloud_connect_datacenter_add_select_asn_placeholder": "ASN de OVHcloud",
   "cloud_connect_datacenter_add_network_address_help_message": "Bloque de IPv4 con un rango de 0 a 28",
   "cloud_connect_datacenter_add_network_address_invalid_message": "Introduzca un bloque de IPv4 válido entre 0 y 28 (p. ej.: 128.8.2.0/28)",
   "cloud_connect_datacenter_add_dc_info": "Solo puede haber una configuración por AZ.",
-  "cloud_connect_datacenter_add_select_asn_popover": "El número de AS de OVHcloud que se configurará en los routers de OVHcloud Connect situados en la zona de disponibilidad. Este número puede ser diferente del ASN elegido para el PoP.",
-  "cloud_connect_datacenter_add_network_address_popover": "Una subred privada configurada en el vRack en la zona de disponibilidad seleccionada. Puede ser un bloque IPv4 de tamaño /28 o superior."
+  "cloud_connect_datacenter_add_select_asn_popover": "El número de AS de OVHcloud que será configurado en los routers de OVHcloud Connect situados en la zona de disponibilidad. Este número puede ser diferente del ASN elegido para el PoP.",
+  "cloud_connect_datacenter_add_network_address_popover": "Una subred privada configurada en su vRack en la zona de disponibilidad seleccionada. Puede ser un bloque de IPv4 de tamaño /28 o superior."
 }

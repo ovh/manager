@@ -1,6 +1,6 @@
 {
   "cloud_connect_datacenter_add_title": "Dodaj konfigurację AZ",
-  "cloud_connect_datacenter_add_select_title": "Wybierz obszar",
+  "cloud_connect_datacenter_add_select_title": "Wybierz strefę dostępności",
   "cloud_connect_datacenter_add_select_placeholder": "Wybierz",
   "cloud_connect_datacenter_add_select_asn": "Wprowadź ASN OVH",
   "cloud_connect_datacenter_add_network_address": "Wprowadź podsieć /28",
@@ -10,7 +10,7 @@
   "cloud_connect_datacenter_add_select_asn_placeholder": "ASN OVH",
   "cloud_connect_datacenter_add_network_address_help_message": "Blok IPv4 z zakresem od 0 do 28",
   "cloud_connect_datacenter_add_network_address_invalid_message": "Wprowadź ważny blok IPv4 zawarty między 0 a 28 (np.: 128.8.2.0/28)",
-  "cloud_connect_datacenter_add_dc_info": "Może być tylko jedna konfiguracja na AZ.",
+  "cloud_connect_datacenter_add_dc_info": "Może być tylko jedna konfiguracja per AZ.",
   "cloud_connect_datacenter_add_select_asn_popover": "Numer AS OVHcloud, który zostanie skonfigurowany w routerach OVHcloud Connect zlokalizowanych w strefie dostępności. Numer ten może być inny niż ASN wybrany dla PoP.",
-  "cloud_connect_datacenter_add_network_address_popover": "Prywatna podsieć skonfigurowana w Twoim vRacku w wybranym obszarze dostępności. Może to być blok IPv4 o rozmiarze /28 lub większym."
+  "cloud_connect_datacenter_add_network_address_popover": "Prywatna podsieć skonfigurowana w Twoim vRacku w wybranej strefie dostępności. Może to być blok IPv4 o rozmiarze /28 lub większym."
 }

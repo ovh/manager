@@ -1,4 +1,4 @@
-import React, { useState, useEffect, } from 'react';
+import React, { useState, useEffect, startTransition } from 'react';
 import { useTranslation } from 'react-i18next';
 import { {{#if isPCI }}useParams, {{/if}} useNavigate, useLocation } from 'react-router-dom';
 
@@ -21,7 +21,7 @@ export default function Listing() {
   const { t } = useTranslation('listing');
   const myConfig = appConfig;
   const serviceKey = myConfig.listing?.datagrid?.serviceKey;
-  const [columns, setColumns] = useState([]);
+  const [columns, setColumns] = useState<any>([]);
   const navigate = useNavigate();
   const location = useLocation();
   {{#if isPCI }}
@@ -44,9 +44,9 @@ export default function Listing() {
   });
 
   const navigateToDashboard = (label: string) => {
-    let path =
+    const path =
       location.pathname.indexOf('pci') > -1 ? `${location.pathname}/` : '/';
-    navigate(`${path}${label}`);
+    startTransition(() => navigate(`${path}${label}`));
   };
 
   // Code to remove and declare definition columns in const variable
@@ -54,7 +54,7 @@ export default function Listing() {
     if (status === 'success' && data?.pages[0].data.length === 0) {
       navigate(urls.onboarding);
     } else if (status === 'success' && data?.pages.length > 0 && !flattenData) {
-      const tmp = Object.keys(data?.pages[0].data[0])
+      const tmp = Object.keys(data?.pages[0].data[0] as object)
         .filter((element) => element !== 'iam')
         .map((element) => ({
           id: element,

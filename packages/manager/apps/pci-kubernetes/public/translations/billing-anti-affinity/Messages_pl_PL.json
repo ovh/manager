@@ -18,14 +18,14 @@
   "kubernetes_add_error_InsufficientPortsQuota": "Limit portów dla Twojego projektu jest niewystarczający, aby przeprowadzić operację. Zwiększ limit lub zmniejsz ilość zasobów.",
   "kubernetes_add_error_InsufficientInstancesQuota": "Limit instancji dla Twojego projektu jest niewystarczający, aby przeprowadzić operację. Zwiększ limit lub zmniejsz ilość zasobów.",
   "kubernetes_add_error_quota_link": "Zwiększ limit.",
-  "kubernetes_add_billing_auto_scaling_monthly_warning": "Aktywuj jednocześnie autoskalowanie i abonament miesięczny dla tej puli węzłów. Za każdym razem gdy węzeł zostanie utworzony przez autoskalowanie, zostanie natychmiast zafakturowany proporcjonalnie do czasu pozostałego w bieżącym miesiącu. Radzimy unikać tej kombinacji, jeśli przewidujesz częste zmniejszanie rozmiaru puli węzłów.",
+  "kubernetes_add_billing_auto_scaling_monthly_warning": "Aktywuj jednocześnie autoskalowanie i abonament miesięczny dla tej puli węzłów. Każde utworzenie węzła przez autoskalowanie spowoduje natychmiastowe naliczenie opłaty za węzeł, proporcjonalnie do czasu pozostałego w bieżącym miesiącu. Zalecamy unikanie tej kombinacji, jeśli przewidujesz częste zmniejszanie rozmiaru puli węzłów.",
   "kubernetes_add_cluster_name_input_pattern_validation_error": "Nazwa musi zaczynać się od znaku alfabetycznego, kończyć znakiem alfanumerycznym, a jedynymi dozwolonymi znakami specjalnymi są myślniki i znaki podkreślenia.",
   "kubernetes_add_billing_anti_affinity_coming_soon_message_title": "Ceny miesięczne",
   "kubernetes_add_billing_anti_affinity_coming_soon_message_description": "Ceny miesięczne będą dostępne wkrótce, wraz z uruchomieniem Saving Plans.",
   "kubernetes_node_pool_anti_affinity": "Ochrona przed koligacją (anti-affinity)",
-  "kubernetes_node_pool_anti_affinity_description": "Po włączeniu funkcji anti-koligate węzły obecne i przyszłe będą wdrażane na różnych hiperwizorach (fizycznych serwerach), co zapewni większą odporność na awarie. Pule węzłów z powinowactwem mogą zawierać tylko do {{maxNodes}} węzłów. Pamiętaj, że funkcja anty-koligacji nie jest kompatybilna z włączeniem autoskalowania.",
+  "kubernetes_node_pool_anti_affinity_description": "Po włączeniu funkcji „anti-affinity” węzły, działające aktualnie i te, które zostaną utworzone w przyszłości, będą wdrażane na różnych hiperwizorach (serwerach fizycznych), co zapewni większą odporność na awarie. Pule węzłów z włączoną ochroną „anti-affinity” mogą zawierać tylko {{maxNodes}} węzły/węzłów. Pamiętaj, że funkcja „anti-affinity” nie jest kompatybilna z funkcją automatycznego skalowania.",
   "kubernetes_add_billing_savings_plan_banner": "Dzięki Savings Plan zyskujesz korzystne opłaty miesięczne, a jednocześnie zachowujesz możliwość płatności za instancje w trybie za godzinę.",
   "kubernetes_add_billing_savings_plan_cta": "Skonfiguruj Savings Plans",
-  "kubernetes_node_pool_anti_affinity_true": "Anty-aktywne powinowactwo",
-  "kubernetes_node_pool_anti_affinity_false": "Antykoligacja nieaktywna"
+  "kubernetes_node_pool_anti_affinity_true": "Funkcja anti-affinity włączona",
+  "kubernetes_node_pool_anti_affinity_false": "Funkcja anti-affinity wyłączona"
 }

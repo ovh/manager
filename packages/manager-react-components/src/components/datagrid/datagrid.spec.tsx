@@ -296,6 +296,20 @@ it('should set isLoading to load more button when isLoading is true', async () =
   expect(getByTestId('load-more-btn')).toHaveAttribute('is-loading', 'true');
 });
 
+it('should display load all button and set isLoading to true', async () => {
+  const { getByTestId } = render(
+    <Datagrid
+      columns={cols}
+      items={[]}
+      totalItems={0}
+      isLoading
+      hasNextPage
+      onFetchAllPages={() => {}}
+    />,
+  );
+  expect(getByTestId('load-all-btn')).toHaveAttribute('is-loading', 'true');
+});
+
 it('should disable overflow of table', async () => {
   const { container } = render(
     <DatagridTest

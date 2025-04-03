@@ -26,6 +26,6 @@
   "autorenew_agora_terminate_service_error_NUTANIX": "An error has occurred requesting to cancel your Nutanix service. {{error}}",
   "autorenew_agora_terminate_service_NUTANIX_NODE": "Cancel this node",
   "autorenew_agora_terminate_service_warning_NUTANIX_NODE": "You are about to cancel your subscription to the \"{{serviceName}}\" node.",
-  "autorenew_agora_terminate_service_success_NUTANIX_NODE": "The termination of your \"{{serviceName}}\" node has been processed. You will receive an email with the details of the procedure to follow.",
-  "autorenew_agora_terminate_service_error_NUTANIX_NODE": "Your cancelation request has not been processed: {{error}}"
+  "autorenew_agora_terminate_service_success_NUTANIX_NODE": "Your \"{{serviceName}}\" node cancellation has been processed. An email will be sent to you explaining the next steps.",
+  "autorenew_agora_terminate_service_error_NUTANIX_NODE": "Unable to process your cancellation request: {{error}}"
 }
