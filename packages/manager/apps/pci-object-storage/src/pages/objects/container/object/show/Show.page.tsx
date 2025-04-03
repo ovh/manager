@@ -101,6 +101,12 @@ export default function ObjectPage() {
     null,
   );
 
+  useEffect(() => {
+    if (prefixSearchField !== null && prefixSearchFieldTemp === '') {
+      setPrefixSearchField(null);
+    }
+  }, [prefixSearchFieldTemp, prefixSearchField]);
+
   const handleSearchChange = (handleKey: string | null) => {
     setPrefixSearchField(handleKey);
   };
@@ -633,94 +639,44 @@ export default function ObjectPage() {
             </div>
           </div>
 
-          <div className="sm:flex items-center justify-between mt-8">
-            {shouldHideButton && (
-              <OdsButton
-                onClick={() => {
-                  clearNotifications();
-                  navigate(`./new?region=${searchParams.get('region')}`);
-                }}
-                label={tContainer(
-                  `pci_projects_project_storages_containers_container_add_object_label`,
-                )}
-                icon="plus"
-                size="sm"
-              />
-            )}
-
-            <div className="flex justify-center gap-4 ml-auto">
-              {is.rightOffer &&
-                !is.localZone &&
-                container.versioning.status !== STATUS_DISABLED && (
-                  <>
-                    <OdsText>
-                      {tContainer(
-                        'pci_projects_project_storages_containers_container_show_versions',
-                      )}
-                    </OdsText>
-                    <OdsToggle
-                      class="my-toggle"
-                      name="enableVersionsToggle"
-                      onOdsChange={({ detail }) =>
-                        setEnableVersionsToggle(detail.value as boolean)
-                      }
-                    />
-                  </>
-                )}
-
-              {!container?.s3StorageType && (
-                <>
-                  {' '}
-                  <OdsInput
-                    name="searchField"
-                    className="min-w-[15rem]"
-                    value={searchField}
-                    onOdsChange={({ detail }) =>
-                      setSearchField(detail.value as string)
-                    }
-                    onKeyDown={(event) => {
-                      if (event.key === 'Enter') {
-                        handleSearch();
-                      }
-                    }}
-                  />
-                  <OdsButton
-                    label=""
-                    icon="magnifying-glass"
-                    size="sm"
-                    onClick={handleSearch}
-                  />
-                  <OdsButton
-                    id="filterPopoverTrigger"
-                    size="sm"
-                    color="primary"
-                    label={tFilter('common_criteria_adder_filter_label')}
-                    variant="outline"
-                    icon="filter"
-                  />
-                  <OdsPopover triggerId="filterPopoverTrigger">
-                    <FilterAdd
-                      columns={filterColumns}
-                      onAddFilter={(addedFilter, column) => {
-                        setPagination({
-                          pageIndex: 0,
-                          pageSize: pagination.pageSize,
-                        });
-                        addFilter({
-                          ...addedFilter,
-                          label: column.label,
-                        });
-                      }}
-                    />
-                  </OdsPopover>
-                </>
-              )}
-            </div>
-          </div>
-
           {container?.s3StorageType && (
             <div className="mt-8">
               <Datagrid
+                topbar={
+                  <div className="flex w-full justify-between items-center">
+                    <OdsButton
+                      onClick={() => {
+                        clearNotifications();
+                        navigate(`./new?region=${searchParams.get('region')}`);
+                      }}
+                      label={tContainer(
+                        `pci_projects_project_storages_containers_container_add_object_label`,
+                      )}
+                      icon="plus"
+                      size="sm"
+                    />
+                    <div className="flex justify-end gap-4 mr-5">
+                      {is.rightOffer &&
+                        !is.localZone &&
+                        container.versioning.status !== STATUS_DISABLED && (
+                          <>
+                            <OdsText>
+                              {tContainer(
+                                'pci_projects_project_storages_containers_container_show_versions',
+                              )}
+                            </OdsText>
+                            <OdsToggle
+                              class="my-toggle"
+                              name="enableVersionsToggle"
+                              onOdsChange={({ detail }) =>
+                                setEnableVersionsToggle(detail.value as boolean)
+                              }
+                            />
+                          </>
+                        )}
+                    </div>
+                  </div>
+                }
                 columns={objectsColumns}
                 hasNextPage={hasNextPage}
                 items={isObjectsLoading ? [] : containerObjectsWithIndex}
@@ -739,6 +695,72 @@ export default function ObjectPage() {
 
           {!container?.s3StorageType && (
             <>
+              <div className="sm:flex items-center justify-between mt-8">
+                {shouldHideButton && (
+                  <OdsButton
+                    onClick={() => {
+                      clearNotifications();
+                      navigate(`./new?region=${searchParams.get('region')}`);
+                    }}
+                    label={tContainer(
+                      `pci_projects_project_storages_containers_container_add_object_label`,
+                    )}
+                    icon="plus"
+                    size="sm"
+                  />
+                )}
+
+                <div className="flex justify-center gap-4 ml-auto">
+                  {!container?.s3StorageType && (
+                    <>
+                      {' '}
+                      <OdsInput
+                        name="searchField"
+                        className="min-w-[15rem]"
+                        value={searchField}
+                        onOdsChange={({ detail }) =>
+                          setSearchField(detail.value as string)
+                        }
+                        onKeyDown={(event) => {
+                          if (event.key === 'Enter') {
+                            handleSearch();
+                          }
+                        }}
+                      />
+                      <OdsButton
+                        label=""
+                        icon="magnifying-glass"
+                        size="sm"
+                        onClick={handleSearch}
+                      />
+                      <OdsButton
+                        id="filterPopoverTrigger"
+                        size="sm"
+                        color="primary"
+                        label={tFilter('common_criteria_adder_filter_label')}
+                        variant="outline"
+                        icon="filter"
+                      />
+                      <OdsPopover triggerId="filterPopoverTrigger">
+                        <FilterAdd
+                          columns={filterColumns}
+                          onAddFilter={(addedFilter, column) => {
+                            setPagination({
+                              pageIndex: 0,
+                              pageSize: pagination.pageSize,
+                            });
+                            addFilter({
+                              ...addedFilter,
+                              label: column.label,
+                            });
+                          }}
+                        />
+                      </OdsPopover>
+                    </>
+                  )}
+                </div>
+              </div>
+
               <div className="mt-8">
                 <FilterList filters={filters} onRemoveFilter={removeFilter} />
               </div>
