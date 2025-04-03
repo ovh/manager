@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-endpoints-app@0.5.0...@ovh-ux/manager-pci-ai-endpoints-app@0.5.1) (2025-04-03)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3819] ([f6bbe60](https://github.com/ovh/manager/commit/f6bbe606bcd84541fdca006295a97b884e244c37))
+* **i18n:** add missing translations [CDS 3825] ([c6d2754](https://github.com/ovh/manager/commit/c6d2754e2c52befd9a757525dfa32c00e3757ac1))
+
+
+
+
+
 # [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-endpoints-app@0.4.2...@ovh-ux/manager-pci-ai-endpoints-app@0.5.0) (2025-04-02)
 
 

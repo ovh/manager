@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.115.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.115.0...@ovh-ux/manager-container-app@0.115.1) (2025-04-03)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3825] ([c6d2754](https://github.com/ovh/manager/commit/c6d2754e2c52befd9a757525dfa32c00e3757ac1))
+* **web:** harmonize email products naming ([#16324](https://github.com/ovh/manager/issues/16324)) ([0471f44](https://github.com/ovh/manager/commit/0471f440945666c208282882d49c02f99b590ed9)), closes [#MANAGER-17668](https://github.com/ovh/manager/issues/MANAGER-17668)
+
+
+
+
+
 # [0.115.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.114.0...@ovh-ux/manager-container-app@0.115.0) (2025-04-03)
 
 

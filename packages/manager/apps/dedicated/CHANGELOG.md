@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [20.23.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.23.2...@ovh-ux/manager-dedicated@20.23.3) (2025-04-03)
+
+
+### Bug Fixes
+
+* **web:** harmonize email products naming ([#16324](https://github.com/ovh/manager/issues/16324)) ([0471f44](https://github.com/ovh/manager/commit/0471f440945666c208282882d49c02f99b590ed9)), closes [#MANAGER-17668](https://github.com/ovh/manager/issues/MANAGER-17668)
+
+
+
+
+
 ## [20.23.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.23.1...@ovh-ux/manager-dedicated@20.23.2) (2025-04-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated

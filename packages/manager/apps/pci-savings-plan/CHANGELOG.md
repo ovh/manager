@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.12.0...@ovh-ux/manager-pci-savings-plan-app@1.12.1) (2025-04-03)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3825] ([c6d2754](https://github.com/ovh/manager/commit/c6d2754e2c52befd9a757525dfa32c00e3757ac1))
+
+
+
+
+
 # [1.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.11.15...@ovh-ux/manager-pci-savings-plan-app@1.12.0) (2025-03-31)
 
 

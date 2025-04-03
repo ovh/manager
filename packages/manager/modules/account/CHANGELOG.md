@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.8.0...@ovh-ux/manager-account@0.8.1) (2025-04-03)
+
+
+### Bug Fixes
+
+* **web:** harmonize email products naming ([#16324](https://github.com/ovh/manager/issues/16324)) ([0471f44](https://github.com/ovh/manager/commit/0471f440945666c208282882d49c02f99b590ed9)), closes [#MANAGER-17668](https://github.com/ovh/manager/issues/MANAGER-17668)
+
+
+
+
+
 # [0.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.7.8...@ovh-ux/manager-account@0.8.0) (2025-04-01)
 
 
