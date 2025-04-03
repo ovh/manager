@@ -41,7 +41,7 @@ describe('Dashboard page', () => {
 
   it('renders Dashboard', async () => {
     render(<Dashboard />, { wrapper: RouterWithQueryClientWrapper });
-    expect(screen.getByTestId('dashboard-container')).toBeInTheDocument();
+    expect(screen.getByTestId('dashboard-container')).toBeTruthy();
   });
 
   it('renders Dashboard with toast error on API Error', async () => {
@@ -49,7 +49,7 @@ describe('Dashboard page', () => {
       throw apiErrorMock;
     });
     render(<Dashboard />, { wrapper: RouterWithQueryClientWrapper });
-    expect(screen.getByTestId('dashboard-container')).toBeInTheDocument();
+    expect(screen.getByTestId('dashboard-container')).toBeTruthy();
     await waitFor(() => {
       expect(useToast().toast).toHaveBeenCalledWith({
         title: 'errorGetCommandCli',
