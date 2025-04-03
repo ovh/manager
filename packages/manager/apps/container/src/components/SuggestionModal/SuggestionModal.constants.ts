@@ -1,4 +1,4 @@
-import { User } from '@ovh-ux/manager-config';
+import { Environment, User } from '@ovh-ux/manager-config';
 import { ModalToDisplayConfiguration } from '@/types/modal-configuration.type';
 import { Suggestion } from '@/types/suggestion';
 import { fetchCompanyNumbersSuggestions } from '@/api/suggestion';
