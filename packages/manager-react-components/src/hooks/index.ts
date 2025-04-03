@@ -1,6 +1,7 @@
 import { TRegion as Region } from './useProjectRegions';
 
 export * from './pci-project-provider';
+export * from './auto-refetch/useAutoRefetch';
 export * from './breadcrumb/useBreadcrumb';
 export * from './useCatalogPrice';
 export * from './useMe';
