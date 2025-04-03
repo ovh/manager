@@ -169,7 +169,7 @@ export default function Consumption() {
   };
   return (
     <>
-      <OdsFormField className="w-1/4">
+      <OdsFormField className="w-full md:w-1/4">
         <label slot="label" htmlFor="period-select">
           {t('usage_period')}
         </label>
@@ -178,7 +178,6 @@ export default function Consumption() {
           name="period"
           value={selectedPeriod}
           onOdsChange={(e) => setSelectedPeriod(e.detail.value)}
-          className="w-1/3"
           data-testid="period-select"
         >
           {periodOptions.map((period) => (
