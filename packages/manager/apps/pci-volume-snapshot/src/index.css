@@ -28,6 +28,9 @@ button {
 
 .badge-region-type::part(button) {
   background-color: var(--ods-color-primary-100);
+  min-height: 1em;
+  padding: 0 6px;
+  border-radius: var(--ods-border-radius-lg);
   cursor: help;
 }
 

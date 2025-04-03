@@ -65,6 +65,7 @@ export default function BadgeRegionType({
         <OdsButton
           className="badge-region-type"
           icon="circle-question"
+          iconAlignment="right"
           size="sm"
           variant="ghost"
           label={label}
