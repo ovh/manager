@@ -5,7 +5,12 @@ import {
   OsdsSpinner,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import {
+  ODS_ICON_NAME,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
+} from '@ovhcloud/ods-components';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
 import {
@@ -17,8 +22,8 @@ import {
   DeploymentTilesInput,
   useFeaturedDeploymentModes,
 } from '@ovh-ux/manager-pci-common';
-import { Subtitle } from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
+import { Subtitle, Links } from '@ovh-ux/manager-react-components';
+import { useTranslation, Trans } from 'react-i18next';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useData } from '@/api/hooks/useData';
 import { RegionType, StepIdsEnum, TRegion } from '@/api/types';
@@ -26,9 +31,21 @@ import { useOrderStore } from '@/hooks/order/useStore';
 import { useActions } from '@/hooks/order/useActions';
 import { StepComponent } from '@/components/container/Step.component';
 import { FloatingIpSummary } from '@/pages/order/steps/FloatingIpSummary';
+import useGuideLink from '@/hooks/useGuideLink/useGuideLink';
 
 const isRegionWith3AZ = (regions: TRegion[]) =>
   regions.some((region) => region.type === RegionType['3AZ']);
+
+const GuideLink = ({
+  children,
+  href,
+}: Readonly<{ href: string; children?: string }>) => (
+  <Links
+    label={children}
+    href={href}
+    target={OdsHTMLAnchorElementTarget._blank}
+  />
+);
 
 export const FloatingSteps = ({
   projectId,
@@ -39,7 +56,7 @@ export const FloatingSteps = ({
   regionName: string;
   instanceId?: string;
 }): JSX.Element => {
-  const { t } = useTranslation(['order', 'regions']);
+  const { t } = useTranslation(['order', 'regions', 'common']);
   const { state: orderData, getInstanceById, isInstanceFetching } = useData(
     projectId,
     regionName,
@@ -48,6 +65,7 @@ export const FloatingSteps = ({
   const [instanceCreationURL, setInstanceCreationURL] = useState('');
   const { On } = useActions(projectId);
   const nav = useNavigation();
+  const guides = useGuideLink();
 
   useEffect(() => {
     nav
@@ -175,6 +193,23 @@ export const FloatingSteps = ({
               }
             />
           </PCICommonContext.Provider>
+          {form.floatingRegion?.type === RegionType['3AZ'] && (
+            <div className="mt-8">
+              <OsdsText
+                color={ODS_THEME_COLOR_INTENT.text}
+                size={ODS_TEXT_SIZE._400}
+                level={ODS_TEXT_LEVEL.body}
+              >
+                <Trans
+                  t={t}
+                  i18nKey="pci_floating_ip_3az_guide_description"
+                  components={{
+                    Link: <GuideLink href={guides['3AZ']} />,
+                  }}
+                />
+              </OsdsText>
+            </div>
+          )}
         </div>
       </StepComponent>
       <StepComponent
@@ -217,9 +252,7 @@ export const FloatingSteps = ({
                   }}
                 >
                   <span slot="placeholder">
-                    {t(
-                      'pci_additional_ip_create_step_attach_instance_label',
-                    )}
+                    {t('pci_additional_ip_create_step_attach_instance_label')}
                   </span>
                   {selectedRegionInstances.map((instance) => (
                     <OsdsSelectOption key={instance.id} value={instance.id}>
@@ -265,15 +298,14 @@ export const FloatingSteps = ({
                 color={ODS_THEME_COLOR_INTENT.error}
               >
                 <p className="text-base font-sans">
-                  {t('pci_additional_ip_create_no_instance_message_floating_ip')}{' '}
+                  {t(
+                    'pci_additional_ip_create_no_instance_message_floating_ip',
+                  )}{' '}
                   <span
-                dangerouslySetInnerHTML={{
-                  __html: t(
-                        'pci_additional_ip_create_create_instance',
-                        {
-                          url: instanceCreationURL,
-                        },
-                      ),
+                    dangerouslySetInnerHTML={{
+                      __html: t('pci_additional_ip_create_create_instance', {
+                        url: instanceCreationURL,
+                      }),
                     }}
                   ></span>
                 </p>
