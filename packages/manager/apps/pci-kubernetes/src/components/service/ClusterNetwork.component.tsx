@@ -19,6 +19,8 @@ import { TKube } from '@/types';
 import { PROCESSING_STATUS } from '@/constants';
 import { useRegionSubnets } from '@/api/hooks/useSubnets';
 import TileLine from './TileLine.component';
+import { isMonoDeploymentZone } from '@/helpers';
+import { useRegionInformations } from '@/api/hooks/useRegionInformations';
 
 export type ClusterNetworkProps = {
   projectId: string;
@@ -39,7 +41,14 @@ export default function ClusterNetwork({
     kubeDetail.privateNetworkId,
   );
 
-  const shouldLoadSubnets = !!kubeDetail.privateNetworkId;
+  const {
+    data: regionInformations,
+    isPending: isPendingRegionInformation,
+  } = useRegionInformations(projectId, kubeDetail.region);
+
+  const shouldLoadSubnets =
+    !!kubeDetail.privateNetworkId &&
+    isMonoDeploymentZone(regionInformations?.type);
 
   const ip = kubeDetail?.privateNetworkConfiguration?.defaultVrackGateway;
 
@@ -118,7 +127,7 @@ export default function ClusterNetwork({
         />
         {shouldLoadSubnets && (
           <>
-            {(kubeSubnet || isSubnetPending) && (
+            {(kubeSubnet || isSubnetPending || isPendingRegionInformation) && (
               <TileLine
                 title={t('kube_service_cluster_network_subnet')}
                 value={
@@ -168,6 +177,7 @@ export default function ClusterNetwork({
 
         {shouldLoadSubnets && (
           <OsdsButton
+            data-testid="cluster-network-edit-button"
             color={ODS_THEME_COLOR_INTENT.primary}
             variant={ODS_BUTTON_VARIANT.ghost}
             size={ODS_BUTTON_SIZE.sm}
