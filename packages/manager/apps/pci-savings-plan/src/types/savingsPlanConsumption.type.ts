@@ -1,8 +1,7 @@
-import { CurrencyCode } from '@ovh-ux/manager-react-components';
 import { z } from 'zod';
 
 const moneySchema = z.object({
-  currencyCode: z.nativeEnum(CurrencyCode),
+  currencyCode: z.string(),
   priceInUcents: z.number().nullable(),
   text: z.string(),
   value: z.number(),
