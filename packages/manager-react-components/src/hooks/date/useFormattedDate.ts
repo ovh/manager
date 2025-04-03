@@ -24,6 +24,10 @@ export type FormattedDateProps = {
   format?: DateFormat;
 };
 
+//
+// @deprecated This hook is deprecated and will be removed in the next major version.
+// Use directly the component FormattedDate instead to be more readable
+//
 export const useFormattedDate = ({
   dateString,
   defaultLocale = 'FR-fr',
