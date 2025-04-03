@@ -34,23 +34,23 @@ describe('AppHeader component', () => {
     render(<JobHeader.Skeleton />, {
       wrapper: RouterWithQueryClientWrapper,
     });
-    expect(screen.getByTestId('job-header-skeleton')).toBeInTheDocument();
+    expect(screen.getByTestId('job-header-skeleton')).toBeTruthy();
   });
 
   it('renders JobHeader and trigger stop modal', async () => {
     render(<JobHeader job={runningJob} />, {
       wrapper: RouterWithQueryClientWrapper,
     });
-    expect(screen.getByTestId('job-header-container')).toBeInTheDocument();
-    expect(screen.getByTestId('open-stop-modal-button')).toBeInTheDocument();
+    expect(screen.getByTestId('job-header-container')).toBeTruthy();
+    expect(screen.getByTestId('open-stop-modal-button')).toBeTruthy();
 
     fireEvent.click(screen.getByTestId('open-stop-modal-button'));
     await waitFor(() => {
-      expect(screen.getByTestId('kill-job-modal')).toBeInTheDocument();
+      expect(screen.getByTestId('kill-job-modal')).toBeTruthy();
     });
     fireEvent.click(screen.getByTestId('stop-job-cancel-button'));
     await waitFor(() => {
-      expect(screen.queryByTestId('kill-job-modal')).not.toBeInTheDocument();
+      expect(screen.queryByTestId('kill-job-modal')).toBeNull();
     });
   });
 
@@ -58,19 +58,17 @@ describe('AppHeader component', () => {
     render(<JobHeader job={stroppedJob} />, {
       wrapper: RouterWithQueryClientWrapper,
     });
-    expect(screen.getByTestId('job-header-container')).toBeInTheDocument();
-    expect(screen.getByTestId('open-restart-modal-button')).toBeInTheDocument();
-    expect(
-      screen.queryByTestId('open-stop-modal-button'),
-    ).not.toBeInTheDocument();
+    expect(screen.getByTestId('job-header-container')).toBeTruthy();
+    expect(screen.getByTestId('open-restart-modal-button')).toBeTruthy();
+    expect(screen.queryByTestId('open-stop-modal-button')).toBeNull();
 
     fireEvent.click(screen.getByTestId('open-restart-modal-button'));
     await waitFor(() => {
-      expect(screen.getByTestId('restart-job-modal')).toBeInTheDocument();
+      expect(screen.getByTestId('restart-job-modal')).toBeTruthy();
     });
     fireEvent.click(screen.getByTestId('restart-job-cancel-button'));
     await waitFor(() => {
-      expect(screen.queryByTestId('restart-job-modal')).not.toBeInTheDocument();
+      expect(screen.queryByTestId('restart-job-modal')).toBeNull();
     });
   });
 });

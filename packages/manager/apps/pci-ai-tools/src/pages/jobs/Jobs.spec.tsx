@@ -20,25 +20,25 @@ describe('Jobs List page', () => {
 
   it('should display Jobs pages and skeleton', async () => {
     render(<Jobs />, { wrapper: RouterWithQueryClientWrapper });
-    expect(screen.getByTestId('jobs-list-table-skeleton')).toBeInTheDocument();
+    expect(screen.getByTestId('jobs-list-table-skeleton')).toBeTruthy();
     await waitFor(() => {
-      expect(screen.getByTestId('guide-skeleton')).toBeInTheDocument();
+      expect(screen.getByTestId('guide-skeleton')).toBeTruthy();
     });
   });
 
   it('should display jobs list table and add button', async () => {
     render(<Jobs />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByTestId('create-job-button')).toBeInTheDocument();
-      expect(screen.getByText(mockedJob.id)).toBeInTheDocument();
-      expect(screen.getByText(mockedJob.spec.name)).toBeInTheDocument();
+      expect(screen.getByTestId('create-job-button')).toBeTruthy();
+      expect(screen.getByText(mockedJob.id)).toBeTruthy();
+      expect(screen.getByText(mockedJob.spec.name)).toBeTruthy();
     });
   });
 
   it('open start job modal from action table button', async () => {
     render(<Jobs />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByText(mockedJob.id)).toBeInTheDocument();
+      expect(screen.getByText(mockedJob.id)).toBeTruthy();
     });
     await openButtonInMenu('jobs-action-trigger', 'job-action-restart-button');
     expect(mockedUsedNavigate).toHaveBeenCalledWith('./restart/jobId');
@@ -47,7 +47,7 @@ describe('Jobs List page', () => {
   it('open kill job modal from action table button', async () => {
     render(<Jobs />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByText(mockedJob.id)).toBeInTheDocument();
+      expect(screen.getByText(mockedJob.id)).toBeTruthy();
     });
     await openButtonInMenu('jobs-action-trigger', 'job-action-stop-button');
     expect(mockedUsedNavigate).toHaveBeenCalledWith('./stop/jobId');
@@ -56,7 +56,7 @@ describe('Jobs List page', () => {
   it('open delete notebook Modal from action table button', async () => {
     render(<Jobs />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByText(mockedJob.id)).toBeInTheDocument();
+      expect(screen.getByText(mockedJob.id)).toBeTruthy();
     });
     await openButtonInMenu('jobs-action-trigger', 'job-action-delete-button');
     expect(mockedUsedNavigate).toHaveBeenCalledWith('./delete/jobId');
@@ -65,7 +65,7 @@ describe('Jobs List page', () => {
   it('go to manage job from action table button', async () => {
     render(<Jobs />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByText(mockedJob.id)).toBeInTheDocument();
+      expect(screen.getByText(mockedJob.id)).toBeTruthy();
     });
     await openButtonInMenu('jobs-action-trigger', 'job-action-manage-button');
     expect(mockedUsedNavigate).toHaveBeenCalledWith('./jobId');
