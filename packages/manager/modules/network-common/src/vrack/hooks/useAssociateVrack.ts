@@ -2,11 +2,8 @@ import React from 'react';
 import { useTask } from '@ovh-ux/manager-react-components';
 import { useMutation } from '@tanstack/react-query';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
-import {
-  Task,
-  associateVrackServices,
-  associateVrackServicesQueryKey,
-} from '../index';
+import { associateVrackServices, associateVrackServicesQueryKey } from '../api';
+import { Task } from '../../types';
 
 export type UseAssociateVrackParams = {
   vrackServicesId: string;

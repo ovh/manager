@@ -1,5 +1,5 @@
-import { apiClient } from '@ovh-ux/manager-core-api';
-import { VrackServicesWithIAM } from '../../types';
+import { ApiResponse, apiClient } from '@ovh-ux/manager-core-api';
+import { VrackServicesWithIAM } from '../../../types';
 
 export const getVrackServicesResourceQueryKey = (vrackServicesId: string) => [
   `get/vrackServices/resource/${vrackServicesId}`,
@@ -8,7 +8,9 @@ export const getVrackServicesResourceQueryKey = (vrackServicesId: string) => [
 /**
  * Get the vRack Services
  */
-export const getVrackServicesResource = async (vrackServicesId: string) =>
+export const getVrackServicesResource = async (
+  vrackServicesId: string,
+): Promise<ApiResponse<VrackServicesWithIAM>> =>
   apiClient.v2.get<VrackServicesWithIAM>(
     `/vrackServices/resource/${vrackServicesId}`,
   );

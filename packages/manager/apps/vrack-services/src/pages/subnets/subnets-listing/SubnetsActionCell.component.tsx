@@ -7,7 +7,7 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { ActionMenu } from '@ovh-ux/manager-react-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { VrackServicesWithIAM } from '@ovh-ux/manager-network-common';
 import { urls } from '@/routes/routes.constants';
 import { isEditable } from '@/utils/vrack-services';
@@ -28,8 +28,10 @@ export const SubnetsActionCell: React.FC<SubnetsActionCellProps> = ({
 
   return (
     <ActionMenu
+      id={`action-menu-${vs.id}`}
       isCompact
-      disabled={disabled}
+      isDisabled={disabled}
+      variant={ODS_BUTTON_VARIANT.ghost}
       items={[
         {
           id: 1,
@@ -51,7 +53,7 @@ export const SubnetsActionCell: React.FC<SubnetsActionCellProps> = ({
         {
           id: 2,
           label: t('action-deleteSubnet'),
-          color: ODS_THEME_COLOR_INTENT.error,
+          color: ODS_BUTTON_COLOR.critical,
           onClick: () => {
             trackClick({
               location: PageLocation.datagrid,

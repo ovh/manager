@@ -5,8 +5,7 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { useNavigate } from 'react-router-dom';
-import { OsdsLink } from '@ovhcloud/ods-components/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { OdsLink } from '@ovhcloud/ods-components/react';
 import { VrackServicesWithIAM } from '@ovh-ux/manager-network-common';
 import { EditButton } from './EditButton.component';
 import { urls } from '@/routes/routes.constants';
@@ -26,11 +25,13 @@ export const DisplayName: React.FC<DisplayNameProps> = ({
   const navigate = useNavigate();
 
   return isListing ? (
-    <div className="flex align-center text-center justify-center">
-      <OsdsLink
+    <div className="flex">
+      <OdsLink
         className="overflow-hidden text-ellipsis max-w-[200px]"
-        color={ODS_THEME_COLOR_INTENT.primary}
-        onClick={() => {
+        label={name}
+        href=""
+        onClick={(event) => {
+          event.preventDefault();
           trackClick({
             location: PageLocation.datagrid,
             buttonType: ButtonType.link,
@@ -39,15 +40,12 @@ export const DisplayName: React.FC<DisplayNameProps> = ({
           });
           navigate(urls.overview.replace(':id', vs.id));
         }}
-        data-testid="display-name-link"
-      >
-        {name}
-      </OsdsLink>
+      />
       <InfoIcon className="ml-4" vs={vs} />
     </div>
   ) : (
     <EditButton
-      disabled={!isEditable(vs)}
+      isDisabled={!isEditable(vs)}
       onClick={() => {
         trackClick({
           location: PageLocation.tile,
@@ -57,7 +55,6 @@ export const DisplayName: React.FC<DisplayNameProps> = ({
         });
         navigate(urls.overviewEdit.replace(':id', vs.id));
       }}
-      data-testid="display-name-edit-button"
     >
       {name}
     </EditButton>

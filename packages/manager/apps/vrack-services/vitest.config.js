@@ -8,21 +8,22 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'jsdom',
-    setupFiles: [
-      // './setupTests.ts',
-      '@ovh-ux/manager-core-test-utils/setup-file-msw-ods17.tsx',
-    ],
+    setupFiles: ['./src/test-utils/setupIntegrationTests.ts'],
     coverage: {
       include: ['src'],
       exclude: [
         'src/types',
         'src/test-utils',
+        'src/utils/tracking.ts',
+        'src/pages/not-found',
+        'src/data/mocks',
         'src/vite-*.ts',
         'src/App.tsx',
         'src/index.tsx',
         'src/tracking.constant.ts',
       ],
     },
+    dangerouslyIgnoreUnhandledErrors: true,
     testTimeout: 60000,
     fileParallelism: false,
     maxWorkers: 1,

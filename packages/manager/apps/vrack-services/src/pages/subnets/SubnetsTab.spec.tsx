@@ -1,22 +1,21 @@
 import { describe, it } from 'vitest';
-import '@testing-library/jest-dom';
-import {
-  assertModalVisibility,
-  assertTextVisibility,
-  getButtonByLabel,
-} from '@ovh-ux/manager-core-test-utils';
-import { waitFor, fireEvent, screen } from '@testing-library/react';
-import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
+import { waitFor, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { vrackServicesListMocks } from '@ovh-ux/manager-network-common';
 import {
-  assertModalTitle,
+  assertModalVisibility,
+  assertModalText,
   assertOsdFormInputInError,
   changeInputValueByLabelText,
   getButtonByIcon,
-  getButtonByVariant,
+  getButtonByLabel,
   labels,
   renderTest,
-} from '../../test-utils';
+  assertDisabled,
+  assertEnabled,
+} from '@/test-utils';
 import { urls } from '@/routes/routes.constants';
 
 describe('Vrack Services subnets page test suite', () => {
@@ -29,8 +28,7 @@ describe('Vrack Services subnets page test suite', () => {
     const subnetTab = await waitFor(() =>
       screen.getByText(labels.dashboard.subnetsTabLabel),
     );
-
-    await waitFor(() => fireEvent.click(subnetTab));
+    await waitFor(() => userEvent.click(subnetTab));
 
     await assertTextVisibility(labels.subnets.subnetsOnboardingTitle);
   });
@@ -44,8 +42,7 @@ describe('Vrack Services subnets page test suite', () => {
     const subnetTab = await waitFor(() =>
       screen.getByText(labels.dashboard.subnetsTabLabel),
     );
-
-    await waitFor(() => fireEvent.click(subnetTab));
+    await waitFor(() => userEvent.click(subnetTab));
 
     await assertTextVisibility(labels.subnets.subnetDatagridDisplayNameLabel);
     await assertTextVisibility(
@@ -66,11 +63,11 @@ describe('Vrack Services subnets page test suite', () => {
     });
 
     await assertTextVisibility(labels.subnets.betaSubnetLimitMessage);
-    await getButtonByLabel({
+    const submitButton = await getButtonByLabel({
       container,
-      label: labels.subnets.createSubnetButtonLabel,
-      disabled: true,
+      value: labels.subnets.createSubnetButtonLabel,
     });
+    await assertDisabled(submitButton);
   });
 
   it('should edit a subnet', async () => {
@@ -84,21 +81,21 @@ describe('Vrack Services subnets page test suite', () => {
 
     const actionMenuButton = await getButtonByIcon({
       container,
-      iconName: ODS_ICON_NAME.ELLIPSIS,
+      value: ODS_ICON_NAME.ellipsisVertical,
     });
-
-    await waitFor(() => fireEvent.click(actionMenuButton));
+    await assertEnabled(actionMenuButton);
+    await waitFor(() => userEvent.click(actionMenuButton));
 
     const editLink = await getButtonByLabel({
       container,
-      label: labels.subnets['action-editSubnet'],
+      value: labels.subnets['action-editSubnet'],
     });
+    await assertEnabled(editLink);
+    await waitFor(() => userEvent.click(editLink));
 
-    await waitFor(() => fireEvent.click(editLink));
-
-    await assertModalTitle({
+    await assertModalText({
       container,
-      title: labels.subnets.modalSubnetUpdateHeadline,
+      text: labels.subnets.modalSubnetUpdateHeadline,
     });
 
     // not /24
@@ -120,11 +117,11 @@ describe('Vrack Services subnets page test suite', () => {
       inputLabel: labels.subnets.cidrLabel,
       inError: false,
     });
-    await getButtonByVariant({
+    const submitButton = await getButtonByLabel({
       container,
-      variant: ODS_BUTTON_VARIANT.flat,
-      disabled: true,
+      value: labels.actions.modify,
     });
+    await assertDisabled(submitButton);
 
     // new value is correct
     await changeInputValueByLabelText({
@@ -135,14 +132,8 @@ describe('Vrack Services subnets page test suite', () => {
       inputLabel: labels.subnets.cidrLabel,
       inError: false,
     });
-    const submitButton = await getButtonByVariant({
-      container,
-      variant: ODS_BUTTON_VARIANT.flat,
-      disabled: false,
-    });
-
-    await waitFor(() => fireEvent.click(submitButton));
-
+    await assertEnabled(submitButton);
+    await waitFor(() => userEvent.click(submitButton));
     await assertModalVisibility({ container, isVisible: false });
   });
 
@@ -158,17 +149,15 @@ describe('Vrack Services subnets page test suite', () => {
 
     const actionMenuButton = await getButtonByIcon({
       container,
-      iconName: ODS_ICON_NAME.ELLIPSIS,
+      value: ODS_ICON_NAME.ellipsisVertical,
     });
-
-    await waitFor(() => fireEvent.click(actionMenuButton));
+    await waitFor(() => userEvent.click(actionMenuButton));
 
     const editLink = await getButtonByLabel({
       container,
-      label: labels.subnets['action-editSubnet'],
+      value: labels.subnets['action-editSubnet'],
     });
-
-    await waitFor(() => fireEvent.click(editLink));
+    await waitFor(() => userEvent.click(editLink));
 
     // new value is correct
     await changeInputValueByLabelText({
@@ -179,13 +168,12 @@ describe('Vrack Services subnets page test suite', () => {
       inputLabel: labels.subnets.cidrLabel,
       inError: false,
     });
-    const submitButton = await getButtonByVariant({
+    const submitButton = await getButtonByLabel({
       container,
-      variant: ODS_BUTTON_VARIANT.flat,
-      disabled: false,
+      value: labels.actions.modify,
     });
-
-    await waitFor(() => fireEvent.click(submitButton));
+    await assertEnabled(submitButton);
+    await waitFor(() => userEvent.click(submitButton));
 
     await assertModalVisibility({ container, isVisible: true });
     await assertTextVisibility(
@@ -204,39 +192,33 @@ describe('Vrack Services subnets page test suite', () => {
 
     const actionMenuButton = await getButtonByIcon({
       container,
-      iconName: ODS_ICON_NAME.ELLIPSIS,
+      value: ODS_ICON_NAME.ellipsisVertical,
     });
-
-    await waitFor(() => fireEvent.click(actionMenuButton));
+    await waitFor(() => userEvent.click(actionMenuButton));
 
     const editLink = await getButtonByLabel({
       container,
-      label: labels.subnets['action-deleteSubnet'],
+      value: labels.subnets['action-deleteSubnet'],
     });
+    await assertEnabled(editLink);
+    await waitFor(() => userEvent.click(editLink));
 
-    await waitFor(() => fireEvent.click(editLink));
-
-    await assertModalTitle({
+    await assertModalText({
       container,
-      title: labels.subnets.modalDeleteSubnetHeadline,
+      text: labels.subnets.modalDeleteSubnetHeadline,
     });
-    await getButtonByVariant({
+    const submitButton = await getButtonByLabel({
       container,
-      variant: ODS_BUTTON_VARIANT.flat,
-      disabled: true,
+      value: labels.actions.delete,
     });
+    await assertDisabled(submitButton);
     await changeInputValueByLabelText({
       inputLabel: labels.subnets.modalDeleteSubnetInputLabel,
       value: 'TERMINATE',
     });
 
-    const submitButton = await getButtonByVariant({
-      container,
-      variant: ODS_BUTTON_VARIANT.flat,
-      disabled: false,
-    });
-
-    await waitFor(() => fireEvent.click(submitButton));
+    await assertEnabled(submitButton);
+    await waitFor(() => userEvent.click(submitButton));
 
     await assertModalVisibility({ container, isVisible: false });
   });

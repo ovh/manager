@@ -1,19 +1,18 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
-  OsdsButton,
-  OsdsMessage,
-  OsdsModal,
-  OsdsText,
+  OdsButton,
+  OdsMessage,
+  OdsModal,
+  OdsText,
 } from '@ovhcloud/ods-components/react';
 import {
-  ODS_BUTTON_TYPE,
   ODS_BUTTON_VARIANT,
-  ODS_MESSAGE_TYPE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
+  ODS_MESSAGE_COLOR,
+  ODS_TEXT_PRESET,
+  ODS_BUTTON_COLOR,
+  ODS_MODAL_COLOR,
 } from '@ovhcloud/ods-components';
 import { useQueryClient } from '@tanstack/react-query';
 import {
@@ -22,7 +21,6 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { handleClick } from '@ovh-ux/manager-react-components';
 import {
   getVrackServicesResourceListQueryKey,
   useDissociateVrack,
@@ -87,66 +85,59 @@ export default function DissociateModal() {
   }
 
   return (
-    <OsdsModal
-      dismissible
-      color={ODS_THEME_COLOR_INTENT.error}
-      headline={t('modalDissociateHeadline')}
-      onOdsModalClose={closeModal}
+    <OdsModal
+      isOpen
+      isDismissible
+      color={ODS_MODAL_COLOR.critical}
+      onOdsClose={closeModal}
     >
+      <OdsText className="block mb-4" preset={ODS_TEXT_PRESET.heading4}>
+        {t('modalDissociateHeadline')}
+      </OdsText>
       {!!isError && (
-        <OsdsMessage type={ODS_MESSAGE_TYPE.error}>
-          <OsdsText
-            level={ODS_TEXT_LEVEL.body}
-            size={ODS_TEXT_SIZE._400}
-            color={ODS_THEME_COLOR_INTENT.text}
-          >
-            {t('modalDissociateError', {
-              error: error.response?.data?.message,
-            })}
-          </OsdsText>
-        </OsdsMessage>
+        <OdsMessage
+          className="block"
+          isDismissible={false}
+          color={ODS_MESSAGE_COLOR.critical}
+        >
+          {t('modalDissociateError', {
+            error: error.response?.data?.message,
+          })}
+        </OdsMessage>
       )}
 
-      <OsdsText
-        color={ODS_THEME_COLOR_INTENT.text}
-        level={ODS_TEXT_LEVEL.body}
-        className="block mb-8"
-      >
+      <OdsText preset={ODS_TEXT_PRESET.paragraph} className="block mb-8">
         {t('modalDissociateDescription')}
-      </OsdsText>
+      </OdsText>
       {isPending && (
         <LoadingText
           title={t('modalDissociateVrackWaitMessage')}
           description={t('removeVrackServicesFromVrack')}
         />
       )}
-      <OsdsButton
-        disabled={isPending || undefined}
+      <OdsButton
         slot="actions"
-        type={ODS_BUTTON_TYPE.button}
+        type="button"
         variant={ODS_BUTTON_VARIANT.ghost}
-        color={ODS_THEME_COLOR_INTENT.error}
-        {...handleClick(closeModal)}
-      >
-        {t('modalDissociateCancelButton')}
-      </OsdsButton>
-      <OsdsButton
-        disabled={isPending || undefined}
+        color={ODS_BUTTON_COLOR.critical}
+        label={t('modalDissociateCancelButton')}
+        onClick={closeModal}
+      />
+      <OdsButton
+        isLoading={isPending}
         slot="actions"
-        type={ODS_BUTTON_TYPE.button}
-        variant={ODS_BUTTON_VARIANT.flat}
-        color={ODS_THEME_COLOR_INTENT.error}
-        {...handleClick(() => {
+        type="button"
+        color={ODS_BUTTON_COLOR.critical}
+        onClick={() => {
           trackClick({
             ...sharedTrackingParams,
             actionType: 'action',
             actions: ['dissociate-vrack', 'confirm'],
           });
           dissociateVs();
-        })}
-      >
-        {t('modalDissociateConfirmButton')}
-      </OsdsButton>
-    </OsdsModal>
+        }}
+        label={t('modalDissociateConfirmButton')}
+      />
+    </OdsModal>
   );
 }

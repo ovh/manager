@@ -1,31 +1,19 @@
 import React from 'react';
-import {
-  OsdsIcon,
-  OsdsText,
-  OsdsButton,
-  OsdsLink,
-  OsdsMessage,
-} from '@ovhcloud/ods-components/react';
+import { OdsText, OdsButton, OdsMessage } from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_BUTTON_TYPE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_MESSAGE_TYPE,
+  ODS_TEXT_PRESET,
+  ODS_MESSAGE_COLOR,
 } from '@ovhcloud/ods-components';
 import { useNavigate } from 'react-router-dom';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ButtonType,
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { handleClick } from '@ovh-ux/manager-react-components';
-import { PageLayout } from '@/components/layout-helpers/PageLayout.component';
+import { LinkType, Links, PageLayout } from '@ovh-ux/manager-react-components';
 import { LoadingText } from '../LoadingText.component';
+import { Breadcrumb } from '../Breadcrumb.component';
 
 export type CreatePageLayoutProps = React.PropsWithChildren<{
   overviewUrl?: string;
@@ -65,48 +53,29 @@ export const CreatePageLayout: React.FC<CreatePageLayoutProps> = ({
   const { trackClick } = useOvhTracking();
 
   return (
-    <PageLayout items={[{ label: title }]} overviewUrl={overviewUrl}>
+    <PageLayout>
+      <Breadcrumb items={[{ label: title }]} overviewUrl={overviewUrl} />
       {goBackUrl && goBackLinkLabel && (
-        <OsdsLink
-          className="block mt-4 mb-5"
-          color={ODS_THEME_COLOR_INTENT.primary}
-          {...handleClick(() => {
+        <Links
+          type={LinkType.back}
+          label={goBackLinkLabel}
+          onClickReturn={() => {
             trackClick({
               location: PageLocation.funnel,
               buttonType: ButtonType.link,
               actions: ['go-back'],
             });
             navigate(goBackUrl);
-          })}
-        >
-          <span slot="start">
-            <OsdsIcon
-              className="mr-4"
-              name={ODS_ICON_NAME.ARROW_LEFT}
-              size={ODS_ICON_SIZE.xs}
-              color={ODS_THEME_COLOR_INTENT.primary}
-            />
-          </span>
-          {goBackLinkLabel}
-        </OsdsLink>
+          }}
+        />
       )}
-      <OsdsText
-        color={ODS_THEME_COLOR_INTENT.text}
-        level={ODS_TEXT_LEVEL.heading}
-        size={ODS_TEXT_SIZE._600}
-        className="block mb-7"
-      >
+      <OdsText preset={ODS_TEXT_PRESET.heading2} className="block mb-7">
         {title}
-      </OsdsText>
+      </OdsText>
       {description && (
-        <OsdsText
-          className="block mb-8"
-          level={ODS_TEXT_LEVEL.body}
-          color={ODS_THEME_COLOR_INTENT.default}
-          size={ODS_TEXT_SIZE._400}
-        >
+        <OdsText className="block mb-8" preset={ODS_TEXT_PRESET.paragraph}>
           {description}
-        </OsdsText>
+        </OdsText>
       )}
       <form
         onSubmit={(event) => {
@@ -115,23 +84,19 @@ export const CreatePageLayout: React.FC<CreatePageLayoutProps> = ({
         }}
       >
         {children}
-        <OsdsButton
-          disabled={!isFormSubmittable || isSubmitPending || undefined}
-          inline
-          type={ODS_BUTTON_TYPE.submit}
-          color={ODS_THEME_COLOR_INTENT.primary}
-          variant={ODS_BUTTON_VARIANT.flat}
+        <OdsButton
+          isDisabled={!isFormSubmittable || isSubmitPending}
+          type="submit"
           size={ODS_BUTTON_SIZE.sm}
-          {...handleClick(() => {
+          label={createButtonLabel}
+          onClick={() => {
             trackClick({
               location: PageLocation.funnel,
               buttonType: ButtonType.button,
               actions: confirmActionsTracking,
             });
-          })}
-        >
-          {createButtonLabel}
-        </OsdsButton>
+          }}
+        />
       </form>
       {isSubmitPending && (
         <div className="mt-4">
@@ -139,15 +104,13 @@ export const CreatePageLayout: React.FC<CreatePageLayoutProps> = ({
         </div>
       )}
       {hasFormError && (
-        <OsdsMessage className="mt-5" type={ODS_MESSAGE_TYPE.error}>
-          <OsdsText
-            level={ODS_TEXT_LEVEL.body}
-            size={ODS_TEXT_SIZE._400}
-            color={ODS_THEME_COLOR_INTENT.text}
-          >
-            {formErrorMessage}
-          </OsdsText>
-        </OsdsMessage>
+        <OdsMessage
+          isDismissible={false}
+          className="block mt-5"
+          color={ODS_MESSAGE_COLOR.critical}
+        >
+          {formErrorMessage}
+        </OdsMessage>
       )}
     </PageLayout>
   );
