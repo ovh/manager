@@ -29,7 +29,8 @@ export const webFeatures = [
   'web:microsoft',
   'cloud-web',
   'cloud-database',
-  'zimbra'
+  'zimbra',
+  'dedicated-servers'
 ];
 
 export default function WebSidebar() {
@@ -166,6 +167,20 @@ export default function WebSidebar() {
         ),
       });
     }
+
+    if (features['dedicated-servers'] ) {
+      menu.push({
+        id: 'dedicated-servers',
+        label: t('sidebar_dedicated-servers'),
+        icon: getIcon('ovh-font ovh-font-mail'),
+        routeMatcher: new RegExp('^/dedicated-servers'),
+        href: navigation.getURL(
+          'dedicated-servers',
+          '#/',
+        ),
+      });
+    }
+
 
     if (features['email-pro']) {
       menu.push({
