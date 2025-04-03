@@ -22,11 +22,11 @@ export const InstallationStatus = ({
   size = ODS_BADGE_SIZE.md,
   ...rest
 }: InstallationStatusProps) => {
-  const { t } = useTranslation('listing');
+  const { t } = useTranslation('installation');
   return (
     <React.Suspense>
       <OdsBadge
-        label={t(`sap_hub_history_installation_${status}`)}
+        label={t(`status_${status}`)}
         size={size}
         color={BADGE_COLOR_STATUS[status] ?? ODS_BADGE_COLOR.neutral}
         {...rest}
