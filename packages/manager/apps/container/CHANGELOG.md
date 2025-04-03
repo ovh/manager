@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.115.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.114.0...@ovh-ux/manager-container-app@0.115.0) (2025-04-03)
+
+
+### Bug Fixes
+
+* **web.office:** fix sidebare for easy switch ([c43d55d](https://github.com/ovh/manager/commit/c43d55da2a06201c3ffaab1b09284e0b58ae0d13)), closes [#MANAGER-15905](https://github.com/ovh/manager/issues/MANAGER-15905)
+
+
+### Features
+
+* **web.office:** office365 react application ([#13943](https://github.com/ovh/manager/issues/13943)) ([1d9a616](https://github.com/ovh/manager/commit/1d9a61665fb0cdf238bf1e65cb92db7ff259c2e6)), closes [#MANAGER-15905](https://github.com/ovh/manager/issues/MANAGER-15905)
+
+
+
+
+
 # [0.114.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.113.0...@ovh-ux/manager-container-app@0.114.0) (2025-04-02)
 
 
