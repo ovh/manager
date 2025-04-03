@@ -14,6 +14,8 @@ export const webFeatures = [
   'web:domains',
   'web:domains:all-dom',
   'web:domains:zone',
+  'web:domains:operations',
+  'web-ongoing-operations',
   'hosting',
   'private-database',
   'email-pro',
@@ -53,7 +55,7 @@ export default function WebSidebar() {
         state: 'app.domain.all',
         label: t('sidebar_domain'),
         icon: getIcon('ovh-font ovh-font-domain'),
-        routeMatcher: new RegExp(`^(/configuration)?/(domain|all_dom|zone)`),
+        routeMatcher: new RegExp(`^(/configuration)?/(domain|all_dom|zone|dns|upload|tracking)`),
         async loader() {
           const allDom = features['web:domains:all-dom']
             ? await loadServices('/allDom')
@@ -71,11 +73,19 @@ export default function WebSidebar() {
               icon: getIcon('oui-icon oui-icon-list'),
               ignoreSearch: true,
             },
-            {
+            features['web:domains:operations'] && {
               id: 'domain_operations',
               label: t('sidebar_domain_operations'),
               href: navigation.getURL('web', '#/domain/operation'),
               routeMatcher: new RegExp('^(/configuration)?/domain/operation'),
+              icon: getIcon('ovh-font ovh-font-config'),
+              ignoreSearch: true,
+            },
+            features['web-ongoing-operations'] && {
+              id: 'domain_operations',
+              label: t('sidebar_domain_operations'),
+              href: navigation.getURL('web-ongoing-operations', '#/'),
+              routeMatcher: new RegExp('/'),
               icon: getIcon('ovh-font ovh-font-config'),
               ignoreSearch: true,
             },

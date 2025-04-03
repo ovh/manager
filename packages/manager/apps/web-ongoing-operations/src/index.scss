@@ -1,0 +1,37 @@
+@tailwind utilities;
+
+@import '@ovhcloud/ods-themes/default';
+@import '@ovh-ux/manager-react-components/dist/style.css';
+
+html {
+  font-family: var(--ods-font-family-default);
+}
+
+.disabled-title::part(text) {
+  color: var(--ods-color-text-disabled-default);
+}
+
+.primary-title::part(text) {
+  color: var(--ods-color-primary-800);
+}
+
+.modal::part(dialog) {
+  max-height: 70vh;
+}
+
+td > ods-text > ods-link {
+  line-height: 1.2rem;
+}
+
+.modal-link::part(label) {
+  white-space: wrap;
+}
+
+.menu-item-button {
+  &::part(button) {
+    width: 100%;
+    justify-content: left;
+    height: 32px;
+    border-radius: 0;
+  }
+}
