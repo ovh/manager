@@ -28,6 +28,7 @@ jobs:
           yarn exec turbo -- run build --filter="./packages/manager/modules/common-api"
           yarn exec turbo -- run build --filter="./packages/manager/modules/vcd-api"
           yarn exec turbo -- run build --filter="./packages/manager/modules/manager-pci-common"
+          yarn exec turbo -- run build --filter="./packages/manager/modules/network-common"
       # This task is for running the jest tests outside microApps
       - name: Run tests Jest
         run: yarn test:jest
