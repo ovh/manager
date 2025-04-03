@@ -31,5 +31,7 @@
   "changelog_roadmap_security_label": "Request a new feature for our Security, Identity, and Operations solutions",
   "changelog_bugbounty_label": "Bug bounty",
   "changelog_private_cloud_product_list": "(VMware, Nutanix, SAP, Zerto Veeam, or HYCU)",
-  "changelog_infra_product_list": "(dedicated servers, transversal network features, and HA-NAS or EFS)"
+  "changelog_infra_product_list": "(dedicated servers, transversal network features, and HA-NAS or EFS)",
+  "changelog_private_cloud_product_list_us": "(VMware, Nutanix, Zerto Veeam or HYCU)",
+  "changelog_infra_product_list_us": "(dedicated servers, cross-network features)"
 }

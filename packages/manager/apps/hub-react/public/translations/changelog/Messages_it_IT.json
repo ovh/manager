@@ -31,5 +31,7 @@
   "changelog_roadmap_security_label": "Richiedere una nuova funzionalità per le nostre soluzioni \"Sicurezza, Identità e Operazioni\"",
   "changelog_bugbounty_label": "\"Bug bounty\"",
   "changelog_private_cloud_product_list": "(VMware, Nutanix, SAP, Zerto Veeam o HYCU)",
-  "changelog_infra_product_list": "(server dedicati, funzionalità trasversali di rete e NAS-HA o EFS)"
+  "changelog_infra_product_list": "(server dedicati, funzionalità trasversali di rete e NAS-HA o EFS)",
+  "changelog_private_cloud_product_list_us": "(VMware, Nutanix, Zerto Veeam o HYCU)",
+  "changelog_infra_product_list_us": "(server dedicati, funzionalità di rete trasversali)"
 }
