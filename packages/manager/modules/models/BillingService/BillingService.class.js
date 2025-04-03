@@ -329,6 +329,10 @@ export default class BillingService {
     );
   }
 
+  isSuspendedHostingWeb() {
+    return this.isHostingWeb && this.isResiliated();
+  }
+
   canBeDeleted() {
     return (
       [
