@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-tailwind-config@0.2.1...@ovh-ux/manager-tailwind-config@0.3.0) (2025-04-03)
+
+
+### Features
+
+* **tailwind-config:** update tailwind config to handle ODS 18 ([06258a9](https://github.com/ovh/manager/commit/06258a961404c567cbea130b5f02a13dc1843974))
+
+
+
+
+
 ## [0.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-tailwind-config@0.2.0...@ovh-ux/manager-tailwind-config@0.2.1) (2024-11-21)
 
 
