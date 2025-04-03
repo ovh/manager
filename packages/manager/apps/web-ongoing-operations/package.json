@@ -1,0 +1,61 @@
+{
+  "name": "@ovh-ux/manager-web-ongoing-operations-app",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Domain And DNS ongoing operations",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovh/manager.git",
+    "directory": "packages/manager/apps/web-ongoing-operations"
+  },
+  "license": "BSD-3-Clause",
+  "author": "OVH SAS",
+  "scripts": {
+    "build": "tsc && vite build",
+    "coverage": "TZ=UTC vitest run --coverage",
+    "dev": "tsc && vite",
+    "start": "lerna exec --stream --scope='@ovh-ux/manager-web-ongoing-operations-app' --include-dependencies -- npm run build --if-present",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-web-ongoing-operations-app' --include-dependencies -- npm run dev --if-present",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-web-ongoing-operations-app' --include-dependencies -- npm run dev:watch --if-present",
+    "test": "TZ=UTC vitest run"
+  },
+  "dependencies": {
+    "@ovh-ux/manager-config": "^8.1.0",
+    "@ovh-ux/manager-core-api": "^0.10.1",
+    "@ovh-ux/manager-core-utils": "^0.3.0",
+    "@ovh-ux/manager-react-components": "^2.17.0",
+    "@ovh-ux/manager-react-core-application": "^0.11.16",
+    "@ovh-ux/manager-react-shell-client": "^0.8.6",
+    "@ovh-ux/request-tagger": "^0.4.0",
+    "@ovhcloud/ods-components": "^18.6.0",
+    "@ovhcloud/ods-themes": "^18.6.0",
+    "@tanstack/react-query": "^5.69.0",
+    "axios": "^1.1.2",
+    "clsx": "^1.2.1",
+    "date-fns": "^3.6.0",
+    "i18next": "^23.8.2",
+    "i18next-http-backend": "^2.4.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-i18next": "^14.0.5",
+    "react-router-dom": "^6.3.0",
+    "tailwindcss": "^3.4.4"
+  },
+  "devDependencies": {
+    "@ovh-ux/manager-vite-config": "^0.9.3",
+    "@tanstack/react-query-devtools": "^5.69.0",
+    "@testing-library/dom": "^9.3.4",
+    "@testing-library/jest-dom": "^6.4.2",
+    "@testing-library/react": "^14.2.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "@vitest/coverage-v8": "^2.1.2",
+    "element-internals-polyfill": "^1.3.12",
+    "typescript": "^5.1.6",
+    "vite": "^5.2.13",
+    "vitest": "^2.1.2"
+  },
+  "regions": [
+    "CA",
+    "EU"
+  ]
+}
