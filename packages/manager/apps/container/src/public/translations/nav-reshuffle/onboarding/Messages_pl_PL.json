@@ -18,5 +18,7 @@
   "onboarding_walkme_popover_step5_content": "W tej sekcji znajdziesz wszystkie faktury, płatności w toku i zwroty.",
   "onboarding_popover_later_hide_button": "Może później",
   "onboarding_popover_do_not_show_again_button": "Nie wyświetlaj więcej tego komunikatu.",
-  "onboarding_popover_done_button": "Zakończ wizytę"
+  "onboarding_popover_done_button": "Zakończ wizytę",
+  "onboarding_walkme_popover_step2_content_us": "Zaktualizuj swój profil i sposoby płatności. Wyświetl faktury, usługi i zamówienia. Sprawdzaj powiadomienia.",
+  "onboarding_walkme_popover_step4_content_us": "Uzyskuj informacje o statusie usług w czasie rzeczywistym. Potrzebujesz pomocy? Sprawdź przewodniki techniczne i inne zasoby, dzięki którym uzyskasz wsparcie. Połącz się z nami na czacie, aby uzyskać rozwiązania, dodatkowe zasoby i odpowiedzi na pytania."
 }
