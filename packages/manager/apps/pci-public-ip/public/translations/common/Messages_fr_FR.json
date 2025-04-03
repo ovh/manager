@@ -50,5 +50,6 @@
   "pci_additional_ips_country_NL": "Pays-Bas",
   "pci_additional_ips_country_PT": "Portugal",
   "pci_additional_ips_country_SG": "Singapour",
-  "pci_additional_ips_country_IN": "Inde"
+  "pci_additional_ips_country_IN": "Inde",
+  "pci_additional_ips_click_here_btn": "Cliquez ici"
 }
