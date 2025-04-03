@@ -66,6 +66,11 @@ export default class BillingLinksService {
         `${autorenewLink}/delete-${service.serviceType
           .replace(/_/g, '-')
           .toLowerCase()}?serviceId=${service.serviceId}`;
+      links.deleteLinkSkipRetentionPeriod =
+        service.serviceType &&
+        `${autorenewLink}/delete-${service.serviceType
+          .replace(/_/g, '-')
+          .toLowerCase()}-skip-retention-period?serviceId=${service.id}`;
 
       const resiliationByEndRuleLink =
         (getResiliationLink && getResiliationLink()) ||

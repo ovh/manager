@@ -30,6 +30,7 @@ export default class {
     OvhApiEmailExchange,
     OvhApiMeAutorenew,
     OvhHttp,
+    $http,
     ovhPaymentMethod,
   ) {
     this.$q = $q;
@@ -41,6 +42,7 @@ export default class {
     this.OvhApiBillingAutorenewServices = OvhApiBillingAutorenewServices;
     this.OvhApiEmailExchange = OvhApiEmailExchange;
     this.OvhHttp = OvhHttp;
+    this.$http = $http;
     this.ovhPaymentMethod = ovhPaymentMethod;
     this.OvhApiMeAutorenew = OvhApiMeAutorenew;
     this.queryParams = {};
@@ -227,6 +229,12 @@ export default class {
         hosting: serviceName,
       },
     });
+  }
+
+  terminateHostingSkipRetentionPeriod(serviceId) {
+    return this.$http.post(
+      `/services/${serviceId}/terminate/skipRetentionPeriod`,
+    );
   }
 
   terminateEmail(serviceName) {
