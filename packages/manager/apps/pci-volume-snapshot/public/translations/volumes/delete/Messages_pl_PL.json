@@ -1,0 +1,8 @@
+{
+  "pci_projects_project_storages_snapshots_snapshot_delete_title": "Usuń snapshot",
+  "pci_projects_project_storages_snapshots_snapshot_delete_submit_label": "Potwierdź",
+  "pci_projects_project_storages_snapshots_snapshot_delete_cancel_label": "Anuluj",
+  "pci_projects_project_storages_snapshots_snapshot_delete_content": "Usuń ostatecznie snapshot {{snapshot}}",
+  "pci_projects_project_storages_snapshots_snapshot_delete_success_message": "Trwa usuwanie snapshota {{snapshot}}",
+  "pci_projects_project_storages_snapshots_snapshot_delete_error_delete": "Wystąpił błąd podczas usuwania snapshota {{snapshot}}: {{message}}."
+}
