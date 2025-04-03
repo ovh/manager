@@ -27,7 +27,7 @@ export const Loader = async ({ params }: NotebookLayoutProps) => {
     })
     .then(
       () => null,
-      () => redirect(`/pci/projects/${projectId}/ai/notebooks`),
+      () => redirect(`/pci/projects/${projectId}/ai-ml/notebooks`),
     );
 };
 
