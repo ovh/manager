@@ -92,7 +92,7 @@ const OrderFunnel = ({
         title: t('successCreatingJobTitle'),
         description: t('successCreatingJobDescription'),
       });
-      navigate(`../training/${job.id}`);
+      navigate(`../${job.id}`);
     },
   });
 

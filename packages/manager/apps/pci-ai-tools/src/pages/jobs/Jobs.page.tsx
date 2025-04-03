@@ -19,13 +19,11 @@ interface JobsProps {
 export const Loader = async ({ params }: JobsProps) => {
   const { projectId } = params;
   const jobs = await queryClient.fetchQuery({
-    queryKey: [projectId, 'ai/jobs'],
+    queryKey: [projectId, 'ai', 'job'],
     queryFn: () => getJobs({ projectId }),
   });
   if (jobs.length === 0) {
-    return redirect(
-      `/pci/projects/${projectId}/ai/notebooks/training/onboarding`,
-    );
+    return redirect(`/pci/projects/${projectId}/ai-ml/training/onboarding`);
   }
   return null;
 };

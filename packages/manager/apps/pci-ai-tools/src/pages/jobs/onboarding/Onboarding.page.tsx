@@ -27,7 +27,7 @@ const Onboarding = () => {
       <p>{t('description4')}</p>
       <Button data-testid="create-job-link" asChild>
         <Link
-          to="../training/new"
+          to="../new"
           className="hover:no-underline hover:text-primary-foreground"
         >
           {t('createJobButton')}
