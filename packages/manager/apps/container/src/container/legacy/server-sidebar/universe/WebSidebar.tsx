@@ -7,7 +7,7 @@ import useServiceLoader from "./useServiceLoader";
 import OrderTrigger from '../order/OrderTrigger';
 import webShopConfig from '../order/shop-config/web';
 import { ShopItem } from '../order/OrderPopupContent';
-import getIcon  from './GetIcon';
+import getIcon from './GetIcon';
 import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 
 export const webFeatures = [
@@ -29,6 +29,7 @@ export const webFeatures = [
   'web:microsoft',
   'cloud-web',
   'cloud-database',
+  'web-office',
   'zimbra'
 ];
 
@@ -271,8 +272,37 @@ export default function WebSidebar() {
                 ...service,
               }));
             },
-          }
-        ],
+          },
+          features['web-office'] &&
+          {
+            id: 'web-office',
+            label: t('sidebar_license_office'),
+            icon: getIcon('ms-Icon ms-Icon--OfficeLogo'),
+            routeMatcher: new RegExp('^/web-office'),
+            async loader() {
+              const services = await loadServices('/license/office');
+              return [
+                {
+                  id: 'web_office_list',
+                  label: t('sidebar_license_office_list'),
+                  href: navigation.getURL(
+                    'web-office',
+                    `#/`
+                  ),
+                  icon: getIcon('oui-icon oui-icon-list'),
+                  ignoreSearch: true,
+                },
+                ...services.map((service) => ({
+                  ...service,
+                  icon: getIcon('ms-Icon ms-Icon--OfficeLogo'),
+                  href: navigation.getURL(
+                    'web-office',
+                    `#/license/${service.serviceName}`
+                  ),
+                })),
+              ];
+            },
+          },]
       });
     } else {
       if (features['exchange:web-dashboard']) {
@@ -296,7 +326,7 @@ export default function WebSidebar() {
     return menu;
   };
 
-  const {data: availability} = useFeatureAvailability(webFeatures);
+  const { data: availability } = useFeatureAvailability(webFeatures);
 
   useEffect(() => {
     if (availability) {
