@@ -3,7 +3,7 @@ import {
   UseInfiniteQueryOptions,
   UseInfiniteQueryResult,
 } from '@tanstack/react-query';
-import { useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import {
   getZimbraPlatformOrganization,
@@ -23,6 +23,7 @@ type UseOrganizationsParams = Omit<
 export const useOrganizations = (props: UseOrganizationsParams = {}) => {
   const { shouldFetchAll, organizationName, ...options } = props;
   const { platformId } = useParams();
+  const [allPages, setAllPages] = useState(!!shouldFetchAll);
   const searchParams = buildURLSearchParams({
     organizationName,
   });
@@ -33,14 +34,14 @@ export const useOrganizations = (props: UseOrganizationsParams = {}) => {
     queryKey: getZimbraPlatformOrganizationQueryKey(
       platformId,
       searchParams,
-      shouldFetchAll,
+      allPages,
     ),
     queryFn: ({ pageParam }) =>
       getZimbraPlatformOrganization({
         platformId,
         searchParams,
         pageParam,
-        ...(shouldFetchAll ? { pageSize: APIV2_MAX_PAGESIZE } : {}),
+        ...(allPages ? { pageSize: APIV2_MAX_PAGESIZE } : {}),
       }),
     enabled: (q) =>
       (typeof options.enabled === 'function'
@@ -55,11 +56,28 @@ export const useOrganizations = (props: UseOrganizationsParams = {}) => {
       ),
   });
 
+  const fetchAllPages = useCallback(() => {
+    if (!allPages) {
+      setAllPages(true);
+    }
+  }, [allPages, setAllPages]);
+
   useEffect(() => {
-    if (shouldFetchAll && query.hasNextPage) {
+    if (allPages && query.hasNextPage && !query.isFetchingNextPage) {
       query.fetchNextPage();
     }
-  }, [query.data]);
+  }, [query.data, allPages]);
 
-  return query;
+  // reset when searchParams changes
+  useEffect(() => {
+    if (!shouldFetchAll) {
+      setAllPages(false);
+    }
+  }, [searchParams]);
+
+  // use object assign instead of spread
+  // to avoid unecessary rerenders
+  return Object.assign(query, {
+    fetchAllPages,
+  });
 };
