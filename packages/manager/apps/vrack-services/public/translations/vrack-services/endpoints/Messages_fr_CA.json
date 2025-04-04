@@ -22,7 +22,7 @@
   "modalDeleteEndpointDescription": "Si vous supprimez ce Service Endpoint, vous perdrez la connectivité au service associé.",
   "storageNetApp": "Enterprise File Storage",
   "action-editServiceDisplayName": "Modifier le nom du service",
-  "action-deleteServiceEndpoint": "Supprimer le service endpoint",
+  "action-deleteServiceEndpoint": "Supprimer le Service Endpoint",
   "modalEndpointUpdateHeadline": "Modifier le nom du service {{name}}",
   "modalEndpointUpdateDescription": "",
   "endpointUpdateDisplayNameInputLabel": "Nom du service",
