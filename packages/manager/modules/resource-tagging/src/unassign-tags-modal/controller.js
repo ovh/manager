@@ -16,16 +16,12 @@ export default class ovhManagerResourceTaggingUnassignModalController {
   }
 
   unassignTags() {
+    this.loading = true;
     this.ovhManagerResourceTaggingService
       .unassignTags(this.resourceUrn, this.tagsToRemove)
       .then(() => {
-        this.goBack().then(() => {
-          console.log(
-            'MESSAGE',
-            this.$translate.instant(
-              'manager_components_resource_tagging_unassign_modal_success',
-            ),
-          );
+        this.goBack(true).then(() => {
+          this.loading = false;
           this.Alerter.success(
             this.$translate.instant(
               'manager_components_resource_tagging_unassign_modal_success',
@@ -35,6 +31,7 @@ export default class ovhManagerResourceTaggingUnassignModalController {
         });
       })
       .catch((error) => {
+        this.loading = false;
         this.Alerter.error(
           this.$translate.instant(
             'manager_components_resource_tagging_unassign_modal_error',

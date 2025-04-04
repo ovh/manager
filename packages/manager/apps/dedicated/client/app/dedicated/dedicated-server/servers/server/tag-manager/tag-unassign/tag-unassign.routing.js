@@ -21,8 +21,8 @@ export default /* @ngInject */ ($stateProvider) => {
         resourceName: /* @ngInject */ (server) => server?.iam?.displayName,
         tagsToRemove: /* @ngInject */ ($transition$) =>
           $transition$.params().tags,
-        goBack: /* @ngInject */ (goToTagManager) => () => {
-          return goToTagManager(true);
+        goBack: /* @ngInject */ (goToTagManager) => (reload = false) => {
+          return goToTagManager(reload);
         },
       },
     },

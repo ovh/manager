@@ -87,6 +87,9 @@ export default class ovhManagerResourceTaggingAssignModalController {
   }
 
   cancel() {
-    this.goBack();
+    this.loading = true;
+    this.goBack(true).then(() => {
+      this.loading = false;
+    });
   }
 }
