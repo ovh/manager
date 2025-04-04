@@ -1,0 +1,17 @@
+{
+  "autorenew_service_update_modal_title": "Verlängerung konfigurieren",
+  "autorenew_service_update_modal_description": "Definieren Sie ein Verlängerungsintervall für Ihren Dienst: {{ serviceName }} ",
+  "autorenew_service_update_modal_period_manual": "Keine Frequenz (manuelle Verlängerung)",
+  "autorenew_service_update_modal_period_every_month": "Jeden Monat",
+  "autorenew_service_update_modal_period_every_x_months": "Alle {{ months }} Monate",
+  "autorenew_service_update_modal_period_every_year": "Jedes Jahr",
+  "autorenew_service_update_modal_period_every_two_years": "Alle 2 Jahre",
+  "autorenew_service_update_modal_automatic_renewal_notice": "Dieser Dienst wird ab dem {{ expirationDate }} am 1. jedes Monats automatisch verlängert. <br/> Wenn Sie Ihren Dienst nicht weiter nutzen möchten, können Sie diese Verlängerung vor dem Ablaufdatum deaktivieren.",
+  "autorenew_service_update_modal_manual_renewal_notice": "Sie haben die manuelle Verlängerung für Ihren Dienst {{ serviceName }} ausgewählt.<br/> In diesem Modus wird Ihr Dienst nicht automatisch verlängert.<br/> Sie erhalten in den Wochen und Tagen vor dem Ablaufdatum ({{ expirationDate }}) mehrere E-Mail-Benachrichtigungen, um Sie darüber zu informieren.<br/> Wenn Sie Ihren Dienst weiterhin nutzen möchten, müssen Sie ihn lediglich vor diesem Datum verlängern.<br/> Achtung: Sobald der Dienst abgelaufen ist, wird er sofort geschlossen und ist nicht mehr verfügbar. Ohne Zahlung Ihrerseits innerhalb von Tagen nach dem Ablauf werden die zugehörigen Daten unwiderruflich gelöscht.",
+  "autorenew_service_update_modal_cancel": "Abbrechen",
+  "autorenew_service_update_modal_confirm": "Bestätigen",
+  "autorenew_service_update_modal_add_payment_method": "Zahlungsmittel hinzufügen",
+  "autorenew_service_update_modal_payment_method_notice": "Sie haben für Ihren Dienst {{ serviceName }} die automatische Zahlung ausgewählt Um diesen Verlängerungsmodus zu verwenden, hinterlegen Sie bitte ein Zahlungsmittel im Bereich für Zahlungsmittel.",
+  "autorenew_service_update_modal_update_success": "Die Verlängerung des Dienstes wurde erfolgreich aktualisiert. Wenn die Änderung nicht in der Liste angezeigt wird, laden Sie bitte die Seite neu.",
+  "autorenew_service_update_modal_update_error": "Bei der Konfiguration der Verlängerung ist ein Fehler aufgetreten {{ message }}"
+}

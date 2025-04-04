@@ -1,0 +1,17 @@
+{
+  "autorenew_service_update_modal_title": "Configurer le renouvellement",
+  "autorenew_service_update_modal_description": "Définissez une fréquence de renouvellement pour votre service : {{ serviceName }} ",
+  "autorenew_service_update_modal_period_manual": "Aucune fréquence (Renouvellement manuel)",
+  "autorenew_service_update_modal_period_every_month": "Tous les mois",
+  "autorenew_service_update_modal_period_every_x_months": "Tous les {{ months }} mois",
+  "autorenew_service_update_modal_period_every_year": "Tous les ans",
+  "autorenew_service_update_modal_period_every_two_years": "Tous les 2 ans",
+  "autorenew_service_update_modal_automatic_renewal_notice": "Ce service sera automatiquement renouvelé le 1er de chaque mois à partir du {{ expirationDate }}. <br/> Si vous ne souhaitez pas continuer à utiliser votre service, vous pouvez désactiver ce renouvellement avant la date d'expiration",
+  "autorenew_service_update_modal_manual_renewal_notice": "Vous avez choisi le renouvellement manuel pour votre service {{ serviceName }}.<br/> Dans ce mode, votre service n’est pas automatiquement reconduit à son échéance.<br/> Vous recevrez plusieurs notifications par e-mail dans les semaines et jours précédant la date d’expiration ({{ expirationDate }}), afin de vous en informer.<br/> Si vous souhaitez conserver votre service, il vous suffira de le renouveler avant cette date.<br/> Attention : une fois expiré, le service sera immédiatement suspendu et deviendra inaccessible. Sans règlement de votre part dans les jours suivant son expiration, les données associées seront définitivement supprimées.",
+  "autorenew_service_update_modal_cancel": "Annuler",
+  "autorenew_service_update_modal_confirm": "Confirmer",
+  "autorenew_service_update_modal_add_payment_method": "Ajouter un moyen de paiement",
+  "autorenew_service_update_modal_payment_method_notice": "Vous avez sélectionné le paiement automatique pour votre service {{ serviceName }}. Pour utiliser ce mode de renouvellement, veuillez enregistrer un moyen de paiement dans la section dédiée aux moyens de paiement.",
+  "autorenew_service_update_modal_update_success": "Le renouvellement du service a bien été mis à jour. Si la modification n'apparaît pas dans la liste, veuillez rafraîchir la page.",
+  "autorenew_service_update_modal_update_error": "Une erreur est survenue lors de la configuration du renouvellement {{ message }}"
+}
