@@ -7,7 +7,6 @@ import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 import { sshKeySelector } from '@ovh-ux/manager-components';
 
 import inputs from './inputs';
-import gabarit from './installation/gabarit';
 import ovh from './installation/ovh';
 import progress from './installation/progress';
 
@@ -23,7 +22,6 @@ angular
     ngOvhFeatureFlipping,
     sshKeySelector,
     inputs,
-    gabarit,
     ovh,
     progress,
   ])
