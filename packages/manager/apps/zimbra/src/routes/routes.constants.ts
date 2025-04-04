@@ -1,6 +1,12 @@
 export const urls = {
   root: '',
   onboarding: '/onboarding',
+  onboarding_welcome: '/onboarding/welcome',
+  onboarding_configure_organization:
+    '/onboarding/configure/:serviceName/organization',
+  onboarding_configure_domain: '/onboarding/configure/:serviceName/domain',
+  onboarding_configure_email_accounts:
+    '/onboarding/configure/:serviceName/email_accounts',
   dashboard: '/:serviceName',
   overview: '/:serviceName',
   organizations: '/:serviceName/organizations',
