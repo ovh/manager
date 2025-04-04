@@ -129,25 +129,37 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
       onPaymentMethodAdded: /* @ngInject */ (
         $transition$,
         $translate,
+        $state,
         goPaymentList,
         RedirectionService,
         OVH_PAYMENT_METHOD_TYPE,
-      ) => (paymentMethod, selectedPaymentMethodType) => {
+      ) => (selectedPaymentMethodType, isDefault) => {
         const { callbackUrl } = $transition$.params();
         if (callbackUrl && RedirectionService.validate(callbackUrl)) {
           window.location.href = callbackUrl;
           return callbackUrl;
         }
 
+        let message = $translate.instant(
+          selectedPaymentMethodType?.paymentType ===
+            OVH_PAYMENT_METHOD_TYPE.BANK_ACCOUNT
+            ? 'billing_payment_method_add_sepa_success'
+            : 'billing_payment_method_add_status_success',
+        );
+        if (isDefault) {
+          const autorenewLink = $state.href('billing.autorenew', {
+            filters: JSON.stringify({ status: 'manual' }),
+          });
+          message = `${message}<br>${$translate.instant(
+            'billing_payment_method_add_default_info_auto_renew',
+            { autorenewLink },
+          )}`;
+        }
+
         return goPaymentList(
           {
             type: 'success',
-            text: $translate.instant(
-              selectedPaymentMethodType?.paymentType ===
-                OVH_PAYMENT_METHOD_TYPE.BANK_ACCOUNT
-                ? 'billing_payment_method_add_sepa_success'
-                : 'billing_payment_method_add_status_success',
-            ),
+            text: message,
           },
           get($transition$.params(), 'from', null),
         );

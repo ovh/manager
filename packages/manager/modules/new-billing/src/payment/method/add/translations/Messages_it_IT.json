@@ -37,5 +37,6 @@
   "billing_payment_method_add_sepa_direct_debit_data_processing_info": "Per poter eseguire il prelievo SEPA, i dati raccolti sono trattati da OVHcloud in qualità di responsabile del trattamento dei dati.",
   "billing_payment_method_add_sepa_direct_debit_digital_signature_info": "La realizzazione di un addebito diretto SEPA richiede un mandato che dovrà essere firmato elettronicamente utilizzando una soluzione fornita da Worldline, provider abilitato alla fornitura dei servizi fiduciari definiti nella normativa “eDIAS” n. 910/2014 del 23 luglio 2014. Nell’ambito di questa operazione di firma, è necessario comunicare questi dati.",
   "billing_payment_method_add_credit_card_selected_explain_ovh_transaction": "La transazione per registrare la tua carta sarà gestita da OVH S.A.S.",
-  "billing_payment_method_add_credit_card_registration_charges_info": "Per verificare il corretto funzionamento della carta verrà effettuato un addebito per un importo massimo di {{ registrationCharges }}. Questa somma verrà totalmente rimborsata entro 48 ore."
+  "billing_payment_method_add_credit_card_registration_charges_info": "Per verificare il corretto funzionamento della carta verrà effettuato un addebito per un importo massimo di {{ registrationCharges }}. Questa somma verrà totalmente rimborsata entro 48 ore.",
+  "billing_payment_method_add_default_info_auto_renew": "Se su alcuni servizi era attivo il rinnovo automatico, potrebbe essere necessario riattivarlo tramite <a href=\"{{autorenewLink}}\">questa pagina</a>."
 }
