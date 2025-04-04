@@ -1,6 +1,7 @@
 import React from 'react';
 import { describe, vi } from 'vitest';
 import { screen, render, waitFor } from '@testing-library/react';
+import { getOdsButtonByLabel } from '@ovh-ux/manager-core-test-utils';
 import { OKMS } from '@/types/okms.type';
 import RestApiTile from './RestApiTile';
 import { REST_ENDPOINT_LABEL, SWAGGER_UI_LABEL } from './RestApiTile.constants';
@@ -18,6 +19,12 @@ vi.mock('react-router-dom', async () => {
     useNavigate: () => vi.fn(),
   };
 });
+
+vi.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (translationKey: string) => translationKey,
+  }),
+}));
 
 describe('RestApiTile component tests suite', () => {
   const kms: OKMS = {
@@ -41,7 +48,7 @@ describe('RestApiTile component tests suite', () => {
   test('Should display REST API tile with only all mandatory data', async () => {
     const { container } = renderComponent(kms);
 
-    await waitFor(() => {
+    await waitFor(async () => {
       expect(screen.getByText(REST_ENDPOINT_LABEL)).toBeVisible();
 
       expect(
@@ -54,6 +61,14 @@ describe('RestApiTile component tests suite', () => {
           `ods-link[href="${kms.swaggerEndpoint}"][label="${kms.swaggerEndpoint}"]`,
         ),
       ).toBeVisible();
+
+      const downloadLink = await getOdsButtonByLabel({
+        container,
+        label: 'key_management_service_dashboard_button_label_download_ca',
+        isLink: true,
+      });
+
+      expect(downloadLink).toBeVisible();
     });
   });
 });
