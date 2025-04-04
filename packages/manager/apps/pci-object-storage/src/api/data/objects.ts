@@ -1,13 +1,22 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 import axios from 'axios';
 import {
+  ITEMS_PER_PAGE,
   OPENIO_DEFAULT_REGION,
   OPENIO_PRESIGN_EXPIRE,
   X_AMZ_STORAGE_CLASS,
   X_AUTH_TOKEN,
 } from '@/constants';
 import { getStorageAccess, TStorage, TStorageAccess } from './storages';
+import { TObject } from './container';
 
+interface GetObjectVersionsParams {
+  projectId: string;
+  region: string;
+  name: string;
+  key: string;
+  versionIdMarker: string | null;
+}
 export type TStorageObject = {
   [key: string]: any;
   name: string;
@@ -223,3 +232,26 @@ export const addObjects = (
       addObject(projectId, container, filePrefix, file),
     ),
   );
+
+export const getObjectVersions = async ({
+  projectId,
+  region,
+  name,
+  key,
+  versionIdMarker,
+}: GetObjectVersionsParams): Promise<{
+  objects: TObject[];
+}> => {
+  const url = `/cloud/project/${projectId}/region/${region}/storage/${name}/object/${key}/version`;
+
+  const { data } = await v6.get<TObject[]>(url, {
+    params: {
+      limit: ITEMS_PER_PAGE + 1,
+      versionIdMarker,
+    },
+  });
+
+  return {
+    objects: data,
+  };
+};

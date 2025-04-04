@@ -8,19 +8,29 @@ import { format } from 'date-fns';
 import { getDateFnsLocale } from '@ovh-ux/manager-core-utils';
 import * as dateFnsLocales from 'date-fns/locale';
 import { useRef } from 'react';
-import { OdsBadge } from '@ovhcloud/ods-components/react';
+import { OdsBadge, OdsLink } from '@ovhcloud/ods-components/react';
+import { createSearchParams, useHref } from 'react-router-dom';
+import clsx from 'clsx';
 import ActionsComponent from './ActionsComponent';
 import { TObject } from '@/api/data/container';
 import { TContainer } from '@/pages/objects/container/object/show/Show.page';
+
+import { shouldShowVersions } from './useShouldShowVersions';
 
 export type TIndexedObject = TObject & { index: string };
 
 export const useDatagridColumn = ({
   container,
   isLocalZone,
+  shouldSeeVersions,
+  enableVersionsToggle,
+  isLastElement,
 }: {
   container: TContainer;
   isLocalZone: boolean;
+  shouldSeeVersions?: boolean;
+  enableVersionsToggle?: boolean;
+  isLastElement?: boolean;
 }) => {
   const { i18n, t } = useTranslation('container');
   const { formatBytes } = useBytes();
@@ -30,30 +40,60 @@ export const useDatagridColumn = ({
   const columns: DatagridColumn<TIndexedObject>[] = [
     {
       id: 'name',
-      cell: (props: TIndexedObject) => (
-        <div
-          className={props.isLatest ? 'is-latest' : props.versionId && 'ml-6'}
-        >
-          <div className="flex flex-col">
-            <DataGridTextCell>{props.name || props.key}</DataGridTextCell>
-            {props.isDeleteMarker && (
-              <OdsBadge
-                className="mt-3"
-                size="sm"
-                label={t(
-                  'pci_projects_project_storages_containers_container_delete_marker',
-                )}
-              />
-            )}
+      cell: (props: TIndexedObject) => {
+        const isLink = shouldShowVersions({
+          isLatest: props.isLatest,
+          isLocalZone,
+          shouldSeeVersions,
+          enableVersionsToggle,
+          versioningStatus: container.versioning?.status,
+        });
+
+        return (
+          <div
+            className={clsx({
+              'is-latest': props.versionId && props.isLatest,
+              'ml-6': props.versionId && !props.isLatest,
+            })}
+          >
+            <div className="flex flex-col">
+              {isLink ? (
+                <OdsLink
+                  color="primary"
+                  href={useHref({
+                    pathname: `./${props.name || props.key}/versions`,
+                    search: `?${createSearchParams({
+                      region: container.region,
+                    })}`,
+                  })}
+                  label={props.name || props.key}
+                />
+              ) : (
+                <DataGridTextCell>{props.name || props.key}</DataGridTextCell>
+              )}
+              {props.isDeleteMarker && (
+                <OdsBadge
+                  className="mt-3"
+                  size="sm"
+                  label={t(
+                    'pci_projects_project_storages_containers_container_delete_marker',
+                  )}
+                />
+              )}
+            </div>
           </div>
-        </div>
-      ),
+        );
+      },
       label: t('pci_projects_project_storages_containers_container_name_label'),
     },
     {
       id: 'lastModified',
       cell: (props: TIndexedObject) => (
-        <div className={props.isLatest ? 'is-latest' : ''}>
+        <div
+          className={clsx({
+            'is-latest': props.versionId && props.isLatest,
+          })}
+        >
           <DataGridTextCell>
             {format(props.lastModified, 'dd MMM yyyy HH:mm:ss', {
               locale: locales[userLocale],
@@ -68,7 +108,11 @@ export const useDatagridColumn = ({
     container?.s3StorageType && {
       id: 'storageClass',
       cell: (props: TIndexedObject) => (
-        <div className={props.isLatest ? 'is-latest' : ''}>
+        <div
+          className={clsx({
+            'is-latest': props.versionId && props.isLatest,
+          })}
+        >
           <DataGridTextCell>
             {props.storageClass
               ? t(
@@ -85,7 +129,11 @@ export const useDatagridColumn = ({
     {
       id: 'size',
       cell: (props: TIndexedObject) => (
-        <div className={props.isLatest ? 'is-latest' : ''}>
+        <div
+          className={clsx({
+            'is-latest': props.versionId && props.isLatest,
+          })}
+        >
           <DataGridTextCell>
             {formatBytes(props.size, 2, 1024)}
           </DataGridTextCell>
@@ -96,7 +144,11 @@ export const useDatagridColumn = ({
     !container?.s3StorageType && {
       id: 'contentType',
       cell: (props: TIndexedObject) => (
-        <div className={props.isLatest ? 'is-latest' : ''}>
+        <div
+          className={clsx({
+            'is-latest': props.versionId && props.isLatest,
+          })}
+        >
           <DataGridTextCell>{props.contentType}</DataGridTextCell>
         </div>
       ),
@@ -107,11 +159,18 @@ export const useDatagridColumn = ({
     {
       id: 'actions',
       cell: (props: TIndexedObject) => (
-        <div className={props.isLatest ? 'is-latest' : ''}>
+        <div
+          className={clsx({
+            'is-latest': props.versionId && props.isLatest,
+          })}
+        >
           <ActionsComponent
             object={props}
             container={container}
             isLocalZone={isLocalZone}
+            shouldSeeVersions={shouldSeeVersions}
+            enableVersionsToggle={enableVersionsToggle}
+            isLastElement={isLastElement}
           />
         </div>
       ),
