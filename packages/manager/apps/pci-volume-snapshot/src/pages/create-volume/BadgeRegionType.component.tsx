@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useId } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
@@ -30,8 +30,7 @@ export default function BadgeRegionType({
   const { t } = useTranslation('volume-edit');
   const context = useContext(ShellContext);
   const { ovhSubsidiary } = context.environment.getUser();
-  // FIXME: use useId once OdsPopover fix it's issue with the generated id format.
-  const triggerId = 'badge-region-type_trigger';
+  const triggerId = useId();
 
   const regionValues: TRegionValues = {
     localzone: {
