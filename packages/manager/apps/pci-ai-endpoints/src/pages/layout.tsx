@@ -1,4 +1,4 @@
-import { Suspense, useState, useEffect, useMemo, useContext } from 'react';
+import { Suspense, useState, useEffect, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ErrorBanner, BaseLayout } from '@ovh-ux/manager-react-components';
 import {
@@ -29,7 +29,6 @@ import {
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import clsx from 'clsx';
 import HidePreloader from '@/core/HidePreloader';
 import ShellRoutingSync from '@/core/ShellRoutingSync';
 import usePageTracking from '@/hooks/usePageTracking';
@@ -67,7 +66,7 @@ const getDateParams = () => {
 
 export default function Layout() {
   const { projectId } = useParams<{ projectId: string }>();
-  const { t } = useTranslation('metric');
+  const { t } = useTranslation(['metric', 'token']);
   const { data } = useProject(projectId ?? '', { retry: false });
   const navigate = useNavigate();
   const { pathname } = useLocation();
@@ -81,42 +80,47 @@ export default function Layout() {
     dateParams.endDate,
   );
 
+  const metricsPath = useResolvedPath('metrics').pathname;
+  const tokenPath = useResolvedPath('token').pathname;
+
   const tabsList: TabItemProps[] = [
     {
       name: 'metrics',
-      title: t('ai_endpoints_metrics'),
-      to: useResolvedPath('metrics').pathname,
+      title: t('metric:ai_endpoints_metrics'),
+      to: metricsPath,
+    },
+    {
+      name: 'token',
+      title: t('token:ai_endpoints_token'),
+      to: tokenPath,
     },
   ];
 
-  const [panel, setActivePanel] = useState<string>('');
+  const [activePanel, setActivePanel] = useState<string>('');
   const [titleHeader, setTitleHeader] = useState<string>('');
 
-  const { visibleTabs, activeTab } = useMemo(() => {
+  useEffect(() => {
+    if (pathname === ROOT) {
+      return;
+    }
+
     const findActiveTab = (tabList: TabItemProps[]) =>
-      tabList.find((tab) => tab.to === pathname) ||
+      tabList.find((tab) => tab.to === pathname);
+    const findActiveParentTab = (tabList: TabItemProps[]) =>
       tabList.find(
         (tab) => tab.to === pathname.slice(0, pathname.lastIndexOf('/')),
       );
 
-    return {
-      visibleTabs: tabsList,
-      activeTab: findActiveTab(tabsList) ?? tabsList[0],
-    };
-  }, [pathname, tabsList]);
-
-  useEffect(() => {
-    if (!activeTab && visibleTabs.length > 0) {
-      navigate(visibleTabs[0].to);
-    }
-  }, [activeTab, visibleTabs, navigate]);
-
-  useEffect(() => {
+    const activeTab = findActiveTab(tabsList) || findActiveParentTab(tabsList);
     if (activeTab) {
       setActivePanel(activeTab.name);
       setTitleHeader(activeTab.title);
+    } else {
+      setActivePanel(tabsList[0].name);
+      setTitleHeader(tabsList[0].title);
+      navigate(tabsList[0].to);
     }
-  }, [activeTab]);
+  }, [pathname, tabsList, navigate, ROOT]);
 
   const headerProps: HeadersProps = {
     title: titleHeader,
@@ -143,24 +147,20 @@ export default function Layout() {
           data && (
             <div className="relative animate-fade-in">
               <BaseLayout
-                header={pathname !== ROOT && headerProps}
+                header={pathname !== ROOT ? headerProps : undefined}
                 tabs={
                   pathname !== ROOT && (
-                    <OsdsTabs panel={panel} className="-ml-2">
+                    <OsdsTabs panel={activePanel} className="-ml-2">
                       <OsdsTabBar slot="top">
-                        {visibleTabs.map((tab) => (
+                        {tabsList.map((tab) => (
                           <NavLink
-                            to={tab.to}
                             key={tab.name}
-                            className={({ isActive }) =>
-                              clsx('no-underline', {
-                                'selected-tab-class': isActive,
-                              })
-                            }
+                            to={tab.to}
+                            className="no-underline"
                           >
                             <OsdsTabBarItem
                               panel={tab.name}
-                              active={tab.name === panel}
+                              className="m-0 cursor-pointer"
                             >
                               {tab.title}
                             </OsdsTabBarItem>
@@ -173,7 +173,7 @@ export default function Layout() {
                 breadcrumb={<Breadcrumb />}
               />
               {pathname !== ROOT && (
-                <div className="customTabs:flex self-end customTabs:-mt-[85px] md:-mt-[89px] customTabs:ml-[170px] customTabs:absolute">
+                <div className="customTabs:flex self-end customTabs:-mt-[85px] md:-mt-[89px] customTabs:ml-[230px] customTabs:absolute">
                   <OsdsButton
                     inline
                     color={ODS_THEME_COLOR_INTENT.primary}

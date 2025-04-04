@@ -1,36 +1,31 @@
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import {
   Card,
   OnboardingLayout,
   RedirectionGuard,
 } from '@ovh-ux/manager-react-components';
-import { OsdsText } from '@ovhcloud/ods-components/react';
+import { OsdsText, OsdsButton } from '@ovhcloud/ods-components/react';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
-import { ODS_TEXT_LEVEL } from '@ovhcloud/ods-components';
+import {
+  ODS_TEXT_LEVEL,
+  ODS_BUTTON_SIZE,
+  ODS_BUTTON_VARIANT,
+} from '@ovhcloud/ods-components';
 import useGuideUtils from '@/hooks/guide/useGuideUtils';
 import onboardingImgSrc from '@/assets/onboarding-img.png';
-import { useGetMetrics } from '@/hooks/api/database/metric/useGetMetrics.hook';
+import { useGetTokens } from '@/hooks/api/database/token/useToken.hook';
 
 export default function Onboarding() {
   const { t } = useTranslation('onboarding');
   const link = useGuideUtils();
   const { projectId } = useParams();
+  const navigate = useNavigate();
 
-  const metricsQuery = useGetMetrics(
-    projectId,
-    encodeURIComponent(new Date(2024, 0, 1).toISOString()),
-    encodeURIComponent(
-      new Date(
-        new Date().getFullYear(),
-        new Date().getMonth() + 1,
-        0,
-      ).toISOString(),
-    ),
-  );
+  const tokensQuery = useGetTokens({ projectId });
 
   const guideList = [
     {
@@ -62,19 +57,17 @@ export default function Onboarding() {
     },
   ];
 
-  const title: string = t('ai_endpoints_title');
-  const imgSrc = {
-    src: onboardingImgSrc,
-  };
-  const descBis: string = t('ai_endpoints_descriptionBis');
+  const title = t('ai_endpoints_title');
+  const imgSrc = { src: onboardingImgSrc };
+  const descBis = t('ai_endpoints_descriptionBis');
 
   return (
     <div className="flex justify-center">
       <RedirectionGuard
-        isLoading={metricsQuery.isLoading}
+        isLoading={tokensQuery.isLoading}
         route={`/pci/projects/${projectId}/ai/endpoints/metrics`}
         condition={
-          Array.isArray(metricsQuery.data) && metricsQuery.data.length > 0
+          Array.isArray(tokensQuery.data) && tokensQuery.data.length > 0
         }
       >
         <OnboardingLayout
@@ -102,10 +95,19 @@ export default function Onboarding() {
                   }}
                 />
               </OsdsText>
+              <OsdsButton
+                size={ODS_BUTTON_SIZE.md}
+                variant={ODS_BUTTON_VARIANT.flat}
+                color={ODS_THEME_COLOR_INTENT.primary}
+                className="flex w-[18rem] mt-12 mx-auto"
+                onClick={() =>
+                  navigate(`/pci/projects/${projectId}/ai/endpoints/token`)
+                }
+              >
+                {t('ai_endpoints_create_API_key')}
+              </OsdsButton>
             </>
           }
-          moreInfoButtonLabel={t('ai_endpoints_goToAiEndpoint')}
-          moreInfoHref="https://endpoints.ai.cloud.ovh.net/"
         >
           <div className="mb-4 sm:hidden"></div>
           {guideList.map((tile) => (
