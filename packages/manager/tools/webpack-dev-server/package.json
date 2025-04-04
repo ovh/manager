@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-webpack-dev-server",
-  "version": "4.0.2",
+  "version": "4.0.3",
   "description": "OVHcloud manager webpack development server configuration.",
   "keywords": [
     "webpack",
@@ -15,7 +15,7 @@
   "author": "OVH SAS",
   "main": "src/index.js",
   "dependencies": {
-    "@ovh-ux/manager-dev-server-config": "^6.1.1",
+    "@ovh-ux/manager-dev-server-config": "^6.1.2",
     "webpack-dev-server": "^4.11.1",
     "yn": "^4.0.0"
   }

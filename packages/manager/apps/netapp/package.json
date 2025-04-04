@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-netapp-app",
-  "version": "0.9.17",
+  "version": "0.9.18",
   "private": true,
   "description": "NetApp standalone application",
   "repository": {
@@ -69,7 +69,7 @@
     "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-webpack-config": "^7.0.4",
+    "@ovh-ux/manager-webpack-config": "^7.0.5",
     "glob": "^7.1.6",
     "lodash": "^4.17.15",
     "webpack-merge": "^4.2.2"

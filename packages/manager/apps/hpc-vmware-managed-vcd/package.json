@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-hpc-vmware-managed-vcd-app",
-  "version": "0.3.7",
+  "version": "0.3.8",
   "private": true,
   "description": "New managed VMware Cloud Director offers",
   "repository": {
@@ -30,7 +30,7 @@
     "@ovh-ux/manager-react-components": "^1.43.0",
     "@ovh-ux/manager-react-core-application": "^0.11.4",
     "@ovh-ux/manager-react-shell-client": "^0.8.4",
-    "@ovh-ux/manager-tailwind-config": "^0.2.1",
+    "@ovh-ux/manager-tailwind-config": "^0.3.0",
     "@ovh-ux/request-tagger": "^0.4.0",
     "@ovhcloud/ods-common-core": "17.2.2",
     "@ovhcloud/ods-common-theming": "17.2.2",
@@ -50,7 +50,7 @@
   },
   "devDependencies": {
     "@ovh-ux/manager-core-test-utils": "^0.2.2",
-    "@ovh-ux/manager-vite-config": "^0.8.3",
+    "@ovh-ux/manager-vite-config": "^0.8.4",
     "@testing-library/dom": "^10.1.0",
     "@testing-library/jest-dom": "^6.5.0",
     "@testing-library/react": "^16.0.1",
