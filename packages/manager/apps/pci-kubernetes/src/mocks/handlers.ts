@@ -1,6 +1,7 @@
 import { http, HttpResponse } from 'msw';
 import mockedModule from './mockAvaibility.json';
 import mockedPrivateNetwork from './mockPrivate.json';
+import mockPlans from './mockPlans.json';
 
 export const handlers = [
   http.get(
@@ -8,7 +9,7 @@ export const handlers = [
     () =>
       HttpResponse.json({
         isPending: false,
-        plans: [],
+        plans: mockPlans,
         products: [
           {
             name: 'kubernetes',

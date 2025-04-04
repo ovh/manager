@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
-import { mockedModule } from '@/mocks/mockAvaibility';
+
+import { useProductAvailability } from '@ovh-ux/manager-pci-common';
 
 export enum RegionType {
   Region = 'region',
@@ -11,12 +12,9 @@ export enum RegionType {
 const useHas3AZRegions = () => {
   const { projectId } = useParams<{ projectId: string }>();
 
-  const { data: availability } = mockedModule.useProductAvailability(
-    projectId,
-    {
-      product: 'kubernetes',
-    },
-  );
+  const { data: availability } = useProductAvailability(projectId, {
+    product: 'kubernetes',
+  });
 
   const product = availability?.products.find(
     ({ name }) => name === 'kubernetes',
