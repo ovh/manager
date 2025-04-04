@@ -7,7 +7,7 @@ import {
   TVolumeCatalog,
   TVolumePricing,
 } from '@/api/api.types';
-import PciStorageVolumeEdit from '@/pages/create-volume/PciStorageVolumeEdit.component';
+import VolumeEdit from '@/pages/create-volume/VolumeEdit.component';
 
 const MOCK_VOLUME: TVolume = {
   id: 'fake-volume-id',
@@ -107,7 +107,7 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
   })),
 }));
 
-describe('PciStorageVolumeEdit', () => {
+describe('VolumeEdit', () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
@@ -115,7 +115,7 @@ describe('PciStorageVolumeEdit', () => {
   describe('Name input', () => {
     it('uses suggested name as default value if specified', async () => {
       const { container } = render(
-        <PciStorageVolumeEdit
+        <VolumeEdit
           projectId="fake-project-id"
           volume={MOCK_VOLUME}
           suggestedName="Some suggested name"
@@ -130,7 +130,7 @@ describe('PciStorageVolumeEdit', () => {
 
     it('uses volume.name as default value if no suggested name', async () => {
       const { container } = render(
-        <PciStorageVolumeEdit
+        <VolumeEdit
           projectId="fake-project-id"
           volume={MOCK_VOLUME}
           submitLabel="submit-label"
@@ -145,7 +145,7 @@ describe('PciStorageVolumeEdit', () => {
     it('allows an empty value', async () => {
       const onSubmit = vi.fn();
       const { container, queryByText } = render(
-        <PciStorageVolumeEdit
+        <VolumeEdit
           projectId="fake-project-id"
           volume={MOCK_VOLUME}
           submitLabel="submit-label"
@@ -173,7 +173,7 @@ describe('PciStorageVolumeEdit', () => {
     it('show an error when name is too long and disable form', () => {
       const onSubmit = vi.fn();
       const { container, queryByText } = render(
-        <PciStorageVolumeEdit
+        <VolumeEdit
           projectId="fake-project-id"
           volume={MOCK_VOLUME}
           submitLabel="submit-label"
