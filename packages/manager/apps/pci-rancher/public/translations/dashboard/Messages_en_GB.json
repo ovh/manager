@@ -31,8 +31,8 @@
   "createRancherName": "Name",
   "createRancherDescription": "You can manage multiple downstream clusters within this service.",
   "createRancherPlaceholder": "mon_rancher",
-  "createRancherServiceLevel": "Choose plan",
-  "createRancherServiceLevelDescription": "Both plans offer all the Rancher features. The OVHcloud Edition plan only supports self-managed nodes brought individually to create downstream clusters on OVHcloud Public Cloud.<br> The Standard plan is perfect for private, multi-cloud and edge cloud uses. You can migrate to the Standard plan at any time.<br> You will be billed on an hourly basis, based on the total number of vCPUs on each worker node in your downstream Rancher clusters. <strong>Control plane nodes are not billed.</strong>",
+  "createRancherServiceLevel": "Choose a plan",
+  "createRancherServiceLevelDescription": "Both plans offer all the Rancher features. The OVHcloud Edition plan only supports self-managed nodes brought individually to create downstream clusters on OVHcloud Public Cloud.<br> The Standard plan is perfect for private, multi-cloud, or edge cloud uses. You can migrate to the Standard plan at any time.",
   "createRancherVersion": "Rancher version",
   "createRancherVersionDescription": "This service is powered by SUSE Rancher. OVHcloud supports the latest versions of Rancher. We recommend using the latest version.<br> We apply security patches and provide new releases on a regular basis, in accordance with our software lifecycle policy.",
   "createRancherCTA": "Create a Managed Rancher Service",
@@ -56,5 +56,6 @@
   "createRancherOfferDescription": "With at least 20 vCPUs charged per Rancher",
   "egress_title": "Rancher egress CIDRs",
   "egress_tooltip": "These CIDRs list the output IP address ranges used by Rancher. You might need to whitelist these IP addresses to access your third-party platforms (e.g. API calls to provision resources).",
-  "badRequestSwitchPlan": "An error has occurred changing the solution for your Managed Rancher Service. You are currently using drivers that are not compatible with the {{plan}} solution: {{drivers}}"
+  "badRequestSwitchPlan": "An error has occurred changing the solution for your Managed Rancher Service. You are currently using drivers that are not compatible with the {{plan}} solution: {{drivers}}",
+  "savingsPlanUsage": "If you already have one or more Savings Plans, the vCPUs in your downstream clusters are automatically included in your plan’s total vCPU count."
 }
