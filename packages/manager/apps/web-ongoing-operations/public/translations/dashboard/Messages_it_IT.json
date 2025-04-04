@@ -115,12 +115,13 @@
   "domain_operations_modal_title": "Dati dell'operazione su {{t0}}",
   "domain_operations_update_me_fields": "Modifica del {{t0}}",
   "domain_operations_update_contact_not_me": "Solo il/i {{t0}} può cambiare {{t1}}",
-  "domain_operations_update_nicadmin_click": "Per modificare le informazioni relative al nicadmin, clicca qui",
-  "domain_operations_update_nictech_click": "Per modificare le informazioni relative al nictech, clicca qui",
-  "domain_operations_update_nicbilling_click": "Modifica le informazioni del NIC-billing cliccando qui",
+  "domain_operations_update_nicadmin_click": "Per modificare le informazioni del contatto amministratore, clicca qui",
+  "domain_operations_update_nictech_click": "Per modificare le informazioni del contatto tecnico, clicca qui",
+  "domain_operations_update_nicbilling_click": "Per modificare le informazioni del contatto di fatturazione, clicca qui",
   "domain_operations_accelerate_success": "L'operazione è stata accelerata correttamente.",
   "domain_operations_cancel_success": "Operazione annullata correttamente.",
   "domain_operations_relaunch_success": "L'operazione è stata riavviata correttamente.",
   "wizard_cancel": "Annulla",
-  "wizard_confirm": "Conferma"
+  "wizard_confirm": "Conferma",
+  "domain_operations_update_key_authinfo": "AuthInfo"
 }
