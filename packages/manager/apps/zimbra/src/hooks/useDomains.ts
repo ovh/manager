@@ -3,7 +3,7 @@ import {
   UseInfiniteQueryOptions,
   UseInfiniteQueryResult,
 } from '@tanstack/react-query';
-import { useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
 import {
   DomainType,
@@ -24,6 +24,7 @@ type UseDomainsParams = Omit<
 export const useDomains = (props: UseDomainsParams = {}) => {
   const { organizationId, domainName, shouldFetchAll, ...options } = props;
   const { platformId } = useParams();
+  const [allPages, setAllPages] = useState(!!shouldFetchAll);
   const [searchParams] = useSearchParams();
   const urlSearchParams = buildURLSearchParams({
     organizationId: organizationId ?? searchParams.get('organizationId'),
@@ -36,14 +37,14 @@ export const useDomains = (props: UseDomainsParams = {}) => {
     queryKey: getZimbraPlatformDomainsQueryKey(
       platformId,
       urlSearchParams,
-      shouldFetchAll,
+      allPages,
     ),
     queryFn: ({ pageParam }) =>
       getZimbraPlatformDomains({
         platformId,
         searchParams: urlSearchParams,
         pageParam,
-        ...(shouldFetchAll ? { pageSize: APIV2_MAX_PAGESIZE } : {}),
+        ...(allPages ? { pageSize: APIV2_MAX_PAGESIZE } : {}),
       }),
     enabled: (q) =>
       (typeof options.enabled === 'function'
@@ -58,11 +59,28 @@ export const useDomains = (props: UseDomainsParams = {}) => {
       ),
   });
 
+  const fetchAllPages = useCallback(() => {
+    if (!allPages) {
+      setAllPages(true);
+    }
+  }, [allPages, setAllPages]);
+
   useEffect(() => {
-    if (shouldFetchAll && query.hasNextPage) {
+    if (allPages && query.hasNextPage && !query.isFetchingNextPage) {
       query.fetchNextPage();
     }
-  }, [query.data]);
+  }, [query.data, allPages]);
 
-  return query;
+  // reset when searchParams changes
+  useEffect(() => {
+    if (!shouldFetchAll) {
+      setAllPages(false);
+    }
+  }, [urlSearchParams]);
+
+  // use object assign instead of spread
+  // to avoid unecessary rerenders
+  return Object.assign(query, {
+    fetchAllPages,
+  });
 };
