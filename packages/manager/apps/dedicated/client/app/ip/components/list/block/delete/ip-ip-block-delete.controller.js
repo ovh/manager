@@ -7,9 +7,18 @@ export default /* @ngInject */ (
   Ip,
   Alerter,
   atInternet,
+  coreConfig,
 ) => {
+  const user = coreConfig.getUser();
   $scope.data = $scope.currentActionData;
   $scope.ADDITIONAL_IP = ADDITIONAL_IP;
+  // Used for customization of the delete label
+  $scope.deleteTranslationKey = `ip_table_manage_delete_ipblock${
+    user.ovhSubsidiary === 'US' ? '_us' : ''
+  }`;
+  $scope.deleteQuestionTranslationKey = `ip_table_manage_delete_ipblock_question${
+    user.ovhSubsidiary === 'US' ? '_us' : ''
+  }`;
 
   atInternet.trackPage({
     name: DELETE_TRACKING_PREFIX,
