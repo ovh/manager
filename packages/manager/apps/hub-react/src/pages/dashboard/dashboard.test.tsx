@@ -14,18 +14,18 @@ import {
 } from '@ovhcloud/ods-components';
 import { User } from '@ovh-ux/manager-config';
 
-import Layout from '@/pages/layout/layout';
-import BillingSummary from '@/pages/layout/BillingSummary.component';
-import EnterpriseBillingSummary from '@/pages/layout/EnterpriseBillingSummary.component';
-import PaymentStatus from '@/pages/layout/PaymentStatus.component';
-import Catalog from '@/pages/layout/Catalog.component';
-import SiretBanner from '@/pages/layout/SiretBanner.component';
-import SiretModal from '@/pages/layout/SiretModal.component';
-import KycIndiaBanner from '@/pages/layout/KycIndiaBanner.component';
-import KycFraudBanner from '@/pages/layout/KycFraudBanner.component';
-import NotificationsCarousel from '@/pages/layout/NotificationsCarousel.component';
+import Layout from '@/pages/dashboard/dashboard';
+import BillingSummary from '@/pages/dashboard/BillingSummary.component';
+import EnterpriseBillingSummary from '@/pages/dashboard/EnterpriseBillingSummary.component';
+import PaymentStatus from '@/pages/dashboard/PaymentStatus.component';
+import Catalog from '@/pages/dashboard/Catalog.component';
+import SiretBanner from '@/pages/dashboard/SiretBanner.component';
+import SiretModal from '@/pages/dashboard/SiretModal.component';
+import KycIndiaBanner from '@/pages/dashboard/KycIndiaBanner.component';
+import KycFraudBanner from '@/pages/dashboard/KycFraudBanner.component';
+import NotificationsCarousel from '@/pages/dashboard/NotificationsCarousel.component';
 
-import * as HubContext from '@/pages/layout/context';
+import * as HubContext from '@/pages/dashboard/context';
 import * as UseBillsHook from '@/data/hooks/bills/useBills';
 import * as UseBillingServicesHook from '@/data/hooks/billingServices/useBillingServices';
 
@@ -303,7 +303,7 @@ vi.mock('@/data/hooks/catalog/useCatalog', () => ({
   } => mocks.catalog,
 }));
 
-vi.mock('@/pages/layout/context', async (importOriginal) => {
+vi.mock('@/pages/dashboard/context', async (importOriginal) => {
   const module: typeof HubContext = await importOriginal();
   return {
     ...module,

@@ -63,7 +63,7 @@ describe('AssistanceSidebar.component', () => {
     const assistanceSidebar = queryByTestId(id);
     expect(assistanceSidebar).not.toBeNull();
     expect(assistanceSidebar.children.length).toBe(
-      assistanceTree.children.length + 1,
+      assistanceTree.children.length,
     );
   });
 
