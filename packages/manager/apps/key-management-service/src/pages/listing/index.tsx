@@ -21,7 +21,7 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { useOKMSList } from '@/data/hooks/useOKMS';
+import { useOkmsList } from '@/data/hooks/useOkms';
 import { ROUTES_URLS } from '@/routes/routes.constants';
 import {
   DatagridCellId,
@@ -96,7 +96,7 @@ export default function Listing() {
     isError,
     isLoading,
     status,
-  } = useOKMSList({
+  } = useOkmsList({
     pageSize: 10,
   });
 
