@@ -1,0 +1,261 @@
+import { Outlet, useParams } from 'react-router-dom';
+import { useState, useEffect, useMemo } from 'react';
+import {
+  OsdsButton,
+  OsdsIcon,
+  OsdsSearchBar,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
+import { Datagrid, useDataGrid } from '@ovh-ux/manager-react-components';
+import {
+  ODS_BUTTON_SIZE,
+  ODS_BUTTON_VARIANT,
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
+} from '@ovhcloud/ods-components';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { useTranslation } from 'react-i18next';
+import TokenModal from '@/components/Token/tokenModal';
+import useUserPolicy from '@/hooks/api/database/token/user.hook';
+import { useDatagridColumns } from '@/hooks/token/useDatagridColumns';
+import {
+  useGetTokens,
+  useUpdateToken,
+  useDeleteToken,
+} from '@/hooks/api/database/token/useToken.hook';
+import { TokenData } from '@/types/cloud/project/database/token';
+
+const INFINITE_DATE = new Date('2105-12-31T23:59:59.999Z');
+
+export default function TokenPage() {
+  const { t } = useTranslation('token');
+  const { projectId } = useParams();
+  const { pagination, setPagination } = useDataGrid();
+
+  if (!projectId) return null;
+
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [modalMode, setModalMode] = useState<'create' | 'update' | 'delete'>(
+    'create',
+  );
+  const [selectedToken, setSelectedToken] = useState<TokenData | null>(null);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const { fetchUserId, fetchPolicy } = useUserPolicy();
+
+  useEffect(() => {
+    if (!projectId) return;
+    const initUserAndPolicy = async () => {
+      const urn = await fetchUserId(projectId);
+      if (urn) {
+        await fetchPolicy(projectId, urn);
+      }
+    };
+    initUserAndPolicy();
+  }, [projectId, fetchUserId, fetchPolicy]);
+
+  const { data: tokensData, isLoading } = useGetTokens({ projectId });
+
+  const updateTokenMutation = useUpdateToken({
+    projectId,
+    onError: () => {},
+    onSuccess: () => {},
+  });
+
+  const deleteTokenMutation = useDeleteToken({
+    projectId,
+    onError: () => {},
+    onSuccess: () => {},
+  });
+
+  const openModal = () => setModalOpen(true);
+  const closeModal = () => {
+    setModalOpen(false);
+    setSelectedToken(null);
+    setModalMode('create');
+  };
+
+  const handleUpdateToken = (token: TokenData) => {
+    if (!token.name) return;
+    setSelectedToken(token);
+    setModalMode('update');
+    openModal();
+  };
+
+  const handleDeleteToken = (token: TokenData) => {
+    if (!token.name) return;
+    setSelectedToken(token);
+    setModalMode('delete');
+    openModal();
+  };
+
+  const handleModalSubmit = (payload?: {
+    tokenName: string;
+    description: string;
+    expirationDate?: Date | null;
+  }) => {
+    if (
+      modalMode === 'update' &&
+      selectedToken &&
+      selectedToken.name &&
+      payload
+    ) {
+      const updatePayload = {
+        projectId,
+        name: selectedToken.name,
+        description: payload.description,
+        expiresAt: payload.expirationDate
+          ? payload.expirationDate.toISOString()
+          : undefined,
+      };
+      updateTokenMutation.updateToken(updatePayload);
+    } else if (modalMode === 'delete' && selectedToken && selectedToken.name) {
+      deleteTokenMutation.deleteToken({
+        projectId,
+        name: selectedToken.name,
+      });
+    }
+    closeModal();
+  };
+
+  const { columns, tokenItems } = useDatagridColumns({
+    projectId,
+    noLimitation: INFINITE_DATE,
+    onUpdate: handleUpdateToken,
+    onDelete: handleDeleteToken,
+  });
+
+  const filteredAndSortedTokens = useMemo(() => {
+    let tokens = tokenItems;
+    if (searchQuery.trim()) {
+      const query = searchQuery.trim().toLowerCase();
+      tokens = tokens.filter((token) => {
+        const nameMatch = token.name?.toLowerCase().includes(query);
+        let formattedDate = '';
+        if (token.expiresAt) {
+          const tokenDate = new Date(token.expiresAt);
+          if (tokenDate.getTime() === INFINITE_DATE.getTime()) {
+            formattedDate = t('ai_endpoints_token_expiration');
+          } else {
+            formattedDate = tokenDate.toLocaleDateString('fr-FR', {
+              day: '2-digit',
+              month: '2-digit',
+              year: 'numeric',
+            });
+          }
+        }
+        const expirationMatch = formattedDate.toLowerCase().includes(query);
+        return nameMatch || expirationMatch;
+      });
+    }
+    return [...tokens].sort((a, b) =>
+      (a.name || '').localeCompare(b.name || ''),
+    );
+  }, [searchQuery, tokenItems]);
+
+  const startIndex = pagination.pageIndex * pagination.pageSize;
+  const paginatedTokens = filteredAndSortedTokens.slice(
+    startIndex,
+    startIndex + pagination.pageSize,
+  );
+
+  return (
+    <>
+      <OsdsText
+        level={ODS_TEXT_LEVEL.heading}
+        size={ODS_TEXT_SIZE._600}
+        color={ODS_THEME_COLOR_INTENT.primary}
+        className="flex mb-4"
+      >
+        {t('ai_endpoints_token_management')}
+      </OsdsText>
+      <OsdsText
+        color={ODS_THEME_COLOR_INTENT.text}
+        className="flex mb-12 max-w-[30rem]"
+        size={ODS_TEXT_SIZE._400}
+      >
+        {t('ai_endpoints_token_intro')}
+      </OsdsText>
+      <div className="sm:flex items-center justify-between mt-4">
+        <div className="flex flex-row items-center justify-between w-full">
+          <OsdsButton
+            size={ODS_BUTTON_SIZE.sm}
+            variant={ODS_BUTTON_VARIANT.flat}
+            color={ODS_THEME_COLOR_INTENT.primary}
+            className="xs:mb-0.5 sm:mb-0 mr-4"
+            onClick={() => {
+              setModalMode('create');
+              openModal();
+            }}
+          >
+            <OsdsIcon
+              name={ODS_ICON_NAME.PLUS}
+              size={ODS_ICON_SIZE.xs}
+              className="mr-2 bg-white"
+            />
+            {t('ai_endpoints_token_creation')}
+          </OsdsButton>
+          <OsdsSearchBar
+            className="w-[20rem]"
+            value={searchQuery}
+            placeholder={t('ai_endpoints_token_search')}
+            onOdsSearchSubmit={({ detail }) => {
+              setSearchQuery(detail.inputValue);
+              setPagination({
+                pageIndex: 0,
+                pageSize: pagination.pageSize,
+              });
+            }}
+            onOdsValueChange={({ detail }) => {
+              if (detail.value === '') {
+                setSearchQuery('');
+                setPagination({
+                  pageIndex: 0,
+                  pageSize: pagination.pageSize,
+                });
+              }
+            }}
+          />
+        </div>
+      </div>
+
+      {isModalOpen && (
+        <TokenModal
+          infiniteDate={INFINITE_DATE}
+          onClose={closeModal}
+          projectId={projectId}
+          tokens={Array.isArray(tokensData) ? tokensData : []}
+          mode={modalMode}
+          initialValues={
+            selectedToken
+              ? {
+                  tokenName: selectedToken.name || '',
+                  description: selectedToken.description || '',
+                  expirationDate: selectedToken.expiresAt
+                    ? new Date(selectedToken.expiresAt)
+                    : undefined,
+                }
+              : undefined
+          }
+          onSubmit={handleModalSubmit}
+        />
+      )}
+
+      <Outlet />
+
+      {!isLoading && tokenItems && (
+        <div className="mt-12">
+          <Datagrid
+            columns={columns}
+            items={paginatedTokens}
+            totalItems={filteredAndSortedTokens.length}
+            pagination={pagination}
+            onPaginationChange={setPagination}
+          />
+        </div>
+      )}
+    </>
+  );
+}
