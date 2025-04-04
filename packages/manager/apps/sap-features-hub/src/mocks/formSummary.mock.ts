@@ -1,9 +1,38 @@
-import { StepSummary } from '@/types/formStep.type';
+import { StepFieldSummary, StepSummary } from '@/types/formStep.type';
 import { mockedValues as mock } from './installationForm.mock';
 import { FORM_LABELS } from '@/constants/form.constants';
 import { labels } from '@/test-utils';
+import { LABELS } from '@/utils/label.constants';
+import { ServerConfigVM as VM } from '@/types/servers.type';
 
 const { installation: l } = labels;
+
+const getVMFields = (vms: VM[]): StepFieldSummary[] =>
+  vms.reduce(
+    (fields, vm, index) =>
+      [
+        ...fields,
+        { type: 'subtitle', isMinor: true, label: `${l.vm} ${index + 1}` },
+        { value: vm.name, label: l.server_config_input_vm_name },
+        ...('role' in vm ? [{ value: vm.role, label: l.role }] : []),
+        { value: vm.vcpus, label: FORM_LABELS.vcpus },
+        { value: vm.memory, label: l.ram },
+        {
+          value: vm.rootPassword,
+          label: l.server_config_input_root_password,
+          isSecretValue: true,
+        },
+        {
+          value: vm.ipAddress,
+          label: l.server_config_input_ipv4_address,
+        },
+        {
+          value: vm.instanceNumber,
+          label: l.server_config_input_instance_number,
+        },
+      ] as StepFieldSummary[],
+    [],
+  );
 
 export const mockedFormSummary: { formSummary: StepSummary[] } = {
   formSummary: [
@@ -104,6 +133,51 @@ export const mockedFormSummary: { formSummary: StepSummary[] } = {
     },
     {
       id: '6',
+      title: l.vms,
+      fields: [
+        {
+          value: mock.network,
+          label: l.server_config_input_vmware_ports,
+        },
+        {
+          value: mock.netmask,
+          label: l.server_config_input_subnet_mask,
+        },
+        {
+          value: mock.gateway,
+          label: l.server_config_input_gateway_ip,
+        },
+        {
+          value: mock.thickDatastorePolicy,
+          label: l.server_config_input_thick_storage,
+        },
+        {
+          value: mock.passwordCrypted ? l.yes : l.no,
+          label: l.server_config_toggle_password_encryption,
+        },
+        { type: 'subtitle', label: LABELS.SAP_HANA },
+        {
+          value: mock.hanaServerOva,
+          label: l.server_config_input_ova_model,
+        },
+        { value: mock.hanaServerDatastore, label: FORM_LABELS.datastore },
+        ...(mock.hanaServers?.length ? getVMFields(mock.hanaServers) : []),
+        { type: 'subtitle', label: l.server_config_applications_servers },
+        {
+          value: mock.applicationServerOva,
+          label: l.server_config_input_ova_model,
+        },
+        {
+          value: mock.applicationServerDatastore,
+          label: FORM_LABELS.datastore,
+        },
+        ...(mock.applicationServers?.length
+          ? getVMFields(mock.applicationServers)
+          : []),
+      ],
+    },
+    {
+      id: '7',
       title: l.enablement_summary,
       fields: [
         {
