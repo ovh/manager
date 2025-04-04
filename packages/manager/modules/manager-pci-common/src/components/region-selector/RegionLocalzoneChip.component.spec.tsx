@@ -5,10 +5,10 @@ import { wrapper } from '@/wrapperRenders';
 
 describe('RegionLocalzoneChip', () => {
   it('renders tag with correct text', () => {
-    const { container } = render(<RegionLocalzoneChip id="fake-id" />, {
+    const { container } = render(<RegionLocalzoneChip />, {
       wrapper,
     });
-    const tagElt = container.querySelector('#fake-id').firstChild;
+    const tagElt = container.querySelector('ods-badge');
 
     expect(tagElt).toBeInTheDocument();
     expect(tagElt).toHaveAttribute(
