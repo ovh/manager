@@ -291,7 +291,7 @@ const Sidebar = (): JSX.Element => {
       }`}
     >
       <div
-        className={`${style.sidebar_wrapper} ${!open &&
+        className={`overflow-visible ${style.sidebar_wrapper} ${!open &&
           style.sidebar_short} ${isAnimated && style.sidebar_animated}`}
       >
         <div className={style.sidebar_lvl1}>
