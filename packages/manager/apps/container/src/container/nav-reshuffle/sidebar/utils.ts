@@ -208,38 +208,37 @@ export const getLastElement = (root: Node) => {
 
   return root ? getLast(root) : null;
 };
-
-export const splitPathIntoSegmentsWithoutRouteParams = (
+/* this function is used to parse a path with the pattern /some/thing/{id}/other/thing
+and return it as an array of segments: ['some', 'thing', '{param}', 'other', 'thing'] */
+export const splitPathIntoSegments = (
   path: string,
 ): string[] => {
-  const pathWithoutParams = path.replace(/\/{[^}]*}/g, '');
-  return pathWithoutParams.split('/').filter(segment => segment.length > 0);
+  const segments = path.split('/').filter(segment => segment.length > 0);
+
+  return segments.map(segment => {
+    return segment.startsWith('{') && segment.endsWith('}') ? '{param}' : segment; 
+  })
+}
+
+/* this function is used to compare a node and a path */
+export const isMatchingNode = (node: Node, pathSegment: string) => {
+  if (!node.routing) return null;
+
+  const nodePath = node.routing.hash ? node.routing.hash.replace('#', node.routing.application) : '/' + node.routing.application;
+  const nodeSegments = splitPathIntoSegments(nodePath);
+  const pathSegments = splitPathIntoSegments(pathSegment);
+
+  return nodeSegments.length > pathSegments.length ? null : {
+    value: nodeSegments.reduce((isMatching, segment, index) => {
+      const returnValue = isMatching && (segment === '{param}' || segment === pathSegments[index]);
+      console.log(segment, pathSegments[index], returnValue);
+      return returnValue;
+    }, true) ? node : null,
+    segments: nodeSegments.length
+  }
 }
 
 export const findNodeByRouting = (root: Node, locationPath: string) => {
-  const containsAllSegmentsInOrder = (nodeSegments: string[], pathSegments: string[]): boolean => {
-    if (nodeSegments.length === 0) return true;
-    if (nodeSegments.length > pathSegments.length) return false;
-    return nodeSegments[0] === pathSegments[0] ? containsAllSegmentsInOrder(
-        nodeSegments.slice(1),
-        pathSegments.slice(1)
-      ) : containsAllSegmentsInOrder(nodeSegments, pathSegments.slice(1));
-  }
-
-  const isMatchingNode = (node: Node, pathSegment: string) => {
-    if (!node.routing) return null;
-
-    const nodePath = node.routing.hash ? node.routing.hash.replace('#', node.routing.application) : '/' + node.routing.application;
-    const normalizedPath = nodePath.startsWith('/') ? nodePath : '/' + nodePath;
-    const nodeSegments = splitPathIntoSegmentsWithoutRouteParams(normalizedPath);
-    const pathSegments = splitPathIntoSegmentsWithoutRouteParams(pathSegment);
-
-    return {
-      value: containsAllSegmentsInOrder(nodeSegments, pathSegments) ? node : null,
-      segments: nodeSegments.length
-    }
-  }
-
   const exploreTree = (node: Node, pathSegment: string) : { value: Node | null; segments: number } => {
     if (!node.children || node.children.length === 0) return isMatchingNode(node, pathSegment);
     const currentMatch = isMatchingNode(node, pathSegment);
