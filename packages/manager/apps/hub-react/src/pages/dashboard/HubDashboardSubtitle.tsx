@@ -8,7 +8,7 @@ import {
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
-import { useHubContext } from '@/pages/layout/context';
+import { useHubContext } from '@/pages/dashboard/context';
 
 export default function HubDashboardSubtitle() {
   const { isLoading, isFreshCustomer } = useHubContext();
