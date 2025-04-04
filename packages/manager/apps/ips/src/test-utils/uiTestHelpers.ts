@@ -1,5 +1,5 @@
 import { waitFor, within } from '@testing-library/react';
-import { ODS_ICON_NAME, OdsSelect } from '@ovhcloud/ods-components';
+import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import '@testing-library/jest-dom';
 
 export const DEFAULT_LISTING_ERROR = 'An error occured while fetching data';
@@ -100,21 +100,16 @@ export const getTooltipByText = async ({
   return tooltip;
 };
 
-export const getSelectByPlaceholder = async ({
+export const getSelectByName = async ({
   container,
-  placeholder,
-  nth = 0,
+  name,
 }: {
   container: HTMLElement;
-  placeholder: string;
-  nth?: number;
+  name: string;
 }) => {
-  let select: OdsSelect;
+  let select: HTMLOdsSelectElement;
   await waitFor(() => {
-    const selectList = Array.from(
-      container.querySelectorAll('ods-select'),
-    ).filter((el) => el.getAttribute('placeholder') === placeholder);
-    select = (selectList?.[nth] as unknown) as OdsSelect;
+    select = container.querySelector(`ods-select[name="${name}"]`);
     expect(select).toBeInTheDocument();
   }, WAIT_FOR_DEFAULT_OPTIONS);
   return select;
@@ -153,12 +148,27 @@ export const getOdsCardByContentText = async ({
   text: string;
   nth?: number;
 }) => {
-  let card: HTMLElement;
+  let card: HTMLOdsCardElement;
   await waitFor(() => {
     card = Array.from(container.querySelectorAll('ods-card'))?.filter((c) =>
       within(c).queryByText(text),
-    )?.[nth] as HTMLElement;
+    )?.[nth];
     expect(card).toBeDefined();
   }, WAIT_FOR_DEFAULT_OPTIONS);
   return card;
+};
+
+export const getComboboxByName = async ({
+  container,
+  name,
+}: {
+  container: HTMLElement;
+  name: string;
+}) => {
+  let combobox: HTMLOdsComboboxElement;
+  await waitFor(() => {
+    combobox = container.querySelector(`ods-combobox[name="${name}"]`);
+    expect(combobox).toBeInTheDocument();
+  }, WAIT_FOR_DEFAULT_OPTIONS);
+  return combobox;
 };
