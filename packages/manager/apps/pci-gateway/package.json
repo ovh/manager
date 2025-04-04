@@ -33,6 +33,8 @@
     "axios": "^1.1.2",
     "clsx": "2.1.1",
     "element-internals-polyfill": "^1.3.10",
+    "i18next": "^23.8.2",
+    "i18next-http-backend": "^2.5.2",
     "file-saver": "^2.0.5",
     "lodash.uniqby": "^4.7.0",
     "react": "^18.2.0",

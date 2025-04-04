@@ -33,6 +33,7 @@
   },
   "peerDependencies": {
     "@tanstack/react-query": "5.x",
+    "axios": "^1.1.2",
     "react": "18.x"
   }
 }
