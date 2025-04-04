@@ -19,7 +19,7 @@
     "bootstrap": "^3.3.7"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
+    "@ovh-ux/manager-config": "^8.0.2",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.0.0",
     "@ovh-ux/ng-ovh-http": "^5.0.4",
     "@ovh-ux/ng-ovh-payment-method": "^9.3.0",
@@ -31,6 +31,7 @@
     "@uirouter/angularjs": "^1.0.0",
     "URIjs": "^1.14.0",
     "angular": "^1.6.10",
+    "angular-resource": "^1.7.8",
     "angular-translate": "^2.18.1",
     "angular-xeditable": "^0.9.0",
     "chart.js": "^4.4.2",

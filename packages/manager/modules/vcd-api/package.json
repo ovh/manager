@@ -39,7 +39,10 @@
     "vitest": "^2.1.9"
   },
   "peerDependencies": {
-    "@tanstack/react-query": "5.x",
+    "@tanstack/react-query": "^5.51.21",
+    "@tanstack/table-core": "^8.21.2",
+    "@types/react": "~18.2.45",
+    "axios": "^1.1.2",
     "react": "18.x"
   }
 }

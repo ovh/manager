@@ -149,7 +149,9 @@ export const RouterWithQueryClientWrapper = ({
     environment: Environment;
   };
   return (
-    <ShellProvider client={client}>
+    <ShellProvider
+      client={client as React.ComponentProps<typeof ShellProvider>['client']}
+    >
       <QueryClientWrapper>
         <HashRouterWithLocationWrapper>
           <UserActivityProvider timeout={USER_INACTIVITY_TIMEOUT}>

@@ -58,6 +58,7 @@
     "oclazyload": "^1.1.0",
     "ovh-api-services": "^17.0.0",
     "ovh-ui-kit-bs": "^4.1.6",
+    "punycode": "^1.4.1",
     "regenerator-runtime": "^0.13.5",
     "whatwg-fetch": "^3.0.0"
   },
@@ -65,6 +66,7 @@
     "@ovh-ux/manager-webpack-config": "^7.0.7",
     "glob": "^7.1.6",
     "lodash": "^4.17.15",
+    "webpack": "^5.76.2",
     "webpack-merge": "^4.2.2"
   },
   "regions": [

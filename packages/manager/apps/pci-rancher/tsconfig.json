@@ -16,11 +16,13 @@
     "declaration": true,
     "resolveJsonModule": true,
     "allowJs": true,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "paths": {
       "@/*": ["./src/*"],
       "@playwright-helpers/*": ["../../../../playwright-helpers/*"],
-      "@translation/*": ["./public/translations/*"]
+      "@translation/*": ["./public/translations/*"],
+      "react": ["./node_modules/@types/react"],
+      "react-dom": ["./node_modules/@types/react-dom"]
     }
   },
   "include": ["src"],

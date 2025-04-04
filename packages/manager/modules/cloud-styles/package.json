@@ -27,6 +27,7 @@
     "bootstrap": "~3.3.7",
     "font-awesome": "^4.0.0",
     "ovh-common-style": "^3.2.2",
-    "ovh-ui-kit-bs": "^4.2.0"
+    "ovh-ui-kit-bs": "^4.2.0",
+    "rollup": "^4.18.0"
   }
 }

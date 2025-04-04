@@ -60,7 +60,7 @@
                         data-on-initialized="$ctrl.addSteps.paymentMethodType.loading = false"
                         data-automatic-default="!$ctrl.hasAllowDefaultChoiceForFirstPaymentMethod"
                         data-show-default-explanation-texts="true"
-                    />
+                    ></ovh-payment-method-register>
                     <ovh-payment-method-integration
                         data-ng-if="$ctrl.isLastStep('paymentMethodType')"
                         data-on-initialized="$ctrl.onPaymentMethodIntegrationInitialized.bind($ctrl)"

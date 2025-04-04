@@ -12,8 +12,8 @@
   "author": "OVH SAS",
   "main": "./src/index.js",
   "peerDependencies": {
-    "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
-    "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
+    "@ovh-ux/manager-config": "^8.0.2",
+    "@ovh-ux/manager-core": "^13.0.5",
     "@ovh-ux/ng-at-internet": "^5.9.1",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.2.1",
     "@ovh-ux/ng-shell-tracking": "^0.1.0",

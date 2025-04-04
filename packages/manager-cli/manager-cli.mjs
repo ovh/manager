@@ -17,11 +17,12 @@ const knownCommands = {
 yarn manager-cli routes-migrate --app zimbra
 
 # Preview changes without affecting files
-yarn manager-cli routes-migrate --app zimbra --dry-run`
+yarn manager-cli routes-migrate --app zimbra --dry-run`,
   },
   'tests-migrate': {
     script: 'common-tests-config-migration',
-    description: 'Migrate test setup (unit, integration...) to centralized shared configuration (Vitest, Jest...)',
+    description:
+      'Migrate test setup (unit, integration...) to centralized shared configuration (Vitest, Jest...)',
     help: `
 # Migrate a unit test setup with Vitest (affect files)
 yarn manager-cli tests-migrate --app zimbra --testType unit
@@ -30,7 +31,7 @@ yarn manager-cli tests-migrate --app zimbra --testType unit
 yarn manager-cli tests-migrate --app zimbra --testType integration --framework jest
 
 # Preview changes without applying them (without affecting files)
-yarn manager-cli tests-migrate --app zimbra --testType unit --dry-run`
+yarn manager-cli tests-migrate --app zimbra --testType unit --dry-run`,
   },
 };
 
@@ -137,15 +138,17 @@ if (!appName || appName.startsWith('--')) {
 
 const availableApps = getAvailableApps();
 if (!availableApps.includes(appName)) {
-  console.error([
-    `❌ App "${appName}" not found in:`,
-    `   ${basePath}`,
-    '',
-    `📦 Available apps:`,
-    ...availableApps.map((a) => `  - ${a}`),
-    '',
-    `💡 Tip: Use "yarn manager-cli --list" to see all app names`,
-  ].join('\n'));
+  console.error(
+    [
+      `❌ App "${appName}" not found in:`,
+      `   ${basePath}`,
+      '',
+      `📦 Available apps:`,
+      ...availableApps.map((a) => `  - ${a}`),
+      '',
+      `💡 Tip: Use "yarn manager-cli --list" to see all app names`,
+    ].join('\n'),
+  );
   process.exit(1);
 }
 
@@ -172,14 +175,20 @@ if (command === 'tests-migrate') {
     process.exit(1);
   }
   if (!validTestTypes.includes(testType)) {
-    console.error(`❌ Invalid --testType "${testType}". Must be one of: ${validTestTypes.join(', ')}`);
+    console.error(
+      `❌ Invalid --testType "${testType}". Must be one of: ${validTestTypes.join(
+        ', ',
+      )}`,
+    );
     process.exit(1);
   }
   extraFlags.push('--testType', testType);
 }
 
 // Final command
-const runCommand = `yarn run ${known.script} ${appName} ${extraFlags.join(' ')}`;
+const runCommand = `pnpm run ${known.script} ${appName} ${extraFlags.join(
+  ' ',
+)}`;
 
 try {
   console.log(`\n▶ Running "${command}" for app: "${appName}"`);

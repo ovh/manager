@@ -10,7 +10,8 @@
             <div class="promotion-banner-container" data-ng-if="$ctrl.model">
                 <pci-new-project-promotion-banner
                     data-voucher="$ctrl.model.voucher"
-                />
+                >
+                </pci-new-project-promotion-banner>
             </div>
             <div
                 class=" py-5 minh-100 bg-white pci-project-new-view"
@@ -19,7 +20,8 @@
         </div>
     </div>
     <div data-ng-if="!$ctrl.viewOptions.standalone">
-        <pci-new-project-promotion-banner data-voucher="$ctrl.model.voucher" />
+        <pci-new-project-promotion-banner data-voucher="$ctrl.model.voucher">
+        </pci-new-project-promotion-banner>
         <div class="pci-project-new-view" data-ui-view></div>
     </div>
 </div>

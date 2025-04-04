@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "lib": ["dom", "es2021"],
     "target": "es2021",
     "types": ["vite/client", "node", "jest"],
@@ -13,7 +14,10 @@
     "isolatedModules": true,
     "declaration": true,
     "declarationDir": "./dist/types",
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "paths": {
+      "axios": ["node_modules/axios"]
+    }
   },
   "exclude": [
     "node_modules",

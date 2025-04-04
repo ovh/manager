@@ -13,14 +13,16 @@
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
     "noImplicitAny": true,
-    "declaration": true,
+    // "declaration": true,
     "resolveJsonModule": true,
     "allowJs": true,
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
       "@/public/*": ["./public/*"],
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "axios": ["./node_modules/axios"],
+      "jsurl": ["./node_modules/@types/jsurl"]
     }
   },
   "include": ["src"],

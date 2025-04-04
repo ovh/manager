@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "target": "es6",
     "moduleResolution": "Node",
     "lib": ["dom", "es2020"],
@@ -13,7 +14,10 @@
     "declaration": true,
     "skipLibCheck": true,
     "declarationDir": "dist/types",
-    "jsx": "react"
+    "jsx": "react",
+    "paths": {
+      "@types/react": ["node_modules/@types/react"]
+    }
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist", "__tests__", "features"]

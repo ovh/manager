@@ -4,7 +4,7 @@ import {
   webIcons,
   telecomIcons,
   containerIcons,
-} from '@ovh-ux/ovh-product-icons/index';
+} from '../index';
 import OvhProductName from './OvhProductNameEnum';
 
 interface SvgIconProps {

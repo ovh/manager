@@ -1,6 +1,6 @@
 import { User } from '@ovh-ux/manager-config';
 
-export const mockedUser: User = {
+export const mockedUser = {
   nichandle: 'test123',
   address: 'address',
   area: 'area',
@@ -50,4 +50,4 @@ export const mockedUser: User = {
   },
   vat: '',
   zip: '',
-};
+} as User;

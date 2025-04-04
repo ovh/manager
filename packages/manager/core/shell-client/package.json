@@ -17,7 +17,7 @@
     "prepare": "tsc"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^8.2.1",
+    "@ovh-ux/manager-config": "^8.0.2",
     "@ovh-ux/ovh-at-internet": "^0.21.6",
     "@ovh-ux/request-tagger": "^0.4.0",
     "@ovh-ux/shell": "^4.1.0",
@@ -27,6 +27,7 @@
     "i18next-http-backend": "^2.4.2"
   },
   "devDependencies": {
+    "@types/react": "^18.3.3",
     "typescript": "^5.1.6"
   },
   "peerDependencies": {

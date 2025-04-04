@@ -63,8 +63,8 @@
         data-configuration-type="$ctrl.configurationType"
         data-on-submit="$ctrl.onSubmit({ dnsEntry })"
         data-should-clear-form="$ctrl.shouldClearForm"
-    />
-
+    >
+    </web-domain-dns-modify-add-dns-form>
     <oui-message data-ng-if="$ctrl.updateError" data-type="error">
         <span
             data-translate="{{ $ctrl.updateError.message }}"
@@ -77,5 +77,6 @@
         data-cancel-modifications="$ctrl.cancelModifications()"
         data-show-cancel-modifications-button="$ctrl.showCancelModificationsButton"
         data-can-submit="$ctrl.canSubmit"
-    />
+    >
+    </web-domain-dns-modify-validation-buttons>
 </div>

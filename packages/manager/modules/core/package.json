@@ -34,8 +34,8 @@
     "@ovh-ux/manager-models": "^2.5.0"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
-    "@ovh-ux/manager-models": "^1.0.0",
+    "@ovh-ux/manager-config": "^8.0.2",
+    "@ovh-ux/manager-models": "^2.3.1",
     "@ovh-ux/ng-ovh-http": "^5.0.4",
     "@ovh-ux/ng-ovh-request-tagger": "^1.1.0",
     "@ovh-ux/ng-ovh-sso-auth": "^4.6.2",

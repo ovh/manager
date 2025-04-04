@@ -50,6 +50,7 @@
   "devDependencies": {
     "@ovh-ux/manager-webpack-config": "^7.0.7",
     "glob": "^7.1.6",
+    "webpack": "^5.76.2",
     "webpack-merge": "^4.1.4"
   },
   "regions": [

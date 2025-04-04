@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^8.3.1",
+    "@ovh-ux/manager-core-sso": "^0.3.0",
     "@ovh-ux/ovh-at-internet": "^0.23.0",
     "@ovh-ux/ovh-reket": "^2.1.8",
     "@ovh-ux/request-tagger": "^0.4.1",
@@ -32,8 +33,10 @@
     "nanoid": "^3.1.25"
   },
   "devDependencies": {
+    "@types/react": "^18.3.3",
     "@typescript-eslint/eslint-plugin": "^4.7.4",
     "@typescript-eslint/parser": "^4.7.4",
-    "jest-cucumber": "^3.0.1"
+    "jest-cucumber": "^3.0.1",
+    "typescript": "^5.4.5"
   }
 }

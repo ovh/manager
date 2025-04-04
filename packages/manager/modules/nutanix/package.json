@@ -19,11 +19,11 @@
     "lodash": "^4.17.14"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-billing-components": "^2.0.0 || ^3.0.0",
-    "@ovh-ux/manager-bm-server-components": "^0.0.0 || ^1.0.0",
+    "@ovh-ux/manager-billing-components": "^4.11.0",
+    "@ovh-ux/manager-bm-server-components": "^2.7.1",
     "@ovh-ux/manager-components": "^1.0.0",
-    "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
-    "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
+    "@ovh-ux/manager-config": "^8.0.2",
+    "@ovh-ux/manager-core": "^13.0.5",
     "@ovh-ux/manager-ng-layout-helpers": "^2.0.0",
     "@ovh-ux/ng-at-internet": "^5.9.1",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.0.5",

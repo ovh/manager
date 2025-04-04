@@ -266,7 +266,7 @@ export default (plop) => {
         ...pages,
         ...translations,
         ({ packageName }) =>
-          `App ${appName} generated. Please run \n  yarn install && yarn workspace ${packageName} run start:dev`,
+          `App ${appName} generated. Please run \n  pnpm install && pnpm --filter ${packageName} run start:dev`,
       ].filter(Boolean);
     },
   });

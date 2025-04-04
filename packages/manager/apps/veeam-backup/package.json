@@ -40,7 +40,8 @@
     "react-dom": "^18.2.0",
     "react-i18next": "^14.0.5",
     "react-router-dom": "^6.3.0",
-    "tailwindcss": "^3.4.4"
+    "tailwindcss": "^3.4.4",
+    "zustand": "^4.5.5"
   },
   "devDependencies": {
     "@ovh-ux/manager-core-test-utils": "^0.4.5",
@@ -48,6 +49,8 @@
     "@testing-library/jest-dom": "^6.5.0",
     "@testing-library/react": "^16.0.1",
     "@testing-library/user-event": "^14.5.2",
+    "@types/react": "^18.2.55",
+    "@types/react-dom": "^18.2.19",
     "@vitejs/plugin-react": "^4.3.0",
     "@vitest/coverage-v8": "^2.1.9",
     "msw": "2.1.7",

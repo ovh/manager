@@ -9,6 +9,7 @@ import {
   ServiceDetails,
   useServiceDetailsQueryOption,
 } from '@ovh-ux/manager-module-common-api';
+
 import useVeeamBackupConsumption from './useVeeamBackupConsumption';
 import { getServiceConsumption } from '@/data/api/service-consumption';
 import { TServiceConsumption } from '@/type/service-consumption.type';
