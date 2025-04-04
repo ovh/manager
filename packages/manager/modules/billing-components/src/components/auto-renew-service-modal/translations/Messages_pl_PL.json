@@ -1,0 +1,17 @@
+{
+  "autorenew_service_update_modal_title": "Skonfiguruj odnowienie",
+  "autorenew_service_update_modal_description": "Ustaw częstotliwość odnawiania dla usługi: {{serviceName}} ",
+  "autorenew_service_update_modal_period_manual": "Brak częstotliwości odnawiania (odnowienie ręczne)",
+  "autorenew_service_update_modal_period_every_month": "Co miesiąc",
+  "autorenew_service_update_modal_period_every_x_months": "Co {{ months }} m-ce / m-cy",
+  "autorenew_service_update_modal_period_every_year": "Co rok",
+  "autorenew_service_update_modal_period_every_two_years": "Co 2 lata",
+  "autorenew_service_update_modal_automatic_renewal_notice": "Usługa ta będzie automatycznie odnawiana pierwszego dnia każdego miesiąca począwszy od {{expirationDate}}. <br/> Jeśli nie chcesz kontynuować usługi, możesz wyłączyć odnowienie przed datą wygaśnięcia",
+  "autorenew_service_update_modal_manual_renewal_notice": "Wybrałeś ręczne odnowienie usługi {{serviceName}}.<br/> W tej konfiguracji usługa nie będzie automatycznie odnawiana w dniu jej wygaśnięcia.<br/> Na kilka tygodni i dni przed datą wygaśnięcia usługi ({{expirationDate}}) otrzymasz kilka powiadomień e-mailem.<br/> Jeśli chcesz zachować usługę, odnów ją przed tą datą.<br/> Uwaga: po wygaśnięciu usługa zostanie natychmiast zawieszona i stanie się niedostępna. Jeśli użytkownik nie dokona płatności w ciągu kilku dni od daty wygaśnięcia usługi, powiązane z nią dane zostaną trwale usunięte.",
+  "autorenew_service_update_modal_cancel": "Anuluj",
+  "autorenew_service_update_modal_confirm": "Zatwierdź",
+  "autorenew_service_update_modal_add_payment_method": "Dodaj sposób płatności",
+  "autorenew_service_update_modal_payment_method_notice": "Wybrałeś płatność automatyczną za usługę {{serviceName}}. Aby korzystać z tego sposobu odnowienia, zarejestruj wcześniej sposób płatności w Panelu klienta, w sekcji „Sposoby płatności”.",
+  "autorenew_service_update_modal_update_success": "Odnowienie usługi zostało zaktualizowane. Jeśli modyfikacja nie wyświetla się na liście, odśwież stronę.",
+  "autorenew_service_update_modal_update_error": "Wystąpił błąd podczas konfiguracji odnowienia {{message}}."
+}
