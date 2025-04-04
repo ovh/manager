@@ -115,12 +115,13 @@
   "domain_operations_modal_title": "Operation data on {{t0}}",
   "domain_operations_update_me_fields": "Modify {{t0}}",
   "domain_operations_update_contact_not_me": "Only {{t0}} can change {{t1}}",
-  "domain_operations_update_nicadmin_click": "Change your admin details by clicking here",
-  "domain_operations_update_nictech_click": "Change your Tech info by clicking here",
-  "domain_operations_update_nicbilling_click": "Change your nicbilling details by clicking here",
+  "domain_operations_update_nicadmin_click": "Change the admin contact information by clicking here",
+  "domain_operations_update_nictech_click": "Change the technical contact information by clicking here",
+  "domain_operations_update_nicbilling_click": "Change the billing contact information by clicking here",
   "domain_operations_accelerate_success": "The operation has been successfully accelerated.",
   "domain_operations_cancel_success": "The operation has been canceled.",
   "domain_operations_relaunch_success": "The operation has been successfully retried.",
   "wizard_cancel": "Cancel",
-  "wizard_confirm": "Confirm"
+  "wizard_confirm": "Confirm",
+  "domain_operations_update_key_authinfo": "AuthInfo"
 }
