@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
+import { Button } from '@datatr-ux/uxlib';
 import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
 
 interface PriceUnitSwitch {
   showMonthly: boolean;
@@ -18,7 +18,7 @@ const PriceUnitSwitch = ({ showMonthly, onChange }: PriceUnitSwitch) => {
       <Button
         data-testid="pricing_button_hourly"
         type="button"
-        variant="ghost"
+        mode="ghost"
         size="sm"
         onClick={() => handleClick(false)}
         className={cn(
@@ -33,7 +33,7 @@ const PriceUnitSwitch = ({ showMonthly, onChange }: PriceUnitSwitch) => {
       <Button
         data-testid="pricing_button_monthly"
         type="button"
-        variant="ghost"
+        mode="ghost"
         size="sm"
         onClick={() => handleClick(true)}
         className={cn(

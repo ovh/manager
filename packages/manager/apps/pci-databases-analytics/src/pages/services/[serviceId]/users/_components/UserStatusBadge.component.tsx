@@ -1,4 +1,4 @@
-import { Badge, badgeVariants } from '@/components/ui/badge';
+import { Badge, badgeVariants } from '@datatr-ux/uxlib';
 import * as database from '@/types/cloud/project/database';
 
 const UserStatusBadge = ({ status }: { status: database.StatusEnum }) => {
@@ -15,13 +15,13 @@ const UserStatusBadge = ({ status }: { status: database.StatusEnum }) => {
       break;
     case 'ERROR':
     case 'ERROR_INCONSISTENT_SPEC':
-      variant = badgeVariants({ variant: 'error' });
+      variant = badgeVariants({ variant: 'destructive' });
       break;
     case 'READY':
       variant = badgeVariants({ variant: 'success' });
       break;
     default:
-      variant = badgeVariants({ variant: 'default' });
+      variant = badgeVariants({ variant: 'primary' });
       break;
   }
   return <Badge className={variant}>{status}</Badge>;

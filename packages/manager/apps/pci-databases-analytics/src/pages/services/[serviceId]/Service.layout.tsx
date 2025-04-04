@@ -1,6 +1,6 @@
 import { Outlet, redirect, useParams } from 'react-router-dom';
+import { Skeleton } from '@datatr-ux/uxlib';
 import { useGetService } from '@/hooks/api/database/service/useGetService.hook';
-import { Skeleton } from '@/components/ui/skeleton';
 import LegalMentions from '@/pages/_components/LegalMentions.component';
 import { ServiceHeader } from './_components/ServiceHeader.component';
 import TabsMenu from '@/components/tabs-menu/TabsMenu.component';

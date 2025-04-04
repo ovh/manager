@@ -1,14 +1,12 @@
 import { ColumnDef } from '@tanstack/react-table';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
+import { useToast, Switch, Label } from '@datatr-ux/uxlib';
 import { useServiceData } from '../../Service.context';
 import DataTable from '@/components/data-table';
 import * as database from '@/types/cloud/project/database';
 import { getColumns } from './CurrentQueriesTableColumns.component';
-import { useToast } from '@/components/ui/use-toast';
 import { POLLING } from '@/configuration/polling.constants';
-import { Switch } from '@/components/ui/switch';
-import { Label } from '@/components/ui/label';
 import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import { useGetCurrentQueries } from '@/hooks/api/database/query/useGetCurrentQueries.hook';
 import { useCancelCurrentQuery } from '@/hooks/api/database/query/useCancelCurrentQuery.hook';

@@ -6,10 +6,10 @@ import {
   fireEvent,
   act,
 } from '@testing-library/react';
+import { useToast } from '@datatr-ux/uxlib';
 import * as serviceApi from '@/data/api/database/service.api';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import RenameService from './RenameService.component';
-import { useToast } from '@/components/ui/use-toast';
 import { mockedService } from '@/__tests__/helpers/mocks/services';
 import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
 
@@ -32,9 +32,11 @@ describe('Rename service modal', () => {
     vi.mock('@/data/api/database/service.api', () => ({
       editService: vi.fn((s) => s),
     }));
-    vi.mock('@/components/ui/use-toast', () => {
+    vi.mock('@datatr-ux/uxlib', async () => {
+      const mod = await vi.importActual('@datatr-ux/uxlib');
       const toastMock = vi.fn();
       return {
+        ...mod,
         useToast: vi.fn(() => ({
           toast: toastMock,
         })),

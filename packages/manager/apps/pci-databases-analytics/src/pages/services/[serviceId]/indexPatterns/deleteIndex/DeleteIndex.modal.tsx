@@ -1,16 +1,16 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useEffect } from 'react';
-import { Button } from '@/components/ui/button';
 import {
+  Button,
   DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { useToast } from '@/components/ui/use-toast';
+  useToast,
+} from '@datatr-ux/uxlib';
 import { useDeleteIndex } from '@/hooks/api/database/indexes/useDeleteIndex.hook';
 import { useServiceData } from '../../Service.context';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
@@ -81,7 +81,7 @@ const DeleteIndexModal = () => {
             <Button
               data-testid="delete-indexes-cancel-button"
               type="button"
-              variant="outline"
+              mode="outline"
             >
               {t('deleteIndexButtonCancel')}
             </Button>

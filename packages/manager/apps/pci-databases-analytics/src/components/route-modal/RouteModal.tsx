@@ -5,8 +5,8 @@ import {
   DialogDescription,
   DialogFooter,
   DialogHeader,
-} from '../ui/dialog';
-import { Skeleton } from '../ui/skeleton';
+  Skeleton,
+} from '@datatr-ux/uxlib';
 
 interface RouteModalProps {
   backUrl?: string;

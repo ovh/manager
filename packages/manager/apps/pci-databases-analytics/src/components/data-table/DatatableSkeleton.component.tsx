@@ -1,4 +1,3 @@
-import { Skeleton } from '../ui/skeleton';
 import {
   Table,
   TableBody,
@@ -6,7 +5,8 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table';
+  Skeleton,
+} from '@datatr-ux/uxlib';
 
 interface DataTableSkeletonProps {
   rows?: number;

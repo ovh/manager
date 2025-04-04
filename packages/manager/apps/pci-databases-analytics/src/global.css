@@ -1,72 +1,15 @@
 /* stylelint-disable */
+@import '@datatr-ux/ods-tailwind-config/style.css';
+@import '@datatr-ux/uxlib/style.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
- 
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
- 
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
- 
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
- 
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
- 
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
- 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
- 
-    --radius: 0.5rem;
-  }
- 
-  .dark {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
- 
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
- 
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
- 
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
- 
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
- 
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
- 
-    --accent: 0 0% 14.9%;
-    --accent-foreground: 0 0% 98%;
- 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
- 
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
-  }
+*, *:before, *:after {
+  border-color: var(--border);
 }
- 
- 
+
+
 /* width */
 ::-webkit-scrollbar {
   width: 10px;
@@ -89,28 +32,26 @@
   background: #555;
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-    font-family: "Source Sans Pro",sans-serif;
-    font-size: 16px;
-  }
-  h1 {
-    @apply text-ods-heading-800 font-ods-heading-800 leading-ods-heading-800;
-  }
-  h2 {
-    @apply text-ods-heading-700 font-ods-heading-700 leading-ods-heading-700;
-  }
-  h3 {
-    @apply text-ods-heading-500 font-ods-heading-500 leading-ods-heading-500;
-  }
-  h4 {
-    @apply text-ods-heading-400 font-ods-heading-400 leading-ods-heading-400;
-  }
-  h5 {
-    @apply text-ods-heading-200 font-ods-heading-200 leading-ods-heading-200;
-  }
+h1, h2, h3, h4, h5 {
+  color: hsla(233deg, 31%, 44%, 1);
+}
+h1 {
+  font-size: 3rem;
+}
+h2 {
+  font-size: 2.25rem;
+  line-height: 2.8125rem;
+}
+h3 {
+  font-size: 2rem;
+}
+h4 {
+  line-height: 1.75rem;
+}
+h5 {
+  font-size: 1rem;
+}
+/* fix the ODS menu group display */
+osds-menu-group {
+  display: flex;
 }

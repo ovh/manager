@@ -2,20 +2,18 @@ import { ColumnDef } from '@tanstack/react-table';
 import { useTranslation } from 'react-i18next';
 import { Plus } from 'lucide-react';
 import { Outlet, useNavigate } from 'react-router-dom';
+import { Button } from '@datatr-ux/uxlib';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import { useServiceData } from '../Service.context';
 import { useGetUsers } from '@/hooks/api/database/user/useGetUsers.hook';
 import { GenericUser } from '@/data/api/database/user.api';
 import * as database from '@/types/cloud/project/database';
 import { getColumns } from './_components/UsersTableColumns.component';
-import { Button } from '@/components/ui/button';
 import DataTable from '@/components/data-table';
 import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import { POLLING } from '@/configuration/polling.constants';
 import { FilterCategories } from '@/lib/filters';
 import UserStatusBadge from './_components/UserStatusBadge.component';
-import { Badge } from '@/components/ui/badge';
-import { DatatableSortableHeader } from '@/components/data-table/DatatableSortableHeader.component';
 import ToggleAcl from './_components/ToggleAcl.component';
 import PatternSubRow from './_components/PatternsSubRow.component';
 
@@ -110,7 +108,7 @@ const Users = () => {
               <DataTable.Action>
                 <Button
                   data-testid="users-add-button"
-                  variant={'outline'}
+                  mode={'outline'}
                   disabled={
                     service.capabilities.users?.create ===
                     database.service.capability.StateEnum.disabled

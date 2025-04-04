@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
+import { Button } from '@datatr-ux/uxlib';
 import onboardingImgSrc from '@/../public/assets/onboarding-image.png';
 import Guides from '@/components/guides/Guides.component';
 import { GuideSections } from '@/types/guide';
-import { Button } from '@/components/ui/button';
 import Link from '@/components/links/Link.component';
 import { useTrackAction } from '@/hooks/useTracking';
 import { TRACKING } from '@/configuration/tracking.constants';

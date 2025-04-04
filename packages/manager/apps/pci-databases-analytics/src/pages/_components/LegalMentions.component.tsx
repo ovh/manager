@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent } from '@datatr-ux/uxlib';
 
 const LegalMentions = () => {
   const { t } = useTranslation('pci-databases-analytics');
