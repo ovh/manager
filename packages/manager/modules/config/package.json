@@ -33,7 +33,8 @@
     "@ovh-ux/ovh-reket": "^2.1.7"
   },
   "devDependencies": {
-    "@ovh-ux/request-tagger": "^0.4.0"
+    "@ovh-ux/request-tagger": "^0.4.0",
+    "typescript": "5.4.5"
   },
   "peerDependencies": {
     "@ovh-ux/request-tagger": "^0.4.0"

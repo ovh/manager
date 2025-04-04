@@ -34,9 +34,10 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-config' --include-dependencies -- yarn run dev:watch"
   },
   "devDependencies": {
-    "@ovh-ux/manager-config": "^8.2.1"
+    "@ovh-ux/manager-config": "^8.2.1",
+    "typescript": "^5.5.4"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-config": "^8.0.1"
+    "@ovh-ux/manager-config": "^8.0.2"
   }
 }
