@@ -12,7 +12,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useParams, useHref, useNavigate } from 'react-router-dom';
 import { useProject } from '@ovh-ux/manager-pci-common';
-import PciStorageVolumeEdit from './PciStorageVolumeEdit.component';
+import VolumeEdit from './VolumeEdit.component';
 import { TVolume } from '@/api/api.types';
 import { useVolumeSnapshot } from '@/api/hooks/useSnapshots';
 import { useCreateVolume } from '@/api/hooks/useVolume';
@@ -117,7 +117,7 @@ export default function CreateVolumePage() {
         {!snapshot?.volume || isPending ? (
           <OdsSpinner />
         ) : (
-          <PciStorageVolumeEdit
+          <VolumeEdit
             projectId={projectId}
             volume={snapshot.volume}
             suggestedName={snapshot.name}
