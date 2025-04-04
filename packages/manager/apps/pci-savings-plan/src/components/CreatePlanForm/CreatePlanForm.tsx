@@ -48,6 +48,7 @@ import {
   InstanceTechnicalName,
   Resource,
   ResourceType,
+  TechnicalInfo,
 } from '@/types/CreatePlan.type';
 import CommitmentWrapper from '../Commitment/CommitmentWrapper';
 import SelectDeployment from './SelectDeployment';
@@ -86,7 +87,7 @@ const Block: React.FC<React.PropsWithChildren> = ({ children }) => {
 };
 
 type InstanceInfoWithTechnical = InstanceInfo & {
-  technical: ReturnType<typeof formatTechnicalInfo>[];
+  technical: TechnicalInfo[];
 };
 
 export type CreatePlanFormProps = {
