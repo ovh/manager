@@ -27,11 +27,11 @@ import {
 import { Await } from 'react-router-dom';
 import { useFetchHubBills } from '@/data/hooks/bills/useBills';
 import { useFetchHubDebt } from '@/data/hooks/debt/useDebt';
-import '@/pages/layout/BillingSummary.style.scss';
-import { BILLING_SUMMARY_PERIODS_IN_MONTHS } from '@/pages/layout/layout.constants';
+import '@/pages/dashboard/BillingSummary.style.scss';
+import { BILLING_SUMMARY_PERIODS_IN_MONTHS } from '@/pages/dashboard/dashboard.constants';
 import { usePeriodFilter } from '@/hooks/periodFilter/usePeriodFilter';
 import { usePriceFormat } from '@/hooks/priceFormat/usePriceFormat';
-import { useHubContext } from '@/pages/layout/context';
+import { useHubContext } from '@/pages/dashboard/context';
 
 const TileError = lazy(() =>
   import('@/components/tile-error/TileError.component'),
