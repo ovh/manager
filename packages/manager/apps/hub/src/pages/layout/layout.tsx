@@ -37,6 +37,7 @@ import PaymentStatus from '@/pages/layout/PaymentStatus.component';
 import HubSupport from '@/components/hub-support/HubSupport.component';
 import OrderTracking from '@/components/hub-order-tracking/HubOrderTracking.component';
 import HubDashboardSubtitle from '@/pages/layout/HubDashboardSubtitle';
+import NotificationsEmailUnreachable from './NotificationsEmailUnreachable.component';
 
 const Products = lazy(() => import('@/components/products/Products.component'));
 const Catalog = lazy(() => import('@/pages/layout/Catalog.component'));
@@ -137,9 +138,9 @@ export default function Layout() {
                 <div className="pb-12">
                   <Welcome />
                   <Banner />
-                  {/* I doubt this height as we will have dots when we have more than 1 notification */}
-                  <div className="h-[56px]">
+                  <div>
                     <NotificationsCarousel />
+                    <NotificationsEmailUnreachable />
                   </div>
                   <SiretBanner />
                   <SiretModal />

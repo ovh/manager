@@ -64,6 +64,10 @@ export const KYC_FRAUD_TRACK_IMPRESSION = {
   generalPlacement: 'manager-hub',
 };
 
+export const USER_CERTIFICATES = {
+  EMAIL_UNREACHABLE: 'email-unreachable',
+} as const;
+
 export default {
   features,
   BILLING_SUMMARY_PERIODS_IN_MONTHS,
