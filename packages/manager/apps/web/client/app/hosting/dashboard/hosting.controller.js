@@ -8,7 +8,7 @@ import set from 'lodash/set';
 import some from 'lodash/some';
 import union from 'lodash/union';
 import { HOSTING_CDN_ORDER_CDN_VERSION_V1 } from '../cdn/order/hosting-cdn-order.constant';
-import { DATABASES_TRACKING } from '../hosting.constants';
+import { DATABASES_TRACKING, HOSTING_GUIDES } from '../hosting.constants';
 
 export default class {
   /* @ngInject */
@@ -182,6 +182,11 @@ export default class {
     this.$scope.urlDomainOrder = null;
 
     this.$scope.ovhConfig = null;
+
+    this.guides = HOSTING_GUIDES.map((guide) => ({
+      title: this.$translate.instant(guide.translateKey),
+      href: guide.url[this.user.ovhSubsidiary] || guide.url.DEFAULT,
+    }));
 
     this.$scope.convertBytesSize = (nb, unit, decimalWanted = 0) => {
       if (nb == null || unit == null) {
