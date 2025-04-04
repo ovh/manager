@@ -25,5 +25,8 @@
   "terminated_service": "Der Dienst wurde gekündigt.",
   "gigabyte": "GB",
   "terabyte": "TB",
-  "space_summary": "{{usedSpaceInGB}} GB ({{percent}} % von {{quotaInTB}} TB)"
+  "space_summary": "{{usedSpaceInGB}} GB ({{percent}} % von {{quotaInTB}} TB)",
+  "storage_primary": "Primär",
+  "storage_secondary": "Sekundär",
+  "error_api": "Fehler"
 }
