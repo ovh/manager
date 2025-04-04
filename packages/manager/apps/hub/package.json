@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-hub-app",
-  "version": "6.0.9",
+  "version": "6.0.10",
   "private": true,
   "description": "OVHcloud Dashboard control panel.",
   "repository": {
@@ -80,7 +80,7 @@
     "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-webpack-config": "^7.0.4",
+    "@ovh-ux/manager-webpack-config": "^7.0.5",
     "glob": "^7.1.6",
     "lodash": "^4.17.15",
     "webpack-merge": "^4.2.2"

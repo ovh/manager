@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-telecom",
-  "version": "16.1.3",
+  "version": "16.1.4",
   "private": true,
   "description": "OVHcloud Telecom control panel.",
   "repository": {
@@ -147,7 +147,7 @@
     "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-webpack-config": "^7.0.4",
+    "@ovh-ux/manager-webpack-config": "^7.0.5",
     "glob": "^7.1.4",
     "webpack": "^5.76.2",
     "webpack-merge": "^5.0.2"
