@@ -237,7 +237,7 @@
     },
     "redirect": {
       "application": "public-cloud",
-      "path": "/pci/projects/{project}/storages/databases-analytics/databases/new"
+      "path": "/pci/projects/{project}/databases-analytics/operational/services/new"
     }
   },
   {
@@ -247,7 +247,7 @@
     },
     "redirect": {
       "application": "public-cloud",
-      "path": "/pci/projects/{project}/storages/databases-analytics/databases/new?e=mongodb"
+      "path": "/pci/projects/{project}/databases-analytics/operational/services/new?STEP_1=mongodb"
     }
   },
   {
@@ -257,7 +257,7 @@
     },
     "redirect": {
       "application": "public-cloud",
-      "path": "/pci/projects/{project}/storages/databases-analytics/databases/new?e=mysql"
+      "path": "/pci/projects/{project}/databases-analytics/operational/services/new?STEP_1=mysql"
     }
   },
   {
@@ -267,7 +267,7 @@
     },
     "redirect": {
       "application": "public-cloud",
-      "path": "/pci/projects/{project}/storages/databases-analytics/databases/new?e=postgresql"
+      "path": "/pci/projects/{project}/databases-analytics/operational/services/new?STEP_1=postgresql"
     }
   },
   {
@@ -277,7 +277,7 @@
     },
     "redirect": {
       "application": "public-cloud",
-      "path": "/pci/projects/{project}/storages/databases-analytics/databases/new?e=redis"
+      "path": "/pci/projects/{project}/databases-analytics/operational/services/new?STEP_1=redis"
     }
   },
   {
@@ -287,7 +287,7 @@
     },
     "redirect": {
       "application": "public-cloud",
-      "path": "/pci/projects/{project}/storages/databases-analytics/databases/new?e=cassandra"
+      "path": "/pci/projects/{project}/databases-analytics/operational/services/new?STEP_1=cassandra"
     }
   },
   {
@@ -297,7 +297,7 @@
     },
     "redirect": {
       "application": "public-cloud",
-      "path": "/pci/projects/{project}/storages/databases-analytics/databases/new?e=m3db"
+      "path": "/pci/projects/{project}/databases-analytics/operational/services/new?STEP_1=m3db"
     }
   },
   {
@@ -307,7 +307,17 @@
     },
     "redirect": {
       "application": "public-cloud",
-      "path": "/pci/projects/{project}/storages/databases-analytics/databases/new?e=m3aggregator"
+      "path": "/pci/projects/{project}/databases-analytics/operational/services/new?STEP_1=m3aggregator"
+    }
+  },
+  {
+    "public": {
+      "application": "public-cloud",
+      "path": "/create-valkey-database"
+    },
+    "redirect": {
+      "application": "public-cloud",
+      "path": "/pci/projects/{project}/databases-analytics/operational/services/new?STEP_1=valkey"
     }
   },
   {
@@ -317,7 +327,7 @@
     },
     "redirect": {
       "application": "public-cloud",
-      "path": "/pci/projects/{project}/storages/databases-analytics/data-analysis/new"
+      "path": "/pci/projects/{project}/databases-analytics/analysis/services/new"
     }
   },
   {
@@ -327,7 +337,7 @@
     },
     "redirect": {
       "application": "public-cloud",
-      "path": "/pci/projects/{project}/storages/databases-analytics/data-analysis/new?e=opensearch"
+      "path": "/pci/projects/{project}/databases-analytics/analysis/services/new?STEP_1=opensearch"
     }
   },
   {
@@ -337,7 +347,7 @@
     },
     "redirect": {
       "application": "public-cloud",
-      "path": "/pci/projects/{project}/storages/databases-analytics/data-analysis/new?e=grafana"
+      "path": "/pci/projects/{project}/databases-analytics/analysis/services/new?STEP_1=grafana"
     }
   },
   {
