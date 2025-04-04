@@ -1,9 +1,9 @@
 import { describe, it, vi } from 'vitest';
-import { screen, waitFor } from '@testing-library/react';
+import { waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import {
   labels,
-  WAIT_FOR_DEFAULT_OPTIONS,
   getButtonByLabel,
   selectIpVersion,
   selectService,
@@ -14,11 +14,7 @@ import {
   selectIpv6Option,
   getOrganisationSelect,
 } from '@/test-utils';
-import {
-  resourceMockList,
-  vrackMockList,
-  organisationMockList,
-} from '../../../mocks';
+import { resourceMockList, organisationMockList } from '../../../mocks';
 import { IpOffer, IpVersion } from './order.constant';
 import { ipParkingOptionValue } from '@/data/hooks/useServiceList';
 
@@ -174,16 +170,10 @@ describe('Order', async () => {
 
     await selectIpVersion(IpVersion.ipv4);
 
-    await selectService({ container, serviceName: vrackMockList[0].name });
+    await selectService({ container, serviceName: resourceMockList[2].name });
 
-    await waitFor(
-      () =>
-        expect(
-          screen.getByText(
-            labels.order.service_selection_expired_error_message,
-          ),
-        ).toBeInTheDocument(),
-      WAIT_FOR_DEFAULT_OPTIONS,
+    await assertTextVisibility(
+      labels.order.service_selection_expired_error_message,
     );
   });
 
@@ -196,14 +186,8 @@ describe('Order', async () => {
 
     await selectService({ container, serviceName: resourceMockList[4].name });
 
-    await waitFor(
-      () =>
-        expect(
-          screen.getByText(
-            labels.order.service_selection_ip_quota_exceeded_error_message,
-          ),
-        ).toBeInTheDocument(),
-      WAIT_FOR_DEFAULT_OPTIONS,
+    await assertTextVisibility(
+      labels.order.service_selection_ip_quota_exceeded_error_message,
     );
   });
 
@@ -220,7 +204,7 @@ describe('Order', async () => {
       await selectOffer({ container, offer: IpOffer.blockAdditionalIp });
       const select = await getOrganisationSelect(container);
 
-      select.el
+      select
         .querySelectorAll('option')
         .forEach((option) => expect(option.value).toContain(organisationType));
     },
@@ -231,15 +215,9 @@ describe('Order', async () => {
     await selectIpVersion(IpVersion.ipv4);
     await selectService({ container, serviceName: resourceMockList[0].name });
 
-    await waitFor(
-      () =>
-        expect(
-          screen.getByText(
-            labels.order.error_message.replace('{{error}}', ''),
-            { exact: false },
-          ),
-        ).toBeInTheDocument(),
-      WAIT_FOR_DEFAULT_OPTIONS,
+    await assertTextVisibility(
+      labels.order.error_message.replace('{{error}}', ''),
+      { exact: false },
     );
   });
 
@@ -248,15 +226,9 @@ describe('Order', async () => {
     await selectIpVersion(IpVersion.ipv4);
     await selectService({ container, serviceName: ipParkingOptionValue });
 
-    await waitFor(
-      () =>
-        expect(
-          screen.getByText(
-            labels.order.error_message.replace('{{error}}', ''),
-            { exact: false },
-          ),
-        ).toBeInTheDocument(),
-      WAIT_FOR_DEFAULT_OPTIONS,
+    await assertTextVisibility(
+      labels.order.error_message.replace('{{error}}', ''),
+      { exact: false },
     );
   });
 
@@ -264,15 +236,9 @@ describe('Order', async () => {
     await goToOrder({ isResourceListKo: true });
     await selectIpVersion(IpVersion.ipv4);
 
-    await waitFor(
-      () =>
-        expect(
-          screen.getByText(
-            labels.order.error_message.replace('{{error}}', ''),
-            { exact: false },
-          ),
-        ).toBeInTheDocument(),
-      WAIT_FOR_DEFAULT_OPTIONS,
+    await assertTextVisibility(
+      labels.order.error_message.replace('{{error}}', ''),
+      { exact: false },
     );
   });
 });
