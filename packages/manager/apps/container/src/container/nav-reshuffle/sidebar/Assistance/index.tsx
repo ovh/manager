@@ -110,7 +110,8 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
   };
 
   if (isShort) return (
-      <OsdsPopover className='fixed z-[1000] left-[0.3rem] bottom-[4rem]' id="useful-links" role="menu">
+    <div className='w-full flex justify-center my-2'>
+      <OsdsPopover id="useful-links" role="menu">
         <OsdsButton
           slot="popover-trigger"
           className='w-[4rem]'
@@ -129,7 +130,8 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
           ))}
         </OsdsPopoverContent>
       </OsdsPopover>
-    );
+    </div>
+  );
 
   return (
     <ul
