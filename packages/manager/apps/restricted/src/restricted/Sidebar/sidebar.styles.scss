@@ -1,5 +1,7 @@
 @import '@ovh-ux/ui-kit/dist/scss/_tokens.scss';
 $ovh-sidebar-width: 18.75rem;
+$hub-border-radius-default: 6pt;
+$hub-text-color: #4d5592;
 
 .sidebar-container {
   visibility: hidden;
@@ -67,7 +69,6 @@ $ovh-sidebar-width: 18.75rem;
   @import 'bootstrap4/scss/_grid.scss';
   @import 'bootstrap4/scss/_buttons.scss';
   @import 'bootstrap4/scss/_button-group.scss';
-  @import '@ovh-ux/manager-hub/src/variables.scss';
 
   background-color: $p-075;
   height: 100%;
@@ -96,8 +97,6 @@ $ovh-sidebar-width: 18.75rem;
 }
 
 .sidebar-user-info {
-  @import '@ovh-ux/manager-hub/src/variables.scss';
-
   $circle-radius: 2.5rem;
 
   background-color: $p-000-white;

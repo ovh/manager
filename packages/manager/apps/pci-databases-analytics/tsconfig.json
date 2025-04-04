@@ -13,7 +13,7 @@
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
     "noImplicitAny": true,
-    "declaration": true,
+    // "declaration": true,
     "resolveJsonModule": true,
     "allowJs": true,
     "jsx": "react-jsx",

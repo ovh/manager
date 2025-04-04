@@ -7,7 +7,7 @@ import { getVeeamBackupQueryKey, veeamBackupListQueryKey } from '../utils';
 
 export const getRegionNameFromAzName = (azName = '') => azName?.split('-a')[0];
 
-export const useVeeamBackupList = ({ pageSize }: { pageSize?: number }) =>
+export const useVeeamBackupList = ({ pageSize }: { pageSize?: number }): ReturnType<typeof useResourcesIcebergV2<VeeamBackup>> =>
   useResourcesIcebergV2<VeeamBackup>({
     route: '/vmwareCloudDirector/backup',
     queryKey: veeamBackupListQueryKey,

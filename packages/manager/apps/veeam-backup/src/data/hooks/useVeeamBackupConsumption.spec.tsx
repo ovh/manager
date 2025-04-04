@@ -1,14 +1,9 @@
 import React from 'react';
 import { vi } from 'vitest';
 import { useServiceDetails } from '@ovh-ux/manager-react-components';
-import {
-  QueryClient,
-  QueryClientProvider,
-  UseQueryResult,
-} from '@tanstack/react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { renderHook, waitFor } from '@testing-library/react';
-import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
-import { ServiceDetails } from '@ovh-ux/manager-module-common-api';
+import { ApiResponse } from '@ovh-ux/manager-core-api';
 import useVeeamBackupConsumption from './useVeeamBackupConsumption';
 import { getServiceConsumption } from '@/data/api/service-consumption';
 import { TServiceConsumption } from '@/type/service-consumption.type';
@@ -32,7 +27,7 @@ describe('useVeeamBackupConsumption tests suite', () => {
           serviceId,
         },
       },
-    } as UseQueryResult<ApiResponse<ServiceDetails>, ApiError>);
+    } as any);
 
     vi.mocked(getServiceConsumption).mockResolvedValueOnce({
       data: consumptions,

@@ -13,13 +13,15 @@
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
     "noImplicitAny": true,
-    "declaration": true,
+    // "declaration": true,
     "resolveJsonModule": true,
     "allowJs": true,
     "jsx": "react",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@ovh-ux/manager-core-api": ["node_modules/@ovh-ux/manager-core-api"],
+      "react": ["./node_modules/@types/react"]
     }
   },
   "include": ["src"],

@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "lib": ["dom", "es2021"],
     "target": "es2021",
     "types": ["vite/client", "node", "jest"],
@@ -16,7 +17,11 @@
     "declarationDir": "./dist/types",
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "paths": {
+      "axios": ["node_modules/axios"],
+      "@ovh-ux/manager-core-api": ["node_modules/@ovh-ux/manager-core-api"]
+    }
   },
   "exclude": [
     "node_modules",

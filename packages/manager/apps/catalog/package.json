@@ -42,7 +42,8 @@
     "react-dom": "^18.2.0",
     "react-i18next": "^14.0.5",
     "react-router-dom": "^6.3.0",
-    "tailwindcss": "^3.4.4"
+    "tailwindcss": "^3.4.4",
+    "zustand": "^4.5.5"
   },
   "devDependencies": {
     "@ovh-ux/manager-tailwind-config": "^0.2.1",
@@ -50,6 +51,8 @@
     "@playwright/test": "^1.49.1",
     "@tanstack/react-query-devtools": "^5.51.21",
     "@types/jest": "^29.5.5",
+    "@types/react": "^18.2.55",
+    "@types/react-dom": "^18.2.19",
     "ts-jest": "^29.1.1"
   },
   "regions": [

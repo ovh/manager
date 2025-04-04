@@ -34,7 +34,8 @@
     "lodash-es": "^4.17.15"
   },
   "devDependencies": {
-    "@ovh-ux/request-tagger": "^0.4.0"
+    "@ovh-ux/request-tagger": "^0.4.0",
+    "typescript": "5.4.5"
   },
   "peerDependencies": {
     "@ovh-ux/request-tagger": "^0.4.0"
