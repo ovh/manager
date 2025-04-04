@@ -46,6 +46,15 @@ const Estimation = ({ nodePools }: { nodePools?: NodePoolPrice[] }) => {
         level={ODS_TEXT_LEVEL.body}
         size={ODS_TEXT_SIZE._400}
       >
+        {t('kube_common_cluster_estimation_price', {
+          estimation: t('kube_common_estimation_price'),
+        })}
+      </OsdsText>
+      <OsdsText
+        color={ODS_THEME_COLOR_INTENT.text}
+        level={ODS_TEXT_LEVEL.body}
+        size={ODS_TEXT_SIZE._400}
+      >
         {t('kube_common_node_pool_estimation_price', {
           estimation: nodePools
             ? getFormattedMonthlyCatalogPrice(
