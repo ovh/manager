@@ -51,6 +51,7 @@ const init = async (appName: string) => {
       `${appName}/notifications`,
       `billing/actions`,
       `billing/status`,
+      `changelog`,
     ],
   });
 
