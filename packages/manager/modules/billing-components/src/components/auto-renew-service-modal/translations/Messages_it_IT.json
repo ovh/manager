@@ -1,0 +1,17 @@
+{
+  "autorenew_service_update_modal_title": "Configurare il rinnovo",
+  "autorenew_service_update_modal_description": "Definisci una frequenza di rinnovo per il tuo servizio: {{ serviceName }} ",
+  "autorenew_service_update_modal_period_manual": "Nessuna frequenza (rinnovo manuale)",
+  "autorenew_service_update_modal_period_every_month": "Ogni mese",
+  "autorenew_service_update_modal_period_every_x_months": "Ogni {{ months }} mesi",
+  "autorenew_service_update_modal_period_every_year": "Ogni anno",
+  "autorenew_service_update_modal_period_every_two_years": "Ogni 2 anni",
+  "autorenew_service_update_modal_automatic_renewal_notice": "Il servizio si rinnoverà automaticamente il 1° di ogni mese a partire dal {{ expirationDate }}. <br/> Se non vuoi continuare a utilizzare il tuo servizio, puoi disattivare il rinnovo prima della data di scadenza",
+  "autorenew_service_update_modal_manual_renewal_notice": "Hai scelto il rinnovo manuale per il tuo servizio {{ serviceName }}.<br/> Con questa modalità, il tuo servizio non sarà automaticamente rinnovato alla scadenza.<br/> Riceverai alcune notifiche via email nelle settimane e nei giorni che precedono la data di scadenza ({{ expirationDate }}).<br/> Per conservare il servizio, sarà sufficiente rinnovarlo prima di questa data.<br/> Attenzione: una volta scaduto, il servizio sarà immediatamente sospeso e diventerà inaccessibile. In caso di mancato pagamento entro pochi giorni dalla data di scadenza, i dati associati verranno definitivamente eliminati.",
+  "autorenew_service_update_modal_cancel": "Annullare",
+  "autorenew_service_update_modal_confirm": "Confermare",
+  "autorenew_service_update_modal_add_payment_method": "Aggiungi un metodo di pagamento",
+  "autorenew_service_update_modal_payment_method_notice": "Hai selezionato il pagamento automatico per il tuo servizio {{ serviceName }}. Per utilizzare questa modalità di rinnovo, registra un metodo di pagamento nella sezione dedicata.",
+  "autorenew_service_update_modal_update_success": "Il rinnovo del servizio è stato aggiornato correttamente. Se la modifica non compare nella lista, aggiorna la pagina.",
+  "autorenew_service_update_modal_update_error": "Si è verificato un errore durante la configurazione del rinnovo: {{message}}"
+}
