@@ -13,7 +13,7 @@
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
     "noImplicitAny": true,
-    "declaration": true,
+    // "declaration": true,
     "resolveJsonModule": true,
     "allowJs": true,
     "jsx": "react",
@@ -25,5 +25,5 @@
     }
   },
   "include": ["**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules", "dist", "types", "src/__tests__"]
+  "exclude": ["node_modules", "dist", "types", "src/__tests__", "e2e", "mocks"]
 }

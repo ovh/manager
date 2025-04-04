@@ -45,6 +45,7 @@
   "peerDependencies": {
     "@ovh-ux/manager-core-api": "^0.10.1",
     "@tanstack/react-query": "5.x",
+    "axios": "^1.1.2",
     "react": "18.x"
   }
 }

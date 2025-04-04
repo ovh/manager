@@ -47,7 +47,7 @@ export const getBackupIdFromOrganization = (organization: VCDOrganization) =>
 
 export const organizationListQueryKey = [VCD_ORGANIZATION_ROUTE];
 
-export const useOrganizationList = ({ pageSize }: { pageSize?: number }) =>
+export const useOrganizationList = ({ pageSize }: { pageSize?: number }): ReturnType<typeof useResourcesIcebergV2<VCDOrganization>> =>
   useResourcesIcebergV2<VCDOrganization>({
     route: VCD_ORGANIZATION_ROUTE,
     queryKey: organizationListQueryKey,
@@ -58,7 +58,7 @@ export const useOrganizationWithBackupStatusList = ({
   pageSize,
 }: {
   pageSize?: number;
-}) => {
+}): ReturnType<typeof useResourcesIcebergV2<VCDOrganizationWithBackupStatus>> => {
   const { flattenData, isLoading, ...result } = useOrganizationList({
     pageSize,
   });
