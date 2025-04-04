@@ -1,10 +1,20 @@
-import { screen, waitFor, waitForOptions } from '@testing-library/react';
+import {
+  Matcher,
+  SelectorMatcherOptions,
+  screen,
+  waitFor,
+  waitForOptions as WaitForOptions,
+} from '@testing-library/react';
 import { WAIT_FOR_DEFAULT_OPTIONS } from './common.constants';
 
-export const assertTextVisibility = async (text: string): Promise<void> =>
+export const assertTextVisibility = async (
+  text: Matcher,
+  options?: SelectorMatcherOptions,
+  waitForOptions = WAIT_FOR_DEFAULT_OPTIONS,
+): Promise<void> =>
   waitFor(
-    () => expect(screen.getByText(text)).toBeVisible(),
-    WAIT_FOR_DEFAULT_OPTIONS,
+    () => expect(screen.getByText(text, options)).toBeVisible(),
+    waitForOptions,
   );
 
 export const assertElementVisibility = (
@@ -19,7 +29,7 @@ export const assertElementLabel = ({
 }: {
   element: HTMLElement;
   label: string;
-} & waitForOptions): Promise<void> =>
+} & WaitForOptions): Promise<void> =>
   waitFor(() => expect(element).toHaveAttribute('label', label), {
     ...WAIT_FOR_DEFAULT_OPTIONS,
     ...options,

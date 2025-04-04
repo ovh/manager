@@ -1,11 +1,13 @@
-import { screen, waitFor } from '@testing-library/react';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import {
   labels,
   WAIT_FOR_DEFAULT_OPTIONS,
-  getSelectByPlaceholder,
   getOdsCardByContentText,
   renderTest,
+  getComboboxByName,
+  getSelectByName,
 } from '@/test-utils';
 import { IpOffer, IpVersion } from '../pages/order/order.constant';
 import { urls } from '@/routes/routes.constant';
@@ -17,10 +19,7 @@ export const goToOrder = async (mockParams: MockParams = {}) => {
     ...mockParams,
   });
 
-  await waitFor(
-    () => expect(screen.getByText(labels.order.title)).toBeInTheDocument(),
-    WAIT_FOR_DEFAULT_OPTIONS,
-  );
+  await assertTextVisibility(labels.order.title);
 
   return result;
 };
@@ -43,21 +42,33 @@ export const selectService = async ({
   container: HTMLElement;
   serviceName: string;
 }) => {
-  const serviceSelect = await getSelectByPlaceholder({
-    container,
-    placeholder: labels.order.service_selection_select_placeholder,
+  const serviceSelect = await getComboboxByName({ container, name: 'service' });
+  await waitFor(
+    () =>
+      expect(
+        serviceSelect.querySelector(
+          `ods-combobox-item[value="${serviceName}"]`,
+        ),
+      ).toBeInTheDocument(),
+    WAIT_FOR_DEFAULT_OPTIONS,
+  );
+
+  serviceSelect.value = serviceName;
+
+  const event = new CustomEvent('odsValueChange', {
+    detail: { value: serviceName },
   });
 
-  return waitFor(() => {
-    serviceSelect.value = serviceName;
-  });
+  await waitFor(() =>
+    fireEvent((serviceSelect as unknown) as HTMLElement, event),
+  );
 };
 
 export const selectRegion = async (region: string) => {
   let countryOption: HTMLElement;
 
   await waitFor(() => {
-    countryOption = screen.getByText(region);
+    countryOption = screen.getByText(region, { exact: false });
     expect(countryOption).toBeInTheDocument();
   }, WAIT_FOR_DEFAULT_OPTIONS);
 
@@ -91,10 +102,9 @@ export const selectOffer = async ({
 };
 
 export const getOrganisationSelect = async (container: HTMLElement) =>
-  getSelectByPlaceholder({
+  getSelectByName({
     container,
-    placeholder: labels.order.organisation_select_placeholder,
-    nth: 1,
+    name: 'ip-organisation',
   });
 
 export const selectedOrganisation = async ({

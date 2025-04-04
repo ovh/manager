@@ -3,11 +3,13 @@ import { useTranslation } from 'react-i18next';
 import {
   OdsFormField,
   OdsMessage,
-  OdsSelect,
-  OdsSpinner,
+  OdsCombobox,
+  OdsComboboxGroup,
+  OdsComboboxItem,
 } from '@ovhcloud/ods-components/react';
-import { ODS_MESSAGE_COLOR, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
 import { OrderSection } from '@/components/OrderSection/OrderSection.component';
+import { ComboboxServiceItem } from '@/components/ComboboxServiceItem/ComboboxServiceItem.component';
 import {
   ipParkingOptionValue,
   useServiceList,
@@ -59,97 +61,91 @@ export const ServiceSelectionSection: React.FC = () => {
         <label htmlFor="service" slot="label">
           {t('service_selection_select_label')}
         </label>
-        {isLoading ? (
-          <OdsSpinner size={ODS_SPINNER_SIZE.md} />
-        ) : (
-          <OdsSelect
-            className="w-full max-w-[384px]"
-            id="service"
-            name="service"
-            isDisabled={isLoading || isError}
-            onOdsChange={(event) => {
-              const serviceId = event.target.value as string;
-              setSelectedService(serviceId);
-              setSelectedServiceType(getServiceType(serviceId));
-            }}
-            value={selectedService}
-            placeholder={t('service_selection_select_placeholder')}
-          >
-            {ipVersion === IpVersion.ipv4 && (
-              <optgroup
-                label={t(
+        <OdsCombobox
+          id="service"
+          name="service"
+          className="w-full max-w-[384px]"
+          onOdsChange={(event) => {
+            const serviceId = event.detail.value as string;
+            setSelectedService(serviceId);
+            setSelectedServiceType(getServiceType(serviceId));
+          }}
+          isClearable
+          allowNewElement={false}
+          hasError={isError}
+          isLoading={isLoading}
+          placeholder={t('service_selection_select_placeholder')}
+          value={selectedService}
+        >
+          {ipVersion === IpVersion.ipv4 && (
+            <OdsComboboxGroup>
+              <span slot="title">
+                {t(
                   'service_selection_select_dedicated_cloud_option_group_label',
                 )}
-              >
-                {dedicatedCloud?.map(({ id, name, displayName }) => (
-                  <option
-                    key={id}
-                    value={name}
-                    disabled={disabledServices.includes(name)}
-                  >
-                    {displayName}
-                  </option>
-                ))}
-              </optgroup>
-            )}
-            {ipVersion === IpVersion.ipv4 && (
-              <optgroup
-                label={t(
+              </span>
+              {dedicatedCloud?.map((props) => (
+                <ComboboxServiceItem
+                  key={props.id}
+                  {...props}
+                  isDisabled={disabledServices.includes(props.name)}
+                />
+              ))}
+            </OdsComboboxGroup>
+          )}
+          {ipVersion === IpVersion.ipv4 && (
+            <OdsComboboxGroup>
+              <span slot="title">
+                {t(
                   'service_selection_select_dedicated_server_option_group_label',
                 )}
-              >
-                {server?.map(({ id, name, displayName }) => (
-                  <option
-                    key={id}
-                    value={name}
-                    disabled={disabledServices.includes(name)}
-                  >
-                    {displayName}
-                  </option>
-                ))}
-              </optgroup>
-            )}
-            {ipVersion === IpVersion.ipv4 && (
-              <optgroup
-                label={t('service_selection_select_vps_option_group_label')}
-              >
-                {vps?.map(({ id, name, displayName }) => (
-                  <option
-                    key={id}
-                    value={name}
-                    disabled={disabledServices.includes(name)}
-                  >
-                    {displayName}
-                  </option>
-                ))}
-              </optgroup>
-            )}
-            {ipVersion === IpVersion.ipv4 && (
-              <optgroup
-                label={t(
-                  'service_selection_select_ip_parking_option_group_label',
-                )}
-              >
-                <option value={ipParkingOptionValue}>
-                  {t('service_selection_select_ip_parking_option_label')}
-                </option>
-              </optgroup>
-            )}
-            <optgroup
-              label={t('service_selection_select_vrack_option_group_label')}
-            >
-              {vrack?.map(({ id, name, displayName }) => (
-                <option
-                  key={id}
-                  value={name}
-                  disabled={disabledServices.includes(name)}
-                >
-                  {displayName}
-                </option>
+              </span>
+              {server?.map((props) => (
+                <ComboboxServiceItem
+                  key={props.id}
+                  {...props}
+                  isDisabled={disabledServices.includes(props.name)}
+                />
               ))}
-            </optgroup>
-          </OdsSelect>
-        )}
+            </OdsComboboxGroup>
+          )}
+          {ipVersion === IpVersion.ipv4 && (
+            <OdsComboboxGroup>
+              <span slot="title">
+                {t('service_selection_select_vps_option_group_label')}
+              </span>
+              {vps?.map((props) => (
+                <ComboboxServiceItem
+                  key={props.id}
+                  {...props}
+                  isDisabled={disabledServices.includes(props.name)}
+                />
+              ))}
+            </OdsComboboxGroup>
+          )}
+          {ipVersion === IpVersion.ipv4 && (
+            <OdsComboboxGroup>
+              <span slot="title">
+                {t('service_selection_select_ip_parking_option_group_label')}
+              </span>
+              <OdsComboboxItem value={ipParkingOptionValue}>
+                {t('service_selection_select_ip_parking_option_label')}
+              </OdsComboboxItem>
+            </OdsComboboxGroup>
+          )}
+          <OdsComboboxGroup>
+            <span slot="title">
+              {t('service_selection_select_vrack_option_group_label')}
+            </span>
+            {vrack?.map((props) => (
+              <ComboboxServiceItem
+                key={props.id}
+                {...props}
+                isDisabled={disabledServices.includes(props.name)}
+              />
+            ))}
+          </OdsComboboxGroup>
+        </OdsCombobox>
         {!!selectedService && (
           <div slot="helper">
             <div className="mt-1">
