@@ -1,16 +1,15 @@
 import {
-  useInfiniteQuery,
   UseInfiniteQueryOptions,
   UseInfiniteQueryResult,
 } from '@tanstack/react-query';
-import { useCallback, useEffect, useState } from 'react';
 import { usePlatform } from '@/hooks';
 import {
   getZimbraPlatformOrganization,
   getZimbraPlatformOrganizationQueryKey,
   OrganizationType,
 } from '@/api/organization';
-import { APIV2_MAX_PAGESIZE, buildURLSearchParams } from '@/utils';
+import { APIV2_MAX_PAGESIZE } from '@/utils';
+import { useInfiniteQueryWithFetchAllPages } from './useInfiniteQueryWithFetchAllPages';
 
 type UseOrganizationsParams = Omit<
   UseInfiniteQueryOptions,
@@ -21,25 +20,19 @@ type UseOrganizationsParams = Omit<
 };
 
 export const useOrganizations = (props: UseOrganizationsParams = {}) => {
-  const { shouldFetchAll, organizationName, ...options } = props;
-  const [allPages, setAllPages] = useState(!!shouldFetchAll);
+  const { organizationName, ...options } = props;
   const { platformId } = usePlatform();
-  const searchParams = buildURLSearchParams({
-    organizationName,
-  });
 
-  const query = useInfiniteQuery({
+  return useInfiniteQueryWithFetchAllPages({
     ...options,
-    initialPageParam: null,
-    queryKey: getZimbraPlatformOrganizationQueryKey(
-      platformId,
-      searchParams,
-      allPages,
-    ),
-    queryFn: ({ pageParam }) =>
+    searchParams: {
+      organizationName,
+    },
+    queryKey: getZimbraPlatformOrganizationQueryKey(platformId),
+    queryFn: ({ pageParam, allPages, urlSearchParams }) =>
       getZimbraPlatformOrganization({
         platformId,
-        searchParams,
+        searchParams: urlSearchParams,
         pageParam,
         ...(allPages ? { pageSize: APIV2_MAX_PAGESIZE } : {}),
       }),
@@ -48,36 +41,12 @@ export const useOrganizations = (props: UseOrganizationsParams = {}) => {
         ? options.enabled(q)
         : typeof options.enabled !== 'boolean' || options.enabled) &&
       !!platformId,
+    initialPageParam: null,
     getNextPageParam: (lastPage: { cursorNext?: string }) =>
       lastPage.cursorNext,
     select: (data) =>
       data?.pages.flatMap(
         (page: UseInfiniteQueryResult<OrganizationType[]>) => page.data,
       ),
-  });
-
-  const fetchAllPages = useCallback(() => {
-    if (!allPages) {
-      setAllPages(true);
-    }
-  }, [allPages, setAllPages]);
-
-  useEffect(() => {
-    if (allPages && query.hasNextPage) {
-      query.fetchNextPage();
-    }
-  }, [query.data, allPages]);
-
-  // reset when searchParams changes
-  useEffect(() => {
-    if (!shouldFetchAll) {
-      setAllPages(false);
-    }
-  }, [searchParams]);
-
-  // use object assign instead of spread
-  // to avoid unecessary rerenders
-  return Object.assign(query, {
-    fetchAllPages,
   });
 };

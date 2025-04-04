@@ -1,9 +1,4 @@
-import {
-  useInfiniteQuery,
-  UseInfiniteQueryOptions,
-  UseInfiniteQueryResult,
-} from '@tanstack/react-query';
-import { useCallback, useEffect, useState } from 'react';
+import { UseInfiniteQueryResult } from '@tanstack/react-query';
 import { useSearchParams } from 'react-router-dom';
 import { usePlatform } from '@/hooks';
 
@@ -12,36 +7,33 @@ import {
   getZimbraPlatformDomains,
   getZimbraPlatformDomainsQueryKey,
 } from '@/api/domain';
-import { APIV2_MAX_PAGESIZE, buildURLSearchParams } from '@/utils';
+import { APIV2_MAX_PAGESIZE } from '@/utils';
+import {
+  useInfiniteQueryWithFetchAllPages,
+  UseInfiniteQueryWithFetchAllPagesOptions,
+} from './useInfiniteQueryWithFetchAllPages';
 
 type UseDomainsParams = Omit<
-  UseInfiniteQueryOptions,
+  UseInfiniteQueryWithFetchAllPagesOptions,
   'queryKey' | 'queryFn' | 'select' | 'getNextPageParam' | 'initialPageParam'
 > & {
   organizationId?: string;
   domainName?: string;
-  shouldFetchAll?: boolean;
 };
 
 export const useDomains = (props: UseDomainsParams = {}) => {
-  const { organizationId, domainName, shouldFetchAll, ...options } = props;
-  const [allPages, setAllPages] = useState(!!shouldFetchAll);
+  const { organizationId, domainName, ...options } = props;
   const { platformId } = usePlatform();
   const [searchParams] = useSearchParams();
-  const urlSearchParams = buildURLSearchParams({
-    organizationId: organizationId ?? searchParams.get('organizationId'),
-    domainName,
-  });
 
-  const query = useInfiniteQuery({
+  return useInfiniteQueryWithFetchAllPages({
     ...options,
-    initialPageParam: null,
-    queryKey: getZimbraPlatformDomainsQueryKey(
-      platformId,
-      urlSearchParams,
-      allPages,
-    ),
-    queryFn: ({ pageParam }) =>
+    searchParams: {
+      organizationId: organizationId ?? searchParams.get('organizationId'),
+      domainName,
+    },
+    queryKey: getZimbraPlatformDomainsQueryKey(platformId),
+    queryFn: ({ pageParam, allPages, urlSearchParams }) =>
       getZimbraPlatformDomains({
         platformId,
         searchParams: urlSearchParams,
@@ -53,36 +45,12 @@ export const useDomains = (props: UseDomainsParams = {}) => {
         ? options.enabled(q)
         : typeof options.enabled !== 'boolean' || options.enabled) &&
       !!platformId,
+    initialPageParam: null,
     getNextPageParam: (lastPage: { cursorNext?: string }) =>
       lastPage.cursorNext,
     select: (data) =>
       data?.pages.flatMap(
         (page: UseInfiniteQueryResult<DomainType[]>) => page.data,
       ),
-  });
-
-  const fetchAllPages = useCallback(() => {
-    if (!allPages) {
-      setAllPages(true);
-    }
-  }, [allPages, setAllPages]);
-
-  useEffect(() => {
-    if (allPages && query.hasNextPage) {
-      query.fetchNextPage();
-    }
-  }, [query.data, allPages]);
-
-  // reset when searchParams changes
-  useEffect(() => {
-    if (!shouldFetchAll) {
-      setAllPages(false);
-    }
-  }, [urlSearchParams]);
-
-  // use object assign instead of spread
-  // to avoid unecessary rerenders
-  return Object.assign(query, {
-    fetchAllPages,
   });
 };

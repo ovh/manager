@@ -1,49 +1,40 @@
-import {
-  useInfiniteQuery,
-  UseInfiniteQueryOptions,
-  UseInfiniteQueryResult,
-} from '@tanstack/react-query';
+import { UseInfiniteQueryResult } from '@tanstack/react-query';
 import { useSearchParams } from 'react-router-dom';
-import { useCallback, useEffect, useState } from 'react';
 import { usePlatform } from '@/hooks';
 import {
   AccountType,
   getZimbraPlatformAccounts,
   getZimbraPlatformAccountsQueryKey,
 } from '@/api/account';
-import { APIV2_MAX_PAGESIZE, buildURLSearchParams } from '@/utils';
+import { APIV2_MAX_PAGESIZE } from '@/utils';
+import {
+  useInfiniteQueryWithFetchAllPages,
+  UseInfiniteQueryWithFetchAllPagesOptions,
+} from './useInfiniteQueryWithFetchAllPages';
 
 type UseAccountsParams = Omit<
-  UseInfiniteQueryOptions,
+  UseInfiniteQueryWithFetchAllPagesOptions,
   'queryKey' | 'queryFn' | 'select' | 'getNextPageParam' | 'initialPageParam'
 > & {
   email?: string;
   domainId?: string;
   organizationId?: string;
-  shouldFetchAll?: boolean;
 };
 
 export const useAccounts = (props: UseAccountsParams = {}) => {
-  const { domainId, organizationId, email, shouldFetchAll, ...options } = props;
-  const [allPages, setAllPages] = useState(!!shouldFetchAll);
+  const { domainId, organizationId, email, ...options } = props;
   const { platformId } = usePlatform();
   const [searchParams] = useSearchParams();
 
-  const urlSearchParams = buildURLSearchParams({
-    email,
-    organizationId: organizationId ?? searchParams.get('organizationId'),
-    domainId: domainId ?? searchParams.get('domainId'),
-  });
-
-  const query = useInfiniteQuery({
+  return useInfiniteQueryWithFetchAllPages({
     ...options,
-    initialPageParam: null,
-    queryKey: getZimbraPlatformAccountsQueryKey(
-      platformId,
-      urlSearchParams,
-      allPages,
-    ),
-    queryFn: ({ pageParam }) =>
+    searchParams: {
+      email,
+      organizationId: organizationId ?? searchParams.get('organizationId'),
+      domainId: domainId ?? searchParams.get('domainId'),
+    },
+    queryKey: getZimbraPlatformAccountsQueryKey(platformId),
+    queryFn: ({ pageParam, allPages, urlSearchParams }) =>
       getZimbraPlatformAccounts({
         platformId,
         searchParams: urlSearchParams,
@@ -55,36 +46,12 @@ export const useAccounts = (props: UseAccountsParams = {}) => {
         ? options.enabled(q)
         : typeof options.enabled !== 'boolean' || options.enabled) &&
       !!platformId,
+    initialPageParam: null,
     getNextPageParam: (lastPage: { cursorNext?: string }) =>
       lastPage.cursorNext,
     select: (data) =>
       data?.pages.flatMap(
         (page: UseInfiniteQueryResult<AccountType[]>) => page.data,
       ),
-  });
-
-  const fetchAllPages = useCallback(() => {
-    if (!allPages) {
-      setAllPages(true);
-    }
-  }, [allPages, setAllPages]);
-
-  useEffect(() => {
-    if (allPages && query.hasNextPage) {
-      query.fetchNextPage();
-    }
-  }, [query.data, allPages]);
-
-  // reset when searchParams changes
-  useEffect(() => {
-    if (!shouldFetchAll) {
-      setAllPages(false);
-    }
-  }, [urlSearchParams]);
-
-  // use object assign instead of spread
-  // to avoid unecessary rerenders
-  return Object.assign(query, {
-    fetchAllPages,
   });
 };
