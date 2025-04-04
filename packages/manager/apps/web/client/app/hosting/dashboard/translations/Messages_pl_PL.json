@@ -1395,5 +1395,6 @@
   "hosting_dashboard_service_common_inactive": "Nieaktywny",
   "hosting_dashboard_email_offer_get_error": "Nie można pobrać adresu e-mail",
   "hosting_dashboard_stats_status": "Beta",
-  "hosting_dashboard_tabs_dropdown": "Więcej"
+  "hosting_dashboard_tabs_dropdown": "Więcej",
+  "hosting_dashboard_service_activate_email_tooltip": "Aby utworzyć konto e-mail, najpierw przypisz domenę do Twojego hostingu."
 }

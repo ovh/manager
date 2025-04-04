@@ -585,10 +585,11 @@ angular.module('App').controller(
 
     selectFieldType(fieldType) {
       this.model.fieldType = fieldType;
-      this.model.subDomainToDisplay = null;
+      this.model.subDomainToDisplay = this.subdomainPreset;
       this.model.ttlSelect = 'global';
       this.model.ttl = 0;
       this.initializeTarget();
+      this.checkExistingSubDomain();
       this.$scope.$emit('wizard-goToStep', 3);
     }
 

@@ -293,7 +293,17 @@
                         >
                             <oui-action-menu-item
                                 data-on-click="$ctrl.activateEmailOffer()"
-                                data-ng-if="!$ctrl.doesEmailOfferExists()"
+                                data-ng-if="!$ctrl.doesEmailOfferExists() && $ctrl.hasZoneDns"
+                            >
+                                <span
+                                    data-translate="hosting_dashboard_service_activate_email"
+                                ></span>
+                            </oui-action-menu-item>
+                            <oui-action-menu-item
+                                data-ng-if="!$ctrl.doesEmailOfferExists() && !$ctrl.hasZoneDns"
+                                data-disabled="true"
+                                data-oui-tooltip="{{ 'hosting_dashboard_service_activate_email_tooltip' | translate }}"
+                                oui-tooltip-placement="left"
                             >
                                 <span
                                     data-translate="hosting_dashboard_service_activate_email"

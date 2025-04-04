@@ -1389,6 +1389,7 @@
   "hosting_dashboard_access": "Accès",
   "common_api_hostingWeb-1": "Vous ne pouvez pas migrer vers cette offre car votre offre actuelle dispose de plus d'e-mails que l'offre choisie.",
   "hosting_dashboard_service_activate_email": "Activer mon offre e-mail",
+  "hosting_dashboard_service_activate_email_tooltip": "Pour créer une adresse e-mail vous devez d'abord associer un nom de domaine à votre hébergement.",
   "hosting_dashboard_service_detach_email_option": "Délier mon option e-mail",
   "hosting_dashboard_service_email_address": "Adresses e-mails",
   "hosting_dashboard_service_common_active": "Actif",
