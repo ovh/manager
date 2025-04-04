@@ -11,7 +11,7 @@
   "log_subscription_terminate_modal_headline": "Anular la suscripción",
   "log_subscription_terminate_modal_delete_input_label": "Por favor, escriba la palabra «TERMINATE» para cancelar la suscripción del flujo de datos.",
   "log_subscription_terminate_modal_confirm_button_label": "Anular la suscripción",
-  "log_subscription_unsubscribe_success": "La suscripción se ha candelado correctamente.",
+  "log_subscription_unsubscribe_success": "La suscripción se ha cancelado correctamente.",
   "log_subscription_unsubscribe_error": "Se ha producido un error al cancelar su suscripción. {{error}}",
   "log_subscription_subscribe_success": "La suscripción se ha realizado correctamente.",
   "log_subscription_subscribe_error": "Se ha producido un error en la suscripción. {{error}}"

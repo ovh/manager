@@ -1,16 +1,16 @@
 {
   "nutanix_dashboard_install_node_title": "Instalar nodo",
-  "nutanix_dashboard_install_node_description": "Va a instalar AOS y AHV en su nodo. Indique las direcciones IP no utilizadas en la red de su cluster.",
+  "nutanix_dashboard_install_node_description": "Va a instalar AOS y AHV en su nodo. Indique las direcciones IP no utilizadas en la red de su clúster.",
   "nutanix_dashboard_install_node_tips": "Para una instalación simultánea en varios nodos, utilice la API",
   "nutanix_dashboard_install_node_label_ahv_ip": "IP del nodo",
   "nutanix_dashboard_install_node_label_cvm_ip": "IP CVM",
   "nutanix_dashboard_install_node_label_version_aos": "Versión de AOS",
   "nutanix_dashboard_install_node_confirm": "Instalar",
   "nutanix_dashboard_install_node_cancel": "Cancelar",
-  "nutanix_dashboard_install_node_success_banner": "La solicitud de instalación se ha enviado. Esta operación puede tardar hasta una hora",
-  "nutanix_dashboard_install_node_error_banner": "La solicitud de instalación no se completó correctamente. Si el error persiste, contacte con el soporte",
-  "nutanix_dashboard_install_ip_unique_error": "Esta IP ya está en uso en este cluster",
+  "nutanix_dashboard_install_node_success_banner": "La solicitud de instalación se ha enviado correctamente. Esta operación puede tardar hasta una hora.",
+  "nutanix_dashboard_install_node_error_banner": "La solicitud de instalación no se completó correctamente. Por favor, si el error persiste, contacte con soporte",
+  "nutanix_dashboard_install_ip_unique_error": "Esta IP ya se está utilizando en este cluster.",
   "nutanix_dashboard_install_ip_not_in_cidr_subnet_error": "Las direcciones no están en la misma red.",
-  "nutanix_dashboard_install_ip_format_error": "El formato de la IP no es correcto",
+  "nutanix_dashboard_install_ip_format_error": "El formato de la IP no es correcto.",
   "nutanix_dashboard_install_ip_tooltip": "La dirección IP debe estar incluida en la subred del clúster."
 }

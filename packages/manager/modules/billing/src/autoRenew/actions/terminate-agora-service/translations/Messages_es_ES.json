@@ -26,6 +26,6 @@
   "autorenew_agora_terminate_service_error_NUTANIX": "Se ha producido un error al solicitar la baja de su Nutanix. {{error}}",
   "autorenew_agora_terminate_service_NUTANIX_NODE": "Dar de baja este nodo",
   "autorenew_agora_terminate_service_warning_NUTANIX_NODE": "Va a dar de baja la contratación del nodo «{{serviceName}}».",
-  "autorenew_agora_terminate_service_success_NUTANIX_NODE": "La baja del nodo «{{serviceName}}» se ha registrado correctamente. Recibirá un mensaje de correo electrónico con los detalles del procedimiento a seguir.",
-  "autorenew_agora_terminate_service_error_NUTANIX_NODE": "La solicitud de baja no se ha enviado: {{error}}"
+  "autorenew_agora_terminate_service_success_NUTANIX_NODE": "La baja del nodo «{{serviceName}}» se ha registrado correctamente. Recibirá un correo electrónico con los detalles del procedimiento a seguir.",
+  "autorenew_agora_terminate_service_error_NUTANIX_NODE": "No se ha enviado la solicitud de baja: {{error}}"
 }
