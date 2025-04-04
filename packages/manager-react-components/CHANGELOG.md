@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.47.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.46.0...@ovh-ux/manager-react-components@1.47.0) (2025-04-04)
+
+### Features
+
+- **manager-react-components:** add error boundary component ([4cac257](https://github.com/ovh/manager/commit/4cac25714b92a74216853806ccb5e3fd0870b724)), closes [#MANAGER-17173](https://github.com/ovh/manager/issues/MANAGER-17173)
+
 # [1.46.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.45.0...@ovh-ux/manager-react-components@1.46.0) (2025-03-27)
 
 ### Features
