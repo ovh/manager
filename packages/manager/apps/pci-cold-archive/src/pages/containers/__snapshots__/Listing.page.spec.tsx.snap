@@ -3,7 +3,7 @@
 exports[`ListingPage > should match snapshot when is loading false 1`] = `
 <div>
   <div
-    class="flex flex-col gap-8"
+    class="flex flex-col gap-5"
   >
     <div>
       <div
@@ -11,10 +11,10 @@ exports[`ListingPage > should match snapshot when is loading false 1`] = `
       />
     </div>
     <div
-      class="sm:flex items-center justify-between"
+      class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-5"
     >
       <div
-        class="sm:flex"
+        class="flex flex-col sm:flex-row gap-4"
       >
         <ods-button
           class="xs:mb-0.5 sm:mb-0"
@@ -44,7 +44,7 @@ exports[`ListingPage > should match snapshot when is loading false 1`] = `
           variant="outline"
         />
         <ods-input
-          class="min-w-[15rem]"
+          class="md:min-w-[15rem]"
           name="searchField"
           value=""
         />
@@ -405,7 +405,6 @@ exports[`ListingPage > should match snapshot when is loading false 1`] = `
                     preset="span"
                   >
                     <ods-badge
-                      class="font-bold"
                       data-testid="status_badge"
                       label="pci_projects_project_storages_containers_status_active"
                     />
@@ -468,7 +467,6 @@ exports[`ListingPage > should match snapshot when is loading false 1`] = `
                     preset="span"
                   >
                     <ods-badge
-                      class="font-bold"
                       data-testid="status_badge"
                       label="pci_projects_project_storages_containers_status_active"
                     />
