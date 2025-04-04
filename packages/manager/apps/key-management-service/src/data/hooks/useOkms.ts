@@ -8,7 +8,7 @@ import {
   getOkmsServicesResourceListQueryKey,
 } from '@/data/api/okms';
 
-export const useOKMSById = (okmsId: string) => {
+export const useOkmsById = (okmsId: string) => {
   return useQuery<{ data: OKMS }, ErrorResponse>({
     queryKey: getOkmsResourceQueryKey(okmsId),
     queryFn: () => getOKMSResource(okmsId),
@@ -19,7 +19,7 @@ export const useOKMSById = (okmsId: string) => {
   });
 };
 
-export const useOKMSList = ({ pageSize }: { pageSize?: number }) =>
+export const useOkmsList = ({ pageSize }: { pageSize?: number }) =>
   useResourcesIcebergV2<OKMS>({
     route: '/okms/resource',
     queryKey: getOkmsServicesResourceListQueryKey,
