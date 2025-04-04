@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-nasha-app",
-  "version": "4.0.11",
+  "version": "4.0.12",
   "private": true,
   "description": "NAS-HA standalone application.",
   "repository": {
@@ -74,7 +74,7 @@
     "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-webpack-config": "^7.0.4",
+    "@ovh-ux/manager-webpack-config": "^7.0.5",
     "glob": "^7.1.6",
     "lodash": "^4.17.15",
     "webpack-merge": "^4.2.2"

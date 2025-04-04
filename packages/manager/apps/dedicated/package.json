@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-dedicated",
-  "version": "20.7.3",
+  "version": "20.7.4",
   "private": true,
   "description": "OVHcloud Dedicated control panel.",
   "repository": {
@@ -152,7 +152,7 @@
     "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-webpack-config": "^7.0.4",
+    "@ovh-ux/manager-webpack-config": "^7.0.5",
     "eslint-plugin-angular": "^4.0.1",
     "glob": "^7.1.4",
     "webpack": "^5.76.2",

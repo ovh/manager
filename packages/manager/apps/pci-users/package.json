@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-users-app",
-  "version": "0.11.26",
+  "version": "0.11.27",
   "private": true,
   "description": "PCI Users react app",
   "type": "module",
@@ -17,11 +17,11 @@
   "dependencies": {
     "@ovh-ux/manager-core-api": "^0.9.0",
     "@ovh-ux/manager-core-utils": "^0.3.0",
-    "@ovh-ux/manager-pci-common": "^0.14.2",
+    "@ovh-ux/manager-pci-common": "^0.16.4",
     "@ovh-ux/manager-react-components": "^1.41.1",
     "@ovh-ux/manager-react-core-application": "^0.11.4",
     "@ovh-ux/manager-react-shell-client": "^0.8.4",
-    "@ovh-ux/manager-tailwind-config": "^0.2.1",
+    "@ovh-ux/manager-tailwind-config": "^0.3.0",
     "@ovh-ux/shell": "^4.1.1",
     "@ovhcloud/ods-common-core": "17.2.2",
     "@ovhcloud/ods-common-stencil": "17.2.2",
@@ -44,7 +44,7 @@
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",
-    "@ovh-ux/manager-vite-config": "^0.8.3",
+    "@ovh-ux/manager-vite-config": "^0.8.4",
     "@tanstack/react-query-devtools": "^5.51.21",
     "@testing-library/dom": "^9.3.4",
     "@testing-library/jest-dom": "^6.4.2",
