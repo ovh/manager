@@ -12,8 +12,8 @@ export default /* @ngInject */ ($stateProvider) => {
       resolve: {
         breadcrumb: () => null,
         resourceUrn: /* @ngInject */ (server) => server?.iam?.urn,
-        goBack: /* @ngInject */ (goToTagManager) => () => {
-          goToTagManager(true);
+        goBack: /* @ngInject */ (goToTagManager) => (reload = false) => {
+          goToTagManager(reload);
         },
       },
     },
