@@ -67,7 +67,7 @@ const printHelp = () => {
 🛠️  manager-cli
 
 Usage:
-  yarn manager-cli <command> --app <app-name> [--dry-run]
+  pnpm manager-cli <command> --app <app-name> [--dry-run]
 
 Options:
   --list         List available app names
@@ -77,10 +77,10 @@ Commands:
 ${commandsList}
 
 Examples:
-  yarn manager-cli routes-migrate --app pci-ai-tools
-  yarn manager-cli routes-migrate --app pci-ai-tools --dry-run
-  yarn manager-cli --list
-  yarn manager-cli --help
+  pnpm manager-cli routes-migrate --app pci-ai-tools
+  pnpm manager-cli routes-migrate --app pci-ai-tools --dry-run
+  pnpm manager-cli --list
+  pnpm manager-cli --help
 `);
 };
 
@@ -151,7 +151,9 @@ if (hasDryRun) extraFlags.push('--dry-run');
 /**
  * @type {string}
  */
-const runCommand = `yarn run ${known.script} ${appName} ${extraFlags.join(' ')}`;
+const runCommand = `pnpm run ${known.script} ${appName} ${extraFlags.join(
+  ' ',
+)}`;
 
 try {
   console.log(`\n▶ Running "${command}" for app: "${appName}"`);

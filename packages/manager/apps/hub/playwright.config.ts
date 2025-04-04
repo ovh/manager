@@ -14,7 +14,7 @@ export default defineConfig({
   },
   testMatch: '**/*.e2e.ts',
   webServer: {
-    command: 'yarn run dev',
+    command: 'pnpm run dev',
     url: 'http://localhost:9000/',
   },
 });

@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "lib": ["dom", "es2021"],
     "target": "es2021",
     "types": ["vite/client", "node"],
@@ -13,7 +14,12 @@
     "isolatedModules": true,
     "declaration": true,
     "declarationDir": "./dist/types",
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "paths": {
+      "@types/react": ["node_modules/@types/react"],
+      "@ovh-ux/shell": ["node_modules/@ovh-ux/shell"],
+      "@ovh-ux/manager-config": ["node_modules/@ovh-ux/manager-config"]
+    }
   },
   "exclude": ["node_modules", "dist", "types", "**/__tests__"]
 }

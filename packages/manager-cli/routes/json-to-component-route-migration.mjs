@@ -27,7 +27,7 @@ if (!appName || !isValidAppName || !isCodeFileExistsSync(appPath)) {
       `  - App folder or required files not found at: ${appPath}`,
       '',
       'Usage:',
-      '  yarn routes-update <app-name> [--dry-run]',
+      '  pnpm routes-update <app-name> [--dry-run]',
       '',
       'Please check your input and ensure the app exists in the expected location.',
     ].join('\n'),
@@ -37,8 +37,12 @@ if (!appName || !isValidAppName || !isCodeFileExistsSync(appPath)) {
 
 const migrateRoutes = async () => {
   try {
-    const transformCommand = `node ./routes/transform-routes-cli.mjs ${appName}${isDryRun ? ' --dry-run' : ''}`;
-    const updateCommand = `node ./routes/update-routers-init-cli.mjs ${appName}${isDryRun ? ' --dry-run' : ''}`;
+    const transformCommand = `node ./routes/transform-routes-cli.mjs ${appName}${
+      isDryRun ? ' --dry-run' : ''
+    }`;
+    const updateCommand = `node ./routes/update-routers-init-cli.mjs ${appName}${
+      isDryRun ? ' --dry-run' : ''
+    }`;
 
     console.log(`🔄 Starting routes migration for app: ${appName}`);
 
@@ -65,26 +69,35 @@ const migrateRoutes = async () => {
     process.exit(1);
   }
 
-  if(isDryRun){
+  if (isDryRun) {
     process.exit(0);
   }
 
-  const appFullPath = join('packages', 'manager', 'apps', appName, '**', '*.tsx');
+  const appFullPath = join(
+    'packages',
+    'manager',
+    'apps',
+    appName,
+    '**',
+    '*.tsx',
+  );
 
   try {
     console.log('🎨 Formatting code with Prettier...');
-    execSync(`yarn prettier --write ${appFullPath}`, {
+    execSync(`pnpm prettier --write ${appFullPath}`, {
       stdio: 'inherit',
       cwd: resolve(__dirname, '../..'),
     });
   } catch (error) {
-    console.error('❌ Failed to format code automatically. You may run the Prettier command manually.');
+    console.error(
+      '❌ Failed to format code automatically. You may run the Prettier command manually.',
+    );
     console.error(error);
   }
 
   try {
     console.log('🧹 Applying ESLint fixes...');
-    execSync(`yarn eslint ${appFullPath} --fix --quiet`, {
+    execSync(`pnpm eslint ${appFullPath} --fix --quiet`, {
       stdio: 'inherit',
       cwd: resolve(__dirname, '../..'),
     });

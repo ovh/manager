@@ -9,7 +9,8 @@
     data-on-click="$ctrl.goToDiscoveryProjectActivationPage()"
     data-tracking-page-name="PublicCloud::pci::projects::project::instances::add"
 ></pci-activate-project-banner>
-<pci-free-local-zones-banner data-ng-if="$ctrl.areLocalZonesFree" />
+<pci-free-local-zones-banner data-ng-if="$ctrl.areLocalZonesFree">
+</pci-free-local-zones-banner>
 
 <oui-stepper data-current-index="$ctrl.currentStep">
     <oui-step-form
@@ -1212,7 +1213,8 @@
         <pci-free-local-zones-banner
             data-ng-if="$ctrl.areLocalZonesFree && $ctrl.isLocalZoneSelected && !$ctrl.isAddingPrivateNetwork && !$ctrl.isAddingPrivateNetworkError"
             data-confirm-text="true"
-        />
+        >
+        </pci-free-local-zones-banner>
         <oui-spinner
             data-size="s"
             data-ng-if="$ctrl.isLoadBillingStep && $ctrl.isPrivateMode() && !$ctrl.isAddingPrivateNetwork && !$ctrl.isAddingPrivateNetworkError"

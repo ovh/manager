@@ -30,7 +30,6 @@
     "sort-package-json": "^3.1.0"
   },
   "engines": {
-    "node": "^22",
-    "yarn": ">=1.21.1"
+    "node": "^22"
   }
 }

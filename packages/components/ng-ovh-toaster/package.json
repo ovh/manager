@@ -35,12 +35,14 @@
   "resolutions": {
     "set-value": "^2.0.1"
   },
+  "dependencies": {
+    "messenger": "HubSpot/messenger#v1.4.1"
+  },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^13.0.2"
   },
   "peerDependencies": {
     "angular": "~1.6",
-    "angular-sanitize": "~1.6",
-    "messenger": "HubSpot/messenger#~1.4.1"
+    "angular-sanitize": "~1.6"
   }
 }
