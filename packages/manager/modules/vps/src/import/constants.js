@@ -22,7 +22,12 @@ export const ADDITIONAL_DISK = {
 
 export const IP_PRIMARY_TYPE = 'primary';
 
+export const ZONE_TYPE = {
+  LOCALZONE: 'localzone',
+};
+
 export default {
   ADDITIONAL_DISK,
   IP_PRIMARY_TYPE,
+  ZONE_TYPE,
 };
