@@ -43,7 +43,7 @@ module.exports = (opts) => {
   const toCopy = [
     ...get(opts, 'assets.files', []),
     ...get(opts, 'assets.options', []),
-  ];
+  ].filter((copy) => Boolean(copy.from));
 
   if (toCopy.length) {
     plugins.push(

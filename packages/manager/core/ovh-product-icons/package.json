@@ -10,7 +10,7 @@
   "module": "dist/index",
   "types": "dist/index",
   "scripts": {
-    "build": "tsc && yarn copy-files",
+    "build": "tsc && pnpm run copy-files",
     "copy-files": "cp ./assets-icon-svg/*.svg ./dist/assets-icon-svg/",
     "start": "plop"
   },
@@ -20,6 +20,12 @@
     "@ovhcloud/ods-components": "17.2.2",
     "@ovhcloud/ods-theme-blue-jeans": "17.2.2",
     "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.45",
+    "@types/react-dom": "^18.0.0",
+    "typescript": "^5.3.3",
+    "vite-plugin-svgr": "^3.0.0"
   },
   "preferGlobal": true
 }

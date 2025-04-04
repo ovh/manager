@@ -37,7 +37,8 @@
     "set-value": "^2.0.1"
   },
   "dependencies": {
-    "lodash-es": "^4.17.15"
+    "lodash-es": "^4.17.15",
+    "ng-slide-down": "TheRusskiy/ng-slide-down#v1.2.0"
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^13.0.2"
@@ -47,7 +48,6 @@
     "@ovh-ux/ui-kit": "^6.10.0",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.9",
-    "angular-translate": "^2.18.1",
-    "ng-slide-down": "TheRusskiy/ng-slide-down#^1.0.0"
+    "angular-translate": "^2.18.1"
   }
 }

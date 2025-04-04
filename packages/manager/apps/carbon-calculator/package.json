@@ -51,6 +51,7 @@
     "lodash-es": "^4.17.15",
     "oclazyload": "^1.1.0",
     "ovh-api-services": "^16.0.0",
+    "punycode": "^1.4.1",
     "regenerator-runtime": "^0.13.7",
     "whatwg-fetch": "^3.5.0"
   },

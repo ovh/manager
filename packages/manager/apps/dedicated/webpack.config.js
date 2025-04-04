@@ -132,6 +132,10 @@ module.exports = (env = {}) => {
       }),
       new webpack.ProvidePlugin({
         Buffer: ['buffer', 'Buffer'],
+        RandExp: [
+          path.resolve(__dirname, './client/app/randexp.js'),
+          'RandExp',
+        ],
       }),
     ],
     optimization: {

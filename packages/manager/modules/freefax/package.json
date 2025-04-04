@@ -21,7 +21,7 @@
   },
   "peerDependencies": {
     "@ovh-ux/manager-advices": "^0.0.0 || ^1.0.0",
-    "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
+    "@ovh-ux/manager-core": "^13.0.5",
     "@ovh-ux/manager-ng-layout-helpers": "^2.0.0",
     "@ovh-ux/manager-telecom-styles": "^4.0.0",
     "@ovh-ux/ng-ovh-contracts": "^4.2.0",

@@ -9,7 +9,7 @@
     "packages/manager/tools/*",
     "packages/manager-react-components"
   ],
-  "npmClient": "yarn",
+  "npmClient": "pnpm",
   "useWorkspaces": true,
   "version": "independent",
   "command": {
