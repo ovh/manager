@@ -91,6 +91,7 @@ const defaultProps: CreatePlanFormProps = {
   onCreatePlan: mockOnCreatePlan,
   setDeploymentMode: vi.fn(),
   deploymentMode: DeploymentMode['1AZ'],
+  isCreatePlanPending: false,
 };
 
 const setupSpecTest = async (props: CreatePlanFormProps = defaultProps) =>

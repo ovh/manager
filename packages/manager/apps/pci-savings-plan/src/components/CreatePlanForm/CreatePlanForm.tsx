@@ -102,6 +102,11 @@ export type CreatePlanFormProps = {
   isDiscoveryProject: boolean;
   setDeploymentMode: (deploymentMode: DeploymentMode) => void;
   deploymentMode: DeploymentMode;
+  isCreatePlanPending: boolean;
+};
+
+export const getDescriptionInstanceKey = (resource: string) => {
+  return `select_model_description_instance_${resource}`;
 };
 
 const CreatePlanForm: FC<CreatePlanFormProps> = ({
@@ -118,6 +123,7 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
   isDiscoveryProject,
   setDeploymentMode,
   deploymentMode,
+  isCreatePlanPending,
 }: CreatePlanFormProps) => {
   const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
@@ -178,7 +184,8 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
       isLegalChecked &&
       planName &&
       !isDiscoveryProject &&
-      isValidPlanName,
+      isValidPlanName &&
+      !isCreatePlanPending,
     [
       quantity,
       offerIdSelected,
@@ -188,6 +195,7 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
       planName,
       isDiscoveryProject,
       isValidPlanName,
+      isCreatePlanPending,
     ],
   );
 
@@ -404,9 +412,10 @@ export const CreatePlanFormContainer = ({
     [addSuccess, t, locale],
   );
 
-  const { mutate: onCreatePlan } = useSavingsPlanCreate(
-    handleCreateSavingsPlanSuccess,
-  );
+  const {
+    mutate: onCreatePlan,
+    isPending: isCreatePlanPending,
+  } = useSavingsPlanCreate(handleCreateSavingsPlanSuccess);
 
   const sortedPriceByDuration = [...pricingByDuration].sort(
     (a, b) => a.duration - b.duration,
@@ -471,6 +480,7 @@ export const CreatePlanFormContainer = ({
       isDiscoveryProject={isDiscoveryProject}
       setDeploymentMode={setDeploymentMode}
       deploymentMode={deploymentMode}
+      isCreatePlanPending={isCreatePlanPending}
     />
   );
 };

@@ -1888,7 +1888,7 @@ export default class PciInstancesAddController {
     return (
       flavor &&
       Boolean(distribution.match(/^windows/i)) &&
-      images.some(({ name }) => name.match(/20(16|19|22)/)) &&
+      images.some(({ name }) => name.match(/20(16|19|22|25)/)) &&
       this.catalog.addons
         .find(({ planCode }) => planCode === flavor.planCodes.hourly)
         ?.addonFamilies.some(({ addons }) =>
