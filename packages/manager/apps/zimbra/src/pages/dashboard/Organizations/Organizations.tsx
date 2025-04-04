@@ -92,6 +92,7 @@ export default function Organizations() {
 
   const {
     data,
+    fetchAllPages,
     fetchNextPage,
     hasNextPage,
     isLoading,
@@ -158,6 +159,7 @@ export default function Organizations() {
           totalItems={items.length}
           hasNextPage={hasNextPage}
           onFetchNextPage={fetchNextPage}
+          onFetchAllPages={fetchAllPages}
           isLoading={isLoading || isFetchingNextPage}
         />
       )}
