@@ -26,6 +26,7 @@ export default class HostingGeneralInformationsCtrl {
     localSEOLink,
     multisiteLink,
     runtimesLink,
+    Domain,
     Hosting,
     hostingEmailService,
     HostingLocalSeo,
@@ -56,6 +57,7 @@ export default class HostingGeneralInformationsCtrl {
     this.hostingSSLCertificate = hostingSSLCertificate;
     this.OvhApiScreenshot = OvhApiScreenshot;
     this.user = user;
+    this.Domain = Domain;
 
     this.CDN_ADVANCED = CDN_ADVANCED;
     this.CDN_VERSION_V1 = HOSTING_CDN_ORDER_CDN_VERSION_V1;
@@ -119,6 +121,7 @@ export default class HostingGeneralInformationsCtrl {
         this.retrievingSSLCertificate(),
         this.isAvailableOffer(this.serviceName),
         this.isAvailableDetach(this.serviceName),
+        this.getZoneDns(),
       ])
       .then(() => this.HostingRuntimes.getDefault(this.serviceName))
       .then((runtime) => {
@@ -278,6 +281,12 @@ export default class HostingGeneralInformationsCtrl {
   activateEmailOffer() {
     this.$state.go('app.hosting.dashboard.activate', {
       serviceName: this.serviceName,
+    });
+  }
+
+  getZoneDns() {
+    return this.Domain.getZones().then((zones) => {
+      this.hasZoneDns = zones.length > 0;
     });
   }
 
