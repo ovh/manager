@@ -11,13 +11,11 @@ import ngOvhSsoAuth from '@ovh-ux/ng-ovh-sso-auth';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import ovhManagerAtInternetConfiguration from '@ovh-ux/manager-at-internet-configuration';
 import { registerAtInternet } from '@ovh-ux/ng-shell-tracking';
-// TODO: Change to '@ovh-ux/manager-account' when module is deployed
-// import Account from '@ovh-ux/manager-account';
-import Account from '../../../modules/account/src';
+import Account from '@ovh-ux/manager-account';
 import config, {
   getConstants,
-} from '../../../modules/account/src/config/config';
-import dedicatedUniverseComponents from '../../../modules/account/src/dedicatedUniverseComponents';
+} from '@ovh-ux/manager-account/src/config/config';
+import dedicatedUniverseComponents from '@ovh-ux/manager-account/src/dedicatedUniverseComponents';
 
 import errorPage from './error';
 
