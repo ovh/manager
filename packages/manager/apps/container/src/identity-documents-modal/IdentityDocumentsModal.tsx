@@ -1,17 +1,6 @@
-import {
-  kycIndiaModalLocalStorageKey,
-  kycIndiaFeature,
-  requiredStatusKey,
-  trackingContext,
-  trackingPrefix,
-} from './constants';
-import { useIdentityDocumentsStatus } from '@/hooks/useIdentityDocumentsStatus';
 import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { FunctionComponent, useEffect, useRef, useState } from 'react';
-import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
-import { useTranslation, Trans } from 'react-i18next';
-import { useLocalStorage } from 'react-use';
-import { useShell } from '@/context';
+import { Trans, useTranslation } from 'react-i18next';
 import {
   OsdsButton,
   OsdsCollapsible,
@@ -24,40 +13,33 @@ import {
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
+import { trackingContext, trackingPrefix } from './IdentityDocumentsModal.constants';
+import { useShell } from '@/context';
 
 export const IdentityDocumentsModal: FunctionComponent = () => {
   const shell = useShell();
   const navigationPlugin = shell.getPlugin('navigation');
-  const [storage, setStorage] = useLocalStorage<boolean>(
-    kycIndiaModalLocalStorageKey,
-  );
+  const uxPlugin = shell.getPlugin('ux');
 
   const { t } = useTranslation('identity-documents-modal');
   const legalInformationRef = useRef<any>(null);
 
-  const [showModal, setShowModal] = useState<boolean>(false);
-
-  const availabilityDataResponse = useFeatureAvailability([kycIndiaFeature]);
-  const availability = availabilityDataResponse?.data;
-
-  const { data: statusDataResponse } = useIdentityDocumentsStatus({
-    enabled: Boolean(availability && availability[kycIndiaFeature] && !storage),
-  });
+  const [showModal, setShowModal] = useState<boolean>(true);
 
   const trackingPlugin = shell.getPlugin('tracking');
 
   const onCancel = () => {
     setShowModal(false);
-    setStorage(true);
+    uxPlugin.notifyModalActionDone('IdentityDocumentsModal');
     trackingPlugin.trackClick({
       name: `${trackingPrefix}::pop-up::link::kyc::cancel`,
+      type: 'action',
       ...trackingContext,
     });
   };
 
   const onConfirm = () => {
     setShowModal(false);
-    setStorage(true);
     trackingPlugin.trackClick({
       name: `${trackingPrefix}::pop-up::button::kyc::start-verification`,
       type: 'action',
@@ -67,19 +49,11 @@ export const IdentityDocumentsModal: FunctionComponent = () => {
   };
 
   useEffect(() => {
-    if (statusDataResponse?.data?.status === requiredStatusKey) {
-      setShowModal(true);
-    }
-  }, [statusDataResponse?.data?.status]);
-
-  useEffect(() => {
-    if (showModal) {
-      trackingPlugin.trackPage({
-        name: `${trackingPrefix}::pop-up::kyc`,
-        ...trackingContext,
-      });
-    }
-  }, [showModal]);
+    trackingPlugin.trackPage({
+      name: `${trackingPrefix}::pop-up::kyc`,
+      ...trackingContext,
+    });
+  }, []);
 
   return (
     showModal && (

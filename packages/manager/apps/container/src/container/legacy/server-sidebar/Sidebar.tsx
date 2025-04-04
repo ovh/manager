@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { OsdsSkeleton } from '@ovhcloud/ods-components/react';
+import { ODS_SKELETON_SIZE } from '@ovhcloud/ods-components';
+import { useLocation } from 'react-router-dom';
 import { useShell } from '@/context';
 import ServerSidebarVirtual from './SidebarVirtual';
-import style from './index.module.scss';
 import {
   filterBySearch,
   flattenMenu,
@@ -10,10 +12,8 @@ import {
   updateSearchFields,
   updateSidebarItemLabel,
 } from './sidebarMenu';
-import { useLocation } from 'react-router-dom';
-import { OsdsSpinner } from '@ovhcloud/ods-components/react';
 
-import { ODS_SPINNER_MODE, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+const AVERAGE_NUMBER_OF_MENU_ENTRIES = 7;
 
 export default function ServerSidebar({ menu }: { menu: SidebarMenuItem }) {
   const [items, setItems] = useState<SidebarMenuItem[]>([]);
@@ -53,11 +53,21 @@ export default function ServerSidebar({ menu }: { menu: SidebarMenuItem }) {
   return menu ? (
     <ServerSidebarVirtual items={items} onMenuChange={refreshMenu} />
   ) : (
-    <OsdsSpinner
-      mode={ODS_SPINNER_MODE.indeterminate}
-      size={ODS_SPINNER_SIZE.lg}
-      inline
-      className={style.spinnerLoading}
-    />
+    <>
+      {Array(AVERAGE_NUMBER_OF_MENU_ENTRIES)
+        .fill(0)
+        .map((_: number, index: number) => (
+          <div
+            className="flex justify-center h-[35px] m-auto"
+            key={`menu_entries_skeleton_${index}`}
+          >
+            <OsdsSkeleton
+              className="w-[20px] ml-1 mr-3"
+              inline
+            />
+            <OsdsSkeleton inline />
+          </div>
+        ))}
+    </>
   );
 }

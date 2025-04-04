@@ -1,9 +1,11 @@
 import { SupportLevel } from '@ovh-ux/manager-models';
 import { API_MODEL_SUPPORT_LEVEL } from './support-level/support-level.constants';
-import { GUIDES_LIST } from './user.constants';
+import { DEFAULT_AUTHORIZATIONS, GUIDES_LIST } from './user.constants';
 
 import template from './user.html';
 import controller from './user.controller';
+import { GDPR_FEATURES_FEATURE } from '../account.constants';
+import { GDPR_REQUEST_MANAGEMENT_ACTIONS } from './gdpr/gdpr.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   const name = 'account.user';
@@ -44,6 +46,43 @@ export default /* @ngInject */ ($stateProvider) => {
           type: 'action',
         });
       },
+      areGdprFeaturesAvailable: /* @ngInject */ (featureAvailability) =>
+        featureAvailability[GDPR_FEATURES_FEATURE] || false,
+      iamAuthorizations: /* @ngInject */ (
+        areGdprFeaturesAvailable,
+        Apiv2Service,
+      ) => {
+        if (!areGdprFeaturesAvailable) {
+          return DEFAULT_AUTHORIZATIONS;
+        }
+        return Apiv2Service.httpApiv2({
+          method: 'get',
+          url: '/engine/api/v2/iam/resource?resourceType=account',
+        }).then(({ data }) => {
+          if (!data[0]?.urn) {
+            return DEFAULT_AUTHORIZATIONS;
+          }
+          return Apiv2Service.httpApiv2({
+            method: 'post',
+            url: `/engine/api/v2/iam/resource/${encodeURIComponent(
+              data[0].urn,
+            )}/authorization/check`,
+            data: {
+              actions: GDPR_REQUEST_MANAGEMENT_ACTIONS.map(
+                ({ name: actionName }) => actionName,
+              ),
+            },
+          })
+            .then(({ data: actions }) => actions)
+            .catch(() => []);
+        });
+      },
+      canManageGdprRequests: /* @ngInject */ (iamAuthorizations) =>
+        GDPR_REQUEST_MANAGEMENT_ACTIONS.every(
+          (action) =>
+            !action.mandatory ||
+            iamAuthorizations.authorizedActions?.includes(action.name),
+        ),
     },
   });
 };

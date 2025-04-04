@@ -3,7 +3,7 @@ import { Shell } from '@ovh-ux/shell';
 import { useCookies } from 'react-cookie';
 import { useTranslation } from 'react-i18next';
 import { User } from '@ovh-ux/manager-config';
-import ovhCloudLogo from './assets/logo-ovhcloud.png';
+import ovhCloudLogo from '../assets/images/logo-ovhcloud.png';
 import links from './links';
 import { useApplication } from '@/context';
 import { Subtitle, Links, LinksProps } from '@ovh-ux/manager-react-components';
@@ -64,7 +64,7 @@ const CookiePolicy = ({ shell, onValidate }: Props): JSX.Element => {
     setCookies('MANAGER_TRACKING', agreed ? 1 : 0);
     trackingPlugin.onUserConsentFromModal(agreed);
     setShow(false);
-    onValidate(true);
+    onValidate();
   }
 
   useEffect(() => {

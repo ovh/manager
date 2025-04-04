@@ -5,19 +5,13 @@ export const assistanceTree: Node = {
   translation: 'sidebar_assistance_title',
   children: [
     {
-      id: 'cloud_changelog',
-      translation: 'sidebar_cloud_changelog',
-      url: 'cloud_changelog',
+      id: 'roadmap_changelog',
+      translation: 'sidebar_roadmap_changelog',
+      routing: {
+        application: 'hub',
+        hash: '#/roadmap-changelog'
+      },
       hasService: false,
-      isExternal: true,
-    },
-    {
-      id: 'hosting_and_collab_changelog',
-      translation: 'sidebar_hosting_and_collab_changelog',
-      url: 'hosting_and_collab_changelog',
-      hasService: false,
-      isExternal: true,
-      region: ['EU', 'CA'],
     },
     {
       id: 'marketplace',

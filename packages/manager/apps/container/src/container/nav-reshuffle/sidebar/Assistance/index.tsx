@@ -132,17 +132,7 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
     );
 
   return (
-    <ul
-      className="mt-auto pb-3 flex-none"
-      id="useful-links"
-      role="menu"
-      data-testid="assistance-sidebar"
-    >
-      <li className="assistance_header px-3 mb-3">
-        <h2 className="flex justify-between whitespace-nowrap">
-          <span>{t('sidebar_assistance_title')}</span>
-        </h2>
-      </li>
+    <ul className="mt-auto pb-3 flex-none" id="useful-links" role="menu" data-testid="assistance-sidebar">
       {nodeTree.children.map((node: Node) => (
         <AssistanceLinkItem
           key={`assistance_${node.id}`}
