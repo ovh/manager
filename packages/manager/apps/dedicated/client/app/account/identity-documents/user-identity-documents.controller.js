@@ -100,7 +100,9 @@ export default class AccountUserIdentityDocumentsController {
           this.tryToFinalizeProcedure(this.links)
         : // In order to start the KYC procedure we need to request the upload links for the number of documents
           // the user wants to upload
-          this.getUploadDocumentsLinks(Object.values(this.files).flatMap(({ files }) => files).length)
+          this.getUploadDocumentsLinks(
+            Object.values(this.files).flatMap(({ files }) => files).length,
+          )
             // Once we retrieved the upload links, we'll try to upload them and then "finalize" the procedure creation
             .then(({ data: { uploadLinks } }) => {
               this.links = uploadLinks;
@@ -133,6 +135,10 @@ export default class AccountUserIdentityDocumentsController {
 
   handleInformationModal(open) {
     this.isOpenInformationModal = open;
+  }
+
+  closeInformationModal() {
+    this.handleInformationModal(false);
   }
 
   addDocuments(proofType, documentType, files, isReset) {
