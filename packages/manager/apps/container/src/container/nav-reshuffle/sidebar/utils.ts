@@ -231,7 +231,6 @@ export const isMatchingNode = (node: Node, pathSegment: string) => {
   return nodeSegments.length > pathSegments.length ? null : {
     value: nodeSegments.reduce((isMatching, segment, index) => {
       const returnValue = isMatching && (segment === '{param}' || segment === pathSegments[index]);
-      console.log(segment, pathSegments[index], returnValue);
       return returnValue;
     }, true) ? node : null,
     segments: nodeSegments.length
