@@ -104,37 +104,6 @@ export default class OlaService {
     );
   }
 
-  getOlaPrice(serviceName, { datacenter }) {
-    let suffix = 'eu';
-    if (datacenter.startsWith('HIL') || datacenter.startsWith('VIN')) {
-      suffix = 'us';
-    }
-    if (datacenter.startsWith('BHS')) {
-      suffix = 'ca';
-    }
-
-    return this.OvhApiOrderCartServiceOption.v6()
-      .get({
-        productName: 'baremetalServers',
-        serviceName,
-      })
-      .$promise.then((options) => {
-        let planCode = this.olaConstants.OLA_PLAN_CODE;
-
-        if (this.coreConfig.isRegion('US')) {
-          planCode = `${planCode}-${suffix}`;
-        }
-
-        const optionPlanCode = options.find(
-          (option) => option.planCode === planCode,
-        );
-
-        return optionPlanCode?.prices?.find(
-          ({ pricingMode }) => pricingMode === 'default',
-        )?.price;
-      });
-  }
-
   // TODO unused ?
   terminateOla(serverName) {
     return this.$http.delete(`/dedicated/server/${serverName}/option/OLA`).then(

@@ -8,7 +8,6 @@ import {
 
 import component from './interfaces.component';
 import routing from './interfaces.routing';
-import olaActivationRouting from './ola/ola-activation.routing';
 import olaConfigurationRouting from './ola/ola-configuration.routing';
 import { routing as olaPendingTaskRouting } from './ola/ola-pending-task.routing';
 import olaResetRouting from './ola/ola-reset.routing';
@@ -30,7 +29,6 @@ angular
   .component('dedicatedServerInterfaces', component)
   .config(routing)
   // ola routings
-  .config(olaActivationRouting)
   .config(olaConfigurationRouting)
   .config(olaPendingTaskRouting)
   .config(olaResetRouting)
