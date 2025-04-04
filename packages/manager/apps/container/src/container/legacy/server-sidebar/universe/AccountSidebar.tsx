@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useReket } from '@ovh-ux/ovh-reket';
 import { useTranslation } from 'react-i18next';
 import { Environment } from '@ovh-ux/manager-config';
+import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import { useShell } from '@/context';
 import { sanitizeMenu, SidebarMenuItem } from '../sidebarMenu';
 import Sidebar from '../Sidebar';
@@ -9,8 +9,9 @@ import dedicatedShopConfig from '../order/shop-config/dedicated';
 import OrderTrigger from '../order/OrderTrigger';
 import { ShopItem } from '../order/OrderPopupContent';
 import { features } from './DedicatedSidebar';
-import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import constants from '../../account-sidebar/UsefulLinks/constants';
+import { useProcedureStatus } from '@/hooks/procedure/useProcedure';
+import { Procedures } from '@/types/procedure';
 
 const kycIndiaFeature = 'identity-documents';
 const kycFraudFeature = 'procedures:fraud';
@@ -27,7 +28,6 @@ export default function AccountSidebar() {
   const [menu, setMenu] = useState<SidebarMenuItem>(undefined);
   const [shopItems, setShopItems] = useState<ShopItem[]>([]);
   const shell = useShell();
-  const reketInstance = useReket();
   const { t, i18n } = useTranslation('sidebar');
   const navigation = shell.getPlugin('navigation');
   const environment: Environment = shell
@@ -37,9 +37,27 @@ export default function AccountSidebar() {
   const subsidiary = environment.getUser()?.ovhSubsidiary;
   const isEnterprise = environment.getUser()?.enterprise;
 
-  const getAccountSidebar = async (
-    availability: Record<string, boolean> | null,
-  ) => {
+  const { data: availability } = useFeatureAvailability(
+    features.concat(accountFeatures),
+  );
+  // In order to not wait too long before displaying the menu entries, we will not retry the retrieval of KYC
+  // procedures statuses
+  const {
+    data: kycIndiaProcedure,
+    status: fetchKycIndiaProcedureStatus,
+  } = useProcedureStatus(Procedures.INDIA, {
+    enabled: availability?.[kycIndiaFeature] || false,
+    retry: 0,
+  });
+  const {
+    data: kycFraudProcedure,
+    status: fetchKycFraudProcedureStatus,
+  } = useProcedureStatus(Procedures.FRAUD, {
+    enabled: availability?.[kycFraudFeature] || false,
+    retry: 0,
+  });
+
+  const getAccountSidebar = () => {
     const menu: SidebarMenuItem[] = [];
 
     if (!availability) {
@@ -66,34 +84,34 @@ export default function AccountSidebar() {
       routeMatcher: new RegExp('^/useraccount'),
     });
 
-    if (availability[kycIndiaFeature]) {
-      const { status } = await reketInstance.get(`/me/procedure/identity`);
-      if (['required', 'open'].includes(status)) {
-        menu.push({
-          id: 'my-identity-documents',
-          label: t('sidebar_account_identity_documents'),
-          href: navigation.getURL(
-            isNewAccountAvailable ? 'new-account' : 'dedicated',
-            '/identity-documents',
-          ),
-          routeMatcher: new RegExp('^/identity-documents'),
-        });
-      }
+    if (
+      availability[kycIndiaFeature] &&
+      ['required', 'open'].includes(kycIndiaProcedure?.status)
+    ) {
+      menu.push({
+        id: 'my-identity-documents',
+        label: t('sidebar_account_identity_documents'),
+        href: navigation.getURL(
+          isNewAccountAvailable ? 'new-account' : 'dedicated',
+          '/identity-documents',
+        ),
+        routeMatcher: new RegExp('^/identity-documents'),
+      });
     }
 
-    if (availability[kycFraudFeature]) {
-      const { status } = await reketInstance.get(`/me/procedure/fraud`);
-      if (['required', 'open'].includes(status)) {
-        menu.push({
-          id: 'kyc-documents',
-          label: t('sidebar_account_kyc_documents'),
-          href: navigation.getURL(
-            isNewAccountAvailable ? 'new-account' : 'dedicated',
-            '/documents',
-          ),
-          routeMatcher: new RegExp('^/documents'),
-        });
-      }
+    if (
+      availability[kycFraudFeature] &&
+      ['required', 'open'].includes(kycFraudProcedure?.status)
+    ) {
+      menu.push({
+        id: 'kyc-documents',
+        label: t('sidebar_account_kyc_documents'),
+        href: navigation.getURL(
+          isNewAccountAvailable ? 'new-account' : 'dedicated',
+          '/documents',
+        ),
+        routeMatcher: new RegExp('^/documents'),
+      });
     }
 
     if (!isEnterprise) {
@@ -185,23 +203,21 @@ export default function AccountSidebar() {
     return menu;
   };
 
-  const { data: availability } = useFeatureAvailability(
-    features.concat(accountFeatures),
-  );
-
-  const buildMenu = async () =>
-    Promise.resolve({
-      id: 'my-account-sidebar',
-      label: '',
-      subItems: [...(await getAccountSidebar(availability))],
-    });
-
   useEffect(() => {
-    buildMenu().then((menu) => setMenu(sanitizeMenu(menu)));
-  }, [availability, i18n.language]);
-
-  useEffect(() => {
-    if (availability) {
+    if (
+      availability &&
+      (!availability[kycIndiaFeature] ||
+        fetchKycIndiaProcedureStatus !== 'pending') &&
+      (!availability[kycFraudFeature] ||
+        fetchKycFraudProcedureStatus !== 'pending')
+    ) {
+      setMenu(
+        sanitizeMenu({
+          id: 'my-account-sidebar',
+          label: '',
+          subItems: [...getAccountSidebar()],
+        }),
+      );
       setShopItems(
         dedicatedShopConfig(
           navigation,
@@ -211,7 +227,12 @@ export default function AccountSidebar() {
         ),
       );
     }
-  }, [availability, i18n.language]);
+  }, [
+    availability,
+    i18n.language,
+    fetchKycIndiaProcedureStatus,
+    fetchKycFraudProcedureStatus,
+  ]);
 
   return (
     <>
