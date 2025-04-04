@@ -6,10 +6,10 @@ import { OdsTabs, OdsTab, OdsSpinner } from '@ovhcloud/ods-components/react';
 import { DescriptionWrapper } from './CreatePlanForm';
 import { TileTechnicalInfo } from '../TileTechnicalInfo/TileTechnicalInfo';
 import { Block } from '../SimpleTile/SimpleTile';
-import { InstanceInfo } from '@/types/CreatePlan.type';
+import { InstanceInfo, TechnicalInfo } from '@/types/CreatePlan.type';
 
 type SelectModelProps = {
-  technicalInfo: InstanceInfo['technical'];
+  technicalInfo: TechnicalInfo[];
   instanceCategory: string;
   isInstance: boolean;
   isTechnicalInfoLoading: boolean;
