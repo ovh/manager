@@ -138,6 +138,10 @@ export default class AccountUserIdentityDocumentsController {
     this.isOpenInformationModal = open;
   }
 
+  closeInformationModal() {
+    this.handleInformationModal(false);
+  }
+
   addDocuments(proofType, documentType, files, isReset) {
     if (isReset) {
       delete this.files[proofType];
