@@ -21,7 +21,7 @@ import {
   VOLUME_NAME_MAX_LENGTH,
 } from '@/constants';
 
-function useStorageVolumeEditData(
+function useVolumeEditData(
   projectId: string,
   volume: TVolume,
 ): {
@@ -53,7 +53,7 @@ function useStorageVolumeEditData(
   return { region, pricing, has3Az };
 }
 
-export interface PciStorageVolumeEditProps {
+export interface VolumeEditProps {
   projectId: string;
   volume: TVolume;
   suggestedName?: string;
@@ -62,20 +62,17 @@ export interface PciStorageVolumeEditProps {
   onCancel: () => void;
 }
 
-export default function PciStorageVolumeEdit({
+export default function VolumeEdit({
   projectId,
   volume,
   suggestedName,
   submitLabel,
   onSubmit,
   onCancel,
-}: Readonly<PciStorageVolumeEditProps>) {
+}: Readonly<VolumeEditProps>) {
   const { t } = useTranslation(['volume-edit', 'pci-common']);
   const { translateMicroRegion } = useTranslatedMicroRegions();
-  const { region, pricing, has3Az } = useStorageVolumeEditData(
-    projectId,
-    volume,
-  );
+  const { region, pricing, has3Az } = useVolumeEditData(projectId, volume);
   const { data: regionQuota } = useRegionsQuota(projectId, volume.region);
   const [volumeSize, setVolumeSize] = useState(volume.size || VOLUME_MIN_SIZE);
   const minVolumeSize = volume.size;
