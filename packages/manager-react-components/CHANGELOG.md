@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.47.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.47.0...@ovh-ux/manager-react-components@1.47.1) (2025-04-05)
+
+### Bug Fixes
+
+- **error:** display homepage button only if required ([d50398d](https://github.com/ovh/manager/commit/d50398d935ce11cd834865b5f016b0256b8da580))
+
 # [1.47.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.46.0...@ovh-ux/manager-react-components@1.47.0) (2025-04-04)
 
 ### Features
