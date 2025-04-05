@@ -2,9 +2,9 @@ import React from 'react';
 import { Meta } from '@storybook/react';
 import { withRouter } from 'storybook-addon-react-router-v6';
 import {
-  ChangelogButton,
   ChangelogLinks,
   ChangelogButtonProps,
+  ChangelogButton,
 } from './changelog.component';
 
 const changelogChapters: string[] = ['baremetal', 'server', 'dedicated'];
@@ -20,6 +20,7 @@ const changelogLinks: ChangelogLinks = {
 export const changelogButton: ChangelogButtonProps = {
   links: changelogLinks,
   chapters: changelogChapters,
+  isWithTracking: false,
 };
 
 const meta: Meta<ChangelogButtonProps> = {
