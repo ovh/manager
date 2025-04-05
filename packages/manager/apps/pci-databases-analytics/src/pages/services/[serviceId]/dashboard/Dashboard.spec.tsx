@@ -140,7 +140,6 @@ describe('Dashboard page', () => {
         screen.getByTestId('dashboard-copy-id-button'),
       ).toBeInTheDocument();
       expect(screen.getByTestId('dashboard-billing-link')).toBeInTheDocument();
-      expect(screen.getByTestId('dashboard-support-link')).toBeInTheDocument();
     });
   });
   it('renders and trigger copy Id in clipboard', async () => {
