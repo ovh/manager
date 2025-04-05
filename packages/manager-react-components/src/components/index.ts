@@ -24,6 +24,8 @@ export * from './notifications/useNotifications';
 
 export * from './filters';
 
+export * from './formatted-date/FormattedDate';
+
 export * from './ManagerButton/ManagerButton';
 export * from './ManagerText/ManagerText';
 
