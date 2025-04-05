@@ -15,7 +15,6 @@ import { BaseLayout } from './base.component';
 import GuideButton, {
   GuideItem,
 } from '../../navigation/menus/guide/guide.component';
-import './base.stories.css';
 import { DashboardGridLayout } from '../layout/layout.component';
 import { ActionMenu } from '../../navigation';
 
