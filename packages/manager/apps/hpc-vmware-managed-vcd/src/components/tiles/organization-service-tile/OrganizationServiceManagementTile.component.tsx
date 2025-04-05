@@ -1,10 +1,10 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { DashboardTile } from '@ovh-ux/manager-react-components';
-import { OdsBadge } from '@ovhcloud/ods-components/react';
 import ServiceRenewTileItem from './renew-tile-item/ServiceRenewTileItem';
 import ServiceContactsTileItem from './contact-tile-item/ServiceContactsTileItem';
 import ServicePasswordTileItem from './password-tile-item/ServicePasswordTileItem';
+import CancellationTileItem from './cancellation-tile-item/CancellationTileItem';
 
 export default function OrganizationServiceManagementTile() {
   const { t } = useTranslation('dashboard');
@@ -22,12 +22,7 @@ export default function OrganizationServiceManagementTile() {
           {
             id: 'serviceCancellation',
             label: t('managed_vcd_dashboard_service_cancellation'),
-            value: (
-              <OdsBadge
-                label={t('managed_vcd_dashboard_coming_soon')}
-                className="mt-3"
-              />
-            ),
+            value: <CancellationTileItem />,
           },
           {
             id: 'servicePassword',
