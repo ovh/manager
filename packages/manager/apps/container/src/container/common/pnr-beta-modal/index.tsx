@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
@@ -8,7 +8,6 @@ import style from './style.module.scss';
 import backgroundImage from '@/assets/images/pnr/background.png';
 import previewImage from '@/assets/images/pnr/preview.png';
 import { useShell } from '@/context';
-
 
 function NavReshuffleBetaAccessModal(): JSX.Element {
   const { t } = useTranslation('beta-modal');
@@ -20,7 +19,8 @@ function NavReshuffleBetaAccessModal(): JSX.Element {
   async function onAccept() {
     setSubmitting(true);
     trackingPlugin.trackClick({
-      name: 'switch_versionpopin_V3::product-navigation-reshuffle::go_to_new_version',
+      name:
+        'switch_versionpopin_V3::product-navigation-reshuffle::go_to_new_version',
       type: 'action',
     });
     return createBetaChoice(true).then(() => window.location.reload());
@@ -29,7 +29,8 @@ function NavReshuffleBetaAccessModal(): JSX.Element {
   async function onDecline() {
     setSubmitting(true);
     trackingPlugin.trackClick({
-      name: 'switch_versionpopin_V3::product-navigation-reshuffle:::decline_new_version',
+      name:
+        'switch_versionpopin_V3::product-navigation-reshuffle:::decline_new_version',
       type: 'action',
     });
     return createBetaChoice(false).then(() => window.location.reload());
@@ -37,7 +38,9 @@ function NavReshuffleBetaAccessModal(): JSX.Element {
 
   useEffect(() => {
     if (askBeta) {
-      trackingPlugin.trackPage('product-navigation-reshuffle::switch_version_V3::go_to_new_version');
+      trackingPlugin.trackPage(
+        'product-navigation-reshuffle::switch_version_V3::go_to_new_version',
+      );
     }
   }, [askBeta]);
 

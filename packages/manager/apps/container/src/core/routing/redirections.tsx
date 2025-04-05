@@ -12,7 +12,9 @@ function Rewrite({ to }: { to: string }): JSX.Element {
   return <Navigate to={`${target}${location.search}`} replace={true} />;
 }
 
-export function Redirections(configuration: Record<string, Application>): JSX.Element {
+export function Redirections(
+  configuration: Record<string, Application>,
+): JSX.Element {
   const isNewAccountAvailable = !!configuration?.['new-account'];
   const isNewBillingAvailable = !!configuration?.['new-billing'];
 
@@ -56,7 +58,7 @@ export function Redirections(configuration: Record<string, Application>): JSX.El
         <Route
           path="/billing/*"
           element={<Rewrite to="/dedicated/billing/*" />}
-        />  
+        />
       )}
       <Route path="/freefax">
         <Route path=":id/*" element={<Rewrite to="/telecom/freefax/:id/*" />} />

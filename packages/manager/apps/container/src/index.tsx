@@ -28,7 +28,9 @@ if (window.top !== window.self) {
   window.top.location.href = window.self.location.href;
 }
 
-__VERSION__ && defineApplicationVersion(__VERSION__);
+if (__VERSION__) {
+  defineApplicationVersion(__VERSION__);
+}
 
 initSso();
 
@@ -50,7 +52,7 @@ initShell().then((shell) => {
         .use({
           type: 'postProcessor',
           name: 'normalize',
-          process: function process(value: string, key: string) {
+          process: function process(value: string) {
             if (!value) {
               return value;
             }

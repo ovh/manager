@@ -2,6 +2,12 @@ import { useEffect, useState, useMemo, Suspense, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
 import { aapi } from '@ovh-ux/manager-core-api';
 import { useTranslation } from 'react-i18next';
+import { fetchFeatureAvailabilityData } from '@ovh-ux/manager-react-components';
+import { SvgIconWrapper } from '@ovh-ux/ovh-product-icons/utils/SvgIconWrapper';
+import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
+import { OsdsButton } from '@ovhcloud/ods-components/react';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { useShell } from '@/context';
 import logo from '@/assets/images/OVHcloud_logo.svg';
 import shortLogo from '@/assets/images/icon-logo-ovh.svg';
@@ -23,12 +29,6 @@ import {
 } from './utils';
 import { Node } from './navigation-tree/node';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
-import { fetchFeatureAvailabilityData } from '@ovh-ux/manager-react-components';
-import { SvgIconWrapper } from '@ovh-ux/ovh-product-icons/utils/SvgIconWrapper';
-import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
-import { OsdsButton } from '@ovhcloud/ods-components/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { ExcludedNodeIdsList } from './navigation-tree/excluded';
 
 interface ServicesCountError {
@@ -56,7 +56,7 @@ const Sidebar = (): JSX.Element => {
     isMobile,
     isAnimated,
     setIsAnimated,
-    isNavigationSidebarOpened
+    isNavigationSidebarOpened,
   } = useProductNavReshuffle();
   const [servicesCount, setServicesCount] = useState<ServicesCount>(null);
   const [selectedNode, setSelectedNode] = useState<Node>(null);
@@ -74,8 +74,50 @@ const Sidebar = (): JSX.Element => {
   // As we don't update any state when we set the hasService variable
   // we miss a render when we don't open the subtree
   // So we simulate a state update when we set the hasService variable
-  const [, updateState]: any = useState();
+  const [, updateState]: [
+    unknown,
+    React.Dispatch<React.SetStateAction<unknown>>,
+  ] = useState<unknown>();
   const forceUpdate = useCallback(() => updateState({}), []);
+
+  // Functions
+
+  const processNode = (
+    servicesTypes: ServicesTypes,
+    node: Node,
+    isCurrentNavigationNode = false,
+  ) => {
+    node.children?.map((childNode: Node) =>
+      processNode(servicesTypes, childNode),
+    );
+    node.hasService = hasService(servicesTypes, node, ExcludedNodeIdsList);
+    if (isCurrentNavigationNode) forceUpdate();
+  };
+
+  const setSavedNode = (node: Node) => {
+    if (node) {
+      setSavedNodeID(node.id);
+      window.localStorage.setItem(savedLocationKey, node.id);
+    } else {
+      setSavedNodeID(null);
+      window.localStorage.removeItem(savedLocationKey);
+    }
+  };
+
+  const selectLvl1Node = (node: Node | null) => {
+    setSelectedNode(node);
+    setShowSubTree(!!node);
+  };
+
+  const selectSubMenu = (node: Node) => {
+    setSelectedSubMenu(node);
+    setSavedNode(node);
+    if (isMobile) {
+      closeNavigationSidebar();
+    } else {
+      setOpen(false);
+    }
+  };
 
   /** Initialize navigation tree */
   useEffect(() => {
@@ -95,16 +137,17 @@ const Sidebar = (): JSX.Element => {
       }
       setAssistanceTree(findNodeById(tree, 'assistance'));
       setCurrentNavigationNode(findNodeById(tree, 'sidebar'));
-
-      return tree;
     };
     initializeNavigationTree();
   }, []);
 
   useEffect(() => {
-    aapi.get('/services/count').then((result) => {
-      setServicesCount(result.data);
-    }).catch(() => {});
+    aapi
+      .get('/services/count')
+      .then((result) => {
+        setServicesCount(result.data);
+      })
+      .catch(() => {});
   }, []);
 
   useEffect(() => {
@@ -115,7 +158,7 @@ const Sidebar = (): JSX.Element => {
     if (!currentNavigationNode) return;
 
     // We want to know if we already stored a node in the memory or in the local storage
-    const pathname = location.pathname;
+    const { pathname } = location;
     let savedNode: Node = null;
     if (savedNodeID && !selectedSubMenu) {
       savedNode = findNodeById(currentNavigationNode, savedNodeID);
@@ -142,7 +185,7 @@ const Sidebar = (): JSX.Element => {
                 '#',
                 currentNode.routing.application,
               )
-            : '/' + currentNode.routing.application,
+            : `/${currentNode.routing.application}`,
         );
 
         // If we match the stored node with the path, it's coherent and we reselect the stored node.
@@ -161,7 +204,11 @@ const Sidebar = (): JSX.Element => {
         }
       }
     }
-    selectedNode ? selectLvl1Node(null) : setSavedNode(null);
+    if (selectedNode) {
+      selectLvl1Node(null);
+    } else {
+      setSavedNode(null);
+    }
 
     // If we didn't have a stored node or if we have reset it,
     // we search in the full navigation tree a node that could match the current path
@@ -180,29 +227,6 @@ const Sidebar = (): JSX.Element => {
     processNode({ ...servicesCount.serviceTypes }, currentNavigationNode, true);
   }, [currentNavigationNode, servicesCount]);
 
-  // Functions
-
-  const processNode = (servicesTypes: ServicesTypes, node: Node, isCurrentNavigationNode = false) => {
-    node.children?.map((childNode: Node) => processNode(servicesTypes, childNode));
-    node.hasService = hasService(servicesTypes, node, ExcludedNodeIdsList);
-    if (isCurrentNavigationNode) forceUpdate();
-  };
-
-  const setSavedNode = (node: Node) => {
-    if (node) {
-      setSavedNodeID(node.id);
-      window.localStorage.setItem(savedLocationKey, node.id);
-    } else {
-      setSavedNodeID(null);
-      window.localStorage.removeItem(savedLocationKey);
-    }
-  };
-
-  const selectLvl1Node = (node: Node | null) => {
-    setSelectedNode(node);
-    setShowSubTree(!!node);
-  };
-
   // Callbacks
 
   const toggleSidebar = () => {
@@ -220,12 +244,6 @@ const Sidebar = (): JSX.Element => {
     });
   };
 
-  const selectSubMenu = (node: Node) => {
-    setSelectedSubMenu(node);
-    setSavedNode(node);
-    isMobile ? closeNavigationSidebar() : setOpen(false);
-  };
-
   const closeSubMenu = () => {
     setIsAnimated(true);
     setShowSubTree(false);
@@ -235,11 +253,13 @@ const Sidebar = (): JSX.Element => {
       setSelectedSubMenu(null);
     };
 
-    isMobile
-      ? close()
-      : setTimeout(() => {
-          close();
-        }, 300);
+    if (isMobile) {
+      close();
+    } else {
+      setTimeout(() => {
+        close();
+      }, 300);
+    }
   };
 
   const menuClickHandler = (node: Node) => {
@@ -279,15 +299,14 @@ const Sidebar = (): JSX.Element => {
     if (firstElement) firstElement.focus();
   };
 
-  const isLoading = useMemo<boolean>(
-    () => !currentNavigationNode,
-    [currentNavigationNode],
-  );
+  const isLoading = useMemo<boolean>(() => !currentNavigationNode, [
+    currentNavigationNode,
+  ]);
 
   return (
     <div
       className={`${style.sidebar} ${
-        (selectedNode && !isManuallyClosed) ? style.sidebar_selected : ''
+        selectedNode && !isManuallyClosed ? style.sidebar_selected : ''
       }`}
     >
       <div
@@ -295,22 +314,22 @@ const Sidebar = (): JSX.Element => {
           style.sidebar_short} ${isAnimated && style.sidebar_animated}`}
       >
         <div className={style.sidebar_lvl1}>
-            {!isMobile && (
-              <a
-                role="img"
-                className={`block ${style.sidebar_logo}`}
-                aria-label="OVHcloud"
-                target="_top"
-                href={logoLink}
-              >
-                <img
-                  className={`${open ? 'mx-4' : 'mx-2'} my-3`}
-                  src={open ? logo : shortLogo}
-                  alt="OVHcloud"
-                  aria-hidden="true"
-                />
-              </a>
-            )}
+          {!isMobile && (
+            <a
+              role="img"
+              className={`block ${style.sidebar_logo}`}
+              aria-label="OVHcloud"
+              target="_top"
+              href={logoLink}
+            >
+              <img
+                className={`${open ? 'mx-4' : 'mx-2'} my-3`}
+                src={open ? logo : shortLogo}
+                alt="OVHcloud"
+                aria-hidden="true"
+              />
+            </a>
+          )}
 
           <div className={style.sidebar_menu} role="menubar">
             <ul id="menu" role="menu">

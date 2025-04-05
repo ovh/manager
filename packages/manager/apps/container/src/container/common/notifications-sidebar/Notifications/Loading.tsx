@@ -1,5 +1,3 @@
-import React from 'react';
-
 import Notification from './Notification';
 import notificationStyle from './Notification/notification.module.scss';
 import style from './notifications.module.scss';
