@@ -1,9 +1,4 @@
-import {
-  useInfiniteQuery,
-  UseInfiniteQueryOptions,
-  UseInfiniteQueryResult,
-} from '@tanstack/react-query';
-import { useEffect } from 'react';
+import { UseInfiniteQueryResult } from '@tanstack/react-query';
 import { useSearchParams } from 'react-router-dom';
 import { usePlatform } from '@/hooks';
 
@@ -12,46 +7,45 @@ import {
   getZimbraPlatformDomains,
   getZimbraPlatformDomainsQueryKey,
 } from '@/api/domain';
-import { APIV2_MAX_PAGESIZE, buildURLSearchParams } from '@/utils';
+import { APIV2_MAX_PAGESIZE } from '@/utils';
+import {
+  useInfiniteQueryWithFetchAllPages,
+  UseInfiniteQueryWithFetchAllPagesOptions,
+} from './useInfiniteQueryWithFetchAllPages';
 
 type UseDomainsParams = Omit<
-  UseInfiniteQueryOptions,
+  UseInfiniteQueryWithFetchAllPagesOptions,
   'queryKey' | 'queryFn' | 'select' | 'getNextPageParam' | 'initialPageParam'
 > & {
   organizationId?: string;
   domainName?: string;
-  shouldFetchAll?: boolean;
 };
 
 export const useDomains = (props: UseDomainsParams = {}) => {
-  const { organizationId, domainName, shouldFetchAll, ...options } = props;
+  const { organizationId, domainName, ...options } = props;
   const { platformId } = usePlatform();
   const [searchParams] = useSearchParams();
-  const urlSearchParams = buildURLSearchParams({
-    organizationId: organizationId ?? searchParams.get('organizationId'),
-    domainName,
-  });
 
-  const query = useInfiniteQuery({
+  return useInfiniteQueryWithFetchAllPages({
     ...options,
-    initialPageParam: null,
-    queryKey: getZimbraPlatformDomainsQueryKey(
-      platformId,
-      urlSearchParams,
-      shouldFetchAll,
-    ),
-    queryFn: ({ pageParam }) =>
+    searchParams: {
+      organizationId: organizationId ?? searchParams.get('organizationId'),
+      domainName,
+    },
+    queryKey: getZimbraPlatformDomainsQueryKey(platformId),
+    queryFn: ({ pageParam, allPages, urlSearchParams }) =>
       getZimbraPlatformDomains({
         platformId,
         searchParams: urlSearchParams,
         pageParam,
-        ...(shouldFetchAll ? { pageSize: APIV2_MAX_PAGESIZE } : {}),
+        ...(allPages ? { pageSize: APIV2_MAX_PAGESIZE } : {}),
       }),
     enabled: (q) =>
       (typeof options.enabled === 'function'
         ? options.enabled(q)
         : typeof options.enabled !== 'boolean' || options.enabled) &&
       !!platformId,
+    initialPageParam: null,
     getNextPageParam: (lastPage: { cursorNext?: string }) =>
       lastPage.cursorNext,
     select: (data) =>
@@ -59,12 +53,4 @@ export const useDomains = (props: UseDomainsParams = {}) => {
         (page: UseInfiniteQueryResult<DomainType[]>) => page.data,
       ),
   });
-
-  useEffect(() => {
-    if (shouldFetchAll && query.hasNextPage) {
-      query.fetchNextPage();
-    }
-  }, [query.data]);
-
-  return query;
 };
