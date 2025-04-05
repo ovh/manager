@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import useContainer from '@/core/container/useContainer';
 import { useShell } from '@/context/useApplicationContext';
 import ProductNavReshuffleContext, { ProductNavReshuffleContextType } from './product-nav-reshuffle.context';
@@ -16,6 +16,7 @@ export const ProductNavReshuffleProvider = ({
   children = null,
 }: Props): JSX.Element => {
 
+  const [isFirstTabDone, setIsFirstTabDone] = useState<boolean>(false);
   const location = useLocation();
   const [currentNavigationNode, setCurrentNavigationNode] = useState<Node>(null);
   const [navigationTree, setNavigationTree] = useState({});
@@ -24,6 +25,7 @@ export const ProductNavReshuffleProvider = ({
   const [isMobile, setIsMobile] = useState(useMediaQuery({
     query: `(max-width: ${MOBILE_WIDTH_RESOLUTION}px)`,
   }));
+  const firstFocusableElement = useRef(null)
   const [isAnimated, setIsAnimated] = useState(false);
   const [isLocationChangesOnce, setIsLocationChangesOnce] = useState(false);
 
@@ -118,6 +120,9 @@ export const ProductNavReshuffleProvider = ({
     navigationTree,
     setNavigationTree,
     isMobile,
+    isFirstTabDone,
+    setIsFirstTabDone,
+    firstFocusableElement,
     isAnimated,
     setIsAnimated
   } satisfies ProductNavReshuffleContextType;
