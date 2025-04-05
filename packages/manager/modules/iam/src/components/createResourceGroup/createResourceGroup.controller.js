@@ -182,7 +182,7 @@ export default class CreateResourceGroupController {
   cancelCreation() {
     this.trackClick(this.tag?.cancel);
     return this.goTo({
-      name: 'iam.dashboard.resourceGroups',
+      name: 'iam.policies.resourceGroups',
     });
   }
 
@@ -282,7 +282,7 @@ export default class CreateResourceGroupController {
       .then(() => {
         this.error = {};
         return this.goTo({
-          name: 'iam.dashboard.resourceGroups',
+          name: 'iam.policies.resourceGroups',
           reload: true,
           success: {
             key: this.translations.success,
