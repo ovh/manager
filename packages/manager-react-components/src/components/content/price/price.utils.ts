@@ -11,6 +11,9 @@ export interface PriceProps {
   ovhSubsidiary: OvhSubsidiary;
   isConvertIntervalUnit?: boolean;
   locale: string;
+  suffix?: string;
+  isStartingPrice?: boolean;
+  freePriceLabel?: string;
 }
 
 export const getPrice = (value: number, tax?: number): number => {
