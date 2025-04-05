@@ -3,16 +3,16 @@
   "nutanix_dashboard_nodes_list_type_of_server": "Servidor",
   "nutanix_dashboard_nodes_list_status": "Estado",
   "nutanix_dashboard_nodes_list_localisation": "Localização",
-  "nutanix_dashboard_nodes_list_os_installed": "OS instalado",
+  "nutanix_dashboard_nodes_list_os_installed": "SO instalado",
   "nutanix_dashboard_nodes_list_node_ip": "IP do nó",
   "nutanix_dashboard_nodes_list_node_cvm": "IP CVM",
   "nutanix_dashboard_nodes_list_localisation_value": "{{dcName}} (Rack {{rackName}})",
   "nutanix_dashboard_nodes_list_data_hidden": "OCULTO",
   "nutanix_dashboard_nodes_list_add_nodes": "Adicionar nós",
   "nutanix_dashboard_nodes_add_node_max_node_tooltip": "Atingiu o número máximo de nós autorizados num cluster",
-  "nutanix_dashboard_nodes_suspended_tooltip": "Para reativar o nó, contacte o suporte",
-  "nutanix_dashboard_nodes_poweron_success_banner": "O seu pedido de arranque foi tomado em conta. Esta operação pode demorar até 15 minutos",
-  "nutanix_dashboard_nodes_poweron_error_banner": "O seu pedido de arranque não foi tomado em conta:",
-  "nutanix_dashboard_nodes_state_banner_error_install": "Ocorreu um erro aquando da instalação num ou vários nós. Convidamo-lo a repetir a operação ou, se o problema persistir, a contactar o nosso suporte.",
-  "nutanix_dashboard_nodes_state_banner_error_uninstall": "Ocorreu um erro aquando da desinstalação num ou vários nós. Convidamo-lo a repetir a operação ou, se o problema persistir, a contactar o nosso suporte."
+  "nutanix_dashboard_nodes_suspended_tooltip": "Para reativar o nó, contacte os nossos serviços",
+  "nutanix_dashboard_nodes_poweron_success_banner": "O seu pedido de arranque foi registado. Esta operação pode demorar até 15 minutos",
+  "nutanix_dashboard_nodes_poweron_error_banner": "O seu pedido de arranque não foi registado:",
+  "nutanix_dashboard_nodes_state_banner_error_install": "Ocorreu um erro durante a instalação em um ou vários nós. Repita a operação ou, se o problema persistir, contacte os nossos serviços.",
+  "nutanix_dashboard_nodes_state_banner_error_uninstall": "Ocorreu um erro durante a desinstalação em um ou vários nós. Repita a operação ou, se o problema persistir, contacte os nossos serviços."
 }

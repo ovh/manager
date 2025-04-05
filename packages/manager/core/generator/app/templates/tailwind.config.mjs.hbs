@@ -13,6 +13,12 @@ export default {
       path.dirname(require.resolve('@ovh-ux/manager-react-components')),
       '**/*.{js,jsx,ts,tsx}',
     ),
+    {{#if this.isPCI }}
+    path.join(
+      path.dirname(require.resolve('@ovh-ux/manager-pci-common')),
+      '**/*.{js,jsx,ts,tsx}',
+    ),
+    {{/if}}
   ],
   corePlugins: {
     preflight: false,

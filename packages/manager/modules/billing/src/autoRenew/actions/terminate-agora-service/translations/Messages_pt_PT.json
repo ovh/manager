@@ -24,8 +24,8 @@
   "autorenew_agora_terminate_service_warning_NUTANIX": "Confirme a rescisão do seu Nutanix on OVHcloud \"{{serviceName}}\"",
   "autorenew_agora_terminate_service_success_NUTANIX": "O seu pedido de rescisão do Nutanix foi registado com êxito. Um e-mail com o procedimento foi-lhe enviado.",
   "autorenew_agora_terminate_service_error_NUTANIX": "Ocorreu um erro aquando do pedido de rescisão da sua Nutanix. {{error}}",
-  "autorenew_agora_terminate_service_NUTANIX_NODE": "Rescindir este nó",
-  "autorenew_agora_terminate_service_warning_NUTANIX_NODE": "Vai rescindir a subscrição do nó \"{{serviceName}}\".",
+  "autorenew_agora_terminate_service_NUTANIX_NODE": "Cancelar este nó",
+  "autorenew_agora_terminate_service_warning_NUTANIX_NODE": "Vai cancelar a subscrição do nó \"{{serviceName}}\".",
   "autorenew_agora_terminate_service_success_NUTANIX_NODE": "O cancelamento do nó \"{{serviceName}}\" foi registado. Receberá um e-mail com os detalhes do procedimento a seguir.",
-  "autorenew_agora_terminate_service_error_NUTANIX_NODE": "O seu pedido de rescisão não foi tomado em conta: {{error}}"
+  "autorenew_agora_terminate_service_error_NUTANIX_NODE": "O seu pedido de cancelamento não foi registado: {{error}}"
 }

@@ -79,6 +79,6 @@
   "pack_xdsl_information_links_travaux": "Lavori",
   "pack_xdsl_information_links_guides": "Guide",
   "pack_xdsl_line_order_headset": "Ordinare una cuffia",
-  "pack_xdsl_followUp_label": "Controllo dell'ordine",
+  "pack_xdsl_followUp_label": "Stato dell'ordine",
   "pack_xdsl_followUp_label_step_name_detail": "Mostra lo stato"
 }

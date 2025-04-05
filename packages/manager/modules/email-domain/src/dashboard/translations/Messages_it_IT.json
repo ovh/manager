@@ -173,7 +173,7 @@
   "email_tab_modal_create_redirection_info": "Inserisci le informazioni sul reindirizzamento ",
   "email_tab_modal_redirection_create_keep_copy_title": "Scegli una modalità di copia:",
   "email_tab_modal_redirection_create_email_error": "L'indirizzo email non è valido",
-  "email_tab_modal_redirection_create_copy_local": "Conserva una copia dell’email in OVHcloud",
+  "email_tab_modal_redirection_create_copy_local": "Conservare una copia dell'email in OVHcloud",
   "email_tab_modal_redirection_create_copy_none": "Non conservare copie delle email",
   "email_tab_modal_redirection_create_copy_select": "Seleziona un'opzione",
   "email_tab_popover_redirection_delete": "Elimina il reindirizzamento",
