@@ -6580,6 +6580,26 @@
     tailwindcss "^3.4.4"
     uuid "^9.0.1"
 
+"@ovh-ux/manager-react-components@^1.47.1":
+  version "1.47.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-components/-/manager-react-components-1.47.1.tgz#6d77d03c319a2ee1ee96910dcea026b82c4f4a0c"
+  integrity sha512-cAZQSR4RwfHWCi1Y56RmCO4KHW0T1Mwc27z3sZPYnqjnjDFavS/cCoUOSHHors82uFDeIpFftsHdz7ucCbXuxA==
+  dependencies:
+    "@ovhcloud/ods-common-core" "17.2.2"
+    "@ovhcloud/ods-common-theming" "17.2.2"
+    "@ovhcloud/ods-components" "17.2.2"
+    "@ovhcloud/ods-theme-blue-jeans" "17.2.2"
+    "@tanstack/react-query" "^5.51.21"
+    "@tanstack/react-table" "^8.20.1"
+    clsx "^2.1.1"
+    lodash.isdate "^4.0.1"
+    lodash.isequal "^4.5.0"
+    react-i18next "^14.0.5"
+    react-use "^17.5.0"
+    sass "1.71.0"
+    tailwindcss "^3.4.4"
+    uuid "^9.0.1"
+
 "@ovh-ux/manager-react-shell-client@*":
   version "0.9.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-shell-client/-/manager-react-shell-client-0.9.0.tgz#0230a1f25b813f22a058ec7878d78a2df2e00090"
