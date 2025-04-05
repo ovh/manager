@@ -53,14 +53,16 @@ export const ErrorBanner = ({
         </OsdsMessage>
       </div>
       <div className="text-right overflow-hidden py-2">
-        <OsdsButton
-          color={ODS_THEME_COLOR_INTENT.primary}
-          variant={ODS_BUTTON_VARIANT.ghost}
-          onClick={onRedirectHome}
-        >
-          <span slot="start"></span>
-          {t('manager_error_page_action_home_label')}
-        </OsdsButton>
+        {onRedirectHome && (
+          <OsdsButton
+            color={ODS_THEME_COLOR_INTENT.primary}
+            variant={ODS_BUTTON_VARIANT.ghost}
+            onClick={onRedirectHome}
+          >
+            <span slot="start"></span>
+            {t('manager_error_page_action_home_label')}
+          </OsdsButton>
+        )}
         <OsdsButton
           color={ODS_THEME_COLOR_INTENT.primary}
           variant={ODS_BUTTON_VARIANT.flat}
