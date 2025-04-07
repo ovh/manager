@@ -28,7 +28,7 @@
     "build": "tsc",
     "dev": "tsc",
     "dev:watch": "tsc --watch",
-    "prepare": "yarn run build"
+    "prepare": "tsc"
   },
   "devDependencies": {
     "@ovh-ux/manager-config": "^8.2.0"

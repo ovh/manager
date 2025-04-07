@@ -24,7 +24,7 @@
     "build": "tsc",
     "dev": "tsc",
     "dev:watch": "tsc --watch",
-    "prepare": "yarn run build"
+    "prepare": "tsc"
   },
   "dependencies": {
     "@ovh-ux/ovh-reket": "^2.1.7",

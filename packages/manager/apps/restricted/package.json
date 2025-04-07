@@ -13,7 +13,7 @@
   "scripts": {
     "build": "tsc && vite build",
     "lint": "eslint ./src",
-    "prepare": "yarn run build",
+    "prepare": "tsc && vite build",
     "start": "tsc && vite"
   },
   "dependencies": {

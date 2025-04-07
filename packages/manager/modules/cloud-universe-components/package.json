@@ -27,8 +27,8 @@
   "scripts": {
     "build": "rollup -c --environment BUILD:production --bundleConfigAsCjs",
     "dev": "rollup -c --environment BUILD:development --bundleConfigAsCjs",
-    "dev:watch": "yarn run dev --watch",
-    "prepare": "yarn run build"
+    "dev:watch": "rollup -c --environment BUILD:development --bundleConfigAsCjs --watch",
+    "prepare": "rollup -c --environment BUILD:production --bundleConfigAsCjs"
   },
   "dependencies": {
     "@ovh-ux/ui-kit": "^6.10.5",
