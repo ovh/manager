@@ -32,6 +32,15 @@ jobs:
       # This task is for running the jest tests outside microApps
       - name: Run tests Jest
         run: yarn test:jest
+      - name: Run test coverage SonarCloud
+        run: |
+          yarn vitest run --coverage --reporter=lcov
+          pwd
+          ls -arlt
+      - name: Upload coverage to SonarCloud
+        uses: sonarsource/sonarcloud-github-action@v1
+        with:
+          sonar-token: ${{ secrets.SONAR_TOKEN }}
       - name: Run tests on changed packages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

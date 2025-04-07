@@ -16,3 +16,4 @@ export * from './components/Pricing';
 export * from './components/rclone-download';
 export * from './components/shape-input/ShapeInput.component';
 export * from './components/tiles-input-choice';
+// test coverage
