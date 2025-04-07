@@ -34,7 +34,7 @@ jobs:
         run: yarn test:jest
       - name: Run test coverage SonarCloud
         run: |
-          yarn vitest run --coverage --reporter=lcov
+          yarn vitest run --coverage
           pwd
           ls -arlt
       - name: Upload coverage to SonarCloud
