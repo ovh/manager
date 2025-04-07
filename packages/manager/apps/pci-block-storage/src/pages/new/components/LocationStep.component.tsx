@@ -8,8 +8,8 @@ import {
   useProject,
   RegionSelector,
   RegionSummary,
+  TLocalisation,
 } from '@ovh-ux/manager-pci-common';
-import { TLocalisation } from '@/api/hooks/useRegions';
 import { StepState } from '@/pages/new/hooks/useStep';
 
 interface LocationProps {
