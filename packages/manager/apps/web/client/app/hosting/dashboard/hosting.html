@@ -169,6 +169,9 @@
         >
             <span data-translate="hosting_tab_MULTISITE"></span>
         </oui-header-tabs-item>
+        <oui-header-tabs-item data-ng-if="hosting.multipleSSL">
+            <span data-translate="hosting_tab_SSL"></span>
+        </oui-header-tabs-item>
         <oui-header-tabs-item
             href="{{ $ctrl.moduleLink }}"
             active="$ctrl.currentActiveLink() === $ctrl.moduleLink"
