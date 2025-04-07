@@ -18,16 +18,16 @@ describe('OnBoardingPage', () => {
   });
 
   it('displays the correct title and button label', () => {
-    const { container } = render(<OnBoardingPage />, {
+    const { getByText } = render(<OnBoardingPage />, {
       wrapper: createWrapper(),
     });
 
     expect(
-      screen.getByText('pci_projects_project_storages_snapshots_title'),
+      getByText('pci_projects_project_storages_snapshots_title'),
     ).toBeVisible();
     expect(
-      container.querySelector(
-        "ods-button[label='pci_projects_project_storages_snapshots_onboarding_action_label']",
+      getByText(
+        'pci_projects_project_storages_snapshots_onboarding_action_label',
       ),
     ).toBeVisible();
   });
