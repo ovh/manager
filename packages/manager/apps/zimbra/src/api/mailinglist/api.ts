@@ -1,23 +1,26 @@
-import { v2 } from '@ovh-ux/manager-core-api';
+import { fetchIcebergV2, v2 } from '@ovh-ux/manager-core-api';
 import { MailingListType, MailingListBodyParamsType } from './type';
 import { getApiPath } from '../utils/apiPath';
+import { APIV2_DEFAULT_PAGESIZE } from '@/utils';
 
 // GET
 
-export const getZimbraPlatformMailingLists = async (
-  platformId: string,
-  queryParameters?: {
-    organizationId?: string;
-    organizationLabel?: string;
-  },
-) => {
-  const params = new URLSearchParams(queryParameters).toString();
-  const queryString = params ? `?${params}` : '';
-  const { data } = await v2.get<MailingListType[]>(
-    `${getApiPath(platformId)}mailingList${queryString}`,
-  );
-  return data;
-};
+export const getZimbraPlatformMailingLists = ({
+  platformId,
+  searchParams,
+  pageParam,
+  pageSize = APIV2_DEFAULT_PAGESIZE,
+}: {
+  platformId: string;
+  searchParams?: string;
+  pageParam?: unknown;
+  pageSize?: number;
+}) =>
+  fetchIcebergV2<MailingListType[]>({
+    route: `${getApiPath(platformId)}mailingList${searchParams}`,
+    pageSize,
+    cursor: pageParam as string,
+  });
 
 export const getZimbraPlatformMailingListDetails = async (
   platformId: string,

@@ -1,120 +1,55 @@
 import React from 'react';
 import 'element-internals-polyfill';
 import '@testing-library/jest-dom';
-import { vi, describe, expect } from 'vitest';
-import { Location, useLocation, useSearchParams } from 'react-router-dom';
+import { describe, expect, vi } from 'vitest';
 import { fireEvent } from '@testing-library/dom';
+import { useParams } from 'react-router-dom';
 import { render, waitFor, act } from '@/utils/test.provider';
-import { accountDetailMock } from '@/api/_mock_';
-import AddAndEditEmailAccount from '../AddAndEditEmailAccount.page';
-import emailAccountFormTranslation from '@/public/translations/accounts/form/Messages_fr_FR.json';
-import emailAccountAliasTranslation from '@/public/translations/accounts/alias/Messages_fr_FR.json';
-import redirectionsTranslation from '@/public/translations/redirections/Messages_fr_FR.json';
-import autoRepliesTranslation from '@/public/translations/auto-replies/Messages_fr_FR.json';
+import AddAndEditEmailAccountForm from '../AddAndEditEmailAccount.form.tsx';
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
+import { platformMock, accountDetailMock } from '@/api/_mock_';
 
-describe('email account add and edit page', () => {
-  it('if there is not editEmailAccountId params', async () => {
-    vi.mocked(useLocation).mockReturnValue({
-      pathname: '/00000000-0000-0000-0000-000000000001/email_accounts/settings',
-    } as Location);
-
-    vi.mocked(useSearchParams).mockReturnValue([
-      new URLSearchParams(),
-      vi.fn(),
-    ]);
-
-    const { getByTestId, queryByTestId } = render(<AddAndEditEmailAccount />);
+describe('email account add and edit form', () => {
+  it('should be in add mode if no accountId', async () => {
+    const { getByTestId, queryByTestId } = render(
+      <AddAndEditEmailAccountForm />,
+    );
 
     await waitFor(() => {
       expect(queryByTestId('spinner')).toBeNull();
     });
 
-    expect(getByTestId('page-title')).toHaveTextContent(
-      commonTranslation.add_email_account,
+    expect(getByTestId('confirm-btn')).toHaveAttribute(
+      'label',
+      commonTranslation.confirm,
     );
   });
 
-  it('if there is editEmailAccountId params', async () => {
-    vi.mocked(useLocation).mockReturnValue({
-      pathname: '/00000000-0000-0000-0000-000000000001/email_accounts/settings',
-      search: `?editEmailAccountId=${accountDetailMock}`,
-    } as Location);
+  it('should be in edit mode if accountId', async () => {
+    vi.mocked(useParams).mockReturnValue({
+      platformId: platformMock[0].id,
+      accountId: accountDetailMock.id,
+    });
 
-    vi.mocked(useSearchParams).mockReturnValue([
-      new URLSearchParams({
-        editEmailAccountId: accountDetailMock.id,
-      }),
-      vi.fn(),
-    ]);
-
-    const { getByTestId, queryByTestId } = render(<AddAndEditEmailAccount />);
+    const { getByTestId, queryByTestId } = render(
+      <AddAndEditEmailAccountForm />,
+    );
 
     await waitFor(() => {
       expect(queryByTestId('spinner')).toBeNull();
     });
 
-    expect(getByTestId('page-title')).toHaveTextContent(
-      emailAccountFormTranslation.zimbra_account_edit_title.replace(
-        '{{ account }}',
-        accountDetailMock.currentState?.email,
-      ),
+    expect(getByTestId('confirm-btn')).toHaveAttribute(
+      'label',
+      commonTranslation.save,
     );
-  });
-
-  it('test alias tabs page', () => {
-    vi.mocked(useLocation).mockReturnValue({
-      pathname: '/00000000-0000-0000-0000-000000000001/email_accounts/alias',
-    } as Location);
-
-    const { getByText } = render(<AddAndEditEmailAccount />);
-
-    expect(
-      getByText(emailAccountAliasTranslation.zimbra_account_alias_title),
-    ).toBeInTheDocument();
-  });
-
-  it('should display redirection tab page', () => {
-    vi.mocked(useLocation).mockReturnValue({
-      pathname:
-        '/00000000-0000-0000-0000-000000000001/email_accounts/redirections',
-    } as Location);
-
-    const { getByText } = render(<AddAndEditEmailAccount />);
-
-    expect(
-      getByText(redirectionsTranslation.zimbra_redirections_account_title),
-    ).toBeInTheDocument();
-  });
-
-  it('should display autoreplies tab page', () => {
-    vi.mocked(useLocation).mockReturnValue({
-      pathname:
-        '/00000000-0000-0000-0000-000000000001/email_accounts/auto_replies',
-    } as Location);
-
-    const { getByText } = render(<AddAndEditEmailAccount />);
-
-    expect(
-      getByText(autoRepliesTranslation.zimbra_auto_replies_account_title),
-    ).toBeInTheDocument();
   });
 
   // @TODO: find why this test is inconsistent
   // sometimes ODS component return attribute empty while it can
   // only be "true" or "false"
   it.skip('check validity form', async () => {
-    vi.mocked(useLocation).mockReturnValue({
-      pathname: '/00000000-0000-0000-0000-000000000001/email_accounts/add',
-      search: '',
-    } as Location);
-
-    vi.mocked(useSearchParams).mockReturnValue([
-      new URLSearchParams(),
-      vi.fn(),
-    ]);
-
-    const { getByTestId } = render(<AddAndEditEmailAccount />);
+    const { getByTestId } = render(<AddAndEditEmailAccountForm />);
 
     const button = getByTestId('confirm-btn');
     const inputAccount = getByTestId('input-account');

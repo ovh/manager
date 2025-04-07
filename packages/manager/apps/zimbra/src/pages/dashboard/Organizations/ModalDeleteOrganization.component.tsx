@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSearchParams, useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   ODS_MESSAGE_COLOR,
@@ -16,7 +16,7 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { useDomains, usePlatform } from '@/hooks';
+import { useDomains } from '@/hooks';
 import {
   deleteZimbraPlatformOrganization,
   getZimbraPlatformOrganizationQueryKey,
@@ -26,23 +26,22 @@ import queryClient from '@/queryClient';
 import { CANCEL, CONFIRM, DELETE_ORGANIZATION } from '@/tracking.constant';
 
 export default function ModalDeleteOrganization() {
-  const [searchParams] = useSearchParams();
   const { trackClick, trackPage } = useOvhTracking();
-  const deleteOrganizationId = searchParams.get('deleteOrganizationId');
   const { t } = useTranslation(['organizations', 'common']);
-  const { platformId } = usePlatform();
+  const { platformId, organizationId } = useParams();
   const { data: domains, isLoading } = useDomains({
-    organizationId: deleteOrganizationId,
+    organizationId,
+    gcTime: 0,
   });
 
   const { addError, addSuccess } = useNotifications();
   const navigate = useNavigate();
 
-  const onClose = () => navigate('..');
+  const onClose = () => navigate('../..');
 
   const { mutate: deleteOrganization, isPending: isSending } = useMutation({
-    mutationFn: (organizationId: string) =>
-      deleteZimbraPlatformOrganization(platformId, organizationId),
+    mutationFn: (id: string) =>
+      deleteZimbraPlatformOrganization(platformId, id),
     onSuccess: () => {
       trackPage({
         pageType: PageType.bannerSuccess,
@@ -85,7 +84,7 @@ export default function ModalDeleteOrganization() {
       actionType: 'action',
       actions: [DELETE_ORGANIZATION, CONFIRM],
     });
-    deleteOrganization(deleteOrganizationId);
+    deleteOrganization(organizationId);
   };
 
   const handleCancelClick = () => {
@@ -115,14 +114,13 @@ export default function ModalDeleteOrganization() {
         label: t('common:delete'),
         onClick: handleDeleteClick,
         isLoading: isSending || isLoading,
-        isDisabled: domains?.length > 0 || !deleteOrganizationId,
+        isDisabled: domains?.length > 0 || !organizationId,
       }}
     >
       <>
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t('zimbra_organization_delete_modal_content')}
         </OdsText>
-
         {domains?.length > 0 && (
           <OdsMessage
             color={ODS_MESSAGE_COLOR.critical}

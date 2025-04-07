@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
   OdsButton,
@@ -14,7 +14,6 @@ import {
 } from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_COLOR,
-  ODS_BUTTON_VARIANT,
   ODS_INPUT_TYPE,
   ODS_MESSAGE_COLOR,
   ODS_SPINNER_SIZE,
@@ -30,10 +29,9 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { useDomains, useGenerateUrl, usePlatform } from '@/hooks';
+import { useAccount, useDomains, useGenerateUrl } from '@/hooks';
 import {
   AccountBodyParamsType,
-  AccountType,
   postZimbraPlatformAccount,
   putZimbraPlatformAccount,
 } from '@/api/account';
@@ -45,7 +43,6 @@ import {
 import queryClient from '@/queryClient';
 import {
   ADD_EMAIL_ACCOUNT,
-  CANCEL,
   CONFIRM,
   EDIT_EMAIL_ACCOUNT,
 } from '@/tracking.constant';
@@ -53,31 +50,32 @@ import { getZimbraPlatformListQueryKey } from '@/api/platform';
 import { ResourceStatus } from '@/api/api.type';
 import Loading from '@/components/Loading/Loading';
 
-export default function EmailAccountSettings({
-  editAccountDetail = null,
-}: Readonly<{
-  editAccountDetail: AccountType;
-}>) {
+export default function AddAndEditEmailAccountForm() {
   const { trackClick, trackPage } = useOvhTracking();
   const { t } = useTranslation(['accounts/form', 'common']);
   const navigate = useNavigate();
   const { addError, addSuccess } = useNotifications();
-  const { platformId } = usePlatform();
-  const [searchParams] = useSearchParams();
-  const editEmailAccountId = searchParams.get('editEmailAccountId');
-  const trackingName = editAccountDetail
-    ? EDIT_EMAIL_ACCOUNT
-    : ADD_EMAIL_ACCOUNT;
+  const { platformId, accountId } = useParams();
+  const trackingName = accountId ? EDIT_EMAIL_ACCOUNT : ADD_EMAIL_ACCOUNT;
+
+  const { data: emailAccount } = useAccount({
+    accountId,
+    enabled: !!accountId,
+    gcTime: 0,
+  });
+
   const [selectedDomainOrganization, setSelectedDomainOrganization] = useState(
     '',
   );
-  const goBackUrl = useGenerateUrl('..', 'path');
+
+  const goBackUrl = useGenerateUrl(accountId ? '../..' : '..', 'path');
 
   const onClose = () => {
     return navigate(goBackUrl);
   };
 
   const { data: domains, isLoading: isLoadingDomains } = useDomains({
+    organizationId: emailAccount?.currentState?.organizationId,
     shouldFetchAll: true,
   });
 
@@ -96,8 +94,8 @@ export default function EmailAccountSettings({
 
   const { mutate: addOrEditEmailAccount, isPending: isSending } = useMutation({
     mutationFn: (params: AccountBodyParamsType) => {
-      return editEmailAccountId
-        ? putZimbraPlatformAccount(platformId, editEmailAccountId, params)
+      return accountId
+        ? putZimbraPlatformAccount(platformId, accountId, params)
         : postZimbraPlatformAccount(platformId, params);
     },
     onSuccess: () => {
@@ -108,7 +106,7 @@ export default function EmailAccountSettings({
       addSuccess(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t(
-            editEmailAccountId
+            accountId
               ? 'zimbra_account_edit_success_message'
               : 'zimbra_account_add_success_message',
           )}
@@ -124,7 +122,7 @@ export default function EmailAccountSettings({
       addError(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t(
-            editEmailAccountId
+            accountId
               ? 'zimbra_account_edit_error_message'
               : 'zimbra_account_add_error_message',
             {
@@ -162,7 +160,7 @@ export default function EmailAccountSettings({
         ![
           'account',
           'domain',
-          editEmailAccountId && data.password === '' ? 'password' : '',
+          accountId && data.password === '' ? 'password' : '',
         ].includes(key)
       ) {
         payload[key] = value;
@@ -172,34 +170,38 @@ export default function EmailAccountSettings({
     addOrEditEmailAccount(payload as AccountBodyParamsType);
   };
 
-  const handleCancelClick = () => {
-    trackClick({
-      location: PageLocation.page,
-      buttonType: ButtonType.button,
-      actionType: 'action',
-      actions: [trackingName, CANCEL],
-    });
-    onClose();
-  };
-
   const {
     control,
     handleSubmit,
+    reset,
     formState: { isDirty, isValid, errors },
   } = useForm({
     defaultValues: {
-      account: editAccountDetail?.currentState?.email?.split('@')[0] || '',
-      domain: editAccountDetail?.currentState?.email?.split('@')[1] || '',
-      firstName: editAccountDetail?.currentState?.firstName || '',
-      lastName: editAccountDetail?.currentState?.lastName || '',
-      displayName: editAccountDetail?.currentState?.displayName || '',
+      account: emailAccount?.currentState?.email?.split('@')[0] || '',
+      domain: emailAccount?.currentState?.email?.split('@')[1] || '',
+      firstName: emailAccount?.currentState?.firstName || '',
+      lastName: emailAccount?.currentState?.lastName || '',
+      displayName: emailAccount?.currentState?.displayName || '',
       password: '',
     },
     mode: 'onTouched',
     resolver: zodResolver(
-      editEmailAccountId ? editEmailAccountSchema : addEmailAccountSchema,
+      accountId ? editEmailAccountSchema : addEmailAccountSchema,
     ),
   });
+
+  useEffect(() => {
+    if (emailAccount) {
+      reset({
+        account: emailAccount?.currentState?.email?.split('@')[0],
+        domain: emailAccount?.currentState?.email?.split('@')[1],
+        firstName: emailAccount?.currentState?.firstName,
+        lastName: emailAccount?.currentState?.lastName,
+        displayName: emailAccount?.currentState?.displayName,
+        password: '',
+      });
+    }
+  }, [emailAccount]);
 
   const setSelectedOrganization = (e: OdsSelectChangeEvent) => {
     const organizationLabel = domains?.find(
@@ -262,7 +264,7 @@ export default function EmailAccountSettings({
                         setSelectedOrganization(e);
                       }}
                       onOdsBlur={field.onBlur}
-                      isDisabled={isLoadingDomains}
+                      isDisabled={isLoadingDomains || !domains}
                       className="w-full"
                       data-testid="select-domain"
                     >
@@ -272,7 +274,7 @@ export default function EmailAccountSettings({
                         </option>
                       ))}
                     </OdsSelect>
-                    {isLoadingDomains && (
+                    {(isLoadingDomains || !domains) && (
                       <Loading
                         className="flex justify-center"
                         size={ODS_SPINNER_SIZE.sm}
@@ -398,7 +400,7 @@ export default function EmailAccountSettings({
             >
               <label htmlFor={name} slot="label">
                 {t('zimbra_account_add_input_password_label')}
-                {!editAccountDetail && ' *'}
+                {!emailAccount && ' *'}
               </label>
               <OdsPassword
                 data-testid="input-password"
@@ -430,26 +432,15 @@ export default function EmailAccountSettings({
         ))}
       </OdsText>
 
-      <div className="flex space-x-5">
-        <OdsButton
-          slot="actions"
-          type="submit"
-          color={ODS_BUTTON_COLOR.primary}
-          isDisabled={!isDirty || !isValid}
-          isLoading={isSending}
-          data-testid="confirm-btn"
-          label={!editAccountDetail ? t('common:confirm') : t('common:save')}
-        />
-        {editAccountDetail && (
-          <OdsButton
-            slot="actions"
-            onClick={handleCancelClick}
-            color={ODS_BUTTON_COLOR.primary}
-            variant={ODS_BUTTON_VARIANT.outline}
-            label={t('common:cancel')}
-          />
-        )}
-      </div>
+      <OdsButton
+        slot="actions"
+        type="submit"
+        color={ODS_BUTTON_COLOR.primary}
+        isDisabled={!isDirty || !isValid}
+        isLoading={isSending}
+        data-testid="confirm-btn"
+        label={accountId ? t('common:save') : t('common:confirm')}
+      />
     </form>
   );
 }

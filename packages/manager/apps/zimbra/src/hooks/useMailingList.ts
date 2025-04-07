@@ -3,7 +3,7 @@ import {
   UseQueryOptions,
   UseQueryResult,
 } from '@tanstack/react-query';
-import { usePlatform } from '@/hooks';
+import { useParams } from 'react-router-dom';
 import {
   getZimbraPlatformMailingListDetails,
   getZimbraPlatformMailingListDetailsQueryKey,
@@ -18,7 +18,7 @@ type UseMailingListParams = Omit<
 };
 
 export const useMailingList = (props: UseMailingListParams = {}) => {
-  const { platformId } = usePlatform();
+  const { platformId } = useParams();
   const { mailingListId, ...options } = props;
   return useQuery({
     ...options,
