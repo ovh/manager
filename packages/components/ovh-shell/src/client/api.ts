@@ -89,16 +89,6 @@ export default function exposeApi(shellClient: ShellClient) {
           plugin: 'ux',
           method: 'showAccountSidebar',
         }),
-      disableAccountSidebarToggle: () =>
-        shellClient.invokePluginMethod({
-          plugin: 'ux',
-          method: 'disableAccountSidebarVisibilityToggle',
-        }),
-      enableAccountSidebarToggle: () =>
-        shellClient.invokePluginMethod({
-          plugin: 'ux',
-          method: 'enableAccountSidebarVisibilityToggle',
-        }),
       isAccountSidebarVisible: () =>
         shellClient.invokePluginMethod({
           plugin: 'ux',
@@ -146,32 +136,10 @@ export default function exposeApi(shellClient: ShellClient) {
           method: 'getUserIdCookie',
         }),
       // Chatbot
-      onOpenChatbot: (callback: CallableFunction) =>
-        shellClient.addEventListener('ux:open-chatbot', callback),
-      onCloseChatbot: (callback: CallableFunction) =>
-        shellClient.addEventListener('ux:close-chatbot', callback),
-      onReduceChatbot: (callback: CallableFunction) =>
-        shellClient.addEventListener('ux:reduce-chatbot', callback),
-      onChatbotOpen: () =>
-        shellClient.invokePluginMethod<string>({
-          plugin: 'ux',
-          method: 'onChatbotOpen',
-        }),
-      onChatbotClose: (reduced: boolean) =>
-        shellClient.invokePluginMethod<string>({
-          plugin: 'ux',
-          method: 'onChatbotClose',
-          args: [reduced],
-        }),
       openLiveChat: () =>
         shellClient.invokePluginMethod<void>({
           plugin: 'ux',
           method: 'openLiveChat',
-        }),
-      openChatbot: () =>
-        shellClient.invokePluginMethod<void>({
-          plugin: 'ux',
-          method: 'openChatbot',
         }),
       closeChatbot: () =>
         shellClient.invokePluginMethod<void>({
