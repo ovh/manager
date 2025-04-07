@@ -1,0 +1,138 @@
+<div data-ng-controller="UserAccount.controllers.doubleAuth.totp.add as $ctrl">
+    <div
+        data-wizard
+        data-wizard-on-cancel="cancel"
+        data-wizard-on-finish="addDoubleAuthTotp"
+        data-wizard-title="::'user_account_security_double_auth_type_totp_modal_title' | translate"
+    >
+        <div
+            data-wizard-step
+            data-wizard-step-on-load="init"
+            data-wizard-step-valid="doesStepIsValid()"
+        >
+            <div class="text-center" data-ng-if="totp.isLoading">
+                <oui-spinner></oui-spinner>
+            </div>
+
+            <div data-ng-if="!totp.isLoading">
+                <div data-ovh-alert="doubleAuthAlertTotpAdd"></div>
+
+                <h2
+                    class="wizard-title-sub"
+                    data-translate="user_account_security_double_auth_type_totp_modal_add_app"
+                ></h2>
+
+                <p
+                    data-translate="user_account_security_double_auth_type_totp_modal_add_app_scan"
+                ></p>
+                <div class="row">
+                    <div class="col-md-6 text-center">
+                        <qr
+                            class="block"
+                            data-text="totp.qrCode.qrcodeHelper"
+                            data-size="totp.size"
+                        >
+                        </qr>
+                        <div
+                            data-ng-show="totp.showSecret"
+                            data-ng-bind="totp.qrCode.secret"
+                        ></div>
+                        <button
+                            type="button"
+                            class="oui-button oui-button_secondary"
+                            data-ng-bind="(totp.showSecret ? 'user_security_double_auth_hide_secret' : 'user_security_double_auth_show_secret') | translate"
+                            data-ng-click="toggleSecretField()"
+                        ></button>
+                    </div>
+                    <form class="col-md-6" name="$ctrl.userAccountAddTotpForm">
+                        <div
+                            class="form-group"
+                            data-ng-class="{
+                                 'has-error': $ctrl.userAccountAddTotpForm.code.$touched && $ctrl.userAccountAddTotpForm.code.$invalid
+                             }"
+                        >
+                            <label
+                                class="control-label"
+                                for="code"
+                                data-translate="user_account_security_double_auth_type_totp_modal_add_app_code_label"
+                            >
+                            </label>
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="code"
+                                name="code"
+                                placeholder="{{ 'user_account_security_double_auth_type_totp_modal_add_app_code_placeholder' | translate }}"
+                                required
+                                data-ng-model="totp.code"
+                                data-ng-pattern="/^\d{6}$/"
+                                data-ng-disabled="totp.isAdding"
+                            />
+                            <div
+                                class="oui-spinner oui-spinner_s"
+                                data-ng-if="totp.isAdding"
+                            >
+                                <div class="oui-spinner__container">
+                                    <div class="oui-spinner__image"></div>
+                                </div>
+                            </div>
+                            <span
+                                class="help-block"
+                                role="alert"
+                                data-ng-if="$ctrl.userAccountAddTotpForm.code.$touched"
+                                data-ng-messages="$ctrl.userAccountAddTotpForm.code.$error"
+                            >
+                                <span
+                                    data-ng-message="required"
+                                    data-translate="user_account_security_double_auth_type_sms_modal_add_code_error_required"
+                                >
+                                </span>
+                                <span
+                                    data-ng-message="pattern"
+                                    data-translate="user_account_security_double_auth_type_sms_modal_add_code_error_pattern"
+                                >
+                                </span>
+                            </span>
+                        </div>
+                        <div
+                            class="form-group"
+                            data-ng-class="{
+                                 'has-error': $ctrl.userAccountAddTotpForm.description.$touched && $ctrl.userAccountAddTotpForm.description.$invalid
+                             }"
+                        >
+                            <label
+                                class="control-label"
+                                for="description"
+                                data-translate="user_account_security_double_auth_type_totp_modal_edit_description_label"
+                            >
+                            </label>
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="description"
+                                name="description"
+                                placeholder="{{ 'user_account_security_double_auth_type_totp_modal_edit_description_placeholder' | translate }}"
+                                data-ng-model="totp.description"
+                                data-ng-maxlength="100"
+                            />
+                            <span
+                                class="help-block"
+                                role="alert"
+                                data-ng-if="$ctrl.userAccountAddTotpForm.description.$touched"
+                                data-ng-messages="$ctrl.userAccountAddTotpForm.description.$error"
+                            >
+                                <span
+                                    data-ng-message="maxlength"
+                                    data-translate="user_account_security_double_auth_type_sms_modal_add_description_error_maxlength"
+                                >
+                                </span>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

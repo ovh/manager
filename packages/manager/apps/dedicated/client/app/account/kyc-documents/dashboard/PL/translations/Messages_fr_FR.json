@@ -1,0 +1,12 @@
+{
+  "documents_dashboard_document_ID_PL": "Copie recto-verso d'un document d'identité (passeport, carte nationale d'identité).",
+  "documents_dashboard_document_PROOF_OF_ADRESS_PL": "Un justificatif de domicile de moins de 3 mois, à votre nom et à l'adresse indiquée dans votre profil (relevé bancaire, facture de services publics, etc.).",
+  "documents_dashboard_document_CORPORATE_ID_PL": "Extrait du registre des sociétés, du registre des transactions ou du registre fiscal d'une société liée à l'adresse indiquée dans votre profil datant de moins de 3 mois.",
+  "documents_dashboard_document_ADMINISTRATION_ID_PL": "document d'enregistrement correspondant à l'activité",
+  "documents_dashboard_document_ASSOCIATION_ID_PL": "Document d'enregistrement correspondant à l'activité.",
+  "documents_dashboard_document_individual_OTHER_PL": "Tout document utile pour comprendre votre situation (ex. hébergement, déménagement).",
+  "documents_dashboard_document_corporation_OTHER_PL": "Afin de faciliter la validation, nous vous demandons de veiller à la qualité des documents joints (les photocopies noir et blanc et les fichiers provenant des services de partage externe ne sont pas acceptés).",
+  "documents_dashboard_document_association_OTHER_PL": "Afin de faciliter la validation, nous vous demandons de veiller à la qualité des documents joints (les photocopies noir et blanc et les fichiers provenant des services de partage externe ne sont pas acceptés).",
+  "documents_dashboard_document_administration_OTHER_PL": "Afin de faciliter la validation, nous vous demandons de veiller à la qualité des documents joints (les photocopies noir et blanc et les fichiers provenant des services de partage externe ne sont pas acceptés).",
+  "documents_dashboard_document_other_OTHER_PL": "Tout document utile pour comprendre votre situation (hébergement, déménagement,...)"
+}

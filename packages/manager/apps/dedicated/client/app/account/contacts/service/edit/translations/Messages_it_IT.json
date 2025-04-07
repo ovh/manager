@@ -1,0 +1,15 @@
+{
+  "account_contacts_service_edit": "Modificare i contatti",
+  "account_contacts_service_edit_description": "Modifica i contatti del servizio {{ serviceName }} ",
+  "account_contacts_service_edit_contact_admin": "Contatto amministratore",
+  "account_contacts_service_edit_contact_tech": "Contatto tecnico",
+  "account_contacts_service_edit_contact_billing": "Contatto di fatturazione",
+  "account_contacts_service_edit_cancel": "Annulla",
+  "account_contacts_service_edit_confirm": "Conferma",
+  "account_contacts_service_edit_error": "Si è verificato un errore durante la richiesta di modifica del contatto: {{ message }}",
+  "account_contacts_service_edit_success": "La richiesta di modifica del contatto è stata effettuata correttamente I contatti coinvolti riceveranno un’email con la procedura da seguire per la convalida.",
+  "account_contacts_service_edit_warn_debt": "Non è possibile modificare il contatto di fatturazione perché per questo servizio una fattura risulta ancora in attesa di pagamento. Effettua il saldo per poter eseguire la modifica.",
+  "account_contacts_service_edit_pay": "Paga la fattura",
+  "account_contacts_service_edit_warn_contact_billing": "Non è possibile modificare il contatto di fatturazione perché per questo servizio una fattura risulta ancora in attesa di pagamento. Per effettuare questa modifica, rivolgiti al contatto di fatturazione attuale {{ nicBilling }}.",
+  "account_contacts_service_edit_description_trusted": "Modifica i contatti del tuo servizio {{ serviceName }} nella Trusted Zone."
+}

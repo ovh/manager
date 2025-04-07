@@ -1,0 +1,12 @@
+{
+  "documents_dashboard_document_ID_DE": "Kopia obu stron dokumentu tożsamości (dowodu osobistego, paszportu)",
+  "documents_dashboard_document_PROOF_OF_ADRESS_DE": "Dokument potwierdzający miejsce zamieszkania, nie starszy niż 3 miesiące, zawierający Twoje imię, nazwisko i adres podany w profilu (np. wyciąg z konta, faktura za media, takie jak woda, prąd, etc.)",
+  "documents_dashboard_document_CORPORATE_ID_DE": "Odpis z rejestru przedsiębiorców nie starszy niż trzy miesiące",
+  "documents_dashboard_document_ADMINISTRATION_ID_DE": "Instytucja zarządzająca: potwierdzenie statusu instytucji zarządzającej.",
+  "documents_dashboard_document_ASSOCIATION_ID_DE": "Odpis z rejestru stowarzyszeń i protokół ostatniego zgromadzenia.",
+  "documents_dashboard_document_individual_OTHER_DE": "Wszelkie dokumenty przydatne do zrozumienia Twojej sytuacji (zakwaterowanie, przeprowadzka,...).",
+  "documents_dashboard_document_corporation_OTHER_DE": "Jeśli Twoje imię i nazwisko nie figurują w rejestrze przedsiębiorców ani w statucie stowarzyszenia, prosimy o dołączenie kopii dokumentu tożsamości osoby, która figuruje w oficjalnej dokumentacji.",
+  "documents_dashboard_document_association_OTHER_DE": "Jeśli Twoje imię i nazwisko nie figurują w wyciągu z rejestru przedsiębiorstw ani w statucie stowarzyszenia, prosimy o dołączenie kopii dokumentu tożsamości osoby, która figuruje w oficjalnej dokumentacji.",
+  "documents_dashboard_document_administration_OTHER_DE": "Jeśli Twoje imię i nazwisko nie figurują w rejestrze przedsiębiorców ani w statucie stowarzyszenia, prosimy o dołączenie kopii dokumentu tożsamości osoby, która figuruje w oficjalnej dokumentacji.",
+  "documents_dashboard_document_other_OTHER_DE": "Wszelkie dokumenty przydatne do zrozumienia Twojej sytuacje (zakwaterowanie, przeprowadzka, etc.)"
+}

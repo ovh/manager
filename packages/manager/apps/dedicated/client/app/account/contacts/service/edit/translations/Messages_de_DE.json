@@ -1,0 +1,15 @@
+{
+  "account_contacts_service_edit": "Kontakte ändern",
+  "account_contacts_service_edit_description": "Kontakte des Dienstes {{ serviceName }} ändern",
+  "account_contacts_service_edit_contact_admin": "Administrator-Kontakt",
+  "account_contacts_service_edit_contact_tech": "Technischer Kontakt",
+  "account_contacts_service_edit_contact_billing": "Rechnungskontakt",
+  "account_contacts_service_edit_cancel": "Abbrechen",
+  "account_contacts_service_edit_confirm": "Bestätigen",
+  "account_contacts_service_edit_error": "Bei der Anfrage zur Kontaktänderung ist ein Fehler aufgetreten: {{ message }}",
+  "account_contacts_service_edit_success": "Die Anfrage zur Kontaktänderung wurde erfolgreich durchgeführt. Die von der Änderung betroffenen Kontakte erhalten nun eine E-Mail, in der die Vorgehensweise zur Bestätigung der Anfrage beschrieben wird.",
+  "account_contacts_service_edit_warn_debt": "Sie können den Rechnungskontakt nicht ändern, da noch eine ausstehende Rechnung für diesen Dienst vorhanden ist. Bitte begleichen Sie diese Rechnung, um die Änderung durchzuführen.",
+  "account_contacts_service_edit_pay": "Rechnung begleichen",
+  "account_contacts_service_edit_warn_contact_billing": "Sie können den Rechnungskontakt nicht ändern, da noch eine ausstehende Rechnung für diesen Dienst vorhanden ist. Bitte wenden Sie sich an den aktuellen Rechnungskontakt {{ nicBilling }}, um diese Änderung vorzunehmen.",
+  "account_contacts_service_edit_description_trusted": "Die Kontakte Ihres Dienstes {{ serviceName }} in einer vertrauenswürdigen Zone ändern."
+}

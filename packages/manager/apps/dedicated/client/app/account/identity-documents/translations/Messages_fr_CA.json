@@ -1,0 +1,22 @@
+{
+  "user_account_identity_documents": "Mes documents d'identité",
+  "user_account_identity_documents_title": "Vérification des documents nécessaire",
+  "user_account_identity_documents_sub_title": "Déposez vos documents",
+  "user_account_identity_documents_intro": "Vous recevrez une réponse dans les 24 heures* par notre équipe du support locale",
+  "user_account_identity_documents_default_intro": "Si vous êtes un particulier, les preuves d'identité et d'adresse suffisent. Vous n'avez pas besoin de fournir la preuve de TVA et l'attestation sur l'honneur.",
+  "user_account_identity_documents_upload": "Téléchargez vos documents",
+  "user_account_identity_documents_intro_others": "Si vous êtes particulier, les preuves d'identité et d'adresse ci-dessous sont suffisants. Dans ce cas, il n'est pas nécessaire de fournir l'attestation sur l'honneur ni la preuve de TVA.",
+  "user_account_identity_documents_selection_file_format": "Format: jpg, jpeg, pdf, png. La taille maximale du fichier pour chaque document est de 10 Mo.",
+  "user_account_identity_documents_selection_file_format_invalid": "Le format {{values}} du ou des documents téléchargés n'est pas accepté. Veuillez respecter le format requis : jpg, jpeg, pdf et png",
+  "user_account_identity_documents_submit": "Envoyer mes documents",
+  "user_account_identity_documents_submit_success_message_title": "Merci, nous avons bien reçu tous vos documents !",
+  "user_account_identity_documents_submit_success_message_description": "Ils vont être soumis à notre équipe pour validation. Notre équipe support vous répond dans les <b>24 heures !*</b> Vous serez notifié de leur validation par email, ou vous serez contacté si nous avons besoin de plus d'informations.",
+  "user_account_identity_documents_submit_error_message_description": "Vos documents n'ont pas été correctement envoyés. Veuillez refaire l'upload et l'envoi de vos documents",
+  "user_account_identity_documents_go_back_to_dashboard": "Voir mon tableau de bord",
+  "user_account_identity_documents_legal_info1": "OVH S.A.S est le responsable du traitement de vos données personnelles. Les données collectées via ce formulaire sont traitées afin de se conformer aux <a href=\"{{ link1 }}\" target=\"_blank\">Directives de cybersécurité du 28.04.2022</a> publiées par le CERT-IN en vertu des dispositions de la sous-section (6) de <a href=\"{{ link2 }}\" target=\"_blank\">l'article 70B</a> de l’Information Technology (IT) Act, 2000.",
+  "user_account_identity_documents_legal_info2": "Pour en savoir plus sur le traitement de vos données personnelles et connaître vos droits, vous pouvez consulter notre <a href=\"{{ link }}\" target=\"_blank\">Politique d’utilisation des données à caractère personnel.</a>",
+  "user_account_identity_documents_legal_info3": "Les documents seront conservés durant 5 ans après la fin du contrat.",
+  "user_account_identity_documents_legal_info4": "Délai de réponse pendant les heures de travail : 9h à 18h IST (Heure standard de l'Inde) du lundi au vendredi, à l'exclusion des jours fériés.",
+  "user_account_identity_documents_verification_in_progress_info": "Le traitement de vos documents est actuellement en cours d'analyse par notre équipe.",
+  "user_account_identity_documents_verification_waiting_info": "Votre demande a été analysée mais nécessite des documents complémentaires. Veuillez consulter votre ticket de support."
+}
