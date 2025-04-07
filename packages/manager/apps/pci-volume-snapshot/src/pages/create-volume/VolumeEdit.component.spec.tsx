@@ -8,6 +8,7 @@ import {
   TVolumePricing,
 } from '@/api/api.types';
 import VolumeEdit from '@/pages/create-volume/VolumeEdit.component';
+import { createWrapper } from '@/wrapperRenders';
 
 const MOCK_VOLUME: TVolume = {
   id: 'fake-volume-id',
@@ -97,16 +98,6 @@ vi.mock('@/api/hooks/useQuota', () => ({
   useRegionsQuota: vi.fn(() => ({ data: MOCK_QUOTA })),
 }));
 
-vi.mock('@ovh-ux/manager-react-components', () => ({
-  useTranslatedMicroRegions: vi.fn(() => ({
-    translateMicroRegion: (codeRegion: string) => `Coruscant (${codeRegion})`,
-  })),
-  convertHourlyPriceToMonthly: vi.fn(() => 2),
-  useCatalogPrice: vi.fn(() => ({
-    getFormattedCatalogPrice: () => `PRICE`,
-  })),
-}));
-
 describe('VolumeEdit', () => {
   beforeEach(() => {
     vi.clearAllMocks();
@@ -123,6 +114,7 @@ describe('VolumeEdit', () => {
           onSubmit={() => {}}
           onCancel={() => {}}
         />,
+        { wrapper: createWrapper() },
       );
       const nameInput = container.querySelector('input[name="volume_name"]');
       expect(nameInput).toHaveValue('Some suggested name');
@@ -137,6 +129,7 @@ describe('VolumeEdit', () => {
           onSubmit={() => {}}
           onCancel={() => {}}
         />,
+        { wrapper: createWrapper() },
       );
       const nameInput = container.querySelector('input[name="volume_name"]');
       expect(nameInput).toHaveValue(MOCK_VOLUME.name);
@@ -152,6 +145,7 @@ describe('VolumeEdit', () => {
           onSubmit={onSubmit}
           onCancel={() => {}}
         />,
+        { wrapper: createWrapper() },
       );
       const nameInput = container.querySelector('input[name="volume_name"]');
       act(() =>
@@ -180,6 +174,7 @@ describe('VolumeEdit', () => {
           onSubmit={onSubmit}
           onCancel={() => {}}
         />,
+        { wrapper: createWrapper() },
       );
       const nameInput = container.querySelector('input[name="volume_name"]');
       act(() => {
