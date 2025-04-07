@@ -1395,5 +1395,6 @@
   "hosting_dashboard_service_common_inactive": "Inaktiv",
   "hosting_dashboard_email_offer_get_error": "Es ist unmöglich, die E-Mail-Adresse wiederherzustellen.",
   "hosting_dashboard_stats_status": "Beta",
-  "hosting_dashboard_tabs_dropdown": "Mehr"
+  "hosting_dashboard_tabs_dropdown": "Mehr",
+  "hosting_dashboard_service_activate_email_tooltip": "Um eine E-Mail-Adresse erstellen zu können, muss Ihrem Hosting zunächst ein Domainname zugeordnet werden."
 }

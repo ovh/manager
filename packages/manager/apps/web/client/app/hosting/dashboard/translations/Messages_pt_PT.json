@@ -1395,5 +1395,6 @@
   "hosting_tab_STATISTICS_series_unit_ms": "ms",
   "hosting_tab_STATISTICS_series_unit_cnx_min": "ligações/min",
   "hosting_tab_STATISTICS_series_unit_sec_min": "s/min",
-  "hosting_tab_STATISTICS_series_unit_overload": "overload"
+  "hosting_tab_STATISTICS_series_unit_overload": "overload",
+  "hosting_dashboard_service_activate_email_tooltip": "Para criar um endereço de e-mail, deve associar um domínio ao seu alojamento."
 }
