@@ -50,8 +50,7 @@
     "release": "scripts/release/release.sh",
     "start": "node scripts/start-application.mjs",
     "test:jest": "jest --runInBand",
-    "test": "yarn lint",
-    "test:turbo": "turbo run test --concurrency=1",
+    "test": "turbo run test --concurrency=1",
     "test:scripts": "make test"
   },
   "resolutions": {
@@ -125,7 +124,7 @@
     "stylelint-config-standard": "^20.0.0",
     "stylelint-prettier": "^1.1.2",
     "stylelint-scss": "^3.18.0",
-    "turbo": "^2.4.4",
+    "turbo": "^2.5.0",
     "vite": "^5.4.12",
     "whatwg-fetch": "^3.6.2"
   },
