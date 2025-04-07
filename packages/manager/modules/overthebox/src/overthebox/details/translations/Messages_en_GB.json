@@ -97,5 +97,9 @@
   "overTheBox_unlink_device_error": "Unable to unlink the device: {{errorMessage}}",
   "overTheBox_unlink_device_success": "Your device has been successfully detached.",
   "overTheBox_change_offer": "Change plan",
-  "overTheBox_release_channel_deprecated": "Deprecated version {{version}}"
+  "overTheBox_release_channel_deprecated": "Deprecated version {{version}}",
+  "overTheBox_detail_ips": "IPs",
+  "overTheBox_detail_ip_v4": "IPv4",
+  "overTheBox_detail_ip_v6": "IPv6",
+  "overTheBox_model_ips_unknown": "IPs not found"
 }
