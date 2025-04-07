@@ -1,0 +1,12 @@
+{
+  "documents_dashboard_document_ID_DEFAULT": "Una copia por ambas caras de un documento de identidad expedido por el Gobierno (DNI, pasaporte o permiso de conducir).",
+  "documents_dashboard_document_PROOF_OF_ADRESS_DEFAULT": "Un documento que acredite sus datos de facturación (nombre y dirección), con una antigüedad inferior a tres meses, como un extracto bancario o una factura de servicios públicos (electricidad, gas, etc.).",
+  "documents_dashboard_document_CORPORATE_ID_DEFAULT": "Un extracto del registro mercantil, de sociedades o tributario, o cualquier documento oficial que pruebe la existencia de la entidad organizativa con una antigüedad inferior a tres meses.",
+  "documents_dashboard_document_ADMINISTRATION_ID_DEFAULT": "Un extracto del registro mercantil, de sociedades o tributario, o cualquier documento oficial que pruebe la existencia de la entidad organizativa con una antigüedad inferior a tres meses.",
+  "documents_dashboard_document_ASSOCIATION_ID_DEFAULT": "Un extracto del registro mercantil, de sociedades o tributario, o cualquier documento oficial que pruebe la existencia de la entidad organizativa con una antigüedad inferior a tres meses.",
+  "documents_dashboard_document_individual_OTHER_DEFAULT": "Cualquier documento útil para entender su situación (domicilio, traslado, etc.).",
+  "documents_dashboard_document_corporation_OTHER_DEFAULT": "Si usted no figura en el registro de la empresa, la asociación o la administración, puede adjuntar una copia del documento de identidad de la persona que figura en la documentación oficial.",
+  "documents_dashboard_document_association_OTHER_DEFAULT": "Si usted no figura en el registro de la empresa, la asociación o la administración, puede adjuntar una copia del documento de identidad de la persona que figura en la documentación oficial.",
+  "documents_dashboard_document_administration_OTHER_DEFAULT": "Si usted no figura en el registro de la empresa, la asociación o la administración, puede adjuntar una copia del documento de identidad de la persona que figura en la documentación oficial.",
+  "documents_dashboard_document_other_OTHER_DEFAULT": "Cualquier documento útil para entender su situación (domicilio, traslado, etc.)."
+}

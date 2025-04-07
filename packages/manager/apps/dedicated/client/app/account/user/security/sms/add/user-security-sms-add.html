@@ -1,0 +1,155 @@
+<div data-ng-controller="UserAccount.controllers.doubleAuth.sms.add as $ctrl">
+    <div
+        data-wizard
+        data-wizard-on-cancel="cancel"
+        data-wizard-on-finish="addDoubleAuthSms"
+        data-wizard-bread-crumb
+        data-wizard-title="::'user_account_security_double_auth_type_sms_modal_title' | translate"
+    >
+        <div data-wizard-step data-wizard-step-valid="doesStep1IsValid()">
+            <h2
+                class="wizard-title-sub"
+                data-translate="user_account_security_double_auth_type_sms_modal_add_number"
+            ></h2>
+            <p
+                data-translate="user_account_security_double_auth_type_sms_modal_add_number_info"
+            ></p>
+            <form name="userAccountAddSmsForm">
+                <div
+                    class="form-group"
+                    data-ng-class="{
+                         'has-error': userAccountAddSmsForm.phone.$touched && userAccountAddSmsForm.phone.$invalid
+                     }"
+                >
+                    <label
+                        class="control-label"
+                        for="phone"
+                        data-translate="user_account_security_double_auth_type_sms_modal_add_number_label"
+                    >
+                    </label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="phone"
+                        name="phone"
+                        placeholder="{{ 'user_account_security_double_auth_type_sms_modal_add_number_label' | translate }}"
+                        data-ng-model="sms.phone"
+                        data-ng-pattern="/^\+(?:[0-9] ?){6,14}[0-9]$/"
+                    />
+                    <span
+                        class="help-block"
+                        role="alert"
+                        data-ng-if="userAccountAddSmsForm.phone.$touched"
+                        data-ng-messages="userAccountAddSmsForm.phone.$error"
+                    >
+                        <span
+                            data-ng-message="pattern"
+                            data-translate="user_account_security_double_auth_type_sms_modal_add_number_error_pattern"
+                        >
+                        </span>
+                    </span>
+                </div>
+            </form>
+        </div>
+
+        <div
+            data-wizard-step
+            data-wizard-step-on-load="getCode"
+            data-wizard-step-valid="doesStep2IsValid()"
+        >
+            <div class="text-center" data-ng-if="sms.isGeneratingSecret">
+                <oui-spinner></oui-spinner>
+            </div>
+
+            <div data-ng-if="!sms.isGeneratingSecret">
+                <div data-ovh-alert="doubleAuthAlertSmsAdd"></div>
+
+                <strong
+                    class="d-inline-block mb-3"
+                    data-translate="user_account_security_double_auth_type_sms_modal_add_code"
+                ></strong>
+                <form name="$ctrl.userAccountAddSmsCodeForm">
+                    <div
+                        class="form-group"
+                        data-ng-class="{
+                             'has-error': $ctrl.userAccountAddSmsCodeForm.code.$touched && $ctrl.userAccountAddSmsCodeForm.code.$invalid
+                         }"
+                    >
+                        <label
+                            class="control-label"
+                            for="code"
+                            data-translate="user_account_security_double_auth_type_sms_modal_add_code_placeholder"
+                        >
+                        </label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="code"
+                            name="code"
+                            required
+                            placeholder="{{ 'user_account_security_double_auth_type_sms_modal_add_code_placeholder' | translate }}"
+                            data-ng-model="sms.code"
+                            data-ng-pattern="/^\d{6}$/"
+                            data-ng-disabled="sms.isAdding"
+                        />
+
+                        <oui-spinner data-size="s" data-ng-if="sms.isAdding">
+                        </oui-spinner>
+
+                        <span
+                            class="help-block"
+                            role="alert"
+                            data-ng-if="$ctrl.userAccountAddSmsCodeForm.code.$touched"
+                            data-ng-messages="$ctrl.userAccountAddSmsCodeForm.code.$error"
+                        >
+                            <span
+                                data-ng-message="required"
+                                data-translate="user_account_security_double_auth_type_sms_modal_add_code_error_required"
+                            >
+                            </span>
+                            <span
+                                data-ng-message="pattern"
+                                data-translate="user_account_security_double_auth_type_sms_modal_add_code_error_pattern"
+                            >
+                            </span>
+                        </span>
+                    </div>
+                    <div
+                        class="form-group"
+                        data-ng-class="{
+                             'has-error': $ctrl.userAccountAddSmsCodeForm.description.$touched && $ctrl.userAccountAddSmsCodeForm.description.$invalid
+                         }"
+                    >
+                        <label
+                            class="control-label"
+                            for="description"
+                            data-translate="user_account_security_double_auth_type_sms_modal_edit_description_label"
+                        >
+                        </label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="description"
+                            name="description"
+                            placeholder="{{ 'user_account_security_double_auth_type_sms_modal_edit_description_placeholder' | translate }}"
+                            data-ng-model="sms.description"
+                            data-ng-maxlength="100"
+                        />
+                        <span
+                            class="help-block"
+                            role="alert"
+                            data-ng-if="$ctrl.userAccountAddSmsCodeForm.description.$touched"
+                            data-ng-messages="$ctrl.userAccountAddSmsCodeForm.description.$error"
+                        >
+                            <span
+                                data-ng-message="maxlength"
+                                data-translate="user_account_security_double_auth_type_sms_modal_add_description_error_maxlength"
+                            >
+                            </span>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+<div data-ng-controller="UserAccount.controllers.doubleAuth.u2f.delete">
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="deleteDoubleAuthU2fKey"
+        data-wizard-title="::'user_account_security_double_auth_type_u2f_modal_title' | translate"
+    >
+        <div data-wizard-step data-wizard-step-valid="doesStepIsValid()">
+            <h2
+                class="wizard-title-sub"
+                data-translate="user_account_security_double_auth_type_u2f_modal_delete_key"
+            ></h2>
+        </div>
+    </div>
+</div>

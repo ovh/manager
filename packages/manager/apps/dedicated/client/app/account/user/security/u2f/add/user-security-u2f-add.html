@@ -1,0 +1,81 @@
+<div data-ng-controller="UserAccount.controllers.doubleAuth.u2f.add as $ctrl">
+    <div
+        data-wizard
+        data-wizard-on-cancel="cancel"
+        data-wizard-on-finish="addDoubleAuthU2fKey"
+        data-wizard-bread-crumb
+        data-wizard-title="::'user_account_security_double_auth_type_u2f_modal_title' | translate"
+    >
+        <div
+            data-wizard-step
+            data-wizard-step-on-load="init"
+            data-wizard-step-valid="doesStepIsValid()"
+        >
+            <h2
+                class="wizard-title-sub"
+                data-translate="user_account_security_double_auth_type_u2f_modal_add_key"
+            ></h2>
+            <div
+                data-ng-show="u2f.hasError"
+                data-ovh-alert="doubleAuthAlertU2fAdd"
+            ></div>
+            <div class="text-center" data-ng-if="u2f.hasError">
+                <button
+                    class="oui-button oui-button_secondary"
+                    type="button"
+                    data-ng-click="init()"
+                    data-translate="user_account_security_double_auth_type_u2f_modal_add_key_action_new"
+                ></button>
+            </div>
+            <div data-ng-if="!u2f.hasError">
+                <div class="text-center" data-ng-if="!u2f.registerChallenge">
+                    <oui-spinner></oui-spinner>
+                    <p
+                        data-translate="user_account_security_double_auth_type_u2f_modal_add_key_info"
+                    ></p>
+                </div>
+
+                <div data-ng-if="u2f.registerChallenge">
+                    <p
+                        class="bold text-success"
+                        data-translate="user_account_security_double_auth_wizard_u2f_add_success"
+                    ></p>
+                    <form name="$ctrl.userAccountAddU2fDescriptionForm">
+                        <div
+                            class="form-group"
+                            data-ng-class="{ 'has-error': $ctrl.userAccountAddU2fDescriptionForm.description.$touched && $ctrl.userAccountAddU2fDescriptionForm.description.$invalid }"
+                        >
+                            <label
+                                class="control-label"
+                                for="description"
+                                data-translate="user_account_security_double_auth_type_u2f_modal_edit_description_label"
+                            >
+                            </label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="description"
+                                name="description"
+                                placeholder="{{ 'user_account_security_double_auth_type_u2f_modal_edit_description_placeholder' | translate }}"
+                                data-ng-model="u2f.description"
+                                data-ng-maxlength="100"
+                            />
+                            <span
+                                class="help-block"
+                                role="alert"
+                                data-ng-if="$ctrl.userAccountAddU2fDescriptionForm.description.$touched"
+                                data-ng-messages="$ctrl.userAccountAddU2fDescriptionForm.description.$error"
+                            >
+                                <span
+                                    data-ng-message="maxlength"
+                                    data-translate="user_account_security_double_auth_type_sms_modal_add_description_error_maxlength"
+                                >
+                                </span>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

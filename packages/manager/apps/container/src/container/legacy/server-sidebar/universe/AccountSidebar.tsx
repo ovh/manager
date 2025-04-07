@@ -15,10 +15,12 @@ import { Procedures } from '@/types/procedure';
 
 const kycIndiaFeature = 'identity-documents';
 const kycFraudFeature = 'procedures:fraud';
+const newAccount = 'new-account';
 const newBilling = 'new-billing';
 const accountFeatures = [
   kycIndiaFeature,
   kycFraudFeature,
+  newAccount,
   newBilling,
 ];
 
@@ -63,6 +65,7 @@ export default function AccountSidebar() {
     }
 
     const isEUOrCA = ['EU', 'CA'].includes(region);
+    const isNewAccountAvailable = !!availability['new-account'];
     const isNewBillingAvailable = !!availability['new-billing'];
 
     menu.push({
@@ -74,11 +77,13 @@ export default function AccountSidebar() {
     menu.push({
       id: 'my-account',
       label: t('sidebar_account'),
-      href: navigation.getURL('account',
+      href: navigation.getURL(
+        isNewAccountAvailable ? 'new-account' : 'dedicated',
         '/useraccount/dashboard',
       ),
       routeMatcher: new RegExp('^/useraccount'),
     });
+
     if (
       availability[kycIndiaFeature] &&
       ['required', 'open'].includes(kycIndiaProcedure?.status)
@@ -86,7 +91,8 @@ export default function AccountSidebar() {
       menu.push({
         id: 'my-identity-documents',
         label: t('sidebar_account_identity_documents'),
-        href: navigation.getURL('account',
+        href: navigation.getURL(
+          isNewAccountAvailable ? 'new-account' : 'dedicated',
           '/identity-documents',
         ),
         routeMatcher: new RegExp('^/identity-documents'),
@@ -100,7 +106,8 @@ export default function AccountSidebar() {
       menu.push({
         id: 'kyc-documents',
         label: t('sidebar_account_kyc_documents'),
-        href: navigation.getURL('account',
+        href: navigation.getURL(
+          isNewAccountAvailable ? 'new-account' : 'dedicated',
           '/documents',
         ),
         routeMatcher: new RegExp('^/documents'),
@@ -158,7 +165,8 @@ export default function AccountSidebar() {
       menu.push({
         id: 'my-contacts',
         label: t('sidebar_account_contacts'),
-        href: navigation.getURL('account',
+        href: navigation.getURL(
+          isNewAccountAvailable ? 'new-account' : 'dedicated',
           '/contacts',
         ),
         routeMatcher: new RegExp('^/contacts'),
