@@ -1,0 +1,15 @@
+{
+  "account_contacts_service_edit": "Alterar os contactos",
+  "account_contacts_service_edit_description": "Alterar os contactos do serviço {{ serviceName }}",
+  "account_contacts_service_edit_contact_admin": "Contacto administrador",
+  "account_contacts_service_edit_contact_tech": "Contacto técnico",
+  "account_contacts_service_edit_contact_billing": "Contacto de faturação",
+  "account_contacts_service_edit_cancel": "Anular",
+  "account_contacts_service_edit_confirm": "Validar",
+  "account_contacts_service_edit_error": "Ocorreu um erro durante o pedido de alteração de contacto: {{ message }}",
+  "account_contacts_service_edit_success": "O pedido de alteração de contacto foi efetuado com sucesso. Os contactos afetados pelo pedido receberão um e-mail explicando o procedimento de validação.",
+  "account_contacts_service_edit_warn_debt": "Não pode alterar o contacto de faturação, pois existe uma faturação por pagar para este serviço. Sugerimos que pague a fatura para poder realizar esta alteração.",
+  "account_contacts_service_edit_pay": "Pagar a fatura",
+  "account_contacts_service_edit_warn_contact_billing": "Não pode alterar o contacto de faturação, pois existe uma faturação por pagar para este serviço. Entre em contacto com o contacto de faturação atual {{ nicBilling }} para realizar esta alteração.",
+  "account_contacts_service_edit_description_trusted": "Alterar os contactos do seu serviço {{ serviceName }} numa zona de confiança."
+}

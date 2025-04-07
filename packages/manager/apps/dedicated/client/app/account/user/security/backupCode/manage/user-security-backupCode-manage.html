@@ -1,0 +1,41 @@
+<div data-ng-controller="UserAccount.controllers.doubleAuth.backupCode.manage">
+    <div
+        data-wizard
+        data-wizard-on-cancel="cancel"
+        data-wizard-on-finish="validateBackupCode"
+        data-wizard-bread-crumb
+        data-wizard-title="::'user_account_security_double_auth_type_backup_code_modal_title' | translate"
+    >
+        <div data-wizard-step data-wizard-step-on-load="generateBackupCode">
+            <div class="text-center" data-ng-if="backupCode.isGenerating">
+                <oui-spinner></oui-spinner>
+            </div>
+
+            <div data-ng-if="!backupCode.codes">
+                <h2
+                    class="wizard-title-sub"
+                    data-translate="user_account_security_double_auth_type_backup_code_modal_generate"
+                ></h2>
+                <strong
+                    class="text-danger mb-4"
+                    data-translate="user_account_security_double_auth_type_backup_code_modal_generate_info"
+                >
+                </strong>
+            </div>
+
+            <div data-ng-if="!backupCode.isGenerating && backupCode.codes">
+                <h2
+                    class="wizard-title-sub"
+                    data-translate="user_account_security_double_auth_type_backup_code_modal_list"
+                ></h2>
+                <pre
+                    class="new-security-section-wizard-backup-codes"
+                ><div data-ng-repeat="code in backupCode.codes" data-ng-bind="code"></div></pre>
+                <p
+                    class="font-weight-bold text-danger"
+                    data-translate="user_account_security_double_auth_type_backup_code_modal_validate_info1"
+                ></p>
+            </div>
+        </div>
+    </div>
+</div>

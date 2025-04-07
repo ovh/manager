@@ -1,0 +1,111 @@
+<div class="module-useraccount-sections-support-level">
+    <div data-ovh-alert="useraccount.alerts.dashboardAdvanced"></div>
+
+    <h2 data-translate="user_account_support_level_section_title"></h2>
+    <h3
+        data-translate="{{:: 'user_account_support_level_section_title_what' + ($ctrl.currentUser.isTrusted ? '_trusted' : '') }}"
+    ></h3>
+
+    <p
+        data-ng-if="!$ctrl.currentUser.isTrusted"
+        data-translate="{{:: 'user_account_support_level_section_title_description_' + $ctrl.partnerLevel.level + '_' + $ctrl.supportLevel.level }}"
+        data-translate-default="{{:: 'user_account_support_level_section_title_description' | translate }}"
+    ></p>
+    <p
+        data-ng-if="$ctrl.currentUser.isTrusted"
+        data-translate="user_account_support_level_section_title_description_trusted"
+    ></p>
+
+    <div class="row pt-4 mb-4">
+        <div
+            class="col-md-3"
+            data-ng-repeat="supportLevel in ::$ctrl.supportLevels track by supportLevel.name"
+        >
+            <oui-tile
+                class="py-0 h-100"
+                data-ng-class="{
+                        'support-level-selected' : supportLevel.name === $ctrl.supportLevel.level && supportLevel.isAvailable($ctrl.currentUser.ovhSubsidiary),
+                        'support-level-highlight': $ctrl.shouldSubscribe(supportLevel) ||
+                            (!$ctrl.partnerLevel.isActive() && $ctrl.getRecommendedLevel() === supportLevel.name),
+                    }"
+                loading="$ctrl.loading"
+            >
+                <div class="d-flex flex-column justify-content-between h-100">
+                    <div>
+                        <h4
+                            class="mb-4 border-bottom"
+                            data-translate="{{ 'user_account_support_level_section_' + supportLevel.name }}"
+                        ></h4>
+                        <div
+                            data-ng-if="!$ctrl.partnerLevel.isActive() && $ctrl.getRecommendedLevel() === supportLevel.name"
+                            class="text-center mb-2"
+                        >
+                            <span
+                                class="oui-chip support-level-chip-highlight"
+                                data-translate="user_account_support_level_section_recommended"
+                            >
+                            </span>
+                        </div>
+                        <div
+                            data-ng-if="$ctrl.shouldSubscribe(supportLevel)"
+                            class="text-center mb-2"
+                        >
+                            <span
+                                class="oui-chip support-level-chip-highlight"
+                                data-translate="user_account_support_level_section_required"
+                            >
+                            </span>
+                        </div>
+                        <p
+                            class="oui-chip"
+                            data-ng-if="!supportLevel.isAvailable($ctrl.currentUser.ovhSubsidiary)"
+                        >
+                            <span
+                                data-translate="user_account_support_level_section_coming_soon"
+                            ></span>
+                            <sup aria-label="(1)">*</sup>
+                        </p>
+                        <img
+                            data-ng-src="{{'images/support-level/' + supportLevel.supportType + '.png'}}"
+                            class="d-block w-75 mx-auto mb-4"
+                            alt
+                        />
+
+                        <p
+                            data-translate="{{:: 'user_account_support_level_section_' + supportLevel.name + '_description' }}"
+                        ></p>
+                    </div>
+                    <a
+                        data-ng-if="$ctrl.shouldSubscribe(supportLevel) || supportLevel.url"
+                        class="oui-button oui-button_secondary oui-button_icon-right my-5 oui-button_l"
+                        data-ng-href="{{:: $ctrl.shouldSubscribe(supportLevel) ? supportLevel.subscriptionUrl : supportLevel.url }}"
+                        target="_blank"
+                        rel="noopener"
+                        data-track-on="click"
+                        data-track-name="{{:: 'user::account::support-level::' + supportLevel.name }}"
+                    >
+                        <span
+                            data-translate="{{:: $ctrl.shouldSubscribe(supportLevel) ? 'user_account_support_level_section_subscribe' : 'user_account_support_level_section_discover' }}"
+                        ></span>
+                        <span
+                            class="oui-icon oui-icon-chevron-right"
+                            aria-hidden="true"
+                        ></span>
+                    </a>
+                </div>
+            </oui-tile>
+        </div>
+    </div>
+
+    <p class="mb-0" data-ng-if="!$ctrl.partnerLevel.isActive()">
+        <sup aria-label="(1)">*</sup>
+        <small
+            data-ng-if="$ctrl.areAllLevelsAvailable()"
+            data-translate="user_account_support_level_section_title_annex_all_available"
+        ></small>
+        <small
+            data-ng-if="!$ctrl.areAllLevelsAvailable()"
+            data-translate="user_account_support_level_section_title_annex_1"
+        ></small>
+    </p>
+</div>

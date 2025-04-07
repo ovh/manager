@@ -1,0 +1,22 @@
+{
+  "user_account_identity_documents": "My identity documents",
+  "user_account_identity_documents_title": "Verification of documents required",
+  "user_account_identity_documents_sub_title": "Upload your documents",
+  "user_account_identity_documents_intro": "You will receive a response within 24 hours* from our local support team",
+  "user_account_identity_documents_upload": "Download your documents",
+  "user_account_identity_documents_intro_others": "If you are an Individual, you only need to submit the required proof of identity and address. In this case, a sworn statement and proof of VAT aren’t required.",
+  "user_account_identity_documents_selection_file_format": "Format: jpg, jpeg, pdf, png. The file size limit for each document is 10 MB.",
+  "user_account_identity_documents_selection_file_format_invalid": "The {{values}} format of the downloaded document(s) is not supported. Please respect the format requirements: jpg, jpeg, pdf, and png.",
+  "user_account_identity_documents_submit": "Send my documents",
+  "user_account_identity_documents_submit_success_message_title": "Thank you, we have received all your documents!",
+  "user_account_identity_documents_submit_success_message_description": "They will be submitted to our team for validation. Our support team will get back to you within <b>24 hours!*</b> We will notify you by email once they are validated, or we will contact you if we need more information.",
+  "user_account_identity_documents_submit_error_message_description": "Your documents were not sent correctly. Please re-upload your documents.",
+  "user_account_identity_documents_go_back_to_dashboard": "View my dashboard",
+  "user_account_identity_documents_legal_info1": "OVH S.A.S is responsible for processing your personal data. The data collected through this form is processed in order to comply with the <a href=\"{{ link1 }}\" target=\"_blank\">Cybersecurity Guidelines of 28.04.2022</a>, published by CERT-In pursuant to the provisions of subsection (6) of <a href=\"{{ link2 }}\" target=\"_blank\">section 70B</a> of the Information Technology (IT) Act, 2000.",
+  "user_account_identity_documents_legal_info2": "To find out more about how your data is processed, along with your rights, please refer to our <a href=\"{{ link }}\" target=\"_blank\">Policy on the Use of Personal Data.</a>",
+  "user_account_identity_documents_legal_info3": "The documents will be retained for 5 years after the end of the contract.",
+  "user_account_identity_documents_verification_in_progress_info": "Your documents are currently being processed by our team.",
+  "user_account_identity_documents_verification_waiting_info": "Your request has been processed but we require additional documents. Please consult your support ticket.",
+  "user_account_identity_documents_legal_info4": "Response time during business hours: 9am to 6pm IST (India Standard Time) Monday to Friday, excluding public holidays.",
+  "user_account_identity_documents_default_intro": "If you are an individual, you only need to submit the required proof of identity and address. You don’t need to provide a proof of VAT and sworn statement."
+}

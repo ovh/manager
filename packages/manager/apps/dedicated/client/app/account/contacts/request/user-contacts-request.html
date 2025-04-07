@@ -1,0 +1,247 @@
+<div class="module-useraccount-sections-contacts-container">
+    <p data-translate="useraccount_contacts_tab_REQUESTS_info"></p>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th
+                    scope="col"
+                    data-translate="useraccount_contacts_task_id_date"
+                ></th>
+                <th
+                    scope="col"
+                    data-translate="useraccount_contacts_task_from_account"
+                ></th>
+                <th
+                    scope="col"
+                    data-translate="useraccount_contacts_task_to_account"
+                ></th>
+                <th
+                    scope="col"
+                    data-translate="useraccount_contacts_task_contact_types"
+                ></th>
+                <th
+                    scope="col"
+                    data-translate="useraccount_contacts_task_service"
+                ></th>
+                <th>
+                    <select
+                        class="form-control input-sm"
+                        data-ng-model="ctrlContactRequests.selectedState"
+                        data-ng-change="ctrlContactRequests.onTaskStateChanged()"
+                        data-ng-options="state as (('useraccount_contacts_task_state_requests_' + state) | ducTranslateAlt: state) for state in ctrlContactRequests.taskStateEnum"
+                    >
+                        <option
+                            value=""
+                            data-translate="useraccount_contacts_task_state"
+                        ></option>
+                    </select>
+                </th>
+                <th class="text-center" colspan="2">
+                    <button
+                        type="button"
+                        class="btn btn-link"
+                        title="{{ 'useraccount_contacts_task_refresh' | translate }}"
+                        data-ng-click="ctrlContactRequests.getContactChangeTasks()"
+                    >
+                        <span class="fa fa-refresh" aria-hidden="true"> </span>
+                    </button>
+                </th>
+            </tr>
+        </thead>
+
+        <tbody
+            data-ng-show="ctrlContactRequests.loaders.tasks || ctrlContactRequests.loaders.init"
+        >
+            <tr>
+                <td colspan="8" class="text-center my-4">
+                    <oui-spinner data-size="s"></oui-spinner>
+                </td>
+            </tr>
+        </tbody>
+
+        <tbody
+            data-ng-show="!ctrlContactRequests.loaders.tasks && !ctrlContactRequests.loaders.init && ctrlContactRequests.contactTasksDetails.length === 0"
+        >
+            <tr>
+                <td
+                    colspan="8"
+                    class="text-center"
+                    data-translate="useraccount_contacts_no_task"
+                ></td>
+            </tr>
+        </tbody>
+
+        <tbody
+            data-ng-show="!ctrlContactRequests.loaders.tasks && !ctrlContactRequests.loaders.init && ctrlContactRequests.contactTasksDetails.length > 0"
+        >
+            <tr
+                data-ng-repeat="task in ctrlContactRequests.contactTasksDetails | orderBy:'dateRequest':true track by $index"
+            >
+                <th scope="row">
+                    <strong class="d-block" data-ng-bind="::task.id"> </strong>
+                    <small
+                        class="text-center"
+                        data-ng-bind="::task.dateRequest | date: 'short'"
+                    ></small>
+                </th>
+                <td class="wordbreak" data-ng-bind="::task.fromAccount"></td>
+                <td class="wordbreak" data-ng-bind="::task.toAccount"></td>
+                <td class="wordbreak">
+                    <ul class="list-unstyled mb-0">
+                        <li
+                            data-ng-repeat="type in ::task.contactTypes track by $index"
+                            data-ng-bind="('useraccount_contacts_'+ type | translate)  || type"
+                        ></li>
+                    </ul>
+                </td>
+                <td data-ng-bind="::task.serviceDomain"></td>
+                <td data-ng-switch="task.state">
+                    <div data-ng-switch-when="done">
+                        <span
+                            class="label label-success"
+                            data-translate="useraccount_contacts_task_state_done"
+                        >
+                        </span>
+                        <small
+                            data-ng-bind="::task.dateDone | date:'short'"
+                        ></small>
+                    </div>
+                    <div data-ng-switch-when="error">
+                        <span
+                            class="label label-danger"
+                            data-translate="useraccount_contacts_task_state_error"
+                        >
+                        </span>
+                        <small
+                            data-ng-bind="::task.dateDone | date:'short'"
+                        ></small>
+                        <button
+                            type="button"
+                            class="oui-popover-button mb-1"
+                            oui-popover="{{ ::'user_account_contacts_request_error_tooltip' | translate }}"
+                        ></button>
+                    </div>
+                    <div data-ng-switch-when="refused">
+                        <span
+                            class="label label-danger"
+                            data-translate="useraccount_contacts_task_state_refused"
+                        >
+                        </span>
+                        <small
+                            data-ng-bind="::task.dateDone | date:'short'"
+                        ></small>
+                    </div>
+                    <div data-ng-switch-when="validatingByCustomers">
+                        <div data-ng-if="task.hasPendingChange">
+                            <span
+                                class="label label-info"
+                                data-ng-bind-html="'useraccount_contacts_task_waiting_for_other' | translate:{ t0: ctrlContactRequests.user.nichandle ===  task.toAccount ? task.fromAccount : task.toAccount }"
+                            >
+                            </span>
+                        </div>
+                        <div data-ng-if="!task.hasPendingChange">
+                            <span
+                                class="fa fa-hourglass-start text-warning"
+                                data-simplepopover="{{::'useraccount_contacts_task_info_security' | translate:{ t0: ctrlContactRequests.user.email } }}"
+                                data-simplepopover-title="{{ 'useraccount_contacts_task_waiting_for_me' | translate }}"
+                                data-simplepopover-placement="top"
+                                data-simplepopover-single="true"
+                                aria-hidden="true"
+                            ></span>
+                            <span
+                                data-translate="useraccount_contacts_task_waiting_for_me"
+                            ></span>
+                        </div>
+                    </div>
+                    <div data-ng-switch-default>
+                        <span
+                            class="label label-default"
+                            data-translate="{{ 'useraccount_contacts_task_state_' + task.state }}"
+                        >
+                        </span>
+                        <small
+                            data-ng-bind="::task.dateDone | date:'short'"
+                        ></small>
+                    </div>
+                </td>
+                <td class="text-center">
+                    <div
+                        class="btn-group"
+                        data-ng-if="task.state === 'validatingByCustomers'"
+                        data-uib-dropdown
+                        data-dropdown-append-to-body
+                    >
+                        <button
+                            id="btn-account-user-contacts-request-action-{{ index }}"
+                            type="button"
+                            class="btn btn-link"
+                            data-uib-dropdown-toggle
+                        >
+                            <span
+                                class="ovh-font ovh-font-dots"
+                                aria-hidden="true"
+                            ></span>
+                            <span
+                                class="sr-only"
+                                data-translate="common_actions"
+                            >
+                            </span>
+                        </button>
+                        <ul
+                            class="dropdown-menu dropdown-menu-right"
+                            role="menu"
+                            aria-labelledby="btn-account-user-contacts-request-action-{{ index }}"
+                            data-uib-dropdown-menu
+                        >
+                            <li role="menuitem">
+                                <button
+                                    type="button"
+                                    class="btn btn-link"
+                                    title="{{ 'useraccount_contacts_accept_request' | translate }}"
+                                    data-ng-click="setAction('contacts/request/change/user-contacts-request-change', {
+                                            action: 'ACCEPT',
+                                            method: 'RECEIVED',
+                                            task: task
+                                        }, 'account/')"
+                                    data-translate="useraccount_contacts_accept_request"
+                                ></button>
+                            </li>
+                            <li role="menuitem">
+                                <button
+                                    type="button"
+                                    class="btn btn-link"
+                                    data-ng-click="setAction('contacts/request/change/user-contacts-request-change', { action: 'REFUSE', method: 'RECEIVED', task: task }, 'account/')"
+                                    data-translate="useraccount_contacts_refuse_request"
+                                    title="{{ 'useraccount_contacts_refuse_request' | translate }}"
+                                ></button>
+                            </li>
+                            <li role="menuitem">
+                                <button
+                                    type="button"
+                                    class="btn btn-link"
+                                    data-ng-click="setAction('contacts/request/change/user-contacts-request-change', { action: 'RESEND', method: 'RECEIVED', task: task }, 'account/')"
+                                    data-translate="useraccount_contacts_resend_request"
+                                    title="{{ 'useraccount_contacts_resend_request' | translate }}"
+                                ></button>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div
+        data-pagination-front
+        data-items="ctrlContactRequests.contactTasksIds"
+        data-paginated-items="ctrlContactRequests.contactTasksDetails"
+        data-current-page="currentPage"
+        data-items-per-page="itemsPerPage"
+        data-nb-pages="nbPages"
+        data-transform-item="ctrlContactRequests.transformItem(item)"
+        data-on-transform-item-done="ctrlContactRequests.onTransformItemDone(items)"
+        data-page-placeholder="{{'pagination_page' | translate:{ t0: currentPage, t1: nbPages } }}"
+        data-item-per-page-placeholder="{{ 'pagination_display' | translate }}"
+    ></div>
+</div>

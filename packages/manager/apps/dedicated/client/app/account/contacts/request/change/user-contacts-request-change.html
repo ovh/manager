@@ -1,0 +1,77 @@
+<div data-ng-controller="UserAccount.controllers.contacts.request as ctrl">
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="changeContactRequest"
+        data-wizard-title=":: getWizardTitle()"
+    >
+        <div
+            data-wizard-step
+            data-wizard-step-valid="action === 'RESEND' || ctrl.formChangeContact.$valid"
+        >
+            <div class="text-center" data-ng-if="loaders.loading">
+                <oui-spinner></oui-spinner>
+            </div>
+
+            <div data-ng-show="!loaders.loading">
+                <p
+                    data-translate="user_account_contacts_refuse_info"
+                    data-translate-values="{ t0: task.serviceDomain }"
+                ></p>
+                <p
+                    data-translate="user_account_contacts_received_info_roles"
+                    data-translate-values="{ t0: task.fromAccount }"
+                    data-ng-if="method === 'RECEIVED'"
+                ></p>
+                <p
+                    data-ng-bind-html="'user_account_contacts_send_info_roles' | translate:{ t0: task.toAccount, t1: task.fromAccount }"
+                    data-ng-if="method === 'SEND'"
+                ></p>
+                <ul>
+                    <li
+                        data-ng-repeat="role in task.contactTypes track by $index"
+                        data-translate="{{ 'useraccount_contacts_' + role }}"
+                    ></li>
+                </ul>
+
+                <div data-ng-if="action !== 'RESEND'">
+                    <p data-translate="user_account_contacts_token_info"></p>
+
+                    <form name="ctrl.formChangeContact">
+                        <div
+                            class="form-group"
+                            data-ng-class="{ 'has-error': ctrl.formChangeContact.changeContactToken.$touched && ctrl.formChangeContact.changeContactToken.$invalid }"
+                        >
+                            <label
+                                for="changeContactToken"
+                                class="control-label"
+                                data-translate="user_account_contacts_token"
+                            >
+                            </label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                name="changeContactToken"
+                                id="changeContactToken"
+                                required
+                                data-ng-model="token.value"
+                            />
+                            <span
+                                data-ng-messages="ctrl.formChangeContact.changeContactToken.$error"
+                                class="help-block"
+                                role="alert"
+                                data-ng-if="ctrl.formChangeContact.changeContactToken.$touched"
+                            >
+                                <span
+                                    data-ng-message="required"
+                                    data-translate="user_account_contacts_token_required"
+                                >
+                                </span>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

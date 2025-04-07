@@ -1,0 +1,104 @@
+<div class="module-useraccount-sections-emails-container" data-ui-view>
+    <div data-ovh-alert="user_account_email"></div>
+    <p class="my-5">
+        <span data-translate="user_account_email_info"></span><br />
+        <span data-translate="user_account_email_assitance_info"></span>
+        <a
+            href="{{:: SUPPORT_URL }}"
+            data-track-name="account::emails::link::assistance_link"
+            data-track-on="click"
+            data-track-type="action"
+            target="_blank"
+            rel="noopener"
+        >
+            <span data-translate="user_account_email_assitance_title"></span>
+            <i class="oui-icon oui-icon-external-link" aria-hidden="true"></i>
+        </a>
+    </p>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th data-translate="user_account_table_email_subject"></th>
+                    <th
+                        class="text-center"
+                        data-translate="user_account_table_email_date"
+                    ></th>
+                    <th class="text-center" style="width: 35px;">
+                        <button
+                            class="btn btn-link"
+                            title="{{ 'user_account_table_email_refresh' | translate }}"
+                            data-ng-click="getEmailIds(true)"
+                            data-ng-disabled="loaders.emails"
+                        >
+                            <span class="fa fa-refresh"></span>
+                        </button>
+                    </th>
+                </tr>
+            </thead>
+            <tbody data-ng-if="loaders.emails">
+                <tr>
+                    <td colspan="3" class="text-center">
+                        <oui-spinner data-size="s"></oui-spinner>
+                    </td>
+                </tr>
+            </tbody>
+            <tbody data-ng-if="!loaders.emails && !emails.ids.length">
+                <tr>
+                    <td
+                        colspan="3"
+                        class="text-center"
+                        data-translate="user_account_table_email_nodata"
+                    ></td>
+                </tr>
+            </tbody>
+            <tbody data-ng-if="!loaders.emails && emails.ids.length">
+                <tr
+                    data-ng-repeat="email in emails.detail | orderBy:'date':true"
+                >
+                    <td class="wordbreak">
+                        <a
+                            class="d-block"
+                            data-ng-href="{{ '#/useraccount/emails/' + email.id + '?previousPage=' + currentPage }}"
+                            data-ng-click="resetEmailIdsInError()"
+                            data-ng-bind="email.subject"
+                        >
+                        </a>
+                    </td>
+                    <td class="text-center">
+                        <a
+                            class="d-block"
+                            data-ng-href="{{ '#/useraccount/emails/' + email.id + '?previousPage=' + currentPage }}"
+                            data-ng-click="resetEmailIdsInError()"
+                            data-ng-bind="email.date | date : 'short'"
+                        >
+                        </a>
+                    </td>
+                    <td class="text-center">
+                        <a
+                            class="d-block"
+                            data-ng-href="{{ '#/useraccount/emails/' + email.id + '?previousPage=' + currentPage }}"
+                            data-ng-click="resetEmailIdsInError()"
+                        >
+                            <span class="fa fa-search-plus" aria-hidden="true">
+                            </span>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div
+        data-ng-show="!loaders.emails"
+        data-pagination-front
+        data-items="emails.ids"
+        data-paginated-items="emails.detail"
+        data-current-page="currentPage"
+        data-items-per-page="itemsPerPage"
+        data-nb-pages="nbPages"
+        data-transform-item="transformItem(item)"
+        data-on-transform-item-done="onTransformItemDone(items)"
+        data-page-placeholder="{{ 'pagination_page' | translate:{ t0: currentPage, t1: nbPages } }}"
+        data-item-per-page-placeholder="{{ 'pagination_display' | translate }}"
+    ></div>
+</div>

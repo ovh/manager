@@ -1,0 +1,20 @@
+{
+  "user_account_dashboard_shortcut": "Atajos",
+  "user_account_dashboard_shortcut_ALL_BILLS": "Ver mis facturas",
+  "user_account_dashboard_shortcut_PAYMENT_FOLLOW_UP": "Ver mis pagos",
+  "user_account_dashboard_shortcut_ADD_PAYMENT_METHOD": "Añadir una forma de pago",
+  "user_account_dashboard_shortcut_MANAGE_SERVICES": "Administrar mis servicios",
+  "user_account_dashboard_shortcut_ADD_CONTACT": "Añadir un contacto",
+  "user_account_dashboard_last_bill": "Mi última factura",
+  "user_account_dashboard_last_bill_reference": "Referencia",
+  "user_account_dashboard_last_bill_date": "Fecha",
+  "user_account_dashboard_last_bill_amount": "Importe",
+  "user_account_dashboard_last_bill_see": "Ver mi factura",
+  "user_account_dashboard_profile": "Mi perfil",
+  "user_account_dashboard_profile_edit": "Editar mi perfil",
+  "user_account_dashboard_profile_support_level": "Mi nivel de soporte:",
+  "user_account_dashboard_customer_code": "Número de cliente",
+  "user_account_dashboard_nichandle": "ID de cliente",
+  "user_account_dashboard_shortcut_MANAGE_USERS": "Gestionar mis usuarios",
+  "user_account_dashboard_new": "Novedad"
+}

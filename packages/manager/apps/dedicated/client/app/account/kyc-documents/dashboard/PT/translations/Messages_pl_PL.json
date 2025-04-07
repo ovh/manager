@@ -1,0 +1,12 @@
+{
+  "documents_dashboard_document_ID_PT": "Kopia obu stron dokumentu tożsamości (dowodu osobistego, paszportu, karty pobytu obywatela)",
+  "documents_dashboard_document_PROOF_OF_ADRESS_PT": "Dokument potwierdzający miejsce zamieszkania, nie starszy niż 3 miesiące, zawierający Twoje imię, nazwisko i adres podany w profilu.",
+  "documents_dashboard_document_CORPORATE_ID_PT": "Potwierdzenie nadania numeru NIPC (Número de Identificação de Pessoa Coletiva) lub inny dokument o podobnym charakterze.",
+  "documents_dashboard_document_ADMINISTRATION_ID_PT": "Dokument potwierdzający rejestrację w Ministerstwie Pracy, Solidarności i Ubezpieczeń Społecznych (MTSSS).",
+  "documents_dashboard_document_ASSOCIATION_ID_PT": "Wyciąg z publikacji w Dzienniku Urzędowym i protokół z ostatniego zgromadzenia lub inny dokument o podobnym charakterze.",
+  "documents_dashboard_document_individual_OTHER_PT": "Wszelkie dokumenty przydatne do zrozumienia Twojej sytuacji (zakwaterowanie, przeprowadzka,...).",
+  "documents_dashboard_document_corporation_OTHER_PT": "Jeśli Twoje imię i nazwisko nie figurują w rejestrze portugalskiego Urzędu podatkowo-celnego (AT) ani w statucie stowarzyszenia, prosimy o dołączenie kopii dokumentu tożsamości osoby, która figuruje w oficjalnej dokumentacji.",
+  "documents_dashboard_document_association_OTHER_PT": "Jeżeli Twoje imię i nazwisko nie figurują w dokumencie NIPC spółki ani w statucie stowarzyszenia, prosimy o dołączenie kopii dokumentu tożsamości osoby, która figuruje w oficjalnej dokumentacji.",
+  "documents_dashboard_document_administration_OTHER_PT": "Jeśli Twoje imię i nazwisko nie figurują w rejestrze portugalskiego Urzędu podatkowo-celnego (AT) ani w statucie stowarzyszenia, prosimy o dołączenie kopii dokumentu tożsamości osoby, która figuruje w oficjalnej dokumentacji.",
+  "documents_dashboard_document_other_OTHER_PT": "Wszelkie dokumenty przydatne do zrozumienia Twojej sytuacje (zakwaterowanie, przeprowadzka, etc.)"
+}

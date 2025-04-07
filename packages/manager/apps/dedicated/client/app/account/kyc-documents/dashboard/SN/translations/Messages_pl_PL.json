@@ -1,0 +1,12 @@
+{
+  "documents_dashboard_document_ID_SN": "Dwustronna kopia dokumentu tożsamości (paszportu, dowodu osobistego)",
+  "documents_dashboard_document_PROOF_OF_ADRESS_SN": "Dokument potwierdzający miejsce zamieszkania, nie starszy niż 3 miesiące, zawierający Twoje imię, nazwisko i adres podany w profilu",
+  "documents_dashboard_document_CORPORATE_ID_SN": "Wypis z rejestru działalności gospodarczej, rejestru handlowego lub podatkowego lub inny dokument urzędowy potwierdzający istnienie Twojego podmiotu, wydany nie wcześniej niż 3 miesiące temu",
+  "documents_dashboard_document_ADMINISTRATION_ID_SN": "Wypis z rejestru działalności gospodarczej, rejestru handlowego lub podatkowego lub inny dokument urzędowy potwierdzający istnienie Twojego podmiotu",
+  "documents_dashboard_document_ASSOCIATION_ID_SN": "Wypis z rejestru działalności gospodarczej, rejestru handlowego lub podatkowego lub inny dokument urzędowy potwierdzający istnienie Twojego podmiotu",
+  "documents_dashboard_document_individual_OTHER_SN": "Wszelkie dokumenty, które pomogą zrozumieć Twoją sytuację (zakwaterowanie, przeprowadzka, etc.)",
+  "documents_dashboard_document_corporation_OTHER_SN": "Jeśli nie figurujesz w dokumentach spółki/statucie stowarzyszenia, prosimy o przesłanie kopii dokumentu tożsamości osoby, która w nim figuruje.",
+  "documents_dashboard_document_association_OTHER_SN": "Jeśli nie figurujesz w dokumentach spółki/statucie stowarzyszenia, prosimy o przesłanie kopii dokumentu tożsamości osoby, która w nim figuruje.",
+  "documents_dashboard_document_administration_OTHER_SN": "Jeśli nie figurujesz w dokumentach spółki/statucie stowarzyszenia, prosimy o przesłanie kopii dokumentu tożsamości osoby, która w nim figuruje.",
+  "documents_dashboard_document_other_OTHER_SN": "Wszelkie dokumenty przydatne do zrozumienia Twojej sytuacje (zakwaterowanie, przeprowadzka, etc.)"
+}

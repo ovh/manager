@@ -1,0 +1,12 @@
+{
+  "documents_dashboard_document_ID_ES": "Una copia por ambas caras de su documento de identidad (DNI, pasaporte).",
+  "documents_dashboard_document_PROOF_OF_ADRESS_ES": "Un justificante de domicilio con una antigüedad inferior a tres meses, con su nombre y la dirección indicada en su perfil (extracto bancario, factura de servicios públicos, etc.)",
+  "documents_dashboard_document_CORPORATE_ID_ES": "Tarjeta NIF de empresa actualizada o documento acreditativo correspondiente.",
+  "documents_dashboard_document_ADMINISTRATION_ID_ES": "Documento de alta de empresa en la Seguridad Social o similar.",
+  "documents_dashboard_document_ASSOCIATION_ID_ES": "El extracto de publicación en el Boletín Oficial del Estado (BOE) o documento acreditativo correspondiente.",
+  "documents_dashboard_document_individual_OTHER_ES": "Cualquier documento útil para comprender su situación actual (domicilio, traslado, etc.).",
+  "documents_dashboard_document_corporation_OTHER_ES": "Si usted no figura en el registro mercantil ni en los estatutos de la asociación, puede adjuntar una copia del documento de identidad de la persona que figura en la documentación oficial.",
+  "documents_dashboard_document_association_OTHER_ES": "Si usted no figura en el extracto del registro mercantil ni en los estatutos de su asociación, adjunte una copia del documento de identidad de una persona que sí figure.",
+  "documents_dashboard_document_administration_OTHER_ES": "Si usted no figura en el registro mercantil ni en los estatutos de la asociación, puede adjuntar una copia del documento de identidad de la persona que figura en la documentación oficial.",
+  "documents_dashboard_document_other_OTHER_ES": "Cualquier documento útil para entender su situación (domicilio, traslado, etc.)."
+}

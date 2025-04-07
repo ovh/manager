@@ -1,0 +1,20 @@
+{
+  "user_account_dashboard_shortcut": "Scelta rapida",
+  "user_account_dashboard_shortcut_ALL_BILLS": "Visualizza le tue fatture",
+  "user_account_dashboard_shortcut_PAYMENT_FOLLOW_UP": "Monitora i pagamenti",
+  "user_account_dashboard_shortcut_ADD_PAYMENT_METHOD": "Aggiungi un metodo di pagamento",
+  "user_account_dashboard_shortcut_MANAGE_SERVICES": "Gestisci i tuoi servizi",
+  "user_account_dashboard_shortcut_ADD_CONTACT": "Aggiungi un contatto",
+  "user_account_dashboard_last_bill": "Ultima fattura:",
+  "user_account_dashboard_last_bill_reference": "Referenza",
+  "user_account_dashboard_last_bill_date": "Data",
+  "user_account_dashboard_last_bill_amount": "Importo",
+  "user_account_dashboard_last_bill_see": "Visualizza la tua fattura",
+  "user_account_dashboard_profile": "Il tuo profilo",
+  "user_account_dashboard_profile_edit": "Modifica il tuo profilo",
+  "user_account_dashboard_profile_support_level": "Il tuo livello di supporto",
+  "user_account_dashboard_customer_code": "Codice cliente",
+  "user_account_dashboard_nichandle": "NIC handle",
+  "user_account_dashboard_shortcut_MANAGE_USERS": "Gestisci i tuoi utenti",
+  "user_account_dashboard_new": "Novità!"
+}

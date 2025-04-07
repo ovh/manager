@@ -1,0 +1,22 @@
+{
+  "user_account_identity_documents": "Mis documentos de identidad",
+  "user_account_identity_documents_title": "Es necesario verificar los documentos",
+  "user_account_identity_documents_sub_title": "Añada sus documentos",
+  "user_account_identity_documents_intro": "Nuestro equipo de soporte local le responderá en 24 horas*",
+  "user_account_identity_documents_upload": "Añada sus documentos",
+  "user_account_identity_documents_intro_others": "Si es un particular, los justificantes de identidad y de dirección a continuación son suficientes. En este caso, no es necesario presentar la declaración jurada ni el justificante de IVA.",
+  "user_account_identity_documents_selection_file_format": "Formato: jpg, jpeg, pdf y png. El tamaño máximo del archivo para cada documento es de 10 MB.",
+  "user_account_identity_documents_selection_file_format_invalid": "El formato {{values}} del (los) documento(s) adjunto(s) no es válido. Por favor, utilice cualquiera de los formatos indicados: jpg, jpeg, pdf y png.",
+  "user_account_identity_documents_submit": "Enviar mis documentos",
+  "user_account_identity_documents_submit_success_message_title": "Gracias, ¡hemos recibido todos sus documentos!",
+  "user_account_identity_documents_submit_success_message_description": "Serán enviados a nuestro equipo para su validación. ¡Nuestro equipo de soporte le responderá en <b>24 horas!*</b> Le informaremos de su validación por correo electrónico. En caso de que necesitemos más información, nuestro equipo se pondrá en contacto con usted.",
+  "user_account_identity_documents_submit_error_message_description": "Sus documentos no se han enviado correctamente. Por favor, vuelva a cargarlos y a enviar sus documentos.",
+  "user_account_identity_documents_go_back_to_dashboard": "Ver mi panel de control",
+  "user_account_identity_documents_legal_info1": "OVH SAS es el responsable del tratamiento de sus datos personales. Los datos recopilados a través de este formulario son tratados en cumplimiento de las <a href=\"{{ link1 }}\" target=\"_blank\">Directrices de Ciberseguridad del 28/04/2022</a> publicadas por el CERT-In en virtud de las disposiciones de la subsección (6) del <a href=\"{{ link2 }}\" target=\"_blank\">artículo 70-B</a> de la Information Technology (IT) Act, 2000.",
+  "user_account_identity_documents_legal_info2": "Para más información sobre el tratamiento de sus datos y sus derechos, consulte la <a href=\"{{ link }}\" target=\"_blank\">Política de uso de datos personales de OVHcloud</a>.",
+  "user_account_identity_documents_legal_info3": "Los documentos se conservarán durante 5 años una vez finalizado el contrato.",
+  "user_account_identity_documents_verification_in_progress_info": "Nuestro equipo está analizando el tratamiento de sus documentos.",
+  "user_account_identity_documents_verification_waiting_info": "Su solicitud ha sido analizada, pero es necesaria información adicional. Consulte su tíquet de soporte.",
+  "user_account_identity_documents_legal_info4": "Tiempo de respuesta en horario laborable: de 9:00 a 18:00 IST (hora estándar de la India) de lunes a viernes, excepto festivos.",
+  "user_account_identity_documents_default_intro": "Si es usted un particular, los justificantes de identidad y de dirección son suficientes. No es necesario presentar la declaración jurada ni el justificante de IVA."
+}

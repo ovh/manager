@@ -1,0 +1,12 @@
+{
+  "documents_dashboard_document_ID_DEFAULT": "Une copie (recto-verso) d'une pièce d'identité délivrée par le gouvernement (ex. passeport, carte nationale d'identité ou permis de conduire).",
+  "documents_dashboard_document_PROOF_OF_ADRESS_DEFAULT": "Un document prouvant vos informations de facturation (nom et adresse) datant de moins de 3 mois, tel qu'un relevé bancaire ou une facture de services publics (électricité, gaz, etc.).",
+  "documents_dashboard_document_CORPORATE_ID_DEFAULT": "Un extrait du registre du commerce, des sociétés ou des impôts, ou tout document officiel prouvant l'existence de l'entité organisationnelle datant de moins de 3 mois.",
+  "documents_dashboard_document_ADMINISTRATION_ID_DEFAULT": "Un extrait du registre du commerce, des sociétés ou des impôts, ou tout document officiel prouvant l'existence de l'entité organisationnelle datant de moins de 3 mois.",
+  "documents_dashboard_document_ASSOCIATION_ID_DEFAULT": "Un extrait du registre du commerce, des sociétés ou des impôts, ou tout document officiel prouvant l'existence de l'entité organisationnelle datant de moins de 3 mois.",
+  "documents_dashboard_document_individual_OTHER_DEFAULT": "Tout document utile pour comprendre votre situation (ex. hébergement, déménagement).",
+  "documents_dashboard_document_corporation_OTHER_DEFAULT": "Si vous ne figurez pas dans le registre de l'entreprise, de l'association ou de l'administration, vous pouvez joindre une copie de ma pièce d'identité d'une personne figurant dans la documentation officielle.",
+  "documents_dashboard_document_association_OTHER_DEFAULT": "Si vous ne figurez pas dans le registre de l'entreprise, de l'association ou de l'administration, vous pouvez joindre une copie de ma pièce d'identité d'une personne figurant dans la documentation officielle.",
+  "documents_dashboard_document_administration_OTHER_DEFAULT": "Si vous ne figurez pas dans le registre de l'entreprise, de l'association ou de l'administration, vous pouvez joindre une copie de ma pièce d'identité d'une personne figurant dans la documentation officielle.",
+  "documents_dashboard_document_other_OTHER_DEFAULT": "Tout document utile pour comprendre votre situation (hébergement, déménagement,...)"
+}

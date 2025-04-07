@@ -1,0 +1,12 @@
+{
+  "documents_dashboard_document_ID_DE": "Uma cópia frente e verso do seu documento de identificação (cartão de cidadão, passaporte).",
+  "documents_dashboard_document_PROOF_OF_ADRESS_DE": "Um comprovativo de domicílio com menos de três meses, com o seu nome e a morada que indicou no seu perfil (por exemplo, extrato de conta, fatura de serviços públicos tais como água, eletricidade, etc.).",
+  "documents_dashboard_document_CORPORATE_ID_DE": "Extrato do registo comercial com menos de três meses.",
+  "documents_dashboard_document_ADMINISTRATION_ID_DE": "Autoridade de gestão: prova do estatuto da autoridade.",
+  "documents_dashboard_document_ASSOCIATION_ID_DE": "Extrato do registo das associações e ata da reunião mais recente.",
+  "documents_dashboard_document_individual_OTHER_DE": "Qualquer documento útil para compreender a sua situação (alojamento, mudança, etc.).",
+  "documents_dashboard_document_corporation_OTHER_DE": "Se não estiver no registo comercial ou nos estatutos da associação, pode anexar uma cópia do documento de identidade da pessoa que está na documentação oficial.",
+  "documents_dashboard_document_association_OTHER_DE": "Se não estiver no extrato do registo comercial ou nos estatutos da sua associação, deverá anexar uma cópia do documento de identidade de uma pessoa que tenha sido indicada no mesmo.",
+  "documents_dashboard_document_administration_OTHER_DE": "Se não estiver no registo comercial ou nos estatutos da associação, pode anexar uma cópia do documento de identidade da pessoa que está na documentação oficial.",
+  "documents_dashboard_document_other_OTHER_DE": "Qualquer documento útil para compreender a sua situação (alojamento, mudança, etc.)"
+}

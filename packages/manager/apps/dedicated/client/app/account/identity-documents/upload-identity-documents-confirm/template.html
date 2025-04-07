@@ -1,0 +1,22 @@
+<div data-ng-if="$ctrl.isOpenModal">
+    <div class="modal d-block">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <oui-modal
+                    data-heading="{{:: 'user_account_identity_documents_submit' | translate }}"
+                    data-primary-action="$ctrl.onConfirm()"
+                    data-primary-label="{{:: 'user_account_identity_documents_upload_confirm_yes' | translate }}"
+                    data-secondary-action="$ctrl.onCancel()"
+                    data-secondary-label="{{:: 'user_account_identity_documents_upload_confirm_no' | translate }}"
+                    data-on-dismiss="$ctrl.onCancel()"
+                    data-type="info"
+                >
+                    <span
+                        data-translate="user_account_identity_documents_upload_confirm"
+                    ></span>
+                </oui-modal>
+            </div>
+        </div>
+    </div>
+    <div class="oui-modal-backdrop"></div>
+</div>
