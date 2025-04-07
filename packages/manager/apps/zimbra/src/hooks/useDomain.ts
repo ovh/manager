@@ -3,8 +3,7 @@ import {
   UseQueryOptions,
   UseQueryResult,
 } from '@tanstack/react-query';
-import { usePlatform } from '@/hooks';
-
+import { useParams } from 'react-router-dom';
 import {
   DomainType,
   getZimbraPlatformDomainDetail,
@@ -12,22 +11,23 @@ import {
 } from '@/api/domain';
 
 type UseDomainParams = Omit<UseQueryOptions, 'queryKey' | 'queryFn'> & {
-  domainId: string;
+  domainId?: string;
 };
 
-export const useDomain = (params: UseDomainParams) => {
-  const { domainId, ...options } = params;
-  const { platformId } = usePlatform();
+export const useDomain = (params: UseDomainParams = {}) => {
+  const { domainId: paramId, ...options } = params;
+  const { platformId, domainId } = useParams();
+  const id = paramId || domainId;
 
   return useQuery({
-    queryKey: getZimbraPlatformDomainQueryKey(platformId, domainId),
-    queryFn: () => getZimbraPlatformDomainDetail(platformId, domainId),
+    queryKey: getZimbraPlatformDomainQueryKey(platformId, id),
+    queryFn: () => getZimbraPlatformDomainDetail(platformId, id),
     enabled: (query) =>
       (typeof options.enabled === 'function'
         ? options.enabled(query)
         : typeof options.enabled !== 'boolean' || options.enabled) &&
       !!platformId &&
-      !!domainId,
+      !!id,
     ...options,
   }) as UseQueryResult<DomainType>;
 };

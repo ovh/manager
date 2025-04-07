@@ -1,20 +1,33 @@
-import { v2 } from '@ovh-ux/manager-core-api';
+import { fetchIcebergV2, v2 } from '@ovh-ux/manager-core-api';
 import { AliasBodyParamsType, AliasType } from './type';
 import { getApiPath } from '../utils/apiPath';
+import { APIV2_DEFAULT_PAGESIZE } from '@/utils';
 
 // GET
 
-export const getZimbraPlatformAlias = async (platformId: string) => {
-  const { data } = await v2.get<AliasType[]>(`${getApiPath(platformId)}alias`);
-  return data;
-};
+export const getZimbraPlatformAliases = ({
+  platformId,
+  searchParams,
+  pageParam,
+  pageSize = APIV2_DEFAULT_PAGESIZE,
+}: {
+  platformId: string;
+  searchParams?: string;
+  pageParam?: unknown;
+  pageSize?: number;
+}) =>
+  fetchIcebergV2<AliasType[]>({
+    route: `${getApiPath(platformId)}alias${searchParams}`,
+    pageSize,
+    cursor: pageParam as string,
+  });
 
-export const getZimbraPlatformAliasDetail = async (
+export const getZimbraPlatformAlias = async (
   platformId: string,
-  aliasId: string,
+  id: string,
 ) => {
   const { data } = await v2.get<AliasType>(
-    `${getApiPath(platformId)}alias/${aliasId}`,
+    `${getApiPath(platformId)}alias/${id}`,
   );
   return data;
 };

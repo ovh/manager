@@ -3,9 +3,8 @@ import {
   UseInfiniteQueryOptions,
   UseInfiniteQueryResult,
 } from '@tanstack/react-query';
-import { useSearchParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import { useEffect } from 'react';
-import { usePlatform } from '@/hooks';
 import {
   AccountType,
   getZimbraPlatformAccounts,
@@ -25,7 +24,7 @@ type UseAccountsParams = Omit<
 
 export const useAccounts = (props: UseAccountsParams = {}) => {
   const { domainId, organizationId, email, shouldFetchAll, ...options } = props;
-  const { platformId } = usePlatform();
+  const { platformId } = useParams();
   const [searchParams] = useSearchParams();
 
   const urlSearchParams = buildURLSearchParams({

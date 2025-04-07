@@ -7,7 +7,6 @@ import {
 } from './type';
 import { getApiPath } from '../utils/apiPath';
 import { APIV2_DEFAULT_PAGESIZE } from '@/utils';
-import { domainDiagnosticMock } from '../_mock_';
 
 // GET
 
@@ -53,17 +52,7 @@ export const getZimbraPlatformDomainDetail = async (
 export const postZimbraPlatformDomainsDiagnostic = async (
   platformId: string,
   domains: string[],
-  mock = false,
 ) => {
-  // TODO: remove
-  if (mock) {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        const [domainId] = domains;
-        resolve([{ ...domainDiagnosticMock, domainId }]);
-      }, 1000);
-    });
-  }
   const { data } = await v2.post<DomainDiagnosisResponse[]>(
     `${getApiPath(platformId)}diagnostic/domain`,
     { domains },
