@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-emaildomain-app",
-  "version": "3.0.20",
+  "version": "3.0.21",
   "private": true,
   "repository": {
     "type": "git",
@@ -18,8 +18,8 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-emaildomain-app' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^8.1.0",
-    "@ovh-ux/manager-core": "^13.0.6",
+    "@ovh-ux/manager-config": "^8.2.0",
+    "@ovh-ux/manager-core": "^13.0.7",
     "@ovh-ux/manager-email-domain": "^1.11.2",
     "@ovh-ux/manager-ng-layout-helpers": "^2.11.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",

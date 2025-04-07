@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.116.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.115.1...@ovh-ux/manager-container-app@0.116.0) (2025-04-07)
+
+
+### Features
+
+* display maintenance mode ([#16413](https://github.com/ovh/manager/issues/16413)) ([b7f71f3](https://github.com/ovh/manager/commit/b7f71f33ab188cbc7c96772efad012c337e041fc)), closes [#MANAGER-17748](https://github.com/ovh/manager/issues/MANAGER-17748) [#MANAGER-17748](https://github.com/ovh/manager/issues/MANAGER-17748)
+
+
+
+
+
 ## [0.115.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.115.0...@ovh-ux/manager-container-app@0.115.1) (2025-04-03)
 
 
