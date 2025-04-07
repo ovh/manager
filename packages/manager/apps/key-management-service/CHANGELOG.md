@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.23.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.23.3...@ovh-ux/manager-key-management-service-app@0.23.4) (2025-04-07)
+
+
+### Bug Fixes
+
+* **kms:** remove duplicate region column in listing ([2302238](https://github.com/ovh/manager/commit/2302238b9eac7a8d84bbf6af3b05e4a35974a19a)), closes [#MANAGER-17505](https://github.com/ovh/manager/issues/MANAGER-17505)
+
+
+
+
+
 ## [0.23.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.23.2...@ovh-ux/manager-key-management-service-app@0.23.3) (2025-04-03)
 
 

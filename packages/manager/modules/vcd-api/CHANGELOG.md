@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-vcd-api@0.4.1...@ovh-ux/manager-module-vcd-api@0.5.0) (2025-04-07)
+
+
+### Features
+
+* **veeam:** display veeam storage region && refactor dashboard ([239c594](https://github.com/ovh/manager/commit/239c594f29de79c84d31ab492e6e4d6497a52c87)), closes [#MANAGER-17121](https://github.com/ovh/manager/issues/MANAGER-17121)
+
+
+
+
+
 ## [0.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-vcd-api@0.4.0...@ovh-ux/manager-module-vcd-api@0.4.1) (2025-04-03)
 
 **Note:** Version bump only for package @ovh-ux/manager-module-vcd-api
