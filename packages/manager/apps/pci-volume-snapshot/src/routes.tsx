@@ -8,7 +8,6 @@ export const ROUTE_PATHS = {
   LISTING: '',
   CREATE_VOLUME: ':snapshotId/new-volume',
   DELETE: 'delete',
-  BLOCK_STORAGE: '/pci/projects/:projectId/storages/blocks',
   ONBOARDING: 'onboarding',
 };
 
