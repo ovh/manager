@@ -7,6 +7,7 @@ export default {
     datacenter: '<',
     dedicatedCloud: '<',
     setMessage: '<',
+    goToDeleteLicense: '<',
   },
   controller,
   template,
