@@ -49,7 +49,7 @@ baremetalUniverse.children = [
         features: ['dedicated-server'],
       },
       {
-        id: 'dedicated-servers',
+        id: 'dedicated-server',
         universe: baremetalUniverse.id,
         idAttr: 'dedicated-servers-link',
         serviceType: 'DEDICATED_SERVER',

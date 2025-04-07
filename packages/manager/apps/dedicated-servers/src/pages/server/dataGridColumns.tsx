@@ -29,7 +29,7 @@ type ServerSateChipProps = {
 
 export function getClocmuns(
   t: (v: string) => string,
-  goToServer: (name: string) => {},
+  goToServer: (name: string) => void,
 ) {
   const ProductStatusChip: React.FC<ServerSateChipProps> = ({
     state,
@@ -53,8 +53,8 @@ export function getClocmuns(
       enableHiding: true,
       type: FilterTypeCategories.Numeric,
       label: t('server_display_id'),
-      cell: (vs: DedicatedServerWithIAM) => (
-        <DataGridTextCell>{t(vs.serverId.toString())}</DataGridTextCell>
+      cell: (server: DedicatedServerWithIAM) => (
+        <DataGridTextCell>{t(server.serverId.toString())}</DataGridTextCell>
       ),
     },
     {
@@ -64,15 +64,15 @@ export function getClocmuns(
       enableHiding: true,
       type: FilterTypeCategories.String,
       label: t('server_display_name'),
-      cell: (vs: DedicatedServerWithIAM) => (
+      cell: (server: DedicatedServerWithIAM) => (
         <DataGridTextCell>
           <OdsLink
             color="primary"
-            href={`#/server/${vs.name}`}
+            href={`#/server/${server.name}`}
             onClick={() => {
-              goToServer(vs.name);
+              goToServer(server.name);
             }}
-            label={t(vs.iam.displayName)}
+            label={t(server.iam.displayName)}
           ></OdsLink>
         </DataGridTextCell>
       ),
@@ -84,8 +84,8 @@ export function getClocmuns(
       enableHiding: true,
       type: FilterTypeCategories.String,
       label: t('server_display_ip'),
-      cell: (vs: DedicatedServerWithIAM) => (
-        <DataGridTextCell>{t(vs.ip)}</DataGridTextCell>
+      cell: (server: DedicatedServerWithIAM) => (
+        <DataGridTextCell>{t(server.ip)}</DataGridTextCell>
       ),
     },
     {
@@ -95,8 +95,8 @@ export function getClocmuns(
       enableHiding: true,
       type: FilterTypeCategories.String,
       label: t('server_display_reverse'),
-      cell: (vs: DedicatedServerWithIAM) => (
-        <DataGridTextCell>{t(vs.reverse)}</DataGridTextCell>
+      cell: (server: DedicatedServerWithIAM) => (
+        <DataGridTextCell>{t(server.reverse)}</DataGridTextCell>
       ),
     },
     {
@@ -106,8 +106,8 @@ export function getClocmuns(
       enableHiding: true,
       type: FilterTypeCategories.String,
       label: t('server_display_model'),
-      cell: (vs: DedicatedServerWithIAM) => (
-        <DataGridTextCell>{t(vs.commercialRange)}</DataGridTextCell>
+      cell: (server: DedicatedServerWithIAM) => (
+        <DataGridTextCell>{t(server.commercialRange)}</DataGridTextCell>
       ),
     },
     {
@@ -117,8 +117,8 @@ export function getClocmuns(
       enableHiding: true,
       type: FilterTypeCategories.String,
       label: t('server_display_rack'),
-      cell: (vs: DedicatedServerWithIAM) => (
-        <DataGridTextCell>{t(vs.rack)}</DataGridTextCell>
+      cell: (server: DedicatedServerWithIAM) => (
+        <DataGridTextCell>{t(server.rack)}</DataGridTextCell>
       ),
     },
     {
@@ -127,8 +127,8 @@ export function getClocmuns(
       enableHiding: true,
       type: FilterTypeCategories.String,
       label: t('server_display_region'),
-      cell: (vs: DedicatedServerWithIAM) => (
-        <DataGridTextCell>{t(vs.region)}</DataGridTextCell>
+      cell: (server: DedicatedServerWithIAM) => (
+        <DataGridTextCell>{t(server.region)}</DataGridTextCell>
       ),
     },
     {
@@ -138,8 +138,8 @@ export function getClocmuns(
       enableHiding: true,
       type: FilterTypeCategories.Boolean,
       label: t('server_display_state'),
-      cell: (vs: DedicatedServerWithIAM) => (
-        <ProductStatusChip state={vs.state} />
+      cell: (server: DedicatedServerWithIAM) => (
+        <ProductStatusChip state={server.state} />
       ),
     },
     {
@@ -148,10 +148,10 @@ export function getClocmuns(
       enableHiding: true,
       type: FilterTypeCategories.Boolean,
       label: t('server_display_monitoring'),
-      cell: (vs: DedicatedServerWithIAM) => (
+      cell: (server: DedicatedServerWithIAM) => (
         <MonitoringStatusChip
-          monitoring={vs.monitoring}
-          noIntervention={vs.noIntervention}
+          monitoring={server.monitoring}
+          noIntervention={server.noIntervention}
         ></MonitoringStatusChip>
       ),
     },
@@ -161,7 +161,7 @@ export function getClocmuns(
       enableHiding: false,
       label: '',
       isSortable: false,
-      cell: (vs: DedicatedServerWithIAM) => <ActionCell {...vs} />,
+      cell: (server: DedicatedServerWithIAM) => <ActionCell {...server} />,
     },
   ];
   return serverColumns;

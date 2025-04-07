@@ -48,7 +48,7 @@ export default function ServerListing() {
         return (s1.iam?.displayName).localeCompare(s2.iam?.displayName);
       }
       if (key && Object.keys(s1).includes(key as string)) {
-        return ((s1[key] as string) || '').localeCompare(s2[key] as string);
+        return (s1[key].toString() || '').localeCompare(s2[key].toString());
       }
       return 0;
     });
@@ -68,7 +68,7 @@ export default function ServerListing() {
 
   return (
     <React.Suspense>
-      {columns && (
+      {flattenData && (
         <div>
           <Datagrid
             columns={getClocmuns(t, (name: string) =>

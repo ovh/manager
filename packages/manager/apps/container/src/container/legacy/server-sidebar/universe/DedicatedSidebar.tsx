@@ -87,8 +87,6 @@ export default function DedicatedSidebar() {
               id: 'dedicated-server-all',
               label: t('sidebar_dedicated_all'),
               icon: getIcon('ovh-font ovh-font-server'),
-              href: navigation.getURL('dedicated-servers', '#/server'),
-              routeMatcher: new RegExp(`/dedicated-servers$`),
               ignoreSearch: true,
               title: t('sidebar_access_list'),
               ...(feature['dedicated-servers'] ? {
@@ -324,17 +322,6 @@ export default function DedicatedSidebar() {
             async loader() {
               const appId = 'vrack-services';
               return loadServices('/vrackServices/resource', undefined, appId);
-            },
-          },
-          feature['dedicated-servers'] && {
-            id: 'dedicated-servers',
-            label: t('sidebar_dedicated-servers'),
-            icon: getIcon('oui-icon oui-icon-vRack-services_concept'),
-            href: navigation.getURL('dedicated-servers', '/'),
-            pathMatcher: new RegExp('^/dedicated-servers'),
-            async loader() {
-              const appId = 'dedicated-servers';
-              return loadServices('/dedicatedServers/resource', undefined, appId);
             },
           },
           feature['cloud-connect'] && {
