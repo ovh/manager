@@ -1,10 +1,5 @@
-import React, { useContext, useMemo } from 'react';
-import {
-  Outlet,
-  useResolvedPath,
-  useParams,
-  useSearchParams,
-} from 'react-router-dom';
+import React, { Suspense, useContext } from 'react';
+import { Outlet, useResolvedPath, useSearchParams } from 'react-router-dom';
 import {
   BaseLayout,
   GuideButton,
@@ -22,7 +17,7 @@ import {
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import TabsPanel, { computePathMatchers, TabItemProps } from './TabsPanel';
+import TabsPanel, { useComputePathMatchers, TabItemProps } from './TabsPanel';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import { GUIDES_LIST, CHANGELOG_LINKS } from '@/guides.constants';
 import { urls } from '@/routes/routes.constants';
@@ -40,14 +35,16 @@ import {
   UNSELECT_ORGANIZATION,
 } from '@/tracking.constant';
 import './Dashboard.scss';
-
-const whiteListedSearchParams = ['organizationId'];
+import Loading from '@/components/Loading/Loading';
 
 export const Dashboard: React.FC = () => {
   const { trackClick } = useOvhTracking();
-  const { platformId } = useParams();
   const { notifications } = useNotifications();
-  const { data: organization } = useOrganization();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const selectedOrganizationId = searchParams.get('organizationId');
+  const { data: organization } = useOrganization({
+    enabled: !!selectedOrganizationId,
+  });
   const isOverridePage = useOverridePage();
   const { t } = useTranslation(['dashboard', 'common']);
   const context = useContext(ShellContext);
@@ -72,89 +69,76 @@ export const Dashboard: React.FC = () => {
     },
   ];
 
-  const [searchParams, setSearchParams] = useSearchParams();
-  const selectedOrganizationId = searchParams.get('organizationId');
-
-  const params = useMemo(() => {
-    return Object.fromEntries(
-      Array.from(searchParams.entries()).filter(([key]) =>
-        whiteListedSearchParams.includes(key),
-      ),
-    );
-  }, [searchParams]);
-
   const tabsList: TabItemProps[] = [
     {
       name: 'general_informations',
       trackingName: GENERAL_INFORMATIONS,
       title: t('common:general_informations'),
-      to: useGenerateUrl(basePath, 'path', params),
-      pathMatchers: computePathMatchers([urls.dashboard], platformId),
+      to: useGenerateUrl(basePath, 'path'),
+      pathMatchers: useComputePathMatchers([urls.dashboard]),
     },
     {
       name: 'organization',
       trackingName: ORGANIZATION,
       title: t('common:organization'),
-      to: useGenerateUrl(`${basePath}/organizations`, 'path', params),
-      pathMatchers: computePathMatchers(
-        [urls.organizations, urls.organizationsDelete],
-        platformId,
-      ),
+      to: useGenerateUrl(`${basePath}/organizations`, 'path'),
+      pathMatchers: useComputePathMatchers([
+        urls.organizations,
+        urls.organizationsDelete,
+      ]),
       hidden: selectedOrganizationId !== null,
     },
     {
       name: 'domain',
       trackingName: DOMAIN,
       title: t('common:domain'),
-      to: useGenerateUrl(`${basePath}/domains`, 'path', params),
-      pathMatchers: computePathMatchers(
-        [
-          urls.domains,
-          urls.domainsEdit,
-          urls.domainsDelete,
-          urls.domains_diagnostic_mx,
-          urls.domains_diagnostic_spf,
-          urls.domains_diagnostic_srv,
-          urls.domains_diagnostic_dkim,
-        ],
-        platformId,
-      ),
+      to: useGenerateUrl(`${basePath}/domains`, 'path'),
+      pathMatchers: useComputePathMatchers([
+        urls.domains,
+        urls.domainsEdit,
+        urls.domainsDelete,
+        urls.domains_diagnostic_mx,
+        urls.domains_diagnostic_spf,
+        urls.domains_diagnostic_srv,
+        urls.domains_diagnostic_dkim,
+      ]),
     },
     {
       name: 'email_account',
       trackingName: EMAIL_ACCOUNT,
       title: t('common:email_account'),
-      to: useGenerateUrl(`${basePath}/email_accounts`, 'path', params),
-      pathMatchers: computePathMatchers([urls.email_accounts], platformId),
+      to: useGenerateUrl(`${basePath}/email_accounts`, 'path'),
+      pathMatchers: useComputePathMatchers([urls.email_accounts]),
     },
     {
       name: 'mailing_list',
       trackingName: MAILING_LIST,
       title: t('common:mailing_list'),
-      to: useGenerateUrl(`${basePath}/mailing_lists`, 'path', params),
-      pathMatchers: computePathMatchers(
-        [urls.mailing_lists, urls.mailing_lists_delete],
-        platformId,
-      ),
+      to: useGenerateUrl(`${basePath}/mailing_lists`, 'path'),
+      pathMatchers: useComputePathMatchers([
+        urls.mailing_lists,
+        urls.mailing_lists_delete,
+      ]),
       hidden: !FEATURE_FLAGS.MAILINGLISTS,
     },
     {
       name: 'redirection',
       trackingName: REDIRECTION,
       title: t('common:redirection'),
-      to: useGenerateUrl(`${basePath}/redirections`, 'path', params),
-      pathMatchers: computePathMatchers(
-        [urls.redirections, urls.redirections_delete, urls.redirections_edit],
-        platformId,
-      ),
+      to: useGenerateUrl(`${basePath}/redirections`, 'path'),
+      pathMatchers: useComputePathMatchers([
+        urls.redirections,
+        urls.redirections_delete,
+        urls.redirections_edit,
+      ]),
       hidden: !FEATURE_FLAGS.REDIRECTIONS,
     },
     {
       name: 'auto_reply',
       trackingName: AUTO_REPLY,
       title: t('common:auto_reply'),
-      to: useGenerateUrl(`${basePath}/auto_replies`, 'path', params),
-      pathMatchers: computePathMatchers([urls.auto_replies], platformId),
+      to: useGenerateUrl(`${basePath}/auto_replies`, 'path'),
+      pathMatchers: useComputePathMatchers([urls.auto_replies]),
       hidden: !FEATURE_FLAGS.AUTOREPLIES,
     },
   ];
@@ -168,6 +152,7 @@ export const Dashboard: React.FC = () => {
         changelogButton: <ChangelogButton links={CHANGELOG_LINKS} />,
       }}
       subtitle={
+        selectedOrganizationId &&
         organization &&
         (((
           <>
@@ -199,7 +184,9 @@ export const Dashboard: React.FC = () => {
       }
       tabs={isOverridePage ? null : <TabsPanel tabs={tabsList} />}
     >
-      <Outlet />
+      <Suspense fallback={<Loading />}>
+        <Outlet />
+      </Suspense>
     </BaseLayout>
   );
 };

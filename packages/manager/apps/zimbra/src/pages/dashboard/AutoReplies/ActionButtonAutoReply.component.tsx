@@ -1,6 +1,6 @@
 import React from 'react';
 import { ManagerButton } from '@ovh-ux/manager-react-components';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import {
   ODS_BUTTON_COLOR,
   ODS_BUTTON_VARIANT,
@@ -16,7 +16,7 @@ import { useGenerateUrl, usePlatform } from '@/hooks';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import { ResourceStatus } from '@/api/api.type';
 import {
-  ADD_AUTO_REPLY,
+  DELETE_AUTO_REPLY,
   EMAIL_ACCOUNT_DELETE_AUTO_REPLY,
 } from '@/tracking.constant';
 
@@ -29,16 +29,14 @@ const ActionButtonAutoReply: React.FC<ActionButtonAutoReplyProps> = ({
 }) => {
   const { trackClick } = useOvhTracking();
   const { platformUrn } = usePlatform();
+  const { accountId } = useParams();
 
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
-  const params = Object.fromEntries(searchParams.entries());
-  const editEmailAccountId = searchParams.get('editEmailAccountId');
 
-  const hrefDeleteAutoReply = useGenerateUrl('./delete', 'href', {
-    deleteAutoReplyId: autoReplyItem.id,
-    ...params,
-  });
+  const hrefDeleteAutoReply = useGenerateUrl(
+    `./${autoReplyItem.id}/delete`,
+    'href',
+  );
 
   const handleDeleteClick = () => {
     trackClick({
@@ -46,7 +44,7 @@ const ActionButtonAutoReply: React.FC<ActionButtonAutoReplyProps> = ({
       buttonType: ButtonType.button,
       actionType: 'navigation',
       actions: [
-        editEmailAccountId ? EMAIL_ACCOUNT_DELETE_AUTO_REPLY : ADD_AUTO_REPLY,
+        accountId ? EMAIL_ACCOUNT_DELETE_AUTO_REPLY : DELETE_AUTO_REPLY,
       ],
     });
 

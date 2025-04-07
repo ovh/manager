@@ -4,7 +4,7 @@ import {
   UseInfiniteQueryResult,
 } from '@tanstack/react-query';
 import { useEffect } from 'react';
-import { usePlatform } from '@/hooks';
+import { useParams } from 'react-router-dom';
 import {
   getZimbraPlatformOrganization,
   getZimbraPlatformOrganizationQueryKey,
@@ -22,7 +22,7 @@ type UseOrganizationsParams = Omit<
 
 export const useOrganizations = (props: UseOrganizationsParams = {}) => {
   const { shouldFetchAll, organizationName, ...options } = props;
-  const { platformId } = usePlatform();
+  const { platformId } = useParams();
   const searchParams = buildURLSearchParams({
     organizationName,
   });

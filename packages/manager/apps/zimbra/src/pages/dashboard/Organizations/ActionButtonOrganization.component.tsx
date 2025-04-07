@@ -26,9 +26,10 @@ const ActionButtonOrganization: React.FC<ActionButtonOrganizationProps> = ({
   const { platformUrn } = usePlatform();
   const navigate = useNavigate();
 
-  const hrefDeleteOrganization = useGenerateUrl('./delete', 'path', {
-    deleteOrganizationId: organizationItem.id,
-  });
+  const hrefDeleteOrganization = useGenerateUrl(
+    `./${organizationItem.id}/delete`,
+    'path',
+  );
 
   const handleDeleteOrganizationClick = () => {
     trackClick({
@@ -40,9 +41,10 @@ const ActionButtonOrganization: React.FC<ActionButtonOrganizationProps> = ({
     navigate(hrefDeleteOrganization);
   };
 
-  const hrefEditOrganization = useGenerateUrl('./edit', 'path', {
-    editOrganizationId: organizationItem.id,
-  });
+  const hrefEditOrganization = useGenerateUrl(
+    `./${organizationItem.id}/edit`,
+    'path',
+  );
 
   const handleEditOrganizationClick = () => {
     trackClick({

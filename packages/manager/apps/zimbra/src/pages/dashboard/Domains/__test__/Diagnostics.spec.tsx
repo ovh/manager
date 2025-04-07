@@ -1,18 +1,16 @@
 import React from 'react';
 import { describe, expect, vi } from 'vitest';
-import { useSearchParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Diagnostics from '../Diagnostics.page';
 import { render, waitFor } from '@/utils/test.provider';
-import { domainDetailMock } from '@/api/_mock_';
+import { domainDetailMock, platformMock } from '@/api/_mock_';
 import { odsTabIsSelected, tabContent } from '@/utils/test.utils';
 import { DnsRecordType } from '@/utils/dnsconfig.constants';
 
-vi.mocked(useSearchParams).mockReturnValue([
-  new URLSearchParams({
-    domainId: domainDetailMock.id,
-  }),
-  vi.fn(),
-]);
+vi.mocked(useParams).mockReturnValue({
+  platformId: platformMock[0].id,
+  domainId: domainDetailMock.id,
+});
 
 describe('Domain diagnostics page', () => {
   it('should display correctly and have 3 tabs', async () => {

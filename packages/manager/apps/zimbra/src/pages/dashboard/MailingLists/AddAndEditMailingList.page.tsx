@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import {
   IconLinkAlignmentType,
   Links,
@@ -13,12 +13,7 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import {
-  useDomains,
-  useGenerateUrl,
-  usePlatform,
-  useMailingList,
-} from '@/hooks';
+import { useDomains, useGenerateUrl, useMailingList } from '@/hooks';
 import Loading from '@/components/Loading/Loading';
 import MailingListSettings from './MailingListSettings.page';
 import {
@@ -31,20 +26,14 @@ export default function AddAndEditMailingList() {
   const { trackClick } = useOvhTracking();
   const { t } = useTranslation(['mailing-lists/form', 'common']);
   const location = useLocation();
-  const { platformId } = usePlatform();
-  const [searchParams] = useSearchParams();
-  const editMailingListId = searchParams.get('editMailingListId');
+  const { platformId, mailingListId } = useParams();
   const [isLoading, setIsLoading] = useState(true);
-  const goBackUrl = useGenerateUrl(
-    '..',
-    'href',
-    Object.fromEntries(searchParams.entries()),
-  );
+  const goBackUrl = useGenerateUrl(mailingListId ? '../..' : '..', 'href');
 
   const {
-    data: editMailingListDetail,
+    data: mailingList,
     isLoading: isLoadingMailingListDetailRequest,
-  } = useMailingList({ mailingListId: editMailingListId });
+  } = useMailingList({ mailingListId });
 
   const { data: domains, isLoading: isLoadingDomainRequest } = useDomains({
     shouldFetchAll: true,
@@ -84,7 +73,7 @@ export default function AddAndEditMailingList() {
                   buttonType: ButtonType.link,
                   actionType: 'navigation',
                   actions: [
-                    editMailingListId ? EDIT_MAILING_LIST : ADD_MAILING_LIST,
+                    mailingListId ? EDIT_MAILING_LIST : ADD_MAILING_LIST,
                     BACK_PREVIOUS_PAGE,
                   ],
                 });
@@ -93,14 +82,14 @@ export default function AddAndEditMailingList() {
               label={t('zimbra_mailinglist_add_cta_back')}
             />
             <Subtitle>
-              {!editMailingListDetail
-                ? t('common:add_mailing_list')
-                : t('common:edit_mailing_list')}
+              {mailingListId
+                ? t('common:edit_mailing_list')
+                : t('common:add_mailing_list')}
             </Subtitle>
           </div>
           <MailingListSettings
             domains={domains}
-            editMailingListDetail={editMailingListDetail}
+            editMailingListDetail={mailingList}
           />
         </>
       )}

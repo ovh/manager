@@ -3,7 +3,8 @@ import {
   UseQueryOptions,
   UseQueryResult,
 } from '@tanstack/react-query';
-import { usePlatform, useOrganization } from '@/hooks';
+import { useParams } from 'react-router-dom';
+import { useOrganization } from '@/hooks';
 import {
   getZimbraPlatformTask,
   getZimbraPlatformTaskQueryKey,
@@ -13,7 +14,7 @@ import {
 type UseTasksParams = Omit<UseQueryOptions, 'queryKey' | 'queryFn' | 'select'>;
 
 export const useTasks = (options: UseTasksParams = {}) => {
-  const { platformId } = usePlatform();
+  const { platformId } = useParams();
   const { data: organization } = useOrganization();
 
   return useQuery({

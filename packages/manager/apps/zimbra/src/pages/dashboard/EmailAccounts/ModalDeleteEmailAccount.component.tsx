@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   ODS_MESSAGE_COLOR,
@@ -16,7 +16,7 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { useAccount, useGenerateUrl, usePlatform } from '@/hooks';
+import { useAccount, useGenerateUrl } from '@/hooks';
 import Modal from '@/components/Modals/Modal';
 import { deleteZimbraPlatformAccount } from '@/api/account';
 import queryClient from '@/queryClient';
@@ -25,18 +25,16 @@ import { getZimbraPlatformListQueryKey } from '@/api/platform';
 
 export default function ModalDeleteEmailAccount() {
   const { trackClick, trackPage } = useOvhTracking();
-  const [searchParams] = useSearchParams();
-  const deleteEmailAccountId = searchParams.get('deleteEmailAccountId');
+  const { platformId, accountId } = useParams();
   const { t } = useTranslation(['accounts', 'common']);
-  const { platformId } = usePlatform();
   const { addError, addSuccess } = useNotifications();
   const navigate = useNavigate();
 
-  const goBackUrl = useGenerateUrl('..', 'path');
+  const goBackUrl = useGenerateUrl('../..', 'path');
   const onClose = () => navigate(goBackUrl);
 
   const [step, setStep] = useState(1);
-  const { data, isLoading } = useAccount({ accountId: deleteEmailAccountId });
+  const { data, isLoading } = useAccount({ accountId });
 
   const { mutate: deleteEmailAccount, isPending: isSending } = useMutation({
     mutationFn: (emailAccountId: string) => {
@@ -84,7 +82,7 @@ export default function ModalDeleteEmailAccount() {
       actionType: 'action',
       actions: [DELETE_EMAIL_ACCOUNT, CONFIRM],
     });
-    deleteEmailAccount(deleteEmailAccountId);
+    deleteEmailAccount(accountId);
   };
 
   const handleCancelClick = () => {
