@@ -24,6 +24,10 @@ export default [
     ...lazyRouteConfig(() => import('@/pages/Root.layout')),
     children: [
       {
+        path: '',
+        ...lazyRouteConfig(() => import('@/pages/Root.page')),
+      },
+      {
         path: 'auth',
         id: 'auth',
         ...lazyRouteConfig(() => import('@/pages/auth/Auth.page')),
