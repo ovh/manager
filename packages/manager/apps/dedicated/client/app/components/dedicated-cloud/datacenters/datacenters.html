@@ -76,7 +76,7 @@
         <oui-datagrid-column
             data-title=":: 'dedicatedCloud_datacenters_number_vm' | translate"
         >
-            <oui-skeleton data-ng-if="$row.vm.loading" size="s"></oui-skeleton>
+            <oui-skeleton data-ng-if="$row.vm.loading" size="xs"></oui-skeleton>
             <span
                 data-ng-if="!$row.vm.loading && !$row.vm.error"
                 data-ng-bind="$row.vm.value"
@@ -89,11 +89,29 @@
         </oui-datagrid-column>
 
         <oui-datagrid-column
+            data-title=":: 'dedicatedCloud_datacenters_number_vm_windows' | translate"
+        >
+            <oui-skeleton
+                data-ng-if="$row.windows.loading"
+                size="xs"
+            ></oui-skeleton>
+            <span
+                data-ng-if="!$row.windows.loading && !$row.windows.error"
+                data-ng-bind="$row.windows.value"
+            ></span>
+            <span
+                class="oui-badge oui-badge_error"
+                data-ng-if="$row.windows.error"
+                data-translate="dedicatedCloud_datacenters_error"
+            ></span>
+        </oui-datagrid-column>
+
+        <oui-datagrid-column
             data-title=":: 'dedicatedCloud_datacenters_number_vm_licensed' | translate"
         >
             <oui-skeleton
                 data-ng-if="$row.licensed.loading"
-                size="s"
+                size="xs"
             ></oui-skeleton>
             <span
                 data-ng-if="!$row.licensed.loading && !$row.licensed.error"

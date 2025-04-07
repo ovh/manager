@@ -31,6 +31,32 @@ export default class {
     return this.addDatacenter();
   }
 
+  loadWindowsVmCount(row) {
+    return this.DedicatedCloud.getDatacenterInfoVm(
+      this.dedicatedCloud.serviceName,
+      row.id,
+      {
+        filters: [
+          {
+            field: 'guestOsFamily',
+            comparator: 'startsWith',
+            reference: ['windows'],
+          },
+        ],
+      },
+    )
+      .then((res) => ({
+        windows: {
+          loading: false,
+          error: false,
+          value: res?.meta?.totalCount || 0,
+        },
+      }))
+      .catch(() => ({
+        windows: { loading: false, error: true, value: null },
+      }));
+  }
+
   loadVmCount(row) {
     return this.DedicatedCloud.getDatacenterInfoVm(
       this.dedicatedCloud.serviceName,
@@ -40,7 +66,7 @@ export default class {
         vm: {
           loading: false,
           error: false,
-          value: res?.data?.length || 0,
+          value: res?.meta?.totalCount || 0,
         },
       }))
       .catch(() => ({
@@ -57,7 +83,7 @@ export default class {
         licensed: {
           loading: false,
           error: false,
-          value: res?.data?.length || 0,
+          value: res?.meta?.totalCount || 0,
         },
       }))
       .catch(() => ({
@@ -88,9 +114,11 @@ export default class {
           Object.assign(row, {
             vm: { loading: true },
             licensed: { loading: true },
+            windows: { loading: true },
           });
           this.loadVmCount(row).then((res) => Object.assign(row, res));
           this.loadLicensedVmCount(row).then((res) => Object.assign(row, res));
+          this.loadWindowsVmCount(row).then((res) => Object.assign(row, res));
         });
 
         return {
