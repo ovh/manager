@@ -36,7 +36,7 @@ export const SuggestionModalConfiguration: ModalToDisplayConfiguration = {
     excludedUrls: [
       {
         appName: (environment: Environment) =>
-          environment.getApplicationURL('new-billing')
+          environment.getApplicationURL('new-account')
             ? 'new-account'
             : 'dedicated',
         appPath: '#/useraccount/infos',

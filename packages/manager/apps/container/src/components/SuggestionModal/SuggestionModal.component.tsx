@@ -18,14 +18,15 @@ import { isSuggestionRelevant } from '@/components/SuggestionModal/SuggestionMod
 const SuggestionModal = (): JSX.Element => {
   const { t } = useTranslation('suggestion-modal');
   const { shell } = useApplication();
-  const user = shell
-    .getPlugin('environment')
-    .getEnvironment()
-    .getUser();
+  const environment = shell.getPlugin('environment').getEnvironment();
+  const user = environment.getUser();
   const ux = shell.getPlugin('ux');
+  const appName = environment.getApplicationURL('new-account')
+    ? 'new-account'
+    : 'dedicated';
   const accountEditionLink = shell
     .getPlugin('navigation')
-    .getURL('dedicated', '#/useraccount/infos');
+    .getURL(appName, '#/useraccount/infos');
 
   const [showModal, setShowModal] = useState(true);
   const { data: suggestions } = useModals();
