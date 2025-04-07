@@ -1,12 +1,12 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { OsdsClipboard } from '@ovhcloud/ods-components/react';
 import {
   DatagridColumn,
   Datagrid,
   useDataGrid,
   DataGridTextCell,
   ColumnSort,
+  Clipboard,
 } from '@ovh-ux/manager-react-components';
 import { useVrackService, Subnet } from '@ovh-ux/manager-network-common';
 import { SubnetsActionCell } from './SubnetsActionCell.component';
@@ -52,11 +52,7 @@ export const SubnetDatagrid: React.FC = () => {
     {
       id: 'cidr',
       label: t('subnetDatagridCidrLabel'),
-      cell: ({ cidr }) => (
-        <OsdsClipboard value={cidr} inline>
-          <span slot="success-message">{t('copiedSuccessMessage')}</span>
-        </OsdsClipboard>
-      ),
+      cell: ({ cidr }) => <Clipboard value={cidr} />,
     },
     {
       id: 'serviceRange',

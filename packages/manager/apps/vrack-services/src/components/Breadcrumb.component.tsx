@@ -1,6 +1,9 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
+import {
+  OdsBreadcrumb,
+  OdsBreadcrumbItem,
+} from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { urls } from '@/routes/routes.constants';
 
@@ -18,9 +21,8 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
   const navigate = useNavigate();
 
   return (
-    <OsdsBreadcrumb
-      className="mb-4"
-      items={[
+    <OdsBreadcrumb className="mb-4">
+      {[
         {
           label: t('listingCrumb'),
           onClick: () => navigate(urls.listing),
@@ -30,7 +32,11 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
           onClick: () => navigate(overviewUrl || `/${id}`),
         },
         ...items,
-      ].filter(Boolean)}
-    />
+      ]
+        .filter(Boolean)
+        .map((item: { label: string; href?: string; onClick?: () => void }) => (
+          <OdsBreadcrumbItem key={item.label} href={item.href} {...item} />
+        ))}
+    </OdsBreadcrumb>
   );
 };

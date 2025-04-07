@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
-import { getVrackList, getVrackListQueryKey } from '../index';
+import { getVrackList, getVrackListQueryKey } from '../api';
 
 export const useVrackList = () => {
   const { data: vrackListResponse, isLoading, isError, error } = useQuery<

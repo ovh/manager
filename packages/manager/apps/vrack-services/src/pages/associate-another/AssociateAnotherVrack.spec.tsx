@@ -1,11 +1,5 @@
 import { describe, it } from 'vitest';
-import '@testing-library/jest-dom';
-import {
-  assertModalText,
-  assertModalVisibility,
-  getButtonByLabel,
-} from '@ovh-ux/manager-core-test-utils';
-import { waitFor, fireEvent } from '@testing-library/react';
+import { waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import {
@@ -13,12 +7,15 @@ import {
   vrackListMocks,
 } from '@ovh-ux/manager-network-common';
 import {
-  assertModalTitle,
-  changeOdsSelectValueByTestId,
+  assertModalText,
+  assertModalVisibility,
+  getButtonByLabel,
+  changeOdsSelectValueByName,
   getButtonByIcon,
   labels,
   renderTest,
-} from '../../test-utils';
+  assertEnabled,
+} from '@/test-utils';
 import { urls } from '@/routes/routes.constants';
 
 describe('Vrack Services associate another vrack test suite', () => {
@@ -30,22 +27,22 @@ describe('Vrack Services associate another vrack test suite', () => {
 
     const actionMenuButton = await getButtonByIcon({
       container,
-      iconName: ODS_ICON_NAME.ELLIPSIS,
+      value: ODS_ICON_NAME.ellipsisVertical,
     });
 
-    await waitFor(() => fireEvent.click(actionMenuButton));
+    await waitFor(() => userEvent.click(actionMenuButton));
 
     const associateAnotherLink = await getButtonByLabel({
       container,
-      label: labels.common.vrackActionAssociateToAnother,
+      value: labels.common.vrackActionAssociateToAnother,
     });
 
-    await waitFor(() => fireEvent.click(associateAnotherLink));
+    await waitFor(() => userEvent.click(associateAnotherLink));
 
     await assertModalVisibility({ container, isVisible: true });
-    await assertModalTitle({
+    await assertModalText({
       container,
-      title: labels.associate.modalAssociateAnotherVrackTitle,
+      text: labels.associate.modalAssociateAnotherVrackTitle,
     });
 
     await assertModalText({
@@ -56,16 +53,17 @@ describe('Vrack Services associate another vrack test suite', () => {
       container,
       text: vrackServicesListMocks[5].currentState.vrackId,
     });
-    await changeOdsSelectValueByTestId({
-      testId: 'select-another-vrack',
+    await changeOdsSelectValueByName({
+      container,
+      name: 'select-another-vrack',
       value: vrackListMocks[1],
     });
 
     const associateButton = await getButtonByLabel({
       container,
-      label: labels.associate.modalConfirmVrackAssociationButtonLabel,
+      value: labels.associate.modalConfirmVrackAssociationButtonLabel,
     });
-
+    await assertEnabled(associateButton);
     await waitFor(() => userEvent.click(associateButton));
 
     await assertModalVisibility({ container, isVisible: false });
@@ -84,7 +82,7 @@ describe('Vrack Services associate another vrack test suite', () => {
     await assertModalVisibility({ container, isVisible: true });
     await assertModalText({
       container,
-      text: 'modalVrackCreationDescriptionLine1',
+      text: labels.createVrack.modalVrackCreationDescriptionLine1,
     });
   });
 

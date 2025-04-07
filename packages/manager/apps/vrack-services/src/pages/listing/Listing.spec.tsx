@@ -1,18 +1,17 @@
 import { describe, it } from 'vitest';
-import '@testing-library/jest-dom';
+import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
+import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import userEvent from '@testing-library/user-event';
+import { waitFor } from '@testing-library/react';
 import {
-  assertTextVisibility,
   getButtonByLabel,
-} from '@ovh-ux/manager-core-test-utils';
-import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import { fireEvent, waitFor } from '@testing-library/react';
-import {
-  assertModalTitle,
+  assertModalText,
   getButtonByIcon,
-  getButtonByVariant,
   labels,
   renderTest,
-} from '../../test-utils';
+  assertDisabled,
+  assertEnabled,
+} from '@/test-utils';
 
 describe('Vrack Services listing test suite', () => {
   it('should redirect to the onboarding page when the VRS list is empty', async () => {
@@ -24,79 +23,82 @@ describe('Vrack Services listing test suite', () => {
   it('should show list of vrack services', async () => {
     const { container } = await renderTest({ nbVs: 7 });
 
-    await assertTextVisibility(labels.listing.createVrackServicesButtonLabel);
+    await getButtonByLabel({
+      container,
+      value: labels.listing.createVrackServicesButtonLabel,
+    });
 
     const actionMenuDisabled = await getButtonByIcon({
       container,
-      iconName: ODS_ICON_NAME.ELLIPSIS,
+      value: ODS_ICON_NAME.ellipsisVertical,
       nth: 6,
     });
+    await waitFor(() => userEvent.click(actionMenuDisabled));
 
-    await waitFor(() => fireEvent.click(actionMenuDisabled));
+    const editButton = await getButtonByLabel({
+      container,
+      value: labels.common['action-editDisplayName'],
+      nth: 6,
+    });
+    await assertDisabled(editButton);
 
-    await getButtonByLabel({
+    let deleteButton = await getButtonByLabel({
       container,
-      label: labels.common['action-editDisplayName'],
+      value: labels.common['action-deleteVrackServices'],
       nth: 6,
-      disabled: true,
     });
-    await getButtonByLabel({
+    await assertDisabled(deleteButton);
+
+    let goDetailsButton = await getButtonByLabel({
       container,
-      label: labels.common['action-deleteVrackServices'],
+      value: labels.common['action-goDetails'],
       nth: 6,
-      disabled: true,
     });
-    await getButtonByLabel({
-      container,
-      label: labels.common['action-goDetails'],
-      nth: 6,
-      disabled: false,
-    });
+    expect(goDetailsButton).toBeEnabled();
 
     const actionMenuActive = await getButtonByIcon({
       container,
-      iconName: ODS_ICON_NAME.ELLIPSIS,
+      value: ODS_ICON_NAME.ellipsisVertical,
       nth: 1,
     });
+    await waitFor(() => userEvent.click(actionMenuActive));
 
-    await waitFor(() => fireEvent.click(actionMenuActive));
+    deleteButton = await getButtonByLabel({
+      container,
+      value: labels.common['action-deleteVrackServices'],
+      nth: 1,
+    });
+    await assertEnabled(deleteButton);
+
+    goDetailsButton = await getButtonByLabel({
+      container,
+      value: labels.common['action-goDetails'],
+      nth: 1,
+    });
+    expect(goDetailsButton).toBeEnabled();
 
     const editDisplayNameModalButton = await getButtonByLabel({
       container,
-      label: labels.common['action-editDisplayName'],
+      value: labels.common['action-editDisplayName'],
       nth: 1,
-      disabled: false,
     });
-    await getButtonByLabel({
-      container,
-      label: labels.common['action-deleteVrackServices'],
-      nth: 1,
-      disabled: false,
-    });
-    const goToDEtailButton = await getButtonByLabel({
-      container,
-      label: labels.common['action-goDetails'],
-      nth: 1,
-      disabled: false,
-    });
+    await assertEnabled(editDisplayNameModalButton);
+    await waitFor(() => userEvent.click(editDisplayNameModalButton));
 
-    await waitFor(() => fireEvent.click(editDisplayNameModalButton));
-
-    await assertModalTitle({
+    await assertModalText({
       container,
-      title: labels.common.modalUpdateVrackServicesHeadline.replace(
+      text: labels.common.modalUpdateVrackServicesHeadline.replace(
         '{{id}}',
         'vrs-ahz-9t0-7lb-b5r',
       ),
     });
 
-    const closeDisplayNameModal = await getButtonByVariant({
+    const closeDisplayNameModal = await getButtonByLabel({
       container,
-      variant: ODS_BUTTON_VARIANT.ghost,
+      value: labels.actions.cancel,
     });
-    await waitFor(() => fireEvent.click(closeDisplayNameModal));
-
-    await waitFor(() => fireEvent.click(goToDEtailButton));
+    await waitFor(() => userEvent.click(closeDisplayNameModal));
+    await waitFor(() => userEvent.click(goDetailsButton));
 
     await assertTextVisibility(labels.dashboard.dashboardPageDescription);
   });
