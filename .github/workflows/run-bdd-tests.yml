@@ -40,8 +40,8 @@ jobs:
         continue-on-error: true
       - name: Upload coverage to SonarCloud
         uses: sonarsource/sonarcloud-github-action@v1
-        with:
-          sonar-token: ${{ secrets.SONAR_TOKEN }}
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       - name: Run tests on changed packages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
