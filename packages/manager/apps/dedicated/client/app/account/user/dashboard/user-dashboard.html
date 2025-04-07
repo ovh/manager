@@ -1,0 +1,125 @@
+<div class="module-useraccount-sections-dashboard">
+    <div data-ovh-alert="useraccount.alerts.dashboard"></div>
+    <div class="row pt-4">
+        <div class="col-md-4 mb-4">
+            <oui-tile
+                data-heading="{{:: 'user_account_dashboard_profile' | translate }}"
+            >
+                <div class="oui-tile__item border-0 flex-column">
+                    <div class="oui-tile__definition d-flex min-w-0">
+                        <span class="oui-icon mr-3 oui-icon-user"></span>
+                        <div class="word-break min-w-0">
+                            <div
+                                data-ng-if=":: $ctrl.user.auth.method !== $ctrl.authMethodProvider"
+                                class="mb-4"
+                            >
+                                <strong
+                                    data-ng-bind=":: $ctrl.user.firstname + ' ' + $ctrl.user.name"
+                                ></strong>
+                                <p data-ng-bind="::$ctrl.user.email"></p>
+                            </div>
+                            <div
+                                data-ng-if=":: $ctrl.user.auth.method === $ctrl.authMethodProvider"
+                                class="mb-4"
+                            >
+                                <strong
+                                    data-ng-bind=":: $ctrl.user.organisation"
+                                ></strong>
+                                <p data-ng-bind="::$ctrl.user.auth.user"></p>
+                            </div>
+                            <dl>
+                                <dt
+                                    data-translate="user_account_dashboard_nichandle"
+                                ></dt>
+                                <dd data-ng-bind="$ctrl.user.nichandle"></dd>
+                                <dt
+                                    data-translate="user_account_dashboard_customer_code"
+                                ></dt>
+                                <dd data-ng-bind="$ctrl.user.customerCode"></dd>
+                            </dl>
+                            <address>
+                                <span
+                                    data-ng-bind=":: $ctrl.user.address"
+                                ></span
+                                ><br />
+                                <span
+                                    data-ng-bind=":: $ctrl.user.zip + ' ' + $ctrl.user.city"
+                                ></span>
+                            </address>
+                            <p data-ng-bind="::$ctrl.user.phone"></p>
+                            <p
+                                data-ng-if="$ctrl.supportLevel.isAvailable($ctrl.user.ovhSubsidiary)"
+                            >
+                                <span
+                                    data-translate="user_account_dashboard_profile_support_level"
+                                ></span>
+                                <span
+                                    data-translate="{{:: 'user_account_support_level_section_' + $ctrl.supportLevel.level}}"
+                                ></span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="oui-tile__definition">
+                        <a
+                            class="oui-button oui-button_secondary mx-auto my-5 d-block"
+                            data-ng-href="#/useraccount/infos"
+                            data-translate="user_account_dashboard_profile_edit"
+                        >
+                        </a>
+                    </div>
+                </div>
+            </oui-tile>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <oui-tile
+                data-heading="{{:: 'user_account_dashboard_shortcut' | translate }}"
+            >
+                <oui-tile-button
+                    data-ng-repeat="shortcut in ::$ctrl.shortcuts track by $index"
+                    data-href="{{:: shortcut.href }}"
+                >
+                    <span
+                        data-translate="{{:: 'user_account_dashboard_shortcut_' + shortcut.key }}"
+                    ></span>
+                    <span
+                        class="oui-badge oui-badge_new"
+                        data-ng-if="shortcut.new === true"
+                        data-translate="user_account_dashboard_new"
+                    >
+                    </span>
+                </oui-tile-button>
+            </oui-tile>
+        </div>
+
+        <div class="col-md-4 mb-4" data-ng-if="!$ctrl.user.isEnterprise">
+            <oui-tile
+                data-heading="{{:: 'user_account_dashboard_last_bill' | translate }}"
+            >
+                <oui-tile-definition
+                    data-term="{{:: 'user_account_dashboard_last_bill_reference' | translate }}"
+                    data-description="{{:: $ctrl.lastBill.billId }}"
+                >
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{:: 'user_account_dashboard_last_bill_date' | translate }}"
+                    data-description="{{:: $ctrl.lastBill.date | date}}"
+                >
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{:: 'user_account_dashboard_last_bill_amount' | translate }}"
+                    data-description="{{:: $ctrl.lastBill.priceWithTax.text }}"
+                >
+                </oui-tile-definition>
+                <a
+                    class="oui-button oui-button_secondary mx-auto my-5 d-block"
+                    data-ng-href="{{:: $ctrl.lastBill.url }}"
+                    target="_blank"
+                    rel="noopener"
+                    data-translate="user_account_dashboard_last_bill_see"
+                >
+                </a>
+            </oui-tile>
+        </div>
+    </div>
+</div>

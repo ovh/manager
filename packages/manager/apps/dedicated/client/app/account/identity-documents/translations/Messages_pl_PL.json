@@ -1,0 +1,22 @@
+{
+  "user_account_identity_documents": "Moje dokumenty tożsamości",
+  "user_account_identity_documents_title": "Niezbędna jest weryfikacja dokumentów",
+  "user_account_identity_documents_sub_title": "Prześlij dokumenty",
+  "user_account_identity_documents_intro": "W ciągu 24 godzin* otrzymasz odpowiedź od naszego lokalnego zespołu pomocy",
+  "user_account_identity_documents_upload": "Pobierz dokumenty",
+  "user_account_identity_documents_intro_others": "Jeśli jesteś osobą fizyczną, wystarczy dowód tożsamości i potwierdzenie adresu. W takim przypadku nie jest konieczne złożenie oświadczenia ani potwierdzenia VAT.",
+  "user_account_identity_documents_selection_file_format": "Format: jpg, jpeg, pdf, png. Maksymalny rozmiar pliku dla każdego dokumentu to 10 MB.",
+  "user_account_identity_documents_selection_file_format_invalid": "Format {{values}} pobranego/pobranych dokumentów nie jest akceptowany. Zachowaj wymagany format: jpg, jpeg, pdf i png",
+  "user_account_identity_documents_submit": "Wyślij dokumenty",
+  "user_account_identity_documents_submit_success_message_title": "Dziękujemy, otrzymaliśmy wszystkie dokumenty!",
+  "user_account_identity_documents_submit_success_message_description": "Zostaną one przesłane do naszego zespołu zajmującego się walidacją. Zespół obsługi klienta odpowie w ciągu <b>24 godzin!*</b> Otrzymasz powiadomienie e-mailem o zatwierdzeniu dokumentów lub skontaktujemy się z Tobą, jeśli będziemy potrzebować więcej informacji.",
+  "user_account_identity_documents_submit_error_message_description": "Twoje dokumenty nie zostały poprawnie wysłane. Prosimy o ich ponowne załadowanie i przesłanie.",
+  "user_account_identity_documents_go_back_to_dashboard": "Wyświetl mój dashboard",
+  "user_account_identity_documents_legal_info1": "Grupa OVH S.A.S jest odpowiedzialna za przetwarzanie  Twoich danych osobowych. Dane gromadzone za pomocą tego formularza są przetwarzane w celu zapewnienia zgodności z <a href=\"{{ link1 }}\" target=\"_blank\">Wytycznymi dotyczącymi cyberbezpieczeństwa z dnia 28.04.2022</a> opublikowanymi przez CERT-IN na podstawie przepisów zawartych w podsekcji 6 <a href=\"{{ link2 }}\" target=\"_blank\">art. 70B</a> ustawy o technologii informacyjnej (IT) z 2000 r.",
+  "user_account_identity_documents_legal_info2": "Aby dowiedzieć się więcej o przetwarzaniu Twoich danych osobowych i przysługujących Ci prawach, zapoznaj się z naszą <a href=\"{{ link }}\" target=\"_blank\">Polityką ochrony danych osobowych.</a>",
+  "user_account_identity_documents_legal_info3": "Dokumenty będą przechowywane przez okres 5 lat od zakończenia umowy.",
+  "user_account_identity_documents_verification_in_progress_info": "Twoje dokumenty są obecnie przetwarzane przez nasz zespół.",
+  "user_account_identity_documents_verification_waiting_info": "Twój wniosek został przeanalizowany, ale wymaga dodatkowych dokumentów. Sprawdź Twoje zgłoszenie pomocy.",
+  "user_account_identity_documents_legal_info4": "Czas odpowiedzi w godzinach pracy: 9:00-18:00 IST (India Standard Time), od poniedziałku do piątku, z wyłączeniem dni wolnych od pracy.",
+  "user_account_identity_documents_default_intro": "Jeśli jesteś osobą prywatną, wystarczy dostarczyć potwierdzenie tożsamości i adresu. Nie musisz dostarczać dokumentu potwierdzającego status podatnika VAT  ani oświadczenia."
+}

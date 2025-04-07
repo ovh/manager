@@ -1,0 +1,57 @@
+<div data-ng-controller="UserAccount.controllers.doubleAuth.backupCode.delete">
+    <div
+        data-wizard
+        data-wizard-on-cancel="cancel"
+        data-wizard-on-finish="deleteBackupCode"
+        data-wizard-bread-crumb
+        data-wizard-title="::'user_account_security_double_auth_type_backup_code_modal_title' | translate"
+    >
+        <div data-wizard-step>
+            <div data-ovh-alert="doubleAuthAlertBackupCodeDelete"></div>
+            <form name="userAccountDeleteBackupCodeForm">
+                <div
+                    class="form-group"
+                    data-ng-class="{
+                         'has-error': userAccountDeleteBackupCodeForm.code.$touched && userAccountDeleteBackupCodeForm.code.$invalid
+                     }"
+                >
+                    <label
+                        class="control-label"
+                        for="code"
+                        data-translate="user_account_security_double_auth_type_backup_code_modal_validate_label"
+                    >
+                    </label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="code"
+                        name="code"
+                        placeholder="{{ 'user_account_security_double_auth_type_backup_code_modal_validate_placeholder' | translate }}"
+                        required
+                        data-ng-model="backupCode.code"
+                        data-ng-disabled="backupCode.isDeleting"
+                    />
+
+                    <oui-spinner
+                        data-size="s"
+                        data-ng-if="backupCode.isDeleting"
+                    >
+                    </oui-spinner>
+
+                    <span
+                        class="help-block"
+                        role="alert"
+                        data-ng-if="userAccountDeleteBackupCodeForm.code.$touched"
+                        data-ng-messages="userAccountDeleteBackupCodeForm.code.$error"
+                    >
+                        <span
+                            data-ng-message="required"
+                            data-translate="user_account_security_double_auth_type_sms_modal_add_code_error_required"
+                        >
+                        </span>
+                    </span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

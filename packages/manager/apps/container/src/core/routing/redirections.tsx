@@ -13,10 +13,12 @@ function Rewrite({ to }: { to: string }): JSX.Element {
 }
 
 export function Redirections(configuration: Record<string, Application>): JSX.Element {
+  const isNewAccountAvailable = !!configuration?.['new-account'];
   const isNewBillingAvailable = !!configuration?.['new-billing'];
 
   return (
     <>
+      {isNewAccountAvailable ? (
         <>
           <Route
             path="/useraccount/*"
@@ -39,6 +41,12 @@ export function Redirections(configuration: Record<string, Application>): JSX.El
             element={<Rewrite to="/account/documents/*" />}
           />
         </>
+      ) : (
+        <Route
+          path="/useraccount/*"
+          element={<Rewrite to="/dedicated/useraccount/*" />}
+        />
+      )}
       {isNewBillingAvailable ? (
         <Route
           path="/dedicated/billing/*"

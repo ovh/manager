@@ -1,0 +1,12 @@
+{
+  "documents_dashboard_document_ID_PL": "Una copia por ambas caras de su documento de identidad (DNI, pasaporte).",
+  "documents_dashboard_document_PROOF_OF_ADRESS_PL": "Un justificante de domicilio con una antigüedad inferior a tres meses, con su nombre y la dirección indicada en su perfil (extracto bancario, factura de servicios públicos, etc.)",
+  "documents_dashboard_document_CORPORATE_ID_PL": "Extracto del registro mercantil, del registro de transacciones o del registro fiscal de una sociedad asociada a la dirección indicada en su perfil con una antigüedad inferior a tres meses.",
+  "documents_dashboard_document_ADMINISTRATION_ID_PL": "documento de registro correspondiente a la actividad",
+  "documents_dashboard_document_ASSOCIATION_ID_PL": "Documento de registro correspondiente a la actividad.",
+  "documents_dashboard_document_individual_OTHER_PL": "Cualquier documento útil para entender su situación (domicilio, traslado, etc.).",
+  "documents_dashboard_document_corporation_OTHER_PL": "Para facilitar el proceso de validación, le rogamos que preste atención a la calidad de los documentos adjuntos (no se aceptan fotocopias en blanco y negro ni archivos procedentes de servicios externos de uso compartido).",
+  "documents_dashboard_document_association_OTHER_PL": "Para facilitar el proceso de validación, le rogamos que preste atención a la calidad de los documentos adjuntos (no se aceptan fotocopias en blanco y negro ni archivos procedentes de servicios externos de uso compartido).",
+  "documents_dashboard_document_administration_OTHER_PL": "Para facilitar el proceso de validación, le rogamos que preste atención a la calidad de los documentos adjuntos (no se aceptan fotocopias en blanco y negro ni archivos procedentes de servicios externos de uso compartido).",
+  "documents_dashboard_document_other_OTHER_PL": "Cualquier documento útil para entender su situación (domicilio, traslado, etc.)."
+}

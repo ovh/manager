@@ -1,0 +1,20 @@
+{
+  "user_account_dashboard_shortcut": "Shortcuts",
+  "user_account_dashboard_shortcut_ALL_BILLS": "My bills",
+  "user_account_dashboard_shortcut_PAYMENT_FOLLOW_UP": "Track payments",
+  "user_account_dashboard_shortcut_ADD_PAYMENT_METHOD": "Add a payment method ",
+  "user_account_dashboard_shortcut_MANAGE_SERVICES": "Manage my services ",
+  "user_account_dashboard_shortcut_ADD_CONTACT": "Add a contact",
+  "user_account_dashboard_last_bill": "Last bill",
+  "user_account_dashboard_last_bill_reference": "Reference",
+  "user_account_dashboard_last_bill_date": "Date",
+  "user_account_dashboard_last_bill_amount": "Amount",
+  "user_account_dashboard_last_bill_see": "Pay my bill",
+  "user_account_dashboard_profile": "My profile ",
+  "user_account_dashboard_profile_edit": "Edit my profile",
+  "user_account_dashboard_profile_support_level": "My level of support:",
+  "user_account_dashboard_customer_code": "Customer code",
+  "user_account_dashboard_nichandle": "NIC handle ",
+  "user_account_dashboard_shortcut_MANAGE_USERS": "Manage my users",
+  "user_account_dashboard_new": "New!"
+}

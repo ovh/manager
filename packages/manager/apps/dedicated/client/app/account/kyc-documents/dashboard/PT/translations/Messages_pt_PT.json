@@ -1,0 +1,12 @@
+{
+  "documents_dashboard_document_ID_PT": "Uma cópia frente e verso do seu documento de identificação (Passaporte, Bilhete de Identidade, Cartão de Cidadão).",
+  "documents_dashboard_document_PROOF_OF_ADRESS_PT": "Um comprovativo de domicílio com menos de 3 meses, que inclua o seu nome e endereço indicado no seu perfil.",
+  "documents_dashboard_document_CORPORATE_ID_PT": "O NIPC (Número de Identificação de Pessoa Coletiva) ou outro documento correspondente.",
+  "documents_dashboard_document_ADMINISTRATION_ID_PT": "Documento de registo no Ministério do Trabalho, Solidariedade e Segurança Social, MTSSS.",
+  "documents_dashboard_document_ASSOCIATION_ID_PT": "O excerto da publicação no Jornal Oficial da República Portuguesa e o último relatório da assembleia ou outro documento correspondente.",
+  "documents_dashboard_document_individual_OTHER_PT": "Qualquer documento útil para compreender a sua situação atual (alojamento, mudança, etc.).",
+  "documents_dashboard_document_corporation_OTHER_PT": "Se não estiver indicado no registo da Autoridade Tributária e Aduaneira de Portugal (AT) ou nos estatutos da associação, pode anexar uma cópia do documento de identificação de uma pessoa que figure no mesmo.",
+  "documents_dashboard_document_association_OTHER_PT": "Se não constar neste documento nenhuma cópia do documento de identificação de uma pessoa que figura no NIPC da sua empresa/estatuto da associação.",
+  "documents_dashboard_document_administration_OTHER_PT": "Se não estiver indicado no registo da Autoridade Tributária e Aduaneira de Portugal (AT) ou nos estatutos da associação, pode anexar uma cópia do documento de identificação de uma pessoa que figure no mesmo.",
+  "documents_dashboard_document_other_OTHER_PT": "Qualquer documento útil para compreender a sua situação (alojamento, mudança, etc.)"
+}

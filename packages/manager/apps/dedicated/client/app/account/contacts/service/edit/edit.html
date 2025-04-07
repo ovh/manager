@@ -1,0 +1,89 @@
+<form
+    name="$ctrl.contactsEditForm"
+    novalidate
+    data-ng-submit="$ctrl.updateContacts()"
+>
+    <oui-modal
+        data-heading="{{:: 'account_contacts_service_edit' | translate }}"
+        data-primary-label="{{:: 'account_contacts_service_edit_confirm' | translate }}"
+        data-primary-disabled="$ctrl.contactsEditForm.$invalid"
+        data-secondary-action="$ctrl.goBack()"
+        data-secondary-label="{{:: 'account_contacts_service_edit_cancel' | translate }}"
+        data-loading="$ctrl.isUpdating"
+        data-on-dismiss="$ctrl.goBack()"
+    >
+        <p
+            data-translate="{{:: 'account_contacts_service_edit_description' + ($ctrl.currentUser.isTrusted ? '_trusted' : '') }}"
+            data-translate-values="{
+                service: $ctrl.service.serviceName
+            }"
+        ></p>
+        <oui-message
+            data-ng-if="$ctrl.service.hasDebt() && $ctrl.service.hasBillingRights($ctrl.currentUser.nichandle)"
+            data-type="warning"
+        >
+            <span
+                data-translate="account_contacts_service_edit_warn_debt"
+            ></span>
+            <a
+                class="oui-link"
+                data-ng-href="{{ $ctrl.billLink }}"
+                data-translate="account_contacts_service_edit_pay"
+                target="_top"
+            >
+            </a>
+        </oui-message>
+        <oui-message
+            data-ng-if="$ctrl.service.hasDebt() && $ctrl.service.hasAdminRights($ctrl.currentUser.nichandle) && !$ctrl.service.hasBillingRights($ctrl.currentUser.nichandle)"
+            data-type="warning"
+        >
+            <span
+                data-translate="account_contacts_service_edit_warn_contact_billing"
+                data-translate-values="{
+                    nicBilling: $ctrl.service.contactBilling
+                }"
+            >
+            </span>
+        </oui-message>
+        <oui-field
+            data-label="{{:: 'account_contacts_service_edit_contact_admin' | translate }}"
+        >
+            <input
+                class="oui-input"
+                type="text"
+                id="contactAdmin"
+                name="contactAdmin"
+                data-ng-model="$ctrl.editedService.contactAdmin"
+                data-ng-pattern="/^[^<>]+$/"
+                required
+            />
+        </oui-field>
+        <oui-field
+            data-label="{{:: 'account_contacts_service_edit_contact_tech' | translate }}"
+        >
+            <input
+                class="oui-input"
+                type="text"
+                id="contactTech"
+                name="contactTech"
+                data-ng-model="$ctrl.editedService.contactTech"
+                data-ng-pattern="/^[^<>]+$/"
+                required
+            />
+        </oui-field>
+        <oui-field
+            data-label="{{:: 'account_contacts_service_edit_contact_billing' | translate }}"
+        >
+            <input
+                class="oui-input"
+                type="text"
+                id="contactBilling"
+                name="contactBilling"
+                data-ng-model="$ctrl.editedService.contactBilling"
+                data-ng-disabled="$ctrl.service.hasDebt()"
+                data-ng-pattern="/^[^<>]+$/"
+                required
+            />
+        </oui-field>
+    </oui-modal>
+</form>
