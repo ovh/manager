@@ -25,5 +25,8 @@
   "terminated_service": "O serviço foi rescindido.",
   "gigabyte": "GB",
   "terabyte": "TB",
-  "space_summary": "{{usedSpaceInGB}} GB ({{percent}}% de {{quotaInTB}} TB)"
+  "space_summary": "{{usedSpaceInGB}} GB ({{percent}}% de {{quotaInTB}} TB)",
+  "storage_primary": "Primário",
+  "storage_secondary": "Secundário",
+  "error_api": "Erro"
 }

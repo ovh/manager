@@ -25,5 +25,8 @@
   "terminated_service": "Il servizio è stato disattivato.",
   "gigabyte": "GB",
   "terabyte": "TB",
-  "space_summary": "{{usedSpaceInGB}} GB ({{percent}}% di {{quotaInTB}} TB)"
+  "space_summary": "{{usedSpaceInGB}} GB ({{percent}}% di {{quotaInTB}} TB)",
+  "storage_primary": "Primario",
+  "storage_secondary": "Secondario",
+  "error_api": "Errore"
 }
