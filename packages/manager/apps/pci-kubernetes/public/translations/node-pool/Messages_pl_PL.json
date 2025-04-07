@@ -31,5 +31,7 @@
   "kube_common_node_pool_model": "Model",
   "kube_common_node_pool_liste": "Lista pul węzłów",
   "kube_common_add_node_pool": "Dodaj pulę węzłów",
-  "kube_common_min_max_nodes": "Min {{minNodes}}, Maksymalnie {{maxNodes}}"
+  "kube_common_min_max_nodes": "Min {{minNodes}}, Maksymalnie {{maxNodes}}",
+  "kube_common_estimation_price": "Bezpłatnie w fazie beta.",
+  "kube_common_cluster_estimation_price": "Klaster: {{estimation}}"
 }
