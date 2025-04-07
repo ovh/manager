@@ -39,9 +39,6 @@ jobs:
           pwd
           ls -arlt
         continue-on-error: true
-      - name: Upload coverage to SonarCloud
-        uses: github/sonarqube-scan-action
-        continue-on-error: true
       - name: Publish coverage to SonarCloud
         run: |
           ls -arlt
