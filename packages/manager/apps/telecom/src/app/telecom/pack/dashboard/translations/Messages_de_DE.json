@@ -79,6 +79,6 @@
   "pack_xdsl_information_links_travaux": "Maßnahmen",
   "pack_xdsl_information_links_guides": "Anleitungen",
   "pack_xdsl_line_order_headset": "Headset bestellen",
-  "pack_xdsl_followUp_label": "Bestell-Status verfolgen",
-  "pack_xdsl_followUp_label_step_name_detail": "Ablaufverfolgung anzeigen"
+  "pack_xdsl_followUp_label": "Bestellungsnachverfolgung",
+  "pack_xdsl_followUp_label_step_name_detail": "Verfolgung anzeigen"
 }

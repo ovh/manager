@@ -30,5 +30,5 @@
   "deleteServiceIntegrationDescription": "Si elimina este servicio, también se eliminará la siguiente asociación de integración:",
   "deleteServiceIntegrationsDescription": "Si elimina este servicio, también se eliminarán las siguientes asociaciones de integración:",
   "deleteServiceConfirmation": "Introduzca «TERMINATE» para confirmar esta acción.",
-  "IndexPatternsTab": "Índices patterns"
+  "IndexPatternsTab": "Índices de patterns"
 }
