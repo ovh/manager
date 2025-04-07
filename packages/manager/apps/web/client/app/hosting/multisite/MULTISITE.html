@@ -16,7 +16,7 @@
 
         <div data-ng-if="!loading.init && hasResult">
             <div class="mb-3">
-                <oui-dropdown>
+                <oui-dropdown data-ng-if="!isMultipleSSL(hosting)">
                     <oui-dropdown-trigger
                         data-text="{{:: 'hosting_multisite_actions' | translate }}"
                     >
@@ -57,6 +57,13 @@
                         </oui-dropdown-item>
                     </oui-dropdown-content>
                 </oui-dropdown>
+                <button
+                    type="button"
+                    class="btn btn-default"
+                    data-translate="hosting_tab_DOMAINS_configuration_attachDomain_title_button"
+                    data-ng-click="setAction('multisite/add/hosting-multisite-add', {domains: domains})"
+                    data-ng-if="isMultipleSSL(hosting)"
+                ></button>
                 <form
                     class="form-inline float-right"
                     name="hostingMultisiteSearchForm"
@@ -107,6 +114,28 @@
                     </div>
                 </form>
             </div>
+            <div
+                class="alert alert-info"
+                role="alert"
+                data-ng-if="isMultipleSSL(hosting)"
+            >
+                <p data-translate="hosting_multisite_ssl_message"></p>
+                <span>
+                    <a
+                        data-ng-href="{{:: manageSslLink}}"
+                        title="{{hosting_multisite_manage_ssl}}"
+                        rel="noopener"
+                    >
+                        <span
+                            data-translate="hosting_multisite_manage_ssl"
+                        ></span>
+                        <span
+                            class="fa fa-arrow-right"
+                            aria-hidden="true"
+                        ></span>
+                    </a>
+                </span>
+            </div>
 
             <div class="table-responsive">
                 <table class="table table-hover multisite">
@@ -156,6 +185,7 @@
                                 class="text-center"
                                 scope="col"
                                 data-translate="hosting_tab_DOMAINS_table_header_ssl"
+                                data-ng-if="!isMultipleSSL(hosting)"
                             ></th>
                             <th scope="col" class="min-width text-right">
                                 <button
@@ -288,7 +318,10 @@
                                         }"
                                 ></span>
                             </td>
-                            <td class="text-center">
+                            <td
+                                class="text-center"
+                                data-ng-if="!isMultipleSSL(hosting)"
+                            >
                                 <span
                                     class="oui-badge"
                                     data-ng-bind="(('hosting_tab_DOMAINS_table_ssl_state_' + domain.ssl | translate) == 'hosting_tab_DOMAINS_table_ssl_state_' + domain.ssl)? domain.ssl: ('hosting_tab_DOMAINS_table_ssl_state_' + domain.ssl | translate)"

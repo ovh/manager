@@ -3,7 +3,7 @@ import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import NotFound from '@/pages/404';
 import { urls } from '@/routes/routes.constants';
-import { ONBOARDING, WEBSITES } from '@/tracking.constants';
+import { ONBOARDING, SSL, WEBSITES } from '@/tracking.constants';
 
 const lazyRouteConfig = (importFn: CallableFunction) => {
   return {
@@ -39,6 +39,20 @@ export default [
           },
           breadcrumb: {
             label: 'websites',
+          },
+        },
+      },
+      {
+        id: SSL,
+        path: urls.ssl,
+        ...lazyRouteConfig(() => import('@/pages/ssl/Ssl.page')),
+        handle: {
+          tracking: {
+            pageName: SSL,
+            pageType: PageType.listing,
+          },
+          breadcrumb: {
+            label: 'ssl',
           },
         },
       },

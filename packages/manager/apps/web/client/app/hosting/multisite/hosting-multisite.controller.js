@@ -52,6 +52,7 @@ angular
       hostingSSLCertificateType,
       Alerter,
       ChartFactory,
+      coreURLBuilder,
     ) => {
       atInternet.trackPage({ name: 'web::hosting::multisites' });
 
@@ -90,6 +91,12 @@ angular
         ),
         value: period,
       }));
+
+      $scope.manageSslLink = coreURLBuilder.buildURL(
+        'web',
+        '#/hosting/:serviceName/ssl',
+        { serviceName: $stateParams.productId },
+      );
 
       HostingDomain.getZones()
         .then((zones) => {
@@ -200,6 +207,10 @@ angular
                   `${hosting.primaryLogin}.${hosting.cluster}.${suffix}`,
               )
               .some((mainDomain) => mainDomain === domain.name);
+      };
+
+      $scope.isMultipleSSL = function isMultipleSSL(hosting) {
+        return hosting.multipleSSL;
       };
 
       $scope.isUpdateDomainDisabled = function isUpdateDomainDisabled(

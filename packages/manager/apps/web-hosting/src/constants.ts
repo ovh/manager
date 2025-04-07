@@ -1,0 +1,36 @@
+export const DOMAIN_ORDER_OPTIONS_SERVICE = {
+  CZ:
+    "https://www.ovh.cz/order/domain/#/legacy/domain/hosting/choose?options=~(~(flow~'hosting_existing_service~serviceName~'{serviceName}))&fqdn={domainName}",
+  DE:
+    "https://www.ovh.de/order/domain/#/legacy/domain/hosting/choose?options=~(~(flow~'hosting_existing_service~serviceName~'{serviceName}))&fqdn={domainName}",
+  EN:
+    "https://www.ovh.co.uk/order/domain/#/legacy/domain/hosting/choose?options=~(~(flow~'hosting_existing_service~serviceName~'{serviceName}))&fqdn={domainName}",
+  ES:
+    "https://www.ovh.es/order/domain/#/legacy/domain/hosting/choose?options=~(~(flow~'hosting_existing_service~serviceName~'{serviceName}))&fqdn={domainName}",
+  FI:
+    "https://www.ovh-hosting.fi/order/domain/#/legacy/domain/hosting/choose?options=~(~(flow~'hosting_existing_service~serviceName~'{serviceName}))&fqdn={domainName}",
+  FR:
+    "https://www.ovh.com/fr/order/domain/#/legacy/domain/hosting/choose?options=~(~(flow~'hosting_existing_service~serviceName~'{serviceName}))&fqdn={domainName}",
+  GB:
+    "https://www.ovh.co.uk/order/domain/#/legacy/domain/hosting/choose?options=~(~(flow~'hosting_existing_service~serviceName~'{serviceName}))&fqdn={domainName}",
+  IE:
+    "https://www.ovh.ie/order/domain/#/legacy/domain/hosting/choose?options=~(~(flow~'hosting_existing_service~serviceName~'{serviceName}))&fqdn={domainName}",
+  IT:
+    "https://www.ovh.it/order/domain/#/legacy/domain/hosting/choose?options=~(~(flow~'hosting_existing_service~serviceName~'{serviceName}))&fqdn={domainName}",
+  LT:
+    "https://www.ovh.lt/order/domain/#/legacy/domain/hosting/choose?options=~(~(flow~'hosting_existing_service~serviceName~'{serviceName}))&fqdn={domainName}",
+  MA:
+    "https://www.ovh.com/ma/order/domain/#/legacy/domain/hosting/choose?options=~(~(flow~'hosting_existing_service~serviceName~'{serviceName}))&fqdn={domainName}",
+  NL:
+    "https://www.ovh.nl/order/domain/#/legacy/domain/hosting/choose?options=~(~(flow~'hosting_existing_service~serviceName~'{serviceName}))&fqdn={domainName}",
+  PL:
+    "https://www.ovh.pl/order/domain/#/legacy/domain/hosting/choose?options=~(~(flow~'hosting_existing_service~serviceName~'{serviceName}))&fqdn={domainName}",
+  PT:
+    "https://www.ovh.pt/order/domain/#/legacy/domain/hosting/choose?options=~(~(flow~'hosting_existing_service~serviceName~'{serviceName}))&fqdn={domainName}",
+  RU:
+    "https://www.ovh.ie/order/domain/#/legacy/domain/hosting/choose?options=~(~(flow~'hosting_existing_service~serviceName~'{serviceName}))&fqdn={domainName}",
+  SN:
+    "https://www.ovh.sn/order/domain/#/legacy/domain/hosting/choose?options=~(~(flow~'hosting_existing_service~serviceName~'{serviceName}))&fqdn={domainName}",
+  TN:
+    "https://www.ovh.com/tn/order/domain/#/legacy/domain/hosting/choose?options=~(~(flow~'hosting_existing_service~serviceName~'{serviceName}))&fqdn={domainName}",
+};
