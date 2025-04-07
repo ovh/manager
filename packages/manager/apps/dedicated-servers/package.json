@@ -12,7 +12,7 @@
   "author": "OVH SAS",
   "scripts": {
     "build": "tsc && vite build",
-    "coverage": "vitest run --coverage",
+    "test:coverage": "vitest run --coverage",
     "dev": "tsc && vite",
     "start": "lerna exec --stream --scope='@ovh-ux/manager-dedicated-servers-app' --include-dependencies -- npm run build --if-present",
     "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-dedicated-servers-app' --include-dependencies -- npm run dev --if-present",
@@ -20,6 +20,7 @@
     "test": "vitest run"
   },
   "dependencies": {
+    "@ovh-ux/logs-to-customer": "^1.1.1",
     "@tanstack/react-query": "^5.51.21",
     "@ovh-ux/manager-config": "^8.1.0",
     "@ovh-ux/manager-core-api": "^0.10.1",
@@ -30,8 +31,6 @@
     "@ovhcloud/ods-components": "^18.5.3",
     "@ovhcloud/ods-themes": "^18.5.3",
     "@ovh-ux/manager-react-components": "^2.2.0",
-    "axios": "^1.1.2",
-    "clsx": "^1.2.1",
     "i18next": "^23.8.2",
     "i18next-http-backend": "^2.4.2",
     "react": "^18.2.0",
@@ -49,7 +48,7 @@
     "@vitejs/plugin-react": "^4.2.1",
     "@vitest/coverage-v8": "^2.1.9",
     "typescript": "^5.1.6",
-    "vite": "^5.3.3",
+    "vite": "^6.0.7",
     "vitest": "^2.1.9"
   },
   "regions": [

@@ -178,20 +178,6 @@ export default function WebSidebar() {
       });
     }
 
-    if (features['dedicated-servers'] ) {
-      menu.push({
-        id: 'dedicated-servers',
-        label: t('sidebar_dedicated-servers'),
-        icon: getIcon('ovh-font ovh-font-mail'),
-        routeMatcher: new RegExp('^/dedicated-servers'),
-        href: navigation.getURL(
-          'dedicated-servers',
-          '#/',
-        ),
-      });
-    }
-
-
     if (features['email-pro']) {
       menu.push({
         id: 'emailPros',
