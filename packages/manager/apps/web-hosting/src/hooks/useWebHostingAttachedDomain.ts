@@ -3,7 +3,7 @@ import {
   useInfiniteQuery,
   UseInfiniteQueryResult,
 } from '@tanstack/react-query';
-import { useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import {
   getWebHostingAttachedDomain,
   getWebHostingAttachedDomainQueryKey,
@@ -21,14 +21,16 @@ export const useWebHostingAttachedDomain = (
   props: UseWebsitesListParams = {},
 ) => {
   const { shouldFetchAll, ...options } = props;
+  const [allPages, setAllPages] = useState(!!shouldFetchAll);
+
   const query = useInfiniteQuery({
     ...options,
     initialPageParam: null,
-    queryKey: getWebHostingAttachedDomainQueryKey(shouldFetchAll),
+    queryKey: getWebHostingAttachedDomainQueryKey(allPages),
     queryFn: ({ pageParam }) =>
       getWebHostingAttachedDomain({
         pageParam: pageParam as string,
-        ...(shouldFetchAll ? { pageSize: 9999 } : {}),
+        ...(allPages ? { pageSize: 500 } : {}),
       }),
     enabled: (q) =>
       typeof options.enabled === 'function'
@@ -41,10 +43,24 @@ export const useWebHostingAttachedDomain = (
         (page: UseInfiniteQueryResult<WebsiteType[]>) => page.data,
       ),
   });
+
+  const fetchAllPages = useCallback(() => {
+    if (!allPages) {
+      setAllPages(true);
+    }
+  }, [allPages, setAllPages]);
   useEffect(() => {
-    if (shouldFetchAll && query.hasNextPage) {
+    if (allPages && query.hasNextPage && !query.isFetchingNextPage) {
       query.fetchNextPage();
     }
   }, [query.data]);
-  return query;
+  useEffect(() => {
+    if (!shouldFetchAll) {
+      setAllPages(false);
+    }
+  }, []);
+
+  return Object.assign(query, {
+    fetchAllPages,
+  });
 };
