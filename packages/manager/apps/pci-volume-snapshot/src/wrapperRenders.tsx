@@ -13,6 +13,7 @@ export const shellContext = {
   },
   shell: {
     navigation: {
+      navigateTo: vi.fn(),
       getURL: vi.fn(),
     },
   },

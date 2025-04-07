@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, fireEvent, act } from '@testing-library/react';
+import { render, fireEvent, act, waitFor } from '@testing-library/react';
 import { useNavigate } from 'react-router-dom';
+import React from 'react';
 import {
   TRegion,
   TRegionQuota,
@@ -13,6 +14,7 @@ import CreateVolumePage from '@/pages/create-volume/CreateVolume.page';
 import { useVolumeSnapshot } from '@/api/hooks/useSnapshots';
 import { TCreateVolumeArguments } from '@/api/hooks/useVolume';
 import { TNewVolumeData } from '@/api/data/volume';
+import { createWrapper, shellContext } from '@/wrapperRenders';
 
 const MOCK_REGION: TRegion = {
   name: 'AF-NORTH-LZ-RBA-A',
@@ -109,28 +111,10 @@ const MOCK_SNAPSHOT: TVolumeSnapshot = {
 vi.mock('@/api/hooks/useCatalog', () => ({
   useVolumeCatalog: vi.fn(() => ({ data: MOCK_CATALOG })),
 }));
+
 vi.mock('@/api/hooks/useQuota', () => ({
   useRegionsQuota: vi.fn(() => ({ data: MOCK_QUOTA })),
 }));
-
-vi.mock('@ovh-ux/manager-react-components', async () => {
-  const mod = await vi.importActual('@ovh-ux/manager-react-components');
-  return {
-    ...mod,
-    useProjectUrl: vi.fn().mockReturnValue('mockProjectUrl'),
-    useNotifications: vi.fn(() => ({
-      addError: vi.fn(),
-      addSuccess: vi.fn(),
-    })),
-    useTranslatedMicroRegions: vi.fn(() => ({
-      translateMicroRegion: (codeRegion: string) => `Coruscant (${codeRegion})`,
-    })),
-    convertHourlyPriceToMonthly: vi.fn(() => 2),
-    useCatalogPrice: vi.fn(() => ({
-      getFormattedCatalogPrice: () => `PRICE`,
-    })),
-  };
-});
 
 vi.mock('@/api/hooks/useSnapshots', () => ({
   useVolumeSnapshot: vi.fn(() => ({ data: MOCK_SNAPSHOT, isPending: false })),
@@ -160,7 +144,9 @@ describe('CreateVolumePage', () => {
       data: undefined,
       isPending: true,
     } as ReturnType<typeof useVolumeSnapshot>);
-    const { container, queryByText } = render(<CreateVolumePage />);
+    const { container, queryByText } = render(<CreateVolumePage />, {
+      wrapper: createWrapper(),
+    });
 
     const title = queryByText(
       'pci_projects_project_storages_snapshots_snapshot_create-volume_title',
@@ -173,28 +159,32 @@ describe('CreateVolumePage', () => {
   it('go back to listing page on cancellation', async () => {
     const mockNavigate = vi.fn();
     vi.mocked(useNavigate).mockReturnValue(mockNavigate);
-    const { getByText } = render(<CreateVolumePage />);
+    const { getByText } = render(<CreateVolumePage />, {
+      wrapper: createWrapper(),
+    });
 
     const cancelButton = getByText(
       'pci_projects_project_storages_blocks_block_volume-edit_cancel_label',
     );
     expect(cancelButton).toBeTruthy();
     act(() => fireEvent.click(cancelButton));
-    expect(mockNavigate).toHaveBeenCalledWith(
-      '/pci/projects/project-id/storages/volume-snapshots',
-    );
+    expect(mockNavigate).toHaveBeenCalledWith('..');
   });
 
   it('redirect to listing page after volume creation', async () => {
-    const mockNavigate = vi.fn();
-    vi.mocked(useNavigate).mockReturnValue(mockNavigate);
-    const { container } = render(<CreateVolumePage />);
+    const { container } = render(<CreateVolumePage />, {
+      wrapper: createWrapper(),
+    });
 
     const formElement = container.querySelector('form');
     act(() => fireEvent.submit(formElement as Element));
 
-    expect(mockNavigate).toHaveBeenCalledWith(
-      '/pci/projects/project-id/storages/blocks',
-    );
+    await waitFor(() => {
+      expect(shellContext.shell.navigation.navigateTo).toHaveBeenCalledWith(
+        'public-cloud',
+        '#/pci/projects/project-id/storages/blocks',
+        {},
+      );
+    });
   });
 });

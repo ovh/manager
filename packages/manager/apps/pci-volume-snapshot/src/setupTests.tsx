@@ -66,6 +66,13 @@ vi.mock('@ovh-ux/manager-react-components', async () => {
       addError: vi.fn(),
       addSuccess: vi.fn(),
     })),
+    useTranslatedMicroRegions: vi.fn(() => ({
+      translateMicroRegion: (codeRegion: string) => `Coruscant (${codeRegion})`,
+    })),
+    convertHourlyPriceToMonthly: vi.fn(() => 2),
+    useCatalogPrice: vi.fn(() => ({
+      getFormattedCatalogPrice: () => `PRICE`,
+    })),
   };
 });
 
@@ -243,13 +250,6 @@ vi.mock('@ovh-ux/manager-react-shell-client', async () => {
       trackPage: vi.fn(),
       trackClick: vi.fn(),
     })),
-    ShellContext: React.createContext({
-      environment: {
-        getUser: () => ({
-          ovhSubsidiary: 'FR',
-        }),
-      },
-    }),
   };
 });
 
