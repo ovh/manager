@@ -13,8 +13,6 @@ export interface IUXPlugin {
   isNotificationsSidebarVisible(): boolean;
   showNotificationsSidebar(): void;
   hideNotificationsSidebar(): void;
-  enableAccountSidebarVisibilityToggle(): void;
-  disableAccountSidebarVisibilityToggle(): void;
   setForceAccountSiderBarDisplayOnLargeScreen(isForced: boolean): void;
   resetAccountSidebar(): void;
   toggleNotificationsSidebarVisibility(): void;
@@ -87,14 +85,6 @@ export class UXPlugin implements IUXPlugin {
     if (this.sidebarMenuUpdateItemLabelListener) {
       this.sidebarMenuUpdateItemLabelListener(serviceName, label);
     }
-  }
-
-  enableAccountSidebarVisibilityToggle(): void {
-    this.shellUX.enableSidebarToggle('account');
-  }
-
-  disableAccountSidebarVisibilityToggle(): void {
-    this.shellUX.disableSidebarToggle('account');
   }
 
   setForceAccountSiderBarDisplayOnLargeScreen(isForced: boolean): void {
@@ -181,10 +171,6 @@ export class UXPlugin implements IUXPlugin {
     return this.shellUX.getChatbot().getVisibility();
   }
 
-  openChatbot(): void {
-    this.shell.emitEvent('ux:open-chatbot');
-  }
-
   openLiveChat(): void {
     this.shellUX.openChatbot();
   }
@@ -195,18 +181,6 @@ export class UXPlugin implements IUXPlugin {
 
   reduceChatbot(): void {
     this.shell.emitEvent('ux:reduce-chatbot');
-  }
-
-  onChatbotOpen(): void {
-    this.shellUX.getChatbot().show();
-  }
-
-  onChatbotClose(reduced: boolean): void {
-    if (reduced) {
-      this.shellUX.getChatbot().reduce();
-    } else {
-      this.shellUX.getChatbot().hide();
-    }
   }
 
   onChatbotVisibilityChange(callback: CallableFunction): void {
