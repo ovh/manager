@@ -36,6 +36,7 @@ export default class AutorenewCtrl {
     this.renewHelper = billingRenewHelper;
     this.coreConfig = coreConfig;
     this.ouiDatagridService = ouiDatagridService;
+    console.log('Fake change');
   }
 
   $onInit() {
