@@ -1,3 +1,5 @@
+import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
+
 export const TRACKING_CHAPTER_1 = 'PublicCloud';
 
 export const TRACKING_OCTAVIA_LOAD_BALANCERS_PREFIX =
@@ -113,7 +115,33 @@ export const REGION_AVAILABILITY_LINK = {
   DEFAULT: 'https://www.ovhcloud.com/en/public-cloud/regions-availability/',
 };
 
-export const LOAD_BALANCER_LOGS_SERVICE_GUIDE_LINK = {
+type OvhSubsidiaryRecord = Partial<Record<OvhSubsidiary, string>>;
+
+export const DATA_PLATFORM_GUIDE: OvhSubsidiaryRecord = {
+  DEFAULT: 'https://www.ovhcloud.com/en-gb/logs-data-platform',
+  DE: 'https://www.ovhcloud.com/de/logs-data-platform',
+  ES: 'https://www.ovhcloud.com/es-es/logs-data-platform',
+  FR: 'https://www.ovhcloud.com/fr/logs-data-platform',
+  IE: 'https://www.ovhcloud.com/en-ie/logs-data-platform',
+  NL: 'https://www.ovhcloud.com/nl/logs-data-platform',
+  PL: 'https://www.ovhcloud.com/pl/logs-data-platform',
+  PT: 'https://www.ovhcloud.com/pt/logs-data-platform',
+  GB: 'https://www.ovhcloud.com/en-gb/logs-data-platform',
+  CA: 'https://www.ovhcloud.com/en-ca/logs-data-platform',
+  QC: 'https://www.ovhcloud.com/fr-ca/logs-data-platform',
+  WS: 'https://www.ovhcloud.com/es/logs-data-platform',
+  MA: 'https://www.ovhcloud.com/fr-ma/logs-data-platform',
+  SN: 'https://www.ovhcloud.com/fr-sn/logs-data-platform',
+  TN: 'https://www.ovhcloud.com/fr-tn/logs-data-platform',
+  AU: 'https://www.ovhcloud.com/en-au/logs-data-platform',
+  SG: 'https://www.ovhcloud.com/en-sg/logs-data-platform',
+  ASIA: 'https://www.ovhcloud.com/asia/logs-data-platform',
+  IN: 'https://www.ovhcloud.com/en-in/logs-data-platform',
+  US:
+    'https://us.ovhcloud.com/identity-security-operations/logs-data-platform/',
+};
+
+export const LOAD_BALANCER_LOGS_SERVICE_GUIDE_LINK: OvhSubsidiaryRecord = {
   DEFAULT:
     'https://help.ovhcloud.com/csm/en-public-cloud-network-loadbalancer-logs-forward?id=kb_article_view&sysparm_article=KB0062950',
   FR:
@@ -146,6 +174,8 @@ export const LOAD_BALANCER_LOGS_SERVICE_GUIDE_LINK = {
     'https://help.ovhcloud.com/csm/en-sg-public-cloud-network-loadbalancer-logs-forward?id=kb_article_view&sysparm_article=KB0062937',
   ASIA:
     'https://help.ovhcloud.com/csm/asia-public-cloud-network-loadbalancer-logs-forward?id=kb_article_view&sysparm_article=KB0062938',
+  US:
+    'https://support.us.ovhcloud.com/hc/en-us/articles/29793247356563-Public-Cloud-Load-Balancer-TCP-HTTP-HTTPS-Logs-Forwarding',
 };
 
 export const ACTIONS_LIST = [
