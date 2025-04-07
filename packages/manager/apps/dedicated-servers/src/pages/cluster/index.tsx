@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FilterTypeCategories } from '@ovh-ux/manager-core-api';
-import { OdsButton } from '@ovhcloud/ods-components/react';
+import { OdsButton, OdsLink } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_SIZE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
-
 import {
   Datagrid,
   DataGridTextCell,
@@ -74,7 +73,20 @@ export default function Listing() {
       type: FilterTypeCategories.String,
       label: t('dedicated_clusters_name'),
       cell: (item: ClusterWithIAM) => (
-        <DataGridTextCell>{t(item.iam.displayName)}</DataGridTextCell>
+        <DataGridTextCell>
+          <OdsLink
+            color="primary"
+            href={`#/cluster/${item.id}`}
+            onClick={() => {
+              shell.navigation.navigateTo(
+                'dedicated',
+                `#/server/${item.id}`,
+                {},
+              );
+            }}
+            label={t(item.iam.displayName)}
+          ></OdsLink>
+        </DataGridTextCell>
       ),
     },
     {
@@ -125,7 +137,6 @@ export default function Listing() {
             {},
           );
           e.preventDefault();
-          return;
         }}
       />
     </div>
