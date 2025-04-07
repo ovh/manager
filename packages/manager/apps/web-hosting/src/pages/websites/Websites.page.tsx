@@ -29,6 +29,7 @@ export default function Websites() {
     hasNextPage,
     isLoading,
     isFetchingNextPage,
+    fetchAllPages,
   } = useWebHostingAttachedDomain();
 
   const items = data ? data.map((website: WebsiteType) => website) : [];
@@ -195,6 +196,7 @@ export default function Websites() {
         totalItems={items.length}
         hasNextPage={!isFetchingNextPage && hasNextPage}
         onFetchNextPage={fetchNextPage}
+        onFetchAllPages={fetchAllPages}
         isLoading={isFetchingNextPage || isLoading}
         topbar={
           <OdsButton
