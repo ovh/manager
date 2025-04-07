@@ -123,5 +123,6 @@
   "domain_operations_relaunch_success": "L'operazione è stata riavviata correttamente.",
   "wizard_cancel": "Annulla",
   "wizard_confirm": "Conferma",
-  "domain_operations_update_key_authinfo": "AuthInfo"
+  "domain_operations_update_key_authinfo": "AuthInfo",
+  "domain_operations_update_key_authInfo": "AuthInfo"
 }

@@ -107,7 +107,7 @@
   "domain_operations_update_relaunch": "Opération relancée!",
   "domain_operations_update_accelerate": "Demande d'accélération de l'opération réussie!",
   "domain_operations_update_key_action": "Opération",
-  "domain_operations_update_key_authinfo": "AuthInfo",
+  "domain_operations_update_key_authInfo": "AuthInfo",
   "domain_operations_update_key_memberContactXXX": "Identifiant du membre",
   "domain_operations_update_key_firstname": "Mettre à jour le prénom avec un contenu valide",
   "domain_operations_update_key_name": "Mettre à jour le nom avec un contenu valide",
