@@ -123,5 +123,6 @@
   "domain_operations_relaunch_success": "The operation has been successfully retried.",
   "wizard_cancel": "Cancel",
   "wizard_confirm": "Confirm",
-  "domain_operations_update_key_authinfo": "AuthInfo"
+  "domain_operations_update_key_authinfo": "AuthInfo",
+  "domain_operations_update_key_authInfo": "AuthInfo"
 }
