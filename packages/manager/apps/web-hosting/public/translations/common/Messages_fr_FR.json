@@ -2,6 +2,7 @@
   "onboarding": "Onboarding",
   "websites": "Sites internet",
   "general_informations": "Informations générales",
+  "web_hosting_header_order": "Commander",
   "web_hosting_status_header_ownlog": "Logs séparés",
   "web_hosting_status_header_ssl": "SSL",
   "web_hosting_status_header_cdn": "CDN",
