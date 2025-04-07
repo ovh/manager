@@ -3610,10 +3610,10 @@
   resolved "https://registry.yarnpkg.com/@datatr-ux/ovhcloud-types/-/ovhcloud-types-1.0.11.tgz#bac1d9b460cc969a191967cd2b1d0858de713d78"
   integrity sha512-NSqgUoIXKHxVRY5fnp5hV2kNQJxbX9/Om0naInG1tnztBvdkRuuhfzga9+ReYVqkktaSg/kb3CGZzyWi2tpvCg==
 
-"@datatr-ux/uxlib@^0.0.10":
-  version "0.0.10"
-  resolved "https://registry.yarnpkg.com/@datatr-ux/uxlib/-/uxlib-0.0.10.tgz#0a66c5d3ad49b0e1effa1cd02c36167e3ac6eef1"
-  integrity sha512-STOaCY/5w6R0CI7vHDs6nK0WOu1iNjPhr0eJnlVuYwDZgXeUUg0YoyVfKpXAKIbpXSxJhZj9VL/dewnD4Kli4g==
+"@datatr-ux/uxlib@^0.0.11-beta-4":
+  version "0.0.11-beta-4"
+  resolved "https://registry.yarnpkg.com/@datatr-ux/uxlib/-/uxlib-0.0.11-beta-4.tgz#c6df31856797647bfdd75ebdd8ff9a6f626456c2"
+  integrity sha512-eCEfecAweyj/gfrRfUH+QeOeScMiEFuJHstHDh9F1XvrelKXvgDI8xtyaVWt9sbDQ1pIQejHD7pVhS8HJpxvqA==
   dependencies:
     "@ovhcloud/ods-theme-blue-jeans" "^17.2.2"
     "@ovhcloud/ods-themes" "^18.4.1"
@@ -4580,7 +4580,7 @@
   resolved "https://registry.yarnpkg.com/@hookform/resolvers/-/resolvers-3.3.4.tgz#de9b668c2835eb06892290192de6e2a5c906229b"
   integrity sha512-o5cgpGOuJYrd+iMKvkttOclgwRW86EsWJZZRC23prf0uU2i48Htq4PuT73AVb9ionFyZrwYEITuOFGF+BydEtQ==
 
-"@hookform/resolvers@^3.4.4", "@hookform/resolvers@^3.9.1":
+"@hookform/resolvers@^3.9.1":
   version "3.10.0"
   resolved "https://registry.yarnpkg.com/@hookform/resolvers/-/resolvers-3.10.0.tgz#7bfd18113daca4e57e27e1205b7d5a2d371aa59a"
   integrity sha512-79Dv+3mDF7i+2ajj7SkypSKHhl1cbln1OGavqrsF7p6mbUv11xpqpacPsGDCTRvCSjEEIez2ef1NveSVL3b0Ag==
