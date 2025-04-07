@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.14.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.14.4...@ovh-ux/manager-iam@1.14.5) (2025-04-07)
+
+
+### Bug Fixes
+
+* **iam:** fix missing translations [CDS 3813] ([a157c1b](https://github.com/ovh/manager/commit/a157c1bcc328d9456d030598564733669e2334fa)), closes [#MANAGER-17647](https://github.com/ovh/manager/issues/MANAGER-17647)
+
+
+
+
+
 ## [1.14.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.14.3...@ovh-ux/manager-iam@1.14.4) (2025-03-31)
 
 
