@@ -36,7 +36,6 @@ export const fetchConfiguration = async (
     },
     credentials: 'same-origin',
   };
-
   let configurationURL = '/configuration';
   if (applicationName) {
     environment.setApplicationName(applicationName);
@@ -74,6 +73,17 @@ export const fetchConfiguration = async (
         window.top.location.href = `${publicURL}?region=${region}`;
       }
       environment.setRegion(HOSTNAME_REGIONS[window.location.hostname]);
+      if (
+        err?.status === 500 &&
+        err?.data.class ===
+          'Server::InternalServerError::ApiUnreachableMaintenance'
+      ) {
+        const errorObj = {
+          error: err.data,
+          environment,
+        };
+        throw errorObj;
+      }
       return environment;
     });
 };
