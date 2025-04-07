@@ -32,6 +32,7 @@ jobs:
       # This task is for running the jest tests outside microApps
       - name: Run tests Jest
         run: yarn test:jest
+      # This task is for running the sonar coverage tests
       - name: Run test coverage SonarCloud
         run: |
           npx vitest run --coverage --reporter=lcov
