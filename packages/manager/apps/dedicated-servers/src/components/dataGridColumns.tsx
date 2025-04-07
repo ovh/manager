@@ -2,7 +2,6 @@ import React from 'react';
 import { FilterTypeCategories } from '@ovh-ux/manager-core-api';
 import { OdsBadge, OdsLink } from '@ovhcloud/ods-components/react';
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
-import './index.scss';
 import {
   DataGridTextCell,
   DatagridColumn,
@@ -12,22 +11,22 @@ import { DedicatedServerWithIAM } from '@/data/types/server.type';
 import MonitoringStatusChip from '@/components/monitoringStatus';
 
 const colorByProductStatus: Record<string, ODS_BADGE_COLOR> = {
-  ['ok']: ODS_BADGE_COLOR.success,
-  ['hacked']: ODS_BADGE_COLOR.warning,
-  ['hackedBlocked']: ODS_BADGE_COLOR.information,
+  ok: ODS_BADGE_COLOR.success,
+  hacked: ODS_BADGE_COLOR.warning,
+  hackedBlocked: ODS_BADGE_COLOR.information,
 };
 
 const textByProductStatus: Record<string, string> = {
-  ['ok']: 'server_configuration_state_OK',
-  ['hacked']: 'server_configuration_state_HACKED',
-  ['hackedBlocked']: 'server_configuration_state_HACKED_BLOCKED',
+  ok: 'server_configuration_state_OK',
+  hacked: 'server_configuration_state_HACKED',
+  hackedBlocked: 'server_configuration_state_HACKED_BLOCKED',
 };
 
 type ServerSateChipProps = {
   state: string;
 };
 
-export function getClocmuns(
+export function getColumns(
   t: (v: string) => string,
   goToServer: (name: string) => void,
 ) {

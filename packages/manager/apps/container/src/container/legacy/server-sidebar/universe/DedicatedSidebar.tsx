@@ -73,7 +73,7 @@ export default function DedicatedSidebar() {
         label: t('sidebar_dedicated'),
         icon: getIcon('ovh-font ovh-font-server'),
         ...(feature['dedicated-servers'] ? {
-          routeMatcher: new RegExp('^/(configuration/)?(server|housing|cluster|onboarding|dedicated-servers)'),
+          routeMatcher: new RegExp('^/(configuration/)?(server|housing|cluster|dedicated-servers)'),
           pathMatcher: new RegExp('^(/dedicated-servers/)'),
         } : {
           routeMatcher: new RegExp('^/(configuration/)?(server|housing|cluster)'),

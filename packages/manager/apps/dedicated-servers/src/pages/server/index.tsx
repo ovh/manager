@@ -11,7 +11,7 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { DedicatedServerWithIAM } from '@/data/types/server.type';
 import OrderMenu from '@/components/orderMenu';
-import { getClocmuns } from './dataGridColumns';
+import { getColumns } from '@/components/dataGridColumns';
 
 export default function ServerListing() {
   const [columns] = useState([]);
@@ -71,7 +71,7 @@ export default function ServerListing() {
       {flattenData && (
         <div>
           <Datagrid
-            columns={getClocmuns(t, (name: string) =>
+            columns={getColumns(t, (name: string) =>
               shell.navigation.navigateTo('dedicated', `#/server/${name}`, {}),
             )}
             items={sortServersListing(

@@ -131,11 +131,7 @@ export default function Listing() {
         variant="outline"
         label={t('commander')}
         onClick={(e) => {
-          shell.navigation.navigateTo(
-            'dedicated',
-            links.threeAZClusterOrder,
-            {},
-          );
+          window.open(links.threeAZClusterOrder);
           e.preventDefault();
         }}
       />
