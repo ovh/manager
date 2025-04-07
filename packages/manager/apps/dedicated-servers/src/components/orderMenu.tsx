@@ -1,7 +1,9 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import {
+  ShellContext,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { OdsPopover, OdsButton, OdsLink } from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_SIZE,
@@ -10,6 +12,7 @@ import {
 } from '@ovhcloud/ods-components';
 import useLinkUtils, { UrlLinks } from '@/hooks/useLinkUtils';
 import { orderLinks } from '@/data/constants/orderLinks';
+
 export const OrderMenu: React.FC = () => {
   const { shell } = React.useContext(ShellContext);
   const { t } = useTranslation('dedicated-servers');
@@ -36,13 +39,10 @@ export const OrderMenu: React.FC = () => {
             href="#"
             target="_blank"
             icon={ODS_ICON_NAME.externalLink}
-            onClick={() =>
-              shell.navigation.navigateTo(
-                'dedicated',
-                links.dedicatedOrder as string,
-                {},
-              )
-            }
+            onClick={(e) => {
+              window.open(links.dedicatedOrder as string);
+              e.preventDefault();
+            }}
             label={t('server_order_dedicated')}
           ></OdsLink>
         </div>
@@ -53,13 +53,8 @@ export const OrderMenu: React.FC = () => {
             target="_blank"
             icon={ODS_ICON_NAME.externalLink}
             onClick={(e) => {
-              shell.navigation.navigateTo(
-                'dedicated',
-                links.dedicatedEcoRangeOrder as string,
-                {},
-              );
+              window.open(links.dedicatedEcoRangeOrder as string);
               e.preventDefault();
-              return;
             }}
             label={t('server_order_eco')}
           ></OdsLink>
