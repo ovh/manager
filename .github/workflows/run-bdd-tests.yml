@@ -44,7 +44,7 @@ jobs:
           ls -arlt
           pwd
           # Run the SonarCloud scan
-          npx sonar-scanner
+          npx sonar-scanner -Dsonar.projectBaseDir=/home/runner/work/manager/manager
       - name: Run tests on changed packages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
