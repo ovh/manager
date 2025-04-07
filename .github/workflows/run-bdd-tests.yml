@@ -35,7 +35,7 @@ jobs:
       # This task is for running the sonar coverage tests
       - name: Run test coverage SonarCloud
         run: |
-          npx vitest run --coverage --reporter=lcov
+          npx vitest run --coverage
           pwd
           ls -arlt
         continue-on-error: true
