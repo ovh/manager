@@ -1,5 +1,7 @@
 import '@testing-library/jest-dom';
 import { vi } from 'vitest';
+import React from 'react';
+import { UseQueryResult } from '@tanstack/react-query';
 
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
@@ -28,4 +30,29 @@ vi.mock('react-router-dom', () => ({
     pathname: '',
     search: '',
   })),
+}));
+
+const mocks = vi.hoisted(() => ({
+  shell: {
+    navigation: {
+      getURL: (_: unknown, path: string): Promise<string> => {
+        return new Promise<string>((resolve) => {
+          return resolve(`https://ovh.test/#${path}`);
+        });
+      },
+    },
+  },
+}));
+
+vi.mock('@ovh-ux/manager-react-shell-client', () => ({
+  ShellContext: React.createContext({
+    shell: mocks.shell,
+  }),
+  useNavigationGetUrl: (
+    linkParams: [string, string, unknown],
+  ): UseQueryResult<unknown, Error> => {
+    return {
+      data: `https://ovh.test/#/${linkParams[0]}${linkParams[1]}`,
+    } as UseQueryResult<unknown, Error>;
+  },
 }));
