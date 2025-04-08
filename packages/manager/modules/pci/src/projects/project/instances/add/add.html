@@ -212,14 +212,38 @@
                         </div>
                         <oui-checkbox
                             data-ng-if="$ctrl.constructor.hasRegions($ctrl.unavailableRegions[continent])"
-                            data-model="$ctrl.showNonAvailableRegions"
+                            data-disabled="!$ctrl.constructor.hasRegions($ctrl.availableRegions[continent])"
+                            data-model="$ctrl.showNonAvailableRegions[continent]"
                             data-on-change="$ctrl.onShowNonAvailableRegionsChange(modelValue)"
                         >
                             <span
                                 data-translate="pci_projects_project_instances_add_region_display_nonavailable"
                             ></span>
                         </oui-checkbox>
-                        <div data-ng-if="$ctrl.showNonAvailableRegions">
+                        <div
+                            data-ng-if="$ctrl.showNonAvailableRegions[continent]"
+                        >
+                            <div
+                                class="d-flex align-items-baseline"
+                                data-ng-if="$ctrl.constructor.hasRegions($ctrl.unavailableRegions[continent])"
+                            >
+                                <span
+                                    data-translate="pci_project_instances_instance_add_region_unavailable"
+                                ></span>
+                                <button
+                                    type="button"
+                                    class="oui-button oui-button_ghost"
+                                    data-ng-click="$ctrl.changeFlavor()"
+                                >
+                                    <span
+                                        data-translate="pci_project_instances_instance_add_choose_model"
+                                    ></span>
+                                    <i
+                                        class="oui-icon button-icon oui-icon-arrow-right"
+                                        aria-hidden="true"
+                                    ></i>
+                                </button>
+                            </div>
                             <div class="row">
                                 <oui-select-picker
                                     class="d-inline-block col-md-6 col-xl-3 my-3"
@@ -282,27 +306,6 @@
                                         </span>
                                     </oui-select-picker-section>
                                 </oui-select-picker>
-                            </div>
-                            <div
-                                class="d-flex justify-content-between"
-                                data-ng-if="$ctrl.constructor.hasRegions($ctrl.unavailableRegions[continent])"
-                            >
-                                <span
-                                    data-translate="pci_project_instances_instance_add_region_unavailable"
-                                ></span>
-                                <button
-                                    type="button"
-                                    class="oui-button oui-button_ghost"
-                                    data-ng-click="$ctrl.changeFlavor()"
-                                >
-                                    <span
-                                        data-translate="pci_project_instances_instance_add_choose_model"
-                                    ></span>
-                                    <i
-                                        class="oui-icon button-icon oui-icon-arrow-right"
-                                        aria-hidden="true"
-                                    ></i>
-                                </button>
                             </div>
                         </div>
                         <div

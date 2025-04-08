@@ -252,6 +252,7 @@ export default class PciInstancesAddController {
 
     this.availableRegions = {};
     this.unavailableRegions = {};
+    this.showNonAvailableRegions = {};
     this.fetchInstancesAvailability();
   }
 
@@ -435,6 +436,10 @@ export default class PciInstancesAddController {
           });
         }
       });
+
+      this.showNonAvailableRegions[continent] = !this.constructor.hasRegions(
+        availableRegions[continent],
+      );
     });
 
     this.availableRegions = availableRegions;
