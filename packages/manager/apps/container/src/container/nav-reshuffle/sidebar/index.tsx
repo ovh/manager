@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo, Suspense, useCallback } from 'react';
+import { useEffect, useState, useMemo, Suspense, useCallback, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { aapi } from '@ovh-ux/manager-core-api';
 import { useTranslation } from 'react-i18next';
@@ -62,7 +62,7 @@ const Sidebar = (): JSX.Element => {
   const [selectedNode, setSelectedNode] = useState<Node>(null);
   const [showSubTree, setShowSubTree] = useState<boolean>(false);
   const [selectedSubMenu, setSelectedSubMenu] = useState<Node>(null);
-  const [open, setOpen] = useState<boolean>(isNavigationSidebarOpened);
+  const [open, setOpen] = useState<boolean>(isMobile ? isNavigationSidebarOpened : true);
   const [assistanceTree, setAssistanceTree] = useState<Node>(null);
   const logoLink = navigationPlugin.getURL('hub', '#/');
   const savedLocationKey = 'NAVRESHUFFLE_SAVED_LOCATION';
@@ -70,6 +70,7 @@ const Sidebar = (): JSX.Element => {
     window.localStorage.getItem(savedLocationKey),
   );
   const [isManuallyClosed, setIsManuallyClosed] = useState<boolean>(false);
+  const containerRef = useRef(null);
 
   // As we don't update any state when we set the hasService variable
   // we miss a render when we don't open the subtree
@@ -289,9 +290,10 @@ const Sidebar = (): JSX.Element => {
       className={`${style.sidebar} ${
         (selectedNode && !isManuallyClosed) ? style.sidebar_selected : ''
       }`}
+      ref={containerRef}
     >
       <div
-        className={`overflow-visible ${style.sidebar_wrapper} ${!open &&
+        className={`${style.sidebar_wrapper} ${!open &&
           style.sidebar_short} ${isAnimated && style.sidebar_animated}`}
       >
         <div className={style.sidebar_lvl1}>
@@ -386,6 +388,7 @@ const Sidebar = (): JSX.Element => {
                 selectedNode={selectedNode}
                 isLoading={isLoading}
                 isShort={!open}
+                containerRef={containerRef}
               />
             </Suspense>
           )}

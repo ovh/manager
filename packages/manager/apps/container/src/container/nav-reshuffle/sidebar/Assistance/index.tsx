@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { MutableRefObject, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useURL, ContentURLS } from '@/container/common/urls-constants';
 import { useShell } from '@/context';
@@ -7,6 +7,7 @@ import useContainer from '@/core/container';
 import { Node } from '../navigation-tree/node';
 import { AssistanceLinkItem } from './AssistanceLinkItem';
 import { ShortAssistanceLinkItem } from './ShortAssistanceLinkItem';
+import { createPortal } from 'react-dom';
 import {
   OsdsButton,
   OsdsIcon,
@@ -19,6 +20,7 @@ import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
+  ODS_ICON_SIZE,
 } from '@ovhcloud/ods-components';
 
 export interface AssistanceProps {
@@ -26,13 +28,15 @@ export interface AssistanceProps {
   isShort: boolean;
   selectedNode: Node;
   isLoading: boolean;
+  containerRef: MutableRefObject<any>;
 }
 
 const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
   nodeTree,
   selectedNode,
   isShort,
-  isLoading
+  isLoading,
+  containerRef,
 }): JSX.Element => {
   const { t } = useTranslation('sidebar');
   const shell = useShell();
@@ -43,6 +47,9 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
   const trackingPlugin = shell.getPlugin('tracking');
   const isEUOrCA = ['EU', 'CA'].includes(environment.getRegion());
   const { closeNavigationSidebar, setIsAnimated } = useProductNavReshuffle();
+  const popoverAnchorRef = useRef(null);
+  const [bottomPosition, setBottomPosition] = useState(0);
+  const [portal, setPortal] = useState(null);
 
   useEffect(() => {
     nodeTree.children.forEach((node: Node) => {
@@ -102,36 +109,81 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
     });
   }, []);
 
+  useEffect(() => {
+    const updateBottomPosition = () => {
+      if (popoverAnchorRef?.current)
+        setBottomPosition(
+          popoverAnchorRef.current.getBoundingClientRect().bottom,
+        );
+    };
+    updateBottomPosition();
+
+    window.addEventListener('resize', updateBottomPosition);
+    window.addEventListener('scroll', updateBottomPosition, true);
+
+    return () => {
+      window.removeEventListener('resize', updateBottomPosition);
+      window.removeEventListener('scroll', updateBottomPosition, true);
+    };
+  }, [popoverAnchorRef, isShort]);
+
+  useEffect(() => {
+    setPortal(
+      createPortal(
+        <div
+          className="flex justify-center my-2 position-fixed left-[2px] z-[10000]"
+          style={{
+            top: bottomPosition - 70,
+          }}
+        >
+          <OsdsPopover id="useful-links" role="menu">
+            <OsdsButton
+              slot="popover-trigger"
+              className="w-[4rem]"
+              color={ODS_THEME_COLOR_INTENT.primary}
+              variant={ODS_BUTTON_VARIANT.ghost}
+              size={ODS_BUTTON_SIZE.md}
+              title={t('sidebar_assistance_title')}
+              onClick={() => setIsAnimated(true)}
+              contrasted
+            >
+              <OsdsIcon
+                name={ODS_ICON_NAME.ELLIPSIS}
+                size={ODS_ICON_SIZE.sm}
+                contrasted
+              />
+            </OsdsButton>
+            <OsdsPopoverContent>
+              {nodeTree.children.map((node: Node) => (
+                <ShortAssistanceLinkItem key={node.id} node={node} />
+              ))}
+            </OsdsPopoverContent>
+          </OsdsPopover>
+        </div>,
+        containerRef?.current,
+      ),
+    );
+  }, [containerRef, bottomPosition, isShort]);
+
   const trackNode = (id: string) => {
     trackingPlugin.trackClick({
       name: `navbar_v3_entry_home::${id}`,
       type: 'navigation',
     });
   };
-
-  if (isShort) return (
-    <div className='w-full flex justify-center my-2'>
-      <OsdsPopover id="useful-links" role="menu">
-        <OsdsButton
-          slot="popover-trigger"
-          className='w-[4rem]'
-          color={ODS_THEME_COLOR_INTENT.primary}
-          variant={ODS_BUTTON_VARIANT.ghost}
-          size={ODS_BUTTON_SIZE.md}
-          title={t('sidebar_assistance_title')}
-          onClick={() => setIsAnimated(true)}
-          contrasted
+  if (isShort)
+    return (
+      <>
+        <div
+          ref={popoverAnchorRef}
+          className="flex justify-center my-2 h-[3.5rem]"
         >
-          <OsdsIcon name={ODS_ICON_NAME.ELLIPSIS} contrasted />
-        </OsdsButton>
-        <OsdsPopoverContent>
-          {nodeTree.children.map((node: Node) => (
-            <ShortAssistanceLinkItem key={node.id} node={node} />
-          ))}
-        </OsdsPopoverContent>
-      </OsdsPopover>
-    </div>
-  );
+          {popoverAnchorRef?.current && bottomPosition && portal && (
+            <>{portal}</>
+          )}
+        </div>
+      </>
+    );
 
   return (
     <ul
@@ -140,11 +192,6 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
       role="menu"
       data-testid="assistance-sidebar"
     >
-      <li className="assistance_header px-3 mb-3">
-        <h2 className="flex justify-between whitespace-nowrap">
-          <span>{t('sidebar_assistance_title')}</span>
-        </h2>
-      </li>
       {nodeTree.children.map((node: Node) => (
         <AssistanceLinkItem
           key={`assistance_${node.id}`}
