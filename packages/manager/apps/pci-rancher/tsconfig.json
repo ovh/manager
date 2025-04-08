@@ -3,7 +3,7 @@
     "lib": ["dom", "es2020", "ESNext"],
     "noEmit": true,
     "target": "ESNext",
-    "types": ["vite/client", "node", "jest", "@testing-library/jest-dom"],
+    "types": ["vite/client", "node"],
     "module": "esnext",
     "moduleResolution": "Node",
     "removeComments": true,

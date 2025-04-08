@@ -1,12 +1,8 @@
 import { defineConfig } from 'vite';
 import { getBaseConfig } from '@ovh-ux/manager-vite-config';
-
-const baseConfig = getBaseConfig({});
+import { resolve } from 'path';
 
 export default defineConfig({
-  ...baseConfig,
-  root: '',
-  resolve: {
-    ...baseConfig.resolve,
-  },
+  ...getBaseConfig(),
+  root: resolve(process.cwd()),
 });
