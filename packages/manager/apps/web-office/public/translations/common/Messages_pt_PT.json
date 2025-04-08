@@ -18,14 +18,14 @@
   "cta_cancel": "Anular",
   "cta_confirm": "Validar",
   "common_field_error_password": "Password inválida",
-  "common_field_error_confirm_password": "As palavras-passe devem ser idênticas",
+  "common_field_error_confirm_password": "As palavras-passe devem ser idênticas.",
   "common_field_error_email": "Introduza um endereço de e-mail válido.",
   "common_field_label_mandatory": "Os campos marcados com um asterisco (*) são de preenchimento obrigatório",
   "lastname": "Nome",
   "firstname": "Nome",
   "login": "ID de utilizador",
-  "form_helper_login_conditions": "O seu identificador deve conter entre 3 e 20 caracteres. Pode incluir letras, números e os seguintes caracteres especiais: - _ ",
-  "form_helper_login_condition_exception": "Também pode conter pontos, desde que sejam precedidos de um carácter autorizado e que não tenham outros pontos a seguir.",
+  "form_helper_login_conditions": "O seu identificador deve conter entre 3 e 20 caracteres. Pode incluir letras, algarismos e os seguintes caracteres especiais: - _ ",
+  "form_helper_login_condition_exception": "Também pode conter pontos, desde que sejam precedidos de um caráter autorizado e não tenham outros pontos a seguir.",
   "serviceName": "ID do grupo",
   "serviceType": "Tipo de serviço",
   "status": "Estado",
@@ -50,5 +50,5 @@
   "state_deleting": "Eliminação em curso",
   "state_suspended": "Suspenso",
   "state_suspending": "Suspensão em curso",
-  "error_message": "O seu pedido não pôde ser bem sucedido. {{ error }}"
+  "error_message": "O seu pedido não foi bem-sucedido. {{ error }}"
 }

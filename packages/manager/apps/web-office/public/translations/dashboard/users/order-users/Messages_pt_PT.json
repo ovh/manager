@@ -3,6 +3,6 @@
   "dashboard_users_order_users_type_placeholder": "Selecionar",
   "dashboard_users_order_users_price": "Preço",
   "dashboard_users_order_users_message": "Será faturado consoante o número de licenças ativas no mês atual.",
-  "dashboard_users_order_users_message_error": "Ocorreu um erro aquando da adição do utilizador. {{ error }}",
-  "dashboard_users_order_users_message_success": "O seu pedido de adição de utilizador foi corretamente tomado em conta."
+  "dashboard_users_order_users_message_error": "Ocorreu um erro ao adicionar o utilizador. {{ error }}",
+  "dashboard_users_order_users_message_success": "O seu pedido de adição de utilizador foi registado."
 }

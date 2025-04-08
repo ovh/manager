@@ -173,7 +173,7 @@
   "email_tab_modal_create_redirection_info": "Wpisz informacje dotyczące przekierowania",
   "email_tab_modal_redirection_create_keep_copy_title": "Wybierz sposób zarządzania kopiami wiadomości:",
   "email_tab_modal_redirection_create_email_error": "Adres e-mail nie jest prawidłowy.",
-  "email_tab_modal_redirection_create_copy_local": "Zachowaj kopię e-maila w OVHcloud",
+  "email_tab_modal_redirection_create_copy_local": "Zachowaj kopię wiadomości e-mail w OVHcloud",
   "email_tab_modal_redirection_create_copy_none": "Nie zachowuj kopii wiadomości e-mail",
   "email_tab_modal_redirection_create_copy_select": "Wybierz opcję",
   "email_tab_popover_redirection_delete": "Usuń przekierowanie",

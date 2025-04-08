@@ -47,5 +47,5 @@
   "pci_project_project_localzone_tooltip": "Le Local Zone sono un nuovo tipo di localizzazione che supporta una parte del nostro catalogo di prodotti Public Cloud. Prevediamo di aumentare gradualmente il numero di Local Zone disponibili nel mondo nei prossimi anni.",
   "pci_project_project_globalregions_tooltip": "Le Region sono supportate da uno o più datacenter gestiti da OVHcloud. Ogni Region fornisce una o più Availability Zone con il catalogo completo di servizi OVHcloud.",
   "pci_project_project_tooltip_link": "Scopri di più",
-  "pci_projects_project_data_platform": "Crea una Data Platform"
+  "pci_projects_project_data_platform": "Creare una Data Platform"
 }

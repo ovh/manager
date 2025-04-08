@@ -41,10 +41,10 @@
   "select_quantity_description_instance": "Geben Sie die Anzahl der Instanzen an, die in Ihrem Savings Plan enthalten sein sollen.",
   "select_quantity_description_rancher": "Geben Sie die Anzahl der vCPUs an, die in Ihrem Savings Plan enthalten sein sollen.",
   "quantity_label_instance": "Anzahl der Instanzen",
-  "quantity_label_rancher": "Anzahl der vCPU",
+  "quantity_label_rancher": "Anzahl der vCPUs",
   "choose_deployment": "Bereitstellungsmodus auswählen",
-  "choose_deployment_description": "Wählen Sie die optimale Konfiguration aus, um die Verfügbarkeit, Resilienz und angemessene Latenz Ihrer Daten abhängig von Ihren Anwendungsfällen zu gewährleisten.",
+  "choose_deployment_description": "Wählen Sie die optimale Konfiguration für Ihre Use Cases aus, um Verfügbarkeit, Resilienz und eine angemessene Latenz für Ihre Daten zu gewährleisten.",
   "region": "Region",
-  "deployment_one_az": "Resiliente und kostengünstige Bereitstellung in 1 Verfügbarkeitszone.",
-  "deployment_three_az": "Bereitstellung mit hoher Resilienz/Hochverfügbarkeit für kritische Anwendungen in 3 Verfügbarkeitszonen."
+  "deployment_one_az": "Resiliente und kostengünstige Bereitstellung in 1 Availability Zone.",
+  "deployment_three_az": "Bereitstellung mit hoher Resilienz/hoher Verfügbarkeit für Ihre kritischen Anwendungen in 3 Availability Zones."
 }
