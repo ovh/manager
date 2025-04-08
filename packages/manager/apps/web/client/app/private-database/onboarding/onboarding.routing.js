@@ -24,10 +24,8 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       resources: /* @ngInject */ ($http) =>
         $http.get('/hosting/privateDatabase').then(({ data }) => data),
-      ctaURLs: /* @ngInject */ ($state) => [
+      ctaURL: /* @ngInject */ ($state) =>
         $state.href('app.private-database-order-clouddb'),
-        $state.href('app.private-database.order'),
-      ],
     },
   });
 };
