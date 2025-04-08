@@ -7,5 +7,19 @@
   "manageOrganisationsTabEmail": "Email",
   "manageOrganisationsTabPhone": "Téléphone",
   "manageOrganisationsTabAddress": "Adresse",
-  "manageOrganisationsTabNodata": "Aucun résultat"
+  "manageOrganisationsTabNodata": "Aucun résultat",
+  "manageOrganisationsTabEditOrgAction": "Modifier",
+  "manageOrganisationsAddOrgTitle": "Ajouter une organisation",
+  "manageOrganisationsEditOrgTitle": "Modifier une organisation",
+  "manageOrganisationsOrgModelTypeLabel": "Type",
+  "manageOrganisationsOrgModelFirstnameLabel": "Nom",
+  "manageOrganisationsOrgModelSurnameLabel": "Prénom",
+  "manageOrganisationsOrgModelCountryLabel": "Pays",
+  "manageOrganisationsOrgModelEmailLabel": "Adresse E-mail",
+  "manageOrganisationsOrgModelAddressLabel": "Adresse",
+  "manageOrganisationsOrgModelCityLabel": "Ville",
+  "manageOrganisationsOrgModelPostcodeLabel": "Code postal",
+  "manageOrganisationsOrgModelPhoneLabel": "Téléphone",
+  "manageOrganisationsErrorMessage": "Une erreur est survenue {{error}}.",
+  "manageOrganisationsSuccessMessage": "Vos informations ont bien été prises en comptes"
 }
