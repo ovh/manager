@@ -36,3 +36,7 @@ html {
 .sub-row table tr td:last-child {
   border-right: none;
 }
+
+.ods-manage-org-modal::part(dialog) {
+  max-height: 90%;
+}
