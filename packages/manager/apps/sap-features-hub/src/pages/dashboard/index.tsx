@@ -1,18 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  Outlet,
-  NavLink,
-  useLocation,
-  useNavigate,
-  useParams,
-  useResolvedPath,
-} from 'react-router-dom';
-import { OdsTabs, OdsTab } from '@ovhcloud/ods-components/react';
+import { Outlet } from 'react-router-dom';
 
 import { BaseLayout } from '@ovh-ux/manager-react-components';
 
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
+import { productName } from '@/sap-features-hub.config';
 
 export type DashboardTabItemProps = {
   name: string;
@@ -25,55 +18,15 @@ export type DashboardLayoutProps = {
 };
 
 export default function DashboardPage() {
-  const [panel, setActivePanel] = useState('');
-  const { serviceName } = useParams();
-  const location = useLocation();
-  const navigate = useNavigate();
   const { t } = useTranslation('dashboard');
-
-  const tabsList = [
-    {
-      name: 'general_informations',
-      title: 'Informations générales',
-      to: useResolvedPath('').pathname,
-    },
-    {
-      name: 'Tab 2',
-      title: 'Tab 2',
-      to: useResolvedPath('Tab2').pathname,
-    },
-  ];
-
-  useEffect(() => {
-    const activeTab = tabsList.find((tab) => tab.to === location.pathname);
-    if (activeTab) {
-      setActivePanel(activeTab.name);
-    } else {
-      setActivePanel(tabsList[0].name);
-      navigate(`${tabsList[0].to}`);
-    }
-  }, [location.pathname]);
-
-  const header = {
-    title: t('title'),
-  };
 
   return (
     <BaseLayout
       breadcrumb={<Breadcrumb />}
-      header={header}
-      description="Description du sap-features-hub"
-      tabs={
-        <OdsTabs>
-          {tabsList.map((tab: DashboardTabItemProps) => (
-            <OdsTab key={`osds-tab-bar-item-${tab.name}`}>
-              <NavLink to={tab.to} className="no-underline">
-                {tab.title}
-              </NavLink>
-            </OdsTab>
-          ))}
-        </OdsTabs>
-      }
+      header={{
+        title: productName,
+        description: t('description'),
+      }}
     >
       <Outlet />
     </BaseLayout>
