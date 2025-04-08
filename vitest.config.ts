@@ -4,7 +4,13 @@ import sonarReporter from 'vitest-sonar-reporter';
 export default defineConfig({
   test: {
     // Define where test files are located
-    include: ['src/**/*.ts'], // Adjust this based on your test files
+    include: [
+      'src/**/*.{test,spec}.{ts,tsx}',
+      'tests/**/*.test.{ts,tsx}',
+      'src/**/*.{test,spec}.ts',
+      'src/**/*.{test,spec}.tsx',
+      'src/**/*.ts',
+    ], // Adjust this based on your test files
 
     // Coverage configuration
     coverage: {
