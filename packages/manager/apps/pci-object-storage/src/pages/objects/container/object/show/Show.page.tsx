@@ -94,6 +94,19 @@ export default function ObjectPage() {
   const [searchParams] = useSearchParams();
   const { data: project } = useProject();
 
+  const [search, setSearch] = useState<string | null>(null);
+  const [prefix, setPrefix] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (prefix !== null && search === '') {
+      setPrefix(null);
+    }
+  }, [search, prefix]);
+
+  const handlePrefixChange = (handleKey: string | null) => {
+    setPrefix(handleKey);
+  };
+
   const { tracking } = useContext(ShellContext).shell;
 
   const { hasMaintenance, maintenanceURL } = useProductMaintenance(
@@ -177,6 +190,7 @@ export default function ObjectPage() {
     name: storageId,
     withVersions: enableVersionsToggle,
     isS3StorageType: container?.s3StorageType,
+    prefix,
   });
 
   useEffect(() => {
@@ -256,6 +270,7 @@ export default function ObjectPage() {
     isLocalZone: !!is.localZone,
     shouldSeeVersions: true,
     enableVersionsToggle,
+    shouldSeeSearch: true,
   });
 
   const filterColumns = useMemo(
@@ -617,108 +632,127 @@ export default function ObjectPage() {
             </div>
           </div>
 
-          <div className="sm:flex items-center justify-between mt-8">
-            {shouldHideButton && (
-              <OdsButton
-                onClick={() => {
-                  clearNotifications();
-                  navigate(`./new?region=${searchParams.get('region')}`);
-                }}
-                label={tContainer(
-                  `pci_projects_project_storages_containers_container_add_object_label`,
-                )}
-                icon="plus"
-                size="sm"
-              />
-            )}
-
-            <div className="flex justify-center gap-4 ml-auto">
-              {is.rightOffer &&
-                !is.localZone &&
-                container.versioning.status !== STATUS_DISABLED && (
-                  <>
-                    <OdsText>
-                      {tContainer(
-                        'pci_projects_project_storages_containers_container_show_versions',
-                      )}
-                    </OdsText>
-                    <OdsToggle
-                      class="my-toggle"
-                      name="enableVersionsToggle"
-                      onOdsChange={({ detail }) =>
-                        setEnableVersionsToggle(detail.value as boolean)
-                      }
-                    />
-                  </>
-                )}
-
-              {!container?.s3StorageType && (
-                <>
-                  {' '}
-                  <OdsInput
-                    name="searchField"
-                    className="min-w-[15rem]"
-                    value={searchField}
-                    onOdsChange={({ detail }) =>
-                      setSearchField(detail.value as string)
-                    }
-                    onKeyDown={(event) => {
-                      if (event.key === 'Enter') {
-                        handleSearch();
-                      }
-                    }}
-                  />
-                  <OdsButton
-                    label=""
-                    icon="magnifying-glass"
-                    size="sm"
-                    onClick={handleSearch}
-                  />
-                  <OdsButton
-                    id="filterPopoverTrigger"
-                    size="sm"
-                    color="primary"
-                    label={tFilter('common_criteria_adder_filter_label')}
-                    variant="outline"
-                    icon="filter"
-                  />
-                  <OdsPopover triggerId="filterPopoverTrigger">
-                    <FilterAdd
-                      columns={filterColumns}
-                      onAddFilter={(addedFilter, column) => {
-                        setPagination({
-                          pageIndex: 0,
-                          pageSize: pagination.pageSize,
-                        });
-                        addFilter({
-                          ...addedFilter,
-                          label: column.label,
-                        });
+          {container?.s3StorageType && (
+            <div className="mt-8">
+              <Datagrid
+                topbar={
+                  <div className="flex w-full justify-between items-center">
+                    <OdsButton
+                      onClick={() => {
+                        clearNotifications();
+                        navigate(`./new?region=${searchParams.get('region')}`);
                       }}
+                      label={tContainer(
+                        `pci_projects_project_storages_containers_container_add_object_label`,
+                      )}
+                      icon="plus"
+                      size="sm"
                     />
-                  </OdsPopover>
-                </>
-              )}
+                    <div className="flex justify-end gap-4 mr-5">
+                      {is.rightOffer &&
+                        !is.localZone &&
+                        container.versioning.status !== STATUS_DISABLED && (
+                          <>
+                            <OdsText>
+                              {tContainer(
+                                'pci_projects_project_storages_containers_container_show_versions',
+                              )}
+                            </OdsText>
+                            <OdsToggle
+                              class="my-toggle"
+                              name="enableVersionsToggle"
+                              onOdsChange={({ detail }) =>
+                                setEnableVersionsToggle(detail.value as boolean)
+                              }
+                            />
+                          </>
+                        )}
+                    </div>
+                  </div>
+                }
+                columns={objectsColumns}
+                hasNextPage={hasNextPage}
+                items={isObjectsLoading ? [] : containerObjectsWithIndex}
+                onFetchNextPage={handleFetchNextPage}
+                totalItems={containerObjects?.length}
+                isLoading={isObjectsLoading}
+                search={{
+                  searchInput: search,
+                  setSearchInput: setSearch,
+                  onSearch: handlePrefixChange,
+                }}
+              />
             </div>
-          </div>
-
-          {container?.s3StorageType &&
-            (!isObjectsLoading ? (
-              <div className="mt-8">
-                <Datagrid
-                  columns={objectsColumns}
-                  hasNextPage={hasNextPage}
-                  items={containerObjectsWithIndex}
-                  onFetchNextPage={handleFetchNextPage}
-                  totalItems={containerObjects.length}
-                />
-              </div>
-            ) : (
-              <OdsSpinner />
-            ))}
+          )}
 
           {!container?.s3StorageType && (
             <>
+              <div className="sm:flex items-center justify-between mt-8">
+                {shouldHideButton && (
+                  <OdsButton
+                    onClick={() => {
+                      clearNotifications();
+                      navigate(`./new?region=${searchParams.get('region')}`);
+                    }}
+                    label={tContainer(
+                      `pci_projects_project_storages_containers_container_add_object_label`,
+                    )}
+                    icon="plus"
+                    size="sm"
+                  />
+                )}
+
+                <div className="flex justify-center gap-4 ml-auto">
+                  {!container?.s3StorageType && (
+                    <>
+                      {' '}
+                      <OdsInput
+                        name="searchField"
+                        className="min-w-[15rem]"
+                        value={searchField}
+                        onOdsChange={({ detail }) =>
+                          setSearchField(detail.value as string)
+                        }
+                        onKeyDown={(event) => {
+                          if (event.key === 'Enter') {
+                            handleSearch();
+                          }
+                        }}
+                      />
+                      <OdsButton
+                        label=""
+                        icon="magnifying-glass"
+                        size="sm"
+                        onClick={handleSearch}
+                      />
+                      <OdsButton
+                        id="filterPopoverTrigger"
+                        size="sm"
+                        color="primary"
+                        label={tFilter('common_criteria_adder_filter_label')}
+                        variant="outline"
+                        icon="filter"
+                      />
+                      <OdsPopover triggerId="filterPopoverTrigger">
+                        <FilterAdd
+                          columns={filterColumns}
+                          onAddFilter={(addedFilter, column) => {
+                            setPagination({
+                              pageIndex: 0,
+                              pageSize: pagination.pageSize,
+                            });
+                            addFilter({
+                              ...addedFilter,
+                              label: column.label,
+                            });
+                          }}
+                        />
+                      </OdsPopover>
+                    </>
+                  )}
+                </div>
+              </div>
+
               <div className="mt-8">
                 <FilterList filters={filters} onRemoveFilter={removeFilter} />
               </div>

@@ -7,24 +7,33 @@ export const getContainerObjectsQueryKey = ({
   projectId,
   region,
   containerName,
+  prefix,
 }: {
   projectId: string;
   region: string;
   containerName: string;
-}) => [
-  'project',
-  projectId,
-  'region',
-  region,
-  'server-container-objects',
-  containerName,
-];
+  prefix: string | null;
+}) => {
+  const baseKey = [
+    'project',
+    projectId,
+    'region',
+    region,
+    'server-container-objects',
+    containerName,
+  ];
+
+  const prefixKey = !prefix ? [] : ['prefix', prefix];
+
+  return [...baseKey, ...prefixKey];
+};
 
 interface UseServerContainerObjectsParams {
   projectId: string;
   region: string;
   name: string;
   withVersions: boolean;
+  prefix: string;
   isS3StorageType: string;
 }
 
@@ -34,12 +43,14 @@ export const useServerContainerObjects = ({
   name,
   withVersions,
   isS3StorageType,
+  prefix,
 }: UseServerContainerObjectsParams) => {
   return useInfiniteQuery({
     queryKey: getContainerObjectsQueryKey({
       projectId,
       region,
       containerName: name,
+      prefix,
     }),
     queryFn: ({ pageParam }) =>
       getContainerObjects({
@@ -49,6 +60,7 @@ export const useServerContainerObjects = ({
         withVersions,
         keyMarker: pageParam?.keyMarker,
         versionIdMarker: pageParam?.versionIdMarker,
+        prefix,
       }),
     initialPageParam: { keyMarker: null, versionIdMarker: null },
     enabled: !!projectId && !!name && !!region && !!isS3StorageType,

@@ -24,12 +24,14 @@ export const useDatagridColumn = ({
   shouldSeeVersions,
   enableVersionsToggle,
   isLastElement,
+  shouldSeeSearch,
 }: {
   container: TContainer;
   isLocalZone: boolean;
   shouldSeeVersions?: boolean;
   enableVersionsToggle?: boolean;
   isLastElement?: boolean;
+  shouldSeeSearch?: boolean;
 }) => {
   const { i18n, t } = useTranslation('container');
   const { formatBytes } = useBytes();
@@ -61,6 +63,7 @@ export const useDatagridColumn = ({
         );
       },
       label: t('pci_projects_project_storages_containers_container_name_label'),
+      isSearchable: !!container?.s3StorageType && !!shouldSeeSearch,
     },
     {
       id: 'lastModified',
