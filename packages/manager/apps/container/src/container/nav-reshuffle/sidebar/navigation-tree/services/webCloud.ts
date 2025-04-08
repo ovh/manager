@@ -22,7 +22,7 @@ webCloudUniverse.children = [
     idAttr: 'domain-dns-link',
     universe: webCloudUniverse.id,
     translation: 'sidebar_domain_dns',
-    features: ['web:domains', 'web:domains:zone'],
+    features: ['web:domains', 'web:domains:zone', 'web:domains:operations', 'web-ongoing-operations'],
     children: [
       {
         id: 'domains-operations',
@@ -33,7 +33,19 @@ webCloudUniverse.children = [
           application: 'web',
           hash: '#/domain/operation',
         },
-        features: ['web:domains'],
+        hasService: false,
+        features: ['web:domains:operations'],
+      },
+      {
+        id: 'domains-operations',
+        idAttr: 'domains-operations-link',
+        universe: webCloudUniverse.id,
+        translation: 'sidebar_domain_operations',
+        routing: {
+          application: 'web-ongoing-operations',
+          hash: '#/',
+        },
+        features: ['web-ongoing-operations'],
       },
       {
         id: 'domains',
@@ -176,7 +188,7 @@ webCloudUniverse.children = [
     idAttr: 'microsoft-link',
     universe: webCloudUniverse.id,
     translation: 'sidebar_microsoft',
-    features: ['office', 'web-office', 'exchange'],
+    features: ['office','web-office', 'exchange'],
     children: [
       {
         id: 'office',
@@ -197,8 +209,8 @@ webCloudUniverse.children = [
         translation: 'sidebar_license_office',
         serviceType: 'LICENSE_OFFICE',
         routing: {
-          application: 'web-office',
-          hash: '#/',
+          application: 'web',
+          hash: '#/web-office',
         },
         features: ['web-office'],
       },
