@@ -40,5 +40,6 @@
   "pci_projects_network_cidr": "Wprowadź poprawny adres IP",
   "pci_project_network_private_localisation": "Wybierz lokalizację",
   "pci_projects_project_network_private_create_subnet": "Skonfiguruj podsieć",
-  "pci_projects_project_network_private_gateway_options": "Opcje bramy sieciowej"
+  "pci_projects_project_network_private_gateway_options": "Opcje bramy sieciowej",
+  "pci_projects_project_network_private_3az_guide_description": "Aby dowiedzieć się więcej o specyfikacjach usług 3-AZ i sposobach ich wykorzystania do projektowania odpornej infrastruktury, <Link>Kliknij tutaj</Link>"
 }
