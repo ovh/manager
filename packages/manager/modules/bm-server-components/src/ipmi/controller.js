@@ -71,7 +71,8 @@ export default class BmServerComponentsIpmiController {
       publicKey: '',
     };
 
-    this.ipmiHelpUrl = getIpmiGuideUrl(this.user.ovhSubsidiary);
+    const { ovhSubsidiary } = this.coreConfig.getUser();
+    this.ipmiHelpUrl = getIpmiGuideUrl(ovhSubsidiary);
 
     this.loader.loading = true;
     this.loader.error = false;
