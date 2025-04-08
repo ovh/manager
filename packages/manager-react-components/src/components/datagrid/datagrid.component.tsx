@@ -193,6 +193,7 @@ export const Datagrid = <T,>({
         ? [
             {
               id: 'expander',
+              enableHiding: false,
               cell: ({ row }: { row: Row<T> }) => {
                 return row.getCanExpand() ? (
                   <OdsButton
@@ -298,9 +299,8 @@ export const Datagrid = <T,>({
         const col = columns.find((item) => column.id === item.id);
         return {
           id: column.id,
-          label: column.columnDef.header as string,
+          label: col?.label,
           isVisible: () => column.getIsVisible(),
-          isVisibleByDefault: columnVisibility?.includes(column.id),
           isDisabled: !column.getCanHide(),
           enableHiding: col?.enableHiding,
           onChange: () => column.toggleVisibility(!column.getIsVisible()),
