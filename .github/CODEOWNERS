@@ -27,6 +27,7 @@
 /packages/manager/apps/exchange @ovh/dev-manager-web-all
 /packages/manager/apps/freefax @ovh/dev-manager-web-all
 /packages/manager/apps/hpc-vmware-managed-vcd @ovh/dev-manager-hpc-all
+/packages/manager/apps/hpc-vmware-vsphere @ovh/dev-manager-hpc-all
 /packages/manager/apps/hub @ovh/dev-manager-gcj-all
 /packages/manager/apps/hycu @ovh/dev-manager-hpc-all
 /packages/manager/apps/iam @ovh/dev-manager-enabler-all
