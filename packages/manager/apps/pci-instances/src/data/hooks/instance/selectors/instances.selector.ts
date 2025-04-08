@@ -110,6 +110,13 @@ const getActionHrefByName = (
     };
   }
 
+  if (name === 'create_backup') {
+    return {
+      path: `region/${region}/instance/${id}/backup`,
+      isExternal: false,
+    };
+  }
+
   const actions = new Set([
     'delete',
     'stop',

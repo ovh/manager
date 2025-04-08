@@ -33,9 +33,11 @@
   "pci_instances_actions_reinstall_instance_success_message": "La réinstallation de l'instance {{ name }} a commencé.",
 
   "pci_instances_actions_backup_instance_title": "Création d'un backup",
+  "pci_instances_actions_backup_instance_name_label": "Saisissez le nom de votre backup :",
+  "pci_instances_actions_backup_instance_price": "Prix : ~{{price}}€ HT/mois/Go",
   "pci_instances_actions_backup_instance_warning_message": "Votre instance sera suspendue pendant quelques secondes, puis les performances en lecture/écriture du disque pourront être affectées jusqu'à la finalisation du backup",
   "pci_instances_actions_backup_instance_error_message": "Une erreur est survenue lors de la sauvegarde de l'instance {{ name }} : {{ error }}",
-  "pci_instances_actions_backup_instance_success_message": "Le backup b2-7-de1 12/03/2025 09:46 est en cours de création. Pour visualiser son statut et les détails de l'opération, veuillez vous rendre sur la page 'Instance Backup'. Si le backup ne s'affiche pas immédiatement, n'hésitez pas à rafraîchir votre page pour mettre à jour la liste.",
+  "pci_instances_actions_backup_instance_success_message": "Le backup {{ name }} est en cours de création. Pour visualiser son statut et les détails de l'opération, veuillez vous rendre sur la page 'Instance Backup'. Si le backup ne s'affiche pas immédiatement, n'hésitez pas à rafraîchir votre page pour mettre à jour la liste.",
 
   "pci_instances_actions_start_instance_title": "Démarrage de votre instance",
   "pci_instances_actions_start_instance_confirmation_message": "Vous allez démarrer votre instance {{ name }}.",

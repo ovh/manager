@@ -12,7 +12,8 @@ type TInstanceAction =
   | 'unshelve'
   | 'reboot'
   | 'reinstall'
-  | 'rescueMode';
+  | 'rescueMode'
+  | 'snapshot';
 
 const instanceActionUrl = (
   projectId: string,
@@ -102,6 +103,19 @@ export const rescueMode = ({
     imageId,
     instanceId,
     rescue: isRescue,
+  });
+
+export const backupInstance = ({
+  projectId,
+  instanceId,
+  snapshotName,
+}: {
+  projectId: string;
+  instanceId: string;
+  snapshotName: string;
+}): Promise<null> =>
+  v6.post(instanceActionUrl(projectId, instanceId, 'snapshot'), {
+    snapshotName,
   });
 
 export const reinstallInstance = (

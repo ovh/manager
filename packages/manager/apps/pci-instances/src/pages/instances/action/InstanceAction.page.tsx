@@ -13,6 +13,7 @@ import queryClient from '@/queryClient';
 import { isApiErrorResponse, replaceToSnakeCase } from '@/utils';
 import BaseInstanceActionPage from './BaseAction.page';
 import { RescueActionPage } from './RescueAction.page';
+import BackupActionPage from './BackupActionPage';
 
 export type TSectionType =
   | 'delete'
@@ -24,9 +25,10 @@ export type TSectionType =
   | 'hard-reboot'
   | 'reinstall'
   | 'rescue/start'
-  | 'rescue/end';
+  | 'rescue/end'
+  | 'backup';
 
-const actionSectionRegex = /(?:rescue\/(start|end)|(?<!rescue\/)(start|stop|shelve|unshelve|delete|soft-reboot|hard-reboot|reinstall))$/;
+const actionSectionRegex = /(?:rescue\/(start|end)|(?<!rescue\/)(start|stop|shelve|unshelve|delete|soft-reboot|hard-reboot|reinstall|backup))$/;
 
 const InstanceAction: FC = () => {
   const { t } = useTranslation(['actions', 'common']);
@@ -63,7 +65,7 @@ const InstanceAction: FC = () => {
 
   const handleModalClose = () => navigate('..');
 
-  const handleMutationSuccess = () => {
+  const onSuccess = () => {
     executeSuccessCallback();
 
     const isRescue = section === 'rescue/start';
@@ -99,7 +101,7 @@ const InstanceAction: FC = () => {
     handleModalClose();
   };
 
-  const handleMutationError = (rawError: unknown) => {
+  const onError = (rawError: unknown) => {
     const errorMessage = isApiErrorResponse(rawError)
       ? rawError.response?.data.message
       : (rawError as DefaultError).message;
@@ -130,17 +132,21 @@ const InstanceAction: FC = () => {
   const modalProps = {
     title,
     projectId,
-    handleMutationError,
-    handleMutationSuccess,
+    onError,
+    onSuccess,
     handleModalClose,
     instance,
   };
 
-  return section === 'rescue/start' || section === 'rescue/end' ? (
-    <RescueActionPage {...modalProps} section={section} />
-  ) : (
-    <BaseInstanceActionPage {...modalProps} section={section} />
-  );
+  if (section === 'backup') {
+    return <BackupActionPage {...modalProps} section={section} />;
+  }
+
+  if (section === 'rescue/start' || section === 'rescue/end') {
+    return <RescueActionPage {...modalProps} section={section} />;
+  }
+
+  return <BaseInstanceActionPage {...modalProps} section={section} />;
 };
 
 export default InstanceAction;
