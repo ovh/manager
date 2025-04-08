@@ -76,7 +76,7 @@ hostedPrivateCloudUniverse.children = [
         serviceType: 'SAP_FEATURES_HUB',
         routing: {
           application: 'sap-features-hub',
-          hash: '#/sap-features-hub',
+          hash: '#/',
         },
         features: ['sap-features-hub'],
       },
