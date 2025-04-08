@@ -47,6 +47,23 @@ export const Routes: any = [
                 '@/pages/listing/manageOrganisations/manage.organisations.page'
               ),
             ),
+            children: [
+              {
+                id: 'open',
+                path: urls.openOrganisationsModel,
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/listing/manageOrganisations/OpenOrganisations/OpenOrganisationsModal.page'
+                  ),
+                ),
+                handle: {
+                  tracking: {
+                    pageName: 'manage-organisations-open',
+                    pageType: PageType.listing,
+                  },
+                },
+              },
+            ],
             handle: {
               tracking: {
                 pageName: 'manage-organisations',
