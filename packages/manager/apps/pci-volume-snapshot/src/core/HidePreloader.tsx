@@ -6,8 +6,7 @@ export default function HidePreloader() {
 
   useEffect(() => {
     ux.hidePreloader();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [ux]);
 
   return null;
 }
