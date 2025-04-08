@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.86.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.85.0...@ovh-ux/manager-pci@6.86.0) (2025-04-08)
+
+
+### Features
+
+* **pci-instances:** add windows licence 2025 ([#16275](https://github.com/ovh/manager/issues/16275)) ([17b010e](https://github.com/ovh/manager/commit/17b010e0edd0c665ffd69121225f30905466cee8)), closes [#TAPC-3479](https://github.com/ovh/manager/issues/TAPC-3479)
+
+
+
+
+
 # [6.85.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.84.0...@ovh-ux/manager-pci@6.85.0) (2025-04-02)
 
 

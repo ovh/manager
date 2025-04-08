@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.57](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.0.56...@ovh-ux/manager-public-cloud@7.0.57) (2025-04-08)
+
+
+### Bug Fixes
+
+* **pci.databases:** change deeplink to new uapp and add valkey deeplink ([#16342](https://github.com/ovh/manager/issues/16342)) ([5cff7c3](https://github.com/ovh/manager/commit/5cff7c3f019be1055a37e2bfc67a51bb29383d8a)), closes [#DATATR-2112](https://github.com/ovh/manager/issues/DATATR-2112)
+
+
+
+
+
 ## [7.0.56](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.0.55...@ovh-ux/manager-public-cloud@7.0.56) (2025-04-07)
 
 **Note:** Version bump only for package @ovh-ux/manager-public-cloud

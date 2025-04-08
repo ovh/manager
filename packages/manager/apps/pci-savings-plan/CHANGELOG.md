@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.12.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.12.2...@ovh-ux/manager-pci-savings-plan-app@1.12.3) (2025-04-08)
+
+
+### Bug Fixes
+
+* **pci.savings-plan:** invoke onSuccess if founded plan ([#16223](https://github.com/ovh/manager/issues/16223)) ([f63a2d9](https://github.com/ovh/manager/commit/f63a2d9f212f718f4af4eed564c218b9fd2ea06e)), closes [#TAPC-2776](https://github.com/ovh/manager/issues/TAPC-2776)
+* **svp:** prevent multi click on create button ([#15746](https://github.com/ovh/manager/issues/15746)) ([5d75cc0](https://github.com/ovh/manager/commit/5d75cc0af8990fc1591500339ab783594a21abc7)), closes [#TAPC-3213](https://github.com/ovh/manager/issues/TAPC-3213)
+* **svp:** rename vcores and ram unit ([#16149](https://github.com/ovh/manager/issues/16149)) ([db38b89](https://github.com/ovh/manager/commit/db38b894b1227619de44fc0229711ce9e7658d33)), closes [#TAP2777](https://github.com/ovh/manager/issues/TAP2777)
+
+
+
+
+
 ## [1.12.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.12.1...@ovh-ux/manager-pci-savings-plan-app@1.12.2) (2025-04-07)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app
