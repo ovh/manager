@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.117.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.116.0...@ovh-ux/manager-container-app@0.117.0) (2025-04-08)
+
+
+### Features
+
+* **web-ongoing-operations:** ongoing operations react uapp ([#15598](https://github.com/ovh/manager/issues/15598)) ([ccd247b](https://github.com/ovh/manager/commit/ccd247b524458edd8e7b7339c5cfe356ce2b234c)), closes [#MANAGER-16196](https://github.com/ovh/manager/issues/MANAGER-16196)
+
+
+
+
+
 # [0.116.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.115.1...@ovh-ux/manager-container-app@0.116.0) (2025-04-07)
 
 
