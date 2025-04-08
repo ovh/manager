@@ -1,12 +1,15 @@
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
+import { generateCsv, mkConfig, download } from 'export-to-csv';
 import {
   BaseLayout,
   Datagrid,
   DatagridColumn,
   GuideButton,
   GuideItem,
+  Notifications,
   OvhSubsidiary,
+  useNotifications,
 } from '@ovh-ux/manager-react-components';
 import {
   ODS_BUTTON_COLOR,
@@ -14,7 +17,7 @@ import {
   ODS_ICON_NAME,
   ODS_LINK_ICON_ALIGNMENT,
 } from '@ovhcloud/ods-components';
-import { OdsButton } from '@ovhcloud/ods-components/react';
+import { OdsButton, OdsLink } from '@ovhcloud/ods-components/react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useWebHostingAttachedDomain } from '@/hooks/useWebHostingAttachedDomain';
 import { WebsiteType, ServiceStatus } from '@/api/type';
@@ -32,9 +35,11 @@ export default function Websites() {
     isFetchingNextPage,
     fetchAllPages,
   } = useWebHostingAttachedDomain();
+  const { notifications, addSuccess } = useNotifications();
 
   const items = data ? data.map((website: WebsiteType) => website) : [];
-  const columns: DatagridColumn<WebsiteType>[] = [
+
+  const displayColumns: DatagridColumn<WebsiteType>[] = [
     {
       id: 'fqdn',
       label: t('web_hosting_status_header_fqdn'),
@@ -75,7 +80,6 @@ export default function Websites() {
           label={webSiteItem?.currentState.hosting.serviceName}
         />
       ),
-      enableHiding: false,
     },
     {
       id: 'displayName',
@@ -182,12 +186,131 @@ export default function Websites() {
       ),
     },
   ];
+  interface ExportColumn {
+    id: string;
+    label: string;
+    getValue: (item: WebsiteType) => string;
+  }
+
+  const exportColumns: ExportColumn[] = [
+    {
+      id: 'fqdn',
+      label: t('web_hosting_status_header_fqdn'),
+      getValue: (item) => item?.currentState.fqdn,
+    },
+    {
+      id: 'path',
+      label: t('web_hosting_status_header_path'),
+      getValue: (item) => item?.currentState.path,
+    },
+    {
+      id: 'serviceName',
+      label: t('web_hosting_status_header_serviceName'),
+      getValue: (item) => item?.currentState.hosting.serviceName,
+    },
+    {
+      id: 'displayName',
+      label: t('web_hosting_status_header_displayName'),
+      getValue: (item) => item?.currentState.hosting.displayName,
+    },
+    {
+      id: 'offer',
+      label: t('web_hosting_status_header_offer'),
+      getValue: (item) =>
+        t([
+          `web_hosting_dashboard_offer_${item?.currentState.hosting.offer}`,
+          item?.currentState.hosting.offer,
+        ]),
+    },
+    {
+      id: 'git',
+      label: t('web_hosting_status_header_git'),
+      getValue: (item) =>
+        t(`web_hosting_status_${item?.currentState.git?.status.toLowerCase()}`),
+    },
+    {
+      id: 'ownLog',
+      label: t('web_hosting_status_header_ownlog'),
+      getValue: (item) =>
+        item?.currentState.ownLog ? ServiceStatus.ACTIVE : ServiceStatus.NONE,
+    },
+    {
+      id: 'CDN',
+      label: t('web_hosting_status_header_cdn'),
+      getValue: (item) =>
+        t(`web_hosting_status_${item?.currentState.cdn?.status.toLowerCase()}`),
+    },
+    {
+      id: 'ssl',
+      label: t('web_hosting_status_header_ssl'),
+      getValue: (item) =>
+        t(`web_hosting_status_${item?.currentState.ssl?.status.toLowerCase()}`),
+    },
+    {
+      id: 'firewall',
+      label: t('web_hosting_status_header_firewall'),
+      getValue: (item) =>
+        t(
+          `web_hosting_status_${item?.currentState.firewall?.status.toLowerCase()}`,
+        ),
+    },
+    {
+      id: 'boostOffer',
+      label: t('web_hosting_status_header_boostOffer'),
+      getValue: (item) =>
+        item?.currentState.hosting.boostOffer
+          ? ServiceStatus.ACTIVE
+          : ServiceStatus.NONE,
+    },
+  ];
+
+  const handleExportWithExportToCsv = () => {
+    const csvConfig = mkConfig({
+      filename: t('websites'),
+      fieldSeparator: ',',
+      quoteStrings: true,
+      useKeysAsHeaders: true,
+    });
+
+    const csvData = items.map((item) =>
+      exportColumns.reduce(
+        (acc, column) => ({
+          ...acc,
+          [column.label]: column.getValue(item),
+        }),
+        {},
+      ),
+    );
+
+    const csv = generateCsv(csvConfig)(csvData);
+    const blob = new Blob([csv.toString()], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+
+    const successMessage = (
+      <div>
+        {t('web_hosting_export_success')}
+        <OdsLink
+          href={url}
+          download={csvConfig.filename}
+          label={t('web_hosting_export_download_manually')}
+          className="ml-4"
+          icon={ODS_ICON_NAME.download}
+          iconAlignment={ODS_LINK_ICON_ALIGNMENT.right}
+        />
+      </div>
+    );
+    addSuccess(successMessage);
+    download(csvConfig)(csv);
+  };
+
   const context = useContext(ShellContext);
   const { ovhSubsidiary } = context.environment.getUser();
+
   const goToOrder = () => {
     const url = ORDER_URL[ovhSubsidiary as OvhSubsidiary] || ORDER_URL.DEFAULT;
     window.open(url, '_blank');
   };
+
   const guideItems: GuideItem[] = [
     {
       id: 1,
@@ -196,16 +319,18 @@ export default function Websites() {
       label: t('web_hosting_header_guide_general_informations'),
     },
   ];
+
   return (
     <BaseLayout
       header={{
         title: t('websites'),
         headerButton: <GuideButton items={guideItems} />,
       }}
+      message={notifications.length ? <Notifications /> : null}
     >
       <Datagrid
         data-testid="websites-page-datagrid"
-        columns={columns}
+        columns={displayColumns}
         items={items}
         totalItems={items.length}
         hasNextPage={!isFetchingNextPage && hasNextPage}
@@ -213,14 +338,26 @@ export default function Websites() {
         onFetchAllPages={fetchAllPages}
         isLoading={isFetchingNextPage || isLoading}
         topbar={
-          <OdsButton
-            label={t('web_hosting_header_order')}
-            variant={ODS_BUTTON_VARIANT.default}
-            color={ODS_BUTTON_COLOR.primary}
-            onClick={goToOrder}
-            icon={ODS_ICON_NAME.externalLink}
-            iconAlignment={ODS_LINK_ICON_ALIGNMENT.right}
-          />
+          <div className="flex items-center gap-4">
+            <OdsButton
+              label={t('web_hosting_header_order')}
+              variant={ODS_BUTTON_VARIANT.default}
+              color={ODS_BUTTON_COLOR.primary}
+              onClick={goToOrder}
+              icon={ODS_ICON_NAME.externalLink}
+              iconAlignment={ODS_LINK_ICON_ALIGNMENT.right}
+              data-testid="websites-page-order-button"
+            />
+            <OdsButton
+              label={t('web_hosting_export_label')}
+              variant={ODS_BUTTON_VARIANT.outline}
+              color={ODS_BUTTON_COLOR.primary}
+              icon={ODS_ICON_NAME.download}
+              iconAlignment={ODS_LINK_ICON_ALIGNMENT.right}
+              onClick={handleExportWithExportToCsv}
+              data-testid="websites-page-export-button"
+            />
+          </div>
         }
       />
     </BaseLayout>
