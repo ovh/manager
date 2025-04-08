@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.23.4...@ovh-ux/manager-dedicated@20.24.0) (2025-04-08)
+
+
+### Features
+
+* **dedicated.license:** fix plesk translation ([#15643](https://github.com/ovh/manager/issues/15643)) ([a17c379](https://github.com/ovh/manager/commit/a17c37998f6be4790a685057cd0c7ba8cae65537)), closes [#MANAGER-16911](https://github.com/ovh/manager/issues/MANAGER-16911)
+* **dedicated:** remove old ola option section ([#16325](https://github.com/ovh/manager/issues/16325)) ([187d7e7](https://github.com/ovh/manager/commit/187d7e71fb4f6f6dde924d3c4ee5feb867d132f8)), closes [#MANAGER-16494](https://github.com/ovh/manager/issues/MANAGER-16494)
+
+
+
+
+
 ## [20.23.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.23.3...@ovh-ux/manager-dedicated@20.23.4) (2025-04-07)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated
