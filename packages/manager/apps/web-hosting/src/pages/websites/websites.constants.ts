@@ -1,6 +1,24 @@
 const websiteRoot = 'https://www.ovhcloud.com/';
 const webSitePath = '/web-hosting/create-your-website/';
+const helpRoot = 'https://help.ovhcloud.com/csm/';
+const guideRoot =
+  '-documentation-web-cloud-hosting?id=kb_browse_cat&kb_id=e17b4f25551974502d4c6e78b7421955&kb_category=98441955f49801102d4ca4d466a7fdb2';
 
+export const GUIDE_URL: Record<string, string> = {
+  DEFAULT: `${helpRoot}en-ie${guideRoot}`,
+  FR: `${helpRoot}fr${guideRoot}`,
+  DE: `${helpRoot}de${guideRoot}`,
+  ES: `${helpRoot}es${guideRoot}`,
+  IE: `${helpRoot}en-ie${guideRoot}`,
+  IT: `${helpRoot}it${guideRoot}`,
+  NL: `${helpRoot}en-ie${guideRoot}`,
+  PL: `${helpRoot}en-ie${guideRoot}`,
+  PT: `${helpRoot}pt${guideRoot}`,
+  GB: `${helpRoot}en-gb${guideRoot}`,
+  MA: `${helpRoot}fr-ma${guideRoot}`,
+  SN: `${helpRoot}fr-sn${guideRoot}`,
+  TN: `${helpRoot}fr-tn${guideRoot}`,
+};
 export const ORDER_URL: Record<string, string> = {
   DEFAULT: `${websiteRoot}en-ie${webSitePath}`,
   IN: `${websiteRoot}en-in${webSitePath}`,
