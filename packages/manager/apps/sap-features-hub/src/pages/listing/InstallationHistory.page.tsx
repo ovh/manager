@@ -11,7 +11,7 @@ import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import { LABELS } from '@/utils/label.constants';
-import { subRoutes } from '@/routes/routes.constant';
+import { subRoutes, urls } from '@/routes/routes.constant';
 import { TSAPInstallation } from '@/types/installation.type';
 import useInstallationHistory from '@/data/hooks/useInstallationHistory';
 import {
@@ -108,7 +108,7 @@ export default function HistoryPage() {
       breadcrumb={<Breadcrumb />}
       header={header}
       backLinkLabel={tInstallation('backlink_label')}
-      onClickReturn={() => {}}
+      onClickReturn={() => navigate(urls.dashboard)}
     >
       <OdsText preset="heading-2" className="flex flex-col">
         {t('sap_hub_history_title')}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 import {
   BaseLayout,
@@ -12,6 +12,7 @@ import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import { useFormSteps } from '@/hooks/formStep/useFormSteps';
 import { InstallationFormContextProvider } from '@/context/InstallationForm.context';
 import { INSTALLATION_STEPS } from './installation.constants';
+import { urls } from '@/routes/routes.constant';
 
 export type DashboardTabItemProps = {
   name: string;
@@ -26,6 +27,7 @@ export type DashboardLayoutProps = {
 export default function InstallationDashboard() {
   const { t } = useTranslation('installation');
   const { currentStep } = useFormSteps();
+  const navigate = useNavigate();
 
   return (
     <InstallationFormContextProvider>
@@ -38,7 +40,7 @@ export default function InstallationDashboard() {
           }),
         }}
         backLinkLabel={t('backlink_label')}
-        onClickReturn={() => {}}
+        onClickReturn={() => navigate(urls.dashboard)}
         description={t('description')}
         iconAlignment={IconLinkAlignmentType.left}
         message={<Notifications />}
