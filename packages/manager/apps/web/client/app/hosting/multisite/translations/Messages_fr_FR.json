@@ -1,6 +1,8 @@
 {
   "hosting_multisite": "Multisite",
   "hosting_multisite_actions": "Actions",
+  "hosting_multisite_ssl_message": "La gestion de vos certificats SSL a été déplacée vers un nouvel onglet dédié. Découvrez le dès maintenant !",
+  "hosting_multisite_manage_ssl": "Manage SSL certificates",
   "hosting_multisite_statistics": "Statistiques du CDN",
   "hosting_multisite_statistics_domain": "Domaine",
   "hosting_multisite_statistics_period": "Période",
