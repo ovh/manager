@@ -4,6 +4,8 @@ import {
   BaseLayout,
   Datagrid,
   DatagridColumn,
+  GuideButton,
+  GuideItem,
   OvhSubsidiary,
 } from '@ovh-ux/manager-react-components';
 import {
@@ -14,12 +16,11 @@ import {
 } from '@ovhcloud/ods-components';
 import { OdsButton } from '@ovhcloud/ods-components/react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import Breadcrumb from '@/components/breadcrumb/Breadcrumb.component';
 import { useWebHostingAttachedDomain } from '@/hooks/useWebHostingAttachedDomain';
 import { WebsiteType, ServiceStatus } from '@/api/type';
 import ActionButtonStatistics from './ActionButtonStatistics.component';
 import { BadgeStatusCell, DiagnosticCell, LinkCell } from './Cells.component';
-import { ORDER_URL } from './websites.constants';
+import { GUIDE_URL, ORDER_URL } from './websites.constants';
 
 export default function Websites() {
   const { t } = useTranslation('common');
@@ -187,8 +188,21 @@ export default function Websites() {
     const url = ORDER_URL[ovhSubsidiary as OvhSubsidiary] || ORDER_URL.DEFAULT;
     window.open(url, '_blank');
   };
+  const guideItems: GuideItem[] = [
+    {
+      id: 1,
+      href: GUIDE_URL[ovhSubsidiary as OvhSubsidiary] || GUIDE_URL.DEFAULT,
+      target: '_blank',
+      label: t('web_hosting_header_guide_general_informations'),
+    },
+  ];
   return (
-    <BaseLayout header={{ title: t('websites') }} breadcrumb={<Breadcrumb />}>
+    <BaseLayout
+      header={{
+        title: t('websites'),
+        headerButton: <GuideButton items={guideItems} />,
+      }}
+    >
       <Datagrid
         data-testid="websites-page-datagrid"
         columns={columns}
