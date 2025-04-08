@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.16.2...@ovh-ux/manager-pci-databases-analytics-app@1.17.0) (2025-04-08)
+
+
+### Features
+
+* **pci-db:** add EU-WEST-PAR region ([#16343](https://github.com/ovh/manager/issues/16343)) ([02c2c69](https://github.com/ovh/manager/commit/02c2c69efea57c5f692e8233f3b8b90535fe7de4)), closes [#DATATR-2110](https://github.com/ovh/manager/issues/DATATR-2110)
+
+
+
+
+
 ## [1.16.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.16.1...@ovh-ux/manager-pci-databases-analytics-app@1.16.2) (2025-04-07)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-databases-analytics-app
