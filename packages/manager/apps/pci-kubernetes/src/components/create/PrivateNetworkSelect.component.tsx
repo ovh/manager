@@ -79,13 +79,16 @@ export default function PrivateNetworkSelect({
           size={ODS_SELECT_SIZE.md}
           value={
             network?.id ||
-            (isMonoDeploymentZone(type) ? defaultNetwork.id : networks[0].id)
+            (isMonoDeploymentZone(type) ? defaultNetwork.id : undefined)
           }
           onOdsValueChange={(ev) => {
             const networkId = `${ev.detail.value}`;
             onSelect(networks?.find((net) => net.id === networkId));
           }}
         >
+          <span slot="placeholder">
+            {t('kubernetes_network_form_select_private_option')}
+          </span>
           {isMonoDeploymentZone(type) && (
             <OsdsSelectOption value={defaultNetwork.id}>
               {defaultNetwork.name}

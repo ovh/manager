@@ -1,19 +1,12 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { describe, it, vi, expect, beforeEach } from 'vitest';
+import { describe, it, vi, expect, beforeEach, Mock } from 'vitest';
 import NodePoolStep from './NodePoolStep.component';
 import { useClusterCreationStepper } from '../useCusterCreationStepper';
+import { useRegionInformations } from '@/api/hooks/useRegionInformations';
 
 import { wrapper } from '@/wrapperRenders';
-
-vi.mock('react-i18next', () => ({
-  useTranslation: () => ({
-    t: (key: string) => key,
-    i18n: {
-      language: 'fr-FR',
-    },
-  }),
-}));
+import { DeploymentMode } from '@/types';
 
 vi.mock('react-router-dom', () => ({
   useParams: () => ({ projectId: '12345' }),
@@ -26,6 +19,10 @@ vi.mock('../useCusterCreationStepper', () => ({
 vi.mock('@ovh-ux/manager-react-components', async (original) => ({
   ...((await original()) as Record<string, unknown>),
   useProjectUrl: vi.fn(),
+}));
+
+vi.mock('@/api/hooks/useRegionInformations', () => ({
+  useRegionInformations: vi.fn(),
 }));
 
 const mockStepper = ({
@@ -46,12 +43,30 @@ describe('NodePoolStep Component', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     vi.mocked(useClusterCreationStepper).mockReturnValue(mockStepper);
+    vi.mocked(useRegionInformations as Mock).mockReturnValue({
+      data: {
+        type: DeploymentMode.MONO_ZONE,
+        availabilityZones: ['zone-a', 'zone-b'],
+      },
+    });
   });
 
-  it('shoukld render withoit error', () => {
+  it('should render without error', () => {
     render(<NodePoolStep stepper={mockStepper} />, { wrapper });
-    expect(
-      screen.getByText('node-pool:kube_common_add_node_pool'),
-    ).toBeInTheDocument();
+    const toTest = [
+      'kubernetes_add_nodepool_name_placeholder',
+      'kube_common_node_pool_model_type_selector',
+      'kube_common_node_pool_size_title',
+      'kubernetes_node_pool_anti_affinity',
+      'pci_projects_project_instances_configure_billing_type',
+      'node-pool:kube_common_add_node_pool',
+    ];
+    toTest.forEach((test) =>
+      expect(screen.getByText(test)).toBeInTheDocument(),
+    );
+  });
+
+  it('should render zones', () => {
+    render(<NodePoolStep stepper={mockStepper} />, { wrapper });
   });
 });
