@@ -1,5 +1,7 @@
 import { FilterCategories } from '@ovh-ux/manager-core-api';
+import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { DataGridTextCell } from './text-cell.component';
+import { ActionMenu } from '../navigation';
 
 export interface Item {
   label: string;
@@ -61,6 +63,29 @@ export const columnsVisibility = [
     },
     label: 'Price',
     enableHiding: true,
+  },
+  {
+    id: 'actions',
+    cell: (item: Item) => {
+      return (
+        <div className="flex items-center justify-center">
+          <ActionMenu
+            id={item.label.replace(/Item #/g, '')}
+            items={[
+              {
+                id: 1,
+                onClick: () => console.log(`Action on ${item.label}`),
+                label: `Action on ${item.label}`,
+              },
+            ]}
+            variant={ODS_BUTTON_VARIANT.ghost}
+            isCompact
+          />
+        </div>
+      );
+    },
+    label: '',
+    enableHiding: false,
   },
 ];
 
