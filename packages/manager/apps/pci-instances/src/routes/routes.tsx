@@ -30,6 +30,7 @@ export const SECTIONS = {
   reinstall: 'reinstall',
   rescue: 'rescue/start',
   rescueEnd: 'rescue/end',
+  createBackup: 'backup',
 };
 
 const instanceActionsSections = [
@@ -43,6 +44,7 @@ const instanceActionsSections = [
   SECTIONS.reinstall,
   SECTIONS.rescue,
   SECTIONS.rescueEnd,
+  SECTIONS.createBackup,
 ];
 
 const instanceActionLegacyRoutes = instanceActionsSections.map((section) => ({
