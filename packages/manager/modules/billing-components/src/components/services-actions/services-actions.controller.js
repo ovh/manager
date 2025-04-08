@@ -238,11 +238,4 @@ export default class ServicesActionsCtrl {
         });
     }
   }
-
-  handleConfigureServiceRenewModal(show) {
-    if (show) {
-      this.trackAction('go-to-configure-renew');
-    }
-    this.isOpenConfigureServiceRenewModal = show;
-  }
 }
