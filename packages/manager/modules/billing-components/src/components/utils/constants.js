@@ -20,16 +20,10 @@ export const SERVICE_TYPE = {
   VRACK_SERVICES: 'VRACK_SERVICES_RESOURCE',
   VRACK: 'VRACK',
   VMWARE_CLOUD_DIRECTOR_ORGANIZATION: 'VMWARE_CLOUD_DIRECTOR_ORGANIZATION',
-  ZIMBRA_SLOT: 'ZIMBRA_SLOT',
 };
-
-// This list represent what service types uses apiv6 `/services` routes to
-// handle retrieving informations about the service and updating it
-export const SERVICE_TYPES_USING_V6_SERVICES = [SERVICE_TYPE.ZIMBRA_SLOT];
 
 export default {
   DEFAULT_DURATION,
   DEFAULT_TYPE,
   SERVICE_TYPE,
-  SERVICE_TYPES_USING_V6_SERVICES,
 };
