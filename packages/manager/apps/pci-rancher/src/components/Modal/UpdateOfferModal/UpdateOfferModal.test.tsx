@@ -1,18 +1,11 @@
+import { vi } from 'vitest';
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import dashboardTranslation from '@translation/dashboard/Messages_fr_FR.json';
 import { render, waitFor } from '@/utils/test/test.provider';
-import { rancherMocked } from '@/_mock_/rancher';
 import UpdateOfferModal, {
   UpdateOfferModalProps,
 } from './UpdateOfferModal.component';
-
-const mockedUsedNavigate = jest.fn();
-
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
-  useNavigate: () => mockedUsedNavigate,
-}));
 
 const mockPlanInfo: PlanInfo = {
   name: 'STANDARD',
@@ -20,8 +13,8 @@ const mockPlanInfo: PlanInfo = {
 };
 
 const defaultProps: UpdateOfferModalProps = {
-  onClose: jest.fn(),
-  onClickUpdate: jest.fn(),
+  onClose: vi.fn(),
+  onClickUpdate: vi.fn(),
   isUpdatePending: false,
   planInfo: mockPlanInfo,
 };
@@ -32,7 +25,7 @@ export interface PlanInfo {
 }
 
 afterEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 });
 
 const setupSpecTest = async (props: UpdateOfferModalProps = defaultProps) =>
