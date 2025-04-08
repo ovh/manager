@@ -124,5 +124,10 @@
   "wizard_cancel": "Anular",
   "wizard_confirm": "Confirmar",
   "domain_operations_update_key_authinfo": "AuthInfo",
-  "domain_operations_update_key_authInfo": "AuthInfo"
+  "domain_operations_update_key_authInfo": "AuthInfo",
+  "domain_operations_nicOperation_DnssecEnable": "Ativação do DNSSEC",
+  "domain_operations_nicOperation_ZoneCut": "Delegação da zona DNS",
+  "domain_operations_nicOperation_ZoneDelete": "Eliminação da zona DNS",
+  "domain_operations_nicOperation_Zonerestore": "Restauro da zona DNS",
+  "domain_operations_update_key_legitimacyAfnic": "Justificar a utilização do domínio"
 }
