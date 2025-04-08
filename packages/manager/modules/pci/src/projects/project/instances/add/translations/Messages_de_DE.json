@@ -133,5 +133,6 @@
   "pci_project_instances_instance_add_3_az_region_select_auto_title": "Für mich auswählen",
   "pci_project_instances_instance_add_3_az_region_select_auto_description": "Wenn wir für Sie auswählen, können Sie die Zonen-Instanz nicht ändern. Sie müssen die Instanz dann stoppen und in der Zone Ihrer Wahl neu erstellen.",
   "pci_project_instances_instance_add_3_az_region_select_manual_title": "Ich wähle meine Availability Zone.",
-  "pci_projects_project_instances_3az_add_success_message": "Die Instanz {{ instance }} wurde erfolgreich zu folgender Availability Zone hinzugefügt: {{ zone }}"
+  "pci_projects_project_instances_3az_add_success_message": "Die Instanz {{ instance }} wurde erfolgreich zu folgender Availability Zone hinzugefügt: {{ zone }}",
+  "pci_projects_project_instances_add_numInstances_3az_help": "Wenn Sie mehrere Instanzen in einer 3AZ-Region erstellen, befinden sich alle in derselben Availability Zone, unabhängig davon, ob Sie eine Zone oder die Option „Für mich auswählen“ wählen."
 }
