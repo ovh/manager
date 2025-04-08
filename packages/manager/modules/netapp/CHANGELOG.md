@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.9.4...@ovh-ux/manager-netapp@2.10.0) (2025-04-08)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3837] ([030221c](https://github.com/ovh/manager/commit/030221cc2337b3c5cb9a1edc3498128d03df1248))
+
+
+### Features
+
+* few improvements on efs and vrackservice ([#16049](https://github.com/ovh/manager/issues/16049)) ([67acbc9](https://github.com/ovh/manager/commit/67acbc9377e1e2a8bd454e1206cbf244316e5369)), closes [#MANAGER-16532](https://github.com/ovh/manager/issues/MANAGER-16532)
+
+
+
+
+
 ## [2.9.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.9.3...@ovh-ux/manager-netapp@2.9.4) (2025-04-07)
 
 **Note:** Version bump only for package @ovh-ux/manager-netapp
