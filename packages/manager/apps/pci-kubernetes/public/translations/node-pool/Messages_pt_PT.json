@@ -31,5 +31,7 @@
   "kube_common_node_pool_model": "Modelo",
   "kube_common_node_pool_liste": "Lista dos pools de nós",
   "kube_common_add_node_pool": "Adicionar o pool de nós",
-  "kube_common_min_max_nodes": "Mínimo {{minNodes}}, Máximo {{maxNodes}}"
+  "kube_common_min_max_nodes": "Mínimo {{minNodes}}, Máximo {{maxNodes}}",
+  "kube_common_estimation_price": "Gratuito durante a fase beta.",
+  "kube_common_cluster_estimation_price": "Cluster: {{estimation}}"
 }

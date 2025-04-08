@@ -23,6 +23,8 @@
   "kube_common_node_pool_estimated_cost": "Estimation coût mensuel du cluster :",
   "kube_common_node_pool_estimation_text": "Cette estimation n'inclut pas une éventuelle réduction liée aux Savings Plans.",
   "kube_common_node_pool_estimation_price": "Pools de nœuds :  {{estimation}}",
+  "kube_common_estimation_price": "Gratuit durant la phase de beta.",
+  "kube_common_cluster_estimation_price": "Cluster : {{estimation}}",
   "kube_common_node_pool_estimation_text_end": "Le coût exact dépend de l'utilisation réelle des ressources, qui ne peut être précisément estimée avant la création d'un cluster.",
   "kube_common_node_pool_size_title": "Taille du pool de nœuds",
   "kube_common_node_pool_desired_node": "Nombre de nœuds",
@@ -31,5 +33,7 @@
   "kube_common_node_pool_model": "Modèle",
   "kube_common_node_pool_liste": "Liste des pools de nœuds",
   "kube_common_add_node_pool": "Ajouter le pool de nœuds",
-  "kube_common_min_max_nodes": "Min {{minNodes}}, Max {{maxNodes}}"
+  "kube_common_min_max_nodes": "Min {{minNodes}}, Max {{maxNodes}}",
+  "kube_common_node_pool_deploy_title": "Choix de la zone de disponibilité",
+  "kube_common_node_pool_deploy_description": "Dans un cluster Kubernetes réparti sur trois zone de disponibilité (AZ), l'utilisation de pools de nœuds par zone est recommandée pour assurer la résilience et la haute disponibilité. Cette configuration vous permet de distribuer de manière équilibrée vos workloads entre les AZ. Elle améliore ainsi la tolérance aux pannes et garantit une continuité de service optimale."
 }
