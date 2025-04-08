@@ -65,7 +65,7 @@ const InstanceAction: FC = () => {
 
   const handleModalClose = () => navigate('..');
 
-  const handleMutationSuccess = () => {
+  const onSuccess = () => {
     executeSuccessCallback();
 
     const isRescue = section === 'rescue/start';
@@ -101,7 +101,7 @@ const InstanceAction: FC = () => {
     handleModalClose();
   };
 
-  const handleMutationError = (rawError: unknown) => {
+  const onError = (rawError: unknown) => {
     const errorMessage = isApiErrorResponse(rawError)
       ? rawError.response?.data.message
       : (rawError as DefaultError).message;
@@ -132,8 +132,8 @@ const InstanceAction: FC = () => {
   const modalProps = {
     title,
     projectId,
-    handleMutationError,
-    handleMutationSuccess,
+    onError,
+    onSuccess,
     handleModalClose,
     instance,
   };

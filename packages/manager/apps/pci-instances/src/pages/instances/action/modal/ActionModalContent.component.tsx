@@ -8,11 +8,14 @@ import {
 import { useTranslation } from 'react-i18next';
 import { TSectionType } from '../InstanceAction.page';
 import { isCustomUrlSection, replaceToSnakeCase } from '@/utils';
+import { DeepReadonly } from '@/types/utils.type';
 
-type TActionModalProps = React.PropsWithChildren<{
-  type: TSectionType;
-  instanceName: string;
-}>;
+type TActionModalProps = DeepReadonly<
+  React.PropsWithChildren<{
+    type: TSectionType;
+    instanceName: string;
+  }>
+>;
 
 export const ActionModalContent: FC<TActionModalProps> = ({
   type,

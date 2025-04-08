@@ -34,26 +34,26 @@ export type TUseInstanceActionCallbacks = DeepReadonly<{
 
 const unknownError = new Error('Unknwon Error');
 
-type TUseInstanceActionParams<TVariables, TReturn> = {
+type TUseInstanceActionParams<V, R> = {
   projectId: string;
   mutationKeySuffix: string | null;
-  mutationFn: (variables: TVariables) => Promise<TReturn>;
+  mutationFn: (variables: V) => Promise<R>;
   callbacks?: TUseInstanceActionCallbacks;
 };
 
-const useInstanceAction = <TVariables, TReturn extends null>({
+const useInstanceAction = <V, R extends null>({
   projectId,
   mutationKeySuffix,
   mutationFn,
   callbacks = {},
-}: TUseInstanceActionParams<TVariables, TReturn>) => {
+}: TUseInstanceActionParams<V, R>) => {
   const { onError, onSuccess } = callbacks;
   const mutationKey = instancesQueryKey(projectId, [
     'instance',
     ...(mutationKeySuffix !== null ? [mutationKeySuffix] : []),
   ]);
 
-  const mutation = useMutation<TReturn, unknown, TVariables>({
+  const mutation = useMutation<R, unknown, V>({
     mutationKey,
     mutationFn,
     onError,

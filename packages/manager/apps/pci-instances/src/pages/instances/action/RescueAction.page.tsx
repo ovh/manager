@@ -13,24 +13,24 @@ import { useInstanceRescueAction } from '@/data/hooks/instance/action/useInstanc
 import { TInstanceDto } from '@/types/instance/api.type';
 import { imagesRescueSelector } from '@/data/hooks/image/selector/image.selector';
 
-type TRescueActionPageProps = 'rescue/start' | 'rescue/end';
+type TRescueActionSection = 'rescue/start' | 'rescue/end';
 
-export type TCustomModalActionPage = {
+export type TRescueActionPageProps = {
   title: string;
-  section: TRescueActionPageProps;
+  section: TRescueActionSection;
   projectId: string;
-  handleMutationError: (error: unknown) => void;
-  handleMutationSuccess: () => void;
+  onError: (error: unknown) => void;
+  onSuccess: () => void;
   handleModalClose: () => void;
   instance: TInstanceDto;
 };
 
-export const RescueActionPage: FC<TCustomModalActionPage> = ({
+export const RescueActionPage: FC<TRescueActionPageProps> = ({
   title,
   section,
   projectId,
-  handleMutationError,
-  handleMutationSuccess,
+  onError,
+  onSuccess,
   handleModalClose,
   instance,
 }) => {
@@ -55,8 +55,8 @@ export const RescueActionPage: FC<TCustomModalActionPage> = ({
   const isRescueMode = section === 'rescue/start';
 
   const { mutationHandler, isPending } = useInstanceRescueAction(projectId, {
-    onError: handleMutationError,
-    onSuccess: handleMutationSuccess,
+    onError,
+    onSuccess,
   });
 
   const handleInstanceAction = () =>

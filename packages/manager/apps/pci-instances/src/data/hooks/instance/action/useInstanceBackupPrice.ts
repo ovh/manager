@@ -4,6 +4,7 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { useProductAvailability, useCatalog } from '@ovh-ux/manager-pci-common';
 import { useTranslation } from 'react-i18next';
+import { useMemo } from 'react';
 
 export const useInstanceBackupPrice = (projectId: string, region: string) => {
   const { i18n } = useTranslation('actions');
@@ -33,12 +34,15 @@ export const useInstanceBackupPrice = (projectId: string, region: string) => {
   const price = plan?.pricings[0];
 
   return {
-    price:
-      convertHourlyPriceToMonthly(
-        priceFromUcent(Number(price?.price)),
-      ).toLocaleString(locale, {
-        maximumFractionDigits: 3,
-      }) ?? null,
+    price: useMemo(
+      () =>
+        convertHourlyPriceToMonthly(
+          priceFromUcent(Number(price?.price)),
+        ).toLocaleString(locale, {
+          maximumFractionDigits: 3,
+        }) ?? null,
+      [price, locale],
+    ),
     isLoading: isProductAvailabilityLoading || isCatalogLoading,
   };
 };

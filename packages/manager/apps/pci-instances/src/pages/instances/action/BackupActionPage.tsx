@@ -2,11 +2,11 @@ import { useTranslation } from 'react-i18next';
 import { Input } from '@datatr-ux/uxlib';
 import { useMemo, useState } from 'react';
 import ActionModal from '@/components/actionModal/ActionModal.component';
-import { TCustomModalActionPage } from './RescueAction.page';
+import { TRescueActionPageProps } from './RescueAction.page';
 import { useInstanceBackupAction } from '@/data/hooks/instance/action/useInstanceAction';
 import { useInstanceBackupPrice } from '@/data/hooks/instance/action/useInstanceBackupPrice';
 
-type TBackupActionPageProps = Omit<TCustomModalActionPage, 'section'> & {
+type TBackupActionPageProps = Omit<TRescueActionPageProps, 'section'> & {
   section: 'backup';
 };
 
@@ -16,8 +16,8 @@ const BackupActionPage = ({
   section,
   instance,
   projectId,
-  handleMutationError,
-  handleMutationSuccess,
+  onError,
+  onSuccess,
 }: TBackupActionPageProps) => {
   const { t, i18n } = useTranslation('actions');
   const locale = i18n?.language?.replace('_', '-');
@@ -39,8 +39,8 @@ const BackupActionPage = ({
   );
 
   const { mutationHandler, isPending } = useInstanceBackupAction(projectId, {
-    onError: handleMutationError,
-    onSuccess: handleMutationSuccess,
+    onError,
+    onSuccess,
   });
 
   const handleInstanceAction = () =>
@@ -63,16 +63,16 @@ const BackupActionPage = ({
           type="text"
           name="backup-name"
           value={snapshotName}
-          onChange={(e) => setSnapshotName(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setSnapshotName(e.target.value)
+          }
         />
-        {price && !isLoading ? (
+        {!!price && !isLoading && (
           <p className="text-sm font-medium">
             {t('pci_instances_actions_backup_instance_price', {
               price,
             })}
           </p>
-        ) : (
-          <></>
         )}
       </div>
     </ActionModal>
