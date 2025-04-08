@@ -7,7 +7,11 @@ import {
   NavLink,
 } from 'react-router-dom';
 import { OdsTabs, OdsTab } from '@ovhcloud/ods-components/react';
-import { BaseLayout, ChangelogButton } from '@ovh-ux/manager-react-components';
+import {
+  BaseLayout,
+  ChangelogButton,
+  Notifications,
+} from '@ovh-ux/manager-react-components';
 import { CHANGELOG_LINKS } from '@/utils/changelog.constants';
 import { subRoutes } from '@/routes/routes.constant';
 
@@ -58,6 +62,7 @@ export default function Listing() {
           ))}
         </OdsTabs>
       }
+      message={<Notifications />}
     >
       <Outlet />
     </BaseLayout>
