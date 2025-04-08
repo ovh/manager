@@ -17,8 +17,8 @@ export type TBaseInstanceActionPageProps = {
   title: string;
   section: BaseInstanceActionSection;
   projectId: string;
-  handleMutationError: (error: unknown) => void;
-  handleMutationSuccess: () => void;
+  onError: (error: unknown) => void;
+  onSuccess: () => void;
   handleModalClose: () => void;
   instance: TInstanceDto;
 };
@@ -27,8 +27,8 @@ const BaseInstanceActionPage: FC<TBaseInstanceActionPageProps> = ({
   title,
   section,
   projectId,
-  handleMutationError,
-  handleMutationSuccess,
+  onError,
+  onSuccess,
   handleModalClose,
   instance,
 }) => {
@@ -36,8 +36,8 @@ const BaseInstanceActionPage: FC<TBaseInstanceActionPageProps> = ({
     section,
     projectId,
     {
-      onError: handleMutationError,
-      onSuccess: handleMutationSuccess,
+      onError,
+      onSuccess,
     },
   );
 
