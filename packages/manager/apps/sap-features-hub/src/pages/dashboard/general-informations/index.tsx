@@ -1,7 +1,8 @@
 import React from 'react';
 
 function GeneralInfos() {
-  return <div>Information Générales Tab</div>;
+  // TODO (later in corresponding US): replace div below by the dashboard's building blocks
+  return <div>Building blocks</div>;
 }
 
 export default GeneralInfos;
