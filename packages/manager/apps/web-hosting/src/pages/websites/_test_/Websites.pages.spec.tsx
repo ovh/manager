@@ -1,5 +1,6 @@
 import React from 'react';
 import { describe, expect, vi } from 'vitest';
+import { download } from 'export-to-csv';
 import Websites from '../Websites.page';
 import { render, screen } from '@/test.provider';
 import { attachedDomainDigStatusMock, websitesMocks } from '@/api/_mock_';
@@ -8,7 +9,10 @@ import commonTranslation from '@/public/translations/common/Messages_fr_FR.json'
 const hoistedMock = vi.hoisted(() => ({
   useWebHostingAttachedDomaindigStatus: vi.fn(),
   useWebHostingAttachedDomain: vi.fn(),
+  createObjectURL: vi.fn().mockReturnValue('mock-url'),
+  open: vi.fn(),
 }));
+
 vi.mock('@/hooks', async (importActual) => {
   const actual = await importActual<typeof import('@/hooks')>();
   return {
@@ -18,6 +22,12 @@ vi.mock('@/hooks', async (importActual) => {
     useWebHostingAttachedDomain: hoistedMock.useWebHostingAttachedDomain,
   };
 });
+
+vi.mock('export-to-csv', () => ({
+  generateCsv: () => vi.fn().mockReturnValue('csv-content'),
+  mkConfig: vi.fn().mockReturnValue({ filename: 'websites.csv' }),
+  download: vi.fn().mockImplementation(() => vi.fn()),
+}));
 
 describe('Websites page', () => {
   beforeEach(() => {
@@ -29,6 +39,8 @@ describe('Websites page', () => {
       data: websitesMocks,
       isLoading: false,
     });
+    global.URL.createObjectURL = hoistedMock.createObjectURL;
+    window.open = hoistedMock.open;
   });
 
   it('should render correctly', async () => {
@@ -96,5 +108,31 @@ describe('Websites page', () => {
       expect(headerElement).toBeInTheDocument();
       expect(headerElement.querySelector('span')).toHaveTextContent(text);
     });
+  });
+  it('should display order and export buttons', async () => {
+    render(<Websites />);
+    const orderButton = screen.getByTestId('websites-page-order-button');
+    expect(orderButton).toBeInTheDocument();
+    const exportButton = screen.getByTestId('websites-page-export-button');
+    expect(exportButton).toBeInTheDocument();
+  });
+
+  it('should open order URL in new tab when clicking order button', async () => {
+    render(<Websites />);
+    const orderButton = screen.getByTestId('websites-page-order-button');
+
+    await orderButton.click();
+
+    expect(hoistedMock.open).toHaveBeenCalledWith(expect.any(String), '_blank');
+  });
+
+  it('should trigger export when clicking export button', async () => {
+    render(<Websites />);
+    const exportButton = screen.getByTestId('websites-page-export-button');
+
+    await exportButton.click();
+
+    expect(hoistedMock.createObjectURL).toHaveBeenCalled();
+    expect(download).toHaveBeenCalled();
   });
 });
