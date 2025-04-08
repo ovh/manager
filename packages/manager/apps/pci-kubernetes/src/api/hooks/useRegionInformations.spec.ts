@@ -1,9 +1,10 @@
 import { renderHook, waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
 import * as ApiRegionModule from '@/api/data/informations-region';
-import { TRegionInformations } from '@/api/data/informations-region';
+
 import { useRegionInformations } from './useRegionInformations';
 import { wrapper } from '@/wrapperRenders';
+import { TRegionInformations } from '@/types/region';
 
 describe('useRegionInformations', () => {
   it('fetches region information successfully', async () => {

@@ -33,5 +33,7 @@
   "kube_common_node_pool_model": "Modèle",
   "kube_common_node_pool_liste": "Liste des pools de nœuds",
   "kube_common_add_node_pool": "Ajouter le pool de nœuds",
-  "kube_common_min_max_nodes": "Min {{minNodes}}, Max {{maxNodes}}"
+  "kube_common_min_max_nodes": "Min {{minNodes}}, Max {{maxNodes}}",
+  "kube_common_node_pool_deploy_title": "Choix de la zone de disponibilité",
+  "kube_common_node_pool_deploy_description": "Dans un cluster Kubernetes réparti sur trois zone de disponibilité (AZ), l'utilisation de pools de nœuds par zone est recommandée pour assurer la résilience et la haute disponibilité. Cette configuration vous permet de distribuer de manière équilibrée vos workloads entre les AZ. Elle améliore ainsi la tolérance aux pannes et garantit une continuité de service optimale."
 }
