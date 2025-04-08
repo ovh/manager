@@ -27,6 +27,7 @@
 /packages/manager/apps/dedicated/client/__tests__ @ovh/dev-manager-infrastructure-baremetalstorage @ovh/dev-manager-enterprise-vmware
 /packages/manager/apps/dedicated-server @ovh/dev-manager-infrastructure-baremetalstorage
 /packages/manager/apps/hpc-vmware-public-vcf-aas @ovh/dev-manager-enterprise-vmware
+/packages/manager/apps/hpc-vmware-vsphere @ovh/dev-manager-enterprise-vmware
 /packages/manager/apps/email-domain @ovh/dev-manager-web-collaboration
 /packages/manager/apps/email-pro @ovh/dev-manager-web-collaboration
 /packages/manager/apps/exchange @ovh/dev-manager-web-collaboration
