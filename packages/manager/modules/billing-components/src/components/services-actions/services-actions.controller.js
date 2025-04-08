@@ -130,7 +130,7 @@ export default class ServicesActionsCtrl {
         this.canDisplayCancelResiliationMenuEntry =
           ![
             this.SERVICE_TYPE.VRACK,
-            this.SERVICE_TYPE.EXTRA_SQL_PERSO,
+            this.SERVICE_TYPE.HOSTING_WEB_EXTRA_SQL_PERSO,
           ].includes(this.service.serviceType) &&
           this.cancelResiliationLink &&
           (this.service.canBeUnresiliated(this.user.nichandle) ||

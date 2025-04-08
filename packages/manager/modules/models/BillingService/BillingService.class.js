@@ -49,7 +49,7 @@ export default class BillingService {
   }
 
   isExtraSqlPerso() {
-    return this.serviceType === SERVICE_TYPE.EXTRA_SQL_PERSO;
+    return this.serviceType === SERVICE_TYPE.HOSTING_WEB_EXTRA_SQL_PERSO;
   }
 
   getRenew() {
