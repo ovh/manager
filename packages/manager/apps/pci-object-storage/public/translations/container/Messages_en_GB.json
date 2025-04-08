@@ -1,7 +1,7 @@
 {
   "pci_projects_project_storages_containers_container_back_label": "Back",
   "pci_projects_project_storages_containers_container_archive_info_storedObjects": "Archives: {{count}}",
-  "pci_projects_project_storages_containers_container_object_info_storedObjects": "Objects: {{count}}",
+  "pci_projects_project_storages_containers_container_object_info_storedObjects": "Objects: {{ objects }}",
   "pci_projects_project_storages_containers_container_info_storedBytes": "Space used: {{bytes}}",
   "pci_projects_project_storages_containers_container_info_publicUrl": "Endpoint",
   "pci_projects_project_storages_containers_container_info_publicUrl_help": "You need this information to retrieve or change objects via the API. Go to the guide section for more details.",

@@ -1,7 +1,7 @@
 {
   "pci_projects_project_storages_containers_container_back_label": "Volver",
   "pci_projects_project_storages_containers_container_archive_info_storedObjects": "Archivos: {{ count }}",
-  "pci_projects_project_storages_containers_container_object_info_storedObjects": "Objetos: {{ count }}",
+  "pci_projects_project_storages_containers_container_object_info_storedObjects": "Objetos: {{ objects }}",
   "pci_projects_project_storages_containers_container_info_storedBytes": "Espacio utilizado: {{ bytes }}",
   "pci_projects_project_storages_containers_container_info_publicUrl": "Endpoint",
   "pci_projects_project_storages_containers_container_info_publicUrl_help": "Esta información es necesaria para recuperar o manipular los objetos a través de la API. Para más información, consulte nuestras guías.",

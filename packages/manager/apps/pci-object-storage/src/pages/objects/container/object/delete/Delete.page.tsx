@@ -15,7 +15,7 @@ export default function DeletePage() {
 
   const navigate = useNavigate();
   const { projectId, storageId, objectName } = useParams();
-  const decodedObjectName = objectName.replace(/~2F/g, '/');
+  const decodedObjectName = decodeURIComponent(atob(objectName));
   const [searchParams] = useSearchParams();
   const region = searchParams.get('region');
   const versionId = searchParams.get('versionId');

@@ -65,8 +65,7 @@ export default function ActionsComponent({
     await downloadObject(object, container, projectId);
   };
 
-  const encodeName = (name: string) =>
-    encodeURIComponent(name.replace(/\//, '~2F'));
+  const encodeName = (name: string) => btoa(encodeURIComponent(name));
 
   const items = [
     !object.isDeleteMarker && {
