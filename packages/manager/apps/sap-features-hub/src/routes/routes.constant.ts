@@ -8,10 +8,8 @@ export const subRoutes = {
 
 export const urls = {
   root: `/`,
-  listing: `/`,
-  tab2: `Tab2`,
+  dashboard: `/`,
   onboarding: `/${subRoutes.onboarding}`,
-  dashboard: `/${subRoutes.serviceName}`,
   installation: `/${subRoutes.installation}`,
   installationInitialStep: `/${subRoutes.installation}/${subRoutes.initialStep}`,
   installationStep: `/${subRoutes.installation}/${subRoutes.stepId}/${subRoutes.serviceName}`,

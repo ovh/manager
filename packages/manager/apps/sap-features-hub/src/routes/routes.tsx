@@ -22,19 +22,6 @@ export const Routes: any = [
     ...lazyRouteConfig(() => import('@/pages/layout')),
     children: [
       {
-        id: 'listing',
-        path: urls.installation,
-        ...lazyRouteConfig(() =>
-          import('@/pages/listing/InstallationHistory.page'),
-        ),
-        handle: {
-          tracking: {
-            pageName: 'listing',
-            pageType: PageType.listing,
-          },
-        },
-      },
-      {
         path: urls.dashboard,
         ...lazyRouteConfig(() => import('@/pages/dashboard')),
         children: [
@@ -51,18 +38,20 @@ export const Routes: any = [
               },
             },
           },
-          {
-            id: 'dashboard.tab2',
-            path: 'Tab2',
-            ...lazyRouteConfig(() => import('@/pages/dashboard/tab2')),
-            handle: {
-              tracking: {
-                pageName: 'tab2',
-                pageType: PageType.dashboard,
-              },
-            },
-          },
         ],
+      },
+      {
+        id: 'listing',
+        path: urls.installation,
+        ...lazyRouteConfig(() =>
+          import('@/pages/listing/InstallationHistory.page'),
+        ),
+        handle: {
+          tracking: {
+            pageName: 'listing',
+            pageType: PageType.listing,
+          },
+        },
       },
       {
         id: 'onboarding',
