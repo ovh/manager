@@ -141,7 +141,7 @@ export const DatagridTopbar = <T,>({
                 </div>
               )}
               {hasVisibilityFeature && (
-                <div className={filtersColumns?.length > 0 && 'ml-[10px]'}>
+                <div className={filtersColumns?.length > 0 ? 'ml-[10px]' : ''}>
                   <VisibilityManagement columnsVisibility={columnsVisibility} />
                 </div>
               )}
