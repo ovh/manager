@@ -31,6 +31,7 @@ export const SECTIONS = {
   rescue: 'rescue/start',
   rescueEnd: 'rescue/end',
   createBackup: 'backup',
+  activateMonthlyBilling: 'billing/monthly/activate',
 };
 
 const instanceActionsSections = [
@@ -45,6 +46,7 @@ const instanceActionsSections = [
   SECTIONS.rescue,
   SECTIONS.rescueEnd,
   SECTIONS.createBackup,
+  SECTIONS.activateMonthlyBilling,
 ];
 
 const instanceActionLegacyRoutes = instanceActionsSections.map((section) => ({
