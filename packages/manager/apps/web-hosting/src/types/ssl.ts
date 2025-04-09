@@ -28,3 +28,9 @@ export type TCertificate = {
   taskId?: number;
   type: string;
 };
+
+export type DashboardTab = {
+  name: string;
+  title: string;
+  to: string;
+};
