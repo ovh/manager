@@ -1,4 +1,8 @@
-import { StepComponent, Subtitle } from '@ovh-ux/manager-react-components';
+import {
+  Links,
+  StepComponent,
+  Subtitle,
+} from '@ovh-ux/manager-react-components';
 import {
   RegionSelector,
   usePCICommonContextFactory,
@@ -11,8 +15,8 @@ import {
   DEPLOYMENT_FEATURES,
   DEPLOYMENT_MODES_TYPES,
 } from '@ovh-ux/manager-pci-common';
-import { useTranslation } from 'react-i18next';
-import { useContext, useMemo, useState } from 'react';
+import { Trans, useTranslation } from 'react-i18next';
+import { FC, PropsWithChildren, useContext, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { OsdsIcon, OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
 import {
@@ -20,14 +24,31 @@ import {
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
-import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
+import {
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
+} from '@ovhcloud/ods-components';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { StepsEnum, useNewGatewayStore } from '@/pages/add/useStore';
 import { RegionType } from '@/types/region';
+import useGuideLink from '@/hooks/useGuideLink/useGuideLink';
 
 const isRegionWith3AZ = (regions: TProductAvailabilityRegion[]) =>
   regions.some((region) => region.type === RegionType['3AZ']);
+
+const GuideLink: FC<PropsWithChildren<{ href: string }>> = ({
+  children,
+  href,
+}) => (
+  <Links
+    label={children}
+    href={href}
+    target={OdsHTMLAnchorElementTarget._blank}
+  />
+);
 
 /**
  *
@@ -63,6 +84,11 @@ export const LocationStep = ({
     [regions, selectedRegionGroup],
   );
 
+  const selectedRegionType = useMemo(
+    () => regions.find((region) => store.form.regionName === region.name)?.type,
+    [regions, store.form.regionName],
+  );
+
   const { data: deploymentAvailability } = usePCIFeatureAvailability(
     DEPLOYMENT_FEATURES,
   );
@@ -80,6 +106,8 @@ export const LocationStep = ({
       ),
     [deploymentAvailability],
   );
+
+  const guides = useGuideLink();
 
   return (
     <StepComponent
@@ -159,6 +187,23 @@ export const LocationStep = ({
             }
           />
         </PCICommonContext.Provider>
+        {selectedRegionType === RegionType['3AZ'] && (
+          <div className="mt-6">
+            <OsdsText
+              color={ODS_THEME_COLOR_INTENT.text}
+              size={ODS_TEXT_SIZE._400}
+              level={ODS_TEXT_LEVEL.body}
+            >
+              <Trans
+                t={t}
+                i18nKey="add:pci_projects_project_public_gateways_3az_guide_description"
+                components={{
+                  Link: <GuideLink href={guides['3AZ']} />,
+                }}
+              />
+            </OsdsText>
+          </div>
+        )}
       </div>
     </StepComponent>
   );
