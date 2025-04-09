@@ -7,7 +7,7 @@ export interface UseLabelFormProps {
   configuredLabel: string[];
 }
 export const useLabelForm = ({ configuredLabel }: UseLabelFormProps) => {
-  const { t } = useTranslation('ai-tools/components/configuration');
+  const { t } = useTranslation('ai-tools/components/labels');
   const labelSchema = z.object({
     name: z
       .string()

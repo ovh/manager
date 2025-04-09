@@ -1,6 +1,12 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
 import { describe, expect, vi } from 'vitest';
-import { getRegions, getFlavor, getAppImages } from './capabilities.api';
+import {
+  getRegions,
+  getFlavor,
+  getAppImages,
+  getEditor,
+  getFramework,
+} from './capabilities.api';
 
 describe('Capabilities functions', () => {
   afterEach(() => {
@@ -42,6 +48,28 @@ describe('Capabilities functions', () => {
     });
     expect(apiClient.v6.get).toHaveBeenCalledWith(
       '/cloud/project/projectId/ai/capabilities/region/region/app/image',
+    );
+  });
+
+  it('should call getEditor', async () => {
+    expect(apiClient.v6.get).not.toHaveBeenCalled();
+    await getEditor({
+      projectId: 'projectId',
+      region: 'region',
+    });
+    expect(apiClient.v6.get).toHaveBeenCalledWith(
+      '/cloud/project/projectId/ai/capabilities/region/region/notebook/editor',
+    );
+  });
+
+  it('should call getFramework', async () => {
+    expect(apiClient.v6.get).not.toHaveBeenCalled();
+    await getFramework({
+      projectId: 'projectId',
+      region: 'region',
+    });
+    expect(apiClient.v6.get).toHaveBeenCalledWith(
+      '/cloud/project/projectId/ai/capabilities/region/region/notebook/framework',
     );
   });
 });

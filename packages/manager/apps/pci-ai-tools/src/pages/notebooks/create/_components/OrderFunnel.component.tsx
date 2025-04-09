@@ -42,7 +42,7 @@ import FlavorsSelect from '@/components/order/flavor/FlavorSelect.component';
 import FrameworksSelect from '@/components/order/framework/FrameworkSelect.component';
 import EditorsSelect from '@/components/order/editor/EditorSelect.component';
 import PrivacyRadioInput from '@/components/order/privacy-radio/PrivacyRadio.component';
-import { PrivacyEnum, Suggestions } from '@/types/orderFunnel';
+import { NotebookSuggestions, PrivacyEnum } from '@/types/orderFunnel';
 import VolumeForm from '@/components/order/volumes/VolumesForm.component';
 
 import LabelsForm from '@/components/labels/LabelsForm.component';
@@ -55,27 +55,17 @@ import publicCatalog from '@/types/Catalog';
 interface OrderFunnelProps {
   regions: ai.capabilities.Region[];
   catalog: publicCatalog.Catalog;
-  frameworks: ai.capabilities.notebook.Framework[];
-  editors: ai.capabilities.notebook.Editor[];
   sshKeys: SshKey[];
-  suggestions: Suggestions[];
+  suggestions: NotebookSuggestions;
 }
 
 const OrderFunnel = ({
   regions,
   catalog,
-  frameworks,
-  editors,
   sshKeys,
   suggestions,
 }: OrderFunnelProps) => {
-  const model = useOrderFunnel(
-    regions,
-    catalog,
-    frameworks,
-    editors,
-    suggestions,
-  );
+  const model = useOrderFunnel(regions, catalog, suggestions);
   const { t } = useTranslation('ai-tools/notebooks/create');
   const { projectId } = useParams();
   const [showAdvancedConfiguration, setShowAdvancedConfiguration] = useState(
@@ -291,17 +281,19 @@ const OrderFunnel = ({
                       {t('fieldFrameworkLabel')}
                     </FormLabel>
                     <FormControl>
-                      <FrameworksSelect
-                        {...field}
-                        frameworks={model.lists.frameworks}
-                        value={model.form.getValues('frameworkWithVersion')}
-                        onChange={(newFrameworkWithVersion) =>
-                          model.form.setValue(
-                            'frameworkWithVersion',
-                            newFrameworkWithVersion,
-                          )
-                        }
-                      />
+                      {model.result.version && (
+                        <FrameworksSelect
+                          {...field}
+                          frameworks={model.lists.frameworks}
+                          value={model.form.getValues('frameworkWithVersion')}
+                          onChange={(newFrameworkWithVersion) =>
+                            model.form.setValue(
+                              'frameworkWithVersion',
+                              newFrameworkWithVersion,
+                            )
+                          }
+                        />
+                      )}
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -498,7 +490,7 @@ const OrderFunnel = ({
                 />
               )}
             </CardContent>
-            <CardFooter className="flex flex-col gap-4">
+            <CardFooter className="flex flex-col gap-2">
               <Button
                 data-testid="cli-command-button"
                 type="button"

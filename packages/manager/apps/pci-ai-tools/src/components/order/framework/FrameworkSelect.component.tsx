@@ -13,26 +13,23 @@ const FrameworksSelect = React.forwardRef<
   HTMLInputElement,
   FrameworkSelectProps
 >(({ frameworks, value, onChange }, ref) => {
+  const fmkTypes = [...new Set(frameworks.map((fmk) => fmk.type))].sort();
   const [selectedFrameworkTypeIndex, setSelectedFrameworkTypeIndex] = useState(
-    0,
+    frameworks.find((fmk) => fmk.id === value?.framework)?.type,
   );
-  const mappedFramework = frameworks.map((fmk) => ({
-    ...fmk,
-    type: fmk.docUrl ? 'classical' : 'quantique',
-  }));
-  const fmkTypes = [...new Set([...mappedFramework.map((mr) => mr.type)])];
+
   return (
     <>
       <div data-testid="fmk-select-container" ref={ref}>
         <Tabs
-          defaultValue="0"
-          onValueChange={(v) => setSelectedFrameworkTypeIndex(+v)}
+          defaultValue={selectedFrameworkTypeIndex}
+          onValueChange={(type) => setSelectedFrameworkTypeIndex(type)}
         >
-          <TabsList className="bg-white justify-start p-0 hidden md:flex">
-            {fmkTypes.map((fmkType, index) => (
+          <TabsList className="bg-white justify-start p-0">
+            {fmkTypes.map((fmkType) => (
               <TabsTrigger
                 key={fmkType}
-                value={`${index}`}
+                value={fmkType}
                 className="-mb-[1px] px-4 text-lg text-primary-600 font-semibold h-full bg-white border border-primary-100 rounded-t-md rounded-b-none data-[state=active]:bg-background data-[state=active]:shadow-none data-[state=active]:bg-primary-50 data-[state=active]:border-b-primary-50 data-[state=active]:font-bold data-[state=active]:text-primary-800"
               >
                 {fmkType}
@@ -40,8 +37,8 @@ const FrameworksSelect = React.forwardRef<
             ))}
           </TabsList>
           <div className="p-4 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2 bg-primary-50 border border-primary-100 rounded-b-md">
-            {mappedFramework
-              .filter((r) => r.type === fmkTypes[selectedFrameworkTypeIndex])
+            {frameworks
+              .filter((r) => r.type === selectedFrameworkTypeIndex)
               .map((fmk) => (
                 <FrameworkTile
                   key={fmk.name}
