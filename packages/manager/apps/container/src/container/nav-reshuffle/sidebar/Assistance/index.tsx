@@ -146,6 +146,7 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
               title={t('sidebar_assistance_title')}
               onClick={() => setIsAnimated(true)}
               contrasted
+              id="useful-links-button"
             >
               <OsdsIcon
                 name={ODS_ICON_NAME.ELLIPSIS}
@@ -153,7 +154,7 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
                 contrasted
               />
             </OsdsButton>
-            <OsdsPopoverContent>
+          <OsdsPopoverContent>
               {nodeTree.children.map((node: Node) => (
                 <ShortAssistanceLinkItem key={node.id} node={node} />
               ))}
@@ -177,11 +178,14 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
         <div
           ref={popoverAnchorRef}
           className="flex justify-center my-2 h-[3.5rem]"
+          tabIndex={0}
+          onFocus={() => document.getElementById('useful-links-button')?.focus()}
+          data-testid="short-assistance-link-popover-anchor"
         >
-          {popoverAnchorRef?.current && bottomPosition && portal && (
-            <>{portal}</>
-          )}
         </div>
+        {popoverAnchorRef?.current && bottomPosition && portal && (
+          <>{portal}</>
+        )}
       </>
     );
 
@@ -192,6 +196,11 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
       role="menu"
       data-testid="assistance-sidebar"
     >
+      <li className="assistance_header px-3 mb-3">
+        <h2 className="flex justify-between whitespace-nowrap">
+          <span>{t('sidebar_assistance_title')}</span>
+        </h2>
+      </li>
       {nodeTree.children.map((node: Node) => (
         <AssistanceLinkItem
           key={`assistance_${node.id}`}
