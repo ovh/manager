@@ -113,6 +113,7 @@ exports[`QuotaPage > should render 1`] = `
           <!---->
           <table
             class="w-full border-collapse"
+            style="--expander-column-width: 2.5rem;"
           >
             <thead>
               <tr>

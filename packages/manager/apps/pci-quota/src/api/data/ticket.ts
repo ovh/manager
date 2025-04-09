@@ -5,6 +5,7 @@ export type TCreateTicketParam = {
   subject: string;
   body: string;
   serviceName?: string;
+  urgency?: string;
 };
 
 export type TCreateTicketResponse = {

@@ -43,9 +43,9 @@ export default function RegionsPage(): JSX.Element {
 
   const { data: locations, isPending } = useAvailableLocations(projectId);
 
-  const [selectedLocation, setSelectedLocation] = useState<TPlainLocation>(
-    undefined,
-  );
+  const [selectedLocation, setSelectedLocation] = useState<
+    TPlainLocation | undefined
+  >();
 
   const [selectedRegions, setSelectedRegions] = useState<
     Record<string, string>

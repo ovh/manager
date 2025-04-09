@@ -25,6 +25,7 @@ module.exports = {
       path.dirname(require.resolve('@ovh-ux/manager-pci-common')),
       '**/*.{js,jsx,ts,tsx}',
     ),
+    '../../../../node_modules/@datatr-ux/uxlib/**/*.{js,jsx,ts,tsx}',
   ],
   corePlugins: {
     preflight: false,

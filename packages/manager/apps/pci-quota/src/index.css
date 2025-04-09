@@ -1,5 +1,7 @@
 @import '@ovh-ux/manager-react-components/dist/style.css';
 @import '@ovh-ux/manager-pci-common/dist/style.css';
+@import '@datatr-ux/ods-tailwind-config/style.css';
+@import '@datatr-ux/uxlib/style.css';
 
 @tailwind base;
 @tailwind components;
