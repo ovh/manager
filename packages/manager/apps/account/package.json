@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-account-app",
-  "version": "0.1.33",
+  "version": "0.2.0",
   "private": true,
   "description": "User account and contacts management application",
   "repository": {
@@ -19,10 +19,10 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-account-app' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
-    "@ovh-ux/manager-account": "^0.8.2",
+    "@ovh-ux/manager-account": "^0.9.0",
     "@ovh-ux/manager-at-internet-configuration": "^1.5.0",
     "@ovh-ux/manager-config": "^8.2.0",
-    "@ovh-ux/manager-core": "^13.0.7",
+    "@ovh-ux/manager-core": "^13.0.8",
     "@ovh-ux/manager-error-page": "^2.4.2",
     "@ovh-ux/manager-ng-layout-helpers": "^2.11.0",
     "@ovh-ux/ng-at-internet": "^6.0.11",

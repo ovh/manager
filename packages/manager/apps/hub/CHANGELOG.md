@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.11.3...@ovh-ux/manager-hub-app@0.12.0) (2025-04-09)
+
+
+### Features
+
+* **hub:** remove the duplicate of hub react after bff has been deployed ([13d50c5](https://github.com/ovh/manager/commit/13d50c522455634e86d07dbdae411d75bc30a07a)), closes [#MANAGER-15693](https://github.com/ovh/manager/issues/MANAGER-15693)
+
+
+
+
+
 ## [0.11.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.11.2...@ovh-ux/manager-hub-app@0.11.3) (2025-04-07)
 
 **Note:** Version bump only for package @ovh-ux/manager-hub-app

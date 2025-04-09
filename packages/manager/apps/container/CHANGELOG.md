@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.118.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.117.0...@ovh-ux/manager-container-app@0.118.0) (2025-04-09)
+
+
+### Bug Fixes
+
+* **container:** fix my bill link for us manager ([e7a3554](https://github.com/ovh/manager/commit/e7a3554864fe1acedecc91f1f9963dbd35f77314)), closes [#MANAGER-17525](https://github.com/ovh/manager/issues/MANAGER-17525)
+
+
+### Features
+
+* **account:** cleanup code after slicing /dedicated ([da8ae0f](https://github.com/ovh/manager/commit/da8ae0f972804269ffec5141b906345cbbefbd69)), closes [#MANAGER-17277](https://github.com/ovh/manager/issues/MANAGER-17277)
+* **container:** added an invitation modal to accept contracts ([3390858](https://github.com/ovh/manager/commit/33908580cfde1e913c73ffc7fd59e3c9724c1cac))
+* **container:** replace legacy navbar spinner with skeletons ([b3e34c7](https://github.com/ovh/manager/commit/b3e34c7580bd8b19f1fd376a89384b65d57a257a)), closes [#MANAGER-15634](https://github.com/ovh/manager/issues/MANAGER-15634)
+* **hub:** add new page changelog ([747b62a](https://github.com/ovh/manager/commit/747b62a5c1cc0e272cc6c664330f89bda12b5d4f)), closes [#MANAGER-16491](https://github.com/ovh/manager/issues/MANAGER-16491)
+
+
+### Reverts
+
+* Revert "feat(account): cleanup code after slicing /dedicated" ([79c24db](https://github.com/ovh/manager/commit/79c24dbc71566f6770099a737f3f91e27b6dcbc1))
+
+
+
+
+
 # [0.117.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.116.0...@ovh-ux/manager-container-app@0.117.0) (2025-04-08)
 
 

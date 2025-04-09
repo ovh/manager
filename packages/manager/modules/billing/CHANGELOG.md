@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.35.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.34.1...@ovh-ux/manager-billing@0.35.0) (2025-04-09)
+
+
+### Features
+
+* **container:** added an invitation modal to accept contracts ([3390858](https://github.com/ovh/manager/commit/33908580cfde1e913c73ffc7fd59e3c9724c1cac))
+
+
+
+
+
 ## [0.34.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.34.0...@ovh-ux/manager-billing@0.34.1) (2025-04-03)
 
 

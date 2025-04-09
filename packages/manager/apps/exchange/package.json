@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-exchange-app",
-  "version": "0.12.27",
+  "version": "0.12.28",
   "private": true,
   "repository": {
     "type": "git",
@@ -20,7 +20,7 @@
   "dependencies": {
     "@ovh-ux/manager-advices": "^1.8.2",
     "@ovh-ux/manager-config": "^8.2.0",
-    "@ovh-ux/manager-core": "^13.0.7",
+    "@ovh-ux/manager-core": "^13.0.8",
     "@ovh-ux/manager-exchange": "^4.14.0",
     "@ovh-ux/manager-ng-layout-helpers": "^2.11.0",
     "@ovh-ux/ng-at-internet": "^6.0.11",
