@@ -637,18 +637,22 @@ export default function ObjectPage() {
               <Datagrid
                 topbar={
                   <div className="flex w-full justify-between items-center">
-                    <OdsButton
-                      onClick={() => {
-                        clearNotifications();
-                        navigate(`./new?region=${searchParams.get('region')}`);
-                      }}
-                      label={tContainer(
-                        `pci_projects_project_storages_containers_container_add_object_label`,
-                      )}
-                      icon="plus"
-                      size="sm"
-                    />
-                    <div className="flex justify-end gap-4 mr-5">
+                    {shouldHideButton && (
+                      <OdsButton
+                        onClick={() => {
+                          clearNotifications();
+                          navigate(
+                            `./new?region=${searchParams.get('region')}`,
+                          );
+                        }}
+                        label={tContainer(
+                          `pci_projects_project_storages_containers_container_add_object_label`,
+                        )}
+                        icon="plus"
+                        size="sm"
+                      />
+                    )}
+                    <div className="flex justify-center gap-4 ml-auto mr-0 md:mr-5">
                       {is.rightOffer &&
                         !is.localZone &&
                         container.versioning.status !== STATUS_DISABLED && (
