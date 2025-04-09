@@ -5,10 +5,8 @@ import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OrderSection } from '../../../components/OrderSection/OrderSection.component';
 import { OrderContext } from '../order.context';
 import { Ipv6Options } from '../order.constant';
-import {
-  OptionCard,
-  PriceDescription,
-} from '@/components/OptionCard/OptionCard.component';
+import { OptionCard } from '@/components/OptionCard/OptionCard.component';
+import { PriceDescription } from '@/components/PriceDescription/PriceDescription';
 
 export const AdditionalOptionsSection: React.FC = () => {
   const { selectedOptions, setSelectedOptions } = React.useContext(
