@@ -305,7 +305,7 @@ export default /* @ngInject */ ($stateProvider) => {
         OvhApiCloudProjectInstance,
       ) => () => {
         OvhApiCloudProjectInstance.v6().resetAllCache();
-        return $state.reload();
+        return $state.reload($state.current.name);
       },
       killTasks: /* @ngInject */ (Poller) => (pattern) => Poller.kill(pattern),
 
