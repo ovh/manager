@@ -21,10 +21,8 @@ import {
 } from '../order.constant';
 import { isRegionInEu } from '@/components/RegionSelector/region-selector.utils';
 import { OrderSection } from '@/components/OrderSection/OrderSection.component';
-import {
-  OptionCard,
-  PriceDescription,
-} from '@/components/OptionCard/OptionCard.component';
+import { OptionCard } from '@/components/OptionCard/OptionCard.component';
+import { PriceDescription } from '@/components/PriceDescription/PriceDescription';
 import {
   IP_FAILOVER_PLANCODE,
   getContinentKeyFromRegion,
