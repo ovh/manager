@@ -908,6 +908,7 @@ export default class VrackMoveDialogCtrl {
       )
       .catch((error) => {
         if (error.status === 460) {
+          this.clearPolling();
           this.serviceExpired = true;
           this.CucCloudMessage.error(
             [
