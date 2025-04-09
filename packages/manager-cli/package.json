@@ -1,0 +1,20 @@
+{
+  "name": "@ovh-ux/manager-react-cli",
+  "version": "0.0.1",
+  "private": true,
+  "license": "BSD-3-Clause",
+  "author": "OVH SAS",
+  "type": "module",
+  "devDependencies": {
+    "@babel/core": "^7.26.10",
+    "@babel/generator": "^7.27.0",
+    "@babel/parser": "^7.27.0",
+    "@babel/preset-typescript": "^7.27.0",
+    "@babel/traverse": "^7.27.0",
+    "@babel/types": "^7.27.0",
+    "@types/node": "^22.14.0",
+    "fs": "^0.0.1-security",
+    "prettier": "^3.5.3",
+    "typescript": "^5.8.3"
+  }
+}

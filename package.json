@@ -22,7 +22,8 @@
       "packages/manager/core/test-utils",
       "packages/manager/modules/*",
       "packages/manager/tools/*",
-      "packages/manager-react-components"
+      "packages/manager-react-components",
+      "packages/manager-cli"
     ]
   },
   "scripts": {
