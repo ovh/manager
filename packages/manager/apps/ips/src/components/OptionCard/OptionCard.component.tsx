@@ -1,22 +1,6 @@
 import React from 'react';
-import {
-  IntervalUnitType,
-  OvhSubsidiary,
-  Price,
-} from '@ovh-ux/manager-react-components';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import {
-  ODS_CARD_COLOR,
-  ODS_SPINNER_SIZE,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import {
-  OdsCard,
-  OdsDivider,
-  OdsSpinner,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
+import { ODS_CARD_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsCard, OdsDivider, OdsText } from '@ovhcloud/ods-components/react';
 import './option-card.scss';
 
 export type OptionCardProps = React.PropsWithChildren<{
@@ -69,39 +53,5 @@ export const OptionCard: React.FC<OptionCardProps> = ({
       <OdsDivider className="block -ml-3 -mr-3 mt-auto mb-2" />
       {children}
     </OdsCard>
-  );
-};
-
-export type PriceFooterProps = {
-  price: number | null;
-  suffix?: string;
-  isStartingPrice?: boolean;
-};
-
-export const PriceDescription: React.FC<PriceFooterProps> = ({
-  price,
-  suffix,
-  isStartingPrice,
-}) => {
-  const { t, i18n } = useTranslation();
-  const { environment } = React.useContext(ShellContext);
-
-  return (
-    <OdsText preset={ODS_TEXT_PRESET.paragraph} className="flex justify-center">
-      {price === null ? (
-        <OdsSpinner size={ODS_SPINNER_SIZE.xs} />
-      ) : (
-        <Price
-          isStartingPrice={isStartingPrice}
-          suffix={suffix}
-          value={price}
-          tax={0}
-          intervalUnit={IntervalUnitType.month}
-          ovhSubsidiary={environment.user.ovhSubsidiary as OvhSubsidiary}
-          locale={i18n.language}
-          freePriceLabel={t('free_price')}
-        />
-      )}
-    </OdsText>
   );
 };
