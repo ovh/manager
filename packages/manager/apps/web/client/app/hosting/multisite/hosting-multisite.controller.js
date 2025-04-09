@@ -202,6 +202,10 @@ angular
               .some((mainDomain) => mainDomain === domain.name);
       };
 
+      $scope.isMultipleSSL = function isMultipleSSL(hosting) {
+        return hosting.multipleSSL;
+      };
+
       $scope.isUpdateDomainDisabled = function isUpdateDomainDisabled(
         hosting,
         domain,
