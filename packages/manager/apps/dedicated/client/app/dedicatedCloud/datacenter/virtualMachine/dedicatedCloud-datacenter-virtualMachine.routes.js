@@ -28,6 +28,20 @@ export default /* @ngInject */ ($stateProvider) => {
             },
           );
         },
+        goToSetLicense: /* @ngInject */ (
+          $state,
+          currentService,
+          datacenterId,
+        ) => (vm) => {
+          return $state.go(
+            'app.dedicatedCloud.details.datacenter.details.virtualMachines.setLicense',
+            {
+              serviceName: currentService.serviceName,
+              datacenterId,
+              vmId: vm.vmId,
+            },
+          );
+        },
 
         goBackToVirtualMachines: /* @ngInject */ (
           $state,

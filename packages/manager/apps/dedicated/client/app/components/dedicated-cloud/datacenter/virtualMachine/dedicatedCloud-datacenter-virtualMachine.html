@@ -50,6 +50,7 @@
 
                 <oui-action-menu-item
                     data-ng-if="!$row.license && $row.allowEditLicense"
+                    data-on-click="$ctrl.goToSetLicense($row)"
                     ><span
                         data-translate="virtualmachine_action_activate_license"
                     >
