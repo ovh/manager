@@ -38,5 +38,6 @@
   "billing_payment_method_add_sepa_direct_debit_warning_owner_identity": "Attention, le propriétaire du compte bancaire doit être identique au propriétaire du compte OVHcloud.",
   "billing_payment_method_add_sepa_direct_debit_data_processing_info": "Les données collectées sont traitées par OVHcloud en qualité de responsable de traitement afin de mettre en place votre prélèvement SEPA.",
   "billing_payment_method_add_sepa_direct_debit_digital_signature_info": "La mise en place d'un prélèvement SEPA nécessite un mandat qu'il vous sera demandé de signer électroniquement en utilisant une solution fournie par Worldline, un prestataire habilité à délivrer les services de confiance définies par le règlement \"eDIAS\" n° 910/2014 du 23 juillet 2014. Dans ce cadre, ces données lui sont communiquées.",
-  "billing_payment_method_add_credit_card_registration_charges_info": "Un paiement de {{ registrationCharges }} maximum sera réalisé afin de valider le bon fonctionnement de votre carte. Il vous sera intégralement remboursé dans un délai de 48 heures."
+  "billing_payment_method_add_credit_card_registration_charges_info": "Un paiement de {{ registrationCharges }} maximum sera réalisé afin de valider le bon fonctionnement de votre carte. Il vous sera intégralement remboursé dans un délai de 48 heures.",
+  "billing_payment_method_add_default_info_auto_renew": "Si vous aviez des services en renouvellement automatique, il est peut être nécessaire que vous réactiviez leur renouvellement automatique via <a href=\"{{autorenewLink}}\">cette page</a>."
 }
