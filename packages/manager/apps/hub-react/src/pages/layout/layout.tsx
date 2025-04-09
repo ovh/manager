@@ -55,7 +55,6 @@ export default function Layout() {
   } = useContext(ShellContext);
   const { trackCurrentPage } = useOvhTracking();
   const { t } = useTranslation();
-  const mainContentRef = useRef<HTMLAnchorElement>(null);
   const [isAccountSidebarVisible, setIsAccountSidebarVisible] = useState(false);
   useRouteSynchro();
 
@@ -81,10 +80,6 @@ export default function Layout() {
   } = useFetchHubServices();
   const { data: lastOrder, isPending: isLastOrderLoading } = useLastOrder();
 
-  function scrollToComponent() {
-    mainContentRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }
-
   const isLoading = areServicesLoading || isLastOrderLoading;
   const isFreshCustomer = !(
     services?.data?.count ||
@@ -101,18 +96,6 @@ export default function Layout() {
 
   return (
     <Context.Provider value={context}>
-      <div className="skipnav">
-        <OsdsButton
-          inline
-          color={ODS_THEME_COLOR_INTENT.primary}
-          variant={ODS_BUTTON_VARIANT.ghost}
-          size={ODS_BUTTON_SIZE.sm}
-          onClick={scrollToComponent}
-          data-testid="skipnav_button"
-        >
-          {t('manager_hub_skip_to_main_content')}
-        </OsdsButton>
-      </div>
       <div className="relative w-full h-full overflow-y-scroll">
         <div
           className={`absolute hub-main w-full h-full ${
@@ -123,11 +106,7 @@ export default function Layout() {
           <div className="mb-12">
             {/* Skip content target */}
             <div className="skiptarget">
-              <a
-                id="maincontent"
-                data-testid="main_content"
-                ref={mainContentRef}
-              >
+              <a id="maincontent" data-testid="main_content">
                 -
               </a>
             </div>
