@@ -4,24 +4,19 @@ import React, { Suspense } from 'react';
 
 import { useTranslation } from 'react-i18next';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
-import InstallationDashboardInstallationSummary from './InstallationSummary.component';
-import InstallationDashboardInstallationProgress from './InstallationProgress.component';
-import InstallationDashboardInstallationError from './InstallationError.component';
+import { InstallationDetailsSummary } from '@/components/InstallationDetails/InstallationDetailsSummary.component';
+import { InstallationDetailsProgress } from '@/components/InstallationDetails/InstallationDetailsProgress.component';
+import { InstallationDetailsError } from '@/components/InstallationDetails/InstallationDetailsError.component';
 import { useAutoRefetch } from '@/hooks/useAutoRefetch';
 import {
   installationTaskDetailsQueryKey,
   useMockInstallationTaskDetails,
-} from '@/hooks/installationDeployment/useApplicationVersions';
+} from '@/hooks/installationDetails/useInstallationDetails';
 import { SAPInstallationStatus } from '@/types/installation.type';
 
 const REFECTH_INTERVAL_INSTALLATION_STATUS = 30_000;
 
-export type InstallationDashboardPageParams = {
-  serviceName: string;
-  taskId: string;
-};
-
-export default function InstallationDashboardPage() {
+export default function InstallationDetailsPage() {
   const { serviceName, taskId } = useParams();
   const { t } = useTranslation('dashboard/installation');
   const header = {
@@ -29,13 +24,13 @@ export default function InstallationDashboardPage() {
     description: t('dashboard_installation_description'),
   };
 
-  const { data: installationTaskDetails } = useMockInstallationTaskDetails(
+  const { data: installationTaskDetails } = useMockInstallationTaskDetails({
     serviceName,
     taskId,
-  );
+  });
 
   useAutoRefetch({
-    queryKey: installationTaskDetailsQueryKey(serviceName, taskId),
+    queryKey: installationTaskDetailsQueryKey({ serviceName, taskId }),
     enabled: [
       SAPInstallationStatus.pending,
       SAPInstallationStatus.retry,
@@ -48,15 +43,12 @@ export default function InstallationDashboardPage() {
     <Suspense>
       <BaseLayout breadcrumb={<Breadcrumb />} header={header}>
         <div className="flex flex-col gap-8">
-          <InstallationDashboardInstallationError
+          <InstallationDetailsError serviceName={serviceName} taskId={taskId} />
+          <InstallationDetailsSummary
             serviceName={serviceName}
             taskId={taskId}
           />
-          <InstallationDashboardInstallationSummary
-            serviceName={serviceName}
-            taskId={taskId}
-          />
-          <InstallationDashboardInstallationProgress
+          <InstallationDetailsProgress
             serviceName={serviceName}
             taskId={taskId}
           />

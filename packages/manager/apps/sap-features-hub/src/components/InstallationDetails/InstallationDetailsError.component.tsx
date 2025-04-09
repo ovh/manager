@@ -6,10 +6,8 @@ import {
   InstallationDetails,
   SAPInstallationStatus,
 } from '@/types/installation.type';
-import { useMockInstallationTaskDetails } from '@/hooks/installationDeployment/useApplicationVersions';
-import { InstallationDashboardPageParams } from '.';
-
-export type InstallationDashboardInstallationErrorProps = InstallationDashboardPageParams;
+import { useMockInstallationTaskDetails } from '@/hooks/installationDetails/useInstallationDetails';
+import { TGetInstallationTaskParams } from '@/data/api/sapInstallations';
 
 export function getTranslationKeyOfStepInError(
   installation?: InstallationDetails,
@@ -31,16 +29,16 @@ export function getTranslationKeyOfStepInError(
   return stepInError ? `${prefix}${stepInError.key}` : '';
 }
 
-export default function InstallationDashboardInstallationError({
+export const InstallationDetailsError = ({
   serviceName,
   taskId,
-}: InstallationDashboardInstallationErrorProps) {
+}: Readonly<TGetInstallationTaskParams>) => {
   const { t } = useTranslation('dashboard/installation');
 
   const {
     data: installationTaskDetails,
     isLoading,
-  } = useMockInstallationTaskDetails(serviceName, taskId);
+  } = useMockInstallationTaskDetails({ serviceName, taskId });
 
   const stepInError = useMemo(
     () => getTranslationKeyOfStepInError(installationTaskDetails),
@@ -68,4 +66,4 @@ export default function InstallationDashboardInstallationError({
       </div>
     </div>
   );
-}
+};

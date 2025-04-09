@@ -10,11 +10,11 @@ import { vi } from 'vitest';
 import { useVMwareServices } from '@/hooks/vmwareServices/useVMwareServices';
 import { TSAPInstallation } from '@/types/installation.type';
 import { VMwareService } from '@/types/vmwareService.type';
-import { getSAPInstallations } from '@/data/api/vmwareServices';
+import { getSAPInstallations } from '@/data/api/sapInstallations';
 import useInstallationHistory from './useInstallationHistory';
 
 vi.mock('@/hooks/vmwareServices/useVMwareServices');
-vi.mock('@/data/api/vmwareServices');
+vi.mock('@/data/api/sapInstallations');
 
 describe('useInstallationHistory hook tests suite', () => {
   vi.mocked(useVMwareServices).mockReturnValue({

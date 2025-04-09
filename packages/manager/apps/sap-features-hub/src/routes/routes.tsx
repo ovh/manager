@@ -56,7 +56,11 @@ export const Routes: any = [
       {
         id: 'dashboard.installationDashboard',
         path: urls.installationDashboard,
-        ...lazyRouteConfig(() => import('@/pages/dashboard/installation')),
+        ...lazyRouteConfig(() =>
+          import(
+            '@/pages/dashboard/installationDetails/InstallationDetails.page'
+          ),
+        ),
         handle: {
           tracking: {
             pageName: 'installationDashboard',

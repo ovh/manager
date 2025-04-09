@@ -1,28 +1,23 @@
 import { useQuery } from '@tanstack/react-query';
 import {
-  getInstallationTaskDetails,
-  GetInstallationTaskDetailsRouteParams,
-} from '@/data/api/installationDeployment';
-import {
   InstallationDetails,
   SAPInstallationStatus,
 } from '@/types/installation.type';
+import {
+  getInstallationTaskDetails,
+  TGetInstallationTaskParams,
+} from '@/data/api/sapInstallations';
 
 export const installationTaskDetailsQueryKey = ({
   serviceName,
   taskId,
-}: GetInstallationTaskDetailsRouteParams) => [
-  'sap',
-  serviceName,
-  'tasks',
-  taskId,
-];
+}: TGetInstallationTaskParams) => ['sap', serviceName, 'tasks', taskId];
 
 // TODO: implement API calls when developed
 export const useInstallationTaskDetails = ({
   serviceName,
   taskId,
-}: GetInstallationTaskDetailsRouteParams) =>
+}: TGetInstallationTaskParams) =>
   useQuery({
     queryKey: installationTaskDetailsQueryKey({ serviceName, taskId }),
     queryFn: () => getInstallationTaskDetails({ serviceName, taskId }),
@@ -33,10 +28,10 @@ export const useInstallationTaskDetails = ({
 export const useMockInstallationTaskDetails = ({
   serviceName,
   taskId,
-}: GetInstallationTaskDetailsRouteParams) => {
+}: TGetInstallationTaskParams) => {
   return useQuery({
     queryKey: installationTaskDetailsQueryKey({ serviceName, taskId }),
-    queryFn: () => {
+    queryFn: (): Promise<{ data: InstallationDetails }> => {
       return new Promise((resolve) => {
         // Generate fake data for InstallationDetails
         const mockData: InstallationDetails = {
@@ -85,7 +80,7 @@ export const useMockInstallationTaskDetails = ({
         }, 500);
       });
     },
-    select: (res) => (res as any).data,
+    select: (res) => res.data,
     enabled: () => !!serviceName && !!taskId,
   });
 };

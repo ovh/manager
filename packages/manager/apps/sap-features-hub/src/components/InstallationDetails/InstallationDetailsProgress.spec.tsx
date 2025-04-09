@@ -4,7 +4,7 @@ import { render } from '@testing-library/react';
 import {
   computeProgressPercentage,
   StepStatusIcon,
-} from './InstallationProgress.component';
+} from './InstallationDetailsProgress.component';
 import {
   InstallationDetails,
   SAPInstallationStatus,

@@ -12,10 +12,8 @@ import {
   SAPInstallationStatus,
 } from '@/types/installation.type';
 import { InstallationStatus } from '@/components/InstallationStatus/InstallationStatus.component';
-import { useMockInstallationTaskDetails } from '@/hooks/installationDeployment/useApplicationVersions';
-import { InstallationDashboardPageParams } from '.';
-
-export type InstallationDashboardInstallationProgressProps = InstallationDashboardPageParams;
+import { useMockInstallationTaskDetails } from '@/hooks/installationDetails/useInstallationDetails';
+import { TGetInstallationTaskParams } from '@/data/api/sapInstallations';
 
 export function computeProgressPercentage(installation?: InstallationDetails) {
   const steps = [
@@ -26,14 +24,17 @@ export function computeProgressPercentage(installation?: InstallationDetails) {
     { status: installation?.cleanStatus, value: 100 },
   ];
 
-  const progressPercentage = steps
-    .reverse()
-    .find((step) => step.status === SAPInstallationStatus.success)?.value;
+  const reversedSteps = steps.reverse();
+  const progressPercentage = reversedSteps.find(
+    (step) => step.status === SAPInstallationStatus.success,
+  )?.value;
 
   return progressPercentage ?? 0;
 }
 
-export function StepStatusIcon({ status }: { status: SAPInstallationStatus }) {
+export function StepStatusIcon({
+  status,
+}: Readonly<{ status: SAPInstallationStatus }>) {
   const { t } = useTranslation('dashboard/installation');
 
   if ([SAPInstallationStatus.success].includes(status)) {
@@ -85,16 +86,16 @@ export function StepStatusIcon({ status }: { status: SAPInstallationStatus }) {
   );
 }
 
-export default function InstallationDashboardInstallationProgress({
+export const InstallationDetailsProgress = ({
   serviceName,
   taskId,
-}: InstallationDashboardInstallationProgressProps) {
+}: Readonly<TGetInstallationTaskParams>) => {
   const { t } = useTranslation('dashboard/installation');
 
   const {
     data: installationTaskDetails,
     isLoading,
-  } = useMockInstallationTaskDetails(serviceName, taskId);
+  } = useMockInstallationTaskDetails({ serviceName, taskId });
 
   const progressPercentage = useMemo(
     () => computeProgressPercentage(installationTaskDetails),
@@ -154,4 +155,4 @@ export default function InstallationDashboardInstallationProgress({
       </div>
     </div>
   );
-}
+};

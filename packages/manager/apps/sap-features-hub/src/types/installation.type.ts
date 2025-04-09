@@ -1,4 +1,5 @@
 import { IamObject } from '@ovh-ux/manager-react-components';
+import { DeploymentType } from './sapCapabilities.type';
 
 export type TSAPInstallation = {
   startTime: string;
@@ -26,7 +27,7 @@ export type InstallationDetails = {
   applicationType: 'ABAP' | 'JAVA';
   applicationVersion: string;
   cleanStatus: SAPInstallationStatus;
-  deploymentType: 'Distributed' | 'High-Availability' | 'Standard';
+  deploymentType: DeploymentType;
   endTime: string | null;
   errorMessage: string | null;
   gatewayStatus: SAPInstallationStatus;

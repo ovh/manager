@@ -2,15 +2,16 @@ import '@testing-library/jest-dom';
 import { vi } from 'vitest';
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import installationTranslation from '../../../../public/translations/dashboard/installation/Messages_fr_FR.json';
-import { useMockInstallationTaskDetails } from '@/hooks/installationDeployment/useApplicationVersions';
+import installationTranslation from '../../../public/translations/dashboard/installation/Messages_fr_FR.json';
+import { useMockInstallationTaskDetails } from '@/hooks/installationDetails/useInstallationDetails';
 import {
   InstallationDetails,
   SAPInstallationStatus,
 } from '@/types/installation.type';
-import InstallationDashboardInstallationError, {
+import {
+  InstallationDetailsError,
   getTranslationKeyOfStepInError,
-} from './InstallationError.component';
+} from './InstallationDetailsError.component';
 
 const baseInstallation: InstallationDetails = {
   ansibleSapHanaStatus: SAPInstallationStatus.pending,
@@ -81,11 +82,11 @@ describe('computeProgressPercentage', () => {
   );
 });
 
-vi.mock('@/hooks/installationDeployment/useApplicationVersions', () => ({
+vi.mock('@/hooks/installationDetails/useInstallationDetails', () => ({
   useMockInstallationTaskDetails: vi.fn(),
 }));
 
-describe('InstallationDashboardInstallationError', () => {
+describe('InstallationDetailsError', () => {
   const serviceName = 'test-service';
   const taskId = '123';
 
@@ -97,10 +98,7 @@ describe('InstallationDashboardInstallationError', () => {
     });
 
     const { container } = render(
-      <InstallationDashboardInstallationError
-        serviceName={serviceName}
-        taskId={taskId}
-      />,
+      <InstallationDetailsError serviceName={serviceName} taskId={taskId} />,
     );
 
     expect(container).toBeEmptyDOMElement();
@@ -120,10 +118,7 @@ describe('InstallationDashboardInstallationError', () => {
     });
 
     render(
-      <InstallationDashboardInstallationError
-        serviceName={serviceName}
-        taskId={taskId}
-      />,
+      <InstallationDetailsError serviceName={serviceName} taskId={taskId} />,
     );
 
     expect(screen.getByText(/Test error/)).toBeVisible();

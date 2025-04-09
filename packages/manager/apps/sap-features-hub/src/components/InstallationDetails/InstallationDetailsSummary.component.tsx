@@ -6,23 +6,19 @@ import { OdsText } from '@ovhcloud/ods-components/react';
 import { LABELS } from '@/utils/label.constants';
 import { FormFieldSummary } from '@/components/Form/FormFieldSummary.component';
 import { StepFieldData } from '@/types/formStep.type';
-import { useMockInstallationTaskDetails } from '@/hooks/installationDeployment/useApplicationVersions';
+import { useMockInstallationTaskDetails } from '@/hooks/installationDetails/useInstallationDetails';
+import { TGetInstallationTaskParams } from '@/data/api/sapInstallations';
 
-export type InstallationDashboardInstallationSummaryProps = {
-  serviceName: string;
-  taskId: string;
-};
-
-export default function InstallationDashboardInstallationSummary({
+export const InstallationDetailsSummary = ({
   serviceName,
   taskId,
-}: InstallationDashboardInstallationSummaryProps) {
+}: Readonly<TGetInstallationTaskParams>) => {
   const { t } = useTranslation('dashboard/installation');
 
   const {
     data: installationTaskDetails,
     isLoading,
-  } = useMockInstallationTaskDetails(serviceName, taskId);
+  } = useMockInstallationTaskDetails({ serviceName, taskId });
 
   const fields: StepFieldData[] = useMemo(
     () =>
@@ -83,4 +79,4 @@ export default function InstallationDashboardInstallationSummary({
       </div>
     </div>
   );
-}
+};
