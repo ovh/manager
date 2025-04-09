@@ -1,5 +1,6 @@
 {
   "breadcrumb_root_label": "Toutes les IPs",
   "order": "Commander une IP",
-  "free_price": "Gratuit"
+  "free_price": "Gratuit",
+  "per_ip": "/IP"
 }
