@@ -1,17 +1,37 @@
-import { Outlet, useRouteError } from 'react-router-dom';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { Suspense, useContext } from 'react';
-import { ErrorBanner } from '@ovh-ux/manager-react-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useProject } from '@ovh-ux/manager-pci-common';
-import ShellRoutingSync from '@/core/ShellRoutingSync';
+import {
+  BaseLayout,
+  ErrorBanner,
+  PciGuidesHeader,
+  useProjectUrl,
+} from '@ovh-ux/manager-react-components';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  OdsBreadcrumb,
+  OdsBreadcrumbItem,
+} from '@ovhcloud/ods-components/react';
+import { Suspense, useContext } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Outlet, useMatch, useParams, useRouteError } from 'react-router-dom';
 import HidePreloader from '@/core/HidePreloader';
-
-import usePageTracking from '@/hooks/usePageTracking';
+import ShellRoutingSync from '@/core/ShellRoutingSync';
+import { ROUTE_PATHS } from '@/routes';
 
 export default function Layout() {
   const { isSuccess } = useProject();
-  usePageTracking();
+
+  const { t } = useTranslation(['regions', 'quotas']);
+  const hrefProject = useProjectUrl('public-cloud');
+  const { projectId } = useParams();
+  const { data: project } = useProject(projectId);
+
+  const quotasMatch = useMatch({
+    path: `${ROUTE_PATHS.ROOT}/${ROUTE_PATHS.QUOTA}/*`,
+    end: false,
+  });
+
+  const isQuotasTab = Boolean(quotasMatch);
 
   return (
     <div className="application">
@@ -20,7 +40,29 @@ export default function Layout() {
         {isSuccess && (
           <>
             <HidePreloader />
-            <Outlet />
+            <BaseLayout
+              breadcrumb={
+                <OdsBreadcrumb>
+                  <OdsBreadcrumbItem
+                    href={hrefProject}
+                    label={project?.description}
+                  />
+                  <OdsBreadcrumbItem
+                    label={
+                      isQuotasTab
+                        ? t('pci_projects_project_quota', { ns: 'quotas' })
+                        : t('pci_projects_project_regions', { ns: 'regions' })
+                    }
+                    href={''}
+                  />
+                </OdsBreadcrumb>
+              }
+              header={{
+                headerButton: <PciGuidesHeader category="instances" />,
+              }}
+            >
+              <Outlet />
+            </BaseLayout>
           </>
         )}
       </Suspense>
