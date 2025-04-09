@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useReket } from '@ovh-ux/ovh-reket';
+import { v6 } from '@ovh-ux/manager-core-api';
 import { useTranslation } from 'react-i18next';
 import { Environment } from '@ovh-ux/manager-config';
 import { useShell } from '@/context';
@@ -11,6 +11,7 @@ import { ShopItem } from '../order/OrderPopupContent';
 import { features } from './DedicatedSidebar';
 import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import constants from '../../account-sidebar/UsefulLinks/constants';
+import { FraudProcedure, IdentityDocumentsProcedure } from '@/types/procedures';
 
 const kycIndiaFeature = 'identity-documents';
 const kycFraudFeature = 'procedures:fraud';
@@ -27,7 +28,6 @@ export default function AccountSidebar() {
   const [menu, setMenu] = useState<SidebarMenuItem>(undefined);
   const [shopItems, setShopItems] = useState<ShopItem[]>([]);
   const shell = useShell();
-  const reketInstance = useReket();
   const { t, i18n } = useTranslation('sidebar');
   const navigation = shell.getPlugin('navigation');
   const environment: Environment = shell
@@ -67,33 +67,37 @@ export default function AccountSidebar() {
     });
 
     if (availability[kycIndiaFeature]) {
-      const { status } = await reketInstance.get(`/me/procedure/identity`);
-      if (['required', 'open'].includes(status)) {
-        menu.push({
-          id: 'my-identity-documents',
-          label: t('sidebar_account_identity_documents'),
-          href: navigation.getURL(
-            isNewAccountAvailable ? 'new-account' : 'dedicated',
-            '/identity-documents',
-          ),
-          routeMatcher: new RegExp('^/identity-documents'),
-        });
-      }
+      try {
+        const { data } = await v6.get<IdentityDocumentsProcedure>(`/me/procedure/identity`);
+        if (data?.status && ['required', 'open'].includes(data.status)) {
+          menu.push({
+            id: 'my-identity-documents',
+            label: t('sidebar_account_identity_documents'),
+            href: navigation.getURL(
+              isNewAccountAvailable ? 'new-account' : 'dedicated',
+              '/identity-documents',
+            ),
+            routeMatcher: new RegExp('^/identity-documents'),
+          });
+        }
+      } catch {}
     }
 
     if (availability[kycFraudFeature]) {
-      const { status } = await reketInstance.get(`/me/procedure/fraud`);
-      if (['required', 'open'].includes(status)) {
-        menu.push({
-          id: 'kyc-documents',
-          label: t('sidebar_account_kyc_documents'),
-          href: navigation.getURL(
-            isNewAccountAvailable ? 'new-account' : 'dedicated',
-            '/documents',
-          ),
-          routeMatcher: new RegExp('^/documents'),
-        });
-      }
+      try {
+        const { data } = await v6.get<FraudProcedure>(`/me/procedure/fraud`);
+        if (data?.status && ['required', 'open'].includes(data.status)) {
+          menu.push({
+            id: 'kyc-documents',
+            label: t('sidebar_account_kyc_documents'),
+            href: navigation.getURL(
+              isNewAccountAvailable ? 'new-account' : 'dedicated',
+              '/documents',
+            ),
+            routeMatcher: new RegExp('^/documents'),
+          });
+        }
+      } catch {}
     }
 
     if (!isEnterprise) {
