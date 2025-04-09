@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.34.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.33.0...@ovh-ux/manager-new-billing@0.34.0) (2025-04-09)
+
+
+### Features
+
+* **billing:** display banner after successful default payment method creation ([9b6a708](https://github.com/ovh/manager/commit/9b6a708f16e7a9ee7aa2c69beb6a64c1ddb20b4b)), closes [#MANAGER-16775](https://github.com/ovh/manager/issues/MANAGER-16775)
+* **billing:** handle new 2api renew period correctly ([e7585f1](https://github.com/ovh/manager/commit/e7585f1f624981e21f709cffc5143401ae26a0a3)), closes [#MANAGER-16329](https://github.com/ovh/manager/issues/MANAGER-16329)
+* **container:** added an invitation modal to accept contracts ([3390858](https://github.com/ovh/manager/commit/33908580cfde1e913c73ffc7fd59e3c9724c1cac))
+
+
+
+
+
 # [0.33.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.32.1...@ovh-ux/manager-new-billing@0.33.0) (2025-04-01)
 
 

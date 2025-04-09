@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@2.3.3...@ovh-ux/manager-models@2.4.0) (2025-04-09)
+
+
+### Features
+
+* **billing:** handle new 2api renew period correctly ([e7585f1](https://github.com/ovh/manager/commit/e7585f1f624981e21f709cffc5143401ae26a0a3)), closes [#MANAGER-16329](https://github.com/ovh/manager/issues/MANAGER-16329)
+
+
+
+
+
 ## [2.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@2.3.2...@ovh-ux/manager-models@2.3.3) (2025-04-07)
 
 **Note:** Version bump only for package @ovh-ux/manager-models
