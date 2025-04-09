@@ -1,9 +1,13 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   Card,
   OnboardingLayout,
   Links,
+  Price,
+  IntervalUnitType,
+  OvhSubsidiary,
 } from '@ovh-ux/manager-react-components';
 import { OdsText, OdsTable } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
@@ -12,10 +16,14 @@ import { useNavigate } from 'react-router-dom';
 import useGuideUtils from '@/pages/onboarding/useGuideUtils';
 import onboardingImgSrc from './onboarding-img.png';
 import { urls } from '@/routes/routes.constant';
+import { useCatalogLowestPrice } from '@/data/hooks/catalog';
 
 export default function Onboarding() {
   const { t } = useTranslation('onboarding');
+  const { t: tCommon, i18n } = useTranslation();
+  const { environment } = React.useContext(ShellContext);
   const link = useGuideUtils();
+  const { ipv4LowestPrice, ipv6LowestPrice } = useCatalogLowestPrice();
   const navigate = useNavigate();
 
   const tileList = [
@@ -66,8 +74,30 @@ export default function Onboarding() {
     },
     {
       feature: t('optionsCost'),
-      ipv4: t('optionsCostIpv4'),
-      ipv6: t('optionsCostIpv6'),
+      ipv4: (
+        <Price
+          isStartingPrice
+          suffix={tCommon('per_ip')}
+          value={ipv4LowestPrice}
+          tax={0}
+          intervalUnit={IntervalUnitType.month}
+          ovhSubsidiary={environment.user.ovhSubsidiary as OvhSubsidiary}
+          locale={i18n.language}
+          freePriceLabel={tCommon('free_price')}
+        />
+      ),
+      ipv6: (
+        <Price
+          isStartingPrice
+          suffix={tCommon('per_ip')}
+          value={ipv6LowestPrice}
+          tax={0}
+          intervalUnit={IntervalUnitType.month}
+          ovhSubsidiary={environment.user.ovhSubsidiary as OvhSubsidiary}
+          locale={i18n.language}
+          freePriceLabel={tCommon('free_price')}
+        />
+      ),
     },
     {
       feature: t('optionsCompatibleServices'),
