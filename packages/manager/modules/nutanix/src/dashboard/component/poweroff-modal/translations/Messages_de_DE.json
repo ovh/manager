@@ -1,11 +1,11 @@
 {
-  "nutanix_dashboard_poweroff_node_title": "Knoten ausschalten",
-  "nutanix_dashboard_poweroff_node_description": "Das Herunterfahren eines Nutanix-Knotens kann Auswirkungen auf Ihren Cluster haben. Überprüfen Sie die Voraussetzungen im Nutanix-Portal, um diese Aktion durchzuführen",
+  "nutanix_dashboard_poweroff_node_title": "Node ausschalten",
+  "nutanix_dashboard_poweroff_node_description": "Das Herunterfahren eines Nutanix-Nodes kann Auswirkungen auf Ihren Cluster haben. Überprüfen Sie die Voraussetzungen im Nutanix-Portal, um diese Aktion durchzuführen.",
   "nutanix_dashboard_poweroff_node_poweroff_guidelink": "Zugang zum Portal",
-  "nutanix_dashboard_poweroff_node_confirmation": "Möchten Sie wirklich Ihren Node {{serviceName}} ausschalten?",
-  "nutanix_dashboard_poweroff_node_confirm": "ausschalten",
+  "nutanix_dashboard_poweroff_node_confirmation": "Möchten Sie Ihren Node {{serviceName}} wirklich ausschalten?",
+  "nutanix_dashboard_poweroff_node_confirm": "Ausschalten",
   "nutanix_dashboard_poweroff_node_cancel": "Abbrechen",
-  "nutanix_dasboard_poweroff_node_input_label": "Geben Sie „{{magicword}}“ ein, um Ihre Auswahl zu bestätigen",
-  "nutanix_dashboard_poweroff_node_success_banner": "Ihre Anfrage zum Herunterfahren wurde registriert. Dieser Vorgang kann bis zu 15 Minuten dauern",
-  "nutanix_dashboard_poweroff_node_error_banner": "Ihre Anfrage zum Herunterfahren wurde nicht durchgeführt:"
+  "nutanix_dasboard_poweroff_node_input_label": "Geben Sie „{{magicword}}“ ein, um Ihre Auswahl zu bestätigen.",
+  "nutanix_dashboard_poweroff_node_success_banner": "Ihre Anfrage zum Herunterfahren wurde registriert. Dieser Vorgang kann bis zu 15 Minuten dauern.",
+  "nutanix_dashboard_poweroff_node_error_banner": "Ihre Anfrage zum Herunterfahren wurde nicht registriert:"
 }

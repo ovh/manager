@@ -1,5 +1,5 @@
 {
-  "nutanix_dashboard_add_nodes_title": "Polecenie węzła(ów)",
+  "nutanix_dashboard_add_nodes_title": "Zamówienie węzła(ów)",
   "nutanix_dashboard_add_nodes_actual_configuration": "Aktualna konfiguracja węzłów klastra",
   "nutanix_dashboard_add_nodes_server_model": "Model serwera:",
   "nutanix_dashboard_add_nodes_cpu": "CPU:",
@@ -12,10 +12,10 @@
   "nutanix_dashboard_add_nodes_number_of_additional_nodes_to_command": "Liczba dodatkowych węzłów do zamówienia.",
   "nutanix_dashboard_add_nodes_confirm": "Zamów",
   "nutanix_dashboard_add_nodes_cancel": "Anuluj",
-  "nutanix_dashboard_add_nodes_success_banner": "Zamówienie węzła(ów) zostało zainicjowane. Jeśli jeszcze jej nie sfinalizowałeś, możesz ją uzupełnić, klikając link: ",
-  "nutanix_dashboard_add_nodes_success_banner_link_label": "Zakończ zamówienie",
+  "nutanix_dashboard_add_nodes_success_banner": "Proces realizacji zamówienia węzła (węzłów) został rozpoczęty. Jeśli go jeszcze nie sfinalizowałeś, możesz to zrobić, klikając link: ",
+  "nutanix_dashboard_add_nodes_success_banner_link_label": "Sfinalizuj zamówienie",
   "nutanix_dashboard_add_nodes_informations_max_nodes": "Twój klaster składa się obecnie z {{currentNumberOfNodes}} węzłów i możesz go rozszerzyć do {{maxNumberOfNodes}} węzłów.",
   "nutanix_dashboard_add_nodes_error_too_many_nodes": "Przekroczyłeś maksymalną dozwoloną liczbę węzłów w klastrze",
   "nutanix_dashboard_add_nodes_error_not_enough_nodes": "Należy zamówić co najmniej 1 węzeł",
-  "nutanix_dashboard_add_nodes_single_node_limit_alert": "Aktualnie możesz zamówić tylko jeden dodatkowy węzeł. Wkrótce będzie dostępna jednoczesna obsługa kilku węzłów"
+  "nutanix_dashboard_add_nodes_single_node_limit_alert": "Aktualnie możesz zamówić tylko jeden dodatkowy węzeł. Możliwość jednoczesnego zamówienia wielu węzłów będzie dostępna wkrótce."
 }

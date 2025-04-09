@@ -24,8 +24,8 @@
   "autorenew_agora_terminate_service_warning_NUTANIX": "Potwierdź rezygnację z usługi Nutanix on OVHcloud „{{serviceName}}”",
   "autorenew_agora_terminate_service_success_NUTANIX": "Rezygnacja z usługi Nutanix została zarejestrowana. Otrzymasz e-mail z opisem dalszej procedury.",
   "autorenew_agora_terminate_service_error_NUTANIX": "Wystąpił błąd podczas rezygnacji z usługi Nutanix. {{error}}",
-  "autorenew_agora_terminate_service_NUTANIX_NODE": "Rezygnacja z tego węzła",
-  "autorenew_agora_terminate_service_warning_NUTANIX_NODE": "Chcesz zrezygnować z subskrypcji węzła \"{{serviceName}}\".",
-  "autorenew_agora_terminate_service_success_NUTANIX_NODE": "Rezygnacja z węzła \"{{serviceName}}\" została zarejestrowana. Otrzymasz e-mail ze szczegółami procedury.",
-  "autorenew_agora_terminate_service_error_NUTANIX_NODE": "Rezygnacja nie została zarejestrowana: {{error}}"
+  "autorenew_agora_terminate_service_NUTANIX_NODE": "Zrezygnuj z tego węzła",
+  "autorenew_agora_terminate_service_warning_NUTANIX_NODE": "Chcesz zrezygnować z subskrypcji węzła „{{serviceName}}”.",
+  "autorenew_agora_terminate_service_success_NUTANIX_NODE": "Rezygnacja z węzła „{{serviceName}}” została zarejestrowana. Otrzymasz e-mail ze szczegółami procedury.",
+  "autorenew_agora_terminate_service_error_NUTANIX_NODE": "Dyspozycja rezygnacji nie została zarejestrowana: {{error}}"
 }

@@ -1,11 +1,11 @@
 {
   "nutanix_dashboard_poweroff_node_title": "Wyłącz węzeł",
-  "nutanix_dashboard_poweroff_node_description": "Wyłączenie węzła Nutanix może mieć wpływ na klaster. Sprawdź w portalu Nutanix wymagania wstępne do wykonania tej operacji",
+  "nutanix_dashboard_poweroff_node_description": "Wyłączenie węzła Nutanix może mieć wpływ na klaster. Przed wykonaniem tej operacji sprawdź wymagania wstępne na portalu Nutanix ",
   "nutanix_dashboard_poweroff_node_poweroff_guidelink": "Przejdź do portalu",
   "nutanix_dashboard_poweroff_node_confirmation": "Czy na pewno chcesz wyłączyć węzeł {{serviceName}}?",
   "nutanix_dashboard_poweroff_node_confirm": "Wyłącz",
   "nutanix_dashboard_poweroff_node_cancel": "Anuluj",
-  "nutanix_dasboard_poweroff_node_input_label": "Wpisz \"{{magicword}}\", aby potwierdzić wybór",
-  "nutanix_dashboard_poweroff_node_success_banner": "Dyspozycja wyłączenia została zarejestrowana. Może to potrwać do 15 minut",
-  "nutanix_dashboard_poweroff_node_error_banner": "Twoje zlecenie wyłączenia nie zostało zarejestrowane:"
+  "nutanix_dasboard_poweroff_node_input_label": "Wpisz „{{magicword}}”, aby potwierdzić wybór",
+  "nutanix_dashboard_poweroff_node_success_banner": "Dyspozycja wyłączenia została zarejestrowana. Operacja może potrwać do 15 minut",
+  "nutanix_dashboard_poweroff_node_error_banner": "Dyspozycja wyłączenia nie została zarejestrowana:"
 }
