@@ -156,6 +156,7 @@
                                 class="text-center"
                                 scope="col"
                                 data-translate="hosting_tab_DOMAINS_table_header_ssl"
+                                data-ng-if="!isMultipleSSL(hosting)"
                             ></th>
                             <th scope="col" class="min-width text-right">
                                 <button
@@ -288,7 +289,10 @@
                                         }"
                                 ></span>
                             </td>
-                            <td class="text-center">
+                            <td
+                                class="text-center"
+                                data-ng-if="!isMultipleSSL(hosting)"
+                            >
                                 <span
                                     class="oui-badge"
                                     data-ng-bind="(('hosting_tab_DOMAINS_table_ssl_state_' + domain.ssl | translate) == 'hosting_tab_DOMAINS_table_ssl_state_' + domain.ssl)? domain.ssl: ('hosting_tab_DOMAINS_table_ssl_state_' + domain.ssl | translate)"
