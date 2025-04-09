@@ -16,8 +16,9 @@ import {
 import { useProjectId } from '@/hooks/project/useProjectId';
 import BackupActionPage from './BackupActionPage';
 import { RescueActionPage } from './RescueAction.page';
+import BillingMonthlyActionPage from './BillingMonthlyActionPage';
 
-const actionSectionRegex = /(?:rescue\/(start|end)|(?<!rescue\/)(start|stop|shelve|unshelve|delete|soft-reboot|hard-reboot|reinstall|backup))$/;
+const actionSectionRegex = /(?:rescue\/(start|end)|(?<!rescue\/)(start|stop|shelve|unshelve|delete|soft-reboot|hard-reboot|reinstall|backup|billing\/monthly\/activate))$/;
 
 const InstanceAction: FC = () => {
   const { t } = useTranslation(['actions', 'common']);
@@ -113,11 +114,20 @@ const InstanceAction: FC = () => {
   };
 
   if (section === 'backup') {
-    return <BackupActionPage {...modalProps} section={section} />;
+    return <BackupActionPage {...modalProps} section={'backup'} />;
   }
 
   if (section === 'rescue/start' || section === 'rescue/end') {
     return <RescueActionPage {...modalProps} section={section} />;
+  }
+
+  if (section === 'billing/monthly/activate') {
+    return (
+      <BillingMonthlyActionPage
+        {...modalProps}
+        section={'billing/monthly/activate'}
+      />
+    );
   }
 
   return <BaseInstanceActionPage {...modalProps} section={section} />;

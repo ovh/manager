@@ -11,7 +11,8 @@ type BaseInstanceActionSection =
   | 'unshelve'
   | 'soft-reboot'
   | 'hard-reboot'
-  | 'reinstall';
+  | 'reinstall'
+  | 'billing/monthly/activate';
 
 export type TBaseInstanceActionPageProps = {
   title: string;

@@ -127,6 +127,13 @@ const getActionHrefByName = (
     };
   }
 
+  if (name === 'activate_monthly_billing') {
+    return {
+      path: `billing/monthly/activate?instanceId=${id}&region=${region}`,
+      isExternal: false,
+    };
+  }
+
   const actions = new Set([
     'delete',
     'stop',

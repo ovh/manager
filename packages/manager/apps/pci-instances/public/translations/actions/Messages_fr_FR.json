@@ -39,6 +39,12 @@
   "pci_instances_actions_backup_instance_error_message": "Une erreur est survenue lors de la sauvegarde de l'instance {{ name }} : {{ error }}",
   "pci_instances_actions_backup_instance_success_message": "Le backup {{ name }} est en cours de création. Pour visualiser son statut et les détails de l'opération, veuillez vous rendre sur la page 'Instance Backup'. Si le backup ne s'affiche pas immédiatement, n'hésitez pas à rafraîchir votre page pour mettre à jour la liste.",
 
+  "pci_instances_actions_billing_monthly_activate_instance_title": "Passer au forfait mensuel",
+  "pci_instances_actions_billing_monthly_activate_instance_confirmation_message": "Réduisez le montant de votre facture en passant votre instance au forfait mensuel. <0>Voir les prix</0>",
+  "pci_instances_actions_billing_monthly_activate_instance_warning_message": "Votre instance sera suspendue pendant quelques secondes, puis les performances en lecture/écriture du disque pourront être affectées jusqu'à la finalisation du backup",
+  "pci_instances_actions_billing_monthly_activate_instance_error_message": "Une erreur est survenue lors du passage au forfait mensuel de l'instance {{ name }} : {{ error }}",
+  "pci_instances_actions_billing_monthly_activate_instance_success_message": "L'instance {{ name }} a été passée au forfait mensuel.",
+
   "pci_instances_actions_start_instance_title": "Démarrage de votre instance",
   "pci_instances_actions_start_instance_confirmation_message": "Vous allez démarrer votre instance {{ name }}.",
   "pci_instances_actions_start_instance_error_message": "Une erreur est survenue lors du démarrage de l'instance {{ name }} : {{ error }}",

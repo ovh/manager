@@ -147,10 +147,11 @@ describe('Utility functions', () => {
 
   describe('Considering the isCustomUrlSection function', () => {
     describe.each`
-      input             | expectedOutput
-      ${'reinstall'}    | ${false}
-      ${'soft-reboot'}  | ${true}
-      ${'rescue/start'} | ${true}
+      input                         | expectedOutput
+      ${'reinstall'}                | ${false}
+      ${'soft-reboot'}              | ${true}
+      ${'rescue/start'}             | ${true}
+      ${'billing/monthly/activate'} | ${true}
     `('Given an input <$input>', ({ input, expectedOutput }) => {
       test(`Then, expect the output to be '${expectedOutput}'`, () => {
         expect(isCustomUrlSection(input)).toStrictEqual(expectedOutput);
