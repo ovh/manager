@@ -1,8 +1,3 @@
-import flatten from 'lodash/flatten';
-import get from 'lodash/get';
-import map from 'lodash/map';
-import set from 'lodash/set';
-
 export default class BillingMainPayAsYouGoCtrl {
   /* @ngInject */
   constructor($q, $translate, Alerter, OvhApiMe, iceberg, ServicesHelper) {
@@ -53,52 +48,58 @@ export default class BillingMainPayAsYouGoCtrl {
           .expand('CachedObjectList-Pages')
           .execute().$promise,
       })
-      .then(({ consumptions, services: { data: services } }) => {
+      .then(({ consumptions = [], services: { data: services = [] } }) => {
         const projectPromises = consumptions.map((consumption) => {
-          const associatedService =
-            (services || []).find(
-              (service) => service.serviceId === consumption.serviceId,
-            ) || {};
+          const formattedConsumption = {
+            ...consumption,
+            service:
+              services.find(
+                ({ serviceId }) => serviceId === consumption.serviceId,
+              ) || {},
+          };
 
-          return this.ServicesHelper.getServiceDetails(associatedService).then(
-            (details) => {
-              associatedService.details = details;
-              set(consumption, 'service', associatedService);
-            },
-          );
+          return this.ServicesHelper.getServiceDetails(
+            formattedConsumption.service,
+          )
+            .then((details) => {
+              formattedConsumption.service.details = details;
+              return formattedConsumption;
+            })
+            .catch(() => formattedConsumption);
         });
 
-        return this.$q.all(projectPromises).then(() => consumptions);
+        return this.$q.all(projectPromises);
       })
       .then((consumptions) => {
-        this.consumptions = flatten(
-          map(consumptions, (consumption) => {
+        this.consumptions = consumptions
+          .map((consumption) => {
             const consumptionProjectUrl = this.ServicesHelper.getServiceManageUrl(
               consumption.service,
             );
 
-            return map(consumption.elements, (consumptionElement) => ({
+            return consumption.elements.map((consumptionElement) => ({
               project: {
                 name:
-                  consumption.service.details.description ||
-                  consumption.service.details.project_id,
+                  consumption.service?.details?.description ||
+                  // eslint-disable-next-line camelcase
+                  consumption.service?.details?.project_id,
                 url: consumptionProjectUrl,
               },
               resource: consumptionElement.planCode,
               type: BillingMainPayAsYouGoCtrl.getConsumptionElementType(
                 consumptionElement.planCode,
               ),
-              dueDate: get(consumption.service, 'billing.nextBillingDate'),
+              dueDate: consumption.service?.billing?.nextBillingDate,
               current: consumptionElement.price,
             }));
-          }),
-        );
+          })
+          .flat();
       })
       .catch((error) => {
         this.Alerter.error(
           [
             this.$translate.instant('billing_main_pay_as_you_go_load_error'),
-            get(error, 'data.message'),
+            error?.data?.message || error?.message,
           ].join(' '),
           'billing_main_alert',
         );
