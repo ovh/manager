@@ -5,9 +5,6 @@ import {
   Card,
   OnboardingLayout,
   Links,
-  Price,
-  IntervalUnitType,
-  OvhSubsidiary,
 } from '@ovh-ux/manager-react-components';
 import { OdsText, OdsTable } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
@@ -17,11 +14,11 @@ import useGuideUtils from '@/pages/onboarding/useGuideUtils';
 import onboardingImgSrc from './onboarding-img.png';
 import { urls } from '@/routes/routes.constant';
 import { useCatalogLowestPrice } from '@/data/hooks/catalog';
+import { PriceDescription } from '@/components/PriceDescription/PriceDescription';
 
 export default function Onboarding() {
   const { t } = useTranslation('onboarding');
-  const { t: tCommon, i18n } = useTranslation();
-  const { environment } = React.useContext(ShellContext);
+  const { t: tCommon } = useTranslation();
   const link = useGuideUtils();
   const { ipv4LowestPrice, ipv6LowestPrice } = useCatalogLowestPrice();
   const navigate = useNavigate();
@@ -75,28 +72,15 @@ export default function Onboarding() {
     {
       feature: t('optionsCost'),
       ipv4: (
-        <Price
+        <PriceDescription
+          shouldOverrideStyle={true}
           isStartingPrice
+          price={ipv4LowestPrice}
           suffix={tCommon('per_ip')}
-          value={ipv4LowestPrice}
-          tax={0}
-          intervalUnit={IntervalUnitType.month}
-          ovhSubsidiary={environment.user.ovhSubsidiary as OvhSubsidiary}
-          locale={i18n.language}
-          freePriceLabel={tCommon('free_price')}
         />
       ),
       ipv6: (
-        <Price
-          isStartingPrice
-          suffix={tCommon('per_ip')}
-          value={ipv6LowestPrice}
-          tax={0}
-          intervalUnit={IntervalUnitType.month}
-          ovhSubsidiary={environment.user.ovhSubsidiary as OvhSubsidiary}
-          locale={i18n.language}
-          freePriceLabel={tCommon('free_price')}
-        />
+        <PriceDescription price={ipv6LowestPrice} shouldOverrideStyle={true} />
       ),
     },
     {

@@ -1,11 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { OdsBadge } from '@ovhcloud/ods-components/react';
-import { ODS_BADGE_COLOR, ODS_BADGE_SIZE } from '@ovhcloud/ods-components';
-import {
-  OptionCard,
-  PriceDescription,
-} from '@/components/OptionCard/OptionCard.component';
+import { OptionCard } from '@/components/OptionCard/OptionCard.component';
+import { PriceDescription } from '@/components/PriceDescription/PriceDescription';
 import { IpVersion } from '../order.constant';
 import { OrderSection } from '../../../components/OrderSection/OrderSection.component';
 import { useCatalogLowestPrice } from '@/data/hooks/catalog';
