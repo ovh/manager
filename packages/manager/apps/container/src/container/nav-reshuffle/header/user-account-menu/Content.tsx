@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useTranslation, Trans } from 'react-i18next';
 import { OsdsChip } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
@@ -55,7 +55,7 @@ const UserAccountMenu = ({
 
   const onTrackNavigation = (name: string) => {
     trackingPlugin.trackClick({
-      name: name,
+      name,
       type: 'navigation',
     });
   };
@@ -75,7 +75,7 @@ const UserAccountMenu = ({
   const getUrl = (key: string, hash: string) =>
     shell.getPlugin('navigation').getURL(key, hash);
   const ssoLink = getUrl('iam', '#/dashboard/users');
-  let [supportLink, setSupportLink] = useState(
+  const [supportLink, setSupportLink] = useState(
     getUrl('dedicated', '#/useraccount/support/level'),
   );
 

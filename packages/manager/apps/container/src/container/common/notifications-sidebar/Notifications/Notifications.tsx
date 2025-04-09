@@ -1,5 +1,3 @@
-import React from 'react';
-
 import NotificationsEmpty from './Empty';
 import NotificationsGroup from './Group';
 import NotificationsLoading from './Loading';

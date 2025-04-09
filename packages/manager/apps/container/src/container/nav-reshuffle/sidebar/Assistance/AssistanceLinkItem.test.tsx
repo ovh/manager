@@ -1,18 +1,8 @@
 import { it, vi, describe } from 'vitest';
 import { render } from '@testing-library/react';
-import { AssistanceLinkItem, Props } from './AssistanceLinkItem';
 import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
+import { AssistanceLinkItem, Props } from './AssistanceLinkItem';
 import { Node } from '../navigation-tree/node';
-
-const externalNode: Node = {
-  id: 'help',
-  idAttr: 'help-link',
-  translation: 'sidebar_assistance_help_center',
-  url: 'help',
-  hasService: false,
-  isExternal: true,
-  svgIcon: OvhProductName.HELPECENTER,
-};
 
 const node: Node = {
   id: 'carbon_calculator',
@@ -27,19 +17,22 @@ const node: Node = {
 };
 
 const props: Props = {
-  node: node,
+  node,
   isSelected: false,
-  isLoading: false
+  isLoading: false,
 };
 
-const id: string = "assistance-link-item";
+const id = 'assistance-link-item';
 
 vi.mock('../style.module.scss', () => ({
-  default: new Proxy(new Object(), {
-    get(_, style) {
-      return style;
+  default: new Proxy(
+    {},
+    {
+      get(_, style) {
+        return style;
+      },
     },
-  }),
+  ),
 }));
 
 vi.mock('@ovh-ux/ovh-product-icons/utils/SvgIconWrapper', () => ({
@@ -52,7 +45,11 @@ vi.mock('../SidebarLink', () => ({
 
 const renderAssistanceLinkItem = (props: Props) => {
   return render(
-    <AssistanceLinkItem node={props.node} isSelected={props.isSelected} isLoading={props.isLoading} />,
+    <AssistanceLinkItem
+      node={props.node}
+      isSelected={props.isSelected}
+      isLoading={props.isLoading}
+    />,
   );
 };
 
@@ -66,5 +63,5 @@ describe('AssistanceLinkItem.component', () => {
     props.isSelected = true;
     const { queryByTestId } = renderAssistanceLinkItem(props);
     expect(queryByTestId(id)).toHaveClass('sidebar_menu_items_selected');
-  })
+  });
 });

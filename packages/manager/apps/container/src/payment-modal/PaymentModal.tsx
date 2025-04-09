@@ -1,23 +1,27 @@
-import React, { useEffect, useState } from 'react';
-import {
-  OsdsButton,
-  OsdsModal,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
-import { useShell } from '@/context';
-import { fetchIcebergV6 } from '@ovh-ux/manager-core-api';
-import { useQuery } from '@tanstack/react-query';
-import { PAYMENT_ALERTS } from './constants';
+import { useEffect, useState } from 'react';
 import './styles.scss';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import {
+  OsdsButton,
+  OsdsModal,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
+import { useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
+import { fetchIcebergV6 } from '@ovh-ux/manager-core-api';
+import { useShell } from '@/context';
+import { PAYMENT_ALERTS } from './constants';
 
 export interface IPaymentMethod {
-  icon?: any;
+  icon?: {
+    data?: string;
+    name: string;
+    url?: string;
+  };
   label: string;
   status: string;
   default: boolean;
@@ -34,8 +38,11 @@ export interface IPaymentMethod {
 }
 
 const computeAlert = (paymentMethods: IPaymentMethod[]): string => {
-  const currentCreditCard: IPaymentMethod = paymentMethods?.find(currentPaymentMethod => currentPaymentMethod.paymentType === 'CREDIT_CARD'
-  && currentPaymentMethod.default);
+  const currentCreditCard: IPaymentMethod = paymentMethods?.find(
+    (currentPaymentMethod) =>
+      currentPaymentMethod.paymentType === 'CREDIT_CARD' &&
+      currentPaymentMethod.default,
+  );
 
   if (currentCreditCard?.expirationDate) {
     const creditCardExpirationDate = new Date(currentCreditCard.expirationDate);
@@ -44,7 +51,8 @@ const computeAlert = (paymentMethods: IPaymentMethod[]): string => {
     }
     const expirationDateMinus30Days = new Date(creditCardExpirationDate);
     expirationDateMinus30Days.setDate(creditCardExpirationDate.getDate() - 30);
-    const isSoonToBeExpireCreditCard = expirationDateMinus30Days.getTime() < Date.now();
+    const isSoonToBeExpireCreditCard =
+      expirationDateMinus30Days.getTime() < Date.now();
     if (isSoonToBeExpireCreditCard) {
       return PAYMENT_ALERTS.SOON_EXPIRED_CARD;
     }
@@ -63,14 +71,15 @@ const PaymentModal = (): JSX.Element => {
     .getURL('dedicated', '#/billing/payment/method');
 
   const closeHandler = () => setShowPaymentModal(false);
-  const validateHandler = () =>  {
+  const validateHandler = () => {
     setShowPaymentModal(false);
     window.location.href = paymentMethodURL;
-  }
+  };
 
   const { data: paymentResponse } = useQuery({
     queryKey: ['me-payment-method'],
-    queryFn: () => fetchIcebergV6<IPaymentMethod>({ route: '/me/payment/method' })
+    queryFn: () =>
+      fetchIcebergV6<IPaymentMethod>({ route: '/me/payment/method' }),
   });
 
   useEffect(() => {

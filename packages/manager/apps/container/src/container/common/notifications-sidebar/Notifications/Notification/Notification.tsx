@@ -1,5 +1,3 @@
-import React from 'react';
-
 import NotificationBadge from './Badge';
 import NotificationContent from './Content';
 import NotificationIcon from './Icon';

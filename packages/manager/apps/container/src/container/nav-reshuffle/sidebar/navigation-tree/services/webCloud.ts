@@ -1,6 +1,6 @@
-import illustration from '@/assets/images/sidebar/web-cloud.png';
-import { Node } from "../node";
 import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
+import illustration from '@/assets/images/sidebar/web-cloud.png';
+import { Node } from '../node';
 
 const webCloudUniverse: Node = {
   id: 'web-cloud',
@@ -13,7 +13,7 @@ const webCloudUniverse: Node = {
     application: 'web',
     hash: '#/',
   },
-  features: ['web']
+  features: ['web'],
 };
 
 webCloudUniverse.children = [

@@ -1,9 +1,9 @@
-import React, { useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import useClickAway from 'react-use/lib/useClickAway';
-import style from './style.module.scss';
 import { OsdsIcon } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_ICON_SIZE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import style from './style.module.scss';
 
 type OrderResponsivePopupProps = {
   button: HTMLElement;

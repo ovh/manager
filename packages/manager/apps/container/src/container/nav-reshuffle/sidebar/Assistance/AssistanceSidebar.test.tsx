@@ -41,7 +41,7 @@ const props: AssistanceProps = {
   nodeTree: assistanceTree,
   isShort: false,
   selectedNode: null,
-  isLoading: false
+  isLoading: false,
 };
 
 const renderAssistanceSidebar = (props: AssistanceProps) => {
@@ -55,7 +55,7 @@ const renderAssistanceSidebar = (props: AssistanceProps) => {
   );
 };
 
-const id: string = 'assistance-sidebar';
+const id = 'assistance-sidebar';
 
 describe('AssistanceSidebar.component', () => {
   it('should render', () => {

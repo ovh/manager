@@ -1,10 +1,4 @@
-import React, {
-  useState,
-  useEffect,
-  useRef,
-  useCallback,
-  useMemo,
-} from 'react';
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { createPopper, Instance, Placement } from '@popperjs/core';
 import { useDebounce } from 'react-use';
@@ -18,7 +12,6 @@ import style from './style.module.scss';
 import { Node } from '../../sidebar/navigation-tree/node';
 
 const ELEMENT_OFFSET = 10;
-const MOBILE_WIDTH_RESOLUTION = 1024;
 
 export const OnboardingWalkMe = () => {
   const { t } = useTranslation('nav-reshuffle/onboarding');
@@ -283,11 +276,15 @@ export const OnboardingWalkMe = () => {
     [currentStepIndex],
   );
 
-  useDebounce(() => {
-    setIsPopoverVisible(false);
-    calculateTargetBound();
-    updatePopper();
-  }, 100, [windowSize]);
+  useDebounce(
+    () => {
+      setIsPopoverVisible(false);
+      calculateTargetBound();
+      updatePopper();
+    },
+    100,
+    [windowSize],
+  );
 
   useEffect(() => {
     setIsPopoverVisible(false);

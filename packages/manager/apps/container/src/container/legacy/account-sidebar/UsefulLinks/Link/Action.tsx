@@ -1,15 +1,12 @@
-import React from 'react';
-
 import { useTranslation } from 'react-i18next';
-
-import { TRANSLATE_NAMESPACE } from '../../constants';
-
-import { UsefulLink } from './usefulLink';
 
 import { OsdsLink } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import { UsefulLink } from './usefulLink';
+import { TRANSLATE_NAMESPACE } from '../../constants';
+
 type Props = {
   link?: UsefulLink;
   translationBase?: string;

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import style from './style.module.scss';
 import { Node } from '@/container/nav-reshuffle/sidebar/navigation-tree/node';
 import SidebarLink from '@/container/nav-reshuffle/sidebar/SidebarLink';
@@ -7,7 +8,6 @@ import {
   findPathToNode,
   shouldHideElement,
 } from '@/container/nav-reshuffle/sidebar/utils';
-import { useTranslation } from 'react-i18next';
 import navigationRoot from '@/container/nav-reshuffle/sidebar/navigation-tree/root';
 import { useShell } from '@/context';
 
@@ -36,8 +36,9 @@ const SubTreeSection: React.FC<ComponentProps<SubTreeSectionProps>> = ({
     );
     trackingIdComplement = history.reduce((accumulator, currentValue) => {
       if (currentValue.id) {
-        return accumulator + `${currentValue.id.replace(/-/g, '_')}::`;
+        return `${accumulator}${currentValue.id.replace(/-/g, '_')}::`;
       }
+      return undefined;
     }, trackingIdComplement);
     trackingPlugin.trackClick({
       name: trackingIdComplement.replace(/::$/g, ''),
@@ -74,17 +75,17 @@ const SubTreeSection: React.FC<ComponentProps<SubTreeSectionProps>> = ({
                     : style.subtree_submenu_items
                 }`}
               >
-                  <SidebarLink
-                    linkParams={{
-                      projectId: selectedPciProject,
-                    }}
-                    node={childNode}
-                    hasService={childNode.hasService}
-                    handleOnClick={() => menuClickHandler(childNode)}
-                    id={childNode.idAttr}
-                    className="px-3"
-                  />
-                  {childNode.separator && <hr role="separator" />}
+                <SidebarLink
+                  linkParams={{
+                    projectId: selectedPciProject,
+                  }}
+                  node={childNode}
+                  hasService={childNode.hasService}
+                  handleOnClick={() => menuClickHandler(childNode)}
+                  id={childNode.idAttr}
+                  className="px-3"
+                />
+                {childNode.separator && <hr role="separator" />}
               </li>
             ))}
         </ul>

@@ -8,7 +8,7 @@ import i18n from '../config/i18nTestConfig';
 import { ApplicationProvider } from '../../context';
 import { ContainerProvider } from '../../core/container';
 
-const renderWithI18n = (children, { ...renderOptions }) => {
+const renderWithI18n = (children: React.ReactNode, { ...renderOptions }) => {
   return render(
     <I18nextProvider i18n={i18n}>{children}</I18nextProvider>,
     renderOptions,
