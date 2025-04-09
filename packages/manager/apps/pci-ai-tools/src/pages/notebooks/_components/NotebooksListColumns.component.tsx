@@ -139,12 +139,12 @@ export const getColumns = ({
           <div>
             {gpu > 0 ? (
               <div className="flex gap-2 items-center">
-                <Zap className="size-4" />
+                <Zap className="size-4 shrink-0" />
                 <span>{`${gpu} GPU ${gpuModel}`}</span>
               </div>
             ) : (
               <div className="flex gap-2 items-center">
-                <Cpu className="size-4" />
+                <Cpu className="size-4 shrink-0" />
                 <span>{`${cpu} CPU`}</span>
               </div>
             )}

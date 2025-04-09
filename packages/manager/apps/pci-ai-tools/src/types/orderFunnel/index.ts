@@ -23,13 +23,18 @@ export interface ImagePartnerApp extends ai.capabilities.app.Image {
 }
 
 export interface FrameworkWithVersion {
-  framework: string;
-  version: string;
+  framework?: string;
+  version?: string;
+}
+
+export interface OrderLabel {
+  name?: string;
+  value?: string;
 }
 
 export interface OrderSshKey {
-  name: string;
-  sshKey: string;
+  name?: string;
+  sshKey?: string;
 }
 
 export interface Containers {
@@ -39,15 +44,17 @@ export interface Containers {
 }
 
 export interface OrderVolumes {
-  cache: boolean;
-  publicGit?: ai.volume.PublicGit;
-  dataStore?: {
-    alias: string;
-    container: string;
-    type: ai.DataStoreTypeEnum;
+  cache?: boolean;
+  publicGit?: {
+    url?: string;
   };
-  mountPath: string;
-  permission: ai.VolumePermissionEnum;
+  dataStore?: {
+    alias?: string;
+    container?: string;
+    type?: ai.DataStoreTypeEnum;
+  };
+  mountPath?: string;
+  permission?: ai.VolumePermissionEnum;
 }
 
 export interface FormVolumes {
@@ -64,18 +71,22 @@ export enum PrivacyEnum {
   'public' = 'public',
 }
 
-export interface Suggestions {
-  region: string;
-  ressources: {
-    nb: number;
-    flavor: string;
-  };
-  framework: {
-    id: string;
-    version: string;
-  };
-  editorId: string;
-  unsecureHttp: boolean;
+export interface NotebookSuggestions {
+  defaultRegion: string;
+  suggestions: {
+    resources: {
+      quantity: number;
+      flavorId: string;
+    };
+    framework: {
+      id: string;
+    };
+    region: string;
+    editor: {
+      id: string;
+    };
+    unsecureHttp: boolean;
+  }[];
 }
 
 export interface JobSuggestions {

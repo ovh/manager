@@ -5,9 +5,9 @@ import { useParams } from 'react-router-dom';
 import { z } from 'zod';
 import {
   Flavor,
+  NotebookSuggestions,
   OrderSshKey,
   PrivacyEnum,
-  Suggestions,
 } from '@/types/orderFunnel';
 import ai from '@/types/AI';
 
@@ -20,13 +20,13 @@ import {
 import { useGetFlavor } from '@/data/hooks/ai/capabilities/useGetFlavor.hook';
 import { createFlavorPricingList } from '@/lib/priceFlavorHelper';
 import publicCatalog from '@/types/Catalog';
+import { useGetFramework } from '@/data/hooks/ai/capabilities/useGetFramework.hook';
+import { useGetEditor } from '@/data/hooks/ai/capabilities/useGetEditor.hook';
 
 export function useOrderFunnel(
   regions: ai.capabilities.Region[],
   catalog: publicCatalog.Catalog,
-  frameworks: ai.capabilities.notebook.Framework[],
-  editors: ai.capabilities.notebook.Editor[],
-  suggestions: Suggestions[],
+  suggestions: NotebookSuggestions,
 ) {
   const { projectId } = useParams();
   const orderSchema = z.object({
@@ -45,7 +45,7 @@ export function useOrderFunnel(
     labels: z
       .array(
         z.object({
-          key: z.string().optional(),
+          name: z.string().min(1),
           value: z.string().optional(),
         }),
       )
@@ -79,7 +79,7 @@ export function useOrderFunnel(
   const form = useForm({
     resolver: zodResolver(orderSchema),
     defaultValues: {
-      region: suggestions[0].region,
+      region: suggestions.defaultRegion,
       flavorWithQuantity: { flavor: '', quantity: 1 },
       frameworkWithVersion: { framework: '', version: '' },
       editor: '',
@@ -101,6 +101,8 @@ export function useOrderFunnel(
   const sshKey = form.watch('sshKey');
   const volumes = form.watch('volumes');
 
+  const frameworkQuery = useGetFramework(projectId, region);
+  const editorQuery = useGetEditor(projectId, region);
   const flavorQuery = useGetFlavor(projectId, region);
   const datastoreQuery = useGetDatastores(projectId, region);
   const containersQuery = useGetDatastoresWithContainers(
@@ -119,6 +121,16 @@ export function useOrderFunnel(
     return createFlavorPricingList(flavorQuery.data, catalog, 'ai-notebook');
   }, [region, flavorQuery.isSuccess]);
 
+  const listFramework: ai.capabilities.notebook.Framework[] = useMemo(() => {
+    if (frameworkQuery.isLoading) return [];
+    return frameworkQuery.data;
+  }, [region, frameworkQuery.isSuccess]);
+
+  const listEditor: ai.capabilities.notebook.Editor[] = useMemo(() => {
+    if (editorQuery.isLoading) return [];
+    return editorQuery.data;
+  }, [region, editorQuery.isSuccess]);
+
   const flavorObject: Flavor | undefined = useMemo(
     () => listFlavor.find((f) => f.id === flavorWithQuantity.flavor),
     [region, listFlavor, flavorWithQuantity.flavor],
@@ -127,19 +139,23 @@ export function useOrderFunnel(
   const frameworkObject:
     | ai.capabilities.notebook.Framework
     | undefined = useMemo(
-    () => frameworks.find((fmk) => fmk.id === frameworkWithversion.framework),
-    [frameworks, frameworkWithversion.framework],
+    () =>
+      listFramework.find((fmk) => fmk.id === frameworkWithversion.framework),
+    [listFramework, frameworkWithversion.framework],
   );
+
   const versionObject: string | undefined = useMemo(
     () =>
-      frameworkObject?.versions.find((v) => v === frameworkWithversion.version),
-    [frameworkObject, frameworkWithversion.version],
+      frameworkObject?.versions?.find(
+        (v) => v === frameworkWithversion?.version,
+      ),
+    [frameworkObject, frameworkWithversion?.version],
   );
 
   const editorObject:
     | ai.capabilities.notebook.Editor
-    | undefined = useMemo(() => editors.find((ed) => ed.id === editor), [
-    editors,
+    | undefined = useMemo(() => listEditor.find((ed) => ed.id === editor), [
+    listEditor,
     editor,
   ]);
 
@@ -169,39 +185,43 @@ export function useOrderFunnel(
   // Select default Flavor Id / Flavor number when region change
   useEffect(() => {
     const suggestedFlavor =
-      suggestions.find((sug) => sug.region === regionObject.id).ressources
-        .flavor ?? listFlavor[0].id;
+      suggestions.suggestions.find((sug) => sug.region === regionObject.id)
+        .resources.flavorId ?? listFlavor[0].id;
+    const suggestedQuantity =
+      suggestions.suggestions.find((sug) => sug.region === regionObject.id)
+        .resources.quantity ?? 1;
     form.setValue('flavorWithQuantity.flavor', suggestedFlavor);
-    form.setValue('flavorWithQuantity.quantity', 1);
+    form.setValue('flavorWithQuantity.quantity', suggestedQuantity);
   }, [regionObject, region, flavorQuery.isSuccess]);
 
   // Change Framework when region change?
   useEffect(() => {
     const suggestedFramework =
-      suggestions.find((sug) => sug.region === regionObject.id).framework.id ??
-      frameworks[0].id;
-    const suggestedFrameworkVersion =
-      suggestions.find((sug) => sug.region === regionObject.id).framework
-        .version ?? frameworks[0].versions[0];
+      suggestions.suggestions.find((sug) => sug.region === regionObject.id)
+        .framework.id ?? listFramework[0].id;
+    const suggestedFrameworkVersion = listFramework.find(
+      (fmk) => fmk.id === suggestedFramework,
+    )?.versions[0];
+
     form.setValue('frameworkWithVersion.framework', suggestedFramework);
     form.setValue('frameworkWithVersion.version', suggestedFrameworkVersion);
-  }, [regionObject, region]);
+  }, [regionObject, region, listFramework]);
 
   // Change editors when region change?
   useEffect(() => {
     const suggestedEditors =
-      suggestions.find((sug) => sug.region === regionObject.id).editorId ??
-      editors[0].id;
+      suggestions.suggestions.find((sug) => sug.region === regionObject.id)
+        .editor.id ?? listEditor[0].id;
     form.setValue('editor', suggestedEditors);
-  }, [regionObject, region]);
+  }, [regionObject, region, listEditor]);
 
   return {
     form,
     lists: {
       regions,
       flavors: listFlavor,
-      frameworks,
-      editors,
+      frameworks: listFramework,
+      editors: listEditor,
       volumes: listDatastores,
     },
     result: {

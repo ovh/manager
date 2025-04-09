@@ -6,14 +6,14 @@ import { getAIApiErrorMessage } from '@/lib/apiHelper';
 import LabelsForm from '@/components/labels/LabelsForm.component';
 import { OVH_TAGS_CONFIG } from '@/configuration/label';
 import { useEditLabel } from '@/data/hooks/ai/notebook/label/useEditLabel.hook';
-import ai from '@/types/AI';
+import { OrderLabel } from '@/types/orderFunnel';
 
 const Labels = () => {
   const { notebook, notebookQuery, projectId } = useNotebookData();
   const { t } = useTranslation('ai-tools/components/labels');
   const toast = useToast();
 
-  const configuredLabel: ai.Label[] = useMemo(
+  const configuredLabel: OrderLabel[] = useMemo(
     () =>
       notebook?.spec?.labels &&
       Object.entries(notebook.spec.labels)
@@ -54,7 +54,7 @@ const Labels = () => {
     });
   };
 
-  const handleAddLabel = (label: ai.Label) => {
+  const handleAddLabel = (label: OrderLabel) => {
     editLabel({
       projectId,
       notebookId: notebook.id,

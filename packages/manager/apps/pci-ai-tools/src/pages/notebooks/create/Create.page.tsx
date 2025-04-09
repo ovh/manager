@@ -7,8 +7,6 @@ import { GuideSections } from '@/configuration/guide';
 import { useGetSuggestions } from '@/data/hooks/ai/notebook/useGetSuggestions.hook';
 import { useGetRegions } from '@/data/hooks/ai/capabilities/useGetRegions.hook';
 import { useGetCatalog } from '@/data/hooks/catalog/useGetCatalog.hook';
-import { useGetFramework } from '@/data/hooks/ai/notebook/capabilities/useGetFramework.hook';
-import { useGetEditor } from '@/data/hooks/ai/notebook/capabilities/useGetEditor.hook';
 import { useGetSshkey } from '@/data/hooks/sshkey/useGetSshkey.hook';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 
@@ -33,13 +31,6 @@ const Notebook = () => {
     refetchOnWindowFocus: false,
   });
   const catalogQuery = useGetCatalog({ refetchOnWindowFocus: false });
-  const frameworkQuery = useGetFramework(projectId, {
-    refetchOnWindowFocus: false,
-  });
-
-  const editorQuery = useGetEditor(projectId, {
-    refetchOnWindowFocus: false,
-  });
 
   const sshKeyQuery = useGetSshkey(projectId, {
     refetchOnWindowFocus: false,
@@ -48,8 +39,6 @@ const Notebook = () => {
   const loading =
     regionsQuery.isPending ||
     catalogQuery.isPending ||
-    frameworkQuery.isPending ||
-    editorQuery.isPending ||
     sshKeyQuery.isPending ||
     suggestionsQuery.isPending;
 
@@ -81,8 +70,6 @@ const Notebook = () => {
         <OrderFunnel
           regions={regionsQuery.data}
           catalog={catalogQuery.data}
-          frameworks={frameworkQuery.data}
-          editors={editorQuery.data}
           sshKeys={sshKeyQuery.data}
           suggestions={suggestionsQuery.data}
         />

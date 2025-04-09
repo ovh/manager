@@ -68,15 +68,9 @@ describe('Order funnel page', () => {
       },
     }));
 
-    vi.mock('@/data/api/ai/notebook/capabilities/framework.api', () => ({
-      getFramework: vi.fn(() => [mockedFramework, mockedFrameworkBis]),
-    }));
-
-    vi.mock('@/data/api/ai/notebook/capabilities/editor.api', () => ({
-      getEditor: vi.fn(() => [mockedEditor, mockedEditorBis]),
-    }));
-
     vi.mock('@/data/api/ai/capabilities/capabilities.api', () => ({
+      getFramework: vi.fn(() => [mockedFramework, mockedFrameworkBis]),
+      getEditor: vi.fn(() => [mockedEditor, mockedEditorBis]),
       getRegions: vi.fn(() => [
         mockedCapabilitiesRegionGRA,
         mockedCapabilitiesRegionBHS,

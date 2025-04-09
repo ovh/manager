@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import RadioTile from '@/components/radio-tile/RadioTile.component';
 import VersionSelector from './FrameworkTileVersion.component';
 import ai from '@/types/AI';
@@ -21,9 +21,6 @@ export const FrameworkTile = ({
   const handleFrameworkClick = () => {
     onChange(framework, selectedVersion);
   };
-  useEffect(() => {
-    onChange(framework, selectedVersion);
-  }, [selectedVersion]);
   return (
     <RadioTile
       data-testid={`fmk-radio-tile-${framework.id}`}
