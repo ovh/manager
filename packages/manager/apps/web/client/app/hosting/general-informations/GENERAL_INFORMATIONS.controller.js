@@ -169,6 +169,8 @@ export default class HostingGeneralInformationsCtrl {
   }
 
   retrievingSSLCertificate() {
+    if (this.$scope.hosting.multipleSSL) return null;
+
     this.isRetrievingSSLCertificate = true;
 
     return this.hostingSSLCertificate
