@@ -80,28 +80,33 @@ export const DatagridTopbar = <T,>({
           >
             <div className="flex justify-end items-center">
               {isSearchable && (
-                <OdsInput
-                  isClearable
-                  onOdsClear={() => {
-                    search?.onSearch(null);
-                    search?.setSearchInput('');
-                  }}
-                  type={ODS_INPUT_TYPE.search}
-                  id="datagrid-searchbar"
-                  name="datagrid-searchbar"
-                  placeholder={search?.placeholder}
-                  defaultValue={search?.searchInput}
+                <form
                   className="mr-[5px]"
-                  data-testid="datagrid-searchbar"
-                  onOdsChange={(event) =>
-                    search?.setSearchInput(event?.detail?.value?.toString())
-                  }
-                  onKeyDown={(event) => {
-                    if (event.key === 'Enter')
-                      search?.onSearch(search?.searchInput);
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    search?.onSearch(search?.searchInput);
                   }}
-                  value={search?.searchInput}
-                />
+                >
+                  <OdsInput
+                    isClearable
+                    onOdsClear={() => {
+                      search?.onSearch('');
+                      search?.setSearchInput('');
+                    }}
+                    type={ODS_INPUT_TYPE.search}
+                    id="datagrid-searchbar"
+                    name="datagrid-searchbar"
+                    placeholder={search?.placeholder}
+                    defaultValue={search?.searchInput}
+                    data-testid="datagrid-searchbar"
+                    onOdsChange={(event) =>
+                      search?.setSearchInput(
+                        event?.detail?.value?.toString() || '',
+                      )
+                    }
+                    value={search?.searchInput}
+                  />
+                </form>
               )}
               {filtersColumns?.length > 0 && (
                 <div
