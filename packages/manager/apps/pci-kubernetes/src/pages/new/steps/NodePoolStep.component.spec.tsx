@@ -1,12 +1,14 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { describe, it, vi, expect, beforeEach, Mock } from 'vitest';
+import { QueryObserverSuccessResult } from '@tanstack/react-query';
+import { describe, it, vi, expect, beforeEach } from 'vitest';
 import NodePoolStep from './NodePoolStep.component';
 import { useClusterCreationStepper } from '../useCusterCreationStepper';
 import { useRegionInformations } from '@/api/hooks/useRegionInformations';
 
 import { wrapper } from '@/wrapperRenders';
 import { DeploymentMode } from '@/types';
+import { TRegionInformations } from '@/types/region';
 
 vi.mock('react-router-dom', () => ({
   useParams: () => ({ projectId: '12345' }),
@@ -43,12 +45,12 @@ describe('NodePoolStep Component', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     vi.mocked(useClusterCreationStepper).mockReturnValue(mockStepper);
-    vi.mocked(useRegionInformations as Mock).mockReturnValue({
+    vi.mocked(useRegionInformations).mockReturnValue({
       data: {
         type: DeploymentMode.MONO_ZONE,
         availabilityZones: ['zone-a', 'zone-b'],
       },
-    });
+    } as QueryObserverSuccessResult<TRegionInformations, Error>);
   });
 
   it('should render without error', () => {

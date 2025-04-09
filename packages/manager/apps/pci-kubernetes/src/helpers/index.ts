@@ -208,3 +208,5 @@ export const isMonoDeploymentZone = (type: DeploymentMode) =>
   type === DeploymentMode.MONO_ZONE;
 export const isMultiDeploymentZones = (type: DeploymentMode) =>
   type === DeploymentMode.MULTI_ZONES;
+export const isLocalDeploymentZone = (type: DeploymentMode) =>
+  type === DeploymentMode.LOCAL_ZONE;
