@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { OsdsButton, OsdsText } from '@ovhcloud/ods-components/react';
-import { KubeFlavor } from '@ovh-ux/manager-pci-common';
 
 import {
   ODS_BUTTON_SIZE,
@@ -39,6 +38,7 @@ import {
 } from '@/helpers';
 import { useRegionInformations } from '@/api/hooks/useRegionInformations';
 import DeploymentZone from './node-pool/DeploymentZone.component';
+import { KubeFlavor } from '@/components/flavor-selector/FlavorSelector.component';
 
 const getPrice = (flavor: KubeFlavor, scaling: AutoscalingState | null) => {
   if (flavor && scaling) {
@@ -78,7 +78,6 @@ const NodePoolStep = ({
   const [nodePoolState, setNodePoolState] = useState<NodePoolState>({
     antiAffinity: false,
     name: '',
-
     isTouched: false,
     scaling: null,
   });
@@ -249,8 +248,8 @@ const NodePoolStep = ({
               onSelect={setFlavor}
             />
           </div>
-          <div className="mb-8 flex gap-4">
-            {isMultiDeploymentZones(regionInformations.type) && (
+          {isMultiDeploymentZones(regionInformations?.type) && (
+            <div className="mb-8 flex gap-4">
               <DeploymentZone
                 setNodePoolState={setNodePoolState}
                 availabilityZones={regionInformations?.availabilityZones}
@@ -258,8 +257,8 @@ const NodePoolStep = ({
                   nodePoolState.selectedAvailibilityZone
                 }
               />
-            )}
-          </div>
+            </div>
+          )}
           <div className="mb-8">
             <NodePoolSize
               isMonthlyBilled={isMonthlyBilled}

@@ -79,7 +79,7 @@ export default function PrivateNetworkSelect({
           size={ODS_SELECT_SIZE.md}
           value={
             network?.id ||
-            (isMonoDeploymentZone(type) ? defaultNetwork.id : undefined)
+            (isMonoDeploymentZone(type) ? defaultNetwork.id : null)
           }
           onOdsValueChange={(ev) => {
             const networkId = `${ev.detail.value}`;
