@@ -227,6 +227,7 @@
                     </oui-tile-definition>
                     <oui-tile-definition
                         data-term="{{ ::'hosting_dashboard_service_ssl' | translate }}"
+                        data-ng-if="!hosting.multipleSSL"
                     >
                         <oui-tile-description>
                             <span
