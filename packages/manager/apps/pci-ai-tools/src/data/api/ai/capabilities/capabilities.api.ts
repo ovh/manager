@@ -16,6 +16,20 @@ export interface AIRegion extends PCIAi {
   region: string;
 }
 
+export const getFramework = async ({ projectId, region }: AIRegion) =>
+  apiClient.v6
+    .get(
+      `/cloud/project/${projectId}/ai/capabilities/region/${region}/notebook/framework`,
+    )
+    .then((res) => res.data as ai.capabilities.notebook.Framework[]);
+
+export const getEditor = async ({ projectId, region }: AIRegion) =>
+  apiClient.v6
+    .get(
+      `/cloud/project/${projectId}/ai/capabilities/region/${region}/notebook/editor`,
+    )
+    .then((res) => res.data as ai.capabilities.notebook.Editor[]);
+
 export const getFlavor = async ({ projectId, region }: AIRegion) =>
   apiClient.v6
     .get(`/cloud/project/${projectId}/ai/capabilities/region/${region}/flavor`)

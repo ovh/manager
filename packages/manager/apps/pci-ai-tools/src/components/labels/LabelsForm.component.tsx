@@ -14,14 +14,14 @@ import {
   Input,
 } from '@datatr-ux/uxlib';
 import { useLabelForm } from '@/components/labels/useLabelForm.hook';
-import ai from '@/types/AI';
 import { CONFIGURATION_CONFIG } from '../order/configuration/configuration.constants';
+import { OrderLabel } from '@/types/orderFunnel';
 
 interface LabelsFormProps {
-  configuredLabels: ai.Label[];
-  onAdd?: (newLabel: ai.Label) => void;
-  onDelete?: (deleteLabel: ai.Label) => void;
-  onChange?: (newLabels: ai.Label[]) => void;
+  configuredLabels: OrderLabel[];
+  onAdd?: (newLabel: OrderLabel) => void;
+  onDelete?: (deleteLabel: OrderLabel) => void;
+  onChange?: (newLabels: OrderLabel[]) => void;
   disabled?: boolean;
 }
 
@@ -30,10 +30,10 @@ const LabelsForm = React.forwardRef<HTMLInputElement, LabelsFormProps>(
     const { t } = useTranslation('ai-tools/components/labels');
 
     const { form } = useLabelForm({
-      configuredLabel: configuredLabels.map((label) => label.name),
+      configuredLabel: configuredLabels?.map((label) => label.name),
     });
 
-    const onSubmit: SubmitHandler<ai.Label> = (data: ai.Label) => {
+    const onSubmit: SubmitHandler<OrderLabel> = (data: OrderLabel) => {
       if (onAdd) {
         onAdd(data);
       }
@@ -47,13 +47,13 @@ const LabelsForm = React.forwardRef<HTMLInputElement, LabelsFormProps>(
     const removeLabel = (key: string) => {
       if (onChange) {
         const newLabels = configuredLabels.filter(
-          (label: ai.Label) => label.name !== key,
+          (label: OrderLabel) => label.name !== key,
         );
         onChange(newLabels);
       }
       if (onDelete) {
         const labelToRemove = configuredLabels.find(
-          (label: ai.Label) => label.name === key,
+          (label: OrderLabel) => label.name === key,
         );
         onDelete(labelToRemove);
       }
