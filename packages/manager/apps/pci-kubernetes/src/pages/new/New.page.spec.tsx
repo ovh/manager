@@ -94,7 +94,7 @@ describe('NewPage', () => {
         flavor: { name: 'b2-7' },
         isMonthlyBilled: true,
         network: {
-          privateNetwork: { clusterRegion: { openstackId: '123' } },
+          privateNetwork: { clusterRegion: { id: '123' } },
           loadBalancersSubnet: { id: '456' },
           subnet: { id: '789' },
           gateway: { ip: '192.168.1.1', isEnabled: true },

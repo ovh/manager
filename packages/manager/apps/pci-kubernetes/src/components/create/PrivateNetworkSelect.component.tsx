@@ -14,14 +14,14 @@ import {
   OsdsText,
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { TNetwork } from '@/api/data/network';
+import { TNetwork, TNetworkRegion } from '@/api/data/network';
 import { isMonoDeploymentZone } from '@/helpers';
 import { DeploymentMode } from '@/types';
 
 export type PrivateNetworkSelectProps = {
-  network: TNetwork;
-  onSelect: (network: TNetwork) => void;
-  networks: TNetwork[];
+  network: TNetworkRegion;
+  onSelect: (network: TNetworkRegion) => void;
+  networks: TNetworkRegion[];
   type: DeploymentMode;
 };
 
@@ -68,18 +68,14 @@ export default function PrivateNetworkSelect({
           {t('kubernetes_network_form_add')}
         </OsdsLink>
       </div>
-      <OsdsFormField
-        inline
-        className="mb-5 w-full"
-        data-ng-attr-label={t('kubernetes_network_form_label')}
-      >
+      <OsdsFormField inline className="mb-5 w-full">
         <OsdsSelect
           className="mt-4"
           name="privateNetwork"
           size={ODS_SELECT_SIZE.md}
           value={
             network?.id ||
-            (isMonoDeploymentZone(type) ? defaultNetwork.id : undefined)
+            (isMonoDeploymentZone(type) ? defaultNetwork.id : null)
           }
           onOdsValueChange={(ev) => {
             const networkId = `${ev.detail.value}`;

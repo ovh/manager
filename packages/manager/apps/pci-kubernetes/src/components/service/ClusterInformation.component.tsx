@@ -1,6 +1,6 @@
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useEffect } from 'react';
-
+import { useParams } from 'react-router-dom';
 import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
@@ -25,6 +25,10 @@ import AdmissionPlugins from './AdmissionPlugins.component';
 import { isProcessing } from './ClusterManagement.component';
 import ClusterTile from './ClusterTile.component';
 
+import { useRegionInformations } from '@/api/hooks/useRegionInformations';
+
+import { isMultiDeploymentZones } from '@/helpers';
+
 export type ClusterInformationProps = {
   kubeDetail: TKube;
 };
@@ -34,8 +38,12 @@ export default function ClusterInformation({
 }: Readonly<ClusterInformationProps>) {
   const { t } = useTranslation('service');
   const { t: tDetail } = useTranslation('listing');
+  const { projectId } = useParams();
   const { clearNotifications } = useNotifications();
-
+  const { data: regionInformations } = useRegionInformations(
+    projectId,
+    kubeDetail.region,
+  );
   useEffect(() => clearNotifications, []);
 
   return (
@@ -101,9 +109,11 @@ export default function ClusterInformation({
           </OsdsText>
         </TileLine>
 
-        <TileLine label={t('kube_service_cluster_nodes_url')}>
-          <Clipboard aria-label="clipboard" value={kubeDetail.nodesUrl} />
-        </TileLine>
+        {!isMultiDeploymentZones(regionInformations?.type) && (
+          <TileLine label={t('kube_service_cluster_nodes_url')}>
+            <Clipboard aria-label="clipboard" value={kubeDetail.nodesUrl} />
+          </TileLine>
+        )}
       </div>
     </OsdsTile>
   );

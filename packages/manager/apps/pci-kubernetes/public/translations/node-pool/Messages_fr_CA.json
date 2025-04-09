@@ -8,6 +8,7 @@
   "kube_node_pool_monthly_billing": "Type de facturation",
   "kube_node_pool_nodes": "Voir les noeuds",
   "kube_node_pool_scale": "Configurer la taille du pool de nœuds",
+  "kube_node_pool": "Configurer le pool de nœuds",
   "kube_node_pool_delete": "Supprimer le pool",
   "kube_node_pool_add": "Ajouter un pool de nœuds",
   "kube_node_pool_refreh": "Recharger le tableau",
