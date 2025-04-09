@@ -21,7 +21,6 @@ import {
   StepComponent,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
-import { FlavorSelector } from '@ovh-ux/manager-pci-common';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useNewPoolStore } from '@/pages/detail/nodepools/new/store';
@@ -36,14 +35,21 @@ import { ANTI_AFFINITY_MAX_NODES, NODE_RANGE } from '@/constants';
 import queryClient from '@/queryClient';
 import { useTrack } from '@/hooks/track';
 import NodePoolAntiAffinity from '@/pages/new/steps/node-pool/NodePoolAntiAffinity.component';
+import { FlavorSelector } from '@/components/flavor-selector/FlavorSelector.component';
 import NodePoolSize from '@/pages/new/steps/node-pool/NodePoolSize.component';
+import DeploymentZone from '@/pages/new/steps/node-pool/DeploymentZone.component';
+import { isMultiDeploymentZones } from '@/helpers';
+import { useRegionInformations } from '@/api/hooks/useRegionInformations';
 
 export default function NewPage(): JSX.Element {
-  const { t: tCommon } = useTranslation('common');
-  const { t: tListing } = useTranslation('listing');
-  const { t: tAdd } = useTranslation('add');
-  const { t: tAddForm } = useTranslation('add-form');
-  const { t: tKube } = useTranslation('kube');
+  const { t } = useTranslation([
+    'common',
+    'listing',
+    'add',
+    'add-form',
+    'kube',
+    'node-pool',
+  ]);
 
   const { trackClick } = useTrack();
 
@@ -63,6 +69,11 @@ export default function NewPage(): JSX.Element {
   const [state, setState] = useState({
     isAdding: false,
   });
+
+  const { data: regionInformations } = useRegionInformations(
+    projectId,
+    cluster?.region,
+  );
 
   const [billingState, setBillingState] = useState<
     TBillingStepProps & {
@@ -234,14 +245,14 @@ export default function NewPage(): JSX.Element {
         level={ODS_TEXT_LEVEL.heading}
         size={ODS_THEME_TYPOGRAPHY_SIZE._700}
       >
-        {tListing('kube_common_create_node_pool')}
+        {t('listing:kube_common_create_node_pool')}
       </OsdsText>
 
       <div ref={store.steps.get(StepsEnum.NAME).ref}></div>
       <StepComponent
         id={StepsEnum.NAME}
         order={1}
-        title={tAdd('kube_add_node_pool_config_title')}
+        title={t('add:kubernetes_add_name_title')}
         isOpen={store.steps.get(StepsEnum.NAME).isOpen}
         isChecked={store.steps.get(StepsEnum.NAME).isChecked}
         isLocked={store.steps.get(StepsEnum.NAME).isLocked}
@@ -254,13 +265,13 @@ export default function NewPage(): JSX.Element {
                   store.open(StepsEnum.TYPE);
                 }
               : undefined,
-          label: tCommon('common_stepper_next_button_label'),
+          label: t('common_stepper_next_button_label'),
         }}
         edit={{
           action: () => {
             store.edit(StepsEnum.NAME);
           },
-          label: tCommon('common_stepper_modify_this_step'),
+          label: t('common_stepper_modify_this_step'),
         }}
       >
         <OsdsFormField
@@ -269,7 +280,7 @@ export default function NewPage(): JSX.Element {
           inline
           error={
             store.name.hasError
-              ? tAdd('kube_add_node_pool_name_input_pattern_validation_error')
+              ? t('add:kube_add_node_pool_name_input_pattern_validation_error')
               : ''
           }
         >
@@ -283,7 +294,7 @@ export default function NewPage(): JSX.Element {
             className="mt-4"
             size={ODS_TEXT_SIZE._100}
           >
-            {tAdd('kube_add_node_pool_name_label')}
+            {t('add:kube_add_node_pool_name_label')}
           </OsdsText>
           <OsdsInput
             data-testid="name-input"
@@ -302,7 +313,7 @@ export default function NewPage(): JSX.Element {
       <div ref={store.steps.get(StepsEnum.TYPE).ref}></div>
       <StepComponent
         id={StepsEnum.TYPE}
-        title={tListing('kube_common_node_pool_title')}
+        title={t('add-form:kube_common_node_pool_model_type_selector')}
         isOpen={store.steps.get(StepsEnum.TYPE).isOpen}
         isChecked={store.steps.get(StepsEnum.TYPE).isChecked}
         isLocked={store.steps.get(StepsEnum.TYPE).isLocked}
@@ -315,13 +326,13 @@ export default function NewPage(): JSX.Element {
                 store.open(StepsEnum.SIZE);
               }
             : undefined,
-          label: tCommon('common_stepper_next_button_label'),
+          label: t('common_stepper_next_button_label'),
         }}
         edit={{
           action: () => {
             store.edit(StepsEnum.TYPE);
           },
-          label: tCommon('common_stepper_modify_this_step'),
+          label: t('common_stepper_modify_this_step'),
         }}
       >
         <OsdsText
@@ -329,7 +340,7 @@ export default function NewPage(): JSX.Element {
           level={ODS_TEXT_LEVEL.body}
           size={ODS_THEME_TYPOGRAPHY_SIZE._100}
         >
-          {tAddForm('kubernetes_add_node_pool_description')}
+          {t('add-form:kubernetes_add_node_pool_description')}
         </OsdsText>
         <br />
         <OsdsText
@@ -337,22 +348,24 @@ export default function NewPage(): JSX.Element {
           level={ODS_TEXT_LEVEL.body}
           size={ODS_THEME_TYPOGRAPHY_SIZE._100}
         >
-          {tAddForm('kubernetes_add_node_pool_node_type')}
+          {t('add-form:kubernetes_add_node_pool_node_type')}
         </OsdsText>
         {!isClusterPending && (
-          <FlavorSelector
-            projectId={projectId}
-            region={cluster.region}
-            onSelect={(flavor) => {
-              store.set.flavor(flavor);
-            }}
-          />
+          <>
+            <FlavorSelector
+              projectId={projectId}
+              region={cluster.region}
+              onSelect={(flavor) => {
+                store.set.flavor(flavor);
+              }}
+            />
+          </>
         )}
       </StepComponent>
       <div ref={store.steps.get(StepsEnum.SIZE).ref}></div>
       <StepComponent
         id={StepsEnum.SIZE}
-        title={tListing('kube_common_node_pool_autoscaling_title')}
+        title={t('node-pool:kube_node_pool')}
         isOpen={store.steps.get(StepsEnum.SIZE).isOpen}
         isChecked={store.steps.get(StepsEnum.SIZE).isChecked}
         isLocked={store.steps.get(StepsEnum.SIZE).isLocked}
@@ -365,7 +378,7 @@ export default function NewPage(): JSX.Element {
                 store.open(StepsEnum.BILLING);
               }
             : undefined,
-          label: tCommon('common_stepper_next_button_label'),
+          label: t('common_stepper_next_button_label'),
           isDisabled:
             !hasMax5NodesAntiAffinity ||
             !store.autoScaling ||
@@ -381,9 +394,18 @@ export default function NewPage(): JSX.Element {
           action: () => {
             store.edit(StepsEnum.SIZE);
           },
-          label: tCommon('common_stepper_modify_this_step'),
+          label: t('common_stepper_modify_this_step'),
         }}
       >
+        {isMultiDeploymentZones(regionInformations?.type) && (
+          <div className="mb-8 flex gap-4">
+            <DeploymentZone
+              onSelect={store.set.selectedAvailibilityZone}
+              availabilityZones={regionInformations?.availabilityZones}
+              selectedAvailibilityZone={store.selectedAvailibilityZone}
+            />
+          </div>
+        )}
         <NodePoolSize
           isMonthlyBilled={store.isMonthlyBilling}
           onScaleChange={(auto) => store.set.autoScaling(auto)}
@@ -398,7 +420,7 @@ export default function NewPage(): JSX.Element {
       <div ref={store.steps.get(StepsEnum.BILLING).ref}></div>
       <StepComponent
         id={StepsEnum.BILLING}
-        title={tKube('kube_service_billing')}
+        title={t('kube:kube_service_billing')}
         isOpen={store.steps.get(StepsEnum.BILLING).isOpen}
         isChecked={store.steps.get(StepsEnum.BILLING).isChecked}
         isLocked={store.steps.get(StepsEnum.BILLING).isLocked}
@@ -418,7 +440,7 @@ export default function NewPage(): JSX.Element {
               inline
               color={ODS_THEME_COLOR_INTENT.primary}
             >
-              {tListing('kube_common_save')}
+              {t('listing:kube_common_save')}
             </OsdsButton>
             <OsdsButton
               inline
@@ -430,7 +452,7 @@ export default function NewPage(): JSX.Element {
                 navigate('../nodepools');
               }}
             >
-              {tCommon('common_stepper_cancel_button_label')}
+              {t('common_stepper_cancel_button_label')}
             </OsdsButton>
           </div>
         ) : (
@@ -442,7 +464,7 @@ export default function NewPage(): JSX.Element {
               className="mt-4"
               size={ODS_TEXT_SIZE._100}
             >
-              {tAdd('kube_add_node_pool_creating')}
+              {t('add:kube_add_node_pool_creating')}
             </OsdsText>
           </div>
         )}

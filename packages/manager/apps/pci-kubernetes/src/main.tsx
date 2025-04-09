@@ -12,9 +12,6 @@ import '@ovh-ux/manager-pci-common/dist/style.css';
 import './index.css';
 import '@/vite-hmr.ts';
 import { useAppStore } from './store';
-import { worker } from './mocks/browsers';
-
-worker.start();
 
 const init = async (
   appName: string,

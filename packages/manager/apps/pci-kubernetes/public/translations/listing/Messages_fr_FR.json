@@ -21,6 +21,6 @@
   "kubernetes_add_private_network": "Choisissez un réseau privé pour ce cluster",
   "kubernetes_add_private_network_label": "Réseau privé attaché",
   "kubernetes_add_private_network_none": "Aucun (IPs publiques)",
-  "kubernetes_add_private_network_description": "Par défaut, vos nœuds de travail disposent d'une IPv4 publique. Si vous choisissez un réseau privé, les IP publiques de ces nœuds seront utilisées exclusivement pour leur administration/le lien avec le control plane Kubernetes, et vos noeuds se verront attribuer une IP sur le vLAN du réseau privé choisi.",
+  "kubernetes_add_private_network_description": "Vos noeuds se verront attribuer une IP sur le vLAN du réseau privé choisi.",
   "kubernetes_add_private_network_add": "Créer un réseau privé"
 }

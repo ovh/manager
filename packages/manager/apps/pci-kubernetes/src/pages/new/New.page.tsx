@@ -130,9 +130,7 @@ export default function NewPage() {
           ({ localisation: _1, monthlyPrice: _2, ...nodePool }) => nodePool,
         ),
       }),
-      privateNetworkId:
-        stepper.form.network?.privateNetwork?.clusterRegion?.openstackId ||
-        undefined,
+      privateNetworkId: stepper.form.network?.privateNetwork?.id || undefined,
       loadBalancersSubnetId:
         stepper.form.network?.loadBalancersSubnet?.id || undefined,
       nodesSubnetId: stepper.form.network?.subnet?.id || undefined,

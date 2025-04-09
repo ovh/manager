@@ -32,10 +32,16 @@ describe('helper', () => {
     expect(result.totalRows).toBe(10);
   });
 
-  it('formats Kubernetes version correctly', () => {
-    const version = '1.18.10';
-    const result = getFormatedKubeVersion(version);
-    expect(result).toBe('1.18');
+  describe('getFormatedKubeVersion', () => {
+    it.each([
+      ['1.32.1-1', '1.32'],
+      ['1.32', '1.32'],
+      ['1.32.0', '1.32'],
+      ['1.32.1', '1.32'],
+      ['1', '1'],
+    ])('retourne la version formatée pour %s', (version, expected) => {
+      expect(getFormatedKubeVersion(version)).toBe(expected);
+    });
   });
 
   it('formats IP with default mask if not provided', () => {

@@ -36,7 +36,6 @@ export interface SubnetSelectorProps {
 export const SubnetSelector = ({
   projectId,
   networkId,
-  region,
   allowsEmpty,
   disabled,
   className,
@@ -44,6 +43,7 @@ export const SubnetSelector = ({
   preselectedId,
   onSelect,
   showSpinner,
+  region,
 }: Readonly<SubnetSelectorProps>) => {
   const [subnet, setSubnet] = useState<TPrivateNetworkSubnet>(
     allowsEmpty ? ({ id: 'none' } as TPrivateNetworkSubnet) : undefined,

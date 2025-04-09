@@ -12,7 +12,7 @@
   "kubernetes_network_form_gateway_vrack_field_ip_error_pattern": "Gültige IP-Adresse angeben",
   "kubernetes_network_form_label": "Verbundenes privates Netzwerk",
   "kubernetes_network_form_none": "Keine (öffentlichen IPs)",
-  "kubernetes_network_form_description": "Standardmäßig verfügen Ihre Worker-Nodes über eine öffentliche IPv4. Wenn Sie sich für ein privates Netzwerk entscheiden, werden die öffentlichen IP-Adressen dieser Nodes ausschließlich für deren Verwaltung und der Verbindung zur Kubernetes-Control-Panel-Ebene verwendet. Ihren Nodes wird eine IP im vLAN des gewählten privaten Netzwerks zugewiesen.",
+  "kubernetes_network_form_description": "Ihren Nodes wird eine IP-Adresse im vLAN des gewählten privaten Netzwerks zugewiesen.",
   "kubernetes_network_form_add": "Privates Netzwerk erstellen",
   "kubernetes_network_form_subnet": "Subnetz für Ihren Cluster auswählen",
   "kubernetes_network_form_subnet_description": "Wählen Sie das Subnetz aus, das Sie für Ihren Managed Kubernetes Service Cluster verwenden möchten. Stellen Sie sicher, dass der Dienst die Netzwerkanforderungen des verwalteten Managed Kubernetes Service Dienstes erfüllt.",
@@ -29,5 +29,6 @@
   "kubernetes_network_form_gateway_mode_custom": "Standardgateway statisch überladen",
   "kubernetes_network_form_gateway_mode_custom_placeholder": "IP-Adresse Ihres Standardgateways",
   "kubernetes_network_form_rebuild": "Achtung: Um die Strategie für das ausgehende Routing zu ändern, müssen die Nodes Ihres Clusters zu einem Rolling Update umgeschaltet werden.",
-  "kubernetes_network_form_notify_users": "Um Managed Kubernetes Service in einer Region mit 3 Verfügbarkeitszonen (3-AZ) zu deployen, ist ein Subnetz mit angeschlossenem Gateway erforderlich. Stellen Sie sicher, dass Ihr privates Netzwerk diese Voraussetzungen erfüllt, um einen optimalen Betrieb zu gewährleisten."
+  "kubernetes_network_form_notify_users": "Um Managed Kubernetes Service in einer Region mit 3 Verfügbarkeitszonen (3-AZ) zu deployen, ist ein Subnetz mit angeschlossenem Gateway erforderlich. Stellen Sie sicher, dass Ihr privates Netzwerk diese Voraussetzungen erfüllt, um einen optimalen Betrieb zu gewährleisten.",
+  "kubernetes_network_form_select_private_option": "Privates Netzwerk auswählen"
 }

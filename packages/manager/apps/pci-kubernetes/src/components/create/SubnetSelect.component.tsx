@@ -7,20 +7,22 @@ import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SUBNET_DOC } from '@/constants';
 import { SubnetSelector } from '../network/SubnetSelector.component';
-import { TNetwork } from '@/api/data/network';
+import { TNetwork, TNetworkRegion } from '@/api/data/network';
 import { TPrivateNetworkSubnet } from '@/api/data/subnets';
 
 export type SubnetSelectProps = {
   projectId: string;
-  privateNetwork: TNetwork;
+  privateNetwork: TNetworkRegion;
   onSelect: (subnet: TPrivateNetworkSubnet) => void;
   className?: string;
+  region: string;
 };
 
 export default function SubnetSelect({
   projectId,
   privateNetwork,
   onSelect,
+  region,
   className,
 }: Readonly<SubnetSelectProps>) {
   const { t } = useTranslation('network-add');
@@ -58,10 +60,10 @@ export default function SubnetSelect({
       </div>
 
       <SubnetSelector
+        region={region}
         className="mt-4"
         projectId={projectId}
-        networkId={privateNetwork.clusterRegion?.openstackId}
-        region={privateNetwork.clusterRegion?.region}
+        networkId={privateNetwork.id}
         onSelect={onSelect}
         showSpinner
       />
