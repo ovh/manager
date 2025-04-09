@@ -1,26 +1,62 @@
 import { defineConfig } from 'vitest/config';
-import sonarReporter from 'vitest-sonar-reporter';
 
 export default defineConfig({
   test: {
-    // Define where test files are located
+    globals: true, // Enable global test functions (like `describe`, `it`)
+    environment: 'jsdom', // Set the environment to jsdom for frontend tests
     include: [
-      'src/**/*.{test,spec}.{ts,tsx}',
-      'tests/**/*.test.{ts,tsx}',
-      'src/**/*.{test,spec}.ts',
-      'src/**/*.{test,spec}.tsx',
-      'src/**/*.ts',
-    ], // Adjust this based on your test files
+      'packages/components/ovh-shell/**/*.{test,spec}.{ts,tsx,js,jsx}',
+      'packages/manager/apps/container/**/*.{test,spec}.{ts,tsx,js,jsx}',
+      'packages/core/url-builder/**/*.{test,spec}.{ts,tsx,js,jsx}',
+    ], // Glob patterns for test files
+    exclude: ['node_modules/**', 'dist/**'], // Exclude directories from testing
 
     // Coverage configuration
     coverage: {
-      reporter: ['text', 'lcov', 'json'], // Enable LCOV and other coverage formats
+      reporter: ['text', 'lcov', 'json'], // Enable LCOV and other formats
       provider: 'v8', // V8 is the default provider for coverage
-      exclude: ['node_modules/**', '**/*.spec.js'], // Exclude unwanted directories
-      reportsDirectory: './coverage', // Directory for storing coverage reports
+      exclude: [
+        '**/*.d.ts', // Exclude type declaration files
+      ],
+      reportsDirectory: './coverage', // Directory where the coverage reports will be stored
+      reportOnFailure: true,
     },
 
-    // Other test-related configurations
-    environment: 'node', // Node environment for backend testing
+    // Module resolution
+    alias: {
+      '^~/(.*)$': './src/$1',
+      '^@ovh-ux/manager-core-api': './packages/manager/core/api/src/index.ts',
+      '^@ovh-ux/manager-react-shell-client':
+        './packages/manager/core/shell-client/src/index.tsx',
+      '/axios/': 'axios/dist/node/axios.cjs',
+      uuid: require.resolve('uuid'),
+      nanoid: require.resolve('nanoid'),
+    },
+
+    // Transform settings
+    transform: {
+      // Vitest handles TS and JSX natively, so we don’t need a specific transformer
+      '^.+\\.(js|jsx|ts|tsx)$': 'esbuild', // Use esbuild for JavaScript and TypeScript
+      '^.+\\.css$': './jest/mocks/cssMock.js', // Mock CSS files if needed
+    },
+
+    // Reset mocks between tests
+    resetMocks: true,
+
+    // Other configurations
+    moduleDirectories: ['node_modules'],
+    testPathIgnorePatterns: [
+      '/node_modules/',
+      'packages/manager/apps/container',
+      'packages/manager/apps/dedicated',
+    ],
+
+    // Coverage exclusions
+    coveragePathIgnorePatterns: [
+      '.*\\.(interface|module|schema|entity|dto|enum|d).ts',
+      '.*\\.e2e-spec.ts',
+      'index.ts',
+      'main.ts',
+    ],
   },
 });
