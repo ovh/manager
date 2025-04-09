@@ -1,117 +1,101 @@
 import React from 'react';
-import { RouteObject } from 'react-router-dom';
+import { Route } from 'react-router-dom';
+import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
-import NotFound from '@/pages/404';
 import { urls } from '@/routes/routes.constant';
 
-const lazyRouteConfig = (importFn: CallableFunction): Partial<RouteObject> => {
-  return {
-    lazy: async () => {
-      const { default: moduleDefault, ...moduleExports } = await importFn();
-      return {
-        Component: moduleDefault,
-        ...moduleExports,
-      };
-    },
-  };
-};
+const LayoutPage = React.lazy(() => import('@/pages/layout'));
+const ListingPage = React.lazy(() => import('@/pages/listing/Listing.page'));
+const DeletePage = React.lazy(() =>
+  import('@/pages/delete-veeam/DeleteVeeam.page'),
+);
+const DashboardPage = React.lazy(() =>
+  import('@/pages/dashboard/Dashboard.page'),
+);
+const EditDisplayNamePage = React.lazy(() =>
+  import('@/pages/edit-name/EditVeeamBackupDisplayNameModal.page'),
+);
+const OrderPage = React.lazy(() =>
+  import('@/pages/order-veeam/OrderVeeam.page'),
+);
+const OnboardingPage = React.lazy(() =>
+  import('@/pages/onboarding/Onboarding.page'),
+);
 
-export const routes: any[] = [
-  {
-    path: urls.root,
-    ...lazyRouteConfig(() => import('@/pages/layout')),
-    children: [
-      {
-        id: 'listing',
-        path: urls.listing,
-        ...lazyRouteConfig(() => import('@/pages/listing/Listing.page')),
-        handle: {
+export default (
+  <Route
+    id="root"
+    path={urls.root}
+    Component={LayoutPage}
+    errorElement={
+      <ErrorBoundary
+        redirectionApp="veeam-backup"
+        isPreloaderHide={true}
+        isRouteShellSync={true}
+      />
+    }
+  >
+    <Route
+      id="listing"
+      path={urls.listing}
+      handle={{ tracking: { pageName: 'listing', pageType: PageType.listing } }}
+      Component={ListingPage}
+    >
+      <Route
+        id="delete-veeam"
+        path={urls.deleteVeeam}
+        handle={{
           tracking: {
-            pageName: 'listing',
-            pageType: PageType.listing,
+            pageName: 'delete_veeam-backup',
+            pageType: PageType.popup,
           },
-        },
-        children: [
-          {
-            id: 'delete-veeam',
-            path: urls.deleteVeeam,
-            ...lazyRouteConfig(() =>
-              import('@/pages/delete-veeam/DeleteVeeam.page'),
-            ),
-            handle: {
-              tracking: {
-                pageName: 'delete_veeam-backup',
-                pageType: PageType.popup,
-              },
-            },
-          },
-        ],
-      },
-      {
-        id: 'dashboard',
-        path: urls.dashboard,
-        ...lazyRouteConfig(() => import('@/pages/dashboard/Dashboard.page')),
-        handle: {
+        }}
+        Component={DeletePage}
+      />
+    </Route>
+    <Route
+      id="dashboard"
+      path={urls.dashboard}
+      handle={{
+        tracking: { pageName: 'dashboard', pageType: PageType.dashboard },
+      }}
+      Component={DashboardPage}
+    >
+      <Route
+        id="edit-veeam-dashboard"
+        path={urls.editVeeamDisplayNameFromDashboard}
+        handle={{
+          tracking: { pageName: 'edit_veeam-backup', pageType: PageType.popup },
+        }}
+        Component={EditDisplayNamePage}
+      />
+      <Route
+        id="delete-veeam-dashboard"
+        path={urls.deleteVeeamFromDashboard}
+        handle={{
           tracking: {
-            pageName: 'dashboard',
-            pageType: PageType.dashboard,
+            pageName: 'delete_veeam-backup',
+            pageType: PageType.popup,
           },
-        },
-        children: [
-          {
-            id: 'edit-veeam-dashboard',
-            path: urls.editVeeamDisplayNameFromDashboard,
-            ...lazyRouteConfig(() =>
-              import('@/pages/edit-name/EditVeeamBackupDisplayNameModal.page'),
-            ),
-            handle: {
-              tracking: {
-                pageName: 'edit_veeam-backup',
-                pageType: PageType.popup,
-              },
-            },
-          },
-          {
-            id: 'delete-veeam-dashboard',
-            path: urls.deleteVeeamFromDashboard,
-            ...lazyRouteConfig(() =>
-              import('@/pages/delete-veeam/DeleteVeeam.page'),
-            ),
-            handle: {
-              tracking: {
-                pageName: 'delete_veeam-backup',
-                pageType: PageType.popup,
-              },
-            },
-          },
-        ],
-      },
-      {
-        id: 'order-veeam',
-        path: urls.orderVeeam,
-        ...lazyRouteConfig(() => import('@/pages/order-veeam/OrderVeeam.page')),
-        handle: {
-          tracking: {
-            pageName: 'order-veeam',
-            pageType: PageType.funnel,
-          },
-        },
-      },
-      {
-        id: 'onboarding',
-        path: urls.onboarding,
-        ...lazyRouteConfig(() => import('@/pages/onboarding/Onboarding.page')),
-        handle: {
-          tracking: {
-            pageName: 'onboarding',
-            pageType: PageType.onboarding,
-          },
-        },
-      },
-    ],
-  },
-  {
-    path: '*',
-    element: <NotFound />,
-  },
-];
+        }}
+        Component={DeletePage}
+      />
+    </Route>
+    <Route
+      id="order-veeam"
+      path={urls.orderVeeam}
+      handle={{
+        tracking: { pageName: 'order-veeam', pageType: PageType.funnel },
+      }}
+      Component={OrderPage}
+    />
+    <Route
+      id="onboarding"
+      path={urls.onboarding}
+      handle={{
+        tracking: { pageName: 'onboarding', pageType: PageType.onboarding },
+      }}
+      Component={OnboardingPage}
+    />
+  </Route>
+);
