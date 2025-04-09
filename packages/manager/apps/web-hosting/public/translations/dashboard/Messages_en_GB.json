@@ -1,0 +1,11 @@
+{
+  "hosting_tab_GENERAL_INFORMATIONS": "General information",
+  "hosting_tab_MULTISITE": "Multisite",
+  "hosting_tab_SSL": "SSL Certificates",
+  "hosting_tab_MODULE": "1-click modules",
+  "hosting_tab_USER_LOGS": "Statistics and logs",
+  "hosting_tab_FTP": "FTP - SSH",
+  "hosting_tab_DATABASE": "Databases",
+  "hosting_tab_TASK": "Ongoing tasks",
+  "hosting_dashboard_tabs_dropdown": "More"
+}
