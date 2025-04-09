@@ -32,6 +32,7 @@ vi.mock('@ovh-ux/manager-react-shell-client', () => ({
       },
     },
   }),
+  useOvhTracking: () => ({ trackClick: vi.fn() }),
 }));
 
 vi.mock('@ovh-ux/manager-module-common-api', async (importOriginal) => {
