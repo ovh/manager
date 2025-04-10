@@ -7,8 +7,8 @@ import { useCallback, useEffect, useState } from 'react';
 import {
   getWebHostingAttachedDomain,
   getWebHostingAttachedDomainQueryKey,
-} from '@/api';
-import { WebsiteType } from '@/api/type';
+} from '@/data/api/AttachedDomain';
+import { WebsiteType } from '@/data/type';
 
 type UseWebsitesListParams = Omit<
   UseInfiniteQueryOptions,

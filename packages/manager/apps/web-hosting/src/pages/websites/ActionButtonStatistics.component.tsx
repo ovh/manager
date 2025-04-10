@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActionMenu } from '@ovh-ux/manager-react-components';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-import { WebsiteType } from '@/api/type';
+import { WebsiteType } from '@/data/type';
 import { useHostingUrl } from '@/hooks';
 
 interface ActionButtonStatisticsProps {
