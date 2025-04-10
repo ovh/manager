@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.118.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.118.0...@ovh-ux/manager-container-app@0.118.1) (2025-04-10)
+
+
+### Bug Fixes
+
+* **container:** fix entry web office on pnr sidebar ([110a190](https://github.com/ovh/manager/commit/110a190d882e87ce21ba8a1f59889a3449170e4d)), closes [#MANAGER-17825](https://github.com/ovh/manager/issues/MANAGER-17825)
+
+
+
+
+
 # [0.118.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.117.0...@ovh-ux/manager-container-app@0.118.0) (2025-04-09)
 
 
