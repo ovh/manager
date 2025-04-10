@@ -20,9 +20,6 @@ export const ADDITIONAL_DISK = {
   HAS_NO_OPTION: 'Does not have option',
 };
 
-export const IP_PRIMARY_TYPE = 'primary';
-
 export default {
   ADDITIONAL_DISK,
-  IP_PRIMARY_TYPE,
 };
