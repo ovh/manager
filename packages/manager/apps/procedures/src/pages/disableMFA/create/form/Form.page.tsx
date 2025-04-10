@@ -49,7 +49,7 @@ const FormCreateRequest = () => {
   const files = flatFiles(watch());
   const isAnyFileSelected = files.length > 0;
 
-  // We split the CTA action into two mutation, as once the first is done the API will start
+  // We split the CTA action into two mutations, as once the first one is done the API will start
   // to send us errors if we retry it
   // The following mutation cover the upload of the document as well as the finalization of the request
   const {
@@ -104,7 +104,7 @@ const FormCreateRequest = () => {
 
   return (
     <form onSubmit={handleSubmit(() => setShowConfirmModal(true))}>
-      {isPending && <ExitGuard />}
+      {(isPending || isError) && <ExitGuard />}
       {isOtherLegalFormForFR && (
         <div className="my-6">
           <OsdsText
