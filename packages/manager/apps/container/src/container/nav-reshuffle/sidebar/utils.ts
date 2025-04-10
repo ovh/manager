@@ -208,74 +208,52 @@ export const getLastElement = (root: Node) => {
 
   return root ? getLast(root) : null;
 };
-
 /* this function is used to parse a path with the pattern /some/thing/{id}/other/thing
-and return it as an array of segments: ['/some/thing/', '/other/thing']
-if no curly brackets, that returns an array that contains only the path */
-export const splitPathIntoSegmentsWithoutRouteParams = (
+and return it as an array of segments: ['some', 'thing', '{param}', 'other', 'thing'] */
+export const splitPathIntoSegments = (
   path: string,
 ): string[] => {
-  const regex = /\/(?!{)[^\/]+(\/(?!{)[^\/]+)?/g;
-  const matches = path.match(regex);
-  return matches ? matches : [path];
-};
+  const segments = path.split('/').filter(segment => segment.length > 0);
+
+  return segments.map(segment => {
+    return segment.startsWith('{') && segment.endsWith('}') ? '{param}' : segment; 
+  })
+}
+
+/* this function is used to compare a node and a path */
+export const isMatchingNode = (node: Node, pathSegment: string) => {
+  if (!node.routing) return null;
+
+  const nodePath = node.routing.hash ? node.routing.hash.replace('#', node.routing.application) : '/' + node.routing.application;
+  const nodeSegments = splitPathIntoSegments(nodePath);
+  const pathSegments = splitPathIntoSegments(pathSegment);
+
+  return nodeSegments.length > pathSegments.length ? null : {
+    value: nodeSegments.reduce((isMatching, segment, index) => {
+      const returnValue = isMatching && (segment === '{param}' || segment === pathSegments[index]);
+      return returnValue;
+    }, true) ? node : null,
+    segments: nodeSegments.length
+  }
+}
 
 export const findNodeByRouting = (root: Node, locationPath: string) => {
-  const isMatchingNode = (node: Node, pathSegment: string) => {
-    if (!node.routing) return null;
-    const nodePath = node.routing.hash
-      ? node.routing.hash.replace('#', node.routing.application)
-      : '/' + node.routing.application;
-
-    const parsedPath = splitPathIntoSegmentsWithoutRouteParams(nodePath.startsWith('/') ? nodePath : '/' + nodePath).map((path) => path.includes('/') ? path.replace('/', '') : path);
-
-    return {
-      value: parsedPath.reduce(
-        (acc: boolean, segment: string) => {
-          const match = pathSegment.includes(segment);
-          pathSegment = pathSegment.replace(segment, '');
-          return match && acc
-        },
-        true,
-      )
-        ? node
-        : null,
-      segments: parsedPath.length,
-    };
+  const exploreTree = (node: Node, pathSegment: string) : { value: Node | null; segments: number } => {
+    if (!node.children || node.children.length === 0) return isMatchingNode(node, pathSegment);
+    const currentMatch = isMatchingNode(node, pathSegment);
+    const childResults = node.children.map(child => exploreTree(child, pathSegment)).filter(result => result?.value).sort((a, b) => b.segments - a.segments);
+    return childResults.length > 0 ?childResults[0] : currentMatch;
   };
 
-  const exploreTree = (
-    node: Node,
-    pathSegment: string,
-  ): { value: Node | null; segments: number } => {
-    let results = [];
-    if (node.children) {
-      for (let child of node.children) {
-        const result = exploreTree(child, pathSegment);
-        if (result?.value) results.push(result)
-      }
-      return results.length > 0
-        ? results.reduce(
-            (acc, result) => (acc.segments < result.segments ? result : acc),
-            results[0],
-          )
-        : null;
-    }
-
-    return isMatchingNode(node, pathSegment);
-  };
-
-  const pathSegments = locationPath
-    .split('/')
-    .filter((segment) => segment.length > 0);
-  for (let i = pathSegments.length; i > 0; i--) {
-    const path = pathSegments.slice(0, i).join('/');
-    const foundNode = exploreTree(root, path);
-    if (foundNode?.value)
-      return {
+  const findNodeForSegments = (remainingSegments: number): any => {
+    if (remainingSegments <= 0) return null;
+    const pathSegments = locationPath.split('/').filter(segment => segment.length > 0).slice(0, remainingSegments).join('/');
+    const foundNode = exploreTree(root, pathSegments);
+    return foundNode?.value ? {
         node: foundNode.value,
         universe: findNodeById(root, foundNode.value.universe),
-      };
+      } : findNodeForSegments(remainingSegments - 1);
   }
-  return null;
+  const segments = locationPath.split('/').filter(segment => segment.length > 0).length;
+  return findNodeForSegments(segments);
 };
