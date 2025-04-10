@@ -5,6 +5,8 @@ export default {
   bindings: {
     goBack: '<',
     terminateHosting: '<',
+    terminateHostingSkipRetentionPeriod: '<',
+    skipRetentionPeriod: '<',
   },
   controller,
   template,
