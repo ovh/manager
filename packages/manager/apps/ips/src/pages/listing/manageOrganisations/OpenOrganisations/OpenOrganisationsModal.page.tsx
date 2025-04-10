@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import {
   ODS_TEXT_PRESET,
@@ -20,29 +20,39 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useMutation } from '@tanstack/react-query';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useGetMeModels } from '@/data/hooks/organisation/useGetMeModels';
+import { useGetSingleOrganisationDetail } from '@/data/hooks/organisation';
 import { postOrganisations, OrgDetails } from '@/data/api';
-import { useManageOrgListingContext } from '../manage.organisations.context';
 import Loading from '../components/Loading/Loading';
 import '../../../../index.scss';
 
 const OpenOrganisationsModal = () => {
   const [registry, setRegistry] = useState([]);
   const [countrylist, setCountrylist] = useState([]);
-  const { t } = useTranslation(['manage-organisations', 'common']);
+  const { t } = useTranslation('manage-organisations');
+  const { t: tcommon } = useTranslation(NAMESPACES?.ACTIONS);
   const navigate = useNavigate();
   const location = useLocation();
+  const { organisationId } = useParams();
   const isEditMode =
     !!new URLSearchParams(location.search).get('mode') || false;
   const { addError, addSuccess, clearNotifications } = useNotifications();
-  const { orgDetails: orgDetailsContext } = useManageOrgListingContext();
+  let defaultValues = {};
+  if (isEditMode) {
+    const { orgDetail } = useGetSingleOrganisationDetail({
+      organisationId,
+    });
+    defaultValues = { ...orgDetail };
+  }
+
   const {
     control,
     handleSubmit,
     formState: { isDirty, isValid, isSubmitted, errors },
   } = useForm({
-    defaultValues: isEditMode ? { ...orgDetailsContext } : {},
+    defaultValues,
   });
 
   const { models, isLoading } = useGetMeModels();
@@ -69,7 +79,7 @@ const OpenOrganisationsModal = () => {
       clearNotifications();
       addSuccess(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t('manage-organisations:manageOrganisationsSuccessMessage')}
+          {t('manageOrganisationsSuccessMessage')}
         </OdsText>,
         true,
       );
@@ -79,7 +89,7 @@ const OpenOrganisationsModal = () => {
       clearNotifications();
       addError(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t('manage-organisations:manageOrganisationsErrorMessage', {
+          {t('manageOrganisationsErrorMessage', {
             error: error?.response?.data?.message,
           })}
         </OdsText>,
@@ -102,10 +112,10 @@ const OpenOrganisationsModal = () => {
       isDismissible
       onOdsClose={closeModal}
     >
-      <OdsText preset={ODS_TEXT_PRESET.heading3}>
+      <OdsText preset={ODS_TEXT_PRESET.heading3} data-testid="modal-title">
         {isEditMode
-          ? t('manage-organisations:manageOrganisationsEditOrgTitle')
-          : t('manage-organisations:manageOrganisationsAddOrgTitle')}
+          ? t('manageOrganisationsEditOrgTitle')
+          : t('manageOrganisationsAddOrgTitle')}
       </OdsText>
       <form className="flex flex-col gap-2" onSubmit={handleSubmit(onSubmit)}>
         {/* ip organisation selection */}
@@ -116,14 +126,12 @@ const OpenOrganisationsModal = () => {
             render={({ field: { name, value, onChange, onBlur } }) => (
               <OdsFormField className="w-full">
                 <label htmlFor={name} slot="label">
-                  {t(
-                    'manage-organisations:manageOrganisationsOrgModelTypeLabel',
-                  )}
+                  {t('manageOrganisationsOrgModelTypeLabel')}
                 </label>
                 <div className="flex">
                   <OdsSelect
                     key={registry.join('-')}
-                    placeholder={t('common:selectPlaceholder')}
+                    placeholder={tcommon('select')}
                     className="mt-1 flex-1"
                     id={name}
                     name={name}
@@ -160,9 +168,7 @@ const OpenOrganisationsModal = () => {
             render={({ field: { name, value, onChange } }) => (
               <OdsFormField>
                 <label htmlFor={name} slot="label">
-                  {t(
-                    'manage-organisations:manageOrganisationsOrgModelFirstnameLabel',
-                  )}
+                  {t('manageOrganisationsOrgModelFirstnameLabel')}
                 </label>
                 <OdsInput
                   className="mt-1"
@@ -182,9 +188,7 @@ const OpenOrganisationsModal = () => {
             render={({ field: { name, value, onChange } }) => (
               <OdsFormField>
                 <label htmlFor={name} slot="label">
-                  {t(
-                    'manage-organisations:manageOrganisationsOrgModelSurnameLabel',
-                  )}
+                  {t('manageOrganisationsOrgModelSurnameLabel')}
                 </label>
                 <OdsInput
                   className="mt-1"
@@ -208,14 +212,12 @@ const OpenOrganisationsModal = () => {
             render={({ field: { name, value, onChange, onBlur } }) => (
               <OdsFormField className="w-full">
                 <label htmlFor={name} slot="label">
-                  {t(
-                    'manage-organisations:manageOrganisationsOrgModelCountryLabel',
-                  )}
+                  {t('manageOrganisationsOrgModelCountryLabel')}
                 </label>
                 <div className="flex">
                   <OdsSelect
                     key={registry.join('-')}
-                    placeholder={t('common:selectPlaceholder')}
+                    placeholder={tcommon('select')}
                     className="mt-1 flex-1"
                     id={name}
                     name={name}
@@ -252,9 +254,7 @@ const OpenOrganisationsModal = () => {
             render={({ field: { name, value, onChange } }) => (
               <OdsFormField className="w-full mb-1">
                 <label htmlFor={name} slot="label">
-                  {t(
-                    'manage-organisations:manageOrganisationsOrgModelEmailLabel',
-                  )}
+                  {t('manageOrganisationsOrgModelEmailLabel')}
                 </label>
                 <OdsInput
                   className="mt-1"
@@ -278,9 +278,7 @@ const OpenOrganisationsModal = () => {
             render={({ field: { name, value, onChange } }) => (
               <OdsFormField className="w-full mb-1">
                 <label htmlFor={name} slot="label">
-                  {t(
-                    'manage-organisations:manageOrganisationsOrgModelAddressLabel',
-                  )}
+                  {t('manageOrganisationsOrgModelAddressLabel')}
                 </label>
                 <OdsInput
                   className="mt-1"
@@ -304,9 +302,7 @@ const OpenOrganisationsModal = () => {
             render={({ field: { name, value, onChange } }) => (
               <OdsFormField>
                 <label htmlFor={name} slot="label">
-                  {t(
-                    'manage-organisations:manageOrganisationsOrgModelCityLabel',
-                  )}
+                  {t('manageOrganisationsOrgModelCityLabel')}
                 </label>
                 <OdsInput
                   className="mt-1"
@@ -326,9 +322,7 @@ const OpenOrganisationsModal = () => {
             render={({ field: { name, value, onChange } }) => (
               <OdsFormField>
                 <label htmlFor={name} slot="label">
-                  {t(
-                    'manage-organisations:manageOrganisationsOrgModelPostcodeLabel',
-                  )}
+                  {t('manageOrganisationsOrgModelPostcodeLabel')}
                 </label>
                 <OdsInput
                   className="mt-1"
@@ -352,9 +346,7 @@ const OpenOrganisationsModal = () => {
             render={({ field: { name, value, onChange } }) => (
               <OdsFormField className="mb-1">
                 <label htmlFor={name} slot="label">
-                  {t(
-                    'manage-organisations:manageOrganisationsOrgModelPhoneLabel',
-                  )}
+                  {t('manageOrganisationsOrgModelPhoneLabel')}
                 </label>
                 <OdsPhoneNumber
                   className="w-full mt-1"
@@ -376,10 +368,10 @@ const OpenOrganisationsModal = () => {
             slot="actions"
             color={ODS_BUTTON_COLOR.primary}
             variant={ODS_BUTTON_VARIANT.default}
-            isDisabled={!isDirty || !isValid}
+            isDisabled={isLoading || !isValid}
             isLoading={isSending}
+            label={tcommon('confirm')}
             data-testid="confirm-btn"
-            label={t('common:confirm')}
           ></OdsButton>
           <OdsButton
             className="m-1"
@@ -387,7 +379,8 @@ const OpenOrganisationsModal = () => {
             onClick={handleCancelClick}
             color={ODS_BUTTON_COLOR.primary}
             variant={ODS_BUTTON_VARIANT.outline}
-            label={t('common:cancel')}
+            label={tcommon('cancel')}
+            data-testid="cancel-btn"
           ></OdsButton>
         </div>
       </form>
