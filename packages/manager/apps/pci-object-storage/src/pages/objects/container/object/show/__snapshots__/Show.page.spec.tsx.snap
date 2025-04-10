@@ -32,6 +32,11 @@ exports[`Show page > should display datagrid 1`] = `
             name
           </div>
         </div>
+        <div
+          class="flex flex-wrap justify-end"
+        >
+          <div />
+        </div>
       </div>
     </div>
     <div
@@ -447,7 +452,9 @@ exports[`Show page > should display datagrid 1`] = `
                   <td
                     class="text-left pl-4"
                   >
-                    <div>
+                    <div
+                      class=""
+                    >
                       <div
                         class="flex flex-col"
                       >
@@ -570,149 +577,6 @@ exports[`Show page > should display datagrid 1`] = `
             common_pagination_results
           </span>
         </ods-pagination>
-      </div>
-    </div>
-    <div
-      class="mt-8"
-    >
-      <div
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16"
-      >
-        <a
-          class="no-underline"
-          href="https://docs.ovh.com/gb/en/storage/sync-rclone-object-storage/"
-          target="_blank"
-        >
-          <ods-card
-            class="w-full h-full p-[1rem]"
-            color="neutral"
-          >
-            <div
-              class="flex flex-col"
-            >
-              <div>
-                <span
-                  class="card-category text-[--ods-color-primary-500] text-[20px] leading-[28px] font-bold"
-                >
-                  onboarding_guide_title
-                </span>
-                <span
-                  class="ml-[10px] card-badges-section"
-                />
-              </div>
-              <span
-                class="card-title text-[--ods-color-heading] text-[24px] leading-[32px] font-bold mb-[8px]"
-              >
-                pci_projects_project_storages_containers_container_documentation_title_rclone
-              </span>
-              <p
-                class="block m-0 p-0 text-[--ods-color-text] mb-4"
-              >
-                pci_projects_project_storages_containers_container_documentation_description_rclone
-              </p>
-              <div
-                class="section-see-more-label"
-              >
-                <ods-link
-                  color="primary"
-                  icon="arrow-right"
-                  label="see_more_label"
-                  tab-index="-1"
-                />
-              </div>
-            </div>
-          </ods-card>
-        </a>
-        <a
-          class="no-underline"
-          href="https://docs.ovh.com/gb/en/storage/s3/veeam/"
-          target="_blank"
-        >
-          <ods-card
-            class="w-full h-full p-[1rem]"
-            color="neutral"
-          >
-            <div
-              class="flex flex-col"
-            >
-              <div>
-                <span
-                  class="card-category text-[--ods-color-primary-500] text-[20px] leading-[28px] font-bold"
-                >
-                  onboarding_guide_title
-                </span>
-                <span
-                  class="ml-[10px] card-badges-section"
-                />
-              </div>
-              <span
-                class="card-title text-[--ods-color-heading] text-[24px] leading-[32px] font-bold mb-[8px]"
-              >
-                pci_projects_project_storages_containers_container_documentation_title_veeam
-              </span>
-              <p
-                class="block m-0 p-0 text-[--ods-color-text] mb-4"
-              >
-                pci_projects_project_storages_containers_container_documentation_description_veeam
-              </p>
-              <div
-                class="section-see-more-label"
-              >
-                <ods-link
-                  color="primary"
-                  icon="arrow-right"
-                  label="see_more_label"
-                  tab-index="-1"
-                />
-              </div>
-            </div>
-          </ods-card>
-        </a>
-        <a
-          class="no-underline"
-          href="https://docs.ovh.com/gb/en/storage/s3/limitations/"
-          target="_blank"
-        >
-          <ods-card
-            class="w-full h-full p-[1rem]"
-            color="neutral"
-          >
-            <div
-              class="flex flex-col"
-            >
-              <div>
-                <span
-                  class="card-category text-[--ods-color-primary-500] text-[20px] leading-[28px] font-bold"
-                >
-                  onboarding_guide_title
-                </span>
-                <span
-                  class="ml-[10px] card-badges-section"
-                />
-              </div>
-              <span
-                class="card-title text-[--ods-color-heading] text-[24px] leading-[32px] font-bold mb-[8px]"
-              >
-                pci_projects_project_storages_containers_container_documentation_title_s3-limitation
-              </span>
-              <p
-                class="block m-0 p-0 text-[--ods-color-text] mb-4"
-              >
-                pci_projects_project_storages_containers_container_documentation_description_s3-limitation
-              </p>
-              <div
-                class="section-see-more-label"
-              >
-                <ods-link
-                  color="primary"
-                  icon="arrow-right"
-                  label="see_more_label"
-                  tab-index="-1"
-                />
-              </div>
-            </div>
-          </ods-card>
-        </a>
       </div>
     </div>
     Outlet

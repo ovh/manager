@@ -15,7 +15,7 @@ export default function DeletePage() {
 
   const navigate = useNavigate();
   const { projectId, storageId, objectName } = useParams();
-  const decodedObjectName = objectName.replace(/~2F/g, '/');
+  const decodedObjectName = decodeURIComponent(atob(objectName));
   const [searchParams] = useSearchParams();
   const region = searchParams.get('region');
   const versionId = searchParams.get('versionId');
@@ -24,6 +24,7 @@ export default function DeletePage() {
   const isSwift = searchParams.get('isSwift');
   const isVersioningDisabled = searchParams.get('isVersioningDisabled');
   const isVersioningSuspended = searchParams.get('isVersioningSuspended');
+  const isLastElement = searchParams.get('isLastElement');
 
   const [deleteConfirmation, setDeleteConfirmation] = useState(null);
   const [isTouched, setIsTouched] = useState(false);
@@ -69,7 +70,13 @@ export default function DeletePage() {
   const goBack = () => navigate(`../?region=${region}&refetch=true`);
 
   const onCancel = goBack;
-  const onClose = goBack;
+  const onClose = () => {
+    if (isLastElement) {
+      navigate(`../../${storageId}?region=${region}&refetch=true`);
+    } else {
+      goBack();
+    }
+  };
 
   const { deleteObject, isPending: isPendingDelete } = useDeleteObject({
     projectId,
@@ -93,7 +100,7 @@ export default function DeletePage() {
         </Translation>,
         true,
       );
-      onClose();
+      goBack();
     },
     onSuccess() {
       addSuccess(
@@ -109,7 +116,7 @@ export default function DeletePage() {
         </Translation>,
         true,
       );
-      goBack();
+      onClose();
     },
   });
 
