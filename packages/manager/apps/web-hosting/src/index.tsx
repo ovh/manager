@@ -5,8 +5,7 @@ import {
   initShellContext,
   initI18n,
 } from '@ovh-ux/manager-react-shell-client';
-import { trackingContext, LEVEL2 } from './tracking.constants';
-import appConfig from './web-hosting.config';
+import { trackingContext, LEVEL2 } from './utils/tracking.constants';
 import App from './App';
 import './vite-hmr';
 import './index.scss';
@@ -39,4 +38,4 @@ const init = async (appName: string) => {
   );
 };
 
-init(appConfig.name);
+init('web-hosting');

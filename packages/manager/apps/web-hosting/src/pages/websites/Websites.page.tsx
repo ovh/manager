@@ -19,8 +19,8 @@ import {
 } from '@ovhcloud/ods-components';
 import { OdsButton, OdsLink } from '@ovhcloud/ods-components/react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { useWebHostingAttachedDomain } from '@/hooks/useWebHostingAttachedDomain';
-import { WebsiteType, ServiceStatus } from '@/api/type';
+import { useWebHostingAttachedDomain } from '@/data/hooks/webHostingAttachedDomain/useWebHostingAttachedDomain';
+import { WebsiteType, ServiceStatus } from '@/data/type';
 import ActionButtonStatistics from './ActionButtonStatistics.component';
 import { BadgeStatusCell, DiagnosticCell, LinkCell } from './Cells.component';
 import { GUIDE_URL, ORDER_URL } from './websites.constants';
