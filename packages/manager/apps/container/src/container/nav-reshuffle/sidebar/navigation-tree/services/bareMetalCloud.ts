@@ -134,18 +134,6 @@ baremetalUniverse.children = [
         },
         features: ['cloud-disk-array'],
       },
-      {
-        id: 'veeam-cloud-connect',
-        universe: baremetalUniverse.id,
-        idAttr: 'veeam-cloud-connect-link',
-        translation: 'sidebar_veeamcc',
-        serviceType: 'VEEAMCLOUDCONNECT',
-        routing: {
-          application: 'dedicated',
-          hash: '#/veeam',
-        },
-        features: ['veeam-cloud-connect'],
-      },
     ],
   },
 ];
