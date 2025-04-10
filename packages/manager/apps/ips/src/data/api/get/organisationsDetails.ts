@@ -1,7 +1,7 @@
 import { ApiResponse, apiClient } from '@ovh-ux/manager-core-api';
 
 export type GetOrganisationsDetailsParams = {
-  org: string;
+  organisationId: string;
 };
 
 export type GetMeModelParams = {
@@ -24,13 +24,13 @@ export type OrgDetails = {
 
 export const getOrganisationsDetailsQueryKey = (
   params: GetOrganisationsDetailsParams,
-) => [`get/me/ipOrganisation/${encodeURIComponent(params.org)}`];
+) => [`get/me/ipOrganisation/${encodeURIComponent(params.organisationId)}`];
 
 export const getOrganisationsDetails = async (
   params: GetOrganisationsDetailsParams,
 ): Promise<ApiResponse<OrgDetails>> =>
   apiClient.v6.get<OrgDetails>(
-    `/me/ipOrganisation/${encodeURIComponent(params.org)}`,
+    `/me/ipOrganisation/${encodeURIComponent(params.organisationId)}`,
   );
 
 export const getMeModelQueryKey = () => [`/me.json/`];
