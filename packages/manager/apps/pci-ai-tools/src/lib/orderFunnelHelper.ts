@@ -111,7 +111,11 @@ export function getJobSpec(formResult: JobOrderResult) {
         mountPath: volume.mountPath,
         permission: volume.permission,
         volumeSource: volume.publicGit
-          ? { publicGit: volume.publicGit }
+          ? {
+              publicGit: {
+                url: volume.publicGit.url,
+              },
+            }
           : {
               dataStore: {
                 alias: volume.dataStore.alias,

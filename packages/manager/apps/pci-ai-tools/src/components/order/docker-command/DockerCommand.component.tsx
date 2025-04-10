@@ -109,7 +109,7 @@ const DockerCommand = React.forwardRef<
           variant="menu"
           mode="menu"
           className="shrink-0 mt-8 ml-2"
-          onClick={form.handleSubmit(onSubmit)}
+          onClick={onSubmit}
           disabled={disabled}
         >
           <Plus className="size-6" />

@@ -1,6 +1,6 @@
-// import { apiClient } from '@ovh-ux/manager-core-api';
+import { apiClient } from '@ovh-ux/manager-core-api';
 import { describe, expect, vi } from 'vitest';
-// import { getSuggestions } from './suggestions.api';
+import { getSuggestions } from './suggestions.api';
 
 vi.mock('@ovh-ux/manager-core-api', () => {
   const get = vi.fn(() => {
@@ -21,13 +21,13 @@ describe('logs functions', () => {
   });
 
   it('should call getLogs', async () => {
-    // expect(apiClient.v6.get).not.toHaveBeenCalled();
-    // await getSuggestions({
-    //   projectId: 'projectId',
-    // });
-    // expect(apiClient.v6.get).toHaveBeenCalledWith(
-    //   '/cloud/project/projectId/ai/notebook/suggestions',
-    // );
+    expect(apiClient.v6.get).not.toHaveBeenCalled();
+    await getSuggestions({
+      projectId: 'projectId',
+    });
+    expect(apiClient.v6.get).toHaveBeenCalledWith(
+      '/cloud/project/projectId/ai/suggestion/job',
+    );
     expect(true).toBe(true);
   });
 });

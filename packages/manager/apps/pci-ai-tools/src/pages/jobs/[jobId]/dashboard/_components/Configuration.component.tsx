@@ -24,6 +24,7 @@ const Configurations = () => {
           variant="menu"
           mode="menu"
           size="menu"
+          className="shrink-0"
           onClick={() => {
             navigator.clipboard.writeText(job.id);
             toast.toast({

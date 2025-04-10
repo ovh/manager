@@ -24,7 +24,7 @@ export function useOrderFunnel(
   regions: ai.capabilities.Region[],
   catalog: publicCatalog.Catalog,
   presetImage: ai.job.PresetImage[],
-  suggestions: JobSuggestions[],
+  suggestions: JobSuggestions,
 ) {
   const { projectId } = useParams();
   const orderSchema = z.object({
@@ -72,11 +72,15 @@ export function useOrderFunnel(
   const form = useForm({
     resolver: zodResolver(orderSchema),
     defaultValues: {
-      region: suggestions[0].region,
+      region: suggestions.defaultRegion,
       flavorWithQuantity: { flavor: '', quantity: 1 },
       image: '',
       jobName: generateName(),
-      privacy: PrivacyEnum.private,
+      privacy: suggestions.suggestions.find(
+        (sug) => sug.region === suggestions.defaultRegion,
+      ).unsecureHttp
+        ? PrivacyEnum.private
+        : PrivacyEnum.public,
       dockerCommand: [],
       sshKey: [],
       volumes: [],
@@ -133,17 +137,20 @@ export function useOrderFunnel(
   // Select default Flavor Id / Flavor number when region change
   useEffect(() => {
     const suggestedFlavor =
-      suggestions.find((sug) => sug.region === regionObject.id).ressources
-        .flavor ?? listFlavor[0].id;
+      suggestions.suggestions.find((sug) => sug.region === regionObject.id)
+        .resources.flavorId ?? listFlavor[0].id;
+    const suggestedQuantity =
+      suggestions.suggestions.find((sug) => sug.region === regionObject.id)
+        .resources.quantity ?? 1;
     form.setValue('flavorWithQuantity.flavor', suggestedFlavor);
-    form.setValue('flavorWithQuantity.quantity', 1);
+    form.setValue('flavorWithQuantity.quantity', suggestedQuantity);
   }, [regionObject, region, flavorQuery.isSuccess]);
 
   // Change editors when region change?
   useEffect(() => {
     const suggestedImage =
-      suggestions.find((sug) => sug.region === regionObject.id).image ??
-      presetImage[0].id;
+      suggestions.suggestions.find((sug) => sug.region === regionObject.id)
+        .presetImage ?? presetImage[0].id;
     form.setValue('image', suggestedImage);
   }, [regionObject, region]);
 

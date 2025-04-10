@@ -1,14 +1,9 @@
-// import { apiClient } from '@ovh-ux/manager-core-api';
-// import { PCIAi } from '../..';
-// import { Suggestions } from '@/types/orderFunnel';
+import { apiClient } from '@ovh-ux/manager-core-api';
+import { PCIAi } from '../..';
 
-import { mockedSuggestionsForJob } from '@/__tests__/helpers/mocks/suggestion';
+import { JobSuggestions } from '@/types/orderFunnel';
 
-export const getSuggestions = async (/* { projectId }: PCIAi */) => {
-  /*  
-    apiClient.v6
-      .get(`/cloud/project/${projectId}/ai/notebook/suggestions`)
-      .then((res) => res.data as Suggestions[]);
-      */
-  return mockedSuggestionsForJob;
-};
+export const getSuggestions = async ({ projectId }: PCIAi) =>
+  apiClient.v6
+    .get(`/cloud/project/${projectId}/ai/suggestion/job`)
+    .then((res) => res.data as JobSuggestions);
