@@ -44,6 +44,7 @@ angular
       hostingSSLCertificate,
       hostingSSLCertificateType,
       Alerter,
+      coreURLBuilder,
     ) => {
       atInternet.trackPage({ name: 'web::hosting::multisites' });
 
@@ -75,6 +76,12 @@ angular
       };
 
       $scope.certificateTypes = hostingSSLCertificateType.constructor.getCertificateTypes();
+
+      $scope.manageSslLink = coreURLBuilder.buildURL(
+        'web-hosting',
+        '#/:serviceName/ssl',
+        { serviceName: $stateParams.productId },
+      );
 
       HostingDomain.getZones()
         .then((zones) => {
