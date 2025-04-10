@@ -14,5 +14,5 @@ export const urls = {
   order: `${subRoutes.root}/${subRoutes.order}`,
   byoip: `${subRoutes.root}/${subRoutes.byoip}`,
   manageOrganisations: `${subRoutes.root}/${subRoutes.manageOrganisations}`,
-  openOrganisationsModel: `${subRoutes.root}/${subRoutes.manageOrganisations}/${subRoutes.openOrganisations}`,
+  openOrganisationsModel: `${subRoutes.root}/${subRoutes.manageOrganisations}/:organisationId/${subRoutes.openOrganisations}`,
 };

@@ -5,18 +5,18 @@ import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { ActionMenu, ActionMenuItem } from '@ovh-ux/manager-react-components';
 import { OrgDetails } from '@/data/api';
 import { urls } from '@/routes/routes.constant';
-import { useManageOrgListingContext } from '../../../manage.organisations.context';
 
 export const OrganisationsActionsCell = (org: OrgDetails) => {
   const { t } = useTranslation('manage-organisations');
-  const { setOrgDetails } = useManageOrgListingContext();
-  useEffect(() => {
-    setOrgDetails(org);
-  }, [org]);
 
   const navigate = useNavigate();
   const openEditOrganisationsModal = () =>
-    navigate(`${urls.openOrganisationsModel}?mode="edit"`);
+    navigate(
+      `${urls.openOrganisationsModel.replace(
+        ':organisationId',
+        org.organisationId,
+      )}?mode="edit"`,
+    );
 
   const items: ActionMenuItem[] = [
     {
