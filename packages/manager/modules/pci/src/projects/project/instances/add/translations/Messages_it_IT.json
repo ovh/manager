@@ -133,5 +133,6 @@
   "pci_project_instances_instance_add_3_az_region_select_auto_title": "Scegli per me",
   "pci_project_instances_instance_add_3_az_region_select_auto_description": "Se scegliamo per te, non potrai cambiare l'istanza di zona. Dovrai arrestarla e ricrearla nella zona scelta.",
   "pci_project_instances_instance_add_3_az_region_select_manual_title": "Scelgo la mia zona di disponibilità",
-  "pci_projects_project_instances_3az_add_success_message": "L’istanza {{ instance }} è stata aggiunta correttamente nella zona di disponibilità: {{ zone }}"
+  "pci_projects_project_instances_3az_add_success_message": "L’istanza {{ instance }} è stata aggiunta correttamente nella zona di disponibilità: {{ zone }}",
+  "pci_projects_project_instances_add_numInstances_3az_help": "Quando crei più istanze in una Region 3-AZ, saranno tutte nella stessa zona di disponibilità, sia che tu scelga una zona o l'opzione \"Scegli per me\"."
 }

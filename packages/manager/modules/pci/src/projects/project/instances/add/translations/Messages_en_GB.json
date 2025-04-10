@@ -133,5 +133,6 @@
   "pci_project_instances_instance_add_3_az_region_select_auto_title": "Choose for me",
   "pci_project_instances_instance_add_3_az_region_select_auto_description": "If we choose for you, you will not be able to change the zone instance. You will then need to stop it, then recreate it in the zone of your choice.",
   "pci_project_instances_instance_add_3_az_region_select_manual_title": "Choose your availability zone",
-  "pci_projects_project_instances_3az_add_success_message": "The {{ instance }} instance has been added to the availability zone: {{ zone }}"
+  "pci_projects_project_instances_3az_add_success_message": "The {{ instance }} instance has been added to the availability zone: {{ zone }}",
+  "pci_projects_project_instances_add_numInstances_3az_help": "Creating multiple instances in a 3-AZ region places them within the same availability zone, regardless of whether you choose a zone or the “choose for me” option."
 }
