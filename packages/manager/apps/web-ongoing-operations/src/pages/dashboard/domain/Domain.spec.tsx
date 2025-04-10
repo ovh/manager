@@ -64,6 +64,14 @@ describe('Domain datagrid', () => {
       totalCount: domain.length,
     });
 
+    vi.mock('@/hooks/data/query', () => ({
+      useGetDomainInformation: vi.fn(() => {
+        return {
+          data: null,
+        };
+      }),
+    }));
+
     const { getByTestId } = render(<Domain />, { wrapper });
     await waitFor(() => {
       expect(getByTestId('datagrid')).toBeInTheDocument();
