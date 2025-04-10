@@ -15,15 +15,17 @@ import {
 } from '../UpdatePolicySelector.component';
 import { NodePoolState } from '../NodePoolStep.component';
 
+type DeploymentZoneProps = {
+  setNodePoolState: Dispatch<SetStateAction<NodePoolState>>;
+  selectedAvailibilityZone: string;
+  availabilityZones: string[];
+};
+
 const DeploymentZone = ({
   setNodePoolState,
   selectedAvailibilityZone,
   availabilityZones,
-}: {
-  setNodePoolState: Dispatch<SetStateAction<NodePoolState>>;
-  selectedAvailibilityZone: string;
-  availabilityZones: string[];
-}) => {
+}: DeploymentZoneProps) => {
   const { t } = useTranslation('node-pool');
 
   return (
@@ -41,7 +43,7 @@ const DeploymentZone = ({
         size={ODS_TEXT_SIZE._400}
         color={ODS_THEME_COLOR_INTENT.text}
       >
-        {t('kube_common_node_pool_deploy_description', {})}
+        {t('kube_common_node_pool_deploy_description')}
       </OsdsText>
       <div className="flex mt-8 gap-4">
         {availabilityZones?.map((zone) => (
@@ -58,7 +60,7 @@ const DeploymentZone = ({
             onClick={() =>
               setNodePoolState((state) => ({
                 ...state,
-                availibilityZones: zone,
+                selectedAvailibilityZone: zone,
               }))
             }
             inline
@@ -69,9 +71,7 @@ const DeploymentZone = ({
               size={ODS_TEXT_SIZE._200}
               color={ODS_THEME_COLOR_INTENT.text}
             >
-              {t(`${zone}`, {
-                ns: 'service',
-              })}
+              {zone}
             </OsdsText>
           </OsdsTile>
         ))}
