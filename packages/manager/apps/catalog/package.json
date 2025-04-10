@@ -48,7 +48,7 @@
     "@tanstack/react-query-devtools": "^5.51.21",
     "@vitejs/plugin-react": "^4.3.0",
     "@vitest/coverage-v8": "^2.1.9",
-    "vite": "^5.4.12",
+    "vite": "^4.5.12",
     "vitest": "^2.1.9"
   },
   "regions": [
