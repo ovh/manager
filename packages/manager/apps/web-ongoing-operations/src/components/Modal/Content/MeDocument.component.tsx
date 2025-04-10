@@ -22,7 +22,13 @@ export default function MeDocumentComponent({
 
   return (
     <OdsLink
-      label={t(`domain_operations_update_nicowner_click_${argumentKey}`)}
+      label={t(
+        `domain_operations_update_nicowner_click_${
+          !argumentKey || argumentKey !== 'corporationProof'
+            ? argumentKey
+            : 'nicowner'
+        }`,
+      )}
       icon="external-link"
       className="mb-1 block modal-link"
       href={url as string}
