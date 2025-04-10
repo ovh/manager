@@ -14,9 +14,27 @@ angular
       $stateProvider
         .state('app.dedicated-server.**', {
           url: '/server',
-          lazyLoad: ($transition$) => {
+          lazyLoad: async ($transition$) => {
+            const ovhFeatureFlipping = $transition$
+              .injector()
+              .get('ovhFeatureFlipping');
             const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
-
+            const shellClient = $transition$.injector().get('shellClient');
+            const featureAvailability = await ovhFeatureFlipping.checkFeatureAvailability(
+              ['dedicated-servers'],
+            );
+            console.log(featureAvailability);
+            const { remainder } = $transition$.params();
+            if (
+              !remainder &&
+              featureAvailability.isFeatureAvailable('dedicated-servers')
+            ) {
+              const url = await shellClient.navigation.getURL(
+                'dedicated-servers',
+                '#/',
+              );
+              window.top.location.href = url;
+            }
             return import('./dedicated-server.module').then((mod) =>
               $ocLazyLoad.inject(mod.default || mod),
             );
@@ -59,24 +77,6 @@ angular
           '/configuration/cluster',
           '/cluster',
         );
-      });
-
-      // Redirect to dedicated-server uapp if available
-      $urlRouterProvider.rule(($injector, $location) => {
-        const path = $location.path();
-        if (['/server', '/cluster'].includes(path)) {
-          const ovhFeatureFlipping = $injector.get('ovhFeatureFlipping');
-          const shellClient = $injector.get('shellClient');
-          Promise.all([
-            shellClient.navigation.getURL('dedicated-servers', '#/'),
-            ovhFeatureFlipping.checkFeatureAvailability(['dedicated-servers']),
-          ]).then(([url, featureAvailability]) => {
-            if (featureAvailability.isFeatureAvailable('dedicated-servers')) {
-              window.top.location.href = url;
-            }
-          });
-        }
-        return undefined;
       });
     },
   );
