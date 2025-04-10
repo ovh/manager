@@ -5,6 +5,11 @@ import set from 'lodash/set';
 import slice from 'lodash/slice';
 
 import { TELEPHONY_LINE_PHONE_ADDITIONAL_INFOS } from '../../line/phone/phone.constant';
+import {
+  LOGO_FILE_FORMATS,
+  MAX_SIZE_LOGO_FILE,
+} from '../../line/softphone/softphone.constants';
+import { BILLING_ACCOUNT_TRACKING } from '../billingAccount.constants';
 
 export default /* @ngInject */ function TelecomTelephonyBillingAccountDashboardCtrl(
   $translate,
@@ -14,16 +19,24 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountDashboardC
   $q,
   $window,
   $timeout,
+  atInternet,
   billingDepositLink,
   TelephonyMediator,
   OvhApiTelephony,
+  softphoneService,
+  TucToast,
   TucToastError,
   TelephonyGroupLinePhone,
   billingAccountId,
   isSvaWalletFeatureAvailable,
   svaWallet,
+  themes,
 ) {
   const self = this;
+
+  self.LOGO_FILE_FORMATS = LOGO_FILE_FORMATS;
+  self.MAX_SIZE_LOGO_FILE = MAX_SIZE_LOGO_FILE;
+  self.themes = themes;
 
   self.svaWallet = svaWallet;
 
@@ -284,6 +297,153 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountDashboardC
     return (isExpired() || isClosed()) && shouldIncreaseDeposit();
   };
 
+  this.updateFilesList = function updateFilesList() {
+    if (this.fileModel?.length > 1) {
+      this.fileModel.shift();
+    }
+  };
+
+  this.applyThemeGlobally = function applyThemeGlobally() {
+    this.trackClick(BILLING_ACCOUNT_TRACKING.THEME_MANAGEMENT.APPLY);
+    this.isUpdatingTheme = true;
+    softphoneService
+      .putSoftphoneThemeGlobally($stateParams.billingAccount, this.currentTheme)
+      .then(() =>
+        TucToast.success(
+          $translate.instant(
+            'telephony_group_line_softphone_apply_theme_success',
+          ),
+        ),
+      )
+      .catch((error) =>
+        TucToast.error(
+          $translate.instant(
+            'telephony_group_line_softphone_apply_theme_error',
+            {
+              errorMessage: error.message,
+            },
+          ),
+        ),
+      )
+      .finally(() => {
+        this.loadSoftphone();
+        this.isUpdatingTheme = false;
+      });
+  };
+
+  this.applyLogoGlobally = function applyLogoGlobally() {
+    this.isUpdatingLogo = true;
+    softphoneService.uploadDocument(this.fileModel[0]).then((url) => {
+      softphoneService
+        .putSoftphoneLogoGlobally(
+          $stateParams.billingAccount,
+          this.fileModel[0].infos.name,
+          url,
+        )
+        .then(() => {
+          TucToast.success(
+            $translate.instant(
+              'telephony_group_line_softphone_apply_logo_add_success',
+            ),
+          );
+          this.trackBanner('info', 'success');
+        })
+        .catch(({ data }) => {
+          TucToast.error(
+            $translate.instant(
+              'telephony_group_line_softphone_apply_logo_add_error',
+              {
+                errorMessage: data?.message,
+              },
+            ),
+          );
+          this.trackBanner('error', 'error');
+        })
+        .finally(() => {
+          this.fileModel = undefined;
+          this.isUpdatingLogo = false;
+          this.loadSoftphone();
+        });
+    });
+  };
+
+  this.deleteGlobalLogo = function deleteGlobalLogo() {
+    this.trackClick(BILLING_ACCOUNT_TRACKING.LOGO_MANAGEMENT.DELETE);
+    softphoneService
+      .deleteSoftphoneLogoGlobally($stateParams.billingAccount)
+      .then(() =>
+        TucToast.success(
+          $translate.instant(
+            'telephony_group_line_softphone_apply_logo_remove_success',
+          ),
+        ),
+      )
+      .catch(({ data }) =>
+        TucToast.error(
+          $translate.instant(
+            'telephony_group_line_softphone_apply_logo_remove_error',
+            {
+              errorMessage: data?.message,
+            },
+          ),
+        ),
+      )
+      .finally(() => {
+        this.loadSoftphone();
+      });
+  };
+
+  this.helpTextForLogo = function helpTextForLogo() {
+    return $translate.instant('telephony_group_line_softphone_logo_format', {
+      format: LOGO_FILE_FORMATS,
+      weight: `${MAX_SIZE_LOGO_FILE / 1000000} ${$translate.instant(
+        'ua_unit_size_MB',
+      )}`,
+      size: '512x512',
+    });
+  };
+
+  this.loadSoftphone = function loadSoftphone() {
+    this.isSoftphoneLoading = true;
+    $q.all({
+      logo: softphoneService.getGlobalLogo(this.billingAccountId),
+      currentTheme: softphoneService.getSoftphoneCurrentGlobalTheme(
+        this.billingAccountId,
+      ),
+    })
+      .then(({ logo: { url, filename }, currentTheme: { themeId } }) => {
+        this.logoUrl = url;
+        this.logoFilename = filename;
+
+        this.currentTheme = themeId;
+        this.selectedTheme = this.currentTheme;
+      })
+      .finally(() => {
+        this.isSoftphoneLoading = false;
+      });
+  };
+
+  this.trackBanner = function trackBanner(bannerType, returnType) {
+    atInternet.trackPage({
+      ...BILLING_ACCOUNT_TRACKING.LOGO_MANAGEMENT.BANNER,
+      name: BILLING_ACCOUNT_TRACKING.LOGO_MANAGEMENT.BANNER.name
+        .replace(/{{bannerType}}/g, bannerType)
+        .replace(/{{returnType}}/g, returnType),
+      page: {
+        name: BILLING_ACCOUNT_TRACKING.LOGO_MANAGEMENT.BANNER.page.name
+          .replace(/{{bannerType}}/g, bannerType)
+          .replace(/{{returnType}}/g, returnType),
+      },
+    });
+  };
+
+  this.trackClick = function trackClick(hit) {
+    atInternet.trackClick({
+      ...hit,
+      type: 'action',
+    });
+  };
+
   /*= =====================================
     =            INITIALIZATION            =
     ====================================== */
@@ -308,7 +468,7 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountDashboardC
     };
 
     self.billingDepositLink = billingDepositLink;
-
+    this.loadSoftphone();
     getGroup().then(() => {
       self.actions = [
         {

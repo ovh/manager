@@ -1,0 +1,52 @@
+<oui-modal
+    data-heading="{{ :: 'telephony_line_softphone_new_token' | translate }}"
+    data-on-dismiss="$ctrl.goBack(!!$ctrl.token)"
+>
+    <div data-ng-if="!$ctrl.token">
+        <form novalidate id="form" name="form">
+            <oui-field
+                data-label="{{ ::'telephony_line_softphone_new_token_label_email' | translate }}"
+            >
+                <input
+                    type="email"
+                    name="email"
+                    class="oui-input"
+                    data-ng-model="$ctrl.email"
+                />
+            </oui-field>
+            <oui-form-actions
+                class="text-right"
+                data-submit-text="{{ 'telephony_line_softphone_new_token_cta_generate' | translate }}"
+                data-on-submit="$ctrl.trackClick($ctrl.SOFTPHONE_TRACKING.ADD_DEVICE.TOKEN);$ctrl.createToken()"
+                data-disabled="form.$invalid || $ctrl.isCreating"
+            >
+            </oui-form-actions>
+        </form>
+    </div>
+    <div data-ng-if="$ctrl.token">
+        <oui-message data-type="warning">
+            <span
+                data-translate="telephony_line_softphone_warning_token"
+            ></span>
+        </oui-message>
+
+        <div class="d-flex justify-content-center">
+            <qr data-text="$ctrl.token"></qr>
+        </div>
+
+        <oui-field
+            data-label="{{ :: 'telephony_line_softphone_token' | translate }}"
+        >
+            <oui-clipboard
+                name="token"
+                data-model="$ctrl.token"
+            ></oui-clipboard>
+        </oui-field>
+        <oui-form-actions
+            class="text-right"
+            data-submit-text="{{ 'close' | translate }}"
+            data-on-submit="$ctrl.goBack(true)"
+        >
+        </oui-form-actions>
+    </div>
+</oui-modal>
