@@ -186,6 +186,6 @@ describe('Order funnel page', () => {
     await waitFor(() => {
       expect(jobApi.addJob).toHaveBeenCalled();
     });
-    expect(mockedUsedNavigate).toHaveBeenCalledWith('../training/undefined');
+    expect(mockedUsedNavigate).toHaveBeenCalledWith('../undefined');
   });
 });
