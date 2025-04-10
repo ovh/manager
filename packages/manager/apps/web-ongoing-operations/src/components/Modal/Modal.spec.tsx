@@ -16,10 +16,19 @@ import {
   modalString,
   modalStringArgument,
 } from '@/__mocks__/modal';
+import { serviceInfo } from '@/__mocks__/serviceInfo';
 
 vi.mock('react-router-dom', () => ({
   useNavigate: () => vi.fn(() => null),
   Navigate: vi.fn(() => null),
+}));
+
+vi.mock('@/hooks/data/query', () => ({
+  useServiceInfo: vi.fn(() => {
+    return {
+      data: serviceInfo,
+    };
+  }),
 }));
 
 describe('Modal by argument', () => {
