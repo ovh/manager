@@ -1,4 +1,5 @@
 import { v6 } from '@ovh-ux/manager-core-api';
+import { ITEMS_PER_PAGE } from '@/constants';
 
 export type TObject = {
   key: string;
@@ -21,8 +22,9 @@ interface GetContainerObjectsParams {
   region: string;
   name: string;
   withVersions: boolean;
-  keyMarker: string | null;
-  versionIdMarker: string | null;
+  keyMarker?: string;
+  versionIdMarker?: string;
+  prefix?: string;
 }
 export type TServerContainer = {
   createdAt: string;
@@ -72,6 +74,7 @@ export const getContainerObjects = async ({
   withVersions,
   keyMarker,
   versionIdMarker,
+  prefix,
 }: GetContainerObjectsParams): Promise<{
   objects: TObject[];
 }> => {
@@ -81,8 +84,9 @@ export const getContainerObjects = async ({
     params: {
       withVersions,
       keyMarker,
-      limit: 10,
+      limit: ITEMS_PER_PAGE + 1,
       versionIdMarker,
+      prefix,
     },
   });
 
