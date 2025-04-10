@@ -17,6 +17,7 @@
     "resolveJsonModule": true,
     "allowJs": true,
     "jsx": "react-jsx",
+    "strictNullChecks": true,
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],

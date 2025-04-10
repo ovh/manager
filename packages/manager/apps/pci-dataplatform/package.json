@@ -18,7 +18,7 @@
     "start": "lerna exec --stream --scope='@ovh-ux/manager-pci-dataplatform-app' --include-dependencies -- npm run build --if-present",
     "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-pci-dataplatform-app' --include-dependencies -- npm run dev --if-present",
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-pci-dataplatform-app' --include-dependencies -- npm run dev:watch --if-present",
-    "test": "vitest run",
+    "test": "vitest run --pool=threads",
     "test-ui": "vitest --ui --coverage.enabled=true"
   },
   "dependencies": {
@@ -42,7 +42,6 @@
     "tailwindcss": "^3.4.4"
   },
   "devDependencies": {
-    "@jest/globals": "^29.7.0",
     "@ovh-ux/manager-vite-config": "^0.9.3",
     "@testing-library/jest-dom": "^6.1.5",
     "@testing-library/react": "^14.1.2",
