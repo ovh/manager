@@ -1,9 +1,9 @@
 import React from 'react';
 import { describe, expect, vi } from 'vitest';
 import { download } from 'export-to-csv';
-import Websites from '../Websites.page';
-import { render, screen } from '@/test.provider';
-import { attachedDomainDigStatusMock, websitesMocks } from '@/api/_mock_';
+import Websites from './Websites.page';
+import { render, screen } from '@/utils/test.provider';
+import { attachedDomainDigStatusMock, websitesMocks } from '@/data/_mock_';
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
 
 const hoistedMock = vi.hoisted(() => ({
@@ -13,15 +13,31 @@ const hoistedMock = vi.hoisted(() => ({
   open: vi.fn(),
 }));
 
-vi.mock('@/hooks', async (importActual) => {
-  const actual = await importActual<typeof import('@/hooks')>();
-  return {
-    ...actual,
-    useWebHostingAttachedDomaindigStatus:
-      hoistedMock.useWebHostingAttachedDomaindigStatus,
-    useWebHostingAttachedDomain: hoistedMock.useWebHostingAttachedDomain,
-  };
-});
+vi.mock(
+  '@/data/hooks/webHostingAttachedDomaindigStatus/useWebHostingAttachedDomaindigStatus',
+  async (importActual) => {
+    const actual = await importActual<
+      typeof import('@/data/hooks/webHostingAttachedDomaindigStatus/useWebHostingAttachedDomaindigStatus')
+    >();
+    return {
+      ...actual,
+      useWebHostingAttachedDomaindigStatus:
+        hoistedMock.useWebHostingAttachedDomaindigStatus,
+    };
+  },
+);
+vi.mock(
+  '@/data/hooks/webHostingAttachedDomain/useWebHostingAttachedDomain',
+  async (importActual) => {
+    const actual = await importActual<
+      typeof import('@/data/hooks/webHostingAttachedDomain/useWebHostingAttachedDomain')
+    >();
+    return {
+      ...actual,
+      useWebHostingAttachedDomain: hoistedMock.useWebHostingAttachedDomain,
+    };
+  },
+);
 
 vi.mock('export-to-csv', () => ({
   generateCsv: () => vi.fn().mockReturnValue('csv-content'),

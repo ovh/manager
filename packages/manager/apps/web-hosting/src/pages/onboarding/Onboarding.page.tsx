@@ -8,9 +8,9 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { OdsText } from '@ovhcloud/ods-components/react';
-import useGuides from '@/hooks/guides/useGuides';
+import useGuides from '@/hooks/useGuides';
 import onboardingImgSrc from './onboarding.svg';
-import { GO_TO, ONBOARDING_ORDER_CTA } from '@/tracking.constants';
+import { GO_TO, ONBOARDING_ORDER_CTA } from '@/utils/tracking.constants';
 import { ORDER_LINK } from './onboarding.constants';
 
 export default function Onboarding() {
