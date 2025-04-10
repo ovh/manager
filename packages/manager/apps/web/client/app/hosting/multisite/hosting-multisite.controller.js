@@ -273,9 +273,11 @@ angular
               }),
             );
 
-            return hostingSSLCertificate.retrievingLinkedDomains(
-              $stateParams.productId,
-            );
+            return !$scope.hosting.multipleSSL
+              ? hostingSSLCertificate.retrievingLinkedDomains(
+                  $stateParams.productId,
+                )
+              : [];
           })
           .then((sslLinked) => {
             const linkedSSLs = isArray(sslLinked) ? sslLinked : [sslLinked];
@@ -325,7 +327,11 @@ angular
             return null;
           })
           .then(() =>
-            hostingSSLCertificate.retrievingCertificate($stateParams.productId),
+            !$scope.hosting.multipleSSL
+              ? hostingSSLCertificate.retrievingCertificate(
+                  $stateParams.productId,
+                )
+              : {},
           )
           .then((certificate) => {
             if (certificate.status === HOSTING_STATUS.REGENERATING) {

@@ -16,7 +16,7 @@
 
         <div data-ng-if="!loading.init && hasResult">
             <div class="mb-3">
-                <oui-dropdown>
+                <oui-dropdown data-ng-if="!hosting.multipleSSL">
                     <oui-dropdown-trigger
                         data-text="{{:: 'hosting_multisite_actions' | translate }}"
                     >
@@ -57,6 +57,13 @@
                         </oui-dropdown-item>
                     </oui-dropdown-content>
                 </oui-dropdown>
+                <button
+                    type="button"
+                    class="btn btn-default"
+                    data-translate="hosting_tab_DOMAINS_configuration_attachDomain_title_button"
+                    data-ng-click="setAction('multisite/add/hosting-multisite-add', {domains: domains})"
+                    data-ng-if="hosting.multipleSSL"
+                ></button>
                 <form
                     class="form-inline float-right"
                     name="hostingMultisiteSearchForm"
