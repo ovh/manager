@@ -108,6 +108,29 @@
                 </form>
             </div>
 
+            <div
+                class="alert alert-info"
+                role="alert"
+                data-ng-if="hosting.multipleSSL"
+            >
+                <p data-translate="hosting_multisite_ssl_message"></p>
+                <span>
+                    <a
+                        data-ng-href="{{:: manageSslLink}}"
+                        title="{{hosting_multisite_manage_ssl}}"
+                        rel="noopener"
+                    >
+                        <span
+                            data-translate="hosting_multisite_manage_ssl"
+                        ></span>
+                        <span
+                            class="fa fa-arrow-right"
+                            aria-hidden="true"
+                        ></span>
+                    </a>
+                </span>
+            </div>
+
             <div class="table-responsive">
                 <table class="table table-hover multisite">
                     <thead>
