@@ -5,7 +5,9 @@ export interface Container {
   isDefault: boolean;
   path: string;
   hash?: string;
+  hashes?: string[];
   containerURL: string;
+  fallbackApp?: string;
 }
 
 export interface Application {
