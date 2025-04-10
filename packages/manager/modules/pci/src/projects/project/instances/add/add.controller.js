@@ -41,6 +41,7 @@ import {
 
 import {
   INSTANCE_PRICING_LINKS,
+  INSTANCE_RESILIENCE_3AZ,
   WINDOWS_GEN_3_ADDON_PLANCODE,
 } from '../instances.constants';
 import { useURLModel } from '../../project.utils';
@@ -93,6 +94,10 @@ export default class PciInstancesAddController {
       INSTANCE_PRICING_LINKS[this.user.ovhSubsidiary] ||
       INSTANCE_PRICING_LINKS.DEFAULT;
     this.OvhApiCloudProjectRegion = OvhApiCloudProjectRegion;
+
+    this.resilience3azLink =
+      INSTANCE_RESILIENCE_3AZ[this.user.ovhSubsidiary] ||
+      INSTANCE_RESILIENCE_3AZ.DEFAULT;
 
     $scope.$watch(
       () => this.model.number,
