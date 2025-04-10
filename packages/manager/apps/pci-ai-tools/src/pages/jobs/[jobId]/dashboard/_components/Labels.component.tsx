@@ -2,18 +2,18 @@ import { useTranslation } from 'react-i18next';
 import { useMemo } from 'react';
 import { useToast } from '@datatr-ux/uxlib';
 import { getAIApiErrorMessage } from '@/lib/apiHelper';
-import ai from '@/types/AI';
 import LabelsForm from '@/components/labels/LabelsForm.component';
 import { useJobData } from '../../Job.context';
 import { OVH_TAGS_CONFIG } from '@/configuration/label';
 import { useEditLabel } from '@/data/hooks/ai/job/label/useEditLabel.hook';
+import { OrderLabel } from '@/types/orderFunnel';
 
 const Labels = () => {
   const { job, jobQuery, projectId } = useJobData();
   const { t } = useTranslation('components/labels');
   const toast = useToast();
 
-  const configuredLabel: ai.Label[] = useMemo(
+  const configuredLabel: OrderLabel[] = useMemo(
     () =>
       job?.spec?.labels &&
       Object.entries(job.spec.labels)
@@ -54,7 +54,7 @@ const Labels = () => {
     });
   };
 
-  const handleAddLabel = (label: ai.Label) => {
+  const handleAddLabel = (label: OrderLabel) => {
     editLabel({
       projectId,
       jobId: job.id,

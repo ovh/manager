@@ -55,7 +55,7 @@ interface OrderJobsFunnelProps {
   catalog: publicCatalog.Catalog;
   presetImage: ai.job.PresetImage[];
   sshKeys: sshKey.SshKey[];
-  suggestions: JobSuggestions[];
+  suggestions: JobSuggestions;
 }
 
 const OrderFunnel = ({
