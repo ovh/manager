@@ -87,7 +87,7 @@ export default function Domain() {
         <Modal
           universe="domain"
           onCloseModal={closeModal}
-          data={filterDomain}
+          operation={filterDomain}
           changeStatus={changeStatus}
         />
       )}

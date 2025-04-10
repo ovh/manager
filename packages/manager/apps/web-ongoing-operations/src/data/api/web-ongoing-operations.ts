@@ -23,9 +23,11 @@ export const getmeTaskDomainArgumentNames = async (
  */
 export const getmeTaskDomainArgument = async (
   id: number,
-  nic: string,
+  argumentType: string,
 ): Promise<TArgument> =>
-  v6.get(`/me/task/domain/${id}/argument/${nic}`).then((res) => res.data);
+  v6
+    .get(`/me/task/domain/${id}/argument/${argumentType}`)
+    .then((res) => res.data);
 
 /**
  * Update an argument of a domain task
