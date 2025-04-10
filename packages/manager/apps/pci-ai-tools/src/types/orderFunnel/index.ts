@@ -90,13 +90,16 @@ export interface NotebookSuggestions {
 }
 
 export interface JobSuggestions {
-  region: string;
-  ressources: {
-    nb: number;
-    flavor: string;
-  };
-  image: string;
-  unsecureHttp: boolean;
+  defaultRegion: string;
+  suggestions: {
+    resources: {
+      quantity: number;
+      flavorId: string;
+    };
+    presetImage: string;
+    region: string;
+    unsecureHttp: boolean;
+  }[];
 }
 
 export interface AppSuggestions {
