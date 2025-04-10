@@ -880,5 +880,11 @@
   "server_configuration_intervention_activate_failed": "Ocorreu um erro aquando da ativação das intervenções no local no servidor {{serverName}}",
   "server_nutanix_cluster_node_warning_1": "Este servidor dedicado faz parte de um cluster Nutanix: {{clusterName}}.",
   "server_nutanix_cluster_node_warning_2": "Recomendamos que efetue todas as alterações de configuração diretamente no painel de controlo do servidor associado ao seu cluster Nutanix: {{clusterNodeDashboardLink}}",
-  "server_nutanix_cluster_node_warning_3": "Todas as ações de faturação relacionadas com este servidor são visíveis no seu cluster Nutanix: {{clusterDashboardLink}}"
+  "server_nutanix_cluster_node_warning_3": "Todas as ações de faturação relacionadas com este servidor são visíveis no seu cluster Nutanix: {{clusterDashboardLink}}",
+  "server_configuration_installation_ovh_stephardraid_label_error": "Esta configuração RAID é inválida.",
+  "server_configuration_installation_ovh_step2_lvm_badge": "LVM",
+  "server_configuration_installation_ovh_step2_lvm_badge_tooltip": "Esta partição será configurada num volume lógico (LV)",
+  "server_configuration_installation_ovh_step2_all_name": "Nome do volume lógico (LVM) / zpool (ZFS)",
+  "server_configuration_installation_ovh_step2_lv_name": "Nome do volume lógico (LVM)",
+  "server_configuration_installation_ovh_step2_zp_name": "Nome do zpool (ZFS)"
 }

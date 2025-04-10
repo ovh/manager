@@ -56,5 +56,7 @@
   "server_configuration_installation_inputs_item_keyValue_remove_tooltip": "Kliknij tutaj, aby usunąć parę klucz-wartość",
   "dedicated_server_dashboard_region_unknown": "Informacja niedostępna",
   "dedicated_server_dashboard_zone_unknown": "Informacja niedostępna",
-  "server_configuration_installation_inputs_bad_hostname": "Nazwa hosta może zawierać wyłącznie cyfry, litery, łączniki i punkty w formacie określonym w RFC 1035."
+  "server_configuration_installation_inputs_bad_hostname": "Nazwa hosta może zawierać wyłącznie cyfry, litery, łączniki i punkty w formacie określonym w RFC 1035.",
+  "dedicated_server_dashboard_installation_install_button": "Instalacja serwera",
+  "dedicated_server_dashboard_installation_reinstall_button": "Reinstalacja serwera"
 }
