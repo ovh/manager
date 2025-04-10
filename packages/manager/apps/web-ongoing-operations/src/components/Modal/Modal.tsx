@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
+import { limit } from 'p-limit';
 import ModalHeaderComponent from '@/components/Modal/Header/ModalHeader.component';
 import ModalContentComponent from '@/components/Modal/Content/ModalContent.component';
 import { updateTask } from '@/data/api/web-ongoing-operations';
@@ -46,14 +47,17 @@ export default function Modal({
     navigate(urls.error404);
   }
 
+  const updateTaskLimit = limit(1);
+
   const onValidate = async (id: number, operationType: OperationName) => {
     try {
       if (operationArgumentsUpdated) {
-        // eslint-disable-next-line no-restricted-syntax
-        for (const [key, value] of Object.entries(operationArgumentsUpdated)) {
-          // eslint-disable-next-line no-await-in-loop
-          await updateTask(id, key, { value });
-        }
+        const promises = Object.entries(
+          operationArgumentsUpdated,
+        ).map(([key, value]) =>
+          updateTaskLimit(() => updateTask(id, key, { value })),
+        );
+        await Promise.all(promises);
       }
       try {
         await updateOperationStatus(universe, id, operationType);

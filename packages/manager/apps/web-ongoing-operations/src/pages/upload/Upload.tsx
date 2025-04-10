@@ -11,6 +11,7 @@ import {
   OdsFile,
 } from '@ovhcloud/ods-components';
 import { useMutation } from '@tanstack/react-query';
+import pLimit from 'p-limit';
 import { updateTask } from '@/data/api/web-ongoing-operations';
 import SubHeader from '@/components/SubHeader/SubHeader';
 import { saveFile } from '@/data/api/document';
@@ -34,6 +35,7 @@ export default function Upload() {
   const [status, setStatus] = useState(defaultStatus);
   const paramId = Number(id);
   const maxFile = 1;
+  const limit = pLimit(1);
 
   const { data: domain, isLoading: domainLoading } = useDomain(paramId);
   const {
@@ -72,34 +74,48 @@ export default function Upload() {
     updateTask(operationID, key, body);
   };
 
-  const onValidate = async (operationID: number) => {
+  const processFile = async (
+    file: OdsFile,
+    key: string,
+    operationID: number,
+  ) => {
+    return limit(() => saveFileAndUpdateOperation(operationID, key, file));
+  };
+
+  const processUploadedFiles = async (operationID: number) => {
     setStatus({
       label: ODS_MESSAGE_COLOR.information,
       message: t('domain_operations_upload_doing'),
     });
 
-    try {
-      // eslint-disable-next-line no-restricted-syntax
-      for (const files of uploadedFiles) {
-        // eslint-disable-next-line no-restricted-syntax
-        for (const file of files.data) {
-          // eslint-disable-next-line no-await-in-loop
-          await saveFileAndUpdateOperation(operationID, files.key, file);
-        }
-      }
+    const tasks = uploadedFiles.flatMap((files) => {
+      return files.data.map((file) =>
+        processFile(file, files.key, operationID),
+      );
+    });
+    await Promise.all(tasks);
+  };
 
+  const { mutate: onValidate } = useMutation({
+    mutationFn: async (operationID: number) => {
+      await processUploadedFiles(operationID);
+      return { operationID };
+    },
+    onSuccess: (data) => {
+      const { operationID } = data;
       setStatus({
         label: ODS_MESSAGE_COLOR.success,
         message: t('domain_operations_upload_success'),
       });
       executeActionOnOperation(operationID);
-    } catch (error) {
+    },
+    onError: () => {
       setStatus({
         label: ODS_MESSAGE_COLOR.warning,
         message: t('domain_operations_upload_error'),
       });
-    }
-  };
+    },
+  });
 
   const addFileUpload = (key: string, data: OdsFile[]) => {
     setUploadedFiles((prevFiles) => [...prevFiles, { key, data } as TFiles]);
@@ -184,7 +200,7 @@ export default function Upload() {
           data={domain}
           operationName={operationName}
           disabled={uploadedFiles.length === 0 || operationName === null}
-          onValidate={onValidate}
+          onValidate={(operationId) => onValidate(operationId)}
           putOperationName={putOperationName}
           justify="start"
         />
