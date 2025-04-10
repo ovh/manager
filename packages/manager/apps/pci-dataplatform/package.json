@@ -1,0 +1,68 @@
+{
+  "name": "@ovh-ux/manager-pci-dataplatform-app",
+  "version": "1.0.0",
+  "private": true,
+  "description": "pci-dataplatform",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovh/manager.git",
+    "directory": "packages/manager/apps/pci-dataplatform"
+  },
+  "license": "BSD-3-Clause",
+  "author": "OVH SAS",
+  "type": "module",
+  "scripts": {
+    "build": "tsc --project tsconfig.build.json && vite build",
+    "coverage": "vitest run --coverage",
+    "dev": "tsc && vite",
+    "start": "lerna exec --stream --scope='@ovh-ux/manager-pci-dataplatform-app' --include-dependencies -- npm run build --if-present",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-pci-dataplatform-app' --include-dependencies -- npm run dev --if-present",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-pci-dataplatform-app' --include-dependencies -- npm run dev:watch --if-present",
+    "test": "vitest run --pool=threads",
+    "test-ui": "vitest --ui --coverage.enabled=true"
+  },
+  "dependencies": {
+    "@ovh-ux/manager-config": "^8.1.0",
+    "@ovh-ux/manager-core-api": "^0.10.1",
+    "@ovh-ux/manager-react-shell-client": "^0.8.5",
+    "@ovh-ux/request-tagger": "^0.4.0",
+    "@ovh-ux/shell": "^4.2.0",
+    "@tanstack/react-query": "^5.51.21",
+    "@tanstack/react-table": "^8.20.1",
+    "i18next": "^23.8.2",
+    "i18next-http-backend": "^2.4.2",
+    "lucide-react": "^0.334.0",
+    "next-themes": "^0.2.1",
+    "qs": "^6.11.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-i18next": "^14.0.5",
+    "react-router": "^6.21.3",
+    "react-router-dom": "^6.3.0",
+    "tailwindcss": "^3.4.4"
+  },
+  "devDependencies": {
+    "@ovh-ux/manager-vite-config": "^0.9.3",
+    "@testing-library/jest-dom": "^6.1.5",
+    "@testing-library/react": "^14.1.2",
+    "@testing-library/user-event": "^13.2.1",
+    "@types/jest": "^29.5.11",
+    "@types/node": "^20.10.6",
+    "@types/react": "^18.2.45",
+    "@types/react-dom": "^18.2.18",
+    "@vitejs/plugin-react": "^4.2.1",
+    "@vitest/ui": "^2.1.9",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "typescript": "^5.3.3",
+    "vite": "^5.4.12",
+    "vitest": "^2.1.9"
+  },
+  "regions": [
+    "CA",
+    "EU"
+  ],
+  "universes": [
+    "@ovh-ux/manager-public-cloud"
+  ]
+}
