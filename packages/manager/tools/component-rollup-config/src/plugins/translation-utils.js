@@ -14,7 +14,7 @@ const injectTranslationImport = (languages, trads, id, subdirectory) => {
     const relativePath = path.relative(currentPath, absolutePath);
     if (fs.existsSync(absolutePath)) {
       result += `
-      promises.push(
+      requests.push(() =>
         $q.all({
           use: import('./${relativePath}/Messages_' + $translate.use() + '.json')
             .then((module) => module.default || module)
@@ -30,10 +30,10 @@ const injectTranslationImport = (languages, trads, id, subdirectory) => {
 };
 
 const injectTranslationImports = (languages, trads, id, subdirectory) => `
-  let promises = [];
+  let requests = [];
   ${injectTranslationImport(languages, trads, id, subdirectory)}
-  promises.forEach(p => asyncLoader.addTranslations(p));
-  return $q.all(promises).then(() => $translate.refresh());
+  const promise = requests.map((request) => asyncLoader.registerTranslationsRequest(request));
+  return $q.all(promise).then(() => $translate.refresh());
 `;
 
 module.exports = {

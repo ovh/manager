@@ -4,7 +4,7 @@ export default /* @ngInject */ ($q) => {
    * The tricky part of this loader is that we need to check
    * if an import (addTranslations) has been called during all
    * the pending imports. If it's the case we cannot return
-   * translations yet and we need to loop again in order to
+   * translations yet, and we need to loop again in order to
    * wait for all the imports to be finised.
    */
 
@@ -12,7 +12,10 @@ export default /* @ngInject */ ($q) => {
   const translations = {};
 
   // list of pending translation import
-  const pending = [];
+  let pending = [];
+
+  // list of pending translation import
+  const translationGetters = [];
 
   // true when a new translation import occurs
   let changed = false;
@@ -32,16 +35,31 @@ export default /* @ngInject */ ($q) => {
     });
   };
 
-  loader.addTranslations = function addTranslations(translationPromise) {
+  loader.registerTranslationsRequest = function registerTranslationsRequest(
+    fetchTranslationMethod,
+  ) {
+    const translationGetter = () =>
+      fetchTranslationMethod().then((tr) => {
+        Object.assign(translations, tr);
+      });
+
+    // we store the request trigger to be able to call it again when refreshing
+    translationGetters.push(translationGetter);
     // a new import occurs, we keep trace of the change
     changed = true;
 
+    const pendingImport = translationGetter();
+
     // push the pending import
-    pending.push(
-      translationPromise.then((tr) => {
-        Object.assign(translations, tr);
-      }),
-    );
+    pending.push(pendingImport);
+
+    return pendingImport;
+  };
+
+  loader.refreshTranslations = function addTranslations() {
+    // To refresh the translations, we re-trigger the stored requests triggers
+    pending = translationGetters.map((getter) => getter());
+    return $q.all(pending);
   };
 
   return loader;
