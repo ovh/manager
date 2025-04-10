@@ -209,8 +209,8 @@ webCloudUniverse.children = [
         translation: 'sidebar_license_office',
         serviceType: 'LICENSE_OFFICE',
         routing: {
-          application: 'web',
-          hash: '#/web-office',
+          application: 'web-office',
+          hash: '#/',
         },
         features: ['web-office'],
       },
