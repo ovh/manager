@@ -1,68 +1,59 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 
-import { getContainerObjects } from '@/api/data/container';
+import { getObjectVersions } from '../data/objects';
 import { ITEMS_PER_PAGE } from '@/constants';
 
-export const getContainerObjectsQueryKey = ({
+export const getObjectVersionsQueryKey = ({
   projectId,
   region,
   containerName,
-  prefix,
+  key,
 }: {
   projectId: string;
   region: string;
   containerName: string;
-  prefix: string | null;
-}) => {
-  const baseKey = [
-    'project',
-    projectId,
-    'region',
-    region,
-    'server-container-objects',
-    containerName,
-  ];
+  key: string;
+}) => [
+  'project',
+  projectId,
+  'region',
+  region,
+  'server-container-objects',
+  containerName,
+  key,
+];
 
-  const prefixKey = !prefix ? [] : ['prefix', prefix];
-
-  return [...baseKey, ...prefixKey];
-};
-
-interface UseServerContainerObjectsParams {
+interface UseObjectVersionsParams {
   projectId: string;
   region: string;
   name: string;
-  withVersions: boolean;
-  prefix: string;
+  key: string;
   isS3StorageType: string;
 }
 
-export const useServerContainerObjects = ({
+export const useServerContainerObjectVersions = ({
   projectId,
   region,
   name,
-  withVersions,
+  key,
   isS3StorageType,
-  prefix,
-}: UseServerContainerObjectsParams) => {
+}: UseObjectVersionsParams) => {
   return useInfiniteQuery({
-    queryKey: getContainerObjectsQueryKey({
+    queryKey: getObjectVersionsQueryKey({
       projectId,
       region,
       containerName: name,
-      prefix,
+      key,
     }),
     queryFn: ({ pageParam }) =>
-      getContainerObjects({
+      getObjectVersions({
         projectId,
         region,
         name,
-        withVersions,
-        keyMarker: pageParam?.keyMarker,
+        key,
         versionIdMarker: pageParam?.versionIdMarker,
-        prefix,
       }),
-    initialPageParam: { keyMarker: null, versionIdMarker: null },
+    initialPageParam: { versionIdMarker: null },
     enabled: !!projectId && !!name && !!region && !!isS3StorageType,
     staleTime: 0,
 
