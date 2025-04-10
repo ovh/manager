@@ -1,29 +1,30 @@
 import React from 'react';
+import { afterEach, describe, vi } from 'vitest';
 import { rancherPlan } from '@/_mock_/rancher-resource';
 import RancherPlanTile, { RancherPlanTileProps } from './RancherPlanTile';
 import { render, waitFor } from '@/utils/test/test.provider';
 
-const mockedUsedNavigate = jest.fn();
-const mockSetSelectedPlan = jest.fn();
+const mockedUsedNavigate = vi.fn();
+const mockSetSelectedPlan = vi.fn();
 const [standardPlan] = rancherPlan;
 
 afterEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 });
 
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
+vi.mock('react-router-dom', () => ({
+  ...vi.importActual('react-router-dom'),
   useNavigate: () => mockedUsedNavigate,
 }));
 
-jest.mock('@ovh-ux/manager-react-shell-client', () => ({
-  useNavigation: jest.fn(() => ({
-    getURL: jest.fn(() => Promise.resolve('123')),
+vi.mock('@ovh-ux/manager-react-shell-client', () => ({
+  useNavigation: vi.fn(() => ({
+    getURL: vi.fn(() => Promise.resolve('123')),
     data: [],
   })),
-  useTracking: jest.fn(() => ({
-    trackPage: jest.fn(),
-    trackClick: jest.fn(),
+  useTracking: vi.fn(() => ({
+    trackPage: vi.fn(),
+    trackClick: vi.fn(),
   })),
 }));
 
