@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-api@0.10.1...@ovh-ux/manager-core-api@0.11.0) (2025-04-10)
+
+
+### Features
+
+* **core-api:** add disable cache on iceberg v2 requests ([083e174](https://github.com/ovh/manager/commit/083e17436115a4b925e491b69b131fc47e1adb47)), closes [#MANAGER-17609](https://github.com/ovh/manager/issues/MANAGER-17609)
+
+
+
+
+
 ## [0.10.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-api@0.10.0...@ovh-ux/manager-core-api@0.10.1) (2025-03-14)
 
 

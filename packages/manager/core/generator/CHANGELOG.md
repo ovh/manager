@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-generator@0.28.0...@ovh-ux/manager-generator@0.29.0) (2025-04-10)
+
+
+### Features
+
+* **generator:** update prompt and package json ([dcccc0d](https://github.com/ovh/manager/commit/dcccc0d202cc57409ef30fcbbe8e9c5e4fe85e25)), closes [#MANAGER-16960](https://github.com/ovh/manager/issues/MANAGER-16960)
+
+
+
+
+
 # [0.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-generator@0.27.1...@ovh-ux/manager-generator@0.28.0) (2025-04-03)
 
 
