@@ -10,6 +10,7 @@ export default {
     isInRescueMode: '<',
     serviceName: '<',
     vps: '<',
+    guides: '<',
   },
   controller,
   name: 'ovhManagerVpsHeader',

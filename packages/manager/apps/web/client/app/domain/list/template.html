@@ -11,6 +11,18 @@
                         links="$ctrl.constants.CHANGELOG.domain_name.links"
                         chapters="$ctrl.constants.CHANGELOG.domain_name.chapters"
                     ></changelog-button>
+                    <oui-guide-menu
+                        data-ng-if="$ctrl.guides"
+                        text="{{ 'list_guides_title' | translate }}"
+                    >
+                        <oui-guide-menu-item
+                            data-ng-repeat="guide in $ctrl.guides track by $index"
+                            data-href="{{:: guide.href }}"
+                            data-external
+                        >
+                            <span data-ng-bind="guide.title"></span>
+                        </oui-guide-menu-item>
+                    </oui-guide-menu>
                 </div>
             </div>
         </oui-header-heading>
