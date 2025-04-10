@@ -1,10 +1,46 @@
-import { useEffect } from 'react';
-import { Outlet, useLocation, useMatches } from 'react-router-dom';
+import {
+  Outlet,
+  redirect,
+  useLocation,
+  useMatches,
+  useParams,
+} from 'react-router-dom';
 import { useRouting, useShell } from '@ovh-ux/manager-react-shell-client';
+import { useEffect } from 'react';
 import { defineCurrentPage } from '@ovh-ux/request-tagger';
+import { Toaster } from '@datatr-ux/uxlib';
+import queryClient from '@/query.client';
+import { useTrackPageAuto } from '@/hooks/useTracking';
+import { useLoadingIndicatorContext } from '@/contexts/LoadingIndicator.context';
+import { getProject } from '@/data/api/project/project.api';
+import { USER_INACTIVITY_TIMEOUT } from '@/configuration/polling.constants';
 import PageLayout from '@/components/page-layout/PageLayout.component';
+import { UserActivityProvider } from '@/contexts/UserActivityContext';
+import Breadcrumb from '@/components/breadcrumb/Breadcrumb.component';
+
+interface AILayoutProps {
+  params: {
+    projectId: string;
+  };
+  request: Request;
+}
+// try to get project details from project id, redirect if the projectId is invalid
+export const Loader = async ({ params }: AILayoutProps) => {
+  const { projectId } = params;
+  // check if we have a correct projectId
+  try {
+    await queryClient.fetchQuery({
+      queryKey: ['projectId', projectId],
+      queryFn: () => getProject(projectId),
+    });
+  } catch (_error) {
+    return redirect(`/pci/projects`);
+  }
+  return null;
+};
 
 function RoutingSynchronisation() {
+  const { setLoading } = useLoadingIndicatorContext();
   const location = useLocation();
   const routing = useRouting();
   const shell = useShell();
@@ -15,6 +51,7 @@ function RoutingSynchronisation() {
   }, []);
   useEffect(() => {
     shell.ux.hidePreloader();
+    setLoading(false);
     routing.onHashChange();
   }, [location]);
 
@@ -24,14 +61,25 @@ function RoutingSynchronisation() {
     defineCurrentPage(`app.pci-ai-tools.${match[0].id}`);
   }, [location]);
 
+  useTrackPageAuto();
+
   return <></>;
+}
+
+export function useAIData() {
+  const { projectId } = useParams();
+  return { projectId };
 }
 
 export default function Layout() {
   return (
     <PageLayout>
-      <RoutingSynchronisation />
-      <Outlet />
+      <Breadcrumb />
+      <UserActivityProvider timeout={USER_INACTIVITY_TIMEOUT}>
+        <RoutingSynchronisation />
+        <Outlet />
+        <Toaster />
+      </UserActivityProvider>
     </PageLayout>
   );
 }
