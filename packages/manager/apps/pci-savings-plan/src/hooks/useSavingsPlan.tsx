@@ -165,21 +165,12 @@ export const useSavingsPlanCreate = (
   onSuccess?: (data: SavingsPlanService) => void,
 ) => {
   const { refetch } = useSavingsPlan();
-  const { trackClick } = useOvhTracking();
   const serviceId = useServiceId();
   const navigate = useNavigate();
   const { projectId } = useParams();
 
   return useMutation({
-    onSuccess: async (res) => {
-      trackClick({
-        location: PageLocation.funnel,
-        buttonType: ButtonType.button,
-        actionType: 'action',
-        actions: [
-          `add_savings_plan::confirm::savings_plan_created_${res.period}_${res.flavor}_${res.model}_${res.size}`,
-        ],
-      });
+    onSuccess: async () => {
       const { data: refetchData } = await refetch();
       if (refetchData?.length) {
         onSuccess?.(refetchData[0]);
