@@ -357,7 +357,7 @@ angular
           $scope.selected.ownLog === 'ACTIVE'
             ? $scope.selected.ownLogDomain.name
             : null,
-          $scope.selected.ssl,
+          $scope.hosting.multipleSSL || $scope.selected.ssl,
           get($scope.selected, 'runtime.id', null),
           $scope.selected.hosting || $stateParams.productId,
         )
