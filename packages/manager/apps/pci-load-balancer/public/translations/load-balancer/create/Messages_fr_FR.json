@@ -43,5 +43,6 @@
   "octavia_load_balancer_create_submit": "Créer un Load Balancer",
   "octavia_load_balancer_create_banner": "Votre Load Balancer est en cours de création. Cela ne prendra que quelques minutes.",
   "octavia_load_balancer_create_private_network": "Il n'existe aucun réseau privé dans la région sélectionnée. Assurez-vous de <link /> avant la création du Load Balancer.",
-  "octavia_load_balancer_create_private_network_label": "créer un réseau privé"
+  "octavia_load_balancer_create_private_network_label": "créer un réseau privé",
+  "octavia_load_balancer_create_3az_guide_description": "Pour en savoir plus sur les spécifications des services 3-AZ et comment les utiliser pour concevoir une infrastructure résiliente, <Link>cliquez ici</Link>"
 }

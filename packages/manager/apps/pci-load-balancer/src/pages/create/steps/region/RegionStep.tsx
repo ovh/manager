@@ -10,6 +10,7 @@ import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   StepComponent,
@@ -34,6 +35,7 @@ import { REGION_AVAILABILITY_LINK } from '@/constants';
 import { StepsEnum, useCreateStore } from '@/pages/create/store';
 import { useTracking } from '@/pages/create/hooks/useTracking';
 import { useGetRegionPrivateNetworks } from '@/api/hook/useNetwork';
+import useGuideLink from '@/hooks/useGuideLink/useGuideLink';
 
 export type TRegionStepProps = {
   regions: TProductAvailabilityRegion[];
@@ -41,8 +43,21 @@ export type TRegionStepProps = {
   projectId: string;
 };
 
+const REGION_3AZ_TYPE = 'region-3-az';
+
 const isRegionWith3AZ = (regions: TProductAvailabilityRegion[]) =>
-  regions.some((region) => region.type === 'region-3-az');
+  regions.some((region) => region.type === REGION_3AZ_TYPE);
+
+const GuideLink = ({
+  children,
+  href,
+}: Readonly<{ href: string; children?: string }>) => (
+  <Links
+    label={children}
+    href={href}
+    target={OdsHTMLAnchorElementTarget._blank}
+  />
+);
 
 export const RegionStep = ({
   regions,
@@ -98,6 +113,8 @@ export const RegionStep = ({
       ),
     [deploymentAvailability],
   );
+
+  const guides = useGuideLink();
 
   const handleSelectRegion = async (region?: TRegion) => {
     store.set.region(null);
@@ -176,6 +193,23 @@ export const RegionStep = ({
           }
         />
       </PCICommonContext.Provider>
+      {store.region?.type === REGION_3AZ_TYPE && (
+        <div className="mt-6">
+          <OsdsText
+            color={ODS_THEME_COLOR_INTENT.text}
+            size={ODS_TEXT_SIZE._400}
+            level={ODS_TEXT_LEVEL.body}
+          >
+            <Trans
+              t={t}
+              i18nKey="octavia_load_balancer_create_3az_guide_description"
+              components={{
+                Link: <GuideLink href={guides['3AZ']} />,
+              }}
+            />
+          </OsdsText>
+        </div>
+      )}
       {isSearchingNetwork && (
         <div className="mt-6">
           <OsdsSpinner inline />
