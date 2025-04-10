@@ -85,7 +85,7 @@ export default function Domain() {
         <Modal
           universe="dns"
           onCloseModal={closeModal}
-          data={filterDns}
+          operation={filterDns}
           changeStatus={changeStatus}
         />
       )}

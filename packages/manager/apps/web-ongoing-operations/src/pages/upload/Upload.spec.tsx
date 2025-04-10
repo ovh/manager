@@ -27,11 +27,6 @@ vi.mock('@/hooks/data/query', () => ({
       isLoading: false,
     };
   }),
-  useNicList: vi.fn(() => {
-    return {
-      data: ['corporationProof'],
-    };
-  }),
 }));
 
 vi.mock('@/hooks/modal/useOperationArguments', () => ({

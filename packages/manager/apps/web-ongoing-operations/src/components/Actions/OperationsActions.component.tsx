@@ -18,7 +18,7 @@ interface OperationActionsProps {
   readonly data: TOngoingOperations;
   readonly operationName: OperationName;
   readonly disabled: boolean;
-  readonly onValidate: (id?: number, type?: string) => void;
+  readonly onValidate: (operationId?: number, type?: OperationName) => void;
   readonly putOperationName: (label: OperationName) => void;
   readonly justify: string;
 }
