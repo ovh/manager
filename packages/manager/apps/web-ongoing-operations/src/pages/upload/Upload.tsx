@@ -21,14 +21,15 @@ import { ParentEnum } from '@/enum/parent.enum';
 import OperationActions from '@/components/Actions/OperationsActions.component';
 import Notification from '@/components/Notification/Notification.component';
 import { useOperationArguments } from '@/hooks/modal/useOperationArguments';
-import { useDomain, useNicList } from '@/hooks/data/query';
+import { useDomain } from '@/hooks/data/query';
 import FileUpload from '@/components/Upload/FileUpload';
+import { TFiles } from '@/types';
 
 export default function Upload() {
   const { t } = useTranslation('dashboard');
   const { id } = useParams<{ id: string }>();
   const [operationName, setOperationName] = useState<OperationName>(null);
-  const [uploadedFiles, setUploadedFiles] = useState<OdsFile[]>([]);
+  const [uploadedFiles, setUploadedFiles] = useState<TFiles[]>([]);
   const defaultStatus = { label: '', message: '' };
   const [status, setStatus] = useState(defaultStatus);
   const paramId = Number(id);
@@ -39,7 +40,6 @@ export default function Upload() {
     data: operationArguments,
     isLoading: argumentLoading,
   } = useOperationArguments(paramId);
-  const { data: nicList } = useNicList(paramId);
 
   const putOperationName = (label: OperationName) => {
     setOperationName(label);
@@ -64,44 +64,58 @@ export default function Upload() {
 
   const saveFileAndUpdateOperation = async (
     operationID: number,
+    key: string,
     file: OdsFile,
   ) => {
     const documentId = await saveFile(file);
     const body = { value: documentId };
-    nicList.forEach((nic) => updateTask(operationID, nic, body));
+    updateTask(operationID, key, body);
   };
 
-  const onValidate = (operationID: number) => {
-    const promiseArray: Promise<void>[] = [];
+  const onValidate = async (operationID: number) => {
     setStatus({
       label: ODS_MESSAGE_COLOR.information,
       message: t('domain_operations_upload_doing'),
     });
-    uploadedFiles.forEach((file) => {
-      promiseArray.push(saveFileAndUpdateOperation(operationID, file));
-    });
-    Promise.all(promiseArray)
-      .then(async () => {
-        setStatus({
-          label: ODS_MESSAGE_COLOR.success,
-          message: t('domain_operations_upload_success'),
-        });
-        executeActionOnOperation(operationID);
-      })
-      .catch(() => {
-        setStatus({
-          label: ODS_MESSAGE_COLOR.warning,
-          message: t('domain_operations_upload_error'),
-        });
+
+    try {
+      // eslint-disable-next-line no-restricted-syntax
+      for (const files of uploadedFiles) {
+        // eslint-disable-next-line no-restricted-syntax
+        for (const file of files.data) {
+          // eslint-disable-next-line no-await-in-loop
+          await saveFileAndUpdateOperation(operationID, files.key, file);
+        }
+      }
+
+      setStatus({
+        label: ODS_MESSAGE_COLOR.success,
+        message: t('domain_operations_upload_success'),
       });
+      executeActionOnOperation(operationID);
+    } catch (error) {
+      setStatus({
+        label: ODS_MESSAGE_COLOR.warning,
+        message: t('domain_operations_upload_error'),
+      });
+    }
   };
 
-  const addFileUpload = (file: OdsFile[]) => {
-    setUploadedFiles((prevFiles) => [...prevFiles, ...file]);
+  const addFileUpload = (key: string, data: OdsFile[]) => {
+    setUploadedFiles((prevFiles) => [...prevFiles, { key, data } as TFiles]);
   };
 
-  const removeFileUpload = (fileName: string) => {
-    setUploadedFiles(uploadedFiles.filter((item) => item.name !== fileName));
+  const removeFileUpload = (key: string, fileName: string) => {
+    setUploadedFiles(
+      uploadedFiles.map((f) => {
+        if (f.key === key) {
+          const res = f;
+          res.data = f.data.filter((file) => file.name !== fileName);
+          return res;
+        }
+        return f;
+      }),
+    );
   };
 
   if (domainLoading || argumentLoading) {
@@ -150,8 +164,12 @@ export default function Upload() {
             <FileUpload
               key={argument.key}
               argument={argument}
-              addFileUpload={addFileUpload}
-              removeFileUpload={removeFileUpload}
+              addFileUpload={(files: OdsFile[]) =>
+                addFileUpload(argument.key, files)
+              }
+              removeFileUpload={(fileName: string) => {
+                removeFileUpload(argument.key, fileName);
+              }}
               maxFile={maxFile}
             />
           ))}
@@ -165,7 +183,7 @@ export default function Upload() {
         <OperationActions
           data={domain}
           operationName={operationName}
-          disabled={uploadedFiles.length !== operationArguments.data.length}
+          disabled={uploadedFiles.length === 0 || operationName === null}
           onValidate={onValidate}
           putOperationName={putOperationName}
           justify="start"

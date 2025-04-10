@@ -47,33 +47,28 @@ export default function Modal({
   }
 
   const onValidate = async (id: number, operationType: OperationName) => {
-    const promiseArray: Promise<void>[] = [];
-
-    if (operationArgumentsUpdated) {
-      Object.entries(operationArgumentsUpdated).forEach(([key, value]) => {
-        promiseArray.push(updateTask(id, key, { value }));
-      });
+    try {
+      if (operationArgumentsUpdated) {
+        // eslint-disable-next-line no-restricted-syntax
+        for (const [key, value] of Object.entries(operationArgumentsUpdated)) {
+          // eslint-disable-next-line no-await-in-loop
+          await updateTask(id, key, { value });
+        }
+      }
+      try {
+        await updateOperationStatus(universe, id, operationType);
+        changeStatus(
+          ODS_MESSAGE_COLOR.success,
+          t(`domain_operations_${operationType}_success`),
+        );
+      } catch (e) {
+        changeStatus(ODS_MESSAGE_COLOR.warning, e.message);
+      } finally {
+        onCloseModal();
+      }
+    } catch (_) {
+      navigate(urls.root);
     }
-
-    Promise.all(promiseArray)
-      .then(() => {
-        updateOperationStatus(universe, id, operationType)
-          .then(() => {
-            changeStatus(
-              ODS_MESSAGE_COLOR.success,
-              t(`domain_operations_${operationType}_success`),
-            );
-          })
-          .catch((e) => {
-            changeStatus(ODS_MESSAGE_COLOR.warning, e.message);
-          })
-          .finally(() => {
-            onCloseModal();
-          });
-      })
-      .catch(() => {
-        navigate(urls.root);
-      });
   };
 
   const onChange = (key: string, value: string) => {
@@ -118,7 +113,7 @@ export default function Modal({
             <OperationActions
               data={data}
               operationName={operationName}
-              disabled={null}
+              disabled={operationName === null}
               putOperationName={putOperationName}
               onValidate={onValidate}
               justify="end"
