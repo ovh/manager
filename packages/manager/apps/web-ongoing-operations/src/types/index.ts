@@ -1,4 +1,5 @@
 import { OdsFile } from '@ovhcloud/ods-components';
+import { ParentEnum } from '@/enum/parent.enum';
 import { TrackingEnum } from '@/enum/tracking.enum';
 
 export interface TOngoingOperations {
@@ -57,4 +58,15 @@ export interface TOperationArguments {
 export interface TFiles {
   key: string;
   data: OdsFile[];
+}
+
+export interface TServiceInfo {
+  contactAdmin: {
+    id: string;
+  };
+}
+
+export interface OngoingOperationDatagridDomainProps {
+  parent: ParentEnum;
+  props: TOngoingOperations;
 }
