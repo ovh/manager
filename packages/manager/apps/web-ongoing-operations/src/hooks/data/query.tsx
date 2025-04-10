@@ -3,8 +3,14 @@ import {
   getmeTaskDomainArgument,
   getmeTaskDomainId,
   getmeTaskDomainArgumentNames,
+  getDomainServiceInfo,
 } from '@/data/api/web-ongoing-operations';
-import { TArgument, TOngoingOperations, TTracking } from '@/types';
+import {
+  TArgument,
+  TOngoingOperations,
+  TServiceInfo,
+  TTracking,
+} from '@/types';
 import { getOperationTrackingStatus } from '@/data/api/tracking';
 
 export const useTracking = (id: number) => {
@@ -32,5 +38,13 @@ export const useNicList = (id: number) => {
   return useQuery<string[]>({
     queryKey: [id],
     queryFn: () => getmeTaskDomainArgumentNames(id),
+  });
+};
+
+export const useGetDomainInformation = (serviceName: string) => {
+  return useQuery<TServiceInfo>({
+    queryKey: [serviceName],
+    queryFn: () => getDomainServiceInfo(serviceName),
+    retry: 0,
   });
 };
