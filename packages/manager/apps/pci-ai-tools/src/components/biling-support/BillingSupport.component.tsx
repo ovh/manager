@@ -5,7 +5,7 @@ import { CardContent, CardHeader } from '@datatr-ux/uxlib';
 import OvhLink from '../links/OvhLink.component';
 
 const BillingSupport = () => {
-  const projectId = useParams();
+  const { projectId } = useParams();
   const { t } = useTranslation('ai-tools/components/billing-support');
   return (
     <>

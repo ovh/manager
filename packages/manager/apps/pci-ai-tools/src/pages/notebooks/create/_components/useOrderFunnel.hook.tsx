@@ -84,7 +84,11 @@ export function useOrderFunnel(
       frameworkWithVersion: { framework: '', version: '' },
       editor: '',
       notebookName: generateName(),
-      privacy: PrivacyEnum.private,
+      privacy: suggestions.suggestions.find(
+        (sug) => sug.region === suggestions.defaultRegion,
+      ).unsecureHttp
+        ? PrivacyEnum.private
+        : PrivacyEnum.public,
       labels: [],
       sshKey: [],
       volumes: [],
