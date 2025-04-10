@@ -1,7 +1,7 @@
 import React from 'react';
 import { describe, expect, vi } from 'vitest';
-import Onboarding from '../Onboarding.page';
-import { render, act, fireEvent } from '@/test.provider';
+import Onboarding from './Onboarding.page';
+import { render, act, fireEvent } from '@/utils/test.provider';
 import onboardingTranslation from '@/public/translations/onboarding/Messages_fr_FR.json';
 
 describe('Onboarding page', () => {

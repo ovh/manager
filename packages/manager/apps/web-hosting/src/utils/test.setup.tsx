@@ -1,6 +1,6 @@
 import { vi } from 'vitest';
 import React from 'react';
-import { attachedDomainDigStatusMock, websitesMocks } from './api/_mock_';
+import { attachedDomainDigStatusMock, websitesMocks } from '../data/_mock_';
 
 const mocksAxios = vi.hoisted(() => ({
   get: vi.fn(),
@@ -93,7 +93,7 @@ vi.mock('react-router-dom', async (importActual) => {
   };
 });
 
-vi.mock('@/api/index', () => ({
+vi.mock('@/data/api/index', () => ({
   getWebHostingAttachedDomain: vi.fn().mockResolvedValue({
     data: websitesMocks,
     cursorNext: null,

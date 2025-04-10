@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { CountryCode } from '@ovh-ux/manager-config';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import * as tracking from '@/tracking.constants';
+import * as tracking from '@/utils/tracking.constants';
 
 export type GuideUrls = {
   [key: string]: string;

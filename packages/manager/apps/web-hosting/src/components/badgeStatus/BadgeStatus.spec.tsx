@@ -1,8 +1,8 @@
 import React from 'react';
 import { describe, it, expect } from 'vitest';
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
-import { render, screen, waitFor } from '@/test.provider';
-import { BadgeStatus } from '../BadgeStatus';
+import { render, screen, waitFor } from '@/utils/test.provider';
+import { BadgeStatus } from '../badgeStatus/BadgeStatus.component';
 
 describe('BadgeStatus component', () => {
   it('should render an href with the url', async () => {
