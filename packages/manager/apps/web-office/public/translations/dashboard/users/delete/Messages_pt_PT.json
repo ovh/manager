@@ -1,10 +1,10 @@
 {
   "dashboard_users_delete_title": "Eliminar conta",
-  "dashboard_users_delete_confirm": "Tem a certeza de que quer eliminar o utilizador <strong> {{t0}}</strong>?",
-  "dashboard_users_delete_info1": "O utilizador será eliminado logo após a confirmação",
+  "dashboard_users_delete_confirm": "Quer mesmo eliminar o utilizador <strong>{{t0}}</strong>?",
+  "dashboard_users_delete_info1": "O utilizador será eliminado logo após a confirmação.",
   "dashboard_users_delete_info2": "A faturação dos nossos produtos Office 365 é baseada no consumo do mês anterior; irá receber a fatura mais recente associada a esta conta.",
   "dashboard_users_delete_cta_cancel": "Anular",
   "dashboard_users_delete_cta_confirm": "Eliminar",
-  "dashboard_users_delete_message_error": "Ocorreu um erro aquando da eliminação do utilizador. {{ error }}",
-  "dashboard_users_delete_message_success": "Eliminação de utilizador em curso"
+  "dashboard_users_delete_message_error": "Ocorreu um erro ao eliminar o utilizador. {{ error }}",
+  "dashboard_users_delete_message_success": "Eliminação de utilizador em curso."
 }

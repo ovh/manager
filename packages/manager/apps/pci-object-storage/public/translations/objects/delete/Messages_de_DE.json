@@ -9,7 +9,7 @@
   "pci_projects_project_storages_containers_container_object_delete_archive_error_delete": "Beim Löschen des Archivs {{ object }} ist ein Fehler aufgetreten: {{ message }}.",
   "pci_projects_project_storages_containers_container_object_delete_object_error_delete": "Beim Löschen des Objekts {{ object }} ist ein Fehler aufgetreten: {{ message }}.",
   "pci_projects_project_storages_containers_container_object_delete_permanent_delete_version_text": "Möchten Sie diese Version des Objekts {{ object }} endgültig löschen? Diese Aktion kann nicht rückgängig gemacht werden.",
-  "pci_projects_project_storages_containers_container_object_delete_permanent_delete_help": "Geben Sie {{confirmKey}} ein, um zu bestätigen",
+  "pci_projects_project_storages_containers_container_object_delete_permanent_delete_help": "Geben Sie zum Bestätigen {{confirmKey}} ein.",
   "pci_projects_project_storages_containers_container_object_delete_object_permanently_title": "Objekt endgültig löschen",
   "pci_projects_project_storages_containers_container_object_delete_permanent_delete_no_version_text": "Möchten Sie das Objekt {{ object }} endgültig löschen? Diese Aktion kann nicht rückgängig gemacht werden."
 }

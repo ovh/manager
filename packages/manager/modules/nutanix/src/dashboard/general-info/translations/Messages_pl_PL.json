@@ -24,7 +24,7 @@
   "nutanix_dashboard_cluster_manage_nodes": "Zarządzanie węzłami",
   "nutanix_dashboard_cluster_number_of_nodes": "Liczba węzłów",
   "nutanix_dashboard_cluster_buy_node": "Dodaj węzły",
-  "nutanix_dashboard_cluster_total_suscribed": "Węzły w pierwotnej subskrypcji",
+  "nutanix_dashboard_cluster_total_suscribed": "węzły w pierwotnej subskrypcji",
   "nutanix_dashboard_cluster_one_node_to_deploy": "1 węzeł do zainstalowania",
   "nutanix_dashboard_cluster_several_nodes_to_deploy": "{{numberOfNodes}} węzłów do zainstalowania",
   "nutanix_dashboard_cluster_one_node_deployed": "1 zainstalowany węzeł",

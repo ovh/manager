@@ -1,18 +1,18 @@
 {
-  "nutanix_node_action_menu_action_aria_label": "Operacje węzłów",
+  "nutanix_node_action_menu_action_aria_label": "Operacje dotyczące węzłów",
   "nutanix_node_action_menu_install": "Instaluj",
-  "nutanix_node_action_menu_reinstall": "Reinstalacja",
+  "nutanix_node_action_menu_reinstall": "Ponownie zainstaluj",
   "nutanix_node_action_menu_uninstall": "Odinstaluj",
   "nutanix_node_action_menu_terminate": "Rezygnacja",
   "nutanix_node_action_menu_power_on": "Włącz",
   "nutanix_node_action_menu_power_off": "Wyłącz",
   "nutanix_node_disable_reason_node_already_installed": "Węzeł został już wdrożony",
-  "nutanix_node_disable_reason_node_is_powered_on": "Należy wyłączyć węzeł przed wykonaniem tej akcji",
-  "nutanix_node_disable_reason_node_not_uninstalled": "Ze względów bezpieczeństwa należy odinstalować węzeł, aby móc go zrezygnować",
+  "nutanix_node_disable_reason_node_is_powered_on": "Przed wykonaniem tej operacji należy wyłączyć węzeł ",
+  "nutanix_node_disable_reason_node_not_uninstalled": "Przed rezygnacją z węzła należy go najpierw odinstalować ze względów bezpieczeństwa.",
   "nutanix_node_disable_reason_node_not_installed": "Najpierw należy wykonać zadanie instalacji",
   "nutanix_node_disable_reason_node_already_uninstalled": "Ten węzeł został już odinstalowany",
   "nutanix_node_disable_reason_node_is_powered_off": "Serwer jest wyłączony",
-  "nutanix_node_disable_reason_cluster_has_active_todo": "Zadanie instalacyjne jest już uruchomione w klastrze",
-  "nutanix_node_disable_reason_server_is_rebooting": "W węźle jest już uruchomione zadanie",
-  "nutanix_node_disable_reason_lower_than_initial_commitment_size": "Klaster Nutanix nie może działać z mniejszą niż {{nb_nodes_minimal}} węzłami"
+  "nutanix_node_disable_reason_cluster_has_active_todo": "Instalacja jest już uruchomiona w klastrze",
+  "nutanix_node_disable_reason_server_is_rebooting": "Zadanie jest już uruchomione w węźle",
+  "nutanix_node_disable_reason_lower_than_initial_commitment_size": "Klaster Nutanix nie może działać z mniejszą liczbą węzłów niż {{nb_nodes_minimal}}."
 }

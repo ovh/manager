@@ -13,7 +13,7 @@
   "changelog_tile_list_item_1": "Używaj publicznej roadmapy wyłącznie do zgłaszania propozycji nowych funkcji (modyfikacje funkcjonalne, dodanie nowych lokalizacji geograficznych, ulepszenia Panelu klienta lub interfejsu API).",
   "changelog_tile_list_item_2": "Jeśli wykryjesz problem lub stwierdzisz usterkę w działaniu produktu, prosimy o skorzystanie z",
   "changelog_tile_list_item_3": "Jeśli uważasz, że zidentyfikowałeś problem związany z bezpieczeństwem, prosimy o skorzystanie z naszego dedykowanego programu",
-  "changelog_tile_list_item_3bis": " ",
+  "changelog_tile_list_item_3bis": "dedykowany",
   "changelog_tile_list_item_4": "Zapoznaj się z istniejącymi „issues” i dokumentacją produktu, aby uniknąć powielania zgłoszeń.",
   "changelog_tile_list_item_5": "Opisz proponowaną funkcję jak najkrócej, najlepiej w formie „user story”, zgodnie z metodyką agile.",
   "changelog_tile_list_item_6": "Przekaż nam również szczegóły dotyczące Twojego przypadku użycia oraz ewentualne rozwiązania tymczasowe, które udało Ci się wdrożyć. Dodaj do zgłoszenia („issue”) szczegółowe informacje, które pomogą naszemu zespołowi szybciej je przetworzyć.",
@@ -33,5 +33,5 @@
   "changelog_private_cloud_product_list": "(VMware, Nutanix, SAP, Zerto Veeam lub HYCU)",
   "changelog_infra_product_list": "(serwery dedykowane, przekrojowe funkcje sieciowe i NAS-HA lub EFS)",
   "changelog_private_cloud_product_list_us": "(VMware, Nutanix, Zerto Veeam lub HYCU)",
-  "changelog_infra_product_list_us": "(serwery dedykowane, międzysektorowe funkcje sieciowe)"
+  "changelog_infra_product_list_us": "(serwery dedykowane i przekrojowe funkcje sieciowe)"
 }

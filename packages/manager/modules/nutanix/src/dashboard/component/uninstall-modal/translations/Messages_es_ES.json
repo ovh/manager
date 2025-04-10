@@ -1,10 +1,10 @@
 {
   "nutanix_dashboard_uninstall_node_title": "Desinstalar el nodo",
-  "nutanix_dashboard_uninstall_node_description": "Va a desinstalar el nodo {{serviceName}}. La desinstalación de un nodo Nutanix puede afectar a su cluster. Verificar los requisitos en el portal de Nutanix para realizar esta acción",
-  "nutanix_dashboard_uninstall_node_uninstall_guidelink": "Ir al portal",
+  "nutanix_dashboard_uninstall_node_description": "Va a desinstalar el nodo {{serviceName}}. La desinstalación de un nodo Nutanix puede afectar a su clúster. Verificar los requisitos en el portal de Nutanix para realizar esta acción",
+  "nutanix_dashboard_uninstall_node_uninstall_guidelink": "Acceder al portal",
   "nutanix_dashboard_uninstall_node_confirm": "Desinstalar",
   "nutanix_dashboard_uninstall_node_cancel": "Cancelar",
   "nutanix_dashboard_uninstall_node_input_label": "Introduzca «{{magicword}}» para confirmar su elección",
-  "nutanix_dashboard_uninstall_node_success_banner": "La solicitud de desinstalación se ha enviado. Esta operación puede tardar hasta 10 minutos",
-  "nutanix_dashboard_uninstall_node_error_banner": "La solicitud de desinstalación no se completó correctamente. Si el error persiste, contacte con el soporte"
+  "nutanix_dashboard_uninstall_node_success_banner": "La solicitud de desinstalación se ha enviado correctamente. Esta operación puede tardar hasta 10 minutos.",
+  "nutanix_dashboard_uninstall_node_error_banner": "No se ha podido completar la solicitud de desinstalación. Por favor, si el error persiste, contacte con soporte"
 }

@@ -25,9 +25,9 @@
   "nutanix_dashboard_cluster_number_of_nodes": "Número de nodos",
   "nutanix_dashboard_cluster_buy_node": "Añadir nodos",
   "nutanix_dashboard_cluster_total_suscribed": "nodos en la suscripción inicial",
-  "nutanix_dashboard_cluster_one_node_to_deploy": "1 nodo a instalar",
-  "nutanix_dashboard_cluster_several_nodes_to_deploy": "{{numberOfNodes}} nodos a instalar",
+  "nutanix_dashboard_cluster_one_node_to_deploy": "1 nodo para instalar",
+  "nutanix_dashboard_cluster_several_nodes_to_deploy": "{{numberOfNodes}} nodos para instalar",
   "nutanix_dashboard_cluster_one_node_deployed": "1 nodo instalado",
   "nutanix_dashboard_cluster_several_nodes_deployed": "{{numberOfNodes}} nodos instalados",
-  "nutanix_dashboard_cluster_add_node_max_node_tooltip": "Ha alcanzado el número máximo de nodos permitidos en un cluster"
+  "nutanix_dashboard_cluster_add_node_max_node_tooltip": "Ha alcanzado el máximo de nodos permitidos en un clúster"
 }

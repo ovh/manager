@@ -8,8 +8,8 @@
   "pci_projects_project_storages_containers_container_object_delete_object_success_message": "Obiekt {{ object }} został usunięty.",
   "pci_projects_project_storages_containers_container_object_delete_archive_error_delete": "Wystąpił błąd podczas usuwania archiwum {{object}}: {{message}}.",
   "pci_projects_project_storages_containers_container_object_delete_object_error_delete": "Wystąpił błąd podczas usuwania obiektu {{object}}: {{message}}.",
-  "pci_projects_project_storages_containers_container_object_delete_permanent_delete_version_text": "Czy chcesz trwale usunąć tę wersję obiektu {{ object }}? Tej operacji nie można cofnąć.",
+  "pci_projects_project_storages_containers_container_object_delete_permanent_delete_version_text": "Czy chcesz trwale usunąć tę wersję obiektu {{object}}? Operacja ta nie może zostać anulowana.",
   "pci_projects_project_storages_containers_container_object_delete_permanent_delete_help": "Wpisz {{confirmKey}}, aby potwierdzić",
   "pci_projects_project_storages_containers_container_object_delete_object_permanently_title": "Usuń trwale obiekt",
-  "pci_projects_project_storages_containers_container_object_delete_permanent_delete_no_version_text": "Czy chcesz trwale usunąć obiekt {{ object }}? Tej operacji nie można cofnąć."
+  "pci_projects_project_storages_containers_container_object_delete_permanent_delete_no_version_text": "Czy chcesz trwale usunąć obiekt {{object}}? Operacja ta nie może zostać anulowana."
 }

@@ -1,7 +1,7 @@
 {
   "dashboard_users_edit_title": "Editar a conta",
-  "dashboard_users_edit_form_helper_login_conditions": "O seu login deve conter entre 3 e 20 caracteres, no máximo. Pode conter números, letras e os seguintes caracteres: - _ ! # $ % &amp; ' ` { }",
-  "dashboard_users_edit_form_helper_login_condition_exception": "Também pode conter pontos, desde que sejam precedidos de um carácter autorizado e que não tenham outros pontos a seguir.",
-  "dashboard_users_edit_message_success": "As alterações dos dados do utilizador estão em curso. Atualize a página dentro de alguns instantes.",
-  "dashboard_users_edit_message_error": "Ocorreu um erro aquando da edição do utilizador. {{ error }}"
+  "dashboard_users_edit_form_helper_login_conditions": "O seu login deve conter entre 3 e 20 caracteres, no máximo. Pode conter algarismos, letras e os seguintes caracteres: - _ ! # $ % &amp; ' ^ ` { }",
+  "dashboard_users_edit_form_helper_login_condition_exception": "Também pode conter pontos, desde que sejam precedidos de um caráter autorizado e não tenham outros pontos a seguir.",
+  "dashboard_users_edit_message_success": "Estão em curso as alterações dos dados do utilizador. Atualize a página dentro de alguns instantes.",
+  "dashboard_users_edit_message_error": "Ocorreu um erro ao editar o utilizador. {{ error }}"
 }

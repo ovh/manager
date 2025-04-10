@@ -1,5 +1,5 @@
 {
-  "kubernetes_add_node_pool_description": "Una volta creato il cluster, è possibile configurare uno o più pool di nodi. Un pool di nodi indica un insieme di nodi di lavoro dello stesso tipo.",
+  "kubernetes_add_node_pool_description": "Una volta creato il cluster, puoi configurare uno o più pool di nodi. Un pool di nodi indica un insieme di nodi di lavoro dello stesso tipo.",
   "kubernetes_add_node_pool_node_count": "Numero di nodi",
   "kubernetes_add_node_pool_node_type": "Tipo di nodi",
   "kube_node_pool_name": "Nome del pool",
@@ -18,10 +18,10 @@
   "kube_node_pool_monthly_billing": "Tipo di fatturazione",
   "kube_node_pool_anti_affinity": "Anti-affinità",
   "kube_node_pool_enabled": "Attivato",
-  "kube_common_node_pool_configure_true": "Configura pool di nodi",
-  "kube_common_node_pool_configure_false": " Crea un cluster senza pool di nodi",
-  "kube_common_node_pool_estimated_cost": "Costo mensile stimato del cluster:",
-  "kube_common_node_pool_estimation_text": "Tale stima non include un'eventuale riduzione legata ai Savings Plans.",
+  "kube_common_node_pool_configure_true": "Configurare i pool di nodi",
+  "kube_common_node_pool_configure_false": " Creare un cluster senza pool di nodi",
+  "kube_common_node_pool_estimated_cost": "Stima del costo mensile del cluster:",
+  "kube_common_node_pool_estimation_text": "Questa stima non include un eventuale sconto legato ai Savings Plan.",
   "kube_common_node_pool_estimation_price": "Pool di nodi: {{estimation}}",
   "kube_common_node_pool_estimation_text_end": "Il costo esatto dipende dall'utilizzo reale delle risorse, che non può essere stimato con precisione prima della creazione di un cluster.",
   "kube_common_node_pool_size_title": "Dimensione del pool di nodi",
@@ -29,7 +29,7 @@
   "kube_common_node_pool_autoscaling": "Autoscaling",
   "kube_common_node_pool_localisation": "Localizzazione",
   "kube_common_node_pool_model": "Modello",
-  "kube_common_node_pool_liste": "Elenco dei pool di nodi",
-  "kube_common_add_node_pool": "Aggiungi il pool di nodi",
-  "kube_common_min_max_nodes": "Min {{minNodes}}, Max {{maxNodes}}"
+  "kube_common_node_pool_liste": "Lista dei pool di nodi",
+  "kube_common_add_node_pool": "Aggiungere il pool di nodi",
+  "kube_common_min_max_nodes": "Min. {{minNodes}}, max. {{maxNodes}}"
 }

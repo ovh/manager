@@ -1,11 +1,11 @@
 {
   "nutanix_dashboard_poweroff_node_title": "Apagar nodo",
-  "nutanix_dashboard_poweroff_node_description": "La extinción de un nodo Nutanix puede afectar a su cluster. Compruebe los requisitos en el portal de Nutanix para realizar esta acción",
-  "nutanix_dashboard_poweroff_node_poweroff_guidelink": "Ir al portal",
+  "nutanix_dashboard_poweroff_node_description": "Apagar un nodo Nutanix puede afectar a su clúster, compruebe los requisitos en el portal de Nutanix para realizar esta acción.",
+  "nutanix_dashboard_poweroff_node_poweroff_guidelink": "Acceder al portal",
   "nutanix_dashboard_poweroff_node_confirmation": "¿Seguro que quiere apagar el nodo {{serviceName}}?",
   "nutanix_dashboard_poweroff_node_confirm": "Apagar",
   "nutanix_dashboard_poweroff_node_cancel": "Cancelar",
   "nutanix_dasboard_poweroff_node_input_label": "Introduzca «{{magicword}}» para confirmar su elección",
-  "nutanix_dashboard_poweroff_node_success_banner": "La solicitud de extinción se ha enviado. Esta operación puede tardar hasta 15 minutos",
-  "nutanix_dashboard_poweroff_node_error_banner": "Su solicitud de extinción no ha sido tomada en cuenta:"
+  "nutanix_dashboard_poweroff_node_success_banner": "La solicitud de apagado se ha enviado correctamente. Esta operación puede tardar hasta 15 minutos.",
+  "nutanix_dashboard_poweroff_node_error_banner": "No se ha enviado su solicitud de apagado:"
 }

@@ -8,7 +8,12 @@ import {
   createTranslations,
   createApiQueryFilesActions,
 } from '../utils/create-structure-helpers.js';
-import { UNIVERSES, SUB_UNIVERSES, LEVEL2 } from './universes.constant.js';
+import {
+  UNIVERSES,
+  SUB_UNIVERSES,
+  LEVEL2,
+  REGIONS,
+} from './universes.constant.js';
 
 const appDirectory = dirname(fileURLToPath(import.meta.url));
 
@@ -84,6 +89,27 @@ export default (plop) => {
         name: 'description',
         message: 'How would you describe the new app?',
         validate: (description) => description.length > 1,
+      },
+      {
+        type: 'checkbox',
+        name: 'regions',
+        message: 'what are the regions of the new app ?',
+        choices: REGIONS.map((element) => ({
+          name: element,
+          value: element,
+        })),
+        validate: (regions) => regions.length > 0,
+        default: REGIONS,
+      },
+      {
+        type: 'checkbox',
+        name: 'universes',
+        message: 'what are the universes of the new app ?',
+        choices: UNIVERSES.map((element) => ({
+          name: element,
+          value: element,
+        })),
+        validate: (UNIVERSES) => UNIVERSES.length > 0,
       },
       {
         type: 'checkbox',

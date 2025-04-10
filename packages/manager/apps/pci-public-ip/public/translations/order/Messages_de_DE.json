@@ -41,6 +41,6 @@
   "pci_additional_ip_create_floating_ip_success": "Eine neue Floating IP wird zugewiesen...",
   "pci_additional_ip_create_floating_ip_error": "Fehler beim Zuweisen einer Floating IP-Adresse: {{ message }}",
   "pci_floating_ip_price_per_hour": "ab ",
-  "pci_floating_ip_resume_hour": "Stundenplan",
+  "pci_floating_ip_resume_hour": "Stündlich",
   "pci_floating_ip_resume_price": "Preis: "
 }

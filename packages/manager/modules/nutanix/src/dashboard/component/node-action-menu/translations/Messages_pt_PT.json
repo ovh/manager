@@ -9,7 +9,7 @@
   "nutanix_node_disable_reason_node_already_installed": "O nó já foi implementado",
   "nutanix_node_disable_reason_node_is_powered_on": "Deve desligar o nó antes de realizar esta ação",
   "nutanix_node_disable_reason_node_not_uninstalled": "Por razões de segurança, tem de desinstalar o nó antes de o poder cancelar",
-  "nutanix_node_disable_reason_node_not_installed": "Uma tarefa de instalação deve ser efetuada em primeiro lugar",
+  "nutanix_node_disable_reason_node_not_installed": "Primeiro deve ser efetuada uma tarefa de instalação ",
   "nutanix_node_disable_reason_node_already_uninstalled": "Este nó já foi desinstalado",
   "nutanix_node_disable_reason_node_is_powered_off": "O servidor está desligado",
   "nutanix_node_disable_reason_cluster_has_active_todo": "Já está a decorrer uma tarefa de instalação no cluster",

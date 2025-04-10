@@ -5,6 +5,6 @@
   "pci_projects_project_gateways_model_selector_size": "Tamaño {{size}}",
   "pci_projects_project_gateways_model_selector_bandwidth": "Hasta {{bandwidth}}",
   "pci_projects_project_gateways_model_selector_catalog_price": "Precio:",
-  "pci_projects_project_gateways_model_selector_bandwidth_unit_size_mbps": "Hasta {{bandwidth}} Mbps",
-  "pci_projects_project_gateways_model_selector_bandwidth_unit_size_gbps": "Hasta {{bandwidth}} Gbps"
+  "pci_projects_project_gateways_model_selector_bandwidth_unit_size_mbps": "Hasta {{bandwidth}} Mbit/s",
+  "pci_projects_project_gateways_model_selector_bandwidth_unit_size_gbps": "Hasta {{bandwidth}} Gbit/s"
 }
