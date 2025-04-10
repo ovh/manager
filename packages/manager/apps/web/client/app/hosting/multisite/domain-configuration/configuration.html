@@ -46,7 +46,11 @@
     label="{{:: 'hosting_multisite_domain_configuration_options_choose' | translate }}"
     size="l"
 >
-    <oui-checkbox name="ssl" model="$ctrl.ssl">
+    <oui-checkbox
+        name="ssl"
+        model="$ctrl.ssl"
+        data-ng-if="!$ctrl.hosting.multipleSSL"
+    >
         <span
             data-translate="hosting_multisite_domain_configuration_ssl"
         ></span>
