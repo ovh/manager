@@ -343,7 +343,7 @@
   "hosting_tab_DOMAINS_multisite_generate_ssl_start": "Régénération du certificat SSL en cours…",
   "hosting_tab_DOMAINS_multisite_generate_ssl_done": "certificat SSL généré avec succès",
   "hosting_tab_DOMAINS_multisite_generate_ssl_error": "Une erreur est survenue lors de la génération du certificat SSL",
-  "hosting_tab_DOMAINS_configuration_attachDomain_title_button": "Ajouter un domaine ou sous domaine",
+  "hosting_tab_DOMAINS_configuration_attachDomain_title_button": "Ajouter un domaine ou sous-domaine",
   "hosting_ssl_regenerate_title_button": "Régénérer le certificat SSL",
   "hosting_ssl_regenerate_info": "En regénérant votre certificat SSL, vos changements concernant l'activation ou la désactivation de SSL sur vos multisites prendront effet à la fin de cette génération.",
   "hosting_ssl_regenerate_info_warning": "Si vous avez ajouté des hébergements multisites il y a moins de deux heures, il est possible qu'ils ne soient pas inclus dans votre certificat SSL.",
