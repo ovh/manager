@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.9.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-dashboard@6.9.1...@ovh-ux/manager-telecom-dashboard@6.9.2) (2025-04-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3834] ([118d0c9](https://github.com/ovh/manager/commit/118d0c947b90441b6f5501ab90474675d6eade05))
+* **i18n:** add missing translations [CDS 3844] ([7880506](https://github.com/ovh/manager/commit/78805069fb9da4df6b494a4aee06a31a2a6f55d4))
+* **i18n:** add missing translations [CDS 3847] ([b32c5d3](https://github.com/ovh/manager/commit/b32c5d32f508c8af5208e7276309fdd783342ce0))
+
+
+
+
+
 ## [6.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-dashboard@6.9.0...@ovh-ux/manager-telecom-dashboard@6.9.1) (2025-04-03)
 
 

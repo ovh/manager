@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.18.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.18.0...@ovh-ux/manager-react-components@2.18.1) (2025-04-10)
+
+### Bug Fixes
+
+- **manager-react-component:** params not used on iceberg v6 hook ([1690d3d](https://github.com/ovh/manager/commit/1690d3dea2ddb3bee695bde088fc7b3efa6f9ea4)), closes [#16399](https://github.com/ovh/manager/issues/16399)
+- **mrc:** click on searchbar icon ([05f4d66](https://github.com/ovh/manager/commit/05f4d661b679dfb41f19899743d434381bcaf606)), closes [#16480](https://github.com/ovh/manager/issues/16480)
+- **mrc:** delete and update-name modal labels ([a2ddfac](https://github.com/ovh/manager/commit/a2ddfac1da80fca6294b3f694a7e14b2cdb7982a)), closes [#ISSUE-16380](https://github.com/ovh/manager/issues/ISSUE-16380)
+
 # [2.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.17.0...@ovh-ux/manager-react-components@2.18.0) (2025-04-03)
 
 ### Bug Fixes
