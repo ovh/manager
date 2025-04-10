@@ -80,7 +80,7 @@ export default function Listing() {
             onClick={() => {
               shell.navigation.navigateTo(
                 'dedicated',
-                `#/server/${item.id}`,
+                `#/cluster/${item.id}`,
                 {},
               );
             }}

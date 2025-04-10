@@ -57,7 +57,7 @@ export function getColumns(
       ),
     },
     {
-      id: 'displayName',
+      id: 'iam.displayName',
       isSearchable: true,
       isFilterable: true,
       enableHiding: true,
@@ -71,7 +71,7 @@ export function getColumns(
             onClick={() => {
               goToServer(server.name);
             }}
-            label={t(server.iam.displayName)}
+            label={t(server?.iam?.displayName)}
           ></OdsLink>
         </DataGridTextCell>
       ),

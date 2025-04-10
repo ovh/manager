@@ -11,6 +11,7 @@ export default /* @ngInject */ ($stateProvider) => {
             'dedicated-server:ecoRangeOrderSectionDedicated',
             'billing:autorenew2016Deployment',
             'dedicated-server:cluster',
+            'dedicated-servers',
           ]),
         isMultiAZAvailable: /* @ngInject */ (
           $q,
