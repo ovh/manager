@@ -86,3 +86,11 @@ vi.mock('@ovhcloud/ods-components/react', async () => {
     OdsRadio: () => <input type="radio" />,
   };
 });
+
+vi.mock('@/hooks/nichandle/useNichandle', () => ({
+  useNichandle: vi.fn(() => {
+    return {
+      nichandle: 'ca0000-ovh',
+    };
+  }),
+}));

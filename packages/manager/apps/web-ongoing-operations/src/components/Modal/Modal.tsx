@@ -110,6 +110,7 @@ export default function Modal({
                   operationId={data.id}
                   onChange={onChange}
                   domainName={data.domain}
+                  operationName={data.function}
                 />
               </div>
             ))}
