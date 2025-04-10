@@ -1,4 +1,4 @@
-import { NotebookSuggestions } from '@/types/orderFunnel';
+import { JobSuggestions, NotebookSuggestions } from '@/types/orderFunnel';
 
 const baseGRA = {
   region: 'GRA',
@@ -38,6 +38,20 @@ export const mockedSuggestionsForNotebook: NotebookSuggestions = {
       editor: {
         id: 'jupyterlab',
       },
+    },
+  ],
+};
+
+export const mockedSuggestionsForJob: JobSuggestions = {
+  defaultRegion: 'GRA',
+  suggestions: [
+    {
+      ...baseGRA,
+      presetImage: 'ovhcom/ai-training-mxnet:1.5.0',
+    },
+    {
+      ...baseBHS,
+      presetImage: 'ovhcom/ai-training-mxnet:1.5.0',
     },
   ],
 };
