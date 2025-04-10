@@ -1,6 +1,6 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 import { taskMeDomain } from '@/constants';
-import { TArgument, TOngoingOperations } from '@/types';
+import { TArgument, TOngoingOperations, TServiceInfo } from '@/types';
 
 /**
  * Get information about domain related tasks : Get this object properties
@@ -26,6 +26,13 @@ export const getmeTaskDomainArgument = async (
   nic: string,
 ): Promise<TArgument> =>
   v6.get(`/me/task/domain/${id}/argument/${nic}`).then((res) => res.data);
+
+export const getDomainServiceInfo = async (
+  serviceName: string,
+): Promise<TServiceInfo> => {
+  const { data } = await v6.get(`/domain/${serviceName}`);
+  return data;
+};
 
 /**
  * Update an argument of a domain task
