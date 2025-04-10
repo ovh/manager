@@ -3,8 +3,8 @@ import pLimit from 'p-limit';
 import {
   getWebHostingAttachedDomainDigStatusQueryKey,
   getWebHostingAttachedDomainDigStatus,
-} from '@/api';
-import { WebSiteAttachedDomainDigStatusType } from '@/api/type';
+} from '@/data/api/AttachedDomainDigStatus';
+import { WebSiteAttachedDomainDigStatusType } from '@/data/type';
 
 const limit = pLimit(15);
 export const useWebHostingAttachedDomaindigStatus = (

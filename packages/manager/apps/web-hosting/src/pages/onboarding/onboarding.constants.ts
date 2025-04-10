@@ -1,4 +1,4 @@
-import { GuideUrls } from '@/hooks/guides/useGuides';
+import { GuideUrls } from '@/hooks/useGuides';
 
 const websiteRoot = 'https://www.ovhcloud.com/';
 const webHostingPath = '/web-hosting/';

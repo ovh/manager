@@ -7,7 +7,7 @@ import {
   ServiceStatus,
   GitStatus,
   DnsStatus,
-} from '@/api/type';
+} from '@/data/type';
 
 export type BadgeStatusProps = {
   itemStatus: string;
