@@ -1,8 +1,9 @@
 export default class vrackOrderService {
   /* @ngInject */
-  constructor($http, coreConfig) {
+  constructor($http, coreConfig, ovhFeatureFlipping) {
     this.$http = $http;
     this.user = coreConfig.getUser();
+    this.ovhFeatureFlipping = ovhFeatureFlipping;
   }
 
   createCartWithOneVrack() {
@@ -47,9 +48,21 @@ export default class vrackOrderService {
   order(cartId, withPaymentMethod = true) {
     return this.$http
       .post(`/order/cart/${cartId}/checkout`, {
-        autoPayWithPreferredPaymentMethod: withPaymentMethod,
+        autoPayWithPreferredPaymentMethod: this.isFeatureAvailable(
+          'vrack:order:autoPayWithPreferredPaymentMethod',
+        )
+          ? withPaymentMethod
+          : false,
         waiveRetractationPeriod: true,
       })
       .then(({ data }) => data);
+  }
+
+  isFeatureAvailable(featureName) {
+    return this.ovhFeatureFlipping
+      .checkFeatureAvailability(featureName)
+      .then((featureAvailability) =>
+        featureAvailability.isFeatureAvailable(featureName),
+      );
   }
 }
