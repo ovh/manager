@@ -19,7 +19,6 @@ export enum Route {
   Dashboard = 'dashboard',
   Onboarding = 'onboarding',
   Metrics = 'metrics',
-  Token = 'token',
 }
 
 export default [
@@ -40,15 +39,6 @@ export default [
       {
         path: 'metrics',
         ...lazyRouteConfig(() => import('@/pages/metrics.page')),
-        handle: {
-          tracking: {
-            pageName: Route.Metrics,
-          },
-        },
-      },
-      {
-        path: 'token',
-        ...lazyRouteConfig(() => import('@/pages/token.page')),
         handle: {
           tracking: {
             pageName: Route.Metrics,

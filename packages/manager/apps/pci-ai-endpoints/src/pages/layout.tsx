@@ -1,10 +1,6 @@
-import { Suspense, useState, useEffect, useContext, useMemo } from 'react';
+import { Suspense, useState, useEffect, useMemo, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  ErrorBanner,
-  BaseLayout,
-  useFeatureAvailability,
-} from '@ovh-ux/manager-react-components';
+import { ErrorBanner, BaseLayout } from '@ovh-ux/manager-react-components';
 import {
   Outlet,
   useRouteError,
@@ -33,6 +29,7 @@ import {
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import clsx from 'clsx';
 import HidePreloader from '@/core/HidePreloader';
 import ShellRoutingSync from '@/core/ShellRoutingSync';
 import usePageTracking from '@/hooks/usePageTracking';
@@ -68,17 +65,14 @@ const getDateParams = () => {
   return { startDate, endDate };
 };
 
-const CREATE_TOKEN = 'pci-ai-endpoints:create-token';
-
 export default function Layout() {
   const { projectId } = useParams<{ projectId: string }>();
-  const { t } = useTranslation(['metric', 'token']);
+  const { t } = useTranslation('metric');
   const { data } = useProject(projectId ?? '', { retry: false });
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
   const ROOT = `/pci/projects/${projectId}/ai/endpoints`;
-  const { data: availability } = useFeatureAvailability([CREATE_TOKEN]);
 
   const dateParams = getDateParams();
   const metricsQuery = useGetMetrics(
@@ -87,54 +81,42 @@ export default function Layout() {
     dateParams.endDate,
   );
 
-  const metricsPath = useResolvedPath('metrics').pathname;
-  const tokenPath = useResolvedPath('token').pathname;
+  const tabsList: TabItemProps[] = [
+    {
+      name: 'metrics',
+      title: t('ai_endpoints_metrics'),
+      to: useResolvedPath('metrics').pathname,
+    },
+  ];
 
-  const tabsList = useMemo(() => {
-    const list: TabItemProps[] = [
-      {
-        name: 'metrics',
-        title: t('metric:ai_endpoints_metrics'),
-        to: metricsPath,
-      },
-    ];
-
-    if (availability?.[CREATE_TOKEN]) {
-      list.push({
-        name: 'token',
-        title: t('token:ai_endpoints_token'),
-        to: tokenPath,
-      });
-    }
-
-    return list;
-  }, [availability, metricsPath, tokenPath, t]);
-
-  const [activePanel, setActivePanel] = useState<string>('');
+  const [panel, setActivePanel] = useState<string>('');
   const [titleHeader, setTitleHeader] = useState<string>('');
 
-  useEffect(() => {
-    if (pathname === ROOT) {
-      return;
-    }
-
+  const { visibleTabs, activeTab } = useMemo(() => {
     const findActiveTab = (tabList: TabItemProps[]) =>
-      tabList.find((tab) => tab.to === pathname);
-    const findActiveParentTab = (tabList: TabItemProps[]) =>
+      tabList.find((tab) => tab.to === pathname) ||
       tabList.find(
         (tab) => tab.to === pathname.slice(0, pathname.lastIndexOf('/')),
       );
 
-    const activeTab = findActiveTab(tabsList) || findActiveParentTab(tabsList);
+    return {
+      visibleTabs: tabsList,
+      activeTab: findActiveTab(tabsList) ?? tabsList[0],
+    };
+  }, [pathname, tabsList]);
+
+  useEffect(() => {
+    if (!activeTab && visibleTabs.length > 0) {
+      navigate(visibleTabs[0].to);
+    }
+  }, [activeTab, visibleTabs, navigate]);
+
+  useEffect(() => {
     if (activeTab) {
       setActivePanel(activeTab.name);
       setTitleHeader(activeTab.title);
-    } else {
-      setActivePanel(tabsList[0].name);
-      setTitleHeader(tabsList[0].title);
-      navigate(tabsList[0].to);
     }
-  }, [pathname, tabsList, navigate, ROOT]);
+  }, [activeTab]);
 
   const headerProps: HeadersProps = {
     title: titleHeader,
@@ -161,20 +143,24 @@ export default function Layout() {
           data && (
             <div className="relative animate-fade-in">
               <BaseLayout
-                header={pathname !== ROOT ? headerProps : undefined}
+                header={pathname !== ROOT && headerProps}
                 tabs={
                   pathname !== ROOT && (
-                    <OsdsTabs panel={activePanel} className="-ml-2">
+                    <OsdsTabs panel={panel} className="-ml-2">
                       <OsdsTabBar slot="top">
-                        {tabsList.map((tab) => (
+                        {visibleTabs.map((tab) => (
                           <NavLink
-                            key={tab.name}
                             to={tab.to}
-                            className="no-underline"
+                            key={tab.name}
+                            className={({ isActive }) =>
+                              clsx('no-underline', {
+                                'selected-tab-class': isActive,
+                              })
+                            }
                           >
                             <OsdsTabBarItem
                               panel={tab.name}
-                              className="m-0 cursor-pointer"
+                              active={tab.name === panel}
                             >
                               {tab.title}
                             </OsdsTabBarItem>
@@ -187,13 +173,7 @@ export default function Layout() {
                 breadcrumb={<Breadcrumb />}
               />
               {pathname !== ROOT && (
-                <div
-                  className={`customTabs:flex self-end customTabs:-mt-[5.31rem] md:-mt-[5.56rem] ${
-                    availability?.[CREATE_TOKEN]
-                      ? 'customTabs:ml-[14.38rem]'
-                      : 'customTabs:ml-[9rem]'
-                  } customTabs:absolute`}
-                >
+                <div className="customTabs:flex self-end customTabs:-mt-[85px] md:-mt-[89px] customTabs:ml-[170px] customTabs:absolute">
                   <OsdsButton
                     inline
                     color={ODS_THEME_COLOR_INTENT.primary}

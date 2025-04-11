@@ -18,26 +18,17 @@ const capitalize = (name: string) => {
 
 function Breadcrumb() {
   const hrefProject = useProjectUrl('public-cloud');
-  const { t } = useTranslation(['metric', 'token']);
-
+  const { t } = useTranslation('metric');
   const { data: project } = useProject();
   const location = useLocation();
 
   const page = useMemo(() => {
     const pathSegments = location.pathname.split('/').filter(Boolean);
-    const section = pathSegments.find((segment) =>
-      ['metrics', 'token'].includes(segment),
-    );
-
-    switch (section) {
-      case 'metrics':
-        return t('metric:ai_endpoints_metrics');
-      case 'token':
-        return t('token:ai_endpoints_token');
-      default:
-        return '';
+    if (pathSegments.includes('metrics')) {
+      return 'ai_endpoints_metrics';
     }
-  }, [location.pathname, t]);
+    return '';
+  }, [location.pathname]);
 
   const breadcrumbItems = [
     {
@@ -50,7 +41,7 @@ function Breadcrumb() {
     },
     {
       href: hrefProject,
-      label: capitalize(page || ''),
+      label: capitalize(t(page) || ''),
     },
   ];
 
