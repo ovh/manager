@@ -9,6 +9,8 @@ import {
 import { ActionCell } from '@/components/actionCell';
 import { DedicatedServerWithIAM } from '@/data/types/server.type';
 import MonitoringStatusChip from '@/components/monitoringStatus';
+import { DSVrack } from './vRackCell';
+import { DSBilling } from './billingCell';
 
 const colorByProductStatus: Record<string, ODS_BADGE_COLOR> = {
   ok: ODS_BADGE_COLOR.success,
@@ -25,6 +27,14 @@ const textByProductStatus: Record<string, string> = {
 type ServerSateChipProps = {
   state: string;
 };
+
+function formatDate(input: string) {
+  const date = new Date(input);
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const year = date.getFullYear();
+  return `${day}-${month}-${year}`;
+}
 
 export function getColumns(
   t: (v: string) => string,
@@ -86,6 +96,131 @@ export function getColumns(
       cell: (server: DedicatedServerWithIAM) => (
         <DataGridTextCell>{t(server.ip)}</DataGridTextCell>
       ),
+    },
+    {
+      id: 'os',
+      isSearchable: true,
+      isFilterable: true,
+      enableHiding: true,
+      type: FilterTypeCategories.String,
+      label: t('server_display_operating_system'),
+      cell: (server: DedicatedServerWithIAM) => (
+        <DataGridTextCell>{t(server.os)}</DataGridTextCell>
+      ),
+    },
+    {
+      id: 'datacentre',
+      isSearchable: true,
+      isFilterable: true,
+      enableHiding: true,
+      type: FilterTypeCategories.String,
+      label: t('server_display_datacentre'),
+      cell: (server: DedicatedServerWithIAM) => (
+        <DataGridTextCell>{t(server.datacenter)}</DataGridTextCell>
+      ),
+    },
+    {
+      id: 'vrack',
+      isSearchable: true,
+      isFilterable: true,
+      enableHiding: true,
+      type: FilterTypeCategories.String,
+      label: t('server_display_vrack'),
+      cell: (server: DedicatedServerWithIAM) => {
+        return <DSVrack server={server.name}></DSVrack>;
+      },
+    },
+    {
+      id: 'renew',
+      isSearchable: false,
+      isFilterable: false,
+      enableHiding: true,
+      type: FilterTypeCategories.String,
+      label: t('server_display_renew'),
+      cell: (server: DedicatedServerWithIAM) => {
+        return (
+          <DSBilling server={server.name}>
+            {(billingInfo) => (
+              <DataGridTextCell>
+                {billingInfo?.billing?.renew?.current?.mode ? (
+                  t(
+                    `server_display_renew-${billingInfo?.billing?.renew?.current?.mode}`,
+                  )
+                ) : (
+                  <>-</>
+                )}
+              </DataGridTextCell>
+            )}
+          </DSBilling>
+        );
+      },
+    },
+    {
+      id: 'expiration',
+      isSearchable: false,
+      isFilterable: false,
+      enableHiding: true,
+      type: FilterTypeCategories.String,
+      label: t('server_display_expiration'),
+      cell: (server: DedicatedServerWithIAM) => {
+        return (
+          <DSBilling server={server.name}>
+            {(billingInfo) => (
+              <DataGridTextCell>
+                {formatDate(billingInfo?.billing?.expirationDate)}
+              </DataGridTextCell>
+            )}
+          </DSBilling>
+        );
+      },
+    },
+    {
+      id: 'engagement',
+      isSearchable: false,
+      isFilterable: false,
+      enableHiding: true,
+      type: FilterTypeCategories.String,
+      label: t('server_display_engagement'),
+      cell: (server: DedicatedServerWithIAM) => {
+        return (
+          <DSBilling server={server.name}>
+            {(billingInfo) =>
+              billingInfo?.billing?.engagement ? (
+                <OdsBadge
+                  label={t('server_display_with-engagement')}
+                  color={ODS_BADGE_COLOR.success}
+                  className="mt-3"
+                />
+              ) : (
+                <OdsBadge
+                  label={t('server_display_without-engagement')}
+                  color={ODS_BADGE_COLOR.warning}
+                  className="mt-3"
+                />
+              )
+            }
+          </DSBilling>
+        );
+      },
+    },
+    {
+      id: 'price',
+      isSearchable: false,
+      isFilterable: false,
+      enableHiding: true,
+      type: FilterTypeCategories.String,
+      label: t('server_display_price'),
+      cell: (server: DedicatedServerWithIAM) => {
+        return (
+          <DSBilling server={server.name}>
+            {(billingInfo) => (
+              <DataGridTextCell>
+                {billingInfo?.billing?.pricing?.price?.text}
+              </DataGridTextCell>
+            )}
+          </DSBilling>
+        );
+      },
     },
     {
       id: 'reverse',

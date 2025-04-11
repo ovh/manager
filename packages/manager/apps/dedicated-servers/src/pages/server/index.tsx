@@ -15,6 +15,7 @@ import { getColumns } from '@/components/dataGridColumns';
 
 export default function ServerListing() {
   const [columns] = useState([]);
+  const [visibleColumns] = useState(['serverId', 'ip', 'renew', 'actions']);
   const { t } = useTranslation('dedicated-servers');
   const { shell } = React.useContext(ShellContext);
   const { sorting, setSorting } = useDataGrid({
@@ -86,6 +87,7 @@ export default function ServerListing() {
             isLoading={isLoading}
             filters={filters}
             search={search}
+            columnVisibility={visibleColumns}
             className="server-data-grid"
             topbar={<OrderMenu />}
           />
