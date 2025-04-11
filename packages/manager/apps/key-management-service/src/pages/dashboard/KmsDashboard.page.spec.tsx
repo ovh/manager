@@ -9,6 +9,7 @@ import { renderTestApp } from '@/utils/tests/renderTestApp';
 import { labels } from '@/utils/tests/init.i18n';
 import { okmsMock } from '@/mocks/kms/okms.mock';
 import { FEATURES } from '@/utils/feature-availability/feature-availability.constants';
+import { SERVICE_KEYS_LABEL } from '@/constants';
 
 describe('KMS dashboard test suite', () => {
   it('should display an error if the API is KO', async () => {
@@ -32,7 +33,7 @@ describe('KMS dashboard test suite', () => {
         expect(
           screen.getAllByText(labels.dashboard.general_informations)[0],
         ).toBeVisible();
-        expect(screen.getByText(labels.dashboard.encrypted_keys)).toBeVisible();
+        expect(screen.getByText(SERVICE_KEYS_LABEL)).toBeVisible();
         expect(
           screen.getByText(labels.dashboard.access_certificates),
         ).toBeVisible();
@@ -62,18 +63,15 @@ describe('KMS dashboard test suite', () => {
     );
   });
 
-  it(`should navigate to the service key page on click on ${labels.dashboard.encrypted_keys} `, async () => {
+  it(`should navigate to the service key page on click on ${SERVICE_KEYS_LABEL} `, async () => {
     await renderTestApp(`/${okmsMock[0].id}`);
 
     await waitFor(
-      () =>
-        expect(screen.getByText(labels.dashboard.encrypted_keys)).toBeEnabled(),
+      () => expect(screen.getByText(SERVICE_KEYS_LABEL)).toBeEnabled(),
       WAIT_FOR_DEFAULT_OPTIONS,
     );
 
-    await waitFor(() =>
-      userEvent.click(screen.getByText(labels.dashboard.encrypted_keys)),
-    );
+    await waitFor(() => userEvent.click(screen.getByText(SERVICE_KEYS_LABEL)));
 
     await waitFor(
       () =>
