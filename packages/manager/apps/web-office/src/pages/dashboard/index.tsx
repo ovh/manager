@@ -10,10 +10,10 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { GUIDES_LIST } from '@/guides.constants';
-import { Breadcrumb } from '@/components/Breadcrumb/Breadcrumb';
+import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
 import { urls } from '@/routes/routes.constants';
-import TabsPanel from '@/components/layout-helpers/Dashboard/TabsPanel';
-import { useOfficeParentTenant } from '@/hooks/useOfficeParentTenant';
+import TabsPanel from '@/components/tabsPanel/TabsPanel.component';
+import { useParentTenant } from '@/data/hooks/parentTenant/useParentTenant';
 
 export type DashboardTabItemProps = {
   name: string;
@@ -27,7 +27,7 @@ export type DashboardLayoutProps = {
 };
 
 export default function DashboardPage() {
-  const { data } = useOfficeParentTenant();
+  const { data } = useParentTenant();
   const serviceName = data?.serviceName;
   const { t } = useTranslation('common');
   const { notifications } = useNotifications();

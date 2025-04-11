@@ -1,13 +1,13 @@
 import React, { useContext, useEffect } from 'react';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { useOfficeLicenses } from '@/hooks';
-import Loading from '@/components/Loading/Loading';
+import { useLicenses } from '@/data/hooks';
+import Loading from '@/components/loading/Loading.component';
 
 export default function Layout() {
   const location = useLocation();
   const { shell } = useContext(ShellContext);
-  const { data, isLoading } = useOfficeLicenses();
+  const { data, isLoading } = useLicenses();
 
   useEffect(() => {
     shell.routing.onHashChange();

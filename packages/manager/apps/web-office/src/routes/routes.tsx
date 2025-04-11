@@ -38,7 +38,9 @@ export const Routes: any = [
           {
             path: '',
             ...lazyRouteConfig(() =>
-              import('@/pages/dashboard/generalInformation/GeneralInformation'),
+              import(
+                '@/pages/dashboard/generalInformation/GeneralInformation.page'
+              ),
             ),
             handle: {
               tracking: {
@@ -51,7 +53,7 @@ export const Routes: any = [
                 path: 'edit-name',
                 ...lazyRouteConfig(() =>
                   import(
-                    '@/pages/dashboard/generalInformation/UpdateDisplayNameModal.component'
+                    '@/pages/dashboard/generalInformation/updateDisplayName/UpdateDisplayName.modal'
                   ),
                 ),
                 handle: {
@@ -65,7 +67,9 @@ export const Routes: any = [
           },
           {
             path: urls.users,
-            ...lazyRouteConfig(() => import('@/pages/dashboard/users/Users')),
+            ...lazyRouteConfig(() =>
+              import('@/pages/dashboard/users/Users.page'),
+            ),
             handle: {
               tracking: {
                 pageName: 'users',
@@ -76,7 +80,9 @@ export const Routes: any = [
               {
                 path: urls.users_delete,
                 ...lazyRouteConfig(() =>
-                  import('@/pages/dashboard/users/ModalDeleteUsers.component'),
+                  import(
+                    '@/pages/dashboard/users/deleteUsers/DeleteUsers.modal'
+                  ),
                 ),
                 handle: {
                   tracking: {
@@ -88,7 +94,7 @@ export const Routes: any = [
               {
                 path: urls.users_edit,
                 ...lazyRouteConfig(() =>
-                  import('@/pages/dashboard/users/ModalEditUsers.component'),
+                  import('@/pages/dashboard/users/editUsers/EditUsers.modal'),
                 ),
                 handle: {
                   tracking: {
@@ -102,7 +108,7 @@ export const Routes: any = [
                 path: urls.change_password,
                 ...lazyRouteConfig(() =>
                   import(
-                    '@/pages/dashboard/users/ModalChangePasswordUsers.component'
+                    '@/pages/dashboard/users/changePasswordUsers/ChangePasswordUsers.modal'
                   ),
                 ),
                 handle: {
@@ -116,7 +122,7 @@ export const Routes: any = [
                 path: urls.order_licenses,
                 ...lazyRouteConfig(() =>
                   import(
-                    '@/pages/dashboard/users/ModalOrderLicenses.component'
+                    '@/pages/dashboard/users/orderLicenses/OrderLicenses.modal'
                   ),
                 ),
                 handle: {
@@ -129,7 +135,7 @@ export const Routes: any = [
               {
                 path: urls.order_users,
                 ...lazyRouteConfig(() =>
-                  import('@/pages/dashboard/users/ModalOrderUsers.component'),
+                  import('@/pages/dashboard/users/orderUsers/OrderUsers.modal'),
                 ),
                 handle: {
                   tracking: {
@@ -143,7 +149,7 @@ export const Routes: any = [
           {
             path: 'consumption',
             ...lazyRouteConfig(() =>
-              import('@/pages/dashboard/consumption/Consumption'),
+              import('@/pages/dashboard/consumption/Consumption.page'),
             ),
             handle: {
               tracking: {
