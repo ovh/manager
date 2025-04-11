@@ -45,6 +45,7 @@
                     <tr>
                         <th data-translate="user_users_login" scope="col"></th>
                         <th data-translate="user_users_group" scope="col"></th>
+                        <th data-translate="user_users_type" scope="col"></th>
                         <th
                             data-translate="user_users_creation_date"
                             scope="col"
@@ -92,6 +93,7 @@
                             </span>
                         </td>
                         <td data-ng-bind="user.group"></td>
+                        <td data-ng-bind="user.type"></td>
                         <td data-ng-bind="user.creation | date"></td>
                         <td data-ng-bind="user.passwordLastUpdate | date"></td>
                         <td>
