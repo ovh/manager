@@ -21,7 +21,7 @@
   "nutanix_dashboard_cluster_redeploy_modal_description": "Prima di eseguire un nuovo deploy del cluster è necessario disinstallare la licenza Nutanix del cluster in Prism Central.",
   "nutanix_dashboard_cluster_redeploy_modal_continue": "Continua",
   "nutanix_dashboard_cluster_redeploy_modal_cancel": "Annulla",
-  "nutanix_dashboard_cluster_manage_nodes": "Gestisci i tuoi nodi",
+  "nutanix_dashboard_cluster_manage_nodes": "Gestire i miei nodi",
   "nutanix_dashboard_cluster_number_of_nodes": "Numero di nodi",
   "nutanix_dashboard_cluster_buy_node": "Aggiungi nodi",
   "nutanix_dashboard_cluster_total_suscribed": "nodi nella sottoscrizione iniziale",
@@ -29,5 +29,5 @@
   "nutanix_dashboard_cluster_several_nodes_to_deploy": "{{numberOfNodes}} nodi da installare",
   "nutanix_dashboard_cluster_one_node_deployed": "1 nodo installato",
   "nutanix_dashboard_cluster_several_nodes_deployed": "{{numberOfNodes}} nodi installati",
-  "nutanix_dashboard_cluster_add_node_max_node_tooltip": "Hai raggiunto il numero massimo di nodi autorizzati in un cluster"
+  "nutanix_dashboard_cluster_add_node_max_node_tooltip": "Hai raggiunto il numero massimo di nodi autorizzati in un cluster."
 }

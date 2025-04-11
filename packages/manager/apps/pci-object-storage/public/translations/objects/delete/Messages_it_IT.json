@@ -9,7 +9,7 @@
   "pci_projects_project_storages_containers_container_object_delete_archive_error_delete": "Si è verificato un errore durante l'eliminazione dell'archivio {{ object }}: {{ message }}.",
   "pci_projects_project_storages_containers_container_object_delete_object_error_delete": "Si è verificato un errore durante l'eliminazione dell'oggetto {{ object }}: {{ message }}.",
   "pci_projects_project_storages_containers_container_object_delete_permanent_delete_version_text": "Vuoi eliminare definitivamente questa versione dell'oggetto {{ object }}? Questa azione non può essere annullata.",
-  "pci_projects_project_storages_containers_container_object_delete_permanent_delete_help": "Digita {{confirmKey}} per confermare",
+  "pci_projects_project_storages_containers_container_object_delete_permanent_delete_help": "Digitare {{confirmKey}} per confermare",
   "pci_projects_project_storages_containers_container_object_delete_object_permanently_title": "Eliminare definitivamente un oggetto",
   "pci_projects_project_storages_containers_container_object_delete_permanent_delete_no_version_text": "Vuoi eliminare definitivamente l'oggetto {{ object }}? Questa azione non può essere annullata."
 }
