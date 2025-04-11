@@ -8,6 +8,7 @@ import ServicePackService from './service-pack/service-pack.service';
 import OptionsService from './dashboard/tiles/options/options.service';
 import ManagedVcdMigrationBanner from './vmware-cloud-director/migration-banner';
 import CustomerSurveyBanner from './customer-survey-banner';
+import PccGuides from './guides';
 
 const moduleName = 'ovhManagerPcc';
 
@@ -23,6 +24,7 @@ angular
     ServicePackService,
     ManagedVcdMigrationBanner,
     CustomerSurveyBanner,
+    PccGuides,
   ])
   .component('ovhManagerPcc', component)
   .run(/* @ngTranslationsInject:json ./translations */);
