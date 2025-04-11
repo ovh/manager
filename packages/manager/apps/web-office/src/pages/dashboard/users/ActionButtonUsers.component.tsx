@@ -4,9 +4,9 @@ import { ActionMenu } from '@ovh-ux/manager-react-components';
 import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { useNavigate } from 'react-router-dom';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
-import { UserStateEnum } from '@/api/api.type';
-import { UserNativeType } from '@/api/users/type';
-import { LicenseType } from '@/api/license/type';
+import { UserStateEnum } from '@/data/api/api.type';
+import { UserNativeType } from '@/data/api/users/type';
+import { LicenseType } from '@/data/api/license/type';
 import { useGenerateUrl } from '@/hooks';
 
 interface ActionButtonUsersProps {
