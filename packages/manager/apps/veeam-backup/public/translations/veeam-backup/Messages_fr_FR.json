@@ -17,5 +17,8 @@
   "status-DISABLING": "En cours de désactivation",
   "status-UPDATING": "En cours de modification",
   "status-DISABLED": "Non souscrit",
-  "status-REMOVED": "Non souscrit"
+  "status-REMOVED": "Non souscrit",
+  "guides_header_veeam_quick_start": "Utiliser l'interface VCD",
+  "guides_header_veeam_usage": "Sauvegarde VCD avec Veeam",
+  "guides_header_veeam_faq": "FAQ VCD"
 }
