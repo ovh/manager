@@ -23,5 +23,11 @@
   "iam_delete_entity_application_heading": "Eliminar uma aplicação",
   "iam_delete_entity_application_name": "Eliminação da aplicação: ",
   "iam_delete_entity_application_success": "Aplicação eliminada",
-  "iam_delete_entity_application_warn": "Atenção: esta ação eliminará a aplicação e revogará todos os certificados associados a esta aplicação."
+  "iam_delete_entity_application_warn": "Atenção: esta ação eliminará a aplicação e revogará todos os certificados associados a esta aplicação.",
+  "iam_delete_entity_apiKey_error": "Devido a um erro, não foi possível eliminar a chave API: {{ message }}",
+  "iam_delete_entity_apiKey_field": "Introduza a palavra \"{{ statement }}\" para confirmar a eliminação da sua chave API",
+  "iam_delete_entity_apiKey_heading": "Eliminar uma chave API",
+  "iam_delete_entity_apiKey_name": "Eliminação da chave API: ",
+  "iam_delete_entity_apiKey_success": "Chave API eliminada",
+  "iam_delete_entity_apiKey_warn": "Atenção: esta ação eliminará a chave API e revogará todos os certificados que lhe estejam associados."
 }

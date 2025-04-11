@@ -1,0 +1,33 @@
+<div>
+    <oui-header data-heading="{{:: 'iam_policies' | translate }}">
+        <!-- <Tabs> -->
+        <oui-header-tabs>
+            <oui-header-tabs-item data-state="iam.policies.myPolicies"
+                ><span data-translate="iam_policies_my_policies"></span
+            ></oui-header-tabs-item>
+            <oui-header-tabs-item data-state="iam.policies.ovhPolicies"
+                ><span data-translate="iam_policies_ovh"></span
+            ></oui-header-tabs-item>
+            <oui-header-tabs-item data-state="iam.policies.resourceGroups"
+                ><span data-translate="iam_policies_resource_groups"></span
+            ></oui-header-tabs-item>
+        </oui-header-tabs>
+        <!-- </Tabs> -->
+        <!-- <Guide> -->
+        <oui-guide-menu
+            data-text="{{:: 'iam_policies_header_guide_text' | translate }}"
+        >
+            <oui-guide-menu-item
+                data-ng-repeat="guide in $ctrl.policiesGuides track by $index"
+                data-href="{{:: guide.link }}"
+                data-on-click="$ctrl.onGuideClick(guide.key)"
+                data-external
+            >
+                <span data-ng-bind=":: guide.title"></span>
+            </oui-guide-menu-item>
+        </oui-guide-menu>
+        <!-- </Guide> --->
+    </oui-header>
+
+    <div data-ui-view></div>
+</div>

@@ -1,0 +1,42 @@
+<div>
+    <oui-datagrid
+        id="{{ $ctrl.datagridId }}"
+        data-rows-loader="$ctrl.getItems($config)"
+        data-page="{{ $ctrl.cursors.index || 1 }}"
+        data-page-size="{{ $ctrl.pageSize }}"
+        data-pagination-mode="arrows"
+    >
+        <!-- <Columns> -->
+        <oui-datagrid-column
+            data-title="'iam_policies_datagrid_column_name' | translate"
+        >
+            <oui-button
+                data-variant="link"
+                data-on-click="$ctrl.editPolicy($row)"
+            >
+                <span data-ng-bind="$row.name"></span>
+            </oui-button>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="'iam_policies_datagrid_column_description' | translate"
+        >
+            <span
+                data-oui-tooltip="{{ ::$row.description }}"
+                class="policy-description-column-label d-inline-block text-truncate"
+                data-ng-bind="$row.description"
+            ></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="'iam_policies_datagrid_column_identities' | translate"
+        >
+            <span data-ng-bind="$row.identities.length"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="'iam_policies_datagrid_column_actions' | translate"
+        >
+            <span data-ng-bind="$row.permissions.allow.length"></span>
+        </oui-datagrid-column>
+        <!-- </Columns> -->
+    </oui-datagrid>
+    <div data-ui-view></div>
+</div>

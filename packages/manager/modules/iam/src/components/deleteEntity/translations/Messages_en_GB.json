@@ -23,5 +23,11 @@
   "iam_delete_entity_application_heading": "Delete an application",
   "iam_delete_entity_application_name": "Delete application: ",
   "iam_delete_entity_application_success": "Application deleted",
-  "iam_delete_entity_application_warn": "Warning: This action will delete the application and revoke all associated certificates."
+  "iam_delete_entity_application_warn": "Warning: This action will delete the application and revoke all associated certificates.",
+  "iam_delete_entity_apiKey_error": "An error has occurred deleting the API key: {{ message }}",
+  "iam_delete_entity_apiKey_field": "Please enter the word “{{ statement }}” to confirm the deletion of your API key",
+  "iam_delete_entity_apiKey_heading": "Delete an API key",
+  "iam_delete_entity_apiKey_name": "Deleting API key: ",
+  "iam_delete_entity_apiKey_success": "API key deleted",
+  "iam_delete_entity_apiKey_warn": "Warning: This action will delete the API key and revoke all the certificates linked to it."
 }

@@ -7,5 +7,10 @@
   "iam_identities_field_users_button_add": "Add",
   "iam_identities_error_load_users": "An error occurred while retrieving your users: {{ message }}",
   "iam_identities_add_identity_error": "The format of the added ID is not valid: {{ message }}",
-  "iam_identities_add_identity_success": "ID is added to your policy"
+  "iam_identities_add_identity_success": "ID is added to your policy",
+  "iam_identities": "User IDs",
+  "iam_identities_header_guide_text": "Guides",
+  "iam_identities_users": "Local users",
+  "iam_identities_user_groups": "User groups",
+  "iam_identities_sso": "SSO"
 }

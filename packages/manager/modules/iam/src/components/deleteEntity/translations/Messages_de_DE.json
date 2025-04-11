@@ -23,5 +23,11 @@
   "iam_delete_entity_application_heading": "Anwendung löschen",
   "iam_delete_entity_application_name": "Löschung der Anwendung: ",
   "iam_delete_entity_application_success": "Anwendung gelöscht",
-  "iam_delete_entity_application_warn": "Warnung: Durch diese Aktion wird die Anwendung gelöscht und alle dieser Anwendung zugeordneten Zertifikate werden widerrufen."
+  "iam_delete_entity_application_warn": "Warnung: Durch diese Aktion wird die Anwendung gelöscht und alle dieser Anwendung zugeordneten Zertifikate werden widerrufen.",
+  "iam_delete_entity_apiKey_error": "Der API-Schlüssel konnte aufgrund eines Fehlers nicht gelöscht werden: {{ message }}",
+  "iam_delete_entity_apiKey_field": "Bitte geben Sie das Wort „{{ statement }}“ ein, um das Löschen Ihres API-Schlüssels zu bestätigen.",
+  "iam_delete_entity_apiKey_heading": "API-Schlüssel löschen",
+  "iam_delete_entity_apiKey_name": "Löschen des API-Schlüssels: ",
+  "iam_delete_entity_apiKey_success": "API-Schlüssel gelöscht",
+  "iam_delete_entity_apiKey_warn": "Warnung: Durch diese Aktion wird der API-Schlüssel gelöscht und alle diesem API-Schlüssel zugeordneten Zertifikate werden widerrufen."
 }
