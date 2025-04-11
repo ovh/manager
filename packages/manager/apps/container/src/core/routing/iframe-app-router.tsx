@@ -15,14 +15,16 @@ function makeRoute({
   id,
   appConfig,
   iframeRef,
+  hash,
 }: {
   id: string;
   appConfig: Application;
   iframeRef: RefObject<HTMLIFrameElement>;
+  hash?: string;
 }) {
-  const { hash, path } = appConfig.container;
+  const { path } = appConfig.container;
   const normalizedHash = (hash || '').replace(/^\//, '');
-  const target = [path || id, normalizedHash, '*'].filter((i) => i).join('/');
+  const target = [path || id, normalizedHash].filter((i) => i).join('/');
   return (
     <Route
       key={id}
@@ -65,43 +67,61 @@ export function IFrameAppRouter({
   configuration,
   iframeRef,
 }: IFrameAppRouterProps): JSX.Element {
-  /**
-   * This is a temporary condition to ensure that the new pci-load-balancer µapp configuration
-   * overrides the angularjs octavia-load-balancer configuration in case pci-load-balancer config
-   * is active.
-   *
-   * This is temporary and needed during the rewriting of octavia-load-balancer from angularjs to react.
-   *
-   * @TODO remove this condition when pci-load-balancer µapp is prodded and validated.
-   */
-  if ('pci-load-balancer' in configuration) {
-    delete configuration['octavia-load-balancer'];
-  }
+  const mockedConfiguration = useMemo(() => {
+    const newConfiguration = { ...configuration };
+    /**
+     * This is a temporary condition to ensure that the new pci-load-balancer µapp configuration
+     * overrides the angularjs octavia-load-balancer configuration in case pci-load-balancer config
+     * is active.
+     *
+     * This is temporary and needed during the rewriting of octavia-load-balancer from angularjs to react.
+     *
+     * @TODO remove this condition when pci-load-balancer µapp is prodded and validated.
+     */
+    if ('pci-load-balancer' in newConfiguration) {
+      delete newConfiguration['octavia-load-balancer'];
+    }
 
-  // We order applications configurations by hash size, as a configuration with a hash means we want a route to be
-  // redirected to this application. As a result we need to have them first, so they take priority over routes from
-  // which we want to be redirected
-  const sortedConfiguration = useMemo(
-    () =>
-      Object.entries(configuration).sort(
-        ([, appAConfig], [, appBConfig]) =>
-          (appBConfig.container.hash || '').length -
-          (appAConfig.container.hash || '').length,
-      ),
-    [configuration],
-  );
+    return newConfiguration;
+  }, [configuration]);
+
   const defaultRoute = useMemo(
-    () => makeDefaultRoute({ configuration: sortedConfiguration }),
-    [sortedConfiguration],
+    () =>
+      makeDefaultRoute({ configuration: Object.entries(mockedConfiguration) }),
+    [mockedConfiguration],
   );
+
   const routes = useMemo(
     () =>
-      sortedConfiguration.map(([id, appConfig]) =>
-        makeRoute({ appConfig, iframeRef, id }),
-      ),
-    [sortedConfiguration],
+      Object.entries(mockedConfiguration)
+        .flatMap(([id, appConfig]) =>
+          appConfig.container.hashes
+            ? appConfig.container.hashes.map((hash) => ({
+                id,
+                appConfig,
+                hash,
+              }))
+            : {
+                id,
+                appConfig,
+                hash: appConfig.container.hash
+                  ? `${appConfig.container.hash}/*`
+                  : '*',
+              },
+        )
+        // We order applications configurations by hash size, as a configuration with a hash means we want a route to be
+        // redirected to this application. As a result we need to have them first, so they take priority over routes from
+        // which we want to be redirected
+        .sort(
+          ({ hash: hashA }, { hash: hashB }) =>
+            (hashB || '').length - (hashA || '').length,
+        )
+        .map((config) => makeRoute({ ...config, iframeRef })),
+    [mockedConfiguration],
   );
-  const redirections = useMemo(() => Redirections(configuration), [configuration]);
+  const redirections = useMemo(() => Redirections(configuration), [
+    configuration,
+  ]);
 
   return (
     <Routes>

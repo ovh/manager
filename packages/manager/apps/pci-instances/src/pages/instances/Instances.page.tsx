@@ -28,9 +28,9 @@ import {
 import { FC, useCallback, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
+  Link,
   Navigate,
   Outlet,
-  useHref,
   useLocation,
   useRouteLoaderData,
 } from 'react-router-dom';
@@ -50,7 +50,6 @@ const Instances: FC = () => {
   const { t } = useTranslation(['list', 'common']);
 
   const project = useRouteLoaderData('root') as TProject;
-  const createInstanceHref = useHref('./new');
   const [sorting, setSorting] = useState(initialSorting);
   const [searchField, setSearchField] = useState('');
   const { filters, addFilter, removeFilter } = useColumnFilters();
@@ -138,13 +137,7 @@ const Instances: FC = () => {
           <Notifications />
           <OsdsDivider />
           <div className={'sm:flex items-center justify-between mt-4'}>
-            <OsdsButton
-              size={ODS_BUTTON_SIZE.sm}
-              variant={ODS_BUTTON_VARIANT.stroked}
-              color={ODS_THEME_COLOR_INTENT.primary}
-              inline
-              href={createInstanceHref}
-            >
+            <Link to={'./new'}>
               <span slot="start" className="flex items-center">
                 <OsdsIcon
                   name={ODS_ICON_NAME.ADD}
@@ -154,7 +147,7 @@ const Instances: FC = () => {
                 />
                 <span>{t('common:pci_instances_common_create_instance')}</span>
               </span>
-            </OsdsButton>
+            </Link>
             <div className="justify-between flex gap-5">
               <div>
                 <OsdsButton
