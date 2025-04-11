@@ -34,7 +34,7 @@ export default function InstallationInitialStep() {
     isError: isClustersError,
   } = useClusters({
     serviceName,
-    datacenterId: String(datacenterId),
+    datacenterId: datacenterId?.toString(),
   });
 
   const isError = React.useMemo(
@@ -95,7 +95,7 @@ export default function InstallationInitialStep() {
         handleChange={({ detail }) => {
           setValues((prev) => ({
             ...prev,
-            datacenterId: Number(detail.value),
+            datacenterId: detail.value ? Number(detail.value) : null,
             datacenterName:
               datacentres?.find((vdc) => `${vdc.datacenterId}` === detail.value)
                 ?.name || '',
@@ -117,15 +117,15 @@ export default function InstallationInitialStep() {
         }
         isLoading={!!datacenterId && isLoadingClusters}
         defaultValue={clusterName}
-        handleChange={({ detail }) =>
+        handleChange={({ detail }) => {
           setValues((prev) => ({
             ...prev,
             clusterName: detail.value,
             clusterId:
-              clusters?.find((cluster) => cluster.name === detail.value)
+              clusters?.find((cluster) => cluster?.name === detail.value)
                 ?.clusterId || null,
-          }))
-        }
+          }));
+        }}
       />
     </InstallationFormLayout>
   );
