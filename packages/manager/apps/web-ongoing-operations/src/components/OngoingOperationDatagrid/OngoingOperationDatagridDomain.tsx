@@ -17,7 +17,10 @@ export default function OngoingOperationDatagridDomain({
         label={value}
         target="_blank"
         data-testid={value}
-        isDisabled={!url}
+        isDisabled={
+          !url ||
+          ['DomainCreate', 'DomainIncomingTransfer'].includes(props.function)
+        }
       />
     </DataGridTextCell>
   );
