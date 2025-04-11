@@ -56,5 +56,7 @@
   "server_configuration_installation_inputs_item_keyValue_remove_tooltip": "Clicca qui per eliminare questa coppia chiave-valore",
   "dedicated_server_dashboard_region_unknown": "Informazione non disponibile",
   "dedicated_server_dashboard_zone_unknown": "Informazione non disponibile",
-  "server_configuration_installation_inputs_bad_hostname": "L'hostname deve essere composto esclusivamente da cifre, lettere, trattini e punti nel formato definito nella RFC 1035"
+  "server_configuration_installation_inputs_bad_hostname": "L'hostname deve essere composto esclusivamente da cifre, lettere, trattini e punti nel formato definito nella RFC 1035",
+  "dedicated_server_dashboard_installation_install_button": "Installare il mio server",
+  "dedicated_server_dashboard_installation_reinstall_button": "Reinstallare il mio server"
 }
