@@ -69,7 +69,7 @@ const SourceDetails = ({ order, onSectionClicked }: ForkSummaryProps) => {
           data-testid="source-section-button"
           type="button"
           onClick={() => onSectionClicked('source')}
-          className="p-0 bg-transparent hover:bg-transparent font-bold text-primary underline-offset-4 hover:underline"
+          className="p-0 bg-transparent h-auto  hover:bg-transparent font-bold text-primary underline-offset-4 hover:underline"
         >
           {t('summaryFieldSourceLabel')}
         </Button>
@@ -168,7 +168,7 @@ const PlanDetails = ({ order, onSectionClicked }: ForkSummaryProps) => {
         data-testid="plan-section-button"
         type="button"
         onClick={() => onSectionClicked('plan')}
-        className="p-0 bg-transparent hover:bg-transparent font-bold text-primary underline-offset-4 hover:underline"
+        className="p-0 bg-transparent h-auto  hover:bg-transparent font-bold text-primary underline-offset-4 hover:underline"
       >
         {t('summaryFieldPlanLabel')}
       </Button>
@@ -189,7 +189,7 @@ const RegionDetails = ({ order, onSectionClicked }: ForkSummaryProps) => {
         data-testid="region-section-button"
         type="button"
         onClick={() => onSectionClicked('region')}
-        className="p-0 bg-transparent hover:bg-transparent font-bold text-primary underline-offset-4 hover:underline"
+        className="p-0 bg-transparent h-auto  hover:bg-transparent font-bold text-primary underline-offset-4 hover:underline"
       >
         {t('summaryFieldRegionLabel')}
       </Button>
@@ -214,7 +214,7 @@ const FlavorDetails = ({ order, onSectionClicked }: ForkSummaryProps) => {
           data-testid="flavor-section-button"
           type="button"
           onClick={() => onSectionClicked('flavor')}
-          className="p-0 bg-transparent hover:bg-transparent font-bold text-primary underline-offset-4 hover:underline"
+          className="p-0 bg-transparent h-auto  hover:bg-transparent font-bold text-primary underline-offset-4 hover:underline"
         >
           {t('summaryFieldFlavorLabel')}
         </Button>
@@ -263,7 +263,7 @@ const ClusterDetails = ({ order, onSectionClicked }: ForkSummaryProps) => {
         data-testid="cluster-section-button"
         type="button"
         onClick={() => onSectionClicked('cluster')}
-        className="p-0 bg-transparent hover:bg-transparent font-bold text-primary underline-offset-4 hover:underline"
+        className="p-0 bg-transparent h-auto  hover:bg-transparent font-bold text-primary underline-offset-4 hover:underline"
       >
         {t('summaryFieldClusterLabel')}
       </Button>
@@ -304,7 +304,7 @@ const NetworkrDetails = ({ order, onSectionClicked }: ForkSummaryProps) => {
           data-testid="network-section-button"
           type="button"
           onClick={() => onSectionClicked('options')}
-          className="p-0 bg-transparent hover:bg-transparent font-bold text-primary underline-offset-4 hover:underline"
+          className="p-0 bg-transparent h-auto  hover:bg-transparent font-bold text-primary underline-offset-4 hover:underline"
         >
           {t('summaryFieldNetworkLabel')}
         </Button>
@@ -347,7 +347,7 @@ const IpsDetails = ({ order, onSectionClicked }: ForkSummaryProps) => {
         data-testid="ips-section-button"
         type="button"
         onClick={() => onSectionClicked('options')}
-        className="p-0 bg-transparent hover:bg-transparent font-bold text-primary underline-offset-4 hover:underline"
+        className="p-0 bg-transparent h-auto  hover:bg-transparent font-bold text-primary underline-offset-4 hover:underline"
       >
         {t('summaryFieldIpsLabel')}
       </Button>

@@ -70,7 +70,7 @@ const EngineDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
       <div className="flex items-center gap-2">
         <Button
           data-testid="engine-section-button"
-          className="p-0 bg-transparent hover:bg-transparent font-bold text-primary underline-offset-4 hover:underline"
+          className="h-auto p-0 bg-transparent hover:bg-transparent font-bold text-primary underline-offset-4 hover:underline"
           type="button"
           onClick={() => onSectionClicked('engine')}
         >
@@ -108,7 +108,7 @@ const PlanDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
     <div className="flex items-center gap-2">
       <Button
         data-testid="plan-section-button"
-        className="p-0 bg-transparent hover:bg-transparent font-bold text-primary underline-offset-4 hover:underline"
+        className="h-auto p-0 bg-transparent hover:bg-transparent font-bold text-primary underline-offset-4 hover:underline"
         type="button"
         onClick={() => onSectionClicked('plan')}
       >
@@ -129,7 +129,7 @@ const RegionDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
     <div className="flex items-center gap-2">
       <Button
         data-testid="region-section-button"
-        className="p-0 bg-transparent hover:bg-transparent font-bold text-primary underline-offset-4 hover:underline"
+        className="h-auto p-0 bg-transparent hover:bg-transparent font-bold text-primary underline-offset-4 hover:underline"
         type="button"
         onClick={() => onSectionClicked('region')}
       >
@@ -154,7 +154,7 @@ const FlavorDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
       <div className="flex items-center gap-2">
         <Button
           data-testid="flavor-section-button"
-          className="p-0 bg-transparent hover:bg-transparent font-bold text-primary underline-offset-4 hover:underline"
+          className="h-auto p-0 bg-transparent hover:bg-transparent font-bold text-primary underline-offset-4 hover:underline"
           type="button"
           onClick={() => onSectionClicked('flavor')}
         >
@@ -203,7 +203,7 @@ const ClusterDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
     <div className="flex items-start flex-col gap-2">
       <Button
         data-testid="cluster-section-button"
-        className="p-0 bg-transparent hover:bg-transparent font-bold text-primary underline-offset-4 hover:underline"
+        className="h-auto p-0 bg-transparent hover:bg-transparent font-bold text-primary underline-offset-4 hover:underline"
         type="button"
         onClick={() => onSectionClicked('cluster')}
       >
@@ -244,7 +244,7 @@ const NetworkDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
       <div className="divide-x-[0.5rem] divide-transparent">
         <Button
           data-testid="network-section-button"
-          className="p-0 bg-transparent hover:bg-transparent font-bold text-primary underline-offset-4 hover:underline"
+          className="h-auto p-0 bg-transparent hover:bg-transparent font-bold text-primary underline-offset-4 hover:underline"
           type="button"
           onClick={() => onSectionClicked('options')}
         >
@@ -287,7 +287,7 @@ const IpsDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
     <div className="flex items-center gap-2">
       <Button
         data-testid="ips-section-button"
-        className="p-0 bg-transparent hover:bg-transparent font-bold text-primary underline-offset-4 hover:underline"
+        className="h-auto p-0 bg-transparent hover:bg-transparent font-bold text-primary underline-offset-4 hover:underline"
         type="button"
         onClick={() => onSectionClicked('options')}
       >
