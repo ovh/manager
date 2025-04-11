@@ -7,6 +7,8 @@ export const CONFIG_NAME = {
 export const GUIDELINK = {
   FR:
     'https://help.ovhcloud.com/csm/fr-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0044867',
+  CA:
+    'https://help.ovhcloud.com/csm/en-ca-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0044846',
   GB:
     'https://help.ovhcloud.com/csm/en-gb-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0044849',
   PT:
@@ -42,7 +44,7 @@ export const GUIDELINK = {
   SG:
     'https://help.ovhcloud.com/csm/en-sg-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0044855',
   US:
-    'https://support.us.ovhcloud.com/hc/en-us/articles/7437687367315-Using-the-Bring-Your-Own-IP-BYOIP-feature',
+    'https://support.us.ovhcloud.com/hc/en-us/articles/7437687367315-How-to-use-the-Bring-Your-Own-IP-BYOIP-feature',
   DEFAULT:
     'https://help.ovhcloud.com/csm/en-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0044856',
 };
