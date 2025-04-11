@@ -38,7 +38,7 @@ export const ActionMenuItem: FC<TActionsMenuLinkProps> = ({ item }) => {
 
   return (
     <DropdownMenuItem
-      className="cursor-pointer text-base text-blue-700 font-semibold focus:text-blue-700"
+      className="cursor-pointer text-base text-blue-700 font-semibold focus:text-blue-700 focus:bg-[--ods-color-primary-100]"
       asChild
     >
       <a href={href} data-testid="actions-menu-item">
@@ -50,20 +50,20 @@ export const ActionMenuItem: FC<TActionsMenuLinkProps> = ({ item }) => {
 
 export const ActionsMenu = ({ items }: TActionsMenuProps) => {
   return (
-    <DropdownMenu>
+    <DropdownMenu modal={false}>
       <DropdownMenuTrigger asChild disabled={!items.size}>
         <Button
           data-testid="actions-menu-button"
-          className="size-9 p-0  text-primary border-primary border-2 bg-background font-semibold hover:bg-primary-100 rounded-full"
+          className="size-9 p-0 text-primary border-primary border bg-background font-semibold hover:bg-primary-100 rounded-8 data-[state=open]:bg-[--ods-color-primary-100] focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
         >
           <OsdsIcon
-            name={ODS_ICON_NAME.ELLIPSIS}
+            name={ODS_ICON_NAME.ELLIPSIS_VERTICAL}
             color={ODS_THEME_COLOR_INTENT.primary}
             size={ODS_ICON_SIZE.xxs}
           />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="center" side="left">
+      <DropdownMenuContent align="end" side="top">
         {Array.from(items.entries()).map(([group, item], index, arr) => (
           <div key={group}>
             {item.map((elt) => (

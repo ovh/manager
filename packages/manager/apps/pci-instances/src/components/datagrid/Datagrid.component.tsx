@@ -281,7 +281,9 @@ const DatagridComponent = ({
             sorting={sorting}
             onSortChange={onSortChange}
             manualSorting
-            className={'!overflow-x-visible'}
+            className={
+              '[&_osds-table_table_thead_tr_th]:bg-[--ods-color-default-050]'
+            }
           />
         </div>
       )}
