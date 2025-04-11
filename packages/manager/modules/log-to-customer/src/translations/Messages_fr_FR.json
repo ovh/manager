@@ -33,5 +33,6 @@
   "list_button_unsubscribe": "Se désabonner",
   "streams_45_days": "45 jours",
   "streams_disk_full": "Espace disque insuffisant",
-  "error_message": "Une erreur est survenue : {{message}}"
+  "error_message": "Une erreur est survenue : {{message}}",
+  "logs_select_kind": "Sélectionnez un type de log"
 }
