@@ -5,23 +5,6 @@ export const assistanceTree: Node = {
   translation: 'sidebar_assistance_title',
   children: [
     {
-      id: 'roadmap_changelog',
-      translation: 'sidebar_roadmap_changelog',
-      routing: {
-        application: 'hub',
-        hash: '#/roadmap-changelog'
-      },
-      hasService: false,
-    },
-    {
-      id: 'marketplace',
-      translation: 'sidebar_marketplace',
-      url: 'marketplace',
-      hasService: false,
-      isExternal: true,
-      region: ['EU'],
-    },
-    {
       id: 'help',
       translation: 'sidebar_assistance_help_center',
       url: 'help',
@@ -34,6 +17,22 @@ export const assistanceTree: Node = {
       isExternal: true,
       url: 'support',
       hasService: false,
+    },
+    {
+      id: 'roadmap_changelog',
+      translation: 'sidebar_roadmap_changelog',
+      routing: {
+        application: 'hub',
+        hash: '#/roadmap-changelog'
+      },
+    },
+    {
+      id: 'marketplace',
+      translation: 'sidebar_marketplace',
+      url: 'marketplace',
+      hasService: false,
+      isExternal: true,
+      region: ['EU'],
     },
     {
       id: 'assistance_status',
