@@ -7,5 +7,16 @@
   "iam_applications_datagrid_column_application_status_active": "Aktywny",
   "iam_applications_datagrid_column_application_status_inactive": "Wyłączona",
   "iam_applications_datagrid_action_delete_application": "Usuń",
-  "iam_applications_description": "Wyświetlaj aplikacje i zarządzaj nimi. Więcej informacji na temat aplikacji znajdziesz w dokumentacji."
+  "iam_applications_description": "Wyświetlaj aplikacje i zarządzaj nimi. Więcej informacji na temat aplikacji znajdziesz w dokumentacji.",
+  "iam_api_keys_create_api_key": "Utwórz klucz API",
+  "iam_api_keys_datagrid_column_application_id": "ID",
+  "iam_api_keys_datagrid_column_application_name": "Nazwa",
+  "iam_api_keys_datagrid_column_application_description": "Opis",
+  "iam_api_keys_datagrid_column_application_status": "Status",
+  "iam_api_keys_datagrid_column_application_key": "Klucz",
+  "iam_api_keys_datagrid_column_application_status_active": "Aktywny",
+  "iam_api_keys_datagrid_column_application_status_inactive": "Wyłączona",
+  "iam_api_keys_datagrid_action_delete_application": "Usuń",
+  "iam_api_keys": "Klucze API",
+  "iam_api_keys_description": "Wyświetlaj klucze API i zarządzaj nimi. Więcej informacji na temat kluczy API znajdziesz w dokumentacji."
 }
