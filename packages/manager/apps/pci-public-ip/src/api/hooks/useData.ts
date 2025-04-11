@@ -22,7 +22,9 @@ enum IPType {
 
 export const useData = (projectId: string, regionName: string) => {
   const { countries } = useCountries(projectId, regionName);
-  const { data: instances } = useInstances(projectId);
+  const { data: instances, isFetching: isInstanceFetching } = useInstances(
+    projectId,
+  );
   const { floatingRegions: regions } = useFloatingRegions(projectId);
 
   const [dataState, setDataState] = useState<TDataState>({
@@ -60,5 +62,9 @@ export const useData = (projectId: string, regionName: string) => {
     [dataState.instances],
   );
 
-  return { state: dataState, getInstanceById };
+  return {
+    state: dataState,
+    getInstanceById,
+    isInstanceFetching,
+  };
 };
