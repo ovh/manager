@@ -44,12 +44,10 @@ describe('Docker Image Select component', () => {
       />,
     );
     await waitFor(() => {
-      expect(screen.getByTestId('custom-image-trigger')).toBeInTheDocument();
-      expect(screen.getByTestId('partner-image-trigger')).toBeInTheDocument();
-      expect(screen.getByTestId('docker-custom-image')).toBeInTheDocument();
-      expect(
-        screen.queryByTestId('partner-image-select'),
-      ).not.toBeInTheDocument();
+      expect(screen.getByTestId('custom-image-trigger')).toBeTruthy();
+      expect(screen.getByTestId('partner-image-trigger')).toBeTruthy();
+      expect(screen.getByTestId('docker-custom-image')).toBeTruthy();
+      expect(screen.queryByTestId('partner-image-select')).toBeNull();
     });
   });
 
@@ -69,10 +67,8 @@ describe('Docker Image Select component', () => {
     );
     await userEvent.click(screen.getByTestId('partner-image-trigger'));
     await waitFor(() => {
-      expect(
-        screen.queryByTestId('docker-custom-image'),
-      ).not.toBeInTheDocument();
-      expect(screen.getByTestId('partner-image-select')).toBeInTheDocument();
+      expect(screen.queryByTestId('docker-custom-image')).toBeNull();
+      expect(screen.getByTestId('partner-image-select')).toBeTruthy();
     });
   });
 });

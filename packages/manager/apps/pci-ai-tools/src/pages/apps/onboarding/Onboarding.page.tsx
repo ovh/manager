@@ -20,7 +20,7 @@ const Onboarding = () => {
         <Guides section={appGuidesSections} />
       </div>
       <h2>{t('title')}</h2>
-      <img src={onboardingImgSrc} className="max-h-[250px]" alt="ai training" />
+      <img src={onboardingImgSrc} className="max-h-[250px]" alt="ai deploy" />
       <div className="text-center">
         <p className="font-bold">{t('description1')}</p>
         <p className="font-bold">{t('description2')}</p>
@@ -28,7 +28,7 @@ const Onboarding = () => {
       </div>
       <Button data-testid="create-app-link" asChild>
         <Link
-          to="../deploy/new"
+          to="../new"
           className="hover:no-underline hover:text-primary-foreground"
         >
           {t('createAppButton')}

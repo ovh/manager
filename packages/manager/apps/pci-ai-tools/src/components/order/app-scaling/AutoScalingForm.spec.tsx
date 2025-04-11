@@ -49,10 +49,10 @@ describe('Autoscaling form component', () => {
       { wrapper: RouterWithQueryClientWrapper },
     );
     await waitFor(() => {
-      expect(screen.getByTestId('auto-scaling-container')).toBeInTheDocument();
-      expect(screen.getByTestId('resource-usage-slider')).toBeInTheDocument();
-      expect(screen.getByTestId('max-rep-input')).toBeInTheDocument();
-      expect(screen.getByTestId('min-rep-input')).toBeInTheDocument();
+      expect(screen.getByTestId('auto-scaling-container')).toBeTruthy();
+      expect(screen.getByTestId('resource-usage-slider')).toBeTruthy();
+      expect(screen.getByTestId('max-rep-input')).toBeTruthy();
+      expect(screen.getByTestId('min-rep-input')).toBeTruthy();
     });
   });
 
@@ -67,7 +67,7 @@ describe('Autoscaling form component', () => {
       { wrapper: RouterWithQueryClientWrapper },
     );
     await waitFor(() => {
-      expect(screen.getByTestId('auto-scaling-container')).toBeInTheDocument();
+      expect(screen.getByTestId('auto-scaling-container')).toBeTruthy();
     });
 
     act(() => {
@@ -100,7 +100,7 @@ describe('Autoscaling form component', () => {
       { wrapper: RouterWithQueryClientWrapper },
     );
     await waitFor(() => {
-      expect(screen.getByTestId('auto-scaling-container')).toBeInTheDocument();
+      expect(screen.getByTestId('auto-scaling-container')).toBeTruthy();
     });
 
     act(() => {

@@ -1,14 +1,17 @@
 import { useTranslation } from 'react-i18next';
 import {
+  Code,
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
+  bash,
+  githubDark,
+  useToast,
 } from '@datatr-ux/uxlib';
 
 import { ModalController } from '@/hooks/useModale';
 import ai from '@/types/AI';
-import CliCodeBlock from '@/components/cli-code-block/CliCodeBlock.component';
 
 interface CliEquivalentModalProps {
   command: ai.Command;
@@ -16,6 +19,7 @@ interface CliEquivalentModalProps {
 }
 const CliEquivalent = ({ command, controller }: CliEquivalentModalProps) => {
   const { t } = useTranslation('ai-tools/apps/create');
+  const toast = useToast();
   return (
     <Dialog {...controller}>
       <DialogContent className="sm:max-w-2xl">
@@ -24,11 +28,17 @@ const CliEquivalent = ({ command, controller }: CliEquivalentModalProps) => {
             {t('cliEquivalentModalTitle')}
           </DialogTitle>
         </DialogHeader>
-        <CliCodeBlock
-          title={t('cliEquivalentModalDescription')}
+        <Code
+          label={t('cliEquivalentModalDescription')}
           code={command.command}
-          toastMessage={t('cliEquivalentModalToastMessage')}
-          size="max-h-[60vh] px-6"
+          theme={githubDark}
+          lang={bash}
+          onCopied={() =>
+            toast.toast({
+              title: t('cliEquivalentModalToastMessage'),
+            })
+          }
+          lineNumbers={true}
         />
       </DialogContent>
     </Dialog>

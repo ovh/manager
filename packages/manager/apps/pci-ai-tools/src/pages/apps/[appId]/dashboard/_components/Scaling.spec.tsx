@@ -52,8 +52,8 @@ describe('Scaling component', () => {
 
   it('renders GeneralInformation', async () => {
     render(<ScalingStrat />, { wrapper: RouterWithQueryClientWrapper });
-    expect(screen.getByTestId('update-scaling-button')).toBeInTheDocument();
-    expect(screen.getByTestId('fixed-list')).toBeInTheDocument();
+    expect(screen.getByTestId('update-scaling-button')).toBeTruthy();
+    expect(screen.getByTestId('fixed-list')).toBeTruthy();
   });
 
   it('open update scaling modal', async () => {
@@ -73,7 +73,7 @@ describe('Scaling component', () => {
       appQuery: {} as UseQueryResult<ai.app.App, AIError>,
     });
     render(<ScalingStrat />, { wrapper: RouterWithQueryClientWrapper });
-    expect(screen.getByTestId('update-scaling-button')).toBeInTheDocument();
-    expect(screen.getByTestId('automatic-list')).toBeInTheDocument();
+    expect(screen.getByTestId('update-scaling-button')).toBeTruthy();
+    expect(screen.getByTestId('automatic-list')).toBeTruthy();
   });
 });

@@ -22,8 +22,8 @@ describe('Apps list start modal', () => {
     });
 
     await waitFor(() => {
-      expect(screen.getByTestId('start-app-modal')).toBeInTheDocument();
-      expect(screen.getByTestId('start-app-submit-button')).toBeInTheDocument();
+      expect(screen.getByTestId('start-app-modal')).toBeTruthy();
+      expect(screen.getByTestId('start-app-submit-button')).toBeTruthy();
     });
   });
 });

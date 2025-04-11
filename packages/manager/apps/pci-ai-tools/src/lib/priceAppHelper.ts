@@ -8,8 +8,8 @@ import {
 
 export function createAppPriceObject(
   image: {
-    name: string;
-    version: string;
+    name?: string;
+    version?: string;
   },
   partnerAppImage: ImagePartnerApp[],
   scaling: Scaling,

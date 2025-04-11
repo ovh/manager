@@ -39,15 +39,13 @@ describe('Update Custom image', () => {
 
   it('renders Update Custom Image modal and close it', async () => {
     render(<UpdateImage />, { wrapper: RouterWithQueryClientWrapper });
-    expect(screen.getByTestId('update-image-modal')).toBeInTheDocument();
-    expect(screen.getByTestId('update-image-input')).toBeInTheDocument();
+    expect(screen.getByTestId('update-image-modal')).toBeTruthy();
+    expect(screen.getByTestId('update-image-input')).toBeTruthy();
     act(() => {
       fireEvent.click(screen.getByTestId('update-image-cancel-button'));
     });
     await waitFor(() => {
-      expect(
-        screen.queryByTestId('update-image-modal'),
-      ).not.toBeInTheDocument();
+      expect(screen.queryByTestId('update-image-modal')).toBeNull();
     });
   });
 
