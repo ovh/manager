@@ -48,5 +48,6 @@
   "pci_projects_project_instances_instance_action_start_label": "Comincia ora",
   "pci_projects_project_instances_instance_action_stop_label": "Arresta",
   "pci_projects_project_instances_instance_action_shelve_label": "Sospendi",
-  "pci_projects_project_instances_instance_action_unshelve_label": "Riattiva"
+  "pci_projects_project_instances_instance_action_unshelve_label": "Riattiva",
+  "pci_projects_project_instances_instance_license_price_label": "Prezzo della licenza"
 }

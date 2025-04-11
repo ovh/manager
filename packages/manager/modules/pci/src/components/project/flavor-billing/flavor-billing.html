@@ -23,9 +23,20 @@
                 </span>
             </p>
 
-            <p class="d-flex align-items-baseline">
-                <span data-ng-transclude="hourlyPrice"></span>
+            <p
+                class="d-flex align-items-baseline"
+                data-ng-if="$ctrl.licensePrice"
+            >
+                <strong
+                    class="pr-1"
+                    data-translate="pci_project_flavors_billing_price_monthly_instance_license_price_label"
+                ></strong>
+                <span
+                    data-translate="pci_project_flavors_billing_addons_price_hourly"
+                    data-translate-values="{price: $ctrl.licensePrice}"
+                ></span>
             </p>
+
             <div data-ng-if="$ctrl.addons.length > 0">
                 <p data-ng-if="$ctrl.defaultGateway">
                     <strong

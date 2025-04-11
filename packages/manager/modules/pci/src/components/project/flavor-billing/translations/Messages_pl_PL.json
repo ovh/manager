@@ -9,5 +9,6 @@
   "pci_project_flavors_billing_price_monthly_instance_price_label": "Cena:",
   "pci_project_flavors_billing_price_monthly_gateway_price_label": "Gateway:",
   "pci_project_flavors_billing_price_monthly_floatingip_price_label": "Floating IP:",
-  "pci_projects_project_instances_add_total_price_label": "Razem:"
+  "pci_projects_project_instances_add_total_price_label": "Razem:",
+  "pci_project_flavors_billing_price_monthly_instance_license_price_label": "Cena licencji:"
 }
