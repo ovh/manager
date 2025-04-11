@@ -8,6 +8,7 @@ import { useDatagridSearchParams } from './useDatagridSearchParams';
 import { useColumnFilters } from '../filters';
 import { columns as clm, columnsFilters, Item } from './datagrid.mock';
 import DataGridTextCell from './text-cell.component';
+import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 
 function sortItems(
   itemList: Item[],
@@ -30,6 +31,8 @@ const DatagridStory = ({
   columns = clm,
   getRowCanExpand,
   renderSubComponent,
+  filterVariant = ODS_BUTTON_VARIANT.outline,
+  filterLabel = 'Filter',
 }: {
   items: Item[];
   isLoading: boolean;
@@ -38,6 +41,8 @@ const DatagridStory = ({
   columns?: any;
   renderSubComponent?: (props: Row<any>) => JSX.Element;
   getRowCanExpand?: (row: Row<any>) => boolean;
+  filterVariant?: ODS_BUTTON_VARIANT;
+  filterLabel?: string;
 }) => {
   const [searchParams] = useSearchParams();
   const { pagination, setPagination, sorting, setSorting } =
@@ -78,6 +83,8 @@ const DatagridStory = ({
         filters={{ filters, add: addFilter, remove: removeFilter }}
         getRowCanExpand={getRowCanExpand}
         renderSubComponent={renderSubComponent}
+        filterVariant={filterVariant}
+        filterLabel={filterLabel}
       />
     </>
   );

@@ -117,6 +117,8 @@ const DatagridStory = (args) => {
               manualSorting: false,
             }
           : {})}
+        filterVariant={args.filterVariant}
+        filterLabel={args.filterLabel}
       />
     </>
   );
@@ -217,6 +219,8 @@ Filters.args = {
     price: Math.floor(1 + Math.random() * 100),
   })),
   columns: columnsFilters,
+  filterVariant: ODS_BUTTON_VARIANT.outline,
+  filterLabel: 'Filter',
 };
 
 export const Visibility = DatagridStory.bind({});
