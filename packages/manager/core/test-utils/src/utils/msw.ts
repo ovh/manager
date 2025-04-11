@@ -16,6 +16,7 @@ export const toMswHandlers = (handlers: Handler[] = []): RequestHandler[] =>
         delay: delayTime = 1000,
         status = 200,
         response,
+        icebergResponse,
         responseText,
         api = 'v6',
         baseUrl,
@@ -30,10 +31,24 @@ export const toMswHandlers = (handlers: Handler[] = []): RequestHandler[] =>
             if (responseText) {
               return HttpResponse.text(responseText);
             }
-            const json =
-              typeof response === 'function'
-                ? await response(request, params, cookies)
-                : response;
+            const requestHeaders = new Headers(request?.headers);
+            const isIceberg =
+              requestHeaders.get('X-Pagination-Size') ||
+              requestHeaders.get('x-pagination-mode');
+
+            let json;
+            if (isIceberg && icebergResponse) {
+              json =
+                typeof icebergResponse === 'function'
+                  ? await icebergResponse(request, params, cookies)
+                  : icebergResponse;
+            } else {
+              json =
+                typeof response === 'function'
+                  ? await response(request, params, cookies)
+                  : response;
+            }
+
             return HttpResponse.json(json, {
               status,
               headers,

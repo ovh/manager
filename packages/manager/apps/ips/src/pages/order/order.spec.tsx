@@ -241,4 +241,13 @@ describe('Order', async () => {
       { exact: false },
     );
   });
+
+  it('displays an error message if we reached IPv6 order limit', async () => {
+    const { container } = await goToOrder({ isIpv6LimitReached: true });
+    await selectIpVersion(IpVersion.ipv6);
+    await selectIpv6Option({ container });
+    await selectService({ container, serviceName: resourceMockList[2].name });
+
+    await assertTextVisibility(labels.order.ipv6_limit_reached_error);
+  });
 });
