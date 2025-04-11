@@ -8,6 +8,7 @@ export default {
     dedicatedCloud: '<',
     setMessage: '<',
     goToDeleteLicense: '<',
+    goToSetLicense: '<',
   },
   controller,
   template,

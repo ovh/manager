@@ -9,4 +9,14 @@ export default class {
       `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/vm/${vmId}/removeLicense`,
     );
   }
+
+  setLicense(serviceName, datacenterId, vmId, kmsLicense) {
+    return this.$http.post(
+      `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/vm/${vmId}/setLicense`,
+      {
+        bypassGuestOsFamilyCheck: false,
+        kmsLicense,
+      },
+    );
+  }
 }

@@ -24,9 +24,10 @@ export default class {
       })
       .catch((err) => {
         this.goBack(
-          `${this.$translate.instant(
-            'delete_license_error_api',
-          )}: ${err.message || err}`,
+          `${this.$translate.instant('delete_license_error_api')}: ${err.data
+            ?.message ||
+            err.message ||
+            JSON.stringify(err)}`,
           'danger',
         );
       })
