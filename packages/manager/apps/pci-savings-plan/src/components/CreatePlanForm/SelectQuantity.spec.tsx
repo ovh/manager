@@ -25,12 +25,6 @@ describe('SelectQuantity', () => {
 
       const instanceBanner = screen.getByText(/quantity_banner_instance/i);
       expect(instanceBanner).toBeInTheDocument();
-
-      // expect(
-      //   screen.getByText(
-      //     "Indiquez le nombre d'instances à inclure dans votre Savings Plan.",
-      //   ),
-      // ).not.toBeNull();
     });
   });
 });
