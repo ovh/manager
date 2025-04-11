@@ -48,6 +48,8 @@ export interface DatagridTopbarProps {
   filters?: FilterProps;
   search?: SearchProps;
   topbar?: React.ReactNode;
+  filterVariant?: ODS_BUTTON_VARIANT;
+  filterLabel?: string;
 }
 
 export const DatagridTopbar = <T,>({
@@ -57,6 +59,8 @@ export const DatagridTopbar = <T,>({
   isSearchable,
   search,
   topbar,
+  filterVariant = ODS_BUTTON_VARIANT.ghost,
+  filterLabel = '',
 }: DatagridTopbarProps) => {
   const { t } = useTranslation('filters');
   const filterPopoverRef = useRef(null);
@@ -117,10 +121,10 @@ export const DatagridTopbar = <T,>({
                     id="datagrid-filter-popover-trigger"
                     slot="datagrid-filter-popover-trigger"
                     size={ODS_BUTTON_SIZE.sm}
-                    variant={ODS_BUTTON_VARIANT.ghost}
+                    variant={filterVariant}
                     icon={ODS_ICON_NAME.filter}
                     aria-label={t('common_criteria_adder_filter_label')}
-                    label=""
+                    label={filterLabel}
                   />
                   <OdsPopover
                     ref={filterPopoverRef}

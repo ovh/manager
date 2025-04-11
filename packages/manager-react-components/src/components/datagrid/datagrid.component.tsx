@@ -149,6 +149,10 @@ export interface DatagridProps<T> {
   resetExpandedRowsOnItemsChange?: boolean;
   /** When true, will fix the columns size by column definition size */
   tableLayoutFixed?: boolean;
+  /** Add variant of your choice on filterComponent */
+  filterVariant?: ODS_BUTTON_VARIANT;
+  /** Add label of your choice on filterComponent */
+  filterLabel?: string;
 }
 
 export const Datagrid = <T,>({
@@ -179,6 +183,8 @@ export const Datagrid = <T,>({
   resetExpandedRowsOnItemsChange,
   hideHeader,
   tableLayoutFixed,
+  filterVariant,
+  filterLabel,
 }: DatagridProps<T>) => {
   const { t } = useTranslation('datagrid');
   const pageCount = pagination
@@ -320,6 +326,8 @@ export const Datagrid = <T,>({
         filters={filters}
         search={search}
         topbar={topbar}
+        filterVariant={filterVariant}
+        filterLabel={filterLabel}
       />
       <div className={`contents px-[1px] ${className || ''}`}>
         <OdsTable className="overflow-x-visible">
