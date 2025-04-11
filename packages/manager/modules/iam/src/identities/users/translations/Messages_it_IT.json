@@ -1,5 +1,5 @@
 {
-  "user_users_title": "Gestione degli utenti",
+  "user_users_title": "Utenti locali",
   "user_users_info": "Per connettersi all'interfaccia, l’utente dovrà inserire l’identificativo <strong>{{customerCode}}</strong> e il nome utente separati da \"/\" insieme alla password.",
   "user_users_info_example": "Esempio: <strong>{{customerCode}}/{{login}}</strong>",
   "user_users_add_user": "Aggiungere un utente",
@@ -115,7 +115,7 @@
   "user_users_groups_update_modal_group_description": "Descrizione del gruppo",
   "user_users_groups_update": "Modificare il gruppo",
   "user_users_groups_table_description": "Gruppi dell'identity provider",
-  "user_roles_NONE": "Nessuno",
+  "user_roles_NONE": "Nessuna",
   "user_users_group": "Gruppo",
   "user_need_rights_message": "Non hai il diritto di effettuare questa operazione. Richiedi ai tuoi amministratori i seguenti diritti: ",
   "user_users_users_section_title": "Utenti",
@@ -123,7 +123,8 @@
   "user_users_sso_modal_user_attribute_name": "Nome dell'attributo utente (userAttributeName, in genere indicato con “UPN”)",
   "pagination_page": "Pagina {{current}} / {{ last }}",
   "pagination_go": "OK",
-  "pagination_display": "Mostra",
+  "pagination_display": "Mostrare",
   "user_modal_confirm": "Confermare",
-  "user_modal_cancel": "Annullare"
+  "user_modal_cancel": "Annullare",
+  "user_users_disabled": "La connessione tramite gli utenti locali è disattivata dalla configurazione SSO."
 }

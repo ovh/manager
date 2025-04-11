@@ -1,5 +1,5 @@
 {
-  "user_users_title": "Zarządzanie użytkownikami",
+  "user_users_title": "Użytkownicy lokalni",
   "user_users_info": "Aby zalogować się do interfejsu, wprowadź identyfikator klienta <strong>{{CustomerCode}}</strong> i nazwę użytkownika oraz hasło. Identyfikator i nazwa użytkownika muszą być oddzielone ukośnikiem (\"/\").",
   "user_users_info_example": "Przykład: <strong>{{customerCode}}/{{login}}</strong>",
   "user_users_add_user": "Dodaj użytkownika",
@@ -15,7 +15,7 @@
   "user_users_delete": "Usuń użytkownika",
   "user_users_enable": "Aktywuj użytkownika",
   "user_users_status_OK": "Włączone",
-  "user_users_status_DISABLED": "Wyłączony",
+  "user_users_status_DISABLED": "Wyłączone",
   "user_users_error": "Wystąpił błąd:",
   "user_users_role": "Uprawnienia",
   "user_roles_ADMIN": "Administrator",
@@ -125,5 +125,6 @@
   "pagination_go": "OK",
   "pagination_display": "Wyświetl",
   "user_modal_confirm": "Zatwierdź",
-  "user_modal_cancel": "Anuluj"
+  "user_modal_cancel": "Anuluj",
+  "user_users_disabled": "Logowanie przy użyciu lokalnych kont użytkowników jest wyłączone przez ustawienie SSO."
 }

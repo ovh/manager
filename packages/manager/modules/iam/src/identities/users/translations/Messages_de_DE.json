@@ -1,5 +1,5 @@
 {
-  "user_users_title": "Nutzerverwaltung",
+  "user_users_title": "Lokale User",
   "user_users_info": "Für die Verbindung mit dem Interface muss der Nutzer die Kundenkennung <strong>{{customerCode}}</strong> und den Nutzernamen getrennt durch einen „/“ eingeben, sowie sein Passwort.",
   "user_users_info_example": "Beispiel: <strong>{{customerCode}}/{{login}}</strong>",
   "user_users_add_user": "Nutzer hinzufügen",
@@ -121,9 +121,10 @@
   "user_users_users_section_title": "User",
   "user_users_sso_modal_group_local_users_to_enable": "Aktive OVHcloud User beibehalten",
   "user_users_sso_modal_user_attribute_name": "Nutzerattributname (userAttributeName, in der Regel als UPN bezeichnet)",
-  "pagination_page": "Seite {{ current }} / {{ last }}",
+  "pagination_page": "Seite {{ current }}/{{ last }}",
   "pagination_go": "OK",
   "pagination_display": "Anzeigen",
   "user_modal_confirm": "Bestätigen",
-  "user_modal_cancel": "Abbrechen"
+  "user_modal_cancel": "Abbrechen",
+  "user_users_disabled": "Die Verbindung über lokale User ist durch die SSO-Einstellung deaktiviert."
 }

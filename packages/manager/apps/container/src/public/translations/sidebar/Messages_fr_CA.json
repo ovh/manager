@@ -170,8 +170,12 @@
   "sidebar_sunrise_ssl_gateway": "SSL Gateway",
   "sidebar_security_identity_operations": "Identité, Sécurité & Opérations",
   "sidebar_security_identity_operations_short": "ISO",
+  "sidebar_security_identity_operations_iam": "Gestion des identités et des accès",
+  "sidebar_security_identity_operations_iam_identities": "Identités",
+  "sidebar_security_identity_operations_iam_policies": "Politiques",
+  "sidebar_security_identity_operations_iam_api-keys": "Clés API",
+  "sidebar_security_identity_operations_iam_logs": "Logs du compte",
   "sidebar_security_identity_operations_kms": "Key Management Service",
-  "sidebar_security_identity_operations_iam": "Identity & Access Management",
   "sidebar_security_identity_operations_logs": "Logs Data Platform",
   "sidebar_marketplace": "Marketplace",
   "sidebar_roadmap_changelog": "Roadmap & Changelog",
@@ -196,6 +200,6 @@
   "sidebar_key-management-service": "Key Management Service",
   "sidebar_reduce": "Réduire",
   "sidebar_security_operations": "Opérations",
-  "sidebar_security_identity": "Identité et Sécurité",
+  "sidebar_security_identity": "Sécurité",
   "sidebar_zimbra": "Zimbra Mail"
 }

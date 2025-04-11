@@ -1,5 +1,5 @@
 {
-  "user_users_title": "Gestão de utilizadores",
+  "user_users_title": "Utilizadores locais",
   "user_users_info": "Para aceder à interface, o utilizador deverá introduzir o seu ID <strong>{{customerCode}}</strong> e o seu próprio nome de utilizador separado por «/», bem como a respetiva palavra-passe.",
   "user_users_info_example": "Por exemplo: <strong>{{customerCode}}/{{login}}</strong>",
   "user_users_add_user": "Adicionar um utilizador",
@@ -125,5 +125,6 @@
   "pagination_go": "OK",
   "pagination_display": "Mostrar",
   "user_modal_confirm": "Validar",
-  "user_modal_cancel": "Anular"
+  "user_modal_cancel": "Anular",
+  "user_users_disabled": "A ligação através dos utilizadores locais é desativada através da configuração SSO."
 }

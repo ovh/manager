@@ -7,5 +7,16 @@
   "iam_applications_datagrid_column_application_status_active": "Aktiv",
   "iam_applications_datagrid_column_application_status_inactive": "Deaktiviert",
   "iam_applications_datagrid_action_delete_application": "Löschen",
-  "iam_applications_description": "Sehen Sie sich Ihre Anwendungen an und verwalten Sie sie. Weitere Informationen zu den Anwendungen finden Sie in der Dokumentation."
+  "iam_applications_description": "Sehen Sie sich Ihre Anwendungen an und verwalten Sie sie. Weitere Informationen zu den Anwendungen finden Sie in der Dokumentation.",
+  "iam_api_keys_create_api_key": "API-Schlüssel erstellen",
+  "iam_api_keys_datagrid_column_application_id": "ID",
+  "iam_api_keys_datagrid_column_application_name": "Name",
+  "iam_api_keys_datagrid_column_application_description": "Beschreibung",
+  "iam_api_keys_datagrid_column_application_status": "Status",
+  "iam_api_keys_datagrid_column_application_key": "Schlüssel",
+  "iam_api_keys_datagrid_column_application_status_active": "Aktiv",
+  "iam_api_keys_datagrid_column_application_status_inactive": "Deaktiviert",
+  "iam_api_keys_datagrid_action_delete_application": "Löschen",
+  "iam_api_keys": "API-Schlüssel",
+  "iam_api_keys_description": "Sehen Sie sich Ihre API-Schlüssel an und verwalten Sie sie. Weitere Informationen zu API-Schlüsseln finden Sie in der Dokumentation."
 }

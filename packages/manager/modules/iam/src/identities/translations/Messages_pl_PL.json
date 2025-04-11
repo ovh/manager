@@ -7,5 +7,10 @@
   "iam_identities_field_users_button_add": "Dodaj",
   "iam_identities_error_load_users": "Wystąpił błąd podczas pobierania informacji o użytkownikach: {{message}}",
   "iam_identities_add_identity_error": "Format dodanej tożsamości nie jest prawidłowy: {{message}}",
-  "iam_identities_add_identity_success": "Tożsamość jest przypisana do Twojej polityki"
+  "iam_identities_add_identity_success": "Tożsamość jest przypisana do Twojej polityki",
+  "iam_identities": "Tożsamości",
+  "iam_identities_header_guide_text": "Przewodniki",
+  "iam_identities_users": "Użytkownicy lokalni",
+  "iam_identities_user_groups": "Grupy użytkowników",
+  "iam_identities_sso": "SSO"
 }
