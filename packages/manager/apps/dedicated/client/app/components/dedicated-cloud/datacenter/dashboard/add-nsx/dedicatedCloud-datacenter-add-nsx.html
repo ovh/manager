@@ -1,0 +1,90 @@
+<header class="oui-header">
+    <div class="oui-header__container">
+        <div class="oui-header__content">
+            <div class="oui-header__guide">
+                <oui-back-button data-on-click="$ctrl.goBack()">
+                </oui-back-button>
+            </div>
+            <h1
+                class="oui-header__title"
+                data-translate="dedicatedCloud_add_nsx_edge_title"
+            ></h1>
+            <h2 class="oui-header__description">
+                <span
+                    data-translate="dedicatedCloud_add_nsx_description_line_1"
+                ></span
+                ><br />
+                <span
+                    data-translate="dedicatedCloud_add_nsx_description_line_2"
+                    data-translate-values="{ price: $ctrl.vcpuTextPrice, link: $ctrl.guideUrl }"
+                ></span>
+            </h2>
+        </div>
+    </div>
+</header>
+
+<div class="text-center" data-ng-if="$ctrl.loading">
+    <oui-spinner></oui-spinner>
+</div>
+
+<div class="row d-md-flex mt-3">
+    <div class="col-lg-4">
+        <oui-select-picker
+            class="h-100"
+            data-name="size"
+            data-model="$ctrl.selectedNsxLevel"
+            data-label="{{:: ('dedicatedCloud_manage_nsx_choice_title_' + $ctrl.nsxEdgeCurrentLevel) | translate }}"
+            data-values="[$ctrl.nsxEdgeCurrentLevel]"
+            data-variant="light"
+        >
+            <oui-select-picker-section>
+                <div class="text-center">
+                    <span
+                        data-ng-if="$ctrl.nsxEdgeCurrentLevel === size"
+                        data-translate="dedicatedCloud_nsx_edge_current_level"
+                        class="oui-badge oui-badge_info"
+                    ></span>
+                    <br />
+                    <span
+                        data-translate="{{'dedicatedCloud_manage_nsx_choice_description_' + $ctrl.nsxEdgeCurrentLevel}}"
+                    ></span>
+                </div>
+            </oui-select-picker-section>
+            <oui-select-picker-footer>
+                <div class="text-center">
+                    <strong
+                        data-translate="{{'dedicatedCloud_manage_nsx_edge_require_per_node_' + $ctrl.nsxEdgeCurrentLevel}}"
+                    ></strong>
+                    <br />
+                    <span
+                        data-translate="dedicatedCloud_manage_nsx_choice_footer"
+                        data-translate-values="{ cpu: $ctrl.NSX_RESOURCES[$ctrl.nsxEdgeCurrentLevel].cpu, ram: $ctrl.NSX_RESOURCES[$ctrl.nsxEdgeCurrentLevel].ram, storage: $ctrl.NSX_RESOURCES[$ctrl.nsxEdgeCurrentLevel].storage }"
+                    ></span>
+                </div>
+                <div>
+                    <strong
+                        data-translate="dedicatedCloud_add_nsx_price"
+                        data-translate-values="{ price: $ctrl.vcpuTextPrice }"
+                    ></strong>
+                </div>
+            </oui-select-picker-footer>
+        </oui-select-picker>
+    </div>
+</div>
+
+<div class="mt-4">
+    <oui-button
+        data-variant="secondary"
+        data-ng-click="$ctrl.goBack()"
+        data-disabled="$ctrl.loading"
+    >
+        <span data-translate="common_cancel"></span>
+    </oui-button>
+    <oui-button
+        data-variant="primary"
+        data-ng-click="$ctrl.handleAddNsx()"
+        data-disabled="!$ctrl.selectedNsxLevel || $ctrl.loading || $ctrl.hasMaximumNsx"
+    >
+        <span data-translate="dedicatedCloud_add_nsx_order"></span>
+    </oui-button>
+</div>

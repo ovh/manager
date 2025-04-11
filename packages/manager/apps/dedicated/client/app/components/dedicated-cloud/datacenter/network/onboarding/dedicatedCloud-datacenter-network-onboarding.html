@@ -1,0 +1,50 @@
+<manager-on-boarding-layout
+    data-guides=":: $ctrl.guides"
+    data-image-source=":: $ctrl.illustration"
+>
+    <onboarding-title>
+        <p data-ng-bind=":: $ctrl.NETWORK_LABEL"></p>
+    </onboarding-title>
+    <onboarding-description>
+        <div
+            data-translate="dedicatedCloud_datacenter_network_onboarding_description1"
+        ></div>
+        <div
+            data-translate="dedicatedCloud_datacenter_network_onboarding_description2"
+            class="mt-2 mb-4"
+        ></div>
+        <div class="d-flex justify-content-center">
+            <oui-button
+                data-ng-if="$ctrl.isLoading"
+                data-variant="primary"
+                size="l"
+                data-disabled
+            >
+                <oui-spinner size="s"></oui-spinner>
+            </oui-button>
+            <a
+                data-ng-if="!$ctrl.isLoading"
+                class="oui-button oui-button_primary oui-button_l text-light"
+                data-translate="dedicatedCloud_datacenter_network_onboarding_cta_activate"
+                data-ng-href="{{:: $ctrl.orderLink }}"
+                data-ng-click="$ctrl.handleOrderClick()"
+                target="_blank"
+                rel="noopener"
+            >
+            </a>
+            <div>
+                <a
+                    class="oui-button oui-button_secondary oui-button_l oui-button_icon-right ml-3"
+                    data-ng-href="{{:: $ctrl.ctaMore }}"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    <span
+                        data-translate="dedicatedCloud_datacenter_network_onboarding_cta_more"
+                    ></span>
+                    <i class="oui-icon oui-icon-external-link"></i>
+                </a>
+            </div>
+        </div>
+    </onboarding-description>
+</manager-on-boarding-layout>

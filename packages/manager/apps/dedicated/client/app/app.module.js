@@ -114,6 +114,7 @@ import errorPage from './error';
 import expiredPage from './expired';
 import ip from './ip';
 import ipComponents from './components/ip/ip-components.module';
+import IcebergUtilsService from './icebergUtils.services';
 
 import dedicatedServer from './dedicated/dedicated-server';
 import dedicatedHousing from './dedicated/housing';
@@ -229,6 +230,7 @@ export default async (containerEl, shellClient) => {
         ovhManagerVrack,
         ovhManagerCloudConnect,
         ovhPaymentMethod,
+        IcebergUtilsService,
         'pascalprecht.translate',
         'services',
         trustedNic,
