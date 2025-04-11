@@ -426,6 +426,7 @@ export function getPciProjectMenu(
         isFeaturesAvailable('pci-ai-endpoints') && {
           id: 'pci-ai-endpoints',
           title: 'AI Endpoints',
+          badge: isFeaturesAvailable('pci-ai-endpoints:create-token') ? 'new' : 'beta',
           href: getURL('public-cloud', `#/pci/projects/${projectId}/ai/endpoints`),
         },
       ],
