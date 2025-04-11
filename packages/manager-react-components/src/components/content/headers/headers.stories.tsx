@@ -3,7 +3,8 @@ import { Meta } from '@storybook/react';
 import Headers, { HeadersProps } from './headers.component';
 import ActionMenu from '../../navigation/menus/action/action.component';
 import GuideButton from '../../navigation/menus/guide/guide.component';
-import ChangelogButton, {
+import {
+  ChangelogButton,
   ChangelogLinks,
 } from '../../navigation/menus/changelog/changelog.component';
 
@@ -66,7 +67,11 @@ const HeadingWithHeaderButtons: HeadersProps = {
   description: 'description for subheader',
   headerButton: <GuideButton items={guideItems} />,
   changelogButton: (
-    <ChangelogButton links={changelogLinks} chapters={changelogChapters} />
+    <ChangelogButton
+      links={changelogLinks}
+      chapters={changelogChapters}
+      isWithTracking={false}
+    />
   ),
 };
 
