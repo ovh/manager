@@ -1,27 +1,23 @@
 import angular from 'angular';
 import ngOvhTelecomUniverseComponents from '@ovh-ux/ng-ovh-telecom-universe-components';
-import '@uirouter/angularjs';
+import ovhManagerTelecomPackConfigActivationState from '../activation-state-display';
 import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
 import 'ovh-api-services';
 
-import routing from './config.routing';
-import legacyWifiConfig from './config-legacy';
-import enhancedWifiConfig from './config-enhanced';
+import component from './ssid-settings.component';
 
-const moduleName = 'ovhManagerTelecomPackConfigWifi';
+const moduleName = 'ovhManagerTelecomPackConfigSSIDSettings';
 
 angular
   .module(moduleName, [
     ngOvhTelecomUniverseComponents,
+    ovhManagerTelecomPackConfigActivationState,
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
     'ovh-api-services',
-    'ui.router',
-    legacyWifiConfig,
-    enhancedWifiConfig,
   ])
-  .config(routing)
+  .component('ssidSettings', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
