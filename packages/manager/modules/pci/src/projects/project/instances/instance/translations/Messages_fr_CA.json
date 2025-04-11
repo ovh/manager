@@ -34,6 +34,7 @@
   "pci_projects_project_instances_instance_price_month_value": "{{ price }} HT/mois",
   "pci_projects_project_instances_instance_price_hourly_value": "{{ price }} HT/heure",
   "pci_projects_project_instances_instance_price_action_activeMonthlyBilling_label": "Passer au forfait mensuel",
+  "pci_projects_project_instances_instance_license_price_label": "Prix licence",
 
   "pci_projects_project_instances_instance_volumes_label": "Volume(s)",
   "pci_projects_project_instances_instance_volumes_action_manage_label": "Gérer les volumes",

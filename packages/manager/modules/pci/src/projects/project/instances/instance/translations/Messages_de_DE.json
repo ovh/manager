@@ -48,5 +48,6 @@
   "pci_projects_project_instances_instance_action_start_label": "Starten",
   "pci_projects_project_instances_instance_action_stop_label": "Anhalten",
   "pci_projects_project_instances_instance_action_shelve_label": "Aussetzen",
-  "pci_projects_project_instances_instance_action_unshelve_label": "Reaktivieren"
+  "pci_projects_project_instances_instance_action_unshelve_label": "Reaktivieren",
+  "pci_projects_project_instances_instance_license_price_label": "Preis der Lizenz"
 }

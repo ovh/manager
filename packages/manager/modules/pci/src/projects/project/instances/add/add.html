@@ -416,7 +416,7 @@
             data-is-image-compatible="$ctrl.model.isImageCompatible"
             data-on-change="$ctrl.onImageSelected(image)"
             data-on-tab-change="$ctrl.onImageTabChange(tab)"
-            data-get-price-text="$ctrl.getWindowsLicensePriceText(distribution, images)"
+            data-get-price-text="$ctrl.getLicensePriceText(distribution, images)"
         >
             <div class="d-flex justify-content-between">
                 <span
@@ -1209,25 +1209,13 @@
 
         <pci-project-flavor-billing
             data-ng-if=" $ctrl.currentStep > 4 && !$ctrl.isAddingPrivateNetwork && !$ctrl.isAddingPrivateNetworkError && (!$ctrl.isPrivateMode() || (!$ctrl.isLoadBillingStep && $ctrl.isPrivateMode()))"
-            data-flavor="$ctrl.flavorGroup"
+            data-flavor="$ctrl.flavor"
             data-number="$ctrl.model.number"
             data-monthly-billing="$ctrl.instance.monthlyBilling"
             data-addons="$ctrl.addons"
             data-disabled="false"
             data-on-change="$ctrl.onBillingChange(billing)"
         >
-            <pci-project-flavor-billing-hourly-price
-                data-ng-if="$ctrl.shouldShowWindowsGen3Data()"
-            >
-                <span class="d-block">
-                    <strong
-                        data-translate="pci_projects_project_instances_add_windows_gen3_license_total_price_label"
-                    ></strong>
-                    <span
-                        data-ng-bind="$ctrl.getWindowsLicenseTotalPriceText()"
-                    ></span>
-                </span>
-            </pci-project-flavor-billing-hourly-price>
         </pci-project-flavor-billing>
 
         <pci-trusted-zone-banner
