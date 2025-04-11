@@ -74,6 +74,7 @@ export default class FlavorsList {
         productAvailability: this.getProductAvailability(
           serviceName,
           this.coreConfig.getUser().ovhSubsidiary,
+          { addonFamily: 'instance' },
         ),
       })
       .then(({ flavors, prices, catalog, productAvailability }) => {
@@ -87,6 +88,18 @@ export default class FlavorsList {
           const planCodeList = groupedFlavors.map(
             (flavor) => flavor.planCodes.hourly,
           );
+
+          const deploymentModesPrices = productAvailability.plans
+            ?.filter(({ code }) =>
+              code.startsWith(`${resource.name}.consumption`),
+            )
+            .map((plan) => ({
+              price: prices[plan.code],
+              locationCompatibility: Object.fromEntries(
+                plan.regions.map((r) => [r.type, true]),
+              ),
+            }));
+
           return new Flavor({
             ...omit(resource, ['available', 'region']),
             technicalBlob: get(
@@ -135,6 +148,7 @@ export default class FlavorsList {
                 planCodeList?.find((plans) => code.startsWith(plans)),
               ),
             ),
+            deploymentModesPrices,
           });
         });
       });
@@ -161,10 +175,10 @@ export default class FlavorsList {
     };
   }
 
-  getProductAvailability(projectId, ovhSubsidiary) {
+  getProductAvailability(projectId, ovhSubsidiary, addonOptions) {
     return this.$http
       .get(`/cloud/project/${projectId}/capabilities/productAvailability`, {
-        params: { ovhSubsidiary },
+        params: { ovhSubsidiary, ...addonOptions },
       })
       .then(({ data }) => data);
   }

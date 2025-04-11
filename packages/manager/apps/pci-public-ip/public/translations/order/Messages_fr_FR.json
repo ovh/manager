@@ -24,7 +24,7 @@
   "pci_additional_ip_create_no_instance_message_failover_ip": "Vous ne disposez pas actuellement d'instance sur laquelle attacher une Additional IP. Merci d'en créer une préalablement.",
   "pci_additional_ip_floating_ip": "Floating IP (Public Cloud)",
   "pci_additional_ip_floating_ip_description": "Solution optimisée pour les cas d’utilisation Public Cloud, l’automatisation (Terraform) et le support de réseaux privés régionalisés. Disponible en modèle de facturation à l’usage.",
-  "pci_additional_ip_create_step_select_region_floating_ip": "Sélectionnez une région pour votre nouvelle floating IP",
+  "pci_additional_ip_create_step_select_region_floating_ip": "Sélectionnez une localisation",
   "pci_additional_ip_create_step_select_region_description_floating_ip": "Vous ne trouvez pas la région que vous désirez dans la liste ? Pour en savoir plus sur la disponibilité des produits par région, <a href=\"{{ guideLink }}\" target=\"_blank\" data-track-name=\"{{ trackLabel }}\" data-track-on=\"click\" data-track-type=\"action\">cliquez ici.</a>",
   "pci_additional_ip_create_step_attach_instance_description_floating_ip": "Seules les instances avec des réseaux privés sont affichées",
   "pci_additional_ip_create_no_instance_message_floating_ip": "Aucune instance avec réseau privé n'a été trouvée dans la région sélectionnée. Veuillez en créer un avant d'attacher une floating IP.",

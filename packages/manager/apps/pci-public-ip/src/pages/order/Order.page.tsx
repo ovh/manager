@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHref, useParams } from 'react-router-dom';
+import { useHref, useParams, useSearchParams } from 'react-router-dom';
 import { Notifications } from '@ovh-ux/manager-react-components';
 import {
   OsdsBreadcrumb,
@@ -15,6 +15,7 @@ import {
   useNavigation,
 } from '@ovh-ux/manager-react-shell-client';
 import { PciDiscoveryBanner, useProject } from '@ovh-ux/manager-pci-common';
+import { useShallow } from 'zustand/react/shallow';
 import HidePreloader from '@/core/HidePreloader';
 import { IpTypeStep } from '@/pages/order/steps/IpTypeStep';
 import { FailoverSteps } from '@/pages/order/steps/FailoverSteps';
@@ -24,18 +25,28 @@ import { useOrderParams } from '@/hooks/order/useParams';
 import { initStartupSteps } from '@/pages/order/utils/startupSteps';
 import { useData } from '@/api/hooks/useData';
 import { PublicIp } from '@/types/publicip.type';
+import { StepIdsEnum } from '@/api/types';
 
 export default function OrderPage(): JSX.Element {
   const { projectId } = useParams();
   const navigation = useNavigation();
+  const [searchParams] = useSearchParams();
+  const instanceId = searchParams.get('instance');
 
   const context = useContext(ShellContext);
 
-  const { t } = useTranslation('common');
-  const { t: tOrder } = useTranslation('order');
-  const { t: tStepper } = useTranslation('stepper');
+  const { t } = useTranslation(['common', 'order', 'stepper']);
 
-  const { form, setSteps, setForm } = useOrderStore();
+  const { form, setSteps, setForm, reset, closeStep, openStep } = useOrderStore(
+    useShallow((state) => ({
+      form: state.form,
+      setSteps: state.setSteps,
+      setForm: state.setForm,
+      reset: state.reset,
+      closeStep: state.closeStep,
+      openStep: state.openStep,
+    })),
+  );
   const { data: project } = useProject();
 
   const { state } = useData(projectId, context.environment.getRegion());
@@ -54,7 +65,15 @@ export default function OrderPage(): JSX.Element {
 
   useEffect(() => {
     setSteps(initStartupSteps());
-  }, []);
+
+    if (instanceId) {
+      closeStep(StepIdsEnum.IP_TYPE);
+      closeStep(StepIdsEnum.FLOATING_REGION);
+      openStep(StepIdsEnum.FLOATING_INSTANCE);
+    }
+
+    return () => reset();
+  }, [closeStep, openStep, reset, setSteps, instanceId]);
 
   useEffect(() => {
     const { ipType, failoverCountry, floatingRegion, instance } = orderParams;
@@ -99,18 +118,18 @@ export default function OrderPage(): JSX.Element {
           color={ODS_THEME_COLOR_INTENT.primary}
         ></OsdsIcon>
         <span className="ml-4">
-          {tStepper('common_back_button_back_to_previous_page')}
+          {t('stepper:common_back_button_back_to_previous_page')}
         </span>
       </OsdsLink>
       <div className="mt-[20px]">
         <OsdsText className="mx-3 font-sans font-bold text-[#00185e] text-2xl">
-          {tOrder('pci_additional_ip_create')}
+          {t('order:pci_additional_ip_create')}
         </OsdsText>
 
         <Notifications />
       </div>
       <p className="mb-3 font-sans text-base text-[#4d5592]">
-        {tOrder('pci_additional_ip_create_description')}
+        {t('order:pci_additional_ip_create_description')}
       </p>
 
       <PciDiscoveryBanner project={project} />
@@ -126,6 +145,7 @@ export default function OrderPage(): JSX.Element {
           <FloatingSteps
             projectId={projectId}
             regionName={context.environment.getRegion()}
+            instanceId={instanceId}
           />
         )}
       </div>

@@ -3,7 +3,6 @@ import {
   FLOATINGIP_ADDON_FAMILY,
   FLOATINGIP_PLANCODE,
 } from '../../../constants';
-import { WINDOWS_GEN_3_ADDON_PLANCODE } from './instances.constants';
 import { PCI_FEATURES } from '../../projects.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -325,12 +324,6 @@ export default /* @ngInject */ ($stateProvider) => {
           'public-cloud',
           `#/pci/projects/${projectId}/public-ips/floating-ips`,
         ),
-      windowsGen3: /* @ngInject */ (catalog) => ({
-        price:
-          catalog.addons.find(
-            ({ planCode }) => planCode === WINDOWS_GEN_3_ADDON_PLANCODE,
-          )?.pricings[0]?.price || null,
-      }),
       snapshotAvailability: /* @ngInject */ (
         PciProjectsProjectInstanceService,
         projectId,
