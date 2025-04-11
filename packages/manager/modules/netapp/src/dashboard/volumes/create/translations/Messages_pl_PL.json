@@ -16,5 +16,7 @@
   "netapp_volume_mount_path": "Mount Path (opcjonalnie)",
   "netapp_volume_mount_path_format_error": "Znaki specjalne nie są dozwolone",
   "netapp_volume_mount_path_character_limit_error": "Przekroczono maksymalną liczbę znaków 255",
-  "netapp_volume_mount_path_already_used_error": "Tryb mount path jest już używany na innym wolumenie. Wprowadź nowy adres e-mail."
+  "netapp_volume_mount_path_already_used_error": "Tryb mount path jest już używany na innym wolumenie. Wprowadź nowy adres e-mail.",
+  "netapp_volume_create_snapshot_selection": "Wybierz snapshot, z którego chcesz utworzyć wolumen",
+  "netapp_volume_create_snapshot_selection_placeholder": "Wybierz..."
 }
