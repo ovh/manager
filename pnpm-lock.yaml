@@ -1076,6 +1076,9 @@ importers:
       jest-cucumber:
         specifier: ^3.0.1
         version: 3.0.2(ts-node@10.9.2(@types/node@20.14.10)(typescript@5.8.2))
+      typescript:
+        specifier: ^5.4.5
+        version: 5.8.2
 
   packages/manager-react-components:
     dependencies:
