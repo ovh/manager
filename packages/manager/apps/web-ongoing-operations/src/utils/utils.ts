@@ -19,3 +19,8 @@ export const removeQuotes = (comment: string) => {
   }
   return comment;
 };
+
+export function getNicParams(fields: string[]): string {
+  const params = new URLSearchParams({ fields: fields.join(',') });
+  return `?${params.toString()}`;
+}
