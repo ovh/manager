@@ -73,7 +73,7 @@ describe('App Layout', () => {
       wrapper: RouterWithQueryClientWrapper,
     });
     await waitFor(() => {
-      expect(screen.getByText('dashboardTab')).toBeInTheDocument();
+      expect(screen.getByText('dashboardTab')).toBeTruthy();
     });
   });
 
@@ -82,7 +82,7 @@ describe('App Layout', () => {
       wrapper: RouterWithQueryClientWrapper,
     });
     await waitFor(() => {
-      expect(screen.getByText(mockedApp.spec.name)).toBeInTheDocument();
+      expect(screen.getByText(mockedApp.spec.name)).toBeTruthy();
     });
   });
 
@@ -94,9 +94,9 @@ describe('App Layout', () => {
       wrapper: RouterWithQueryClientWrapper,
     });
     await waitFor(() => {
-      expect(screen.getByTestId('app-header-container')).toBeInTheDocument();
+      expect(screen.getByTestId('app-header-container')).toBeTruthy();
     });
-    expect(screen.getByText(mockedApp.spec.name)).toBeInTheDocument();
+    expect(screen.getByText(mockedApp.spec.name)).toBeTruthy();
   });
 
   it('renders fully service layout', async () => {
@@ -107,8 +107,8 @@ describe('App Layout', () => {
       wrapper: RouterWithQueryClientWrapper,
     });
     await waitFor(() => {
-      expect(screen.getByTestId('app-header-container')).toBeInTheDocument();
-      expect(screen.getByText(mockedAppWithVol.spec.name)).toBeInTheDocument();
+      expect(screen.getByTestId('app-header-container')).toBeTruthy();
+      expect(screen.getByText(mockedAppWithVol.spec.name)).toBeTruthy();
     });
   });
 });

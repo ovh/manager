@@ -41,9 +41,9 @@ describe('General information component', () => {
 
   it('renders GeneralInformation', async () => {
     render(<AppGeneralInfo />, { wrapper: RouterWithQueryClientWrapper });
-    expect(screen.getByTestId('image-container')).toBeInTheDocument();
-    expect(screen.getByTestId('port-container')).toBeInTheDocument();
-    expect(screen.getByTestId('url-container')).toBeInTheDocument();
+    expect(screen.getByTestId('image-container')).toBeTruthy();
+    expect(screen.getByTestId('port-container')).toBeTruthy();
+    expect(screen.getByTestId('url-container')).toBeTruthy();
   });
 
   it('open update image modal', async () => {
@@ -74,7 +74,7 @@ describe('General information component', () => {
     });
     render(<AppGeneralInfo />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByText(mockedApp.status.url)).toBeInTheDocument();
+      expect(screen.getByText(mockedApp.status.url)).toBeTruthy();
     });
     act(() => {
       fireEvent.click(screen.getByTestId('url-copy-button'));

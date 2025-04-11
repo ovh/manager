@@ -18,25 +18,25 @@ describe('Probe form component', () => {
       />,
     );
     await waitFor(() => {
-      expect(screen.getByTestId('probe-switch-button')).toBeInTheDocument();
-      expect(screen.queryByTestId('prob-form-input')).not.toBeInTheDocument();
+      expect(screen.getByTestId('probe-switch-button')).toBeTruthy();
+      expect(screen.queryByTestId('prob-form-input')).toBeNull();
     });
   });
 
   it('should display Probe Form and activate', async () => {
     render(<ProbeForm onChange={onChange} probeValue={{}} />);
     await waitFor(() => {
-      expect(screen.getByTestId('probe-switch-button')).toBeInTheDocument();
-      expect(screen.queryByTestId('prob-form-input')).not.toBeInTheDocument();
+      expect(screen.getByTestId('probe-switch-button')).toBeTruthy();
+      expect(screen.queryByTestId('prob-form-input')).toBeNull();
     });
 
     act(() => {
       fireEvent.click(screen.getByTestId('probe-switch-button'));
     });
     await waitFor(() => {
-      expect(screen.getByTestId('path-input-field')).toBeInTheDocument();
-      expect(screen.getByTestId('port-input-field')).toBeInTheDocument();
-      expect(screen.getByTestId('probe-add-button')).toBeInTheDocument();
+      expect(screen.getByTestId('path-input-field')).toBeTruthy();
+      expect(screen.getByTestId('port-input-field')).toBeTruthy();
+      expect(screen.getByTestId('probe-add-button')).toBeTruthy();
     });
   });
 
@@ -46,7 +46,7 @@ describe('Probe form component', () => {
       fireEvent.click(screen.getByTestId('probe-switch-button'));
     });
     await waitFor(() => {
-      expect(screen.getByTestId('path-input-field')).toBeInTheDocument();
+      expect(screen.getByTestId('path-input-field')).toBeTruthy();
     });
     act(() => {
       fireEvent.change(screen.getByTestId('path-input-field'), {

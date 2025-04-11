@@ -49,8 +49,8 @@ describe('Scaling strategy component', () => {
       { wrapper: RouterWithQueryClientWrapper },
     );
     await waitFor(() => {
-      expect(screen.getByTestId('scaling-strat-container')).toBeInTheDocument();
-      expect(screen.getByTestId('auto-scaling-container')).toBeInTheDocument();
+      expect(screen.getByTestId('scaling-strat-container')).toBeTruthy();
+      expect(screen.getByTestId('auto-scaling-container')).toBeTruthy();
     });
   });
 
@@ -65,8 +65,8 @@ describe('Scaling strategy component', () => {
       { wrapper: RouterWithQueryClientWrapper },
     );
     await waitFor(() => {
-      expect(screen.getByTestId('scaling-strat-container')).toBeInTheDocument();
-      expect(screen.getByTestId('auto-scaling-container')).toBeInTheDocument();
+      expect(screen.getByTestId('scaling-strat-container')).toBeTruthy();
+      expect(screen.getByTestId('auto-scaling-container')).toBeTruthy();
     });
 
     act(() => {
@@ -95,8 +95,8 @@ describe('Scaling strategy component', () => {
       { wrapper: RouterWithQueryClientWrapper },
     );
     await waitFor(() => {
-      expect(screen.getByTestId('fixed-scaling-container')).toBeInTheDocument();
-      expect(screen.getByTestId('replicas-input')).toBeInTheDocument();
+      expect(screen.getByTestId('fixed-scaling-container')).toBeTruthy();
+      expect(screen.getByTestId('replicas-input')).toBeTruthy();
     });
 
     act(() => {

@@ -21,10 +21,8 @@ describe('App dashboard delete modal', () => {
     });
 
     await waitFor(() => {
-      expect(screen.getByTestId('delete-app-modal')).toBeInTheDocument();
-      expect(
-        screen.getByTestId('delete-app-submit-button'),
-      ).toBeInTheDocument();
+      expect(screen.getByTestId('delete-app-modal')).toBeTruthy();
+      expect(screen.getByTestId('delete-app-submit-button')).toBeTruthy();
     });
   });
 });

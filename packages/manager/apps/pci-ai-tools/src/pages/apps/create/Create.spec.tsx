@@ -88,27 +88,27 @@ describe('Order funnel page', () => {
     const translationKey = 'breadcrumb';
     render(<Breadcrumb />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByText(translationKey)).toBeInTheDocument();
+      expect(screen.getByText(translationKey)).toBeTruthy();
     });
   });
 
   it('renders the skeleton component while loading', async () => {
     render(<App />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByTestId('order-funnel-skeleton')).toBeInTheDocument();
+      expect(screen.getByTestId('order-funnel-skeleton')).toBeTruthy();
     });
   });
 
   it('renders the order funnel', async () => {
     render(<App />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByTestId('order-funnel-container')).toBeInTheDocument();
-      expect(screen.getByTestId('name-section')).toBeInTheDocument();
-      expect(screen.getByTestId('flavor-section')).toBeInTheDocument();
-      expect(screen.getByTestId('region-section')).toBeInTheDocument();
-      expect(screen.getByTestId('image-section')).toBeInTheDocument();
-      expect(screen.getByTestId('advance-config-section')).toBeInTheDocument();
-      expect(screen.getByTestId('order-submit-button')).toBeInTheDocument();
+      expect(screen.getByTestId('order-funnel-container')).toBeTruthy();
+      expect(screen.getByTestId('name-section')).toBeTruthy();
+      expect(screen.getByTestId('flavor-section')).toBeTruthy();
+      expect(screen.getByTestId('region-section')).toBeTruthy();
+      expect(screen.getByTestId('image-section')).toBeTruthy();
+      expect(screen.getByTestId('advance-config-section')).toBeTruthy();
+      expect(screen.getByTestId('order-submit-button')).toBeTruthy();
     });
   });
 
@@ -118,7 +118,7 @@ describe('Order funnel page', () => {
     });
     render(<App />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByTestId('order-funnel-container')).toBeInTheDocument();
+      expect(screen.getByTestId('order-funnel-container')).toBeTruthy();
     });
     act(() => {
       fireEvent.change(screen.getByTestId('docker-custom-image-input'), {
@@ -142,7 +142,7 @@ describe('Order funnel page', () => {
   it('trigger getCommand on Cli Command button click', async () => {
     render(<App />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByTestId('order-funnel-container')).toBeInTheDocument();
+      expect(screen.getByTestId('order-funnel-container')).toBeTruthy();
     });
     act(() => {
       fireEvent.change(screen.getByTestId('docker-custom-image-input'), {
@@ -164,7 +164,7 @@ describe('Order funnel page', () => {
     });
     render(<App />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByTestId('order-funnel-container')).toBeInTheDocument();
+      expect(screen.getByTestId('order-funnel-container')).toBeTruthy();
     });
     act(() => {
       fireEvent.change(screen.getByTestId('docker-custom-image-input'), {
@@ -175,7 +175,7 @@ describe('Order funnel page', () => {
       fireEvent.click(screen.getByTestId('docker-custom-image-add-button'));
     });
     await waitFor(() => {
-      expect(screen.getByText('myNewImage')).toBeInTheDocument();
+      expect(screen.getByText('myNewImage')).toBeTruthy();
     });
     act(() => {
       fireEvent.click(screen.getByTestId('order-submit-button'));
@@ -194,7 +194,7 @@ describe('Order funnel page', () => {
   it('trigger add Job on click', async () => {
     render(<App />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByTestId('order-funnel-container')).toBeInTheDocument();
+      expect(screen.getByTestId('order-funnel-container')).toBeTruthy();
     });
     act(() => {
       fireEvent.change(screen.getByTestId('docker-custom-image-input'), {
@@ -205,7 +205,7 @@ describe('Order funnel page', () => {
       fireEvent.click(screen.getByTestId('docker-custom-image-add-button'));
     });
     await waitFor(() => {
-      expect(screen.getByText('myNewImage')).toBeInTheDocument();
+      expect(screen.getByText('myNewImage')).toBeTruthy();
     });
     act(() => {
       fireEvent.click(screen.getByTestId('order-submit-button'));
@@ -213,6 +213,6 @@ describe('Order funnel page', () => {
     await waitFor(() => {
       expect(appApi.addApp).toHaveBeenCalled();
     });
-    expect(mockedUsedNavigate).toHaveBeenCalledWith('../deploy/undefined');
+    expect(mockedUsedNavigate).toHaveBeenCalledWith('../undefined');
   });
 });

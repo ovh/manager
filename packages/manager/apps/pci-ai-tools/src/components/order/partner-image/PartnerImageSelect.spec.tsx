@@ -51,13 +51,13 @@ describe('Partner Image Select component', () => {
       { wrapper: RouterWithQueryClientWrapper },
     );
     await waitFor(() => {
-      expect(screen.getByTestId('partner-image-select')).toBeInTheDocument();
+      expect(screen.getByTestId('partner-image-select')).toBeTruthy();
       expect(
         screen.getByTestId(`image-radio-tile-${mockedPartnerImagePerApp.id}`),
-      ).toBeInTheDocument();
+      ).toBeTruthy();
       expect(
         screen.getByTestId(`image-radio-tile-${mockedPartnerImagePerApp.id}`),
-      ).toBeInTheDocument();
+      ).toBeTruthy();
     });
 
     act(() => {
@@ -83,7 +83,7 @@ describe('Partner Image Select component', () => {
     );
     const imgRadioTileId = `image-radio-tile-${mockedPartnerWithOtherId.id}`;
     await waitFor(() => {
-      expect(screen.getByTestId(imgRadioTileId)).toBeInTheDocument();
+      expect(screen.getByTestId(imgRadioTileId)).toBeTruthy();
     });
     act(() => {
       fireEvent.click(screen.getByTestId(imgRadioTileId));

@@ -38,13 +38,13 @@ describe('Update Port', () => {
 
   it('renders Update port modal and close it', async () => {
     render(<UpdateHttpPort />, { wrapper: RouterWithQueryClientWrapper });
-    expect(screen.getByTestId('update-port-modal')).toBeInTheDocument();
-    expect(screen.getByTestId('update-port-input')).toBeInTheDocument();
+    expect(screen.getByTestId('update-port-modal')).toBeTruthy();
+    expect(screen.getByTestId('update-port-input')).toBeTruthy();
     act(() => {
       fireEvent.click(screen.getByTestId('update-port-cancel-button'));
     });
     await waitFor(() => {
-      expect(screen.queryByTestId('update-port-modal')).not.toBeInTheDocument();
+      expect(screen.queryByTestId('update-port-modal')).toBeNull();
     });
   });
 
