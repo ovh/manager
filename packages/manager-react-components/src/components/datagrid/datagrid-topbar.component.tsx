@@ -117,10 +117,10 @@ export const DatagridTopbar = <T,>({
                     id="datagrid-filter-popover-trigger"
                     slot="datagrid-filter-popover-trigger"
                     size={ODS_BUTTON_SIZE.sm}
-                    variant={ODS_BUTTON_VARIANT.ghost}
+                    variant={ODS_BUTTON_VARIANT.outline}
                     icon={ODS_ICON_NAME.filter}
                     aria-label={t('common_criteria_adder_filter_label')}
-                    label=""
+                    label={t('common_criteria_adder_filter_label')}
                   />
                   <OdsPopover
                     ref={filterPopoverRef}
