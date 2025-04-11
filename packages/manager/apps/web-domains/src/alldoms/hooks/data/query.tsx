@@ -1,10 +1,14 @@
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import {
   getAllDomainAttachedToAllDom,
   getallDomList,
   getAllDomProperty,
   getallDomService,
+  updateAllDomService,
+  updateDomainServiceInfo,
 } from '@/alldoms/data/api/web-domains';
+import { TServiceInfo } from '@/alldoms/types';
+import { ServiceInfoUpdateEnum } from '@/alldoms/enum/service.enum';
 
 export const useGetAllDomServiceList = () => {
   return useQuery<string[]>({
@@ -31,5 +35,29 @@ export const useGetAllDomainAttachedToAllDom = (serviceName: string) => {
   return useQuery<string[]>({
     queryKey: ['allDom', 'services', serviceName, 'attachedDomains'],
     queryFn: () => getAllDomainAttachedToAllDom(serviceName),
+  });
+};
+
+export const useUpdateAllDomService = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (serviceName: string) =>
+      updateAllDomService(serviceName, {
+        terminationPolicy: ServiceInfoUpdateEnum.TerminateAtExpirationDate,
+      }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['alldom'] });
+    },
+  });
+};
+
+export const useUpdateDomainServiceInfo = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (domainName: string) => updateDomainServiceInfo(domainName),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['alldom'] });
+    },
   });
 };

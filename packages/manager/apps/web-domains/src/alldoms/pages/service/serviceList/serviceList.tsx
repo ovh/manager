@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Breadcrumb,
@@ -6,16 +6,26 @@ import {
   BaseLayout,
   useResourcesIcebergV6,
   ErrorBanner,
+  useNotifications,
+  Notifications,
 } from '@ovh-ux/manager-react-components';
+import { OdsMessage } from '@ovhcloud/ods-components/react';
 import Loading from '@/alldoms/components/Loading/Loading';
 
 import appConfig from '@/web-domains.config';
 import { useAllDomDatagridColumns } from '@/alldoms/hooks/useAllDomDatagridColumns';
 import { useGetDatagridServiceInfoList } from '@/alldoms/hooks/data/useDatagridServiceInfoList';
-import { TServiceProperty } from '@/alldoms/types';
+import { TServiceDetail, TServiceProperty } from '@/alldoms/types';
+import Modal from '@/alldoms/components/Modal/Modal';
 
 export default function ServiceList() {
   const { t } = useTranslation(['allDom', 'web-domains/error']);
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const [serviceInfoDetail, setServiceInfoDetail] = useState<TServiceDetail>(
+    null,
+  );
+  const { notifications } = useNotifications();
+
   const {
     flattenData: allDomList,
     isError,
@@ -30,10 +40,23 @@ export default function ServiceList() {
     queryKey: ['/allDom'],
     pageSize: 30,
   });
+
   const { serviceInfoList, listLoading } = useGetDatagridServiceInfoList({
     allDomList,
   });
-  const columns = useAllDomDatagridColumns();
+
+  const openModal = (serviceInfoFilter: TServiceDetail) => {
+    setModalOpen(true);
+    setServiceInfoDetail(serviceInfoFilter);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+    setServiceInfoDetail(null);
+  };
+
+  const columns = useAllDomDatagridColumns(openModal);
+
   const header = {
     title: t('title'),
   };
@@ -59,7 +82,15 @@ export default function ServiceList() {
         <Breadcrumb rootLabel={appConfig.rootLabel} appName="web-domains" />
       }
       header={header}
+      message={notifications.length ? <Notifications /> : null}
     >
+      {serviceInfoDetail && (
+        <Modal
+          serviceDetail={serviceInfoDetail}
+          closeModal={closeModal}
+          modalOpen={modalOpen}
+        />
+      )}
       <React.Suspense>
         <div data-testid="datagrid">
           <Datagrid
