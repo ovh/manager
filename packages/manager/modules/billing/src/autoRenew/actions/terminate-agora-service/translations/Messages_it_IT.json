@@ -24,8 +24,8 @@
   "autorenew_agora_terminate_service_warning_NUTANIX": "Conferma la disattivazione del tuo Nutanix on OVHcloud \"{{serviceName}}\"",
   "autorenew_agora_terminate_service_success_NUTANIX": "La tua richiesta di disattivazione di Nutanix è stata presa in carico. Ti abbiamo inviato un’email con la procedura da seguire.",
   "autorenew_agora_terminate_service_error_NUTANIX": "Si è verificato un errore durante la richiesta di disattivazione del tuo Nutanix. {{error}}",
-  "autorenew_agora_terminate_service_NUTANIX_NODE": "Disattiva questo nodo",
+  "autorenew_agora_terminate_service_NUTANIX_NODE": "Disattivare questo nodo",
   "autorenew_agora_terminate_service_warning_NUTANIX_NODE": "Stai per disattivare la sottoscrizione del nodo \"{{serviceName}}\".",
   "autorenew_agora_terminate_service_success_NUTANIX_NODE": "La disattivazione del nodo \"{{serviceName}}\" è stata presa in carico. Riceverai un'email con i dettagli della procedura da seguire.",
-  "autorenew_agora_terminate_service_error_NUTANIX_NODE": "La richiesta di disattivazione non è stata presa in carico: {{error}}"
+  "autorenew_agora_terminate_service_error_NUTANIX_NODE": "La tua richiesta di disattivazione non è stata presa in carico: {{error}}"
 }

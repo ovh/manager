@@ -53,5 +53,5 @@
   "pci_projects_project_storages_containers_container_storage_class_STANDARD_IA": "Standard IA",
   "pci_projects_project_storages_containers_container_enable_encryption": "Attiva la crittografia (SSE-OMK)",
   "pci_projects_project_storages_containers_container_delete_marker": "Indicatore di eliminazione",
-  "pci_projects_project_storages_containers_container_show_versions": "Visualizza le versioni"
+  "pci_projects_project_storages_containers_container_show_versions": "Visualizzare le versioni"
 }

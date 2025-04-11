@@ -1,18 +1,18 @@
 {
   "nutanix_dashboard_nodes_list_display_name": "Nome del nodo",
   "nutanix_dashboard_nodes_list_type_of_server": "Server",
-  "nutanix_dashboard_nodes_list_status": "Status",
+  "nutanix_dashboard_nodes_list_status": "Stato",
   "nutanix_dashboard_nodes_list_localisation": "Localizzazione",
-  "nutanix_dashboard_nodes_list_os_installed": "OS installato",
+  "nutanix_dashboard_nodes_list_os_installed": "SO installato",
   "nutanix_dashboard_nodes_list_node_ip": "IP del nodo",
   "nutanix_dashboard_nodes_list_node_cvm": "IP CVM",
   "nutanix_dashboard_nodes_list_localisation_value": "{{dcName}} (Rack {{rackName}})",
   "nutanix_dashboard_nodes_list_data_hidden": "NASCOSTO",
   "nutanix_dashboard_nodes_list_add_nodes": "Aggiungi nodi",
-  "nutanix_dashboard_nodes_add_node_max_node_tooltip": "Hai raggiunto il numero massimo di nodi autorizzati in un cluster",
+  "nutanix_dashboard_nodes_add_node_max_node_tooltip": "Hai raggiunto il numero massimo di nodi autorizzati in un cluster.",
   "nutanix_dashboard_nodes_suspended_tooltip": "Per riattivare il nodo, contatta il supporto",
-  "nutanix_dashboard_nodes_poweron_success_banner": "La richiesta di avvio è stata presa in carico. Questa operazione potrebbe richiedere fino a 15 minuti",
-  "nutanix_dashboard_nodes_poweron_error_banner": "La richiesta di avvio non è stata presa in carico:",
-  "nutanix_dashboard_nodes_state_banner_error_install": "Errore durante l'installazione su uno o più nodi. Ti consigliamo di ripetere l’operazione o, se il problema persiste, di contattare il nostro supporto.",
-  "nutanix_dashboard_nodes_state_banner_error_uninstall": "Errore durante la disinstallazione su uno o più nodi. Ti consigliamo di ripetere l’operazione o, se il problema persiste, di contattare il nostro supporto."
+  "nutanix_dashboard_nodes_poweron_success_banner": "La tua richiesta di avvio è stata presa in carico Questa operazione potrebbe richiedere fino a 15 minuti",
+  "nutanix_dashboard_nodes_poweron_error_banner": "La tua richiesta di avvio non è stata presa in carico:",
+  "nutanix_dashboard_nodes_state_banner_error_install": "Si è verificato un errore durante l'installazione su uno o più nodi. Ti consigliamo di ripetere l’operazione e, se il problema persiste, di contattare il nostro supporto.",
+  "nutanix_dashboard_nodes_state_banner_error_uninstall": "Si è verificato un errore durante la disinstallazione su uno o più nodi. Ti consigliamo di ripetere l’operazione e, se il problema persiste, di contattare il nostro supporto."
 }
