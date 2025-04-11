@@ -25,6 +25,7 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, 'src'),
     },
+    dedupe: ['@ovh-ux/ovh-payment-method'],
     mainFields: ['module'],
   },
 });

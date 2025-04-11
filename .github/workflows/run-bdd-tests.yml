@@ -29,6 +29,7 @@ jobs:
           yarn exec turbo -- run build --filter="./packages/manager/modules/vcd-api"
           yarn exec turbo -- run build --filter="./packages/manager/modules/manager-pci-common"
           yarn exec turbo -- run build --filter="./packages/manager/modules/network-common"
+          yarn exec turbo -- run build --filter="./packages/components/ovh-payment-method"
       # This task is for running the jest tests outside microApps
       - name: Run tests Jest
         run: yarn test:jest

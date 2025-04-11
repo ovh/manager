@@ -1,34 +1,42 @@
 import filter from 'lodash/filter';
 import get from 'lodash/get';
-
 import {
   AGREEMENT_GENERIC_MORE_INFORMATIONS_URL,
   GDPR_AGREEMENTS_INFOS,
   SUPPORT_URL,
 } from '../user-agreements.constant';
 
-export default /* @ngInject */ function UserAccountAgreementsDtailsController(
-  $q,
-  UserAccountServicesAgreements,
-  Alerter,
-  agreementId,
-  $translate,
-  coreConfig,
-) {
-  const CGV_AGREEMENT_ID = 1635;
+const CGV_AGREEMENT_ID = 1635;
 
-  this.$ngInit = () => {
+export default class UserAccountAgreementsDetailsController {
+  /* @ngInject */
+  constructor(
+    $q,
+    UserAccountServicesAgreements,
+    Alerter,
+    $translate,
+    coreConfig,
+  ) {
+    this.$q = $q;
+    this.UserAccountServicesAgreements = UserAccountServicesAgreements;
+    this.Alerter = Alerter;
+    this.$translate = $translate;
+    this.coreConfig = coreConfig;
+  }
+
+  $onInit() {
     this.accepted = false;
     this.loading = true;
     this.confirmed = false;
     this.alreadyAccepted = false;
 
-    $q.all([
-      UserAccountServicesAgreements.getAgreement(agreementId),
-      UserAccountServicesAgreements.getContract(agreementId),
-    ])
+    this.$q
+      .all([
+        this.UserAccountServicesAgreements.getAgreement(this.agreementId),
+        this.UserAccountServicesAgreements.getContract(this.agreementId),
+      ])
       .then(([agreement, contract]) => {
-        const user = coreConfig.getUser();
+        const user = this.coreConfig.getUser();
         this.SUPPORT_URL = SUPPORT_URL + user.ovhSubsidiary;
         this.agreement = agreement;
         this.contract = contract;
@@ -48,37 +56,35 @@ export default /* @ngInject */ function UserAccountAgreementsDtailsController(
         );
       })
       .catch((err) => {
-        Alerter.error(
-          $translate.instant('user_agreements_error'),
+        this.Alerter.error(
+          this.$translate.instant('user_agreements_error'),
           'agreements_details_alerter',
         );
-        return $q.reject(err);
+        return this.$q.reject(err);
       })
       .finally(() => {
         this.loading = false;
       });
-  };
+  }
 
-  this.accept = () => {
-    UserAccountServicesAgreements.accept({
+  accept() {
+    this.UserAccountServicesAgreements.accept({
       ...this.agreement,
       ...this.contract,
     })
       .then(() => {
         this.accepted = true;
-        Alerter.success(
-          $translate.instant('user_agreement_details_success'),
+        this.Alerter.success(
+          this.$translate.instant('user_agreement_details_success'),
           'agreements_details_alerter',
         );
       })
       .catch((err) => {
-        Alerter.error(
-          $translate.instant('user_agreement_details_error'),
+        this.Alerter.error(
+          this.$translate.instant('user_agreement_details_error'),
           'agreements_details_alerter',
         );
-        $q.reject(err);
+        this.$q.reject(err);
       });
-  };
-
-  this.$ngInit();
+  }
 }

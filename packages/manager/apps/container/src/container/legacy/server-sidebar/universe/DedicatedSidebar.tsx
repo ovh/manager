@@ -23,7 +23,6 @@ export const features = [
   'paas',
   'cloud-disk-array',
   'veeam-cloud-connect',
-  'metrics',
   'dedicated-network',
   'vrack:bare-metal-cloud',
   'vrack:hosted-private-cloud',
@@ -205,18 +204,6 @@ export default function DedicatedSidebar() {
               icon: getIcon('ovh-font ovh-font-veeam'),
             })),
           ];
-        },
-      });
-    }
-
-    if (feature.metrics) {
-      menu.push({
-        id: 'metrics',
-        label: t('sidebar_metrics'),
-        icon: getIcon('ovh-font ovh-font-graph'),
-        routeMatcher: new RegExp('^/metrics'),
-        async loader() {
-          return loadServices('/metrics');
         },
       });
     }

@@ -5,7 +5,11 @@ import isNull from 'lodash/isNull';
 import snakeCase from 'lodash/snakeCase';
 import 'moment';
 
-import { DEBT_STATUS, BYOIP_SERVICE_PREFIX } from './billing-service.constants';
+import {
+  DEBT_STATUS,
+  BYOIP_SERVICE_PREFIX,
+  SERVICE_TYPE,
+} from './billing-service.constants';
 
 export default class BillingService {
   constructor(service) {
@@ -61,6 +65,10 @@ export default class BillingService {
 
   isManualForced() {
     return this.status === 'FORCED_MANUAL';
+  }
+
+  isExtraSqlPerso() {
+    return this.serviceType === SERVICE_TYPE.HOSTING_WEB_EXTRA_SQL_PERSO;
   }
 
   getRenew() {
