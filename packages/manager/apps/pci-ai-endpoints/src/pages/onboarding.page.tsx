@@ -1,11 +1,9 @@
-import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import {
   Card,
   OnboardingLayout,
   RedirectionGuard,
-  useFeatureAvailability,
 } from '@ovh-ux/manager-react-components';
 import { OsdsText } from '@ovhcloud/ods-components/react';
 import {
@@ -15,20 +13,12 @@ import {
 import { ODS_TEXT_LEVEL } from '@ovhcloud/ods-components';
 import useGuideUtils from '@/hooks/guide/useGuideUtils';
 import onboardingImgSrc from '@/assets/onboarding-img.png';
-import { useGetTokens } from '@/hooks/api/database/token/useToken.hook';
 import { useGetMetrics } from '@/hooks/api/database/metric/useGetMetrics.hook';
-
-const CREATE_TOKEN = 'pci-ai-endpoints:create-token';
 
 export default function Onboarding() {
   const { t } = useTranslation('onboarding');
   const link = useGuideUtils();
   const { projectId } = useParams();
-  const navigate = useNavigate();
-
-  const { data: availability } = useFeatureAvailability([CREATE_TOKEN]);
-
-  const tokensQuery = useGetTokens({ projectId });
 
   const metricsQuery = useGetMetrics(
     projectId,
@@ -41,25 +31,6 @@ export default function Onboarding() {
       ).toISOString(),
     ),
   );
-
-  let layoutProps = {};
-
-  if (availability?.[CREATE_TOKEN]) {
-    layoutProps = {
-      orderButtonLabel: t('ai_endpoints_create_API_key'),
-      onOrderButtonClick: () =>
-        navigate(`/pci/projects/${projectId}/ai/endpoints/token`),
-    };
-  } else {
-    layoutProps = {
-      moreInfoButtonLabel: t('ai_endpoints_goToAiEndpoint'),
-      moreInfoHref: 'https://endpoints.ai.cloud.ovh.net/',
-    };
-  }
-
-  const shouldRedirect =
-    (Array.isArray(tokensQuery.data) && tokensQuery.data.length > 0) ||
-    (Array.isArray(metricsQuery.data) && metricsQuery.data.length > 0);
 
   const guideList = [
     {
@@ -91,16 +62,20 @@ export default function Onboarding() {
     },
   ];
 
-  const title = t('ai_endpoints_title');
-  const imgSrc = { src: onboardingImgSrc };
-  const descBis = t('ai_endpoints_descriptionBis');
+  const title: string = t('ai_endpoints_title');
+  const imgSrc = {
+    src: onboardingImgSrc,
+  };
+  const descBis: string = t('ai_endpoints_descriptionBis');
 
   return (
     <div className="flex justify-center">
       <RedirectionGuard
-        isLoading={tokensQuery.isLoading}
+        isLoading={metricsQuery.isLoading}
         route={`/pci/projects/${projectId}/ai/endpoints/metrics`}
-        condition={shouldRedirect}
+        condition={
+          Array.isArray(metricsQuery.data) && metricsQuery.data.length > 0
+        }
       >
         <OnboardingLayout
           title={title}
@@ -129,7 +104,8 @@ export default function Onboarding() {
               </OsdsText>
             </>
           }
-          {...layoutProps}
+          moreInfoButtonLabel={t('ai_endpoints_goToAiEndpoint')}
+          moreInfoHref="https://endpoints.ai.cloud.ovh.net/"
         >
           <div className="mb-4 sm:hidden"></div>
           {guideList.map((tile) => (
