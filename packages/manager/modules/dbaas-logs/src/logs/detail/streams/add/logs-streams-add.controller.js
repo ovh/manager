@@ -30,9 +30,8 @@ export default class LogsStreamsAddCtrl {
     this.isEdit = false;
     this.compressionAlgorithms = this.LogsStreamsService.getCompressionAlgorithms();
     this.storageDurations = this.LogsStreamsService.getStorageDurations();
-    this.storageTargets = this.LogsStreamsService.getStorageTargets();
     this.storageContents = this.LogsStreamsService.getStorageContents();
-    this.coldStoragePrice = { PCS: { price: '' }, PCA: { price: '' } };
+    this.coldStoragePrice = { price: '' };
     this.indexingStoragePrice = {
       FirstStep: { price: '' },
       SecondStep: { price: '' },
@@ -77,27 +76,15 @@ export default class LogsStreamsAddCtrl {
         }
         if (
           add.plan.planCode ===
-          this.LogsConstants.CONSUMPTION_REFERENCE.COLDSTORAGE_PCA
+          this.LogsConstants.CONSUMPTION_REFERENCE.COLDSTORAGE
         ) {
-          const coldstoragePCA = add.plan.details.pricings.default.find(
+          const coldstorage = add.plan.details.pricings.default.find(
             (capabilities) =>
               capabilities.capacities.includes(
                 this.LogsConstants.CONSUMPTION_CAPACITY,
               ),
           );
-          this.coldStoragePrice.PCA.price = coldstoragePCA.price.text;
-        }
-        if (
-          add.plan.planCode ===
-          this.LogsConstants.CONSUMPTION_REFERENCE.COLDSTORAGE_PCS
-        ) {
-          const coldstoragePCS = add.plan.details.pricings.default.find(
-            (capabilities) =>
-              capabilities.capacities.includes(
-                this.LogsConstants.CONSUMPTION_CAPACITY,
-              ),
-          );
-          this.coldStoragePrice.PCS.price = coldstoragePCS.price.text;
+          this.coldStoragePrice.price = coldstorage.price.text;
         }
       });
     });
@@ -184,16 +171,20 @@ export default class LogsStreamsAddCtrl {
   }
 
   getColdStoragePrice() {
-    return this.$translate.instant(
+    const desc = this.$translate.instant(
+      'logs_streams_enable_archieve_description',
+    );
+    const price = this.$translate.instant(
       'streams_cold_storage_price',
       {
-        t0: this.coldStoragePrice[this.stream.data.coldStorageTarget].price,
+        t0: this.coldStoragePrice.price,
         t1: this.LogsConstants.COLDSTORAGE_INCREMENT,
       },
       undefined,
       false,
       'sceParameters', // Expose devise symbol from API without sanitization
     );
+    return `${desc} ${price}`;
   }
 
   getIndexingPrices() {
