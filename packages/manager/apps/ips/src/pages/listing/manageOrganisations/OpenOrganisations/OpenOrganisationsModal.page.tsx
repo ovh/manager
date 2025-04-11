@@ -28,7 +28,9 @@ import { postOrganisations, OrgDetails } from '@/data/api';
 import Loading from '../components/Loading/Loading';
 import '../../../../index.scss';
 
-const OpenOrganisationsModal = () => {
+export const OpenOrganisationsModal: React.FC<{ isOpen: boolean }> = ({
+  isOpen = true,
+}) => {
   const [registry, setRegistry] = useState([]);
   const [countrylist, setCountrylist] = useState([]);
   const { t } = useTranslation('manage-organisations');
@@ -108,7 +110,7 @@ const OpenOrganisationsModal = () => {
   return (
     <OdsModal
       class="ods-manage-org-modal"
-      isOpen
+      isOpen={isOpen}
       isDismissible
       onOdsClose={closeModal}
     >
