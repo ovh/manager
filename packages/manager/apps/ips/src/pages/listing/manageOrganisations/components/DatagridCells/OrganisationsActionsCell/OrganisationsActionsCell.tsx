@@ -30,7 +30,7 @@ export const OrganisationsActionsCell = (org: OrgDetails) => {
 
   return (
     <ActionMenu
-      id={`manageOrgActionMenu-${org?.registry}`}
+      id={`manageOrgActionMenu-${org?.registry}-${org?.organisationId}`}
       items={items}
       isCompact
       variant={ODS_BUTTON_VARIANT.ghost}
