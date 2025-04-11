@@ -5,12 +5,12 @@ import {
 } from '@ovh-ux/manager-react-components';
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { useOKMSById } from '@/data/hooks/useOKMS';
+import { useOkmsById } from '@/data/hooks/useOkms';
 import { FEATURES } from '@/utils/feature-availability/feature-availability.constants';
 
 export default function KmsLogs() {
   const { okmsId } = useParams();
-  const { data: okms } = useOKMSById(okmsId);
+  const { data: okms } = useOkmsById(okmsId);
 
   const { data: features, isLoading } = useFeatureAvailability([FEATURES.LOGS]);
 
