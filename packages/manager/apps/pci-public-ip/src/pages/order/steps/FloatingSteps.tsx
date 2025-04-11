@@ -17,6 +17,7 @@ import {
   DeploymentTilesInput,
   useFeaturedDeploymentModes,
 } from '@ovh-ux/manager-pci-common';
+import { Subtitle } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useData } from '@/api/hooks/useData';
@@ -38,7 +39,7 @@ export const FloatingSteps = ({
   regionName: string;
   instanceId?: string;
 }): JSX.Element => {
-  const { t: tOrder } = useTranslation('order');
+  const { t } = useTranslation(['order', 'regions']);
   const { state: orderData, getInstanceById, isInstanceFetching } = useData(
     projectId,
     regionName,
@@ -149,9 +150,7 @@ export const FloatingSteps = ({
       <StepComponent
         key={StepIdsEnum.FLOATING_REGION}
         {...steps.get(StepIdsEnum.FLOATING_REGION)}
-        title={tOrder(
-          'pci_additional_ip_create_step_select_region_floating_ip',
-        )}
+        title={t('regions:pci_project_regions_list_region')}
         next={{ action: form.floatingRegion && On.next }}
         onEdit={On.edit}
         order={2}
@@ -162,20 +161,26 @@ export const FloatingSteps = ({
           onChange={setSelectedRegionGroup}
           deployments={deployments}
         />
-        <PCICommonContext.Provider value={metaProps}>
-          <RegionSelector
-            projectId={projectId}
-            onSelectRegion={onSelectRegion}
-            regionFilter={(region) =>
-              region.isMacro || regions.some(({ name }) => name === region.name)
-            }
-          />
-        </PCICommonContext.Provider>
+        <div className="flex flex-col gap-y-4">
+          <Subtitle>
+            {t('pci_additional_ip_create_step_select_region_floating_ip')}
+          </Subtitle>
+          <PCICommonContext.Provider value={metaProps}>
+            <RegionSelector
+              projectId={projectId}
+              onSelectRegion={onSelectRegion}
+              regionFilter={(region) =>
+                region.isMacro ||
+                regions.some(({ name }) => name === region.name)
+              }
+            />
+          </PCICommonContext.Provider>
+        </div>
       </StepComponent>
       <StepComponent
         key={StepIdsEnum.FLOATING_INSTANCE}
         {...steps.get(StepIdsEnum.FLOATING_INSTANCE)}
-        title={tOrder('pci_additional_ip_create_step_attach_instance')}
+        title={t('pci_additional_ip_create_step_attach_instance')}
         next={{ action: form.instance && form.ipAddress && On.next }}
         onEdit={On.edit}
         order={3}
@@ -190,14 +195,14 @@ export const FloatingSteps = ({
               <>
                 <p>
                   <OsdsText>
-                    {tOrder(
+                    {t(
                       'pci_additional_ip_create_step_attach_instance_description_floating_ip',
                     )}
                   </OsdsText>
                 </p>
                 <div>
                   <OsdsText>
-                    {tOrder('pci_additional_ips_failoverip_order_instance')}
+                    {t('pci_additional_ips_failoverip_order_instance')}
                   </OsdsText>
                 </div>
                 <OsdsSelect
@@ -212,7 +217,7 @@ export const FloatingSteps = ({
                   }}
                 >
                   <span slot="placeholder">
-                    {tOrder(
+                    {t(
                       'pci_additional_ip_create_step_attach_instance_label',
                     )}
                   </span>
@@ -226,7 +231,7 @@ export const FloatingSteps = ({
                   <>
                     <div>
                       <OsdsText>
-                        {tOrder('pci_additional_ip_select_network_label')}
+                        {t('pci_additional_ip_select_network_label')}
                       </OsdsText>
                     </div>
                     <OsdsSelect
@@ -243,7 +248,7 @@ export const FloatingSteps = ({
                       }}
                     >
                       <span slot="placeholder">
-                        {tOrder('pci_additional_ip_select_network_label')}
+                        {t('pci_additional_ip_select_network_label')}
                       </span>
                       {selectedInstanceIpAddresses.map((ipAddress, idx) => (
                         <OsdsSelectOption key={idx} value={ipAddress.ip}>
@@ -260,12 +265,10 @@ export const FloatingSteps = ({
                 color={ODS_THEME_COLOR_INTENT.error}
               >
                 <p className="text-base font-sans">
-                  {tOrder(
-                    'pci_additional_ip_create_no_instance_message_floating_ip',
-                  )}{' '}
+                  {t('pci_additional_ip_create_no_instance_message_floating_ip')}{' '}
                   <span
-                    dangerouslySetInnerHTML={{
-                      __html: tOrder(
+                dangerouslySetInnerHTML={{
+                  __html: t(
                         'pci_additional_ip_create_create_instance',
                         {
                           url: instanceCreationURL,
@@ -282,7 +285,7 @@ export const FloatingSteps = ({
       <StepComponent
         key={StepIdsEnum.FLOATING_SUMMARY}
         {...steps.get(StepIdsEnum.FLOATING_SUMMARY)}
-        title={tOrder('pci_additional_ip_create_step_summary')}
+        title={t('pci_additional_ip_create_step_summary')}
         order={4}
       >
         <FloatingIpSummary
