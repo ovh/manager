@@ -43,7 +43,7 @@ function Header({
 
   return (
     <ApplicationContext.Consumer>
-      {({ environment }) => (
+      {() => (
         <Suspense fallback="">
           <div
             className={`${modalStyle.popoverClickAway} ${isDropdownOpen ? '' : modalStyle.hidden
