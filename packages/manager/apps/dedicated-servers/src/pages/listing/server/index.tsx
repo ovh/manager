@@ -17,6 +17,7 @@ import { urls } from '@/routes/routes.constant';
 
 export default function ServerListing() {
   const [columns] = useState([]);
+  const [visibleColumns] = useState(['serverId', 'ip', 'renew', 'actions']);
   const { t } = useTranslation('dedicated-servers');
   const { shell } = React.useContext(ShellContext);
   const { sorting, setSorting } = useDataGrid({
