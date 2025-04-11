@@ -224,39 +224,41 @@ export default class FlavorsListController {
       allMontlyPrices: [],
     };
 
-    flavor.priceInformation.forEach((current) => {
-      // Manage the hourly prices for the flavor
-      if (current.prices.hourly?.value) {
-        // add current hourly price to distinct prices array
-        if (!result.allHourlyPrices.includes(current.prices.hourly.value)) {
-          result.allHourlyPrices.push(current.prices.hourly.value);
+    flavor.flavors
+      .flatMap((f) => f.priceInformation)
+      .forEach((current) => {
+        // Manage the hourly prices for the flavor
+        if (current.prices.hourly?.value) {
+          // add current hourly price to distinct prices array
+          if (!result.allHourlyPrices.includes(current.prices.hourly.value)) {
+            result.allHourlyPrices.push(current.prices.hourly.value);
+          }
+
+          // Check if the current price is the lowest
+          if (
+            !result.lowestHourlyPrice ||
+            result.lowestHourlyPrice.value > current.prices.hourly.value
+          ) {
+            result.lowestHourlyPrice = current.prices.hourly;
+          }
         }
 
-        // Check if the current price is the lowest
-        if (
-          !result.lowestHourlyPrice ||
-          result.lowestHourlyPrice.value > current.prices.hourly.value
-        ) {
-          result.lowestHourlyPrice = current.prices.hourly;
-        }
-      }
+        // Manage the monthly prices for the flavor
+        if (current.prices.monthly?.value) {
+          // add current monthly price to distinct prices array
+          if (!result.allMontlyPrices.includes(current.prices.monthly.value)) {
+            result.allMontlyPrices.push(current.prices.monthly.value);
+          }
 
-      // Manage the monthly prices for the flavor
-      if (current.prices.monthly?.value) {
-        // add current monthly price to distinct prices array
-        if (!result.allMontlyPrices.includes(current.prices.monthly.value)) {
-          result.allMontlyPrices.push(current.prices.monthly.value);
+          // Check if the current price is the lowest
+          if (
+            !result.lowestMonthlyPrice ||
+            result.lowestMonthlyPrice.value > current.prices.monthly.value
+          ) {
+            result.lowestMonthlyPrice = current.prices.monthly;
+          }
         }
-
-        // Check if the current price is the lowest
-        if (
-          !result.lowestMonthlyPrice ||
-          result.lowestMonthlyPrice.value > current.prices.monthly.value
-        ) {
-          result.lowestMonthlyPrice = current.prices.monthly;
-        }
-      }
-    });
+      });
 
     return result;
   }

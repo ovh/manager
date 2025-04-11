@@ -57,6 +57,7 @@ export default class PciInstancesAddController {
     PciProjectsProjectInstanceService,
     PciPublicGatewaysService,
     PciProjectAdditionalIpService,
+    PciProjectDeploymentMode,
     atInternet,
     PciProject,
     OvhApiCloudProjectRegion,
@@ -72,6 +73,7 @@ export default class PciInstancesAddController {
     this.cucUcentsToCurrencyFilter = cucUcentsToCurrencyFilter;
     this.PciProjectsProjectInstanceService = PciProjectsProjectInstanceService;
     this.PciPublicGatewaysService = PciPublicGatewaysService;
+    this.PciProjectDeploymentMode = PciProjectDeploymentMode;
     this.atInternet = atInternet;
     this.availableSubnet = AVAILABLE_SUBNET;
     this.instanceReadMoreUrl =
@@ -120,6 +122,17 @@ export default class PciInstancesAddController {
         }
         if (currentStep >= 5) {
           this.networkValidated = true;
+        }
+      },
+    );
+
+    $scope.$watch(
+      () => this.model.flavorGroup,
+      () => {
+        if (this.model.flavorGroup) {
+          this.deploymentModesPrices = PciProjectDeploymentMode.getFlavorGroupPricesPerDeploymentMode(
+            this.model.flavorGroup,
+          );
         }
       },
     );
@@ -239,6 +252,7 @@ export default class PciInstancesAddController {
 
     this.availableRegions = {};
     this.unavailableRegions = {};
+    this.showNonAvailableRegions = {};
     this.fetchInstancesAvailability();
   }
 
@@ -422,6 +436,10 @@ export default class PciInstancesAddController {
           });
         }
       });
+
+      this.showNonAvailableRegions[continent] = !this.constructor.hasRegions(
+        availableRegions[continent],
+      );
     });
 
     this.availableRegions = availableRegions;
