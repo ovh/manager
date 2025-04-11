@@ -25,6 +25,7 @@
   "user_roles_UNPRIVILEGED": "Lecture seule",
   "user_roles_NONE": "Aucun",
   "user_users_group": "Groupe",
+  "user_users_type": "Type",
   "user_users_disable": "Désactiver l'utilisateur",
   "user_users_delete_modal_step1_question": "Êtes-vous sur de vouloir supprimer l'utilisateur <strong>{{login}}</strong> ?",
   "user_users_disable_modal_step1_question": "Êtes-vous sur de vouloir désactiver l'utilisateur <strong>{{login}}</strong> ?",
