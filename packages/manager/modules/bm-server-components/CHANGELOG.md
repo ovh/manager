@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.7.4...@ovh-ux/manager-bm-server-components@2.8.0) (2025-04-08)
+
+
+### Features
+
+* **dedicated:** remove old ola option section ([#16325](https://github.com/ovh/manager/issues/16325)) ([187d7e7](https://github.com/ovh/manager/commit/187d7e71fb4f6f6dde924d3c4ee5feb867d132f8)), closes [#MANAGER-16494](https://github.com/ovh/manager/issues/MANAGER-16494)
+
+
+
+
+
+## [2.7.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.7.3...@ovh-ux/manager-bm-server-components@2.7.4) (2025-04-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-bm-server-components
+
+
+
+
+
+## [2.7.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.7.2...@ovh-ux/manager-bm-server-components@2.7.3) (2025-04-01)
+
+
+### Bug Fixes
+
+* **dedicated:** add tracking when we display rbx1 eol banner ([#16192](https://github.com/ovh/manager/issues/16192)) ([96c07bc](https://github.com/ovh/manager/commit/96c07bc19ca26cdbc87e7efe01e73da285725ae1)), closes [#MANAGER-17568](https://github.com/ovh/manager/issues/MANAGER-17568)
+
+
+
+
+
 ## [2.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.7.1...@ovh-ux/manager-bm-server-components@2.7.2) (2025-03-27)
 
 

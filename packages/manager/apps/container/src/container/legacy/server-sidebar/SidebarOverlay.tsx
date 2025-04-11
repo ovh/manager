@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLegacyContainer } from '@/container/legacy/context';
+import { useLegacyContainer } from '@/container/legacy/legacy.context';
 import style from './index.module.scss';
 
 export default function SidebarOverlay() {

@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-generator@0.28.0...@ovh-ux/manager-generator@0.29.0) (2025-04-10)
+
+
+### Features
+
+* **generator:** update prompt and package json ([dcccc0d](https://github.com/ovh/manager/commit/dcccc0d202cc57409ef30fcbbe8e9c5e4fe85e25)), closes [#MANAGER-16960](https://github.com/ovh/manager/issues/MANAGER-16960)
+
+
+
+
+
+# [0.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-generator@0.27.1...@ovh-ux/manager-generator@0.28.0) (2025-04-03)
+
+
+### Features
+
+* **generator:** udpate files in react apps ([fd935cc](https://github.com/ovh/manager/commit/fd935cc83681a8f94f0aed6fdf2a5236122eb159)), closes [#MANAGER-16484](https://github.com/ovh/manager/issues/MANAGER-16484)
+* **generator:** update routes definition ([b74dbaa](https://github.com/ovh/manager/commit/b74dbaab8299885f00e0c7e7daeda28575b93fd7)), closes [#MANAGER-16961](https://github.com/ovh/manager/issues/MANAGER-16961)
+* **generator:** update tsconfig file ([d38d137](https://github.com/ovh/manager/commit/d38d1379fef140ea68409184e04d794c0e136d4f)), closes [#MANAGER-16484](https://github.com/ovh/manager/issues/MANAGER-16484)
+
+
+
+
+
 ## [0.27.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-generator@0.27.0...@ovh-ux/manager-generator@0.27.1) (2025-03-21)
 
 **Note:** Version bump only for package @ovh-ux/manager-generator

@@ -29,6 +29,7 @@ const node: Node = {
 const props: Props = {
   node: node,
   isSelected: false,
+  isLoading: false
 };
 
 const id: string = "assistance-link-item";
@@ -51,7 +52,7 @@ vi.mock('../SidebarLink', () => ({
 
 const renderAssistanceLinkItem = (props: Props) => {
   return render(
-    <AssistanceLinkItem node={props.node} isSelected={props.isSelected} />,
+    <AssistanceLinkItem node={props.node} isSelected={props.isSelected} isLoading={props.isLoading} />,
   );
 };
 

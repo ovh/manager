@@ -1,3 +1,5 @@
+export const REGIONS = ['CA', 'EU', 'US'];
+
 export const UNIVERSES = [
   'Dedicated',
   'Focus',

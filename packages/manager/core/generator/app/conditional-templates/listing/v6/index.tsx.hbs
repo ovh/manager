@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, startTransition } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FilterCategories } from '@ovh-ux/manager-core-api';
 import { {{#if isPCI }} useParams, {{/if}} useNavigate, useLocation } from 'react-router-dom';
@@ -24,7 +24,7 @@ import appConfig from '@/{{appName}}.config';
 export default function Listing() {
   const myConfig = appConfig;
   const serviceKey = myConfig.listing?.datagrid?.serviceKey;
-  const [columns, setColumns] = useState([]);
+  const [columns, setColumns] = useState<any>([]);
   const navigate = useNavigate();
   const location = useLocation();
   const { t } = useTranslation('listing');
@@ -53,7 +53,7 @@ export default function Listing() {
   const navigateToDashboard = (label: string) => {
     const path =
       location.pathname.indexOf('pci') > -1 ? `${location.pathname}/` : '/';
-    navigate(`${path}${label}`);
+    startTransition(() => navigate(`${path}${label}`));
   };
 
   // Code to remove
@@ -68,7 +68,7 @@ export default function Listing() {
   // Code to remove and declare definition columns in const variable
   useEffect(() => {
     if (columns.length === 0 && status === 'success' && flattenData?.length > 0) {
-      const newColumns = Object.keys(flattenData[0])
+      const newColumns = Object.keys(flattenData[0] as object)
         .filter((element) => element !== 'iam')
         .map((element) => ({
           id: element,

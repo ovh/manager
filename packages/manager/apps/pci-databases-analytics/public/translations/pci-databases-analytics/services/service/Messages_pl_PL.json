@@ -30,5 +30,5 @@
   "deleteServiceIntegrationDescription": "Usunięcie tej usługi spowoduje usunięcie następującego powiązania integracji:",
   "deleteServiceIntegrationsDescription": "Usunięcie tej usługi spowoduje usunięcie następujących powiązań integracji:",
   "deleteServiceConfirmation": "Wpisz „TERMINATE”, aby potwierdzić wybór.",
-  "IndexPatternsTab": "Indeks wzorców"
+  "IndexPatternsTab": "Index patterns"
 }

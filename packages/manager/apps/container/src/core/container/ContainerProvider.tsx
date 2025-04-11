@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useReket } from '@ovh-ux/ovh-reket';
 import { Application } from '@ovh-ux/manager-config';
-import {fetchFeatureAvailabilityData} from '@ovh-ux/manager-react-components'
+import { fetchFeatureAvailabilityData } from '@ovh-ux/manager-react-components';
 import {
   getBetaAvailabilityFromLocalStorage,
   setBetaAvailabilityToLocalStorage,
   isBetaForced,
 } from './localStorage';
-import { BetaVersion, ContainerContext } from './context';
+import { BetaVersion, ContainerContext } from './container.context';
 import { useShell } from '@/context';
 
 export const BETA = 1;
@@ -53,7 +53,7 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
       }))
       .catch(() => ({
         version: '',
-        livechat: undefined
+        livechat: undefined,
       }));
   };
 

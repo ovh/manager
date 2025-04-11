@@ -1,6 +1,6 @@
 {
   "cloud_connect_routing_remove": "Eliminar una configuración adicional",
-  "cloud_connect_routing_remove_description": "Esto eliminará la configuración adicional del área de disponibilidad seleccionada.",
+  "cloud_connect_routing_remove_description": "Esta acción eliminará la configuración adicional del área de disponibilidad seleccionada.",
   "cloud_connect_datacenter_remove_routing_error": "Se ha producido un error al eliminar una configuración de enrutamiento: {{message}}",
   "cloud_connect_datacenter_remove_routing_success": "La configuración de enrutamiento se ha eliminado. <a href=\"{{ tasksUrl }}\">Haga clic aquí para ver el estado.</a>"
 }

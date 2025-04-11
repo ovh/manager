@@ -81,5 +81,9 @@
   "region_US-WEST-OR": "Oregon",
   "region_US-WEST-OR_micro": "Oregon ({{micro}})",
   "region_continent_US-EAST-VA": "Ameryka Północna",
-  "region_continent_US-WEST-OR": "Ameryka Północna"
+  "region_continent_US-WEST-OR": "Ameryka Północna",
+  "region_EU-WEST-PAR": "Paryż",
+  "region_EU-WEST-PAR_micro": "Paryż ({{micro}})",
+  "region_location_EU-WEST-PAR": "Europa Zachodnia (Francja)",
+  "region_continent_EU-WEST-PAR": "Europa Zachodnia"
 }

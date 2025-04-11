@@ -30,9 +30,9 @@
   "resource_tabs_cpu": "Compute Optimized",
   "resource_tabs_ram": "Memory Optimized",
   "resource_model_characteristics_gb": "{{value}} GB RAM",
-  "resource_model_characteristics_cpu": "{{cores}} vCORES ({{ghz}} GHz)",
+  "resource_model_characteristics_cpu": "{{cores}} vCores ({{ghz}} GHz)",
   "resource_model_characteristics_disk": "{{value}} GB NVMe",
-  "resource_model_characteristics_mbits": "{{value}} MBIT/S",
+  "resource_model_characteristics_mbits": "{{value}} Mbit/S",
   "savings_plan_name_input_placeholder": "MySavingsPlan",
   "commitment_month": "{{value}} mês/meses",
   "commitment_price_month": "HT/mois",
@@ -43,8 +43,8 @@
   "quantity_label_instance": "Número de instâncias",
   "quantity_label_rancher": "Número de vCPU",
   "choose_deployment": "Escolha um modo de implementação",
-  "choose_deployment_description": "Selecione a configuração ótima para garantir a disponibilidade, a resiliência e a latência adequada dos seus dados em função dos seus casos de utilização.",
-  "region": "Area",
-  "deployment_one_az": "Implementação resiliente e económica numa zona de disponibilidade.",
+  "choose_deployment_description": "Selecione a configuração ideal para garantir a disponibilidade, a resiliência e a latência adequada dos seus dados em função dos seus casos de uso.",
+  "region": "Região",
+  "deployment_one_az": "Implementação resiliente e económica em 1 zona de disponibilidade.",
   "deployment_three_az": "Implementação de alta resiliência/alta disponibilidade para as suas aplicações críticas em 3 zonas de disponibilidade."
 }

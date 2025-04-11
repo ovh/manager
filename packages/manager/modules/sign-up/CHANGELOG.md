@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.4](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@3.1.3...@ovh-ux/sign-up@3.1.4) (2025-04-07)
+
+**Note:** Version bump only for package @ovh-ux/sign-up
+
+
+
+
+
+## [3.1.3](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@3.1.2...@ovh-ux/sign-up@3.1.3) (2025-04-01)
+
+
+### Bug Fixes
+
+* **account:** remove error message on vat number when it is empty ([#15974](https://github.com/ovh/manager/issues/15974)) ([afed839](https://github.com/ovh/manager/commit/afed83993e023b93892957687eff838603cbf5d0)), closes [#PRB0042259](https://github.com/ovh/manager/issues/PRB0042259) [#MANAGER-17414](https://github.com/ovh/manager/issues/MANAGER-17414)
+
+
+
+
+
 ## [3.1.2](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@3.1.1...@ovh-ux/sign-up@3.1.2) (2025-03-27)
 
 **Note:** Version bump only for package @ovh-ux/sign-up

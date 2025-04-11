@@ -40,7 +40,11 @@ export default class BillingMainHistoryCtrl extends ListLayoutHelper.ListLayoutC
 
   exportAll(format) {
     this.trackExport(format);
-    return this.export(format, this.bills);
+    return this.getBills()
+      .then((ids) => this.export(format, ids))
+      .catch((error) => {
+        this.displayExportError(error);
+      });
   }
 
   exportSelection(format) {
@@ -60,14 +64,18 @@ export default class BillingMainHistoryCtrl extends ListLayoutHelper.ListLayoutC
         ),
       )
       .catch((error) => {
-        this.Alerter.error(
-          [
-            this.$translate.instant('billing_main_history_table_export_error'),
-            get(error, 'data.message'),
-          ].join(' '),
-          'billing_main_alert',
-        );
+        this.displayExportError(error);
       });
+  }
+
+  displayExportError(error) {
+    this.Alerter.error(
+      [
+        this.$translate.instant('billing_main_history_table_export_error'),
+        get(error, 'data.message'),
+      ].join(' '),
+      'billing_main_alert',
+    );
   }
 
   onRowSelect($rows) {

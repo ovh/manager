@@ -76,9 +76,12 @@ export const DeleteModal: React.FC<DeleteModalProps> = ({
           <OdsText preset={ODS_TEXT_PRESET.paragraph}>{description}</OdsText>
         )}
         <OdsFormField>
-          <label slot="label">{deleteInputLabel}</label>
+          <label htmlFor="delete-input" slot="label">
+            {deleteInputLabel}
+          </label>
           <OdsInput
             className="block"
+            id="delete-input"
             name="delete-input"
             aria-label="delete-input"
             isDisabled={isLoading || undefined}

@@ -4,8 +4,6 @@ const helpRoot = 'https://help.ovhcloud.com/csm';
 const homeIndex = '-home?id=csm_index';
 const support = `${helpRoot}?id=csm_cases_requests&ovhSubsidiary=`;
 
-const cloud_changelog = 'https://github.com/orgs/ovh/projects/16/views/6';
-const hosting_and_collab_changelog = 'https://github.com/orgs/ovh/projects/18/views/2';
 
 export interface ContentURLS {
   help: {
@@ -14,8 +12,6 @@ export interface ContentURLS {
   support?: string;
   status: string;
   marketplace?: string;
-  cloud_changelog?:string;
-  hosting_and_collab_changelog?:string;
 }
 
 type URLLinks = {
@@ -41,8 +37,6 @@ const urls: URLLinks = {
     support,
     status: 'https://www.status-ovhcloud.com/',
     marketplace: 'https://marketplace.ovhcloud.com/',
-    cloud_changelog,
-    hosting_and_collab_changelog,
   },
   CA: {
     help: {
@@ -56,16 +50,12 @@ const urls: URLLinks = {
     },
     support,
     status: 'https://www.status-ovhcloud.com/',
-    cloud_changelog,
-    hosting_and_collab_changelog,
   },
   US: {
     help: {
       US: 'https://us.ovhcloud.com/support',
     },
     status: 'https://status.us.ovhcloud.com/',
-    cloud_changelog,
-    hosting_and_collab_changelog,
   },
 };
 

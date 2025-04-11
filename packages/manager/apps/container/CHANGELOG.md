@@ -3,6 +3,144 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.118.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.118.1...@ovh-ux/manager-container-app@0.118.2) (2025-04-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3847] ([b32c5d3](https://github.com/ovh/manager/commit/b32c5d32f508c8af5208e7276309fdd783342ce0))
+* **i18n:** add missing translations [CDS 3850] ([6fc9ea1](https://github.com/ovh/manager/commit/6fc9ea124f3b4444f8f1a7b6edd43da47729e30e))
+
+
+
+
+
+## [0.118.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.118.0...@ovh-ux/manager-container-app@0.118.1) (2025-04-10)
+
+
+### Bug Fixes
+
+* **container:** fix entry web office on pnr sidebar ([110a190](https://github.com/ovh/manager/commit/110a190d882e87ce21ba8a1f59889a3449170e4d)), closes [#MANAGER-17825](https://github.com/ovh/manager/issues/MANAGER-17825)
+
+
+
+
+
+# [0.118.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.117.0...@ovh-ux/manager-container-app@0.118.0) (2025-04-09)
+
+
+### Bug Fixes
+
+* **container:** fix my bill link for us manager ([e7a3554](https://github.com/ovh/manager/commit/e7a3554864fe1acedecc91f1f9963dbd35f77314)), closes [#MANAGER-17525](https://github.com/ovh/manager/issues/MANAGER-17525)
+
+
+### Features
+
+* **account:** cleanup code after slicing /dedicated ([da8ae0f](https://github.com/ovh/manager/commit/da8ae0f972804269ffec5141b906345cbbefbd69)), closes [#MANAGER-17277](https://github.com/ovh/manager/issues/MANAGER-17277)
+* **container:** added an invitation modal to accept contracts ([3390858](https://github.com/ovh/manager/commit/33908580cfde1e913c73ffc7fd59e3c9724c1cac))
+* **container:** replace legacy navbar spinner with skeletons ([b3e34c7](https://github.com/ovh/manager/commit/b3e34c7580bd8b19f1fd376a89384b65d57a257a)), closes [#MANAGER-15634](https://github.com/ovh/manager/issues/MANAGER-15634)
+* **hub:** add new page changelog ([747b62a](https://github.com/ovh/manager/commit/747b62a5c1cc0e272cc6c664330f89bda12b5d4f)), closes [#MANAGER-16491](https://github.com/ovh/manager/issues/MANAGER-16491)
+
+
+### Reverts
+
+* Revert "feat(account): cleanup code after slicing /dedicated" ([79c24db](https://github.com/ovh/manager/commit/79c24dbc71566f6770099a737f3f91e27b6dcbc1))
+
+
+
+
+
+# [0.117.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.116.0...@ovh-ux/manager-container-app@0.117.0) (2025-04-08)
+
+
+### Features
+
+* **web-ongoing-operations:** ongoing operations react uapp ([#15598](https://github.com/ovh/manager/issues/15598)) ([ccd247b](https://github.com/ovh/manager/commit/ccd247b524458edd8e7b7339c5cfe356ce2b234c)), closes [#MANAGER-16196](https://github.com/ovh/manager/issues/MANAGER-16196)
+
+
+
+
+
+# [0.116.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.115.1...@ovh-ux/manager-container-app@0.116.0) (2025-04-07)
+
+
+### Features
+
+* display maintenance mode ([#16413](https://github.com/ovh/manager/issues/16413)) ([b7f71f3](https://github.com/ovh/manager/commit/b7f71f33ab188cbc7c96772efad012c337e041fc)), closes [#MANAGER-17748](https://github.com/ovh/manager/issues/MANAGER-17748) [#MANAGER-17748](https://github.com/ovh/manager/issues/MANAGER-17748)
+
+
+
+
+
+## [0.115.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.115.0...@ovh-ux/manager-container-app@0.115.1) (2025-04-03)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3825] ([c6d2754](https://github.com/ovh/manager/commit/c6d2754e2c52befd9a757525dfa32c00e3757ac1))
+* **web:** harmonize email products naming ([#16324](https://github.com/ovh/manager/issues/16324)) ([0471f44](https://github.com/ovh/manager/commit/0471f440945666c208282882d49c02f99b590ed9)), closes [#MANAGER-17668](https://github.com/ovh/manager/issues/MANAGER-17668)
+
+
+
+
+
+# [0.115.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.114.0...@ovh-ux/manager-container-app@0.115.0) (2025-04-03)
+
+
+### Bug Fixes
+
+* **web.office:** fix sidebare for easy switch ([c43d55d](https://github.com/ovh/manager/commit/c43d55da2a06201c3ffaab1b09284e0b58ae0d13)), closes [#MANAGER-15905](https://github.com/ovh/manager/issues/MANAGER-15905)
+
+
+### Features
+
+* **web.office:** office365 react application ([#13943](https://github.com/ovh/manager/issues/13943)) ([1d9a616](https://github.com/ovh/manager/commit/1d9a61665fb0cdf238bf1e65cb92db7ff259c2e6)), closes [#MANAGER-15905](https://github.com/ovh/manager/issues/MANAGER-15905)
+
+
+
+
+
+# [0.114.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.113.0...@ovh-ux/manager-container-app@0.114.0) (2025-04-02)
+
+
+### Features
+
+* **pci.ai-tools:** create uApp ([#15094](https://github.com/ovh/manager/issues/15094)) ([5ce33e7](https://github.com/ovh/manager/commit/5ce33e7b94a846a4eb9fa7d12f35f5c96ee9461c)), closes [#DATATR-2002](https://github.com/ovh/manager/issues/DATATR-2002)
+
+
+
+
+
+# [0.113.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.112.2...@ovh-ux/manager-container-app@0.113.0) (2025-04-01)
+
+
+### Bug Fixes
+
+* **container:** on configuration page, count is not rendered ([#15987](https://github.com/ovh/manager/issues/15987)) ([94973c3](https://github.com/ovh/manager/commit/94973c35a73a705a22acdde200c3c038f47797b8)), closes [#MANAGER-15105](https://github.com/ovh/manager/issues/MANAGER-15105)
+
+
+### Features
+
+* **container:** add animations to pnr ([#14691](https://github.com/ovh/manager/issues/14691)) ([785deed](https://github.com/ovh/manager/commit/785deed5eb66d0e60407ae561db46982a2b8d754)), closes [#MANAGER-14461](https://github.com/ovh/manager/issues/MANAGER-14461) [#MANAGER-14921](https://github.com/ovh/manager/issues/MANAGER-14921) [#MANAGER-16831](https://github.com/ovh/manager/issues/MANAGER-16831) [#MANAGER-17318](https://github.com/ovh/manager/issues/MANAGER-17318)
+* **container:** change voip name in pnr ([#16018](https://github.com/ovh/manager/issues/16018)) ([7e27db6](https://github.com/ovh/manager/commit/7e27db6c4a2a2f49db3a205bbe4f010d4072b06f)), closes [#MANAGER-17349](https://github.com/ovh/manager/issues/MANAGER-17349)
+* **container:** frenchify some translations ([#15925](https://github.com/ovh/manager/issues/15925)) ([8426ed2](https://github.com/ovh/manager/commit/8426ed2d772bd90aad46ad693c01cb75e126b097)), closes [#MANAGER-17318](https://github.com/ovh/manager/issues/MANAGER-17318)
+* **container:** standardize contexts and context hooks ([#15872](https://github.com/ovh/manager/issues/15872)) ([1ffe4be](https://github.com/ovh/manager/commit/1ffe4beca694c77c399ae984b623a2163c04cda9)), closes [#MANAGER-17283](https://github.com/ovh/manager/issues/MANAGER-17283)
+
+
+
+
+
+## [0.112.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.112.1...@ovh-ux/manager-container-app@0.112.2) (2025-04-01)
+
+
+### Bug Fixes
+
+* **container:** hide web collab changelog links for US ([#16170](https://github.com/ovh/manager/issues/16170)) ([20f2e0c](https://github.com/ovh/manager/commit/20f2e0c8805f4500150f0392e0b944defffec87e)), closes [#MANAGER-17558](https://github.com/ovh/manager/issues/MANAGER-17558) [#INC0120778](https://github.com/ovh/manager/issues/INC0120778)
+
+
+
+
+
 ## [0.112.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.112.0...@ovh-ux/manager-container-app@0.112.1) (2025-03-27)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app

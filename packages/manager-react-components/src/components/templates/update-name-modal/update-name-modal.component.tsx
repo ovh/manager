@@ -80,6 +80,7 @@ export const UpdateNameModal: React.FC<UpdateNameModalProps> = ({
           <OdsInput
             className="block"
             aria-label="update-input"
+            id="update-name-modal-input"
             name="update-name-modal-input"
             isDisabled={isLoading}
             type={ODS_INPUT_TYPE.text}

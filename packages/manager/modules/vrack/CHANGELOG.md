@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.18.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.18.0...@ovh-ux/manager-vrack@1.18.1) (2025-04-03)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3819] ([f6bbe60](https://github.com/ovh/manager/commit/f6bbe606bcd84541fdca006295a97b884e244c37))
+
+
+
+
+
+# [1.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.17.1...@ovh-ux/manager-vrack@1.18.0) (2025-04-01)
+
+
+### Features
+
+* **dedicated:** remove vrack from listing page ([#16078](https://github.com/ovh/manager/issues/16078)) ([2eddb1a](https://github.com/ovh/manager/commit/2eddb1a10f0627ef684ef3d1e92e4050b9ff433b)), closes [#MANAGER-17117](https://github.com/ovh/manager/issues/MANAGER-17117)
+
+
+
+
+
 ## [1.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.17.0...@ovh-ux/manager-vrack@1.17.1) (2025-03-11)
 
 

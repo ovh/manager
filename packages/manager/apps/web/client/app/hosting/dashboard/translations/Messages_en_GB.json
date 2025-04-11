@@ -1395,5 +1395,6 @@
   "hosting_dashboard_service_common_inactive": "Disabled",
   "hosting_dashboard_email_offer_get_error": "Unable to retrieve email address",
   "hosting_dashboard_stats_status": "Beta",
-  "hosting_dashboard_tabs_dropdown": "More"
+  "hosting_dashboard_tabs_dropdown": "More",
+  "hosting_dashboard_service_activate_email_tooltip": "To create an email address, you’ll need to link a domain name to your hosting plan."
 }

@@ -13,10 +13,11 @@ import illustration from './assets/picto.svg';
 
 export default class KycDocumentsCtrl {
   /* @ngInject */
-  constructor($translate, $q, $http, coreConfig, atInternet) {
+  constructor($translate, $q, $http, coreConfig, atInternet, ExitGuardService) {
     this.$http = $http;
     this.$translate = $translate;
     this.$q = $q;
+    this.ExitGuardService = ExitGuardService;
     this.maximum_size = MAXIMUM_SIZE;
     this.DOCUMENT_TYPE = DOCUMENT_TYPE;
     this.maximum_documents = MAXIMUM_DOCUMENTS;
@@ -79,6 +80,7 @@ export default class KycDocumentsCtrl {
     this.loading = true;
     this.showModal = false;
     if (!this.form.$invalid) {
+      this.ExitGuardService.activate();
       this.getUploadDocumentsLinks(this.documents.length)
         .then(() => {
           this.atInternet.trackPage({ name: TRACKING.UPLOAD_SUCCESS });
@@ -140,10 +142,12 @@ export default class KycDocumentsCtrl {
       .then(() => {
         this.loading = false;
         this.documentsUploaded = true;
+        this.ExitGuardService.deactivate();
       })
       .catch(() => {
         this.displayErrorBanner();
-      });
+      })
+      .finally(() => {});
   }
 
   displayErrorBanner() {

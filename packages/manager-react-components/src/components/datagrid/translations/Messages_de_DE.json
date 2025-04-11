@@ -6,5 +6,6 @@
   "common_clipboard_error_label": "Fehler beim Kopieren",
   "common_pagination_load_more": "Mehr laden",
   "common_empty_text_cell": "Keine",
-  "common_topbar_columns": "Spalten"
+  "common_topbar_columns": "Spalten",
+  "common_pagination_load_all": "Alle laden"
 }

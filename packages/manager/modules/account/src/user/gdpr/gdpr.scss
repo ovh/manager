@@ -1,0 +1,15 @@
+.oui-datagrid-column-reasons {
+  min-width: 31rem;
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+oui-modal {
+  p.confirmation-message {
+    span {
+      white-space: nowrap;
+    }
+  }
+}

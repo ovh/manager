@@ -25,13 +25,22 @@ const replaceTrackingParams = (hit, params) => {
 
 export default class AccountUserIdentityDocumentsController {
   /* @ngInject */
-  constructor($q, $http, $scope, coreConfig, coreURLBuilder, atInternet) {
+  constructor(
+    $q,
+    $http,
+    $scope,
+    coreConfig,
+    coreURLBuilder,
+    atInternet,
+    ExitGuardService,
+  ) {
     this.$q = $q;
     this.$http = $http;
     this.$scope = $scope;
     this.coreConfig = coreConfig;
     this.coreURLBuilder = coreURLBuilder;
     this.atInternet = atInternet;
+    this.ExitGuardService = ExitGuardService;
     this.LEGAL_LINK1 = LEGAL_LINK1;
     this.LEGAL_LINK2 = LEGAL_LINK2;
     this.LEGAL_LINK3 =
@@ -92,6 +101,7 @@ export default class AccountUserIdentityDocumentsController {
     this.loading = true;
     this.displayError = false;
     if (this.isValid) {
+      this.ExitGuardService.activate();
       const promise = this.links
         ? // We cannot re call getUploadDocumentsLinks if it answered successfully, so if we already
           // retrieve the links we directly try to "finalize" the procedure
@@ -112,6 +122,7 @@ export default class AccountUserIdentityDocumentsController {
           this.loading = false;
           this.kycStatus.status = KYC_STATUS.OPEN;
           this.handleInformationModal(true);
+          this.ExitGuardService.deactivate();
         })
         // In case of any error, we display a banner to the user to inform them
         .catch(() => {
@@ -125,6 +136,10 @@ export default class AccountUserIdentityDocumentsController {
 
   handleInformationModal(open) {
     this.isOpenInformationModal = open;
+  }
+
+  closeInformationModal() {
+    this.handleInformationModal(false);
   }
 
   addDocuments(proofType, documentType, files, isReset) {

@@ -1,16 +1,16 @@
 {
-  "nutanix_dashboard_install_node_title": "Knoten installieren",
+  "nutanix_dashboard_install_node_title": "Node installieren",
   "nutanix_dashboard_install_node_description": "Sie installieren AOS und AHV auf Ihrem Node. Geben Sie nicht verwendete IP-Adressen im Netzwerk Ihres Clusters an.",
-  "nutanix_dashboard_install_node_tips": "Für eine gleichzeitige Installation auf mehreren Nodes verwenden Sie bitte die API",
+  "nutanix_dashboard_install_node_tips": "Für eine gleichzeitige Installation auf mehreren Nodes verwenden Sie bitte die API.",
   "nutanix_dashboard_install_node_label_ahv_ip": "Node-IP",
   "nutanix_dashboard_install_node_label_cvm_ip": "CVM-IP",
   "nutanix_dashboard_install_node_label_version_aos": "AOS-Version",
   "nutanix_dashboard_install_node_confirm": "Installieren",
   "nutanix_dashboard_install_node_cancel": "Abbrechen",
-  "nutanix_dashboard_install_node_success_banner": "Ihre Installationsanfrage wurde registriert. Dieser Vorgang kann bis zu 1 Stunde dauern",
-  "nutanix_dashboard_install_node_error_banner": "Die Installationsanforderung wurde nicht abgeschlossen. Wenn der Fehler weiterhin besteht, kontaktieren Sie bitte den Support",
-  "nutanix_dashboard_install_ip_unique_error": "Diese IP wird bereits auf diesem Cluster verwendet",
+  "nutanix_dashboard_install_node_success_banner": "Ihre Installationsanfrage wurde registriert. Dieser Vorgang kann bis zu 1 Stunde dauern.",
+  "nutanix_dashboard_install_node_error_banner": "Die Installationsanfrage ist fehlgeschlagen. Wenn der Fehler weiterhin besteht, kontaktieren Sie bitte den Support.",
+  "nutanix_dashboard_install_ip_unique_error": "Diese IP wird in diesem Cluster bereits verwendet.",
   "nutanix_dashboard_install_ip_not_in_cidr_subnet_error": "Die Adressen befinden sich nicht im selben Netzwerk.",
-  "nutanix_dashboard_install_ip_format_error": "Das Format der IP ist nicht korrekt",
+  "nutanix_dashboard_install_ip_format_error": "Das Format der IP ist nicht korrekt.",
   "nutanix_dashboard_install_ip_tooltip": "Die IP-Adresse muss im Clustersubnetz enthalten sein."
 }

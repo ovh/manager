@@ -8,10 +8,18 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'jsdom',
-    setupFiles: [],
+    setupFiles: './src/setupTests.ts',
     coverage: {
       include: ['src'],
-      exclude: [],
+      exclude: [
+        'src/interface',
+        'src/__tests__',
+        'src/vite-*.ts',
+        'src/App.tsx',
+        'src/i18n.ts',
+        'src/main.tsx',
+        'src/routes.tsx',
+      ],
     },
     testTimeout: 60_000,
     fileParallelism: false,

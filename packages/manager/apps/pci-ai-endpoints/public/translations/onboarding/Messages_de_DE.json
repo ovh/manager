@@ -1,8 +1,8 @@
 {
   "ai_endpoints_title": "Mit AI Endpoints Ihre Anwendungen verbessern",
   "ai_endpoints_description": "Unsere Plattform ist auf Einfachheit ausgelegt und ermöglicht es Entwickler:innen ganz unabhängig von ihren Kompetenzen, ihre Anwendungen mit modernsten AI-APIs zu verbessern – AI-Fachwissen wird nicht benötigt.",
-  "ai_endpoints_more": "Mehr Informationen",
-  "ai_endpoints_descriptionBis": "Für diese APIs ist <strong>keinerlei AI-Expertise</strong> oder dedizierte Infrastruktur erforderlich, da die Serverless-Plattform Zugriff auf <strong>fortschrittliche AU-Modelle</strong> bietet, darunter Sprachmodelle (LLMs) sowie Modelle für die natürliche Sprachverarbeitung, Übersetzung, Spracherkennung, Bilderkennung und mehr. Entwickler:innen können aus einer Reihe von Modellen wählen, insbesondere <strong>Open-Source-Optionen wie Mistral AI, Llama und Stable Diffusion</strong>",
+  "ai_endpoints_more": "Mehr erfahren",
+  "ai_endpoints_descriptionBis": "Für diese APIs ist <strong>keinerlei AI-Expertise</strong> oder dedizierte Infrastruktur erforderlich, da die Serverless-Plattform Zugriff auf <strong>fortschrittliche AU-Modelle</strong> bietet, darunter Sprachmodelle (LLMs) sowie Modelle für die natürliche Sprachverarbeitung, Übersetzung, Spracherkennung, Bilderkennung und mehr. Entwickler:innen können aus einer Reihe von Modellen wählen, insbesondere <strong>Open-Source-Optionen wie Mistral AI, Llama und Stable Diffusion</strong>.",
   "ai_endpoints_goToAiEndpoint": "AI Endpoints",
   "ai_endpoints_guideCategory": "Anleitung",
   "ai_endpoints_guide1Title": "Erste Schritte mit AI Endpoints",

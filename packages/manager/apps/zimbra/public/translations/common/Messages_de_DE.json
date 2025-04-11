@@ -70,13 +70,13 @@
   "useful_links": "Nützliche Links",
   "number_of_accounts": "Anzahl der Accounts",
   "no_email_account": "Sie haben derzeit keine Postfächer.",
-  "form_min_chars": "{{ value }} Zeichen mindestens",
+  "form_min_chars": "Mindestens {{ value }} Zeichen",
   "form_at_least_one_digit": "Muss mindestens eine Ziffer enthalten",
   "form_at_least_one_uppercase": "Muss mindestens einen Großbuchstaben enthalten",
   "form_at_least_one_special": "Muss mindestens ein Sonderzeichen enthalten",
-  "form_valid_email": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
-  "form_valid_domain": "Bitte geben Sie eine gültige Domain an",
-  "form_valid_account": "Bitte geben Sie einen gültigen Kontonamen ein",
-  "form_valid_date": "Bitte geben Sie ein gültiges Datum ein",
-  "form_valid_number": "Bitte geben Sie eine gültige Zahl an"
+  "form_valid_email": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+  "form_valid_domain": "Bitte geben Sie eine gültige Domain an.",
+  "form_valid_account": "Bitte geben Sie einen gültigen Account-Namen ein.",
+  "form_valid_date": "Bitte geben Sie ein gültiges Datum ein.",
+  "form_valid_number": "Bitte geben Sie eine gültige Zahl an."
 }

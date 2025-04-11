@@ -2,7 +2,7 @@
   "ai_endpoints_title": "Melhore as suas aplicações com o AI Endpoints",
   "ai_endpoints_description": "Concebido com a simplicidade em mente, a nossa plataforma permite que os programadores de todos os níveis de competência melhorem as suas aplicações com API de IA de ponta — sem conhecimentos de IA necessários.",
   "ai_endpoints_more": "Saber mais",
-  "ai_endpoints_descriptionBis": "Estas APIs não requerem <strong>conhecimentos especializados em IA</strong> nem infraestruturas dedicadas, uma vez que a plataforma serverless permite aceder a <strong>modelos de IA avançados</strong>, nomeadamente os modelos de linguagem (LLM), o tratamento da linguagem natural, a tradução, o reconhecimento de voz, o reconhecimento de imagens e muito mais. Os programadores podem escolher entre uma gama de modelos, em particular opções em <strong>open source como o Mistral AI, o Llama e o Stable Diffusion.</strong>",
+  "ai_endpoints_descriptionBis": "Estas APIs não requerem <strong>conhecimentos especializados em IA</strong> nem infraestruturas dedicadas, uma vez que a plataforma serverless permite aceder a <strong>modelos de IA avançados</strong>, nomeadamente os modelos de linguagem (LLM), o tratamento da linguagem natural, a tradução, o reconhecimento de voz, o reconhecimento de imagens e muito mais. Os programadores podem escolher entre uma gama de modelos, em particular opções em <strong>open-source como o Mistral AI, o Llama e o Stable Diffusion</strong>.",
   "ai_endpoints_goToAiEndpoint": "AI Endpoints",
   "ai_endpoints_guideCategory": "Manual",
   "ai_endpoints_guide1Title": "Primeiros passos com o AI Endpoints",
@@ -11,5 +11,5 @@
   "ai_endpoints_guide2Description": "Descubra as funcionalidades, capacidades e limitações atuais do AI Endpoints",
   "ai_endpoints_tutoCategory": "Tutoriais",
   "ai_endpoints_guide3Title": "Casos práticos com o AI Endpoints",
-  "ai_endpoints_guide3Description": "Explore os nossos tutoriais para enriquecer as suas aplicações com o AI Endpoints. Saiba como criar chatbots, integrar LLMs ou ferramentas para soluções de IA potentes."
+  "ai_endpoints_guide3Description": "Explore os nossos tutoriais para enriquecer as suas aplicações com o AI Endpoints. Saiba como criar chatbots, integrar LLM ou ferramentas para soluções de IA potentes."
 }

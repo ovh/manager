@@ -1,6 +1,6 @@
 {
   "cloud_connect_routing_remove": "Löschen der zusätzlichen Konfiguration",
-  "cloud_connect_routing_remove_description": "Dadurch wird die zusätzliche Konfiguration der ausgewählten Verfügbarkeitszone gelöscht.",
+  "cloud_connect_routing_remove_description": "Hierbei wird die zusätzliche Konfiguration der ausgewählten Availability Zone gelöscht.",
   "cloud_connect_datacenter_remove_routing_error": "Das Löschen einer Routing-Konfiguration ist fehlgeschlagen: {{message}}",
   "cloud_connect_datacenter_remove_routing_success": "Löschen einer Routing-Konfiguration. <a href=\"{{ tasksUrl }}\">Klicken Sie hier, um den Status anzuzeigen.</a>"
 }

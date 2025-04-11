@@ -9,7 +9,7 @@
   "cloud_connect_tasks_addDatacenterConfiguration": "Add availability zone configuration",
   "cloud_connect_tasks_delDatacenterConfiguration": "Delete availability zone configuration",
   "cloud_connect_tasks_addDatacenterExtraConfiguration": "Add an additional configuration to the availability zone",
-  "cloud_connect_tasks_delDatacenterExtraConfiguration": "Delete the additional configuration from the availability zone",
+  "cloud_connect_tasks_delDatacenterExtraConfiguration": "Delete additional availability zone configuration",
   "cloud_connect_tasks_status_todo": "Scheduled",
   "cloud_connect_tasks_status_doing": "In progress",
   "cloud_connect_tasks_status_done": "Finished",

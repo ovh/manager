@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.18.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.18.0...@ovh-ux/manager-react-components@2.18.1) (2025-04-10)
+
+### Bug Fixes
+
+- **manager-react-component:** params not used on iceberg v6 hook ([1690d3d](https://github.com/ovh/manager/commit/1690d3dea2ddb3bee695bde088fc7b3efa6f9ea4)), closes [#16399](https://github.com/ovh/manager/issues/16399)
+- **mrc:** click on searchbar icon ([05f4d66](https://github.com/ovh/manager/commit/05f4d661b679dfb41f19899743d434381bcaf606)), closes [#16480](https://github.com/ovh/manager/issues/16480)
+- **mrc:** delete and update-name modal labels ([a2ddfac](https://github.com/ovh/manager/commit/a2ddfac1da80fca6294b3f694a7e14b2cdb7982a)), closes [#ISSUE-16380](https://github.com/ovh/manager/issues/ISSUE-16380)
+
+# [2.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.17.0...@ovh-ux/manager-react-components@2.18.0) (2025-04-03)
+
+### Bug Fixes
+
+- **i18n:** add missing translations [CDS 3825] ([c6d2754](https://github.com/ovh/manager/commit/c6d2754e2c52befd9a757525dfa32c00e3757ac1))
+- **mrc:** handle numeric filters in filter-add component ([926f82c](https://github.com/ovh/manager/commit/926f82c22cf5e087c778711ed68deb4eea51768d)), closes [#16279](https://github.com/ovh/manager/issues/16279)
+
+### Features
+
+- **manager-react-components:** udpate datagrid topbar padding ([0c8ca70](https://github.com/ovh/manager/commit/0c8ca70172d056c2ec0887d7442f01018202b23d)), closes [#MANAGER-17616](https://github.com/ovh/manager/issues/MANAGER-17616)
+- **mrc:** add load all button to datagrid ([#16347](https://github.com/ovh/manager/issues/16347)) ([dda91dc](https://github.com/ovh/manager/commit/dda91dc6a413f4234f8d061505cecc67c12b6173)), closes [#16164](https://github.com/ovh/manager/issues/16164)
+- **mrc:** set datagrid searchbar as input search ([#16354](https://github.com/ovh/manager/issues/16354)) ([c82395f](https://github.com/ovh/manager/commit/c82395fd078a6a5dc121bd9df1e9ce11bfcdf37b)), closes [#16266](https://github.com/ovh/manager/issues/16266)
+
 # [2.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.16.0...@ovh-ux/manager-react-components@2.17.0) (2025-03-27)
 
 ### Bug Fixes

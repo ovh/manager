@@ -3,6 +3,53 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-load-balancer-app@0.8.3...@ovh-ux/manager-pci-load-balancer-app@0.8.4) (2025-04-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3844] ([7880506](https://github.com/ovh/manager/commit/78805069fb9da4df6b494a4aee06a31a2a6f55d4))
+* **i18n:** add missing translations [CDS 3847] ([b32c5d3](https://github.com/ovh/manager/commit/b32c5d32f508c8af5208e7276309fdd783342ce0))
+
+
+
+
+
+## [0.8.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-load-balancer-app@0.8.2...@ovh-ux/manager-pci-load-balancer-app@0.8.3) (2025-04-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-load-balancer-app
+
+
+
+
+
+## [0.8.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-load-balancer-app@0.8.1...@ovh-ux/manager-pci-load-balancer-app@0.8.2) (2025-04-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-load-balancer-app
+
+
+
+
+
+## [0.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-load-balancer-app@0.8.0...@ovh-ux/manager-pci-load-balancer-app@0.8.1) (2025-04-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-load-balancer-app
+
+
+
+
+
+# [0.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-load-balancer-app@0.7.0...@ovh-ux/manager-pci-load-balancer-app@0.8.0) (2025-04-02)
+
+
+### Features
+
+* **mrc:** bump version ([#16251](https://github.com/ovh/manager/issues/16251)) ([2f21862](https://github.com/ovh/manager/commit/2f218623919905e69d012c53474613785fe76991)), closes [#TAPC-2786](https://github.com/ovh/manager/issues/TAPC-2786)
+
+
+
+
+
 # [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-load-balancer-app@0.6.10...@ovh-ux/manager-pci-load-balancer-app@0.7.0) (2025-03-31)
 
 

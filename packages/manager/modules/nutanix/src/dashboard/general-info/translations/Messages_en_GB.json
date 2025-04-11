@@ -29,5 +29,5 @@
   "nutanix_dashboard_cluster_several_nodes_to_deploy": "{{numberOfNodes}} nodes to install",
   "nutanix_dashboard_cluster_one_node_deployed": "1 node installed",
   "nutanix_dashboard_cluster_several_nodes_deployed": "{{numberOfNodes}} nodes installed",
-  "nutanix_dashboard_cluster_add_node_max_node_tooltip": "You have reached the maximum number of nodes allowed in a cluster"
+  "nutanix_dashboard_cluster_add_node_max_node_tooltip": "You’ve reached the cluster’s node limit"
 }

@@ -1,0 +1,10 @@
+{
+  "gdpr_erasure_confirm_title": "Confermare la richiesta",
+  "gdpr_erasure_confirm_banner_title": "Attenzione: dopo la conferma, verrai disconnesso e non potrai più accedere all'account eliminato.",
+  "gdpr_erasure_confirm_banner_description": "La chiusura dell’account mette definitivamente fine al suo funzionamento. In caso contrario, verrà creata una richiesta di assistenza e un consulente ti contatterà il prima possibile.",
+  "gdpr_erasure_confirm_resend_code": "Recuperare il codice",
+  "gdpr_erasure_confirm_input_code_prompt": "Inserisci il codice ricevuto via email.",
+  "gdpr_erasure_confirm_form_submit": "Confermare",
+  "gdpr_erasure_confirm_form_cancel": "Annullare",
+  "gdpr_erasure_confirm_form_message_invalid_format": "Inserisci un formato valido Verifica che il campo non contenga una parentesi angolare destra (&lt;) o sinistra (>)."
+}

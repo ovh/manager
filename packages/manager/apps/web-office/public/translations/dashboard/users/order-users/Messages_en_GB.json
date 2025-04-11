@@ -1,0 +1,8 @@
+{
+  "dashboard_users_order_users_type": "Type of licence",
+  "dashboard_users_order_users_type_placeholder": "Select",
+  "dashboard_users_order_users_price": "Price",
+  "dashboard_users_order_users_message": "You will be billed for the number of licenses activated in the current month.",
+  "dashboard_users_order_users_message_error": "An error has occurred adding the user. {{ error }}",
+  "dashboard_users_order_users_message_success": "Your request to add a user has been processed."
+}

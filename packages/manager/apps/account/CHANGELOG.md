@@ -3,6 +3,46 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-app@0.1.33...@ovh-ux/manager-account-app@0.2.0) (2025-04-09)
+
+
+### Features
+
+* **account:** cleanup code after slicing /dedicated ([da8ae0f](https://github.com/ovh/manager/commit/da8ae0f972804269ffec5141b906345cbbefbd69)), closes [#MANAGER-17277](https://github.com/ovh/manager/issues/MANAGER-17277)
+
+
+### Reverts
+
+* Revert "feat(account): cleanup code after slicing /dedicated" ([79c24db](https://github.com/ovh/manager/commit/79c24dbc71566f6770099a737f3f91e27b6dcbc1))
+
+
+
+
+
+## [0.1.33](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-app@0.1.32...@ovh-ux/manager-account-app@0.1.33) (2025-04-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-account-app
+
+
+
+
+
+## [0.1.32](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-app@0.1.31...@ovh-ux/manager-account-app@0.1.32) (2025-04-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-account-app
+
+
+
+
+
+## [0.1.31](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-app@0.1.30...@ovh-ux/manager-account-app@0.1.31) (2025-04-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-account-app
+
+
+
+
+
 ## [0.1.30](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-app@0.1.29...@ovh-ux/manager-account-app@0.1.30) (2025-03-27)
 
 **Note:** Version bump only for package @ovh-ux/manager-account-app

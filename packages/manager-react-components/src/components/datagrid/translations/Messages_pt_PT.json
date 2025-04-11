@@ -6,5 +6,6 @@
   "common_clipboard_error_label": "Erro de cópia.",
   "common_pagination_load_more": "Carregar mais",
   "common_empty_text_cell": "Nenhum",
-  "common_topbar_columns": "Colunas"
+  "common_topbar_columns": "Colunas",
+  "common_pagination_load_all": "Carregar tudo"
 }

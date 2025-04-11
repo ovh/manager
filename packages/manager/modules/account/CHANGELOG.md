@@ -3,6 +3,64 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.8.2...@ovh-ux/manager-account@0.9.0) (2025-04-09)
+
+
+### Bug Fixes
+
+* **account:** fix gdpr tracking level2 ([#15758](https://github.com/ovh/manager/issues/15758)) ([f8a76bb](https://github.com/ovh/manager/commit/f8a76bbf6c37392db3b3b374dfb1c75ddf924b1c)), closes [#MANAGER-16759](https://github.com/ovh/manager/issues/MANAGER-16759)
+* **account:** fix regex validation and display appropriate error message ([#15479](https://github.com/ovh/manager/issues/15479)) ([6aac2d7](https://github.com/ovh/manager/commit/6aac2d7d7a456aea9d8f74ee5d130737108b9639))
+* **i18n:** add missing translations [CDS 3800] ([750db6b](https://github.com/ovh/manager/commit/750db6b9b55217425ec69e6acc3e97c6bcb2d983))
+
+
+### Features
+
+* **account:** add erasure request creation block ([#15166](https://github.com/ovh/manager/issues/15166)) ([de2ff42](https://github.com/ovh/manager/commit/de2ff42a7b858f3f05f895c357e701ed5b955f28))
+* **account:** add new gdpr tab in the account dashboard ([#14915](https://github.com/ovh/manager/issues/14915)) ([05843cb](https://github.com/ovh/manager/commit/05843cbd49e5254c98ba1d701e507c3cdb95f799))
+* **account:** add request id in error banner ([#15251](https://github.com/ovh/manager/issues/15251)) ([d7e7aa9](https://github.com/ovh/manager/commit/d7e7aa9a19906a3d02267a6f5d684cf44b484c25))
+* **account:** added the confirm erasure request page ([#15442](https://github.com/ovh/manager/issues/15442)) ([874035d](https://github.com/ovh/manager/commit/874035d46138612b29a22337e3b79255c41452e6))
+* **account:** design and routes management fixes ([#15430](https://github.com/ovh/manager/issues/15430)) ([0e06f58](https://github.com/ovh/manager/commit/0e06f5836f4c1987e31841044d3ead02f0b12e0f))
+* **account:** fix dgpr raison column display ([#15865](https://github.com/ovh/manager/issues/15865)) ([ab439cf](https://github.com/ovh/manager/commit/ab439cf22caaa3f09ca1844fe775ebea5b1201e8)), closes [#MANAGER-17271](https://github.com/ovh/manager/issues/MANAGER-17271)
+* **account:** gdpr erasure feature add tracking ([#15467](https://github.com/ovh/manager/issues/15467)) ([bba73d7](https://github.com/ovh/manager/commit/bba73d76e4541cd78088c6493cb7ba7cce3a5866))
+* **account:** gdpr services remove dev api references ([ac55cdf](https://github.com/ovh/manager/commit/ac55cdf1e7a865a9d62d6c0e712c3a73ad6089b4)), closes [#MANAGER-15206](https://github.com/ovh/manager/issues/MANAGER-15206)
+* **account:** implement gdpr erasure requests grid ([35fef05](https://github.com/ovh/manager/commit/35fef05c688323aba6908baceead34165bfbe267))
+* **account:** implement gdpr erasure requests grid prfb ([ce02128](https://github.com/ovh/manager/commit/ce02128df9bd6f6509c42b3ce1ee7d6468764cc0))
+* **container:** added an invitation modal to accept contracts ([3390858](https://github.com/ovh/manager/commit/33908580cfde1e913c73ffc7fd59e3c9724c1cac))
+
+
+
+
+
+## [0.8.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.8.1...@ovh-ux/manager-account@0.8.2) (2025-04-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-account
+
+
+
+
+
+## [0.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.8.0...@ovh-ux/manager-account@0.8.1) (2025-04-03)
+
+
+### Bug Fixes
+
+* **web:** harmonize email products naming ([#16324](https://github.com/ovh/manager/issues/16324)) ([0471f44](https://github.com/ovh/manager/commit/0471f440945666c208282882d49c02f99b590ed9)), closes [#MANAGER-17668](https://github.com/ovh/manager/issues/MANAGER-17668)
+
+
+
+
+
+# [0.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.7.8...@ovh-ux/manager-account@0.8.0) (2025-04-01)
+
+
+### Features
+
+* **account:** prevent closing while uploading files for kycs ([#16000](https://github.com/ovh/manager/issues/16000)) ([7b3af35](https://github.com/ovh/manager/commit/7b3af350e461ef73922c0ac7df1fd834c364b08d)), closes [#MANAGER-16930](https://github.com/ovh/manager/issues/MANAGER-16930)
+
+
+
+
+
 ## [0.7.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.7.7...@ovh-ux/manager-account@0.7.8) (2025-03-27)
 
 **Note:** Version bump only for package @ovh-ux/manager-account

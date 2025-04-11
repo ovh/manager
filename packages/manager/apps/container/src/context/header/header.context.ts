@@ -8,6 +8,6 @@ export type HeaderContextType = {
   setIsNotificationsSidebarVisible(isVisible: boolean): void;
 };
 
-const HeaderContext = createContext<HeaderContextType>({} as HeaderContextType);
+const HeaderContext = createContext<HeaderContextType | null>(null);
 
 export default HeaderContext;

@@ -7,13 +7,15 @@ import ApplicationContext, {
 } from './application.context';
 
 export const useApplication = (): ApplicationContextType => {
-  return useContext(ApplicationContext);
+  const applicationContext = useContext(ApplicationContext);
+  if (!applicationContext) {
+    throw new Error('useApplication must be used within a ApplicationProvider');
+  }
+
+  return applicationContext;
 };
 
-export const useShell = (): Shell => {
-  const { shell } = useContext(ApplicationContext);
-  return shell;
-};
+export const useShell = (): Shell => useApplication().shell;
 
 export default {
   useApplication,

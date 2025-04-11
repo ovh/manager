@@ -6,5 +6,5 @@
   "common_stepper_submit_button_label": "Send",
   "common_stepper_cancel_button_label": "Cancel",
   "common_field_error_required": "Please fill in this field.",
-  "common_stepper_submit_button_cluster": "Confirm your cluster"
+  "common_stepper_submit_button_cluster": "Confirm cluster"
 }

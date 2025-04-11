@@ -3,6 +3,66 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.17.0...@ovh-ux/manager-pci-databases-analytics-app@1.17.1) (2025-04-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3841] ([88a06b4](https://github.com/ovh/manager/commit/88a06b43e43216b9be472111fd77dbac3e86aa9b))
+* **i18n:** add missing translations [CDS 3847] ([b32c5d3](https://github.com/ovh/manager/commit/b32c5d32f508c8af5208e7276309fdd783342ce0))
+* **i18n:** add missing translations [CDS 3850] ([6fc9ea1](https://github.com/ovh/manager/commit/6fc9ea124f3b4444f8f1a7b6edd43da47729e30e))
+
+
+
+
+
+# [1.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.16.2...@ovh-ux/manager-pci-databases-analytics-app@1.17.0) (2025-04-08)
+
+
+### Features
+
+* **pci-db:** add EU-WEST-PAR region ([#16343](https://github.com/ovh/manager/issues/16343)) ([02c2c69](https://github.com/ovh/manager/commit/02c2c69efea57c5f692e8233f3b8b90535fe7de4)), closes [#DATATR-2110](https://github.com/ovh/manager/issues/DATATR-2110)
+
+
+
+
+
+## [1.16.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.16.1...@ovh-ux/manager-pci-databases-analytics-app@1.16.2) (2025-04-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-databases-analytics-app
+
+
+
+
+
+## [1.16.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.16.0...@ovh-ux/manager-pci-databases-analytics-app@1.16.1) (2025-04-03)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3819] ([f6bbe60](https://github.com/ovh/manager/commit/f6bbe606bcd84541fdca006295a97b884e244c37))
+* **i18n:** add missing translations [CDS 3825] ([c6d2754](https://github.com/ovh/manager/commit/c6d2754e2c52befd9a757525dfa32c00e3757ac1))
+
+
+
+
+
+# [1.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.15.0...@ovh-ux/manager-pci-databases-analytics-app@1.16.0) (2025-04-02)
+
+
+### Bug Fixes
+
+* **pci.db:** update rows on pagination change ([#15965](https://github.com/ovh/manager/issues/15965)) ([26b89c3](https://github.com/ovh/manager/commit/26b89c3447aa1a8c783670d30f9a6ca6152604bf)), closes [#DATATR-2048](https://github.com/ovh/manager/issues/DATATR-2048)
+
+
+### Features
+
+* **mrc:** bump version ([#16251](https://github.com/ovh/manager/issues/16251)) ([2f21862](https://github.com/ovh/manager/commit/2f218623919905e69d012c53474613785fe76991)), closes [#TAPC-2786](https://github.com/ovh/manager/issues/TAPC-2786)
+
+
+
+
+
 # [1.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.14.1...@ovh-ux/manager-pci-databases-analytics-app@1.15.0) (2025-03-27)
 
 

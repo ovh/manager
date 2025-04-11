@@ -32,7 +32,7 @@
   "resource_model_characteristics_gb": "{{value}} GB RAM",
   "resource_model_characteristics_cpu": "{{cores}} vCores ({{ghz}} GHz)",
   "resource_model_characteristics_disk": "{{value}} GB NVMe",
-  "resource_model_characteristics_mbits": "{{value}} MB/S",
+  "resource_model_characteristics_mbits": "{{value}} Mb/S",
   "savings_plan_name_input_placeholder": "MySavingsPlan",
   "commitment_month": "{{value}} meses",
   "commitment_price_month": "/mes + IVA",
@@ -42,9 +42,9 @@
   "select_quantity_description_rancher": "Por favor, indique el número de vCPU que quiere incluir en su Savings Plan.",
   "quantity_label_instance": "Número de instancias",
   "quantity_label_rancher": "Número de vCPU",
-  "choose_deployment": "Elija un modo de despliegue",
-  "choose_deployment_description": "Seleccione la configuración óptima para garantizar la disponibilidad, la resiliencia y la latencia adecuada de sus datos en función de sus casos de uso.",
-  "region": "Zona",
+  "choose_deployment": "Elija una modalidad de despliegue",
+  "choose_deployment_description": "Seleccione la configuración óptima para garantizar la disponibilidad, la resiliencia y la latencia más adecuadas para los datos en función de sus casos de uso.",
+  "region": "Región",
   "deployment_one_az": "Implementación resiliente y económica en 1 zona de disponibilidad.",
   "deployment_three_az": "Despliegue de alta resiliencia/alta disponibilidad para sus aplicaciones críticas en 3 zonas de disponibilidad."
 }

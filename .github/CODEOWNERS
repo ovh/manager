@@ -41,6 +41,7 @@
 /packages/manager/apps/pci @ovh/dev-manager-pci-all
 /packages/manager/apps/pci-* @ovh/dev-manager-pci-all
 /packages/manager/apps/pci-ai-endpoints @ovh/dev-manager-pci-all
+/packages/manager/apps/pci-ai-tools @ovh/dev-manager-pci-aidatabase
 /packages/manager/apps/pci-databases-analytics @ovh/dev-manager-pci-aidatabase
 /packages/manager/apps/procedures @ovh/dev-manager-gcj-all
 /packages/manager/apps/public-cloud @ovh/dev-manager-pci-all
@@ -59,6 +60,8 @@
 /packages/manager/apps/vrack @ovh/dev-manager-infra-all
 /packages/manager/apps/vrack-services @ovh/dev-manager-infra-all
 /packages/manager/apps/web @ovh/dev-manager-web-all
+/packages/manager/apps/web-office @ovh/dev-manager-web-all
+/packages/manager/apps/web-ongoing-operations @ovh/dev-manager-web-domain
 /packages/manager/apps/web-paas @ovh/dev-manager-web-all
 /packages/manager/apps/zimbra @ovh/dev-manager-web-all
 

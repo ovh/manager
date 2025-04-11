@@ -40,7 +40,7 @@
   "pci_additional_ip_creating_floating_ip": "Creare un Floating IP",
   "pci_additional_ip_create_floating_ip_success": "Assegnazione di un nuovo Floating IP in corso...",
   "pci_additional_ip_create_floating_ip_error": "L’assegnazione dell’indirizzo Floating IP non è andata a buon fine: {{ message }}",
-  "pci_floating_ip_price_per_hour": "a partire da&amp;#160; ",
-  "pci_floating_ip_resume_hour": "Orario",
+  "pci_floating_ip_price_per_hour": "a partire da ",
+  "pci_floating_ip_resume_hour": "Oraria",
   "pci_floating_ip_resume_price": "Prezzo: "
 }

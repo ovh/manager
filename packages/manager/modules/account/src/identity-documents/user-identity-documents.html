@@ -114,7 +114,7 @@
                 class="mt-5"
                 data-variant="primary"
                 data-size="l"
-                data-disabled="$ctrl.kycStatus.status === $ctrl.KYC_STATUS.OPEN || !$ctrl.isValid || $ctrl.links"
+                data-disabled="$ctrl.kycStatus.status === $ctrl.KYC_STATUS.OPEN || !$ctrl.isValid"
                 data-on-click="$ctrl.uploadIdentityDocuments()"
             >
                 <span
@@ -160,6 +160,6 @@
 <!-- Modal confirmation after uploading documents -->
 <document-upload-validation-modal
     data-is-open-modal="$ctrl.isOpenInformationModal"
-    data-on-close="$ctrl.handleInformationModal(false)"
+    data-on-close="$ctrl.closeInformationModal()"
 >
 </document-upload-validation-modal>

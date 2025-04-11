@@ -80,13 +80,13 @@ const search = {
 describe('datagrid topbar', () => {
   it('should display the search bar component', async () => {
     render(<DatagridTopbar isSearchable={true} search={search} />);
-    const searchElement = screen.queryByTestId('datagrid-topbar-search');
+    const searchElement = screen.queryByTestId('datagrid-searchbar');
     expect(searchElement).toBeInTheDocument();
   });
 
   it('should not display the search bar component', async () => {
     render(<DatagridTopbar isSearchable={false} search={search} />);
-    const searchElement = screen.queryByTestId('datagrid-topbar-search');
+    const searchElement = screen.queryByTestId('datagrid-searchbar');
     expect(searchElement).not.toBeInTheDocument();
   });
 
@@ -99,7 +99,7 @@ describe('datagrid topbar', () => {
         search={search}
       />,
     );
-    const searchElement = screen.queryByTestId('datagrid-topbar-search');
+    const searchElement = screen.queryByTestId('datagrid-searchbar');
     expect(searchElement).toBeInTheDocument();
     const filterElement = screen.queryByTestId('datagrid-topbar-filters');
     expect(filterElement).toBeInTheDocument();

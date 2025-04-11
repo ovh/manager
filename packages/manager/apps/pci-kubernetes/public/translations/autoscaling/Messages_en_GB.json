@@ -1,5 +1,5 @@
 {
-  "kubernetes_node_pool_autoscaling_description": "You can configure automatic scaling for each of your node pools. This feature, sometimes called a cluster autoscaler, complements the Kubernetes horizontal pod autoscaler. Please note that the auto-scaling feature is not compatible with anti-affinity activation.",
+  "kubernetes_node_pool_autoscaling_description": "You can configure auto-scaling for each of your node pools. This feature, sometimes called a cluster autoscaler, complements the Kubernetes horizontal pod autoscaler. Please keep in mind, the auto-scaling feature is not compatible with anti-affinity activation.",
   "kubernetes_node_pool_autoscaling_description_link": "More information.",
   "kubernetes_node_pool_autoscaling_autoscale": "Autoscaling",
   "kubernetes_node_pool_autoscaling_autoscale_toggle_true": "Autoscaling enabled",

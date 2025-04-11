@@ -6,7 +6,7 @@
   "nutanix_node_action_menu_terminate": "Dar de baja",
   "nutanix_node_action_menu_power_on": "Encender",
   "nutanix_node_action_menu_power_off": "Apagar",
-  "nutanix_node_disable_reason_node_already_installed": "El nodo ya se ha implementado",
+  "nutanix_node_disable_reason_node_already_installed": "El nodo ya se ha desplegado",
   "nutanix_node_disable_reason_node_is_powered_on": "Debe apagar el nodo antes de realizar esta acción",
   "nutanix_node_disable_reason_node_not_uninstalled": "Por motivos de seguridad, debe desinstalar el nodo para poder darlo de baja",
   "nutanix_node_disable_reason_node_not_installed": "Primero debe realizar una tarea de instalación",
@@ -14,5 +14,5 @@
   "nutanix_node_disable_reason_node_is_powered_off": "El servidor está apagado",
   "nutanix_node_disable_reason_cluster_has_active_todo": "Ya hay una tarea de instalación en curso en el clúster",
   "nutanix_node_disable_reason_server_is_rebooting": "Ya hay una tarea en curso en el nodo",
-  "nutanix_node_disable_reason_lower_than_initial_commitment_size": "Un cluster Nutanix no puede funcionar con menos de {{nb_nodes_minimal}} nodos"
+  "nutanix_node_disable_reason_lower_than_initial_commitment_size": "Un clúster Nutanix no puede funcionar con menos de {{nb_nodes_minimal}} nodos"
 }

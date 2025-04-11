@@ -52,6 +52,6 @@
   "pci_projects_project_storages_containers_container_offsite_replication_tooltip": "Für diesen Container wurde eine automatische oder manuelle Replikationsregel konfiguriert oder nicht.",
   "pci_projects_project_storages_containers_container_storage_class_STANDARD_IA": "Standard AI",
   "pci_projects_project_storages_containers_container_enable_encryption": "Verschlüsselung aktivieren (SSE-OMK)",
-  "pci_projects_project_storages_containers_container_delete_marker": "Löschmarker",
+  "pci_projects_project_storages_containers_container_delete_marker": "Löschkennzeichnung",
   "pci_projects_project_storages_containers_container_show_versions": "Versionen anzeigen"
 }

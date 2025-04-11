@@ -30,9 +30,9 @@
   "resource_tabs_cpu": "Compute Optimized",
   "resource_tabs_ram": "Memory Optimized",
   "resource_model_characteristics_gb": "{{value}} GB RAM",
-  "resource_model_characteristics_cpu": "{{cores}} vCORES ({{ghz}} GHz)",
+  "resource_model_characteristics_cpu": "{{cores}} vCores ({{ghz}} GHz)",
   "resource_model_characteristics_disk": "{{value}} GB NVMe",
-  "resource_model_characteristics_mbits": "{{value}} MBPS",
+  "resource_model_characteristics_mbits": "{{value}} Mbps",
   "savings_plan_name_input_placeholder": "MySavingsPlan",
   "commitment_month": "Liczba miesięcy: {{value}}",
   "commitment_price_month": "netto/m-c",
@@ -43,8 +43,8 @@
   "quantity_label_instance": "Liczba instancji",
   "quantity_label_rancher": "Liczba vCPU",
   "choose_deployment": "Wybierz tryb wdrożenia",
-  "choose_deployment_description": "Wybierz optymalną konfigurację, aby zagwarantować dostępność, odporność i opóźnienie danych w zależności od zastosowań.",
+  "choose_deployment_description": "Wybierz optymalną konfigurację, aby zapewnić dostępność, odporność i odpowiedni czas odpowiedzi w zależności od zastosowań.",
   "region": "Region",
-  "deployment_one_az": "Odporne i ekonomiczne wdrożenie w 1 strefie dostępności.",
-  "deployment_three_az": "Wdrożenie o wysokiej odporności/dostępności dla krytycznych aplikacji w 3 strefach dostępności."
+  "deployment_one_az": "Wdrożenia zapewniające odporność infrastruktury i efektywność kosztową w 1 strefie dostępności.",
+  "deployment_three_az": "Wdrożenia zapewniające odporność infrastruktury i dostępność krytycznych aplikacji w 3 strefach dostępności."
 }

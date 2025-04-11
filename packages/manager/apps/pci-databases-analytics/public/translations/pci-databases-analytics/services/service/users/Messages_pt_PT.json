@@ -71,15 +71,15 @@
   "tableHeadPermission": "Permissão",
   "toggleACLsLabel": "Ativar as ACL",
   "toggleAclErrorTitle": "Ocorreu um erro aquando da atualização do seu serviço",
-  "toggleAclSuccessTitle": "Sucesso",
-  "toggleAclEnabledSuccessDescription": "As ACL estão agora ativadas para o seu serviço",
-  "toggleAclADisabledSuccessDescription": "As ACL estão agora desativadas para o seu serviço",
+  "toggleAclSuccessTitle": "Êxito",
+  "toggleAclEnabledSuccessDescription": "As ACL estão ativadas para o seu serviço",
+  "toggleAclADisabledSuccessDescription": "As ACL estão desativadas para o seu serviço",
   "formUserFieldAclsLabel": "ACL",
-  "formUserAclPatternAlertInfo": "Os padrões utilizam o sistema de correspondência padrão, também conhecido como glob pattern (\"*\" funciona para qualquer número de caracteres e \"?\" para qualquer caráter). Por exemplo, o modelo 'logs_200?' funcionará para a correspondência do índice 'logs_200904', mas não para 'logs_201904'.",
+  "formUserAclPatternAlertInfo": "Os patterns utilizam o sistema padrão de correspondência, também conhecido como «standard glob pattern» («*» funciona para qualquer número de caracteres e «?» para qualquer caráter). Por exemplo, o modelo “logs_200?” funcionará para a correspondência do índice “logs_200904”, mas não para “logs_201904”.",
   "formUserAclPatternInputLabel": "Pattern",
   "formUserAclPermissionInputLabel": "Permissão",
-  "formUserAclConfiguredAcls": "ACLs configuradas",
-  "formUseAclPatternErrorPattern": "O padrão só pode conter letras, números, hífenes, underscores, pontos, asteriscos ou pontos de interrogação.",
+  "formUserAclConfiguredAcls": "ACL configuradas",
+  "formUseAclPatternErrorPattern": "O pattern só pode conter letras, algarismos, hífenes, underscores, pontos, asteriscos e pontos de interrogação.",
   "formUserInvalidPermission": "Escolha uma permissão válida da seguinte lista: {values}",
-  "formUserAclDuplicate": "Uma ACL semelhante já está configurada"
+  "formUserAclDuplicate": "Já está configurada uma ACL semelhante"
 }

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-telecom-task-app",
-  "version": "8.0.9",
+  "version": "8.0.11",
   "private": true,
   "description": "Telecom task standalone application.",
   "repository": {
@@ -19,8 +19,8 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-telecom-task-app' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^8.1.0",
-    "@ovh-ux/manager-core": "^13.0.6",
+    "@ovh-ux/manager-config": "^8.2.0",
+    "@ovh-ux/manager-core": "^13.0.8",
     "@ovh-ux/manager-telecom-styles": "^4.8.4",
     "@ovh-ux/manager-telecom-task": "^6.4.2",
     "@ovh-ux/ng-ovh-checkbox-table": "^2.1.2",

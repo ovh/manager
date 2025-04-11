@@ -64,7 +64,7 @@ const Databases = () => {
         <DataTable.Provider
           columns={columns}
           data={databasesQuery.data}
-          pageSize={25}
+          pageSize={10}
         />
       ) : (
         <div data-testid="table-skeleton">

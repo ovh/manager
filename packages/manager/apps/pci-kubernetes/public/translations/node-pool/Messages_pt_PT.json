@@ -5,7 +5,7 @@
   "kube_node_pool_name": "Nome do pool",
   "kube_node_pool_creation_date": "Data de criação",
   "kube_node_pool_node_count": "Número de nós",
-  "kube_node_pool_monthly_billing": "Tipo de facturação",
+  "kube_node_pool_monthly_billing": "Tipo de faturação",
   "kube_node_pool_nodes": "Ver os nós",
   "kube_node_pool_scale": "Configurar o tamanho do pool de nós",
   "kube_node_pool_delete": "Eliminar o pool",
@@ -21,9 +21,9 @@
   "kube_common_node_pool_configure_true": "Configurar pools de nós",
   "kube_common_node_pool_configure_false": " Criar um cluster sem pool de nós",
   "kube_common_node_pool_estimated_cost": "Estimativa do custo mensal do cluster:",
-  "kube_common_node_pool_estimation_text": "Esta estimativa não inclui uma eventual redução relacionada com os planos de poupança.",
+  "kube_common_node_pool_estimation_text": "Esta estimativa não inclui eventuais descontos relacionados com os Savings Plans.",
   "kube_common_node_pool_estimation_price": "Pools de nós: {{estimation}}",
-  "kube_common_node_pool_estimation_text_end": "O custo exato depende da utilização real dos recursos, que não pode ser estimada com precisão antes da criação de um cluster.",
+  "kube_common_node_pool_estimation_text_end": "O custo exato depende da utilização real dos recursos, a qual não pode ser estimada com precisão antes da criação de um cluster.",
   "kube_common_node_pool_size_title": "Tamanho do pool de nós",
   "kube_common_node_pool_desired_node": "Número de nós",
   "kube_common_node_pool_autoscaling": "Autoscaling",
@@ -31,5 +31,5 @@
   "kube_common_node_pool_model": "Modelo",
   "kube_common_node_pool_liste": "Lista dos pools de nós",
   "kube_common_add_node_pool": "Adicionar o pool de nós",
-  "kube_common_min_max_nodes": "Mínimo {{minNodes}}, Máximo {{maxNodes}}"
+  "kube_common_min_max_nodes": "Mínimo de {{minNodes}}, máximo de {{maxNodes}}"
 }

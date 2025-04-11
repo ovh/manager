@@ -17,6 +17,6 @@
   "nasha_components_partition_zfs_template_selection_placeholder": "Wybierz szablon...",
   "nasha_components_partition_zfs_options_template_1_description": "Udostępnianie dużych plików (zdjęć, filmów, streamingu...)",
   "nasha_components_partition_zfs_options_template_2_description": "Obrazy wirtualnych maszyn w ZFS.",
-  "nasha_components_partition_zfs_options_template_3_description": "Magazyn bazy danych.",
-  "nasha_components_partition_zfs_options_template_4_description": "Szablon domyślny dla udziału plików."
+  "nasha_components_partition_zfs_options_template_3_description": "Przechowywanie bazy danych.",
+  "nasha_components_partition_zfs_options_template_4_description": "Domyślny model do współdzielenia plików."
 }

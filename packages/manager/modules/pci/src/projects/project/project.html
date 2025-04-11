@@ -135,6 +135,7 @@
                                         <a
                                             class="text-center w-100 d-block oui-tile py-4"
                                             href="{{action.url}}"
+                                            data-ng-attr-target="{{ action.external ? '_blank' : undefined}}"
                                         >
                                             <img
                                                 data-ng-src="{{:: $ctrl.productImages[action.name] }}"

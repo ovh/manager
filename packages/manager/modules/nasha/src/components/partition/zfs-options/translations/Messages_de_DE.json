@@ -14,9 +14,9 @@
   "nasha_components_partition_zfs_options_title": "Einstellungen ändern",
   "nasha_components_partition_zfs_options_custom_template_selection": "Passen Sie die Einstellungen an.",
   "nasha_components_partition_zfs_template_selection_title": "Template auswählen",
-  "nasha_components_partition_zfs_template_selection_placeholder": "Template auswählen...",
-  "nasha_components_partition_zfs_options_template_1_description": "Freigabe großer Dateien (Bilder, Videos, Streaming...)",
+  "nasha_components_partition_zfs_template_selection_placeholder": "Wählen Sie ein Template aus …",
+  "nasha_components_partition_zfs_options_template_1_description": "Freigabe großer Dateien (Bilder, Videos, Streaming, …)",
   "nasha_components_partition_zfs_options_template_2_description": "VM-Images auf ZFS.",
   "nasha_components_partition_zfs_options_template_3_description": "Datenbankspeicher.",
-  "nasha_components_partition_zfs_options_template_4_description": "Standardvorlage für Dateifreigabe."
+  "nasha_components_partition_zfs_options_template_4_description": "Standardvorlage für die Dateifreigabe."
 }

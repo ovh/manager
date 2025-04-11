@@ -3,5 +3,5 @@
   "ovhManagerPccDashboardServiceManagement_mailingList_term": "Mailing list",
   "ovhManagerPccDashboardServiceManagement_mailingList_actionMenu_subscribe": "Sign up to the mailing list",
   "ovhManagerPccDashboardServiceManagement_renewal_actionMenu_order": "Order a licence",
-  "ovhManagerPccDashboardServiceManagement_renewal_terminate": "Close service"
+  "ovhManagerPccDashboardServiceManagement_renewal_terminate": "Cancel the service"
 }

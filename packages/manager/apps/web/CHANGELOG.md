@@ -3,6 +3,58 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.10.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.10.7...@ovh-ux/manager-web@19.10.8) (2025-04-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.10.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.10.6...@ovh-ux/manager-web@19.10.7) (2025-04-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.10.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.10.5...@ovh-ux/manager-web@19.10.6) (2025-04-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.10.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.10.4...@ovh-ux/manager-web@19.10.5) (2025-04-07)
+
+
+### Bug Fixes
+
+* **web.domain:** fix subdomain input value prefilled ([88fb941](https://github.com/ovh/manager/commit/88fb94158558ac45900975289965d0568bad9db4)), closes [#MANAGER-17631](https://github.com/ovh/manager/issues/MANAGER-17631)
+* **web.hosting:** disable email activation if no have zone dns ([#15871](https://github.com/ovh/manager/issues/15871)) ([1ae55bb](https://github.com/ovh/manager/commit/1ae55bbc29907eb561414a3976665b3f4fa8dabe)), closes [#MANAGER-11843](https://github.com/ovh/manager/issues/MANAGER-11843)
+
+
+
+
+
+## [19.10.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.10.3...@ovh-ux/manager-web@19.10.4) (2025-04-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.10.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.10.2...@ovh-ux/manager-web@19.10.3) (2025-04-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
 ## [19.10.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.10.1...@ovh-ux/manager-web@19.10.2) (2025-03-31)
 
 

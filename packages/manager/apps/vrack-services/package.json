@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-vrack-services-app",
-  "version": "0.14.1",
+  "version": "0.16.1",
   "private": true,
   "description": "OVHcloud VrackServices app",
   "repository": {
@@ -20,16 +20,16 @@
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^8.1.0",
-    "@ovh-ux/manager-core-api": "^0.10.1",
+    "@ovh-ux/manager-config": "^8.2.0",
+    "@ovh-ux/manager-core-api": "^0.11.0",
     "@ovh-ux/manager-core-utils": "*",
-    "@ovh-ux/manager-module-common-api": "^0.3.5",
-    "@ovh-ux/manager-module-order": "^0.9.5",
-    "@ovh-ux/manager-network-common": "^0.2.0",
-    "@ovh-ux/manager-react-components": "^1.45.0",
-    "@ovh-ux/manager-react-core-application": "^0.11.16",
+    "@ovh-ux/manager-module-common-api": "^0.3.6",
+    "@ovh-ux/manager-module-order": "^0.9.6",
+    "@ovh-ux/manager-network-common": "^0.3.1",
+    "@ovh-ux/manager-react-components": "^1.46.0",
+    "@ovh-ux/manager-react-core-application": "^0.11.18",
     "@ovh-ux/manager-react-shell-client": "^0.8.5",
-    "@ovh-ux/manager-tailwind-config": "^0.2.1",
+    "@ovh-ux/manager-tailwind-config": "^0.3.0",
     "@ovh-ux/request-tagger": "^0.4.0",
     "@ovhcloud/ods-common-core": "17.2.2",
     "@ovhcloud/ods-common-theming": "17.2.2",
@@ -46,7 +46,7 @@
     "tailwindcss": "^3.4.4"
   },
   "devDependencies": {
-    "@ovh-ux/manager-core-test-utils": "^0.4.1",
+    "@ovh-ux/manager-core-test-utils": "^0.4.2",
     "@ovh-ux/manager-vite-config": "^0.9.3",
     "@tanstack/react-query-devtools": "^5.51.21",
     "@testing-library/jest-dom": "^6.6.3",

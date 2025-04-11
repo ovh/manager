@@ -8,6 +8,7 @@ import ASSET_OBJECTSTORAGE from './assets/objectstorage.png';
 import ASSET_BLOCKSTORAGE from './assets/blockstorage.png';
 import ASSET_IPFAILOVER from './assets/ipfailover.png';
 import ASSET_PRIVATENETWORK from './assets/privatenetwork.png';
+import ASSET_DATAPLATFORM from './assets/dataplatform.png';
 import { ENGINES_TYPES } from './storages/databases/databases.constants';
 
 export const PCI_FEATURES = IMPORT_PCI_FEATURES;
@@ -36,6 +37,7 @@ export const PRODUCT_IMAGES = {
   blockstorage: ASSET_BLOCKSTORAGE,
   ipfailover: ASSET_IPFAILOVER,
   privatenetwork: ASSET_PRIVATENETWORK,
+  dataplatform: ASSET_DATAPLATFORM,
 };
 
 export const ACTIONS = [
@@ -97,6 +99,14 @@ export const DATABASE_UAPP_CONFIG = {
   translation: 'pci_projects_project_create_cluster_database',
   feature: PCI_FEATURES.PRODUCTS.DATABASES_ANALYTICS,
   name: 'databases',
+};
+
+export const DATA_PLATFORM_CONFIG = {
+  url:
+    'https://hq-api.eu.dataplatform.ovh.net/iam/v4/login?authentication_provider=ovh&project={projectId}&app_id=forepaas&&response_type=token&redirect_uri=https%3A%2F%2Feu.dataplatform.ovh.net&authorize_bypass=true&token_mode=cookie&force_auth=false',
+  translation: 'pci_projects_project_data_platform',
+  name: 'dataplatform',
+  external: true,
 };
 
 const PROJECT_PAGE_TRACKING_NAME = 'PublicCloud::pci::projects::project';

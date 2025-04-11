@@ -3,6 +3,51 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.35.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.35.0...@ovh-ux/manager-billing@0.35.1) (2025-04-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3832] ([797ea8e](https://github.com/ovh/manager/commit/797ea8e2cee6e2b37ab6a6d8b23ece0613dc6b51))
+* **i18n:** add missing translations [CDS 3847] ([b32c5d3](https://github.com/ovh/manager/commit/b32c5d32f508c8af5208e7276309fdd783342ce0))
+
+
+
+
+
+# [0.35.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.34.1...@ovh-ux/manager-billing@0.35.0) (2025-04-09)
+
+
+### Features
+
+* **container:** added an invitation modal to accept contracts ([3390858](https://github.com/ovh/manager/commit/33908580cfde1e913c73ffc7fd59e3c9724c1cac))
+
+
+
+
+
+## [0.34.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.34.0...@ovh-ux/manager-billing@0.34.1) (2025-04-03)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3825] ([c6d2754](https://github.com/ovh/manager/commit/c6d2754e2c52befd9a757525dfa32c00e3757ac1))
+
+
+
+
+
+# [0.34.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.33.0...@ovh-ux/manager-billing@0.34.0) (2025-04-01)
+
+
+### Features
+
+* **billing:** remove bills retrieval from routing ([#15950](https://github.com/ovh/manager/issues/15950)) ([51f527a](https://github.com/ovh/manager/commit/51f527a10d40faec312d5851c4aaf34cdb5578b8)), closes [#MANAGER-17118](https://github.com/ovh/manager/issues/MANAGER-17118)
+
+
+
+
+
 # [0.33.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.32.0...@ovh-ux/manager-billing@0.33.0) (2025-03-27)
 
 

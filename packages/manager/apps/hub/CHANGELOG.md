@@ -3,7 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.11.0...@ovh-ux/manager-hub-app@0.11.1) (2025-03-27)
+## [0.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.12.0...@ovh-ux/manager-hub-app@0.12.1) (2025-04-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3832] ([797ea8e](https://github.com/ovh/manager/commit/797ea8e2cee6e2b37ab6a6d8b23ece0613dc6b51))
+* **i18n:** add missing translations [CDS 3847] ([b32c5d3](https://github.com/ovh/manager/commit/b32c5d32f508c8af5208e7276309fdd783342ce0))
+* **i18n:** add missing translations [CDS 3850] ([6fc9ea1](https://github.com/ovh/manager/commit/6fc9ea124f3b4444f8f1a7b6edd43da47729e30e))
+
+
+
+
+
+# [0.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.11.3...@ovh-ux/manager-hub-app@0.12.0) (2025-04-09)
+
+
+### Features
+
+* **hub:** remove the duplicate of hub react after bff has been deployed ([13d50c5](https://github.com/ovh/manager/commit/13d50c522455634e86d07dbdae411d75bc30a07a)), closes [#MANAGER-15693](https://github.com/ovh/manager/issues/MANAGER-15693)
+
+
+
+
+
+## [0.11.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.11.2...@ovh-ux/manager-hub-app@0.11.3) (2025-04-07)
 
 **Note:** Version bump only for package @ovh-ux/manager-hub-app
 
@@ -11,12 +35,32 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [0.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.10.4...@ovh-ux/manager-hub-app@0.11.0) (2025-03-25)
+## [0.11.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.11.1...@ovh-ux/manager-hub-app@0.11.2) (2025-04-03)
+
+### Bug Fixes
+
+* **web:** harmonize email products naming ([#16324](https://github.com/ovh/manager/issues/16324)) ([0471f44](https://github.com/ovh/manager/commit/0471f440945666c208282882d49c02f99b590ed9)), closes [#MANAGER-17668](https://github.com/ovh/manager/issues/MANAGER-17668)
+
+
+
+
+
+## [0.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-react-app@0.11.0...@ovh-ux/manager-hub-react-app@0.11.1) (2025-03-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-hub-react-app
+
+
+
+
+
+# [0.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-react-app@0.10.4...@ovh-ux/manager-hub-react-app@0.11.0) (2025-03-25)
 
 
 ### Bug Fixes
 
+* **hub-react:** add zimbra slot translation ([#15785](https://github.com/ovh/manager/issues/15785)) ([9cc51b3](https://github.com/ovh/manager/commit/9cc51b35790efe74192dbeb347bc115bdd197b43)), closes [#MANAGER-17300](https://github.com/ovh/manager/issues/MANAGER-17300)
 * **hub:** fix hub changelog ([#16203](https://github.com/ovh/manager/issues/16203)) ([23d5c30](https://github.com/ovh/manager/commit/23d5c30feb615e65a1c2119fb47f0f918c59ece3)), closes [#MANAGER-15693](https://github.com/ovh/manager/issues/MANAGER-15693)
+* **hub:** fix packages version ([#16176](https://github.com/ovh/manager/issues/16176)) ([1541025](https://github.com/ovh/manager/commit/1541025b4cc9f527a9e35477555b9aca190ef284)), closes [#MANAGER-15693](https://github.com/ovh/manager/issues/MANAGER-15693)
 * **hub:** fix release hub package ([#16184](https://github.com/ovh/manager/issues/16184)) ([01195fb](https://github.com/ovh/manager/commit/01195fba697afb2753a7052743c76b1c11244fc8)), closes [#MANAGER-15693](https://github.com/ovh/manager/issues/MANAGER-15693)
 
 

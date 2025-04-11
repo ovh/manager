@@ -1,11 +1,11 @@
 {
   "nutanix_dashboard_poweroff_node_title": "Desligar o nó",
-  "nutanix_dashboard_poweroff_node_description": "A extinção de um nó Nutanix pode afetar o seu cluster. Verifique os requisitos no portal Nutanix para realizar esta ação",
+  "nutanix_dashboard_poweroff_node_description": "A extinção de um nó Nutanix pode afetar o seu cluster; verifique os pré-requisitos no portal da Nutanix para realizar esta ação",
   "nutanix_dashboard_poweroff_node_poweroff_guidelink": "Aceder ao portal",
-  "nutanix_dashboard_poweroff_node_confirmation": "Tem a certeza de que quer desativar o seu nó {{serviceName}}?",
+  "nutanix_dashboard_poweroff_node_confirmation": "Quer mesmo desativar o seu nó {{serviceName}}?",
   "nutanix_dashboard_poweroff_node_confirm": "Desligar",
   "nutanix_dashboard_poweroff_node_cancel": "Anular",
   "nutanix_dasboard_poweroff_node_input_label": "Introduza \"{{magicword}}\" para confirmar a sua escolha",
-  "nutanix_dashboard_poweroff_node_success_banner": "O seu pedido de extinção foi tomado em conta. Esta operação pode demorar até 15 minutos",
-  "nutanix_dashboard_poweroff_node_error_banner": "O seu pedido de extinção não foi tomado em conta:"
+  "nutanix_dashboard_poweroff_node_success_banner": "O seu pedido de extinção foi registado. Esta operação pode demorar até 15 minutos",
+  "nutanix_dashboard_poweroff_node_error_banner": "O seu pedido de extinção não foi registado"
 }

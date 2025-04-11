@@ -41,6 +41,7 @@ const props: AssistanceProps = {
   nodeTree: assistanceTree,
   isShort: false,
   selectedNode: null,
+  isLoading: false
 };
 
 const renderAssistanceSidebar = (props: AssistanceProps) => {
@@ -49,6 +50,7 @@ const renderAssistanceSidebar = (props: AssistanceProps) => {
       nodeTree={props.nodeTree}
       selectedNode={props.selectedNode}
       isShort={props.isShort}
+      isLoading={props.isLoading}
     />,
   );
 };
@@ -61,7 +63,7 @@ describe('AssistanceSidebar.component', () => {
     const assistanceSidebar = queryByTestId(id);
     expect(assistanceSidebar).not.toBeNull();
     expect(assistanceSidebar.children.length).toBe(
-      assistanceTree.children.length + 1,
+      assistanceTree.children.length,
     );
   });
 

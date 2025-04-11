@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.24.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.24.2...@ovh-ux/manager-pci-rancher-app@1.24.3) (2025-04-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-rancher-app
+
+
+
+
+
+## [1.24.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.24.1...@ovh-ux/manager-pci-rancher-app@1.24.2) (2025-04-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-rancher-app
+
+
+
+
+
+## [1.24.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.24.0...@ovh-ux/manager-pci-rancher-app@1.24.1) (2025-04-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-rancher-app
+
+
+
+
+
+# [1.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.23.9...@ovh-ux/manager-pci-rancher-app@1.24.0) (2025-04-02)
+
+
+### Features
+
+* **mrc:** bump version ([#16251](https://github.com/ovh/manager/issues/16251)) ([2f21862](https://github.com/ovh/manager/commit/2f218623919905e69d012c53474613785fe76991)), closes [#TAPC-2786](https://github.com/ovh/manager/issues/TAPC-2786)
+
+
+
+
+
 ## [1.23.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.23.8...@ovh-ux/manager-pci-rancher-app@1.23.9) (2025-03-27)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-rancher-app

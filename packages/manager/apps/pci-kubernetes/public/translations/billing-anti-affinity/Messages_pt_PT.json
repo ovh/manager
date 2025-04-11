@@ -18,14 +18,14 @@
   "kubernetes_add_error_InsufficientPortsQuota": "A quota de portas do seu projeto é insuficiente para realizar a operação. Aumente a sua quota ou solicite menos recursos.",
   "kubernetes_add_error_InsufficientInstancesQuota": "A quota de instâncias do seu projeto é insuficiente para realizar a operação. Aumente a sua quota ou solicite menos recursos.",
   "kubernetes_add_error_quota_link": "Aumentar a minha quota.",
-  "kubernetes_add_billing_auto_scaling_monthly_warning": "Ativa simultaneamente o autoscaling e o tarifário mensal para este pool de nós. Cada criação de nós através do autoscaling implicará a faturação imediata de um nó, calculada em pro rata do tempo restante no mês em curso. Recomendamos que evite esta combinação se antecipar reduções frequentes do tamanho do pool de nós.",
+  "kubernetes_add_billing_auto_scaling_monthly_warning": "Está a ativar simultaneamente o autoscaling e o tarifário mensal para este pool de nós. Cada nó criado através do autoscaling implicará a faturação imediata de um nó, calculada proporcionalmente ao tempo restante no mês em curso. Recomendamos que evite esta combinação se prevê reduções frequentes da dimensão do pool de nós.",
   "kubernetes_add_cluster_name_input_pattern_validation_error": "O nome deve começar por um caráter alfabético, acabar por um caráter alfanumérico e os únicos caracteres especiais autorizados são os traços e os underscores.",
   "kubernetes_add_billing_anti_affinity_coming_soon_message_title": "Preços mensais",
   "kubernetes_add_billing_anti_affinity_coming_soon_message_description": "Os preços mensais estarão disponíveis em breve com a chegada dos Saving Plans.",
   "kubernetes_node_pool_anti_affinity": "Anti-afinidade",
-  "kubernetes_node_pool_anti_affinity_description": "Ao ativar a anti-afinidade, os nós presentes e futuros serão implementados em hipervisores (servidores físicos) diferentes, garantindo uma melhor tolerância às falhas. Os pools de nós com anti-afinidade só podem conter até {{maxNodes}} nós. Tenha em conta que a funcionalidade de anti-afinidade não é compatível com a ativação do autoscaling.",
+  "kubernetes_node_pool_anti_affinity_description": "Ao ativar a antiafinidade, os nós presentes e futuros serão implementados em diferentes hipervisores (servidores físicos), garantindo uma melhor tolerância às falhas. Os pools de nós com antiafinidade só podem conter um máximo de {{maxNodes}} nós. Tenha em conta que a funcionalidade de antiafinidade não é compatível com a ativação do autoscaling.",
   "kubernetes_add_billing_savings_plan_banner": "Graças aos Savings Plans, beneficie de preços mensais vantajosos, enquanto conserva a flexibilidade das instâncias à hora.",
   "kubernetes_add_billing_savings_plan_cta": "Configure os seus Savings Plans",
-  "kubernetes_node_pool_anti_affinity_true": "Anti-afinidade ativa",
-  "kubernetes_node_pool_anti_affinity_false": "Anti-afinidade inativa"
+  "kubernetes_node_pool_anti_affinity_true": "Antiafinidade ativa",
+  "kubernetes_node_pool_anti_affinity_false": "Antiafinidade inativa"
 }

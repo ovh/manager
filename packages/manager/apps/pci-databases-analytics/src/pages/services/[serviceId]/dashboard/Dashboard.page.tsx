@@ -214,7 +214,7 @@ const Dashboard = () => {
                     <b>{t('subnetTitle')}</b>
                     {subnet ? (
                       <span>
-                        `${subnet.cidr} - ${subnet.ipPools[0].region}`
+                        {`${subnet.cidr} - ${subnet.ipPools[0].region}`}
                       </span>
                     ) : (
                       <Skeleton className="w-28 h-4" />

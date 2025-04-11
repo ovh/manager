@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.12.4...@ovh-ux/manager-billing-components@4.13.0) (2025-04-09)
+
+
+### Features
+
+* **billing:** add renewal modal replacing page in my services ([ad179fe](https://github.com/ovh/manager/commit/ad179fe10f7ac257ec1f851607024b91e2ddc7c8))
+
+
+### Reverts
+
+* Revert "feat(billing): add renewal modal replacing page in my services" ([85b3f50](https://github.com/ovh/manager/commit/85b3f50c764e56200fb710f47dfa41bb54ca3ed0))
+
+
+
+
+
+## [4.12.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.12.3...@ovh-ux/manager-billing-components@4.12.4) (2025-04-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing-components
+
+
+
+
+
+## [4.12.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.12.2...@ovh-ux/manager-billing-components@4.12.3) (2025-04-01)
+
+
+### Bug Fixes
+
+* **billing:** use one time binding to avoid infinite digest ([#16086](https://github.com/ovh/manager/issues/16086)) ([d719678](https://github.com/ovh/manager/commit/d71967853889533d5c6db44d670a9aeb59b5618c)), closes [#MANAGER-17500](https://github.com/ovh/manager/issues/MANAGER-17500)
+
+
+
+
+
 ## [4.12.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.12.1...@ovh-ux/manager-billing-components@4.12.2) (2025-03-31)
 
 

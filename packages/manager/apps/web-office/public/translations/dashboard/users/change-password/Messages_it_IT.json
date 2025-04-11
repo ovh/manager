@@ -1,0 +1,16 @@
+{
+  "dashboard_users_change_password_title": "Modifica la password",
+  "dashboard_users_change_password_radio_1": "Genera una password casuale",
+  "dashboard_users_change_password_radio_2": "Personalizza la password",
+  "dashboard_users_change_password_label_password": "Nuova password",
+  "dashboard_users_change_password_label_confirm_password": "Conferma della nuova password",
+  "dashboard_users_change_password_label_email": "Account email per la ricezione della password",
+  "dashboard_users_change_password_helper1": "Attenzione, la password deve rispettare queste condizioni:",
+  "dashboard_users_change_password_helper2": "Minimo 8 caratteri",
+  "dashboard_users_change_password_helper3": "Massimo 16 caratteri",
+  "dashboard_users_change_password_helper4": "Almeno 1 lettera minuscola, 1 lettera maiuscola, 1 cifra o 1 carattere speciale",
+  "dashboard_users_change_password_email-edit-title": "Se non viene inserita una password, questa verrà generata in modo casuale e inviata via email all’indirizzo indicato",
+  "dashboard_users_change_password_email-edit": "Invia per email",
+  "dashboard_users_change_password_message_error": "Si è verificato un errore durante il recupero delle informazioni",
+  "dashboard_users_change_password_message_success": "La modifica della password è stata presa in carico."
+}

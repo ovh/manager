@@ -89,7 +89,7 @@
   "sidebar_web_paas": "Web PaaS",
   "sidebar_platform_sh": "Web PaaS powered by Platform.sh",
   "sidebar_emails": "Emails",
-  "sidebar_email_pro": "Professional emails",
+  "sidebar_email_pro": "Email Pro",
   "sidebar_exchange": "Exchange",
   "sidebar_mxplan": "MX Plan",
   "sidebar_microsoft": "Microsoft",
@@ -101,7 +101,7 @@
   "sidebar_internet_line": "Internet only",
   "sidebar_otb": "OverTheBox",
   "sidebar_telephony": "Telephony",
-  "sidebar_telephony_voip_groups": "VoIP",
+  "sidebar_telephony_voip_groups": "VoIP &amp; Fax",
   "sidebar_telephony_sms": "SMS",
   "sidebar_telephony_fax": "Fax",
   "sidebar_account": "My account",
@@ -207,5 +207,7 @@
   "sidebar_vmware_vsphere": "Managed VMware vSphere",
   "sidebar_vmware_vcd": "Managed VCD",
   "sidebar_cloud_changelog": "Cloud Changelog",
-  "sidebar_hosting_and_collab_changelog": "Changelog Hosting &amp; Collab"
+  "sidebar_hosting_and_collab_changelog": "Changelog Hosting &amp; Collab",
+  "sidebar_roadmap_changelog": "Roadmap &amp; Changelog",
+  "sidebar_license_office_list": "My Microsoft 365 accounts"
 }

@@ -8,8 +8,6 @@ export type ApplicationContextType = {
   shell: Shell;
 };
 
-const ApplicationContext = createContext<ApplicationContextType>(
-  {} as ApplicationContextType,
-);
+const ApplicationContext = createContext<ApplicationContextType | null>(null);
 
 export default ApplicationContext;

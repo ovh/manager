@@ -30,9 +30,9 @@
   "resource_tabs_cpu": "Compute Optimized",
   "resource_tabs_ram": "Memory Optimized",
   "resource_model_characteristics_gb": "{{value}} GB RAM",
-  "resource_model_characteristics_cpu": "{{cores}} vCORES ({{ghz}} GHz)",
+  "resource_model_characteristics_cpu": "{{cores}} vCores ({{ghz}} GHz)",
   "resource_model_characteristics_disk": "{{value}} GB NVMe",
-  "resource_model_characteristics_mbits": "{{value}} MBPS",
+  "resource_model_characteristics_mbits": "{{value}} Mbps",
   "savings_plan_name_input_placeholder": "MySavingsPlan",
   "commitment_month": "{{value}} months",
   "commitment_price_month": "ex. VAT/month",
@@ -41,10 +41,10 @@
   "select_quantity_description_instance": "Specify the number of instances to include in your Savings Plan.",
   "select_quantity_description_rancher": "Specify the number of vCPUs to include in your Savings Plan.",
   "quantity_label_instance": "Number of instances",
-  "quantity_label_rancher": "Number of vCPU",
+  "quantity_label_rancher": "Number of vCPUs",
   "choose_deployment": "Choose a deployment mode",
-  "choose_deployment_description": "Select the optimal configuration to guarantee the availability, resilience and appropriate latency of your data depending on your use cases.",
+  "choose_deployment_description": "Pick the optimal configuration to ensure your data is always accessible, reliable, and has the right latency based on your use cases.",
   "region": "Region",
-  "deployment_one_az": "Resilient and cost-effective deployment on 1 availability zone.",
-  "deployment_three_az": "High-resilience/high-availability deployment for your critical applications across 3 availability zones."
+  "deployment_one_az": "Resilient and low cost deployment in 1 availability zone.",
+  "deployment_three_az": "High resilience/high availability deployment for your critical applications across 3 availability zones."
 }

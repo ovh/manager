@@ -11,8 +11,10 @@ const trackingInit = vi.fn().mockResolvedValue(undefined);
 const trackingSetEnabled = vi.fn().mockResolvedValue(undefined);
 const trackingOnConsentModalDisplay = vi.fn().mockResolvedValue(undefined);
 
+vi.mock('@ovh-ux/shell');
+
 const renderCookiePolicy = async () => {
-  const shell = await initShell();
+  const shell = initShell({} as Environment);
   const environment = shell.getPlugin('environment').getEnvironment();
   render(
     <ApplicationContext.Provider value={{ shell, environment }}>
@@ -39,8 +41,6 @@ const mockedShell = (region: string) => ({
     },
   }[plugin]),
 });
-
-vi.mock('@ovh-ux/shell');
 vi.mock('react-cookie');
 
 
@@ -57,7 +57,7 @@ describe('CookiePolicy.component', () => {
 
     const cookieValue = cookieValidity === 'valid' ? '1' : '0';
     vi.mocked(useCookies).mockReturnValue([{ MANAGER_TRACKING: cookieValue, }, vi.fn(), vi.fn()]);
-    (await import('@ovh-ux/shell')).initShell = vi.fn().mockResolvedValue(mockedShell(region));
+    (await import('@ovh-ux/shell')).initShell = vi.fn().mockReturnValue(mockedShell(region));
     void renderCookiePolicy();
     await waitFor(() => {
       expect(trackingInit).toHaveBeenCalledWith(true);
@@ -69,7 +69,7 @@ describe('CookiePolicy.component', () => {
   it('should show consent modal if cookie is null and region is not US', async () => {
 
     vi.mocked(useCookies).mockReturnValue([{ MANAGER_TRACKING: null, }, vi.fn(), vi.fn()]);
-    (await import('@ovh-ux/shell')).initShell = vi.fn().mockResolvedValue(mockedShell('EU'));
+    (await import('@ovh-ux/shell')).initShell = vi.fn().mockReturnValue(mockedShell('EU'));
     void renderCookiePolicy();
     await waitFor(() => {
       expect(trackingInit).not.toHaveBeenCalled();
@@ -81,7 +81,7 @@ describe('CookiePolicy.component', () => {
   it('should disable tracking plugin if cookie is invalid and region is not US', async () => {
 
     vi.mocked(useCookies).mockReturnValue([{ MANAGER_TRACKING: '0', }, vi.fn(), vi.fn()]);
-    (await import('@ovh-ux/shell')).initShell = vi.fn().mockResolvedValue(mockedShell('EU'));
+    (await import('@ovh-ux/shell')).initShell = vi.fn().mockReturnValue(mockedShell('EU'));
     void renderCookiePolicy();
     await waitFor(() => {
       expect(trackingInit).not.toHaveBeenCalled();

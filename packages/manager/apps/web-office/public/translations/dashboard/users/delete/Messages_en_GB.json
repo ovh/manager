@@ -1,0 +1,10 @@
+{
+  "dashboard_users_delete_title": "Delete account",
+  "dashboard_users_delete_confirm": "Are you sure you want to delete the <strong>{{t0}}</strong> user?",
+  "dashboard_users_delete_info1": "The user will be deleted immediately after confirmation.",
+  "dashboard_users_delete_info2": "Because our Office 365 products are billed based on last month's usage, you will receive a final bill for this account.",
+  "dashboard_users_delete_cta_cancel": "Cancel",
+  "dashboard_users_delete_cta_confirm": "Delete",
+  "dashboard_users_delete_message_error": "An error has occurred deleting the user. {{ error }}",
+  "dashboard_users_delete_message_success": "Deleting user."
+}

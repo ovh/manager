@@ -42,9 +42,9 @@
   "select_quantity_description_rancher": "Indica il numero di vCPU da includere nel tuo Savings Plan.",
   "quantity_label_instance": "Numero di istanze",
   "quantity_label_rancher": "Numero di vCPU",
-  "choose_deployment": "Scegli una modalità di installazione",
-  "choose_deployment_description": "Seleziona la configurazione ottimale per garantire la disponibilità, la resilienza e la latenza adeguata dei dati in base alle modalità di utilizzo.",
-  "region": "Regione",
-  "deployment_one_az": "Installazione resiliente ed economica su 1 zona di disponibilità.",
-  "deployment_three_az": "Installazione ad alta resilienza/high availability per le applicazioni critiche su 3 zone di disponibilità."
+  "choose_deployment": "Scegli una modalità di deploy",
+  "choose_deployment_description": "Seleziona la configurazione ottimale per garantire la disponibilità, resilienza e latenza più appropriata per i tuoi dati in base alle modalità di utilizzo.",
+  "region": "Region",
+  "deployment_one_az": "Deploy resiliente ed economico su 1 zona di disponibilità.",
+  "deployment_three_az": "Deploy ad alta resilienza/alta disponibilità per le tue applicazioni critiche su 3 zone di disponibilità."
 }

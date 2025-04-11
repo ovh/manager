@@ -1,6 +1,6 @@
 {
-  "cloud_connect_datacenter_remove": "Konfiguration der Verfügbarkeitszone löschen",
-  "cloud_connect_datacenter_remove_description": "Dadurch wird die ausgewählte Verfügbarkeitszonenkonfiguration gelöscht",
-  "cloud_connect_datacenter_remove_success": "Die Verfügbarkeitszonenkonfiguration wurde gelöscht. <a href=\"{{ tasksUrl }}\">Klicken Sie hier, um den Status anzuzeigen.</a>",
-  "cloud_connect_datacenter_remove_error": "Fehler beim Löschen einer Verfügbarkeitszonenkonfiguration: {{message}}"
+  "cloud_connect_datacenter_remove": "Konfiguration der Availability Zone löschen",
+  "cloud_connect_datacenter_remove_description": "Hierbei wird die Konfiguration der ausgewählten Availability Zone gelöscht",
+  "cloud_connect_datacenter_remove_success": "Konfiguration der Availability Zone gelöscht. <a href=\"{{ tasksUrl }}\">Klicken Sie hier, um den Status anzuzeigen.</a>",
+  "cloud_connect_datacenter_remove_error": "Fehler beim Löschen einer Konfiguration der Availability Zone: {{message}}"
 }

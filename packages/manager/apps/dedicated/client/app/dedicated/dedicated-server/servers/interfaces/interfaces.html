@@ -2,19 +2,6 @@
 
 <div class="row">
     <div
-        class="col-md-8 mb-5"
-        data-ng-if="$ctrl.ola.isAvailable() && !$ctrl.ola.isActivated()"
-    >
-        <ola-step-checker
-            class="h-100"
-            data-price="$ctrl.optionPrice"
-            data-ola="$ctrl.ola"
-            data-guide="$ctrl.guideUrl"
-            data-user="$ctrl.user"
-        >
-        </ola-step-checker>
-    </div>
-    <div
         class="col-md-4 mb-5"
         data-ng-if="$ctrl.ola.isAvailable() && $ctrl.ola.isActivated()"
     >
@@ -67,10 +54,7 @@
 </div>
 
 <!-- MRTG -->
-<div
-    class="mb-5"
-    data-ng-if="!$ctrl.server.isExpired"
->
+<div class="mb-5" data-ng-if="!$ctrl.server.isExpired">
     <server-mrtg-tile
         data-server-service="$ctrl.serverService"
     ></server-mrtg-tile>

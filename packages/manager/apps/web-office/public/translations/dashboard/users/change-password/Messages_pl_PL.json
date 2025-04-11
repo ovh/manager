@@ -1,0 +1,16 @@
+{
+  "dashboard_users_change_password_title": "Zmień hasło",
+  "dashboard_users_change_password_radio_1": "Generuję losowe hasło",
+  "dashboard_users_change_password_radio_2": "Personalizuję hasło",
+  "dashboard_users_change_password_label_password": "Nowe hasło",
+  "dashboard_users_change_password_label_confirm_password": "Potwierdzenie nowego hasła",
+  "dashboard_users_change_password_label_email": "Konto e-mail do otrzymania hasła",
+  "dashboard_users_change_password_helper1": "Uwaga: hasło musi spełniać następujące warunki:",
+  "dashboard_users_change_password_helper2": "Minimum 8 znaków",
+  "dashboard_users_change_password_helper3": "Maksymalnie 16 znaków",
+  "dashboard_users_change_password_helper4": "Co najmniej 1 mała litera, 1 wielka litera, 1 cyfra lub 1 znak specjalny",
+  "dashboard_users_change_password_email-edit-title": "Jeśli nie wprowadzisz hasła, zostanie ono wygenerowane losowo i wysłane e-mailem na podany adres",
+  "dashboard_users_change_password_email-edit": "Wyślij na adres e-mail",
+  "dashboard_users_change_password_message_error": "Wystąpił błąd podczas pobierania informacji",
+  "dashboard_users_change_password_message_success": "Zmiana hasła została zarejestrowana."
+}

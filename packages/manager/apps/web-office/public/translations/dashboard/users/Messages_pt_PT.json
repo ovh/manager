@@ -1,0 +1,18 @@
+{
+  "dashboard_users_table_firstName": "Nome",
+  "dashboard_users_table_lastName": " Nome",
+  "dashboard_users_table_activationEmail": "E-mail de ativação",
+  "dashboard_users_table_licences": "Licenças",
+  "dashboard_users_table_status": "Estado",
+  "dashboard_users_download_text": "Os programas de instalação para PC e MAC estão disponíveis no site da <officeLink/>.",
+  "dashboard_users_download_info": "Aceda à App Store ou Google Store para obter aplicações para smartphones e tablets.",
+  "dashboard_users_download_id": "Depois de adicionar uma licença, irá receber um e-mail com os dados de acesso e de instalação.",
+  "dashboard_users_status_creating": "Em criação",
+  "dashboard_users_status_updating": "Atualização",
+  "dashboard_users_status_deleting": "Eliminação em curso",
+  "dashboard_users_status_ok": "Criado",
+  "dashboard_users_status_unconfigured": "Não configurado",
+  "dashboard_users_action_user_change_password": "Alterar palavra-passe",
+  "dashboard_users_action_user_edit": "Editar a conta",
+  "dashboard_users_action_user_delete": "Eliminar conta"
+}

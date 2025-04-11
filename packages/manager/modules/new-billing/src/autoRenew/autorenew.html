@@ -217,7 +217,7 @@
             data-type="options"
         >
             <span
-                data-ng-bind-html="$row.hasAutomaticRenew() && !$row.isResiliated() && $row.renewPeriod ? 'billing_autorenew_service_every_' + $row.renewPeriod + '_month': 'billing_autorenew_service_none' | translate"
+                data-ng-bind-html="$row.hasAutomaticRenew() && !$row.isResiliated() && $row.renewPeriod ? 'billing_autorenew_service_every_' + $row.cleanRenewPeriod + '_month': 'billing_autorenew_service_none' | translate"
             >
             </span>
         </oui-datagrid-column>

@@ -4,7 +4,7 @@ import template from './billing-main-history.html';
 
 export default {
   bindings: {
-    bills: '<',
+    getBills: '<',
     currentUser: '<',
     debtAccount: '<',
     exportBills: '<',

@@ -143,6 +143,15 @@ export default /* @ngInject */ ($stateProvider) => {
             featureAvailability.isFeatureAvailable('dedicated-cloud:drp'),
           ),
 
+      customerSurveyBannerAvailability: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability('dedicated-cloud:customerSurveyBanner')
+          .then((featureAvailability) =>
+            featureAvailability.isFeatureAvailable(
+              'dedicated-cloud:customerSurveyBanner',
+            ),
+          ),
+
       drpGlobalStatus: /* @ngInject */ (currentDrp, dedicatedCloudDrp) => ({
         error:
           dedicatedCloudDrp.constructor.isDrpNotInValidState(
