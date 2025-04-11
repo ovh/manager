@@ -7,9 +7,10 @@ import {
   ODS_ICON_NAME,
 } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
-import { useHostingUrl, useWebHostingAttachedDomaindigStatus } from '@/hooks';
-import { BadgeStatus } from '@/components/BadgeStatus';
-import { ServiceStatus, WebsiteType, DnsStatus, GitStatus } from '@/api/type';
+import { useWebHostingAttachedDomaindigStatus } from '@/data/hooks/webHostingAttachedDomaindigStatus/useWebHostingAttachedDomaindigStatus';
+import { BadgeStatus } from '@/components/badgeStatus/BadgeStatus.component';
+import { ServiceStatus, WebsiteType, DnsStatus, GitStatus } from '@/data/type';
+import { useHostingUrl } from '@/hooks/useHostingUrl';
 
 const useHostingUrlWithOptions = (
   serviceName: string,

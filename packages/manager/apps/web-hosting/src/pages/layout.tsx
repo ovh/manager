@@ -6,7 +6,7 @@ import {
   useRouteSynchro,
   ShellContext,
 } from '@ovh-ux/manager-react-shell-client';
-import { useWebHostingAttachedDomain } from '@/hooks';
+import { useWebHostingAttachedDomain } from '@/data/hooks';
 import Onboarding from './onboarding/Onboarding.page';
 
 export default function Layout() {
