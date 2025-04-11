@@ -1,0 +1,65 @@
+[
+  {
+    "ip": "2607:5300:400:1e00::/56",
+    "iam": {
+      "id": "id1",
+      "urn": "urn:v1:eu:resource:ip:1"
+    },
+    "rir": "ARIN",
+    "type": "vrack",
+    "campus": null,
+    "country": "ca",
+    "regions": ["ca-east-bhs"],
+    "version": 6,
+    "routedTo": {
+      "serviceName": "pn-000002"
+    },
+    "description": null,
+    "bringYourOwnIp": false,
+    "isAdditionalIp": true,
+    "organisationId": null,
+    "canBeTerminated": true
+  },
+  {
+    "ip": "2607:5300:400:cb00::/56",
+    "iam": {
+      "id": "id2",
+      "urn": "urn:v1:eu:resource:ip:2"
+    },
+    "rir": "ARIN",
+    "type": "failover",
+    "campus": null,
+    "country": "ca",
+    "regions": ["ca-east-bhs"],
+    "version": 6,
+    "routedTo": {
+      "serviceName": null
+    },
+    "description": null,
+    "bringYourOwnIp": false,
+    "isAdditionalIp": true,
+    "organisationId": null,
+    "canBeTerminated": true
+  },
+  {
+    "ip": "2001:41d0:a900:1d00::/56",
+    "iam": {
+      "id": "id3",
+      "urn": "urn:v1:eu:resource:ip:3"
+    },
+    "rir": "RIPE",
+    "type": "vrack",
+    "campus": null,
+    "country": "fr",
+    "regions": ["eu-west-par"],
+    "version": 6,
+    "routedTo": {
+      "serviceName": "pn-00002"
+    },
+    "description": null,
+    "bringYourOwnIp": false,
+    "isAdditionalIp": true,
+    "organisationId": null,
+    "canBeTerminated": true
+  }
+]
