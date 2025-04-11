@@ -66,6 +66,22 @@ describe('RegionSelector component', () => {
     expect(spy).toHaveBeenCalledWith(newRegion);
   });
 
+  it('disables region correctly', async () => {
+    const spy = vi.fn();
+    const disabledRegion = 'ca-east-tor';
+    const { asFragment, getByText } = render(
+      <RegionSelector
+        regionList={regionList}
+        setSelectedRegion={spy}
+        disabledRegions={[{ region: 'ca-east-tor', message: 'test' }]}
+      />,
+    );
+
+    expect(asFragment()).toMatchSnapshot();
+    await waitFor(() => userEvent.click(getByText(disabledRegion)));
+    expect(spy).not.toHaveBeenCalledWith(disabledRegion);
+  });
+
   it.each([
     { label: 'region-selector-eu-filter', cardNb: 16 },
     { label: 'region-selector-ca-filter', cardNb: 2 },
