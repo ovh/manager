@@ -36,7 +36,7 @@ import { useAutoRefetch } from '@/data/hooks/useAutoRefetch';
 import { getOkmsServicesResourceListQueryKey } from '@/data/api/okms';
 import KmsActionMenu from '@/components/menu/KmsActionMenu.component';
 import kmsListingTestIds from './KmsListing.constants';
-import { CHANGELOG_LINKS } from '@/constants';
+import { CHANGELOG_LINKS, SERVICE_KEYS_LABEL } from '@/constants';
 
 export default function Listing() {
   const { t } = useTranslation('key-management-service/listing');
@@ -68,7 +68,7 @@ export default function Listing() {
     {
       id: 'servicekey_count',
       cell: DatagridResourceServiceKeyCountCell,
-      label: t('key_management_service_listing_service_key_cell'),
+      label: SERVICE_KEYS_LABEL,
     },
     {
       id: 'region',

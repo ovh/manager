@@ -40,6 +40,7 @@ import { GeneralInformationSection } from './GeneralInformationSection.component
 import { KeyTypeSection } from './KeyTypeSection.component';
 import { KeyUsageSection } from './KeyUsageSection.component';
 import { CREATE_KEY_TEST_IDS } from './CreateKey.constants';
+import { SERVICE_KEYS_LABEL } from '@/constants';
 
 export default function CreateKey() {
   const { okmsId } = useParams();
@@ -122,7 +123,7 @@ export default function CreateKey() {
     },
     {
       id: ROUTES_URLS.keys,
-      label: t('key_management_service_service_keys'),
+      label: SERVICE_KEYS_LABEL,
       navigateTo: `/${okmsId}/${ROUTES_URLS.keys}`,
     },
     {
