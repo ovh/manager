@@ -8,6 +8,7 @@ import { GeolocationSection } from './sections/GeolocationSection.component';
 import { OrganisationSection } from './sections/OrganisationSection.component';
 import { OrderButtonSection } from './sections/OrderButtonSection.component';
 import { useServiceRegion } from '@/data/hooks/useServiceRegion';
+import { useCheckServiceAvailability } from '@/data/hooks/useCheckServiceAvailability';
 import { ServiceType } from '@/types';
 
 export const Ipv4Order: React.FC = () => {
@@ -20,7 +21,15 @@ export const Ipv4Order: React.FC = () => {
     selectedPlanCode,
     selectedGeolocation,
     selectedOrganisation,
+    addDisabledService,
   } = React.useContext(OrderContext);
+
+  const { serviceStatus } = useCheckServiceAvailability({
+    serviceName: selectedService,
+    serviceType: selectedServiceType,
+    onServiceUnavailable: addDisabledService,
+  });
+
   const { region } = useServiceRegion({
     serviceName: selectedService,
     serviceType: selectedServiceType,
@@ -28,6 +37,7 @@ export const Ipv4Order: React.FC = () => {
 
   const isOrganisationSectionVisible =
     !!selectedService &&
+    serviceStatus === 'ok' &&
     selectedOffer === IpOffer.blockAdditionalIp &&
     selectedServiceType !== ServiceType.dedicatedCloud &&
     !!selectedPlanCode &&
@@ -38,10 +48,15 @@ export const Ipv4Order: React.FC = () => {
     service: ipVersion === IpVersion.ipv4,
     region:
       !!selectedService &&
+      serviceStatus === 'ok' &&
       [ServiceType.ipParking, ServiceType.vrack].includes(selectedServiceType),
-    offer: !!selectedService && !!(selectedRegion || region),
+    offer:
+      !!selectedService &&
+      !!(selectedRegion || region) &&
+      serviceStatus === 'ok',
     geolocation:
       !!selectedService &&
+      serviceStatus === 'ok' &&
       !!selectedOffer &&
       !!selectedPlanCode &&
       !!(selectedRegion || region),
@@ -49,6 +64,7 @@ export const Ipv4Order: React.FC = () => {
     order:
       !!selectedService &&
       !!selectedServiceType &&
+      serviceStatus === 'ok' &&
       !!(selectedRegion || region) &&
       !!selectedOffer &&
       !!selectedPlanCode &&
