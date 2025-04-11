@@ -1,0 +1,13 @@
+{
+  "xdsl_modem_service_wifi_radio_settings": "Paramètres radio",
+  "xdsl_modem_service_wifi_radio_settings_frequency": "Fréquence",
+  "xdsl_modem_service_wifi_radio_settings_status": "Status",
+  "xdsl_modem_service_wifi_radio_settings_channel_mode": "Mode du canal",
+  "xdsl_modem_service_wifi_radio_settings_channel_mode_manual": "Manuel",
+  "xdsl_modem_service_wifi_radio_settings_channel_mode_auto": "Auto",
+  "xdsl_modem_service_wifi_radio_settings_channel": "canal",
+  "xdsl_modem_service_wifi_radio_settings_channel_bandwidth": "Bande passante du canal",
+  "xdsl_modem_service_wifi_radio_settings_power": "Puissance",
+  "xdsl_modem_service_wifi_radio_settings_rate": "Débit",
+  "xdsl_modem_service_wifi_radio_settings_standards": "Standards"
+}

@@ -1,0 +1,217 @@
+<div class="telecom-pack-xdsl-wifi-config-radio-settings">
+    <section class="widget-presentation">
+        <header class="widget-presentation-header">
+            <h2
+                class="widget-presentation-title"
+                data-translate="xdsl_modem_service_wifi_radio_settings"
+            ></h2>
+        </header>
+
+        <div>
+            <oui-spinner
+                data-ng-if="RadioSettingsCtrl.isLoading"
+                data-size="m"
+                class="d-flex justify-content-center"
+            >
+            </oui-spinner>
+
+            <table
+                class="table table-hover table-condensed"
+                data-ng-if="!RadioSettingsCtrl.isLoading"
+            >
+                <thead>
+                    <tr>
+                        <th
+                            scope="col"
+                            data-translate="xdsl_modem_service_wifi_radio_settings_frequency"
+                        ></th>
+                        <th
+                            scope="col"
+                            data-translate="xdsl_modem_service_wifi_radio_settings_status"
+                        ></th>
+                        <th
+                            scope="col"
+                            data-translate="xdsl_modem_service_wifi_radio_settings_channel_mode"
+                        ></th>
+                        <th
+                            scope="col"
+                            data-translate="xdsl_modem_service_wifi_radio_settings_channel"
+                        ></th>
+                        <th
+                            scope="col"
+                            data-translate="xdsl_modem_service_wifi_radio_settings_channel_bandwidth"
+                        ></th>
+                        <th
+                            scope="col"
+                            data-translate="xdsl_modem_service_wifi_radio_settings_power"
+                        ></th>
+                        <th
+                            scope="col"
+                            data-translate="xdsl_modem_service_wifi_radio_settings_rate"
+                        ></th>
+                        <th
+                            scope="col"
+                            data-translate="xdsl_modem_service_wifi_radio_settings_standards"
+                        ></th>
+                        <th data-translate="common_actions"></th>
+                    </tr>
+                </thead>
+                <tbody
+                    data-ng-repeat="radio in RadioSettingsCtrl.editableRadioSettings track by radio.radioName"
+                >
+                    <tr data-ng-hide="radio.editMode">
+                        <td
+                            data-title="{{ 'xdsl_modem_service_wifi_radio_settings_frequency' | translate }}"
+                            data-ng-bind="radio.frequency"
+                        ></td>
+                        <td
+                            data-title="{{ 'xdsl_modem_service_wifi_radio_settings_status' | translate }}"
+                        >
+                            <activation-state-display
+                                activation-state="radio.enabled"
+                            ></activation-state-display>
+                        </td>
+                        <td
+                            data-title="{{ 'xdsl_modem_service_wifi_radio_settings_channel_mode' | translate }}"
+                        >
+                            {{ radio.channelMode === 'Auto' ?
+                            'xdsl_modem_service_wifi_radio_settings_channel_mode_auto'
+                            :
+                            'xdsl_modem_service_wifi_radio_settings_channel_mode_manual'
+                            | translate}}
+                        </td>
+                        <td
+                            data-title="{{ 'xdsl_modem_service_wifi_radio_settings_channel' | translate }}"
+                            data-ng-bind="radio.channel"
+                        ></td>
+                        <td
+                            data-title="{{ 'xdsl_modem_service_wifi_radio_settings_channel_bandwidth' | translate }}"
+                            data-ng-bind="radio.channelBandwidth"
+                        ></td>
+                        <td
+                            data-title="{{ 'xdsl_modem_service_wifi_radio_settings_power' | translate }}"
+                        >
+                            {{ radio.transmitPower }}%
+                        </td>
+                        <td
+                            data-title="{{ 'xdsl_modem_service_wifi_radio_settings_rate' | translate }}"
+                        >
+                            {{ radio.maxBitRate }}Mbps
+                        </td>
+                        <td
+                            data-title="{{ 'xdsl_modem_service_wifi_radio_settings_standards' | translate }}"
+                            data-ng-bind="radio.standards"
+                        ></td>
+                        <td class="col-mobile-button-big">
+                            <button
+                                class="btn btn-default"
+                                type="button"
+                                title="{{ 'common_table_edit' | translate }}"
+                                data-ng-click="RadioSettingsCtrl.activateEditMode(radio)"
+                                data-ng-disabled="!RadioSettingsCtrl.isUpdateEnabled"
+                            >
+                                <span
+                                    class="ovh-font ovh-font-editer"
+                                    aria-hidden="true"
+                                ></span>
+                            </button>
+                        </td>
+                    </tr>
+
+                    <tr
+                        data-ng-form
+                        name="localForm"
+                        data-ng-show="radio.editMode"
+                        data-ng-keydown="RadioSettingsCtrl.watchKey($event, radio, localForm.$valid)"
+                    >
+                        <td
+                            data-title="{{ 'xdsl_modem_service_wifi_radio_settings_frequency' | translate }}"
+                            data-ng-bind="radio.frequency"
+                        ></td>
+
+                        <td
+                            data-title="{{ 'xdsl_modem_service_wifi_radio_settings_status' | translate }}"
+                        >
+                            <oui-switch
+                                name="radioStatus"
+                                model="radio.tempValue.enabled"
+                            >
+                            </oui-switch>
+                            <span>
+                                {{ radio.tempValue.enabled ? 'active' :
+                                'inactive' | translate}}
+                            </span>
+                        </td>
+                        <td
+                            data-title="{{ 'xdsl_modem_service_wifi_radio_settings_channel_mode' | translate }}"
+                        >
+                            <oui-select
+                                items="RadioSettingsCtrl.availableChannelModes"
+                                model="radio.tempValue.channelMode"
+                                match="name"
+                                value-property="id"
+                                name="radioChannel"
+                            >
+                            </oui-select>
+                        </td>
+                        <td
+                            data-title="{{ 'xdsl_modem_service_wifi_radio_settings_channel' | translate }}"
+                        >
+                            <oui-select
+                                items="radio.supportedChannels"
+                                model="radio.tempValue.channel"
+                                name="radioChannel"
+                                disabled="'Auto' === radio.tempValue.channelMode"
+                            >
+                            </oui-select>
+                        </td>
+                        <td
+                            data-title="{{ 'xdsl_modem_service_wifi_radio_settings_channel_bandwidth' | translate }}"
+                            data-ng-bind="radio.channelBandwidth"
+                        ></td>
+                        <td
+                            data-title="{{ 'xdsl_modem_service_wifi_radio_settings_power' | translate }}"
+                        >
+                            {{ radio.transmitPower }}%
+                        </td>
+                        <td
+                            data-title="{{ 'xdsl_modem_service_wifi_radio_settings_rate' | translate }}"
+                        >
+                            {{ radio.maxBitRate }}Mbps
+                        </td>
+                        <td
+                            data-title="{{ 'xdsl_modem_service_wifi_radio_settings_standards' | translate }}"
+                            data-ng-bind="radio.standards"
+                        ></td>
+
+                        <td class="form-group col-mobile-button-big">
+                            <button
+                                type="submit"
+                                class="btn btn-primary"
+                                data-ng-click="RadioSettingsCtrl.submit(radio)"
+                                data-ng-disabled="localForm.$invalid || !RadioSettingsCtrl.isUpdateEnabled"
+                                title="{{ 'common_table_validate_modifications' | translate }}"
+                            >
+                                <span
+                                    class="ovh-font ovh-font-check"
+                                    aria-hidden="true"
+                                ></span>
+                            </button>
+                            <button
+                                type="reset"
+                                class="btn btn-default"
+                                data-ng-click="RadioSettingsCtrl.cancel(radio)"
+                                title="{{ 'common_table_cancel_modifications' | translate }}"
+                            >
+                                <span
+                                    class="ovh-font ovh-font-wrong"
+                                    aria-hidden="true"
+                                ></span>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,16 @@
+{
+  "xdsl_modem_service_wifi_ssid_settings": "Paramètres SSID",
+  "xdsl_modem_service_wifi_ssid_settings_all_frequencies": "Toutes",
+  "xdsl_modem_service_wifi_ssid_settings_ssid": "Identifiant(SSID)",
+  "xdsl_modem_service_wifi_ssid_settings_status": "Status",
+  "xdsl_modem_service_wifi_ssid_settings_type": "Type",
+  "xdsl_modem_service_wifi_ssid_settings_type_principal": "Principal",
+  "xdsl_modem_service_wifi_ssid_settings_type_guest": "Invité",
+  "xdsl_modem_service_wifi_ssid_settings_frequency": "Fréquence",
+  "xdsl_modem_service_wifi_ssid_settings_security_mode": "Sécurité",
+  "xdsl_modem_service_wifi_ssid_settings_security_mode_WPA2": "WPA2",
+  "xdsl_modem_service_wifi_ssid_settings_security_mode_WPA3": "WPA3",
+  "xdsl_modem_service_wifi_ssid_settings_security_mode_WPA2AndWPA3": "WPA2 et WPA3",
+  "xdsl_modem_service_wifi_ssid_settings_isolate": "Isolation",
+  "xdsl_modem_service_wifi_ssid_settings_advertise": "Visibilité"
+}

@@ -1,0 +1,51 @@
+<div class="telecom-pack-xdsl-wifi-config-features">
+    <section class="widget-presentation">
+        <header class="widget-presentation-header">
+            <h2
+                class="widget-presentation-title"
+                data-translate="xdsl_modem_service_wifi_general_config"
+            ></h2>
+        </header>
+
+        <oui-spinner
+            data-ng-if="WifiFeaturesCtrl.isLoading"
+            data-size="m"
+            class="d-flex justify-content-center"
+        >
+        </oui-spinner>
+        <div
+            class="d-flex justify-content-around"
+            data-ng-if="!WifiFeaturesCtrl.isLoading"
+        >
+            <div
+                data-ng-class="{ 'disabled' : !WifiFeaturesCtrl.canUpdateMesh }"
+            >
+                <oui-switch
+                    name="mesh"
+                    model="WifiFeaturesCtrl.mesh"
+                    disabled="!WifiFeaturesCtrl.canUpdateMesh"
+                    data-on-change="WifiFeaturesCtrl.changeMeshValue(modelValue)"
+                >
+                </oui-switch>
+                <span
+                    data-translate="{{ 'xdsl_modem_service_wifi_mesh' }}"
+                ></span>
+            </div>
+
+            <div
+                data-ng-class="{ 'disabled' : !WifiFeaturesCtrl.canUpdateOneSsid }"
+            >
+                <oui-switch
+                    name="onessid"
+                    model="WifiFeaturesCtrl.onessid"
+                    disabled="!WifiFeaturesCtrl.canUpdateOneSsid"
+                    data-on-change="WifiFeaturesCtrl.changeOneSSIDValue(modelValue)"
+                >
+                </oui-switch>
+                <span
+                    data-translate="{{ 'xdsl_modem_service_wifi_one_ssid' }}"
+                ></span>
+            </div>
+        </div>
+    </section>
+</div>
