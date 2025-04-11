@@ -2,18 +2,27 @@ import {
   MINIMUM_VOLUME_SIZE,
   MOUNT_PATH_PATTERN,
   MAX_CHAR_LIMIT,
+  CUSTOM_SELECTION,
 } from '../../constants';
 
 export default class VolumeCreateCtrl {
   /* @ngInject */
-  constructor($http, $translate) {
+  constructor($http, $translate, NetAppDashboardService) {
     this.$http = $http;
     this.$translate = $translate;
+    this.NetAppDashboardService = NetAppDashboardService;
     this.MOUNT_PATH_PATTERN = MOUNT_PATH_PATTERN;
     this.MAX_CHAR_LIMIT = MAX_CHAR_LIMIT;
+    this.CUSTOM_SELECTION = CUSTOM_SELECTION;
   }
 
   $onInit() {
+    this.isLoading = true;
+    this.manualSnaphost = [
+      {
+        key: this.CUSTOM_SELECTION,
+      },
+    ];
     this.protocolList = this.protocolEnum.map((protocol) => ({
       key: this.$translate.instant(`netapp_volume_create_protocol_${protocol}`),
       value: protocol,
@@ -25,6 +34,19 @@ export default class VolumeCreateCtrl {
     this.usedMountPaths = this.volumes
       .map(({ path }) => path?.map((p) => p?.split('/')[1]))
       .flat();
+    // Eligible volumes will have size within total available size
+    this.eligibleVolumes = this.volumes.filter(
+      ({ size }) => size <= this.availableVolumeSize,
+    );
+
+    // Get all manual snapshots from Eligible volumes
+    this.NetAppDashboardService.getManualsnapshots(
+      this.eligibleVolumes,
+      this.storage,
+    ).then((result) => {
+      this.isLoading = false;
+      this.manualSnaphost = [...this.manualSnaphost, ...result.flat()];
+    });
   }
 
   getAvailableSize() {
@@ -37,7 +59,7 @@ export default class VolumeCreateCtrl {
   }
 
   onCreateVolume() {
-    this.isCreating = true;
+    this.isLoading = true;
     this.trackClick('create::confirm');
 
     return this.$http
@@ -60,7 +82,7 @@ export default class VolumeCreateCtrl {
         ),
       )
       .finally(() => {
-        this.isCreating = false;
+        this.isLoading = false;
       });
   }
 

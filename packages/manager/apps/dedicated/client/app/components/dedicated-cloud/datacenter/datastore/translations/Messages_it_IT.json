@@ -29,5 +29,14 @@
   "dedicatedCloud_tab_datastores_location_rack": "Rack",
   "dedicatedCloud_tab_datastores_active_node": "Nodo attuale",
   "dedicatedCloud_tab_datastores_active_node_master": "Primario",
-  "dedicatedCloud_tab_datastores_active_node_slave": "Replica"
+  "dedicatedCloud_tab_datastores_active_node_slave": "Replica",
+  "dedicatedCloud_tab_datastores_billing_hourly": "Oraria",
+  "dedicatedCloud_tab_datastores_billing_monthly": "Mensile",
+  "dedicatedCloud_tab_datastores_billing_freeSpare": "Spare gratuito",
+  "dedicatedCloud_tab_datastores_billing_undefined": "Indefinito",
+  "dedicatedCloud_tab_datastores_status_adding": "Aggiunta in corso...",
+  "dedicatedCloud_tab_datastores_status_delivered": "Attivo",
+  "dedicatedCloud_tab_datastores_status_error": "Errore",
+  "dedicatedCloud_tab_datastores_status_removing": "Eliminazione in corso...",
+  "dedicatedCloud_tab_datastores_status_unknown": "Sconosciuto"
 }
