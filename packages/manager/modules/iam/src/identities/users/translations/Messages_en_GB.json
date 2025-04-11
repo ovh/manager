@@ -1,5 +1,5 @@
 {
-  "user_users_title": "User management",
+  "user_users_title": "Local users",
   "user_users_info": "To connect to the interface, the user will need to enter your <strong>{{customerCode}}</strong> ID and their username separated by a ‘/’, along with their password.",
   "user_users_info_example": "Example: <strong>{{customerCode}}/{{login}}</strong>",
   "user_users_add_user": "Add user",
@@ -124,6 +124,7 @@
   "pagination_page": "Page {{current}}/{{last}}",
   "pagination_go": "OK",
   "pagination_display": "Show",
-  "user_modal_confirm": "Validate",
-  "user_modal_cancel": "Cancel"
+  "user_modal_confirm": "Confirm",
+  "user_modal_cancel": "Cancel",
+  "user_users_disabled": "Connection via local users is disabled by the SSO setting."
 }

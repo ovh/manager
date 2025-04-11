@@ -1,5 +1,5 @@
 {
-  "user_users_title": "Gestión de los usuarios",
+  "user_users_title": "Usuarios locales",
   "user_users_info": "Para conectarse a la interfaz, el usuario deberá introducir su identificador <strong>{{customerCode}}</strong> y su nombre de usuario separado por una barra inclinada («/») y su contraseña.",
   "user_users_info_example": "Ejemplo: <strong>{{customerCode}}/{{login}}</strong>",
   "user_users_add_user": "Añadir un usuario",
@@ -8,7 +8,7 @@
   "user_users_creation_date": "Creación",
   "user_users_last_update_date": "Fecha de actualización",
   "user_users_last_password_update_date": "Cambio de contraseña",
-  "user_users_status": "Estatus",
+  "user_users_status": "Estado",
   "user_users_description": "Descripción",
   "user_users_table_empty": "No hay usuarios.",
   "user_users_update": "Modificar el usuario",
@@ -115,7 +115,7 @@
   "user_users_groups_update_modal_group_description": "Descripción del grupo",
   "user_users_groups_update": "Modificar el grupo",
   "user_users_groups_table_description": "Grupos del proveedor de identidad",
-  "user_roles_NONE": "Ninguno",
+  "user_roles_NONE": "Ninguno/a",
   "user_users_group": "Grupo",
   "user_need_rights_message": "No tiene permiso para realizar esta operación. Por favor, solicite a sus administradores los siguientes permisos: ",
   "user_users_users_section_title": "Usuarios",
@@ -125,5 +125,6 @@
   "pagination_go": "OK",
   "pagination_display": "Mostrar",
   "user_modal_confirm": "Confirmar",
-  "user_modal_cancel": "Cancelar"
+  "user_modal_cancel": "Cancelar",
+  "user_users_disabled": "La conexión a través de usuarios locales está desactivada por la configuración SSO."
 }

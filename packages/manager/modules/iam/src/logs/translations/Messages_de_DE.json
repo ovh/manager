@@ -1,0 +1,6 @@
+{
+  "iam_logs_label": "Identity Logs",
+  "iam_audit_logs_label": "Logs Audit",
+  "iam_activity_logs_label": "Logs Activity",
+  "iam_access_policy_logs_label": "Logs der Zugriffsrichtlinien"
+}

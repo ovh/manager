@@ -23,5 +23,11 @@
   "iam_delete_entity_application_heading": "Usuń aplikację",
   "iam_delete_entity_application_name": "Usuwanie aplikacji: ",
   "iam_delete_entity_application_success": "Aplikacja usunięta",
-  "iam_delete_entity_application_warn": "Ostrzeżenie: ta operacja spowoduje usunięcie aplikacji i unieważni wszystkie certyfikaty powiązane z tą aplikacją."
+  "iam_delete_entity_application_warn": "Ostrzeżenie: ta operacja spowoduje usunięcie aplikacji i unieważni wszystkie certyfikaty powiązane z tą aplikacją.",
+  "iam_delete_entity_apiKey_error": "Klucz API nie mógł zostać usunięty z powodu błędu: {{message}}",
+  "iam_delete_entity_apiKey_field": "Wpisz słowo „{{statement}}”, aby potwierdzić usunięcie klucza API",
+  "iam_delete_entity_apiKey_heading": "Usuń klucz API",
+  "iam_delete_entity_apiKey_name": "Usuwanie klucza API: ",
+  "iam_delete_entity_apiKey_success": "Klucz API został usunięty",
+  "iam_delete_entity_apiKey_warn": "Ostrzeżenie: ta operacja spowoduje usunięcie klucza API i unieważni wszystkie certyfikaty powiązane z tym kluczem."
 }
