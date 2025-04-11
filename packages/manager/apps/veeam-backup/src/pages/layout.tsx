@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { defineCurrentPage } from '@ovh-ux/request-tagger';
 import { Outlet, useLocation, useMatches } from 'react-router-dom';
 import {
@@ -26,5 +26,9 @@ export default function Layout() {
     trackCurrentPage();
   }, [location]);
 
-  return <Outlet />;
+  return (
+    <Suspense>
+      <Outlet />
+    </Suspense>
+  );
 }
