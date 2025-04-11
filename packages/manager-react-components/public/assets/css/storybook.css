@@ -1,0 +1,33 @@
+body {
+  letter-spacing: 0.03rem;
+}
+
+a[title='OVHcloud Design System'] {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
+
+/* Hide the cog button with Storybook options */
+button[title='Shortcuts'] {
+  display: none;
+}
+
+/* Double class to increase the weight to overwrite storybook internal css */
+.sidebar-subheading.sidebar-subheading {
+  font-size: 1em;
+  font-weight: bold;
+  letter-spacing: normal;
+  text-transform: none;
+  color: #00175c;
+}
+
+.sidebar-header {
+  display: grid !important;
+  grid-template-columns: 1fr max-content;
+}
+
+/* Enforce the brand image to take the whole space */
+.sidebar-header > div:first-of-type {
+  grid-column: span 2;
+}
