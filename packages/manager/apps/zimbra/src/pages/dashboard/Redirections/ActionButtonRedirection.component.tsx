@@ -1,14 +1,14 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActionMenu } from '@ovh-ux/manager-react-components';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import {
   ButtonType,
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { RedirectionsItem } from './Redirections';
+import { RedirectionItem } from './Redirections';
 import { useGenerateUrl, usePlatform } from '@/hooks';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import { ResourceStatus } from '@/api/api.type';
@@ -20,52 +20,45 @@ import {
   EMAIL_ACCOUNT_EDIT_REDIRECTION,
 } from '@/tracking.constant';
 
-interface ActionButtonRedirectionsAccountProps {
-  redirectionsItem: RedirectionsItem;
+interface ActionButtonRedirectionAccountProps {
+  redirectionItem: RedirectionItem;
 }
 
-const ActionButtonRedirections: React.FC<ActionButtonRedirectionsAccountProps> = ({
-  redirectionsItem,
+const ActionButtonRedirection: React.FC<ActionButtonRedirectionAccountProps> = ({
+  redirectionItem,
 }) => {
   const { trackClick } = useOvhTracking();
   const { t } = useTranslation('common');
   const { platformUrn } = usePlatform();
   const navigate = useNavigate();
+  const { accountId } = useParams();
 
-  const [searchParams] = useSearchParams();
-  const params = Object.fromEntries(searchParams.entries());
-  const editEmailAccountId = searchParams.get('editEmailAccountId');
-
-  const hrefEditRedirections = useGenerateUrl('./edit', 'path', {
-    editRedirectionId: redirectionsItem.id,
-    ...params,
-  });
+  const hrefEditRedirections = useGenerateUrl(
+    `./${redirectionItem.id}/edit`,
+    'path',
+  );
 
   const handleEditRedirectionsClick = () => {
     trackClick({
       location: PageLocation.datagrid,
       buttonType: ButtonType.button,
       actionType: 'navigation',
-      actions: [
-        editEmailAccountId ? EMAIL_ACCOUNT_EDIT_REDIRECTION : EDIT_REDIRECTION,
-      ],
+      actions: [accountId ? EMAIL_ACCOUNT_EDIT_REDIRECTION : EDIT_REDIRECTION],
     });
     navigate(hrefEditRedirections);
   };
 
-  const hrefDeleteRedirections = useGenerateUrl('./delete', 'path', {
-    deleteRedirectionId: redirectionsItem.id,
-    ...params,
-  });
+  const hrefDeleteRedirections = useGenerateUrl(
+    `./${redirectionItem.id}/delete`,
+    'path',
+  );
   const handleDeleteRedirectionsClick = () => {
     trackClick({
       location: PageLocation.datagrid,
       buttonType: ButtonType.button,
       actionType: 'navigation',
       actions: [
-        editEmailAccountId
-          ? EMAIL_ACCOUNT_DELETE_REDIRECTION
-          : DELETE_REDIRECTION,
+        accountId ? EMAIL_ACCOUNT_DELETE_REDIRECTION : DELETE_REDIRECTION,
       ],
     });
     navigate(hrefDeleteRedirections);
@@ -90,8 +83,8 @@ const ActionButtonRedirections: React.FC<ActionButtonRedirectionsAccountProps> =
   ];
   return (
     <ActionMenu
-      id={redirectionsItem.id}
-      isDisabled={redirectionsItem.status !== ResourceStatus.READY}
+      id={redirectionItem.id}
+      isDisabled={redirectionItem.status !== ResourceStatus.READY}
       items={actionItems.filter((i) => !i.hidden)}
       variant={ODS_BUTTON_VARIANT.ghost}
       isCompact
@@ -99,4 +92,4 @@ const ActionButtonRedirections: React.FC<ActionButtonRedirectionsAccountProps> =
   );
 };
 
-export default ActionButtonRedirections;
+export default ActionButtonRedirection;

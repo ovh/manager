@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import {
   OdsCheckbox,
   OdsFormField,
@@ -43,27 +43,22 @@ import {
 } from '@/tracking.constant';
 import Loading from '@/components/Loading/Loading';
 
-export default function ModalAddAndEditRedirections() {
+export default function ModalAddAndEditRedirection() {
   const { trackClick, trackPage } = useOvhTracking();
   const { t } = useTranslation('redirections');
   const navigate = useNavigate();
-
-  const [searchParams] = useSearchParams();
-  const editEmailAccountId = searchParams.get('editEmailAccountId');
-  const editRedirectionId = searchParams.get('editRedirectionId');
-  const params = Object.fromEntries(searchParams.entries());
-  delete params.editRedirectionId;
+  const { accountId, redirectionId } = useParams();
 
   const trackingName = useMemo(() => {
-    if (editEmailAccountId) {
-      return editRedirectionId
+    if (accountId) {
+      return redirectionId
         ? EMAIL_ACCOUNT_EDIT_REDIRECTION
         : EMAIL_ACCOUNT_ADD_REDIRECTION;
     }
-    return editRedirectionId ? EDIT_REDIRECTION : ADD_REDIRECTION;
-  }, [editRedirectionId, editEmailAccountId]);
+    return redirectionId ? EDIT_REDIRECTION : ADD_REDIRECTION;
+  }, [redirectionId, accountId]);
 
-  const goBackUrl = useGenerateUrl('..', 'path', params);
+  const goBackUrl = useGenerateUrl(redirectionId ? '../..' : '..', 'path');
   const onClose = () => navigate(goBackUrl);
 
   const { addError, addSuccess } = useNotifications();
@@ -73,13 +68,13 @@ export default function ModalAddAndEditRedirections() {
   useOdsModalOverflowHack(modalRef);
 
   const { data: domains, isLoading: isLoadingDomains } = useDomains({
-    enabled: !editEmailAccountId && !editRedirectionId,
+    enabled: !accountId && !redirectionId,
     shouldFetchAll: true,
   });
 
   const { data: accountDetail, isLoading: isLoadingAccount } = useAccount({
-    accountId: editEmailAccountId,
-    enabled: !!editEmailAccountId,
+    accountId,
+    enabled: !!accountId,
   });
 
   const {
@@ -180,9 +175,7 @@ export default function ModalAddAndEditRedirections() {
       isDismissible
       ref={modalRef}
       title={t(
-        editRedirectionId
-          ? 'common:edit_redirection'
-          : 'common:add_redirection',
+        redirectionId ? 'common:edit_redirection' : 'common:add_redirection',
       )}
       onClose={onClose}
       secondaryButton={{
@@ -218,7 +211,7 @@ export default function ModalAddAndEditRedirections() {
               <label htmlFor={name} slot="label">
                 {t('zimbra_redirections_add_form_input_from')} *
               </label>
-              {editEmailAccountId || editRedirectionId ? (
+              {accountId || redirectionId ? (
                 <OdsInput
                   type={ODS_INPUT_TYPE.email}
                   data-testid="input-from"

@@ -2,43 +2,20 @@ import React from 'react';
 import 'element-internals-polyfill';
 import '@testing-library/jest-dom';
 import { vi, describe, expect } from 'vitest';
-import { useSearchParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { fireEvent, render, act, waitFor } from '@/utils/test.provider';
 import ModalAddAndEditOrganization from '../ModalAddAndEditOrganization.page';
-import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
-import { organizationDetailMock } from '@/api/_mock_';
+import { organizationDetailMock, platformMock } from '@/api/_mock_';
 import {
   postZimbraPlatformOrganization,
   putZimbraPlatformOrganization,
 } from '@/api/organization';
 
 describe('Organizations add and edit modal', () => {
-  it('if i have not editOrganizationId params', async () => {
-    const { findByText } = render(<ModalAddAndEditOrganization />);
-    expect(await findByText(commonTranslation.add_organization)).toBeVisible();
-  });
-
-  it('if i have editOrganizationId params', async () => {
-    vi.mocked(useSearchParams).mockReturnValue([
-      new URLSearchParams({
-        editOrganizationId: organizationDetailMock.id,
-      }),
-      vi.fn(),
-    ]);
-
-    const { findByText } = render(<ModalAddAndEditOrganization />);
-    expect(await findByText(commonTranslation.edit_organization)).toBeVisible();
-  });
-
   // @TODO: find why this test is inconsistent
   // sometimes ODS component return attribute empty while it can
   // only be "true" or "false"
   it.skip('check validity form', async () => {
-    vi.mocked(useSearchParams).mockReturnValue([
-      new URLSearchParams({}),
-      vi.fn(),
-    ]);
-
     const { getByTestId, queryByTestId } = render(
       <ModalAddAndEditOrganization />,
     );
@@ -116,10 +93,6 @@ describe('Organizations add and edit modal', () => {
   });
 
   it('should add a new organization', async () => {
-    vi.mocked(useSearchParams).mockReturnValue([
-      new URLSearchParams({}),
-      vi.fn(),
-    ]);
     const { getByTestId, queryByTestId } = render(
       <ModalAddAndEditOrganization />,
     );
@@ -175,12 +148,11 @@ describe('Organizations add and edit modal', () => {
   });
 
   it('should edit an organization', async () => {
-    vi.mocked(useSearchParams).mockReturnValue([
-      new URLSearchParams({
-        editOrganizationId: organizationDetailMock.id,
-      }),
-      vi.fn(),
-    ]);
+    vi.mocked(useParams).mockReturnValue({
+      platformId: platformMock[0].id,
+      organizationId: organizationDetailMock.id,
+    });
+
     const { getByTestId, queryByTestId } = render(
       <ModalAddAndEditOrganization />,
     );

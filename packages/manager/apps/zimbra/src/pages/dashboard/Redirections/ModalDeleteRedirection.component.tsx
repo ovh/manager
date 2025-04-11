@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { ODS_MODAL_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import {
@@ -21,29 +21,23 @@ import {
   EMAIL_ACCOUNT_DELETE_REDIRECTION,
 } from '@/tracking.constant';
 
-export default function ModalDeleteRedirections() {
+export default function ModalDeleteRedirection() {
   const { trackClick, trackPage } = useOvhTracking();
   const { t } = useTranslation(['redirections', 'common']);
   const navigate = useNavigate();
   const { addSuccess, addError } = useNotifications();
+  const { accountId, redirectionId } = useParams();
 
-  const [searchParams] = useSearchParams();
-  const params = Object.fromEntries(searchParams.entries());
-  delete params.deleteRedirectionId;
-
-  const deleteRedirectionId = searchParams.get('deleteRedirectionId');
-  const editEmailAccountId = searchParams.get('editEmailAccountId');
-
-  const trackingName = editEmailAccountId
+  const trackingName = accountId
     ? EMAIL_ACCOUNT_DELETE_REDIRECTION
     : DELETE_REDIRECTION;
 
-  const goBackUrl = useGenerateUrl('..', 'path', params);
+  const goBackUrl = useGenerateUrl('../..', 'path');
   const onClose = () => navigate(goBackUrl);
 
   const { mutate: deleteRedirection, isPending: isSending } = useMutation({
-    mutationFn: (redirectionId: string) => {
-      return Promise.resolve(redirectionId);
+    mutationFn: (id: string) => {
+      return Promise.resolve(id);
     },
     onSuccess: () => {
       trackPage({
@@ -87,7 +81,7 @@ export default function ModalDeleteRedirections() {
       actionType: 'action',
       actions: [trackingName, CONFIRM],
     });
-    deleteRedirection(deleteRedirectionId);
+    deleteRedirection(redirectionId);
   };
 
   const handleCancelClick = () => {

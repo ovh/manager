@@ -2,7 +2,7 @@ import { describe, expect } from 'vitest';
 import '@testing-library/jest-dom';
 import { renderHook, waitFor } from '@testing-library/react';
 import { mailingListsMock } from '@/api/_mock_';
-import { useMailingLists } from '@/hooks';
+import { useMailingLists } from '../useMailingLists';
 import { wrapper } from '@/utils/test.provider';
 
 describe('useMailingLists', () => {

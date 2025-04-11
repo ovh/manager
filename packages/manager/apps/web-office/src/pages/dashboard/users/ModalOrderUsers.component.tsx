@@ -241,7 +241,7 @@ export default function ModalOrderUsers() {
         </OdsText>
         <div className="flex w-full">
           <OdsFormField className="w-full">
-            <label slot="label">{t('dashboard_users_order_users_type')}</label>
+            <label slot="label">{t('dashboard_users_order_users_type')}*</label>
             <Controller
               name="licence"
               control={control}

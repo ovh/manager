@@ -8,7 +8,7 @@ import {
   IconLinkAlignmentType,
 } from '@ovh-ux/manager-react-components';
 import React, { useContext, useEffect, useMemo, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import {
   OdsText,
@@ -296,7 +296,10 @@ function OrderCatalogForm({
               ></OdsCheckbox>
               <label className="cursor-pointer" htmlFor={name}>
                 <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                  {t('zimbra_account_order_legal_checkbox')}
+                  <Trans
+                    t={t}
+                    i18nKey={'zimbra_account_order_legal_checkbox'}
+                  />
                 </OdsText>
               </label>
             </div>

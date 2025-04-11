@@ -38,6 +38,9 @@ export const WEB_OFFICE_ONBOARDING_1: GuideLinks = {
   PT: `${helpRoot}pt/microsoft-collaborative-solutions/encomendar-et-gerir-um-grupo-de-licenças-office-365-ovh/`,
   GB: `${helpRoot}gb/en/microsoft-collaborative-solutions/manage-office-365-csp1/`,
   DEFAULT: `${helpRoot}gb/en/microsoft-collaborative-solutions/manage-office-365-csp1/`,
+  MA: `${helpRoot}fr/microsoft-collaborative-solutions/commander-et-gerer-un-groupe-de-licences-office-365-ovh/`,
+  TN: `${helpRoot}fr/microsoft-collaborative-solutions/commander-et-gerer-un-groupe-de-licences-office-365-ovh/`,
+  SN: `${helpRoot}fr/microsoft-collaborative-solutions/commander-et-gerer-un-groupe-de-licences-office-365-ovh/`,
 };
 export const WEB_OFFICE_ONBOARDING_2: GuideLinks = {
   FR: `${helpRoot}fr/microsoft-collaborative-solutions/commander-et-gerer-un-groupe-de-licences-office-365-revendeur-csp2-ovh/`,
@@ -49,6 +52,9 @@ export const WEB_OFFICE_ONBOARDING_2: GuideLinks = {
   PT: `${helpRoot}pt/microsoft-collaborative-solutions/encomendar_e_gerir_um_grupo_de_licencas_office_365_revendedor_csp2_ovh/`,
   GB: `${helpRoot}en/microsoft-collaborative-solutions/order-and-manage-a-group-of-ovh-office-365-csp2-reseller-licences/`,
   DEFAULT: `${helpRoot}gb/en/microsoft-collaborative-solutions/order-and-manage-a-group-of-ovh-office-365-csp2-reseller-licences/`,
+  MA: `${helpRoot}fr/microsoft-collaborative-solutions/commander-et-gerer-un-groupe-de-licences-office-365-revendeur-csp2-ovh/`,
+  TN: `${helpRoot}fr/microsoft-collaborative-solutions/commander-et-gerer-un-groupe-de-licences-office-365-revendeur-csp2-ovh/`,
+  SN: `${helpRoot}fr/microsoft-collaborative-solutions/commander-et-gerer-un-groupe-de-licences-office-365-revendeur-csp2-ovh/`,
 };
 
 export const WEB_OFFICE_ONBOARDING_3: GuideLinks = {
@@ -61,6 +67,9 @@ export const WEB_OFFICE_ONBOARDING_3: GuideLinks = {
   PT: `${helpRoot}pt/microsoft-collaborative-solutions/office365-proplus-escritório-a-distância/`,
   GB: `${helpRoot}gb/en/microsoft-collaborative-solutions/office365-proplus-remote-desktop/`,
   FR: `${helpRoot}fr/microsoft-collaborative-solutions/office365-proplus-bureau-a-distance/`,
+  MA: `${helpRoot}fr/microsoft-collaborative-solutions/office365-proplus-bureau-a-distance/`,
+  TN: `${helpRoot}fr/microsoft-collaborative-solutions/office365-proplus-bureau-a-distance/`,
+  SN: `${helpRoot}fr/microsoft-collaborative-solutions/office365-proplus-bureau-a-distance/`,
 };
 
 export const WEB_OFFICE_GUIDES: GuideLinks = {
@@ -69,48 +78,34 @@ export const WEB_OFFICE_GUIDES: GuideLinks = {
   ES: `${csmRoot}es-es-microsoft-office365-csp1?id=kb_article_view&sysparm_article=KB0053505`,
   IE: `${csmRoot}en-ie-microsoft-office365-csp1?id=kb_article_view&sysparm_article=KB0053502`,
   IT: `${csmRoot}it-microsoft-office365-csp1?id=kb_article_view&sysparm_article=KB0053519`,
-  NL: `${csmRoot}en-nl-documentation-web-cloud?id=kb_browse_cat&kb_id=e17b4f25551974502d4c6e78b7421955`,
   PL: `${csmRoot}pl-microsoft-office365-csp1?id=kb_article_view&sysparm_article=KB0053522`,
   PT: `${csmRoot}pt-microsoft-office365-csp1?id=kb_article_view&sysparm_article=KB0053509`,
   GB: `${csmRoot}en-gb-microsoft-office365-csp1?id=kb_article_view&sysparm_article=KB0041601`,
-  MA: `${csmRoot}fr-microsoft-office365-csp1?id=kb_article_view&sysparm_article=KB0053507`,
-  SN: `${csmRoot}fr-microsoft-office365-csp1?id=kb_article_view&sysparm_article=KB0053507`,
-  TN: `${csmRoot}fr-microsoft-office365-csp1?id=kb_article_view&sysparm_article=KB0053507`,
   FR: `${csmRoot}fr-microsoft-office365-csp1?id=kb_article_view&sysparm_article=KB0053507`,
-  WE: `${csmRoot}en-ie-microsoft-office365-csp1?id=kb_article_view&sysparm_article=KB0053502`,
+  MA: `${csmRoot}fr-microsoft-office365-csp1?id=kb_article_view&sysparm_article=KB0053507`,
+  TN: `${csmRoot}fr-microsoft-office365-csp1?id=kb_article_view&sysparm_article=KB0053507`,
+  SN: `${csmRoot}fr-microsoft-office365-csp1?id=kb_article_view&sysparm_article=KB0053507`,
 };
 
-export const CTAS: Record<string, string> = {
-  DEFAULT: 'https://ovhcloud.com/en/collaborative-tools/microsoft-365/',
-  ASIA: 'https://ovhcloud.com/asia/collaborative-tools/microsoft-365/',
-  IN: 'https://www.ovhcloud.com/en-in/collaborative-tools/microsoft-365/',
+export const ORDER_URL: Record<string, string> = {
+  DEFAULT: 'https://ovhcloud.com/en-ie/collaborative-tools/microsoft-365/',
   DE: 'https://ovhcloud.com/de/collaborative-tools/microsoft-365/',
   ES: 'https://ovhcloud.com/es-es/collaborative-tools/microsoft-365/',
   IE: 'https://ovhcloud.com/en-ie/collaborative-tools/microsoft-365/',
   IT: 'https://ovhcloud.com/it/collaborative-tools/microsoft-365/',
-  NL: 'https://ovhcloud.com/nl/collaborative-tools/microsoft-365/',
   PL: 'https://ovhcloud.com/pl/collaborative-tools/microsoft-365/',
   PT: 'https://ovhcloud.com/pt/collaborative-tools/microsoft-365/',
   GB: 'https://ovhcloud.com/en-gb/collaborative-tools/microsoft-365/',
-  CA: 'https://ovhcloud.com/en-ca/collaborative-tools/microsoft-365/',
-  QC: 'https://ovhcloud.com/fr-ca/collaborative-tools/microsoft-365/',
-  MA: 'https://ovhcloud.com/fr-ma/collaborative-tools/microsoft-365/',
-  SN: 'https://ovhcloud.com/fr-sn/collaborative-tools/microsoft-365/',
-  TN: 'https://ovhcloud.com/fr-tn/collaborative-tools/microsoft-365/',
-  AU: 'https://ovhcloud.com/en-au/collaborative-tools/microsoft-365/',
-  SG: 'https://ovhcloud.com/en-sg/collaborative-tools/microsoft-365/',
   FR: 'https://ovhcloud.com/fr/collaborative-tools/microsoft-365/',
-  CZ: 'https://ovhcloud.com/cz-cs/collaborative-tools/microsoft-365/',
-  FI: 'https://ovhcloud.com/fi/collaborative-tools/microsoft-365/',
-  LT: 'https://ovhcloud.com/lt/collaborative-tools/microsoft-365/',
-  WE: 'https://ovhcloud.com/us-en/collaborative-tools/microsoft-365/',
-  WS: 'https://ovhcloud.com/us-en/collaborative-tools/microsoft-365/',
+  MA: 'https://ovhcloud.com/fr/collaborative-tools/microsoft-365/',
+  TN: 'https://ovhcloud.com/fr/collaborative-tools/microsoft-365/',
+  SN: 'https://ovhcloud.com/fr/collaborative-tools/microsoft-365/',
 };
 
 export const GUIDES_LIST: GuidesList = {
   office_cta_order: {
     key: 'web-office_onboarding_cta_order',
-    url: CTAS,
+    url: ORDER_URL,
   },
   office_guides: {
     key: 'web-office_dashboard_guides',

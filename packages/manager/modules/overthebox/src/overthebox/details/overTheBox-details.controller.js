@@ -92,6 +92,7 @@ export default class OverTheBoxDetailsCtrl {
             return otb;
           }),
         this.getDeviceHardware(),
+        this.getIps(),
       ])
       .finally(() => {
         if (this.allDevices.length === 1 && !this.device) {
@@ -883,6 +884,21 @@ export default class OverTheBoxDetailsCtrl {
             errorMessage: err.data.message,
           }),
         );
+      });
+  }
+
+  getIps() {
+    this.ips = [];
+    this.noIps = '';
+    return this.OverTheBoxDetailsService.getIps(this.serviceName)
+      .then((ips) => {
+        this.ips = ips;
+      })
+      .catch((error) => {
+        if (error.status === 404) {
+          this.noIps = this.$translate.instant('overTheBox_model_ips_unknown');
+        }
+        return this.$q.reject(error);
       });
   }
 }

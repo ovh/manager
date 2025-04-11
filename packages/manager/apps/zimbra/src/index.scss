@@ -47,6 +47,12 @@ ods-input#datagrid-searchbar::part(input) {
   min-width: 240px;
 }
 
+// make last cell of ods table row small (actions)
+ods-table tbody tr td:last-child,
+ods-table thead tr th:last-child {
+  width: 1%;
+}
+
 .dns-field {
   width: 100%;
 

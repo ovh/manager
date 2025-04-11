@@ -1,11 +1,18 @@
 import React, { useState, useEffect, ReactNode } from 'react';
-import { Location, NavLink, useLocation, useNavigate } from 'react-router-dom';
+import {
+  Location,
+  NavLink,
+  useLocation,
+  useNavigate,
+  useParams,
+} from 'react-router-dom';
 import { OdsTabs, OdsTab } from '@ovhcloud/ods-components/react';
 import {
   ButtonType,
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { replaceAll } from '@/utils';
 
 export type TabItemProps = {
   name: string;
@@ -28,10 +35,30 @@ export const activatedTabs = (pathMatchers: RegExp[], location: Location) => {
   );
 };
 
-export const computePathMatchers = (routes: string[], platformId: string) => {
-  return routes.map(
-    (path) => new RegExp(path.replace(':serviceName', platformId)),
-  );
+export const useComputePathMatchers = (routes: string[]) => {
+  const {
+    platformId,
+    organizationId,
+    domainId,
+    accountId,
+    aliasId,
+    redirectionId,
+    autoReplyId,
+    mailingListId,
+  } = useParams();
+
+  const replacements = {
+    ':platformId': platformId,
+    ':organizationId': organizationId,
+    ':domainId': domainId,
+    ':accountId': accountId,
+    ':aliasId': aliasId,
+    ':redirectionId': redirectionId,
+    ':autoReplyId': autoReplyId,
+    ':mailingListId': mailingListId,
+  };
+
+  return routes.map((path) => new RegExp(`${replaceAll(path, replacements)}$`));
 };
 
 const TabsPanel: React.FC<TabsProps> = ({ tabs }) => {
@@ -84,6 +111,7 @@ const TabsPanel: React.FC<TabsProps> = ({ tabs }) => {
             >
               <OdsTab
                 id={tab.name}
+                data-testid={tab.name}
                 role="tab"
                 isSelected={activePanel === tab.name}
                 isDisabled={tab.isDisabled}

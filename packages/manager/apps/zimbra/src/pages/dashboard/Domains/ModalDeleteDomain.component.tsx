@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSearchParams, useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   ODS_MESSAGE_COLOR,
@@ -16,7 +16,7 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { useAccounts, useGenerateUrl, usePlatform } from '@/hooks';
+import { useAccounts, useGenerateUrl } from '@/hooks';
 import {
   deleteZimbraPlatformDomain,
   getZimbraPlatformDomainsQueryKey,
@@ -29,22 +29,19 @@ export default function ModalDeleteDomain() {
   const { t } = useTranslation(['domains', 'common']);
   const navigate = useNavigate();
   const { trackClick, trackPage } = useOvhTracking();
-  const [searchParams] = useSearchParams();
-  const deleteDomainId = searchParams.get('deleteDomainId');
-
-  const { platformId } = usePlatform();
+  const { platformId, domainId } = useParams();
   const { data: accounts, isLoading } = useAccounts({
-    domainId: deleteDomainId,
+    domainId,
   });
 
   const { addError, addSuccess } = useNotifications();
 
-  const goBackUrl = useGenerateUrl('..', 'path');
+  const goBackUrl = useGenerateUrl('../..', 'path');
   const onClose = () => navigate(goBackUrl);
 
   const { mutate: deleteDomain, isPending: isSending } = useMutation({
-    mutationFn: (domainId: string) => {
-      return deleteZimbraPlatformDomain(platformId, domainId);
+    mutationFn: (id: string) => {
+      return deleteZimbraPlatformDomain(platformId, id);
     },
     onSuccess: () => {
       trackPage({
@@ -88,7 +85,7 @@ export default function ModalDeleteDomain() {
       actionType: 'action',
       actions: [DELETE_DOMAIN, CONFIRM],
     });
-    deleteDomain(deleteDomainId);
+    deleteDomain(domainId);
   };
 
   const handleCancelClick = () => {
@@ -116,7 +113,7 @@ export default function ModalDeleteDomain() {
       primaryButton={{
         label: t('common:delete'),
         onClick: handleDeleteClick,
-        isDisabled: accounts?.length > 0 || !deleteDomainId,
+        isDisabled: accounts?.length > 0 || !domainId,
         isLoading: isSending,
         testid: 'delete-btn',
       }}

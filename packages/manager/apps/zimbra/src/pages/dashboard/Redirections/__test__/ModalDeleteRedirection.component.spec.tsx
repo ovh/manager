@@ -1,11 +1,11 @@
 import React from 'react';
 import { describe, expect, it } from 'vitest';
-import ModalDeleteRedirections from '../ModalDeleteRedirections.component';
+import ModalDeleteRedirection from '../ModalDeleteRedirection.component';
 import { render, fireEvent, screen } from '@/utils/test.provider';
 
 describe('ModalDeleteRedirections Component', () => {
   it('should render correctly', () => {
-    render(<ModalDeleteRedirections />);
+    render(<ModalDeleteRedirection />);
     expect(screen.getByTestId('cancel-btn')).toBeInTheDocument();
     expect(screen.getByTestId('delete-btn')).toBeInTheDocument();
 
@@ -17,13 +17,13 @@ describe('ModalDeleteRedirections Component', () => {
   });
 
   it('should trigger the correct action on cancel', () => {
-    render(<ModalDeleteRedirections />);
+    render(<ModalDeleteRedirection />);
     const cancelButton = screen.getByTestId('cancel-btn');
     fireEvent.click(cancelButton);
   });
 
   it('should trigger the correct action on delete', () => {
-    render(<ModalDeleteRedirections />);
+    render(<ModalDeleteRedirection />);
     const deleteButton = screen.getByTestId('delete-btn');
     fireEvent.click(deleteButton);
   });

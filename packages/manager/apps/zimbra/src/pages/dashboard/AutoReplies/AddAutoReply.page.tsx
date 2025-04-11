@@ -7,7 +7,7 @@ import {
   useNotifications,
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import {
   OdsButton,
   OdsFormField,
@@ -44,7 +44,6 @@ import Loading from '@/components/Loading/Loading';
 import {
   ADD_AUTO_REPLY,
   BACK_PREVIOUS_PAGE,
-  CANCEL,
   CONFIRM,
   EMAIL_ACCOUNT_ADD_AUTO_REPLY,
 } from '@/tracking.constant';
@@ -73,18 +72,17 @@ export default function AddAutoReply() {
   const { addError, addSuccess } = useNotifications();
   const context = useContext(ShellContext);
   const locale = context.environment.getUserLocale();
+  const { accountId } = useParams();
   const [searchParams] = useSearchParams();
-  const params = Object.fromEntries(searchParams.entries());
   const organizationId = searchParams.get('organizationId');
-  const editEmailAccountId = searchParams.get('editEmailAccountId');
-  const trackingName = editEmailAccountId
+  const trackingName = accountId
     ? EMAIL_ACCOUNT_ADD_AUTO_REPLY
     : ADD_AUTO_REPLY;
   const [selectedOrganizationId, setSelectedOrganizationId] = useState(
     organizationId,
   );
 
-  const goBackUrl = useGenerateUrl('..', 'href', params);
+  const goBackUrl = useGenerateUrl('..', 'href');
 
   const onClose = () => navigate(goBackUrl);
 
@@ -93,7 +91,7 @@ export default function AddAutoReply() {
   }, []);
 
   const { data: domains, isLoading } = useDomains({
-    enabled: !editEmailAccountId,
+    enabled: !accountId,
     shouldFetchAll: true,
   });
 
@@ -105,8 +103,8 @@ export default function AddAutoReply() {
   }, [domains]);
 
   const { data: account, isLoading: isLoadingAccount } = useAccount({
-    accountId: editEmailAccountId,
-    enabled: !!editEmailAccountId,
+    accountId,
+    enabled: !!accountId,
   });
 
   const { mutate: addAutoReply, isPending: isSending } = useMutation({
@@ -220,16 +218,6 @@ export default function AddAutoReply() {
     addAutoReply(data);
   };
 
-  const handleCancelClick = () => {
-    trackClick({
-      location: PageLocation.page,
-      buttonType: ButtonType.button,
-      actionType: 'action',
-      actions: [trackingName, CANCEL],
-    });
-    onClose();
-  };
-
   return (
     <form
       onSubmit={handleSubmit(handleSavelick)}
@@ -250,7 +238,7 @@ export default function AddAutoReply() {
         label={t('zimbra_auto_replies_add_cta_back')}
       />
       <Subtitle>{t('common:add_auto_reply')}</Subtitle>
-      {editEmailAccountId && account && !isLoadingAccount && (
+      {accountId && account && !isLoadingAccount && (
         <OdsText
           data-testid="create-for-account"
           preset={ODS_TEXT_PRESET.paragraph}
@@ -265,7 +253,7 @@ export default function AddAutoReply() {
       <OdsText preset={ODS_TEXT_PRESET.caption}>
         {t('common:form_mandatory_fields')}
       </OdsText>
-      {!editEmailAccountId && (
+      {!accountId && (
         <Controller
           control={control}
           name="account"
@@ -280,7 +268,7 @@ export default function AddAutoReply() {
                   placeholder={t('common:alias')}
                   data-testid="input-account"
                   className="flex-1"
-                  isDisabled={editEmailAccountId ? true : null}
+                  isDisabled={accountId ? true : null}
                   name={name}
                   hasError={!!errors[name]}
                   value={value}
@@ -303,9 +291,7 @@ export default function AddAutoReply() {
                     <div className="flex flex-1">
                       <OdsSelect
                         key={hackKeyDomains}
-                        isDisabled={
-                          isLoading || editEmailAccountId ? true : null
-                        }
+                        isDisabled={isLoading || accountId ? true : null}
                         name={field.name}
                         hasError={!!errors[field.name]}
                         value={field.value}
@@ -519,13 +505,6 @@ export default function AddAutoReply() {
           isLoading={isSending}
           data-testid="confirm-btn"
           label={t('common:confirm')}
-        ></OdsButton>
-        <OdsButton
-          slot="actions"
-          onClick={handleCancelClick}
-          color={ODS_BUTTON_COLOR.primary}
-          variant={ODS_BUTTON_VARIANT.outline}
-          label={t('common:cancel')}
         ></OdsButton>
       </div>
     </form>

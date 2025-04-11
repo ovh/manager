@@ -7,7 +7,7 @@ import {
   Clipboard,
 } from '@ovh-ux/manager-react-components';
 import { Trans, useTranslation } from 'react-i18next';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import {
   ODS_BADGE_COLOR,
   ODS_BUTTON_VARIANT,
@@ -30,11 +30,11 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { useGenerateUrl, usePlatform } from '@/hooks';
+import { useGenerateUrl } from '@/hooks';
 import Loading from '@/components/Loading/Loading';
 import TabsPanel, {
   activatedTabs,
-  computePathMatchers,
+  useComputePathMatchers,
   TabItemProps,
 } from '@/components/layout-helpers/Dashboard/TabsPanel';
 import { urls } from '@/routes/routes.constants';
@@ -316,13 +316,10 @@ const TabContent = ({
 
 export default function DomainDiagnostics() {
   const { t } = useTranslation('domains/diagnostic');
-  const { platformId } = usePlatform();
   const location = useLocation();
-  const [searchParams] = useSearchParams();
+  const { domainId } = useParams();
   const { trackClick } = useOvhTracking();
-  const params = Object.fromEntries(searchParams.entries());
-  const domainId = searchParams.get('domainId');
-  const goBackUrl = useGenerateUrl('../..', 'href');
+  const goBackUrl = useGenerateUrl('../../..', 'href');
 
   const {
     data: domain,
@@ -348,11 +345,8 @@ export default function DomainDiagnostics() {
           hasError={!isFetching && isDiagnosticError(domain?.result?.mx)}
         />
       ),
-      to: useGenerateUrl('../diagnostics/mx', 'path', params),
-      pathMatchers: computePathMatchers(
-        [urls.domains_diagnostic_mx],
-        platformId,
-      ),
+      to: useGenerateUrl(`../diagnostics/mx`, 'path'),
+      pathMatchers: useComputePathMatchers([urls.domains_diagnostic_mx]),
       component: (
         <TabContent
           diagnostic={domain?.result?.mx}
@@ -367,12 +361,9 @@ export default function DomainDiagnostics() {
       name: DnsRecordType.SRV,
       trackingName: DOMAIN_DIAGNOSTICS_SRV,
       title: <TabTitle title={DnsRecordType.SRV} hasError={false} />,
-      to: useGenerateUrl('../diagnostics/srv', 'path', params),
+      to: useGenerateUrl('../diagnostics/srv', 'path'),
       hidden: !FEATURE_FLAGS.DOMAIN_DIAGNOSTICS_SRV,
-      pathMatchers: computePathMatchers(
-        [urls.domains_diagnostic_srv],
-        platformId,
-      ),
+      pathMatchers: useComputePathMatchers([urls.domains_diagnostic_srv]),
       component: (
         <TabContent
           diagnostic={null}
@@ -392,11 +383,8 @@ export default function DomainDiagnostics() {
           hasError={!isFetching && isDiagnosticError(domain?.result?.spf)}
         />
       ),
-      to: useGenerateUrl('../diagnostics/spf', 'path', params),
-      pathMatchers: computePathMatchers(
-        [urls.domains_diagnostic_spf],
-        platformId,
-      ),
+      to: useGenerateUrl('../diagnostics/spf', 'path'),
+      pathMatchers: useComputePathMatchers([urls.domains_diagnostic_spf]),
       component: (
         <TabContent
           diagnostic={domain?.result?.spf}
@@ -416,11 +404,8 @@ export default function DomainDiagnostics() {
           hasError={!isFetching && isDiagnosticError(domain?.result?.dkim)}
         />
       ),
-      to: useGenerateUrl('../diagnostics/dkim', 'path', params),
-      pathMatchers: computePathMatchers(
-        [urls.domains_diagnostic_dkim],
-        platformId,
-      ),
+      to: useGenerateUrl('../diagnostics/dkim', 'path'),
+      pathMatchers: useComputePathMatchers([urls.domains_diagnostic_dkim]),
       component: (
         <TabContent
           diagnostic={domain?.result?.dkim}
@@ -437,7 +422,7 @@ export default function DomainDiagnostics() {
     () =>
       tabsList.find((tab) => activatedTabs(tab.pathMatchers, location))
         ?.component || tabsList[0].component,
-    [location, domain, isFetching],
+    [location, domain, isFetching, tabsList],
   );
 
   const handleRefreshClick = () => {

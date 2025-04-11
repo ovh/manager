@@ -1,26 +1,33 @@
-import { useQuery } from '@tanstack/react-query';
-import { useSearchParams } from 'react-router-dom';
-import { usePlatform } from '@/hooks';
+import {
+  useQuery,
+  UseQueryOptions,
+  UseQueryResult,
+} from '@tanstack/react-query';
+import { useParams, useSearchParams } from 'react-router-dom';
 import {
   getZimbraPlatformOrganizationDetails,
   getZimbraPlatformOrganizationDetailsQueryKey,
+  OrganizationType,
 } from '@/api/organization';
 
-export const useOrganization = (organizationId?: string, noCache?: boolean) => {
-  const { platformId } = usePlatform();
+type UseOrganizationParams = Omit<UseQueryOptions, 'queryKey' | 'queryFn'> & {
+  organizationId?: string;
+};
+
+export const useOrganization = (props: UseOrganizationParams = {}) => {
+  const { organizationId, ...options } = props;
+  const { platformId, organizationId: paramsId } = useParams();
   const [searchParams] = useSearchParams();
-  const selectedOrganizationId = searchParams.get('organizationId');
+  const id = organizationId || paramsId || searchParams.get('organizationId');
   return useQuery({
-    queryKey: getZimbraPlatformOrganizationDetailsQueryKey(
-      platformId,
-      organizationId || selectedOrganizationId,
-    ),
-    queryFn: () =>
-      getZimbraPlatformOrganizationDetails(
-        platformId,
-        organizationId || selectedOrganizationId,
-      ),
-    enabled: (!!organizationId || !!selectedOrganizationId) && !!platformId,
-    gcTime: noCache ? 0 : 5000,
-  });
+    queryKey: getZimbraPlatformOrganizationDetailsQueryKey(platformId, id),
+    queryFn: () => getZimbraPlatformOrganizationDetails(platformId, id),
+    ...options,
+    enabled: (query) =>
+      (typeof options.enabled === 'function'
+        ? options.enabled(query)
+        : typeof options.enabled !== 'boolean' || options.enabled) &&
+      !!id &&
+      !!platformId,
+  }) as UseQueryResult<OrganizationType>;
 };

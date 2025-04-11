@@ -3,7 +3,7 @@ import {
   UseQueryOptions,
   UseQueryResult,
 } from '@tanstack/react-query';
-import { usePlatform } from '@/hooks';
+import { useParams } from 'react-router-dom';
 import {
   DomainDiagnosisResponse,
   getZimbraPlatformDomainsDiagnosticQueryKey,
@@ -19,7 +19,7 @@ type UseDomainsDiagnosticParams = Omit<
 
 export const useDomainsDiagnostic = (params: UseDomainsDiagnosticParams) => {
   const { domainIds, ...options } = params;
-  const { platformId } = usePlatform();
+  const { platformId } = useParams();
 
   return useQuery({
     queryKey: getZimbraPlatformDomainsDiagnosticQueryKey(platformId, domainIds),

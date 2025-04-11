@@ -135,6 +135,39 @@
                         </div>
                         <div class="oui-tile__item">
                             <div class="oui-tile__definition">
+                                <h4
+                                    class="oui-heading_5"
+                                    data-translate="overTheBox_detail_ips"
+                                ></h4>
+                                <div
+                                    data-ng-repeat="ip in $ctrl.ips | orderBy:'version' track by ip.ip"
+                                    data-ng-if="$ctrl.ips.length > 0"
+                                >
+                                    <div
+                                        class="oui-tile__term"
+                                        data-translate="overTheBox_detail_ip_v4"
+                                        data-ng-if="ip.version === $ctrl.OVERTHEBOX_DETAILS.ip.v4"
+                                    ></div>
+                                    <div
+                                        class="oui-tile__term"
+                                        data-translate="overTheBox_detail_ip_v6"
+                                        data-ng-if="ip.version === $ctrl.OVERTHEBOX_DETAILS.ip.v6"
+                                    ></div>
+                                    <div class="oui-tile__description">
+                                        <div
+                                            class="d-inline-block my-2"
+                                            data-ng-bind="ip.ip + '&nbsp;/&nbsp;' + ip.range"
+                                        ></div>
+                                    </div>
+                                </div>
+                                <div
+                                    data-ng-if="$ctrl.ips.length == 0"
+                                    data-ng-bind="$ctrl.noIps"
+                                ></div>
+                            </div>
+                        </div>
+                        <div class="oui-tile__item">
+                            <div class="oui-tile__definition">
                                 <strong
                                     class="oui-tile__term d-block"
                                     data-translate="overTheBox_detail_bandwidth"

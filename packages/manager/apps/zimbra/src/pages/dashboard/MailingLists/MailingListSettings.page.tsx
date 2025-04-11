@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import {
   OdsButton,
   OdsFormField,
@@ -32,7 +32,7 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useGenerateUrl, usePlatform } from '@/hooks';
+import { useGenerateUrl } from '@/hooks';
 import {
   postZimbraPlatformMailingList,
   putZimbraPlatformMailingList,
@@ -47,7 +47,6 @@ import { mailingListSchema, MailingListSchema } from '@/utils';
 import queryClient from '@/queryClient';
 import {
   ADD_MAILING_LIST,
-  CANCEL,
   CONFIRM,
   EDIT_MAILING_LIST,
 } from '@/tracking.constant';
@@ -96,11 +95,10 @@ export default function MailingListSettings({
   const { t } = useTranslation(['mailing-lists/form', 'common']);
   const navigate = useNavigate();
   const { addError, addSuccess } = useNotifications();
-  const { platformId } = usePlatform();
+  const { platformId, mailingListId } = useParams();
   const [searchParams] = useSearchParams();
-  const editMailingListId = searchParams.get('editMailingListId');
   const organizationId = searchParams.get('organizationId');
-  const trackingName = editMailingListId ? EDIT_MAILING_LIST : ADD_MAILING_LIST;
+  const trackingName = mailingListId ? EDIT_MAILING_LIST : ADD_MAILING_LIST;
   const [selectedDomainOrganization, setSelectedDomainOrganization] = useState(
     '',
   );
@@ -117,8 +115,8 @@ export default function MailingListSettings({
 
   const { mutate: addOrEditMailingList, isPending: isSending } = useMutation({
     mutationFn: (params: MailingListBodyParamsType) => {
-      return editMailingListId
-        ? putZimbraPlatformMailingList(platformId, editMailingListId, params)
+      return mailingListId
+        ? putZimbraPlatformMailingList(platformId, mailingListId, params)
         : postZimbraPlatformMailingList(platformId, params);
     },
     onSuccess: () => {
@@ -129,7 +127,7 @@ export default function MailingListSettings({
       addSuccess(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t(
-            editMailingListId
+            mailingListId
               ? 'zimbra_mailinglist_edit_success_message'
               : 'zimbra_mailinglist_add_success_message',
           )}
@@ -145,7 +143,7 @@ export default function MailingListSettings({
       addError(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t(
-            editMailingListId
+            mailingListId
               ? 'zimbra_mailinglist_edit_error_message'
               : 'zimbra_mailinglist_add_error_message',
             {
@@ -207,23 +205,13 @@ export default function MailingListSettings({
     addOrEditMailingList(payload);
   };
 
-  const handleCancelClick = () => {
-    trackClick({
-      location: PageLocation.page,
-      buttonType: ButtonType.button,
-      actionType: 'action',
-      actions: [trackingName, CANCEL],
-    });
-    goBack();
-  };
-
   return (
     <form
       onSubmit={handleSubmit(handleSavelick)}
       className="w-full md:w-3/4 flex flex-col space-y-5"
     >
       <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-        {!editMailingListId
+        {!mailingListId
           ? t('zimbra_mailinglist_add_header')
           : t('zimbra_mailinglist_edit_header')}
       </OdsText>
@@ -459,25 +447,15 @@ export default function MailingListSettings({
           </OdsFormField>
         )}
       />
-      <div className="flex space-x-5">
-        <OdsButton
-          slot="actions"
-          type="submit"
-          variant={ODS_BUTTON_VARIANT.default}
-          isDisabled={!isDirty || !isValid}
-          isLoading={isSending}
-          data-testid="confirm-btn"
-          label={t('common:confirm')}
-        />
-        {editMailingListId && (
-          <OdsButton
-            slot="actions"
-            onClick={handleCancelClick}
-            variant={ODS_BUTTON_VARIANT.outline}
-            label={t('common:cancel')}
-          />
-        )}
-      </div>
+      <OdsButton
+        slot="actions"
+        type="submit"
+        variant={ODS_BUTTON_VARIANT.default}
+        isDisabled={!isDirty || !isValid}
+        isLoading={isSending}
+        data-testid="confirm-btn"
+        label={t('common:confirm')}
+      />
     </form>
   );
 }

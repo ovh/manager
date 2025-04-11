@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   OdsFormField,
@@ -26,7 +26,7 @@ import {
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { useGenerateUrl, useOrganization, usePlatform } from '@/hooks';
+import { useGenerateUrl, useOrganization } from '@/hooks';
 import Modal from '@/components/Modals/Modal';
 import {
   getZimbraPlatformOrganizationQueryKey,
@@ -46,32 +46,23 @@ import { organizationSchema } from '@/utils';
 export default function ModalAddAndEditOrganization() {
   const { t } = useTranslation(['organizations/form', 'common']);
   const { trackClick, trackPage } = useOvhTracking();
-  const { platformId } = usePlatform();
-  const [searchParams] = useSearchParams();
-  const editOrganizationId = searchParams?.get('editOrganizationId');
-  const trackingName = editOrganizationId
-    ? EDIT_ORGANIZATION
-    : ADD_ORGANIZATION;
+  const { platformId, organizationId } = useParams();
+  const trackingName = organizationId ? EDIT_ORGANIZATION : ADD_ORGANIZATION;
   const { addError, addSuccess } = useNotifications();
   const navigate = useNavigate();
-  const goBackUrl = useGenerateUrl('..', 'path');
+  const goBackUrl = useGenerateUrl(organizationId ? '../..' : '..', 'path');
   const onClose = () => {
     navigate(goBackUrl);
   };
 
-  const { data: editOrganizationDetail } = useOrganization(
-    editOrganizationId,
-    true,
-  );
+  const { data: organization } = useOrganization({ gcTime: 0 });
 
-  const [isLoading, setIsLoading] = useState(
-    editOrganizationId && !editOrganizationDetail,
-  );
+  const [isLoading, setIsLoading] = useState(organizationId && !organization);
 
   const { mutate: addOrEditOrganization, isPending: isSending } = useMutation({
     mutationFn: (params: OrganizationBodyParamsType) => {
-      return editOrganizationId
-        ? putZimbraPlatformOrganization(platformId, editOrganizationId, params)
+      return organizationId
+        ? putZimbraPlatformOrganization(platformId, organizationId, params)
         : postZimbraPlatformOrganization(platformId, params);
     },
     onSuccess: () => {
@@ -82,7 +73,7 @@ export default function ModalAddAndEditOrganization() {
       addSuccess(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t(
-            editOrganizationId
+            organizationId
               ? 'common:edit_success_message'
               : 'zimbra_organization_add_success_message',
           )}
@@ -98,7 +89,7 @@ export default function ModalAddAndEditOrganization() {
       addError(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t(
-            editOrganizationId
+            organizationId
               ? 'common:edit_error_message'
               : 'zimbra_organization_add_error_message',
             {
@@ -124,22 +115,22 @@ export default function ModalAddAndEditOrganization() {
     formState: { isDirty, isValid, errors },
   } = useForm({
     defaultValues: {
-      name: editOrganizationDetail?.currentState?.name || '',
-      label: editOrganizationDetail?.currentState?.label || '',
+      name: organization?.currentState?.name || '',
+      label: organization?.currentState?.label || '',
     },
     mode: 'onTouched',
     resolver: zodResolver(organizationSchema),
   });
 
   useEffect(() => {
-    if (editOrganizationDetail) {
+    if (organization) {
       reset({
-        name: editOrganizationDetail?.currentState?.name,
-        label: editOrganizationDetail?.currentState?.label,
+        name: organization?.currentState?.name,
+        label: organization?.currentState?.label,
       });
       setIsLoading(false);
     }
-  }, [editOrganizationDetail, isLoading]);
+  }, [organization, isLoading]);
 
   const handleSaveClick: SubmitHandler<z.infer<typeof organizationSchema>> = (
     data,
@@ -167,7 +158,7 @@ export default function ModalAddAndEditOrganization() {
     <Modal
       isOpen
       title={
-        editOrganizationId
+        organizationId
           ? t('common:edit_organization')
           : t('common:add_organization')
       }
@@ -191,7 +182,7 @@ export default function ModalAddAndEditOrganization() {
         className="flex flex-col gap-4"
         onSubmit={handleSubmit(handleSaveClick)}
       >
-        {!editOrganizationId && (
+        {!organizationId && (
           <div>
             <OdsText preset={ODS_TEXT_PRESET.paragraph}>
               {t('zimbra_organization_add_modal_content_part1')}

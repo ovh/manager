@@ -12,7 +12,11 @@ import { DomainsItem } from './Domains';
 import { useGenerateUrl, usePlatform } from '@/hooks';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import { ResourceStatus } from '@/api/api.type';
-import { DELETE_DOMAIN, EDIT_DOMAIN } from '@/tracking.constant';
+import {
+  DELETE_DOMAIN,
+  DOMAIN_DIAGNOSTICS,
+  EDIT_DOMAIN,
+} from '@/tracking.constant';
 
 interface ActionButtonDomainProps {
   domainItem: DomainsItem;
@@ -25,9 +29,7 @@ const ActionButtonDomain: React.FC<ActionButtonDomainProps> = ({
   const { trackClick } = useOvhTracking();
   const { platformUrn } = usePlatform();
 
-  const hrefDeleteDomain = useGenerateUrl('./delete', 'path', {
-    deleteDomainId: domainItem.id,
-  });
+  const hrefDeleteDomain = useGenerateUrl(`./${domainItem.id}/delete`);
 
   const handleDeleteDomainClick = () => {
     trackClick({
@@ -39,9 +41,7 @@ const ActionButtonDomain: React.FC<ActionButtonDomainProps> = ({
     navigate(hrefDeleteDomain);
   };
 
-  const hrefEditDomain = useGenerateUrl('./edit', 'path', {
-    editDomainId: domainItem.id,
-  });
+  const hrefEditDomain = useGenerateUrl(`./${domainItem.id}/edit`);
 
   const handleEditDomainClick = () => {
     trackClick({
@@ -53,11 +53,17 @@ const ActionButtonDomain: React.FC<ActionButtonDomainProps> = ({
     navigate(hrefEditDomain);
   };
 
-  const hrefDiagnosticsDomain = useGenerateUrl('./diagnostics/mx', 'path', {
-    domainId: domainItem.id,
-  });
+  const hrefDiagnosticsDomain = useGenerateUrl(
+    `./${domainItem.id}/diagnostics/mx`,
+  );
 
   const handleDiagnosticsDomainClick = () => {
+    trackClick({
+      location: PageLocation.datagrid,
+      buttonType: ButtonType.button,
+      actionType: 'navigation',
+      actions: [DOMAIN_DIAGNOSTICS],
+    });
     navigate(hrefDiagnosticsDomain);
   };
 

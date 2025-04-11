@@ -2,28 +2,26 @@ import React from 'react';
 import 'element-internals-polyfill';
 import '@testing-library/jest-dom';
 import { vi, describe, expect } from 'vitest';
-import { useSearchParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { render, waitFor, act, fireEvent } from '@/utils/test.provider';
 import ModalDeleteDomain from '../ModalDeleteDomain.component';
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
 import { getZimbraPlatformAccounts } from '@/api/account';
 import { deleteZimbraPlatformDomain } from '@/api/domain';
-import { domainDetailMock } from '@/api/_mock_';
+import { domainDetailMock, platformMock } from '@/api/_mock_';
 
-vi.mocked(useSearchParams).mockReturnValue([
-  new URLSearchParams({
-    deleteDomainId: domainDetailMock.id,
-  }),
-  vi.fn(),
-]);
-
-describe('Domains delete modal', () => {
-  it('check if it is displayed', async () => {
+describe('Domain delete modal', () => {
+  it('should render correctly', async () => {
     const { findByText } = render(<ModalDeleteDomain />);
     expect(await findByText(commonTranslation.delete_domain)).toBeVisible();
   });
 
-  it('if have email use the domain', async () => {
+  it('should prevent deletion if there is linked emails', async () => {
+    vi.mocked(useParams).mockReturnValue({
+      platformId: platformMock[0].id,
+      domainId: domainDetailMock.id,
+    });
+
     const { getByTestId, queryByTestId } = render(<ModalDeleteDomain />);
 
     await waitFor(() => {
@@ -34,7 +32,12 @@ describe('Domains delete modal', () => {
     expect(getByTestId('delete-btn')).toHaveAttribute('is-disabled', 'true');
   });
 
-  it('if there is not email use the domain', async () => {
+  it('should not prevent deletion if there is no linked emails', async () => {
+    vi.mocked(useParams).mockReturnValue({
+      platformId: platformMock[0].id,
+      domainId: '0',
+    });
+
     vi.mocked(getZimbraPlatformAccounts).mockReturnValue({ data: [] });
     const { getByTestId, queryByTestId } = render(<ModalDeleteDomain />);
 
