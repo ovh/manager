@@ -2,6 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
+import './manage.organisations.scss';
 import {
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
@@ -9,6 +10,7 @@ import {
 } from '@ovhcloud/ods-components';
 import Loading from '@/components/Loading/Loading';
 import { ManageOrganisationsDatagrid } from '@/pages/listing/manageOrganisations/components/OrganisationsDatagrid/manageOrganisationsDataGrid.component';
+import { urls } from '@/routes/routes.constant';
 
 export default function ManageOrganisationsPage() {
   const { t } = useTranslation('manage-organisations');
@@ -25,7 +27,7 @@ export default function ManageOrganisationsPage() {
           className="mb-5 mr-2"
           variant={ODS_BUTTON_VARIANT.outline}
           icon={ODS_ICON_NAME.plus}
-          onClick={() => navigate('')}
+          onClick={() => navigate(urls.openOrganisationsModel)}
           label={t('manageOrganisationsOrderButtonLabel')}
         />
       </div>
