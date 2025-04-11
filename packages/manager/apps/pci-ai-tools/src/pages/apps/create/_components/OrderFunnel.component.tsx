@@ -50,12 +50,11 @@ import { useAddApp } from '@/data/hooks/ai/app/useAddApp.hook';
 import { useSignPartnerContract } from '@/data/hooks/ai/partner/useSignPartnerContract.hook';
 import { useGetCommand } from '@/data/hooks/ai/app/useGetCommand.hook';
 import { PartnerApp } from '@/data/api/ai/partner/partner.api';
-import LinkButton from '@/components/link-button/LinkButton.component';
 
 interface OrderAppsFunnelProps {
   regions: ai.capabilities.Region[];
   catalog: publicCatalog.Catalog;
-  suggestions: AppSuggestions[];
+  suggestions: AppSuggestions;
 }
 
 const OrderFunnel = ({
@@ -91,7 +90,7 @@ const OrderFunnel = ({
         title: t('successCreatingAppTitle'),
         description: t('successCreatingAppDescription'),
       });
-      navigate(`../deploy/${app.id}`);
+      navigate(`../${app.id}`);
     },
   });
 
@@ -679,17 +678,18 @@ const OrderFunnel = ({
               </Table>
             </CardContent>
             <CardFooter className="flex flex-col gap-4">
-              <LinkButton
-                className="underline"
+              <Button
                 data-testid="cli-command-button"
                 type="button"
                 disabled={isPendingCommand}
                 onClick={() => {
                   getCliCommand();
+                  cliEquivalentModale.open();
                 }}
+                className="flex flex-row gap-2 items-center underline bg-transparent hover:bg-transparent font-bold text-primary underline-offset-4 hover:underline"
               >
                 {t('cliCode')} <TerminalSquare className="size-4 stroke-2" />
-              </LinkButton>
+              </Button>
               <Button
                 type="submit"
                 data-testid="order-submit-button"

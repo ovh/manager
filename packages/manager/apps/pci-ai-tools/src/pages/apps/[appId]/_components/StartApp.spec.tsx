@@ -31,7 +31,7 @@ describe('Start app modal', () => {
       wrapper: RouterWithQueryClientWrapper,
     });
     await waitFor(() => {
-      expect(screen.queryByTestId('start-app-modal')).toBeInTheDocument();
+      expect(screen.queryByTestId('start-app-modal')).toBeTruthy();
     });
   });
 

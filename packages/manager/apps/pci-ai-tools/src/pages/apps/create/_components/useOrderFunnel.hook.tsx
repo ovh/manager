@@ -30,7 +30,7 @@ import { useGetPartner } from '@/data/hooks/ai/partner/useGetPartner.hook';
 export function useOrderFunnel(
   regions: ai.capabilities.Region[],
   catalog: publicCatalog.Catalog,
-  suggestions: AppSuggestions[],
+  suggestions: AppSuggestions,
 ) {
   const { projectId } = useParams();
   const { t } = useTranslation('ai-tools/apps/create');
@@ -58,7 +58,7 @@ export function useOrderFunnel(
     privacy: z.nativeEnum(PrivacyEnum),
     scaling: z
       .object({
-        scalingStrag: z.boolean().optional(),
+        autoScaling: z.boolean(),
         replicas: z.number().optional(),
         averageUsageTarget: z.number().optional(),
         replicasMax: z.number().optional(),
@@ -113,11 +113,15 @@ export function useOrderFunnel(
   const form = useForm({
     resolver: zodResolver(orderSchema),
     defaultValues: {
-      region: suggestions[0].region,
+      region: suggestions.defaultRegion,
       flavorWithQuantity: { flavor: '', quantity: 1 },
       image: { name: '', version: '', contractChecked: false },
       appName: generateName(),
-      privacy: PrivacyEnum.private,
+      privacy: suggestions.suggestions.find(
+        (sug) => sug.region === suggestions.defaultRegion,
+      ).unsecureHttp
+        ? PrivacyEnum.private
+        : PrivacyEnum.public,
       scaling: {
         autoScaling: false,
         replicas: 1,
@@ -201,7 +205,7 @@ export function useOrderFunnel(
   const labelsObject: { [key: string]: string } = useMemo(() => {
     if (labels.length === 0) return {};
     return labels.reduce((acc, label) => {
-      acc[label.name] = label.value;
+      acc[label.key] = label.value;
       return acc;
     }, {} as { [key: string]: string });
   }, [labels]);
@@ -215,10 +219,13 @@ export function useOrderFunnel(
   // Select default Flavor Id / Flavor number when region change
   useEffect(() => {
     const suggestedFlavor =
-      suggestions.find((sug) => sug.region === regionObject.id).ressources
-        .flavor ?? listFlavor[0].id;
+      suggestions.suggestions.find((sug) => sug.region === regionObject.id)
+        .resources.flavorId ?? listFlavor[0].id;
+    const suggestedQuantity =
+      suggestions.suggestions.find((sug) => sug.region === regionObject.id)
+        .resources.quantity ?? 1;
     form.setValue('flavorWithQuantity.flavor', suggestedFlavor);
-    form.setValue('flavorWithQuantity.quantity', 1);
+    form.setValue('flavorWithQuantity.quantity', suggestedQuantity);
   }, [regionObject, region, flavorQuery.isSuccess]);
 
   // Pricing Object

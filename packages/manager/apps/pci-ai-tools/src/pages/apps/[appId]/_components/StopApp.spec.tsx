@@ -31,7 +31,7 @@ describe('Stop app modal', () => {
       wrapper: RouterWithQueryClientWrapper,
     });
     await waitFor(() => {
-      expect(screen.queryByTestId('stop-app-modal')).toBeInTheDocument();
+      expect(screen.queryByTestId('stop-app-modal')).toBeTruthy();
     });
   });
 

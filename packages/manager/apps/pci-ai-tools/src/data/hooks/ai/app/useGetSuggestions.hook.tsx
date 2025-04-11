@@ -7,10 +7,10 @@ export function useGetSuggestions(
   projectId: string,
   options: Omit<QueryObserverOptions, 'queryKey'> = {},
 ) {
-  const queryKey = [projectId, 'ai', 'app', 'suggestions'];
+  const queryKey = [projectId, 'ai', 'suggestion', 'app'];
   return useQueryImmediateRefetch({
     queryKey,
-    queryFn: () => getSuggestions(/* { projectId } */),
+    queryFn: () => getSuggestions({ projectId }),
     ...options,
-  }) as UseQueryResult<AppSuggestions[], Error>;
+  }) as UseQueryResult<AppSuggestions, Error>;
 }

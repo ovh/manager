@@ -157,7 +157,9 @@ export const AutoScalingForm = React.forwardRef<
                     max={100}
                     min={1}
                     onChange={(e) => {
-                      setValue('maxRep', Number(e.target.value));
+                      setValue('maxRep', Number(e.target.value), {
+                        shouldValidate: true,
+                      });
                       handleChange();
                     }}
                   />

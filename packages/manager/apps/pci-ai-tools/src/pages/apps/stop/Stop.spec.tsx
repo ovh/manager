@@ -21,8 +21,8 @@ describe('Apps list stop modal', () => {
     });
 
     await waitFor(() => {
-      expect(screen.getByTestId('stop-app-modal')).toBeInTheDocument();
-      expect(screen.getByTestId('stop-app-submit-button')).toBeInTheDocument();
+      expect(screen.getByTestId('stop-app-modal')).toBeTruthy();
+      expect(screen.getByTestId('stop-app-submit-button')).toBeTruthy();
     });
   });
 });

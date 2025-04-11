@@ -25,26 +25,24 @@ describe('App Header component', () => {
     render(<AppHeader.Skeleton />, {
       wrapper: RouterWithQueryClientWrapper,
     });
-    expect(screen.getByTestId('app-header-skeleton')).toBeInTheDocument();
+    expect(screen.getByTestId('app-header-skeleton')).toBeTruthy();
   });
 
   it('renders AppHeader and trigger stop modal', async () => {
     render(<AppHeader app={runningApp} />, {
       wrapper: RouterWithQueryClientWrapper,
     });
-    expect(screen.getByTestId('app-header-container')).toBeInTheDocument();
-    expect(screen.getByTestId('open-stop-modal-button')).toBeInTheDocument();
-    expect(
-      screen.queryByTestId('open-start-modal-button'),
-    ).not.toBeInTheDocument();
+    expect(screen.getByTestId('app-header-container')).toBeTruthy();
+    expect(screen.getByTestId('open-stop-modal-button')).toBeTruthy();
+    expect(screen.queryByTestId('open-start-modal-button')).toBeNull();
 
     fireEvent.click(screen.getByTestId('open-stop-modal-button'));
     await waitFor(() => {
-      expect(screen.getByTestId('stop-app-modal')).toBeInTheDocument();
+      expect(screen.getByTestId('stop-app-modal')).toBeTruthy();
     });
     fireEvent.click(screen.getByTestId('stop-app-cancel-button'));
     await waitFor(() => {
-      expect(screen.queryByTestId('stop-app-modal')).not.toBeInTheDocument();
+      expect(screen.queryByTestId('stop-app-modal')).toBeNull();
     });
   });
 
@@ -52,19 +50,17 @@ describe('App Header component', () => {
     render(<AppHeader app={stroppedApp} />, {
       wrapper: RouterWithQueryClientWrapper,
     });
-    expect(screen.getByTestId('app-header-container')).toBeInTheDocument();
-    expect(screen.getByTestId('open-start-modal-button')).toBeInTheDocument();
-    expect(
-      screen.queryByTestId('open-stop-modal-button'),
-    ).not.toBeInTheDocument();
+    expect(screen.getByTestId('app-header-container')).toBeTruthy();
+    expect(screen.getByTestId('open-start-modal-button')).toBeTruthy();
+    expect(screen.queryByTestId('open-stop-modal-button')).toBeNull();
 
     fireEvent.click(screen.getByTestId('open-start-modal-button'));
     await waitFor(() => {
-      expect(screen.getByTestId('start-app-modal')).toBeInTheDocument();
+      expect(screen.getByTestId('start-app-modal')).toBeTruthy();
     });
     fireEvent.click(screen.getByTestId('start-app-cancel-button'));
     await waitFor(() => {
-      expect(screen.queryByTestId('start-app-modal')).not.toBeInTheDocument();
+      expect(screen.queryByTestId('start-app-modal')).toBeNull();
     });
   });
 });

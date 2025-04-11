@@ -39,17 +39,13 @@ describe('Update Docker command', () => {
 
   it('renders Update Docker command modal and close it', async () => {
     render(<UpdateDockerCommand />, { wrapper: RouterWithQueryClientWrapper });
-    expect(
-      screen.getByTestId('update-docker-command-modal'),
-    ).toBeInTheDocument();
-    expect(screen.getByTestId('command-input-field')).toBeInTheDocument();
+    expect(screen.getByTestId('update-docker-command-modal')).toBeTruthy();
+    expect(screen.getByTestId('command-input-field')).toBeTruthy();
     act(() => {
       fireEvent.click(screen.getByTestId('update-resources-cancel-button'));
     });
     await waitFor(() => {
-      expect(
-        screen.queryByTestId('update-docker-command-modal'),
-      ).not.toBeInTheDocument();
+      expect(screen.queryByTestId('update-docker-command-modal')).toBeNull();
     });
   });
 

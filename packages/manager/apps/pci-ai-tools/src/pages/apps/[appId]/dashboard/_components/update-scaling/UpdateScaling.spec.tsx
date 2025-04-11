@@ -52,7 +52,7 @@ describe('Data Sync Component', () => {
 
   it('renders skeleton while loading', async () => {
     render(<UpdateScaling />, { wrapper: RouterWithQueryClientWrapper });
-    expect(screen.getByTestId('dialog-container')).toBeInTheDocument();
+    expect(screen.getByTestId('dialog-container')).toBeTruthy();
   });
 
   it('renders UpdateSclaling modal and trigger onError on API Error', async () => {
@@ -60,8 +60,8 @@ describe('Data Sync Component', () => {
       throw apiErrorMock;
     });
     render(<UpdateScaling />, { wrapper: RouterWithQueryClientWrapper });
-    expect(screen.getByTestId('update-scaling-modal')).toBeInTheDocument();
-    expect(screen.getByTestId('replicas-input')).toBeInTheDocument();
+    expect(screen.getByTestId('update-scaling-modal')).toBeTruthy();
+    expect(screen.getByTestId('replicas-input')).toBeTruthy();
     act(() => {
       fireEvent.change(screen.getByTestId('replicas-input'), {
         target: {
@@ -82,8 +82,8 @@ describe('Data Sync Component', () => {
 
   it('trigger onSuccess on summit click', async () => {
     render(<UpdateScaling />, { wrapper: RouterWithQueryClientWrapper });
-    expect(screen.getByTestId('update-scaling-modal')).toBeInTheDocument();
-    expect(screen.getByTestId('replicas-input')).toBeInTheDocument();
+    expect(screen.getByTestId('update-scaling-modal')).toBeTruthy();
+    expect(screen.getByTestId('replicas-input')).toBeTruthy();
     act(() => {
       fireEvent.change(screen.getByTestId('replicas-input'), {
         target: {
@@ -108,8 +108,8 @@ describe('Data Sync Component', () => {
       appQuery: {} as UseQueryResult<ai.app.App, AIError>,
     });
     render(<UpdateScaling />, { wrapper: RouterWithQueryClientWrapper });
-    expect(screen.getByTestId('update-scaling-modal')).toBeInTheDocument();
-    expect(screen.getByTestId('max-rep-input')).toBeInTheDocument();
+    expect(screen.getByTestId('update-scaling-modal')).toBeTruthy();
+    expect(screen.getByTestId('max-rep-input')).toBeTruthy();
     act(() => {
       fireEvent.change(screen.getByTestId('max-rep-input'), {
         target: {

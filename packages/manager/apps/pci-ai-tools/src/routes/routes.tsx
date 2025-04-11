@@ -469,7 +469,7 @@ export default [
                   },
                   {
                     path: 'containers',
-                    id: 'training/job.containers',
+                    id: 'training.job.containers',
                     ...lazyRouteConfig(() =>
                       import('@/pages/jobs/[jobId]/containers/Containers.page'),
                     ),
@@ -512,149 +512,165 @@ export default [
               },
             ],
           },
-        ],
-      },
-      {
-        path: 'deploy',
-        id: 'deploy',
-        ...lazyRouteConfig(() => import('@/pages/apps/AppRoot.page')),
-        children: [
           {
-            path: 'start/:appId',
-            id: 'deploy.start',
-            ...lazyRouteConfig(() => import('@/pages/apps/start/Start.modal')),
-          },
-          {
-            path: 'stop/:appId',
-            id: 'deploy.stop',
-            ...lazyRouteConfig(() => import('@/pages/apps/stop/Stop.modal')),
-          },
-          {
-            path: 'delete/:appId',
-            id: 'deploy.delete',
-            ...lazyRouteConfig(() =>
-              import('@/pages/apps/delete/Delete.modal'),
-            ),
-          },
-        ],
-      },
-      {
-        path: 'deploy/onboarding',
-        id: 'deploy.onboarding',
-        ...lazyRouteConfig(() =>
-          import('@/pages/apps/onboarding/Onboarding.page'),
-        ),
-      },
-      {
-        path: 'deploy/new',
-        id: 'create-app',
-        ...lazyRouteConfig(() => import('@/pages/apps/create/Create.page')),
-      },
-      {
-        path: 'deploy/:appId',
-        ...lazyRouteConfig(() => import('@/pages/apps/[appId]/App.layout')),
-        children: [
-          {
-            path: '',
-            id: 'deploy.dashboard',
-            ...lazyRouteConfig(() =>
-              import('@/pages/apps/[appId]/dashboard/Dashboard.page'),
-            ),
+            path: 'deploy',
+            ...lazyRouteConfig(() => import('@/pages/apps/AppRoot.Layout')),
             children: [
               {
-                path: 'delete',
-                id: 'deploy.dashboard.delete',
+                path: '',
+                id: 'deploy',
+                ...lazyRouteConfig(() => import('@/pages/apps/Apps.page')),
+                children: [
+                  {
+                    path: 'start/:appId',
+                    id: 'deploy.start',
+                    ...lazyRouteConfig(() =>
+                      import('@/pages/apps/start/Start.modal'),
+                    ),
+                  },
+                  {
+                    path: 'stop/:appId',
+                    id: 'deploy.stop',
+                    ...lazyRouteConfig(() =>
+                      import('@/pages/apps/stop/Stop.modal'),
+                    ),
+                  },
+                  {
+                    path: 'delete/:appId',
+                    id: 'deploy.delete',
+                    ...lazyRouteConfig(() =>
+                      import('@/pages/apps/delete/Delete.modal'),
+                    ),
+                  },
+                ],
+              },
+              {
+                path: 'onboarding',
+                id: 'onboarding-deploy',
                 ...lazyRouteConfig(() =>
-                  import('@/pages/apps/[appId]/dashboard/delete/Delete.modal'),
+                  import('@/pages/apps/onboarding/Onboarding.page'),
                 ),
               },
               {
-                path: 'update-port',
-                id: 'deploy.dashboard.update-port',
+                path: 'new',
+                id: 'deploy.create',
                 ...lazyRouteConfig(() =>
-                  import(
-                    '@/pages/apps/[appId]/dashboard/_components/update-port/UpdateHttpPort.modal'
-                  ),
+                  import('@/pages/apps/create/Create.page'),
                 ),
               },
               {
-                path: 'update-image',
-                id: 'deploy.dashboard.update-image',
+                path: ':appId',
                 ...lazyRouteConfig(() =>
-                  import(
-                    '@/pages/apps/[appId]/dashboard/_components/update-image/UpdateCustomImage.modal'
-                  ),
+                  import('@/pages/apps/[appId]/App.layout'),
                 ),
-              },
-              {
-                path: 'update-scaling',
-                id: 'deploy.dashboard.update-scaling',
-                ...lazyRouteConfig(() =>
-                  import(
-                    '@/pages/apps/[appId]/dashboard/_components/update-scaling/UpdateScaling.modal'
-                  ),
-                ),
-              },
-              {
-                path: 'update-flavor',
-                id: 'deploy.dashboard.update-flavor',
-                ...lazyRouteConfig(() =>
-                  import(
-                    '@/pages/apps/[appId]/dashboard/_components/update-flavor/UpdateFlavor.modal'
-                  ),
-                ),
-              },
-              {
-                path: 'update-docker-command',
-                id: 'deploy.dashboard.update-docker-command',
-                ...lazyRouteConfig(() =>
-                  import(
-                    '@/pages/apps/[appId]/dashboard/_components/update-docker-command/UpdateDockerCommand.modal'
-                  ),
-                ),
+                children: [
+                  {
+                    path: '',
+                    id: 'deploy.app.dashboard',
+                    ...lazyRouteConfig(() =>
+                      import('@/pages/apps/[appId]/dashboard/Dashboard.page'),
+                    ),
+                    children: [
+                      {
+                        path: 'delete',
+                        id: 'deploy.dashboard.delete',
+                        ...lazyRouteConfig(() =>
+                          import(
+                            '@/pages/apps/[appId]/dashboard/delete/Delete.modal'
+                          ),
+                        ),
+                      },
+                      {
+                        path: 'update-port',
+                        id: 'deploy.app.dashboard.update-port',
+                        ...lazyRouteConfig(() =>
+                          import(
+                            '@/pages/apps/[appId]/dashboard/_components/update-port/UpdateHttpPort.modal'
+                          ),
+                        ),
+                      },
+                      {
+                        path: 'update-image',
+                        id: 'deploy.app.dashboard.update-image',
+                        ...lazyRouteConfig(() =>
+                          import(
+                            '@/pages/apps/[appId]/dashboard/_components/update-image/UpdateCustomImage.modal'
+                          ),
+                        ),
+                      },
+                      {
+                        path: 'update-scaling',
+                        id: 'deploy.app.dashboard.update-scaling',
+                        ...lazyRouteConfig(() =>
+                          import(
+                            '@/pages/apps/[appId]/dashboard/_components/update-scaling/UpdateScaling.modal'
+                          ),
+                        ),
+                      },
+                      {
+                        path: 'update-flavor',
+                        id: 'deploy.app.dashboard.update-flavor',
+                        ...lazyRouteConfig(() =>
+                          import(
+                            '@/pages/apps/[appId]/dashboard/_components/update-flavor/UpdateFlavor.modal'
+                          ),
+                        ),
+                      },
+                      {
+                        path: 'update-docker-command',
+                        id: 'deploy.app.dashboard.update-docker-command',
+                        ...lazyRouteConfig(() =>
+                          import(
+                            '@/pages/apps/[appId]/dashboard/_components/update-docker-command/UpdateDockerCommand.modal'
+                          ),
+                        ),
+                      },
+                    ],
+                  },
+                  {
+                    path: 'containers',
+                    id: 'deploy.app.containers',
+                    ...lazyRouteConfig(() =>
+                      import('@/pages/apps/[appId]/containers/Containers.page'),
+                    ),
+                    children: [
+                      {
+                        path: 'data-sync',
+                        id: 'deploy.app.containers.data-sync',
+                        ...lazyRouteConfig(() =>
+                          import(
+                            '@/pages/apps/[appId]/containers/dataSync/DataSync.modal'
+                          ),
+                        ),
+                      },
+                      {
+                        path: 'data-sync/:volumeId?',
+                        id: 'deploy.app.containers.data-sync.volume',
+                        ...lazyRouteConfig(() =>
+                          import(
+                            '@/pages/apps/[appId]/containers/dataSync/DataSync.modal'
+                          ),
+                        ),
+                      },
+                    ],
+                  },
+                  {
+                    path: 'public-git',
+                    id: 'deploy.app.public-git',
+                    ...lazyRouteConfig(() =>
+                      import('@/pages/apps/[appId]/public-git/PublicGit.page'),
+                    ),
+                  },
+                  {
+                    path: 'logs',
+                    id: 'deploy.app.logs',
+                    ...lazyRouteConfig(() =>
+                      import('@/pages/apps/[appId]/logs/Logs.page'),
+                    ),
+                  },
+                ],
               },
             ],
-          },
-          {
-            path: 'containers',
-            id: 'deploy.containers',
-            ...lazyRouteConfig(() =>
-              import('@/pages/apps/[appId]/containers/Containers.page'),
-            ),
-            children: [
-              {
-                path: 'data-sync',
-                id: 'deploy.containers.data-sync',
-                ...lazyRouteConfig(() =>
-                  import(
-                    '@/pages/apps/[appId]/containers/dataSync/DataSync.modal'
-                  ),
-                ),
-              },
-              {
-                path: 'data-sync/:volumeId?',
-                id: 'deploy.containers.data-sync.volume',
-                ...lazyRouteConfig(() =>
-                  import(
-                    '@/pages/apps/[appId]/containers/dataSync/DataSync.modal'
-                  ),
-                ),
-              },
-            ],
-          },
-          {
-            path: 'public-git',
-            id: 'deploy.public-git',
-            ...lazyRouteConfig(() =>
-              import('@/pages/apps/[appId]/public-git/PublicGit.page'),
-            ),
-          },
-          {
-            path: 'logs',
-            id: 'deploy.logs',
-            ...lazyRouteConfig(() =>
-              import('@/pages/apps/[appId]/logs/Logs.page'),
-            ),
           },
         ],
       },
