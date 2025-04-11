@@ -1,8 +1,8 @@
 {
   "key_management_service_create_title": "Order a KMS",
-  "key_management_service_create_subtitle": "Please specify the region where you plan to deploy it. You can create and manage encryption keys and access certificates in this KMS.",
+  "key_management_service_create_subtitle": "Please specify the region where you plan to deploy it. You can then create and manage your own Service Keys and access certificates in this KMS.",
   "key_management_service_create_region_title": "Region",
-  "key_management_service_create_region_description": "The encryption keys and access certificates for this KMS will be securely stored in the designated region. They can be used with any OVHcloud product, no matter the region.",
+  "key_management_service_create_region_description": "This KMS will store its cryptographic objects in the specified region. They can be used with any OVHcloud product, no matter the region.",
   "key_management_service_create_cta_cancel": "Cancel",
   "key_management_service_create_cta_order": "Order",
   "key_management_service_create_order_initiated_title": "The order process for your KMS has been initiated",
