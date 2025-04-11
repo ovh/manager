@@ -32,3 +32,31 @@ export const getallDomService = async (
   const { data } = await v6.get(`/allDom/${serviceName}/serviceInfos`);
   return data;
 };
+
+/**
+ *  : Terminate the domain
+ */
+export const updateAllDomService = async (
+  serviceName: string,
+  payload: { renew: TServiceInfo['renew'] },
+): Promise<TServiceInfo> => {
+  const { data } = await v6.put(`/allDom/${serviceName}/serviceInfos`, payload);
+
+  return data;
+};
+
+export const updateDomainServiceInfo = async (domainName: string) => {
+  const { data: domainServiceInfoId } = await v6.get<number[]>(
+    `/services?resourceName=${domainName}`,
+  );
+
+  const promiseDomainServiceInfoId = domainServiceInfoId.map((id) =>
+    v6
+      .put(`/services/${id}`, {
+        terminationPolicy: 'terminateAtExpirationDate',
+      })
+      .then((res) => res.data),
+  );
+
+  return promiseDomainServiceInfoId;
+};

@@ -8,7 +8,9 @@ import DatagridColumnServiceName from '@/alldoms/components/DatagridColumns/Data
 import { DatagridColumnDate } from '@/alldoms/components/DatagridColumns/DatagridColumnDate';
 import DatagridColumnActionMenu from '@/alldoms/components/DatagridColumns/DatagridColumnActionMenu';
 
-export const useAllDomDatagridColumns = () => {
+export const useAllDomDatagridColumns = (
+  openModal: (serviceInfoDetail: TServiceDetail) => void,
+) => {
   const { t } = useTranslation('allDom');
   return useMemo(
     () => [
@@ -87,6 +89,8 @@ export const useAllDomDatagridColumns = () => {
         cell: (props: TServiceDetail) => (
           <DatagridColumnActionMenu
             serviceId={`${props.serviceInfo.serviceId}`}
+            serviceInfoDetail={props}
+            openModal={openModal}
           />
         ),
         label: '',
