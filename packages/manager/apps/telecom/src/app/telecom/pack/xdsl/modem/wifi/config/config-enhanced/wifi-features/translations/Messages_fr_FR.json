@@ -1,0 +1,6 @@
+{
+  "xdsl_modem_service_wifi_general_config": "Configuration générale",
+  "xdsl_modem_service_wifi_config_error": "Une erreur a eu lieu pendant la mise à jour de la configuration du wifi",
+  "xdsl_modem_service_wifi_mesh": "Mesh",
+  "xdsl_modem_service_wifi_one_ssid": "Fusionner les SSID"
+}

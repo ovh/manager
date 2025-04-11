@@ -1,15 +1,16 @@
 import angular from 'angular';
 import ngOvhTelecomUniverseComponents from '@ovh-ux/ng-ovh-telecom-universe-components';
-import '@uirouter/angularjs';
 import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
 import 'ovh-api-services';
+import wifiFeatures from './wifi-features';
+import radioSettings from './radio-settings';
+import ssidSettings from './ssid-settings';
 
-import routing from './config.routing';
-import legacyWifiConfig from './config-legacy';
-import enhancedWifiConfig from './config-enhanced';
+import component from './config-enhanced.component';
+import service from './config-enhanced.service';
 
-const moduleName = 'ovhManagerTelecomPackConfigWifi';
+const moduleName = 'ovhManagerTelecomPackConfigEnhancedWifi';
 
 angular
   .module(moduleName, [
@@ -17,11 +18,12 @@ angular
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
     'ovh-api-services',
-    'ui.router',
-    legacyWifiConfig,
-    enhancedWifiConfig,
+    wifiFeatures,
+    radioSettings,
+    ssidSettings,
   ])
-  .config(routing)
+  .component('wifiConfigEnhanced', component)
+  .service('wifiConfigEnhancedService', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
