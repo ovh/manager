@@ -49,6 +49,7 @@ import {
 import { getZimbraPlatformListQueryKey } from '@/api/platform';
 import { ResourceStatus } from '@/api/api.type';
 import Loading from '@/components/Loading/Loading';
+import { formatAccountPayload } from '@/api/account/utils';
 
 export default function AddAndEditEmailAccountForm() {
   const { trackClick, trackPage } = useOvhTracking();
@@ -149,25 +150,9 @@ export default function AddAndEditEmailAccountForm() {
       actions: [trackingName, CONFIRM],
     });
 
-    const { account, domain } = data;
-
-    const payload: Record<string, unknown> = {
-      email: `${account}@${domain}`.toLowerCase(),
-    };
-
-    Object.entries(data).forEach(([key, value]) => {
-      if (
-        ![
-          'account',
-          'domain',
-          accountId && data.password === '' ? 'password' : '',
-        ].includes(key)
-      ) {
-        payload[key] = value;
-      }
-    });
-
-    addOrEditEmailAccount(payload as AccountBodyParamsType);
+    addOrEditEmailAccount(
+      formatAccountPayload(data, accountId && data.password === ''),
+    );
   };
 
   const {
