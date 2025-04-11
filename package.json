@@ -27,7 +27,7 @@
   },
   "scripts": {
     "build": "pnpm run build:turbo",
-    "build:turbo": "turbo run build --concurrency=1",
+    "build:turbo": "turbo run build --concurrency=5",
     "dev": "turbo run dev",
     "clean": "lerna clean -y && pnpm run clean:dist && rimraf node_modules",
     "clean:dist": "rimraf \"packages/**/dist\"",
