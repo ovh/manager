@@ -1,5 +1,10 @@
-import { apiClient } from '@ovh-ux/manager-core-api';
+import {
+  FilterComparator,
+  apiClient,
+  fetchIcebergV6,
+} from '@ovh-ux/manager-core-api';
 import { IpTypeEnum } from './ipDetails';
+import { IpObject } from '@/types/ipObject';
 
 export type GetIpListParams = {
   /** Filter the value of campus property (ilike) (alpha) */
@@ -29,3 +34,13 @@ export const getIpListQueryKey = (params: GetIpListParams) => [
  */
 export const getIpList = (params: GetIpListParams) =>
   apiClient.v6.get<string[]>('/ip', { params });
+
+export const getIcebergIpList = (params: GetIpListParams) =>
+  fetchIcebergV6<IpObject>({
+    route: '/ip',
+    filters: Object.entries(params).map(([key, value]) => ({
+      key,
+      value,
+      comparator: FilterComparator.IsEqual,
+    })),
+  });

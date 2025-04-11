@@ -35,7 +35,7 @@ networkUniverse.children = [
     features: ['vrack:bare-metal-cloud'],
   },
   {
-    id: 'ip',
+    id: 'ips',
     idAttr: 'ip-link',
     universe: networkUniverse.id,
     translation: 'sidebar_ip',
