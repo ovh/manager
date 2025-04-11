@@ -11,5 +11,6 @@
   "ai_endpoints_guide2Description": "Poznaj aktualne funkcje, możliwości i ograniczenia AI Endpoints",
   "ai_endpoints_tutoCategory": "Tutoriale",
   "ai_endpoints_guide3Title": "Przykłady zastosowania AI Endpoints",
-  "ai_endpoints_guide3Description": "Sprawdź w naszych tutorialach, jak wzbogacić aplikacje za pomocą AI Endpoints. Dowiedz się, jak tworzyć chatboty, integrować LLM lub narzędzia w celu uzyskania wydajnych rozwiązań AI."
+  "ai_endpoints_guide3Description": "Sprawdź w naszych tutorialach, jak wzbogacić aplikacje za pomocą AI Endpoints. Dowiedz się, jak tworzyć chatboty, integrować LLM lub narzędzia w celu uzyskania wydajnych rozwiązań AI.",
+  "ai_endpoints_create_API_key": "Wygeneruj mój pierwszy klucz dostępu"
 }
