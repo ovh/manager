@@ -12,11 +12,6 @@ export default function DatagridColumnActionMenu({
   serviceId,
 }: DatagridColumnActionMenuProps) {
   const { t } = useTranslation('allDom');
-  const { data: url } = useNavigationGetUrl([
-    'cgi-bin',
-    `/order/renew.cgi?domainChooser=${serviceId}`,
-    {},
-  ]);
   return (
     <ActionMenu
       id={serviceId}
@@ -26,8 +21,9 @@ export default function DatagridColumnActionMenu({
         {
           id: 1,
           label: t('allDom_table_action_renew'),
-          href: url as string,
+          href: `https://www.ovh.com/cgi-bin/order/renew.cgi?domainChooser=${serviceId}`,
           target: '_blank',
+          'data-testid': 'renew-button',
         },
       ]}
     />
