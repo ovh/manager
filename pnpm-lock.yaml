@@ -2120,6 +2120,9 @@ importers:
       ts-jest:
         specifier: ^29.1.1
         version: 29.1.2(@babel/core@7.26.9)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.26.9))(jest@29.7.0(@types/node@20.14.10)(babel-plugin-macros@3.1.0)(node-notifier@8.0.2)(ts-node@10.9.2(@types/node@20.14.10)(typescript@5.8.2)))(typescript@5.8.2)
+      typescript:
+        specifier: ^5.5.4
+        version: 5.8.2
 
   packages/manager/apps/cda:
     dependencies:
@@ -7217,6 +7220,9 @@ importers:
       tailwindcss:
         specifier: ^3.4.4
         version: 3.4.14(ts-node@10.9.2(@types/node@20.14.10)(typescript@5.8.2))
+      typescript:
+        specifier: ^5.5.4
+        version: 5.8.2
       vite:
         specifier: ^5.4.12
         version: 5.4.14(@types/node@20.14.10)(less@3.13.1)(sass@1.56.1)(sugarss@2.0.0)(terser@5.39.0)
@@ -7821,6 +7827,9 @@ importers:
       tailwindcss:
         specifier: ^3.4.4
         version: 3.4.14(ts-node@10.9.2(@types/node@20.14.10)(typescript@5.8.2))
+      typescript:
+        specifier: ^5.5.4
+        version: 5.8.2
       vite:
         specifier: ^5.4.12
         version: 5.4.14(@types/node@20.14.10)(less@3.13.1)(sass@1.56.1)(sugarss@2.0.0)(terser@5.39.0)
@@ -8138,6 +8147,9 @@ importers:
       tailwindcss:
         specifier: ^3.4.4
         version: 3.4.14(ts-node@10.9.2(@types/node@20.14.10)(typescript@5.8.2))
+      typescript:
+        specifier: ^5.5.4
+        version: 5.8.2
       vite:
         specifier: ^5.4.12
         version: 5.4.14(@types/node@20.14.10)(less@3.13.1)(sass@1.56.1)(sugarss@2.0.0)(terser@5.39.0)
