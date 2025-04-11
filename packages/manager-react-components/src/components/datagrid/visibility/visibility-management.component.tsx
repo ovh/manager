@@ -32,11 +32,11 @@ export function VisibilityManagement({
 }: Readonly<ColumnsVisibilityProps>) {
   const { t } = useTranslation('datagrid');
   const visibilityPopoverRef = useRef(null);
-  const numberVisibleColumns = columnsVisibility?.filter((col) =>
-    col.isVisible(),
+  const numberVisibleColumns = columnsVisibility?.filter(
+    (col) => col.isVisible() && col.label !== '',
   ).length;
-  const disabledVisibleColumns = columnsVisibility?.filter(
-    (col) => col.enableHiding === false,
+  const columnsWithoutLabel = columnsVisibility?.filter(
+    ({ label }) => label === '',
   ).length;
 
   return (
@@ -50,8 +50,8 @@ export function VisibilityManagement({
         icon={ODS_ICON_NAME.columns}
         aria-label={t('common_topbar_columns')}
         label={`${t('common_topbar_columns')} ${
-          numberVisibleColumns < columnsVisibility.length
-            ? `(${numberVisibleColumns - disabledVisibleColumns})`
+          numberVisibleColumns < columnsVisibility.length - columnsWithoutLabel
+            ? `(${numberVisibleColumns})`
             : ''
         }`}
       />
