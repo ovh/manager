@@ -42,13 +42,15 @@ export default /* @ngInject */ function UserAccountAgreementsService(
     return response;
   }
 
-  this.getList = function getList(count, offset) {
+  this.getList = function getList(count, offset, state, sorting) {
     return $http
       .get('/sws/agreements', {
         cache: userAgreementsCache,
         params: {
           count,
           offset,
+          ...(state ? { agreed: state } : {}),
+          ...(sorting ? { sortOrder: sorting.reverse ? 'DESC' : 'ASC' } : {}),
         },
         serviceType: 'aapi',
       })
@@ -104,7 +106,6 @@ export default /* @ngInject */ function UserAccountAgreementsService(
       .get('/sws/agreements', {
         cache: userAgreementsCache,
         params: {
-          count: 0,
           offset: 0,
           agreed: 'todo',
         },
