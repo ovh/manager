@@ -20,8 +20,7 @@
       "conventionalCommits": true
     },
     "version": {
-      "allowBranch": "master",
-      "ignoreChanges": ["packages/manager-react-components/**"]
+      "allowBranch": "maintenance/manager-pci-common-v0.x"
     }
   }
 }
