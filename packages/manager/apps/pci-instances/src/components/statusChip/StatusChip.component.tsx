@@ -6,6 +6,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { useMemo } from 'react';
+import { ODS_CHIP_SIZE } from '@ovhcloud/ods-components';
 import { TInstanceStatus } from '@/types/instance/entity.type';
 
 const colorBySeverityStatus = {
@@ -32,10 +33,11 @@ const StatusChip = ({ status }: { status: TInstanceStatus }) => {
   const chip = useMemo(
     () => (
       <OsdsChip
+        size={ODS_CHIP_SIZE.sm}
         inline
         color={colorBySeverityStatus[severity]}
         data-testid="status-chip"
-        className="cursor-default"
+        className="cursor-default rounded-[--ods-border-radius-sm] h-[26px]"
       >
         {t(`pci_instances_status_${label.toLowerCase()}`)}
       </OsdsChip>
@@ -46,7 +48,7 @@ const StatusChip = ({ status }: { status: TInstanceStatus }) => {
   return isTooltipDisplayed ? (
     <OsdsTooltip>
       {chip}
-      <OsdsTooltipContent slot="tooltip-content">
+      <OsdsTooltipContent slot="tooltip-content" className="break-keep">
         {t(tooltipContentI18nKey)}
       </OsdsTooltipContent>
     </OsdsTooltip>
