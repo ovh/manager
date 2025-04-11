@@ -13,7 +13,7 @@ import {
   mockOfficeLicenseServiceInfos,
   mockUsageStatistics,
   parentTenantMock,
-} from '@/api/_mock_';
+} from '@/data/api/_mock_';
 
 const mocksAxios = vi.hoisted(() => ({
   get: vi.fn(),
@@ -52,8 +52,8 @@ vi.mock('@/hooks', async (importActual) => {
   };
 });
 
-vi.mock('@/api/serviceInfos', async (importActual) => {
-  const actual = await importActual<typeof import('@/api/serviceInfos')>();
+vi.mock('@/data/api/serviceInfos', async (importActual) => {
+  const actual = await importActual<typeof import('@/data/api/serviceInfos')>();
   return {
     ...actual,
     getOfficeLicenseServiceInfos: vi.fn(() =>
@@ -61,9 +61,9 @@ vi.mock('@/api/serviceInfos', async (importActual) => {
     ),
   };
 });
-vi.mock('@/api/license', async (importActual) => {
+vi.mock('@/data/api/license', async (importActual) => {
   return {
-    ...(await importActual<typeof import('@/api/license')>()),
+    ...(await importActual<typeof import('@/data/api/license')>()),
     getOfficeGlobalLicenses: vi.fn(() => Promise.resolve(licensesMock)),
     getOfficeLicenses: vi.fn(() => Promise.resolve(licensesMock)),
     getOfficeLicenseDetails: vi.fn((serviceName) =>
@@ -88,9 +88,9 @@ vi.mock('@/api/license', async (importActual) => {
   };
 });
 
-vi.mock('@/api/users', async (importActual) => {
+vi.mock('@/data/api/users', async (importActual) => {
   return {
-    ...(await importActual<typeof import('@/api/users')>()),
+    ...(await importActual<typeof import('@/data/api/users')>()),
     deleteOfficeUser: vi.fn(() => Promise.resolve(tenantPendingTask)),
     getOfficeUsers: vi.fn(() => Promise.resolve(usersMock)),
     getOfficeUserDetail: vi.fn((_, activationEmail) =>
@@ -104,25 +104,25 @@ vi.mock('@/api/users', async (importActual) => {
     postOrderUsers: vi.fn(() => Promise.resolve(null)),
   };
 });
-vi.mock('@/api/order', async (importActual) => {
+vi.mock('@/data/api/order', async (importActual) => {
   return {
-    ...(await importActual<typeof import('@/api/order')>()),
+    ...(await importActual<typeof import('@/data/api/order')>()),
     getOrderCatalog: vi.fn(() => {
       return Promise.resolve(orderCatalogMock);
     }),
   };
 });
 
-vi.mock('@/api/price', async (importActual) => {
+vi.mock('@/data/api/price', async (importActual) => {
   return {
-    ...(await importActual<typeof import('@/api/price')>()),
+    ...(await importActual<typeof import('@/data/api/price')>()),
     getOfficePrice: vi.fn(() => Promise.resolve(priceMock)),
   };
 });
 
-vi.mock('@/api/usageStatistics', async (importActual) => {
+vi.mock('@/data/api/usageStatistics', async (importActual) => {
   return {
-    ...(await importActual<typeof import('@/api/usageStatistics')>()),
+    ...(await importActual<typeof import('@/data/api/usageStatistics')>()),
     getOfficeUsageStatistics: vi.fn(() => Promise.resolve(mockUsageStatistics)),
     getOfficeTenantUsageStatistics: vi.fn(() =>
       Promise.resolve(mockUsageStatistics),
@@ -130,9 +130,9 @@ vi.mock('@/api/usageStatistics', async (importActual) => {
   };
 });
 
-vi.mock('@/api/parentTenant', async (importActual) => {
+vi.mock('@/data/api/parentTenant', async (importActual) => {
   return {
-    ...(await importActual<typeof import('@/api/parentTenant')>()),
+    ...(await importActual<typeof import('@/data/api/parentTenant')>()),
     getParentTenant: vi.fn(() => {
       return Promise.resolve(parentTenantMock);
     }),

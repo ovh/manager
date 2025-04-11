@@ -18,10 +18,11 @@ import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { CTAS } from '@/guides.constants';
 import { urls } from '@/routes/routes.constants';
-import { LicenseType } from '@/api/license';
-import { useOfficeLicenses, useGenerateUrl } from '@/hooks';
-import Loading from '@/components/Loading/Loading';
-import { OfficeServiceState } from '@/components/layout-helpers/Dashboard/OfficeServiceState.component';
+import { LicenseType } from '@/data/api/license';
+import { useGenerateUrl } from '@/hooks';
+import { useLicenses } from '@/data/hooks';
+import Loading from '@/components/loading/Loading.component';
+import { OfficeServiceState } from '@/components/officeServiceState/OfficeServiceState.component';
 
 const columns: DatagridColumn<LicenseType>[] = [
   {
@@ -62,7 +63,7 @@ const columns: DatagridColumn<LicenseType>[] = [
 
 export default function Licenses() {
   const { t } = useTranslation(['licenses', 'common']);
-  const { data, isLoading } = useOfficeLicenses();
+  const { data, isLoading } = useLicenses();
 
   const { sorting, setSorting } = useDatagridSearchParams();
 
