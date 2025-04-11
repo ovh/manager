@@ -30,7 +30,7 @@ describe('Delete app modal', () => {
       wrapper: RouterWithQueryClientWrapper,
     });
     await waitFor(() => {
-      expect(screen.queryByTestId('delete-app-modal')).toBeInTheDocument();
+      expect(screen.queryByTestId('delete-app-modal')).toBeTruthy();
     });
   });
 

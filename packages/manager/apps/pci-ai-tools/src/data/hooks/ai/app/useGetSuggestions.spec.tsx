@@ -25,7 +25,7 @@ describe('useGetSuggestions', () => {
     await waitFor(() => {
       expect(result.current.isSuccess).toBe(true);
       expect(result.current.data).toEqual(mockedSuggestionsForApp);
-      expect(suggestionApi.getSuggestions).toHaveBeenCalledWith();
+      expect(suggestionApi.getSuggestions).toHaveBeenCalledWith({ projectId });
     });
   });
 });

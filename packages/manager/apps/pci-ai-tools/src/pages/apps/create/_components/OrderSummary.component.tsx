@@ -9,11 +9,10 @@ import {
   MonitorCheck,
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { Skeleton } from '@datatr-ux/uxlib';
+import { Button, Skeleton } from '@datatr-ux/uxlib';
 import { bytesConverter } from '@/lib/bytesHelper';
 import ai from '@/types/AI';
 import { OrderVolumes, Scaling } from '@/types/orderFunnel';
-import LinkButton from '@/components/link-button/LinkButton.component';
 
 interface OrderSummaryProps {
   order: {
@@ -33,18 +32,23 @@ interface OrderSummaryProps {
   };
   onSectionClicked?: (target: string) => void;
 }
+
+const buttonClassName =
+  'p-0 bg-transparent hover:bg-transparent font-bold text-primary underline-offset-4 hover:underline';
+
 const NameDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
   const { t } = useTranslation('ai-tools/apps/create');
   return (
     <div className="flex flex-col gap-2">
       <div className="flex items-center gap-2">
-        <LinkButton
+        <Button
           data-testid="name-section-button"
           type="button"
+          className={buttonClassName}
           onClick={() => onSectionClicked('name')}
         >
           {t('summaryFieldNameLabel')}
-        </LinkButton>
+        </Button>
         <span>{order.appName}</span>
       </div>
     </div>
@@ -56,13 +60,14 @@ const RegionDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
   const { t: tRegions } = useTranslation('regions');
   return (
     <div className="flex items-center gap-2">
-      <LinkButton
+      <Button
         data-testid="region-section-button"
         type="button"
+        className={buttonClassName}
         onClick={() => onSectionClicked('region')}
       >
         {t('summaryFieldRegionLabel')}
-      </LinkButton>
+      </Button>
       {order.region ? (
         <span>{tRegions(`region_${order.region.id}`)}</span>
       ) : (
@@ -77,13 +82,14 @@ const FlavorDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
   return (
     <div className="flex flex-col gap-2">
       <div className="flex items-center gap-2">
-        <LinkButton
+        <Button
           data-testid="flavor-section-button"
           type="button"
+          className={buttonClassName}
           onClick={() => onSectionClicked('flavor')}
         >
           {t('summaryFieldFlavorLabel')}
-        </LinkButton>
+        </Button>
         {order.flavor ? (
           <span className="capitalize">{`${order.resourcesQuantity} ${order.flavor.id}`}</span>
         ) : (
@@ -152,13 +158,14 @@ const ImageDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
     <div className="flex flex-col gap-2">
       {order.image && (
         <div className="flex items-center gap-2">
-          <LinkButton
+          <Button
             data-testid="image-section-button"
             type="button"
+            className={buttonClassName}
             onClick={() => onSectionClicked('image')}
           >
             {t('summaryFieldImageLabel')}
-          </LinkButton>
+          </Button>
 
           <>
             <span>{order.image}</span>
@@ -180,13 +187,14 @@ const ScalingStrategy = ({ order, onSectionClicked }: OrderSummaryProps) => {
   return (
     <div className="flex flex-col gap-2">
       <div className="flex items-center gap-2">
-        <LinkButton
+        <Button
           data-testid="scaling-section-button"
           type="button"
+          className={buttonClassName}
           onClick={() => onSectionClicked('scaling')}
         >
           {t('summaryFieldScalingLabel')}
-        </LinkButton>
+        </Button>
       </div>
       {order.scaling.autoScaling ? (
         <div>
@@ -246,13 +254,14 @@ const HttpPortDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
   return (
     <div className="flex flex-col gap-2">
       <div className="flex items-center gap-2">
-        <LinkButton
+        <Button
           data-testid="port-http-section-button"
           type="button"
+          className={buttonClassName}
           onClick={() => onSectionClicked('httpPort')}
         >
           {t('summaryFieldHttpPortLabel')}
-        </LinkButton>
+        </Button>
         <span>{order.httpPort}</span>
       </div>
     </div>
@@ -264,13 +273,14 @@ const PrivacyDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
   return (
     <div className="flex flex-col gap-2">
       <div className="flex items-center gap-2">
-        <LinkButton
+        <Button
           data-testid="access-section-button"
           type="button"
+          className={buttonClassName}
           onClick={() => onSectionClicked('access')}
         >
           {t('summaryFieldPrivacyLabel')}
-        </LinkButton>
+        </Button>
         {order.unsecureHttp ? (
           <div className="flex flex-row gap-2 items-center">
             <span>{t('summaryFieldPublicLabel')}</span>
@@ -295,13 +305,14 @@ const DockerCommandDetails = ({
   return (
     <div className="flex flex-col gap-2">
       <div className="flex items-center gap-2">
-        <LinkButton
+        <Button
           data-testid="dockerCommand-section-button"
           type="button"
+          className={buttonClassName}
           onClick={() => onSectionClicked('dockerCommand')}
         >
           {t('fieldDockerCommandLabel')}
-        </LinkButton>
+        </Button>
       </div>
       <div className="flex items-center pl-4 gap-2">
         <ChevronRightSquare className="size-4" />
@@ -321,13 +332,14 @@ const VolumesDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
   return (
     <div className="flex flex-col gap-2">
       <div className="flex items-center gap-2">
-        <LinkButton
+        <Button
           data-testid="volumes-section-button"
           type="button"
+          className={buttonClassName}
           onClick={() => onSectionClicked('volumes')}
         >
           {t('summaryFieldVolumesLabel')}
-        </LinkButton>
+        </Button>
         <span>
           {t(`summaryFieldVolumes`, {
             count: order.volumes.length,
@@ -343,13 +355,14 @@ const LabelsDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
   const { t } = useTranslation('ai-tools/apps/create');
   return (
     <div className="flex items-center gap-2">
-      <LinkButton
+      <Button
         data-testid="labels-section-button"
         type="button"
+        className={buttonClassName}
         onClick={() => onSectionClicked('labels')}
       >
         {t('summaryFieldLabelsLabel')}
-      </LinkButton>
+      </Button>
       <span>
         {t(`summaryFieldLabels`, {
           count: Object.keys(order.labels).length,
@@ -365,13 +378,14 @@ const ProbeDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
   return (
     <div className="flex flex-col gap-2">
       <div className="flex items-center gap-2">
-        <LinkButton
+        <Button
           data-testid="probe-section-button"
           type="button"
+          className={buttonClassName}
           onClick={() => onSectionClicked('probe')}
         >
           {t('fieldConfigurationProbeLabel')}
-        </LinkButton>
+        </Button>
         <MonitorCheck className="size-4" />
       </div>
       <div className="flex items-center pl-4 gap-2">

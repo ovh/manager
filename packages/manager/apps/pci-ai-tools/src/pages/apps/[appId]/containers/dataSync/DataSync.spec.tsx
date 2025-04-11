@@ -90,19 +90,15 @@ describe('Data Sync', () => {
   it('renders DataSync modal', async () => {
     vi.mocked(useParams).mockReturnValue({ volumeId: 'volumeId' });
     render(<DataSync />, { wrapper: RouterWithQueryClientWrapper });
-    expect(screen.getByTestId('datasync-modal')).toBeInTheDocument();
-    expect(
-      screen.getByText('dataSyncMountPathAlertDescription'),
-    ).toBeInTheDocument();
+    expect(screen.getByTestId('datasync-modal')).toBeTruthy();
+    expect(screen.getByText('dataSyncMountPathAlertDescription')).toBeTruthy();
   });
 
   it('renders Datasync modal', async () => {
     vi.mocked(useParams).mockReturnValue({});
     render(<DataSync />, { wrapper: RouterWithQueryClientWrapper });
-    expect(screen.getByTestId('datasync-modal')).toBeInTheDocument();
-    expect(
-      screen.getByText('dataSyncGlobalAlertDescription'),
-    ).toBeInTheDocument();
+    expect(screen.getByTestId('datasync-modal')).toBeTruthy();
+    expect(screen.getByText('dataSyncGlobalAlertDescription')).toBeTruthy();
   });
 
   it('trigger onError on API Error', async () => {
@@ -127,7 +123,7 @@ describe('Data Sync', () => {
   it('trigger onSuccess on summit click', async () => {
     vi.mocked(useParams).mockReturnValue({ volumeId: 'volumeId' });
     render(<DataSync />, { wrapper: RouterWithQueryClientWrapper });
-    expect(screen.getByTestId('datasync-modal')).toBeInTheDocument();
+    expect(screen.getByTestId('datasync-modal')).toBeTruthy();
     act(() => {
       fireEvent.click(screen.getByTestId('datasync-submit-button'));
     });
@@ -143,7 +139,7 @@ describe('Data Sync', () => {
   it('change Datasync type and trigger onSuccess on summit click', async () => {
     vi.mocked(useParams).mockReturnValue({});
     render(<DataSync />, { wrapper: RouterWithQueryClientWrapper });
-    expect(screen.getByTestId('datasync-modal')).toBeInTheDocument();
+    expect(screen.getByTestId('datasync-modal')).toBeTruthy();
 
     // Select Push option
     await handleSelectOption(
