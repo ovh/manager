@@ -10,18 +10,16 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import {
+  Input,
+  Button,
   DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { useToast } from '@/components/ui/use-toast';
+  useToast,
+} from '@datatr-ux/uxlib';
 import { useAddDatabase } from '@/hooks/api/database/database/useAddDatabase.hook';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import { useServiceData } from '../../Service.context';
@@ -111,7 +109,7 @@ const AddDatabase = () => {
               <DialogClose asChild>
                 <Button
                   type="button"
-                  variant="outline"
+                  mode="outline"
                   data-testid="add-database-cancel-button"
                 >
                   {t('addDatabaseButtonCancel')}

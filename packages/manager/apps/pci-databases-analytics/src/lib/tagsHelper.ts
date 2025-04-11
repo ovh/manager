@@ -1,4 +1,4 @@
-import { BadgeProps } from '@/components/ui/badge';
+import { BadgeProps } from '@datatr-ux/uxlib';
 import * as database from '@/types/cloud/project/database';
 
 export const getTagVariant = (
@@ -11,7 +11,7 @@ export const getTagVariant = (
     case 'soonDeprecated':
       return 'warning';
     default:
-      return 'info';
+      return 'neutral';
   }
 };
 

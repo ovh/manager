@@ -1,17 +1,20 @@
 import { useState } from 'react';
 import { Download, Files } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { Button } from '@/components/ui/button';
 import {
+  Button,
+  Table,
+  TableBody,
+  TableCell,
+  TableRow,
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
-import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';
+  useToast,
+} from '@datatr-ux/uxlib';
 import * as database from '@/types/cloud/project/database';
-import { useToast } from '@/components/ui/use-toast';
 import { useServiceData } from '../../Service.context';
 import { useGetCertificate } from '@/hooks/api/database/certificate/useGetCertificate.hook';
 import useDownload from '@/hooks/useDownload';
@@ -87,8 +90,7 @@ const ConnectionDetails = ({ endpoints }: ConnectionDetailsProps) => {
                 <Button
                   data-testid="dashboard-connection-detail-domain-button"
                   type="button"
-                  size="table"
-                  variant="table"
+                  className="text-text p-0 bg-transparent hover:bg-primary-100 hover:text-primary-700 hover:font-semibold h-4 w-4 my-auto"
                   onClick={() => {
                     navigator.clipboard.writeText(selectedEndpoint.domain);
                     toast.toast({
@@ -142,8 +144,7 @@ const ConnectionDetails = ({ endpoints }: ConnectionDetailsProps) => {
                 <Button
                   data-testid="dashboard-connection-detail-uri-button"
                   type="button"
-                  size="table"
-                  variant="table"
+                  className="text-text p-0 bg-transparent hover:bg-primary-100 hover:text-primary-700 hover:font-semibold h-4 w-4 my-auto"
                   onClick={() => {
                     navigator.clipboard.writeText(selectedEndpoint.uri);
                     toast.toast({
@@ -174,8 +175,7 @@ const ConnectionDetails = ({ endpoints }: ConnectionDetailsProps) => {
                   <Button
                     data-testid="connection-details-copy-certificate-action"
                     type="button"
-                    size="table"
-                    variant="table"
+                    className="text-text p-0 bg-transparent hover:bg-primary-100 hover:text-primary-700 hover:font-semibold h-4 w-4 my-auto"
                     onClick={() => {
                       navigator.clipboard.writeText(certificateQuery.data.ca);
                       toast.toast({
@@ -188,8 +188,7 @@ const ConnectionDetails = ({ endpoints }: ConnectionDetailsProps) => {
                   <Button
                     data-testid="connection-details-download-ca-action"
                     type="button"
-                    size="table"
-                    variant="table"
+                    className="text-text p-0 bg-transparent hover:bg-primary-100 hover:text-primary-700 hover:font-semibold h-4 w-4 my-auto"
                     onClick={() => {
                       download(certificateQuery.data.ca, 'ca.pem');
                       toast.toast({

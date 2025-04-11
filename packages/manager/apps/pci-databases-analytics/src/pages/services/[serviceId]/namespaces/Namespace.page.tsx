@@ -3,8 +3,8 @@ import { ColumnDef } from '@tanstack/react-table';
 
 import { Plus } from 'lucide-react';
 import { Outlet, useNavigate } from 'react-router-dom';
+import { Button } from '@datatr-ux/uxlib';
 import * as database from '@/types/cloud/project/database';
-import { Button } from '@/components/ui/button';
 
 import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import { useServiceData } from '../Service.context';
@@ -65,7 +65,7 @@ const Namespaces = () => {
               database.service.capability.StateEnum.disabled ||
             namespacesQuery.data?.length >= NAMESPACES_CONFIG.maxNamespaceNumber
           }
-          variant={'outline'}
+          mode={'outline'}
           size="sm"
           className="text-base"
           onClick={() => navigate('./add')}
