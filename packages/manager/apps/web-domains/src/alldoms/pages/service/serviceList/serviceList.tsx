@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Breadcrumb,
@@ -7,15 +7,19 @@ import {
   useResourcesIcebergV6,
   ErrorBanner,
 } from '@ovh-ux/manager-react-components';
+import { OdsModal, OdsText } from '@ovhcloud/ods-components/react';
+import { ODS_MODAL_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import Loading from '@/alldoms/components/Loading/Loading';
 
 import appConfig from '@/web-domains.config';
 import { useAllDomDatagridColumns } from '@/alldoms/hooks/useAllDomDatagridColumns';
 import { useGetDatagridServiceInfoList } from '@/alldoms/hooks/data/useDatagridServiceInfoList';
 import { TServiceProperty } from '@/alldoms/types';
+import Modal from '@/alldoms/components/Modal/Modal';
 
 export default function ServiceList() {
   const { t } = useTranslation(['allDom', 'web-domains/error']);
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
   const {
     flattenData: allDomList,
     isError,
@@ -33,6 +37,9 @@ export default function ServiceList() {
   const { serviceInfoList, listLoading } = useGetDatagridServiceInfoList({
     allDomList,
   });
+
+  const openModal = () => {};
+
   const columns = useAllDomDatagridColumns();
   const header = {
     title: t('title'),
@@ -60,6 +67,7 @@ export default function ServiceList() {
       }
       header={header}
     >
+      <Modal />
       <React.Suspense>
         <div data-testid="datagrid">
           <Datagrid
