@@ -19,6 +19,18 @@ export const RECOMMIT_IMPRESSION_TRACKING_DATA = {
   variant: '[recommit]',
 };
 
+export const VOLUME_TRACKING_PREFIX =
+  'Storage_backup::storage_backup::netapp::';
+
+export const VOLUME_TRACKING_CONTEXT = {
+  page: {
+    name: `${VOLUME_TRACKING_PREFIX}netapp::listing::volumes`,
+  },
+  page_theme: 'Storage_backup',
+  page_category: 'listing',
+  level2: 130,
+};
+
 export const NETWORK_STATUS = {
   TO_CONFIGURE: 'to_configure',
   ASSOCIATING: 'associating',
