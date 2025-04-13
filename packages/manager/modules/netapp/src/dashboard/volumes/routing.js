@@ -1,3 +1,5 @@
+import { VOLUME_TRACKING_PREFIX, VOLUME_TRACKING_CONTEXT } from '../constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('netapp.dashboard.volumes', {
     url: '/volumes',
@@ -57,8 +59,12 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
-      goToCreateVolume: /* @ngInject */ ($state, trackClick) => () => {
-        trackClick('create-volume');
+      goToCreateVolume: /* @ngInject */ ($state, atInternet) => () => {
+        atInternet.trackClick({
+          name: `${VOLUME_TRACKING_PREFIX}page::button::add-volume`,
+          type: 'action',
+          ...VOLUME_TRACKING_CONTEXT,
+        });
         return $state.go('netapp.dashboard.volumes.create');
       },
       goToRestoreSnapshot: /* @ngInject */ (
@@ -163,6 +169,15 @@ export default /* @ngInject */ ($stateProvider) => {
         $translate.instant('netapp_volumes_breadcrumb'),
       totalVolumesStorage: /* @ngInject */ (volumes) =>
         volumes.reduce((sum, { size }) => sum + size, 0),
+    },
+    atInternet: {
+      ignore: true,
+    },
+    onEnter: /* @ngInject */ (atInternet) => {
+      atInternet.trackPage({
+        name: `${VOLUME_TRACKING_PREFIX}netapp::listing::volumes`,
+        ...VOLUME_TRACKING_CONTEXT,
+      });
     },
   });
 };
