@@ -27,10 +27,3 @@ export const useDomainArgument = (id: number, argumentType: string) => {
     queryFn: () => getmeTaskDomainArgument(id, argumentType),
   });
 };
-
-export const useNicList = (id: number) => {
-  return useQuery<string[]>({
-    queryKey: [id],
-    queryFn: () => getmeTaskDomainArgumentNames(id),
-  });
-};
