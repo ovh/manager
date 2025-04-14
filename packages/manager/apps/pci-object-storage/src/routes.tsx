@@ -16,6 +16,7 @@ export const ROUTE_PATHS = {
   USER_IMPORT_POLICY: 'import-policy',
   OBJECTS: `/pci/projects/:projectId/storages/objects/:storageId`,
   ADD_OBJECT: 'new',
+  OBJECT_VERSIONS: `/pci/projects/:projectId/storages/objects/:storageId/:objectName/versions`,
   DELETE_OBJECT: `:objectName/delete`,
   ENABLE_VERSIONING: 'enableVersioning',
   ENABLE_ENCRYPTION: 'enableEncryption',
@@ -32,6 +33,10 @@ const ObjectPage = lazy(() =>
 );
 const DeleteObjectPage = lazy(() =>
   import('@/pages/objects/container/object/delete/Delete.page'),
+);
+
+const ObjectVersionsPage = lazy(() =>
+  import('@/pages/objects/container/object/versions/ShowVersions.page'),
 );
 const ContainerNewPage = lazy(() =>
   import('@/pages/objects/container/new/New.page'),
@@ -128,6 +133,9 @@ export default (
         Component={EnableEncryptiongPage}
       />
       <Route path={ROUTE_PATHS.ADD_OBJECT} Component={AddObjectPage} />
+    </Route>
+    <Route path={ROUTE_PATHS.OBJECT_VERSIONS} Component={ObjectVersionsPage}>
+      <Route path={ROUTE_PATHS.DELETE_OBJECT} Component={DeleteObjectPage} />
     </Route>
     <Route path="" element={<>Page not found</>}></Route>
   </Route>
