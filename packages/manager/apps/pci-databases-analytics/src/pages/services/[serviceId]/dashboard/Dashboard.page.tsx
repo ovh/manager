@@ -37,6 +37,7 @@ import { useGetVrack } from '@/hooks/api/network/useGetVrack.hook';
 import { useGetMetrics } from '@/hooks/api/database/metric/useGetMetrics.hook';
 import { useGetServiceSubnet } from '@/hooks/api/network/useGetServiceSubnet.hook';
 import RoadmapChangelog from '@/components/roadmap-changelog/RoadmapChangelog.component';
+import A from '@/components/links/A.component';
 
 interface MetricTile {
   name: string;
@@ -52,7 +53,7 @@ const Dashboard = () => {
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/dashboard',
   );
-
+  const supportLink = 'https://help.ovhcloud.com/csm?id=csm_get_help';
   const metricsToDispplay: MetricTile[] = useMemo(
     () =>
       metricsQuery.isSuccess
@@ -259,6 +260,17 @@ const Dashboard = () => {
               </Button>
             </div>
             <div
+              data-testid="dashboard-support-link"
+              className="flex flex-row gap-1 mt-2"
+            >
+              <A href={supportLink} target="_blank" rel="noopener noreferrer">
+                <div className="inline-flex items-center gap-2">
+                  <span>{t('supportLink')}</span>
+                  <ArrowRight className="w-4 h-4 ml-1 mt-1 text-primary" />
+                </div>
+              </A>
+            </div>
+            <div
               data-testid="dashboard-billing-link"
               className="flex flex-row gap-1 mt-3"
             >
@@ -267,15 +279,6 @@ const Dashboard = () => {
                 path={`#/pci/projects/${projectId}/billing`}
               >
                 {t('billingLink')}
-              </OvhLink>
-              <ArrowRight className="w-4 h-4 ml-1 mt-1 text-primary" />
-            </div>
-            <div
-              data-testid="dashboard-support-link"
-              className="flex flex-row gap-1 mt-2"
-            >
-              <OvhLink application="dedicated" path={`#/support/tickets/new`}>
-                {t('supportLink')}
               </OvhLink>
               <ArrowRight className="w-4 h-4 ml-1 mt-1 text-primary" />
             </div>
