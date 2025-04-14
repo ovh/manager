@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import isDate from 'lodash.isdate';
-import {
+import apiClient, {
   IcebergFetchParamsV6,
   fetchIcebergV6,
   applyFilters,
@@ -75,6 +75,13 @@ function applySearch(items, filters) {
  */
 export const getResourcesV6 = fetchIcebergV6;
 
+const getV6 = async (route: string) => {
+  const data = await apiClient.v6.get(route);
+  return {
+    data: data.data.resources,
+  };
+};
+
 export function useResourcesV6<T = unknown>({
   route,
   queryKey,
@@ -85,9 +92,11 @@ export function useResourcesV6<T = unknown>({
   const [searchFilter, setSearchFilter] = useState<any>(null);
   const { data, isError, isLoading, error, status } = useQuery({
     queryKey: [queryKey],
-    queryFn: () => fetchIcebergV6<T>({ route }),
+    // queryFn: () => fetchIcebergV6<T>({ route }),
+    queryFn: () => getV6(route),
     retry: false,
   });
+
   const [sorting, setSorting] = useState<ColumnSort>();
   const [pageIndex, setPageIndex] = useState(0);
   const [totalCount, setTotalCount] = useState(0);
