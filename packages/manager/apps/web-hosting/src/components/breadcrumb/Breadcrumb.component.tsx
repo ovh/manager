@@ -6,6 +6,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { ODS_ICON_NAME, ODS_LINK_COLOR } from '@ovhcloud/ods-components';
+import { urls } from '@/routes/routes.constants';
 
 export type BreadcrumbItem = {
   label?: string;
@@ -18,6 +19,11 @@ export const Breadcrumb: React.FC<{ namespace?: string | string[] }> = (
 ) => {
   const { t } = useTranslation(namespace);
   const matches = useMatches();
+
+  const rootItem = {
+    label: t('hosting'),
+    href: urls.hosting,
+  };
 
   const items = useMemo(
     () =>
@@ -45,7 +51,7 @@ export const Breadcrumb: React.FC<{ namespace?: string | string[] }> = (
 
   return (
     <OdsBreadcrumb data-testid="breadcrumb">
-      {items.map((item, index) => (
+      {[rootItem, ...items].map((item, index) => (
         <OdsBreadcrumbItem
           {...item}
           color={ODS_LINK_COLOR.primary}
