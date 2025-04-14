@@ -50,28 +50,27 @@ const UpdateFlavor = () => {
   }, [flavorQuery.isSuccess, catalogQuery.isSuccess]);
 
   const schema = z.object({
-    flavorWithQuantity: z.object({
-      flavor: z.string(),
-      quantity: z.coerce.number(),
-    }),
+    flavor: z.string(),
+    quantity: z.coerce.number(),
   });
 
   type ValidationSchema = z.infer<typeof schema>;
 
   const defaultValues: ValidationSchema = {
-    flavorWithQuantity: {
-      flavor: notebook.spec.resources.flavor,
-      quantity:
-        notebook.spec.resources.gpu > 0
-          ? notebook.spec.resources.gpu
-          : notebook.spec.resources.cpu,
-    },
+    flavor: notebook.spec.resources.flavor,
+    quantity:
+      notebook.spec.resources.gpu > 0
+        ? notebook.spec.resources.gpu
+        : notebook.spec.resources.cpu,
   };
 
   const form = useForm<ValidationSchema>({
     resolver: zodResolver(schema),
     defaultValues,
   });
+
+  const flavor = form.watch('flavor');
+  const quantity = form.watch('quantity');
 
   const { updateNotebook, isPending } = useUpdateNotebook({
     onError: (err) => {
@@ -92,19 +91,18 @@ const UpdateFlavor = () => {
 
   const onSubmit = form.handleSubmit((formValues) => {
     const updateNotebookInfo: ai.notebook.NotebookUpdate =
-      listFlavor.find(
-        (flav) => flav.id === formValues.flavorWithQuantity.flavor,
-      ).type === ai.capabilities.FlavorTypeEnum.cpu
+      listFlavor.find((flav) => flav.id === formValues.flavor).type ===
+      ai.capabilities.FlavorTypeEnum.cpu
         ? {
             resources: {
-              flavor: formValues.flavorWithQuantity.flavor,
-              cpu: Number(formValues.flavorWithQuantity.quantity),
+              flavor: formValues.flavor,
+              cpu: Number(formValues.quantity),
             },
           }
         : {
             resources: {
-              flavor: formValues.flavorWithQuantity.flavor,
-              gpu: Number(formValues.flavorWithQuantity.quantity),
+              flavor: formValues.flavor,
+              gpu: Number(formValues.quantity),
             },
           };
     updateNotebook({
@@ -127,21 +125,19 @@ const UpdateFlavor = () => {
             <ScrollArea className="mx-2">
               <FormField
                 control={form.control}
-                name="flavorWithQuantity.flavor"
+                name="flavor"
                 render={({ field }) => (
                   <FormItem className="max-w-sm sm:max-w-full">
                     <FormControl>
                       <FlavorsSelect
                         {...field}
-                        isUpdate={true}
                         flavors={listFlavor}
-                        value={field.value}
-                        resourcesQuantity={form.getValues(
-                          'flavorWithQuantity.quantity',
-                        )}
+                        value={flavor}
+                        isUpdate={true}
+                        resourcesQuantity={quantity}
                         onChange={(newFlavor) => {
-                          form.setValue('flavorWithQuantity.flavor', newFlavor);
-                          form.setValue('flavorWithQuantity.quantity', 1);
+                          form.setValue('flavor', newFlavor);
+                          form.setValue('quantity', 1);
                         }}
                       />
                     </FormControl>
@@ -152,7 +148,7 @@ const UpdateFlavor = () => {
               <FormField
                 control={form.control}
                 defaultValue={1}
-                name="flavorWithQuantity.quantity"
+                name="quantity"
                 render={({ field }) => (
                   <FormItem>
                     <p className="mt-4 text-sm">
@@ -163,31 +159,27 @@ const UpdateFlavor = () => {
                         type="number"
                         max={
                           listFlavor.find(
-                            (flav) =>
-                              flav.id ===
-                              form.getValues('flavorWithQuantity.flavor'),
+                            (flav) => flav.id === form.getValues('flavor'),
                           )?.max
                         }
                         min={1}
-                        value={field.value}
+                        value={quantity}
                         {...field}
                       />
                     </FormControl>
                     <div className="flex flex-row justify-between">
                       <FormMessage />
-                      {form.getValues('flavorWithQuantity.quantity') > 1 && (
+                      {form.getValues('quantity') > 1 && (
                         <div className="inline-block text-xs">
                           <span>{t('fieldFlavorQuantityInformation')}</span>{' '}
                           <span className="capitalize font-bold">
-                            {form.getValues('flavorWithQuantity.flavor')}
+                            {form.getValues('flavor')}
                           </span>
                           {': '}
                           <span>
                             {
                               listFlavor.find(
-                                (flav) =>
-                                  flav.id ===
-                                  form.getValues('flavorWithQuantity.flavor'),
+                                (flav) => flav.id === form.getValues('flavor'),
                               )?.max
                             }
                           </span>
