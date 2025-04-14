@@ -24,8 +24,9 @@ vi.mock('react-router-dom', () => ({
 }));
 
 vi.mock('@/hooks/data/query', () => ({
-  useServiceInfo: vi.fn(() => {
+  useGetDomainInformation: vi.fn(() => {
     return {
+      isLoading: false,
       data: serviceInfo,
     };
   }),
