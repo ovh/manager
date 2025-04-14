@@ -199,6 +199,7 @@
   "hosting_dashboard_available_space": "Espace disponible",
   "hosting_tab_DOMAINS_OLD": "Sites Web",
   "hosting_tab_MULTISITE": "Multisite",
+  "hosting_tab_SSL": "Certificats SSL",
   "hosting_tab_FTP": "FTP - SSH",
   "hosting_tab_MODULE": "Modules en 1 clic",
   "hosting_tab_DATABASE": "Bases de données",
