@@ -39,7 +39,7 @@ const RadioTile = ({ children, className, ...props }: RadioTileProps) => {
         htmlFor={id}
         data-testid="radio-tile-label"
         className={cn(
-          `w-full group text-[#4d5592] border-2 border-primary-100 rounded-md p-4 hover:shadow-sm hover:border-primary-600 hover:bg-primary-100 cursor-pointer ${
+          `w-full group text-[#4d5592] border-2 rounded-md p-4 hover:shadow-sm hover:border-primary-600 hover:bg-primary-100 cursor-pointer ${
             props.checked
               ? 'border-primary-600 bg-primary-100 selected'
               : 'bg-white'
