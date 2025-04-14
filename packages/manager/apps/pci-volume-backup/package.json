@@ -1,8 +1,8 @@
 {
   "name": "@ovh-ux/manager-pci-volume-backup-app",
   "version": "0.0.0",
-  "description": "PCI volume backup react application ",
   "private": true,
+  "description": "PCI volume backup react application ",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ovh/manager.git",
@@ -21,19 +21,20 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@tanstack/react-query": "^5.51.21",
     "@ovh-ux/manager-config": "*",
     "@ovh-ux/manager-core-api": "*",
     "@ovh-ux/manager-core-utils": "*",
     "@ovh-ux/manager-pci-common": "^2.4.2",
+    "@ovh-ux/manager-react-components": "^2.18.1",
     "@ovh-ux/manager-react-core-application": "*",
     "@ovh-ux/manager-react-shell-client": "*",
     "@ovh-ux/request-tagger": "*",
     "@ovhcloud/ods-components": "^18.3.0",
     "@ovhcloud/ods-themes": "^18.3.0",
-    "@ovh-ux/manager-react-components": "^2.18.1",
+    "@tanstack/react-query": "^5.51.21",
     "axios": "^1.1.2",
     "clsx": "^1.2.1",
+    "date-fns": "^3.6.0",
     "element-internals-polyfill": "^3.0.0",
     "i18next": "^23.8.2",
     "i18next-http-backend": "^2.4.2",
@@ -44,22 +45,22 @@
     "tailwindcss": "^3.4.4"
   },
   "devDependencies": {
+    "@ovh-ux/manager-vite-config": "*",
+    "@tanstack/react-query-devtools": "^5.51.21",
     "@testing-library/dom": "^10.1.0",
     "@testing-library/jest-dom": "^6.4.6",
     "@testing-library/react": "^16.0.0",
-    "@tanstack/react-query-devtools": "^5.51.21",
-    "@ovh-ux/manager-vite-config": "*",
     "@vitest/coverage-v8": "^2.1.9",
     "typescript": "^5.4.5",
     "vite": "^5.3.3",
     "vitest": "^1.6.0"
   },
   "regions": [
-     "CA",
-     "EU",
-     "US"
+    "CA",
+    "EU",
+    "US"
   ],
   "universes": [
-     "PublicCloud"
+    "PublicCloud"
   ]
 }
