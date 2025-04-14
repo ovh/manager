@@ -2,7 +2,10 @@ import { describe, expect, it, vi, beforeEach } from 'vitest';
 import '@testing-library/jest-dom';
 import { act, renderHook, waitFor } from '@testing-library/react';
 import { v6 } from '@ovh-ux/manager-core-api';
-import { useCreateCertificate } from '@/data/hooks/ssl/useSsl';
+import {
+  useCreateCertificate,
+  useCreateDomainCertificate,
+} from '@/data/hooks/ssl/useSsl';
 import { wrapper } from '@/utils/test.provider';
 
 vi.mock('@ovh-ux/manager-core-api', () => ({
@@ -41,6 +44,31 @@ describe('useCreateCertificate', () => {
         key: 'key',
         chain: 'chain',
       });
+
+      expect(onSuccess).toHaveBeenCalled();
+    });
+  });
+});
+
+describe('useCreateDomainCertificate', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
+  it('create domain certificate on import', async () => {
+    const { result } = renderHook(
+      () => useCreateDomainCertificate('serviceName', onSuccess, onError),
+      {
+        wrapper,
+      },
+    );
+
+    act(() => result.current.mutate('domain'));
+
+    await waitFor(() => {
+      expect(v6.post).toHaveBeenCalledWith(
+        '/hosting/web/serviceName/attachedDomain/domain/ssl',
+      );
 
       expect(onSuccess).toHaveBeenCalled();
     });
