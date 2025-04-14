@@ -196,5 +196,6 @@
   "sidebar_reduce": "Réduire",
   "sidebar_security_operations": "Opérations",
   "sidebar_security_identity": "Identité et Sécurité",
-  "sidebar_zimbra": "Zimbra Mail"
+  "sidebar_zimbra": "Zimbra Mail",
+  "sidebar_create_ticket": "Créer un ticket"
 }
