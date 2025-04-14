@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.21.2...@ovh-ux/manager-zimbra-app@0.22.0) (2025-04-14)
+
+
+### Features
+
+* **zimbra:** add load all button to datagrids ([72b847a](https://github.com/ovh/manager/commit/72b847a685a4a2e4b194b281fdc4063671fb965b)), closes [#MANAGER-17717](https://github.com/ovh/manager/issues/MANAGER-17717)
+* **zimbra:** plug Aliases & rework url management ([7e06f6e](https://github.com/ovh/manager/commit/7e06f6ec5f775d86085f6456236167e74b053729)), closes [#MANAGER-17769](https://github.com/ovh/manager/issues/MANAGER-17769)
+
+
+
+
+
 ## [0.21.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.21.1...@ovh-ux/manager-zimbra-app@0.21.2) (2025-04-10)
 
 **Note:** Version bump only for package @ovh-ux/manager-zimbra-app

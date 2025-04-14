@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.1.3...@ovh-ux/manager-web-office-app@0.1.4) (2025-04-14)
+
+
+### Bug Fixes
+
+* **web-office:** fix css for select consumption ([8108ed3](https://github.com/ovh/manager/commit/8108ed38b6d5f20b7906680317460536c64c0e45)), closes [#MANAGER-17715](https://github.com/ovh/manager/issues/MANAGER-17715)
+* **web.office:** add visibility columns on listing and users datagrid ([fd9dfd7](https://github.com/ovh/manager/commit/fd9dfd78243af7c9fbf65ee00964bb56ce0ef84f)), closes [#MANAGER-16534](https://github.com/ovh/manager/issues/MANAGER-16534)
+
+
+
+
+
 ## [0.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.1.2...@ovh-ux/manager-web-office-app@0.1.3) (2025-04-10)
 
 

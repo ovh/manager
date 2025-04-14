@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.10.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.10.8...@ovh-ux/manager-web@19.10.9) (2025-04-14)
+
+
+### Bug Fixes
+
+* **web.private-database:** remove old order link on onboarding page ([27e7c19](https://github.com/ovh/manager/commit/27e7c196dca39bda09cf514b3eb052f227016f1d)), closes [#MANAGER-17809](https://github.com/ovh/manager/issues/MANAGER-17809)
+
+
+
+
+
 ## [19.10.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.10.7...@ovh-ux/manager-web@19.10.8) (2025-04-10)
 
 **Note:** Version bump only for package @ovh-ux/manager-web
