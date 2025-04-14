@@ -129,5 +129,6 @@
   "domain_operations_nicOperation_ZoneCut": "Delegacja strefy DNS",
   "domain_operations_nicOperation_ZoneDelete": "Usunięcie strefy DNS",
   "domain_operations_nicOperation_Zonerestore": "Przywrócenie strefy DNS",
-  "domain_operations_update_key_legitimacyAfnic": "Potwierdzenie rejestracji domeny"
+  "domain_operations_update_key_legitimacyAfnic": "Potwierdzenie rejestracji domeny",
+  "domain_operations_update_contact_administrator": "Skontaktuj się z administratorem, aby rozwiązać ten problem."
 }

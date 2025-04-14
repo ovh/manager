@@ -129,5 +129,6 @@
   "domain_operations_nicOperation_ZoneCut": "Delegación de la zona DNS",
   "domain_operations_nicOperation_ZoneDelete": "Eliminación de la zona DNS",
   "domain_operations_nicOperation_Zonerestore": "Restauración de la zona DNS",
-  "domain_operations_update_key_legitimacyAfnic": "Justificar el uso del dominio"
+  "domain_operations_update_key_legitimacyAfnic": "Justificar el uso del dominio",
+  "domain_operations_update_contact_administrator": "Póngase en contacto con el administrador para corregir este problema."
 }
