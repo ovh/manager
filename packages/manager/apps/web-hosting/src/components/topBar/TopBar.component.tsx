@@ -1,16 +1,46 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams, useNavigate } from 'react-router-dom';
 
-import { OdsButton } from '@ovhcloud/ods-components/react';
-import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import { OdsButton, OdsSelect, OdsText } from '@ovhcloud/ods-components/react';
+import {
+  ODS_BUTTON_SIZE,
+  ODS_BUTTON_VARIANT,
+  ODS_TEXT_PRESET,
+} from '@ovhcloud/ods-components';
+import { useMessageContext } from '@/context/Message.context';
+import { useCreateDomainCertificates } from '@/data/hooks/ssl/useSsl';
+import { useWebHostingAttachedDomain } from '@/data/hooks/webHostingAttachedDomain/useWebHostingAttachedDomain';
+import { ServiceStatus } from '@/data/type';
 import { subRoutes, urls } from '@/routes/routes.constants';
 
 export default function Topbar() {
   const navigate = useNavigate();
   const { serviceName } = useParams();
+  const { addSuccess, addWarning } = useMessageContext();
+
+  const [selectedDomains, setSelectedDomains] = useState<string[]>([]);
+  const { data } = useWebHostingAttachedDomain({ shouldFetchAll: true });
 
   const { t } = useTranslation('ssl');
+
+  const { createDomainCertificates } = useCreateDomainCertificates(
+    serviceName,
+    () => {
+      addSuccess({
+        content: t('hosting_dashboard_ssl_order_success'),
+      });
+    },
+    () => {
+      addWarning({
+        content: t('hosting_dashboard_ssl_order_error'),
+      });
+    },
+  );
+
+  const handleSslEncrypt = () => {
+    createDomainCertificates(selectedDomains);
+  };
 
   return (
     <div className="flex flex-col space-y-10 mb-10">
@@ -34,6 +64,42 @@ export default function Topbar() {
           variant={ODS_BUTTON_VARIANT.outline}
           label={t('import_ssl_certificate')}
         />
+      </div>
+      <div className="bg-gray-200 p-10">
+        <OdsText preset={ODS_TEXT_PRESET.heading4} className="mb-5">
+          {t('enable_ssl_certificate')}
+        </OdsText>
+        <div className="flex space-x-4">
+          <OdsSelect
+            name="domainName"
+            className="w-1/3"
+            allowMultiple
+            onOdsChange={(v) => {
+              setSelectedDomains(v.detail.value?.toString()?.split(','));
+            }}
+          >
+            {data
+              ?.filter(
+                (item) =>
+                  item?.currentState?.ssl?.status !== ServiceStatus.ACTIVE &&
+                  item?.currentState?.hosting?.serviceName === serviceName,
+              )
+              ?.map((it) => (
+                <option
+                  value={it?.currentState?.fqdn}
+                  key={it?.currentState?.fqdn}
+                >
+                  {it?.currentState?.fqdn}
+                </option>
+              ))}
+          </OdsSelect>
+          <OdsButton
+            size={ODS_BUTTON_SIZE.sm}
+            variant={ODS_BUTTON_VARIANT.outline}
+            onClick={handleSslEncrypt}
+            label={t('enable_ssl_encrypt')}
+          />
+        </div>
       </div>
     </div>
   );
