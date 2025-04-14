@@ -109,6 +109,7 @@ export default function Modal({
     <OdsModal
       color="information"
       isOpen={true}
+      isDismissible={false}
       onOdsClose={() => {
         onCloseModal();
       }}
@@ -137,18 +138,16 @@ export default function Modal({
               </div>
             ))}
           </div>
-          {operationArguments.actions && (
-            <OperationActions
-              data={operation}
-              operationName={operationName}
-              disabled={operationName === null}
-              putOperationName={putOperationName}
-              onValidate={(operationId, type) =>
-                onValidate({ operationId, operationType: type })
-              }
-              justify="end"
-            />
-          )}
+          <OperationActions
+            data={operation}
+            operationName={operationName}
+            disabled={!operationArguments.actions}
+            putOperationName={putOperationName}
+            onValidate={(operationId, type) =>
+              onValidate({ operationId, operationType: type })
+            }
+            justify="end"
+          />
         </div>
       )}
     </OdsModal>
