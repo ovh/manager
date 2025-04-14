@@ -22,13 +22,6 @@ import {
 } from './hosting-multisite.constants';
 import { TRACKING_MULTISITE_PREFIX } from './git-integration/git-integration.constants';
 
-const CDN_STATISTICS_PERIOD = {
-  DAY: 'day',
-  MONTH: 'month',
-  WEEK: 'week',
-  YEAR: 'year',
-};
-
 angular
   .module('App')
   .controller(
@@ -51,7 +44,6 @@ angular
       hostingSSLCertificate,
       hostingSSLCertificateType,
       Alerter,
-      ChartFactory,
     ) => {
       atInternet.trackPage({ name: 'web::hosting::multisites' });
 
@@ -83,13 +75,6 @@ angular
       };
 
       $scope.certificateTypes = hostingSSLCertificateType.constructor.getCertificateTypes();
-
-      $scope.periods = Object.values(CDN_STATISTICS_PERIOD).map((period) => ({
-        label: $translate.instant(
-          `hosting_multisite_statistics_period_${period}`,
-        ),
-        value: period,
-      }));
 
       HostingDomain.getZones()
         .then((zones) => {
@@ -745,30 +730,8 @@ angular
         HostingDomain.killAllPolling();
       });
 
-      $scope.getChartJsInstance = function getChartJsInstance(configuration) {
-        return new ChartFactory(configuration);
-      };
-
       $scope.resetAction = function resetAction() {
         $scope.services.navigation.resetAction();
-      };
-
-      $scope.getStatistics = function getStatistics(domain, period) {
-        return $http
-          .get(
-            `/hosting/web/${
-              $scope.hosting.serviceName
-            }/cdn/domain/${domain}/statistics${
-              period ? `?period=${period}` : ''
-            }`,
-          )
-          .then(({ data }) => data);
-      };
-
-      $scope.getCdnProperties = function getCdnProperties() {
-        return HostingCdnSharedService.getCDNProperties(
-          $scope.hosting.serviceName,
-        ).then(({ data }) => data);
       };
 
       startPolling();
