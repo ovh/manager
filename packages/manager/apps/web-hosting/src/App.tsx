@@ -4,13 +4,16 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { RouterProvider, createHashRouter } from 'react-router-dom';
 import routes from './routes/routes';
 import queryClient from './utils/queryClient';
+import { MessageContextProvider } from './context/Message.context';
 
 function App() {
   const router = createHashRouter(routes);
 
   return (
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
+      <MessageContextProvider>
+        <RouterProvider router={router} />
+      </MessageContextProvider>
       <ReactQueryDevtools />
     </QueryClientProvider>
   );
