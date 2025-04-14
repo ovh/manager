@@ -32,12 +32,7 @@ export const FilterCategories = {
     FilterComparator.IsEqual,
     FilterComparator.IsDifferent,
   ],
-  Date: [
-    FilterComparator.IsEqual,
-    FilterComparator.IsDifferent,
-    FilterComparator.IsBefore,
-    FilterComparator.IsAfter,
-  ],
+  Date: [FilterComparator.IsBefore, FilterComparator.IsAfter],
 };
 
 export function applyFilters<T>(items: T[] = [], filters: Filter[] = []) {
