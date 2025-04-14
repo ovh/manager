@@ -7,17 +7,25 @@ import NotFound from '@/pages/404';
 import { urls } from '@/routes/routes.constants';
 import {
   DASHBOARD,
+  IMPORT_SSL,
   ONBOARDING,
+  ORDER_SECTIGO,
   SSL,
   WEBSITE,
 } from '@/utils/tracking.constants';
-import DashboardLayout from '@/pages/dashboard/layout';
-import SslPage from '@/pages/dashboard/ssl/Ssl.page';
 
 const RootPage = React.lazy(() => import('@/pages/layout'));
 const WebsitesPage = React.lazy(() => import('@/pages/websites/Websites.page'));
 const OnboardingPage = React.lazy(() =>
   import('@/pages/onboarding/Onboarding.page'),
+);
+const DashboardLayout = React.lazy(() => import('@/pages/dashboard/layout'));
+const SslPage = React.lazy(() => import('@/pages/dashboard/ssl/Ssl.page'));
+const ImportSslPage = React.lazy(() =>
+  import('@/pages/dashboard/ssl/add/importSsl.page'),
+);
+const OrderSectigoPage = React.lazy(() =>
+  import('@/pages/dashboard/ssl/add/orderSectigo.page'),
 );
 
 export default (
@@ -80,6 +88,28 @@ export default (
           },
           breadcrumb: {
             label: 'ssl',
+          },
+        }}
+      />
+      <Route
+        id={IMPORT_SSL}
+        path={urls.importSsl}
+        Component={ImportSslPage}
+        handle={{
+          tracking: {
+            pageName: IMPORT_SSL,
+            pageType: PageType.popup,
+          },
+        }}
+      />
+      <Route
+        id={ORDER_SECTIGO}
+        path={urls.orderSectigo}
+        Component={OrderSectigoPage}
+        handle={{
+          tracking: {
+            pageName: ORDER_SECTIGO,
+            pageType: PageType.popup,
           },
         }}
       />
