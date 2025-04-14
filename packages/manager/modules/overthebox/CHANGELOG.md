@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.21.0...@ovh-ux/manager-overthebox@6.22.0) (2025-04-14)
+
+
+### Features
+
+* **telecom.overthebox:** display ipv4 and ipv6 if available ([#16341](https://github.com/ovh/manager/issues/16341)) ([f39809d](https://github.com/ovh/manager/commit/f39809d41bfdae8296ffa90edf40a5753b679279)), closes [#UXCT-712](https://github.com/ovh/manager/issues/UXCT-712)
+
+
+
+
+
 # [6.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.20.2...@ovh-ux/manager-overthebox@6.21.0) (2025-02-20)
 
 
