@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.1.3...@ovh-ux/logs-to-customer@1.2.0) (2025-04-14)
+
+
+### Features
+
+* **logs-to-customer:** add disable cache on get logs steams ([3675a35](https://github.com/ovh/manager/commit/3675a354ac2d871c97194bfbc518faaf5ba2067f)), closes [#MANAGER-17609](https://github.com/ovh/manager/issues/MANAGER-17609)
+
+
+
+
+
 ## [1.1.3](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.1.2...@ovh-ux/logs-to-customer@1.1.3) (2025-04-10)
 
 
