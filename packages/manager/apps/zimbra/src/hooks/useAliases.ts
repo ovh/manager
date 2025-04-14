@@ -3,43 +3,44 @@ import {
   UseInfiniteQueryOptions,
   UseInfiniteQueryResult,
 } from '@tanstack/react-query';
-import { useParams, useSearchParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useCallback, useEffect, useState } from 'react';
-import {
-  getZimbraPlatformMailingLists,
-  getZimbraPlatformMailingListsQueryKey,
-  MailingListType,
-} from '@/api/mailinglist';
 import { APIV2_MAX_PAGESIZE, buildURLSearchParams } from '@/utils';
+import {
+  AliasType,
+  getZimbraPlatformAliases,
+  getZimbraPlatformAliasesQueryKey,
+} from '@/api/alias';
 
-type UseMailingListsParams = Omit<
+type UseAliasesParams = Omit<
   UseInfiniteQueryOptions,
   'queryKey' | 'queryFn' | 'select' | 'getNextPageParam' | 'initialPageParam'
 > & {
-  organizationId?: string;
+  alias?: string;
+  aliasTargetId?: string;
   shouldFetchAll?: boolean;
 };
 
-export const useMailingLists = (props: UseMailingListsParams = {}) => {
-  const { organizationId, shouldFetchAll, ...options } = props;
+export const useAliases = (props: UseAliasesParams = {}) => {
+  const { alias, aliasTargetId, shouldFetchAll, ...options } = props;
   const [allPages, setAllPages] = useState(!!shouldFetchAll);
-  const { platformId } = useParams();
-  const [searchParams] = useSearchParams();
+  const { platformId, accountId } = useParams();
 
   const urlSearchParams = buildURLSearchParams({
-    organizationId: organizationId ?? searchParams.get('organizationId'),
+    alias,
+    aliasTargetId: aliasTargetId || accountId,
   });
 
   const query = useInfiniteQuery({
     ...options,
     initialPageParam: null,
-    queryKey: getZimbraPlatformMailingListsQueryKey(
+    queryKey: getZimbraPlatformAliasesQueryKey(
       platformId,
       urlSearchParams,
       allPages,
     ),
     queryFn: ({ pageParam }) =>
-      getZimbraPlatformMailingLists({
+      getZimbraPlatformAliases({
         platformId,
         searchParams: urlSearchParams,
         pageParam,
@@ -54,7 +55,7 @@ export const useMailingLists = (props: UseMailingListsParams = {}) => {
       lastPage.cursorNext,
     select: (data) =>
       data?.pages.flatMap(
-        (page: UseInfiniteQueryResult<MailingListType[]>) => page.data,
+        (page: UseInfiniteQueryResult<AliasType[]>) => page.data,
       ),
   });
 

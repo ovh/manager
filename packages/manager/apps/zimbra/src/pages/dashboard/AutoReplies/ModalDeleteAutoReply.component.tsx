@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSearchParams, useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { useNotifications } from '@ovh-ux/manager-react-components';
@@ -25,27 +25,21 @@ export default function ModalDeleteAutoReply() {
   const { trackClick, trackPage } = useOvhTracking();
   const { t } = useTranslation(['auto-replies', 'common']);
   const navigate = useNavigate();
+  const { accountId, autoReplyId } = useParams();
 
-  const [searchParams] = useSearchParams();
-  const params = Object.fromEntries(searchParams.entries());
-  delete params.deleteAutoReplyId;
-
-  const deleteAutoReplyId = searchParams.get('deleteAutoReplyId');
-  const editEmailAccountId = searchParams.get('editEmailAccountId');
-
-  const trackingName = editEmailAccountId
+  const trackingName = accountId
     ? EMAIL_ACCOUNT_DELETE_AUTO_REPLY
     : DELETE_AUTO_REPLY;
 
   const { addError, addSuccess } = useNotifications();
 
-  const goBackUrl = useGenerateUrl('..', 'path', params);
+  const goBackUrl = useGenerateUrl('../..', 'path');
   const onClose = () => navigate(goBackUrl);
 
   const { mutate: deleteAutoReply, isPending: isSending } = useMutation({
-    mutationFn: (autoReplyId: string) => {
+    mutationFn: (id: string) => {
       // call api
-      return Promise.resolve(autoReplyId);
+      return Promise.resolve(id);
     },
     onSuccess: () => {
       trackPage({
@@ -89,7 +83,7 @@ export default function ModalDeleteAutoReply() {
       actionType: 'action',
       actions: [trackingName, CONFIRM],
     });
-    deleteAutoReply(deleteAutoReplyId);
+    deleteAutoReply(autoReplyId);
   };
 
   const handleCancelClick = () => {
@@ -117,7 +111,6 @@ export default function ModalDeleteAutoReply() {
       primaryButton={{
         label: t('common:delete'),
         onClick: handleDeleteClick,
-        isDisabled: !deleteAutoReplyId,
         isLoading: isSending,
         testid: 'delete-btn',
       }}

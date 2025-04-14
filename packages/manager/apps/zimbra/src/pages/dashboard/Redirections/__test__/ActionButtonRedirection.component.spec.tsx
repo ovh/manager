@@ -1,6 +1,6 @@
 import React from 'react';
 import { describe, expect } from 'vitest';
-import ActionButtonRedirections from '../ActionButtonRedirections.component';
+import ActionButtonRedirection from '../ActionButtonRedirection.component';
 import { render } from '@/utils/test.provider';
 import { FEATURE_FLAGS } from '@/utils';
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
@@ -9,8 +9,8 @@ import { ResourceStatus } from '@/api/api.type';
 describe('Redirections datagrid action menu', () => {
   it('renders with menu enabled and 2 items', () => {
     const { container } = render(
-      <ActionButtonRedirections
-        redirectionsItem={{
+      <ActionButtonRedirection
+        redirectionItem={{
           id: '1',
           from: 'testFrom',
           to: 'testTo',

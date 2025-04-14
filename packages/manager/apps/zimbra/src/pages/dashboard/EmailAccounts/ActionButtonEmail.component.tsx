@@ -26,9 +26,10 @@ const ActionButtonEmail: React.FC<ActionButtonEmailAccountProps> = ({
   const { platformUrn } = usePlatform();
   const navigate = useNavigate();
 
-  const hrefEditEmailAccount = useGenerateUrl('./settings', 'path', {
-    editEmailAccountId: emailsItem.id,
-  });
+  const hrefEditEmailAccount = useGenerateUrl(
+    `./${emailsItem.id}/settings`,
+    'path',
+  );
 
   const handleEditEmailClick = () => {
     trackClick({
@@ -40,9 +41,10 @@ const ActionButtonEmail: React.FC<ActionButtonEmailAccountProps> = ({
     navigate(hrefEditEmailAccount);
   };
 
-  const hrefDeleteEmailAccount = useGenerateUrl('./delete', 'path', {
-    deleteEmailAccountId: emailsItem.id,
-  });
+  const hrefDeleteEmailAccount = useGenerateUrl(
+    `./${emailsItem.id}/delete`,
+    'path',
+  );
 
   const handleDeleteEmailClick = () => {
     trackClick({

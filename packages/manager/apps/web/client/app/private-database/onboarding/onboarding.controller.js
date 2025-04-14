@@ -15,6 +15,5 @@ export default class PrivateDatabasesOnboardingController {
       description: this.$translate.instant(guide.description),
       title: this.$translate.instant(guide.title),
     }));
-    [this.cta, this.cta2] = this.ctaURLs;
   }
 }

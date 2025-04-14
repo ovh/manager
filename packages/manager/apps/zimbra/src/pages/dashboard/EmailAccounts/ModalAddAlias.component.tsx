@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Trans, useTranslation } from 'react-i18next';
 import {
   OdsFormField,
@@ -10,6 +10,7 @@ import {
 import {
   ODS_INPUT_TYPE,
   ODS_MODAL_COLOR,
+  ODS_SPINNER_SIZE,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
 import { useNotifications } from '@ovh-ux/manager-react-components';
@@ -27,51 +28,54 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import {
   useDomains,
   useGenerateUrl,
-  usePlatform,
   useAccount,
   useOdsModalOverflowHack,
 } from '@/hooks';
 import Modal from '@/components/Modals/Modal';
 import {
   AliasBodyParamsType,
-  getZimbraPlatformAliasQueryKey,
+  getZimbraPlatformAliasesQueryKey,
   postZimbraPlatformAlias,
 } from '@/api/alias';
 import { aliasSchema } from '@/utils';
 import queryClient from '@/queryClient';
 import { CANCEL, CONFIRM, EMAIL_ACCOUNT_ADD_ALIAS } from '@/tracking.constant';
+import { ResourceStatus } from '@/api/api.type';
+import Loading from '@/components/Loading/Loading';
 
 export default function ModalAddAndEditOrganization() {
   const { trackClick, trackPage } = useOvhTracking();
   const { t } = useTranslation(['accounts/alias', 'common']);
-  const { platformId } = usePlatform();
-  const [searchParams] = useSearchParams();
-  const params = Object.fromEntries(searchParams.entries());
-  const editEmailAccountId = searchParams.get('editEmailAccountId');
-  const [isLoading, setIsLoading] = useState(true);
+  const { platformId } = useParams();
   const { addError, addSuccess } = useNotifications();
   const navigate = useNavigate();
-  const goBackUrl = useGenerateUrl('..', 'path', params);
+  const goBackUrl = useGenerateUrl('..', 'path');
   const onClose = () => navigate(goBackUrl);
 
   // @TODO refactor when ods modal overflow is fixed
   const modalRef = useRef<HTMLOdsModalElement>(undefined);
   useOdsModalOverflowHack(modalRef);
 
-  const { data: domains, isLoading: isLoadingDomain } = useDomains({
+  const { data: target, isLoading } = useAccount();
+
+  const { data: domains, isLoading: isLoadingDomains } = useDomains({
+    organizationId: target?.currentState?.organizationId,
     shouldFetchAll: true,
+    enabled: !!target,
   });
 
-  const {
-    data: editAccountDetail,
-    isLoading: isLoadingEmailDetail,
-  } = useAccount({ accountId: editEmailAccountId });
+  // @TODO: remove this when OdsSelect is fixed ODS-1565
+  const [hackDomains, setHackDomains] = useState([]);
+  const [hackKeyDomains, setHackKeyDomains] = useState(Date.now());
 
   useEffect(() => {
-    if (!isLoadingDomain && !isLoadingEmailDetail && platformId) {
-      setIsLoading(false);
-    }
-  }, [isLoadingDomain, isLoadingEmailDetail]);
+    setHackDomains(
+      (domains || []).filter(
+        (domain) => domain.resourceStatus === ResourceStatus.READY,
+      ),
+    );
+    setHackKeyDomains(Date.now());
+  }, [domains]);
 
   const { mutate: addAlias, isPending: isSending } = useMutation({
     mutationFn: (payload: AliasBodyParamsType) => {
@@ -105,7 +109,7 @@ export default function ModalAddAndEditOrganization() {
     },
     onSettled: () => {
       queryClient.invalidateQueries({
-        queryKey: getZimbraPlatformAliasQueryKey(platformId),
+        queryKey: getZimbraPlatformAliasesQueryKey(platformId),
       });
       onClose();
     },
@@ -137,8 +141,7 @@ export default function ModalAddAndEditOrganization() {
 
     addAlias({
       alias: `${account}@${domain}`,
-      aliasTarget: editAccountDetail?.currentState.email,
-      organizationId: editAccountDetail?.currentState.organizationId,
+      targetId: target?.id,
     });
   };
 
@@ -183,7 +186,7 @@ export default function ModalAddAndEditOrganization() {
             t={t}
             i18nKey={'zimbra_account_alias_add_description'}
             values={{
-              account: editAccountDetail?.currentState.email,
+              account: target?.currentState?.email,
             }}
           />
         </OdsText>
@@ -220,23 +223,33 @@ export default function ModalAddAndEditOrganization() {
                   control={control}
                   name="domain"
                   render={({ field }) => (
-                    <OdsSelect
-                      id={field.name}
-                      name={field.name}
-                      hasError={!!errors[field.name]}
-                      value={field.value}
-                      className="w-1/2"
-                      placeholder={t('common:select_domain')}
-                      onOdsChange={field.onChange}
-                      onOdsBlur={field.onBlur}
-                      data-testid="select-domain"
-                    >
-                      {domains.map(({ currentState: domain }) => (
-                        <option key={domain.name} value={domain.name}>
-                          {domain.name}
-                        </option>
-                      ))}
-                    </OdsSelect>
+                    <div className="flex flex-1">
+                      <OdsSelect
+                        key={hackKeyDomains}
+                        id={field.name}
+                        name={field.name}
+                        hasError={!!errors[field.name]}
+                        value={field.value}
+                        isDisabled={isLoadingDomains || !domains}
+                        placeholder={t('common:select_domain')}
+                        onOdsChange={field.onChange}
+                        onOdsBlur={field.onBlur}
+                        data-testid="select-domain"
+                        className="w-full"
+                      >
+                        {hackDomains?.map(({ currentState: domain }) => (
+                          <option key={domain.name} value={domain.name}>
+                            {domain.name}
+                          </option>
+                        ))}
+                      </OdsSelect>
+                      {(isLoadingDomains || !domains) && (
+                        <Loading
+                          className="flex justify-center"
+                          size={ODS_SPINNER_SIZE.sm}
+                        />
+                      )}
+                    </div>
                   )}
                 />
               </div>
