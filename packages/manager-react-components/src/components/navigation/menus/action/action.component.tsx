@@ -4,6 +4,7 @@ import {
   ODS_BUTTON_SIZE,
   ODS_ICON_NAME,
   ODS_BUTTON_COLOR,
+  ODS_POPOVER_POSITION,
 } from '@ovhcloud/ods-components';
 import { OdsButton, OdsPopover } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
@@ -37,6 +38,7 @@ export interface ActionMenuProps {
   id: string;
   isDisabled?: boolean;
   isLoading?: boolean;
+  popoverPosition?: ODS_POPOVER_POSITION;
 }
 
 const MenuItem = ({
@@ -79,6 +81,7 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
   isDisabled = false,
   isLoading = false,
   id,
+  popoverPosition,
 }) => {
   const { t } = useTranslation('buttons');
   const [isTrigger, setIsTrigger] = React.useState(false);
@@ -106,8 +109,10 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
       </div>
       <OdsPopover
         className="py-[8px] px-0 w-max"
+        data-testid="navigation-action-trigger-action-popover"
         triggerId={`navigation-action-trigger-${id}`}
         with-arrow
+        position={popoverPosition}
       >
         <div className="flex flex-col">
           {items.map(({ id: itemId, ...item }) => (
