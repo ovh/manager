@@ -5,7 +5,9 @@ import NotFound from '@/pages/404';
 import { urls } from '@/routes/routes.constants';
 import {
   DASHBOARD,
+  IMPORT_SSL,
   ONBOARDING,
+  ORDER_SECTIGO,
   SSL,
   WEBSITE,
 } from '@/utils/tracking.constants';
@@ -79,6 +81,32 @@ export default [
           },
           breadcrumb: {
             label: 'ssl',
+          },
+        },
+      },
+      {
+        id: IMPORT_SSL,
+        path: urls.importSsl,
+        ...lazyRouteConfig(() =>
+          import('@/pages/dashboard/ssl/add/importSsl.page'),
+        ),
+        handle: {
+          tracking: {
+            pageName: IMPORT_SSL,
+            pageType: PageType.popup,
+          },
+        },
+      },
+      {
+        id: ORDER_SECTIGO,
+        path: urls.orderSectigo,
+        ...lazyRouteConfig(() =>
+          import('@/pages/dashboard/ssl/add/orderSectigo.page'),
+        ),
+        handle: {
+          tracking: {
+            pageName: ORDER_SECTIGO,
+            pageType: PageType.popup,
           },
         },
       },
