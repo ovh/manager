@@ -99,7 +99,7 @@ const CredentialGeneralInformations = () => {
       id: 'actions',
       label: t('key_management_service_credential_dashboard_actions'),
       value: (
-        <div className="flex items-center gap-4">
+        <div className="flex gap-2 flex-col">
           <OdsLink
             color={ODS_LINK_COLOR.primary}
             href={href}
