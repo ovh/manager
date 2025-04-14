@@ -1,0 +1,21 @@
+export const serviceInfosMock = {
+  canDeleteAtExpiration: false,
+  contactAdmin: 'string',
+  contactBilling: 'string',
+  contactTech: 'string',
+  creation: '2025-04-22',
+  domain: 'string',
+  engagedUpTo: '2025-04-22',
+  expiration: '2025-04-22',
+  possibleRenewPeriod: [0],
+  renew: {
+    automatic: false,
+    deleteAtExpiration: false,
+    forced: false,
+    manualPayment: false,
+    period: 0,
+  },
+  renewalType: 'automaticForcedProduct',
+  serviceId: 0,
+  status: 'autorenewInProgress',
+};
