@@ -1,7 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { OdsPopover, OdsButton, OdsLink } from '@ovhcloud/ods-components/react';
@@ -12,10 +11,11 @@ import {
 } from '@ovhcloud/ods-components';
 import useLinkUtils, { UrlLinks } from '@/hooks/useLinkUtils';
 import { orderLinks } from '@/data/constants/orderLinks';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 export const OrderMenu: React.FC = () => {
-  const { shell } = React.useContext(ShellContext);
   const { t } = useTranslation('dedicated-servers');
+  const { t: tCommon } = useTranslation(NAMESPACES.ACTIONS);
   const { trackClick } = useOvhTracking();
   const links = useLinkUtils<UrlLinks>(orderLinks);
 
@@ -26,11 +26,10 @@ export const OrderMenu: React.FC = () => {
         size={ODS_BUTTON_SIZE.sm}
         id={`server-orders-action`}
         variant="outline"
-        label={t('commander')}
-      ></OdsButton>
+        label={tCommon('order')}
+      />
       <OdsPopover
-        triggerId={`server-orders-action`}
-        withArrow={false}
+        triggerId="server-orders-action"
         position={ODS_POPOVER_POSITION.bottomStart}
       >
         <div>
@@ -44,7 +43,7 @@ export const OrderMenu: React.FC = () => {
               e.preventDefault();
             }}
             label={t('server_order_dedicated')}
-          ></OdsLink>
+          />
         </div>
         <div>
           <OdsLink
@@ -57,7 +56,7 @@ export const OrderMenu: React.FC = () => {
               e.preventDefault();
             }}
             label={t('server_order_eco')}
-          ></OdsLink>
+          />
         </div>
       </OdsPopover>
     </div>

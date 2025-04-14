@@ -19,12 +19,12 @@ const lazyRouteConfig = (importFn: CallableFunction): Partial<RouteObject> => {
 export const Routes: any = [
   {
     path: urls.root,
-    ...lazyRouteConfig(() => import('@/pages/index')),
+    ...lazyRouteConfig(() => import('@/pages/listing/index')),
     children: [
       {
         id: 'server',
         path: urls.server,
-        ...lazyRouteConfig(() => import('@/pages/server')),
+        ...lazyRouteConfig(() => import('@/pages/listing/server')),
         handle: {
           tracking: {
             pageName: 'server',
@@ -35,7 +35,7 @@ export const Routes: any = [
       {
         id: 'cluster',
         path: urls.cluster,
-        ...lazyRouteConfig(() => import('@/pages/cluster')),
+        ...lazyRouteConfig(() => import('@/pages/listing/cluster')),
         handle: {
           tracking: {
             pageName: 'cluster',

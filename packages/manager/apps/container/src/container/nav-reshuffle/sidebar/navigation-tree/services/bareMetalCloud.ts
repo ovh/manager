@@ -49,7 +49,7 @@ baremetalUniverse.children = [
         hideIfFeatures: ['dedicated-servers:container'],
       },
       {
-        id: 'dedicated-servers',
+        id: 'dedicated-servers-react',
         universe: baremetalUniverse.id,
         idAttr: 'dedicated-servers-link',
         translation: 'sidebar_dedicated',

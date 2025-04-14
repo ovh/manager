@@ -1,12 +1,10 @@
+import { IamObject } from "@ovh-ux/manager-react-components";
+
 type Status = "pending" | "in-progress" | "done" | "failed"; 
 
-export type ClusterWithIAM = {
+export type Cluster = {
   id: string;
-  iam: {
-    id: string;
-    urn: string;
-    displayName: string;
-  };
+  iam: IamObject;
   model: string;
   nodes: {
     id: string;

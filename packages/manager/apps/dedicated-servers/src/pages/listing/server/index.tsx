@@ -9,7 +9,7 @@ import {
   useDataGrid,
   ColumnSort,
 } from '@ovh-ux/manager-react-components';
-import { DedicatedServerWithIAM } from '@/data/types/server.type';
+import { DedicatedServer } from '@/data/types/server.type';
 import OrderMenu from '@/components/orderMenu';
 import { getColumns } from '@/components/dataGridColumns';
 
@@ -39,11 +39,11 @@ export default function ServerListing() {
 
   const sortServersListing = (
     colSorting: ColumnSort,
-    originalList: DedicatedServerWithIAM[] = [],
+    originalList: DedicatedServer[] = [],
   ) => {
     const serverList = [...originalList];
     serverList.sort((s1, s2) => {
-      const key = colSorting.id as keyof DedicatedServerWithIAM;
+      const key = colSorting.id as keyof DedicatedServer;
       if (key.toString() === 'displayName') {
         return (s1.iam?.displayName).localeCompare(s2.iam?.displayName);
       }
@@ -76,7 +76,7 @@ export default function ServerListing() {
             )}
             items={sortServersListing(
               sorting,
-              (flattenData as unknown) as DedicatedServerWithIAM[],
+              (flattenData as unknown) as DedicatedServer[],
             )}
             totalItems={totalCount || 0}
             hasNextPage={hasNextPage && !isLoading}

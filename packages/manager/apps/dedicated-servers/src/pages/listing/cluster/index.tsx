@@ -16,12 +16,14 @@ import {
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import useLinkUtils, { UrlEntry } from '@/hooks/useLinkUtils';
 import { orderLinks } from '@/data/constants/orderLinks';
-import { ClusterWithIAM } from '@/data/types/cluster.type';
+import { Cluster } from '@/data/types/cluster.type';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 export default function Listing() {
   const [columns] = useState([]);
   const { shell } = React.useContext(ShellContext);
   const { t } = useTranslation('cluster');
+  const { t: tCommon } = useTranslation(NAMESPACES.ACTIONS);
   const links = useLinkUtils<UrlEntry>(orderLinks);
   const { sorting, setSorting } = useDataGrid({
     id: 'displayName',
@@ -37,7 +39,7 @@ export default function Listing() {
     isLoading,
     search,
     filters,
-  } = useResourcesIcebergV6<ClusterWithIAM[]>({
+  } = useResourcesIcebergV6<Cluster[]>({
     columns,
     route: `/dedicated/cluster`,
     queryKey: ['dedicated-servers', `/dedicated/cluster`],
@@ -45,7 +47,7 @@ export default function Listing() {
 
   const sortClusterListing = (
     cluSorting: ColumnSort,
-    originalList: ClusterWithIAM[] = [],
+    originalList: Cluster[] = [],
   ) => {
     const clusterList = [...originalList];
     clusterList.sort((item1, item2) => {
@@ -64,7 +66,7 @@ export default function Listing() {
     return cluSorting?.desc ? clusterList.reverse() : clusterList;
   };
 
-  const clusterColumns: DatagridColumn<ClusterWithIAM>[] = [
+  const clusterColumns: DatagridColumn<Cluster>[] = [
     {
       id: 'name',
       isSearchable: true,
@@ -72,7 +74,7 @@ export default function Listing() {
       enableHiding: true,
       type: FilterTypeCategories.String,
       label: t('dedicated_clusters_name'),
-      cell: (item: ClusterWithIAM) => (
+      cell: (item: Cluster) => (
         <DataGridTextCell>
           <OdsLink
             color="primary"
@@ -96,7 +98,7 @@ export default function Listing() {
       enableHiding: true,
       type: FilterTypeCategories.String,
       label: t('dedicated_clusters_model'),
-      cell: (item: ClusterWithIAM) => (
+      cell: (item: Cluster) => (
         <DataGridTextCell>{t(item.model)}</DataGridTextCell>
       ),
     },
@@ -107,7 +109,7 @@ export default function Listing() {
       enableHiding: true,
       type: FilterTypeCategories.String,
       label: t('dedicated_clusters_region'),
-      cell: (item: ClusterWithIAM) => (
+      cell: (item: Cluster) => (
         <DataGridTextCell>{t(item.region)}</DataGridTextCell>
       ),
     },
@@ -129,7 +131,7 @@ export default function Listing() {
         icon={ODS_ICON_NAME.plus}
         size={ODS_BUTTON_SIZE.sm}
         variant="outline"
-        label={t('commander')}
+        label={tCommon('order')}
         onClick={(e) => {
           window.open(links.threeAZClusterOrder);
           e.preventDefault();
@@ -145,7 +147,7 @@ export default function Listing() {
           columns={clusterColumns}
           items={sortClusterListing(
             sorting,
-            (flattenData as unknown) as ClusterWithIAM[],
+            (flattenData as unknown) as Cluster[],
           )}
           totalItems={totalCount || 0}
           hasNextPage={hasNextPage && !isLoading}

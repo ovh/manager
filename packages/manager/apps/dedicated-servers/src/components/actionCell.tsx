@@ -2,10 +2,10 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-import { DedicatedServerWithIAM } from '@/data/types/server.type';
+import { DedicatedServer } from '@/data/types/server.type';
 import { OdsPopover, OdsButton } from '@ovhcloud/ods-components/react';
-import { ODS_POPOVER_POSITION } from '@ovhcloud/ods-components';
-export const ActionCell: React.FC<DedicatedServerWithIAM> = (vs) => {
+import { ODS_BUTTON_VARIANT, ODS_ICON_NAME, ODS_POPOVER_POSITION } from '@ovhcloud/ods-components';
+export const ActionCell: React.FC<DedicatedServer> = (vs) => {
   const { shell } = React.useContext(ShellContext);
   const { t } = useTranslation('dedicated-servers');
   const { trackClick } = useOvhTracking();
@@ -13,15 +13,13 @@ export const ActionCell: React.FC<DedicatedServerWithIAM> = (vs) => {
   return (
     <div className="w-min">
       <OdsButton
-        class="my-trigger"
-        icon="ellipsis-vertical"
+        icon={ODS_ICON_NAME.ellipsisVertical}
         id={`service-key-actions-${vs.name}`}
-        variant="outline"
+        variant={ODS_BUTTON_VARIANT.outline}
         label=""
-      ></OdsButton>
+      />
       <OdsPopover
         triggerId={`service-key-actions-${vs.name}`}
-        withArrow={false}
         position={ODS_POPOVER_POSITION.bottomStart}
       >
         <OdsButton
@@ -30,7 +28,7 @@ export const ActionCell: React.FC<DedicatedServerWithIAM> = (vs) => {
           onClick={() => {
             shell.navigation.navigateTo('dedicated', `#/server/${vs.name}`, {});
           }}
-        ></OdsButton>
+        />
       </OdsPopover>
     </div>
   );

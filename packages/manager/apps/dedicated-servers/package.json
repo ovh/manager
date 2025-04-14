@@ -23,9 +23,11 @@
     "@ovh-ux/logs-to-customer": "^1.1.1",
     "@tanstack/react-query": "^5.51.21",
     "@ovh-ux/manager-config": "^8.1.0",
-    "@ovh-ux/manager-core-api": "^0.10.1",
+    "@ovh-ux/manager-core-api": "^0.11.0",
     "@ovh-ux/manager-core-utils": "*",
+    "@ovh-ux/manager-module-common-api": "^0.3.6",
     "@ovh-ux/manager-react-core-application": "^0.11.16",
+    "@ovh-ux/manager-common-translations": "^0.5.1",
     "@ovh-ux/manager-react-shell-client": "^0.8.5",
     "@ovh-ux/request-tagger": "^0.4.0",
     "@ovhcloud/ods-components": "^18.5.3",
@@ -40,6 +42,7 @@
     "tailwindcss": "^3.4.4"
   },
   "devDependencies": {
+    "@ovh-ux/manager-core-test-utils": "^0.4.2",
     "@testing-library/dom": "^9.3.4",
     "@testing-library/jest-dom": "^6.4.2",
     "@testing-library/react": "^14.2.1",
@@ -48,6 +51,7 @@
     "@vitejs/plugin-react": "^4.2.1",
     "@vitest/coverage-v8": "^2.1.9",
     "typescript": "^5.1.6",
+    "msw": "2.1.7",
     "vite": "^6.0.7",
     "vitest": "^2.1.9"
   },

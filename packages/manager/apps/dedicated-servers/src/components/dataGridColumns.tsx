@@ -7,7 +7,7 @@ import {
   DatagridColumn,
 } from '@ovh-ux/manager-react-components';
 import { ActionCell } from '@/components/actionCell';
-import { DedicatedServerWithIAM } from '@/data/types/server.type';
+import { DedicatedServer } from '@/data/types/server.type';
 import MonitoringStatusChip from '@/components/monitoringStatus';
 
 const colorByProductStatus: Record<string, ODS_BADGE_COLOR> = {
@@ -22,29 +22,11 @@ const textByProductStatus: Record<string, string> = {
   hackedBlocked: 'server_configuration_state_HACKED_BLOCKED',
 };
 
-type ServerSateChipProps = {
-  state: string;
-};
-
 export function getColumns(
   t: (v: string) => string,
   goToServer: (name: string) => void,
 ) {
-  const ProductStatusChip: React.FC<ServerSateChipProps> = ({
-    state,
-  }: {
-    state: string;
-  }) => {
-    return (
-      <OdsBadge
-        label={t(textByProductStatus[state])}
-        color={colorByProductStatus[state]}
-        className="mt-3"
-      />
-    );
-  };
-
-  const serverColumns: DatagridColumn<DedicatedServerWithIAM>[] = [
+  const serverColumns: DatagridColumn<DedicatedServer>[] = [
     {
       id: 'serverId',
       isSearchable: true,
@@ -52,7 +34,7 @@ export function getColumns(
       enableHiding: true,
       type: FilterTypeCategories.Numeric,
       label: t('server_display_id'),
-      cell: (server: DedicatedServerWithIAM) => (
+      cell: (server: DedicatedServer) => (
         <DataGridTextCell>{t(server.serverId.toString())}</DataGridTextCell>
       ),
     },
@@ -63,7 +45,7 @@ export function getColumns(
       enableHiding: true,
       type: FilterTypeCategories.String,
       label: t('server_display_name'),
-      cell: (server: DedicatedServerWithIAM) => (
+      cell: (server: DedicatedServer) => (
         <DataGridTextCell>
           <OdsLink
             color="primary"
@@ -72,7 +54,7 @@ export function getColumns(
               goToServer(server.name);
             }}
             label={t(server?.iam?.displayName)}
-          ></OdsLink>
+          />
         </DataGridTextCell>
       ),
     },
@@ -83,7 +65,7 @@ export function getColumns(
       enableHiding: true,
       type: FilterTypeCategories.String,
       label: t('server_display_ip'),
-      cell: (server: DedicatedServerWithIAM) => (
+      cell: (server: DedicatedServer) => (
         <DataGridTextCell>{t(server.ip)}</DataGridTextCell>
       ),
     },
@@ -94,7 +76,7 @@ export function getColumns(
       enableHiding: true,
       type: FilterTypeCategories.String,
       label: t('server_display_reverse'),
-      cell: (server: DedicatedServerWithIAM) => (
+      cell: (server: DedicatedServer) => (
         <DataGridTextCell>{t(server.reverse)}</DataGridTextCell>
       ),
     },
@@ -105,7 +87,7 @@ export function getColumns(
       enableHiding: true,
       type: FilterTypeCategories.String,
       label: t('server_display_model'),
-      cell: (server: DedicatedServerWithIAM) => (
+      cell: (server: DedicatedServer) => (
         <DataGridTextCell>{t(server.commercialRange)}</DataGridTextCell>
       ),
     },
@@ -116,7 +98,7 @@ export function getColumns(
       enableHiding: true,
       type: FilterTypeCategories.String,
       label: t('server_display_rack'),
-      cell: (server: DedicatedServerWithIAM) => (
+      cell: (server: DedicatedServer) => (
         <DataGridTextCell>{t(server.rack)}</DataGridTextCell>
       ),
     },
@@ -126,7 +108,7 @@ export function getColumns(
       enableHiding: true,
       type: FilterTypeCategories.String,
       label: t('server_display_region'),
-      cell: (server: DedicatedServerWithIAM) => (
+      cell: (server: DedicatedServer) => (
         <DataGridTextCell>{t(server.region)}</DataGridTextCell>
       ),
     },
@@ -137,8 +119,12 @@ export function getColumns(
       enableHiding: true,
       type: FilterTypeCategories.Boolean,
       label: t('server_display_state'),
-      cell: (server: DedicatedServerWithIAM) => (
-        <ProductStatusChip state={server.state} />
+      cell: (server: DedicatedServer) => (
+        <OdsBadge
+          label={t(textByProductStatus[server.state])}
+          color={colorByProductStatus[server.state]}
+          className="mt-3"
+        />
       ),
     },
     {
@@ -147,11 +133,11 @@ export function getColumns(
       enableHiding: true,
       type: FilterTypeCategories.Boolean,
       label: t('server_display_monitoring'),
-      cell: (server: DedicatedServerWithIAM) => (
+      cell: (server: DedicatedServer) => (
         <MonitoringStatusChip
           monitoring={server.monitoring}
           noIntervention={server.noIntervention}
-        ></MonitoringStatusChip>
+        />
       ),
     },
     {
@@ -160,7 +146,7 @@ export function getColumns(
       enableHiding: false,
       label: '',
       isSortable: false,
-      cell: (server: DedicatedServerWithIAM) => <ActionCell {...server} />,
+      cell: (server: DedicatedServer) => <ActionCell {...server} />,
     },
   ];
   return serverColumns;

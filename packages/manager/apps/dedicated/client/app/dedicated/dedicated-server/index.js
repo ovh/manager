@@ -23,7 +23,6 @@ angular
             const featureAvailability = await ovhFeatureFlipping.checkFeatureAvailability(
               ['dedicated-servers'],
             );
-            console.log(featureAvailability);
             const { remainder } = $transition$.params();
             if (
               !remainder &&

@@ -14,16 +14,22 @@ export const MonitoringStatusChip: React.FC<MonitoringStatusProps> = ({
 }) => {
   const { t } = useTranslation('dedicated-servers');
   const color = !monitoring ? ODS_BADGE_COLOR.warning : ODS_BADGE_COLOR.success;
-  let label;
-  if (!monitoring) {
-    label = 'disabled';
-  } else {
-    label = noIntervention ? 'proactive' : 'no-proactive';
-  }
+  const getMonitoringStatusLabel = (
+    _monitoring: boolean,
+    _noIntervention: boolean,
+  ) => {
+    if (!_monitoring) return 'disabled';
+    return _noIntervention ? 'proactive' : 'no-proactive';
+  };
 
   return (
     <OdsBadge
-      label={t(`server_configuration_monitoring_status_${label}`)}
+      label={t(
+        `server_configuration_monitoring_status_${getMonitoringStatusLabel(
+          monitoring,
+          noIntervention,
+        )}`,
+      )}
       color={color}
       className="mt-3"
     />

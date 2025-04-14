@@ -1,4 +1,5 @@
 import { fetchIcebergV6, apiClient } from '@ovh-ux/manager-core-api';
+import { DedicatedServer } from '../types/server.type';
 
 export type GetdedicatedServerListParams = {
   /** Filter resources on IAM tags */
@@ -15,16 +16,16 @@ export const getdedicatedServerList = async (
 ): Promise<any> => apiClient.v6.get('/dedicated/server', params && { data: params });
 
 /**
- *  Get listing with iceberg V6
+ *  Get list of dedicated servers with iceberg
  */
-export const getListingIcebergV6 = async ({
+export const getDedicatedServerList = async ({
   pageSize,
   page,
 }: {
   pageSize: number;
   page: number;
 }) => {
-  const { data, status, totalCount } = await fetchIcebergV6({
+  const { data, status, totalCount } = await fetchIcebergV6<DedicatedServer>({
     route: `/dedicated/server`,
     pageSize,
     page,

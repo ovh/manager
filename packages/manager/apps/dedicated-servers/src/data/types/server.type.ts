@@ -1,3 +1,5 @@
+import { IamObject } from "@ovh-ux/manager-react-components";
+
 type Datacenter =
   | "bhs1" | "bhs2" | "bhs3" | "bhs4" | "bhs5" | "bhs6" | "bhs7" | "bhs8"
   | "cch01" | "crx1" | "crx2" | "dc1" | "eri1" | "eri2" | "gra04" | "gra1"
@@ -13,23 +15,18 @@ type ServerState = "error" | "hacked" | "hackedBlocked" | "ok";
 
 type SupportLevel = "critical" | "fastpath" | "gs" | "pro";
 
-interface Iam {
-  displayName?: string | null;
-  id: string; // UUID
-}
-
 interface Tags {
   [key: string]: string;
 }
 
-export interface DedicatedServerWithIAM {
+export interface DedicatedServer {
   availabilityZone: string;
   bootId?: number | null;
   bootScript?: string | null;
   commercialRange: string;
   datacenter: Datacenter;
   efiBootloaderPath?: string | null;
-  iam?: Iam | null;
+  iam?: IamObject | null;
   tags?: Tags | null;
   urn: string;
   ip: string; // IPv4
