@@ -5,7 +5,14 @@ import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { Route } from 'react-router-dom';
 import NotFound from '@/pages/404';
 import { urls } from '@/routes/routes.constants';
-import { ONBOARDING, WEBSITE } from '@/utils/tracking.constants';
+import {
+  DASHBOARD,
+  ONBOARDING,
+  SSL,
+  WEBSITE,
+} from '@/utils/tracking.constants';
+import DashboardLayout from '@/pages/dashboard/layout';
+import SslPage from '@/pages/dashboard/ssl/Ssl.page';
 
 const RootPage = React.lazy(() => import('@/pages/layout'));
 const WebsitesPage = React.lazy(() => import('@/pages/websites/Websites.page'));
@@ -54,6 +61,29 @@ export default (
         },
       }}
     />
+    <Route
+      id={DASHBOARD}
+      path={urls.dashboard}
+      Component={DashboardLayout}
+      handle={{
+        breadcrumb: { label: ':serviceName' },
+      }}
+    >
+      <Route
+        id={SSL}
+        path={urls.ssl}
+        Component={SslPage}
+        handle={{
+          tracking: {
+            pageName: SSL,
+            pageType: PageType.listing,
+          },
+          breadcrumb: {
+            label: 'ssl',
+          },
+        }}
+      />
+    </Route>
     <Route path={'*'} element={<NotFound />} />
   </Route>
 );

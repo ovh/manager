@@ -140,6 +140,11 @@ export default class {
     this.DOMAIN_ORDER_URL = DOMAIN_ORDER_URL;
     this.HOSTING_ORDER_URL = HOSTING_ORDER_URL;
     this.serviceName = serviceName;
+    this.sslCertificateLink = coreURLBuilder.buildURL(
+      'web-hosting',
+      '#/:serviceName/ssl',
+      { serviceName },
+    );
   }
 
   $onInit() {
