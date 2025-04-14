@@ -38,6 +38,8 @@ export const DATAGRID_LINK = 'details_';
 export const WEBSITE = 'website';
 export const STATISTICS = 'statistics';
 export const DIAGNOSTIC = 'diagnostic';
+export const DASHBOARD = 'dashboard';
+export const SSL = 'ssl';
 
 export const GUIDE_GETTING_STARTED = 'getting-started-guide';
 export const GUIDE_PUBLISHING = 'publishing-guide';
