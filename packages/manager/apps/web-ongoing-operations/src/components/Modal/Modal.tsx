@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
+import pLimit from 'p-limit';
+import { useMutation } from '@tanstack/react-query';
 import ModalHeaderComponent from '@/components/Modal/Header/ModalHeader.component';
 import ModalContentComponent from '@/components/Modal/Content/ModalContent.component';
 import { updateTask } from '@/data/api/web-ongoing-operations';
@@ -15,7 +17,7 @@ import { useOperationArguments } from '@/hooks/modal/useOperationArguments';
 
 type IsModalOpenProps = {
   readonly onCloseModal?: () => void;
-  readonly data: TOngoingOperations;
+  readonly operation: TOngoingOperations;
   readonly universe: string;
   readonly changeStatus?: (label: string, message: string) => void;
 };
@@ -23,7 +25,7 @@ type IsModalOpenProps = {
 export default function Modal({
   universe,
   onCloseModal,
-  data,
+  operation,
   changeStatus,
 }: IsModalOpenProps) {
   const { t } = useTranslation('dashboard');
@@ -31,7 +33,7 @@ export default function Modal({
     Record<string, string>
   >();
   const [operationName, setOperationName] = useState(
-    data.canRelaunch ? OperationName.CanRelaunch : null,
+    operation.canRelaunch ? OperationName.CanRelaunch : null,
   );
   const navigate = useNavigate();
   const putOperationName = (label: OperationName) => {
@@ -39,42 +41,62 @@ export default function Modal({
   };
 
   const { data: operationArguments, isLoading, error } = useOperationArguments(
-    data.id,
+    operation.id,
   );
 
   if (error) {
     navigate(urls.error404);
   }
 
-  const onValidate = async (id: number, operationType: OperationName) => {
-    const promiseArray: Promise<void>[] = [];
+  const updateTaskLimit = pLimit(1);
 
-    if (operationArgumentsUpdated) {
-      Object.entries(operationArgumentsUpdated).forEach(([key, value]) => {
-        promiseArray.push(updateTask(id, key, { value }));
-      });
-    }
+  const { mutate: useUpdateOperationStatus } = useMutation({
+    mutationFn: async ({
+      operationId,
+      operationType,
+    }: {
+      operationId: number;
+      operationType: OperationName;
+    }) => {
+      await updateOperationStatus(universe, operationId, operationType);
+      changeStatus(
+        ODS_MESSAGE_COLOR.success,
+        t(`domain_operations_${operationType}_success`),
+      );
+    },
+    onError: (e) => {
+      changeStatus(ODS_MESSAGE_COLOR.warning, e.message);
+    },
+    onSettled: () => {
+      onCloseModal();
+    },
+  });
 
-    Promise.all(promiseArray)
-      .then(() => {
-        updateOperationStatus(universe, id, operationType)
-          .then(() => {
-            changeStatus(
-              ODS_MESSAGE_COLOR.success,
-              t(`domain_operations_${operationType}_success`),
-            );
-          })
-          .catch((e) => {
-            changeStatus(ODS_MESSAGE_COLOR.warning, e.message);
-          })
-          .finally(() => {
-            onCloseModal();
-          });
-      })
-      .catch(() => {
-        navigate(urls.root);
-      });
-  };
+  const { mutate: onValidate } = useMutation({
+    mutationFn: async ({
+      operationId,
+      operationType,
+    }: {
+      operationId: number;
+      operationType: OperationName;
+    }) => {
+      if (operationArgumentsUpdated) {
+        const promises = Object.entries(
+          operationArgumentsUpdated,
+        ).map(([key, value]) =>
+          updateTaskLimit(() => updateTask(operationId, key, { value })),
+        );
+        await Promise.all(promises);
+      }
+      return { operationId, operationType };
+    },
+    onSuccess: (data) => {
+      useUpdateOperationStatus(data);
+    },
+    onError: () => {
+      navigate(urls.root);
+    },
+  });
 
   const onChange = (key: string, value: string) => {
     setOperationArgumentsUpdated({
@@ -101,26 +123,28 @@ export default function Modal({
         />
       ) : (
         <div>
-          <ModalHeaderComponent data={data} />
+          <ModalHeaderComponent data={operation} />
           <div className="my-6 flex flex-col gap-y-4">
             {operationArguments?.data?.map((argument, index) => (
-              <div key={`${data.id}-${index}`}>
+              <div key={`${operation.id}-${index}`}>
                 <ModalContentComponent
                   argument={argument}
-                  operationId={data.id}
+                  operationId={operation.id}
                   onChange={onChange}
-                  domainName={data.domain}
+                  domainName={operation.domain}
                 />
               </div>
             ))}
           </div>
           {operationArguments.actions && (
             <OperationActions
-              data={data}
+              data={operation}
               operationName={operationName}
-              disabled={null}
+              disabled={operationName === null}
               putOperationName={putOperationName}
-              onValidate={onValidate}
+              onValidate={(operationId, type) =>
+                onValidate({ operationId, operationType: type })
+              }
               justify="end"
             />
           )}
