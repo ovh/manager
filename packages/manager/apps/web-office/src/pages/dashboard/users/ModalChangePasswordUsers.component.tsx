@@ -30,10 +30,10 @@ export default function ModalChangePasswordUsers() {
   const emailUser = context?.environment?.user?.email;
   const { serviceName } = useParams() || {};
   const [searchParams] = useSearchParams();
+  const licencePrepaidName = searchParams.get('licencePrepaidName') || '';
   const activationEmail = searchParams.get('activationEmail') || '';
   const { addError, addSuccess } = useNotifications();
   const [isAutomatic, setIsAutomatic] = useState(true);
-
   const {
     control,
     handleSubmit,
@@ -52,7 +52,11 @@ export default function ModalChangePasswordUsers() {
 
   const { mutate: editPassword, isPending: isSending } = useMutation({
     mutationFn: (params: UserChangePasswordType) =>
-      postUsersPassword(serviceName, activationEmail, params),
+      postUsersPassword(
+        licencePrepaidName || serviceName,
+        activationEmail,
+        params,
+      ),
     onSuccess: () => {
       addSuccess(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>

@@ -36,7 +36,7 @@ const ActionButtonUsers: React.FC<ActionButtonUsersProps> = ({
   const hrefChangePasswordUsers = useGenerateUrl('./change-password', 'path', {
     activationEmail: usersItem.activationEmail,
     ...(!licenceDetail.serviceType && {
-      licencePrepaidName: licenceDetail.serviceName,
+      licencePrepaidName: usersItem.serviceName,
     }),
   });
 
