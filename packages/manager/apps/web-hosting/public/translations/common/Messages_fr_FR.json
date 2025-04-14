@@ -1,6 +1,7 @@
 {
   "onboarding": "Onboarding",
   "websites": "Sites internet",
+  "hosting": "Hébergements",
   "web_hosting_header_order": "Commander",
   "web_hosting_header_guide_general_informations": "Informations générales",
   "web_hosting_export_label": "Exporter en CSV",
