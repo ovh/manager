@@ -1,3 +1,13 @@
 td:has(div.is-latest) {
   background-color: #e6faff !important;
 }
+
+#container {
+  justify-content: flex;
+  align-items: center;
+  padding-top: 0;
+}
+
+#left-side {
+  flex: 1;
+}
