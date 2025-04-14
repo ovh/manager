@@ -40,6 +40,7 @@ import { useInstances } from '@/data/hooks/instance/useInstances';
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
 import { Spinner } from '@/components/spinner/Spinner.component';
 import { SECTIONS } from '@/routes/routes';
+import { SearchNotifications } from '@/components/SearchNotifications/SearchNotifications';
 
 const initialSorting = {
   id: 'name',
@@ -136,6 +137,7 @@ const Instances: FC = () => {
         <div>
           <OsdsDivider />
           <Notifications />
+          <SearchNotifications />
           <OsdsDivider />
           <div className={'sm:flex items-center justify-between mt-4'}>
             <OsdsButton
