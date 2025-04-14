@@ -1,34 +1,24 @@
-import React, { useEffect, useState, startTransition } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { FilterCategories, v6 } from '@ovh-ux/manager-core-api';
-import { useParams, useNavigate, useLocation } from 'react-router-dom';
-
+import { useParams } from 'react-router-dom';
 import { OdsButton } from '@ovhcloud/ods-components/react';
-import {
-  ODS_BUTTON_VARIANT,
-  ODS_BUTTON_SIZE,
-  ODS_ICON_NAME,
-} from '@ovhcloud/ods-components';
+import { ODS_BUTTON_SIZE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import {
   Breadcrumb,
   Datagrid,
-  DataGridTextCell,
   ErrorBanner,
-  useResourcesIcebergV6,
-  dataType,
   BaseLayout,
   useResourcesV6,
 } from '@ovh-ux/manager-react-components';
-
 import appConfig from '@/pci-volume-backup.config';
-import { useQuery } from '@tanstack/react-query';
+import {
+  useDatagridColumn,
+  toColumnDatagrids,
+} from '@/pages/listing/useDatagridColumn';
+import { TVolumeBackup } from '@/data/api/api.types';
 
 export default function Listing() {
-  const myConfig = appConfig;
-  const serviceKey = myConfig.listing?.datagrid?.serviceKey;
-  const [columns, setColumns] = useState<any>([]);
-  const navigate = useNavigate();
-  const location = useLocation();
+  const columns = useDatagridColumn();
   const { t } = useTranslation('listing');
   const { projectId } = useParams();
 
@@ -40,78 +30,19 @@ export default function Listing() {
     hasNextPage,
     fetchNextPage,
     isLoading,
-    status,
     search,
     sorting,
     setSorting,
     filters,
-  } = useResourcesV6({
-    columns,
+  } = useResourcesV6<TVolumeBackup>({
+    columns: toColumnDatagrids(columns),
     route: `/cloud/project/${projectId}/aggregated/volumeBackup`,
     queryKey: [
       'pci-volume-backup',
       `/cloud/project/${projectId}/aggregated/volumeBackup`,
     ],
-    pageSize: 3,
+    pageSize: 10,
   });
-
-  const navigateToDashboard = (label: string) => {
-    const path =
-      location.pathname.indexOf('pci') > -1 ? `${location.pathname}/` : '/';
-    startTransition(() => navigate(`${path}${label}`));
-  };
-
-  // Code to remove
-  const comparatorType = {
-    Number: FilterCategories.Numeric,
-    Date: FilterCategories.Date,
-    String: FilterCategories.String,
-    Boolean: FilterCategories.Boolean,
-    Options: FilterCategories.Options,
-  };
-
-  // Code to remove and declare definition columns in const variable
-  useEffect(() => {
-    if (
-      columns.length === 0 &&
-      status === 'success' &&
-      flattenData?.length > 0
-    ) {
-      const newColumns = Object.keys(flattenData[0] as object)
-        .filter((element) => element !== 'iam')
-        .map((element) => ({
-          id: element,
-          label: element,
-          isFilterable: true,
-          isSearchable: true,
-          // @ts-ignore
-          type: dataType(flattenData[0][element]),
-          // @ts-ignore
-          ...(comparatorType[dataType(flattenData[0][element])] && {
-            // @ts-ignore
-            comparator: comparatorType[dataType(flattenData[0][element])],
-          }),
-          cell: (props: any) => {
-            const label = props[element] as string;
-            if (typeof label === 'string' || typeof label === 'number') {
-              if (serviceKey === element)
-                return (
-                  <DataGridTextCell>
-                    <OdsButton
-                      variant={ODS_BUTTON_VARIANT.ghost}
-                      onClick={() => navigateToDashboard(label)}
-                      label={label}
-                    />
-                  </DataGridTextCell>
-                );
-              return <DataGridTextCell>{label}</DataGridTextCell>;
-            }
-            return <div>-</div>;
-          },
-        }));
-      setColumns(newColumns);
-    }
-  }, [flattenData]);
 
   if (isError) {
     const { response }: any = error;
@@ -124,7 +55,7 @@ export default function Listing() {
   }
 
   const header = {
-    title: t('title'),
+    title: t('pci_projects_project_storages_volume_backup_list_header'),
   };
 
   const TopbarCTA = () => (
@@ -132,7 +63,9 @@ export default function Listing() {
       <OdsButton
         icon={ODS_ICON_NAME.plus}
         size={ODS_BUTTON_SIZE.sm}
-        label="Add service"
+        label={t(
+          'pci_projects_project_storages_volume_backup_list_datagrid_menu_topbar_action_create',
+        )}
       />
     </div>
   );

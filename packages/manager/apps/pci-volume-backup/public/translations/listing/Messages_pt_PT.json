@@ -1,0 +1,20 @@
+{
+  "pci_projects_project_storages_volume_backup_list_header": "Volume Backup",
+  "pci_projects_project_storages_volume_backup_list_header_description": "Efetue backups regulares para uma melhor resiliência dos seus dados.",
+  "pci_projects_project_storages_volume_backup_list_status_creating": "Criação em curso",
+  "pci_projects_project_storages_volume_backup_list_status_deleting": "Eliminação em curso",
+  "pci_projects_project_storages_volume_backup_list_status_error": "Erro",
+  "pci_projects_project_storages_volume_backup_list_status_ok": "Ativo",
+  "pci_projects_project_storages_volume_backup_list_status_restoring": "Restauro em curso",
+  "pci_projects_project_storages_volume_backup_list_datagrid_menu_topbar_action_create": "Criar um backup de volume",
+  "pci_projects_project_storages_volume_backup_list_datagrid_menu_action_restore": "Restaurar um volume",
+  "pci_projects_project_storages_volume_backup_list_datagrid_menu_action_create_volume": "Criar um volume",
+  "pci_projects_project_storages_volume_backup_list_datagrid_menu_action_delete": "Eliminar",
+  "pci_projects_project_storages_volume_backup_list_datagrid_column_name": "Nome",
+  "pci_projects_project_storages_volume_backup_list_datagrid_column_id": "ID",
+  "pci_projects_project_storages_volume_backup_list_datagrid_column_region": "Localização",
+  "pci_projects_project_storages_volume_backup_list_datagrid_column_volume": "Volume",
+  "pci_projects_project_storages_volume_backup_list_datagrid_column_create_date": "Data de criação",
+  "pci_projects_project_storages_volume_backup_list_datagrid_column_capacity": "Dimensão",
+  "pci_projects_project_storages_volume_backup_list_datagrid_column_status": "Estado"
+}
