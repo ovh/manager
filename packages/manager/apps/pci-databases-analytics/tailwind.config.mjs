@@ -1,8 +1,21 @@
 import odsPlugin from '@datatr-ux/ods-tailwind-config';
+import path from 'path';
+import { createRequire } from 'node:module';
+
+const require = createRequire(import.meta.url);
+
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
+    path.join(
+      path.dirname(require.resolve('@ovh-ux/manager-react-components')),
+      '**/*.{js,jsx,ts,tsx}',
+    ),
+    path.join(
+      path.dirname(require.resolve('@ovh-ux/manager-pci-common')),
+      '**/*.{js,jsx,ts,tsx}',
+    ),
     './src/**/*.{js,jsx,ts,tsx}',
     '../../../../node_modules/@datatr-ux/uxlib/**/*.{js,jsx,ts,tsx}',
   ],

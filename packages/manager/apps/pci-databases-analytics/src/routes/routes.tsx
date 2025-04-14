@@ -353,10 +353,25 @@ export default [
           },
           {
             path: 'logs',
-            id: 'service.{service.engine}.logs',
             ...lazyRouteConfig(() =>
-              import('@/pages/services/[serviceId]/logs/Logs.page'),
+              import('@/pages/services/[serviceId]/logs/Logs.layout'),
             ),
+            children: [
+              {
+                path: '',
+                id: 'service.{service.engine}.logs',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/services/[serviceId]/logs/Logs.page'),
+                ),
+              },
+              {
+                path: 'streams',
+                id: 'service.{service.engine}.logs.streams',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/services/[serviceId]/logs/Streams.page'),
+                ),
+              },
+            ],
           },
           {
             path: 'settings',
