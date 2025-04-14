@@ -1,9 +1,12 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { OdsLink } from '@ovhcloud/ods-components/react';
+import { OdsLink, OdsText } from '@ovhcloud/ods-components/react';
 import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
 import { getNicParams } from '@/utils/utils';
-import { domainCreate, domainIncomingTransfert } from '@/constants';
+import { domainCreate, domainIncomingTransfer } from '@/constants';
+import { useNichandle } from '@/hooks/nichandle/useNichandle';
+import { useGetDomainInformation } from '@/hooks/data/query';
+import Loading from '@/components/Loading/Loading';
 
 interface MeContactComponentProps {
   readonly argumentKey: string;
@@ -23,12 +26,27 @@ export default function MeContactComponent({
   const { t } = useTranslation('dashboard');
   const { data: webUrl } = useNavigationGetUrl(['web', '', {}]);
   const { data: dedicatedUrl } = useNavigationGetUrl(['dedicated', '', {}]);
+  const { nichandle } = useNichandle();
+  const { data: serviceInfo, isLoading } = useGetDomainInformation(domainName);
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   let url = `${webUrl}/domain/${domainName}/contact-management/edit-contact/${value}/`;
-  if ([domainIncomingTransfert, domainCreate].includes(operationName)) {
+  if (
+    !serviceInfo &&
+    [domainIncomingTransfer, domainCreate].includes(operationName)
+  ) {
     url = `${dedicatedUrl}/contact/${value}/${
       fields.length ? getNicParams(fields) : ''
     }`;
+  }
+
+  if (nichandle !== serviceInfo?.contactAdmin.id) {
+    return (
+      <OdsText>{t('domain_operations_update_contact_administrator')}</OdsText>
+    );
   }
 
   return (
