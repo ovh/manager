@@ -38,7 +38,7 @@ const ResetUserPassword = () => {
 
   const [newPass, setNewPass] = useState<string>();
   const [selectedEndpoint, setSelectedEndpoint] = useState<
-    database.service.Endpoint
+    database.service.Endpoint | undefined
   >(service.endpoints[0]);
 
   const { t } = useTranslation(
