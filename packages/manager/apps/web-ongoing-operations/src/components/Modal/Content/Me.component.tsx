@@ -1,11 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React from 'react';
 import { OdsLink, OdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import {
-  ShellContext,
-  useNavigationGetUrl,
-} from '@ovh-ux/manager-react-shell-client';
+import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { useNichandle } from '@/hooks/nichandle/useNichandle';
 
 interface MeComponentProps {
   readonly argumentKey: string;
@@ -19,19 +17,8 @@ export default function MeComponent({
   fields,
 }: MeComponentProps) {
   const { t } = useTranslation('dashboard');
-  const { shell } = useContext(ShellContext);
-  const { environment } = shell;
-  const [nichandle, setNichandle] = useState('');
   const { data: url } = useNavigationGetUrl(['new-account', '', {}]);
-
-  useEffect(() => {
-    const getNichandle = async () => {
-      const env = await environment.getEnvironment();
-      const user = env.getUser();
-      setNichandle(user.nichandle);
-    };
-    getNichandle();
-  }, []);
+  const { nichandle } = useNichandle();
 
   if (nichandle === value) {
     return (

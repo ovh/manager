@@ -9,6 +9,7 @@ interface ModalContentComponentProps {
   readonly domainName: string;
   readonly operationId: number;
   readonly argument: TArgument;
+  readonly operationName: string;
   readonly onChange: (key: string, value: string) => void;
 }
 
@@ -16,6 +17,7 @@ export default function ModalContentComponent({
   domainName,
   operationId,
   argument,
+  operationName,
   onChange,
 }: ModalContentComponentProps) {
   const { key, value, fields, type } = argument;
@@ -26,6 +28,8 @@ export default function ModalContentComponent({
           domainName={domainName}
           argumentKey={key}
           value={value}
+          operationName={operationName}
+          fields={fields}
         />
       )}
 
