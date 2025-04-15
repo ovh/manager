@@ -79,29 +79,8 @@ export const GDPR_AGREEMENTS_INFOS = [
   },
 ];
 
-export const COLUMNS_CONFIG = [
-  {
-    property: 'name',
-  },
-  {
-    property: 'state',
-  },
-  {
-    property: 'date',
-  },
-];
-
-export const AGREEMENTS_STATUS = {
-  KO: 'KO',
-  OBSOLETE: 'OBSOLETE',
-  OK: 'OK',
-  TODO: 'TODO',
-};
-
 export default {
   AGREEMENT_GENERIC_MORE_INFORMATIONS_URL,
   SUPPORT_URL,
   GDPR_AGREEMENTS_INFOS,
-  COLUMNS_CONFIG,
-  AGREEMENTS_STATUS,
 };

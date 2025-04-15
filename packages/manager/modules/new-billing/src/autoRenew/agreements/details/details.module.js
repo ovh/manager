@@ -1,12 +1,8 @@
 import uiRouter from '@uirouter/angularjs';
 import routing from './details.routing';
-import component from './user-agreements-details.component';
 
 const moduleName = 'ovhManagerBillingAgreementsDetails';
 
-angular
-  .module(moduleName, [uiRouter])
-  .config(routing)
-  .component('userAgreementsDetails', component);
+angular.module(moduleName, [uiRouter]).config(routing);
 
 export default moduleName;
