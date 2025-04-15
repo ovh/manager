@@ -7,6 +7,7 @@ export type ApiV6AuthToken = {
 export type SnowChatContext = {
   skip_load_history?: string;
   live_agent_only?: string;
+  requester_session_language?: string;
   language?: string;
   region?: string;
   queue: string;

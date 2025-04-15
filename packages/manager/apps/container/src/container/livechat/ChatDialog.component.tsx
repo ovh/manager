@@ -88,7 +88,7 @@ export default function ChatDialog({
         data-testid="live-chat-iframe"
         title={title}
         src={url}
-        className={`flex-grow w-full h-full rounded-lg border-none`} // done to tw
+        className={`flex-grow w-full h-full rounded-lg border-none`}
         sandbox="allow-scripts allow-top-navigation allow-forms allow-popups allow-same-origin allow-downloads"
       />
     </dialog>
