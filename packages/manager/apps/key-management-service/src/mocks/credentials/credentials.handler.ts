@@ -8,7 +8,7 @@ export type GetCredentialsMockParams = {
 };
 
 const findCredentialByID = (params: PathParams) =>
-  credentialMock.find(({ id }) => id === params.id);
+  credentialMock.find(({ id }) => id === params.credentialId);
 
 export const getCredentialsMock = ({
   isCredentialKO,
@@ -23,7 +23,7 @@ export const getCredentialsMock = ({
             message: 'credentials error',
           },
         }
-      : (_: unknown, params: PathParams) => findCredentialByID(params),
+      : credentialMock.slice(0, nbCredential),
     status: isCredentialKO ? 500 : 200,
     api: 'v2',
   },
@@ -31,7 +31,7 @@ export const getCredentialsMock = ({
     url: '/okms/resource/:okmsId/credential/:credentialId',
     response: isCredentialKO
       ? { message: 'credential error' }
-      : credentialMock.slice(0, nbCredential),
+      : (_: unknown, params: PathParams) => findCredentialByID(params),
     status: isCredentialKO ? 500 : 200,
     api: 'v2',
   },
