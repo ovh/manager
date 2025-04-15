@@ -61,6 +61,14 @@
                     data-ng-bind=":: ('deployment_mode_card_description_' + deploymentMode.name) | translate"
                 ></p>
             </oui-select-picker-section>
+            <oui-select-picker-section
+                data-ng-if="$ctrl.prices && $ctrl.prices[deploymentMode.name]"
+            >
+                <p
+                    data-translate="{{:: $ctrl.prices[deploymentMode.name].key }}"
+                    data-translate-values="$ctrl.prices[deploymentMode.name].values"
+                ></p>
+            </oui-select-picker-section>
         </oui-select-picker>
     </div>
 </div>

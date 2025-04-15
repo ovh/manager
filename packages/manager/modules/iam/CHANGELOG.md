@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.14.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.14.5...@ovh-ux/manager-iam@1.14.6) (2025-04-14)
+
+
+### Bug Fixes
+
+* **iam:** add zimbra policies translation keys ([35f12cf](https://github.com/ovh/manager/commit/35f12cf6dca056aabb3e0d0f641c3c53dc2a80b3)), closes [#MANAGER-15704](https://github.com/ovh/manager/issues/MANAGER-15704)
+
+
+
+
+
 ## [1.14.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.14.4...@ovh-ux/manager-iam@1.14.5) (2025-04-07)
 
 

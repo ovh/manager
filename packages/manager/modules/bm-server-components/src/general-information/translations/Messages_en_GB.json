@@ -56,5 +56,7 @@
   "server_configuration_installation_inputs_item_keyValue_remove_tooltip": "Click here to delete this key-value pair",
   "dedicated_server_dashboard_region_unknown": "Information unavailable",
   "dedicated_server_dashboard_zone_unknown": "Information unavailable",
-  "server_configuration_installation_inputs_bad_hostname": "The host name must contain numbers, letters, hyphens and full stops, according to the format defined in RFC 1035"
+  "server_configuration_installation_inputs_bad_hostname": "The host name must contain numbers, letters, hyphens and full stops, according to the format defined in RFC 1035",
+  "dedicated_server_dashboard_installation_install_button": "Install my server",
+  "dedicated_server_dashboard_installation_reinstall_button": "Reinstall my server"
 }

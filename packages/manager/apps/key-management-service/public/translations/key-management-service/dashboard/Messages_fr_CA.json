@@ -3,7 +3,6 @@
   "loading": "chargement",
   "error_service": "No services info",
   "general_informations": "Informations générales",
-  "encrypted_keys": "Clés de chiffrement",
   "access_certificates": "Certificats d'accès",
   "logs": "Logs",
   "key_management_service_dashboard_back_link": "Retour à la liste des KMS",
@@ -37,5 +36,5 @@
   "key_management_service_dashboard_dashboard_field_state_toDelete": "À supprimer",
   "key_management_service_dashboard_dashboard_field_state_toSuspend": "À suspendre",
   "key_management_service_dashboard_field_label_kmip_count": "Nombre d'objets KMIP",
-  "key_management_service_dashboard_field_label_service-keys_count": "Nombre de clés"
+  "key_management_service_dashboard_field_label_service-keys_count": "Nombre de Service Keys"
 }

@@ -58,7 +58,7 @@ export default /* @ngInject */ ($stateProvider) => {
             {
               productId: currentService.serviceName,
               datacenterId,
-              datastoreId: datastore.id,
+              datastoreId: datastore.filerId,
               isGlobal: datastore.dc == null,
             },
           );

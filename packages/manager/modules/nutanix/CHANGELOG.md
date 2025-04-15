@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.7.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@2.7.6...@ovh-ux/manager-nutanix@2.7.7) (2025-04-14)
+
+
+### Bug Fixes
+
+* **nutanix:** fix display IPMI tab ([db2c273](https://github.com/ovh/manager/commit/db2c273a3f37eeebd7bcbb15717c4de669149429)), closes [#MANAGER-17836](https://github.com/ovh/manager/issues/MANAGER-17836) [#INC0123559](https://github.com/ovh/manager/issues/INC0123559)
+
+
+
+
+
 ## [2.7.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@2.7.5...@ovh-ux/manager-nutanix@2.7.6) (2025-04-10)
 
 

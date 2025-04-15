@@ -39,10 +39,7 @@ import {
   LOCAL_PRIVATE_NETWORK_MODE,
 } from './add.constants';
 
-import {
-  INSTANCE_PRICING_LINKS,
-  WINDOWS_GEN_3_ADDON_PLANCODE,
-} from '../instances.constants';
+import { INSTANCE_PRICING_LINKS } from '../instances.constants';
 import { useURLModel } from '../../project.utils';
 
 export default class PciInstancesAddController {
@@ -57,6 +54,7 @@ export default class PciInstancesAddController {
     PciProjectsProjectInstanceService,
     PciPublicGatewaysService,
     PciProjectAdditionalIpService,
+    PciProjectDeploymentMode,
     atInternet,
     PciProject,
     OvhApiCloudProjectRegion,
@@ -72,6 +70,7 @@ export default class PciInstancesAddController {
     this.cucUcentsToCurrencyFilter = cucUcentsToCurrencyFilter;
     this.PciProjectsProjectInstanceService = PciProjectsProjectInstanceService;
     this.PciPublicGatewaysService = PciPublicGatewaysService;
+    this.PciProjectDeploymentMode = PciProjectDeploymentMode;
     this.atInternet = atInternet;
     this.availableSubnet = AVAILABLE_SUBNET;
     this.instanceReadMoreUrl =
@@ -123,6 +122,17 @@ export default class PciInstancesAddController {
         }
       },
     );
+
+    $scope.$watch(
+      () => this.model.flavorGroup,
+      () => {
+        if (this.model.flavorGroup) {
+          this.deploymentModesPrices = PciProjectDeploymentMode.getFlavorGroupPricesPerDeploymentMode(
+            this.model.flavorGroup,
+          );
+        }
+      },
+    );
   }
 
   $onInit() {
@@ -147,6 +157,7 @@ export default class PciInstancesAddController {
 
     this.globalRegionsUrl = this.PciProject.getDocumentUrl('GLOBAL_REGIONS');
     this.localZoneUrl = this.PciProject.getDocumentUrl('LOCAL_ZONE');
+    this.zone3azUrl = this.PciProject.getDocumentUrl('REGIONS_3AZ');
 
     this.selectedDeploymentMode = null;
     this.model = {
@@ -239,6 +250,7 @@ export default class PciInstancesAddController {
 
     this.availableRegions = {};
     this.unavailableRegions = {};
+    this.showNonAvailableRegions = {};
     this.fetchInstancesAvailability();
   }
 
@@ -260,11 +272,6 @@ export default class PciInstancesAddController {
 
   onDeploymentModeChange(deploymentMode) {
     this.selectedDeploymentMode = deploymentMode;
-    this.displaySelectedRegion = false;
-    if (this.instance.availabilityZone) {
-      delete this.instance.availabilityZone;
-    }
-    this.model.datacenter = null;
     this.getFilteredRegions();
   }
 
@@ -422,6 +429,10 @@ export default class PciInstancesAddController {
           });
         }
       });
+
+      this.showNonAvailableRegions[continent] = !this.constructor.hasRegions(
+        availableRegions[continent],
+      );
     });
 
     this.availableRegions = availableRegions;
@@ -1871,74 +1882,43 @@ export default class PciInstancesAddController {
     ]);
   }
 
-  shouldShowWindowsGen3Data(
-    distribution = this.model?.image?.distribution,
-    images = [this.model?.image],
-  ) {
-    const {
-      model: { flavorGroup },
-    } = this;
-
-    if (!distribution || !images.length || !flavorGroup) {
-      return false;
-    }
-
-    const flavor = flavorGroup.getFlavorByOsType('windows');
-
+  shouldShowWindowsGen3Data(images) {
+    const windowsFlavor = this.model.flavorGroup.getFlavorByOsType('windows');
     return (
-      flavor &&
-      Boolean(distribution.match(/^windows/i)) &&
-      images.some(({ name }) => name.match(/20(16|19|22|25)/)) &&
-      this.catalog.addons
-        .find(({ planCode }) => planCode === flavor.planCodes.hourly)
-        ?.addonFamilies.some(({ addons }) =>
-          addons.includes(WINDOWS_GEN_3_ADDON_PLANCODE),
-        )
+      !!windowsFlavor &&
+      this.PciProjectsProjectInstanceService.getLicensePrice(
+        this.catalog,
+        windowsFlavor,
+        images?.[0] || this.model.image,
+      ) !== null
     );
   }
 
-  getWindowsLicensePrice(multiplier = 1) {
-    const { coreConfig, windowsGen3 } = this;
-    const convertedPrice = windowsGen3.price / 10 ** 8;
-
-    return new Intl.NumberFormat(coreConfig.getUserLocale().replace('_', '-'), {
-      style: 'currency',
-      currency: coreConfig.getUser().currency.code,
-      maximumFractionDigits: Math.max(
-        `${convertedPrice}`.split('.').pop().length,
-        3,
-      ),
-    }).format(convertedPrice * multiplier * this.model.number);
+  getFormattedLicensePrice(price) {
+    return this.PciProjectsProjectInstanceService.formatLicensePrice(
+      price * this.model.number,
+    );
   }
 
-  getWindowsLicensePriceText(distribution, images) {
-    if (!this.shouldShowWindowsGen3Data(distribution, images)) {
-      return '';
-    }
+  getLicensePriceText(distribution, images) {
+    const flavor = this.model.flavorGroup.getFlavorByOsType(images[0]?.type);
 
-    const price = this.getWindowsLicensePrice();
+    if (!flavor) return '';
+
+    const licensePrice = this.PciProjectsProjectInstanceService.getLicensePrice(
+      this.catalog,
+      flavor,
+      images?.[0],
+    );
+
+    if (!licensePrice) return '';
+
+    const price = this.getFormattedLicensePrice(licensePrice);
     const unit = this.$translate.instant(
       'pci_projects_project_instances_add_windows_gen3_license_unit_w_core',
     );
 
     return `+ ${price} ${unit}`;
-  }
-
-  getWindowsLicenseTotalPriceText() {
-    const { flavorGroup } = this.model;
-
-    if (!flavorGroup || !this.shouldShowWindowsGen3Data()) {
-      return '';
-    }
-
-    const price = this.getWindowsLicensePrice(
-      flavorGroup.technicalBlob.cpu.cores,
-    );
-    const unit = this.$translate.instant(
-      'pci_projects_project_instances_add_windows_gen3_license_unit',
-    );
-
-    return `${price} ${unit}`;
   }
 
   get shouldShow3AZRegionData() {

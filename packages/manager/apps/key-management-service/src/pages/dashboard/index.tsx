@@ -20,7 +20,7 @@ import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
 import { getOkmsResourceQueryKey } from '@/data/api/okms';
 import { OKMS } from '@/types/okms.type';
 import { useOKMSById } from '@/data/hooks/useOKMS';
-import { CHANGELOG_LINKS } from '@/constants';
+import { CHANGELOG_LINKS, SERVICE_KEYS_LABEL } from '@/constants';
 import KmsTabs, {
   KmsTabProps,
 } from '@/components/layout-helpers/Dashboard/KmsTabs';
@@ -66,7 +66,7 @@ export default function DashboardPage() {
         },
         {
           url: ROUTES_URLS.keys,
-          content: <>{t('key-management-service/dashboard:encrypted_keys')}</>,
+          content: <>{SERVICE_KEYS_LABEL}</>,
         },
         {
           url: ROUTES_URLS.credentials,
@@ -100,9 +100,7 @@ export default function DashboardPage() {
     },
     {
       id: ROUTES_URLS.keys,
-      label: t(
-        'key-management-service/serviceKeys:key_management_service_service_keys',
-      ),
+      label: SERVICE_KEYS_LABEL,
       navigateTo: `/${okmsId}/${ROUTES_URLS.keys}`,
     },
     {

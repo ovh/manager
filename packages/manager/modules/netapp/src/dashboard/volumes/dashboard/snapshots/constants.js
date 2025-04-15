@@ -1,10 +1,6 @@
-export const MAXIMUM_SNAPSHOT_ALLOWED = 50;
+import { SNAPSHOT_TYPE as IMPORT_SNAPSHOT_TYPE } from '../../../constants';
 
-export const SNAPSHOT_TYPE = {
-  AUTOMATIC: 'automatic',
-  MANUAL: 'manual',
-  SYSTEM: 'system',
-};
+export const MAXIMUM_SNAPSHOT_ALLOWED = 50;
 
 export const SNAPSHOT_TRACKING_PREFIX =
   'Storage_backup::storage_backup::netapp::';
@@ -36,12 +32,14 @@ export const SNAPSHOT_STATUS = {
 
 export const FETCH_INTERVAL = 1000;
 
+export const SNAPSHOT_TYPE = IMPORT_SNAPSHOT_TYPE;
+
 export default {
   MAXIMUM_SNAPSHOT_ALLOWED,
-  SNAPSHOT_TYPE,
   STATUS,
   SNAPSHOT_STATUS,
   FETCH_INTERVAL,
   SNAPSHOT_TRACKING_PREFIX,
   SNAPSHOT_LISTING_TRACKING_CONTEXT,
+  SNAPSHOT_TYPE,
 };

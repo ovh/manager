@@ -891,5 +891,11 @@
   "server_configuration_intervention_activate_failed": "An error has occurred enabling on-site interventions on server {{serverName}}",
   "server_nutanix_cluster_node_warning_1": "This dedicated server is part of a Nutanix cluster: {{clusterName}}.",
   "server_nutanix_cluster_node_warning_2": "We recommend making all of the configuration changes directly in the dashboard of the server linked to your Nutanix cluster: {{clusterNodeDashboardLink}}",
-  "server_nutanix_cluster_node_warning_3": "All billing actions linked to this server are visible on your Nutanix cluster: {{clusterDashboardLink}}"
+  "server_nutanix_cluster_node_warning_3": "All billing actions linked to this server are visible on your Nutanix cluster: {{clusterDashboardLink}}",
+  "server_configuration_installation_ovh_stephardraid_label_error": "This RAID configuration is not valid.",
+  "server_configuration_installation_ovh_step2_lvm_badge": "LVM",
+  "server_configuration_installation_ovh_step2_lvm_badge_tooltip": "This partition will be configured in a logical volume (LV)",
+  "server_configuration_installation_ovh_step2_all_name": "Logical volume name (LVM) / zpool (ZFS)",
+  "server_configuration_installation_ovh_step2_lv_name": "Logical volume name (LVM)",
+  "server_configuration_installation_ovh_step2_zp_name": "Zpool name (ZFS)"
 }

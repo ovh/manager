@@ -59,6 +59,6 @@
   "key_management_service_dashboard_dashboard_field_state_toSuspend": "Auszusetzen",
   "key_management_service_dashboard_back_link": "Zurück zur KMS-Liste",
   "key_management_service_dashboard_field_label_kmip_count": "Anzahl KMIP-Objekte",
-  "key_management_service_dashboard_field_label_service-keys_count": "Anzahl Schlüssel",
+  "key_management_service_dashboard_field_label_service-keys_count": "Anzahl der Service Keys",
   "logs": "Logs"
 }

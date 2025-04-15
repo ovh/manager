@@ -1,6 +1,6 @@
 <oui-modal
     heading="{{:: 'netapp_volume_create_title' | translate }}"
-    loading="$ctrl.isCreating"
+    loading="$ctrl.isLoading"
     primary-action="$ctrl.onCreateVolume()"
     primary-label="{{:: 'netapp_volume_create_title' | translate }}"
     primary-disabled="$ctrl.createVolumeForm.$invalid"
@@ -47,6 +47,21 @@
             </oui-select>
         </oui-field>
         <oui-field
+            label="{{:: 'netapp_volume_create_snapshot_selection' | translate }}"
+            size="l"
+        >
+            <oui-select
+                data-disabled="$ctrl.manualSnaphost.length === 1"
+                data-placeholder="{{:: 'netapp_volume_create_snapshot_selection_placeholder' | translate }}"
+                data-items="$ctrl.manualSnaphost"
+                data-match="key"
+                data-model="$ctrl.snapshot"
+                data-name="manualSnaphost"
+                data-on-change="$ctrl.newVolume.size = $ctrl.snapshot.size;  $ctrl.newVolume.snapshotID = $ctrl.snapshot.snapshotID"
+            >
+            </oui-select>
+        </oui-field>
+        <oui-field
             label="{{:: 'netapp_volume_create_size' | translate }}"
             help-text="{{:: 'netapp_volume_create_size_help' | translate:{ 'minSize': $ctrl.minimumVolumeSize, 'maxSize': $ctrl.availableVolumeSize } }}"
             error-messages="{
@@ -65,6 +80,7 @@
                 max="{{:: $ctrl.availableVolumeSize }}"
                 data-ng-model="$ctrl.newVolume.size"
                 data-ng-required="true"
+                data-ng-disabled="$ctrl.snapshot && $ctrl.snapshot.key !== $ctrl.CUSTOM_SELECTION"
             />
         </oui-field>
         <oui-field

@@ -61,6 +61,7 @@ const DataStreamsDatagrid = ({ service }: { service: Service }) => {
   } = useResourcesIcebergV6({
     route: `/dbaas/logs/${service.serviceName}/output/graylog/stream`,
     queryKey: ['getLogStreams', service.serviceName],
+    disableCache: true,
   });
 
   if (isLoading)

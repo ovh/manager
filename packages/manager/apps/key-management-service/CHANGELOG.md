@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.23.6...@ovh-ux/manager-key-management-service-app@0.24.0) (2025-04-14)
+
+
+### Features
+
+* **kms:** update service key translations ([7afac38](https://github.com/ovh/manager/commit/7afac386ed8227131541ea48f93b6f7e03e02af4)), closes [#MANAGER-17187](https://github.com/ovh/manager/issues/MANAGER-17187)
+
+
+
+
+
 ## [0.23.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.23.5...@ovh-ux/manager-key-management-service-app@0.23.6) (2025-04-10)
 
 **Note:** Version bump only for package @ovh-ux/manager-key-management-service-app

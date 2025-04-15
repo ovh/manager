@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.25.1...@ovh-ux/manager-dedicated@20.26.0) (2025-04-14)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3842] ([764e862](https://github.com/ovh/manager/commit/764e862bb5de9d166e5c2328effb33f68545c216))
+* **nutanix:** fix display IPMI tab ([db2c273](https://github.com/ovh/manager/commit/db2c273a3f37eeebd7bcbb15717c4de669149429)), closes [#MANAGER-17836](https://github.com/ovh/manager/issues/MANAGER-17836) [#INC0123559](https://github.com/ovh/manager/issues/INC0123559)
+
+
+### Features
+
+* **dedicated.pcc:** remove 2API to fetch datastores ([406e3ac](https://github.com/ovh/manager/commit/406e3acb2850ade1b45e3682ced0feffdd2a34d5)), closes [#MANAGER-17154](https://github.com/ovh/manager/issues/MANAGER-17154)
+* **dedicated:** cut all APIv6 /me/installationTemplate dependencies ([#14192](https://github.com/ovh/manager/issues/14192)) ([295b31e](https://github.com/ovh/manager/commit/295b31e813bc8abace80b9f05a0a2a92e051ac4b))
+
+
+
+
+
 ## [20.25.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.25.0...@ovh-ux/manager-dedicated@20.25.1) (2025-04-10)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated
