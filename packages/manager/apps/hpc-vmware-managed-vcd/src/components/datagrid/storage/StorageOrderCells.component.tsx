@@ -5,6 +5,7 @@ import { OdsRadio, OdsText } from '@ovhcloud/ods-components/react';
 import { VCDOrderableStoragePriced } from '@ovh-ux/manager-module-vcd-api';
 import { getVdcResourcePriceLabel } from '@/utils/getPricedOrderableResource';
 import { useDatacentreOrderContext } from '@/context/DatacentreOrder.context';
+import { IOPS_LABEL } from '@/utils/label.constants';
 
 export const StorageOrderSelectCell = (storage: VCDOrderableStoragePriced) => {
   const { selectedResource, setSelectedResource } = useDatacentreOrderContext();
@@ -42,7 +43,9 @@ export const StoragePerformanceClassCell = ({
   const { t } = useTranslation('datacentres/order');
   return (
     <DataGridTextCell>
-      {t('managed_vcd_vdc_order_performance_class', { performanceClass })}
+      {t('managed_vcd_vdc_order_performance_class', {
+        performanceClass: `${performanceClass} ${IOPS_LABEL}`,
+      })}
     </DataGridTextCell>
   );
 };
