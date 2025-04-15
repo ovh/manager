@@ -1,3 +1,4 @@
+import { OdsFile } from '@ovhcloud/ods-components';
 import { TrackingEnum } from '@/enum/tracking.enum';
 
 export interface TOngoingOperations {
@@ -51,4 +52,9 @@ export interface TArgument {
 export interface TOperationArguments {
   data: TArgument[];
   actions?: boolean;
+}
+
+export interface TFiles {
+  key: string;
+  data: OdsFile[];
 }
