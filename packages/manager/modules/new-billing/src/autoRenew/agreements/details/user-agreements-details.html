@@ -1,15 +1,15 @@
 <div class="module-useraccount-sections-agreements-container">
-    <oui-back-button data-href="{{ $ctrl.$state.href('^') }}"
+    <oui-back-button data-href="{{ ctrl.$state.href('^') }}"
         ><span data-translate="user_agreement_details_title"></span>
     </oui-back-button>
 
     <div data-ovh-alert="agreements_details_alerter"></div>
 
-    <div class="text-center" data-ng-if="$ctrl.loading">
+    <div class="text-center" data-ng-if="ctrl.loading">
         <oui-spinner></oui-spinner>
     </div>
 
-    <div data-ng-if="$ctrl.isCGVContract">
+    <div data-ng-if="ctrl.isCGVContract">
         <h2 data-translate="user_agreement_details_title1"></h2>
         <h3 data-translate="user_agreement_details_subtitle1"></h3>
         <p data-translate="user_agreement_details_paragraph1"></p>
@@ -33,51 +33,51 @@
         </ul>
     </div>
 
-    <div data-ng-if="!$ctrl.loading">
-        <h2 data-ng-bind="$ctrl.agreement.title || $ctrl.contract.name"></h2>
-        <p data-ng-bind-html="$ctrl.agreement.helperText"></p>
+    <div data-ng-if="!ctrl.loading">
+        <h2 data-ng-bind="ctrl.agreement.title || ctrl.contract.name"></h2>
+        <p data-ng-bind-html="ctrl.agreement.helperText"></p>
         <pre
             class="pre-scrollable contract"
-            data-ng-bind="$ctrl.contract.text"
+            data-ng-bind="ctrl.contract.text"
         ></pre>
     </div>
 
-    <div data-ng-if="$ctrl.isCGVContract && $ctrl.isIndividual">
+    <div data-ng-if="ctrl.isCGVContract && ctrl.isIndividual">
         <h2 data-translate="user_agreement_details_subtitle3"></h2>
         <p
-            data-ng-bind-html="'user_agreement_details_paragraph3' | translate:{ t0: $ctrl.SUPPORT_URL }"
+            data-ng-bind-html="'user_agreement_details_paragraph3' | translate:{ t0: ctrl.SUPPORT_URL }"
         ></p>
     </div>
 
-    <div data-ng-if="!$ctrl.loading">
+    <div data-ng-if="!ctrl.loading">
         <div class="oui-checkbox">
             <input
                 class="oui-checkbox__input"
                 id="user-agreement"
                 name="user-agreement"
                 type="checkbox"
-                data-ng-model="$ctrl.confirmed"
-                data-ng-disabled="$ctrl.alreadyAccepted"
+                data-ng-model="ctrl.confirmed"
+                data-ng-disabled="ctrl.alreadyAccepted"
             />
             <label class="oui-checkbox__label-container" for="user-agreement">
                 <span class="oui-checkbox__label">
                     <span class="oui-checkbox__icon"></span>
                     <span
                         class="oui-checkbox__text"
-                        data-ng-bind-html="'user_agreement_details_agreed' | translate:{ t0: $ctrl.agreement.title || $ctrl.contract.name }"
+                        data-ng-bind-html="'user_agreement_details_agreed' | translate:{ t0: ctrl.agreement.title || ctrl.contract.name }"
                     ></span>
                 </span>
                 <span
                     class="oui-checkbox__description"
-                    data-ng-bind-html="$ctrl.appendicesLink ? ('user_agreement_appendices' | translate:{ t0: $ctrl.appendicesLink }) : ''"
+                    data-ng-bind-html="ctrl.appendicesLink ? ('user_agreement_appendices' | translate:{ t0: ctrl.appendicesLink }) : ''"
                 ></span>
             </label>
         </div>
         <button
             type="button"
             class="oui-button oui-button_primary mt-4"
-            data-ng-disabled="!$ctrl.confirmed || $ctrl.accepted"
-            data-ng-click="$ctrl.accept()"
+            data-ng-disabled="!ctrl.confirmed || ctrl.accepted"
+            data-ng-click="ctrl.accept()"
             data-translate="user_agreement_details_accept"
         ></button>
     </div>

@@ -1,3 +1,5 @@
+import controller from './user-agreements.controller';
+import template from './user-agreements.html';
 import {
   TRACKING_AGREEMENTS_PAGE_NAME,
   TRACKING_PAGE_CATEGORY,
@@ -10,26 +12,9 @@ export default /* @ngInject */ (
 ) => {
   if (coreConfigProvider.isRegion(['EU', 'CA'])) {
     $stateProvider.state('billing.autorenew.agreements', {
-      url: '/agreements?page&itemsPerPage&state&sorting',
-      component: 'userAgreements',
-      params: {
-        page: {
-          value: '1',
-          squash: true,
-        },
-        itemsPerPage: {
-          value: '10',
-          squash: true,
-        },
-        state: {
-          value: null,
-          squash: true,
-        },
-        sorting: {
-          value: JSON.stringify({ predicate: 'date', reverse: true }),
-          squash: true,
-        },
-      },
+      url: '/agreements',
+      template,
+      controller,
       redirectTo: (transition) =>
         transition
           .injector()
@@ -62,18 +47,6 @@ export default /* @ngInject */ (
         },
         breadcrumb: /* @ngInject */ ($translate) =>
           $translate.instant('user_agreements_list_title'),
-        queryParams: /* @ngInject */ ($transition$) => $transition$.params(),
-        onQueryParamsChange: /* @ngInject */ ($state) => (params) => {
-          $state.go('.', { ...$state.params, ...params }, { notify: false });
-        },
-        goBack: /* @ngInject */ ($state, queryParams) => () =>
-          $state.go('^', queryParams),
-        page: /* @ngInject */ (queryParams) => parseInt(queryParams.page, 10),
-        itemsPerPage: /* @ngInject */ (queryParams) =>
-          Math.min(parseInt(queryParams.itemsPerPage, 10), 300),
-        state: /* @ngInject */ (queryParams) => queryParams.state,
-        sorting: /* @ngInject */ (queryParams) =>
-          !!queryParams.sorting && JSON.parse(queryParams.sorting),
       },
     });
 

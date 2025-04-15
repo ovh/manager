@@ -1,179 +1,105 @@
-import { AGREEMENTS_STATUS, COLUMNS_CONFIG } from './user-agreements.constant';
+import get from 'lodash/get';
 
-export default class UserAccountAgreementsController {
-  /* @ngInject */
-  constructor(
-    $scope,
-    $translate,
-    Alerter,
-    atInternet,
-    UserAccountServicesAgreements,
-  ) {
-    this.$translate = $translate;
-    this.Alerter = Alerter;
-    this.atInternet = atInternet;
-    this.UserAccountServicesAgreements = UserAccountServicesAgreements;
+export default /* @ngInject */ function UserAccountAgreementsController(
+  $injector,
+  $scope,
+  $translate,
+  Alerter,
+  atInternet,
+  gotoAcceptAllAgreements,
+  UserAccountServicesAgreements,
+) {
+  function init() {
+    $scope.loading = true;
+    $scope.list = [];
 
-    this.loaders = {
-      toActivate: true,
-      toActivateList: true,
-    };
-    this.toActivate = [];
-    this.agreed = {};
+    $scope.getToValidate();
   }
 
-  $onInit() {
-    this.filtersOptions = {
-      state: {
-        hideOperators: true,
-        values: [AGREEMENTS_STATUS.TODO, AGREEMENTS_STATUS.OK].reduce(
-          (values, status) => ({
-            ...values,
-            [status.toLowerCase()]: this.$translate.instant(
-              `user_agreements_status_${status}`,
-            ),
-          }),
-          {},
-        ),
-      },
-    };
+  $scope.loaders = {
+    toActivate: true,
+    toActivateList: true,
+  };
 
-    this.criteria = [];
-    if (this.state) {
-      this.criteria.push({
-        property: 'state',
-        value: this.state,
-        operator: 'is',
-        title: `${this.$translate.instant(
-          'user_agreements_status',
-        )} ${this.$translate.instant(
-          'common_criteria_adder_operator_options_is',
-        )} ${this.$translate.instant(
-          `user_agreements_status_${this.state.toUpperCase()}`,
-        )}`,
-      });
-    }
+  $scope.toActivate = [];
 
-    this.getToValidate();
+  $scope.agreed = {};
 
-    if (this.sorting?.predicate) {
-      this.columnsConfig = COLUMNS_CONFIG.map((column) =>
-        column.property === this.sorting.predicate
-          ? {
-              ...this.columnsConfig,
-              sortable: this.sorting.reverse ? 'desc' : 'asc',
-            }
-          : column,
-      );
-    }
-  }
+  $scope.gotoAcceptAllAgreements = gotoAcceptAllAgreements;
 
-  loadAgreementsList({ pageSize, offset }) {
-    return this.UserAccountServicesAgreements.getList(
-      pageSize,
-      offset,
-      this.state,
-      this.sorting,
-    )
+  $scope.loadAgreementsList = function loadAgreementsList(count, offset) {
+    init();
+
+    UserAccountServicesAgreements.getList(count, offset)
       .then(
         (agreements) => {
-          return {
-            data: agreements.list.results,
-            meta: {
-              totalCount: agreements.count,
-            },
-          };
+          $scope.list = agreements;
         },
         (err) => {
-          this.Alerter.error(
-            `${this.$translate.instant(
-              'user_agreements_error',
-            )} ${err?.message || err}`,
+          Alerter.error(
+            `${$translate.instant('user_agreements_error')} ${get(
+              err,
+              'message',
+            ) || err}`,
             'agreements_alerter',
           );
-          return {
-            data: [],
-            meta: {
-              totalCount: 0,
-            },
-          };
         },
       )
-      .finally(() => {
-        this.loading = false;
+      .then(() => {
+        $scope.loading = false;
       });
-  }
+  };
 
-  getToValidate() {
-    this.toActivate = [];
-    this.loaders.toActivate = true;
+  $scope.getToValidate = function getToValidate() {
+    $scope.toActivate = [];
+    $scope.loaders.toActivate = true;
 
-    this.UserAccountServicesAgreements.getToValidate().then(
+    UserAccountServicesAgreements.getToValidate().then(
       (agreements) => {
-        this.toActivate = agreements;
-        this.loaders.toActivate = false;
+        $scope.toActivate = agreements;
+        $scope.loaders.toActivate = false;
       },
       angular.noop,
       (contract) => {
-        this.toActivate.push(contract);
-        this.agreed[contract.id] = false;
+        $scope.toActivate.push(contract);
+        $scope.agreed[contract.id] = false;
       },
     );
-  }
+  };
 
-  onPageChange({ pageSize, offset }) {
-    this.onQueryParamsChange({
-      page: parseInt(offset / pageSize, 10) + 1,
-      itemsPerPage: pageSize,
-    });
-  }
-
-  onSortChange({ name, order }) {
-    this.onQueryParamsChange({
-      page: 1,
-      sorting: JSON.stringify({ predicate: name, reverse: order === 'DESC' }),
-    });
-  }
-
-  onCriteriaChange($criteria) {
-    const stateCriteria = $criteria.find(
-      (criteria) => criteria.property === 'state',
-    );
-    this.onQueryParamsChange({
-      page: 1,
-      state: stateCriteria?.value || null,
-    });
-  }
-
-  accept(contract) {
-    this.atInternet.trackClick({
+  $scope.accept = function accept(contract) {
+    atInternet.trackClick({
       name:
         'dedicated::account::billing::autorenew::agreements::go-to-accept-agreement',
       type: 'action',
     });
-    this.loaders[`accept_${contract.id}`] = true;
+    $scope.loaders[`accept_${contract.id}`] = true;
 
-    this.UserAccountServicesAgreements.accept(contract)
+    UserAccountServicesAgreements.accept(contract)
       .then(
         () => {
-          this.getToValidate();
+          $scope.getToValidate();
+          $scope.$broadcast('paginationServerSide.reload', 'agreementsList');
         },
-        (error) => {
-          this.Alerter.set(
+        (d) => {
+          Alerter.set(
             'alert-danger',
-            `${this.$translate.instant('user_agreement_details_error')} ${error
-              ?.data?.message || error}`,
+            `${$translate.instant('user_agreement_details_error')} ${get(
+              d,
+              'data.message',
+              d,
+            )}`,
             null,
             'agreements_alerter',
           );
         },
       )
       .finally(() => {
-        this.loaders[`accept_${contract.id}`] = false;
+        $scope.loaders[`accept_${contract.id}`] = false;
       });
-  }
+  };
 
-  resetMessages() {
-    this.Alerter.resetMessage('agreements_alerter');
-  }
+  $scope.resetMessages = function resetMessages() {
+    Alerter.resetMessage('agreements_alerter');
+  };
 }
