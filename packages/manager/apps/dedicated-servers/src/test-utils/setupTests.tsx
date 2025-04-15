@@ -3,41 +3,15 @@ import React from 'react';
 import '@testing-library/jest-dom';
 import { NavLinkProps } from 'react-router-dom';
 
-const mocksAxios = vi.hoisted(() => ({
-  get: vi.fn(),
-  post: vi.fn(),
-  put: vi.fn(),
-  delete: vi.fn(),
-}));
-
-vi.mock('axios', async (importActual) => {
-  const actual = await importActual<typeof import('axios')>();
-
-  const mockAxios = {
-    default: {
-      ...actual.default,
-      get: mocksAxios.get,
-      post: mocksAxios.post,
-      put: mocksAxios.put,
-      delete: mocksAxios.delete,
-      create: vi.fn(() => ({
-        ...actual.default.create(),
-        get: mocksAxios.get,
-        post: mocksAxios.post,
-        put: mocksAxios.put,
-        delete: mocksAxios.delete,
-      })),
-    },
-  };
-
-  return mockAxios;
-});
-
 vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
   const original: typeof import('@ovh-ux/manager-react-shell-client') = await importOriginal();
   return {
     ...original,
-    useOvhTracking: () => ({ trackClick: vi.fn(), trackPage: vi.fn() }),
+    useOvhTracking: () => ({
+      trackCurrentPage: vi.fn(),
+      trackClick: vi.fn(),
+      trackPage: vi.fn(),
+    }),
   };
 });
 
@@ -51,5 +25,35 @@ vi.mock('react-router-dom', async (importOriginal) => {
       pathname: 'pathname',
     }),
     NavLink: ({ ...params }: NavLinkProps) => <>{params.children}</>,
+  };
+});
+
+vi.mock('@ovh-ux/manager-react-components', async () => {
+  const mod = await vi.importActual('@ovh-ux/manager-react-components');
+  return {
+    ...mod,
+    useResourcesIcebergV6: vi.fn(),
+    v6: {
+      get: vi.fn(),
+      post: vi.fn(),
+      put: vi.fn(),
+      delete: vi.fn(),
+    },
+  };
+});
+
+vi.mock('@ovh-ux/manager-core-api', async () => {
+  const mod = await vi.importActual('@ovh-ux/manager-core-api');
+  return {
+    ...mod,
+    fetchIcebergV6: vi.fn(),
+    apiClient: {
+      v6: {
+        get: vi.fn(),
+        post: vi.fn(),
+        put: vi.fn(),
+        delete: vi.fn(),
+      },
+    },
   };
 });

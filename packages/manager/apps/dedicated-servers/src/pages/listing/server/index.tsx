@@ -8,10 +8,12 @@ import {
   useResourcesIcebergV6,
   useDataGrid,
   ColumnSort,
+  RedirectionGuard,
 } from '@ovh-ux/manager-react-components';
 import { DedicatedServer } from '@/data/types/server.type';
 import OrderMenu from '@/components/orderMenu';
 import { getColumns } from '@/components/dataGridColumns';
+import { urls } from '@/routes/routes.constant';
 
 export default function ServerListing() {
   const [columns] = useState([]);
@@ -29,6 +31,7 @@ export default function ServerListing() {
     hasNextPage,
     fetchNextPage,
     isLoading,
+    isSuccess,
     search,
     filters,
   } = useResourcesIcebergV6({
@@ -67,30 +70,41 @@ export default function ServerListing() {
   }
 
   return (
-    <React.Suspense>
-      {flattenData && (
-        <div>
-          <Datagrid
-            columns={getColumns(t, (name: string) =>
-              shell.navigation.navigateTo('dedicated', `#/server/${name}`, {}),
-            )}
-            items={sortServersListing(
-              sorting,
-              (flattenData as unknown) as DedicatedServer[],
-            )}
-            totalItems={totalCount || 0}
-            hasNextPage={hasNextPage && !isLoading}
-            onFetchNextPage={fetchNextPage}
-            sorting={sorting}
-            onSortChange={setSorting}
-            isLoading={isLoading}
-            filters={filters}
-            search={search}
-            className="server-data-grid"
-            topbar={<OrderMenu />}
-          />
-        </div>
-      )}
-    </React.Suspense>
+    <RedirectionGuard
+      isLoading={isLoading || !flattenData}
+      condition={isSuccess && flattenData?.length === 0}
+      route={urls.onboarding}
+      isError={isError}
+    >
+      <React.Suspense>
+        {flattenData && (
+          <div>
+            <Datagrid
+              columns={getColumns(t, (name: string) =>
+                shell.navigation.navigateTo(
+                  'dedicated',
+                  `#/server/${name}`,
+                  {},
+                ),
+              )}
+              items={sortServersListing(
+                sorting,
+                (flattenData as unknown) as DedicatedServer[],
+              )}
+              totalItems={totalCount || 0}
+              hasNextPage={hasNextPage && !isLoading}
+              onFetchNextPage={fetchNextPage}
+              sorting={sorting}
+              onSortChange={setSorting}
+              isLoading={isLoading}
+              filters={filters}
+              search={search}
+              className="server-data-grid"
+              topbar={<OrderMenu />}
+            />
+          </div>
+        )}
+      </React.Suspense>
+    </RedirectionGuard>
   );
 }

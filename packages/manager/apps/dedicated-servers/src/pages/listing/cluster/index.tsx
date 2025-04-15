@@ -11,13 +11,15 @@ import {
   DatagridColumn,
   ColumnSort,
   useDataGrid,
+  RedirectionGuard,
 } from '@ovh-ux/manager-react-components';
 
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import useLinkUtils, { UrlEntry } from '@/hooks/useLinkUtils';
 import { orderLinks } from '@/data/constants/orderLinks';
 import { Cluster } from '@/data/types/cluster.type';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { urls } from '@/routes/routes.constant';
 
 export default function Listing() {
   const [columns] = useState([]);
@@ -37,6 +39,7 @@ export default function Listing() {
     hasNextPage,
     fetchNextPage,
     isLoading,
+    isSuccess,
     search,
     filters,
   } = useResourcesIcebergV6<Cluster[]>({
@@ -141,25 +144,32 @@ export default function Listing() {
   );
 
   return (
-    <React.Suspense>
-      {columns && (
-        <Datagrid
-          columns={clusterColumns}
-          items={sortClusterListing(
-            sorting,
-            (flattenData as unknown) as Cluster[],
-          )}
-          totalItems={totalCount || 0}
-          hasNextPage={hasNextPage && !isLoading}
-          onFetchNextPage={fetchNextPage}
-          sorting={sorting}
-          onSortChange={setSorting}
-          isLoading={isLoading}
-          filters={filters}
-          search={search}
-          topbar={<TopbarCTA />}
-        />
-      )}
-    </React.Suspense>
+    <RedirectionGuard
+      isLoading={isLoading || !flattenData}
+      condition={isSuccess && flattenData?.length === 0}
+      route={urls.onboarding}
+      isError={isError}
+    >
+      <React.Suspense>
+        {columns && (
+          <Datagrid
+            columns={clusterColumns}
+            items={sortClusterListing(
+              sorting,
+              (flattenData as unknown) as Cluster[],
+            )}
+            totalItems={totalCount || 0}
+            hasNextPage={hasNextPage && !isLoading}
+            onFetchNextPage={fetchNextPage}
+            sorting={sorting}
+            onSortChange={setSorting}
+            isLoading={isLoading}
+            filters={filters}
+            search={search}
+            topbar={<TopbarCTA />}
+          />
+        )}
+      </React.Suspense>
+    </RedirectionGuard>
   );
 }

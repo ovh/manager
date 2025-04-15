@@ -9,13 +9,6 @@ export type GetdedicatedServerListParams = {
 export const getdedicatedServerListQueryKey = ['get/dedicated/server'];
 
 /**
- * Operations about the DEDICATED service : List available services
- */
-export const getdedicatedServerList = async (
-  params?: GetdedicatedServerListParams,
-): Promise<any> => apiClient.v6.get('/dedicated/server', params && { data: params });
-
-/**
  *  Get list of dedicated servers with iceberg
  */
 export const getDedicatedServerList = async ({

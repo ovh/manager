@@ -1,51 +1,28 @@
 import '@/test-utils/setupTests';
 import '@testing-library/jest-dom';
 import { describe, it, vi } from 'vitest';
-import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
-import { labels, renderTest } from '@/test-utils';
+import { useResourcesIcebergV6 } from '@ovh-ux/manager-react-components';
+import {
+  act,
+  fireEvent,
+  screen,
+  waitFor,
+  prettyDOM,
+} from '@testing-library/react';
+import { useNavigate } from 'react-router-dom';
 import { urls } from '@/routes/routes.constant';
-
-vi.mock('@ovh-ux/manager-core-api', () => ({
-  get: vi.fn(() =>
-    Promise.resolve({
-      data: {
-        /* fake response */
-      },
-    }),
-  ),
-  fetchIcebergV2: vi.fn(() =>
-  Promise.resolve({
-    data: {
-      /* fake response */
-    },
-  }),
-),
-  fetchIcebergV6: vi.fn(() =>
-    Promise.resolve({
-      data: {
-        /* fake response */
-      },
-    }),
-  ),
-  apiClient: vi.fn(() =>
-    Promise.resolve({
-      data: {
-        /* fake response */
-      },
-    }),
-  ),
-}));
+import { labels, renderTest } from '@/test-utils';
 
 describe('cluster listing page', () => {
-  it.skip('should redirect to the onboarding page when the list is empty', async () => {
-    await renderTest({});
-
-    await assertTextVisibility(labels.dedicated.title);
-  });
-
-  it.skip('displays loading spinner while main request are loading', async () => {
-    const { container } = await renderTest({
-      initialRoute: urls.server,
+  it('should redirect to the onboarding page when the list is empty', async () => {
+    (useResourcesIcebergV6 as jest.Mock).mockReturnValue({
+      flattenData: [],
+      isLoading: true,
     });
+    const navigate = vi.fn();
+    (useNavigate as jest.Mock).mockReturnValue(navigate);
+
+    await renderTest({});
+    expect(navigate).toHaveBeenCalled();
   });
 });

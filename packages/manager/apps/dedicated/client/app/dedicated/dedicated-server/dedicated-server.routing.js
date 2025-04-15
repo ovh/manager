@@ -82,8 +82,53 @@ export default /* @ngInject */ ($stateProvider) => {
       template: '<div ui-view="rootView"></div>',
       redirectTo: 'app.dedicated-cluster.index',
       resolve: {
+        featureAvailability: /* @ngInject */ (ovhFeatureFlipping) =>
+          ovhFeatureFlipping.checkFeatureAvailability([
+            'dedicated-server:order',
+            'dedicated-server:ecoRangeOrderSectionDedicated',
+            'billing:autorenew2016Deployment',
+            'dedicated-server:cluster',
+            'dedicated-servers',
+          ]),
         breadcrumb: /* @ngInject */ ($translate) =>
           $translate.instant('dedicated_servers_title'),
+        breadcrumbPrefix: /* @ngInject */ (
+          $injector,
+          $q,
+          coreURLBuilder,
+          $translate,
+          featureAvailability,
+        ) => {
+          const name = $translate.instant('dedicated_servers_title');
+          if (!featureAvailability?.isFeatureAvailable('dedicated-servers')) {
+            return null;
+          }
+          if ($injector.has('shellClient')) {
+            return $injector
+              .get('shellClient')
+              .navigation.getURL('dedicated-servers', '#/')
+              .then((url) => {
+                return {
+                  replaceElements: true,
+                  prefixes: [
+                    {
+                      name,
+                      url,
+                    },
+                  ],
+                };
+              });
+          }
+          return $q.when({
+            replaceElements: true,
+            prefixes: [
+              {
+                name,
+                url: coreURLBuilder.buildURL('dedicated-servers', '#/'),
+              },
+            ],
+          });
+        },
       },
     });
 };
