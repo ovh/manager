@@ -138,5 +138,6 @@
   "pci_projects_project_network_private_create_configure_address": "Private Network Address (CIDR):",
   "pci_projects_project_network_private_create_configure_mask": "Mask",
   "pci_projects_project_network_private_create_announce_first_address": "Declare the first address of a CIDR given as the default gateway (DHCP option 3)",
-  "pci_projects_project_network_private_create_configure_api": "You can customise your ranges via the API."
+  "pci_projects_project_network_private_create_configure_api": "You can customise your ranges via the API.",
+  "pci_projects_project_instances_add_billing_floating_ip_detail_price_hourly": "You will be charged {{ floatingIpPrice }} ex. VAT/hour."
 }
