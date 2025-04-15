@@ -129,28 +129,15 @@ describe('Reset user password modal', () => {
       });
     });
   });
-  it('should copy password to clipboard', async () => {
-    const writeTextMock = vi.fn();
-    vi.stubGlobal('navigator', { clipboard: { writeText: writeTextMock } });
+  it('should display code with password and uri', async () => {
     render(<ResetUserPassword />, { wrapper: RouterWithQueryClientWrapper });
     act(() => {
       fireEvent.click(screen.getByTestId('reset-password-submit-button'));
     });
     await waitFor(() => {
-      expect(
-        screen.getByTestId('reset-password-copy-button'),
-      ).toBeInTheDocument();
-    });
-    act(() => {
-      fireEvent.click(screen.getByTestId('reset-password-copy-button'));
-    });
-    await waitFor(() => {
-      expect(usersApi.resetUserPassword).toHaveBeenCalled();
-      expect(useToast().toast).toHaveBeenCalledWith({
-        title: 'resetUserPasswordToastSuccessTitle',
-        description: 'resetUserPasswordToastSuccessDescription',
-      });
-      expect(writeTextMock).toHaveBeenCalled();
+      expect(screen.getByTestId('pwd-connection-info')).toBeInTheDocument();
+      expect(screen.getByTestId('code-pwd-container')).toBeInTheDocument();
+      expect(screen.getByTestId('code-uri-container')).toBeInTheDocument();
     });
   });
   it('should close modal on close button after submit', async () => {
