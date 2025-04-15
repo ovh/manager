@@ -36,3 +36,22 @@ export const getCredentialsMock = ({
     api: 'v2',
   },
 ];
+
+export type DeleteCredentialsMockParams = {
+  isCredentialDeleteKO?: boolean;
+};
+
+export const deleteCredentialMock = ({
+  isCredentialDeleteKO,
+}: DeleteCredentialsMockParams): Handler[] => [
+  {
+    url: '/okms/resource/:okmsId/credential/:credentialId',
+    method: 'delete',
+    response: {
+      status: isCredentialDeleteKO ? 500 : 200,
+      data: {},
+    },
+    status: isCredentialDeleteKO ? 500 : 200,
+    api: 'v2',
+  },
+];
