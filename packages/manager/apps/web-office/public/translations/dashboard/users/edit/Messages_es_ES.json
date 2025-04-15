@@ -2,6 +2,6 @@
   "dashboard_users_edit_title": "Editar la cuenta",
   "dashboard_users_edit_form_helper_login_conditions": "Su usuario debe contener entre 3 y 20 caracteres. Puede incluir números, letras y los siguientes caracteres: - _! # $ % &amp; ' ^ ` { }",
   "dashboard_users_edit_form_helper_login_condition_exception": "También puede contener puntos, siempre que vayan precedidos por un carácter autorizado y no vayan seguidos de otro punto.",
-  "dashboard_users_edit_message_success": "Se están realizando los cambios en el usuario. Por favor, actualice la página enseguida.",
+  "dashboard_users_edit_message_success": "Se están realizando las modificaciones en el usuario. Por favor, actualice la página en unos minutos.",
   "dashboard_users_edit_message_error": "Se ha producido un error al editar el usuario. {{ error }}"
 }

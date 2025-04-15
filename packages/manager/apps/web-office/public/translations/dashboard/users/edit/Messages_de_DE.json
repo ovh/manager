@@ -1,7 +1,7 @@
 {
   "dashboard_users_edit_title": "Account bearbeiten",
-  "dashboard_users_edit_form_helper_login_conditions": "Ihr Login muss zwischen 3 und maximal 20 Zeichen enthalten. Er kann Ziffern, Buchstaben und folgende Zeichen enthalten: - _! # $ % &amp; ' ^ { }",
-  "dashboard_users_edit_form_helper_login_condition_exception": "Er kann auch Punkte enthalten, sofern ihnen ein zulässiges Zeichen vorangestellt ist und kein weiterer Punkt folgt.",
-  "dashboard_users_edit_message_success": "Die Benutzeränderungen werden ausgeführt. Bitte laden Sie die Seite in einigen Augenblicken neu.",
-  "dashboard_users_edit_message_error": "Bei der Bearbeitung des Benutzers ist ein Fehler aufgetreten. {{ error }}"
+  "dashboard_users_edit_form_helper_login_conditions": "Ihr Login muss zwischen 3 und maximal 20 Zeichen enthalten. Es kann Ziffern, Buchstaben und folgende Zeichen enthalten:  - _ ! # $ % &amp; ' ^ ` { }",
+  "dashboard_users_edit_form_helper_login_condition_exception": "Es kann auch Punkte enthalten, sofern ihnen ein zulässiges Zeichen vorangestellt ist und kein weiterer Punkt folgt.",
+  "dashboard_users_edit_message_success": "Die Änderungen am User werden ausgeführt. Bitte laden Sie die Seite in einigen Augenblicken neu.",
+  "dashboard_users_edit_message_error": "Bei der Bearbeitung des Users ist ein Fehler aufgetreten. {{ error }}"
 }

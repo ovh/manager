@@ -9,7 +9,7 @@
   "statistics": "Estadísticas",
   "licences": "Licencias",
   "my_offer": "Mi solución",
-  "license_number": "Nombre de licences",
+  "license_number": "Número de licencias",
   "common_guides_header": "Consultar nuestras guías en línea",
   "users": "Usuarios",
   "users_order_licenses": "Contratar más licencias",
@@ -26,7 +26,7 @@
   "login": "Identificador",
   "form_helper_login_conditions": "Su identificador debe contener entre 3 y 20 caracteres. Puede incluir letras, números y los siguientes caracteres especiales: - _ ",
   "form_helper_login_condition_exception": "También puede contener puntos, siempre que vayan precedidos por un carácter autorizado y no vayan seguidos de otro punto.",
-  "serviceName": "Id. de grupo",
+  "serviceName": "ID del grupo",
   "serviceType": "Tipo de servicio",
   "status": "Estado",
   "displayName": "Nombre del grupo",
@@ -38,7 +38,7 @@
   "renew_date": "Próxima fecha de vencimiento",
   "payAsYouGo": "Pago por uso",
   "prepaid": "Prepagado",
-  "noAccountOffer": "Actualmente no tiene ninguna licencia.",
+  "noAccountOffer": "Actualmente no dispone de ninguna licencia.",
   "manage_contacts": "Editar los contactos",
   "state_ok": "Activo",
   "state_autorenewInProgress": "En proceso de renovación",
@@ -50,5 +50,5 @@
   "state_deleting": "En proceso de eliminación",
   "state_suspended": "Suspendido",
   "state_suspending": "Suspendiendo...",
-  "error_message": "No se ha podido completar la solicitud. {{ error }}"
+  "error_message": "Se ha producido un error al completar la solicitud. {{ error }}"
 }
