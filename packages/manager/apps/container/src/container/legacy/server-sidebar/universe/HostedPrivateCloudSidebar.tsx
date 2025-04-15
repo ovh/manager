@@ -332,7 +332,7 @@ export default function HostedPrivateCloudSidebar() {
       const keyIcon = <OsdsIcon name={ODS_ICON_NAME.KEY_CONCEPT} size={ODS_ICON_SIZE.xxs} color={ODS_THEME_COLOR_INTENT.text}/>
       menu.push({
         id: 'identity-security-operations',
-        label: t('sidebar_identity_security_operations'),
+        label: t('sidebar_security_identity_operations'),
         icon: <OsdsIcon name={ODS_ICON_NAME.CLOUD_EYE_CONCEPT} size={ODS_ICON_SIZE.xxs} color={ODS_THEME_COLOR_INTENT.text}/>,
         pathMatcher: new RegExp('^/key-management-service'),
         subItems: [
