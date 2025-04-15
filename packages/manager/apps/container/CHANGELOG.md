@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.119.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.118.2...@ovh-ux/manager-container-app@0.119.0) (2025-04-15)
+
+
+### Features
+
+* **pci-ai-endpoints-app:** add token management page and workflow ([#16404](https://github.com/ovh/manager/issues/16404)) ([#16529](https://github.com/ovh/manager/issues/16529)) ([664cb8e](https://github.com/ovh/manager/commit/664cb8e13371018f2b27b7ae2c776915aa393997)), closes [#AIS-1084](https://github.com/ovh/manager/issues/AIS-1084)
+
+
+
+
+
 ## [0.118.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.118.1...@ovh-ux/manager-container-app@0.118.2) (2025-04-10)
 
 

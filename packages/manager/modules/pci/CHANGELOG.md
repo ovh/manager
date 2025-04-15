@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.87.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.86.1...@ovh-ux/manager-pci@6.87.0) (2025-04-15)
+
+
+### Bug Fixes
+
+* **pci-instances:** add missing 3az link ([2c731be](https://github.com/ovh/manager/commit/2c731bed26e1f984cccace9170f9d1899d6eae41)), closes [#TAPC-3389](https://github.com/ovh/manager/issues/TAPC-3389)
+* **pci-instances:** add missing private network translations ([#16327](https://github.com/ovh/manager/issues/16327)) ([25f8ce0](https://github.com/ovh/manager/commit/25f8ce021c4b2b0aea8bfd01c21d7930f4a84d53)), closes [#TAPC-2525](https://github.com/ovh/manager/issues/TAPC-2525)
+* **pci-instances:** remove region reset on new deployment mode ([3f8bd96](https://github.com/ovh/manager/commit/3f8bd96e8026e7a8cbd91000a77edb9071c02c63)), closes [#TAPC-3635](https://github.com/ovh/manager/issues/TAPC-3635)
+* **pci-instances:** rename location step ([7baf3e5](https://github.com/ovh/manager/commit/7baf3e5497e0795f59823a7ebf5366ce685f39ff)), closes [#TAPC-3591](https://github.com/ovh/manager/issues/TAPC-3591)
+
+
+### Features
+
+* **pci-instances:** add license price in missing pages ([#16314](https://github.com/ovh/manager/issues/16314)) ([f85521a](https://github.com/ovh/manager/commit/f85521a5fdac8a387020038fb51c9d43fcaf8a2a)), closes [#TAPC-2926](https://github.com/ovh/manager/issues/TAPC-2926)
+* **pci-instances:** add prices on deployment modes  ([#16409](https://github.com/ovh/manager/issues/16409)) ([92f53ab](https://github.com/ovh/manager/commit/92f53ab64f65eec07d3cba7a454c5eed3305ab53)), closes [#TAPC-3284](https://github.com/ovh/manager/issues/TAPC-3284)
+
+
+
+
+
 ## [6.86.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.86.0...@ovh-ux/manager-pci@6.86.1) (2025-04-10)
 
 
