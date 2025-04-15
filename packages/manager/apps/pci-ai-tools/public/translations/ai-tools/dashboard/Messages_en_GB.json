@@ -1,0 +1,14 @@
+{
+  "discoveryMode": "You are currently in Discovery mode. To finish creating your service, you will need to activate your project.",
+  "discoveryModeActivate": "Activate your project",
+  "title": "AI Dashboard",
+  "paragraphe1": "Artificial intelligence (AI) is often seen as a technology reserved only for insiders. At OVHcloud, we believe in the outstanding potential of this practice across all business sectors. We focus our efforts on providing tools that can solve the challenges facing organizations, such as data processing, mining, training and model deployment. Our goal is to make machine learning easy to use for all user profiles.",
+  "paragraphe2": "Explore our full AI Tools range!",
+  "linkPrice": "View service prices",
+  "homeTab": "Dashboard",
+  "usersTab": "Users",
+  "tokensTab": "Tokens",
+  "dockerRegistriesTab": "Docker registries",
+  "githubRegistriesTab": "Private Git repositories",
+  "datastoreTab": "S3 datastores"
+}

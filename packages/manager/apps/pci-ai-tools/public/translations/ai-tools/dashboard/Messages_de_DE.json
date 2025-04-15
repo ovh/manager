@@ -1,0 +1,14 @@
+{
+  "discoveryMode": "Sie befinden sich derzeit im „Discovery“-Modus. Um die Erstellung Ihrer Dienstleistung abzuschließen, müssen Sie Ihr Projekt aktivieren.",
+  "discoveryModeActivate": "Aktivieren Sie Ihr Projekt",
+  "title": "AI Dashboard",
+  "paragraphe1": "Künstliche Intelligenz (KI) klingt oft wie eine Technologie, die nur für Eingeweihte gedacht ist. Bei OVHcloud sind wir vom enormen Potenzial dieser Technologie für jede Branche überzeugt. Wir konzentrieren uns daher auf die Bereitstellung von Tools, mit denen wir die Herausforderungen von Organisationen bewältigen können: Datenverarbeitung, Exploration, Training und Bereitstellung von Modellen... Unser Ziel: die Nutzung von Machine Learning für alle Benutzerprofile zu vereinfachen.",
+  "paragraphe2": "Entdecken Sie unser gesamtes AI Tools Angebot!",
+  "linkPrice": "Die Preise der Dienstleistung einsehen",
+  "homeTab": "Dashboard",
+  "usersTab": "Benutzer",
+  "tokensTab": "Token",
+  "dockerRegistriesTab": "Docker Registrys",
+  "githubRegistriesTab": "Private Git Depots",
+  "datastoreTab": "S3 Datastores"
+}
