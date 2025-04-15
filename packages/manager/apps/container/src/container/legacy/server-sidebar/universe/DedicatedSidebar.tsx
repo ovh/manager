@@ -32,7 +32,8 @@ export const features = [
   'exchange:dedicated-dashboard',
   'license',
   'ip',
-  'iam',
+  'identity-access-management',
+  'identity-access-management:logs',
   'public-cloud',
   'dedicated-server:order',
   'kubernetes',
@@ -381,7 +382,7 @@ export default function DedicatedSidebar() {
       );
       menu.push({
         id: 'identity-security-operations',
-        label: t('sidebar_identity_security_operations'),
+        label: t('sidebar_security_identity_operations'),
         icon: (
           <OsdsIcon
             name={ODS_ICON_NAME.CLOUD_EYE_CONCEPT}
