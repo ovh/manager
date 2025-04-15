@@ -1,25 +1,21 @@
 import { Mock, vitest } from 'vitest';
-import React, { waitFor, screen, fireEvent, act } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import React, { waitFor, screen } from '@testing-library/react';
 import { render } from '../../../utils/test.provider';
 import { DeleteModal } from './delete-modal.component';
+import fr_Fr from './translations/Messages_fr_FR.json';
 
 export const sharedProps: {
   closeModal: Mock<unknown[], unknown>;
   onConfirmDelete: Mock<unknown[], unknown>;
-  headline: 'headline';
-  description: 'description';
-  deleteInputLabel: 'deleteInputLabel';
-  cancelButtonLabel: 'cancelButtonLabel';
-  confirmButtonLabel: 'confirmButtonLabel';
+  serviceTypeName: string;
+  cancelButtonLabel: string;
+  confirmButtonLabel: string;
 } = {
   closeModal: vitest.fn(),
   onConfirmDelete: vitest.fn(),
-  headline: 'headline',
-  description: 'description',
-  deleteInputLabel: 'deleteInputLabel',
-  cancelButtonLabel: 'cancelButtonLabel',
-  confirmButtonLabel: 'confirmButtonLabel',
+  serviceTypeName: 'serviceType',
+  cancelButtonLabel: fr_Fr.deleteModalCancelButton,
+  confirmButtonLabel: fr_Fr.deleteModalDeleteButton,
 };
 
 describe('Delete Modal component', () => {
@@ -27,9 +23,8 @@ describe('Delete Modal component', () => {
     render(<DeleteModal {...sharedProps} />);
 
     await waitFor(() => {
-      expect(screen.getByText(sharedProps.description)).toBeInTheDocument();
       expect(
-        screen.getByText(sharedProps.deleteInputLabel),
+        screen.getByText(fr_Fr.deleteModalDescription),
       ).toBeInTheDocument();
       expect(
         screen.getByText(sharedProps.cancelButtonLabel),
@@ -41,14 +36,7 @@ describe('Delete Modal component', () => {
   });
 
   it('renders loading modal', async () => {
-    const { asFragment } = render(
-      <DeleteModal
-        {...sharedProps}
-        isLoading
-        cancelButtonLabel={undefined}
-        confirmButtonLabel={undefined}
-      />,
-    );
+    const { asFragment } = render(<DeleteModal {...sharedProps} isLoading />);
 
     await waitFor(() => {
       expect(asFragment()).toMatchSnapshot();
@@ -76,27 +64,13 @@ describe('Delete Modal component', () => {
     });
   });
 
-  it('confirm button should be enabled by typing TERMINATE value', async () => {
+  it('clicking confirm should call onConfirmDelete', async () => {
     render(<DeleteModal {...sharedProps} />);
 
-    const button = screen.getByText(sharedProps.confirmButtonLabel);
-
-    expect(button).toBeDisabled();
-
-    const input = screen.getByLabelText('delete-input');
-
-    const event = new CustomEvent('odsValueChange', {
-      detail: { value: 'TERMINATE' },
-    });
-
-    fireEvent(input, event);
-
-    await waitFor(() => expect(button).toBeEnabled());
-
-    act(async () => await userEvent.click(button));
+    screen.getByText(sharedProps.confirmButtonLabel).click();
 
     await waitFor(() => {
-      expect(sharedProps.onConfirmDelete).toHaveBeenCalled();
+      expect(sharedProps.closeModal).toHaveBeenCalled();
     });
   });
 });

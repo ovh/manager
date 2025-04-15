@@ -3,38 +3,54 @@ import { useTranslation } from 'react-i18next';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   OsdsText,
-  OsdsInput,
   OsdsMessage,
   OsdsSpinner,
   OsdsModal,
   OsdsButton,
-  OsdsFormField,
 } from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_TYPE,
   ODS_BUTTON_VARIANT,
   ODS_MESSAGE_TYPE,
   ODS_SPINNER_SIZE,
-  ODS_INPUT_TYPE,
-  OdsInputValueChangeEvent,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import { handleClick } from '../../../utils/click-utils';
 import './translations/translations';
 
-export const defaultDeleteModalTerminateValue = 'TERMINATE';
-
 export type DeleteModalProps = {
-  headline: string;
+  /**
+   * @deprecated use serviceTypeName instead. Headline of modal will have a fixed text
+   */
+  headline?: string;
+  // serviceType: enum;
+  serviceTypeName?: string;
+  /**
+   * Description of modal will have a fixed text
+   * @deprecated use children instead
+   */
   description?: string;
-  deleteInputLabel: string;
+  /**
+   * @deprecated input field has been removed
+   */
+  deleteInputLabel?: string;
   closeModal: () => void;
   isLoading?: boolean;
   onConfirmDelete: () => void;
   error?: string;
+  /**
+   * @deprecated the button label is now fixed
+   */
   cancelButtonLabel?: string;
+  /**
+   * @deprecated the button label is now fixed
+   */
   confirmButtonLabel?: string;
+  children?: React.ReactNode;
+  /**
+   * @deprecated input field has been removed
+   */
   terminateValue?: string;
 };
 
@@ -42,20 +58,18 @@ export const DeleteModal: React.FC<DeleteModalProps> = ({
   headline,
   description,
   deleteInputLabel,
+  terminateValue,
+  serviceTypeName,
   closeModal,
   isLoading,
   onConfirmDelete,
   error,
+  children,
   cancelButtonLabel,
   confirmButtonLabel,
-  terminateValue = defaultDeleteModalTerminateValue,
 }) => {
   const { t } = useTranslation('delete-modal');
-  const [deleteInput, setDeleteInput] = React.useState('');
-  const isDisabled = isLoading || deleteInput !== terminateValue || undefined;
-
   const close = React.useCallback(() => {
-    setDeleteInput('');
     closeModal();
   }, []);
 
@@ -63,7 +77,9 @@ export const DeleteModal: React.FC<DeleteModalProps> = ({
     <OsdsModal
       dismissible
       color={ODS_THEME_COLOR_INTENT.warning}
-      headline={headline}
+      headline={t('deleteModalHeadline', {
+        serviceType: serviceTypeName || t('deleteModalHeadlineService'),
+      })}
       onOdsModalClose={close}
     >
       {!!error && (
@@ -82,34 +98,14 @@ export const DeleteModal: React.FC<DeleteModalProps> = ({
         level={ODS_TEXT_LEVEL.body}
         className="block my-4"
       >
-        {description}
+        {t('deleteModalDescription')}
       </OsdsText>
-      <OsdsFormField className="mb-8">
-        <div slot="label">
-          <OsdsText
-            className="block mb-3"
-            color={ODS_THEME_COLOR_INTENT.text}
-            level={ODS_TEXT_LEVEL.body}
-            size={ODS_TEXT_SIZE._200}
-          >
-            {deleteInputLabel}
-          </OsdsText>
-        </div>
-        <OsdsInput
-          aria-label="delete-input"
-          disabled={isLoading || undefined}
-          type={ODS_INPUT_TYPE.text}
-          value={deleteInput}
-          onOdsValueChange={(e: OdsInputValueChangeEvent) =>
-            setDeleteInput(e.detail.value)
-          }
-        />
-      </OsdsFormField>
       {isLoading && (
         <div className="flex justify-center">
           <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
         </div>
       )}
+      {children}
       <OsdsButton
         disabled={isLoading || undefined}
         slot="actions"
@@ -118,20 +114,19 @@ export const DeleteModal: React.FC<DeleteModalProps> = ({
         color={ODS_THEME_COLOR_INTENT.primary}
         {...handleClick(close)}
       >
-        {cancelButtonLabel || t('deleteModalCancelButton')}
+        {t('deleteModalCancelButton')}
       </OsdsButton>
       <OsdsButton
-        disabled={isDisabled}
+        disabled={isLoading || undefined}
         slot="actions"
         type={ODS_BUTTON_TYPE.button}
         variant={ODS_BUTTON_VARIANT.flat}
         color={ODS_THEME_COLOR_INTENT.primary}
         {...handleClick(() => {
-          setDeleteInput('');
           onConfirmDelete();
         })}
       >
-        {confirmButtonLabel || t('deleteModalDeleteButton')}
+        {t('deleteModalDeleteButton')}
       </OsdsButton>
     </OsdsModal>
   );
