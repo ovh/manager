@@ -19,9 +19,13 @@ export default function MeContactComponent({
 
   return (
     <OdsLink
-      href={`${url}/domain/${domainName}/contact-management/edit-contact/${value}/`}
+      href={`${url as string}/domain/${domainName}/contact-management/edit-contact/${value}/`}
       color="primary"
-      label={t(`domain_operations_update_nicowner_click_${argumentKey}`)}
+      label={t(
+        `domain_operations_update_nicowner_click_${
+          argumentKey === 'corporationProof' ? 'nicowner' : argumentKey ?? ''
+        }`,
+      )}
       className="block"
       target="_blank"
       icon="external-link"
