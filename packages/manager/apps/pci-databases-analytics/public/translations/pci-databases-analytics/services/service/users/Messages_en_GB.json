@@ -107,5 +107,9 @@
   "formUserAclConfiguredAcls": "Configured ACLs",
   "formUseAclPatternErrorPattern": "The pattern can only contain letters, numbers, dashes, underscores, full stops, asterisks, or question marks.",
   "formUserInvalidPermission": "Please choose a valid permission from the following list: {values}",
-  "formUserAclDuplicate": "A similar ACL is already configured"
+  "formUserAclDuplicate": "A similar ACL is already configured",
+  "resetUserPasswordCode": "User password",
+  "resetUserConnectionTitle": "The URI to use for a fast connection",
+  "resetUserConnectionCode": "Connection string",
+  "resetUserConnectionCodeCopy": "Connection URI copied to clipboard"
 }

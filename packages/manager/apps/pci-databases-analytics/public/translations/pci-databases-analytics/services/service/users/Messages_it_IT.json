@@ -81,5 +81,9 @@
   "formUserAclConfiguredAcls": "ACL configurate",
   "formUseAclPatternErrorPattern": "Il pattern può contenere solo lettere, cifre, trattini, underscore, punti, asterischi o punti interrogativi.",
   "formUserInvalidPermission": "Seleziona un permesso valido dalla seguente lista: {values}",
-  "formUserAclDuplicate": "Una ACL simile è già configurata"
+  "formUserAclDuplicate": "Una ACL simile è già configurata",
+  "resetUserPasswordCode": "Password dell’utente",
+  "resetUserConnectionTitle": "URI da utilizzare per una connessione rapida",
+  "resetUserConnectionCode": "Stringa di connessione",
+  "resetUserConnectionCodeCopy": "URI di connessione copiato negli appunti"
 }
