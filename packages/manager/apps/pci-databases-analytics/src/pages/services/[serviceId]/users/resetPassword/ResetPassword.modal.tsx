@@ -104,7 +104,7 @@ const ResetUserPassword = () => {
               <div data-testid="code-uri-container" className="p-2">
                 {service.endpoints.length > 1 && (
                   <Select
-                    value={selectedEndpoint.component}
+                    value={selectedEndpoint?.component}
                     onValueChange={(v) =>
                       setSelectedEndpoint(
                         service.endpoints.find(
