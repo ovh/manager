@@ -20,9 +20,12 @@ import {
   TLocalisation,
   TDeployment,
   DeploymentTilesInput,
-  useFeaturedDeploymentModes,
 } from '@ovh-ux/manager-pci-common';
-import { Subtitle, Links } from '@ovh-ux/manager-react-components';
+import {
+  Subtitle,
+  Links,
+  useCatalogPrice,
+} from '@ovh-ux/manager-react-components';
 import { useTranslation, Trans } from 'react-i18next';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useData } from '@/api/hooks/useData';
@@ -32,6 +35,8 @@ import { useActions } from '@/hooks/order/useActions';
 import { StepComponent } from '@/components/container/Step.component';
 import { FloatingIpSummary } from '@/pages/order/steps/FloatingIpSummary';
 import useGuideLink from '@/hooks/useGuideLink/useGuideLink';
+import PriceLabel from '@/components/PriceLabel.component';
+import { useDeployments } from '@/api/hooks/useDeployments/useDeployments';
 
 const isRegionWith3AZ = (regions: TRegion[]) =>
   regions.some((region) => region.type === RegionType['3AZ']);
@@ -120,14 +125,21 @@ export const FloatingSteps = ({
     [orderData, selectedRegionGroup],
   );
 
-  const { deployments: deploymentModes } = useFeaturedDeploymentModes();
+  const { getFormattedHourlyCatalogPrice } = useCatalogPrice(4);
+
+  const deploymentModes = useDeployments(projectId);
 
   const deployments = useMemo<TDeployment[]>(
     () =>
-      deploymentModes.filter(({ name }) =>
-        orderData.regions.some(({ type }) => type === name),
-      ),
-    [deploymentModes, orderData.regions],
+      deploymentModes.map((deployment) => ({
+        ...deployment,
+        price: (
+          <PriceLabel
+            value={getFormattedHourlyCatalogPrice(deployment.price)}
+          />
+        ),
+      })),
+    [deploymentModes],
   );
 
   const onSelectRegion = useCallback(
