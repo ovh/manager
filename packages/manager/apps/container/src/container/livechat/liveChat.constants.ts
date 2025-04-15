@@ -6,8 +6,5 @@ export const CHAT_TYPE_STORAGE_KEY = 'chat_type';
 
 export const ADRIELLY_CHAT_ORIGIN = 'https://chat.ovh.com';
 export function adriellyChatUrl(customerLevel: string, subsidiary: string, language: string): string {
-  return `https://chat.ovh.com/system/templates/pre-prod/LiveChat_V4/${customerLevel}/${subsidiary}_${language}/docs/index2.html`;
+  return `https://chat.ovh.com/system/templates/liveChat-manager/${customerLevel}/${subsidiary}_${language}/docs/index2.html`;
 }
-
-export const ADRIELLY_LABEU_CHAT_URL = 'https://eceweb.ovhcloud.dev/system/templates/livechat-manager/STD/FR_fr/docs/index2.html';
-export const SNOW_LABEU_INSTANCE_URL = 'https://agent-chat.build-ovhcloud.tools';
