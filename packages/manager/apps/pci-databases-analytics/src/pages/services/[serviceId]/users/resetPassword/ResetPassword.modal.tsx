@@ -11,7 +11,6 @@ import {
   DialogTitle,
   useToast,
   Code,
-  docker,
   githubDark,
   Select,
   SelectTrigger,
@@ -91,7 +90,6 @@ const ResetUserPassword = () => {
                 <Code
                   code={newPass}
                   label={t('resetUserPasswordCode')}
-                  lang={docker}
                   theme={githubDark}
                   onCopied={() =>
                     toast.toast({
@@ -134,7 +132,6 @@ const ResetUserPassword = () => {
                     `${user.username}:${newPass}`,
                   )}
                   label={t('resetUserConnectionCode')}
-                  lang={docker}
                   theme={githubDark}
                   onCopied={() =>
                     toast.toast({
