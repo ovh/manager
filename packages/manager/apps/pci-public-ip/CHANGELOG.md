@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.14.4...@ovh-ux/manager-pci-public-ip-app@0.15.0) (2025-04-15)
+
+
+### Bug Fixes
+
+* **pci-public-ip:** land user to step 3 to assign Floating IP from instance ([#16360](https://github.com/ovh/manager/issues/16360)) ([d6b83cc](https://github.com/ovh/manager/commit/d6b83ccbb0b82e6f6b90239ce20a59b3431031f1)), closes [#TAPC-3628](https://github.com/ovh/manager/issues/TAPC-3628)
+
+
+### Features
+
+* **pci-public-ip:** add title for the region selector ([#16431](https://github.com/ovh/manager/issues/16431)) ([aa4ffa4](https://github.com/ovh/manager/commit/aa4ffa45cceb3aa7ffc44b6020896d7f806596c2)), closes [#TAPC-3634](https://github.com/ovh/manager/issues/TAPC-3634)
+
+
+
+
+
 ## [0.14.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.14.3...@ovh-ux/manager-pci-public-ip-app@0.14.4) (2025-04-10)
 
 

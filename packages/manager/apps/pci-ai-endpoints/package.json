@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-ai-endpoints-app",
-  "version": "0.5.4",
+  "version": "0.6.0",
   "private": true,
   "description": "Manage AI Endpoints (usage and tokens) through OVHcloud control panel",
   "repository": {
