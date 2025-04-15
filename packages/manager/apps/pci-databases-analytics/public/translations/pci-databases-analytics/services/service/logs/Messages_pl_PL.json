@@ -2,5 +2,10 @@
   "title": "Logi",
   "breadcrumb": "Logi",
   "description": "Aby pomóc Ci w monitorowaniu i zarządzaniu usługą baz danych, zapoznaj się z najnowszymi wydarzeniami (logami) przedstawionymi poniżej, niemal na żywo. Czas ich retencji zależy od Twojej oferty usługi.",
-  "autoRefreshInputLabel": "Auto-Refresh"
+  "autoRefreshInputLabel": "Automatyczne Odświeżanie",
+  "streamsTitle": "Strumień danych",
+  "streamsBreadcrumb": "Strumień",
+  "streamsBackLink": "Powrót do poprzedniej strony",
+  "streamsDescription": "Po zasubskrybowaniu logów Twojej usługi, zostaną one przeniesione do Logs Data Platform i będziesz mógł je scentralizować za pomocą innych logów, przeprowadzać zaawansowane wyszukiwanie, zarządzać ich retencją, definiować alerty oraz pulpity nawigacyjne, które pozwolą Ci łatwo obserwować klastry.",
+  "streamsAdd": "Dodaj strumień danych"
 }

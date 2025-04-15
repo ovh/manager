@@ -2,5 +2,10 @@
   "title": "Logs",
   "breadcrumb": "Logs",
   "description": "To help you monitor and manage your database service, view the latest events (logs) below in almost-real time. Their retention period depends on your service solution.",
-  "autoRefreshInputLabel": "Auto-Refresh"
+  "autoRefreshInputLabel": "Auto-Refresh",
+  "streamsTitle": "Data stream",
+  "streamsBreadcrumb": "Streams",
+  "streamsBackLink": "Back to previous page",
+  "streamsDescription": "By subscribing to your service’s audit logs, they will be transferred to the Logs Data Platform, and you can centralize them with your other logs, carry out advanced searches, manage their retention, set alerts, and set up dashboards so that you can easily observe your clusters.",
+  "streamsAdd": "Add a data stream"
 }
