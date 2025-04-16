@@ -1,20 +1,4 @@
-import { fetchIcebergV6, apiClient } from '@ovh-ux/manager-core-api';
-
-export type GetcloudProjectServiceParams = {
-  /** Service name */
-  serviceName?: any;
-};
-
-export const getcloudProjectServiceQueryKey = (
-  params: GetcloudProjectServiceParams,
-) => [`get/cloud/project/${params.serviceName}`];
-
-/**
- * Operations about the PUBLICCLOUD service : Get this object properties
- */
-export const getcloudProjectService = async (
-  params: GetcloudProjectServiceParams,
-): Promise<any> => apiClient.v6.get(`/cloud/project/${params.serviceName}`);
+import { fetchIcebergV6 } from '@ovh-ux/manager-core-api';
 
 /**
  *  Get listing with iceberg V6
