@@ -8,6 +8,7 @@ import {
   Datagrid,
   BaseLayout,
   useResourcesV6,
+  RedirectionGuard,
 } from '@ovh-ux/manager-react-components';
 import appConfig from '@/pci-volume-backup.config';
 import {
@@ -22,6 +23,7 @@ export default function Listing() {
   const { projectId } = useParams();
 
   const {
+    data: { data: volumeBackups } = {},
     flattenData,
     totalCount,
     hasNextPage,
@@ -41,6 +43,9 @@ export default function Listing() {
     pageSize: 10,
   });
 
+  const shouldRedirectToOnboarding =
+    !isLoading && !!volumeBackups && volumeBackups.length === 0;
+
   const header = {
     title: t('pci_projects_project_storages_volume_backup_list_header'),
   };
@@ -58,32 +63,38 @@ export default function Listing() {
   );
 
   return (
-    <BaseLayout
-      breadcrumb={
-        <Breadcrumb
-          rootLabel={appConfig.rootLabel}
-          appName="pci-volume-backup"
-        />
-      }
-      header={header}
+    <RedirectionGuard
+      isLoading={isLoading}
+      route="./onboarding"
+      condition={shouldRedirectToOnboarding}
     >
-      <React.Suspense>
-        {columns && (
-          <Datagrid
-            columns={columns}
-            items={flattenData || []}
-            totalItems={totalCount || 0}
-            hasNextPage={hasNextPage && !isLoading}
-            onFetchNextPage={fetchNextPage}
-            sorting={sorting}
-            onSortChange={setSorting}
-            isLoading={isLoading}
-            filters={filters}
-            search={search}
-            topbar={<TopbarCTA />}
+      <BaseLayout
+        breadcrumb={
+          <Breadcrumb
+            rootLabel={appConfig.rootLabel}
+            appName="pci-volume-backup"
           />
-        )}
-      </React.Suspense>
-    </BaseLayout>
+        }
+        header={header}
+      >
+        <React.Suspense>
+          {columns && (
+            <Datagrid
+              columns={columns}
+              items={flattenData || []}
+              totalItems={totalCount || 0}
+              hasNextPage={hasNextPage && !isLoading}
+              onFetchNextPage={fetchNextPage}
+              sorting={sorting}
+              onSortChange={setSorting}
+              isLoading={isLoading}
+              filters={filters}
+              search={search}
+              topbar={<TopbarCTA />}
+            />
+          )}
+        </React.Suspense>
+      </BaseLayout>
+    </RedirectionGuard>
   );
 }
