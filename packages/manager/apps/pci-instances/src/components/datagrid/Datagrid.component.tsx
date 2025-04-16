@@ -201,13 +201,13 @@ const DatagridComponent = ({
         id: 'status',
         cell: (instance) => {
           const pollingInstance = pollingData.find((d) => d.id === instance.id);
+          const isPolling = !!pollingInstance && !pollingInstance.error;
 
           return (
             <StatusCell
-              isLoading={
-                isRefetching || (!!pollingInstance && !pollingInstance.error)
-              }
+              isLoading={isRefetching}
               instance={instance}
+              isPolling={isPolling}
             />
           );
         },
