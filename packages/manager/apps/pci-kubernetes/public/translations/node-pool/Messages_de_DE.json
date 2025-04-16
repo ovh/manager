@@ -35,5 +35,6 @@
   "kube_common_estimation_price": "Während der Betaphase kostenlos.",
   "kube_common_cluster_estimation_price": "Cluster: {{estimation}}",
   "kube_common_node_pool_deploy_title": "Wahl der Verfügbarkeitszone",
-  "kube_common_node_pool_deploy_description": "In einem Kubernetes-Cluster, das sich über drei Verfügbarkeitszonen (AZ) erstreckt, wird die Verwendung von Node-Pools pro Zone empfohlen, um Resilienz und hohe Verfügbarkeit zu gewährleisten. Mit dieser Konfiguration können Sie Ihre Workloads gleichmäßig auf die AZ verteilen. Dadurch wird die Fehlertoleranz erhöht und eine optimale Betriebskontinuität sichergestellt."
+  "kube_common_node_pool_deploy_description": "In einem Kubernetes-Cluster, das sich über drei Verfügbarkeitszonen (AZ) erstreckt, wird die Verwendung von Node-Pools pro Zone empfohlen, um Resilienz und hohe Verfügbarkeit zu gewährleisten. Mit dieser Konfiguration können Sie Ihre Workloads gleichmäßig auf die AZ verteilen. Dadurch wird die Fehlertoleranz erhöht und eine optimale Betriebskontinuität sichergestellt.",
+  "kube_node_pool": "Node-Pool konfigurieren"
 }
