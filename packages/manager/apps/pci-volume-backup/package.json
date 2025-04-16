@@ -50,7 +50,10 @@
     "@testing-library/dom": "^10.1.0",
     "@testing-library/jest-dom": "^6.4.6",
     "@testing-library/react": "^16.0.0",
+    "@vitejs/plugin-react": "^4.3.0",
     "@vitest/coverage-v8": "^2.1.9",
+    "eslint": "^8.57.0",
+    "react-error-boundary": "^5.0.0",
     "typescript": "^5.4.5",
     "vite": "^5.3.3",
     "vitest": "^1.6.0"
