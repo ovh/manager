@@ -2,9 +2,18 @@ import template from './softphone.html';
 import controller from './softphone.controller';
 
 export default {
-  controller,
   template,
+  controller,
   bindings: {
-    currentServiceIsBeta: '<',
+    currentTheme: '<',
+    billingAccount: '<',
+    serviceName: '<',
+    themes: '<',
+    storeLinks: '<',
+    goToAddDevice: '<',
+    goToDeleteDevice: '<',
+    softphoneStatus: '<',
+    trackClick: '<',
+    trackPage: '<',
   },
 };

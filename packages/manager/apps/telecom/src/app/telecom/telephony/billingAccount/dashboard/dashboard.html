@@ -386,6 +386,92 @@
             </div>
         </div>
     </div>
+
+    <div class="oui-tile mb-5">
+        <!-- Coloured List !-->
+
+        <!-- Update logo with image file !-->
+        <h3
+            data-translate="telephony_group_line_softphone_apply_theme_globally"
+        ></h3>
+        <p
+            data-translate="telephony_group_line_softphone_save_theme_description"
+        ></p>
+        <form name="form" data-ng-submit="DashboardCtrl.applyThemeGlobally()">
+            <div style class="d-flex flex-wrap w-100 align-items-center">
+                <theme-picker
+                    data-ng-repeat="theme in ::DashboardCtrl.themes track by $index"
+                    data-color="theme.color"
+                    data-theme-id="theme.themeId"
+                    data-selected="DashboardCtrl.currentTheme"
+                ></theme-picker>
+            </div>
+            <button
+                data-ng-disabled="DashboardCtrl.isUpdatingTheme || DashboardCtrl.isSoftphoneLoading || DashboardCtrl.currentTheme ===
+                DashboardCtrl.selectedTheme"
+                type="submit"
+                class="btn btn-default"
+            >
+                <span
+                    data-translate="telephony_group_line_softphone_btn_apply_theme"
+                ></span>
+            </button>
+        </form>
+        <p data-translate="telephony_group_line_softphone_save_theme"></p>
+    </div>
+    <div class="oui-tile mb-5">
+        <h3 data-translate="telephony_group_line_softphone_logo_title"></h3>
+        <form name="form" data-ng-submit="DashboardCtrl.applyLogoGlobally()">
+            <div class="row">
+                <oui-field
+                    class="col-md-6"
+                    data-label="{{ 'telephony_group_line_softphone_your_logo' | translate }}"
+                    data-help-text="{{ DashboardCtrl.helpTextForLogo() }}"
+                >
+                    <oui-file
+                        data-accept="{{ DashboardCtrl.LOGO_FILE_FORMATS }}"
+                        data-maxsize="DashboardCtrl.MAX_SIZE_LOGO_FILE"
+                        data-on-select="DashboardCtrl.updateFilesList()"
+                        data-droparea
+                        data-model="DashboardCtrl.fileModel"
+                    >
+                    </oui-file>
+                </oui-field>
+                <img
+                    class="col-md-2"
+                    data-ng-if="DashboardCtrl.logoFilename!==''"
+                    data-ng-src="{{ DashboardCtrl.logoUrl }}"
+                    width="512"
+                    height="auto"
+                    alt="{{:: 'telephony_line_softphone_logo_image' | translate  }}"
+                />
+            </div>
+            <button
+                data-ng-disabled="!DashboardCtrl.fileModel || DashboardCtrl.isUpdatingLogo"
+                type="submit"
+                class="btn btn-default"
+            >
+                <span
+                    data-translate="telephony_group_line_softphone_logo_title"
+                ></span>
+            </button>
+            <button
+                type="button"
+                class="btn btn-default"
+                data-ng-click="DashboardCtrl.deleteGlobalLogo()"
+                data-ng-disabled="DashboardCtrl.logoFilename===''"
+            >
+                <span
+                    data-translate="telephony_group_line_softphone_logo_delete"
+                ></span>
+            </button>
+            <div class="row ml-2">
+                <p
+                    data-translate="telephony_group_line_softphone_save_logo"
+                ></p>
+            </div>
+        </form>
+    </div>
     <!-- /.widget-presentation -->
 </div>
 <!-- /.telephony-group-dashboard -->

@@ -5,6 +5,7 @@ import controller from './billing-account.controller';
 
 import dashboardTemplate from './dashboard/dashboard.html';
 import dashboardController from './dashboard/dashboard.controller';
+import { BILLING_ACCOUNT_TRACKING } from './billingAccount.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('telecom.telephony.billingAccount', {
@@ -101,7 +102,15 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('telecom.telephony.billingAccount.svaWallet', {
           billingAccount,
         }),
+      themes: /* @ngInject */ (softphoneService) =>
+        softphoneService.getThemes(),
     },
     translations: { value: ['..', '.', './dashboard'], format: 'json' },
+    atInternet: {
+      ignore: true,
+    },
+    onEnter: /* @ngInject */ (atInternet) => {
+      atInternet.trackPage(BILLING_ACCOUNT_TRACKING.PAGE);
+    },
   });
 };
