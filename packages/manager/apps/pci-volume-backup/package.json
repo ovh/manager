@@ -50,6 +50,7 @@
     "@testing-library/dom": "^10.1.0",
     "@testing-library/jest-dom": "^6.4.6",
     "@testing-library/react": "^16.0.0",
+    "@vitejs/plugin-react": "^4.3.0",
     "@vitest/coverage-v8": "^2.1.9",
     "typescript": "^5.4.5",
     "vite": "^5.3.3",
