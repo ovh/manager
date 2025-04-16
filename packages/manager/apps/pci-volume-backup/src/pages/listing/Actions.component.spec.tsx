@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render } from '@testing-library/react';
 import Actions from './Actions.component';
-import { TVolumeSnapshot } from '@/api/api.types';
+import { TVolumeBackup, TVolumeStatus, TVolumeType } from '@/data/api/api.types';
 
 // Mock ActionMenu component
 vi.mock('@ovh-ux/manager-react-components', () => ({
@@ -24,17 +24,29 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
   ),
 }));
 
-// Sample snapshot data
-const mockSnapshot: TVolumeSnapshot = {
-  id: 'snapshot-123',
+// Sample backup data
+const mockBackup: TVolumeBackup = {
+  id: 'backup-123',
   name: 'Test Snapshot',
+  volumeId: 'volume-456',
   status: 'available',
   size: 10,
   region: 'us-east-1',
   creationDate: '2023-01-01T00:00:00Z',
-  volumeId: 'volume-456',
-  description: 'Test snapshot description',
-  planCode: 'test-plan-code',
+  volume: {
+    id: 'volume-456',
+    name: 'Test Snapshot',
+    status: 'available',
+    size: 10,
+    region: 'us-east-1',
+    creationDate: '2023-01-01T00:00:00Z',
+    description: 'Test snapshot description',
+    planCode: 'test-plan-code',
+    attachedTo: [],
+    bootable: false,
+    availabilityZone: null,
+    type: 'classic',
+  },
 };
 
 describe('Actions Component', () => {
@@ -43,67 +55,67 @@ describe('Actions Component', () => {
   });
 
   it('renders the ActionMenu with the correct props', () => {
-    const { getByTestId } = render(<Actions snapshot={mockSnapshot} />);
+    const { getByTestId } = render(<Actions backup={mockBackup} />);
 
     const actionMenu = getByTestId('action-menu');
     expect(actionMenu).toBeInTheDocument();
-    expect(actionMenu).toHaveAttribute('data-id', 'snapshot-123');
+    expect(actionMenu).toHaveAttribute('data-id', 'backup-123');
     expect(actionMenu).toHaveAttribute('data-is-compact', 'true');
   });
 
   it('contains the correct menu items', () => {
-    const { getByTestId } = render(<Actions snapshot={mockSnapshot} />);
+    const { getByTestId } = render(<Actions backup={mockBackup} />);
 
-    // Check first menu item (create volume)
+    // Check first menu item (restore volume)
     const createVolumeItem = getByTestId('menu-item-1');
     expect(createVolumeItem).toBeInTheDocument();
     expect(createVolumeItem).toHaveAttribute(
       'href',
-      './snapshot-123/new-volume',
+      './restore-volume',
     );
     expect(createVolumeItem).toHaveTextContent(
-      'pci_projects_project_storages_snapshots_create_volume_label',
+      'pci_projects_project_storages_volume_backup_list_datagrid_menu_action_restore',
     );
 
-    // Check second menu item (delete)
+    // Check second menu item (create volume)
     const deleteItem = getByTestId('menu-item-2');
     expect(deleteItem).toBeInTheDocument();
     expect(deleteItem).toHaveAttribute(
       'href',
-      './delete?snapshotId=snapshot-123',
+      './backup-123/create-volume',
     );
     expect(deleteItem).toHaveTextContent(
-      'pci_projects_project_storages_snapshots_delete_label',
+      'pci_projects_project_storages_volume_backup_list_datagrid_menu_action_create_volume',
     );
   });
 
   it('renders with different snapshot IDs', () => {
     const { rerender, getByTestId } = render(
-      <Actions snapshot={mockSnapshot} />,
+      <Actions backup={mockBackup} />,
     );
 
     // Check initial render
     expect(getByTestId('action-menu')).toHaveAttribute(
       'data-id',
-      'snapshot-123',
+      'backup-123',
     );
 
     // Rerender with a different snapshot
-    const anotherSnapshot = { ...mockSnapshot, id: 'another-snapshot-456' };
-    rerender(<Actions snapshot={anotherSnapshot} />);
+    const anotherBackup = { ...mockBackup, id: 'another-backup-456' };
+    rerender(<Actions backup={anotherBackup} />);
 
     // Check that the ID was updated
     expect(getByTestId('action-menu')).toHaveAttribute(
       'data-id',
-      'another-snapshot-456',
+      'another-backup-456',
     );
   });
 
   it('passes the correct total number of menu items', () => {
-    const { getAllByTestId } = render(<Actions snapshot={mockSnapshot} />);
+    const { getAllByTestId } = render(<Actions backup={mockBackup} />);
 
     // There should be exactly 2 menu items
     const menuItems = getAllByTestId(/^menu-item-/);
-    expect(menuItems.length).toBe(2);
+    expect(menuItems.length).toBe(3);
   });
 });
