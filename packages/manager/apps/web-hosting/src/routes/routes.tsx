@@ -3,7 +3,12 @@ import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import NotFound from '@/pages/404';
 import { urls } from '@/routes/routes.constants';
-import { ONBOARDING, WEBSITES } from '@/utils/tracking.constants';
+import {
+  DASHBOARD,
+  ONBOARDING,
+  SSL,
+  WEBSITES,
+} from '@/utils/tracking.constants';
 
 const lazyRouteConfig = (importFn: CallableFunction) => {
   return {
@@ -50,6 +55,32 @@ export default [
           tracking: {
             pageName: ONBOARDING,
             pageType: PageType.onboarding,
+          },
+        },
+      },
+    ],
+  },
+  {
+    id: DASHBOARD,
+    path: urls.dashboard,
+    ...lazyRouteConfig(() => import('@/pages/dashboard/layout')),
+    handle: {
+      breadcrumb: {
+        icon: ODS_ICON_NAME.home,
+      },
+    },
+    children: [
+      {
+        id: SSL,
+        path: urls.ssl,
+        ...lazyRouteConfig(() => import('@/pages/dashboard/ssl/Ssl.page')),
+        handle: {
+          tracking: {
+            pageName: SSL,
+            pageType: PageType.listing,
+          },
+          breadcrumb: {
+            label: 'ssl',
           },
         },
       },
