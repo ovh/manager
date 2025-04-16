@@ -12,12 +12,13 @@ import {
   useNotifications,
 } from '@ovh-ux/manager-react-components';
 import { useTracking } from '@ovh-ux/manager-react-shell-client';
-import { OdsMessage } from '@ovhcloud/ods-components/react';
+import { OdsText } from '@ovhcloud/ods-components/react';
 import { Controller, useForm } from 'react-hook-form';
-import { Translation, useTranslation } from 'react-i18next';
+import { Trans, Translation, useTranslation } from 'react-i18next';
 import { useHref, useParams } from 'react-router-dom';
 
-import { useMemo } from 'react';
+import { FC, PropsWithChildren, useMemo, useState } from 'react';
+import { ODS_LINK_COLOR } from '@ovhcloud/ods-components';
 import { TCreateTicketResponse } from '@/api/data/ticket';
 import {
   useGetIssueTypes,
@@ -96,14 +97,14 @@ const IncreaseQuotaForm = ({
                     'leading-5 tracking-wide font-sans font-normal text-base text-customColor min-h-8 m-0 py-1 px-1 border border-customColor rounded-t-sm shadow-none outline-none bg-white',
                     errors[f.name] ? 'border-destructive' : '',
                   )}
-                  name={f.name}
                   {...register(f.name)}
+                  name={f.name}
                   rows={3}
                 />
                 <div className="mt-3">
                   {errors[field.id] && (
                     <p className="text-destructive text-s">
-                      {errors[field.id].message}
+                      {errors[field.id]?.message}
                     </p>
                   )}
                 </div>
@@ -131,8 +132,23 @@ const IncreaseQuotaForm = ({
     </form>
   );
 };
+const QuotaLink: FC<{ href: string; children?: string }> = ({
+  href,
+  children,
+}) => {
+  return (
+    <Links
+      color={ODS_LINK_COLOR.primary}
+      label={children}
+      href={href}
+      target="_blank"
+      type={LinkType.external}
+    />
+  );
+};
 
 const IncreaseQuotaSupport = () => {
+  const [ticketCreated, setTicketCreated] = useState(false);
   const { t, i18n } = useTranslation('quotas/increase');
 
   const { projectId } = useParams();
@@ -149,28 +165,22 @@ const IncreaseQuotaSupport = () => {
 
   const { mutate: createTicket, isPending } = useMutationCreateTicket({
     onSuccess: (data: TCreateTicketResponse) => {
+      setTicketCreated(true);
+      const ticketUrl = `${SUPPORT_TICKET_ID_URL.replace(
+        '{ticketId}',
+        data.ticketId,
+      )}${me.ovhSubsidiary}`;
       trackPage({
         name: `${TRACK.BASE_CONTACT_SUPPORT_BANNER}::${TRACK.SUCCESS}`,
       });
       addSuccess(
-        <Translation ns="quotas/increase">
-          {(_t) => (
-            <span
-              dangerouslySetInnerHTML={{
-                __html: _t(
-                  'pci_projects_project_quota_increase_success_message',
-                  {
-                    ticketUrl:
-                      SUPPORT_TICKET_ID_URL.replace(
-                        '{ticketId}',
-                        data.ticketId,
-                      ) + me.ovhSubsidiary,
-                  },
-                ),
-              }}
-            ></span>
-          )}
-        </Translation>,
+        <Trans
+          t={t}
+          i18nKey="pci_projects_project_quota_increase_success_message"
+          components={{
+            Link: <QuotaLink href={ticketUrl} />,
+          }}
+        />,
       );
     },
     onError: () => {
@@ -190,7 +200,7 @@ const IncreaseQuotaSupport = () => {
   });
 
   const onClick = async (data: { [id: number]: string }) => {
-    if (!issueTypes.length) {
+    if (!issueTypes?.length) {
       trackPage({
         name: `${TRACK.BASE_CONTACT_SUPPORT_BANNER}::${TRACK.ERROR}`,
       });
@@ -212,7 +222,6 @@ const IncreaseQuotaSupport = () => {
       if (quotaQuestions?.fields.length) {
         const body = `
         ${quotaQuestions?.subject}
-        
         ${quotaQuestions.fields
           .map(
             (field) => `
@@ -240,27 +249,33 @@ const IncreaseQuotaSupport = () => {
       <p className="my-4">
         {t('pci_projects_project_quota_increase_description')}
       </p>
-      <Notifications />
       <Links
         type={LinkType.back}
         label={t('pci_projects_project_quota_increase_back_label')}
         href={backHref}
       />
-      <OdsMessage className="mt-4">
-        {t('pci_projects_project_quota_increase_banner')}
-      </OdsMessage>
-
-      {quotaQuestions?.fields.length > 0 && (
-        <IncreaseQuotaForm
-          goBackHref={backHref}
-          onSubmit={onClick}
-          isPending={isPending}
-          fields={quotaQuestions?.fields.map((f) => ({
-            id: f.id,
-            label: f.label,
-            isRequired: f.mandatory,
-          }))}
-        />
+      {ticketCreated ? (
+        <>
+          <Notifications />
+          <OdsText className="mt-5 whitespace-pre-wrap">
+            {t('pci_projects_project_quota_assistance_success')}
+          </OdsText>
+        </>
+      ) : (
+        <>
+          {quotaQuestions && quotaQuestions.fields.length > 0 && (
+            <IncreaseQuotaForm
+              goBackHref={backHref}
+              onSubmit={onClick}
+              isPending={isPending}
+              fields={quotaQuestions?.fields.map((f) => ({
+                id: f.id,
+                label: f.label,
+                isRequired: f.mandatory,
+              }))}
+            />
+          )}
+        </>
       )}
     </div>
   );
