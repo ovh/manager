@@ -47,6 +47,7 @@ function Navbar({ environment }: Props): JSX.Element {
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const { setIsNotificationsSidebarVisible } = useHeader();
   const { t } = useTranslation(TRANSLATE_NAMESPACE);
+  const isUS = shell?.getPlugin('environment')?.getEnvironment()?.getRegion() === 'US';
 
   const brandClickHandler = useCallback(
     () =>
@@ -104,7 +105,7 @@ function Navbar({ environment }: Props): JSX.Element {
               <Search targetURL={searchURL} />
             </div>
           )}
-          {!isSmallDevice &&
+          {!isSmallDevice && isUS &&
             <div className="oui-navbar-list__item">
               <NavReshuffleSwitchBack />
             </div>
@@ -125,7 +126,7 @@ function Navbar({ environment }: Props): JSX.Element {
           <Account />
         </div>
       </div>
-      {isSmallDevice &&
+      {isSmallDevice && isUS &&
         <div className={style['small-device-pnr-switch']}>
           <NavReshuffleSwitchBack />
         </div>

@@ -22,6 +22,7 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
   const [chatbotReduced, setChatbotReduced] = useState(false);
   const [application, setApplication] = useState<Application>(undefined);
   const [universe, setUniverse] = useState<string>();
+  const isUS = shell?.getPlugin('environment')?.getEnvironment()?.getRegion() === 'US';
 
   // true if we should we ask the user if he want to test beta version
   const [askBeta, setAskBeta] = useState(false);
@@ -67,7 +68,7 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
 
     return fetchPromise
       .then(({ value }) => {
-        setUseBeta(value === 'true');
+        setUseBeta(isUS ? value === 'true' : true);
       })
       .catch((error) => {
         if (error?.status === 404) {
