@@ -37,9 +37,11 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useProject } from '@ovh-ux/manager-pci-common';
 import { useEditGateway, useGateway } from '@/api/hooks/useGateways';
 import HidePreloader from '@/core/HidePreloader';
-import { useRegionGatewayAddons } from '@/api/hooks/useGateways/useGateways';
-import { TProductAddonDetail } from '@/types/addon.type';
+import { TProductAddonDetail } from '@/types/product.type';
 import SizeLabel from '@/components/size/SizeLabel.component';
+import { useAddons } from '@/api/hooks/useAddons/useAddons';
+import { GATEWAY_ADDON_FAMILY } from '@/api/hooks/useAddons/useAddons.constant';
+import { filterProductRegionBySize } from '@/api/hooks/useAddons/useAddons.select';
 
 export default function EditGatewayPage(): JSX.Element {
   const { t } = useTranslation(['edit', 'common', 'global']);
@@ -64,7 +66,13 @@ export default function EditGatewayPage(): JSX.Element {
   const [size, setSize] = useState<TProductAddonDetail>();
   const [name, setName] = useState('');
 
-  const addons = useRegionGatewayAddons(ovhSubsidiary, projectId, regionName);
+  const { addons } = useAddons({
+    ovhSubsidiary,
+    projectId,
+    addonFamily: GATEWAY_ADDON_FAMILY,
+    select: (products: TProductAddonDetail[]) =>
+      filterProductRegionBySize(products, regionName),
+  });
 
   const { data: gateway, isPending: isGatewayLoading } = useGateway(
     projectId,
