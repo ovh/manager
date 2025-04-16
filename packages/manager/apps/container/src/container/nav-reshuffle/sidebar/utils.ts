@@ -35,6 +35,14 @@ export function initTree(
     ) {
       return all;
     }
+
+    if (
+      node?.hideIfFeatures?.length &&
+      node?.hideIfFeatures?.some((feature: string) => features[feature])
+    ) {
+      return all;
+    }
+    
     if (node?.region && !node.region.includes(region)) {
       return all;
     }
