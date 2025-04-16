@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-telecom-universe-components",
-  "version": "7.28.4",
+  "version": "7.29.0",
   "private": true,
   "description": "Collection of components for the Telecom control panel.",
   "repository": {

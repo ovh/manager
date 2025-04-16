@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@13.0.8...@ovh-ux/manager-core@13.1.0) (2025-04-16)
+
+
+### Features
+
+* **telecom.telephony:** softphone ([#12734](https://github.com/ovh/manager/issues/12734)) ([9604893](https://github.com/ovh/manager/commit/9604893c3763a1a8400970f5883384815b01a5db)), closes [#MANAGER-12958](https://github.com/ovh/manager/issues/MANAGER-12958)
+
+
+
+
+
 ## [13.0.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@13.0.7...@ovh-ux/manager-core@13.0.8) (2025-04-09)
 
 **Note:** Version bump only for package @ovh-ux/manager-core
