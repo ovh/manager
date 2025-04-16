@@ -73,7 +73,7 @@ const RegionSelector = ({
         )}
         {orderCatalogOKMS && !isLoading && (
           <OdsSelect
-            className="md:w-[250px] sm:w-full"
+            className="md:w-[400px] sm:w-full"
             name="select-region"
             placeholder={t('key_management_service_create_select_placeholder')}
             data-testid={CREATE_KMS_TEST_IDS.selectRegion}
