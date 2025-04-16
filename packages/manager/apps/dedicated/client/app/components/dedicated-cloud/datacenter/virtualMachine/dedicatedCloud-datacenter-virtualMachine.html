@@ -6,19 +6,23 @@
     <div data-ng-if="!$ctrl.loading">
         <oui-datagrid data-rows-loader="$ctrl.loadVirtualMachines($config)">
             <oui-datagrid-column
+                data-sortable
                 data-title=":: 'virtualmachine_grid_name' | translate"
                 data-property="name"
             >
             </oui-datagrid-column>
 
             <oui-datagrid-column
+                data-sortable
                 data-title=":: $ctrl.virtualMachinesGuesOS"
                 data-property="guestOsFamily"
             >
             </oui-datagrid-column>
 
             <oui-datagrid-column
+                data-sortable
                 data-title=":: 'virtualmachine_grid_license' | translate"
+                data-property="license"
             >
                 <span
                     class="oui-badge oui-badge_info"

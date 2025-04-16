@@ -11,13 +11,15 @@ export default class {
     this.virtualMachinesGuesOS = VIRTUAL_MACHINES_GUEST_OS;
   }
 
-  loadVirtualMachines({ offset, pageSize }) {
+  loadVirtualMachines({ offset, pageSize, sort }) {
     return this.DedicatedCloud.getDatacenterInfoVm(
       this.dedicatedCloud.serviceName,
       this.datacenterId,
       {
         offset,
         pageSize,
+        sort: sort.property,
+        sortOrder: sort.dir === 1 ? 'ASC' : 'DESC',
       },
     )
       .then((res) => {
