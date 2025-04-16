@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render } from '@testing-library/react';
 import Actions from './Actions.component';
-import { TVolumeBackup, TVolumeStatus, TVolumeType } from '@/data/api/api.types';
+import { TVolumeBackup } from '@/data/api/api.types';
 
 // Mock ActionMenu component
 vi.mock('@ovh-ux/manager-react-components', () => ({
@@ -69,10 +69,7 @@ describe('Actions Component', () => {
     // Check first menu item (restore volume)
     const createVolumeItem = getByTestId('menu-item-1');
     expect(createVolumeItem).toBeInTheDocument();
-    expect(createVolumeItem).toHaveAttribute(
-      'href',
-      './restore-volume',
-    );
+    expect(createVolumeItem).toHaveAttribute('href', './restore-volume');
     expect(createVolumeItem).toHaveTextContent(
       'pci_projects_project_storages_volume_backup_list_datagrid_menu_action_restore',
     );
@@ -80,25 +77,17 @@ describe('Actions Component', () => {
     // Check second menu item (create volume)
     const deleteItem = getByTestId('menu-item-2');
     expect(deleteItem).toBeInTheDocument();
-    expect(deleteItem).toHaveAttribute(
-      'href',
-      './backup-123/create-volume',
-    );
+    expect(deleteItem).toHaveAttribute('href', './backup-123/create-volume');
     expect(deleteItem).toHaveTextContent(
       'pci_projects_project_storages_volume_backup_list_datagrid_menu_action_create_volume',
     );
   });
 
   it('renders with different snapshot IDs', () => {
-    const { rerender, getByTestId } = render(
-      <Actions backup={mockBackup} />,
-    );
+    const { rerender, getByTestId } = render(<Actions backup={mockBackup} />);
 
     // Check initial render
-    expect(getByTestId('action-menu')).toHaveAttribute(
-      'data-id',
-      'backup-123',
-    );
+    expect(getByTestId('action-menu')).toHaveAttribute('data-id', 'backup-123');
 
     // Rerender with a different snapshot
     const anotherBackup = { ...mockBackup, id: 'another-backup-456' };

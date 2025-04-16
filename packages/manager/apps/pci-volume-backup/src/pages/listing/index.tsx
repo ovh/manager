@@ -6,7 +6,6 @@ import { ODS_BUTTON_SIZE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import {
   Breadcrumb,
   Datagrid,
-  ErrorBanner,
   BaseLayout,
   useResourcesV6,
 } from '@ovh-ux/manager-react-components';
@@ -24,8 +23,6 @@ export default function Listing() {
 
   const {
     flattenData,
-    isError,
-    error,
     totalCount,
     hasNextPage,
     fetchNextPage,
@@ -43,16 +40,6 @@ export default function Listing() {
     ],
     pageSize: 10,
   });
-
-  if (isError) {
-    const { response }: any = error;
-    const errorObj = {
-      data: error,
-      headers: response.headers,
-      status: response.status,
-    };
-    return <ErrorBanner error={errorObj} />;
-  }
 
   const header = {
     title: t('pci_projects_project_storages_volume_backup_list_header'),

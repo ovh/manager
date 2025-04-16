@@ -14,17 +14,23 @@ export default function Actions({ backup }: Readonly<ActionsProps>) {
     {
       id: 1,
       href: useHref(`./restore-volume`),
-      label: t('pci_projects_project_storages_volume_backup_list_datagrid_menu_action_restore'),
+      label: t(
+        'pci_projects_project_storages_volume_backup_list_datagrid_menu_action_restore',
+      ),
     },
     {
       id: 2,
       href: useHref(`./${backup.id}/create-volume`),
-      label: t('pci_projects_project_storages_volume_backup_list_datagrid_menu_action_create_volume'),
+      label: t(
+        'pci_projects_project_storages_volume_backup_list_datagrid_menu_action_create_volume',
+      ),
     },
     {
       id: 3,
       href: useHref(`./delete`),
-      label: t('pci_projects_project_storages_volume_backup_list_datagrid_menu_action_delete'),
+      label: t(
+        'pci_projects_project_storages_volume_backup_list_datagrid_menu_action_delete',
+      ),
     },
   ];
 

@@ -1,7 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render } from '@testing-library/react';
 import StatusComponent from './Status.component';
-import { TBackup } from '@/data/api/api.types';
 
 describe('StatusComponent', () => {
   beforeEach(() => {
