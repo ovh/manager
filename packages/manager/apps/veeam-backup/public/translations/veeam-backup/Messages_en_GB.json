@@ -17,5 +17,8 @@
   "status-DISABLING": "Disabling...",
   "status-UPDATING": "Modifying...",
   "status-DISABLED": "Not subscribed",
-  "status-REMOVED": "Not subscribed"
+  "status-REMOVED": "Not subscribed",
+  "guides_header_veeam_quick_start": "Use the VCD interface",
+  "guides_header_veeam_usage": "VCD backup with Veeam",
+  "guides_header_veeam_faq": "VCD FAQ"
 }

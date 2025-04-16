@@ -17,5 +17,8 @@
   "status-DISABLING": "Wird deaktiviert",
   "status-UPDATING": "Wird bearbeitet",
   "status-DISABLED": "Nicht abonniert",
-  "status-REMOVED": "Nicht abonniert"
+  "status-REMOVED": "Nicht abonniert",
+  "guides_header_veeam_quick_start": "VCD-Schnittstelle verwenden",
+  "guides_header_veeam_usage": "VCD-Sicherung mit Veeam",
+  "guides_header_veeam_faq": "VCD FAQ"
 }
