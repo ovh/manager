@@ -1,6 +1,7 @@
 import { RouteObject } from 'react-router-dom';
 import { getProjectQuery } from '@ovh-ux/manager-pci-common';
 import queryClient from '@/queryClient';
+import { withSuspendedMigrateRoutes } from '@/hooks/migration/useSuspendNonMigratedRoutes';
 
 const lazyRouteConfig = (importFn: CallableFunction) => ({
   lazy: async () => {
@@ -12,6 +13,36 @@ const lazyRouteConfig = (importFn: CallableFunction) => ({
     };
   },
 });
+
+function getRouteWithMigrationWrapper<R extends RouteObject>(route: R): R {
+  const newRoute = {
+    ...route,
+  };
+
+  if (route.Component) {
+    newRoute.Component = withSuspendedMigrateRoutes(route.Component);
+  }
+
+  if (route.lazy) {
+    newRoute.lazy = async () => {
+      const lazyValues = await (route.lazy as NonNullable<typeof route.lazy>)();
+
+      if (lazyValues.Component) {
+        lazyValues.Component = withSuspendedMigrateRoutes(lazyValues.Component);
+      }
+
+      return lazyValues;
+    };
+  }
+
+  if (route.children) {
+    newRoute.children = route.children.map((subRoute) =>
+      getRouteWithMigrationWrapper(subRoute),
+    );
+  }
+
+  return newRoute;
+}
 
 export const ROOT_PATH = '/pci/projects/:projectId/instances';
 export const REGION_PATH = 'region/:regionId';
@@ -103,7 +134,11 @@ const routes: RouteObject[] = [
           import('@/pages/instances/instance/edit/Edit.page'),
         ),
       },
-    ],
+      {
+        path: '*',
+        ...lazyRouteConfig(() => import('@/pages/404/NotFound.page')),
+      },
+    ].map(getRouteWithMigrationWrapper),
   },
   {
     path: '*',
