@@ -1,7 +1,6 @@
 import { z } from 'zod';
 import i18n from 'i18next';
-import { ZimbraPlanCodes } from '@/api/order';
-import { ZimbraOffer } from '@/api/api.type';
+import { ZimbraOffer, ZimbraPlanCodes } from '@/data/api/type';
 
 const customErrorMap: z.ZodErrorMap = (error, ctx) => {
   switch (error.code) {
