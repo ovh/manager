@@ -1,34 +1,45 @@
-import { fetchIcebergV6, apiClient } from '@ovh-ux/manager-core-api';
+import {
+  fetchIcebergV6,
+  apiClient,
+  ApiResponse,
+} from '@ovh-ux/manager-core-api';
+import { TVMwareVSphere } from '@/types/vsphere';
 
-export type GetdedicatedCloudListParams = {
+export type GetDedicatedCloudListParams = {
   /** Filter resources on IAM tags */
   iamTags: any;
 };
 
-export const getdedicatedCloudListQueryKey = ['get/dedicatedCloud'];
+export const getDedicatedCloudListQueryKey = ['get/dedicatedCloud'];
 
 /**
  * Operations about the PCC service : List VMware on OVHcloud infrastructures
  */
-export const getdedicatedCloudList = async (
-  params: GetdedicatedCloudListParams,
-): Promise<any> => apiClient.v6.get('/dedicatedCloud', { data: params });
+export const getDedicatedCloudList = async (
+  params: GetDedicatedCloudListParams,
+): Promise<ApiResponse<TVMwareVSphere[]>> =>
+  apiClient.v6.get<TVMwareVSphere[]>('/dedicatedCloud', { data: params });
 
-export type GetdedicatedCloudServiceParams = {
+export type GetDedicatedCloudServiceParams = {
   /** Domain of the service */
   serviceName?: string;
+  signal?: AbortSignal;
 };
 
-export const getdedicatedCloudServiceQueryKey = (
-  params: GetdedicatedCloudServiceParams,
-) => [getdedicatedCloudListQueryKey[0], params.serviceName];
+export const getDedicatedCloudServiceQueryKey = (
+  params: GetDedicatedCloudServiceParams,
+) => [getDedicatedCloudListQueryKey[0], params.serviceName];
 
 /**
  * VMware on OVHcloud : Get VMware on OVHcloud
  */
-export const getdedicatedCloudService = async (
-  params: GetdedicatedCloudServiceParams,
-): Promise<any> => apiClient.v6.get(`/dedicatedCloud/${params.serviceName}`);
+export const getDedicatedCloudService = async ({
+  serviceName,
+  signal,
+}: GetDedicatedCloudServiceParams): Promise<ApiResponse<TVMwareVSphere>> =>
+  apiClient.v6.get<TVMwareVSphere>(`/dedicatedCloud/${serviceName}`, {
+    signal,
+  });
 
 /**
  *  Get listing with iceberg V6
