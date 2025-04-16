@@ -12,7 +12,7 @@
   "kubernetes_network_form_gateway_vrack_field_ip_error_pattern": "Introduzca una dirección IP válida",
   "kubernetes_network_form_label": "Red privada asociada",
   "kubernetes_network_form_none": "Ninguna (IP públicas)",
-  "kubernetes_network_form_description": "Por defecto, sus nodos de trabajo disponen de una IPv4 pública. Si elige una red privada, las IP públicas de estos nodos solo se utilizarán para su administración/el enlace con el plano de control Kubernetes, y a sus nodos se les asignará una IP en la VLAN de la red privada elegida.",
+  "kubernetes_network_form_description": "A sus nodos se les asignará una IP en la VLAN de la red privada elegida.",
   "kubernetes_network_form_add": "Crear una red privada",
   "kubernetes_network_form_subnet": "Seleccione una subred para su cluster",
   "kubernetes_network_form_subnet_description": "Seleccione la subred que desea utilizar para su cluster Managed Kubernetes. Asegúrese de que cumple los requisitos de red del servicio administrado Managed Kubernetes.",
