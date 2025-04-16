@@ -39,6 +39,7 @@ import {
 import { useRegionInformations } from '@/api/hooks/useRegionInformations';
 import DeploymentZone from './node-pool/DeploymentZone.component';
 import { KubeFlavor } from '@/components/flavor-selector/FlavorSelector.component';
+import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
 
 const getPrice = (flavor: KubeFlavor, scaling: AutoscalingState | null) => {
   if (flavor && scaling) {
@@ -88,7 +89,7 @@ const NodePoolStep = ({
   const hasError = nodePoolState.isTouched && !isValidName;
   const [isMonthlyBilled, setIsMonthlyBilled] = useState(false);
   const [flavor, setFlavor] = useState<KubeFlavor | null>(null);
-
+  const featureFlipping3az = use3AZPlanAvailable();
   const [nodePoolEnabled, setNodePoolEnabled] = useState(true);
   const [nodes, setNodes] = useState<NodePoolPrice[] | null>(null);
   const onDelete = useCallback(
@@ -176,6 +177,9 @@ const NodePoolStep = ({
         name: generateUniqueName(nodePoolState.name, nodes as NodePool[]),
         antiAffinity: nodePoolState.antiAffinity,
         autoscale: nodePoolState.scaling.isAutoscale,
+        ...(isMultiDeploymentZones(regionInformations?.type) && {
+          availabilityZones: [nodePoolState.selectedAvailibilityZone],
+        }),
         localisation:
           nodePoolState.selectedAvailibilityZone ?? stepper.form.region.name,
         desiredNodes: nodePoolState.scaling.quantity.desired,
@@ -248,17 +252,23 @@ const NodePoolStep = ({
               onSelect={setFlavor}
             />
           </div>
-          {isMultiDeploymentZones(regionInformations?.type) && (
-            <div className="mb-8 flex gap-4">
-              <DeploymentZone
-                setNodePoolState={setNodePoolState}
-                availabilityZones={regionInformations?.availabilityZones}
-                selectedAvailibilityZone={
-                  nodePoolState.selectedAvailibilityZone
-                }
-              />
-            </div>
-          )}
+          {featureFlipping3az &&
+            isMultiDeploymentZones(regionInformations?.type) && (
+              <div className="mb-8 flex gap-4">
+                <DeploymentZone
+                  onSelect={(zone) =>
+                    setNodePoolState((state) => ({
+                      ...state,
+                      selectedAvailibilityZone: zone,
+                    }))
+                  }
+                  availabilityZones={regionInformations?.availabilityZones}
+                  selectedAvailibilityZone={
+                    nodePoolState.selectedAvailibilityZone
+                  }
+                />
+              </div>
+            )}
           <div className="mb-8">
             <NodePoolSize
               isMonthlyBilled={isMonthlyBilled}

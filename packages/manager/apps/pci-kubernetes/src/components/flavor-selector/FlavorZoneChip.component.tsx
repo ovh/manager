@@ -19,8 +19,10 @@ import { Links, LinkType } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import {
-  GLOBAL_REGIONS_INFO_URL,
   LOCAL_ZONE_INFO_URL,
+  Region3AZChip,
+  RegionGlobalzoneChip,
+  RegionLocalzoneChip,
 } from '@ovh-ux/manager-pci-common';
 
 import { DeploymentMode } from '@/types';
@@ -54,70 +56,25 @@ export function FlavorZoneChip({
   const getFlavorDisplayInfo = useMemo(() => {
     if (isMulti) {
       return {
-        labelKey: 'kube:pci_project_flavors_zone_3az',
+        compponent: Region3AZChip,
         tooltipKey: 'kube:pci_project_flavors_zone_3az_tooltip',
-        chipColor: ODS_THEME_COLOR_INTENT.default,
       };
     }
 
     if (isLocal) {
       return {
-        labelKey: 'pci_project_flavors_zone_localzone',
+        component: RegionLocalzoneChip,
         tooltipKey: 'pci_project_flavors_zone_global_region',
-        chipColor: ODS_THEME_COLOR_INTENT.error,
       };
     }
 
     return {
-      labelKey: 'kube:pci_project_flavors_zone_global_region',
+      component: RegionGlobalzoneChip,
       tooltipKey: 'kube:pci_project_flavors_zone_globalregions_tooltip',
-      chipColor: ODS_THEME_COLOR_INTENT.primary,
     };
   }, [isMulti, isLocal]);
 
-  return (
-    <OsdsPopover>
-      <span slot="popover-trigger">
-        <OsdsChip
-          color={getFlavorDisplayInfo.chipColor}
-          size={ODS_CHIP_SIZE.sm}
-          onClick={(event) => event.stopPropagation()}
-        >
-          <OsdsText
-            color={ODS_THEME_COLOR_INTENT.primary}
-            level={ODS_TEXT_LEVEL.body}
-            size={ODS_TEXT_SIZE._200}
-          >
-            {t(getFlavorDisplayInfo.labelKey)}
-          </OsdsText>
-          <OsdsIcon
-            name={ODS_ICON_NAME.HELP}
-            size={ODS_ICON_SIZE.xxs}
-            className="ml-2"
-            color={ODS_THEME_COLOR_INTENT.primary}
-          />
-        </OsdsChip>
-      </span>
-      <OsdsPopoverContent>
-        <OsdsText
-          color={ODS_THEME_COLOR_INTENT.text}
-          level={ODS_TEXT_LEVEL.body}
-        >
-          {t(getFlavorDisplayInfo.tooltipKey)}
-        </OsdsText>
-        &nbsp;
-        <Links
-          tab-index="-1"
-          label={t('pci_project_flavors_zone_tooltip_link')}
-          type={LinkType.external}
-          target={OdsHTMLAnchorElementTarget._blank}
-          href={
-            isLocalDeploymentZone(flavorCompatibility)
-              ? getDocumentUrl('LOCAL_ZONE')
-              : getDocumentUrl('GLOBAL_REGIONS')
-          }
-        />
-      </OsdsPopoverContent>
-    </OsdsPopover>
-  );
+  const Component = getFlavorDisplayInfo.component;
+
+  return <Component showTooltip />;
 }

@@ -1,4 +1,3 @@
-import { Dispatch, SetStateAction } from 'react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
@@ -13,16 +12,15 @@ import {
   selectedTileClass,
   tileClass,
 } from '../UpdatePolicySelector.component';
-import { NodePoolState } from '../NodePoolStep.component';
 
 type DeploymentZoneProps = {
-  setNodePoolState: Dispatch<SetStateAction<NodePoolState>>;
+  onSelect: (zone: string) => void;
   selectedAvailibilityZone: string;
   availabilityZones: string[];
 };
 
 const DeploymentZone = ({
-  setNodePoolState,
+  onSelect,
   selectedAvailibilityZone,
   availabilityZones,
 }: DeploymentZoneProps) => {
@@ -57,12 +55,7 @@ const DeploymentZone = ({
               zone === selectedAvailibilityZone ? selectedTileClass : null,
               'selectedTileClass',
             )}
-            onClick={() =>
-              setNodePoolState((state) => ({
-                ...state,
-                selectedAvailibilityZone: zone,
-              }))
-            }
+            onClick={() => onSelect(zone)}
             inline
           >
             <OsdsText

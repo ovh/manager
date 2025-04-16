@@ -21,9 +21,18 @@ import {
   useCatalogPrice,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
-import { useBytes } from '@ovh-ux/manager-pci-common';
-import { FlavorZoneChip } from './FlavorZoneChip.component';
+import {
+  Region3AZChip,
+  RegionGlobalzoneChip,
+  RegionLocalzoneChip,
+  useBytes,
+} from '@ovh-ux/manager-pci-common';
 import { DeploymentMode } from '@/types';
+import {
+  isLocalDeploymentZone,
+  isMonoDeploymentZone,
+  isMultiDeploymentZones,
+} from '@/helpers';
 
 export interface FlavorDiskType {
   number: number;
@@ -190,10 +199,17 @@ export function FlavorTile({
           {Object.entries(flavorCompatibility).map(([zone, isVisible]) => {
             if (isVisible) {
               return (
-                <FlavorZoneChip
-                  key={zone}
-                  flavorCompatibility={zone as DeploymentMode}
-                />
+                <>
+                  {isMonoDeploymentZone(zone as DeploymentMode) && (
+                    <RegionGlobalzoneChip />
+                  )}
+                  {isMultiDeploymentZones(zone as DeploymentMode) && (
+                    <Region3AZChip />
+                  )}
+                  {isLocalDeploymentZone(zone as DeploymentMode) && (
+                    <RegionLocalzoneChip />
+                  )}
+                </>
               );
             }
             return null;

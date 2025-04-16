@@ -66,15 +66,6 @@ export function LocationStep({
       regionType === RegionType.Region3Az ? (
         <div className="flex gap-4">
           <Region3AZChip showTooltip={false} />
-          <div className="flex items-baseline gap-3">
-            <OsdsChip
-              color={ODS_THEME_COLOR_INTENT.success}
-              size={ODS_CHIP_SIZE.sm}
-              inline
-            >
-              {t('add:kubernetes_add_deployment_mode_card_beta')}
-            </OsdsChip>
-          </div>
         </div>
       ) : (
         <RegionGlobalzoneChip showTooltip={false} />

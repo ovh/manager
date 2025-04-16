@@ -54,8 +54,14 @@ export const downloadContent = ({
   URL.revokeObjectURL(url);
 };
 
-export const getFormatedKubeVersion = (version: string) =>
-  version.substring(0, version.lastIndexOf('.'));
+export const getFormatedKubeVersion = (version: string) => {
+  const [major, minor] = version.split('.');
+
+  if (!minor) {
+    return major;
+  }
+  return `${major}.${minor}`;
+};
 
 export const formatIP = (ip: string) => {
   const [cidr, mask] = ip.split('/');

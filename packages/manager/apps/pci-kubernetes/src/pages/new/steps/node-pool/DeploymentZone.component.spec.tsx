@@ -10,7 +10,7 @@ describe('DeploymentZone component', () => {
   it('renders correctly', () => {
     const { getByText } = render(
       <DeploymentZone
-        setNodePoolState={setNodePoolState}
+        onSelect={setNodePoolState}
         selectedAvailibilityZone={selectedAvailibilityZone}
         availabilityZones={availabilityZones}
       />,
@@ -28,7 +28,7 @@ describe('DeploymentZone component', () => {
   it('calls setNodePoolState when a zone is clicked', () => {
     const { getAllByRole } = render(
       <DeploymentZone
-        setNodePoolState={setNodePoolState}
+        onSelect={setNodePoolState}
         selectedAvailibilityZone={selectedAvailibilityZone}
         availabilityZones={availabilityZones}
       />,
@@ -37,14 +37,13 @@ describe('DeploymentZone component', () => {
     const buttons = getAllByRole('button');
     fireEvent.click(buttons[0]);
 
-    expect(setNodePoolState).toHaveBeenCalledTimes(1);
-    expect(setNodePoolState).toHaveBeenCalledWith(expect.any(Function));
+    expect(setNodePoolState).toHaveBeenCalledWith('zone1');
   });
 
   it('highlights the selected zone', () => {
     const { getAllByRole } = render(
       <DeploymentZone
-        setNodePoolState={setNodePoolState}
+        onSelect={setNodePoolState}
         selectedAvailibilityZone={selectedAvailibilityZone}
         availabilityZones={availabilityZones}
       />,

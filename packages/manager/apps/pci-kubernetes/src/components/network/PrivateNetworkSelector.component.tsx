@@ -14,14 +14,14 @@ import {
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useKubeNetwork } from './useKubeNetwork';
-import { TNetwork } from '@/api/data/network';
+import { TNetworkRegion } from '@/api/data/network';
 
 export interface PrivateNetworkSelectorProps {
   projectId: string;
   kubeId: string;
   disabled?: boolean;
   className?: string;
-  onSelect?: (network: TNetwork) => void;
+  onSelect?: (network: TNetworkRegion) => void;
 }
 
 export const PrivateNetworkSelector = ({
