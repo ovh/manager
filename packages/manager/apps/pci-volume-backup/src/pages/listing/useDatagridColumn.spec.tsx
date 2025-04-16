@@ -110,9 +110,7 @@ describe('useDatagridColumn', () => {
     const { result } = renderHook(() => useDatagridColumn());
 
     // Test name column cell renderer
-    const { container: nameCell } = render(
-      result.current[0].cell(mockBackup),
-    );
+    const { container: nameCell } = render(result.current[0].cell(mockBackup));
     expect(nameCell.textContent).toBe('Test Backup');
 
     // Test id column cell renderer
@@ -123,9 +121,7 @@ describe('useDatagridColumn', () => {
     const { container: regionCell } = render(
       result.current[2].cell(mockBackup),
     );
-    expect(regionCell.textContent).toBe(
-      'us-east-1',
-    );
+    expect(regionCell.textContent).toBe('us-east-1');
 
     // Test volume id column cell renderer
     const { container: volumeCell } = render(
@@ -134,15 +130,11 @@ describe('useDatagridColumn', () => {
     expect(volumeCell.textContent).toBe('volume-456');
 
     // Test creation date column cell renderer
-    const { container: dateCell } = render(
-      result.current[4].cell(mockBackup),
-    );
+    const { container: dateCell } = render(result.current[4].cell(mockBackup));
     expect(dateCell.textContent).toBe('formatted_2023-01-01T00:00:00Z');
 
     // Test size column cell renderer
-    const { container: sizeCell } = render(
-      result.current[5].cell(mockBackup),
-    );
+    const { container: sizeCell } = render(result.current[5].cell(mockBackup));
     expect(sizeCell.textContent).toBe('10 unit_size_GiB');
 
     // Test status column cell renderer
