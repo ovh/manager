@@ -1,6 +1,6 @@
 import get from 'lodash/get';
 
-export default /* @ngInject */ ($stateProvider) => {
+export default /* @ngInject */ ($stateProvider, shellClient) => {
   const name = 'app.dedicated-server.index';
 
   $stateProvider.state(name, {
@@ -31,6 +31,12 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     },
     resolve: {
+      checkRedirect: /* @ngInject */ (featureAvailability) =>
+        shellClient.navigation.getURL('dedicated-servers', '#/').then((url) => {
+          if (featureAvailability?.isFeatureAvailable('dedicated-servers')) {
+            window.top.location.href = url;
+          }
+        }),
       filter: /* @ngInject */ ($transition$) => $transition$.params().filter,
       orderUrl: /* @ngInject */ (User) => User.getUrlOf('dedicatedOrder'),
       orderEcoRangeUrl: /* @ngInject */ (User) =>
