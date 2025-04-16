@@ -30,7 +30,7 @@ const initQueryClient = () => {
 // test data
 type Data = {
   projectId: string;
-  instance: TInstanceDto | undefined;
+  instance: TInstanceDto | null;
   type: TMutationFnType | null;
   queryPayload?: TInstanceDto[];
   mutationPayload?: null;
@@ -53,6 +53,7 @@ const fakeInstancesDto: TInstanceDto[] = [
     actions: [],
     pendingTask: false,
     availabilityZone: null,
+    taskState: '',
   },
   {
     id: `fake-id-2`,
@@ -68,6 +69,7 @@ const fakeInstancesDto: TInstanceDto[] = [
     pendingTask: false,
     actions: [],
     availabilityZone: null,
+    taskState: '',
   },
 ];
 

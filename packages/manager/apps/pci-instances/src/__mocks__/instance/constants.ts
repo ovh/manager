@@ -17,6 +17,7 @@ export const mockedInstance: TInstance = {
   actions: new Map(),
   pendingTask: false,
   availabilityZone: null,
+  taskState: null,
 };
 
 export const mockedInstanceWithEmptyRegion: TInstance = {

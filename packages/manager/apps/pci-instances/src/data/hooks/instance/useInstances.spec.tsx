@@ -29,6 +29,7 @@ const instanceDtoBuilder = (
   actions: [],
   pendingTask: false,
   availabilityZone: null,
+  taskState: '',
 });
 
 const instanceBuilder = (
@@ -40,6 +41,7 @@ const instanceBuilder = (
   addresses,
   status,
   actions: new Map(),
+  taskState: null,
 });
 
 // initializers
