@@ -5,18 +5,29 @@ import {
   OsdsTooltipContent,
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { useMemo } from 'react';
+import { FC, useMemo } from 'react';
 import { ODS_CHIP_SIZE } from '@ovhcloud/ods-components';
-import { TInstanceStatus } from '@/types/instance/entity.type';
 
 const colorBySeverityStatus = {
   success: ODS_THEME_COLOR_INTENT.success,
   error: ODS_THEME_COLOR_INTENT.error,
   warning: ODS_THEME_COLOR_INTENT.warning,
   info: ODS_THEME_COLOR_INTENT.info,
+  default: ODS_THEME_COLOR_INTENT.default,
+} as const;
+
+export type TStatusChipSeverity = keyof typeof colorBySeverityStatus;
+export type TStatusChipStatus = {
+  label: string;
+  severity: TStatusChipSeverity;
 };
 
-const StatusChip = ({ status }: { status: TInstanceStatus }) => {
+type TStatusChipProps = {
+  status: TStatusChipStatus;
+  icon?: JSX.Element;
+};
+
+const StatusChip: FC<TStatusChipProps> = ({ status, icon }) => {
   const { t, i18n } = useTranslation('status');
   const { label, severity } = status;
 
@@ -37,12 +48,15 @@ const StatusChip = ({ status }: { status: TInstanceStatus }) => {
         inline
         color={colorBySeverityStatus[severity]}
         data-testid="status-chip"
-        className="cursor-default rounded-[--ods-border-radius-sm] h-[26px]"
+        className="cursor-default rounded-[--ods-border-radius-sm] h-[26px] min-w-max"
       >
-        {t(`pci_instances_status_${label.toLowerCase()}`)}
+        <div className="flex items-center gap-1">
+          {icon}
+          <span className="first-letter:uppercase">{label}</span>
+        </div>
       </OsdsChip>
     ),
-    [label, severity, t],
+    [icon, label, severity],
   );
 
   return isTooltipDisplayed ? (
