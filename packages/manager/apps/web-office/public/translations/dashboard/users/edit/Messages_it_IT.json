@@ -1,7 +1,7 @@
 {
-  "dashboard_users_edit_title": "Modifica l'account",
-  "dashboard_users_edit_form_helper_login_conditions": "Il login deve contenere tra 3 e 20 caratteri. Può includere cifre, lettere e i seguenti caratteri: - _! # $ % &amp; ' ^ ` { }",
+  "dashboard_users_edit_title": "Modificare l'account",
+  "dashboard_users_edit_form_helper_login_conditions": "Il login deve contenere tra 3 e 20 caratteri. Può includere cifre, lettere e i seguenti caratteri: - _ ! # $ % &amp; ' ^ ` { }",
   "dashboard_users_edit_form_helper_login_condition_exception": "Può anche contenere punti, purché preceduti da un carattere autorizzato e non seguiti da un altro punto.",
-  "dashboard_users_edit_message_success": "Le modifiche sull'utente sono in corso. Aggiorna la pagina tra pochi minuti.",
-  "dashboard_users_edit_message_error": "Si è verificato un errore durante la modifica dell'utente. {{ error }}"
+  "dashboard_users_edit_message_success": "Modifiche dell'utente in corso... Aggiorna la pagina tra pochi minuti.",
+  "dashboard_users_edit_message_error": "Si è verificato un errore durante la modifica dell'utente:  {{ error }}"
 }
