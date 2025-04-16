@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
 import { describe, it, vi, expect } from 'vitest';
@@ -42,14 +42,14 @@ vi.mock('react-router-dom', () => ({
 }));
 
 const queryClient = new QueryClient();
-// @ts-ignore
-const wrapper = ({ children }) => (
+
+const wrapper = ({ children }: { children: ReactNode }) => (
   <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
 );
 
 describe('listing page', () => {
   it('displays loading spinner while main request are loading', () => {
-    const { getByTestId } = render(<Listing />, { wrapper });
+    render(<Listing />, { wrapper });
     expect('todo').toBe('todo');
     // expect(getByTestId('listing-page-spinner')).toBeInTheDocument();
   });
