@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.22.0...@ovh-ux/manager-overthebox@6.23.0) (2025-04-16)
+
+
+### Features
+
+* **telecom.telephony:** softphone ([#12734](https://github.com/ovh/manager/issues/12734)) ([9604893](https://github.com/ovh/manager/commit/9604893c3763a1a8400970f5883384815b01a5db)), closes [#MANAGER-12958](https://github.com/ovh/manager/issues/MANAGER-12958)
+
+
+
+
+
 # [6.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.21.0...@ovh-ux/manager-overthebox@6.22.0) (2025-04-14)
 
 
