@@ -40,5 +40,6 @@
   "pci_projects_project_public_gateways_add_region_activate_line1": "This region has not been activated yet. You can activate it on the ",
   "pci_projects_project_public_gateways_add_region_activate_line2": "Quota and location tab, ",
   "pci_projects_project_public_gateways_add_region_activate_line3": "then return and create your Gateway.",
-  "pci_projects_project_public_gateways_3az_guide_description": "To learn more about 3-AZ service specifications and how to use them to build a resilient infrastructure, <Link>click here</Link>"
+  "pci_projects_project_public_gateways_3az_guide_description": "To learn more about 3-AZ service specifications and how to use them to build a resilient infrastructure, <Link>click here</Link>",
+  "pci_projects_project_public_price_from": "From {{price}}"
 }
