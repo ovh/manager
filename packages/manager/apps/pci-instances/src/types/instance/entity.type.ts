@@ -53,4 +53,5 @@ export type TInstance = DeepReadonly<{
   actions: TInstanceActions;
   pendingTask: boolean;
   availabilityZone: string | null;
+  taskState: string | null;
 }>;

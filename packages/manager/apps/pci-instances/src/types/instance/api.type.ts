@@ -42,6 +42,7 @@ export type TInstanceDto = {
   actions: TInstanceActionDto[];
   pendingTask: boolean;
   availabilityZone: string | null;
+  taskState: string;
 };
 
 export type TPartialInstanceDto = Pick<TInstanceDto, 'id'> &
