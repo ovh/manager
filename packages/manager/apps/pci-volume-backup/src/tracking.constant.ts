@@ -17,4 +17,4 @@ export const LEVEL2 = {
 };
 export const UNIVERSE = 'PublicCloud';
 export const SUB_UNIVERSE = 'PublicCloud';
-export const APP_NAME = 'pci-volume-backup'
+export const APP_NAME = 'pci-volume-backup';
