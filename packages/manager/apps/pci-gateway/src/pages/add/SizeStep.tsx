@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { OsdsText } from '@ovhcloud/ods-components/react';
 import {
   StepComponent,
@@ -13,9 +13,11 @@ import {
 import { useParams } from 'react-router-dom';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { StepsEnum, useNewGatewayStore } from '@/pages/add/useStore';
-import { useRegionGatewayAddons } from '@/api/hooks/useGateways/useGateways';
-import { TProductAddonDetail } from '@/types/addon.type';
+import { TProductAddonDetail } from '@/types/product.type';
 import SizeLabel from '@/components/size/SizeLabel.component';
+import { useAddons } from '@/api/hooks/useAddons/useAddons';
+import { GATEWAY_ADDON_FAMILY } from '@/api/hooks/useAddons/useAddons.constant';
+import { filterProductRegionBySize } from '@/api/hooks/useAddons/useAddons.select';
 
 export const SizeStep = (): JSX.Element => {
   const { projectId } = useParams();
@@ -29,14 +31,15 @@ export const SizeStep = (): JSX.Element => {
 
   const { t } = useTranslation(['add', 'stepper', 'catalog-selector']);
 
-  const [size, setSize] = useState<TProductAddonDetail>();
   const store = useNewGatewayStore();
 
-  const addons = useRegionGatewayAddons(
+  const { addons } = useAddons({
     ovhSubsidiary,
     projectId,
-    store.form.regionName,
-  );
+    addonFamily: GATEWAY_ADDON_FAMILY,
+    select: (products: TProductAddonDetail[]) =>
+      filterProductRegionBySize(products, store.form.regionName),
+  });
 
   return (
     <StepComponent
@@ -87,13 +90,10 @@ export const SizeStep = (): JSX.Element => {
     >
       <TilesInputComponent<TProductAddonDetail, string, string>
         id="gateway-size-input"
-        value={size}
+        value={addons.find((addon) => addon.size === store.form.size)}
         items={addons}
         label={(props) => <SizeLabel {...props} />}
-        onInput={(item) => {
-          store.updateForm.size(item.size);
-          setSize(addons.find((addon) => addon.size === item.size));
-        }}
+        onInput={(item) => store.updateForm.size(item.size)}
       />
     </StepComponent>
   );
