@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { OsdsIcon } from '@ovhcloud/ods-components/react';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
@@ -19,7 +19,8 @@ export const StatusCell: FC<TStatusCellProps> = ({
   instance,
   isPolling,
 }) => {
-  const { t } = useTranslation('status');
+  const { t, i18n } = useTranslation('status');
+  const statusLabel = instance.status.label.toLowerCase();
 
   const pollingTaskLabel =
     instance.taskState ?? t('common:pci_instances_common_pending');
@@ -28,8 +29,19 @@ export const StatusCell: FC<TStatusCellProps> = ({
     ? { label: pollingTaskLabel, severity: 'default' }
     : {
         ...instance.status,
-        label: t(`pci_instances_status_${instance.status.label.toLowerCase()}`),
+        label: t(`pci_instances_status_${statusLabel}`),
       };
+
+  const tooltipContentI18nKey = `pci_instances_tooltip_content_status_${statusLabel}`;
+
+  const isTooltipDisplayed = useMemo(
+    () =>
+      !isPolling &&
+      i18n.exists(tooltipContentI18nKey, {
+        ns: 'status',
+      }),
+    [i18n, isPolling, tooltipContentI18nKey],
+  );
 
   return (
     <LoadingCell isLoading={isLoading}>
@@ -42,6 +54,9 @@ export const StatusCell: FC<TStatusCellProps> = ({
               size={ODS_ICON_SIZE.xxs}
             />
           ),
+        })}
+        {...(isTooltipDisplayed && {
+          tooltipLabel: tooltipContentI18nKey,
         })}
       />
     </LoadingCell>
