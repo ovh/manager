@@ -6,6 +6,7 @@ const TEST_IDS = {
   dashboardDatacentreInterfaceLink: 'dashboard-datacentre-interface-link',
   activateLicenseCta: 'activate-license-cta',
   editButton: 'edit-button',
+  modalEdit: 'edit-modal',
   modalSubmitCta: 'modal-submit-cta',
   cellDeleteCta: 'cell-delete-cta',
   cellDeleteTooltip: 'cell-delete-tooltip',

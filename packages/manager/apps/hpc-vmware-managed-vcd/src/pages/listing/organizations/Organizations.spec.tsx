@@ -1,4 +1,5 @@
 import {
+  assertAsyncTextVisibility,
   assertElementLabel,
   assertElementVisibility,
   assertTextVisibility,
@@ -14,7 +15,7 @@ describe('Organizations Listing Page', () => {
     await renderTest({ nbOrganization: 1 });
 
     // then
-    const headers = [
+    const elements = [
       labels.listing.managed_vcd_listing_name,
       labels.listing.managed_vcd_listing_description,
       labels.listing.managed_vcd_listing_location,
@@ -22,15 +23,17 @@ describe('Organizations Listing Page', () => {
       labels.listing.managed_vcd_listing_web_interface_url,
     ];
 
-    headers.forEach((element) => assertTextVisibility(element));
+    // TESTING : check asynchronously for the first element, then check synchronously
+    await assertAsyncTextVisibility(elements[0]);
+    elements.slice(1).forEach(assertTextVisibility);
 
     // and
     const vcdDetails = organizationList[0].currentState;
-    const vcdNameLink = await getElementByTestId(TEST_IDS.listingVcdNameLink);
+    const vcdNameLink = getElementByTestId(TEST_IDS.listingVcdNameLink);
 
-    await assertTextVisibility(vcdDetails.description);
-    await assertElementVisibility(vcdNameLink);
-    await assertElementLabel({
+    assertTextVisibility(vcdDetails.description);
+    assertElementVisibility(vcdNameLink);
+    assertElementLabel({
       element: vcdNameLink,
       label: vcdDetails.fullName,
     });

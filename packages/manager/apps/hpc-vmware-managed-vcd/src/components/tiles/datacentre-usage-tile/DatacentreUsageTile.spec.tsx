@@ -1,28 +1,36 @@
 import React from 'react';
-import { vi } from 'vitest';
 import { render } from '@testing-library/react';
 import { datacentreList } from '@ovh-ux/manager-module-vcd-api';
-import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
+import { i18n as i18nType } from 'i18next';
+import { I18nextProvider } from 'react-i18next';
+import {
+  assertAsyncTextVisibility,
+  assertTextVisibility,
+  initTestI18n,
+} from '@ovh-ux/manager-core-test-utils';
 import DatacentreUsageTile from './DatacentreUsageTile.component';
-import { labels } from '../../../test-utils';
+import { labels, translations } from '../../../test-utils';
+import { APP_NAME } from '../../../tracking.constants';
 
 const testVDC = datacentreList[0];
 
-vi.mock('react-i18next', () => ({
-  useTranslation: () => ({
-    t: (key: string, options: Record<string, unknown>) => {
-      if (key === 'managed_vcd_vdc_vcpu_value') {
-        return `${options.speed} GHz`;
-      }
-      return key;
-    },
-  }),
-}));
+let i18n: i18nType;
+const renderComponent = async () => {
+  if (!i18n) {
+    i18n = await initTestI18n(APP_NAME, translations);
+  }
+
+  return render(
+    <I18nextProvider i18n={i18n}>
+      <DatacentreUsageTile vcdDatacentre={testVDC} />
+    </I18nextProvider>,
+  );
+};
 
 describe('DatacentreUsageTile component unit test suite', () => {
   it('should define tileTitle and sections', async () => {
     // when
-    render(<DatacentreUsageTile vcdDatacentre={testVDC} />);
+    renderComponent();
 
     // then
     const elements = [
@@ -33,6 +41,8 @@ describe('DatacentreUsageTile component unit test suite', () => {
       testVDC.currentState.vCPUCount.toString(),
     ];
 
-    elements.forEach(async (element) => assertTextVisibility(element));
+    // TESTING : check asynchronously for the first element, then check synchronously
+    await assertAsyncTextVisibility(elements[0]);
+    elements.slice(1).forEach(assertTextVisibility);
   });
 });

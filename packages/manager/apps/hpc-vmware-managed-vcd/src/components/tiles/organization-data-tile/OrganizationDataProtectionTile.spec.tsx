@@ -6,6 +6,8 @@ import {
   QueryClientProvider,
   UseQueryResult,
 } from '@tanstack/react-query';
+import { i18n as i18nType } from 'i18next';
+import { I18nextProvider } from 'react-i18next';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import {
   ShellContext,
@@ -17,20 +19,22 @@ import {
   organizationList,
 } from '@ovh-ux/manager-module-vcd-api';
 import {
+  assertAsyncTextVisibility,
   assertElementLabel,
   assertElementVisibility,
   assertTextVisibility,
-  getElementByTestId,
+  getAsyncElementByTestId,
+  initTestI18n,
 } from '@ovh-ux/manager-core-test-utils';
 import userEvent from '@testing-library/user-event';
 import OrganizationDataProtectionTile from './OrganizationDataProtectionTile.component';
-import { labels } from '../../../test-utils';
+import { labels, translations } from '../../../test-utils';
 import {
   DATA_PROTECTION_BACKUP_LABEL,
   DATA_PROTECTION_RECOVERY_LABEL,
 } from '../../../pages/dashboard/organization/organizationDashboard.constants';
 import TEST_IDS from '../../../utils/testIds.constants';
-import { TRACKING } from '../../../tracking.constants';
+import { APP_NAME, TRACKING } from '../../../tracking.constants';
 
 const trackClickMock = vi.fn();
 vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
@@ -54,6 +58,7 @@ vi.mocked(useVeeamBackup).mockReturnValue(
   {} as UseQueryResult<ApiResponse<VeeamBackup>, ApiError>,
 );
 
+let i18n: i18nType;
 const shellContext = {
   shell: {
     navigation: {
@@ -62,17 +67,24 @@ const shellContext = {
   },
 };
 
-const renderComponent = () => {
+const renderComponent = async () => {
   const queryClient = new QueryClient();
+  if (!i18n) {
+    i18n = await initTestI18n(APP_NAME, translations);
+  }
 
   return render(
-    <QueryClientProvider client={queryClient}>
-      <ShellContext.Provider
-        value={(shellContext as unknown) as ShellContextType}
-      >
-        <OrganizationDataProtectionTile vcdOrganization={organizationList[0]} />
-      </ShellContext.Provider>
-    </QueryClientProvider>,
+    <I18nextProvider i18n={i18n}>
+      <QueryClientProvider client={queryClient}>
+        <ShellContext.Provider
+          value={(shellContext as unknown) as ShellContextType}
+        >
+          <OrganizationDataProtectionTile
+            vcdOrganization={organizationList[0]}
+          />
+        </ShellContext.Provider>
+      </QueryClientProvider>
+    </I18nextProvider>,
   );
 };
 
@@ -88,7 +100,9 @@ describe('OrganizationDataProtectionTile component unit test suite', () => {
       DATA_PROTECTION_RECOVERY_LABEL,
     ];
 
-    elements.forEach(async (element) => assertTextVisibility(element));
+    // TESTING : check asynchronously for the first element, then check synchronously
+    await assertAsyncTextVisibility(elements[0]);
+    elements.slice(1).forEach(assertTextVisibility);
   });
 
   it('should track click on redirect to VeeamBackup', async () => {
@@ -97,7 +111,7 @@ describe('OrganizationDataProtectionTile component unit test suite', () => {
     renderComponent();
 
     // then
-    const veeamLink = await getElementByTestId(
+    const veeamLink = await getAsyncElementByTestId(
       TEST_IDS.dashboardVeeamBackupLink,
     );
     await act(() => user.click(veeamLink));
@@ -117,8 +131,8 @@ describe('OrganizationDataProtectionTile query state-based behavior unit test su
     renderComponent();
 
     // then
-    const loading = await getElementByTestId(TEST_IDS.backupBadgeLoading);
-    await assertElementVisibility(loading);
+    const loading = await getAsyncElementByTestId(TEST_IDS.backupBadgeLoading);
+    assertElementVisibility(loading);
   });
 
   it('should display backupError when query isError', async () => {
@@ -130,11 +144,11 @@ describe('OrganizationDataProtectionTile query state-based behavior unit test su
     renderComponent();
 
     // then
-    const badge = await getElementByTestId(TEST_IDS.backupBadgeError);
-    await assertElementVisibility(badge);
-    await assertElementLabel({
+    const badge = await getAsyncElementByTestId(TEST_IDS.backupBadgeError);
+    assertElementVisibility(badge);
+    assertElementLabel({
       element: badge,
-      label: 'managed_vcd_dashboard_backup_status_error',
+      label: labels.dashboard.managed_vcd_dashboard_backup_status_error,
     });
   });
 
@@ -148,11 +162,11 @@ describe('OrganizationDataProtectionTile query state-based behavior unit test su
     renderComponent();
 
     // then
-    const badge = await getElementByTestId(TEST_IDS.backupBadgeNone);
-    await assertElementVisibility(badge);
-    await assertElementLabel({
+    const badge = await getAsyncElementByTestId(TEST_IDS.backupBadgeNone);
+    assertElementVisibility(badge);
+    assertElementLabel({
       element: badge,
-      label: 'managed_vcd_dashboard_backup_status_unsubscribed',
+      label: labels.dashboard.managed_vcd_dashboard_backup_status_unsubscribed,
     });
   });
 
@@ -166,11 +180,11 @@ describe('OrganizationDataProtectionTile query state-based behavior unit test su
     renderComponent();
 
     // then
-    const badge = await getElementByTestId(TEST_IDS.backupBadgeStatus);
-    await assertElementVisibility(badge);
-    await assertElementLabel({
+    const badge = await getAsyncElementByTestId(TEST_IDS.backupBadgeStatus);
+    assertElementVisibility(badge);
+    assertElementLabel({
       element: badge,
-      label: 'managed_vcd_dashboard_backup_status_subscribed',
+      label: labels.dashboard.managed_vcd_dashboard_backup_status_subscribed,
     });
   });
 });
