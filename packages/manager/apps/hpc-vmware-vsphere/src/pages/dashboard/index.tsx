@@ -38,9 +38,9 @@ export default function DashboardPage() {
       to: useResolvedPath('').pathname,
     },
     {
-      name: 'Tab 2',
-      title: 'Tab 2',
-      to: useResolvedPath('Tab2').pathname,
+      name: 'logs',
+      title: 'Logs',
+      to: useResolvedPath('logs').pathname,
     },
   ];
 
