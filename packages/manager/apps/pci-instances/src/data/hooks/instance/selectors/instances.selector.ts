@@ -51,6 +51,9 @@ const getInstanceStatusSeverity = (
   }
 };
 
+const getInstanceTaskState = (taskState: string): TInstance['taskState'] =>
+  taskState.length > 0 ? taskState : null;
+
 const getInstanceStatus = (status: TInstanceStatusDto): TInstanceStatus => ({
   label: status,
   severity: getInstanceStatusSeverity(status),
@@ -175,4 +178,5 @@ export const instancesSelector = (
       status: getInstanceStatus(instanceDto.status),
       addresses: mapInstanceAddresses(instanceDto),
       actions: mapInstanceActions(instanceDto, projectUrl),
+      taskState: getInstanceTaskState(instanceDto.taskState),
     }));
