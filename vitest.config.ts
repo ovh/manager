@@ -4,11 +4,7 @@ export default defineConfig({
   test: {
     globals: true, // Enable global test functions (like `describe`, `it`)
     environment: 'jsdom', // Set the environment to jsdom for frontend tests
-    include: [
-      'packages/components/ovh-shell/**/*.{test,spec}.{ts,tsx,js,jsx}',
-      'packages/manager/apps/container/**/*.{test,spec}.{ts,tsx,js,jsx}',
-      'packages/core/url-builder/**/*.{test,spec}.{ts,tsx,js,jsx}',
-    ], // Glob patterns for test files
+    include: ['packages/**/**/*.{test,spec}.{ts,tsx,js,jsx}'], // Glob patterns for test files
     exclude: ['node_modules/**', 'dist/**'], // Exclude directories from testing
 
     // Coverage configuration
@@ -45,18 +41,9 @@ export default defineConfig({
 
     // Other configurations
     moduleDirectories: ['node_modules'],
-    testPathIgnorePatterns: [
-      '/node_modules/',
-      'packages/manager/apps/container',
-      'packages/manager/apps/dedicated',
-    ],
+    testPathIgnorePatterns: ['/node_modules/'],
 
     // Coverage exclusions
-    coveragePathIgnorePatterns: [
-      '.*\\.(interface|module|schema|entity|dto|enum|d).ts',
-      '.*\\.e2e-spec.ts',
-      'index.ts',
-      'main.ts',
-    ],
+    coveragePathIgnorePatterns: [],
   },
 });
