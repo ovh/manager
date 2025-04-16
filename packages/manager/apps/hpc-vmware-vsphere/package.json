@@ -17,15 +17,15 @@
     "start": "lerna exec --stream --scope='@ovh-ux/manager-hpc-vmware-vsphere-app' --include-dependencies -- npm run build --if-present",
     "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-hpc-vmware-vsphere-app' --include-dependencies -- npm run dev --if-present",
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-hpc-vmware-vsphere-app' --include-dependencies -- npm run dev:watch --if-present",
-    "test": "vitest run"
+    "test": "vitest run --reporter=verbose"
   },
   "dependencies": {
-    "@ovh-ux/logs-to-customer": "^1.1.2",
+    "@ovh-ux/logs-to-customer": "^1.2.0",
     "@ovh-ux/manager-config": "^8.2.0",
-    "@ovh-ux/manager-core-api": "^0.10.1",
+    "@ovh-ux/manager-core-api": "^0.11.0",
     "@ovh-ux/manager-core-utils": "^0.3.0",
-    "@ovh-ux/manager-react-components": "^2.18.0",
-    "@ovh-ux/manager-react-core-application": "^0.11.17",
+    "@ovh-ux/manager-react-components": "^2.18.1",
+    "@ovh-ux/manager-react-core-application": "^0.11.18",
     "@ovh-ux/manager-react-shell-client": "^0.8.5",
     "@ovh-ux/request-tagger": "^0.4.0",
     "@ovhcloud/ods-components": "^18.5.3",
@@ -40,7 +40,7 @@
     "tailwindcss": "^3.4.4"
   },
   "devDependencies": {
-    "@ovh-ux/manager-core-test-utils": "^0.4.1",
+    "@ovh-ux/manager-core-test-utils": "^0.4.2",
     "@ovh-ux/manager-vite-config": "^0.9.3",
     "@tanstack/react-query-devtools": "^5.51.21",
     "@testing-library/dom": "^9.3.4",
