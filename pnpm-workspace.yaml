@@ -19,3 +19,6 @@ packageExtensions:
   '@ovh-ux/ovh-at-internet@0.1.0':
     peerDependencies:
       '@ovh-ux/manager-config': 'workspace:*'
+
+publicHoistPattern:
+  - 'webpack-dev-server'

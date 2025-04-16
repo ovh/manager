@@ -6,7 +6,18 @@ settings:
 
 overrides:
   '@babel/runtime': ^7.22.15
+  '@ovh-ux/ui-kit': ^6.10.5
   '@rollup/plugin-commonjs': ^11.0.2
+  angular: ^1.8.3
+  angular-aria: ^1.8.3
+  angular-cookies: ^1.8.3
+  angular-i18n: ^1.8.3
+  angular-messages: ^1.8.3
+  angular-mocks: ^1.8.3
+  angular-translate: ^2.19.1
+  angular-resource: ^1.8.3
+  angular-route: ^1.8.3
+  angular-sanitize: ^1.8.3
   chart.js: ^4.4.3
   flatpickr: ^4.6.9
   graphql: ^16.6.0
@@ -244,8 +255,8 @@ importers:
         specifier: ^0.21.3
         version: link:../ovh-at-internet
       angular:
-        specifier: ~1.6
-        version: 1.6.10
+        specifier: ^1.8.3
+        version: 1.8.3
     devDependencies:
       '@ovh-ux/component-rollup-config':
         specifier: ^13.0.2
@@ -255,13 +266,13 @@ importers:
     dependencies:
       '@ovh-ux/ng-at-internet':
         specifier: ^5.8.1
-        version: 5.9.1(angular@1.6.10)
+        version: 5.9.1(@ovh-ux/manager-config@8.2.0(@ovh-ux/request-tagger@packages+manager+core+request-tagger))(angular@1.8.3)
       '@uirouter/angularjs':
         specifier: ^1.0.22
-        version: 1.0.23(angular@1.6.10)
+        version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ~1.6
-        version: 1.6.10
+        specifier: ^1.8.3
+        version: 1.8.3
       lodash:
         specifier: 4.17.21
         version: 4.17.21
@@ -276,7 +287,7 @@ importers:
         specifier: 17.2.2
         version: 17.2.2
       angular:
-        specifier: ^1.7.0
+        specifier: ^1.8.3
         version: 1.8.3
       angularjs-scroll-glue:
         specifier: ^2.2.0
@@ -298,10 +309,10 @@ importers:
         specifier: ^6.0.0
         version: link:../ng-ovh-responsive-popover
       angular:
-        specifier: ^1.7.0
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.17.0
+        specifier: ^2.19.1
         version: 2.19.1
     devDependencies:
       '@ovh-ux/component-rollup-config':
@@ -311,7 +322,7 @@ importers:
   packages/components/ng-ovh-browser-alert:
     dependencies:
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       bowser:
         specifier: ^1.8.0
@@ -324,8 +335,8 @@ importers:
   packages/components/ng-ovh-chart:
     dependencies:
       angular:
-        specifier: ~1.6
-        version: 1.6.10
+        specifier: ^1.8.3
+        version: 1.8.3
       chart.js:
         specifier: ^4.4.3
         version: 4.4.7
@@ -352,8 +363,8 @@ importers:
   packages/components/ng-ovh-checkbox-table:
     dependencies:
       angular:
-        specifier: ~1.6
-        version: 1.6.10
+        specifier: ^1.8.3
+        version: 1.8.3
       lodash:
         specifier: 4.17.21
         version: 4.17.21
@@ -366,18 +377,18 @@ importers:
     dependencies:
       '@ovh-ux/ng-ovh-api-wrappers':
         specifier: ^5.0.0
-        version: 5.1.0(angular-resource@1.7.9)(angular@1.8.3)
+        version: 5.1.0(angular-resource@1.8.3)(angular@1.8.3)
       '@ovh-ux/ng-translate-async-loader':
         specifier: ^2.1.4
         version: link:../ng-translate-async-loader
       angular:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-resource:
-        specifier: ^1.7.8
-        version: 1.7.9
+        specifier: ^1.8.3
+        version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       angular-ui-bootstrap:
         specifier: ~1.3.3
@@ -393,7 +404,7 @@ importers:
         version: 2.30.1
       ovh-api-services:
         specifier: ^15.0.0
-        version: 15.0.0(@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.7.9)(angular@1.8.3))(@ovh-ux/ng-ovh-swimming-poll@packages+components+ng-ovh-swimming-poll)(angular-resource@1.7.9)(angular@1.8.3)
+        version: 15.0.0(@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.8.3)(angular@1.8.3))(@ovh-ux/ng-ovh-swimming-poll@packages+components+ng-ovh-swimming-poll)(angular-resource@1.8.3)(angular@1.8.3)
       ovh-manager-webfont:
         specifier: ^1.2.0
         version: 1.2.0
@@ -409,21 +420,21 @@ importers:
     dependencies:
       '@ovh-ux/ng-ovh-api-wrappers':
         specifier: ^5.0.0
-        version: 5.1.0(angular-resource@1.7.9)(angular@1.8.3)
+        version: 5.1.0(angular-resource@1.8.3)(angular@1.8.3)
       '@ovh-ux/translate-async-loader':
         specifier: ^1.0.8
         version: 1.0.8(angular@1.8.3)
       '@ovh-ux/ui-kit':
-        specifier: ^6.10.0
+        specifier: ^6.10.5
         version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
       angular:
-        specifier: ^1.5.0
+        specifier: ^1.8.3
         version: 1.8.3
       angular-resource:
-        specifier: ^1.7.8
-        version: 1.7.9
+        specifier: ^1.8.3
+        version: 1.8.3
       angular-translate:
-        specifier: ^2.17.0
+        specifier: ^2.19.1
         version: 2.19.1
       bootstrap:
         specifier: ~3.3.7
@@ -439,7 +450,7 @@ importers:
         version: 2.30.1
       ovh-api-services:
         specifier: ^15.0.0
-        version: 15.0.0(@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.7.9)(angular@1.8.3))(@ovh-ux/ng-ovh-swimming-poll@packages+components+ng-ovh-swimming-poll)(angular-resource@1.7.9)(angular@1.8.3)
+        version: 15.0.0(@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.8.3)(angular@1.8.3))(@ovh-ux/ng-ovh-swimming-poll@packages+components+ng-ovh-swimming-poll)(angular-resource@1.8.3)(angular@1.8.3)
       ui-select:
         specifier: ^0.19.8
         version: 0.19.8
@@ -451,13 +462,13 @@ importers:
   packages/components/ng-ovh-contracts:
     dependencies:
       '@ovh-ux/ui-kit':
-        specifier: ^6.10.0
+        specifier: ^6.10.5
         version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
       angular:
-        specifier: ^1.6.10
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.17.0
+        specifier: ^2.19.1
         version: 2.19.1
       angular-ui-bootstrap:
         specifier: ~1.3.3
@@ -476,7 +487,7 @@ importers:
   packages/components/ng-ovh-doc-url:
     dependencies:
       angular:
-        specifier: ^1.3.x
+        specifier: ^1.8.3
         version: 1.8.3
       lodash:
         specifier: 4.17.21
@@ -492,11 +503,11 @@ importers:
   packages/components/ng-ovh-export-csv:
     dependencies:
       angular:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-sanitize:
-        specifier: 1.7.8
-        version: 1.7.8
+        specifier: ^1.8.3
+        version: 1.8.3
       moment:
         specifier: ^2.24.0
         version: 2.30.1
@@ -508,7 +519,7 @@ importers:
   packages/components/ng-ovh-feature-flipping:
     dependencies:
       angular:
-        specifier: ^1.7
+        specifier: ^1.8.3
         version: 1.8.3
     devDependencies:
       '@ovh-ux/component-rollup-config':
@@ -518,7 +529,7 @@ importers:
   packages/components/ng-ovh-http:
     dependencies:
       angular:
-        specifier: ^1.3.x
+        specifier: ^1.8.3
         version: 1.8.3
       lodash:
         specifier: 4.17.21
@@ -534,8 +545,8 @@ importers:
   packages/components/ng-ovh-jquery-ui-draggable:
     dependencies:
       angular:
-        specifier: ~1.6
-        version: 1.6.10
+        specifier: ^1.8.3
+        version: 1.8.3
       jquery:
         specifier: ~2.1
         version: 2.1.4
@@ -556,16 +567,16 @@ importers:
         specifier: ^2.1.4
         version: link:../ng-translate-async-loader
       '@ovh-ux/ui-kit':
-        specifier: ^6.10.0
+        specifier: ^6.10.5
         version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
       '@uirouter/angularjs':
         specifier: ^1.0.22
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       angular-ui-bootstrap:
         specifier: ~1.3.3
@@ -588,15 +599,15 @@ importers:
         version: link:../ng-translate-async-loader
       '@ovh-ux/ui-kit':
         specifier: ^6.10.5
-        version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.6.10))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.6.10)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
+        version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
       angular:
-        specifier: 1.6.10
-        version: 1.6.10
+        specifier: ^1.8.3
+        version: 1.8.3
       angular-leaflet-directive:
         specifier: 0.8.5
         version: 0.8.5
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       bootstrap:
         specifier: ~3.4.1
@@ -609,7 +620,7 @@ importers:
         version: 4.17.21
       ovh-api-services:
         specifier: ^14.0.6
-        version: 14.0.6(@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.8.3)(angular@1.6.10))(@ovh-ux/ng-ovh-swimming-poll@packages+components+ng-ovh-swimming-poll)(angular-resource@1.8.3)(angular@1.6.10)
+        version: 14.0.6(@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.8.3)(angular@1.8.3))(@ovh-ux/ng-ovh-swimming-poll@packages+components+ng-ovh-swimming-poll)(angular-resource@1.8.3)(angular@1.8.3)
       ovh-ui-kit-bs:
         specifier: ^4.2.0
         version: 4.2.0
@@ -621,10 +632,10 @@ importers:
   packages/components/ng-ovh-otrs:
     dependencies:
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       draggable:
         specifier: ^4.2.0
@@ -670,13 +681,13 @@ importers:
         specifier: ^2.1.7
         version: link:../ovh-reket
       '@ovh-ux/ui-kit':
-        specifier: ^6.10.0
+        specifier: ^6.10.5
         version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
       angular:
-        specifier: ^1.5.0
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.17.0
+        specifier: ^2.19.1
         version: 2.19.1
       bootstrap:
         specifier: ^4.6.2
@@ -695,7 +706,7 @@ importers:
   packages/components/ng-ovh-proxy-request:
     dependencies:
       angular:
-        specifier: ^1.6.10
+        specifier: ^1.8.3
         version: 1.8.3
     devDependencies:
       '@ovh-ux/component-rollup-config':
@@ -708,7 +719,7 @@ importers:
         specifier: ^1.0.8
         version: 1.0.8(angular@1.8.3)
       angular:
-        specifier: ^1.7.0
+        specifier: ^1.8.3
         version: 1.8.3
       angular-ui-bootstrap:
         specifier: 1.3.3
@@ -727,16 +738,16 @@ importers:
         specifier: ^5.0.12
         version: link:../ng-ovh-actions-menu
       '@ovh-ux/ui-kit':
-        specifier: ^6.10.0
+        specifier: ^6.10.5
         version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
       '@uirouter/angularjs':
         specifier: ^1.0.23
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.9
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       lodash-es:
         specifier: 4.17.21
@@ -752,8 +763,8 @@ importers:
   packages/components/ng-ovh-simple-country-list:
     dependencies:
       angular:
-        specifier: 1.6.10
-        version: 1.6.10
+        specifier: ^1.8.3
+        version: 1.8.3
       lodash:
         specifier: 4.17.21
         version: 4.17.21
@@ -765,10 +776,10 @@ importers:
   packages/components/ng-ovh-sso-auth:
     dependencies:
       angular:
-        specifier: ^1.8.0
+        specifier: ^1.8.3
         version: 1.8.3
       angular-cookies:
-        specifier: ^1.5.0
+        specifier: ^1.8.3
         version: 1.8.3
     devDependencies:
       '@ovh-ux/component-rollup-config':
@@ -778,8 +789,8 @@ importers:
   packages/components/ng-ovh-swimming-poll:
     dependencies:
       angular:
-        specifier: ~1.6.10
-        version: 1.6.10
+        specifier: ^1.8.3
+        version: 1.8.3
       lodash-es:
         specifier: 4.17.21
         version: 4.17.21
@@ -791,7 +802,7 @@ importers:
   packages/components/ng-ovh-timeline:
     dependencies:
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
     devDependencies:
       '@ovh-ux/component-rollup-config':
@@ -801,11 +812,11 @@ importers:
   packages/components/ng-ovh-toaster:
     dependencies:
       angular:
-        specifier: ~1.6
-        version: 1.6.10
+        specifier: ^1.8.3
+        version: 1.8.3
       angular-sanitize:
-        specifier: ~1.6
-        version: 1.6.10
+        specifier: ^1.8.3
+        version: 1.8.3
       messenger:
         specifier: HubSpot/messenger#v1.4.1
         version: https://codeload.github.com/HubSpot/messenger/tar.gz/1363e0e3bf03acb25e6ec61db10859a0b9a0dc48
@@ -817,7 +828,7 @@ importers:
   packages/components/ng-ovh-ui-confirm-modal:
     dependencies:
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-ui-bootstrap:
         specifier: ~1.3.3
@@ -836,10 +847,10 @@ importers:
         specifier: ^2.0.4
         version: link:../ng-ovh-proxy-request
       angular:
-        specifier: ^1.6.10
+        specifier: ^1.8.3
         version: 1.8.3
       angular-sanitize:
-        specifier: ^1.6.0
+        specifier: ^1.8.3
         version: 1.8.3
       lodash:
         specifier: 4.17.21
@@ -855,13 +866,13 @@ importers:
         specifier: ^2.1.4
         version: link:../ng-translate-async-loader
       '@ovh-ux/ui-kit':
-        specifier: ^6.10.0
+        specifier: ^6.10.5
         version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
       angular:
-        specifier: ^1.5.0
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       filesize:
         specifier: ^3.6.1
@@ -880,10 +891,10 @@ importers:
   packages/components/ng-pagination-front:
     dependencies:
       '@ovh-ux/ui-kit':
-        specifier: ^6.10.0
+        specifier: ^6.10.5
         version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-ui-bootstrap:
         specifier: ~1.3.3
@@ -902,8 +913,8 @@ importers:
   packages/components/ng-q-allsettled:
     dependencies:
       angular:
-        specifier: 1.6.10
-        version: 1.6.10
+        specifier: ^1.8.3
+        version: 1.8.3
       lodash:
         specifier: 4.17.21
         version: 4.17.21
@@ -918,8 +929,8 @@ importers:
         specifier: ^0.21.3
         version: link:../ovh-at-internet
       angular:
-        specifier: ~1.6
-        version: 1.6.10
+        specifier: ^1.8.3
+        version: 1.8.3
     devDependencies:
       '@ovh-ux/component-rollup-config':
         specifier: ^13.0.2
@@ -928,8 +939,8 @@ importers:
   packages/components/ng-tail-logs:
     dependencies:
       angular:
-        specifier: 1.6.10
-        version: 1.6.10
+        specifier: ^1.8.3
+        version: 1.8.3
       angularjs-scroll-glue:
         specifier: ^2.2.0
         version: 2.2.0
@@ -944,7 +955,7 @@ importers:
   packages/components/ng-translate-async-loader:
     dependencies:
       angular:
-        specifier: ^1.5.0
+        specifier: ^1.8.3
         version: 1.8.3
     devDependencies:
       '@ovh-ux/component-rollup-config':
@@ -957,7 +968,7 @@ importers:
         specifier: ^1.0.22
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.5.0
+        specifier: ^1.8.3
         version: 1.8.3
     devDependencies:
       '@ovh-ux/component-rollup-config':
@@ -967,13 +978,13 @@ importers:
   packages/components/ng-ui-router-layout:
     dependencies:
       '@ovh-ux/ui-kit':
-        specifier: ^6.10.0
+        specifier: ^6.10.5
         version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
       '@uirouter/angularjs':
         specifier: ^1.0.22
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.5.0
+        specifier: ^1.8.3
         version: 1.8.3
       angular-ui-bootstrap:
         specifier: ~1.3.3
@@ -992,7 +1003,7 @@ importers:
         specifier: ^1.0.0
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.5.0
+        specifier: ^1.8.3
         version: 1.8.3
       lodash:
         specifier: 4.17.21
@@ -1417,28 +1428,28 @@ importers:
         specifier: ^1.0.23
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-aria:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-cookies:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-dynamic-locale:
         specifier: ^0.1.37
         version: 0.1.38
       angular-i18n:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-resource:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-sanitize:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       angular-translate-loader-pluggable:
         specifier: ^1.3.1
@@ -1613,28 +1624,28 @@ importers:
         specifier: ^1.0.23
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-aria:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-cookies:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-dynamic-locale:
         specifier: ^0.1.37
         version: 0.1.38
       angular-i18n:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-resource:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-sanitize:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       angular-translate-loader-pluggable:
         specifier: ^1.3.1
@@ -1776,28 +1787,28 @@ importers:
         specifier: ^1.0.23
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-aria:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-cookies:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-dynamic-locale:
         specifier: ^0.1.37
         version: 0.1.38
       angular-i18n:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-resource:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-sanitize:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       angular-translate-loader-pluggable:
         specifier: ^1.3.1
@@ -1900,31 +1911,31 @@ importers:
         specifier: ^1.2.0
         version: 1.2.0
       angular:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-aria:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-cookies:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-dynamic-locale:
         specifier: ^0.1.37
         version: 0.1.38
       angular-i18n:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-leaflet-directive:
         specifier: 0.8.5
         version: 0.8.5
       angular-resource:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-sanitize:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       angular-translate-loader-pluggable:
         specifier: ^1.3.1
@@ -2196,28 +2207,28 @@ importers:
         specifier: ^1.0.23
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-aria:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-cookies:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-dynamic-locale:
         specifier: ^0.1.37
         version: 0.1.38
       angular-i18n:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-resource:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-sanitize:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       angular-translate-loader-pluggable:
         specifier: ^1.3.1
@@ -2338,31 +2349,31 @@ importers:
         specifier: ^1.0.23
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-animate:
         specifier: ^1.7.5
         version: 1.8.3
       angular-aria:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-cookies:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-dynamic-locale:
         specifier: ^0.1.37
         version: 0.1.38
       angular-i18n:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-resource:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-sanitize:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       angular-translate-loader-pluggable:
         specifier: ^1.3.1
@@ -2724,28 +2735,28 @@ importers:
         specifier: ^1.0.23
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-aria:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-cookies:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-dynamic-locale:
         specifier: ^0.1.37
         version: 0.1.38
       angular-i18n:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-resource:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-sanitize:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       angular-translate-loader-pluggable:
         specifier: ^1.3.1
@@ -2924,7 +2935,7 @@ importers:
         version: link:../../../components/ng-at-internet-ui-router-plugin
       '@ovh-ux/ng-ovh-api-wrappers':
         specifier: ^5.1.0
-        version: 5.1.0(angular-resource@1.7.9)(angular@1.7.9)
+        version: 5.1.0(angular-resource@1.8.3)(angular@1.8.3)
       '@ovh-ux/ng-ovh-browser-alert':
         specifier: ^2.1.2
         version: link:../../../components/ng-ovh-browser-alert
@@ -2960,7 +2971,7 @@ importers:
         version: link:../../modules/ng-ovh-order-tracking
       '@ovh-ux/ng-ovh-otrs':
         specifier: ^9.5.1
-        version: 9.6.0(angular-translate@2.19.1)(angular@1.7.9)(bootstrap@3.4.1)(font-awesome@4.7.0)(jquery@2.2.4)(ovh-api-services@17.0.0(@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.7.9)(angular@1.7.9))(@ovh-ux/ng-ovh-swimming-poll@packages+components+ng-ovh-swimming-poll)(angular-resource@1.7.9)(angular@1.7.9))
+        version: 9.6.0(angular-translate@2.19.1)(angular@1.8.3)(bootstrap@3.4.1)(font-awesome@4.7.0)(jquery@2.2.4)(ovh-api-services@17.0.0(@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.8.3)(angular@1.8.3))(@ovh-ux/ng-ovh-swimming-poll@packages+components+ng-ovh-swimming-poll)(angular-resource@1.8.3)(angular@1.8.3))
       '@ovh-ux/ng-ovh-payment-method':
         specifier: ^9.16.6
         version: link:../../../components/ng-ovh-payment-method
@@ -3026,42 +3037,42 @@ importers:
         version: link:../../modules/sign-up
       '@ovh-ux/ui-kit':
         specifier: ^6.10.5
-        version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.7.9))(angular-aria@1.7.9)(angular-sanitize@1.7.9)(angular@1.7.9)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
+        version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
       '@uirouter/angularjs':
         specifier: ^1.0.23
-        version: 1.0.23(angular@1.7.9)
+        version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: 1.7.x
-        version: 1.7.9
+        specifier: ^1.8.3
+        version: 1.8.3
       angular-aria:
-        specifier: 1.7.x
-        version: 1.7.9
+        specifier: ^1.8.3
+        version: 1.8.3
       angular-cookies:
-        specifier: 1.7.x
-        version: 1.7.9
+        specifier: ^1.8.3
+        version: 1.8.3
       angular-dynamic-locale:
         specifier: ~0.1.27
         version: 0.1.38
       angular-i18n:
-        specifier: 1.7.x
-        version: 1.7.9
+        specifier: ^1.8.3
+        version: 1.8.3
       angular-messages:
-        specifier: 1.7.x
-        version: 1.7.9
+        specifier: ^1.8.3
+        version: 1.8.3
       angular-qr:
         specifier: ^0.2.3
         version: 0.2.3
       angular-resource:
-        specifier: 1.7.x
-        version: 1.7.9
+        specifier: ^1.8.3
+        version: 1.8.3
       angular-route:
-        specifier: 1.7.x
-        version: 1.7.9
+        specifier: ^1.8.3
+        version: 1.8.3
       angular-sanitize:
-        specifier: 1.7.x
-        version: 1.7.9
+        specifier: ^1.8.3
+        version: 1.8.3
       angular-translate:
-        specifier: ^2.17.0
+        specifier: ^2.19.1
         version: 2.19.1
       angular-translate-loader-pluggable:
         specifier: ^1.3.1
@@ -3179,7 +3190,7 @@ importers:
         version: 11.1.0
       ovh-api-services:
         specifier: ^17.0.0
-        version: 17.0.0(@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.7.9)(angular@1.7.9))(@ovh-ux/ng-ovh-swimming-poll@packages+components+ng-ovh-swimming-poll)(angular-resource@1.7.9)(angular@1.7.9)
+        version: 17.0.0(@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.8.3)(angular@1.8.3))(@ovh-ux/ng-ovh-swimming-poll@packages+components+ng-ovh-swimming-poll)(angular-resource@1.8.3)(angular@1.8.3)
       ovh-manager-webfont:
         specifier: ^1.2.0
         version: 1.2.0
@@ -3218,7 +3229,7 @@ importers:
         specifier: ^7.0.7
         version: link:../../tools/webpack-config
       angular-mocks:
-        specifier: ^1.7.x
+        specifier: ^1.8.3
         version: 1.8.3
       eslint-plugin-angular:
         specifier: ^4.0.1
@@ -3305,28 +3316,28 @@ importers:
         specifier: ^1.0.23
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-aria:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-cookies:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-dynamic-locale:
         specifier: ^0.1.37
         version: 0.1.38
       angular-i18n:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-resource:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-sanitize:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       angular-translate-loader-pluggable:
         specifier: ^1.3.1
@@ -3456,28 +3467,28 @@ importers:
         specifier: ^1.0.23
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-aria:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-cookies:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-dynamic-locale:
         specifier: ^0.1.37
         version: 0.1.38
       angular-i18n:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-resource:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-sanitize:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       angular-translate-loader-pluggable:
         specifier: ^1.3.1
@@ -3610,31 +3621,31 @@ importers:
         specifier: ^1.0.23
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-aria:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-cookies:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-dynamic-locale:
         specifier: ^0.1.37
         version: 0.1.38
       angular-i18n:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-resource:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-route:
-        specifier: ~1.7.8
-        version: 1.7.9
+        specifier: ^1.8.3
+        version: 1.8.3
       angular-sanitize:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       angular-translate-loader-pluggable:
         specifier: ^1.3.1
@@ -3794,28 +3805,28 @@ importers:
         specifier: ^1.2.0
         version: 1.2.0
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-aria:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-cookies:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-dynamic-locale:
         specifier: ^0.1.37
         version: 0.1.38
       angular-i18n:
-        specifier: ~1.7.8
-        version: 1.7.9
+        specifier: ^1.8.3
+        version: 1.8.3
       angular-resource:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-sanitize:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       angular-translate-loader-pluggable:
         specifier: ^1.3.1
@@ -4132,31 +4143,31 @@ importers:
         specifier: ^1.0.23
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-animate:
         specifier: ^1.7.5
         version: 1.8.3
       angular-aria:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-cookies:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-dynamic-locale:
         specifier: ^0.1.37
         version: 0.1.38
       angular-i18n:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-resource:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-sanitize:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       angular-translate-loader-pluggable:
         specifier: ^1.3.1
@@ -4555,10 +4566,10 @@ importers:
         specifier: ^1.0.23
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       bootstrap4:
         specifier: twbs/bootstrap#v4.6.2
@@ -4691,28 +4702,28 @@ importers:
         specifier: ^1.0.23
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-aria:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-cookies:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-dynamic-locale:
         specifier: ^0.1.37
         version: 0.1.38
       angular-i18n:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-resource:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-sanitize:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       angular-translate-loader-pluggable:
         specifier: ^1.3.1
@@ -4993,31 +5004,31 @@ importers:
         specifier: ^1.0.23
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-aria:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-cookies:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-dynamic-locale:
         specifier: ^0.1.37
         version: 0.1.38
       angular-i18n:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-moment:
         specifier: ^1.0.0
         version: 1.3.0
       angular-resource:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-sanitize:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       angular-translate-loader-pluggable:
         specifier: ^1.3.1
@@ -5168,28 +5179,28 @@ importers:
         specifier: ^1.0.23
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-aria:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-cookies:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-dynamic-locale:
         specifier: ^0.1.37
         version: 0.1.38
       angular-i18n:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-resource:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-sanitize:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       angular-translate-loader-pluggable:
         specifier: ^1.3.1
@@ -5343,28 +5354,28 @@ importers:
         specifier: ^1.0.23
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-aria:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-cookies:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-dynamic-locale:
         specifier: ^0.1.37
         version: 0.1.38
       angular-i18n:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-resource:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-sanitize:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       angular-translate-loader-pluggable:
         specifier: ^1.3.1
@@ -5497,28 +5508,28 @@ importers:
         specifier: ^1.0.23
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-aria:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-cookies:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-dynamic-locale:
         specifier: ^0.1.37
         version: 0.1.38
       angular-i18n:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-resource:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-sanitize:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       angular-translate-loader-pluggable:
         specifier: ^1.3.1
@@ -5645,31 +5656,31 @@ importers:
         specifier: ^1.0.23
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-aria:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-cookies:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-dynamic-locale:
         specifier: ^0.1.37
         version: 0.1.38
       angular-i18n:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-resource:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-route:
-        specifier: ~1.7.8
-        version: 1.7.9
+        specifier: ^1.8.3
+        version: 1.8.3
       angular-sanitize:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       angular-translate-loader-pluggable:
         specifier: ^1.3.1
@@ -5775,25 +5786,25 @@ importers:
         specifier: ^1.0.22
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-aria:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-dynamic-locale:
         specifier: ^0.1.37
         version: 0.1.38
       angular-i18n:
-        specifier: ^1.6.0
+        specifier: ^1.8.3
         version: 1.8.3
       angular-resource:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-sanitize:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       angular-translate-loader-pluggable:
         specifier: ^1.3.1
@@ -5873,7 +5884,7 @@ importers:
         version: link:../../../components/ng-at-internet
       '@ovh-ux/ng-ovh-api-wrappers':
         specifier: ^5.1.0
-        version: 5.1.0(angular-resource@1.8.3)(angular@1.7.9)
+        version: 5.1.0(angular-resource@1.8.3)(angular@1.8.3)
       '@ovh-ux/ng-ovh-chart':
         specifier: ^1.3.0
         version: link:../../../components/ng-ovh-chart
@@ -5918,24 +5929,24 @@ importers:
         version: link:../../core/request-tagger
       '@ovh-ux/ui-kit':
         specifier: ^6.10.5
-        version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.7.9))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.7.9)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
+        version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
       '@uirouter/angularjs':
         specifier: ^1.0.23
-        version: 1.0.23(angular@1.7.9)
+        version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ~1.7.5
-        version: 1.7.9
+        specifier: ^1.8.3
+        version: 1.8.3
       angular-aria:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-resource:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-sanitize:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.2
+        specifier: ^2.19.1
         version: 2.19.1
       angularjs-scroll-glue:
         specifier: ^2.2.0
@@ -5978,7 +5989,7 @@ importers:
         version: 0.3.0
       ovh-api-services:
         specifier: ^17.0.0
-        version: 17.0.0(@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.8.3)(angular@1.7.9))(@ovh-ux/ng-ovh-swimming-poll@packages+components+ng-ovh-swimming-poll)(angular-resource@1.8.3)(angular@1.7.9)
+        version: 17.0.0(@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.8.3)(angular@1.8.3))(@ovh-ux/ng-ovh-swimming-poll@packages+components+ng-ovh-swimming-poll)(angular-resource@1.8.3)(angular@1.8.3)
       ovh-manager-webfont:
         specifier: ^1.2.0
         version: 1.2.0
@@ -6060,7 +6071,7 @@ importers:
         version: link:../../../components/ng-log-live-tail
       '@ovh-ux/ng-ovh-api-wrappers':
         specifier: ^5.1.0
-        version: 5.1.0(angular-resource@1.7.9)(angular@1.8.3)
+        version: 5.1.0(angular-resource@1.8.3)(angular@1.8.3)
       '@ovh-ux/ng-ovh-chart':
         specifier: ^1.3.0
         version: link:../../../components/ng-ovh-chart
@@ -6131,19 +6142,19 @@ importers:
         specifier: ^1.0.23
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-animate:
         specifier: ^1.7.5
         version: 1.8.3
       angular-cookies:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-resource:
-        specifier: ^1.7.8
-        version: 1.7.9
+        specifier: ^1.8.3
+        version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       angular-ui-bootstrap:
         specifier: ^1.3.3
@@ -6201,7 +6212,7 @@ importers:
         version: 1.1.0
       ovh-api-services:
         specifier: ^17.0.0
-        version: 17.0.0(@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.7.9)(angular@1.8.3))(@ovh-ux/ng-ovh-swimming-poll@packages+components+ng-ovh-swimming-poll)(angular-resource@1.7.9)(angular@1.8.3)
+        version: 17.0.0(@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.8.3)(angular@1.8.3))(@ovh-ux/ng-ovh-swimming-poll@packages+components+ng-ovh-swimming-poll)(angular-resource@1.8.3)(angular@1.8.3)
       ovh-common-style:
         specifier: ^5.0.0
         version: 5.0.0
@@ -9244,19 +9255,19 @@ importers:
         specifier: ^1.0.23
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-animate:
         specifier: ^1.7.5
         version: 1.8.3
       angular-cookies:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-resource:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       angular-ui-bootstrap:
         specifier: ^1.3.3
@@ -9489,16 +9500,16 @@ importers:
         specifier: ^1.0.23
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-cookies:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-sanitize:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       bloodhound-js:
         specifier: ^1.2.3
@@ -9575,7 +9586,7 @@ importers:
         version: link:../../../components/ng-at-internet-ui-router-plugin
       '@ovh-ux/ng-ovh-api-wrappers':
         specifier: ^5.1.0
-        version: 5.1.0(angular-resource@1.7.9)(angular@1.8.3)
+        version: 5.1.0(angular-resource@1.8.3)(angular@1.8.3)
       '@ovh-ux/ng-ovh-checkbox-table':
         specifier: ^2.1.2
         version: link:../../../components/ng-ovh-checkbox-table
@@ -9622,19 +9633,19 @@ importers:
         specifier: ^1.2.0
         version: 1.2.0
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-cookies:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-messages:
-        specifier: ^1.7.6
+        specifier: ^1.8.3
         version: 1.8.3
       angular-resource:
-        specifier: ^1.7.8
-        version: 1.7.9
+        specifier: ^1.8.3
+        version: 1.8.3
       angular-translate:
-        specifier: ^2.11.0
+        specifier: ^2.19.1
         version: 2.19.1
       angular-ui-bootstrap:
         specifier: ~1.3.3
@@ -9686,7 +9697,7 @@ importers:
         version: 0.3.0
       ovh-api-services:
         specifier: ^17.0.0
-        version: 17.0.0(@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.7.9)(angular@1.8.3))(@ovh-ux/ng-ovh-swimming-poll@packages+components+ng-ovh-swimming-poll)(angular-resource@1.7.9)(angular@1.8.3)
+        version: 17.0.0(@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.8.3)(angular@1.8.3))(@ovh-ux/ng-ovh-swimming-poll@packages+components+ng-ovh-swimming-poll)(angular-resource@1.8.3)(angular@1.8.3)
       ovh-ngstrap:
         specifier: ^4.0.2
         version: 4.0.2
@@ -9738,7 +9749,7 @@ importers:
         version: link:../../../components/ng-at-internet
       '@ovh-ux/ng-ovh-api-wrappers':
         specifier: ^5.1.0
-        version: 5.1.0(angular-resource@1.7.9)(angular@1.8.3)
+        version: 5.1.0(angular-resource@1.8.3)(angular@1.8.3)
       '@ovh-ux/ng-ovh-http':
         specifier: ^5.1.2
         version: link:../../../components/ng-ovh-http
@@ -9770,13 +9781,13 @@ importers:
         specifier: ^1.0.23
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-resource:
-        specifier: ^1.7.8
-        version: 1.7.9
+        specifier: ^1.8.3
+        version: 1.8.3
       angular-sanitize:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       bloodhound-js:
         specifier: ^1.2.3
@@ -9810,7 +9821,7 @@ importers:
         version: 2.30.1
       ovh-api-services:
         specifier: ^17.0.0
-        version: 17.0.0(@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.7.9)(angular@1.8.3))(@ovh-ux/ng-ovh-swimming-poll@packages+components+ng-ovh-swimming-poll)(angular-resource@1.7.9)(angular@1.8.3)
+        version: 17.0.0(@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.8.3)(angular@1.8.3))(@ovh-ux/ng-ovh-swimming-poll@packages+components+ng-ovh-swimming-poll)(angular-resource@1.8.3)(angular@1.8.3)
       ovh-ui-kit-bs:
         specifier: ^4.2.0
         version: 4.2.0
@@ -10014,16 +10025,16 @@ importers:
         specifier: ^1.0.0
         version: 1.2.0
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-animate:
         specifier: ^1.7.5
         version: 1.8.3
       angular-aria:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-cookies:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-dynamic-locale:
         specifier: ~0.1.27
@@ -10032,7 +10043,7 @@ importers:
         specifier: 2.5.0
         version: 2.5.0
       angular-i18n:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-inview:
         specifier: ^2.2.0
@@ -10041,19 +10052,19 @@ importers:
         specifier: 0.8.5
         version: 0.8.5
       angular-messages:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-mocks:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-resource:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-sanitize:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.11.0
+        specifier: ^2.19.1
         version: 2.19.1
       angular-translate-loader-partial:
         specifier: ^2.11.0
@@ -10300,10 +10311,10 @@ importers:
         specifier: ^1.2.0
         version: 1.2.0
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-cookies:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-validation-match:
         specifier: ^1.9.0
@@ -10448,13 +10459,13 @@ importers:
         specifier: ^1.2.0
         version: 1.2.0
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-cookies:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       angular-ui-bootstrap:
         specifier: ~1.3.3
@@ -10723,28 +10734,28 @@ importers:
         specifier: ^1.0.23
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-aria:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-cookies:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-dynamic-locale:
         specifier: ^0.1.37
         version: 0.1.38
       angular-i18n:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-resource:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-sanitize:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       angular-translate-loader-pluggable:
         specifier: ^1.3.1
@@ -10865,28 +10876,28 @@ importers:
         specifier: ^1.0.23
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-aria:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-cookies:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-dynamic-locale:
         specifier: ^0.1.37
         version: 0.1.38
       angular-i18n:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-resource:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-sanitize:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       angular-translate-loader-pluggable:
         specifier: ^1.3.1
@@ -11046,28 +11057,28 @@ importers:
         specifier: ^1.0.23
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-aria:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-cookies:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-dynamic-locale:
         specifier: ^0.1.37
         version: 0.1.38
       angular-i18n:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-resource:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-sanitize:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       angular-translate-loader-pluggable:
         specifier: ^1.3.1
@@ -11177,7 +11188,7 @@ importers:
         version: link:../../modules/vrack
       '@ovh-ux/ng-ovh-api-wrappers':
         specifier: ^5.1.0
-        version: 5.1.0(angular-resource@1.7.9)(angular@1.8.3)
+        version: 5.1.0(angular-resource@1.8.3)(angular@1.8.3)
       '@ovh-ux/ng-ovh-cloud-universe-components':
         specifier: ^2.17.0
         version: link:../../modules/cloud-universe-components
@@ -11227,16 +11238,16 @@ importers:
         specifier: ^1.0.23
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-cookies:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-resource:
-        specifier: ^1.7.8
-        version: 1.7.9
+        specifier: ^1.8.3
+        version: 1.8.3
       angular-translate:
-        specifier: ^2.11.0
+        specifier: ^2.19.1
         version: 2.19.1
       angular-ui-bootstrap:
         specifier: ~1.3.3
@@ -11276,7 +11287,7 @@ importers:
         version: 1.1.0
       ovh-api-services:
         specifier: ^17.0.0
-        version: 17.0.0(@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.7.9)(angular@1.8.3))(@ovh-ux/ng-ovh-swimming-poll@packages+components+ng-ovh-swimming-poll)(angular-resource@1.7.9)(angular@1.8.3)
+        version: 17.0.0(@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.8.3)(angular@1.8.3))(@ovh-ux/ng-ovh-swimming-poll@packages+components+ng-ovh-swimming-poll)(angular-resource@1.8.3)(angular@1.8.3)
       ovh-manager-webfont:
         specifier: ^1.2.0
         version: 1.2.0
@@ -11595,34 +11606,34 @@ importers:
         specifier: ^1.14.0
         version: 1.16.1
       angular:
-        specifier: ^1.6.10
+        specifier: ^1.8.3
         version: 1.8.3
       angular-aria:
-        specifier: ^1.6.0
+        specifier: ^1.8.3
         version: 1.8.3
       angular-cookies:
-        specifier: ^1.6.0
+        specifier: ^1.8.3
         version: 1.8.3
       angular-dynamic-locale:
         specifier: ^0.1.27
         version: 0.1.38
       angular-i18n:
-        specifier: ^1.6.0
+        specifier: ^1.8.3
         version: 1.8.3
       angular-messages:
-        specifier: ^1.6.0
+        specifier: ^1.8.3
         version: 1.8.3
       angular-resource:
-        specifier: ^1.6.6
+        specifier: ^1.8.3
         version: 1.8.3
       angular-route:
-        specifier: ^1.6.0
+        specifier: ^1.8.3
         version: 1.8.3
       angular-sanitize:
-        specifier: ^1.6.9
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       angular-translate-loader-partial:
         specifier: ^2.18.1
@@ -12280,31 +12291,31 @@ importers:
         specifier: ^1.0.23
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-aria:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-cookies:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-dynamic-locale:
         specifier: ^0.1.37
         version: 0.1.38
       angular-i18n:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-qr:
         specifier: ^0.2.3
         version: 0.2.3
       angular-resource:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-sanitize:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       angular-translate-loader-pluggable:
         specifier: ^1.3.1
@@ -12382,16 +12393,16 @@ importers:
         specifier: ^2.1.4
         version: link:../../../components/ng-translate-async-loader
       '@ovh-ux/ui-kit':
-        specifier: ^6.10.0
+        specifier: ^6.10.5
         version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
       '@uirouter/angularjs':
         specifier: ^1.0.20
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.11.0
+        specifier: ^2.19.1
         version: 2.19.1
       angular-ui-bootstrap:
         specifier: ~1.3.3
@@ -12419,16 +12430,16 @@ importers:
         specifier: ^6.0.9
         version: link:../../../components/ng-at-internet
       '@ovh-ux/ui-kit':
-        specifier: ^6.10.0
+        specifier: ^6.10.5
         version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
       '@uirouter/angularjs':
         specifier: ^1.0.23
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
     devDependencies:
       '@ovh-ux/component-rollup-config':
@@ -12453,7 +12464,7 @@ importers:
         specifier: ^0.1.0
         version: 0.1.1(@ovh-ux/manager-config@8.2.0(@ovh-ux/request-tagger@packages+manager+core+request-tagger))(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
 
   packages/manager/modules/banner:
@@ -12471,10 +12482,10 @@ importers:
         specifier: ^2.1.4
         version: link:../../../components/ng-translate-async-loader
       angular:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       lodash:
         specifier: 4.17.21
@@ -12496,10 +12507,10 @@ importers:
         specifier: ^2.0.0
         version: link:../../../components/ng-ovh-user-pref
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
 
   packages/manager/modules/billing:
@@ -12530,7 +12541,7 @@ importers:
         version: link:../../../components/ng-at-internet-ui-router-plugin
       '@ovh-ux/ng-ovh-api-wrappers':
         specifier: ^5.1.0
-        version: 5.1.0(angular-resource@1.7.9)(angular@1.7.9)
+        version: 5.1.0(angular-resource@1.8.3)(angular@1.8.3)
       '@ovh-ux/ng-ovh-contacts':
         specifier: ^5.3.1
         version: link:../../../components/ng-ovh-contacts
@@ -12560,21 +12571,21 @@ importers:
         version: link:../../../components/ng-ui-router-layout
       '@uirouter/angularjs':
         specifier: ^1.0.23
-        version: 1.0.23(angular@1.7.9)
+        version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: 1.7.x
-        version: 1.7.9
+        specifier: ^1.8.3
+        version: 1.8.3
       angular-resource:
-        specifier: 1.7.x
-        version: 1.7.9
+        specifier: ^1.8.3
+        version: 1.8.3
       angular-route:
-        specifier: 1.7.x
-        version: 1.7.9
+        specifier: ^1.8.3
+        version: 1.8.3
       angular-sanitize:
-        specifier: 1.7.x
-        version: 1.7.9
+        specifier: ^1.8.3
+        version: 1.8.3
       angular-translate:
-        specifier: ^2.17.0
+        specifier: ^2.19.1
         version: 2.19.1
       angular-ui-bootstrap:
         specifier: 1.3.3
@@ -12590,11 +12601,11 @@ importers:
         version: 1.1.0
       ovh-api-services:
         specifier: ^17.0.0
-        version: 17.0.0(@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.7.9)(angular@1.7.9))(@ovh-ux/ng-ovh-swimming-poll@packages+components+ng-ovh-swimming-poll)(angular-resource@1.7.9)(angular@1.7.9)
+        version: 17.0.0(@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.8.3)(angular@1.8.3))(@ovh-ux/ng-ovh-swimming-poll@packages+components+ng-ovh-swimming-poll)(angular-resource@1.8.3)(angular@1.8.3)
     devDependencies:
       '@ovh-ux/ui-kit':
         specifier: ^6.10.5
-        version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.7.9))(angular-aria@1.8.3)(angular-sanitize@1.7.9)(angular@1.7.9)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
+        version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
       bootstrap:
         specifier: ^4.4.1
         version: 4.6.2(jquery@3.7.1)(popper.js@1.16.1)
@@ -12626,13 +12637,13 @@ importers:
         specifier: ^2.1.4
         version: link:../../../components/ng-translate-async-loader
       '@ovh-ux/ui-kit':
-        specifier: ^6.10.0
+        specifier: ^6.10.5
         version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       bootstrap:
         specifier: ^4.0.0
@@ -12674,16 +12685,16 @@ importers:
         specifier: ^2.1.4
         version: link:../../../components/ng-translate-async-loader
       '@ovh-ux/ui-kit':
-        specifier: ^6.10.0
+        specifier: ^6.10.5
         version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
       '@uirouter/angularjs':
         specifier: ^1.0.23
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       angular-ui-validate:
         specifier: angular-ui/ui-validate#1.2.3
@@ -12737,16 +12748,16 @@ importers:
         specifier: ^1.1.8
         version: link:../../../components/ng-ui-router-breadcrumb
       '@ovh-ux/ui-kit':
-        specifier: ^6.10.0
+        specifier: ^6.10.5
         version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
       '@uirouter/angularjs':
         specifier: ^1.0.23
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       bootstrap4:
         specifier: twbs/bootstrap#v4.6.2
@@ -12767,13 +12778,13 @@ importers:
         specifier: ^6.0.0 || ^7.0.0
         version: link:../telecom-universe-components
       '@ovh-ux/ui-kit':
-        specifier: ^6.10.0
+        specifier: ^6.10.5
         version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
       angular:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       bootstrap4:
         specifier: twbs/bootstrap#v4.6.2
@@ -12803,10 +12814,10 @@ importers:
         specifier: ^2.1.4
         version: link:../../../components/ng-translate-async-loader
       angular:
-        specifier: ^1.7.9
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.2
+        specifier: ^2.19.1
         version: 2.19.1
       bootstrap:
         specifier: ^4.3.1
@@ -12839,16 +12850,16 @@ importers:
         specifier: ^1.1.6
         version: link:../../../components/ng-ui-router-breadcrumb
       '@ovh-ux/ui-kit':
-        specifier: ^6.10.0
+        specifier: ^6.10.5
         version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
       '@uirouter/angularjs':
         specifier: ^1.0.23
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       angular-ui-bootstrap:
         specifier: 1.3.3
@@ -12899,16 +12910,16 @@ importers:
         specifier: ^4.1.0
         version: link:../../../components/ng-ui-router-layout
       '@ovh-ux/ui-kit':
-        specifier: ^6.10.0
+        specifier: ^6.10.5
         version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
       '@uirouter/angularjs':
         specifier: ^1.0.23
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       angular-ui-bootstrap:
         specifier: ~1.3.3
@@ -12983,10 +12994,10 @@ importers:
         specifier: ^1.0.22
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.5.0
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.11.0
+        specifier: ^2.19.1
         version: 2.19.1
       angular-ui-bootstrap:
         specifier: ~1.3.3
@@ -13097,13 +13108,13 @@ importers:
         specifier: ^2.1.4
         version: link:../../../components/ng-translate-async-loader
       '@ovh-ux/ui-kit':
-        specifier: ^6.10.0
+        specifier: ^6.10.5
         version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
       angular:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       angular-ui-bootstrap:
         specifier: 1.3.3
@@ -13127,7 +13138,7 @@ importers:
         specifier: ^2.2.2
         version: link:../../../components/ng-translate-async-loader
       '@ovh-ux/ui-kit':
-        specifier: ^6.10.0
+        specifier: ^6.10.5
         version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
       '@ovh-ux/url-builder':
         specifier: ^2.0.0
@@ -13136,25 +13147,25 @@ importers:
         specifier: ^1.0.20
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-aria:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-dynamic-locale:
         specifier: ^0.1.37
         version: 0.1.38
       angular-i18n:
-        specifier: ~1.5.x
-        version: 1.5.11
+        specifier: ^1.8.3
+        version: 1.8.3
       angular-resource:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-sanitize:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       angular-translate-loader-pluggable:
         specifier: ^1.3.1
@@ -13212,19 +13223,19 @@ importers:
         specifier: ^2.1.4
         version: link:../../../components/ng-translate-async-loader
       '@ovh-ux/ui-kit':
-        specifier: ^6.10.0
+        specifier: ^6.10.5
         version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
       '@uirouter/angularjs':
         specifier: ^1.0.23
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-route:
-        specifier: ~1.7.5
-        version: 1.7.9
+        specifier: ^1.8.3
+        version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       angular-ui-bootstrap:
         specifier: ~1.3.3
@@ -13303,19 +13314,19 @@ importers:
         specifier: ^4.1.0
         version: link:../../../components/ng-ui-router-layout
       '@ovh-ux/ui-kit':
-        specifier: ^6.10.0
+        specifier: ^6.10.5
         version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
       '@uirouter/angularjs':
         specifier: ^1.0.15
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-route:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       angular-ui-bootstrap:
         specifier: ~1.3.3
@@ -13390,19 +13401,19 @@ importers:
         specifier: ^4.1.0
         version: link:../../../components/ng-ui-router-layout
       '@ovh-ux/ui-kit':
-        specifier: ^6.10.0
+        specifier: ^6.10.5
         version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
       '@uirouter/angularjs':
         specifier: ^1.0.15
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-route:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       angular-ui-bootstrap:
         specifier: ~1.3.3
@@ -13444,25 +13455,25 @@ importers:
         specifier: ^2.2.2
         version: link:../../../components/ng-translate-async-loader
       '@ovh-ux/ui-kit':
-        specifier: ^6.10.0
+        specifier: ^6.10.5
         version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-aria:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-dynamic-locale:
         specifier: ^0.1.37
         version: 0.1.38
       angular-i18n:
-        specifier: ~1.5.x
-        version: 1.5.11
+        specifier: ^1.8.3
+        version: 1.8.3
       angular-sanitize:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       bootstrap:
         specifier: ^4.3.1
@@ -13522,19 +13533,19 @@ importers:
         specifier: ^1.1.6
         version: link:../../../components/ng-ui-router-breadcrumb
       '@ovh-ux/ui-kit':
-        specifier: ^6.10.0
+        specifier: ^6.10.5
         version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
       '@uirouter/angularjs':
         specifier: ^1.0.20
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-route:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       angular-ui-bootstrap:
         specifier: ~1.3.3
@@ -13588,10 +13599,10 @@ importers:
         specifier: ^2.1.4
         version: link:../../../components/ng-translate-async-loader
       angular:
-        specifier: ^1.7.0
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       lodash:
         specifier: 4.17.21
@@ -13627,16 +13638,16 @@ importers:
         specifier: ^3.0.4
         version: link:../../../components/ng-ui-router-title
       '@ovh-ux/ui-kit':
-        specifier: ^6.10.0
+        specifier: ^6.10.5
         version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
       '@uirouter/angularjs':
         specifier: ^1.0.15
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       bootstrap4:
         specifier: twbs/bootstrap#v4.6.2
@@ -13683,7 +13694,7 @@ importers:
         version: 5.9.1(@ovh-ux/manager-config@8.2.0(@ovh-ux/request-tagger@packages+manager+core+request-tagger))(angular@1.8.3)
       '@ovh-ux/ng-ovh-api-wrappers':
         specifier: ^5.0.0
-        version: 5.1.0(angular-resource@1.7.9)(angular@1.8.3)
+        version: 5.1.0(angular-resource@1.8.3)(angular@1.8.3)
       '@ovh-ux/ng-ovh-feature-flipping':
         specifier: ^1.0.5
         version: link:../../../components/ng-ovh-feature-flipping
@@ -13706,17 +13717,17 @@ importers:
         specifier: ^1.0.23
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-resource:
-        specifier: ^1.7.8
-        version: 1.7.9
+        specifier: ^1.8.3
+        version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       ovh-api-services:
         specifier: ^14.0.6
-        version: 14.0.6(@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.7.9)(angular@1.8.3))(@ovh-ux/ng-ovh-swimming-poll@packages+components+ng-ovh-swimming-poll)(angular-resource@1.7.9)(angular@1.8.3)
+        version: 14.0.6(@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.8.3)(angular@1.8.3))(@ovh-ux/ng-ovh-swimming-poll@packages+components+ng-ovh-swimming-poll)(angular-resource@1.8.3)(angular@1.8.3)
     devDependencies:
       '@ovh-ux/ui-kit':
         specifier: ^6.10.5
@@ -13761,19 +13772,19 @@ importers:
         specifier: ^1.1.8
         version: link:../../../components/ng-ui-router-breadcrumb
       '@ovh-ux/ui-kit':
-        specifier: ^6.10.0
+        specifier: ^6.10.5
         version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
       '@uirouter/angularjs':
         specifier: ^1.0.23
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-messages:
-        specifier: ^1.7.x
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       bootstrap:
         specifier: ^3.3.6
@@ -13839,16 +13850,16 @@ importers:
         specifier: ^1.1.6
         version: link:../../../components/ng-ui-router-breadcrumb
       '@ovh-ux/ui-kit':
-        specifier: ^6.10.0
+        specifier: ^6.10.5
         version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
       '@uirouter/angularjs':
         specifier: ^1.0.23
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       angular-ui-bootstrap:
         specifier: 1.3.3
@@ -13908,10 +13919,10 @@ importers:
         specifier: ^1.0.23
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.0
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       lodash:
         specifier: 4.17.21
@@ -13930,13 +13941,13 @@ importers:
         specifier: ^2.1.4
         version: link:../../../components/ng-translate-async-loader
       '@ovh-ux/ui-kit':
-        specifier: ^6.10.0
+        specifier: ^6.10.5
         version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.4
+        specifier: ^2.19.1
         version: 2.19.1
       bootstrap4:
         specifier: twbs/bootstrap#v4.6.2
@@ -14081,16 +14092,16 @@ importers:
         specifier: ^1.1.6
         version: link:../../../components/ng-ui-router-breadcrumb
       '@ovh-ux/ui-kit':
-        specifier: ^6.10.0
+        specifier: ^6.10.5
         version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
       '@uirouter/angularjs':
         specifier: ^1.0.23
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       angular-ui-bootstrap:
         specifier: 1.3.3
@@ -14120,28 +14131,28 @@ importers:
         specifier: ^2.2.2
         version: link:../../../components/ng-translate-async-loader
       '@ovh-ux/ui-kit':
-        specifier: ^6.10.0
+        specifier: ^6.10.5
         version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
       '@uirouter/angularjs':
         specifier: ^1.0.23
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-aria:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-dynamic-locale:
         specifier: ^0.1.37
         version: 0.1.38
       angular-i18n:
-        specifier: ~1.5.x
-        version: 1.5.11
+        specifier: ^1.8.3
+        version: 1.8.3
       angular-sanitize:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       bootstrap:
         specifier: ^4.3.1
@@ -14220,16 +14231,16 @@ importers:
         specifier: ^4.1.0
         version: link:../../../components/ng-ui-router-layout
       '@ovh-ux/ui-kit':
-        specifier: ^6.10.0
+        specifier: ^6.10.5
         version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
       '@uirouter/angularjs':
         specifier: ^1.0.23
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       angular-ui-bootstrap:
         specifier: 1.3.3
@@ -14310,16 +14321,16 @@ importers:
         specifier: ^4.1.0
         version: link:../../../components/ng-ui-router-layout
       '@ovh-ux/ui-kit':
-        specifier: ^6.10.0
+        specifier: ^6.10.5
         version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
       '@uirouter/angularjs':
         specifier: ^1.0.23
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       bootstrap4:
         specifier: twbs/bootstrap#v4.6.2
@@ -14426,7 +14437,7 @@ importers:
         version: link:../../../components/ng-at-internet-ui-router-plugin
       '@ovh-ux/ng-ovh-api-wrappers':
         specifier: ^5.1.0
-        version: 5.1.0(angular-resource@1.7.9)(angular@1.7.9)
+        version: 5.1.0(angular-resource@1.8.3)(angular@1.8.3)
       '@ovh-ux/ng-ovh-contacts':
         specifier: ^5.3.1
         version: link:../../../components/ng-ovh-contacts
@@ -14447,7 +14458,7 @@ importers:
         version: link:../../../components/ng-ovh-payment-method
       '@ovh-ux/ng-ovh-user-pref':
         specifier: 2.1.1
-        version: 2.1.1(@ovh-ux/ng-ovh-proxy-request@packages+components+ng-ovh-proxy-request)(angular-sanitize@1.7.9)(angular@1.7.9)
+        version: 2.1.1(@ovh-ux/ng-ovh-proxy-request@packages+components+ng-ovh-proxy-request)(angular-sanitize@1.8.3)(angular@1.8.3)
       '@ovh-ux/ng-ovh-utils':
         specifier: ^14.4.1
         version: link:../../../components/ng-ovh-utils
@@ -14471,24 +14482,24 @@ importers:
         version: link:../../../components/ng-ui-router-layout
       '@ovh-ux/ui-kit':
         specifier: ^6.10.5
-        version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.7.9))(angular-aria@1.8.3)(angular-sanitize@1.7.9)(angular@1.7.9)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
+        version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
       '@uirouter/angularjs':
         specifier: ^1.0.23
-        version: 1.0.23(angular@1.7.9)
+        version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: 1.7.x
-        version: 1.7.9
+        specifier: ^1.8.3
+        version: 1.8.3
       angular-resource:
-        specifier: 1.7.x
-        version: 1.7.9
+        specifier: ^1.8.3
+        version: 1.8.3
       angular-route:
-        specifier: 1.7.x
-        version: 1.7.9
+        specifier: ^1.8.3
+        version: 1.8.3
       angular-sanitize:
-        specifier: 1.7.x
-        version: 1.7.9
+        specifier: ^1.8.3
+        version: 1.8.3
       angular-translate:
-        specifier: ^2.17.0
+        specifier: ^2.19.1
         version: 2.19.1
       angular-ui-bootstrap:
         specifier: 1.3.3
@@ -14531,7 +14542,7 @@ importers:
         version: 1.1.0
       ovh-api-services:
         specifier: ^17.0.0
-        version: 17.0.0(@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.7.9)(angular@1.7.9))(@ovh-ux/ng-ovh-swimming-poll@packages+components+ng-ovh-swimming-poll)(angular-resource@1.7.9)(angular@1.7.9)
+        version: 17.0.0(@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.8.3)(angular@1.8.3))(@ovh-ux/ng-ovh-swimming-poll@packages+components+ng-ovh-swimming-poll)(angular-resource@1.8.3)(angular@1.8.3)
       ovh-ui-kit-bs:
         specifier: ^4.2.0
         version: 4.2.0
@@ -14548,13 +14559,13 @@ importers:
         specifier: ^14.0.19
         version: link:../../../components/ng-ovh-utils
       '@ovh-ux/ui-kit':
-        specifier: ^6.10.0
+        specifier: ^6.10.5
         version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       bootstrap4:
         specifier: twbs/bootstrap#v4.0.0
@@ -14575,13 +14586,13 @@ importers:
         specifier: ^2.1.4
         version: link:../../../components/ng-translate-async-loader
       '@ovh-ux/ui-kit':
-        specifier: ^6.10.0
+        specifier: ^6.10.5
         version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
       angular:
-        specifier: ^1.7.9
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       bootstrap:
         specifier: ^4.0.0
@@ -14606,13 +14617,13 @@ importers:
         specifier: ^2.1.4
         version: link:../../../components/ng-translate-async-loader
       '@ovh-ux/ui-kit':
-        specifier: ^6.10.0
+        specifier: ^6.10.5
         version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       bootstrap4:
         specifier: twbs/bootstrap#v4.6.2
@@ -14670,16 +14681,16 @@ importers:
         specifier: ^1.1.6
         version: link:../../../components/ng-ui-router-breadcrumb
       '@ovh-ux/ui-kit':
-        specifier: ^6.10.0
+        specifier: ^6.10.5
         version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
       '@uirouter/angularjs':
         specifier: ^1.0.23
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       angular-ui-bootstrap:
         specifier: ~1.3.3
@@ -14730,19 +14741,19 @@ importers:
         specifier: ^1.1.6
         version: link:../../../components/ng-ui-router-breadcrumb
       '@ovh-ux/ui-kit':
-        specifier: ^6.10.0
+        specifier: ^6.10.5
         version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
       '@uirouter/angularjs':
         specifier: ^1.0.15
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-route:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       angular-ui-bootstrap:
         specifier: 1.3.3
@@ -14832,7 +14843,7 @@ importers:
         version: link:../../../components/ng-at-internet
       '@ovh-ux/ng-ovh-api-wrappers':
         specifier: ^5.0.0
-        version: 5.1.0(angular-resource@1.7.9)(angular@1.8.3)
+        version: 5.1.0(angular-resource@1.8.3)(angular@1.8.3)
       '@ovh-ux/ng-ovh-chart':
         specifier: ^1.0.0
         version: link:../../../components/ng-ovh-chart
@@ -14861,19 +14872,19 @@ importers:
         specifier: ^3.0.4
         version: link:../../../components/ng-ui-router-title
       '@ovh-ux/ui-kit':
-        specifier: ^6.10.0
+        specifier: ^6.10.5
         version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
       '@uirouter/angularjs':
         specifier: ^1.0.15
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-resource:
-        specifier: ^1.7.8
-        version: 1.7.9
+        specifier: ^1.8.3
+        version: 1.8.3
       angular-translate:
-        specifier: ^2.11.0
+        specifier: ^2.19.1
         version: 2.19.1
       angularjs-scroll-glue:
         specifier: ^2.2.0
@@ -14904,7 +14915,7 @@ importers:
         version: 1.1.0
       ovh-api-services:
         specifier: ^15.0.0
-        version: 15.0.0(@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.7.9)(angular@1.8.3))(@ovh-ux/ng-ovh-swimming-poll@packages+components+ng-ovh-swimming-poll)(angular-resource@1.7.9)(angular@1.8.3)
+        version: 15.0.0(@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.8.3)(angular@1.8.3))(@ovh-ux/ng-ovh-swimming-poll@packages+components+ng-ovh-swimming-poll)(angular-resource@1.8.3)(angular@1.8.3)
       ovh-manager-webfont:
         specifier: ^1.2.0
         version: 1.2.0
@@ -14974,7 +14985,7 @@ importers:
         version: link:../../../components/ng-at-internet-ui-router-plugin
       '@ovh-ux/ng-ovh-api-wrappers':
         specifier: ^5.0.0
-        version: 5.1.0(angular-resource@1.7.9)(angular@1.8.3)
+        version: 5.1.0(angular-resource@1.8.3)(angular@1.8.3)
       '@ovh-ux/ng-ovh-chart':
         specifier: ^1.1.0
         version: link:../../../components/ng-ovh-chart
@@ -15027,22 +15038,22 @@ importers:
         specifier: ^0.2.0
         version: 0.2.0
       '@ovh-ux/ui-kit':
-        specifier: ^6.10.0
+        specifier: ^6.10.5
         version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
       '@uirouter/angularjs':
         specifier: ^1.0.15
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-animate:
         specifier: ^1.7.5
         version: 1.8.3
       angular-resource:
-        specifier: ^1.7.8
-        version: 1.7.9
+        specifier: ^1.8.3
+        version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       angular-ui-bootstrap:
         specifier: ^1.3.3
@@ -15118,7 +15129,7 @@ importers:
         version: 1.1.0
       ovh-api-services:
         specifier: ^15.0.0
-        version: 15.0.0(@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.7.9)(angular@1.8.3))(@ovh-ux/ng-ovh-swimming-poll@packages+components+ng-ovh-swimming-poll)(angular-resource@1.7.9)(angular@1.8.3)
+        version: 15.0.0(@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.8.3)(angular@1.8.3))(@ovh-ux/ng-ovh-swimming-poll@packages+components+ng-ovh-swimming-poll)(angular-resource@1.8.3)(angular@1.8.3)
       ovh-common-style:
         specifier: ^5.0.0
         version: 5.0.0
@@ -15147,13 +15158,13 @@ importers:
         specifier: ^1.23.3
         version: link:../manager-components
       '@ovh-ux/ui-kit':
-        specifier: ^4.4.3
-        version: 4.7.0(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
+        specifier: ^6.10.5
+        version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       bootstrap4:
         specifier: twbs/bootstrap#v4.0.0
@@ -15201,13 +15212,13 @@ importers:
         specifier: ^2.1.4
         version: link:../../../components/ng-translate-async-loader
       '@ovh-ux/ui-kit':
-        specifier: ^6.10.0
+        specifier: ^6.10.5
         version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
       angular:
-        specifier: ^1.7.9
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.2
+        specifier: ^2.19.1
         version: 2.19.1
       bootstrap:
         specifier: ^4.3.1
@@ -15234,7 +15245,7 @@ importers:
         specifier: ^1.0.22
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.5.0
+        specifier: ^1.8.3
         version: 1.8.3
       lodash:
         specifier: 4.17.21
@@ -15259,16 +15270,16 @@ importers:
         specifier: ^2.1.4
         version: link:../../../components/ng-translate-async-loader
       '@ovh-ux/ui-kit':
-        specifier: ^6.10.0
+        specifier: ^6.10.5
         version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
       '@uirouter/angularjs':
         specifier: ^1.0.20
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       flag-icon-css:
         specifier: ^3.4.2
@@ -15335,13 +15346,13 @@ importers:
         specifier: ^1.0.15
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-messages:
-        specifier: ^1.7.6
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.11.0
+        specifier: ^2.19.1
         version: 2.19.1
       angular-ui-validate:
         specifier: ^1.2.3
@@ -15397,7 +15408,7 @@ importers:
         version: 5.9.1(@ovh-ux/manager-config@8.2.0(@ovh-ux/request-tagger@packages+manager+core+request-tagger))(angular@1.8.3)
       '@ovh-ux/ng-ovh-api-wrappers':
         specifier: ^5.0.0
-        version: 5.1.0(angular-resource@1.7.9)(angular@1.8.3)
+        version: 5.1.0(angular-resource@1.8.3)(angular@1.8.3)
       '@ovh-ux/ng-translate-async-loader':
         specifier: ^2.1.4
         version: link:../../../components/ng-translate-async-loader
@@ -15405,22 +15416,22 @@ importers:
         specifier: ^1.1.6
         version: link:../../../components/ng-ui-router-breadcrumb
       '@ovh-ux/ui-kit':
-        specifier: ^6.10.0
+        specifier: ^6.10.5
         version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
       '@uirouter/angularjs':
         specifier: ^1.0.23
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-resource:
-        specifier: ^1.7.8
-        version: 1.7.9
+        specifier: ^1.8.3
+        version: 1.8.3
       angular-sanitize:
-        specifier: ^1.7.8
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       bootstrap:
         specifier: ^4.3.1
@@ -15439,7 +15450,7 @@ importers:
         version: 1.1.0
       ovh-api-services:
         specifier: ^15.0.0
-        version: 15.0.0(@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.7.9)(angular@1.8.3))(@ovh-ux/ng-ovh-swimming-poll@packages+components+ng-ovh-swimming-poll)(angular-resource@1.7.9)(angular@1.8.3)
+        version: 15.0.0(@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.8.3)(angular@1.8.3))(@ovh-ux/ng-ovh-swimming-poll@packages+components+ng-ovh-swimming-poll)(angular-resource@1.8.3)(angular@1.8.3)
       ovh-ui-kit-bs:
         specifier: ^4.1.5
         version: 4.2.0
@@ -15471,16 +15482,16 @@ importers:
         specifier: ^3.0.4
         version: link:../../../components/ng-ui-router-title
       '@ovh-ux/ui-kit':
-        specifier: ^6.10.0
+        specifier: ^6.10.5
         version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
       '@uirouter/angularjs':
         specifier: ^1.0.15
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       angular-ui-validate:
         specifier: ^1.2.3
@@ -15542,16 +15553,16 @@ importers:
         specifier: ^3.0.4
         version: link:../../../components/ng-ui-router-title
       '@ovh-ux/ui-kit':
-        specifier: ^6.10.0
+        specifier: ^6.10.5
         version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
       '@uirouter/angularjs':
         specifier: ^1.0.15
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       angular-ui-bootstrap:
         specifier: ~1.3.3
@@ -15600,10 +15611,10 @@ importers:
         specifier: ^1.2.0
         version: 1.2.0
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.11.0
+        specifier: ^2.19.1
         version: 2.19.1
       angular-ui-bootstrap:
         specifier: ~1.3.3
@@ -15663,13 +15674,13 @@ importers:
         specifier: ^13.0.5
         version: link:../core
       '@ovh-ux/ui-kit':
-        specifier: ^6.10.0
+        specifier: ^6.10.5
         version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
 
   packages/manager/modules/vcd-api:
@@ -15743,7 +15754,7 @@ importers:
         version: link:../ng-layout-helpers
       '@ovh-ux/ng-ovh-api-wrappers':
         specifier: ^5.0.0
-        version: 5.1.0(angular-resource@1.7.9)(angular@1.8.3)
+        version: 5.1.0(angular-resource@1.8.3)(angular@1.8.3)
       '@ovh-ux/ng-ovh-cloud-universe-components':
         specifier: ^2.8.2
         version: link:../cloud-universe-components
@@ -15757,19 +15768,19 @@ importers:
         specifier: ^4.1.0
         version: link:../../../components/ng-ui-router-layout
       '@ovh-ux/ui-kit':
-        specifier: ^6.10.0
+        specifier: ^6.10.5
         version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
       '@uirouter/angularjs':
         specifier: ^1.0.23
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-resource:
-        specifier: ^1.7.8
-        version: 1.7.9
+        specifier: ^1.8.3
+        version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       angular-ui-bootstrap:
         specifier: 1.3.3
@@ -15788,7 +15799,7 @@ importers:
         version: 1.1.0
       ovh-api-services:
         specifier: ^15.0.0
-        version: 15.0.0(@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.7.9)(angular@1.8.3))(@ovh-ux/ng-ovh-swimming-poll@packages+components+ng-ovh-swimming-poll)(angular-resource@1.7.9)(angular@1.8.3)
+        version: 15.0.0(@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.8.3)(angular@1.8.3))(@ovh-ux/ng-ovh-swimming-poll@packages+components+ng-ovh-swimming-poll)(angular-resource@1.8.3)(angular@1.8.3)
       ovh-ui-kit-bs:
         specifier: ^4.1.5
         version: 4.2.0
@@ -15814,16 +15825,16 @@ importers:
         specifier: ^4.1.0
         version: link:../../../components/ng-ui-router-layout
       '@ovh-ux/ui-kit':
-        specifier: ^6.10.0
+        specifier: ^6.10.5
         version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
       '@uirouter/angularjs':
         specifier: ^1.0.23
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       angular-ui-bootstrap:
         specifier: 1.3.3
@@ -15914,16 +15925,16 @@ importers:
         specifier: ^4.1.0
         version: link:../../../components/ng-ui-router-layout
       '@ovh-ux/ui-kit':
-        specifier: ^6.10.0
+        specifier: ^6.10.5
         version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
       '@uirouter/angularjs':
         specifier: ^1.0.23
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       angular-ui-bootstrap:
         specifier: 1.3.3
@@ -16007,16 +16018,16 @@ importers:
         specifier: ^1.1.6
         version: link:../../../components/ng-ui-router-breadcrumb
       '@ovh-ux/ui-kit':
-        specifier: ^6.10.0
+        specifier: ^6.10.5
         version: 6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)
       '@uirouter/angularjs':
         specifier: ^1.0.15
         version: 1.0.23(angular@1.8.3)
       angular:
-        specifier: ^1.7.5
+        specifier: ^1.8.3
         version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       angular-ui-bootstrap:
         specifier: ~1.3.3
@@ -16054,7 +16065,7 @@ importers:
         version: 8.2.0(@ovh-ux/request-tagger@packages+manager+core+request-tagger)
       '@ovh-ux/ng-ovh-api-wrappers':
         specifier: ^5.0.0
-        version: 5.1.0(angular-resource@1.7.9)(angular@1.8.3)
+        version: 5.1.0(angular-resource@1.8.3)(angular@1.8.3)
       '@ovh-ux/ng-ovh-http':
         specifier: ^5.0.4
         version: link:../../../components/ng-ovh-http
@@ -16080,13 +16091,13 @@ importers:
         specifier: ^1.14.0
         version: 1.16.1
       angular:
-        specifier: ^1.6.10
+        specifier: ^1.8.3
         version: 1.8.3
       angular-resource:
-        specifier: ^1.7.8
-        version: 1.7.9
+        specifier: ^1.8.3
+        version: 1.8.3
       angular-translate:
-        specifier: ^2.18.1
+        specifier: ^2.19.1
         version: 2.19.1
       angular-xeditable:
         specifier: ^0.9.0
@@ -16111,7 +16122,7 @@ importers:
         version: 4.17.21
       ovh-api-services:
         specifier: ^15.0.0
-        version: 15.0.0(@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.7.9)(angular@1.8.3))(@ovh-ux/ng-ovh-swimming-poll@packages+components+ng-ovh-swimming-poll)(angular-resource@1.7.9)(angular@1.8.3)
+        version: 15.0.0(@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.8.3)(angular@1.8.3))(@ovh-ux/ng-ovh-swimming-poll@packages+components+ng-ovh-swimming-poll)(angular-resource@1.8.3)(angular@1.8.3)
       punycode:
         specifier: ^1.4.1
         version: 1.4.1
@@ -19061,20 +19072,20 @@ packages:
   '@ovh-ux/ng-at-internet@5.9.1':
     resolution: {integrity: sha512-pc/yayZin4ytjleR4jJoOwDUWAJL/xt4/LKYUPSCx7f4ALpazLb+YRsr7DhnJBV/cr4XeNJ8DPXP+bvmnl/bfw==}
     peerDependencies:
-      angular: ~1.6
+      angular: ^1.8.3
 
   '@ovh-ux/ng-ovh-api-wrappers@5.1.0':
     resolution: {integrity: sha512-xljPUGrnTPUNnuTAblmOonCMnrrh2KcoUytvO4eIKFva2Dzd2AavUcSo0qbKgmCdFX86v96DDldHO89S/eQKmA==}
     deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
     peerDependencies:
-      angular: ^1.3.x
-      angular-resource: ~1.6.6
+      angular: ^1.8.3
+      angular-resource: ^1.8.3
 
   '@ovh-ux/ng-ovh-otrs@9.6.0':
     resolution: {integrity: sha512-vnM4y9/EXapqRTMldRZJaRnSxzt81pf/a0TD1i4HD6KaHJOyWQzf80xm5gs6GfuASWn3uO/KsIHSWy+n67B5Nw==}
     peerDependencies:
-      angular: ^1.7.5
-      angular-translate: ^2.18.1
+      angular: ^1.8.3
+      angular-translate: ^2.19.1
       bootstrap: ^3.3.6
       font-awesome: ^4.7.0
       jquery: ^2.1.3
@@ -19085,19 +19096,19 @@ packages:
     deprecated: This package used to be published to be re-use across multiple git repositories. Please refer to our monorepo ovh/manager.
     peerDependencies:
       '@uirouter/angularjs': ^1.0.22
-      angular: ^1.5.0
+      angular: ^1.8.3
 
   '@ovh-ux/ng-ovh-user-pref@2.1.1':
     resolution: {integrity: sha512-LvxWv+ER5p8hKHntejrcbxPNA6s9MqcAxnnDfvxPTeo292ZVERy6rDZ1ukuV8w6BhRKGGU/IXL8jILgLS6drKg==}
     peerDependencies:
       '@ovh-ux/ng-ovh-proxy-request': ^2.0.4
-      angular: ^1.6.10
-      angular-sanitize: ^1.6.0
+      angular: ^1.8.3
+      angular-sanitize: ^1.8.3
 
   '@ovh-ux/ng-shell-tracking@0.1.1':
     resolution: {integrity: sha512-IK926W3WG4cLxLmgTuKlL8EZOIWb11YpmdzSqbG/Eu3tt25NQb0kbHlmOLCIDYVT6hu4vjg+6ExKhvwHQKBVJg==}
     peerDependencies:
-      angular: ~1.6
+      angular: ^1.8.3
 
   '@ovh-ux/ovh-at-internet@0.1.0':
     resolution: {integrity: sha512-zuTPfmFZ+MnDcMYtS7YnkpSnW0k3jGIUZGlFxS52fWEu4TlEFEshUXVAwKknPjarMXCEoJTV9RbdyagkKuwQiQ==}
@@ -19134,29 +19145,15 @@ packages:
   '@ovh-ux/translate-async-loader@1.0.8':
     resolution: {integrity: sha512-8yEhPeRTSxtEO9ODXRYZw6pzRQiV5ULCTi8mIzt39m/b9N2TcIF4ILTPsaa8xpE4npHKa/iYgL9z0HJUFi2LGQ==}
     peerDependencies:
-      angular: ^1.5.0
-
-  '@ovh-ux/ui-kit@4.7.0':
-    resolution: {integrity: sha512-879lV+UnjaWyp4F7dPwJiv1jEUeeRmCdaKM5VtjjGO2OZhj+SAyup20mLEQxFVkakhkjAL07BT/z9ReM+9rPOQ==}
-    peerDependencies:
-      '@uirouter/angularjs': ^1.0.22
-      angular: '>=1.6.x'
-      angular-aria: '>=1.6.x'
-      angular-sanitize: '>=1.6.x'
-      bloodhound-js: ^1.2.3
-      clipboard: ^2.0.4
-      flatpickr: ^4.6.9
-      less: ^3.9.0
-      popper.js: ^1.16.1
-      ui-select: ^0.19.8
+      angular: ^1.8.3
 
   '@ovh-ux/ui-kit@6.10.5':
     resolution: {integrity: sha512-0PrFAOM0/ylPlVeC6hsJMHGe+pWB/ooMrjQySH5ytqsPYZrvzuiLoecEZHmX8VbnAJ6nF63sFLGp/DuicaSiCQ==}
     peerDependencies:
       '@uirouter/angularjs': ^1.0.22
-      angular: '>=1.6.x'
-      angular-aria: '>=1.6.x'
-      angular-sanitize: '>=1.6.x'
+      angular: ^1.8.3
+      angular-aria: ^1.8.3
+      angular-sanitize: ^1.8.3
       bloodhound-js: ^1.2.3
       clipboard: ^2.0.4
       flatpickr: ^4.6.9
@@ -21176,7 +21173,7 @@ packages:
     resolution: {integrity: sha512-r4hLSw7R3mwXGC5Sq7yxNlBK1sSzQUm/1MzigwwYRHoMO5uKcBPUhxFYx5U7kufP2Xl1165KeZvRsLCh0/Z1ng==}
     engines: {node: '>=4.0.0'}
     peerDependencies:
-      angular: '>=1.2.0'
+      angular: ^1.8.3
 
   '@uirouter/core@6.0.1':
     resolution: {integrity: sha512-mHCutiHtDDRKYmrJ92XPKDoSb2bgqaDyUpHdF4hUE+riwgkCvGdBjL8u+VDTcV3slBAk6B0LBIOIajjWkkObbQ==}
@@ -21736,16 +21733,8 @@ packages:
     resolution: {integrity: sha512-/LtTKvy5sD6MZbV0v+nHgOIpnFF0mrUp+j5WIxVprVhcrJriYpuCZf4S7Owj1o76De/J0eRzANUozNJ6hVepnQ==}
     deprecated: For the actively supported Angular, see https://www.npmjs.com/package/@angular/core. AngularJS support has officially ended. For extended AngularJS support options, see https://goo.gle/angularjs-path-forward.
 
-  angular-aria@1.7.9:
-    resolution: {integrity: sha512-luI3Jemd1AbOQW0krdzfEG3fM0IFtLY0bSSqIDEx3POE0XjKIC1MkrO8Csyq9PPgueLphyAPofzUwZ8YeZ88SA==}
-    deprecated: For the actively supported Angular, see https://www.npmjs.com/package/@angular/core. AngularJS support has officially ended. For extended AngularJS support options, see https://goo.gle/angularjs-path-forward.
-
   angular-aria@1.8.3:
     resolution: {integrity: sha512-qTXclmTW/KGw5JNKKQPcCKKq6hCBZ39jYINmLgMsjUHBAoxULaMRRTaRj/L2VTOjKvK5f9enkx+EUqRqzXDSFQ==}
-    deprecated: For the actively supported Angular, see https://www.npmjs.com/package/@angular/core. AngularJS support has officially ended. For extended AngularJS support options, see https://goo.gle/angularjs-path-forward.
-
-  angular-cookies@1.7.9:
-    resolution: {integrity: sha512-3eRq/aPrtCZKDWQnc3nW3sFoMbLiHkCkyDF2O9u7VXnqvVsUPaipk5R1ZqahgcSQHQrN/F5IU4T4nrz52qAZmA==}
     deprecated: For the actively supported Angular, see https://www.npmjs.com/package/@angular/core. AngularJS support has officially ended. For extended AngularJS support options, see https://goo.gle/angularjs-path-forward.
 
   angular-cookies@1.8.3:
@@ -21758,14 +21747,6 @@ packages:
   angular-flash-alert@2.5.0:
     resolution: {integrity: sha512-O/uqA66qtGsOA232+enzJNH4wH9v6ywcClRPf2C+T7xE/MxRRovOc959mcX9mIqNwncwPPc8quWol36R9fm1ow==}
 
-  angular-i18n@1.5.11:
-    resolution: {integrity: sha512-ur7B+F/cyLDuclODEmsZGr1lYNy3cWZhKDNxIh2OAYBuSUhAE8H2g9I4RWNq5LBZjydSNAOZ3W+6hdLN2MZ7Og==}
-    deprecated: For the actively supported Angular, see https://www.npmjs.com/package/@angular/core. AngularJS support has officially ended. For extended AngularJS support options, see https://goo.gle/angularjs-path-forward.
-
-  angular-i18n@1.7.9:
-    resolution: {integrity: sha512-5woHq1BC0r9KOAoEoCeYt6IKfpLXhxzOwkI/wvukuDHuGGyPU0tapZSdUXihFmQz1nHeiNpspVbkYWsM586p0Q==}
-    deprecated: For the actively supported Angular, see https://www.npmjs.com/package/@angular/core. AngularJS support has officially ended. For extended AngularJS support options, see https://goo.gle/angularjs-path-forward.
-
   angular-i18n@1.8.3:
     resolution: {integrity: sha512-TWJXIRsq7Qkgyms5dHIgG3s2swn2YKGwJzrIC8u59P9BWV3+gorNhgXCR6nqutApldz7jGBmTNjMgpnF32CIVg==}
     deprecated: For the actively supported Angular, see https://www.npmjs.com/package/@angular/core. AngularJS support has officially ended. For extended AngularJS support options, see https://goo.gle/angularjs-path-forward.
@@ -21773,13 +21754,10 @@ packages:
   angular-inview@2.3.1:
     resolution: {integrity: sha512-4+YQ8hkHt6ZqtCxjhzWUkLaZfZhpEcLWFFGAiXI+itUUuD6ViM+FDVSPYSYsOsKcqbkso+JO1f4uXXC+yKg+YA==}
     peerDependencies:
-      angular: ^1.5.8
+      angular: ^1.8.3
 
   angular-leaflet-directive@0.8.5:
     resolution: {integrity: sha512-VOKtB3a/sjdeuyHlAwdLKSeiCLUsQYNa02JKNt/OuhV8ic3tXsh1KAKiGv9efuyuD7kT7mxgF6mbWA79u2G09A==}
-
-  angular-messages@1.7.9:
-    resolution: {integrity: sha512-OdJihuO6AW+m1/r9OdW5riCwacn3dL1agQvgu6Cww3a7OARXXN0vxOpsZCNk4yg4CuD7Et3tiz4DymhvZkydvw==}
 
   angular-messages@1.8.3:
     resolution: {integrity: sha512-f/ywtg32lqzX8FnXkBJOyn13lbCbo333/xy/5TTFcsH/gZdXoiuERj+dLTOs8xHCkOeFQhFx0VD0DgtMgSag7A==}
@@ -21795,32 +21773,12 @@ packages:
     resolution: {integrity: sha512-lywKJ0zu2409Sbfgm+69+ChWD0FP6uw5kG354t+PnFVwrJGi9NzaDOLyU1h9mLs7Vn/YPfB4aduMu5ey3nF32Q==}
     deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
 
-  angular-resource@1.7.9:
-    resolution: {integrity: sha512-rXXhCE2qT31Pn4Sl+2XL+ntv4zxnA2OzY+clCl8/pOp/s/gIzxpQlEtXipo3QK8Qur3glbIkeF/bJw+gjVAdUw==}
-    deprecated: For the actively supported Angular, see https://www.npmjs.com/package/@angular/core. AngularJS support has officially ended. For extended AngularJS support options, see https://goo.gle/angularjs-path-forward.
-
   angular-resource@1.8.3:
     resolution: {integrity: sha512-x3+4w2SyIDEIe6PUBTzcjDFI5MhZNWAPELUxkYK0QMOkOo4w3BN/qhpd+fO1deFiDS23mZKqT8kfctO1IDkCDA==}
     deprecated: For the actively supported Angular, see https://www.npmjs.com/package/@angular/core. AngularJS support has officially ended. For extended AngularJS support options, see https://goo.gle/angularjs-path-forward.
 
-  angular-route@1.7.9:
-    resolution: {integrity: sha512-vRoj5hzdQtWbODhWJqDzD1iNOEfCKshO6GFBuPVV7RHlPjzIc4R2dHCc7Qiv/8F3LDxJDohc6vSnTDMLHuaqeA==}
-    deprecated: For the actively supported Angular, see https://www.npmjs.com/package/@angular/core. AngularJS support has officially ended. For extended AngularJS support options, see https://goo.gle/angularjs-path-forward.
-
   angular-route@1.8.3:
     resolution: {integrity: sha512-kpIcRmDR2+o1FxDVVYy8Rvfab86/7LDbOgTRb9T+X9ewPQiBRuDEnZtM3oJYBiQLvAXDYTJXHV48n/bGE9Mv2g==}
-    deprecated: For the actively supported Angular, see https://www.npmjs.com/package/@angular/core. AngularJS support has officially ended. For extended AngularJS support options, see https://goo.gle/angularjs-path-forward.
-
-  angular-sanitize@1.6.10:
-    resolution: {integrity: sha512-01i1Xoq9ykUrsoYQMSB6dWZmPp9Df5hfCqMAGGzJBWZ7L2WY0OtUphdI0YvR8ZF9lAsWtGNtsEFilObjq5nTgQ==}
-    deprecated: For the actively supported Angular, see https://www.npmjs.com/package/@angular/core. AngularJS support has officially ended. For extended AngularJS support options, see https://goo.gle/angularjs-path-forward.
-
-  angular-sanitize@1.7.8:
-    resolution: {integrity: sha512-sVq51is1cVNiPytH4JIEd7iRW0OBIRQGNETWkz1c/jnLv2sBf9oDxEd8enwDz/W2ULBIpqJPK/3AsIxmZyh9pA==}
-    deprecated: For the actively supported Angular, see https://www.npmjs.com/package/@angular/core. AngularJS support has officially ended. For extended AngularJS support options, see https://goo.gle/angularjs-path-forward.
-
-  angular-sanitize@1.7.9:
-    resolution: {integrity: sha512-nB/xe7JQWF9nLvhHommAICQ3eWrfRETo0EVGFESi952CDzDa+GAJ/2BFBNw44QqQPxj1Xua/uYKrbLsOGWZdbQ==}
     deprecated: For the actively supported Angular, see https://www.npmjs.com/package/@angular/core. AngularJS support has officially ended. For extended AngularJS support options, see https://goo.gle/angularjs-path-forward.
 
   angular-sanitize@1.8.3:
@@ -21879,14 +21837,6 @@ packages:
   angular-xeditable@0.9.0:
     resolution: {integrity: sha512-ss1M4VGUmXeIxnPEKRhOE7iTkfPnjYQ0yYCjv8SdrM2WHet4ULw4IDTkr7vuq1WMn0Nd29QijTwTDZNZQFJfyw==}
     engines: {node: '>= 0.8.0'}
-
-  angular@1.6.10:
-    resolution: {integrity: sha512-PCZ5/hVdvPQiYyH0VwsPjrErPHRcITnaXxhksceOXgtJeesKHLA7KDu4X/yvcAi+1zdGgGF+9pDxkJvghXI9Wg==}
-    deprecated: For the actively supported Angular, see https://www.npmjs.com/package/@angular/core. AngularJS support has officially ended. For extended AngularJS support options, see https://goo.gle/angularjs-path-forward.
-
-  angular@1.7.9:
-    resolution: {integrity: sha512-5se7ZpcOtu0MBFlzGv5dsM1quQDoDeUTwZrWjGtTNA7O88cD8TEk5IEKCTDa3uECV9XnvKREVUr7du1ACiWGFQ==}
-    deprecated: For the actively supported Angular, see https://www.npmjs.com/package/@angular/core. AngularJS support has officially ended. For extended AngularJS support options, see https://goo.gle/angularjs-path-forward.
 
   angular@1.8.3:
     resolution: {integrity: sha512-5qjkWIQQVsHj4Sb5TcEs4WZWpFeVFHXwxEBHUhrny41D8UrBAd6T/6nPPAsLngJCReIOqi95W3mxdveveutpZw==}
@@ -27570,8 +27520,8 @@ packages:
     peerDependencies:
       '@ovh-ux/ng-ovh-api-wrappers': ^4.0.2
       '@ovh-ux/ng-ovh-swimming-poll': ^4.0.0
-      angular: ^1.7.8
-      angular-resource: ^1.7.8
+      angular: ^1.8.3
+      angular-resource: ^1.8.3
 
   ovh-api-services@15.0.0:
     resolution: {integrity: sha512-77jJFnd1X2lAQmNrZ0OQUpSjRBPY41LM9qqQkPBxMOCDR3PROnpheLWR0oPeNDMNOpJvGqdhAKarfnrbMnd+KA==}
@@ -27579,8 +27529,8 @@ packages:
     peerDependencies:
       '@ovh-ux/ng-ovh-api-wrappers': ^4.0.2
       '@ovh-ux/ng-ovh-swimming-poll': ^4.0.0
-      angular: ^1.7.8
-      angular-resource: ^1.7.8
+      angular: ^1.8.3
+      angular-resource: ^1.8.3
 
   ovh-api-services@16.0.0:
     resolution: {integrity: sha512-+0IR61XLd9LmeU3NtXZ0YfNgySaku84uSAoZTdIs7KgyJMlV12aGjb5nG4ZGBhQkhIewwxBc2+76eqxu8GE1Bw==}
@@ -27588,8 +27538,8 @@ packages:
     peerDependencies:
       '@ovh-ux/ng-ovh-api-wrappers': ^4.0.2
       '@ovh-ux/ng-ovh-swimming-poll': ^4.0.0
-      angular: ^1.7.8
-      angular-resource: ^1.7.8
+      angular: ^1.8.3
+      angular-resource: ^1.8.3
 
   ovh-api-services@17.0.0:
     resolution: {integrity: sha512-FdM22lwPPVS7+OCPyNzFMxzzt3mg1OSof5bdVY6TKOz8y93eBHMW41Fd0huL0kwKkfV+j08AhQLEIiujQuL9Hw==}
@@ -27597,8 +27547,8 @@ packages:
     peerDependencies:
       '@ovh-ux/ng-ovh-api-wrappers': ^4.0.2
       '@ovh-ux/ng-ovh-swimming-poll': ^4.0.0
-      angular: ^1.7.8
-      angular-resource: ^1.7.8
+      angular: ^1.8.3
+      angular-resource: ^1.8.3
 
   ovh-common-style@3.2.2:
     resolution: {integrity: sha512-OCwpV1pyDWpEA9DmQUdyMgZpY77RRrjlhHqmoz7jSCLJorowiNGTgVCe/jHCwtCc2zeRlYYuyLZoOgyQqGdLag==}
@@ -35668,66 +35618,27 @@ snapshots:
     transitivePeerDependencies:
       - '@ovh-ux/manager-config'
 
-  '@ovh-ux/ng-at-internet@5.9.1(angular@1.6.10)':
-    dependencies:
-      '@ovh-ux/ovh-at-internet': 0.1.0(@ovh-ux/manager-config@8.2.0(@ovh-ux/request-tagger@packages+manager+core+request-tagger))
-      angular: 1.6.10
-      lodash-es: 4.17.21
-    transitivePeerDependencies:
-      - '@ovh-ux/manager-config'
-
-  '@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.7.9)(angular@1.7.9)':
-    dependencies:
-      angular: 1.7.9
-      angular-resource: 1.7.9
-      lodash: 4.17.21
-
-  '@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.7.9)(angular@1.8.3)':
-    dependencies:
-      angular: 1.8.3
-      angular-resource: 1.7.9
-      lodash: 4.17.21
-
-  '@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.8.3)(angular@1.6.10)':
-    dependencies:
-      angular: 1.6.10
-      angular-resource: 1.8.3
-      lodash: 4.17.21
-
-  '@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.8.3)(angular@1.7.9)':
-    dependencies:
-      angular: 1.7.9
-      angular-resource: 1.8.3
-      lodash: 4.17.21
-
   '@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.8.3)(angular@1.8.3)':
     dependencies:
       angular: 1.8.3
       angular-resource: 1.8.3
       lodash: 4.17.21
 
-  '@ovh-ux/ng-ovh-otrs@9.6.0(angular-translate@2.19.1)(angular@1.7.9)(bootstrap@3.4.1)(font-awesome@4.7.0)(jquery@2.2.4)(ovh-api-services@17.0.0(@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.7.9)(angular@1.7.9))(@ovh-ux/ng-ovh-swimming-poll@packages+components+ng-ovh-swimming-poll)(angular-resource@1.7.9)(angular@1.7.9))':
+  '@ovh-ux/ng-ovh-otrs@9.6.0(angular-translate@2.19.1)(angular@1.8.3)(bootstrap@3.4.1)(font-awesome@4.7.0)(jquery@2.2.4)(ovh-api-services@17.0.0(@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.8.3)(angular@1.8.3))(@ovh-ux/ng-ovh-swimming-poll@packages+components+ng-ovh-swimming-poll)(angular-resource@1.8.3)(angular@1.8.3))':
     dependencies:
-      angular: 1.7.9
+      angular: 1.8.3
       angular-translate: 2.19.1
       bootstrap: 3.4.1
       draggable: 4.2.0
       font-awesome: 4.7.0
       jquery: 2.2.4
       lodash: 4.17.21
-      ovh-api-services: 17.0.0(@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.7.9)(angular@1.7.9))(@ovh-ux/ng-ovh-swimming-poll@packages+components+ng-ovh-swimming-poll)(angular-resource@1.7.9)(angular@1.7.9)
+      ovh-api-services: 17.0.0(@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.8.3)(angular@1.8.3))(@ovh-ux/ng-ovh-swimming-poll@packages+components+ng-ovh-swimming-poll)(angular-resource@1.8.3)(angular@1.8.3)
 
   '@ovh-ux/ng-ovh-request-tagger@1.1.0(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular@1.8.3)':
     dependencies:
       '@uirouter/angularjs': 1.0.23(angular@1.8.3)
       angular: 1.8.3
-      lodash: 4.17.21
-
-  '@ovh-ux/ng-ovh-user-pref@2.1.1(@ovh-ux/ng-ovh-proxy-request@packages+components+ng-ovh-proxy-request)(angular-sanitize@1.7.9)(angular@1.7.9)':
-    dependencies:
-      '@ovh-ux/ng-ovh-proxy-request': link:packages/components/ng-ovh-proxy-request
-      angular: 1.7.9
-      angular-sanitize: 1.7.9
       lodash: 4.17.21
 
   '@ovh-ux/ng-ovh-user-pref@2.1.1(@ovh-ux/ng-ovh-proxy-request@packages+components+ng-ovh-proxy-request)(angular-sanitize@1.8.3)(angular@1.8.3)':
@@ -35802,71 +35713,6 @@ snapshots:
   '@ovh-ux/translate-async-loader@1.0.8(angular@1.8.3)':
     dependencies:
       angular: 1.8.3
-
-  '@ovh-ux/ui-kit@4.7.0(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)':
-    dependencies:
-      '@uirouter/angularjs': 1.0.23(angular@1.8.3)
-      angular: 1.8.3
-      angular-aria: 1.8.3
-      angular-sanitize: 1.8.3
-      bloodhound-js: 1.2.3
-      clipboard: 2.0.11
-      flatpickr: 4.6.13
-      less: 3.13.1
-      popper.js: 1.16.1
-      ui-select: 0.19.8
-
-  '@ovh-ux/ui-kit@6.10.5(@uirouter/angularjs@1.0.23(angular@1.6.10))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.6.10)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)':
-    dependencies:
-      '@uirouter/angularjs': 1.0.23(angular@1.6.10)
-      angular: 1.6.10
-      angular-aria: 1.8.3
-      angular-sanitize: 1.8.3
-      bloodhound-js: 1.2.3
-      clipboard: 2.0.11
-      flatpickr: 4.6.13
-      less: 3.13.1
-      popper.js: 1.16.1
-      ui-select: 0.19.8
-
-  '@ovh-ux/ui-kit@6.10.5(@uirouter/angularjs@1.0.23(angular@1.7.9))(angular-aria@1.7.9)(angular-sanitize@1.7.9)(angular@1.7.9)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)':
-    dependencies:
-      '@uirouter/angularjs': 1.0.23(angular@1.7.9)
-      angular: 1.7.9
-      angular-aria: 1.7.9
-      angular-sanitize: 1.7.9
-      bloodhound-js: 1.2.3
-      clipboard: 2.0.11
-      flatpickr: 4.6.13
-      less: 3.13.1
-      popper.js: 1.16.1
-      ui-select: 0.19.8
-
-  '@ovh-ux/ui-kit@6.10.5(@uirouter/angularjs@1.0.23(angular@1.7.9))(angular-aria@1.8.3)(angular-sanitize@1.7.9)(angular@1.7.9)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)':
-    dependencies:
-      '@uirouter/angularjs': 1.0.23(angular@1.7.9)
-      angular: 1.7.9
-      angular-aria: 1.8.3
-      angular-sanitize: 1.7.9
-      bloodhound-js: 1.2.3
-      clipboard: 2.0.11
-      flatpickr: 4.6.13
-      less: 3.13.1
-      popper.js: 1.16.1
-      ui-select: 0.19.8
-
-  '@ovh-ux/ui-kit@6.10.5(@uirouter/angularjs@1.0.23(angular@1.7.9))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.7.9)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)':
-    dependencies:
-      '@uirouter/angularjs': 1.0.23(angular@1.7.9)
-      angular: 1.7.9
-      angular-aria: 1.8.3
-      angular-sanitize: 1.8.3
-      bloodhound-js: 1.2.3
-      clipboard: 2.0.11
-      flatpickr: 4.6.13
-      less: 3.13.1
-      popper.js: 1.16.1
-      ui-select: 0.19.8
 
   '@ovh-ux/ui-kit@6.10.5(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular-aria@1.8.3)(angular-sanitize@1.8.3)(angular@1.8.3)(bloodhound-js@1.2.3)(clipboard@2.0.11)(flatpickr@4.6.13)(less@3.13.1)(popper.js@1.16.1)(ui-select@0.19.8)':
     dependencies:
@@ -38830,16 +38676,6 @@ snapshots:
       '@typescript-eslint/types': 8.26.1
       eslint-visitor-keys: 4.2.0
 
-  '@uirouter/angularjs@1.0.23(angular@1.6.10)':
-    dependencies:
-      '@uirouter/core': 6.0.1
-      angular: 1.6.10
-
-  '@uirouter/angularjs@1.0.23(angular@1.7.9)':
-    dependencies:
-      '@uirouter/core': 6.0.1
-      angular: 1.7.9
-
   '@uirouter/angularjs@1.0.23(angular@1.8.3)':
     dependencies:
       '@uirouter/core': 6.0.1
@@ -39656,11 +39492,7 @@ snapshots:
 
   angular-animate@1.8.3: {}
 
-  angular-aria@1.7.9: {}
-
   angular-aria@1.8.3: {}
-
-  angular-cookies@1.7.9: {}
 
   angular-cookies@1.8.3: {}
 
@@ -39672,10 +39504,6 @@ snapshots:
     dependencies:
       angular: 1.8.3
 
-  angular-i18n@1.5.11: {}
-
-  angular-i18n@1.7.9: {}
-
   angular-i18n@1.8.3: {}
 
   angular-inview@2.3.1(angular@1.8.3):
@@ -39683,8 +39511,6 @@ snapshots:
       angular: 1.8.3
 
   angular-leaflet-directive@0.8.5: {}
-
-  angular-messages@1.7.9: {}
 
   angular-messages@1.8.3: {}
 
@@ -39698,19 +39524,9 @@ snapshots:
     dependencies:
       qrcode-genetator: 1.0.2
 
-  angular-resource@1.7.9: {}
-
   angular-resource@1.8.3: {}
 
-  angular-route@1.7.9: {}
-
   angular-route@1.8.3: {}
-
-  angular-sanitize@1.6.10: {}
-
-  angular-sanitize@1.7.8: {}
-
-  angular-sanitize@1.7.9: {}
 
   angular-sanitize@1.8.3: {}
 
@@ -39765,10 +39581,6 @@ snapshots:
   angular-xeditable@0.9.0:
     dependencies:
       angular: 1.8.3
-
-  angular@1.6.10: {}
-
-  angular@1.7.9: {}
 
   angular@1.8.3: {}
 
@@ -47599,36 +47411,12 @@ snapshots:
 
   outvariant@1.4.3: {}
 
-  ovh-api-services@14.0.6(@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.7.9)(angular@1.8.3))(@ovh-ux/ng-ovh-swimming-poll@packages+components+ng-ovh-swimming-poll)(angular-resource@1.7.9)(angular@1.8.3):
-    dependencies:
-      '@ovh-ux/ng-ovh-api-wrappers': 5.1.0(angular-resource@1.7.9)(angular@1.8.3)
-      '@ovh-ux/ng-ovh-swimming-poll': link:packages/components/ng-ovh-swimming-poll
-      angular: 1.8.3
-      angular-resource: 1.7.9
-      lodash: 4.17.21
-
-  ovh-api-services@14.0.6(@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.8.3)(angular@1.6.10))(@ovh-ux/ng-ovh-swimming-poll@packages+components+ng-ovh-swimming-poll)(angular-resource@1.8.3)(angular@1.6.10):
-    dependencies:
-      '@ovh-ux/ng-ovh-api-wrappers': 5.1.0(angular-resource@1.8.3)(angular@1.6.10)
-      '@ovh-ux/ng-ovh-swimming-poll': link:packages/components/ng-ovh-swimming-poll
-      angular: 1.6.10
-      angular-resource: 1.8.3
-      lodash: 4.17.21
-
   ovh-api-services@14.0.6(@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.8.3)(angular@1.8.3))(@ovh-ux/ng-ovh-swimming-poll@packages+components+ng-ovh-swimming-poll)(angular-resource@1.8.3)(angular@1.8.3):
     dependencies:
       '@ovh-ux/ng-ovh-api-wrappers': 5.1.0(angular-resource@1.8.3)(angular@1.8.3)
       '@ovh-ux/ng-ovh-swimming-poll': link:packages/components/ng-ovh-swimming-poll
       angular: 1.8.3
       angular-resource: 1.8.3
-      lodash: 4.17.21
-
-  ovh-api-services@15.0.0(@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.7.9)(angular@1.8.3))(@ovh-ux/ng-ovh-swimming-poll@packages+components+ng-ovh-swimming-poll)(angular-resource@1.7.9)(angular@1.8.3):
-    dependencies:
-      '@ovh-ux/ng-ovh-api-wrappers': 5.1.0(angular-resource@1.7.9)(angular@1.8.3)
-      '@ovh-ux/ng-ovh-swimming-poll': link:packages/components/ng-ovh-swimming-poll
-      angular: 1.8.3
-      angular-resource: 1.7.9
       lodash: 4.17.21
 
   ovh-api-services@15.0.0(@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.8.3)(angular@1.8.3))(@ovh-ux/ng-ovh-swimming-poll@packages+components+ng-ovh-swimming-poll)(angular-resource@1.8.3)(angular@1.8.3):
@@ -47644,30 +47432,6 @@ snapshots:
       '@ovh-ux/ng-ovh-api-wrappers': 5.1.0(angular-resource@1.8.3)(angular@1.8.3)
       '@ovh-ux/ng-ovh-swimming-poll': link:packages/components/ng-ovh-swimming-poll
       angular: 1.8.3
-      angular-resource: 1.8.3
-      lodash: 4.17.21
-
-  ovh-api-services@17.0.0(@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.7.9)(angular@1.7.9))(@ovh-ux/ng-ovh-swimming-poll@packages+components+ng-ovh-swimming-poll)(angular-resource@1.7.9)(angular@1.7.9):
-    dependencies:
-      '@ovh-ux/ng-ovh-api-wrappers': 5.1.0(angular-resource@1.7.9)(angular@1.7.9)
-      '@ovh-ux/ng-ovh-swimming-poll': link:packages/components/ng-ovh-swimming-poll
-      angular: 1.7.9
-      angular-resource: 1.7.9
-      lodash: 4.17.21
-
-  ovh-api-services@17.0.0(@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.7.9)(angular@1.8.3))(@ovh-ux/ng-ovh-swimming-poll@packages+components+ng-ovh-swimming-poll)(angular-resource@1.7.9)(angular@1.8.3):
-    dependencies:
-      '@ovh-ux/ng-ovh-api-wrappers': 5.1.0(angular-resource@1.7.9)(angular@1.8.3)
-      '@ovh-ux/ng-ovh-swimming-poll': link:packages/components/ng-ovh-swimming-poll
-      angular: 1.8.3
-      angular-resource: 1.7.9
-      lodash: 4.17.21
-
-  ovh-api-services@17.0.0(@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.8.3)(angular@1.7.9))(@ovh-ux/ng-ovh-swimming-poll@packages+components+ng-ovh-swimming-poll)(angular-resource@1.8.3)(angular@1.7.9):
-    dependencies:
-      '@ovh-ux/ng-ovh-api-wrappers': 5.1.0(angular-resource@1.8.3)(angular@1.7.9)
-      '@ovh-ux/ng-ovh-swimming-poll': link:packages/components/ng-ovh-swimming-poll
-      angular: 1.7.9
       angular-resource: 1.8.3
       lodash: 4.17.21
 
