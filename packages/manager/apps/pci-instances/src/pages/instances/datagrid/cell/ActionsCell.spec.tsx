@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, vi } from 'vitest';
 import { ActionsCell, TActionsCellProps } from './ActionsCell.component';
@@ -50,7 +50,9 @@ describe('Considering the ActionsCell component', () => {
 
     render(<ActionsCell isLoading={false} instance={instance} />);
     const actionsMenuElement = screen.getByTestId('actions-menu-button');
-    await user.click(actionsMenuElement);
+    await act(async () => {
+      await user.click(actionsMenuElement);
+    });
 
     const menuItems = screen.getAllByTestId('actions-menu-item');
     expect(menuItems).toHaveLength(2);

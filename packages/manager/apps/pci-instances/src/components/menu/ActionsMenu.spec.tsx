@@ -1,6 +1,6 @@
 import { DropdownMenu, DropdownMenuContent } from '@datatr-ux/uxlib';
 import { describe, test, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {
   ActionsMenu,
@@ -47,7 +47,9 @@ describe('Considering the ActionsMenu components', () => {
     render(<ActionsMenu items={items} />);
     const button = screen.getByTestId('actions-menu-button');
     expect(screen.getByTestId('actions-menu-button')).toBeInTheDocument();
-    await user.click(button);
+    await act(async () => {
+      await user.click(button);
+    });
     expect(screen.getAllByTestId('actions-menu-item')).toHaveLength(2);
   });
 

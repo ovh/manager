@@ -5,7 +5,13 @@ import { StatusCell } from './StatusCell.component';
 
 describe('Considering the StatusCell component', () => {
   test('Should render component correctly', () => {
-    render(<StatusCell instance={mockedInstance} isLoading={false} />);
+    render(
+      <StatusCell
+        instance={mockedInstance}
+        isLoading={false}
+        isPolling={false}
+      />,
+    );
     const statusCellElement = screen.getByTestId('status-chip');
     expect(statusCellElement).toBeInTheDocument();
   });

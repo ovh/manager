@@ -25,21 +25,12 @@ export type TStatusChipStatus = {
 type TStatusChipProps = {
   status: TStatusChipStatus;
   icon?: JSX.Element;
+  tooltipLabel?: string;
 };
 
-const StatusChip: FC<TStatusChipProps> = ({ status, icon }) => {
-  const { t, i18n } = useTranslation('status');
+const StatusChip: FC<TStatusChipProps> = ({ status, icon, tooltipLabel }) => {
+  const { t } = useTranslation('status');
   const { label, severity } = status;
-
-  const tooltipContentI18nKey = `pci_instances_tooltip_content_status_${label.toLowerCase()}`;
-
-  const isTooltipDisplayed = useMemo(
-    () =>
-      i18n.exists(tooltipContentI18nKey, {
-        ns: 'status',
-      }),
-    [i18n, tooltipContentI18nKey],
-  );
 
   const chip = useMemo(
     () => (
@@ -59,11 +50,11 @@ const StatusChip: FC<TStatusChipProps> = ({ status, icon }) => {
     [icon, label, severity],
   );
 
-  return isTooltipDisplayed ? (
+  return tooltipLabel ? (
     <OsdsTooltip>
       {chip}
       <OsdsTooltipContent slot="tooltip-content" className="break-keep">
-        {t(tooltipContentI18nKey)}
+        {t(tooltipLabel)}
       </OsdsTooltipContent>
     </OsdsTooltip>
   ) : (
