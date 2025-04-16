@@ -1,19 +1,21 @@
 import React from 'react';
-import { act, render } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { describe, expect, it, vi } from 'vitest';
+import { i18n as i18nType } from 'i18next';
+import { I18nextProvider } from 'react-i18next';
 import { VCDDatacentre, VCDOrganization } from '@ovh-ux/manager-module-vcd-api';
 import {
+  assertAsyncTextVisibility,
   assertTextVisibility,
-  getElementByTestId,
-  assertElementLabel,
+  initTestI18n,
 } from '@ovh-ux/manager-core-test-utils';
 import userEvent from '@testing-library/user-event';
 import DatacentreGeneralInformationTile from './DatacentreGeneralInformationTile.component';
-import { labels } from '../../../test-utils';
+import { labels, translations } from '../../../test-utils';
 import { ID_LABEL } from '../../../pages/dashboard/dashboard.constants';
 import TEST_IDS from '../../../utils/testIds.constants';
-import { TRACKING } from '../../../tracking.constants';
+import { APP_NAME, TRACKING } from '../../../tracking.constants';
 
 const trackClickMock = vi.fn();
 vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
@@ -22,17 +24,6 @@ vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
     ...original,
     useOvhTracking: () => ({ trackClick: trackClickMock }),
   };
-});
-
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      retry: false,
-    },
-    mutations: {
-      retry: false,
-    },
-  },
 });
 
 vi.mock('react-router-dom', () => ({
@@ -86,18 +77,40 @@ const datacentre = {
   },
 };
 
-describe('DatacentreGeneralInformationTile component unit test suite', () => {
-  it('should define tileTitle and sections', async () => {
-    const user = userEvent.setup();
-    // when
-    render(
+let i18n: i18nType;
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: false,
+    },
+    mutations: {
+      retry: false,
+    },
+  },
+});
+
+const renderComponent = async () => {
+  if (!i18n) {
+    i18n = await initTestI18n(APP_NAME, translations);
+  }
+
+  render(
+    <I18nextProvider i18n={i18n}>
       <QueryClientProvider client={queryClient}>
         <DatacentreGeneralInformationTile
           vcdOrganization={vcdOrg as VCDOrganization}
           vcdDatacentre={datacentre as VCDDatacentre}
         />
-      </QueryClientProvider>,
-    );
+      </QueryClientProvider>
+    </I18nextProvider>,
+  );
+};
+
+describe('DatacentreGeneralInformationTile component unit test suite', () => {
+  it('should define tileTitle and sections', async () => {
+    const user = userEvent.setup();
+    // when
+    renderComponent();
 
     // then
     const elements = [
@@ -113,16 +126,18 @@ describe('DatacentreGeneralInformationTile component unit test suite', () => {
       datacentre.currentState.vCPUCount.toString(),
     ];
 
-    elements.forEach(async (element) => assertTextVisibility(element));
+    // TESTING : check asynchronously for the first element, then check synchronously
+    await assertAsyncTextVisibility(elements[0]);
+    elements.slice(1).forEach(assertTextVisibility);
 
     // and
-    const webUrlLink = await getElementByTestId(
+    const webUrlLink = screen.getByTestId(
       TEST_IDS.dashboardDatacentreInterfaceLink,
     );
-    await assertElementLabel({
-      element: webUrlLink,
-      label: 'managed_vcd_dashboard_management_interface_access',
-    });
+    expect(webUrlLink).toHaveAttribute(
+      'label',
+      labels.dashboard.managed_vcd_dashboard_management_interface_access,
+    );
     expect(webUrlLink).toHaveAttribute(
       'href',
       vcdOrg.currentState.webInterfaceUrl,

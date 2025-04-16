@@ -2,18 +2,21 @@ import { act, render, screen } from '@testing-library/react';
 import { describe, it, vi, expect, afterEach, vitest } from 'vitest';
 import React from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { i18n as i18nType } from 'i18next';
+import { I18nextProvider } from 'react-i18next';
 import {
   ShellContext,
   ShellContextType,
 } from '@ovh-ux/manager-react-shell-client';
 import {
+  assertAsyncTextVisibility,
   assertTextVisibility,
-  getElementByTestId,
+  initTestI18n,
 } from '@ovh-ux/manager-core-test-utils';
 import userEvent from '@testing-library/user-event';
 import OrganizationOptionsTile from './OrganizationOptionsTile.component';
-import { labels } from '../../../test-utils';
-import { TRACKING } from '../../../tracking.constants';
+import { labels, translations } from '../../../test-utils';
+import { APP_NAME, TRACKING } from '../../../tracking.constants';
 import TEST_IDS from '../../../utils/testIds.constants';
 
 vi.stubGlobal('open', vi.fn());
@@ -27,6 +30,11 @@ vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
   };
 });
 
+afterEach(() => {
+  vitest.resetAllMocks();
+});
+
+let i18n: i18nType;
 const shellContext = {
   environment: {
     getRegion: vi.fn(),
@@ -34,21 +42,22 @@ const shellContext = {
   },
 };
 
-afterEach(() => {
-  vitest.resetAllMocks();
-});
-
-const renderComponent = () => {
+const renderComponent = async () => {
   const queryClient = new QueryClient();
+  if (!i18n) {
+    i18n = await initTestI18n(APP_NAME, translations);
+  }
 
   return render(
-    <QueryClientProvider client={queryClient}>
-      <ShellContext.Provider
-        value={(shellContext as unknown) as ShellContextType}
-      >
-        <OrganizationOptionsTile isLicenseActive={false} />
-      </ShellContext.Provider>
-    </QueryClientProvider>,
+    <I18nextProvider i18n={i18n}>
+      <QueryClientProvider client={queryClient}>
+        <ShellContext.Provider
+          value={(shellContext as unknown) as ShellContextType}
+        >
+          <OrganizationOptionsTile isLicenseActive={false} />
+        </ShellContext.Provider>
+      </QueryClientProvider>
+    </I18nextProvider>,
   );
 };
 
@@ -63,7 +72,9 @@ describe('OrganizationOptionsTile component unit test suite', () => {
       labels.dashboard.managed_vcd_dashboard_windows_license,
     ];
 
-    elements.forEach(async (element) => assertTextVisibility(element));
+    // TESTING : check asynchronously for the first element, then check synchronously
+    await assertAsyncTextVisibility(elements[0]);
+    elements.slice(1).forEach(assertTextVisibility);
   });
 
   it('should track click on activateLicense', async () => {
@@ -78,7 +89,7 @@ describe('OrganizationOptionsTile component unit test suite', () => {
     await act(() => user.click(menu));
 
     // and
-    const activateLicenseButton = await getElementByTestId(
+    const activateLicenseButton = screen.getByTestId(
       TEST_IDS.activateLicenseCta,
     );
 

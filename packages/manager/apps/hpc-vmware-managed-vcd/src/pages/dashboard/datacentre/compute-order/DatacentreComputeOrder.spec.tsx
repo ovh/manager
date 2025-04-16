@@ -1,14 +1,14 @@
 import React from 'react';
 import { vitest } from 'vitest';
-import { waitFor } from '@testing-library/dom';
+import { act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {
   organizationList,
   datacentreList,
 } from '@ovh-ux/manager-module-vcd-api';
 import {
-  assertTextVisibility,
-  getElementByTestId,
+  assertAsyncTextVisibility,
+  getAsyncElementByTestId,
 } from '@ovh-ux/manager-core-test-utils';
 import { labels, renderTest } from '../../../../test-utils';
 import TEST_IDS from '../../../../utils/testIds.constants';
@@ -35,10 +35,10 @@ describe('Datacentre Compute Order Page', () => {
       initialRoute: `/${organizationList[0].id}/datacentres/${datacentreList[0].id}/compute`,
     });
 
-    const orderButton = await getElementByTestId(TEST_IDS.computeOrderCta);
-    await waitFor(() => userEvent.click(orderButton));
+    const orderButton = await getAsyncElementByTestId(TEST_IDS.computeOrderCta);
+    await act(() => userEvent.click(orderButton));
 
-    await assertTextVisibility(orderTitle);
+    await assertAsyncTextVisibility(orderTitle);
   });
 
   it('display an error if orderableResource service is KO', async () => {
@@ -46,7 +46,7 @@ describe('Datacentre Compute Order Page', () => {
       initialRoute: `/${organizationList[0].id}/datacentres/${datacentreList[0].id}/compute/order`,
       isOrderableResourceKO: true,
     });
-    await assertTextVisibility(orderError);
+    await assertAsyncTextVisibility(orderError);
   });
 
   it('display an error if there is no orderableResource', async () => {
@@ -54,7 +54,7 @@ describe('Datacentre Compute Order Page', () => {
       initialRoute: `/${organizationList[0].id}/datacentres/${datacentreList[0].id}/compute/order`,
       nbOrderableResource: 0,
     });
-    await assertTextVisibility(orderError);
+    await assertAsyncTextVisibility(orderError);
   });
 
   it('display an error if catalog service is KO', async () => {
@@ -62,7 +62,7 @@ describe('Datacentre Compute Order Page', () => {
       initialRoute: `/${organizationList[0].id}/datacentres/${datacentreList[0].id}/compute/order`,
       isCatalogKO: true,
     });
-    await assertTextVisibility(orderError);
+    await assertAsyncTextVisibility(orderError);
   });
 
   it('display an error if there is no catalog products', async () => {
@@ -70,6 +70,6 @@ describe('Datacentre Compute Order Page', () => {
       initialRoute: `/${organizationList[0].id}/datacentres/${datacentreList[0].id}/compute/order`,
       nbCatalogProduct: 0,
     });
-    await assertTextVisibility(orderError);
+    await assertAsyncTextVisibility(orderError);
   });
 });

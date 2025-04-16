@@ -1,13 +1,9 @@
+import { screen } from '@testing-library/react';
 import {
   organizationList,
   datacentreList,
 } from '@ovh-ux/manager-module-vcd-api';
-import {
-  assertElementLabel,
-  assertElementVisibility,
-  assertTextVisibility,
-  getElementByTestId,
-} from '@ovh-ux/manager-core-test-utils';
+import { assertAsyncTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import { DEFAULT_LISTING_ERROR, labels, renderTest } from '../../../test-utils';
 import TEST_IDS from '../../../utils/testIds.constants';
 
@@ -19,18 +15,16 @@ describe('Datacentres Listing Page', () => {
     });
 
     // then
-    await assertTextVisibility(labels.datacentres.managed_vcd_vdc_title);
+    await assertAsyncTextVisibility(labels.datacentres.managed_vcd_vdc_title);
 
     // and
-    const vdcLink = await getElementByTestId(
-      TEST_IDS.listingDatacentreNameLink,
-    );
+    const vdcLink = screen.getByTestId(TEST_IDS.listingDatacentreNameLink);
 
-    await assertElementVisibility(vdcLink);
-    await assertElementLabel({
-      element: vdcLink,
-      label: datacentreList[0].currentState.name,
-    });
+    expect(vdcLink).toBeVisible();
+    expect(vdcLink).toHaveAttribute(
+      'label',
+      datacentreList[0].currentState.name,
+    );
   });
 
   it('display an error', async () => {
@@ -39,6 +33,6 @@ describe('Datacentres Listing Page', () => {
       isDatacentresKo: true,
     });
 
-    await assertTextVisibility(DEFAULT_LISTING_ERROR);
+    await assertAsyncTextVisibility(DEFAULT_LISTING_ERROR);
   });
 });
