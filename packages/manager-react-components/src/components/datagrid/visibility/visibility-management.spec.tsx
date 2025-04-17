@@ -45,6 +45,11 @@ describe('visibility management button part', () => {
             onChange: () => null,
           },
         ]}
+        columnsVisibilityHook={{
+          toggleAllColumnsVisible: () => null,
+          getIsAllColumnsVisible: () => false,
+          getIsSomeColumnsVisible: () => true,
+        }}
       />,
     );
 
@@ -79,6 +84,11 @@ describe('visibility management button part', () => {
             onChange: () => null,
           },
         ]}
+        columnsVisibilityHook={{
+          toggleAllColumnsVisible: () => null,
+          getIsAllColumnsVisible: () => false,
+          getIsSomeColumnsVisible: () => true,
+        }}
       />,
     );
 
@@ -115,15 +125,20 @@ describe('visibility management dropdown part', () => {
             onChange: () => null,
           },
         ]}
+        columnsVisibilityHook={{
+          toggleAllColumnsVisible: () => null,
+          getIsAllColumnsVisible: () => true,
+          getIsSomeColumnsVisible: () => true,
+        }}
       />,
     );
 
     const checkboxElements = screen.queryAllByRole('checkbox');
-    expect(checkboxElements[0]).toHaveProperty('checked', true);
-    expect(checkboxElements[0]).toHaveProperty('disabled', false);
-
     expect(checkboxElements[1]).toHaveProperty('checked', true);
     expect(checkboxElements[1]).toHaveProperty('disabled', false);
+
+    expect(checkboxElements[2]).toHaveProperty('checked', true);
+    expect(checkboxElements[2]).toHaveProperty('disabled', false);
   });
 
   it('should display visibility column disabled', async () => {
@@ -148,15 +163,20 @@ describe('visibility management dropdown part', () => {
             onChange,
           },
         ]}
+        columnsVisibilityHook={{
+          toggleAllColumnsVisible: () => null,
+          getIsAllColumnsVisible: () => false,
+          getIsSomeColumnsVisible: () => true,
+        }}
       />,
     );
 
     const checkboxElements = screen.queryAllByRole('checkbox');
-    expect(checkboxElements[0]).toHaveProperty('checked', true);
-    expect(checkboxElements[0]).toHaveProperty('disabled', true);
+    expect(checkboxElements[1]).toHaveProperty('checked', true);
+    expect(checkboxElements[1]).toHaveProperty('disabled', true);
 
-    expect(checkboxElements[1]).toHaveProperty('checked', false);
-    expect(checkboxElements[1]).toHaveProperty('disabled', false);
+    expect(checkboxElements[2]).toHaveProperty('checked', false);
+    expect(checkboxElements[2]).toHaveProperty('disabled', false);
 
     await act(() => fireEvent.click(checkboxElements[1]));
     expect(onChange).toHaveBeenCalled();
