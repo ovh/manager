@@ -26,6 +26,7 @@ export const ProductNavReshuffleProvider = ({
   }));
   const [isAnimated, setIsAnimated] = useState(false);
   const [isLocationChangesOnce, setIsLocationChangesOnce] = useState(false);
+  const [popoverPosition, setPopoverPosition] = useState<number>(0);
 
   const onboarding = useOnboarding();
 
@@ -119,7 +120,9 @@ export const ProductNavReshuffleProvider = ({
     setNavigationTree,
     isMobile,
     isAnimated,
-    setIsAnimated
+    setIsAnimated,
+    popoverPosition,
+    setPopoverPosition
   } satisfies ProductNavReshuffleContextType;
 
   return (

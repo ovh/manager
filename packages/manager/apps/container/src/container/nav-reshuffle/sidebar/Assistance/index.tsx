@@ -28,7 +28,6 @@ export interface AssistanceProps {
   isShort: boolean;
   selectedNode: Node;
   isLoading: boolean;
-  containerRef: MutableRefObject<any>;
 }
 
 const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
@@ -36,7 +35,6 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
   selectedNode,
   isShort,
   isLoading,
-  containerRef,
 }): JSX.Element => {
   const { t } = useTranslation('sidebar');
   const shell = useShell();
@@ -46,10 +44,8 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
   const urls = useURL(environment);
   const trackingPlugin = shell.getPlugin('tracking');
   const isEUOrCA = ['EU', 'CA'].includes(environment.getRegion());
-  const { closeNavigationSidebar, setIsAnimated } = useProductNavReshuffle();
+  const { closeNavigationSidebar, setPopoverPosition } = useProductNavReshuffle();
   const popoverAnchorRef = useRef(null);
-  const [bottomPosition, setBottomPosition] = useState(0);
-  const [portal, setPortal] = useState(null);
 
   useEffect(() => {
     nodeTree.children.forEach((node: Node) => {
@@ -110,61 +106,22 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
   }, []);
 
   useEffect(() => {
-    const updateBottomPosition = () => {
+    const updatePopoverPosition = () => {
       if (popoverAnchorRef?.current)
-        setBottomPosition(
+        setPopoverPosition(
           popoverAnchorRef.current.getBoundingClientRect().bottom,
         );
     };
-    updateBottomPosition();
+    updatePopoverPosition();
 
-    window.addEventListener('resize', updateBottomPosition);
-    window.addEventListener('scroll', updateBottomPosition, true);
+    window.addEventListener('resize', updatePopoverPosition);
+    window.addEventListener('scroll', updatePopoverPosition, true);
 
     return () => {
-      window.removeEventListener('resize', updateBottomPosition);
-      window.removeEventListener('scroll', updateBottomPosition, true);
+      window.removeEventListener('resize', updatePopoverPosition);
+      window.removeEventListener('scroll', updatePopoverPosition, true);
     };
   }, [popoverAnchorRef, isShort]);
-
-  useEffect(() => {
-    setPortal(
-      createPortal(
-        <div
-          className="flex justify-center my-2 position-fixed left-[2px] z-[10000]"
-          style={{
-            top: bottomPosition - 70,
-          }}
-        >
-          <OsdsPopover id="useful-links" role="menu">
-            <OsdsButton
-              slot="popover-trigger"
-              className="w-[4rem]"
-              color={ODS_THEME_COLOR_INTENT.primary}
-              variant={ODS_BUTTON_VARIANT.ghost}
-              size={ODS_BUTTON_SIZE.md}
-              title={t('sidebar_assistance_title')}
-              onClick={() => setIsAnimated(true)}
-              contrasted
-              id="useful-links-button"
-            >
-              <OsdsIcon
-                name={ODS_ICON_NAME.ELLIPSIS}
-                size={ODS_ICON_SIZE.sm}
-                contrasted
-              />
-            </OsdsButton>
-          <OsdsPopoverContent>
-              {nodeTree.children.map((node: Node) => (
-                <ShortAssistanceLinkItem key={node.id} node={node} />
-              ))}
-            </OsdsPopoverContent>
-          </OsdsPopover>
-        </div>,
-        containerRef?.current,
-      ),
-    );
-  }, [containerRef, bottomPosition, isShort]);
 
   const trackNode = (id: string) => {
     trackingPlugin.trackClick({
@@ -183,9 +140,6 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
           data-testid="short-assistance-link-popover-anchor"
         >
         </div>
-        {popoverAnchorRef?.current && bottomPosition && portal && (
-          <>{portal}</>
-        )}
       </>
     );
 
