@@ -89,7 +89,7 @@ const MenuItems = ({
               location: PageLocation.page,
               buttonType: ButtonType.button,
               actionType: 'navigation',
-              actions: ['add_instance'],
+              actions: [`add_instance_${flavor}`],
             });
           }}
         />
@@ -111,6 +111,7 @@ export default function ActionsCell({
   const editable = true;
 
   const onClickEdit = useCallback(() => onClickEditName(id), [id]);
+  const { trackClick } = useOvhTracking();
 
   return (
     <>
@@ -130,7 +131,15 @@ export default function ActionsCell({
         status={status}
         periodEndAction={periodEndAction}
         onClickEdit={onClickEdit}
-        onClickRenew={onClickRenew}
+        onClickRenew={() => {
+          onClickRenew();
+          trackClick({
+            location: PageLocation.funnel,
+            buttonType: ButtonType.button,
+            actionType: 'action',
+            actions: [`activate_automatic_renew_${flavor}`],
+          });
+        }}
       />
     </>
   );
