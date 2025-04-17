@@ -22,12 +22,19 @@ export default function ModalStepTwo({
 }: Readonly<ModalStepsProps>) {
   const { t } = useTranslation('allDom');
   const { renew, domain: serviceName } = serviceInfoDetail.serviceInfo;
-  const updateAllDomServiceMutation = useUpdateAllDomService(renew);
+  const updateAllDomServiceMutation = useUpdateAllDomService();
   const updateDomainServiceInfoMutation = useUpdateDomainServiceInfo();
 
   const handleTerminate = async () => {
     try {
-      await updateAllDomServiceMutation.mutateAsync(serviceName);
+      await updateAllDomServiceMutation.mutateAsync({
+        serviceName,
+        renewPayload: {
+          ...renew,
+          automatic: false,
+          deleteAtExpiration: true,
+        },
+      });
 
       await Promise.all(
         domainTerminateList.map((domainName) =>

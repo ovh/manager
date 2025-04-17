@@ -37,22 +37,25 @@ export const useGetAllDomainAttachedToAllDom = (serviceName: string) => {
   });
 };
 
-export const useUpdateAllDomService = (
-  serviceInfoRenew: Pick<
-    NonNullable<TServiceInfo['renew']>,
-    'automatic' | 'deleteAtExpiration' | 'forced' | 'manualPayment' | 'period'
-  >,
-) => {
+export const useUpdateAllDomService = () => {
   const queryClient = useQueryClient();
+
   return useMutation({
-    mutationFn: (serviceName: string) =>
-      updateAllDomService(serviceName, {
-        renew: {
-          ...serviceInfoRenew,
-          automatic: false,
-          deleteAtExpiration: true,
-        },
-      }),
+    mutationFn: ({
+      serviceName,
+      renewPayload,
+    }: {
+      serviceName: string;
+      renewPayload: Pick<
+        NonNullable<TServiceInfo['renew']>,
+        | 'automatic'
+        | 'deleteAtExpiration'
+        | 'forced'
+        | 'manualPayment'
+        | 'period'
+      >;
+    }) => updateAllDomService(serviceName, { renew: renewPayload }),
+
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['alldom'] });
     },
