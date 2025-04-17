@@ -44,5 +44,6 @@
   "octavia_load_balancer_create_size_flavour_description_3xl": "Zaprojektowana dla środowisk o krytycznym znaczeniu generujących duży ruch, gwarantuje maksymalną wydajność dzięki zwiększonej przepustowości.",
   "octavia_load_balancer_create_private_network": "Brak prywatnej sieci w wybranym regionie. Pamiętaj, aby <link /> przed utworzeniem Load Balancera.",
   "octavia_load_balancer_create_private_network_label": "utworzyć sieć prywatną",
-  "octavia_load_balancer_create_3az_guide_description": "Aby dowiedzieć się więcej o specyfikacjach usług 3-AZ i sposobach ich wykorzystania do projektowania odpornej infrastruktury, <Link>Kliknij tutaj</Link>"
+  "octavia_load_balancer_create_3az_guide_description": "Aby dowiedzieć się więcej o specyfikacjach usług 3-AZ i sposobach ich wykorzystania do projektowania odpornej infrastruktury, <Link>Kliknij tutaj</Link>",
+  "octavia_load_balancer_create_price_from": "Od {{price}}"
 }
