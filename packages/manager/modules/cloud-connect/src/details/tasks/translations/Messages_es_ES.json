@@ -8,7 +8,7 @@
   "cloud_connect_tasks_delPopConfiguration": "Eliminar la configuración PoP",
   "cloud_connect_tasks_addDatacenterConfiguration": "Añadir la configuración de la zona de disponibilidad",
   "cloud_connect_tasks_delDatacenterConfiguration": "Eliminar la configuración de la zona de disponibilidad",
-  "cloud_connect_tasks_addDatacenterExtraConfiguration": "Añadir una configuración adicional a la zona de disponibilidad",
+  "cloud_connect_tasks_addDatacenterExtraConfiguration": "Añadir una configuración adicional a las zonas de disponibilidad",
   "cloud_connect_tasks_delDatacenterExtraConfiguration": "Eliminar la configuración adicional de la zona de disponibilidad",
   "cloud_connect_tasks_status_todo": "Planificado",
   "cloud_connect_tasks_status_doing": "En proceso",
