@@ -806,10 +806,6 @@ export default class Server {
         urlParams: {
           serviceName,
         },
-        params: {
-          type: 'ovh',
-          mode: 'new',
-        },
       },
     );
   }
