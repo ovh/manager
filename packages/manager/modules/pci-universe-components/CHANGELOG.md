@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.39](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-pci-universe-components@1.1.38...@ovh-ux/ng-ovh-pci-universe-components@1.1.39) (2025-04-17)
+
+**Note:** Version bump only for package @ovh-ux/ng-ovh-pci-universe-components
+
+
+
+
+
 ## [1.1.38](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-pci-universe-components@1.1.37...@ovh-ux/ng-ovh-pci-universe-components@1.1.38) (2025-04-10)
 
 **Note:** Version bump only for package @ovh-ux/ng-ovh-pci-universe-components

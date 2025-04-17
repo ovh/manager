@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.10.2...@ovh-ux/manager-veeam-backup-app@0.11.0) (2025-04-17)
+
+
+### Features
+
+* **veeam-backup:** update routes definition ([ee2bdcc](https://github.com/ovh/manager/commit/ee2bdcc72011dcc845da71064b5799a1a2e6caed)), closes [#MANAGER-17686](https://github.com/ovh/manager/issues/MANAGER-17686)
+
+
+
+
+
 ## [0.10.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.10.1...@ovh-ux/manager-veeam-backup-app@0.10.2) (2025-04-10)
 
 **Note:** Version bump only for package @ovh-ux/manager-veeam-backup-app

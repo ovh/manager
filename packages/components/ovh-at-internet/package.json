@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ovh-at-internet",
-  "version": "0.21.5",
+  "version": "0.21.6",
   "description": "ATInternet tracking library for OVHcloud.",
   "keywords": [
     "at-internet",
@@ -34,7 +34,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-config' --include-dependencies -- yarn run dev:watch"
   },
   "devDependencies": {
-    "@ovh-ux/manager-config": "^8.2.0"
+    "@ovh-ux/manager-config": "^8.2.1"
   },
   "peerDependencies": {
     "@ovh-ux/manager-config": "^8.0.1"

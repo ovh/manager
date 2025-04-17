@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.19.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.19.4...@ovh-ux/manager-pci-kubernetes-app@0.19.5) (2025-04-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app
+
+
+
+
+
 ## [0.19.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.19.3...@ovh-ux/manager-pci-kubernetes-app@0.19.4) (2025-04-10)
 
 

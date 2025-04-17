@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.17.1...@ovh-ux/manager-pci-databases-analytics-app@1.18.0) (2025-04-17)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3855] ([e579be0](https://github.com/ovh/manager/commit/e579be0d9e667562424ecba54edc0b001fd6412b))
+
+
+### Features
+
+* **container:** removal of legacy sidebar code from ux plugin ([e129b59](https://github.com/ovh/manager/commit/e129b5945106b1e23a2b8c3d9b576281b5d09497)), closes [#MANAGER-15625](https://github.com/ovh/manager/issues/MANAGER-15625)
+
+
+
+
+
 ## [1.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.17.0...@ovh-ux/manager-pci-databases-analytics-app@1.17.1) (2025-04-10)
 
 

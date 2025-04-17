@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.7.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@2.7.8...@ovh-ux/manager-nutanix@2.7.9) (2025-04-17)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3855] ([e579be0](https://github.com/ovh/manager/commit/e579be0d9e667562424ecba54edc0b001fd6412b))
+
+
+
+
+
 ## [2.7.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@2.7.7...@ovh-ux/manager-nutanix@2.7.8) (2025-04-17)
 
 **Note:** Version bump only for package @ovh-ux/manager-nutanix
