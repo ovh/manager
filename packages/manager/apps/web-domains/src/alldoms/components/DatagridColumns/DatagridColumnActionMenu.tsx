@@ -2,8 +2,8 @@ import { ActionMenu } from '@ovh-ux/manager-react-components';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
 import { TServiceDetail } from '@/alldoms/types';
-import { useUpdateAllDomService } from '@/alldoms/hooks/data/query';
 import { ServiceInfoRenewMode } from '@/alldoms/enum/service.enum';
 
 interface DatagridColumnActionMenuProps {
@@ -18,8 +18,10 @@ export default function DatagridColumnActionMenu({
   openModal,
 }: DatagridColumnActionMenuProps) {
   const { t } = useTranslation('allDom');
-  const { automatic } = serviceInfoDetail.serviceInfo.renew;
-  const updateAllDomServiceMutation = useUpdateAllDomService();
+  const { mode } = serviceInfoDetail.serviceInfo.billing.renew.current;
+  const { data: billingUrl } = useNavigationGetUrl(['manager', '/billing', {}]);
+  const renewAction =
+    mode === ServiceInfoRenewMode.Automatic ? 'disable' : 'enable';
 
   return (
     <ActionMenu
@@ -41,19 +43,9 @@ export default function DatagridColumnActionMenu({
         },
         {
           id: 3,
-          label: automatic
-            ? t('allDom_table_action_disable_renewal')
-            : t('allDom_table_action_enable_renewal'),
-          onClick: () => {
-            updateAllDomServiceMutation.mutateAsync({
-              serviceName: serviceInfoDetail.allDomProperty.name,
-              renew: {
-                mode: automatic
-                  ? ServiceInfoRenewMode.Manual
-                  : ServiceInfoRenewMode.Automatic,
-              },
-            });
-          },
+          label: t(`allDom_table_action_${renewAction}_renewal`),
+          href: `${billingUrl}/autorenew/${renewAction}?selectedType=ALL_DOMsearchText=${serviceInfoDetail.allDomProperty.name}&services=${serviceId}`,
+          target: '_blank',
         },
       ]}
     />

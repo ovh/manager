@@ -1,7 +1,5 @@
 import {
-  ServiceInfoRenewEnum,
   ServiceInfoRenewMode,
-  ServiceInfoStatus,
   ServiceInfoType,
 } from '@/alldoms/enum/service.enum';
 
@@ -12,26 +10,21 @@ export interface TServiceDetail {
 }
 
 export interface TServiceInfo {
-  canDeleteAtExpiration: boolean;
-  contactAdmin: string;
-  contactBilling: string;
-  contactTech: string;
-  creation: string;
-  domain: string;
-  engagedUpTo: Date | null;
-  expiration: string;
-  possibleRenewPeriod: number[];
-  renew: {
-    automatic: boolean;
-    deleteAtExpiration: boolean;
-    forced: boolean;
-    manualPayment: boolean | null;
-    period: number | null;
-  } | null;
-  renewalType: ServiceInfoRenewEnum;
   serviceId: number;
-  status: ServiceInfoStatus;
-  name?: string;
+  billing: {
+    expirationDate: string | null;
+    renew: {
+      current: {
+        mode: ServiceInfoRenewMode | null;
+      };
+    } | null;
+  };
+  customer: {
+    contacts: {
+      customerCode: string;
+      type: string;
+    }[];
+  };
 }
 
 export interface TServiceProperty {
