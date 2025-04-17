@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.1.5...@ovh-ux/manager-web-office-app@0.1.6) (2025-04-17)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3862] ([c3e700a](https://github.com/ovh/manager/commit/c3e700a4432f915c9f1215fc8bb352367afef416))
+* **i18n:** add missing translations [CDS 3866] ([745cd6e](https://github.com/ovh/manager/commit/745cd6ef5993c4af4390efa6b4bf7eccd58d2198))
+* **i18n:** add missing translations [CDS 3874] ([9a482ac](https://github.com/ovh/manager/commit/9a482ac0c2fbed2125f9de3b46a9bd7e237f5e01))
+
+
+
+
+
 ## [0.1.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.1.4...@ovh-ux/manager-web-office-app@0.1.5) (2025-04-15)
 
 

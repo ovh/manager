@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.18.1...@ovh-ux/manager-react-components@2.19.0) (2025-04-17)
+
+### Bug Fixes
+
+- **mrc:** make card see-more link bottom anchored ([#16556](https://github.com/ovh/manager/issues/16556)) ([09ee2c0](https://github.com/ovh/manager/commit/09ee2c0a0aaa9584cecbd09d4027344fea1f93e3)), closes [#15788](https://github.com/ovh/manager/issues/15788)
+
+### Features
+
+- **manager-react-components:** datagrid component add filterVariant and filterLabel props ([e6305fc](https://github.com/ovh/manager/commit/e6305fca710d578312cee8188555408a92bf5c75)), closes [#MANAGER-17858](https://github.com/ovh/manager/issues/MANAGER-17858)
+
 ## [2.18.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.18.0...@ovh-ux/manager-react-components@2.18.1) (2025-04-10)
 
 ### Bug Fixes
