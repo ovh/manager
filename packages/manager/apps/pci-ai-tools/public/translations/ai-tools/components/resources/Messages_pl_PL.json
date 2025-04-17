@@ -1,0 +1,12 @@
+{
+  "powerTitleSection": "Power",
+  "computeTitleSection": "Compute",
+  "storageTitleSection": "Storage",
+  "gpuMemoryField": "{{ gpu }} x {{ memory }} RAM",
+  "gcuComputeField": "CPU: {{ cpu }} vCores ",
+  "memoryField": "RAM: {{ memory }}",
+  "publicNetworkField": "Sieć publiczna: {{ network }}/s",
+  "temporaryLocalStorageField": "Lokalna krótkotrwała przestrzeń dyskowa: {{ storage }} SSD",
+  "temporaryLocalStorageHelper": "Wydajna, ale nie zapisana lokalna przestrzeń dyskowa",
+  "modifyLabel": "Zmień"
+}
