@@ -13,7 +13,7 @@ vi.mock('react-router-dom', async () => {
     ],
     useParams: () => ({
       projectId: 'project-id',
-      snapshotId: 'snapshot-id',
+      backupId: 'backup-id',
       kubeId: 'kube-id',
     }),
     useHref: vi.fn().mockImplementation((to: string) => to),
