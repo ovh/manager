@@ -16,10 +16,20 @@ import {
   modalString,
   modalStringArgument,
 } from '@/__mocks__/modal';
+import { serviceInfo } from '@/__mocks__/serviceInfo';
 
 vi.mock('react-router-dom', () => ({
   useNavigate: () => vi.fn(() => null),
   Navigate: vi.fn(() => null),
+}));
+
+vi.mock('@/hooks/data/query', () => ({
+  useGetDomainInformation: vi.fn(() => {
+    return {
+      isLoading: false,
+      data: serviceInfo,
+    };
+  }),
 }));
 
 describe('Modal by argument', () => {
@@ -40,7 +50,7 @@ describe('Modal by argument', () => {
       },
     });
 
-    render(<Modal universe="domain" data={modalContact} />, {
+    render(<Modal universe="domain" operation={modalContact} />, {
       wrapper,
     });
 
@@ -70,7 +80,7 @@ describe('Modal by argument', () => {
         actions: true,
       },
     });
-    render(<Modal universe="domain" data={modalDocument} />, {
+    render(<Modal universe="domain" operation={modalDocument} />, {
       wrapper,
     });
 
@@ -93,7 +103,7 @@ describe('Modal by argument', () => {
         actions: true,
       },
     });
-    render(<Modal universe="domain" data={modalString} />, {
+    render(<Modal universe="domain" operation={modalString} />, {
       wrapper,
     });
 

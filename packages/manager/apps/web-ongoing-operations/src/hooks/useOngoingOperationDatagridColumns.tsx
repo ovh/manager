@@ -1,15 +1,14 @@
 import React, { useMemo } from 'react';
 import { useTranslation, getI18n } from 'react-i18next';
 import { ActionMenu, DataGridTextCell } from '@ovh-ux/manager-react-components';
-import { OdsLink } from '@ovhcloud/ods-components/react';
 import { useNavigate } from 'react-router-dom';
 import { TOngoingOperations } from 'src/types';
 import { FilterCategories } from '@ovh-ux/manager-core-api';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
 import { ParentEnum } from '@/enum/parent.enum';
 import { formatDatagridDate, removeQuotes } from '@/utils/utils';
-import OngoingOperationDatagridBadge from '@/components/OngoingOperationDatagridBadge/OngoingOperationDatagridBadge';
+import OngoingOperationDatagridDomain from '@/components/OngoingOperationDatagrid/OngoingOperationDatagridDomain';
+import OngoingOperationDatagridBadge from '@/components/OngoingOperationDatagrid/OngoingOperationDatagridBadge';
 import { DNS_OPERATIONS_TABLE_HEADER_DOMAIN } from '@/pages/dashboard/Dashboard';
 
 export const useOngoingOperationDatagridColumns = (
@@ -20,30 +19,14 @@ export const useOngoingOperationDatagridColumns = (
   const { t } = useTranslation('dashboard');
   const l = getI18n();
   const navigate = useNavigate();
-  const { data: url } = useNavigationGetUrl(['web', '', {}]);
-  let information = '';
-  if (parent === ParentEnum.DOMAIN) {
-    information = `/information`;
-  }
 
   return useMemo(
     () => [
       {
         id: parent,
-        cell: (props: TOngoingOperations) => {
-          const value: string = props[parent];
-          return (
-            <DataGridTextCell>
-              <OdsLink
-                href={`${url}/${parent}/${value}${information}`}
-                label={value}
-                target="_blank"
-                data-testid={value}
-                isDisabled={!url}
-              />
-            </DataGridTextCell>
-          );
-        },
+        cell: (props: TOngoingOperations) => (
+          <OngoingOperationDatagridDomain parent={parent} props={props} />
+        ),
         label:
           parent === ParentEnum.DOMAIN
             ? t('domain_operations_table_header_domain')

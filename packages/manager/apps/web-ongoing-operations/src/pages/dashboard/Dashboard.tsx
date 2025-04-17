@@ -60,14 +60,19 @@ export default function DashboardPage() {
       tabs={
         <OdsTabs>
           {tabsList.map((tab: DashboardTabItemProps) => (
-            <OdsTab
+            <NavLink
               key={`osds-tab-bar-item-${tab.name}`}
-              isSelected={activePanel === tab.name}
+              to={tab.to}
+              className="no-underline"
             >
-              <NavLink to={tab.to} className="no-underline">
+              <OdsTab
+                id={tab.name}
+                role="tab"
+                isSelected={activePanel === tab.name}
+              >
                 {tab.title}
-              </NavLink>
-            </OdsTab>
+              </OdsTab>
+            </NavLink>
           ))}
         </OdsTabs>
       }

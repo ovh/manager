@@ -124,5 +124,13 @@
   "wizard_cancel": "Cancel",
   "wizard_confirm": "Confirm",
   "domain_operations_update_key_authinfo": "AuthInfo",
-  "domain_operations_update_key_authInfo": "AuthInfo"
+  "domain_operations_update_key_authInfo": "AuthInfo",
+  "domain_operations_nicOperation_DnssecEnable": "Enable DNSSEC",
+  "domain_operations_nicOperation_ZoneCut": "DNS zone delegation",
+  "domain_operations_nicOperation_ZoneDelete": "Deleting the DNS zone",
+  "domain_operations_nicOperation_Zonerestore": "Restoring the DNS zone",
+  "domain_operations_update_key_legitimacyAfnic": "Justify your domain name usage",
+  "domain_operations_update_contact_administrator": "Contact your administrator to correct this problem.",
+  "domain_operations_nicOperation_ZoneRestore": "Restoring the DNS zone",
+  "wizard_close": "Close"
 }
