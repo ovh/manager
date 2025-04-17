@@ -33,5 +33,7 @@
   "kube_common_add_node_pool": "Añadir el pool de nodos",
   "kube_common_min_max_nodes": "Min {{minNodes}}, Max {{maxNodes}}",
   "kube_common_estimation_price": "Gratuito durante la fase beta.",
-  "kube_common_cluster_estimation_price": "Clúster: {{estimation}}"
+  "kube_common_cluster_estimation_price": "Clúster: {{estimation}}",
+  "kube_common_node_pool_deploy_title": "Selección de la zona de disponibilidad",
+  "kube_common_node_pool_deploy_description": "En un cluster Kubernetes repartido en tres zonas de disponibilidad (AZ), se recomienda utilizar pools de nodos por zona para garantizar la resiliencia y la alta disponibilidad. Esta configuración le permite distribuir de manera equilibrada sus cargas de trabajo entre las AZ. Mejora así la tolerancia a fallos y garantiza una continuidad del servicio óptima."
 }
