@@ -185,18 +185,6 @@ export default /* @ngInject */ ($stateProvider) => {
       },
 
       /**
-       * contains all planed Pci Maintenance
-       */
-      steins: /* @ngInject */ ($http) =>
-        $http
-          .get('/cloud/migrationStein')
-          .then(({ data: steins }) =>
-            steins.sort(
-              (stein1, stein2) => new Date(stein1.date) - new Date(stein2.date),
-            ),
-          ),
-
-      /**
        * Available links
        */
       links: /* @ngInject */ (pciFeatures) =>

@@ -14,7 +14,6 @@ export default {
     generalInformationLink: '<',
     attachDataLink: '<',
     goToUsersAndTokens: '<',
-    steins: '<',
     customerRegions: '<',
     notebooksRegions: '<',
     trackNotebooks: '<',

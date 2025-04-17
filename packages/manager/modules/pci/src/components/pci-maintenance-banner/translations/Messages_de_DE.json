@@ -1,6 +1,0 @@
-{
-  "pci_projects_maintenance_banner_info_project_page": "Wartungsarbeiten: Dies betrifft mindestens einen der Dienste, die mit Ihrem Projekt {{projectName}} verbundenen sind.",
-  "pci_projects_maintenance_banner_info_list_page": "Wartungsarbeiten: Mindestens eine Ihrer Dienste {{productName}} ist betroffen.",
-  "pci_projects_maintenance_banner_info_product_page": "Wartungsarbeiten: Ihr Dienst {{productServiceName}} ist gerade von Wartungsarbeiten betroffen.",
-  "pci_projects_maintenance_banner_info_link": "Mehr erfahren."
-}

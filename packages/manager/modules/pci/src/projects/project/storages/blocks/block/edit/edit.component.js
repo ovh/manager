@@ -9,7 +9,6 @@ export default {
     catalogEndpoint: '<',
     storageId: '<',
     storage: '<',
-    steins: '<',
     customerRegions: '<',
     storagesRegions: '<',
     goBack: '<',

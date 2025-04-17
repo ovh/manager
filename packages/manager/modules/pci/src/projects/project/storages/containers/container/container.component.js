@@ -19,7 +19,6 @@ export default {
     trackClick: '<',
     projectId: '<',
     refresh: '<',
-    steins: '<',
     customerRegions: '<',
     containersRegions: '<',
     trackingPrefix: '<',

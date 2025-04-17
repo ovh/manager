@@ -46,15 +46,6 @@
         data-ng-if="$ctrl.loading"
     ></oui-spinner>
 
-    <pci-maintenance-banner
-        data-ng-if="!$ctrl.loading"
-        data-steins="$ctrl.steins"
-        data-customer-regions="$ctrl.customerRegions"
-        data-product-regions="$ctrl.instancesRegions"
-        data-is-list-page="true"
-        data-product-name=":: 'pci_projects_project_instances_title' | translate"
-    ></pci-maintenance-banner>
-
     <pci-announcement-banner
         data-get-state-name="$ctrl.getStateName()"
         data-on-go-to-region="$ctrl.goToRegion()"

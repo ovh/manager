@@ -16,7 +16,6 @@ export default {
     actions: '<',
     getQuotaUrl: '<',
     getStateName: '<',
-    steins: '<',
     customerRegions: '<',
     goToProject: '<',
     goToProjects: '<',
