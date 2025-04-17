@@ -30,7 +30,11 @@ export const getAllDomainAttachedToAllDom = async (
 export const getallDomService = async (
   serviceName: string,
 ): Promise<TServiceInfo> => {
-  const { data } = await v6.get(`/allDom/${serviceName}/serviceInfos`);
+  const { data: serviceNameId } = await v6.get(
+    `/services?resourceName=${serviceName}`,
+  );
+
+  const { data } = await v6.get(`/services/${serviceNameId}`);
   return data;
 };
 
