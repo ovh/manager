@@ -34,6 +34,8 @@ export const IpGameFirewallDisplay = ({
         <BadgeCell
           badgeColor={ODS_BADGE_COLOR.information}
           text={t('listingColumnsIpGameFirewallAvailable')}
+          tooltip={t('listingColumnsIpGameFirewallAvailableTooltip')}
+          trigger={id}
         />
       )}
       {enabled &&
