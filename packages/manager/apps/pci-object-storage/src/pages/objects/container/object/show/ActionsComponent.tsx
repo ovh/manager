@@ -1,13 +1,16 @@
 import { ActionMenu } from '@ovh-ux/manager-react-components';
-import { ShellContext, useTracking } from '@ovh-ux/manager-react-shell-client';
+import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { useContext, useMemo } from 'react';
+import { useMemo } from 'react';
 import {
+  APP_NAME,
   STATUS_DISABLED,
   STATUS_SUSPENDED,
-  TRACKING_PREFIX,
+  SUB_UNIVERSE,
+  UNIVERSE,
 } from '@/constants';
 import { TObject } from '@/api/data/container';
 import { downloadObject } from '@/api/data/download';
@@ -33,7 +36,7 @@ export default function ActionsComponent({
 }>) {
   const { t } = useTranslation('container');
 
-  const { tracking } = useContext(ShellContext).shell;
+  const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
 
   const { projectId } = useParams();
@@ -57,9 +60,15 @@ export default function ActionsComponent({
   );
 
   const handleDownload = async () => {
-    tracking?.trackClick({
-      name: `${TRACKING_PREFIX}object::download-file`,
-      type: 'action',
+    trackClick({
+      actions: [
+        `${UNIVERSE}`,
+        `${SUB_UNIVERSE}`,
+        `${APP_NAME}`,
+        `${object.name || object.key}`,
+        'button',
+        'download_object_versioning',
+      ],
     });
 
     await downloadObject(object, container, projectId);
@@ -81,6 +90,16 @@ export default function ActionsComponent({
         'pci_projects_project_storages_containers_container_show_versions',
       ),
       onClick: () => {
+        trackClick({
+          actions: [
+            `${UNIVERSE}`,
+            `${SUB_UNIVERSE}`,
+            `${APP_NAME}`,
+            `${object.name || object.key}`,
+            'button',
+            'details_object_versioning',
+          ],
+        });
         const baseUrl = `./${encodeName(
           object.name || object.key,
         )}/versions?region=${container.region}`;
@@ -94,6 +113,16 @@ export default function ActionsComponent({
         'pci_projects_project_storages_containers_container_delete_label',
       ),
       onClick: () => {
+        trackClick({
+          actions: [
+            `${UNIVERSE}`,
+            `${SUB_UNIVERSE}`,
+            `${APP_NAME}`,
+            `${object.name || object.key}`,
+            'button',
+            'delete_object_versioning',
+          ],
+        });
         const baseUrl = `./${encodeName(
           object.name || object.key,
         )}/delete?region=${container.region}`;
@@ -127,5 +156,12 @@ export default function ActionsComponent({
     },
   ].filter(Boolean);
 
-  return <ActionMenu id={object.index} items={items} isCompact />;
+  return (
+    <ActionMenu
+      id={object.index}
+      items={items}
+      isCompact
+      variant={ODS_BUTTON_VARIANT.ghost}
+    />
+  );
 }
