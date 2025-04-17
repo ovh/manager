@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.120.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.119.0...@ovh-ux/manager-container-app@0.120.0) (2025-04-17)
+
+
+### Features
+
+* **container:** add specific text for us guided tour ([#15903](https://github.com/ovh/manager/issues/15903)) ([cff7988](https://github.com/ovh/manager/commit/cff7988ae87fab771d0e4ba5fa5c04d7aa86bda7)), closes [#MANAGER-17158](https://github.com/ovh/manager/issues/MANAGER-17158)
+* **container:** move helpcenter links to the top ([#16352](https://github.com/ovh/manager/issues/16352)) ([b5272d2](https://github.com/ovh/manager/commit/b5272d259c7feab8f6717946d666f486932712fe)), closes [#MANAGER-15633](https://github.com/ovh/manager/issues/MANAGER-15633)
+* **pnr:** remove metrics data platform ([#16473](https://github.com/ovh/manager/issues/16473)) ([522c7cf](https://github.com/ovh/manager/commit/522c7cfc0282dc7b09c804d03923f5f2c5ea0454)), closes [#MANAGER-16671](https://github.com/ovh/manager/issues/MANAGER-16671)
+
+
+
+
+
 # [0.119.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.118.2...@ovh-ux/manager-container-app@0.119.0) (2025-04-15)
 
 

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.35.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.34.1...@ovh-ux/manager-new-billing@0.35.0) (2025-04-17)
+
+
+### Bug Fixes
+
+* **billing:** rename extra sql perso status type and manage actions ([#16003](https://github.com/ovh/manager/issues/16003)) ([f31b266](https://github.com/ovh/manager/commit/f31b2665e16f8e751774092fac3356d8556cbc69)), closes [#WEB-20255](https://github.com/ovh/manager/issues/WEB-20255)
+
+
+### Features
+
+* **billing:** add filter and sort on agreements listing page ([#16302](https://github.com/ovh/manager/issues/16302)) ([c193c21](https://github.com/ovh/manager/commit/c193c211b11185805f24cd57282a94a5d57f1a91)), closes [#MANAGER-17517](https://github.com/ovh/manager/issues/MANAGER-17517)
+
+
+
+
+
 ## [0.34.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.34.0...@ovh-ux/manager-new-billing@0.34.1) (2025-04-10)
 
 
