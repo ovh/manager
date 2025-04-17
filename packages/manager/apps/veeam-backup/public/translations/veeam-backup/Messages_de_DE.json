@@ -9,7 +9,7 @@
   "update_veeam_backup_display_name_success": "Der Name wurde erfolgreich geändert.",
   "coming_soon": "Demnächst",
   "unknown_date": "–",
-  "no_organization_message": "Sie haben derzeit keinen VMware Cloud Director-Dienst. Wenn Sie mehr über unser Managed VMware Cloud Director Produkt erfahren möchten, besuchen Sie unsere Seite",
+  "no_organization_message": "Sie haben derzeit keinen VMware Cloud Director-Dienst. Wenn Sie mehr über unser Managed VMware Cloud Director Produkt erfahren möchten, besuchen Sie unsere <ExternalLink>Seite</ExternalLink>.",
   "no_organization_link": "Seite ansehen",
   "update_display_name_confirm_button": "Ändern",
   "status-READY": "Abonniert",
