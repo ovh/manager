@@ -18,7 +18,6 @@ import delegate from './delegate/delegate.module';
 import email from './email/email.module';
 import generalInformations from './general-informations/information.module';
 import mailingList from './mailing-list/mailing-list.module';
-import order from './order';
 import routing from './email.routing';
 import task from './task/task.module';
 import upgrade from './upgrade';
@@ -36,7 +35,6 @@ angular
     'ngUiRouterLayout',
     ngPaginationFront,
     ngTranslateAsyncLoader,
-    order,
     'oui',
     'pascalprecht.translate',
     task,
