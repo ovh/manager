@@ -26,7 +26,7 @@
         ></p>
         <p
             data-ng-if="$ctrl.service.isEngaged() && !$ctrl.service.isEngagementExpired()"
-            data-translate="{{ $ctrl.hasDiscountAvailable ? 'billing_commitment_commit_again_description_with_discount' : 'billing_commitment_commit_again_description' }}"
+            data-translate="{{ $ctrl.hasDiscountAvailable ? $ctrl.billingCommitmentCommitAgainDescriptionWithDiscountTranslationKey : $ctrl.billingCommitmentCommitAgainDescriptionTranslationKey }}"
             data-translate-values="{
                 serviceName: $ctrl.service.name,
                 endDate: $ctrl.service.engagementEndDate || $ctrl.service.expirationDate,
@@ -82,7 +82,7 @@
             submit-text="{{:: 'billing_commitment_summit' | translate }}"
         >
             <p
-                data-translate="{{ 'billing_commitment_summary_description_' + $ctrl.model.engagement.commitmentType }}"
+                data-translate="{{ ::$ctrl.billingCommitmentSummaryDescriptionTranslationKey }}"
                 data-translate-values="{
                     serviceName: '<strong>' + $ctrl.service.name + '</strong>',
                     renewDate: $ctrl.formattedStartingDate,
@@ -93,7 +93,7 @@
                 }"
             ></p>
             <p
-                data-translate="{{ 'billing_commitment_summary_description_' + $ctrl.model.engagement.commitmentType + '_end' }}"
+                data-translate="{{ ::$ctrl.billingCommitmentSummaryDescriptionEndTranslationKey }}"
                 data-translate-values="{
                     serviceName: '<strong>' + $ctrl.service.name + '</strong>',
                     engagementEndDate: $ctrl.model.engagement.getEndDate($ctrl.startingDate)
