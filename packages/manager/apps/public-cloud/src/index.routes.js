@@ -61,8 +61,10 @@ export default /* @ngInject */ (
   $stateProvider.state('app.redirect', {
     url: '?onboarding&redirectState',
     resolve: {
-      redirect: /* @ngInject */ ($state, $stateParams) =>
-        $state.go('pci.projects.onboarding', $stateParams),
+      redirect: /* @ngInject */ ($state, $stateParams) => {
+        console.log('Redireting.....');
+        return $state.go('pci.projects.onboarding', $stateParams);
+      },
     },
   });
 
