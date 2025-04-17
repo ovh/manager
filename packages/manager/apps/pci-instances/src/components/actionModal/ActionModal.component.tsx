@@ -32,7 +32,9 @@ export const ActionModal = ({
     variant={variant}
   >
     {isPending ? (
-      <Spinner />
+      <div className="pt-8">
+        <Spinner />
+      </div>
     ) : (
       <ActionModalContent type={section} instanceName={instanceName}>
         {children}

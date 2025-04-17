@@ -51,6 +51,7 @@ const BaseInstanceActionPage: FC<TBaseInstanceActionPageProps> = ({
       handleModalClose={handleModalClose}
       instanceName={instance.name}
       section={section}
+      variant={section === 'delete' ? 'warning' : 'primary'}
     />
   );
 };
