@@ -3,12 +3,15 @@ import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { StepComponent } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import { AGORA_ADDON_FAMILY, PRODUCT_LINK } from '@/constants';
+import { PRODUCT_LINK } from '@/constants';
 import SizeInputComponent from './input/SizeInput.component';
 import { StepsEnum, useCreateStore } from '@/pages/create/store';
 import { useTracking } from '@/pages/create/hooks/useTracking';
 import { useColumnsCount } from '@/pages/create/hooks/useColumnsCount';
-import { useRegionAddons } from '@/api/hook/useAddons/useAddons';
+import { useAddons } from '@/api/hook/useAddons/useAddons';
+import { AGORA_ADDON_FAMILY } from '@/api/hook/useAddons/useAddons.constant';
+import { TProductAddonDetail } from '@/types/product.type';
+import { filterProductRegionBySize } from '@/api/hook/useAddons/useAddons.select';
 
 export type TSizeStepProps = {
   ovhSubsidiary: string;
@@ -27,11 +30,12 @@ export const SizeStep = ({
 
   const store = useCreateStore();
 
-  const { addons } = useRegionAddons({
+  const { addons } = useAddons({
     ovhSubsidiary,
     projectId,
-    region: store.region?.name || '',
     addonFamily: AGORA_ADDON_FAMILY,
+    select: (products: TProductAddonDetail[]) =>
+      filterProductRegionBySize(products, store.region?.name || ''),
   });
 
   return (
