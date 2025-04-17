@@ -24,7 +24,7 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useGetMeModels } from '@/data/hooks/organisation/useGetMeModels';
 import { useGetSingleOrganisationDetail } from '@/data/hooks/organisation';
-import { postOrganisations, OrgDetails } from '@/data/api';
+import { postorputOrganisations, OrgDetails } from '@/data/api';
 import Loading from '../components/Loading/Loading';
 import '../../../../index.scss';
 
@@ -53,7 +53,7 @@ export const OpenOrganisationsModal: React.FC<{ isOpen: boolean }> = ({
     control,
     handleSubmit,
     formState: { isDirty, isValid, isSubmitted, errors },
-  } = useForm({
+  } = useForm<OrgDetails>({
     defaultValues,
   });
 
@@ -75,7 +75,7 @@ export const OpenOrganisationsModal: React.FC<{ isOpen: boolean }> = ({
 
   const { mutate: postManageOrganisation, isPending: isSending } = useMutation({
     mutationFn: (params: OrgDetails) => {
-      return postOrganisations(params, isEditMode);
+      return postorputOrganisations(params, isEditMode);
     },
     onSuccess: () => {
       clearNotifications();
