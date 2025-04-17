@@ -844,9 +844,6 @@ export default class Server {
           template,
           partitionScheme,
         },
-        params: {
-          type: 'ovh',
-        },
       },
     );
   }
