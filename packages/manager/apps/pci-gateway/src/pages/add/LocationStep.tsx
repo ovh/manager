@@ -1,4 +1,7 @@
-import { StepComponent } from '@ovh-ux/manager-react-components';
+import {
+  StepComponent,
+  useCatalogPrice,
+} from '@ovh-ux/manager-react-components';
 import {
   RegionSelector,
   usePCICommonContextFactory,
@@ -6,10 +9,6 @@ import {
   TDeployment,
   DeploymentTilesInput,
   TProductAvailabilityRegion,
-  usePCIFeatureAvailability,
-  getDeploymentComingSoonKey,
-  DEPLOYMENT_FEATURES,
-  DEPLOYMENT_MODES_TYPES,
 } from '@ovh-ux/manager-pci-common';
 import { useTranslation } from 'react-i18next';
 import { useContext, useMemo, useState } from 'react';
@@ -25,6 +24,7 @@ import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { StepsEnum, useNewGatewayStore } from '@/pages/add/useStore';
 import { RegionType } from '@/types/region';
+import { useDeployments } from '@/api/hooks/useDeployments/useDeployments';
 
 const isRegionWith3AZ = (regions: TProductAvailabilityRegion[]) =>
   regions.some((region) => region.type === RegionType['3AZ']);
@@ -63,22 +63,27 @@ export const LocationStep = ({
     [regions, selectedRegionGroup],
   );
 
-  const { data: deploymentAvailability } = usePCIFeatureAvailability(
-    DEPLOYMENT_FEATURES,
-  );
+  const { getFormattedHourlyCatalogPrice } = useCatalogPrice(4);
+
+  const deploymentModes = useDeployments(projectId);
 
   const deployments = useMemo<TDeployment[]>(
     () =>
-      DEPLOYMENT_MODES_TYPES.filter((mode) => mode !== RegionType.LZ).map(
-        (deployment) => ({
-          name: deployment,
-          comingSoon:
-            deploymentAvailability?.get(
-              getDeploymentComingSoonKey(deployment),
-            ) || false,
-        }),
-      ),
-    [deploymentAvailability],
+      deploymentModes.map((deployment) => ({
+        ...deployment,
+        price: (
+          <OsdsText
+            level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+            size={ODS_THEME_TYPOGRAPHY_SIZE._200}
+            color={ODS_THEME_COLOR_INTENT.text}
+          >
+            {t('add:pci_projects_project_public_price_from', {
+              price: getFormattedHourlyCatalogPrice(deployment.price),
+            })}
+          </OsdsText>
+        ),
+      })),
+    [deploymentModes],
   );
 
   return (
