@@ -7,7 +7,7 @@ import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SUBNET_DOC } from '@/constants';
 import { SubnetSelector } from '../network/SubnetSelector.component';
-import { TNetwork, TNetworkRegion } from '@/api/data/network';
+import { TNetworkRegion } from '@/api/data/network';
 import { TPrivateNetworkSubnet } from '@/api/data/subnets';
 
 export type SubnetSelectProps = {
@@ -61,7 +61,7 @@ export default function SubnetSelect({
 
       <SubnetSelector
         region={region}
-        className="mt-4"
+        className="mt-2 w-full lg:w-1/2"
         projectId={projectId}
         networkId={privateNetwork.id}
         onSelect={onSelect}

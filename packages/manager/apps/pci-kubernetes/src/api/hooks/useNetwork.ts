@@ -3,7 +3,22 @@ import { useMemo } from 'react';
 import {
   getAllPrivateNetworks,
   getAllPrivateNetworksByRegion,
+  getListGateways,
 } from '../data/network';
+
+const getListGatewaysQueryKey = (
+  projectId: string,
+  regionName: string,
+  subnetId,
+) => [
+  'project',
+  projectId,
+  'region',
+  regionName,
+  'gateways',
+  'subnet',
+  subnetId,
+];
 
 const getQueryKeyPrivateNetworks = (projectId: string) => [
   'project',
@@ -11,7 +26,7 @@ const getQueryKeyPrivateNetworks = (projectId: string) => [
   'privateNetworks',
 ];
 
-const getQueryKeyPrivateNetworksByRegion = (
+export const getQueryKeyPrivateNetworksByRegion = (
   projectId: string,
   regionName: string,
 ) => [...getQueryKeyPrivateNetworks(projectId), 'regionName', regionName];
@@ -54,7 +69,7 @@ export const useAvailablePrivateNetworks = (
         name: `${network.vlanId?.toString().padStart(4, '0')} - ${
           network.name
         }`,
-        clusterRegion: network,
+        clusterRegion: regionName,
       }))
       .sort((a, b) => a.name.localeCompare(b.name));
   }, [privateNetworks, regionName]);
@@ -64,5 +79,23 @@ export const useAvailablePrivateNetworks = (
     error,
     isLoading,
     isPending,
+  };
+};
+
+export const useListGateways = (
+  projectId: string,
+  regionName: string,
+  subnetId: string,
+) => {
+  const { data, isLoading, error } = useQuery({
+    queryKey: getListGatewaysQueryKey(projectId, regionName, subnetId),
+    queryFn: () => getListGateways(projectId, regionName, subnetId),
+    enabled: !!projectId && !!regionName && !!subnetId,
+  });
+
+  return {
+    data,
+    error,
+    isLoading,
   };
 };

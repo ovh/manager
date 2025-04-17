@@ -346,7 +346,7 @@ export default function ResetClusterPage() {
             {formState.privateNetworkId && (
               <div>
                 <SubnetSelector
-                  className="mt-6"
+                  className="mt-2"
                   title={t('kubernetes_network_form_subnet')}
                   projectId={projectId}
                   networkId={formState.privateNetworkId}
