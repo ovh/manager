@@ -31,6 +31,7 @@ export const SECTIONS = {
   rescue: 'rescue/start',
   rescueEnd: 'rescue/end',
   createBackup: 'backup',
+  edit: ':instanceId/edit',
 };
 
 const instanceActionsSections = [
@@ -94,6 +95,12 @@ const routes: RouteObject[] = [
         path: SECTIONS.instance,
         ...lazyRouteConfig(() =>
           import('@/pages/instances/instance/Instance.page'),
+        ),
+      },
+      {
+        path: SECTIONS.edit,
+        ...lazyRouteConfig(() =>
+          import('@/pages/instances/instance/edit/Edit.page'),
         ),
       },
     ],
