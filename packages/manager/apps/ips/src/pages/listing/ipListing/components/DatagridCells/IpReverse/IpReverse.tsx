@@ -6,6 +6,7 @@ import { ListingContext } from '@/pages/listing/listingContext';
 
 export type IpReverseProps = {
   ip: string;
+  parentIpGroup?: string;
 };
 
 /**
@@ -14,24 +15,25 @@ export type IpReverseProps = {
  * If ip has no reverse display "-"
  * If ip has reverse, display the reverse
  * @param ip the ip with mask
+ * @param parentIpGroup the parent ip group with mask for ip group child reverse
  * @returns React Component
  */
-export const IpReverse = ({ ip }: IpReverseProps) => {
+export const IpReverse = ({ ip, parentIpGroup }: IpReverseProps) => {
   const { expiredIps } = useContext(ListingContext);
-  // Todo is child of group then get reverse DNS with params ip and filter ipReverse for current ip
 
   // Check if ip is not /32
-  const { isGroup } = ipFormatter(ip);
+  const { ip: formattedIp, isGroup } = ipFormatter(ip);
 
   // Get ip reverse
-  const { ipReverse, isLoading, error } = useGetIpReverse({
-    ip,
+  const { ipsReverse, isLoading, error } = useGetIpReverse({
+    ip: parentIpGroup || ip,
     enabled: !isGroup && expiredIps.indexOf(ip) === -1,
   });
 
   return (
     <SkeletonCell isLoading={isLoading} enabled={!isGroup} error={error}>
-      {ipReverse?.[0]?.reverse ? ipReverse[0].reverse : <>-</>}
+      {ipsReverse?.find((ipReverse) => ipReverse.ipReverse === formattedIp)
+        ?.reverse || <>-</>}
     </SkeletonCell>
   );
 };
