@@ -1,5 +1,5 @@
 import { BaseLayout } from '@ovh-ux/manager-react-components';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { OdsDivider, OdsText } from '@ovhcloud/ods-components/react';
@@ -42,6 +42,12 @@ export default function Upload() {
     data: operationArguments,
     isLoading: argumentLoading,
   } = useOperationArguments(paramId);
+
+  useEffect(() => {
+    if (domain?.canRelaunch) {
+      setOperationName(OperationName.CanRelaunch);
+    }
+  }, [domain]);
 
   const putOperationName = (label: OperationName) => {
     setOperationName(label);
@@ -123,11 +129,14 @@ export default function Upload() {
 
   const removeFileUpload = (key: string, fileName: string) => {
     setUploadedFiles(
-      uploadedFiles.map((f) => {
+      uploadedFiles.filter((f) => {
         if (f.key === key) {
           const res = f;
           res.data = f.data.filter((file) => file.name !== fileName);
-          return res;
+          if (res.data.length > 0) {
+            return res;
+          }
+          return null;
         }
         return f;
       }),
