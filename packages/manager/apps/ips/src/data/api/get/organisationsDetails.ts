@@ -36,17 +36,3 @@ export const getOrganisationsDetails = async (
 export const getMeModelQueryKey = () => [`/me.json/`];
 
 export const getMeModel = async () => apiClient.v6.get(`/me.json`);
-
-export const postOrganisations = (
-  params: OrgDetails,
-  isEditMode: boolean,
-): Promise<ApiResponse<{ message: string }>> => {
-  if (isEditMode) {
-    return apiClient.v6.put(`/me/ipOrganisation`, {
-      ...params,
-    });
-  }
-  return apiClient.v6.post(`/me/ipOrganisation`, {
-    ...params,
-  });
-};
