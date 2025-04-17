@@ -15,5 +15,6 @@
   "beta_modal_greeting": "Ciao {{user}},",
   "beta_modal_welcome": "Benvenuto nel tuo Spazio Cliente!",
   "beta_modal_info": "Abbiamo ripensato il design dell’interfaccia e migliorato le sue funzionalità per offrirti un'esperienza ancora più semplice e rapida.",
-  "beta_modal_explore": "Esplora subito tutte le nuove opzioni disponibili!"
+  "beta_modal_explore": "Esplora subito tutte le nuove opzioni disponibili!",
+  "beta_modal_accept_old": "Sto testando la nuova versione"
 }
