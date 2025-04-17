@@ -154,6 +154,10 @@ export default class ServicesActionsCtrl {
       return this.deleteVrackAvailability && !!this.resiliateLink;
     }
 
+    if (this.service.serviceType === this.SERVICE_TYPE.ZIMBRA_SLOT) {
+      return this.service.renew?.automatic;
+    }
+
     return ![
       SERVICE_TYPE.PACK_XDSL,
       SERVICE_TYPE.VMWARE_CLOUD_DIRECTOR_ORGANIZATION,
