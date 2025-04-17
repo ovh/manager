@@ -26,7 +26,10 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { useBytes, useProject } from '@ovh-ux/manager-pci-common';
-import { ShellContext, useTracking } from '@ovh-ux/manager-react-shell-client';
+import {
+  ShellContext,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
 import {
   OdsBadge,
@@ -63,6 +66,9 @@ import {
   STATUS_ENABLED,
   STATUS_DISABLED,
   STATUS_SUSPENDED,
+  UNIVERSE,
+  SUB_UNIVERSE,
+  APP_NAME,
 } from '@/constants';
 import { useGetRegion } from '@/api/hooks/useRegion';
 import { useStorage, useStorageEndpoint } from '@/api/hooks/useStorages';
@@ -72,7 +78,6 @@ import LabelComponent from '@/components/Label.component';
 import { TRegion } from '@/api/data/region';
 
 import { useServerContainerObjects } from '@/api/hooks/useContainerObjects';
-
 import './style.scss';
 import { useSortedObjects } from './useSortedObjectsWithIndex';
 
@@ -91,10 +96,25 @@ export type TTags = {
   [key: string]: string;
 };
 
+const trackAction = (actionType: 'page' | 'funnel', specificAction: string) => {
+  let additionalActions: string[] = [];
+
+  if (actionType === 'page') {
+    additionalActions = ['page', 'button', specificAction];
+  } else if (actionType === 'funnel') {
+    additionalActions = ['funnel', 'tile-tutorial', specificAction];
+  }
+
+  return {
+    actions: [UNIVERSE, SUB_UNIVERSE, APP_NAME, ...additionalActions],
+  };
+};
+
 export default function ObjectPage() {
   const { storageId } = useParams();
   const [searchParams] = useSearchParams();
   const { data: project } = useProject();
+  const { trackClick } = useOvhTracking();
 
   const [search, setSearch] = useState<string | null>(null);
   const [prefix, setPrefix] = useState<string | null>(null);
@@ -341,6 +361,10 @@ export default function ObjectPage() {
     clearNotifications();
   }, []);
 
+  const onGuidesClick = () => {
+    trackClick(trackAction('funnel', 'go-to-tutorial'));
+  };
+
   if (!container || !url) {
     return <OdsSpinner size="md" />;
   }
@@ -361,7 +385,11 @@ export default function ObjectPage() {
       }
       header={{
         title: container.name,
-        headerButton: <PciGuidesHeader category="objectStorage" />,
+        headerButton: (
+          <span onClick={onGuidesClick}>
+            <PciGuidesHeader category="objectStorage" />
+          </span>
+        ),
       }}
       backLinkLabel={`
         ${tCommon('common_back_button_back_to')} ${tContainer(
@@ -542,6 +570,11 @@ export default function ObjectPage() {
                     )}
                     type={LinkType.next}
                     href={enableVersioningHref}
+                    onClickReturn={() => {
+                      trackClick(
+                        trackAction('page', 'object_activate_versioning'),
+                      );
+                    }}
                   />
                 )}
 
@@ -650,7 +683,7 @@ export default function ObjectPage() {
               </OdsText>
               <Datagrid
                 topbar={
-                  <div className="flex w-full justify-between items-center">
+                  <div className="flex w-full justisfy-between items-center">
                     {shouldHideButton && (
                       <OdsButton
                         onClick={() => {
@@ -679,9 +712,17 @@ export default function ObjectPage() {
                             <OdsToggle
                               class="my-toggle"
                               name="enableVersionsToggle"
-                              onOdsChange={({ detail }) =>
-                                setEnableVersionsToggle(detail.value as boolean)
-                              }
+                              onOdsChange={({ detail }) => {
+                                setEnableVersionsToggle(
+                                  detail.value as boolean,
+                                );
+                                trackClick(
+                                  trackAction(
+                                    'page',
+                                    'switch-to-see-versioning',
+                                  ),
+                                );
+                              }}
                             />
                           </>
                         )}
@@ -725,7 +766,6 @@ export default function ObjectPage() {
                 <div className="flex justify-center gap-4 ml-auto">
                   {!container?.s3StorageType && (
                     <>
-                      {' '}
                       <OdsInput
                         name="searchField"
                         className="min-w-[15rem]"

@@ -5,13 +5,20 @@ import { OdsInput, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useEffect, useMemo, useState } from 'react';
+import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { useDeleteObject } from '@/api/hooks/useObject';
 import { useStorage } from '@/api/hooks/useStorages';
-import { PERMANENTLY_DELETE_MSG } from '@/constants';
+import {
+  APP_NAME,
+  PERMANENTLY_DELETE_MSG,
+  SUB_UNIVERSE,
+  UNIVERSE,
+} from '@/constants';
 
 export default function DeletePage() {
   const { addSuccess, addError } = useNotifications();
   const { t } = useTranslation('objects/delete');
+  const { trackPage, trackClick } = useOvhTracking();
 
   const navigate = useNavigate();
   const { projectId, storageId, objectName } = useParams();
@@ -67,7 +74,20 @@ export default function DeletePage() {
     isVersioningSuspended,
   ]);
 
-  const goBack = () => navigate(`../?region=${region}&refetch=true`);
+  const goBack = () => {
+    trackClick({
+      actions: [
+        UNIVERSE,
+        SUB_UNIVERSE,
+        APP_NAME,
+        `pop-up`,
+        'button',
+        'delete_object_versioning',
+        'cancel',
+      ],
+    });
+    navigate(`../?region=${region}&refetch=true`);
+  };
 
   const onCancel = goBack;
   const onClose = () => {
@@ -85,6 +105,10 @@ export default function DeletePage() {
     region,
     versionId,
     onError(error: ApiError) {
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: 'delete_object_versioning_error',
+      });
       addError(
         <Translation ns="objects/delete">
           {(_t) =>
@@ -103,6 +127,10 @@ export default function DeletePage() {
       goBack();
     },
     onSuccess() {
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: 'delete_object_versioning_success',
+      });
       addSuccess(
         <Translation ns="objects/delete">
           {(_t) =>
@@ -121,6 +149,17 @@ export default function DeletePage() {
   });
 
   const onConfirm = () => {
+    trackClick({
+      actions: [
+        UNIVERSE,
+        SUB_UNIVERSE,
+        APP_NAME,
+        `pop-up`,
+        'button',
+        'delete_object_versioning',
+        'confirm',
+      ],
+    });
     deleteObject();
   };
 
