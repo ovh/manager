@@ -17,7 +17,7 @@ import {
   initFeatureNames,
   shouldHideElement,
   findNodeByRouting,
-  splitPathIntoSegmentsWithoutRouteParams,
+  isMatchingNode,
   ServicesTypes,
   hasService,
 } from './utils';
@@ -82,7 +82,6 @@ const Sidebar = (): JSX.Element => {
     const initializeNavigationTree = async () => {
       if (currentNavigationNode) return;
       const features = initFeatureNames(navigationTree);
-      setCurrentNavigationNode(findNodeById(navigationTree, 'sidebar'));
 
       const results = await fetchFeatureAvailabilityData(features);
 
@@ -135,28 +134,11 @@ const Sidebar = (): JSX.Element => {
       );
       // A node need a valid universe, if we can't find it, we reset it.
       if (universe) {
-        // We have to parse the path to try to match it with the stored node
-        const parsedPath = splitPathIntoSegmentsWithoutRouteParams(
-          currentNode.routing.hash
-            ? currentNode.routing.hash.replace(
-                '#',
-                currentNode.routing.application,
-              )
-            : '/' + currentNode.routing.application,
-        );
-
-        // If we match the stored node with the path, it's coherent and we reselect the stored node.
-        // If not, we reset it
         if (
-          parsedPath.reduce(
-            (acc: boolean, segment: string) =>
-              acc && pathname.includes(segment),
-            true,
-          )
+          isMatchingNode(currentNode, pathname)?.value
         ) {
           selectSubMenu(currentNode);
           selectLvl1Node(universe);
-
           return;
         }
       }
