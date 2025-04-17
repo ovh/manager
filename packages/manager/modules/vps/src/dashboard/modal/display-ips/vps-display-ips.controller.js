@@ -12,12 +12,14 @@ export default class VpsDisplayIpsCtrl {
     this.ipsLoader = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () =>
         this.VpsService.getIps(this.serviceName)
-          .then((data) => {
-            this.ips = data.results;
+          .then((ips) => {
+            this.ips = ips;
           })
-          .catch(() =>
+          .catch((error) =>
             this.CucCloudMessage.error(
-              this.$translate.instant('vps_configuration_reversedns_fail'),
+              this.$translate.instant('vps_configuration_reversedns_fail', {
+                error: error?.data?.message,
+              }),
             ),
           ),
     });

@@ -1,9 +1,7 @@
 import defaults from 'lodash/defaults';
 import filter from 'lodash/filter';
-import find from 'lodash/find';
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
-import isString from 'lodash/isString';
 import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 
@@ -71,15 +69,17 @@ export default class {
   refresh() {
     this.loading = true;
     return this.loadIps()
-      .then(({ results }) => {
-        if (isString(results)) {
-          throw new Error('Temporary error from the API');
-        }
-        this.ipv4 = get(find(results, { version: 'v4' }), 'ipAddress');
+      .then((ips) => {
+        this.ipv4 = ips.find(({ version }) => version === 'v4')?.ipAddress;
       })
       .then(() => this.loadDatabases())
       .then((databases) => {
         this.cloudDatabases = databases;
+      })
+      .catch(() => {
+        throw new Error('Temporary error from the API');
+      })
+      .finally(() => {
         this.loading = false;
       });
   }
@@ -174,7 +174,10 @@ export default class {
 
   removeAuthorizedIp(database) {
     const { serviceName } = database;
-    return this.ApiWhitelist.deleteIp({ serviceName }, { ip: this.ipv4 })
+    return this.ApiWhitelist.deleteIp(
+      { serviceName },
+      { ip: `${this.ipv4}/32` },
+    )
       .$promise.then(() => {
         this.$timeout(() => {
           this.CucCloudMessage.success(
