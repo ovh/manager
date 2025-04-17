@@ -1,0 +1,16 @@
+{
+  "title": "AI Notebooks",
+  "description1": "Get your notebooks up and running in seconds.",
+  "description2": "Get your projects and models off to a flying start with notebooks.",
+  "description3": "Are you a data scientist or developer looking to launch a notebook in just a few minutes? Quickly access Jupyter or VS Code, and launch it instantly with the resources you need, with our AI Notebooks solution. To develop your business, you also get secure user access, simplified use of your data, and the biggest artificial intelligence frameworks (TensorFlow, PyTorch, Hugging Face and Scikit-learn).",
+  "createNotebookButton": "Create a Notebook",
+  "cardTutotitle": "Tutorials",
+  "cardGuidetitle": "Guides",
+  "cardLink": "Get started",
+  "cardTuto1Description": "Complete AI Notebooks documentation",
+  "cardTuto1Content": "Find all the documentation for AI Notebooks.",
+  "cardTuto2Description": "Features, capabilities and limitations",
+  "cardTuto2Content": "Find out what an AI Notebook is at OVHcloud.",
+  "cardTuto3Description": "Getting started with AI Notebooks",
+  "cardTuto3Content": "Find out how to get started quickly with your Notebook via the OVHcloud Control Panel, command line or API."
+}

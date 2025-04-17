@@ -1,0 +1,18 @@
+{
+  "title": "AI Notebook",
+  "createNewNotebook": "Crear un notebook",
+  "tableHeaderName": "Name",
+  "tableHeaderLocation": "Zona",
+  "tableHeaderFramework": "Framework",
+  "tableHeaderEditor": "Editor",
+  "tableHeaderResources": "Recursos",
+  "tableHeaderPrivacy": "Confidencialidad ",
+  "networkSecureTitle": "Privada",
+  "networkPublicTitle": "Pública",
+  "tableHeaderDuration": "Duración",
+  "tableHeaderStatus": "Estado",
+  "tableActionManage": "Gestionar",
+  "tableActionStart": "Empezar",
+  "tableActionStop": "Detener",
+  "tableActionDelete": "Eliminar"
+}
