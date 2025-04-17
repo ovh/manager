@@ -16,6 +16,7 @@ import {
   Links,
   useProjectUrl,
   Subtitle,
+  useCatalogPrice,
 } from '@ovh-ux/manager-react-components';
 import { Trans, useTranslation } from 'react-i18next';
 import {
@@ -26,15 +27,12 @@ import {
   TDeployment,
   DeploymentTilesInput,
   TProductAvailabilityRegion,
-  usePCIFeatureAvailability,
-  getDeploymentComingSoonKey,
-  DEPLOYMENT_FEATURES,
-  DEPLOYMENT_MODES_TYPES,
 } from '@ovh-ux/manager-pci-common';
 import { REGION_AVAILABILITY_LINK } from '@/constants';
 import { StepsEnum, useCreateStore } from '@/pages/create/store';
 import { useTracking } from '@/pages/create/hooks/useTracking';
 import { useGetRegionPrivateNetworks } from '@/api/hook/useNetwork';
+import { useDeployments } from '@/api/hook/useDeployments/useDeployments';
 
 export type TRegionStepProps = {
   regions: TProductAvailabilityRegion[];
@@ -86,22 +84,27 @@ export const RegionStep = ({
     [regions, selectedRegionGroup],
   );
 
-  const { data: deploymentAvailability } = usePCIFeatureAvailability(
-    DEPLOYMENT_FEATURES,
-  );
+  const { getFormattedHourlyCatalogPrice } = useCatalogPrice(4);
+
+  const deploymentModes = useDeployments(projectId);
 
   const deployments = useMemo<TDeployment[]>(
     () =>
-      DEPLOYMENT_MODES_TYPES.filter((mode) => mode !== 'localzone').map(
-        (deployment) => ({
-          name: deployment,
-          comingSoon:
-            deploymentAvailability?.get(
-              getDeploymentComingSoonKey(deployment),
-            ) || false,
-        }),
-      ),
-    [deploymentAvailability],
+      deploymentModes.map((deployment) => ({
+        ...deployment,
+        price: (
+          <OsdsText
+            level={ODS_TEXT_LEVEL.body}
+            size={ODS_TEXT_SIZE._200}
+            color={ODS_THEME_COLOR_INTENT.text}
+          >
+            {t('octavia_load_balancer_create_price_from', {
+              price: getFormattedHourlyCatalogPrice(deployment.price),
+            })}
+          </OsdsText>
+        ),
+      })),
+    [deploymentModes],
   );
 
   const handleSelectRegion = async (region?: TRegion) => {

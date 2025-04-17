@@ -18,8 +18,10 @@ import { useTracking } from '@/pages/create/hooks/useTracking';
 import { IpStepMessages } from '@/pages/create/steps/ip/IpStepMessages';
 import { useFloatingIps } from '@/api/hook/useFloatingIps/useFloatingIps';
 import { FloatingIpSelectionId } from '@/types/floating.type';
-import { useRegionAddons } from '@/api/hook/useAddons/useAddons';
-import { FLOATING_IP_ADDON_FAMILY } from '@/api/hook/useFloatingIps/useFloatingIps.constant';
+import { useAddons } from '@/api/hook/useAddons/useAddons';
+import { FLOATING_IP_ADDON_FAMILY } from '@/api/hook/useAddons/useAddons.constant';
+import { filterProductRegionBySize } from '@/api/hook/useAddons/useAddons.select';
+import { TProductAddonDetail } from '@/types/product.type';
 
 export type TIpStepProps = {
   ovhSubsidiary: string;
@@ -42,11 +44,12 @@ export const IpStep = ({
 
   const { data: floatingIps, isFetching } = useFloatingIps(projectId, region);
 
-  const { addons, isFetching: isFetchingAddons } = useRegionAddons({
+  const { addons, isFetching: isFetchingAddons } = useAddons({
     ovhSubsidiary,
     projectId,
-    region,
     addonFamily: FLOATING_IP_ADDON_FAMILY,
+    select: (products: TProductAddonDetail[]) =>
+      filterProductRegionBySize(products, region),
   });
 
   const price = useMemo(
