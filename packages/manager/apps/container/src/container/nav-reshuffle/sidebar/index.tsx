@@ -82,7 +82,6 @@ const Sidebar = (): JSX.Element => {
     const initializeNavigationTree = async () => {
       if (currentNavigationNode) return;
       const features = initFeatureNames(navigationTree);
-      setCurrentNavigationNode(findNodeById(navigationTree, 'sidebar'));
 
       const results = await fetchFeatureAvailabilityData(features);
 
@@ -140,6 +139,7 @@ const Sidebar = (): JSX.Element => {
         ) {
           selectSubMenu(currentNode);
           selectLvl1Node(universe);
+          console.log("before algo", universe, currentNode);
           return;
         }
       }
@@ -152,6 +152,7 @@ const Sidebar = (): JSX.Element => {
     if (foundNode) {
       selectSubMenu(foundNode.node);
       selectLvl1Node(foundNode.universe);
+      console.log('after algo', foundNode)
     }
   }, [currentNavigationNode, location]);
 

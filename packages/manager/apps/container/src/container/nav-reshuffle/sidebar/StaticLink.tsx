@@ -40,7 +40,7 @@ const StaticLink: React.FC<ComponentProps<StaticLinkProps>> = ({
     url =
       (node.url as Record<string, string>)[environment.getRegion()] ||
       (node.url as string);
-  } else {
+  } else if (node?.routing?.application) {
     url = navigation.getURL(
       node.routing.application,
       node.routing.hash || '#/',
