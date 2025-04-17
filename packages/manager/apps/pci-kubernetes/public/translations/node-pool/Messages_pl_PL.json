@@ -21,9 +21,9 @@
   "kube_common_node_pool_configure_true": "Konfigurowanie pul węzłów",
   "kube_common_node_pool_configure_false": " Utwórz klaster bez puli węzłów",
   "kube_common_node_pool_estimated_cost": "Oszacowanie miesięcznego kosztu klastra:",
-  "kube_common_node_pool_estimation_text": "Ta szacunkowa kwota nie obejmuje ewentualnej zniżki związanej z Savings Plans.",
-  "kube_common_node_pool_estimation_price": "Pule węzłów: {{estimation}}",
-  "kube_common_node_pool_estimation_text_end": "Dokładny koszt zależy od rzeczywistego zużycia zasobów, którego oszacowanie nie jest możliwe przed utworzeniem klastra.",
+  "kube_common_node_pool_estimation_text": "Szacunek ten nie obejmuje ewentualnej redukcji związanej z planami Savings.",
+  "kube_common_node_pool_estimation_price": "Pule węzłów:",
+  "kube_common_node_pool_estimation_text_end": "Dokładny koszt zależy od rzeczywistego wykorzystania zasobów, którego nie można dokładnie oszacować przed utworzeniem klastra.",
   "kube_common_node_pool_size_title": "Rozmiar puli węzłów",
   "kube_common_node_pool_desired_node": "Liczba węzłów",
   "kube_common_node_pool_autoscaling": "Autoscaling",
@@ -33,8 +33,9 @@
   "kube_common_add_node_pool": "Dodaj pulę węzłów",
   "kube_common_min_max_nodes": "Min. {{minNodes}}, Maks. {{maxNodes}}",
   "kube_common_estimation_price": "Bezpłatnie w fazie beta.",
-  "kube_common_cluster_estimation_price": "Klaster: {{estimation}}",
+  "kube_common_cluster_estimation_price": "Zarządzany plan monitorowania:",
   "kube_common_node_pool_deploy_title": "Wybór strefy",
   "kube_common_node_pool_deploy_description": "W klastrze Kubernetes znajdującym się w trzech strefach dostępności (AZ) zalecane jest korzystanie z pul węzłów w każdej strefie, w celu zapewnienia odporności i wysokiej dostępności. Dzięki tej konfiguracji możesz równomiernie rozdzielić obciążenia między usługami Z. Dzięki temu zwiększa się tolerancja na awarie i zapewnia ciągłość działania usług.",
-  "kube_node_pool": "Konfigurowanie puli węzłów"
+  "kube_node_pool": "Konfigurowanie puli węzłów",
+  "kube_common_estimation_price_free": "Gratis"
 }

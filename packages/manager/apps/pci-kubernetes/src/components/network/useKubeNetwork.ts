@@ -35,7 +35,12 @@ export const useKubeNetwork = ({
     isKubePending || isPrivateNetworksPending || isSubnetPending;
 
   const kubePrivateNetwork = useMemo(
-    () => (isPending ? null : availablePrivateNetworks[0]),
+    () =>
+      isPending
+        ? null
+        : availablePrivateNetworks.find(
+            (network) => network.id === kubeDetail.privateNetworkId,
+          ),
     [isPending],
   );
 

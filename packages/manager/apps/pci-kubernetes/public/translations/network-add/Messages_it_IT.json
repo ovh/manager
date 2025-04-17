@@ -30,5 +30,6 @@
   "kubernetes_network_form_gateway_mode_custom_placeholder": "Indirizzo IP del gateway predefinito",
   "kubernetes_network_form_rebuild": "Attenzione: modificare la strategia di routing in uscita implica un nuovo deploy dei nodi del cluster in rolling update.",
   "kubernetes_network_form_notify_users": "Per implementare il servizio Managed Kubernetes in una Region con 3 zone di disponibilità (3-AZ), è necessaria una sottorete con un gateway associato. Assicurati che la tua rete privata rispetti questi prerequisiti per garantire un funzionamento ottimale.",
-  "kubernetes_network_form_select_private_option": "Seleziona una rete privata"
+  "kubernetes_network_form_select_private_option": "Seleziona una rete privata",
+  "kubernetes_network_form_no_associated_gateway": "Per configurare la rete Kubernetes è necessaria una rete privata associata. Se non ne hai già una, ti consigliamo di creare una rete privata."
 }

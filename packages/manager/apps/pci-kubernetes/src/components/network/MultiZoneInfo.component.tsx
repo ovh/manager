@@ -38,7 +38,7 @@ const MultiZoneInfo = () => {
           size={ODS_THEME_TYPOGRAPHY_SIZE._400}
           color={ODS_THEME_COLOR_INTENT.text}
         >
-          {t('kubernetes_network_form_notify_users')}
+          {t('kubernetes_network_form_notify_users')}{' '}
         </OsdsText>
         <OsdsLink
           target={OdsHTMLAnchorElementTarget._blank}

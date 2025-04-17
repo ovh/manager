@@ -33,7 +33,9 @@ export function NetworkStep({
   const hasPrivateNetwork = state.privateNetwork;
   const isValid =
     (isMonoDeploymentZone(type) && (!hasPrivateNetwork || isGatewayValid)) ||
-    (isMultiDeploymentZones(type) && hasPrivateNetwork);
+    (isMultiDeploymentZones(type) &&
+      hasPrivateNetwork &&
+      state.gateway?.isEnabled);
 
   return (
     <>

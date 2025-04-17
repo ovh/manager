@@ -61,7 +61,7 @@
   "kube_add_plan_footer_premium": "Gratuito durante la fase di Beta",
   "kube_add_plan_title_standard": "Standard",
   "kube_add_plan_description_standard": "Usufruisci di costi ottimizzati per le risorse di calcolo associate alla semplicità operativa di una soluzione Kubernetes gestita gratuita a vita.",
-  "kube_add_plan_content_standard_control": "Piano di controllo gestito ad alta disponibilità",
+  "kube_add_plan_content_standard_control": "Piano di controllo gestito, high availability",
   "kube_add_plan_content_standard_high_availability": "Alta disponibilità (1-AZ)",
   "kube_add_plan_content_standard_SLO": "99,5% SLO",
   "kube_add_plan_content_standard_auto_scaling": "Funzionalità di scaling dei pool di nodi (Autoscaler)",
@@ -70,7 +70,7 @@
   "kube_add_plan_content_standard_100": "Fino a 100 nodi per cluster",
   "kube_add_plan_title_premium": "Premium",
   "kube_add_plan_no_available_plan": "Non disponibile",
-  "kube_add_plan_description_premium": "Usufruisci di un Service Level Agreement e di un'installazione regionale (suddivisa in tre zone di disponibilità), ideale per i carichi di lavoro che richiedono resilienza e alta disponibilità.",
+  "kube_add_plan_description_premium": "L'Service Level Agreement e l'installazione in una regione (suddivisa in tre zone di disponibilità) sono ideali per i carichi di lavoro che richiedono resilienza e alta disponibilità.",
   "kube_add_plan_content_premium_SLA": "99,99% SLA",
   "kube_add_plan_content_premium_ETCD": "Fino a 8 GB di ETCD dedicato",
   "kube_add_plan_content_premium_3AZ_control_plane": "Piano di controllo gestito, high availability e tolleranza alla perdita di un'area di disponibilità",
@@ -81,5 +81,5 @@
   "kube_add_plan_content_premium_1AZ_banner": "L'offerta Premium non è disponibile nelle Region 1-AZ. Per usufruire del piano Premium, seleziona il deploy in 3-AZ.",
   "kube_add_plan_content_standard_3AZ_banner": "L'offerta Standard non è ancora disponibile nelle Region 3-AZ. Per usufruire di questa offerta, seleziona un deploy in 1-AZ.",
   "kube_add_plan_content_standard_very_soon": "Presto disponibile",
-  "kube_add_plan_subtitle": "Scegliete il piano più adatto alle vostre esigenze. Usufruisci di un'ampia scelta di istanze utilizzate come nodi Kubernetes, fatturate a consumo o con impegno"
+  "kube_add_plan_subtitle": "Scegliete il piano più adatto alle vostre esigenze. Usufruisci di un'ampia scelta di istanze utilizzate come nodi Kubernetes, fatturate a consumo o con impegno contrattuale."
 }

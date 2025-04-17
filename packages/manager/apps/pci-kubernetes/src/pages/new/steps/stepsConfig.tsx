@@ -8,11 +8,13 @@ import PlanStep from './PlanStep.component';
 import { VersionAndUpdatePolicyStep } from './VersionAndUpdatePolicyStep.component';
 import Loader from './Loader';
 
+type StepComponentProps = Record<string, unknown>;
+
 type StepConfig = {
   key: string;
-  component: React.ComponentType<any>;
+  component: React.ComponentType<StepComponentProps> | string;
   titleKey: string;
-  extraProps?: Record<string, any>;
+  extraProps?: Record<string, unknown>;
   condition?: boolean;
 };
 
@@ -74,6 +76,7 @@ const stepsConfig = ({
     titleKey: 'stepper:common_stepper_submit_button_cluster',
     extraProps: {
       nodePools: stepper.form.nodePools,
+      plan: stepper.form.plan,
       onSubmit: () => {
         stepper.confirm.step.lock();
         createNewCluster();

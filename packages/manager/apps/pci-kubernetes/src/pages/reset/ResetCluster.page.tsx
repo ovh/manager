@@ -45,7 +45,10 @@ import {
   isMonoDeploymentZone,
   isMultiDeploymentZones,
 } from '@/helpers';
-import { usePrivateNetworkByRegion } from '@/api/hooks/useNetwork';
+import {
+  useAvailablePrivateNetworks,
+  useListGateways,
+} from '@/api/hooks/useNetwork';
 import { KUBE_TRACK_PREFIX } from '@/tracking.constants';
 import { TNetwork } from '@/api/data/network';
 import { SubnetSelector } from '@/components/network/SubnetSelector.component';
@@ -58,6 +61,8 @@ import { LoadBalancerWarning } from '@/components/network/LoadBalancerWarning.co
 import { SelectComponent } from '@/components/input/Select.component';
 import { useRegionInformations } from '@/api/hooks/useRegionInformations';
 import MultiZoneInfo from '@/components/network/MultiZoneInfo.component';
+import NoGatewayLinkedMessage from '@/components/network/NoGatewayLinkedWarning.component';
+import { isValidGateway3AZ } from '../new/steps/NetworkClusterStep.component';
 
 export default function ResetClusterPage() {
   const { t } = useTranslation(['network-add', 'listing', 'reset', 'add']);
@@ -84,7 +89,7 @@ export default function ResetClusterPage() {
   const {
     data: privateNetworks,
     isPending: isPendingPrivateNetworks,
-  } = usePrivateNetworkByRegion(projectId, kubernetesCluster?.region);
+  } = useAvailablePrivateNetworks(projectId, kubernetesCluster?.region);
 
   const {
     data: regionInformations,
@@ -114,6 +119,12 @@ export default function ResetClusterPage() {
         '',
     } as GatewaySelectorState,
   });
+
+  const { data: gateways, isLoading: isPendingListGateways } = useListGateways(
+    projectId,
+    kubernetesCluster?.region,
+    formState?.subnet?.id,
+  );
 
   const shouldWarnSubnet = formState.subnet && !formState.subnet?.gatewayIp;
 
@@ -165,7 +176,8 @@ export default function ResetClusterPage() {
     isPendingCloudSchema ||
     isPendingPrivateNetworks ||
     isPendingRegionInformations ||
-    isPendingResetCluster;
+    isPendingResetCluster ||
+    isPendingListGateways;
 
   return (
     <OsdsModal
@@ -200,7 +212,16 @@ export default function ResetClusterPage() {
               </OsdsMessage>
 
               {isMultiDeploymentZones(regionInformations.type) && (
-                <MultiZoneInfo />
+                <>
+                  <MultiZoneInfo />
+                  {gateways && (
+                    <NoGatewayLinkedMessage
+                      type={regionInformations?.type}
+                      gateways={gateways}
+                      network={privateNetworks}
+                    />
+                  )}
+                </>
               )}
             </div>
 
@@ -346,7 +367,7 @@ export default function ResetClusterPage() {
             {formState.privateNetworkId && (
               <div>
                 <SubnetSelector
-                  className="mt-6"
+                  className="mt-2"
                   title={t('kubernetes_network_form_subnet')}
                   projectId={projectId}
                   networkId={formState.privateNetworkId}
@@ -445,6 +466,8 @@ export default function ResetClusterPage() {
           isPending ||
           (formState.gateway.mode === ModeEnum.CUSTOM &&
             formState.gateway.ip === '') ||
+          (!isValidGateway3AZ(regionInformations?.type, gateways) &&
+            isMultiDeploymentZones(regionInformations.type)) ||
           undefined
         }
         onClick={() => {

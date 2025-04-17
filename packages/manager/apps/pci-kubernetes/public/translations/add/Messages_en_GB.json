@@ -61,7 +61,7 @@
   "kube_add_plan_footer_premium": "Free during the beta phase",
   "kube_add_plan_title_standard": "Standard",
   "kube_add_plan_description_standard": "Get optimized costs for your computing resources, combined with the operational simplicity of a free, lifelong managed Kubernetes solution.",
-  "kube_add_plan_content_standard_control": "Highly available managed control plane",
+  "kube_add_plan_content_standard_control": "Managed, highly available control plane",
   "kube_add_plan_content_standard_high_availability": "High availability (1-AZ)",
   "kube_add_plan_content_standard_SLO": "99.5% SLO",
   "kube_add_plan_content_standard_auto_scaling": "Autoscaler functionality",
@@ -81,5 +81,5 @@
   "kube_add_plan_content_premium_1AZ_banner": "The Premium offer is not available in the 1-AZ regions. If you would like to take advantage of the Premium plan, please select the 3-AZ deployment.",
   "kube_add_plan_content_standard_3AZ_banner": "The Standard solution is not yet available in the 3-AZ regions. If you would like to take advantage of this offer, please select a 1-AZ deployment.",
   "kube_add_plan_content_standard_very_soon": "Coming soon",
-  "kube_add_plan_subtitle": "Choose the right plan for your needs. Get a wide range of instances used as Kubernetes nodes, with pay-per-use or commitment billing"
+  "kube_add_plan_subtitle": "Choose the right plan for your needs. Choose from a wide range of instances, used as Kubernetes nodes, and billed on a pay-as-you-go or commitment basis."
 }

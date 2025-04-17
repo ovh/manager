@@ -21,7 +21,8 @@ import TabsPanel from '@/components/detail/TabsPanel.component';
 import { useKubeDetail } from '@/api/hooks/useKubernetes';
 import { TRACKING_TABS, CHANGELOG_CHAPTERS } from '@/tracking.constants';
 import { CHANGELOG_LINKS } from '@/constants';
-import { REFETCH_INTERVAL_DURATION } from '@/helpers';
+import { useRegionInformations } from '@/api/hooks/useRegionInformations';
+import { isMultiDeploymentZones } from '@/helpers';
 
 export default function DetailPage() {
   const { t } = useTranslation('listing');
@@ -34,6 +35,12 @@ export default function DetailPage() {
   const hrefBack = useHref('..');
   const hrefService = useHref('./service');
   const location = useLocation();
+
+  const { data: kubeDetail } = useKubeDetail(projectId, kubeId);
+  const { data: regionInformations } = useRegionInformations(
+    projectId,
+    kubeDetail?.region,
+  );
 
   const tabs = [
     {
@@ -71,13 +78,9 @@ export default function DetailPage() {
       ),
       to: useResolvedPath('logs').pathname,
       tracking: TRACKING_TABS.LOGS,
-      isHidden: false,
+      isHidden: isMultiDeploymentZones(regionInformations?.type),
     },
   ];
-
-  const { data: kubeDetail } = useKubeDetail(projectId, kubeId, {
-    refetchInterval: REFETCH_INTERVAL_DURATION,
-  });
 
   useEffect(() => {
     const activeTab = tabs.find((tab) => location.pathname.startsWith(tab.to));

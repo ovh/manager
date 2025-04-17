@@ -46,9 +46,14 @@ export function useClusterCreationStepper(has3AZRegions = false) {
       step: clusterNameStep,
       edit: () => {
         clusterNameStep.unlock();
-        [locationStep, versionStep, networkStep, nodeStep, confirmStep].forEach(
-          stepReset,
-        );
+        [
+          locationStep,
+          planStep,
+          versionStep,
+          networkStep,
+          nodeStep,
+          confirmStep,
+        ].forEach(stepReset);
       },
       update: (clusterName: string) => {
         setForm((f) => ({
@@ -84,22 +89,24 @@ export function useClusterCreationStepper(has3AZRegions = false) {
         (has3AZRegions ? planStep : versionStep).open();
       },
     },
-    plan: {
-      step: planStep,
-      edit: () => {
-        planStep.unlock();
-        [versionStep, networkStep, nodeStep, confirmStep].forEach(stepReset);
+    ...(has3AZRegions && {
+      plan: {
+        step: planStep,
+        edit: () => {
+          planStep.unlock();
+          [versionStep, networkStep, nodeStep, confirmStep].forEach(stepReset);
+        },
+        submit: (plan: TClusterCreationForm['plan']) => {
+          setForm((f) => ({
+            ...f,
+            plan,
+          }));
+          planStep.check();
+          planStep.lock();
+          versionStep.open();
+        },
       },
-      submit: (plan: TClusterCreationForm['plan']) => {
-        setForm((f) => ({
-          ...f,
-          plan,
-        }));
-        planStep.check();
-        planStep.lock();
-        versionStep.open();
-      },
-    },
+    }),
     version: {
       step: versionStep,
       edit: () => {

@@ -180,9 +180,7 @@ export default function NewPage(): JSX.Element {
       monthlyBilled: store.isMonthlyBilling,
       autoscale: store.autoScaling.isAutoscale,
       minNodes: store.autoScaling.quantity.min,
-      desiredNodes: store.autoScaling.isAutoscale
-        ? store.autoScaling.quantity.min
-        : store.autoScaling.quantity.desired,
+      desiredNodes: store.autoScaling.quantity.desired,
       maxNodes: store.antiAffinity
         ? Math.min(ANTI_AFFINITY_MAX_NODES, store.autoScaling.quantity.max)
         : store.autoScaling.quantity.max,
@@ -388,7 +386,9 @@ export default function NewPage(): JSX.Element {
               (store.autoScaling.quantity.min > NODE_RANGE.MAX ||
                 store.autoScaling.quantity.max > NODE_RANGE.MAX ||
                 store.autoScaling.quantity.min >=
-                  store.autoScaling.quantity.max)),
+                  store.autoScaling.quantity.max)) ||
+            (isMultiDeploymentZones(regionInformations?.type) &&
+              !store.selectedAvailibilityZone),
         }}
         edit={{
           action: () => {

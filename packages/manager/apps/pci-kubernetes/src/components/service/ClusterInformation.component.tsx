@@ -91,13 +91,17 @@ export default function ClusterInformation({
             {kubeDetail.version}
           </OsdsText>
         </TileLine>
-        <TileLineLegacy title={<ClusterTile />} value={<ClusterETCD />} />
-        <TileLine label={t('kube_service_cluster_admission_plugins')}>
-          <AdmissionPlugins
-            plugins={kubeDetail.plugins}
-            isProcessing={isProcessing(kubeDetail.status)}
-          />
-        </TileLine>
+        {!isMultiDeploymentZones(regionInformations?.type) && (
+          <TileLineLegacy title={<ClusterTile />} value={<ClusterETCD />} />
+        )}
+        {!isMultiDeploymentZones(regionInformations?.type) && (
+          <TileLine label={t('kube_service_cluster_admission_plugins')}>
+            <AdmissionPlugins
+              plugins={kubeDetail.plugins}
+              isProcessing={isProcessing(kubeDetail.status)}
+            />
+          </TileLine>
+        )}
         <TileLine label={t('kube_service_cluster_region')}>
           <OsdsText
             className="mb-4"

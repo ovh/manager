@@ -2,20 +2,19 @@ import { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Region3AZChip,
+  RegionChipByType,
   RegionGlobalzoneChip,
   TLocalisation,
 } from '@ovh-ux/manager-pci-common';
 import {
   OsdsButton,
   OsdsDivider,
-  OsdsChip,
   OsdsText,
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import {
   ODS_BUTTON_SIZE,
-  ODS_CHIP_SIZE,
   ODS_TEXT_COLOR_INTENT,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
@@ -65,10 +64,10 @@ export function LocationStep({
     pillLabel:
       regionType === RegionType.Region3Az ? (
         <div className="flex gap-4">
-          <Region3AZChip showTooltip={false} />
+          <Region3AZChip showTooltip />
         </div>
       ) : (
-        <RegionGlobalzoneChip showTooltip={false} />
+        <RegionChipByType type="region" showTooltip />
       ),
     description: t(`add:kubernetes_add_region_description_${regionType}`),
     regionType,

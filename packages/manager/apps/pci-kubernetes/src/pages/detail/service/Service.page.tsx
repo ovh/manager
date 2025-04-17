@@ -24,7 +24,7 @@ import {
   STATUS,
 } from '@/constants';
 import { useRegionInformations } from '@/api/hooks/useRegionInformations';
-import { isMultiDeploymentZones } from '@/helpers';
+import { isMultiDeploymentZones, REFETCH_INTERVAL_DURATION } from '@/helpers';
 import ClusterBeta3AZBanner from '@/components/service/ClusterBeta3AZBanner.component';
 import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
 
@@ -32,7 +32,9 @@ export default function ServicePage() {
   const { t } = useTranslation('service');
   const { projectId, kubeId } = useParams();
 
-  const { data: kubeDetail, isPending } = useKubeDetail(projectId, kubeId);
+  const { data: kubeDetail, isPending } = useKubeDetail(projectId, kubeId, {
+    refetchInterval: REFETCH_INTERVAL_DURATION,
+  });
   const { data: regionInformations } = useRegionInformations(
     projectId,
     kubeDetail?.region,
