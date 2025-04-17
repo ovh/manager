@@ -1,4 +1,4 @@
-import React, {
+import {
   CSSProperties,
   useEffect,
   useRef,
@@ -57,10 +57,6 @@ const VirtualAgent: React.FC<ComponentProps<VirtualAgentProps>> = (
     query: `(max-width: ${tabletBreakpoint}px)`,
   });
 
-  const toggle = () => {
-    setReduced(!reduced);
-    if (onReduce) onReduce();
-  };
   const stop = () => {
     setStarted(false);
     setReduced(true);
@@ -164,13 +160,6 @@ const VirtualAgent: React.FC<ComponentProps<VirtualAgentProps>> = (
                 : `${styles.header} oui-background-p-500`
             }
           >
-            <button
-              className="oui-button oui-icon oui-icon-close d-xl-none d-flex"
-              onClick={() => toggle()}
-              title={`Icon button that toggles ${title}`}
-            >
-              <span className="sr-only">{`Toggles ${title}`}</span>
-            </button>
             <h3 className={`${styles.dialogTitle} oui-color-p-000`}>{title}</h3>
           </header>
           <div className={styles.main}>
@@ -194,15 +183,7 @@ const VirtualAgent: React.FC<ComponentProps<VirtualAgentProps>> = (
           style={setCustomStyleOnMobile(headerColor)}
         >
           <button
-            onClick={() => toggle()}
-            className={`${styles.group_arrow_button} oui-button`}
-            title={`Icon button that toggles ${title}`}
-          >
-            <span className="oui-icon oui-icon-chevron-up"></span>
-            <span className="sr-only">{`Toggles ${title}`}</span>
-          </button>
-          <button
-            onClick={() => toggle()}
+            onClick={() => stop()}
             style={setCustomStyleOnMobile('transparent', buttonColor)}
             className={`${styles.group_toggle_button} oui-button oui-button_primary`}
             title={`Toggle ${title}`}
@@ -214,16 +195,6 @@ const VirtualAgent: React.FC<ComponentProps<VirtualAgentProps>> = (
             ></span>
             <span className="sr-only">{`Toggle ${title}`}</span>
           </button>
-          {reduced && (
-            <button
-              title={`Close ${title}`}
-              className={`${styles.group_close_button} oui-button p-0`}
-              onClick={() => stop()}
-            >
-              <span className="oui-icon oui-icon-close m-auto"></span>
-              <span className="sr-only">{`Close ${title}`}</span>
-            </button>
-          )}
         </div>
       )}
     </div>
