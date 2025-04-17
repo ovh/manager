@@ -49,7 +49,7 @@ export const GUIDE_LINKS = {
     WS:
       'https://help.ovhcloud.com/csm/en-public-cloud-network-configure-additional-ip?id=kb_article_view&sysparm_article=KB0050248',
     US:
-      'https://help.ovhcloud.com/csm/en-public-cloud-network-configure-additional-ip?id=kb_article_view&sysparm_article=KB0050248',
+      'https://support.us.ovhcloud.com/hc/en-us/articles/19770592015891-Configuring-an-Additional-IP-Public-Cloud',
     DEFAULT:
       'https://help.ovhcloud.com/csm/en-public-cloud-network-configure-additional-ip?id=kb_article_view&sysparm_article=KB0050248',
   },
@@ -93,7 +93,7 @@ export const GUIDE_LINKS = {
     WS:
       'https://help.ovhcloud.com/csm/es-dedicated-servers-network-ipaliasing?id=kb_article_view&sysparm_article=KB0043768',
     US:
-      'https://help.ovhcloud.com/csm/en-dedicated-servers-network-ipaliasing?id=kb_article_view&sysparm_article=KB0043756',
+      'https://support.us.ovhcloud.com/hc/en-us/articles/7154925809683-How-to-Configure-IP-Aliasing',
     DEFAULT:
       'https://help.ovhcloud.com/csm/en-dedicated-servers-network-ipaliasing?id=kb_article_view&sysparm_article=KB0043756',
   },
@@ -137,7 +137,7 @@ export const GUIDE_LINKS = {
     WS:
       'https://help.ovhcloud.com/csm/es-dedicated-servers-proxmox-network-hg-scale?id=kb_article_view&sysparm_article=KB0043921',
     US:
-      'https://help.ovhcloud.com/csm/en-dedicated-servers-proxmox-network-hg-scale?id=kb_article_view&sysparm_article=KB0043913',
+      'https://support.us.ovhcloud.com/hc/en-us/articles/37457315856787-Configuring-the-network-on-Proxmox-VE-on-the-High-Grade-Scale-and-Advance-ranges',
     DEFAULT:
       'https://help.ovhcloud.com/csm/en-dedicated-servers-proxmox-network-hg-scale?id=kb_article_view&sysparm_article=KB0043913',
   },
@@ -181,7 +181,7 @@ export const GUIDE_LINKS = {
     WS:
       'https://help.ovhcloud.com/csm/en-public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0050152',
     US:
-      'https://help.ovhcloud.com/csm/en-public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0050152',
+      'https://support.us.ovhcloud.com/hc/en-us/articles/21134381741715-Concepts-Additional-IP-or-Floating-IP',
     DEFAULT:
       'https://help.ovhcloud.com/csm/en-public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0050152',
   },
