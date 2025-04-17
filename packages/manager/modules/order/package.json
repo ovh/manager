@@ -19,8 +19,7 @@
   ],
   "scripts": {
     "build": "tsc",
-    "dev": "tsc",
-    "start:watch": "tsc -w"
+    "dev": "tsc"
   },
   "dependencies": {
     "@ovh-ux/manager-core-api": "^0.11.0",

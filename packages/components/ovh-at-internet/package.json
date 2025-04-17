@@ -28,10 +28,7 @@
     "build": "tsc",
     "dev": "tsc",
     "dev:watch": "tsc --watch",
-    "prepare": "yarn run build",
-    "start": "lerna exec --stream --scope='@ovh-ux/manager-config' --include-dependencies -- yarn run build",
-    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-config' --include-dependencies -- yarn run dev",
-    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-config' --include-dependencies -- yarn run dev:watch"
+    "prepare": "tsc"
   },
   "devDependencies": {
     "@ovh-ux/manager-config": "^8.2.1"
