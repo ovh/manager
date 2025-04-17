@@ -2,11 +2,13 @@ import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TServiceDetail } from '@/alldoms/types';
-import DatagridColumnBadge from '@/alldoms/components/DatagridColumns/DatagridColumnBadge';
 import DatagridColumnDomainNumber from '@/alldoms/components/DatagridColumns/DatagridColumnDomainNumber';
 import DatagridColumnServiceName from '@/alldoms/components/DatagridColumns/DatagridColumnServiceName';
 import { DatagridColumnDate } from '@/alldoms/components/DatagridColumns/DatagridColumnDate';
 import DatagridColumnActionMenu from '@/alldoms/components/DatagridColumns/DatagridColumnActionMenu';
+import DatagridColumnContact from '@/alldoms/components/DatagridColumns/DatagridColumnContact';
+import { ServiceInfoContactEnum } from '@/alldoms/enum/service.enum';
+import DatagridColumnRenewMode from '@/alldoms/components/DatagridColumns/DatagridColumnRenewMode';
 
 export const useAllDomDatagridColumns = (
   openModal: (serviceInfoDetail: TServiceDetail) => void,
@@ -17,7 +19,7 @@ export const useAllDomDatagridColumns = (
       {
         id: 'serviceName',
         cell: (props: TServiceDetail) => (
-          <DatagridColumnServiceName allDomName={props.serviceInfo.domain} />
+          <DatagridColumnServiceName allDomName={props.allDomProperty.name} />
         ),
         label: t('allDom_table_header_serviceName'),
         isFilterable: true,
@@ -25,7 +27,9 @@ export const useAllDomDatagridColumns = (
       {
         id: 'renewMode',
         cell: (props: TServiceDetail) => (
-          <DatagridColumnBadge renewMode={props.serviceInfo.renew.automatic} />
+          <DatagridColumnRenewMode
+            renewMode={props.serviceInfo.billing.renew.current.mode}
+          />
         ),
         label: t('allDom_table_header_renewMode'),
       },
@@ -57,31 +61,40 @@ export const useAllDomDatagridColumns = (
       {
         id: 'expiration_date',
         cell: (props: TServiceDetail) => (
-          <DatagridColumnDate expirationDate={props.serviceInfo.expiration} />
+          <DatagridColumnDate
+            expirationDate={props.serviceInfo.billing.expirationDate}
+          />
         ),
         label: t('allDom_table_header_expirationDate'),
       },
       {
         id: 'nicAdmin',
-        cell: (props: TServiceDetail) => (
-          <DataGridTextCell>{props.serviceInfo.contactAdmin}</DataGridTextCell>
-        ),
+        cell: (props: TServiceDetail) => {
+          const contact = props.serviceInfo.customer.contacts.find(
+            (c) => c.type === ServiceInfoContactEnum.Administrator,
+          );
+          return <DatagridColumnContact contact={contact} />;
+        },
         label: t('allDom_table_header_nicAdmin'),
       },
       {
         id: 'nicTech',
-        cell: (props: TServiceDetail) => (
-          <DataGridTextCell>{props.serviceInfo.contactTech}</DataGridTextCell>
-        ),
+        cell: (props: TServiceDetail) => {
+          const contact = props.serviceInfo.customer.contacts.find(
+            (c) => c.type === ServiceInfoContactEnum.Technical,
+          );
+          return <DatagridColumnContact contact={contact} />;
+        },
         label: t('allDom_table_header_nicTech'),
       },
       {
         id: 'nicBilling',
-        cell: (props: TServiceDetail) => (
-          <DataGridTextCell>
-            {props.serviceInfo.contactBilling}
-          </DataGridTextCell>
-        ),
+        cell: (props: TServiceDetail) => {
+          const contact = props.serviceInfo.customer.contacts.find(
+            (c) => c.type === ServiceInfoContactEnum.Billing,
+          );
+          return <DatagridColumnContact contact={contact} />;
+        },
         label: t('allDom_table_header_nicBilling'),
       },
       {
