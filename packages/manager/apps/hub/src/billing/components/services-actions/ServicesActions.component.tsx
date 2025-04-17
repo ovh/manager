@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useState } from 'react';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_TYPE,
@@ -23,6 +23,8 @@ import {
 } from '@/billing/hooks/useServiceActions';
 import { BillingService } from '@/billing/types/billingServices.type';
 import { useServiceLinks } from '@/billing/hooks/useServiceLinks';
+import { getPendingEngagement } from '@/data/api/billingServices';
+import { SERVICE_TYPES_WITH_COMMITMENT } from '@/billing.constants';
 
 type ServicesActionsProps = {
   service: BillingService;
@@ -31,10 +33,12 @@ type ServicesActionsProps = {
 };
 
 export default function ServicesActions({
-  service,
+  service: initialService,
   autoRenewLink,
   trackingPrefix,
 }: ServicesActionsProps) {
+  const [service, setService] = useState(initialService);
+
   const links = useServiceLinks(service, autoRenewLink);
   const items: ServiceAction[] = useServiceActions(
     service,
@@ -46,9 +50,24 @@ export default function ServicesActions({
     service.canBeEngaged ||
     service.hasPendingEngagement;
 
+  const onOpenPopOver = async () => {
+    if (
+      service.hasPendingEngagement === undefined &&
+      SERVICE_TYPES_WITH_COMMITMENT.includes(service.serviceType)
+    ) {
+      const hasPendingEngagement = await getPendingEngagement(service.id);
+      setService(
+        new BillingService({
+          ...service,
+          hasPendingEngagement,
+        }),
+      );
+    }
+  };
+
   // When we'll migrate to ODS 18, we should try to have the popover "rounded" & "withArrow" and add a direction to it
   return shouldBeDisplayed ? (
-    <OsdsPopover dir="rtl">
+    <OsdsPopover dir="rtl" onClick={onOpenPopOver}>
       <OsdsButton
         slot="popover-trigger"
         className="min-w-9"
