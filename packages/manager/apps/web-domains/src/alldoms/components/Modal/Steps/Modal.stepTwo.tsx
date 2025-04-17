@@ -21,7 +21,7 @@ export default function ModalStepTwo({
   closeModal,
 }: Readonly<ModalStepsProps>) {
   const { t } = useTranslation('allDom');
-  const { domain: serviceName } = serviceInfoDetail.serviceInfo;
+  const { name: serviceName } = serviceInfoDetail.allDomProperty;
   const { addError, addSuccess } = useNotifications();
   const updateAllDomServiceMutation = useUpdateAllDomService();
   const updateDomainServiceInfoMutation = useUpdateDomainServiceInfo();
