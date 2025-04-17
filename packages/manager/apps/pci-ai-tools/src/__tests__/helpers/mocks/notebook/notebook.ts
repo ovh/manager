@@ -28,7 +28,7 @@ export const mockedNotebookSpec: ai.notebook.NotebookSpec = {
   name: 'name',
   region: 'region',
   resources: mockedCPUResources,
-  // volumes: [mockedVolume],
+  volumes: [mockedVolume],
 };
 
 export const mockedNotebookStatus: ai.notebook.NotebookStatus = {

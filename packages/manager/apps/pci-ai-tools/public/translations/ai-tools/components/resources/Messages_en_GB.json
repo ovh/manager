@@ -1,0 +1,12 @@
+{
+  "powerTitleSection": "Power",
+  "computeTitleSection": "Compute",
+  "storageTitleSection": "Storage",
+  "gpuMemoryField": "{{ gpu }} x {{ memory }} RAM",
+  "gcuComputeField": "CPU: {{ cpu }} vCores ",
+  "memoryField": "RAM: {{ memory }}",
+  "publicNetworkField": "Public network: {{ network }}/s",
+  "temporaryLocalStorageField": "Temporary local storage: {{ storage }} SSD",
+  "temporaryLocalStorageHelper": "High-performance local storage, but not backed up",
+  "modifyLabel": "Modify"
+}
