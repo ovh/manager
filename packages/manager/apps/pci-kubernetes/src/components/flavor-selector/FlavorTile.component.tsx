@@ -199,17 +199,17 @@ export function FlavorTile({
           {Object.entries(flavorCompatibility).map(([zone, isVisible]) => {
             if (isVisible) {
               return (
-                <>
+                <div key={zone}>
                   {isMonoDeploymentZone(zone as DeploymentMode) && (
                     <RegionGlobalzoneChip />
                   )}
                   {isMultiDeploymentZones(zone as DeploymentMode) && (
-                    <Region3AZChip />
+                    <Region3AZChip key={zone} />
                   )}
                   {isLocalDeploymentZone(zone as DeploymentMode) && (
-                    <RegionLocalzoneChip />
+                    <RegionLocalzoneChip key={zone} />
                   )}
-                </>
+                </div>
               );
             }
             return null;
