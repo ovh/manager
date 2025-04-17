@@ -1,8 +1,4 @@
-import {
-  ServiceInfoRenewEnum,
-  ServiceInfoStatus,
-  ServiceInfoType,
-} from '../enum/service.enum';
+import { ServiceInfoType } from '../enum/service.enum';
 import { TServiceDetail } from '../types';
 
 export const serviceInfoDetail: TServiceDetail[] = [
@@ -27,25 +23,31 @@ export const serviceInfoDetail: TServiceDetail[] = [
       'testdomain.org',
     ],
     serviceInfo: {
-      status: ServiceInfoStatus.Ok,
-      renewalType: ServiceInfoRenewEnum.Automatic2016,
-      contactTech: 'aa00001-ovh',
       serviceId: 106781411,
-      contactBilling: 'aa00002-ovh',
-      expiration: '2026-02-01',
-      engagedUpTo: null,
-      possibleRenewPeriod: [12],
-      renew: {
-        deleteAtExpiration: false,
-        period: 12,
-        manualPayment: false,
-        forced: false,
-        automatic: true,
+      billing: {
+        expirationDate: '2026-02-01',
+        renew: {
+          current: {
+            mode: 'automatic',
+          },
+        },
       },
-      contactAdmin: 'aa00003-ovh',
-      creation: '2021-02-01',
-      domain: 'testdomain',
-      canDeleteAtExpiration: true,
+      customer: {
+        contacts: [
+          {
+            customerCode: 'aa00001-ovh',
+            type: 'administrator',
+          },
+          {
+            customerCode: 'aa00001-ovh',
+            type: 'technical',
+          },
+          {
+            customerCode: 'aa00001-ovh',
+            type: 'billing',
+          },
+        ],
+      },
     },
   },
 ];

@@ -7,6 +7,8 @@ import DatagridColumnDomainNumber from '@/alldoms/components/DatagridColumns/Dat
 import DatagridColumnServiceName from '@/alldoms/components/DatagridColumns/DatagridColumnServiceName';
 import { DatagridColumnDate } from '@/alldoms/components/DatagridColumns/DatagridColumnDate';
 import DatagridColumnActionMenu from '@/alldoms/components/DatagridColumns/DatagridColumnActionMenu';
+import DatagridColumnContact from '@/alldoms/components/DatagridColumns/DatagridColumnContact';
+import { ServiceInfoContactEnum } from '@/alldoms/enum/service.enum';
 
 export const useAllDomDatagridColumns = () => {
   const { t } = useTranslation('allDom');
@@ -15,7 +17,7 @@ export const useAllDomDatagridColumns = () => {
       {
         id: 'serviceName',
         cell: (props: TServiceDetail) => (
-          <DatagridColumnServiceName allDomName={props.serviceInfo.domain} />
+          <DatagridColumnServiceName allDomName={props.allDomProperty.name} />
         ),
         label: t('allDom_table_header_serviceName'),
         isFilterable: true,
@@ -23,7 +25,9 @@ export const useAllDomDatagridColumns = () => {
       {
         id: 'renewMode',
         cell: (props: TServiceDetail) => (
-          <DatagridColumnBadge renewMode={props.serviceInfo.renew.automatic} />
+          <DatagridColumnBadge
+            renewMode={props.serviceInfo.billing.renew.current.mode}
+          />
         ),
         label: t('allDom_table_header_renewMode'),
       },
@@ -55,30 +59,39 @@ export const useAllDomDatagridColumns = () => {
       {
         id: 'expiration_date',
         cell: (props: TServiceDetail) => (
-          <DatagridColumnDate expirationDate={props.serviceInfo.expiration} />
+          <DatagridColumnDate
+            expirationDate={props.serviceInfo.billing.expirationDate}
+          />
         ),
         label: t('allDom_table_header_expirationDate'),
       },
       {
         id: 'nicAdmin',
         cell: (props: TServiceDetail) => (
-          <DataGridTextCell>{props.serviceInfo.contactAdmin}</DataGridTextCell>
+          <DatagridColumnContact
+            contacts={props.serviceInfo.customer.contacts}
+            contactType={ServiceInfoContactEnum.Administrator}
+          />
         ),
         label: t('allDom_table_header_nicAdmin'),
       },
       {
         id: 'nicTech',
         cell: (props: TServiceDetail) => (
-          <DataGridTextCell>{props.serviceInfo.contactTech}</DataGridTextCell>
+          <DatagridColumnContact
+            contacts={props.serviceInfo.customer.contacts}
+            contactType={ServiceInfoContactEnum.Technical}
+          />
         ),
         label: t('allDom_table_header_nicTech'),
       },
       {
         id: 'nicBilling',
         cell: (props: TServiceDetail) => (
-          <DataGridTextCell>
-            {props.serviceInfo.contactBilling}
-          </DataGridTextCell>
+          <DatagridColumnContact
+            contacts={props.serviceInfo.customer.contacts}
+            contactType={ServiceInfoContactEnum.Billing}
+          />
         ),
         label: t('allDom_table_header_nicBilling'),
       },

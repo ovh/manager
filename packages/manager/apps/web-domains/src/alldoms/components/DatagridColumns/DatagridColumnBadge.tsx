@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { getRenewMode } from '@/alldoms/utils/renewMode.utils';
 
 interface DatagridColumnBadgeProps {
-  readonly renewMode: boolean;
+  readonly renewMode: string;
 }
 
 export default function DatagridColumnBadge({
