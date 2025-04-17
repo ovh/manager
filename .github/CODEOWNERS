@@ -31,7 +31,7 @@
 /packages/manager/apps/hycu @ovh/dev-manager-hpc-all
 /packages/manager/apps/iam @ovh/dev-manager-enabler-all
 /packages/manager/apps/iplb @ovh/dev-manager-infra-all
-/packages/manager/apps/key-management-service @ovh/dev-manager-enabler-all
+/packages/manager/apps/key-management-service @ovh/dev-manager-kms
 /packages/manager/apps/metrics @ovh/dev-manager-infra-all
 /packages/manager/apps/nasha @ovh/dev-manager-infra-all
 /packages/manager/apps/netapp @ovh/dev-manager-infra-all
