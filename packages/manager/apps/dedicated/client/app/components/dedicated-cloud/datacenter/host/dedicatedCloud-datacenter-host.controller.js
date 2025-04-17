@@ -1,7 +1,7 @@
 import get from 'lodash/get';
 
 import {
-  RESOURCE_BILLING_TYPES,
+  RESOURCE_BILLING_2API_TYPES,
   RESOURCE_UPGRADE_TYPES,
 } from '../../resource/upgrade/upgrade.constants';
 
@@ -23,7 +23,7 @@ export default class {
   }
 
   $onInit() {
-    this.RESOURCE_BILLING_TYPES = RESOURCE_BILLING_TYPES;
+    this.RESOURCE_BILLING_TYPES = RESOURCE_BILLING_2API_TYPES;
     this.RESOURCE_UPGRADE_TYPES = RESOURCE_UPGRADE_TYPES;
 
     return this.fetchDatacenterInfoProxy();
