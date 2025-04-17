@@ -3,24 +3,23 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
 import { GUIDE_LINKS } from './useGuideLink.constant';
 
-type GetGuideLinkProps = {
+type TGetGuideLinkProps = {
   name?: string;
   subsidiary: OvhSubsidiary;
 };
 
-function getGuideListLink({ subsidiary }: GetGuideLinkProps) {
-  return Object.entries(GUIDE_LINKS).reduce(
-    (result, [key, value]) => ({
-      ...result,
-      [key]: value[subsidiary] ?? value.DEFAULT,
-    }),
-    {} as { [guideName: string]: string },
-  );
-}
-
-export type UseGuideLinkProps = {
-  [guideName: string]: string;
+type UseGuideLinkProps = {
+  [guideName in keyof typeof GUIDE_LINKS]: string;
 };
+
+function getGuideListLink({ subsidiary }: TGetGuideLinkProps) {
+  return Object.fromEntries(
+    Object.entries(GUIDE_LINKS).map(([key, value]) => [
+      key,
+      value[subsidiary] ?? value.DEFAULT,
+    ]),
+  ) as UseGuideLinkProps;
+}
 
 export default function useGuideLink() {
   const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
