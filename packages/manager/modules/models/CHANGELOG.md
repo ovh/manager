@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@2.4.0...@ovh-ux/manager-models@2.4.1) (2025-04-17)
+
+
+### Bug Fixes
+
+* **billing:** rename extra sql perso status type and manage actions ([#16003](https://github.com/ovh/manager/issues/16003)) ([f31b266](https://github.com/ovh/manager/commit/f31b2665e16f8e751774092fac3356d8556cbc69)), closes [#WEB-20255](https://github.com/ovh/manager/issues/WEB-20255)
+
+
+
+
+
 # [2.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@2.3.3...@ovh-ux/manager-models@2.4.0) (2025-04-09)
 
 

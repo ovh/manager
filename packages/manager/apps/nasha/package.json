@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-nasha-app",
-  "version": "4.0.47",
+  "version": "4.0.48",
   "private": true,
   "description": "NAS-HA standalone application.",
   "repository": {
@@ -19,13 +19,13 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-nasha-app' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
-    "@ovh-ux/manager-billing-components": "^4.13.0",
+    "@ovh-ux/manager-billing-components": "^4.13.1",
     "@ovh-ux/manager-catalog-price": "^1.8.0",
     "@ovh-ux/manager-components": "^1.24.1",
     "@ovh-ux/manager-config": "^8.2.0",
-    "@ovh-ux/manager-core": "^13.1.0",
+    "@ovh-ux/manager-core": "^13.1.1",
     "@ovh-ux/manager-filters": "^0.1.0 || ^1.1.1",
-    "@ovh-ux/manager-models": "^2.4.0",
+    "@ovh-ux/manager-models": "^2.4.1",
     "@ovh-ux/manager-nasha": "^2.19.1",
     "@ovh-ux/manager-ng-layout-helpers": "^2.11.0",
     "@ovh-ux/ng-at-internet": "^6.0.11",

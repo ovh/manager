@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-vrack-app",
-  "version": "3.0.26",
+  "version": "3.0.27",
   "private": true,
   "description": "vRack standalone application.",
   "repository": {
@@ -21,7 +21,7 @@
   "dependencies": {
     "@ovh-ux/manager-cloud-styles": "^1.8.4",
     "@ovh-ux/manager-config": "^8.2.0",
-    "@ovh-ux/manager-core": "^13.1.0",
+    "@ovh-ux/manager-core": "^13.1.1",
     "@ovh-ux/manager-ng-layout-helpers": "^2.11.0",
     "@ovh-ux/manager-vrack": "^1.18.1",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
