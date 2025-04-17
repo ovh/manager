@@ -52,10 +52,11 @@ export default class ServicesActionsCtrl {
         this.warningLink = links.warningLink;
         this.updateLink = links.updateLink;
         this.deleteLink = links.deleteLink;
+        this.deleteLinkSkipRetentionPeriod =
+          links.deleteLinkSkipRetentionPeriod;
         this.resiliateLink = links.resiliateLink;
         this.buyingLink = links.buyingLink;
         this.renewLink = links.renewLink;
-
         this.canDisplayMenu =
           !this.isLoading &&
           ((links.billingManagementAvailabilityAndHaveAutorenewLink &&
@@ -124,7 +125,8 @@ export default class ServicesActionsCtrl {
           (this.service.hasAdminRights(this.user.auth.account) ||
             this.service.hasAdminRights(this.user.nichandle));
         this.canDisplayDeleteMenuEntry =
-          this.autorenewLink && this.service.canBeDeleted();
+          this.autorenewLink &&
+          (this.service.canBeDeleted() || this.service.isSuspendedHostingWeb());
         this.canDisplaySmsSpecificMenuEntries =
           this.service.serviceType === this.SERVICE_TYPE.SMS;
         this.canDisplayCancelResiliationMenuEntry =
@@ -147,6 +149,13 @@ export default class ServicesActionsCtrl {
     return `${RENEW_URL[this.user.ovhSubsidiary] || RENEW_URL.default}${
       this.service.serviceId
     }`;
+  }
+
+  getDeleteLink() {
+    if (this.service.isSuspendedHostingWeb()) {
+      return this.deleteLinkSkipRetentionPeriod;
+    }
+    return this.deleteLink;
   }
 
   canResiliate() {

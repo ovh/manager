@@ -151,7 +151,7 @@
 
         <oui-action-menu-item
             ng-if="::$ctrl.canDisplayDeleteMenuEntry"
-            href="{{:: $ctrl.deleteLink }}"
+            href="{{:: $ctrl.getDeleteLink() }}"
             on-click="$ctrl.trackAction('go-to-resiliate')"
             data-navi-id="go-to-delete"
             top
