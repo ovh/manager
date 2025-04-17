@@ -58,7 +58,7 @@ const MenuItem = ({
 
   if (item.href) {
     return (
-      <a href={item.href} download={item.download} target={item.target}>
+      <a href={item.href} download={item.download}>
         <OdsButton {...buttonProps} />
       </a>
     );
