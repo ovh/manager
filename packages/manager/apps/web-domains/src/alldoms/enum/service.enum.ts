@@ -8,15 +8,6 @@ export enum ServiceInfoRenewEnum {
   Option = 'option',
 }
 
-export enum ServiceInfoStatus {
-  AutorenewProgress = 'autorenewInProgress',
-  Expired = 'expired',
-  InCreation = 'inCreation',
-  Ok = 'ok',
-  PendingDebt = 'pendingDebt',
-  UnPaid = 'unPaid',
-}
-
 export enum ServiceInfoType {
   French = 'french',
   FrenchInternational = 'french+international',
@@ -32,4 +23,10 @@ export enum ServiceInfoUpdateEnum {
   Empty = 'empty',
   TerminateAtEngagementDate = 'terminateAtEngagementDate',
   TerminateAtExpirationDate = 'terminateAtExpirationDate',
+}
+
+export enum ServiceInfoContactEnum {
+  Administrator = 'administrator',
+  Technical = 'technical',
+  Billing = 'billing',
 }
