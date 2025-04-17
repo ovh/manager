@@ -1,17 +1,21 @@
 import React from 'react';
+import { afterEach, vi } from 'vitest';
 import * as managerReactComponents from '@ovh-ux/manager-react-components';
 import { Cell } from '@tanstack/react-table';
 import { screen } from '@testing-library/react';
 import ClipBoardCell from './ClipBoardCell.component';
-
 import { render } from '@/utils/test/test.provider';
 import { RancherService } from '@/types/api.type';
 
-jest.mock('@ovh-ux/manager-react-components', () => ({
-  ...jest.requireActual('@ovh-ux/manager-react-components'),
-  Clipboard: jest.fn(),
-  DataGridTextCell: jest.fn(),
-}));
+vi.mock('@ovh-ux/manager-react-components', async () => {
+  const module = await vi.importActual('@ovh-ux/manager-react-components');
+
+  return {
+    ...module,
+    Clipboard: vi.fn(),
+    DataGridTextCell: vi.fn(),
+  };
+});
 
 const mockCell = (value: string): Cell<RancherService, unknown> =>
   ({
@@ -24,14 +28,16 @@ const setupSpecTest = (cell: Cell<RancherService, unknown>) =>
   render(<ClipBoardCell cell={cell} />);
 
 describe('DataGridCell', () => {
-  jest
-    .spyOn(managerReactComponents, 'Clipboard')
-    .mockImplementation(({ value }) => (
-      <div data-testid="clipboard">{value}</div>
-    ));
-  jest
-    .spyOn(managerReactComponents, 'DataGridTextCell')
-    .mockImplementation(({ children }) => <>{children}</>);
+  vi.spyOn(
+    managerReactComponents,
+    'Clipboard',
+  ).mockImplementation(({ value }) => (
+    <div data-testid="clipboard">{value}</div>
+  ));
+  vi.spyOn(
+    managerReactComponents,
+    'DataGridTextCell',
+  ).mockImplementation(({ children }) => <>{children}</>);
 
   it('should render the component with the correct value', () => {
     const cell = mockCell('12345');

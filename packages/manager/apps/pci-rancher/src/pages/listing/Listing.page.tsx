@@ -94,7 +94,7 @@ const Listing: React.FC<ListingProps> = ({ data, refetchRanchers }) => {
   const { projectId } = useParams();
 
   useEffect(() => {
-    if (data.length === 0) {
+    if (data.length === 0 && projectId) {
       navigate(getOnboardingUrl(projectId));
     }
   }, [projectId, data.length]);
