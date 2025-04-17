@@ -40,7 +40,6 @@ export default {
     vrack: '<',
     vrackLink: '<',
     killTasks: '<',
-    steins: '<',
     customerRegions: '<',
     getStateName: '<',
     goToRegion: '<',

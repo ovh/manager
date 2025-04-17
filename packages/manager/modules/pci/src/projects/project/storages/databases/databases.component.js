@@ -24,7 +24,6 @@ export default {
     projectId: '<',
     trackDatabases: '<',
     showPaymentWarning: '<',
-    steins: '<',
     customerRegions: '<',
     databasesRegions: '<',
     type: '<',

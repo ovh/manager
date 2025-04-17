@@ -5,7 +5,7 @@ export default {
   bindings: {
     projectId: '<',
     serviceId: '<',
-    quotas: '<',
+    loadQuotas: '&',
     project: '<',
     projects: '<',
     user: '<',
@@ -16,7 +16,6 @@ export default {
     actions: '<',
     getQuotaUrl: '<',
     getStateName: '<',
-    steins: '<',
     customerRegions: '<',
     goToProject: '<',
     goToProjects: '<',

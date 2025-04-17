@@ -21,7 +21,6 @@ export default {
     projectId: '<',
     viewContainer: '<',
     getStateName: '<',
-    steins: '<',
     userList: '<',
     allUserList: '<',
     customerRegions: '<',

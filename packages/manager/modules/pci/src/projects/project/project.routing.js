@@ -113,8 +113,6 @@ export default /* @ngInject */ ($stateProvider) => {
 
       serviceId: /* @ngInject */ (service) => service?.serviceId,
 
-      quotas: /* @ngInject */ (loadQuotas) => loadQuotas(),
-
       loadQuotas: /* @ngInject */ (PciProjectsService, projectId) => () =>
         PciProjectsService.getQuotas(projectId),
 
@@ -185,18 +183,6 @@ export default /* @ngInject */ ($stateProvider) => {
       getStateName: /* @ngInject */ ($state) => () => {
         return $state.current.name;
       },
-
-      /**
-       * contains all planed Pci Maintenance
-       */
-      steins: /* @ngInject */ ($http) =>
-        $http
-          .get('/cloud/migrationStein')
-          .then(({ data: steins }) =>
-            steins.sort(
-              (stein1, stein2) => new Date(stein1.date) - new Date(stein2.date),
-            ),
-          ),
 
       /**
        * Available links
