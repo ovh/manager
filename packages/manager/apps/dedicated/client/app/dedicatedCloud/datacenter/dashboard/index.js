@@ -9,6 +9,7 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
     $stateProvider.state(
       'app.dedicatedCloud.details.datacenter.details.dashboard.**',
       {
+        url: '/',
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
           return import(
