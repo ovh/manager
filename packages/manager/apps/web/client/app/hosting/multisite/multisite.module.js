@@ -1,6 +1,5 @@
 import cdnFlush from './cdn-flush';
 
-import statistics from './statistics/hosting-multisite-statistics.component';
 import hostingMultisiteGitAssociation from './git-integration/association';
 import hostingMultisiteGitRemoval from './git-integration/removal';
 import hostingMultisiteGitDeployment from './git-integration/deployment';
@@ -18,7 +17,6 @@ angular
     hostingMultisiteGitRemoval,
     hostingMultisiteGitViewLastDeployment,
   ])
-  .component('hostingMultisiteStatistics', statistics)
   .config(routing)
   .controller('MultisiteDiagnosticCtrl', multisiteDiagnosticCtrl)
   .run(/* @ngTranslationsInject:json ./translations */);

@@ -10,5 +10,7 @@
   "hostings_offer_performance_4": "Performance 4",
   "hosting_offer_changing_datavis_tool": "A ferramenta de visualização das estatísticas do seu alojamento web evolui e está temporariamente indisponível. <a href=\"{{url}}\" target=\"_blank\">Consulte a página de manutenção</a> para acompanhar o progresso.",
   "hostings_order_hosting": "Encomendar um alojamento",
-  "hostings_order_sql": "Encomendar uma base de dados"
+  "hostings_order_sql": "Encomendar uma base de dados",
+  "hostings_guides_title": "Manuais",
+  "hosting_guides_general_information": "Informações gerais"
 }

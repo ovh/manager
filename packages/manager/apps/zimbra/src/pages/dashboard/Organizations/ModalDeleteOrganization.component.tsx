@@ -49,7 +49,7 @@ export default function ModalDeleteOrganization() {
       });
       addSuccess(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t('common:add_success_message')}
+          {t('common:delete_success_message')}
         </OdsText>,
         true,
       );
@@ -61,7 +61,7 @@ export default function ModalDeleteOrganization() {
       });
       addError(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t('common:add_error_message', {
+          {t('common:delete_error_message', {
             error: error?.response?.data?.message,
           })}
         </OdsText>,

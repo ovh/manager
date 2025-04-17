@@ -125,6 +125,36 @@ export const DATE_FORMAT = {
 
 export const PRODUCT_TYPE = 'DOMAIN';
 
+const PREFIX_GUIDES_URL = 'https://help.ovhcloud.com/csm/';
+const SUFFIX_URL_GENERAL_INFORMATION =
+  '?id=kb_browse_cat&kb_id=e17b4f25551974502d4c6e78b7421955&kb_category=54441955f49801102d4ca4d466a7fdb2';
+export const DOMAINS_GUIDES = [
+  {
+    translateKey: 'domains_guides_general_information',
+    url: {
+      DEFAULT: `${PREFIX_GUIDES_URL}world-documentation-web-cloud-domains${SUFFIX_URL_GENERAL_INFORMATION}`,
+      ASIA: `${PREFIX_GUIDES_URL}asia-documentation-web-cloud-domains${SUFFIX_URL_GENERAL_INFORMATION}`,
+      DE: `${PREFIX_GUIDES_URL}de-documentation-web-cloud-domains${SUFFIX_URL_GENERAL_INFORMATION}`,
+      ES: `${PREFIX_GUIDES_URL}es-es-documentation-web-cloud-domains${SUFFIX_URL_GENERAL_INFORMATION}`,
+      IE: `${PREFIX_GUIDES_URL}en-ie-documentation-web-cloud-domains${SUFFIX_URL_GENERAL_INFORMATION}`,
+      IT: `${PREFIX_GUIDES_URL}it-documentation-web-cloud-domains${SUFFIX_URL_GENERAL_INFORMATION}`,
+      PL: `${PREFIX_GUIDES_URL}pl-documentation-web-cloud-domains${SUFFIX_URL_GENERAL_INFORMATION}`,
+      PT: `${PREFIX_GUIDES_URL}pt-documentation-web-cloud-domains${SUFFIX_URL_GENERAL_INFORMATION}`,
+      GB: `${PREFIX_GUIDES_URL}en-gb-documentation-web-cloud-domains${SUFFIX_URL_GENERAL_INFORMATION}`,
+      CA: `${PREFIX_GUIDES_URL}en-ca-documentation-web-cloud-domains${SUFFIX_URL_GENERAL_INFORMATION}`,
+      QC: `${PREFIX_GUIDES_URL}fr-ca-documentation-web-cloud-domains${SUFFIX_URL_GENERAL_INFORMATION}`,
+      MA: `${PREFIX_GUIDES_URL}fr-ma-documentation-web-cloud-domains${SUFFIX_URL_GENERAL_INFORMATION}`,
+      SN: `${PREFIX_GUIDES_URL}fr-sn-documentation-web-cloud-domains${SUFFIX_URL_GENERAL_INFORMATION}`,
+      TN: `${PREFIX_GUIDES_URL}fr-tn-documentation-web-cloud-domains${SUFFIX_URL_GENERAL_INFORMATION}`,
+      AU: `${PREFIX_GUIDES_URL}en-au-documentation-web-cloud-domains${SUFFIX_URL_GENERAL_INFORMATION}`,
+      SG: `${PREFIX_GUIDES_URL}en-sg-documentation-web-cloud-domains${SUFFIX_URL_GENERAL_INFORMATION}`,
+      FR: `${PREFIX_GUIDES_URL}fr-documentation-web-cloud-domains${SUFFIX_URL_GENERAL_INFORMATION}`,
+      WE: `${PREFIX_GUIDES_URL}world-documentation-web-cloud-domains${SUFFIX_URL_GENERAL_INFORMATION}`,
+      WS: `${PREFIX_GUIDES_URL}es-documentation-web-cloud-domains${SUFFIX_URL_GENERAL_INFORMATION}`,
+    },
+  },
+];
+
 export default {
   DOMAIN_COLUMN_DNSSEC,
   DOMAIN_OBJECT_KEYS,
@@ -144,4 +174,5 @@ export default {
   DATE_FORMAT,
   MONTH_DATE_FORMAT,
   PRODUCT_TYPE,
+  DOMAINS_GUIDES,
 };
