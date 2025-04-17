@@ -1,9 +1,9 @@
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { PciModal } from '@ovh-ux/manager-pci-common';
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { OdsText } from '@ovhcloud/ods-components/react';
-import { useContext, useMemo } from 'react';
+import { useMemo } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
 import {
   createSearchParams,
@@ -11,14 +11,15 @@ import {
   useParams,
   useSearchParams,
 } from 'react-router-dom';
-import { PAGE_PREFIX } from '@/tracking.constants';
+import { APP_NAME, SUB_UNIVERSE, UNIVERSE } from '@/tracking.constants';
 import { useAllStorages, useUpdateStorage } from '@/api/hooks/useStorages';
 
 export default function EnableVersioningPage() {
   const { t } = useTranslation('containers/enable-versioning');
 
   const { addSuccess, addError } = useNotifications();
-  const { tracking } = useContext(ShellContext).shell;
+
+  const { trackPage, trackClick } = useOvhTracking();
   const navigate = useNavigate();
   const { projectId, storageId } = useParams();
 
@@ -45,12 +46,23 @@ export default function EnableVersioningPage() {
       })}`,
     });
 
+  const trackVersioningAction = (action: 'confirm' | 'cancel') => {
+    trackClick({
+      actions: [
+        UNIVERSE,
+        SUB_UNIVERSE,
+        APP_NAME,
+        'page',
+        'button',
+        'object_activate_versioning',
+        action,
+      ],
+    });
+  };
+
   const onCancel = () => {
     onClose();
-    tracking?.trackClick({
-      name: `${PAGE_PREFIX}object::enable-versioning::cancel`,
-      type: 'action',
-    });
+    trackVersioningAction('cancel');
   };
 
   const { updateContainer, isPending } = useUpdateStorage({
@@ -59,6 +71,10 @@ export default function EnableVersioningPage() {
     name: storageId,
     s3StorageType: storageDetail?.s3StorageType,
     onError(error: ApiError) {
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: 'object_activate_versioning_error',
+      });
       addError(
         <Translation ns="containers/enable-versioning">
           {(_t) =>
@@ -76,6 +92,10 @@ export default function EnableVersioningPage() {
       onClose();
     },
     onSuccess() {
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: 'object_activate_versioning_success',
+      });
       addSuccess(
         <Translation ns="containers/enable-versioning">
           {(_t) =>
@@ -94,11 +114,7 @@ export default function EnableVersioningPage() {
     updateContainer({
       versioning: { status: 'enabled' },
     });
-
-    tracking?.trackClick({
-      name: `${PAGE_PREFIX}object::enable-versioning::confirm`,
-      type: 'action',
-    });
+    trackVersioningAction('confirm');
   };
 
   return (
