@@ -50,8 +50,8 @@ vi.mock('@ovh-ux/manager-react-components', async () => {
       sorting: vi.fn(),
       setSorting: vi.fn(),
     }),
-    PciGuidesHeader: vi.fn(() => <div></div>),
-    ChangelogButton: () => <div></div>,
+    PciGuidesHeader: vi.fn(() => <div data-testid="pci-guides-header"></div>),
+    ChangelogButton: () => <div data-testid="changelog-button"></div>,
     RedirectionGuard: ({
       children,
       condition,
