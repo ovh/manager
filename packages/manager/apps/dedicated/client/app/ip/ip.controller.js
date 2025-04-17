@@ -58,9 +58,10 @@ export default /* @ngInject */ function IpMainCtrl(
     );
   }
 
+  const { ovhSubsidiary } = $scope.currentUser;
   $scope.guides = Object.keys(GUIDE_LINKS).map((key) => ({
     name: $translate.instant(`ip_guide_link_${key}`),
-    url: GUIDE_LINKS[key],
+    url: GUIDE_LINKS[key][ovhSubsidiary] || GUIDE_LINKS[key].DEFAULT,
   }));
 
   // ---
