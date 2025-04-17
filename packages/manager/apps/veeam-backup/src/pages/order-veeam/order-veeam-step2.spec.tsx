@@ -25,6 +25,14 @@ import { translations } from '@/test-helpers/labels';
 
 let i18n: i18nType;
 
+vi.mock('react-router-dom', async () => {
+  const mod = await vi.importActual('react-router-dom');
+  return {
+    ...mod,
+    useNavigate: () => ({ navigate: vi.fn() }),
+  };
+});
+
 // remove ods mock when element-internals-polyfill err is fixed
 vi.mock('@ovhcloud/ods-components/react', async (mod) => {
   const module = await mod<typeof import('@ovhcloud/ods-components/react')>();
@@ -37,9 +45,6 @@ vi.mock('@ovh-ux/manager-module-vcd-api', async (mod) => {
   const module = await mod<typeof import('@ovh-ux/manager-module-vcd-api')>();
   return { ...module, useOrganizationWithBackupStatusList: vi.fn() };
 });
-vi.mock('react-router-dom', () => ({
-  useNavigate: () => ({ navigate: vi.fn() }),
-}));
 
 const shellContext = {
   environment: {

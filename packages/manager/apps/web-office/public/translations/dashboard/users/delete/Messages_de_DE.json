@@ -1,10 +1,10 @@
 {
   "dashboard_users_delete_title": "Account löschen",
-  "dashboard_users_delete_confirm": "Sind Sie sicher, dass Sie den Benutzer <strong> {{t0}} löschen möchten</strong>?",
-  "dashboard_users_delete_info1": "Der Benutzer wird sofort nach Bestätigung gelöscht.",
-  "dashboard_users_delete_info2": "Da die Abrechnung unserer Office 365-Produkte auf dem Verbrauch des Vormonats basiert, erhalten Sie eine letzte Rechnung für dieses Konto.",
+  "dashboard_users_delete_confirm": "Möchten Sie den User <strong>{{t0}}</strong> wirklich löschen?",
+  "dashboard_users_delete_info1": "Der User wird sofort nach Bestätigung gelöscht.",
+  "dashboard_users_delete_info2": "Da die Abrechnung unserer Office 365-Produkte auf der Nutzung des Vormonats basiert, erhalten Sie eine letzte Rechnung für diesen Account.",
   "dashboard_users_delete_cta_cancel": "Abbrechen",
   "dashboard_users_delete_cta_confirm": "Löschen",
-  "dashboard_users_delete_message_error": "Beim Löschen des Benutzers ist ein Fehler aufgetreten. {{ error }}",
-  "dashboard_users_delete_message_success": "Der Benutzer wird gelöscht."
+  "dashboard_users_delete_message_error": "Beim Löschen des Users ist ein Fehler aufgetreten. {{ error }}",
+  "dashboard_users_delete_message_success": "Der User wird gelöscht."
 }

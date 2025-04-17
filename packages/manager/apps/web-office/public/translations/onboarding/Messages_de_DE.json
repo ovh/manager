@@ -1,13 +1,13 @@
 {
-  "web_office_onboarding_title": "Kollaborative Lösungen",
+  "web_office_onboarding_title": "Lösungen für die Zusammenarbeit",
   "web_office_onboarding_description": "Ob im Büro oder unterwegs: Verschieben, teilen und bearbeiten Sie Dokumente und kommunizieren Sie von überall aus mit allen Ihren Teams!",
-  "web_office_onboarding_description2": "Entdecken Sie alle unsere sofort einsatzbereiten und abgesicherten kollaborativen Lösungen.",
+  "web_office_onboarding_description2": "Entdecken Sie alle unsere sofort einsatzbereiten und abgesicherten Lösungen für die Zusammenarbeit.",
   "web_office_onboarding_order": "Bestellen",
   "web_office_onboarding_tutorial": "Anleitung",
   "web_office_onboarding_guide1_title": "OVHcloud Microsoft 365 Lizenzgruppe (CSP1) verwalten",
   "web_office_onboarding_guide1_description": "Hier erfahren Sie, wie Sie eine Microsoft 365 Lizenz abonnieren und in Ihrem OVHcloud Kundencenter verwalten.",
-  "web_office_onboarding_guide2_title": "OVHcloud Web_Office 365 Reseller-Lizenzgruppe (CSP2) verwalten",
-  "web_office_onboarding_guide2_description": "Hier erfahren Sie, wie Sie einen Web_Office 365 Reseller Dienst (CSP2) bei OVHcloud abonnieren und verwalten",
+  "web_office_onboarding_guide2_title": "OVHcloud web_office 365 Reseller (CSP2) Lizenzgruppe verwalten",
+  "web_office_onboarding_guide2_description": "Hier erfahren Sie, wie Sie einen web_office 365 Reseller (CSP2) Dienst bei OVHcloud abonnieren und verwalten.",
   "web_office_onboarding_guide3_title": "Remotedesktop mit Microsoft 365 Apps verwenden",
   "web_office_onboarding_guide3_description": "Hier erfahren Sie, wie Sie Microsoft 365 Apps auf einem Remotedesktop (RDS) oder einem geteilten Computer installieren und verwenden"
 }

@@ -1,11 +1,15 @@
 import React from 'react';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
-import { createMemoryRouter, RouterProvider } from 'react-router-dom';
+import {
+  createMemoryRouter,
+  RouterProvider,
+  createRoutesFromElements,
+} from 'react-router-dom';
 import { MessageContextProvider } from '@/components/Messages/Messages.context';
-import { routes } from '@/routes/routes';
+import Routes from '@/routes/routes';
 
 export function TestApp({ initialRoute = '/' }: { initialRoute?: string }) {
-  const router = createMemoryRouter(routes, {
+  const routes = createMemoryRouter(createRoutesFromElements(Routes), {
     initialEntries: [initialRoute],
     initialIndex: 0,
   });
@@ -17,7 +21,7 @@ export function TestApp({ initialRoute = '/' }: { initialRoute?: string }) {
   return (
     <QueryClientProvider client={queryClient}>
       <MessageContextProvider>
-        <RouterProvider router={router} />
+        <RouterProvider router={routes} />
       </MessageContextProvider>
     </QueryClientProvider>
   );

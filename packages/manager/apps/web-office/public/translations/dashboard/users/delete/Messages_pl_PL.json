@@ -1,10 +1,10 @@
 {
   "dashboard_users_delete_title": "Usuń konto",
-  "dashboard_users_delete_confirm": "Czy na pewno chcesz usunąć użytkownika <strong>{{t0}}</strong>?",
-  "dashboard_users_delete_info1": "Użytkownik zostanie usunięty natychmiast po potwierdzeniu.",
-  "dashboard_users_delete_info2": "Ponieważ rozliczenie za nasze produkty Office 365 opiera się na zużyciu z poprzedniego miesiąca, otrzymasz ostatnią fakturę za to konto.",
+  "dashboard_users_delete_confirm": "Czy na pewno chcesz usunąć konto użytkownika <strong>{{t0}}</strong>?",
+  "dashboard_users_delete_info1": "Konto użytkownika zostanie usunięte natychmiast po potwierdzeniu.",
+  "dashboard_users_delete_info2": "Ponieważ opłatę za produkty Office 365 wyliczamy na podstawie zużycia z poprzedniego miesiąca, otrzymasz ostatnią fakturę za to konto.",
   "dashboard_users_delete_cta_cancel": "Anuluj",
   "dashboard_users_delete_cta_confirm": "Usuń",
-  "dashboard_users_delete_message_error": "Wystąpił błąd podczas usuwania użytkownika. {{ error }}",
-  "dashboard_users_delete_message_success": "Trwa usuwanie użytkownika."
+  "dashboard_users_delete_message_error": "Wystąpił błąd podczas usuwania konta użytkownika. {{error}}",
+  "dashboard_users_delete_message_success": "Trwa usuwanie konta użytkownika."
 }

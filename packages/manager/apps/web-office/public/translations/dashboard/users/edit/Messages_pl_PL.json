@@ -1,7 +1,7 @@
 {
   "dashboard_users_edit_title": "Edytuj konto",
-  "dashboard_users_edit_form_helper_login_conditions": "Login musi zawierać od 3 do 20 znaków. Może zawierać cyfry, litery oraz znaki specjalne: - _! # $ % &amp; ' ^ { }",
-  "dashboard_users_edit_form_helper_login_condition_exception": "Może także zawierać kropki, pod warunkiem że są poprzedzone dozwolonym znakiem i nie następuje po nich żaden inny punkt.",
-  "dashboard_users_edit_message_success": "Trwa wykonywanie zmian dla użytkownika. Odśwież stronę za kilka minut.",
-  "dashboard_users_edit_message_error": "Wystąpił błąd podczas edytowania użytkownika. {{ error }}"
+  "dashboard_users_edit_form_helper_login_conditions": "Login musi zawierać od 3 do 20 znaków. Może zawierać cyfry, litery oraz znaki specjalne: - _ ! # $ % &amp; ' ^ ` { }",
+  "dashboard_users_edit_form_helper_login_condition_exception": "Może także zawierać kropki, pod warunkiem że są poprzedzone dozwolonym znakiem i nie następuje po nich żadna inna kropka.",
+  "dashboard_users_edit_message_success": "Trwa wprowadzanie zmian dotyczących użytkownika. Odśwież stronę za kilka minut.",
+  "dashboard_users_edit_message_error": "Wystąpił błąd podczas edytowania danych użytkownika. {{error}}"
 }

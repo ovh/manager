@@ -5,14 +5,14 @@
   "dashboard_users_table_licences": "Licenze",
   "dashboard_users_table_status": "Stato",
   "dashboard_users_download_text": "I programmi di installazione per PC e MAC sono disponibili sul sito di <officeLink/>.",
-  "dashboard_users_download_info": "Per smartphone e tablet, collegati direttamente al tuo App Store.",
-  "dashboard_users_download_id": "Le credenziali di accesso e installazione ti vengono inviate via email quando aggiungi una nuova licenza.",
+  "dashboard_users_download_info": "Per smartphone e tablet, accedi direttamente al tuo App Store.",
+  "dashboard_users_download_id": "Le credenziali di accesso e installazione vengono inviate via email quando aggiungi una nuova licenza.",
   "dashboard_users_status_creating": "In creazione",
   "dashboard_users_status_updating": "Aggiornamento",
   "dashboard_users_status_deleting": "In corso di eliminazione",
   "dashboard_users_status_ok": "Creato",
   "dashboard_users_status_unconfigured": "Non configurato",
-  "dashboard_users_action_user_change_password": "Modifica la password",
-  "dashboard_users_action_user_edit": "Modifica l'account",
+  "dashboard_users_action_user_change_password": "Modificare la password",
+  "dashboard_users_action_user_edit": "Modificare l'account",
   "dashboard_users_action_user_delete": "Elimina l’account"
 }

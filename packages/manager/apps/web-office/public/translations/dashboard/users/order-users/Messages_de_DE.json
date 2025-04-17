@@ -3,6 +3,6 @@
   "dashboard_users_order_users_type_placeholder": "Mehr erfahren",
   "dashboard_users_order_users_price": "Preis",
   "dashboard_users_order_users_message": "Es wird jeweils die Anzahl der im laufenden Monat aktiven Lizenzen in Rechnung gestellt.",
-  "dashboard_users_order_users_message_error": "Beim Hinzufügen des Benutzers ist ein Fehler aufgetreten. {{ error }}",
-  "dashboard_users_order_users_message_success": "Ihre Anfrage zum Hinzufügen eines Benutzers wurde registriert."
+  "dashboard_users_order_users_message_error": "Beim Hinzufügen des Users ist ein Fehler aufgetreten. {{ error }}",
+  "dashboard_users_order_users_message_success": "Ihre Anfrage zum Hinzufügen eines Users wurde registriert."
 }
