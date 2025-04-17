@@ -50,7 +50,7 @@ export default function Modal({
       <hgroup className="mb-4">
         <OdsText preset={ODS_TEXT_PRESET.heading3} class="mb-8">
           {t('allDom_modal_title', {
-            t0: serviceDetail.serviceInfo.domain,
+            t0: serviceDetail.allDomProperty.name,
           })}
         </OdsText>
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
