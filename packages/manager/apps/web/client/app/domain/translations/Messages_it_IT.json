@@ -110,5 +110,6 @@
   "domains_action_per_line_resiliation_cancellation": "Annulla la disattivazione del servizio",
   "domains_status_autorenew_in_progress": "Rinnovo in corso",
   "domains_status_autorenew_registry_in_progress": "Rinnovo in corso",
-  "domains_status_tooltip_autorenew_registry_in_progress": "Il rinnovo è in corso di finalizzazione presso il Registro"
+  "domains_status_tooltip_autorenew_registry_in_progress": "Il rinnovo è in corso di finalizzazione presso il Registro",
+  "domains_guides_general_information": "Informazioni generali"
 }
