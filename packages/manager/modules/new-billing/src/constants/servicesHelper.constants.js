@@ -4,13 +4,12 @@ export const SERVICES_TARGET_URLS = {
     url: '#/configuration/cdn/:serviceName',
   },
   '/cloud/project/{serviceName}': {
-    universe: 'cloud',
-    url: '#/iaas/pci/project/:serviceName/compute/infrastructure/diagram',
-    type: 'pci',
+    universe: 'public-cloud',
+    url: '#/pci/projects/:serviceName/',
   },
   '/dedicated/nasha/{serviceName}': {
     universe: 'dedicated',
-    url: '#/configuration/nas/nas/nasha_:serviceName',
+    url: '#/nasha/serviceName',
   },
   '/domain/zone/{zoneName}': {
     universe: 'web',
@@ -30,7 +29,7 @@ export const SERVICES_TARGET_URLS = {
   },
   '/email/domain/{domain}': {
     universe: 'web',
-    url: '#/configuration/email-domain/:serviceName',
+    url: '#/configuration/email_domain/:serviceName',
   },
   '/email/pro/{service}': {
     universe: 'web',
@@ -41,7 +40,7 @@ export const SERVICES_TARGET_URLS = {
     url: '#/configuration/microsoft/office/license/:serviceName',
   },
   '/dbaas/logs/{serviceName}': {
-    universe: 'cloud',
+    universe: 'dedicated',
     url: '#/dbaas/logs/:serviceName/home',
   },
   '/dedicated/housing/{serviceName}': {
@@ -50,11 +49,11 @@ export const SERVICES_TARGET_URLS = {
   },
   '/dedicated/server/{serviceName}': {
     universe: 'dedicated',
-    url: '#/configuration/server/:serviceName',
+    url: '#/server/:serviceName',
   },
   '/dedicatedCloud/{serviceName}': {
     universe: 'dedicated',
-    url: '#/configuration/dedicated_cloud/:serviceName',
+    url: '#/configuration/managedBaremetal/:serviceName',
   },
   '/domain/{serviceName}': {
     universe: 'web',
@@ -62,43 +61,43 @@ export const SERVICES_TARGET_URLS = {
   },
   '/ip/service/{serviceName}': {
     universe: 'dedicated',
-    url: '#/configuration/ip',
+    url: '#/ip',
   },
   '/ipLoadbalancing/{serviceName}': {
     universe: 'dedicated',
-    url: '#/network/iplb/:serviceName',
+    url: '#/iplb/:serviceName',
   },
   '/license/plesk/{serviceName}': {
     universe: 'dedicated',
-    url: '#/configuration/license/:serviceName/detail',
+    url: '#/license/:serviceName/detail',
   },
   '/license/windows/{serviceName}': {
     universe: 'dedicated',
-    url: '#/configuration/license/:serviceName/detail',
+    url: '#/license/:serviceName/detail',
   },
   '/license/sqlserver/{serviceName}': {
     universe: 'dedicated',
-    url: '#/configuration/license/:serviceName/detail',
+    url: '#/license/:serviceName/detail',
   },
   '/license/virtuozzo/{serviceName}': {
     universe: 'dedicated',
-    url: '#/configuration/license/:serviceName/detail',
+    url: '#/license/:serviceName/detail',
   },
   '/license/worklight/{serviceName}': {
     universe: 'dedicated',
-    url: '#/configuration/license/:serviceName/detail',
+    url: '#/license/:serviceName/detail',
   },
   '/license/cpanel/{serviceName}': {
     universe: 'dedicated',
-    url: '#/configuration/license/:serviceName/detail',
+    url: '#/license/:serviceName/detail',
   },
   '/license/directadmin/{serviceName}': {
     universe: 'dedicated',
-    url: '#/configuration/license/:serviceName/detail',
+    url: '#/license/:serviceName/detail',
   },
   '/license/cloudlinux/{serviceName}': {
     universe: 'dedicated',
-    url: '#/configuration/license/:serviceName/detail',
+    url: '#/license/:serviceName/detail',
   },
   '/pack/xdsl/{packName}': {
     universe: 'telecom',
@@ -128,7 +127,7 @@ export const SERVICES_TARGET_URLS = {
     url: '#/iaas/vps/:serviceName/dashboard',
   },
   '/vrack/{serviceName}': {
-    universe: 'cloud',
+    universe: 'dedicated',
     url: '#/vrack/:serviceName',
   },
   '/deskaas/{serviceName}': {
