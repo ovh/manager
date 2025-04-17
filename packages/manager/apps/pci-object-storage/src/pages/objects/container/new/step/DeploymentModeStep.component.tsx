@@ -1,5 +1,8 @@
 import { useContext, useMemo } from 'react';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  ShellContext,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { StepComponent } from '@ovh-ux/manager-react-components';
 import { TileInputChoice } from '@ovh-ux/manager-pci-common';
 import { useTranslation } from 'react-i18next';
@@ -19,6 +22,7 @@ import { useStorageFeatures } from '@/hooks/useStorageFeatures';
 
 export function DeploymentModeStep() {
   const { t } = useTranslation(['containers/add', 'pci-common']);
+  const { trackClick } = useOvhTracking();
 
   const columnsCount = useColumnsCount();
   const {
@@ -61,6 +65,21 @@ export function DeploymentModeStep() {
     [OBJECT_CONTAINER_DEPLOYMENT_MODES, is3azAvailable, isLocalZoneAvailable],
   );
 
+  const trackDeploymentModeAction = (actionType, deploymentMode = null) => {
+    const actions = [
+      'funnel',
+      'button',
+      'add_objects_storage_container',
+      actionType,
+    ];
+
+    if (deploymentMode) {
+      actions.push(deploymentMode);
+    }
+
+    trackClick({ actions });
+  };
+
   return (
     <StepComponent
       title={t(
@@ -71,12 +90,24 @@ export function DeploymentModeStep() {
       isLocked={stepper.deployment.isLocked}
       order={2}
       next={{
-        action: submitDeploymentMode,
+        action: () => {
+          trackDeploymentModeAction(
+            'select_deployment_mode',
+            form.deploymentMode,
+          );
+          submitDeploymentMode();
+        },
         label: t('pci-common:common_stepper_next_button_label'),
         isDisabled: !form.deploymentMode,
       }}
       edit={{
-        action: editDeploymentMode,
+        action: () => {
+          trackDeploymentModeAction(
+            'edit_step_deployment_mode',
+            form.deploymentMode,
+          );
+          editDeploymentMode();
+        },
         label: t('pci-common:common_stepper_modify_this_step'),
       }}
     >
@@ -104,7 +135,10 @@ export function DeploymentModeStep() {
           items={items}
           columnsCount={columnsCount}
           selectedItem={items.find(({ id }) => id === form.deploymentMode)}
-          onSelectItem={(item) => setDeploymentMode(item.id)}
+          onSelectItem={(item) => {
+            trackDeploymentModeAction('select_deployment_mode', item.id);
+            setDeploymentMode(item.id);
+          }}
           isSubmitted={stepper.deployment.isLocked}
         >
           {(item, isSelected) => (

@@ -1,5 +1,6 @@
 import { lazy } from 'react';
 import { Route } from 'react-router-dom';
+import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { ErrorBoundary } from '@/pages/ErrorBoundary';
 
 export const ROUTE_PATHS = {
@@ -90,52 +91,193 @@ export default (
     Component={LayoutPage}
     errorElement={<ErrorBoundary />}
   >
-    <Route path={ROUTE_PATHS.ONBOARDING} Component={OnboardingPage} />
-    <Route path={ROUTE_PATHS.CONTAINER_NEW} Component={ContainerNewPage} />
+    <Route
+      path={ROUTE_PATHS.ONBOARDING}
+      Component={OnboardingPage}
+      handle={{
+        tracking: {
+          pageName: 'onboarding',
+          pageType: PageType.onboarding,
+        },
+      }}
+    />
+    <Route
+      path={ROUTE_PATHS.CONTAINER_NEW}
+      Component={ContainerNewPage}
+      handle={{
+        tracking: {
+          pageName: 'add_objects_storage_container',
+          pageType: PageType.funnel,
+        },
+      }}
+    />
     <Route path={ROUTE_PATHS.STORAGES} Component={StoragePage}>
-      <Route path={ROUTE_PATHS.STORAGES} Component={ContainerListPage}>
+      <Route
+        path={ROUTE_PATHS.STORAGES}
+        Component={ContainerListPage}
+        handle={{
+          tracking: {
+            pageName: 'objects_storage_container_listing',
+            pageType: PageType.listing,
+          },
+        }}
+      >
         <Route
           path={ROUTE_PATHS.CONTAINER_DELETE}
           Component={DeleteContainerPage}
+          handle={{
+            tracking: {
+              pageName: 'objects_storage_container_delete',
+              pageType: PageType.popup,
+            },
+          }}
         />
         <Route
           path={ROUTE_PATHS.CONTAINER_ADD_USER}
           Component={AddUserToContainerPage}
+          handle={{
+            tracking: {
+              pageName: 'objects_storage_container_add_user',
+              pageType: PageType.popup,
+            },
+          }}
         />
         <Route
           path={ROUTE_PATHS.CONTAINER_EMPTY_USER}
           Component={EmptyUsersPage}
+          handle={{
+            tracking: {
+              pageName: 'objects_storage_container_empty_user',
+              pageType: PageType.listing,
+            },
+          }}
         />
       </Route>
-      <Route path={ROUTE_PATHS.USER_LIST} Component={UserListPage}>
-        <Route path={ROUTE_PATHS.USER_CREATE} Component={UserCreatePage} />
+      <Route
+        path={ROUTE_PATHS.USER_LIST}
+        Component={UserListPage}
+        handle={{
+          tracking: {
+            pageName: 'objects_storage_container_users_listing',
+            pageType: PageType.listing,
+          },
+        }}
+      >
+        <Route
+          path={ROUTE_PATHS.USER_CREATE}
+          Component={UserCreatePage}
+          handle={{
+            tracking: {
+              pageName: 'objects_storage_container_users_create',
+              pageType: PageType.popup,
+            },
+          }}
+        />
         <Route
           path={ROUTE_PATHS.USER_IMPORT_POLICY}
           Component={ImportPolicyPage}
+          handle={{
+            tracking: {
+              pageName: 'objects_storage_container_users_import_policy',
+              pageType: PageType.popup,
+            },
+          }}
         />
-        <Route path={ROUTE_PATHS.USER_DELETE} Component={DeleteUserPage} />
+        <Route
+          path={ROUTE_PATHS.USER_DELETE}
+          Component={DeleteUserPage}
+          handle={{
+            tracking: {
+              pageName: 'objects_storage_container_users_delete',
+              pageType: PageType.popup,
+            },
+          }}
+        />
         <Route
           path={ROUTE_PATHS.DOWNLOAD_RCLONE}
           Component={DownloadRClonePage}
+          handle={{
+            tracking: {
+              pageName: 'objects_storage_container_users_download_rclone',
+              pageType: PageType.popup,
+            },
+          }}
         />
       </Route>
     </Route>
-    <Route path={ROUTE_PATHS.OBJECTS} Component={ObjectPage}>
+    <Route
+      path={ROUTE_PATHS.OBJECTS}
+      Component={ObjectPage}
+      handle={{
+        tracking: {
+          pageName: 'objects_storage_container_listing_object',
+          pageType: PageType.listing,
+        },
+      }}
+    >
       <Route path={ROUTE_PATHS.ADD_USER_OBJECT} Component={AddUserObjectPage} />
       <Route path={ROUTE_PATHS.EMPTY_USER_OBJECT} Component={EmptyUsersPage} />
-      <Route path={ROUTE_PATHS.DELETE_OBJECT} Component={DeleteObjectPage} />
+      <Route
+        path={ROUTE_PATHS.DELETE_OBJECT}
+        Component={DeleteObjectPage}
+        handle={{
+          tracking: {
+            pageName: 'delete_object_versioning',
+            pageType: PageType.popup,
+          },
+        }}
+      />
       <Route
         path={ROUTE_PATHS.ENABLE_VERSIONING}
         Component={EnableVersioningPage}
+        handle={{
+          tracking: {
+            pageName: 'object_activate_versioning',
+            pageType: PageType.popup,
+          },
+        }}
       />
       <Route
         path={ROUTE_PATHS.ENABLE_ENCRYPTION}
         Component={EnableEncryptiongPage}
+        handle={{
+          tracking: {
+            pageName: 'object_activate_encryption',
+            pageType: PageType.popup,
+          },
+        }}
       />
-      <Route path={ROUTE_PATHS.ADD_OBJECT} Component={AddObjectPage} />
+      <Route
+        path={ROUTE_PATHS.ADD_OBJECT}
+        Component={AddObjectPage}
+        handle={{
+          tracking: {
+            pageName: 'object_add_object',
+            pageType: PageType.popup,
+          },
+        }}
+      />
     </Route>
-    <Route path={ROUTE_PATHS.OBJECT_VERSIONS} Component={ObjectVersionsPage}>
-      <Route path={ROUTE_PATHS.DELETE_OBJECT} Component={DeleteObjectPage} />
+    <Route
+      path={ROUTE_PATHS.OBJECT_VERSIONS}
+      Component={ObjectVersionsPage}
+      handle={{
+        tracking: {
+          pageName: 'object_versioning',
+          pageType: PageType.listing,
+        },
+      }}
+    >
+      <Route
+        path={ROUTE_PATHS.DELETE_OBJECT}
+        Component={DeleteObjectPage}
+        handle={{
+          tracking: {
+            pageName: 'delete_object_versioning',
+            pageType: PageType.popup,
+          },
+        }}
+      />
     </Route>
     <Route path="" element={<>Page not found</>}></Route>
   </Route>
