@@ -90,18 +90,6 @@ hostedPrivateCloudUniverse.children = [
         features: ['veeam-enterprise'],
       },
       {
-        id: 'veeam-cloud-connect',
-        idAttr: 'veeam-cloud-connect-link',
-        universe: hostedPrivateCloudUniverse.id,
-        translation: 'sidebar_veeamcc',
-        serviceType: 'VEEAMCLOUDCONNECT',
-        routing: {
-          application: 'dedicated',
-          hash: '#/veeam',
-        },
-        features: ['veeam-cloud-connect'],
-      },
-      {
         id: 'hycu',
         idAttr: 'hycu-link',
         universe: hostedPrivateCloudUniverse.id,
