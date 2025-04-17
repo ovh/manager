@@ -44,5 +44,6 @@
   "octavia_load_balancer_create_size_flavour_description_3xl": "Built for critical systems with heavy traffic, it maximises performance through its high bandwidth capabilities.",
   "octavia_load_balancer_create_private_network": "There are no private networks in the region selected. Make sure <link /> before the Load Balancer is created.",
   "octavia_load_balancer_create_private_network_label": "you create a private network",
-  "octavia_load_balancer_create_3az_guide_description": "To learn more about 3-AZ service specifications and how to use them to build a resilient infrastructure, <Link>click here</Link>"
+  "octavia_load_balancer_create_3az_guide_description": "To learn more about 3-AZ service specifications and how to use them to build a resilient infrastructure, <Link>click here</Link>",
+  "octavia_load_balancer_create_price_from": "From {{price}}"
 }
