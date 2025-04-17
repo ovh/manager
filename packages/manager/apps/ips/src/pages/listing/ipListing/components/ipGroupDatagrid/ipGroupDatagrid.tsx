@@ -43,7 +43,7 @@ export const IpGroupDatagrid = ({
   const { t } = useTranslation('listing');
 
   const {
-    ipReverse: ipReverseList,
+    ipsReverse: ipReverseList,
     isLoading: isIpReverseLoading,
   } = useGetIpReverse({ ip: row.original });
   const { ipDetails, isLoading: isIpDetailsLoading } = useGetIpdetails({
@@ -118,7 +118,7 @@ export const IpGroupDatagrid = ({
       id: 'ip-reverse',
       label: t('listingColumnsIpReverseDNS'),
       cell: (ip: string) => {
-        return <IpReverse ip={ip}></IpReverse>;
+        return <IpReverse ip={ip} parentIpGroup={row.original}></IpReverse>;
       },
       size: parentHeaders.current['ip-reverse'].clientWidth,
     },

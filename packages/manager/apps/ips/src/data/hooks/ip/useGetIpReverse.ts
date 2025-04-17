@@ -22,5 +22,5 @@ export const useGetIpReverse = ({
     retry: false,
   });
 
-  return { ipReverse: ipReverseResponse?.data, isLoading, isError, error };
+  return { ipsReverse: ipReverseResponse?.data, isLoading, isError, error };
 };

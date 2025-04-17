@@ -32,6 +32,7 @@
   "listingColumnsIpEdgeFirewallDisabledTooltip": "Le trafic ne passe pas par Network Edge Firewall sauf si une attaque est détectée. En cas d'attaque, celle-ci sera automatiquement activée.",
   "listingColumnsIpEdgeFirewallPendingTooltip": "La reconfiguration du Network Edge Firewall est en cours et sera appliquée dans quelques instants.",
   "listingColumnsIpGameFirewallAvailable": "Disponible",
+  "listingColumnsIpGameFirewallAvailableTooltip": "Le Game Firewall est disponible mais n'est pas configuré pour le moment. Pour activer la protection, configurez vos règles de jeu.",
   "listingColumnsIpGameFirewallPending": "En cours",
   "listingColumnsIpGameFirewallPendingTooltip": "La reconfiguration du Game Firewall  est en cours et sera appliquée dans quelques instants.",
   "listingColumnsIpAlertsSpam": "Ip bloquée (anti-hack)",
