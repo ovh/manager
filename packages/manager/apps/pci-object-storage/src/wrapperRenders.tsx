@@ -4,6 +4,8 @@ import {
   ShellContextType,
 } from '@ovh-ux/manager-react-shell-client';
 import { vi } from 'vitest';
+import { createMemoryRouter, RouterProvider } from 'react-router-dom';
+import React from 'react';
 
 import React from 'react';
 
@@ -46,16 +48,52 @@ export const wrapper = ({ children }) => (
 export const mockShellContext = {
   environment: {
     getRegion: vi.fn().mockReturnValue('EU'),
-    getUser: vi.fn().mockReturnValue({}),
+    getUser: vi.fn().mockReturnValue({ ovhSubsidiary: 'mocked_ovhSubsidiary' }),
     getApplication: vi.fn(),
   },
-  navigation: {
-    getURL: vi.fn(),
+  shell: {
+    environment: {
+      getRegion: vi.fn().mockReturnValue('EU'),
+      getUser: vi.fn().mockReturnValue({}),
+      getApplication: vi.fn(),
+    },
+    navigation: {
+      getURL: vi.fn(),
+    },
+    tracking: {
+      trackPage: vi.fn(),
+      trackClick: vi.fn(),
+    },
   },
-  tracking: {
-    trackPage: vi.fn(),
-    trackClick: vi.fn(),
-  },
+};
+
+export const wrapperShow = ({ children }: { children: React.ReactNode }) => {
+  const router = createMemoryRouter(
+    [
+      {
+        path: '/',
+        element: children,
+        handle: {
+          crumb: () => 'Home',
+        },
+      },
+    ],
+    {
+      initialEntries: ['/'],
+      future: {
+        v7_startTransition: true,
+        v7_relativeSplatPath: true,
+      } as any,
+    },
+  );
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <ShellContext.Provider value={mockShellContext as any}>
+        <RouterProvider router={router} />
+      </ShellContext.Provider>
+    </QueryClientProvider>
+  );
 };
 
 export const wrapperOffsiteReplication = ({

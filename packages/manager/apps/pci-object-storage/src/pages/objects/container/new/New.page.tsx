@@ -9,7 +9,11 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { Translation, useTranslation } from 'react-i18next';
 import { useContext, useEffect } from 'react';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  PageType,
+  ShellContext,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useNavigate } from 'react-router-dom';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import {
@@ -22,7 +26,6 @@ import {
   OBJECT_CONTAINER_OFFER_STORAGE_STANDARD,
   OBJECT_CONTAINER_OFFER_SWIFT,
   STORAGE_PRICES_LINK,
-  TRACKING_PREFIX,
   OBJECT_CONTAINER_MODE_MULTI_ZONES,
 } from '@/constants';
 import { SolutionStepComponent } from './step/SolutionStep.component';
@@ -41,11 +44,12 @@ import './style.scss';
 
 export default function ContainerNewPage() {
   const { t } = useTranslation('containers/add');
+  const { trackPage } = useOvhTracking();
   const projectHref = useProjectUrl('public-cloud');
   const { data: project } = useProject();
   const context = useContext(ShellContext);
   const navigate = useNavigate();
-  const { tracking } = context.shell;
+
   const { addError, addSuccess } = useNotifications();
   const { ovhSubsidiary } = context.environment.getUser();
   const pricesLink =
@@ -54,6 +58,11 @@ export default function ContainerNewPage() {
   const { createContainer, isPending } = useCreateContainer({
     projectId: project.project_id,
     onSuccess: (container: TStorage) => {
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: 'add_objects_storage_container_success',
+      });
+
       addSuccess(
         <Translation ns="containers/add">
           {(_t) =>
@@ -66,14 +75,12 @@ export default function ContainerNewPage() {
         true,
       );
       navigate('..');
-      const containerTypeOffer = form.containerType
-        ? `${form.containerType}::`
-        : '';
-      tracking?.trackPage({
-        name: `${TRACKING_PREFIX}_add::${form.offer}_${form.region}::${containerTypeOffer}creation_error`,
-      });
     },
     onError: (error: ApiError) => {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: 'add_objects_storage_container_error',
+      });
       addError(
         <Translation ns="containers/add">
           {(_t) =>
@@ -85,12 +92,7 @@ export default function ContainerNewPage() {
         </Translation>,
         true,
       );
-      const containerTypeOffer = form.containerType
-        ? `${form.containerType}::`
-        : '';
-      tracking?.trackPage({
-        name: `${TRACKING_PREFIX}_add::${form.offer}_${form.region}::${containerTypeOffer}creation_error`,
-      });
+
       window.scrollTo(0, 0);
     },
   });
@@ -99,12 +101,6 @@ export default function ContainerNewPage() {
     createContainer({
       ...form,
       region: form.region.name,
-    });
-    tracking?.trackClick({
-      name: `storage_container_create_${form.offer}_${
-        form.region
-      }_${form.containerType || 'standard'}`,
-      type: 'action',
     });
   };
 
