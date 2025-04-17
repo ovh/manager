@@ -1,16 +1,16 @@
 {
-  "nutanix_dashboard_install_node_title": "Installa il nodo",
-  "nutanix_dashboard_install_node_description": "Stai per installare AOS e AHV sul tuo nodo. Indica gli indirizzi IP non utilizzati nella rete del cluster.",
+  "nutanix_dashboard_install_node_title": "Installare il nodo",
+  "nutanix_dashboard_install_node_description": "Stai per installare AOS e AHV sul tuo nodo. Indica gli indirizzi IP inutilizzati nella rete del tuo cluster.",
   "nutanix_dashboard_install_node_tips": "Per un'installazione simultanea su più nodi, utilizza l'API",
   "nutanix_dashboard_install_node_label_ahv_ip": "IP del nodo",
   "nutanix_dashboard_install_node_label_cvm_ip": "IP CVM",
   "nutanix_dashboard_install_node_label_version_aos": "Versione AOS",
-  "nutanix_dashboard_install_node_confirm": "Installa",
-  "nutanix_dashboard_install_node_cancel": "Annulla",
-  "nutanix_dashboard_install_node_success_banner": "La richiesta di installazione è stata presa in carico. Questa operazione può richiedere fino a 1 ora",
-  "nutanix_dashboard_install_node_error_banner": "La richiesta di installazione non è stata completata. Se l'errore persiste, contatta il supporto",
-  "nutanix_dashboard_install_ip_unique_error": "Questo IP è già utilizzato su questo cluster",
+  "nutanix_dashboard_install_node_confirm": "Installare",
+  "nutanix_dashboard_install_node_cancel": "Annullare",
+  "nutanix_dashboard_install_node_success_banner": "La tua richiesta di installazione è stata presa in carico. Questa operazione potrebbe richiedere fino a 1 ora.",
+  "nutanix_dashboard_install_node_error_banner": "La tua richiesta di installazione non è andata a buon fine. Se l'errore persiste, contatta il supporto.",
+  "nutanix_dashboard_install_ip_unique_error": "Questo IP è già in uso su questo cluster",
   "nutanix_dashboard_install_ip_not_in_cidr_subnet_error": "Gli indirizzi non sono sulla stessa rete.",
   "nutanix_dashboard_install_ip_format_error": "Il formato dell'IP non è corretto",
-  "nutanix_dashboard_install_ip_tooltip": "L'indirizzo IP deve essere incluso nella subnet del cluster."
+  "nutanix_dashboard_install_ip_tooltip": "L'indirizzo IP deve essere incluso nella sottorete del cluster."
 }

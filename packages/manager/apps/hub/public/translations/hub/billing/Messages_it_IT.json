@@ -4,7 +4,7 @@
   "hub_billing_summary_period_3": "Ultimi 3 mesi",
   "hub_billing_summary_period_6": "Ultimi 6 mesi",
   "hub_billing_summary_debt": "Restano ancora {{ debt }} da pagare",
-  "hub_billing_summary_debt_pay": "Salda il debito",
+  "hub_billing_summary_debt_pay": "Saldare il debito",
   "hub_billing_summary_debt_null": "Pagato",
   "hub_billing_summary_debt_no_bills": "Nessuna fattura per questo periodo",
   "hub_billing_summary_display_bills": "Visualizza le fatture",
