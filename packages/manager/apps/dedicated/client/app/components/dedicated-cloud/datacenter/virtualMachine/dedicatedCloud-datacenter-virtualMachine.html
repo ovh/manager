@@ -4,11 +4,17 @@
         <oui-skeleton size="m"></oui-skeleton>
     </div>
     <div data-ng-if="!$ctrl.loading">
-        <oui-datagrid data-rows-loader="$ctrl.loadVirtualMachines($config)">
+        <oui-datagrid
+            data-rows-loader="$ctrl.loadVirtualMachines($config)"
+            data-on-criteria-change="$ctrl.onCriteriaChange($criteria)"
+            data-criteria="$ctrl.criteria"
+        >
             <oui-datagrid-column
                 data-sortable
                 data-title=":: 'virtualmachine_grid_name' | translate"
                 data-property="name"
+                data-searchable
+                data-filterable
             >
             </oui-datagrid-column>
 
@@ -16,6 +22,7 @@
                 data-sortable
                 data-title=":: $ctrl.virtualMachinesGuesOS"
                 data-property="guestOsFamily"
+                data-filterable
             >
             </oui-datagrid-column>
 
@@ -23,6 +30,7 @@
                 data-sortable
                 data-title=":: 'virtualmachine_grid_license' | translate"
                 data-property="license"
+                data-filterable
             >
                 <span
                     class="oui-badge oui-badge_info"

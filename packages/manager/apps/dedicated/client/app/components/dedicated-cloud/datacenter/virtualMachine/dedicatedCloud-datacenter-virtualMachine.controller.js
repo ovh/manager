@@ -11,7 +11,8 @@ export default class {
     this.virtualMachinesGuesOS = VIRTUAL_MACHINES_GUEST_OS;
   }
 
-  loadVirtualMachines({ offset, pageSize, sort }) {
+  loadVirtualMachines(config) {
+    const { offset, pageSize, sort, criteria } = config;
     return this.DedicatedCloud.getDatacenterInfoVm(
       this.dedicatedCloud.serviceName,
       this.datacenterId,
@@ -20,6 +21,13 @@ export default class {
         pageSize,
         sort: sort.property,
         sortOrder: sort.dir === 1 ? 'ASC' : 'DESC',
+        filters: criteria.map((cr) => {
+          return {
+            field: cr.property || 'name',
+            comparator: cr.operator,
+            reference: [cr.value],
+          };
+        }),
       },
     )
       .then((res) => {
