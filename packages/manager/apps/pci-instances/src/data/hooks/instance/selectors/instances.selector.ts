@@ -68,6 +68,13 @@ const getActionHrefByName = (
     return { path: id, isExternal: false };
   }
 
+  if (name === 'edit') {
+    return {
+      path: `${id}/edit`,
+      isExternal: false,
+    };
+  }
+
   if (name === 'create_autobackup') {
     return { path: `${projectUrl}/workflow/new`, isExternal: true };
   }
