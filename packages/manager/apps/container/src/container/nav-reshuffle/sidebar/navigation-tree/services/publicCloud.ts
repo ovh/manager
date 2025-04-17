@@ -583,7 +583,7 @@ pciNode.children = [
         serviceType: 'CLOUD_PROJECT_AI_DASHBOARD',
         routing: {
           application: 'public-cloud',
-          hash: '#/pci/projects/{projectId}/ai-dashboard/home',
+          hash: '#/pci/projects/{projectId}/ai-dashboard',
         },
         features: ['ai-dashboard'],
         forceVisibility: true,
