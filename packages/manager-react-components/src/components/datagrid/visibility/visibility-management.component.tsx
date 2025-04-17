@@ -23,12 +23,20 @@ export type ColumnsVisibility = {
   onChange: () => void;
 };
 
+export type ColumnsVisibilityHook = {
+  toggleAllColumnsVisible: (a: boolean) => void;
+  getIsAllColumnsVisible: () => boolean;
+  getIsSomeColumnsVisible: () => boolean;
+};
+
 export type ColumnsVisibilityProps = {
   columnsVisibility: ColumnsVisibility[];
+  columnsVisibilityHook: ColumnsVisibilityHook;
 };
 
 export function VisibilityManagement({
   columnsVisibility,
+  columnsVisibilityHook,
 }: Readonly<ColumnsVisibilityProps>) {
   const { t } = useTranslation('datagrid');
   const visibilityPopoverRef = useRef(null);
@@ -73,9 +81,31 @@ export function VisibilityManagement({
         with-arrow
       >
         <div className="flex flex-col">
+          <div className="pr-5 flex flex-row items-center gap-x-2">
+            <OdsCheckbox
+              name={'select-all'}
+              inputId={'select-all'}
+              isChecked={columnsVisibilityHook.getIsAllColumnsVisible()}
+              onOdsChange={() =>
+                columnsVisibilityHook.toggleAllColumnsVisible(
+                  !columnsVisibilityHook.getIsAllColumnsVisible(),
+                )
+              }
+              ariaLabel={t('common_topbar_columns_select_all')}
+              isIndeterminate={
+                !columnsVisibilityHook.getIsAllColumnsVisible() &&
+                columnsVisibilityHook.getIsSomeColumnsVisible()
+              }
+            />
+            <label slot="label" htmlFor={'all'}>
+              <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                {t('common_topbar_columns_select_all')}
+              </OdsText>
+            </label>
+          </div>
           {columnsIncludedInCounter.map((column) => (
             <OdsFormField key={column.id}>
-              <div className="flex flex-row items-center gap-x-2">
+              <div className="px-5 flex flex-row items-center gap-x-2">
                 <OdsCheckbox
                   name={column.id}
                   inputId={column.id}

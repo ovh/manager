@@ -18,6 +18,7 @@ import { ColumnFilter } from '../filters/filter-add.component';
 import './translations';
 import {
   ColumnsVisibility,
+  ColumnsVisibilityHook,
   VisibilityManagement,
 } from './visibility/visibility-management.component';
 
@@ -43,6 +44,7 @@ export interface FilterProps {
 
 export interface DatagridTopbarProps {
   columnsVisibility?: ColumnsVisibility[];
+  columnsVisibilityHook?: ColumnsVisibilityHook;
   filtersColumns?: ColumnFilter[];
   isSearchable?: boolean;
   filters?: FilterProps;
@@ -52,6 +54,7 @@ export interface DatagridTopbarProps {
 
 export const DatagridTopbar = <T,>({
   columnsVisibility,
+  columnsVisibilityHook,
   filters,
   filtersColumns,
   isSearchable,
@@ -142,7 +145,10 @@ export const DatagridTopbar = <T,>({
               )}
               {hasVisibilityFeature && (
                 <div className={filtersColumns?.length > 0 ? 'ml-[10px]' : ''}>
-                  <VisibilityManagement columnsVisibility={columnsVisibility} />
+                  <VisibilityManagement
+                    columnsVisibilityHook={columnsVisibilityHook}
+                    columnsVisibility={columnsVisibility}
+                  />
                 </div>
               )}
             </div>

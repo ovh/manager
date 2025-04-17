@@ -315,6 +315,11 @@ export const Datagrid = <T,>({
     <div>
       <DatagridTopbar
         columnsVisibility={columnsVisibility}
+        columnsVisibilityHook={{
+          toggleAllColumnsVisible: () => table.toggleAllColumnsVisible(),
+          getIsAllColumnsVisible: () => table.getIsAllColumnsVisible(),
+          getIsSomeColumnsVisible: () => table.getIsSomeColumnsVisible(),
+        }}
         filtersColumns={filtersColumns}
         isSearchable={!!searchColumns}
         filters={filters}

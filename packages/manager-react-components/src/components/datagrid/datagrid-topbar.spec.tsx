@@ -148,6 +148,11 @@ describe('datagrid topbar', () => {
             onChange: () => null,
           },
         ]}
+        columnsVisibilityHook={{
+          toggleAllColumnsVisible: () => null,
+          getIsAllColumnsVisible: () => true,
+          getIsSomeColumnsVisible: () => true,
+        }}
       />,
     );
 
