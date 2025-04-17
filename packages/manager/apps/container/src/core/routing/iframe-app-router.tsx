@@ -67,33 +67,14 @@ export function IFrameAppRouter({
   configuration,
   iframeRef,
 }: IFrameAppRouterProps): JSX.Element {
-  const mockedConfiguration = useMemo(() => {
-    const newConfiguration = { ...configuration };
-    /**
-     * This is a temporary condition to ensure that the new pci-load-balancer µapp configuration
-     * overrides the angularjs octavia-load-balancer configuration in case pci-load-balancer config
-     * is active.
-     *
-     * This is temporary and needed during the rewriting of octavia-load-balancer from angularjs to react.
-     *
-     * @TODO remove this condition when pci-load-balancer µapp is prodded and validated.
-     */
-    if ('pci-load-balancer' in newConfiguration) {
-      delete newConfiguration['octavia-load-balancer'];
-    }
-
-    return newConfiguration;
-  }, [configuration]);
-
   const defaultRoute = useMemo(
-    () =>
-      makeDefaultRoute({ configuration: Object.entries(mockedConfiguration) }),
-    [mockedConfiguration],
+    () => makeDefaultRoute({ configuration: Object.entries(configuration) }),
+    [configuration],
   );
 
   const routes = useMemo(
     () =>
-      Object.entries(mockedConfiguration)
+      Object.entries(configuration)
         .flatMap(([id, appConfig]) =>
           appConfig.container.hashes
             ? appConfig.container.hashes.map((hash) => ({
@@ -117,7 +98,7 @@ export function IFrameAppRouter({
             (hashB || '').length - (hashA || '').length,
         )
         .map((config) => makeRoute({ ...config, iframeRef })),
-    [mockedConfiguration],
+    [configuration],
   );
   const redirections = useMemo(() => Redirections(configuration), [
     configuration,
