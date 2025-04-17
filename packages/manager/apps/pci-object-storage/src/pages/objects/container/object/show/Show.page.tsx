@@ -26,7 +26,10 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { useBytes, useProject } from '@ovh-ux/manager-pci-common';
-import { ShellContext, useTracking } from '@ovh-ux/manager-react-shell-client';
+import {
+  ShellContext,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
 import {
   OdsBadge,
@@ -62,6 +65,9 @@ import {
   STATUS_ENABLED,
   STATUS_DISABLED,
   STATUS_SUSPENDED,
+  UNIVERSE,
+  SUB_UNIVERSE,
+  APP_NAME,
 } from '@/constants';
 import { useGetRegion } from '@/api/hooks/useRegion';
 import { useStorage, useStorageEndpoint } from '@/api/hooks/useStorages';
@@ -93,6 +99,7 @@ export default function ObjectPage() {
   const { storageId } = useParams();
   const [searchParams] = useSearchParams();
   const { data: project } = useProject();
+  const { trackClick } = useOvhTracking();
 
   const [search, setSearch] = useState<string | null>(null);
   const [prefix, setPrefix] = useState<string | null>(null);
@@ -341,6 +348,19 @@ export default function ObjectPage() {
     return <OdsSpinner size="md" />;
   }
 
+  const onGuidesClick = () => {
+    trackClick({
+      actions: [
+        `${UNIVERSE}`,
+        `${SUB_UNIVERSE}`,
+        `${APP_NAME}`,
+        'funnel',
+        'tile-tutorial',
+        'go-to-tutorial',
+      ],
+    });
+  };
+
   return (
     <BaseLayout
       breadcrumb={
@@ -357,7 +377,11 @@ export default function ObjectPage() {
       }
       header={{
         title: container.name,
-        headerButton: <PciGuidesHeader category="objectStorage" />,
+        headerButton: (
+          <span onClick={onGuidesClick}>
+            <PciGuidesHeader category="objectStorage" />
+          </span>
+        ),
       }}
       backLinkLabel={`
         ${tCommon('common_back_button_back_to')} ${tContainer(
@@ -538,6 +562,18 @@ export default function ObjectPage() {
                     )}
                     type={LinkType.next}
                     href={enableVersioningHref}
+                    onClickReturn={() => {
+                      trackClick({
+                        actions: [
+                          `${UNIVERSE}`,
+                          `${SUB_UNIVERSE}`,
+                          `${APP_NAME}`,
+                          'page',
+                          'button',
+                          'object_activate_versioning',
+                        ],
+                      });
+                    }}
                   />
                 )}
 
@@ -636,7 +672,7 @@ export default function ObjectPage() {
             <div className="mt-8">
               <Datagrid
                 topbar={
-                  <div className="flex w-full justify-between items-center">
+                  <div className="flex w-full justisfy-between items-center">
                     {shouldHideButton && (
                       <OdsButton
                         onClick={() => {
@@ -665,9 +701,21 @@ export default function ObjectPage() {
                             <OdsToggle
                               class="my-toggle"
                               name="enableVersionsToggle"
-                              onOdsChange={({ detail }) =>
-                                setEnableVersionsToggle(detail.value as boolean)
-                              }
+                              onOdsChange={({ detail }) => {
+                                setEnableVersionsToggle(
+                                  detail.value as boolean,
+                                );
+                                trackClick({
+                                  actions: [
+                                    `${UNIVERSE}`,
+                                    `${SUB_UNIVERSE}`,
+                                    `${APP_NAME}`,
+                                    'page',
+                                    'button',
+                                    'switch-to-see-versioning',
+                                  ],
+                                });
+                              }}
                             />
                           </>
                         )}
@@ -709,7 +757,6 @@ export default function ObjectPage() {
                 <div className="flex justify-center gap-4 ml-auto">
                   {!container?.s3StorageType && (
                     <>
-                      {' '}
                       <OdsInput
                         name="searchField"
                         className="min-w-[15rem]"

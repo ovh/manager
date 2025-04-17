@@ -8,8 +8,9 @@ import {
   useServerContainer,
 } from '@/api/hooks/useContainer';
 import ShowPage from './Show.page';
-import { wrapper } from '@/wrapperRenders';
+
 import { useStorageEndpoint } from '@/api/hooks/useStorages';
+import { wrapper } from './TestUtils';
 
 vi.mock('@/api/hooks/useContainer', () => {
   return {
@@ -30,6 +31,16 @@ vi.mock('date-fns', () => {
   const formatMock = vi.fn(() => 'formattedDate');
   return {
     format: formatMock,
+  };
+});
+vi.mock('@ovh-ux/manager-react-shell-client', async () => {
+  const mod = await vi.importActual('@ovh-ux/manager-react-shell-client');
+  return {
+    ...mod,
+    useOvhTracking: vi.fn().mockReturnValue({
+      trackPage: vi.fn(),
+      trackClick: vi.fn(),
+    }),
   };
 });
 
