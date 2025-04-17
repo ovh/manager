@@ -2,6 +2,7 @@
   "beta_modal_title": "Découvrez la nouvelle version de votre espace client",
   "beta_modal_infos": "Basculez vers la nouvelle version et donnez votre avis en remplissant le formulaire dédié.",
   "beta_modal_accept": "Je le découvre dès maintenant",
+  "beta_modal_accept_old": "Je teste la nouvelle version",
   "beta_modal_decline": "Peut-être plus tard",
   "beta_modal_screenshot": "Capture d'écran",
   "beta_modal_greeting": "Bonjour {{user}},",
