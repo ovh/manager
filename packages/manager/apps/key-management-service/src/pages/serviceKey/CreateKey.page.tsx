@@ -169,8 +169,8 @@ export default function CreateKey() {
         message={<Notifications />}
       >
         <div className="w-full block">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-            <div className="flex flex-col gap-7 md:gap-9">
+          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-6">
+            <div className="flex flex-col gap-4 md:gap-8">
               <ProtectionLevelSection />
               <GeneralInformationSection
                 keyDisplayName={keyDisplayName}
@@ -178,23 +178,25 @@ export default function CreateKey() {
                 serviceKeyNameError={serviceKeyNameError}
                 setServiceKeyNameError={setServiceKeyNameError}
               />
-              <KeyTypeSection
-                serviceKey={key}
-                keyCurve={keyCurve}
-                keySize={keySize}
-                keyType={keyType}
-                region={okms?.data?.region}
-                setServiceKey={setKey}
-                setKeyCurve={setKeyCurve}
-                setKeySize={setKeySize}
-                setKeyType={setKeyType}
-              />
-              <KeyUsageSection
-                serviceKey={key}
-                keyOperations={keyOperations}
-                setKeyOperations={setKeyOperations}
-                keyType={keyType}
-              />
+              <div className="space-y-3 md:space-y-4">
+                <KeyTypeSection
+                  serviceKey={key}
+                  keyCurve={keyCurve}
+                  keySize={keySize}
+                  keyType={keyType}
+                  region={okms?.data?.region}
+                  setServiceKey={setKey}
+                  setKeyCurve={setKeyCurve}
+                  setKeySize={setKeySize}
+                  setKeyType={setKeyType}
+                />
+                <KeyUsageSection
+                  serviceKey={key}
+                  keyOperations={keyOperations}
+                  setKeyOperations={setKeyOperations}
+                  keyType={keyType}
+                />
+              </div>
               <div className="flex gap-4">
                 <OdsButton
                   size={ODS_BUTTON_SIZE.md}

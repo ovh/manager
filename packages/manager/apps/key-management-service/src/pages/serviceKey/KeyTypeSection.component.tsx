@@ -53,140 +53,144 @@ export const KeyTypeSection: React.FC<KeyTypeSectionProps> = ({
 
   return (
     <>
-      <div className="flex flex-col gap-6 md:gap-8">
-        <Subtitle>
-          {t('key_management_service_service-keys_create_crypto_title')}
-        </Subtitle>
-        <OdsFormField>
-          <OdsText className="block" preset={ODS_TEXT_PRESET.heading5}>
-            {t(
-              'key_management_service_service-keys_create_crypto_origin_title',
-            )}
-          </OdsText>
-          <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-            {t(
-              'key_management_service_service-keys_create_crypto_origin_subtitle',
-            )}
-          </OdsText>
-        </OdsFormField>
-        <OdsFormField>
-          <div slot="label">
+      <div>
+        <div className="flex flex-col gap-3 md:gap-4">
+          <Subtitle>
+            {t('key_management_service_service-keys_create_crypto_title')}
+          </Subtitle>
+          <OdsFormField className="space-y-2">
             <OdsText className="block" preset={ODS_TEXT_PRESET.heading5}>
               {t(
-                'key_management_service_service-keys_create_crypto_field_type_title',
+                'key_management_service_service-keys_create_crypto_origin_title',
               )}
             </OdsText>
             <OdsText preset={ODS_TEXT_PRESET.paragraph}>
               {t(
-                'key_management_service_service-keys_create_crypto_field_type_subtitle',
+                'key_management_service_service-keys_create_crypto_origin_subtitle',
               )}
             </OdsText>
-          </div>
-          <div className="grid gap-3">
-            {servicekeyReference?.data.map((reference) => (
-              <ServiceKeyTypeRadioButton
-                key={reference.type.toString()}
-                type={reference.type}
-                value={reference.type.toString()}
-                name={keyType}
-                isChecked={serviceKey?.type === reference.type}
-                onClick={() => {
-                  trackClick({
-                    location: PageLocation.funnel,
-                    buttonType: ButtonType.button,
-                    actionType: 'action',
-                    actions: ['select_type_key', reference.type],
-                  });
-                  setServiceKey(reference);
-                  setKeyType(reference.type);
-                  setKeySize(
-                    reference?.sizes.find((size) => size.default)?.value ||
-                      null,
-                  );
-                  setKeyCurve(
-                    reference?.curves.find((curve) => curve.default)?.value ||
-                      null,
-                  );
-                }}
-              />
-            ))}
-          </div>
-        </OdsFormField>
-      </div>
-      {[OkmsKeyTypes.oct, OkmsKeyTypes.RSA].includes(serviceKey?.type) && (
-        <OdsFormField key={serviceKey.type}>
-          <div slot="label">
-            <OdsText className="block" preset={ODS_TEXT_PRESET.heading5}>
-              {t(
-                'key_management_service_service-keys_create_crypto_field_size_title',
-              )}
-            </OdsText>
-            <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-              {t(
-                'key_management_service_service-keys_create_crypto_field_size_subtitle',
-              )}
-            </OdsText>
-          </div>
-          <OdsSelect
-            name="keySize"
-            value={keySize?.toString()}
-            onOdsChange={(event) => {
-              const newKeySize = (event.detail.value as unknown) as
-                | OkmsServiceKeyTypeOctSize
-                | OkmsServiceKeyTypeRSASize;
-              if (newKeySize) setKeySize(newKeySize);
-            }}
-          >
-            {serviceKey?.sizes.map((size) => (
-              <option key={size.value} value={size.value}>
+          </OdsFormField>
+          <OdsFormField className="space-y-2">
+            <div slot="label" className="space-y-2">
+              <OdsText className="block" preset={ODS_TEXT_PRESET.heading5}>
                 {t(
-                  'key_management_service_service-keys_create_crypto_field_size_unit',
-                  { size: size.value },
-                )}{' '}
-                {size.default &&
-                  t(
-                    'key_management_service_service-keys_create_crypto_field_size_curve_suffix_default',
-                  )}
-              </option>
-            ))}
-          </OdsSelect>
-        </OdsFormField>
-      )}
-      {serviceKey?.type === OkmsKeyTypes.EC && (
-        <OdsFormField>
-          <div slot="label">
-            <OdsText className="block" preset={ODS_TEXT_PRESET.heading5}>
-              {t(
-                'key_management_service_service-keys_create_crypto_field_curve_title',
-              )}
-            </OdsText>
-            <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-              {t(
-                'key_management_service_service-keys_create_crypto_field_curve_subtitle',
-              )}
-            </OdsText>
-          </div>
-          <OdsSelect
-            name="keyCurve"
-            value={keyCurve}
-            onOdsChange={(event) => {
-              const newKeyCurve = event.detail
-                .value as OkmsServiceKeyTypeECCurve;
-              if (newKeyCurve) setKeyCurve(newKeyCurve);
-            }}
-          >
-            {serviceKey?.curves.map((curve) => (
-              <option key={curve.value} value={curve.value}>
-                {curve.value}{' '}
-                {curve.default &&
-                  t(
-                    'key_management_service_service-keys_create_crypto_field_size_curve_suffix_default',
-                  )}
-              </option>
-            ))}
-          </OdsSelect>
-        </OdsFormField>
-      )}
+                  'key_management_service_service-keys_create_crypto_field_type_title',
+                )}
+              </OdsText>
+              <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                {t(
+                  'key_management_service_service-keys_create_crypto_field_type_subtitle',
+                )}
+              </OdsText>
+            </div>
+            <div className="grid gap-3">
+              {servicekeyReference?.data.map((reference) => (
+                <ServiceKeyTypeRadioButton
+                  key={reference.type.toString()}
+                  type={reference.type}
+                  value={reference.type.toString()}
+                  name={keyType}
+                  isChecked={serviceKey?.type === reference.type}
+                  onClick={() => {
+                    trackClick({
+                      location: PageLocation.funnel,
+                      buttonType: ButtonType.button,
+                      actionType: 'action',
+                      actions: ['select_type_key', reference.type],
+                    });
+                    setServiceKey(reference);
+                    setKeyType(reference.type);
+                    setKeySize(
+                      reference?.sizes.find((size) => size.default)?.value ||
+                        null,
+                    );
+                    setKeyCurve(
+                      reference?.curves.find((curve) => curve.default)?.value ||
+                        null,
+                    );
+                  }}
+                />
+              ))}
+            </div>
+          </OdsFormField>
+        </div>
+      </div>
+      <div>
+        {[OkmsKeyTypes.oct, OkmsKeyTypes.RSA].includes(serviceKey?.type) && (
+          <OdsFormField key={serviceKey.type} className="space-y-2">
+            <div slot="label" className="space-y-2">
+              <OdsText className="block" preset={ODS_TEXT_PRESET.heading5}>
+                {t(
+                  'key_management_service_service-keys_create_crypto_field_size_title',
+                )}
+              </OdsText>
+              <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                {t(
+                  'key_management_service_service-keys_create_crypto_field_size_subtitle',
+                )}
+              </OdsText>
+            </div>
+            <OdsSelect
+              name="keySize"
+              value={keySize?.toString()}
+              onOdsChange={(event) => {
+                const newKeySize = (event.detail.value as unknown) as
+                  | OkmsServiceKeyTypeOctSize
+                  | OkmsServiceKeyTypeRSASize;
+                if (newKeySize) setKeySize(newKeySize);
+              }}
+            >
+              {serviceKey?.sizes.map((size) => (
+                <option key={size.value} value={size.value}>
+                  {t(
+                    'key_management_service_service-keys_create_crypto_field_size_unit',
+                    { size: size.value },
+                  )}{' '}
+                  {size.default &&
+                    t(
+                      'key_management_service_service-keys_create_crypto_field_size_curve_suffix_default',
+                    )}
+                </option>
+              ))}
+            </OdsSelect>
+          </OdsFormField>
+        )}
+        {serviceKey?.type === OkmsKeyTypes.EC && (
+          <OdsFormField className="space-y-2">
+            <div slot="label" className="space-y-2">
+              <OdsText className="block" preset={ODS_TEXT_PRESET.heading5}>
+                {t(
+                  'key_management_service_service-keys_create_crypto_field_curve_title',
+                )}
+              </OdsText>
+              <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                {t(
+                  'key_management_service_service-keys_create_crypto_field_curve_subtitle',
+                )}
+              </OdsText>
+            </div>
+            <OdsSelect
+              name="keyCurve"
+              value={keyCurve}
+              onOdsChange={(event) => {
+                const newKeyCurve = event.detail
+                  .value as OkmsServiceKeyTypeECCurve;
+                if (newKeyCurve) setKeyCurve(newKeyCurve);
+              }}
+            >
+              {serviceKey?.curves.map((curve) => (
+                <option key={curve.value} value={curve.value}>
+                  {curve.value}{' '}
+                  {curve.default &&
+                    t(
+                      'key_management_service_service-keys_create_crypto_field_size_curve_suffix_default',
+                    )}
+                </option>
+              ))}
+            </OdsSelect>
+          </OdsFormField>
+        )}
+      </div>
     </>
   );
 };

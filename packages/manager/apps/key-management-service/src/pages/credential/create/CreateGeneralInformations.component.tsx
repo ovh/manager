@@ -68,9 +68,9 @@ const CreateGeneralInformations = ({
   }, [isCustomCsr]);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+    <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-6">
       <div className="flex flex-col gap-7 md:gap-9">
-        <div className="flex flex-col gap-6 md:gap-8">
+        <div className="flex flex-col gap-3 md:gap-4">
           <Subtitle>
             {t(
               'key_management_service_credential_create_general_information_title',
@@ -98,46 +98,46 @@ const CreateGeneralInformations = ({
             setIsCustomCsr={setIsCustomCsr}
             credentialCreationMethodError={credentialCreationMethodError}
           />
-          <div className="flex gap-4">
-            <OdsButton
-              size={ODS_BUTTON_SIZE.md}
-              variant={ODS_BUTTON_VARIANT.outline}
-              color={ODS_BUTTON_COLOR.primary}
-              onClick={() => {
-                trackClick({
-                  location: PageLocation.funnel,
-                  buttonType: ButtonType.button,
-                  actionType: 'action',
-                  actions: ['cancel'],
-                });
-                navigate(`/${okmsId}/${ROUTES_URLS.credentials}`);
-              }}
-              label={t('key_management_service_credential_create_cta_cancel')}
-            />
-            <OdsButton
-              size={ODS_BUTTON_SIZE.md}
-              color={ODS_BUTTON_COLOR.primary}
-              onClick={() => {
-                trackClick({
-                  location: PageLocation.funnel,
-                  buttonType: ButtonType.button,
-                  actionType: 'action',
-                  actions: ['next'],
-                });
-                nextStep();
-              }}
-              isDisabled={
-                !name ||
-                !!credentialNameError ||
-                !!credentialDescriptionError ||
-                !!credentialValidityError ||
-                (isCustomCsr && !csr)
-              }
-              label={t(
-                'key_management_service_credential_create_cta_add_identities',
-              )}
-            />
-          </div>
+        </div>
+        <div className="flex gap-4">
+          <OdsButton
+            size={ODS_BUTTON_SIZE.md}
+            variant={ODS_BUTTON_VARIANT.outline}
+            color={ODS_BUTTON_COLOR.primary}
+            onClick={() => {
+              trackClick({
+                location: PageLocation.funnel,
+                buttonType: ButtonType.button,
+                actionType: 'action',
+                actions: ['cancel'],
+              });
+              navigate(`/${okmsId}/${ROUTES_URLS.credentials}`);
+            }}
+            label={t('key_management_service_credential_create_cta_cancel')}
+          />
+          <OdsButton
+            size={ODS_BUTTON_SIZE.md}
+            color={ODS_BUTTON_COLOR.primary}
+            onClick={() => {
+              trackClick({
+                location: PageLocation.funnel,
+                buttonType: ButtonType.button,
+                actionType: 'action',
+                actions: ['next'],
+              });
+              nextStep();
+            }}
+            isDisabled={
+              !name ||
+              !!credentialNameError ||
+              !!credentialDescriptionError ||
+              !!credentialValidityError ||
+              (isCustomCsr && !csr)
+            }
+            label={t(
+              'key_management_service_credential_create_cta_add_identities',
+            )}
+          />
         </div>
       </div>
     </div>
