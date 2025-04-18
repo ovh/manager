@@ -776,5 +776,10 @@
   "ip_repricing_banner_list_item_2": "A partir du 1er décembre 2022, pour vos adresses existantes (commandées avant le 6 octobre 2022).",
   "ip_repricing_banner_link": "Plus d'informations",
   "ip_unused_banner_text": "Vous avez des adresses IP non utilisées. Les adresses IPv4 étant une ressource qui se raréfie, si vous n'en avez pas besoin, nous vous invitons à les relâcher.",
-  "ip_unused_banner_link": "Voir mes IP non utilisées."
+  "ip_unused_banner_link": "Voir mes IP non utilisées.",
+  "ip_guide_title": "Guide",
+  "ip_guide_link_additional_ip": "Configurer une Additional IP",
+  "ip_guide_link_ip_alias": "Configurer son adresse IP en alias",
+  "ip_guide_link_ip_proxmox": "Configurer une Additional IP sur Proxmox VE",
+  "ip_guide_link_floating_ip": "Concepts - Additional IP ou Floating IP sur Public Cloud"
 }
