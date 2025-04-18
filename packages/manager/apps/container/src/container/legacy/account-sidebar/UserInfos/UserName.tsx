@@ -1,5 +1,4 @@
 import { User } from '@ovh-ux/manager-config';
-import React from 'react';
 
 import useUserInfos from './useUserInfos';
 
@@ -15,7 +14,10 @@ const UserName = ({
   const { getUserDisplayName, isSubUser } = useUserInfos(user);
 
   return (
-    <p className={`${cssBaseClassName}_profile_link mb-1 ${isSubUser() && 'truncate'}`}>
+    <p
+      className={`${cssBaseClassName}_profile_link mb-1 ${isSubUser() &&
+        'truncate'}`}
+    >
       {getUserDisplayName()}
     </p>
   );

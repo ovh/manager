@@ -1,4 +1,3 @@
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { TRANSLATE_NAMESPACE } from '../constants';
 import Tile from './Tile';

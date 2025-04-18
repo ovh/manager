@@ -6,8 +6,9 @@ const createTicketSupportIndex = '?id=csm_get_help';
 const ticketsSupportIndex = '?id=csm_cases_requests';
 const supportSubsidiary = 'ovhSubsidiary=';
 
-const cloud_changelog = 'https://github.com/orgs/ovh/projects/16/views/6';
-const hosting_and_collab_changelog = 'https://github.com/orgs/ovh/projects/18/views/2';
+const cloudChangelog = 'https://github.com/orgs/ovh/projects/16/views/6';
+const hostingAndCollabChangelog =
+  'https://github.com/orgs/ovh/projects/18/views/2';
 
 interface UsefulLinks {
   help: {
@@ -41,13 +42,15 @@ const consts: UsefulLinkConstants = {
       SN: `${helpRoot}/fr-sn${homeIndex}`,
       TN: `${helpRoot}/fr-tn${homeIndex}`,
     },
-    support: { 
-      createTicket: (sub: string) => `${helpRoot}${createTicketSupportIndex}&${supportSubsidiary}${sub}`, 
-      tickets: (sub: string) => `${helpRoot}${ticketsSupportIndex}&${supportSubsidiary}${sub}` 
+    support: {
+      createTicket: (sub: string) =>
+        `${helpRoot}${createTicketSupportIndex}&${supportSubsidiary}${sub}`,
+      tickets: (sub: string) =>
+        `${helpRoot}${ticketsSupportIndex}&${supportSubsidiary}${sub}`,
     },
     tasks: 'https://www.status-ovhcloud.com/',
-    cloud_changelog,
-    hosting_and_collab_changelog,
+    cloud_changelog: cloudChangelog,
+    hosting_and_collab_changelog: hostingAndCollabChangelog,
   },
   CA: {
     help: {
@@ -59,21 +62,23 @@ const consts: UsefulLinkConstants = {
       WE: `${helpRoot}/en${homeIndex}`,
       WS: `${helpRoot}/es${homeIndex}`,
     },
-    support: { 
-      createTicket: (sub: string) => `${helpRoot}${createTicketSupportIndex}&${supportSubsidiary}${sub}`, 
-      tickets: (sub: string) => `${helpRoot}${ticketsSupportIndex}&${supportSubsidiary}${sub}` 
+    support: {
+      createTicket: (sub: string) =>
+        `${helpRoot}${createTicketSupportIndex}&${supportSubsidiary}${sub}`,
+      tickets: (sub: string) =>
+        `${helpRoot}${ticketsSupportIndex}&${supportSubsidiary}${sub}`,
     },
     tasks: 'https://www.status-ovhcloud.com/',
-    cloud_changelog,
-    hosting_and_collab_changelog,
+    cloud_changelog: cloudChangelog,
+    hosting_and_collab_changelog: hostingAndCollabChangelog,
   },
   US: {
     help: {
       US: 'https://us.ovhcloud.com/support',
     },
     tasks: '',
-    cloud_changelog,
-    hosting_and_collab_changelog,
+    cloud_changelog: cloudChangelog,
+    hosting_and_collab_changelog: hostingAndCollabChangelog,
   },
 };
 

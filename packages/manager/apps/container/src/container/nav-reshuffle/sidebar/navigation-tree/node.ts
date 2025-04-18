@@ -20,7 +20,7 @@ export type Node = {
   translation?: string;
   shortTranslation?: string;
   illustration?: string;
-  svgIcon?:  string;
+  svgIcon?: string;
   features?: string[];
   separator?: boolean;
   idAttr?: string;
@@ -35,5 +35,5 @@ export type Node = {
   region?: string[];
   tag?: NodeTag;
   icon?: string;
-  onClick?: any;
+  onClick?: () => void;
 };

@@ -1,8 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
 import { render, fireEvent, act } from '@testing-library/react';
-import StaticLink from './StaticLink';
+import StaticLink, { StaticLinkProps } from './StaticLink';
 import { Node, NodeTag } from './navigation-tree/node';
-import { StaticLinkProps } from './StaticLink';
 import { mockShell } from './mocks/sidebarMocks';
 
 const node: Node = {
@@ -20,16 +19,22 @@ const node: Node = {
   forceVisibility: true,
 };
 
-const handleClick: (e: React.MouseEvent) => void = vi.fn((e) => {e.preventDefault()});
-const handleOnEnter: (node: Node, e: React.KeyboardEvent) => void = vi.fn((_, e) => {e.preventDefault()});
+const handleClick: (e: React.MouseEvent) => void = vi.fn((e) => {
+  e.preventDefault();
+});
+const handleOnEnter: (node: Node, e: React.KeyboardEvent) => void = vi.fn(
+  (_, e) => {
+    e.preventDefault();
+  },
+);
 
 const linkParams = { projectId: '123456789' };
 
 const props: StaticLinkProps = {
-  node: node,
-  linkParams: linkParams,
-  handleClick: handleClick,
-  handleOnEnter: handleOnEnter,
+  node,
+  linkParams,
+  handleClick,
+  handleOnEnter,
   isShortText: false,
 };
 
@@ -74,10 +79,17 @@ describe('StaticLink.component', () => {
     const { queryByTestId } = renderStaticLinkComponent(props);
     const staticLink = queryByTestId(props.node.idAttr);
 
-    await act(() => fireEvent.keyUp(staticLink, {key: 'Enter', code: 'Enter', keyCode: 13, charCode: 13}));
+    await act(() =>
+      fireEvent.keyUp(staticLink, {
+        key: 'Enter',
+        code: 'Enter',
+        keyCode: 13,
+        charCode: 13,
+      }),
+    );
 
     expect(handleOnEnter).toHaveBeenCalled();
-  })
+  });
 
   it('Url should be formatted with link params', () => {
     const { queryByTestId } = renderStaticLinkComponent(props);
@@ -91,7 +103,7 @@ describe('StaticLink.component', () => {
     props.hasService = true;
     const { queryByTestId } = renderStaticLinkComponent(props);
     expect(queryByTestId(`static-link-count-${node.id}`)).not.toBeNull();
-  })
+  });
 
   it('Static link with a node with tag should display a SidebarLinkTag', () => {
     props.node.tag = NodeTag.BETA;

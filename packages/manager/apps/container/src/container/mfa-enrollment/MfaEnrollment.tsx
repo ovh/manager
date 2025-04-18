@@ -1,11 +1,4 @@
-import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useShell } from '@/context';
-
-import img from '@/assets/images/mfa/double-authentication.png';
-import img2x from '@/assets/images/mfa/double-authentication@2x.png';
-import img3x from '@/assets/images/mfa/double-authentication@3x.png';
-
 import { OsdsButton, OsdsText, OsdsIcon } from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_SIZE,
@@ -18,6 +11,11 @@ import {
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { Subtitle } from '@ovh-ux/manager-react-components';
+import { useShell } from '@/context';
+
+import img from '@/assets/images/mfa/double-authentication.png';
+import img2x from '@/assets/images/mfa/double-authentication@2x.png';
+import img3x from '@/assets/images/mfa/double-authentication@3x.png';
 
 type MfaEnrollmentProps = {
   forced?: boolean;

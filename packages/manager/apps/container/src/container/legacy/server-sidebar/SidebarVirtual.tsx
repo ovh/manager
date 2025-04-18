@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react';
+import { useCallback, useRef } from 'react';
 import { useVirtualizer } from '@tanstack/react-virtual';
 import { useTranslation } from 'react-i18next';
 import ServerSidebarItemRenderer from './SidebarItemRenderer';
@@ -73,7 +73,7 @@ export default function ServerSidebarVirtual({
           style={{
             height: `${rowVirtualizer.getTotalSize()}px`,
             width: '100%',
-            position: 'relative'
+            position: 'relative',
           }}
           aria-label={t('sidebar_description')}
         >

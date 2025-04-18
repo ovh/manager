@@ -1,9 +1,13 @@
-import React, { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect } from 'react';
 
 import { useOvhPaymentMethod } from '@ovh-ux/ovh-payment-method';
 import { useReket } from '@ovh-ux/ovh-reket';
 import useClickAway from 'react-use/lib/useClickAway';
 
+import { OsdsIcon } from '@ovhcloud/ods-components/react';
+import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { Environment } from '@ovh-ux/manager-config';
 import UserAccountMenuButton from './Button';
 import UserAccountMenuContent from './Content';
 import useOnboarding from '@/core/onboarding';
@@ -13,12 +17,8 @@ import { useShell } from '@/context';
 import { useHeader } from '@/context/header';
 
 import style from './style.module.scss';
-import { OsdsIcon } from '@ovhcloud/ods-components/react';
-import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { tracking } from './constants';
 import { LEGAL_FORMS } from '@/container/common/constants';
-import { Environment } from '@ovh-ux/manager-config';
 import useUser from '@/hooks/user/useUser';
 
 type Props = {
@@ -102,10 +102,11 @@ export const UserAccountMenu = ({ onToggle }: Props): JSX.Element => {
             aria-hidden="true"
           ></OsdsIcon>
         </span>
-        <span
-          className={style.userInfos}
-        >{user.legalform === LEGAL_FORMS.CORPORATION ?
-          user.organisation : `${user.firstname} ${user.name}`}</span>
+        <span className={style.userInfos}>
+          {user.legalform === LEGAL_FORMS.CORPORATION
+            ? user.organisation
+            : `${user.firstname} ${user.name}`}
+        </span>
       </UserAccountMenuButton>
       <UserAccountMenuContent
         defaultPaymentMethod={defaultPaymentMethod}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useReket } from '@ovh-ux/ovh-reket';
 import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
@@ -44,10 +44,10 @@ export default function TelecomSidebar() {
       } else {
         reketInstance
           .get(`/me/preferences/manager/${key}`)
-          .then((result: any) => {
+          .then((result: { value: unknown }) => {
             resolve(result?.value || false);
           })
-          .catch((error: any) => {
+          .catch((error: { status: number }) => {
             if (error.status === 404) {
               resolve(false);
             } else {

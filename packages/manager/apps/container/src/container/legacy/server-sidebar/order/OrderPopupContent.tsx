@@ -1,6 +1,5 @@
 import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useShell } from '@/context';
 import {
   OsdsButton,
   OsdsIcon,
@@ -17,6 +16,7 @@ import {
 } from '@ovhcloud/ods-components';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { useShell } from '@/context';
 import './OrderPopupContent.scss';
 
 export interface ShopSubItem {
@@ -30,29 +30,28 @@ export interface ShopSubItem {
 export interface ShopItem {
   external?: boolean;
   url?: string;
-  icon: any;
+  icon: React.ReactNode;
   label: string;
   subMenu?: Array<ShopSubItem>;
   feature?: string;
   tracking?: string;
 }
-const OpenLayout = ({ as, item, href, target, onClick, tabIndex }: any) => {
-  const Component = as === 'a' ? 'a' : 'button';
 
-  return (
-    <Component
-      href={as === 'a' ? href : undefined}
-      target={as === 'a' ? target : undefined}
-      onClick={onClick}
-      className={as === 'button' ? 'buttonOrder' : ''}
-      tabIndex={tabIndex}
-    >
-      <OpenLayoutContent item={item} />
-    </Component>
-  );
+type OpenLayoutProps = {
+  as?: 'a' | 'button';
+  item: ShopItem;
+  href?: string;
+  target?: '_blank' | '_self' | '_parent' | '_top';
+  onClick?: (event: unknown) => void;
+  tabIndex?: number;
 };
 
-const OpenLayoutContent = ({ item, tabIndex }: any) => {
+type OpenLayoutContentProps = {
+  item: ShopItem;
+  tabIndex?: number;
+};
+
+const OpenLayoutContent = ({ item, tabIndex }: OpenLayoutContentProps) => {
   const { t } = useTranslation('server-sidebar-order');
   return (
     <>
@@ -85,6 +84,29 @@ const OpenLayoutContent = ({ item, tabIndex }: any) => {
         </span>
       )}
     </>
+  );
+};
+
+const OpenLayout = ({
+  as,
+  item,
+  href,
+  target,
+  onClick,
+  tabIndex,
+}: OpenLayoutProps) => {
+  const Component = as === 'a' ? 'a' : 'button';
+
+  return (
+    <Component
+      href={as === 'a' ? href : undefined}
+      target={as === 'a' ? target : undefined}
+      onClick={onClick}
+      className={as === 'button' ? 'buttonOrder' : ''}
+      tabIndex={tabIndex}
+    >
+      <OpenLayoutContent item={item} />
+    </Component>
   );
 };
 
@@ -145,8 +167,8 @@ const OrderPopupContent = ({
                 onClick={() => onItemSelect(item)}
                 target={
                   item.external
-                    ? OdsHTMLAnchorElementTarget['_blank']
-                    : OdsHTMLAnchorElementTarget['_top']
+                    ? OdsHTMLAnchorElementTarget._blank
+                    : OdsHTMLAnchorElementTarget._top
                 }
               >
                 <OsdsLink color={ODS_THEME_COLOR_INTENT.primary}>

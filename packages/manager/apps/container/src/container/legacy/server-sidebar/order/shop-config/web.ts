@@ -1,5 +1,3 @@
-import { ShopItem } from '../OrderPopupContent';
-import { getOrderURL, ORDER_URLS } from './order.constants';
 import { OdsIconWrapper } from '@ovh-ux/ovh-product-icons/index';
 import {
   HOSTING_SVG,
@@ -8,9 +6,11 @@ import {
   ZIMBRA_SVG,
 } from '@ovh-ux/ovh-product-icons/utils/SvgIconWrapper';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { getOrderURL, ORDER_URLS } from './order.constants';
+import { ShopItem } from '../OrderPopupContent';
 
 const webShopConfig = (
-  navigation: any,
+  navigation: Record<string, CallableFunction>,
   region: string,
   sub: string,
   features: Record<string, boolean>,
@@ -50,7 +50,7 @@ const webShopConfig = (
         tracking: 'web::orders::cloud-web::order',
       }
     : null,
-  features['zimbra'] && ORDER_URLS[region]?.zimbra
+  features.zimbra && ORDER_URLS[region]?.zimbra
     ? {
         label: 'order_item_zimbra',
         icon: ZIMBRA_SVG,
