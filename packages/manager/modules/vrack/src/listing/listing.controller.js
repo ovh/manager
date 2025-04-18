@@ -13,12 +13,14 @@ export default class vrackListingCtrl extends ListLayoutHelper.ListLayoutCtrl {
     ouiDatagridService,
     CucControllerHelper,
     constants,
+    coreConfig,
   ) {
     super($q, ouiDatagridService);
     this.$state = $state;
     this.atInternet = atInternet;
     this.constants = constants;
     this.id = 'vrack-listing';
+    this.user = coreConfig.getUser();
   }
 
   gotoVrackOrder() {

@@ -11,6 +11,34 @@
                         links="$ctrl.constants.CHANGELOG.iplb.links"
                         chapters="$ctrl.constants.CHANGELOG.iplb.chapters"
                     ></changelog-button>
+                    <oui-guide-menu
+                        data-text="{{:: 'iplb_guides' | translate }}"
+                    >
+                        <oui-guide-menu-item
+                            data-ng-href="{{:: $ctrl.guideLinks.link1 }}"
+                            data-external="true"
+                        >
+                            <span
+                                data-translate="{{:: 'iplb_guides_link1' | translate }}"
+                            ></span>
+                        </oui-guide-menu-item>
+                        <oui-guide-menu-item
+                            data-ng-href="{{:: $ctrl.guideLinks.link2 }}"
+                            data-external="true"
+                        >
+                            <span
+                                data-translate="{{:: 'iplb_guides_link2' | translate }}"
+                            ></span>
+                        </oui-guide-menu-item>
+                        <oui-guide-menu-item
+                            data-ng-href="{{:: $ctrl.guideLinks.link3 }}"
+                            data-external="true"
+                        >
+                            <span
+                                data-translate="{{:: 'iplb_guides_link3' | translate }}"
+                            ></span>
+                        </oui-guide-menu-item>
+                    </oui-guide-menu>
                 </div>
             </div>
         </oui-header-heading>

@@ -2,5 +2,10 @@
   "vrack_title": "Rete privata vRack",
   "vrack_order": "Ordina",
   "list_layout_like_this": "Ti piace?",
-  "list_layout_like_this_tooltip": "Ti piace questa pagina? Condividi con noi i tuoi commenti!"
+  "list_layout_like_this_tooltip": "Ti piace questa pagina? Condividi con noi i tuoi commenti!",
+  "list_layout_vrack_guides_title": "Guide",
+  "list_layout_vrack_guides_link1": "Configurare la vRack sui server dedicati",
+  "list_layout_vrack_guides_link2": "Configurazione della vRack Public Cloud",
+  "list_layout_vrack_guides_link3": "Configurare un blocco di IP nella vRack",
+  "list_layout_vrack_guides_link4": "Configurare la vRack tra Public Cloud e un server dedicato"
 }
