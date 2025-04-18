@@ -3,16 +3,16 @@ import {
   accountsMock,
   domainsMock,
   mailingListsMock,
-  organizationListMock,
+  organizationsMock,
   platformMock,
   taskMocks,
   aliasesMock,
   domainZone,
   orderCatalogMock,
   domainsDiagnosticMock,
-} from '@/api/_mock_';
-import { AccountType } from '@/api/account';
-import { DomainType } from '@/api/domain';
+  AccountType,
+  DomainType,
+} from '@/data/api';
 
 const mocksAxios = vi.hoisted(() => ({
   get: vi.fn(),
@@ -59,16 +59,10 @@ vi.mock('@ovh-ux/manager-react-shell-client', async (importActual) => {
   };
 });
 
-vi.mock('@/hooks', async (importActual) => {
+vi.mock('@/data/api', async (importActual) => {
   return {
-    ...(await importActual<typeof import('@/hooks')>()),
-    useGenerateUrl: vi.fn(),
-  };
-});
-
-vi.mock('@/api/account', async (importActual) => {
-  return {
-    ...(await importActual<typeof import('@/api/account')>()),
+    ...(await importActual<typeof import('@/data/api')>()),
+    // ACCOUNT
     getZimbraPlatformAccountDetail: vi.fn((_platformId, accountId) => {
       return Promise.resolve(
         accountsMock.find((acc: AccountType) => acc.id === accountId),
@@ -82,12 +76,7 @@ vi.mock('@/api/account', async (importActual) => {
     deleteZimbraPlatformAccount: vi.fn(() => {
       return Promise.resolve();
     }),
-  };
-});
-
-vi.mock('@/api/domain', async (importActual) => {
-  return {
-    ...(await importActual<typeof import('@/api/domain')>()),
+    // DOMAIN
     getZimbraPlatformDomainDetail: vi.fn((_platformId, domainId) => {
       return Promise.resolve(
         domainsMock.find((dom: DomainType) => dom.id === domainId),
@@ -113,12 +102,7 @@ vi.mock('@/api/domain', async (importActual) => {
     deleteZimbraPlatformDomain: vi.fn(() => {
       return Promise.resolve();
     }),
-  };
-});
-
-vi.mock('@/api/alias', async (importActual) => {
-  return {
-    ...(await importActual<typeof import('@/api/alias')>()),
+    // ALIAS
     getZimbraPlatformAlias: vi.fn((_platformId, aliasId) => {
       return Promise.resolve(aliasesMock.find((alias) => alias.id === aliasId));
     }),
@@ -131,32 +115,20 @@ vi.mock('@/api/alias', async (importActual) => {
     postZimbraPlatformAlias: vi.fn(() => {
       return Promise.resolve();
     }),
-  };
-});
-
-vi.mock('@/api/mailinglist', async (importActual) => {
-  return {
-    ...(await importActual<typeof import('@/api/mailinglist')>()),
+    // MAILING LIST
     getZimbraPlatformMailingListDetails: vi.fn((_platformId, mlId) => {
       return Promise.resolve(mailingListsMock.find((ml) => ml.id === mlId));
     }),
     getZimbraPlatformMailingLists: vi.fn(() => {
       return Promise.resolve({ data: mailingListsMock });
     }),
-  };
-});
-
-vi.mock('@/api/organization', async (importActual) => {
-  return {
-    ...(await importActual<typeof import('@/api/organization')>()),
+    // ORGANIZATION
     getZimbraPlatformOrganizationDetails: vi.fn((_platformId, orgId) => {
-      return Promise.resolve(
-        organizationListMock.find((org) => org.id === orgId),
-      );
+      return Promise.resolve(organizationsMock.find((org) => org.id === orgId));
     }),
     getZimbraPlatformOrganization: vi.fn(() => {
       return Promise.resolve({
-        data: organizationListMock,
+        data: organizationsMock,
       });
     }),
     postZimbraPlatformOrganization: vi.fn(() => {
@@ -168,41 +140,18 @@ vi.mock('@/api/organization', async (importActual) => {
     deleteZimbraPlatformOrganization: vi.fn(() => {
       return Promise.resolve();
     }),
-  };
-});
-
-vi.mock('@/api/platform', async (importActual) => {
-  return {
-    ...(await importActual<typeof import('@/api/platform')>()),
+    // PLATFORM
     getZimbraPlatformList: vi.fn(() => {
       return Promise.resolve(platformMock);
     }),
-  };
-});
-
-vi.mock('@/api/task', async (importActual) => {
-  return {
-    ...(await importActual<typeof import('@/api/task')>()),
+    // TASK
     getZimbraPlatformTask: vi.fn(() => {
       return Promise.resolve(taskMocks);
     }),
-  };
-});
-
-vi.mock('@/api/order', async (importActual) => {
-  return {
-    ...(await importActual<typeof import('@/api/order')>()),
+    // ORDER
     getOrderCatalog: vi.fn(() => {
       return Promise.resolve(orderCatalogMock);
     }),
-  };
-});
-
-vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
-  return {
-    ...(await importOriginal<
-      typeof import('@ovh-ux/manager-react-components')
-    >()),
   };
 });
 
