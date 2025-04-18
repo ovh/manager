@@ -490,7 +490,7 @@
   "ip_firewall_rule_flags_established": "ESTABLISHED",
   "ip_firewall_rule_flags_NONE": "Brak",
   "ip_firewall_rule_flags_none": "Brak",
-  "ip_table_manage_delete_ipblock": "Usuń ",
+  "ip_table_manage_delete_ipblock": "Zrezygnuj ",
   "ip_table_manage_delete_ipblock_question": "Ze względów bezpieczeństwa prześlemy Ci e-mail dotyczący potwierdzenia usunięcia adresu IP.",
   "ip_table_manage_delete_ipblock_question2": "Czy chcesz kontynuować procedurę rezygnacji z adresu IP {{t0}}?",
   "ip_table_manage_delete_ipblock_success": "Przesłaliśmy e-mail w celu potwierdzenia operacji rezygnacji.",
@@ -779,5 +779,7 @@
   "ip_guide_link_additional_ip": "Skonfiguruj Additional IP",
   "ip_guide_link_ip_alias": "Konfiguracja adresu IP jako aliasu",
   "ip_guide_link_ip_proxmox": "Konfiguracja Additional IP na serwerze Proxmox VE",
-  "ip_guide_link_floating_ip": "Concepts - Additional IP lub Floating IP on Public Cloud"
+  "ip_guide_link_floating_ip": "Concepts - Additional IP lub Floating IP on Public Cloud",
+  "ip_table_manage_delete_ipblock_us": "Rezygnacja ",
+  "ip_table_manage_delete_ipblock_question_us": "Otrzymasz e-mail z potwierdzeniem usunięcia adresu IP. Twój adres IP zostanie usunięty z konta zgodnie ze standardową procedurą."
 }
