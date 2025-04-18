@@ -128,7 +128,7 @@ export default function Listing() {
       }
     >
       <BaseLayout header={headerProps} message={<Notifications />}>
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-6">
           <OdsButton
             className="w-fit"
             size={ODS_BUTTON_SIZE.sm}

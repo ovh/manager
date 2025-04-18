@@ -43,7 +43,7 @@ const CreateCredentialConfirmationPrivateKey = ({
             'key_management_service_credential_create_confirmation_private-key_title',
           )}
         </Subtitle>
-        <OdsMessage color={ODS_MESSAGE_COLOR.warning}>
+        <OdsMessage color={ODS_MESSAGE_COLOR.warning} isDismissible={false}>
           {t(
             'key_management_service_credential_create_confirmation_private-key_warn',
           )}
