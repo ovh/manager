@@ -2,16 +2,16 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { useTranslation } from 'react-i18next';
-import IpsRestrictionsForm from '@/components/order/cluster-options/IpsRestrictionsForm.component';
-import { Button } from '@/components/ui/button';
 import {
+  Button,
   Form,
   FormControl,
   FormField,
   FormItem,
   FormMessage,
-} from '@/components/ui/form';
-import { useToast } from '@/components/ui/use-toast';
+  useToast,
+} from '@datatr-ux/uxlib';
+import IpsRestrictionsForm from '@/components/order/cluster-options/IpsRestrictionsForm.component';
 import { useEditService } from '@/hooks/api/database/service/useEditService.hook';
 import * as database from '@/types/cloud/project/database';
 import { useServiceData } from '../../Service.context';
@@ -99,7 +99,7 @@ const IpsRestrictionsUpdate = ({
           <div className="mt-2 flex gap-2">
             <Button
               data-testid="ips-update-cancel-button"
-              variant="outline"
+              mode="outline"
               type="button"
               disabled={isPending}
               onClick={() => form.reset()}

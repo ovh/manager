@@ -58,7 +58,7 @@ export const getFilters = () => {
     },
     {
       id: 'createdAt',
-      label: t('tableHeaderEngine'),
+      label: t('tableHeaderCreationDate'),
       comparators: FilterCategories.Date,
     },
     {

@@ -1,17 +1,17 @@
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import { Copy } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import {
+  Button,
   DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { useToast } from '@/components/ui/use-toast';
-import { Alert } from '@/components/ui/alert';
+  useToast,
+  Alert,
+} from '@datatr-ux/uxlib';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import { useServiceData } from '../../Service.context';
 import RouteModal from '@/components/route-modal/RouteModal';
@@ -94,7 +94,7 @@ const ResetPrometheusPassword = () => {
             <DialogClose asChild>
               <Button
                 type="button"
-                variant="outline"
+                mode="outline"
                 data-testid="reset-password-close-button"
               >
                 {t('resetUserPasswordButtonClose')}
@@ -105,7 +105,7 @@ const ResetPrometheusPassword = () => {
               <DialogClose asChild>
                 <Button
                   type="button"
-                  variant="outline"
+                  mode="outline"
                   data-testid="reset-password-cancel-button"
                 >
                   {t('resetUserPasswordButtonCancel')}

@@ -1,7 +1,6 @@
 import { useMemo } from 'react';
 import { Outlet, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { ChangelogButton } from '@ovh-ux/manager-react-components';
 import { useGetServices } from '@/hooks/api/database/service/useGetServices.hook';
 import ServicesList from './_components/ServiceListTable.component';
 import LegalMentions from '../_components/LegalMentions.component';
@@ -12,10 +11,7 @@ import { useTrackAction } from '@/hooks/useTracking';
 import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import { TRACKING } from '@/configuration/tracking.constants';
 import * as database from '@/types/cloud/project/database';
-import {
-  CHANGELOG_LINKS,
-  CHANGELOG_CHAPTERS,
-} from '@/configuration/changelog.constants';
+import RoadmapChangelog from '@/components/roadmap-changelog/RoadmapChangelog.component';
 
 const Services = () => {
   const { t } = useTranslation('pci-databases-analytics/services');
@@ -44,10 +40,7 @@ const Services = () => {
       >
         <h2>{t('title')}</h2>
         <div className="flex flex-wrap justify-end gap-1">
-          <ChangelogButton
-            links={CHANGELOG_LINKS}
-            chapters={CHANGELOG_CHAPTERS}
-          />
+          <RoadmapChangelog />
           <Guides
             section={GuideSections.landing}
             noEngineFilter

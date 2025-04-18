@@ -1,32 +1,28 @@
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { Button } from '@/components/ui/button';
 import {
+  Button,
   DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { Input } from '@/components/ui/input';
-import {
+  Input,
   Form,
   FormControl,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form';
-import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
-import { useToast } from '@/components/ui/use-toast';
+  useToast,
+} from '@datatr-ux/uxlib';
 import { useConnectionPoolForm } from './formPools/useConnectionPoolForm.hook';
 import { GenericUser } from '@/data/api/database/user.api';
 import * as database from '@/types/cloud/project/database';
@@ -281,7 +277,7 @@ const AddEditConnectionPool = ({
                 <Button
                   data-testid="add-edit-pools-cancel-button"
                   type="button"
-                  variant="outline"
+                  mode="outline"
                 >
                   {t('formConnectionButtonCancel')}
                 </Button>

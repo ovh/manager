@@ -8,6 +8,7 @@ import {
 } from '@testing-library/react';
 
 import { UseQueryResult } from '@tanstack/react-query';
+import { useToast } from '@datatr-ux/uxlib';
 import Fork, {
   breadcrumb as Breadcrumb,
 } from '@/pages/services/[serviceId]/backups/fork/Fork.page';
@@ -50,7 +51,6 @@ import {
 } from '@/types/cloud/network';
 import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
 import * as ServiceAPI from '@/data/api/database/service.api';
-import { useToast } from '@/components/ui/use-toast';
 
 const mockedFork = {
   source: {
@@ -171,9 +171,11 @@ describe('Fork funnel page', () => {
       addService: vi.fn((service) => service),
     }));
 
-    vi.mock('@/components/ui/use-toast', () => {
+    vi.mock('@datatr-ux/uxlib', async () => {
+      const mod = await vi.importActual('@datatr-ux/uxlib');
       const toastMock = vi.fn();
       return {
+        ...mod,
         useToast: vi.fn(() => ({
           toast: toastMock,
         })),

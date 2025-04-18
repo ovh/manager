@@ -14,28 +14,30 @@ import {
 import { useTranslation } from 'react-i18next';
 import { useMemo } from 'react';
 import {
-  ChangelogLinks,
-  ChangelogButton,
-} from '@ovh-ux/manager-react-components';
+  Card,
+  CardContent,
+  CardHeader,
+  Button,
+  useToast,
+  Alert,
+  AlertDescription,
+  Skeleton,
+} from '@datatr-ux/uxlib';
 import { useServiceData } from '../Service.context';
 import MetricChart from '../metrics/_components/MetricChart.component';
 import * as database from '@/types/cloud/project/database';
 import { POLLING } from '@/configuration/polling.constants';
-import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import ConnectionDetails from './_components/ConnectionDetails.component';
-import { Button } from '@/components/ui/button';
-import { useToast } from '@/components/ui/use-toast';
 import Maintenance from './_components/Maintenance.component';
 import Link from '@/components/links/Link.component';
 import OvhLink from '@/components/links/OvhLink.component';
-import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Skeleton } from '@/components/ui/skeleton';
 import Guides from '@/components/guides/Guides.component';
 import { GuideSections } from '@/types/guide';
 import { useGetVrack } from '@/hooks/api/network/useGetVrack.hook';
 import { useGetMetrics } from '@/hooks/api/database/metric/useGetMetrics.hook';
 import { useGetServiceSubnet } from '@/hooks/api/network/useGetServiceSubnet.hook';
-import { TRACKING } from '@/configuration/tracking.constants';
+import RoadmapChangelog from '@/components/roadmap-changelog/RoadmapChangelog.component';
+import A from '@/components/links/A.component';
 
 interface MetricTile {
   name: string;
@@ -51,16 +53,7 @@ const Dashboard = () => {
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/dashboard',
   );
-  const changelogLinks: ChangelogLinks = {
-    changelog:
-      'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Managed+Databases',
-    roadmap:
-      'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Managed+Databases',
-    'feature-request':
-      'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
-  };
-  const changelogChapters = TRACKING.servicesList.page().split('::');
-
+  const supportLink = 'https://help.ovhcloud.com/csm?id=csm_get_help';
   const metricsToDispplay: MetricTile[] = useMemo(
     () =>
       metricsQuery.isSuccess
@@ -111,14 +104,11 @@ const Dashboard = () => {
       <div className="flex justify-between w-full items-center">
         <h2>{t('title')}</h2>
         <div className="flex flex-wrap justify-end gap-1">
-          <ChangelogButton
-            links={changelogLinks}
-            chapters={changelogChapters}
-          />
+          <RoadmapChangelog />
           <Guides section={GuideSections.dashboard} engine={service.engine} />
         </div>
       </div>
-      <Alert variant="info">
+      <Alert variant="primary">
         <AlertDescription className="text-base">
           <div className="flex flex-col items-stretch  md:flex-row md:items-center justify-between gap-4">
             <div className="flex flex-row gap-5 items-center">
@@ -127,7 +117,6 @@ const Dashboard = () => {
             </div>
             <Button
               data-testid="dashboard-upgrade-button"
-              variant="default"
               type="button"
               asChild
             >
@@ -259,8 +248,7 @@ const Dashboard = () => {
               <Button
                 data-testid="dashboard-copy-id-button"
                 type="button"
-                size="table"
-                variant="table"
+                className="text-text p-0 bg-transparent hover:bg-primary-100 hover:text-primary-700 hover:font-semibold h-4 w-4 my-auto"
                 onClick={() => {
                   navigator.clipboard.writeText(service.id);
                   toast.toast({
@@ -272,6 +260,17 @@ const Dashboard = () => {
               </Button>
             </div>
             <div
+              data-testid="dashboard-support-link"
+              className="flex flex-row gap-1 mt-2"
+            >
+              <A href={supportLink} target="_blank" rel="noopener noreferrer">
+                <div className="inline-flex items-center gap-2">
+                  <span>{t('supportLink')}</span>
+                  <ArrowRight className="w-4 h-4 ml-1 mt-1 text-primary" />
+                </div>
+              </A>
+            </div>
+            <div
               data-testid="dashboard-billing-link"
               className="flex flex-row gap-1 mt-3"
             >
@@ -280,15 +279,6 @@ const Dashboard = () => {
                 path={`#/pci/projects/${projectId}/billing`}
               >
                 {t('billingLink')}
-              </OvhLink>
-              <ArrowRight className="w-4 h-4 ml-1 mt-1 text-primary" />
-            </div>
-            <div
-              data-testid="dashboard-support-link"
-              className="flex flex-row gap-1 mt-2"
-            >
-              <OvhLink application="dedicated" path={`#/support/tickets/new`}>
-                {t('supportLink')}
               </OvhLink>
               <ArrowRight className="w-4 h-4 ml-1 mt-1 text-primary" />
             </div>

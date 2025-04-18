@@ -2,5 +2,10 @@
   "title": "Logs",
   "breadcrumb": "Logs",
   "description": "Nachstehend finden Sie die neuesten Events (Logs) zur Nachverfolgung und Verwaltung Ihres Datenbankdienstes, praktisch in Echtzeit. Die Aufbewahrungszeit hängt von Ihrem Dienstangebot ab.",
-  "autoRefreshInputLabel": "Auto-Refresh"
+  "autoRefreshInputLabel": "Auto-Refresh",
+  "streamsTitle": "Datenstrom",
+  "streamsBreadcrumb": "Stream",
+  "streamsBackLink": "Zur vorherigen Seite",
+  "streamsDescription": "Wenn Sie die Logs Ihres Dienstes abonnieren, werden diese in die Logs Data Platform übertragen. Sie können sie mit Ihren anderen Logs zentralisieren, erweiterte Suchen durchführen, ihre Aufbewahrungen verwalten, Alarme festlegen und Dashboards erstellen, um Ihre Cluster einfach zu überwachen.",
+  "streamsAdd": "Stream hinzufügen"
 }

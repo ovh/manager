@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { Skeleton } from '@datatr-ux/uxlib';
 import { useServiceData } from '../../Service.context';
 import * as database from '@/types/cloud/project/database';
-import { Skeleton } from '@/components/ui/skeleton';
 import ForkForm from './_components/ForkForm.component';
 import { useVrack } from '@/hooks/useVrack';
 import { Network } from '@/types/cloud/network';

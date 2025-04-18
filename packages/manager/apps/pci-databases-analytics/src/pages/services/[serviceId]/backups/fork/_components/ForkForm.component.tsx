@@ -2,21 +2,15 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Calendar as CalendarIcon } from 'lucide-react';
-import { Calendar } from '@/components/ui/calendar';
-import { order } from '@/types/catalog';
-import * as database from '@/types/cloud/project/database';
-import { Button } from '@/components/ui/button';
 import {
+  Calendar,
+  Button,
   Card,
   CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
-import { useToast } from '@/components/ui/use-toast';
-import StorageConfig from '@/components/order/cluster-configuration/StorageConfig.component';
-import NodesConfig from '@/components/order/cluster-configuration/NodesConfig.component';
-import {
+  useToast,
   Form,
   FormControl,
   FormDescription,
@@ -24,7 +18,23 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form';
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+  RadioGroup,
+  RadioGroupItem,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+  TimePicker,
+} from '@datatr-ux/uxlib';
+import { order } from '@/types/catalog';
+import * as database from '@/types/cloud/project/database';
+import StorageConfig from '@/components/order/cluster-configuration/StorageConfig.component';
+import NodesConfig from '@/components/order/cluster-configuration/NodesConfig.component';
 import { cn } from '@/lib/utils';
 import {
   ServiceCreationWithEngine,
@@ -39,26 +49,11 @@ import RegionsSelect from '@/components/order/region/RegionSelect.component';
 import OrderPrice from '@/components/order/price/OrderPrice.component';
 import ForkSummary from './ForkSummary.component';
 import { useFork } from './useFork.hook';
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 import { formatStorage } from '@/lib/bytesHelper';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { useServiceData } from '../../../Service.context';
 import ErrorList from '@/components/order/error-list/ErrorList.component';
 import { ForkSourceType } from '@/types/orderFunnel';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/components/ui/popover';
-import { TimePicker } from '@/components/ui/time-picker';
 import { useDateFnsLocale } from '@/hooks/useDateFnsLocale.hook';
 import { ForkInitialValue } from '../Fork.page';
 import { FullCapabilities } from '@/hooks/api/database/capabilities/useGetFullCapabilities.hook';
@@ -313,7 +308,7 @@ const ForkForm = ({
                         <PopoverTrigger asChild>
                           <Button
                             ref={field.ref}
-                            variant={'ghost'}
+                            mode={'ghost'}
                             className={cn(
                               'text-left justify-start flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50',
                               !field.value && 'text-muted-foreground',

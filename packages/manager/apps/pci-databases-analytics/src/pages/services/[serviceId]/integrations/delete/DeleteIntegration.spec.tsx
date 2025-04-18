@@ -7,12 +7,12 @@ import {
   act,
 } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
+import { useToast } from '@datatr-ux/uxlib';
 import * as database from '@/types/cloud/project/database';
 import { Locale } from '@/hooks/useLocale';
 import * as integrationsApi from '@/data/api/database/integration.api';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import DeleteIntegration from './DeleteIntegration.modal';
-import { useToast } from '@/components/ui/use-toast';
 import { mockedService } from '@/__tests__/helpers/mocks/services';
 import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
 import {
@@ -71,9 +71,11 @@ describe('Delete integration modal', () => {
         })),
       };
     });
-    vi.mock('@/components/ui/use-toast', () => {
+    vi.mock('@datatr-ux/uxlib', async () => {
+      const mod = await vi.importActual('@datatr-ux/uxlib');
       const toastMock = vi.fn();
       return {
+        ...mod,
         useToast: vi.fn(() => ({
           toast: toastMock,
         })),

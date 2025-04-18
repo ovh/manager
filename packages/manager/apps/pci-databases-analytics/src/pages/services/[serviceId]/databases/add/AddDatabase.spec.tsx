@@ -6,8 +6,8 @@ import {
   fireEvent,
   act,
 } from '@testing-library/react';
+import { useToast } from '@datatr-ux/uxlib';
 import AddDatabase from './AddDatabase.modal';
-import { useToast } from '@/components/ui/use-toast';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import * as databaseApi from '@/data/api/database/database.api';
 import { mockedService } from '@/__tests__/helpers/mocks/services';
@@ -24,9 +24,11 @@ vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
   })),
 }));
 
-vi.mock('@/components/ui/use-toast', () => {
+vi.mock('@datatr-ux/uxlib', async () => {
+  const mod = await vi.importActual('@datatr-ux/uxlib');
   const toastMock = vi.fn();
   return {
+    ...mod,
     useToast: vi.fn(() => ({
       toast: toastMock,
     })),

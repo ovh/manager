@@ -1,16 +1,16 @@
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
-import { Button } from '@/components/ui/button';
 import {
+  Button,
   DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { useToast } from '@/components/ui/use-toast';
+  useToast,
+} from '@datatr-ux/uxlib';
 import { useDeleteNamespace } from '@/hooks/api/database/namespace/useDeleteNamespace.hook';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import { useServiceData } from '../../Service.context';
@@ -86,7 +86,7 @@ const DeleteNamespaceModal = () => {
             <Button
               data-testid="delete-namespaces-cancel-button"
               type="button"
-              variant="outline"
+              mode="outline"
             >
               {t('deleteNamespaceButtonCancel')}
             </Button>

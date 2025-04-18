@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { useToast } from '@/components/ui/use-toast';
+import { useToast } from '@datatr-ux/uxlib';
 import PrometheusTableRow from './PrometheusTableRow.component';
 
 vi.mock('react-i18next', () => ({
@@ -9,15 +9,16 @@ vi.mock('react-i18next', () => ({
   }),
 }));
 
-vi.mock('@/components/ui/use-toast', () => {
+vi.mock('@datatr-ux/uxlib', async () => {
+  const mod = await vi.importActual('@datatr-ux/uxlib');
   const toastMock = vi.fn();
   return {
+    ...mod,
     useToast: vi.fn(() => ({
       toast: toastMock,
     })),
   };
 });
-
 describe('PrometheusTableRow', () => {
   const name = 'exampleName';
   const value = 'exampleValue';

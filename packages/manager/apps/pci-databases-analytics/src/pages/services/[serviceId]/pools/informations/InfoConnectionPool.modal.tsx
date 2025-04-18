@@ -7,10 +7,13 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';
-import { Button } from '@/components/ui/button';
-import { useToast } from '@/components/ui/use-toast';
+  Table,
+  TableBody,
+  TableCell,
+  TableRow,
+  Button,
+  useToast,
+} from '@datatr-ux/uxlib';
 import useDownload from '@/hooks/useDownload';
 
 import * as database from '@/types/cloud/project/database';
@@ -115,8 +118,7 @@ const InfoConnectionPool = () => {
                       <Button
                         data-testid="info-pools-copy-certificate-action"
                         type="button"
-                        size="table"
-                        variant="table"
+                        className="text-text p-0 bg-transparent hover:bg-primary-100 hover:text-primary-700 hover:font-semibold h-4 w-4 my-auto"
                         onClick={() => {
                           navigator.clipboard.writeText(
                             certificateQuery.data?.ca,
@@ -131,8 +133,7 @@ const InfoConnectionPool = () => {
                       <Button
                         data-testid="info-pools-download-ca-action"
                         type="button"
-                        size="table"
-                        variant="table"
+                        className="text-text p-0 bg-transparent hover:bg-primary-100 hover:text-primary-700 hover:font-semibold h-4 w-4 my-auto"
                         onClick={() => {
                           download(certificateQuery.data?.ca, 'ca.pem');
                           toast.toast({
@@ -164,8 +165,7 @@ const InfoConnectionPool = () => {
                       <Button
                         data-testid="info-pools-copy-uri-action"
                         type="button"
-                        size="table"
-                        variant="table"
+                        className="text-text p-0 bg-transparent hover:bg-primary-100 hover:text-primary-700 hover:font-semibold h-4 w-4 my-auto"
                         onClick={() => {
                           navigator.clipboard.writeText(connectionPool?.uri);
                           toast.toast({

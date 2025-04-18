@@ -10,17 +10,15 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import {
+  Input,
+  Button,
   DialogClose,
   DialogContent,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { useToast } from '@/components/ui/use-toast';
+  useToast,
+} from '@datatr-ux/uxlib';
 import { useAddPattern } from '@/hooks/api/database/pattern/useAddPattern.hook';
 import { useServiceData } from '../../Service.context';
 import { PATTERN_CREATION } from './pattern.constants';
@@ -193,7 +191,7 @@ const AddPattern = () => {
               <DialogClose asChild>
                 <Button
                   type="button"
-                  variant="outline"
+                  mode="outline"
                   data-testid="add-pattern-cancel-button"
                 >
                   {t('addPatternButtonCancel')}

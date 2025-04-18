@@ -81,5 +81,9 @@
   "formUserAclConfiguredAcls": "ACL configuradas",
   "formUseAclPatternErrorPattern": "O pattern só pode conter letras, algarismos, hífenes, underscores, pontos, asteriscos e pontos de interrogação.",
   "formUserInvalidPermission": "Escolha uma permissão válida da seguinte lista: {values}",
-  "formUserAclDuplicate": "Já está configurada uma ACL semelhante"
+  "formUserAclDuplicate": "Já está configurada uma ACL semelhante",
+  "resetUserPasswordCode": "Palavra-passe do utilizador",
+  "resetUserConnectionTitle": "URI a utilizar para uma ligação rápida",
+  "resetUserConnectionCode": "Cadeia de ligação",
+  "resetUserConnectionCodeCopy": "URI de ligação copiada para a área de transferência"
 }
