@@ -78,20 +78,6 @@
                         </oui-action-menu-item>
                     </oui-action-menu>
                 </oui-tile-definition>
-                <oui-tile-definition
-                    data-term="{{:: 'netapp_volumes_dashboard_information_reserve_space' | translate }}"
-                    data-description="{{ $ctrl.volumeReserveSpacePercentage + '%'}}"
-                >
-                    <oui-action-menu compact>
-                        <oui-action-menu-item
-                            data-on-click="$ctrl.goToEditVolumeReserveSpace()"
-                        >
-                            <span
-                                data-translate="netapp_volumes_edit_reserve_space"
-                            ></span>
-                        </oui-action-menu-item>
-                    </oui-action-menu>
-                </oui-tile-definition>
             </oui-tile>
             <oui-tile
                 class="col-md-8"

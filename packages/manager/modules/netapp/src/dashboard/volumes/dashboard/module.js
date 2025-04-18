@@ -11,7 +11,6 @@ import routing from './routing';
 import aclModule from './acl';
 import snapshotsModule from './snapshots';
 import editSize from './edit-size';
-import editReserveSpace from './edit-reserve-space';
 
 const moduleName = 'ovhManagerNetAppVolumesDashboard';
 
@@ -24,7 +23,6 @@ angular
     aclModule,
     snapshotsModule,
     editSize,
-    editReserveSpace,
   ])
   .config(routing)
   .component('ovhManagerNetAppVolumesDashboard', component)

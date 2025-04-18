@@ -6,7 +6,6 @@
   "netapp_volumes_dashboard_information_protocol": "Protocole",
   "netapp_volumes_dashboard_information_size": "Taille du volume",
   "netapp_volumes_dashboard_information_size_unit": "{{size }} Go",
-  "netapp_volumes_dashboard_information_reserve_space": "Réserve des snapshots",
   "netapp_volumes_dashboard_connection": "Connexion des volumes",
   "netapp_volumes_dashboard_connection_mount_path": "Mount path",
   "netapp_volumes_dashboard_connection_how_to": "Comment connecter votre volume",

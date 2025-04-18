@@ -138,14 +138,6 @@ export default /* @ngInject */ ($stateProvider) => {
           volumeId: volume.id,
         });
       },
-      goToEditVolumeReserveSpace: /* @ngInject */ ($state, serviceName) => (
-        volume,
-      ) => {
-        return $state.go('netapp.dashboard.volumes.edit-reserve-space', {
-          serviceName,
-          volumeId: volume.id,
-        });
-      },
       goToDeleteVolume: /* @ngInject */ ($state, serviceName, trackClick) => (
         volume,
       ) => {

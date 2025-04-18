@@ -12,8 +12,6 @@ export default {
     updateVolume: '<',
     goToVolumeDashboard: '<',
     goToEditVolumeSize: '<',
-    goToEditVolumeReserveSpace: '<',
-    volumeReserveSpacePercentage: '<',
   },
   controller,
   template,
