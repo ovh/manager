@@ -269,8 +269,7 @@ export default {
   },
   CONSUMPTION_CAPACITY: 'consumption',
   CONSUMPTION_REFERENCE: {
-    COLDSTORAGE_PCA: 'logs-coldstorage-pca-in-gb',
-    COLDSTORAGE_PCS: 'logs-coldstorage-pcs-in-gb',
+    COLDSTORAGE: 'logs-coldstorage-in-gb',
     NB_INSTANCE: 'logs-input-container-unit',
     NB_SHARD: 'logs-index-shards-unit',
     INDEXED_DOCUMENTS: 'logs-index-documents-in-gb',

@@ -71,17 +71,6 @@ export default class LogsStreamsService {
       },
     ];
 
-    this.storageTargets = [
-      {
-        value: this.LogsConstants.PCS,
-        name: this.$translate.instant('logs_stream_target_pcs'),
-      },
-      {
-        value: this.LogsConstants.PCA,
-        name: this.$translate.instant('logs_stream_target_pca'),
-      },
-    ];
-
     this.storageContents = [
       {
         value: this.LogsConstants.CONTENT_GELF,
@@ -248,7 +237,6 @@ export default class LogsStreamsService {
         coldStorageEnabled: stream.coldStorageEnabled,
         coldStorageNotifyEnabled: stream.coldStorageNotifyEnabled,
         coldStorageRetention: stream.coldStorageRetention,
-        coldStorageTarget: stream.coldStorageTarget,
         description: stream.description,
         indexingEnabled: stream.indexingEnabled,
         indexingMaxSize: stream.indexingMaxSize,
@@ -292,7 +280,6 @@ export default class LogsStreamsService {
           coldStorageEnabled: stream.coldStorageEnabled,
           coldStorageNotifyEnabled: stream.coldStorageNotifyEnabled,
           coldStorageRetention: stream.coldStorageRetention,
-          coldStorageTarget: stream.coldStorageTarget,
           description: stream.description,
           indexingEnabled: stream.indexingEnabled,
           indexingMaxSize: stream.indexingMaxSize,
@@ -326,10 +313,6 @@ export default class LogsStreamsService {
     return this.storageDurations;
   }
 
-  getStorageTargets() {
-    return this.storageTargets;
-  }
-
   getStorageContents() {
     return this.storageContents;
   }
@@ -360,7 +343,6 @@ export default class LogsStreamsService {
         coldStorageCompression: this.compressionAlgorithms[0].value,
         coldStorageRetention: this.storageDurations[0].value,
         coldStorageContent: this.storageContents[0].value,
-        coldStorageTarget: this.storageTargets[0].value,
         coldStorageNotifyEnabled: true,
         coldStorageEnabled: false,
         webSocketEnabled: true,
