@@ -40,7 +40,7 @@ function GeneralInformationsTab() {
         okmsData={okms.data}
         okmsServiceInfos={okmsService.data}
       />
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-4 md:gap-6">
         <KmipTile okmsData={okms.data} />
         <RestApiTile okmsData={okms.data} />
       </div>
