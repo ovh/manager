@@ -230,7 +230,7 @@ const Instances: FC = () => {
           )}
         </div>
       </PageLayout>
-      <Outlet />
+      {!isFetching && <Outlet />}
     </>
   );
 };

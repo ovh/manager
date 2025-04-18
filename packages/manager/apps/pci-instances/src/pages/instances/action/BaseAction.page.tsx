@@ -20,7 +20,8 @@ export type TBaseInstanceActionPageProps = {
   onError: (error: unknown) => void;
   onSuccess: () => void;
   handleModalClose: () => void;
-  instance: TInstanceDto;
+  instance?: TInstanceDto;
+  isLoading: boolean;
 };
 
 const BaseInstanceActionPage: FC<TBaseInstanceActionPageProps> = ({
@@ -31,6 +32,7 @@ const BaseInstanceActionPage: FC<TBaseInstanceActionPageProps> = ({
   onSuccess,
   handleModalClose,
   instance,
+  isLoading,
 }) => {
   const { mutationHandler, isPending } = useBaseInstanceAction(
     section,
@@ -41,7 +43,9 @@ const BaseInstanceActionPage: FC<TBaseInstanceActionPageProps> = ({
     },
   );
 
-  const handleInstanceAction = () => mutationHandler(instance);
+  const handleInstanceAction = () => {
+    if (instance) mutationHandler(instance);
+  };
 
   return (
     <ActionModal
@@ -49,9 +53,10 @@ const BaseInstanceActionPage: FC<TBaseInstanceActionPageProps> = ({
       isPending={isPending}
       handleInstanceAction={handleInstanceAction}
       handleModalClose={handleModalClose}
-      instanceName={instance.name}
+      instanceName={instance?.name}
       section={section}
       variant={section === 'delete' ? 'warning' : 'primary'}
+      isLoading={isLoading}
     />
   );
 };

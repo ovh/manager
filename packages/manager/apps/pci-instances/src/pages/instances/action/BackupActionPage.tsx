@@ -18,24 +18,25 @@ const BackupActionPage = ({
   projectId,
   onError,
   onSuccess,
+  isLoading,
 }: TBackupActionPageProps) => {
   const { t, i18n } = useTranslation('actions');
   const locale = i18n?.language?.replace('_', '-');
   const defaultSnapshotName = useMemo(
     () =>
-      `${instance.name} ${new Date().toLocaleDateString(locale, {
+      `${instance?.name} ${new Date().toLocaleDateString(locale, {
         year: 'numeric',
         month: 'long',
         day: 'numeric',
       })}`,
-    [instance.name, locale],
+    [instance?.name, locale],
   );
 
   const [snapshotName, setSnapshotName] = useState(defaultSnapshotName);
 
-  const { price, isLoading } = useInstanceBackupPrice(
+  const { price, isLoading: isBackupLoading } = useInstanceBackupPrice(
     projectId,
-    instance.region,
+    instance?.region ?? '',
   );
 
   const { mutationHandler, isPending } = useInstanceBackupAction(projectId, {
@@ -43,8 +44,9 @@ const BackupActionPage = ({
     onSuccess,
   });
 
-  const handleInstanceAction = () =>
-    mutationHandler({ instance, snapshotName });
+  const handleInstanceAction = () => {
+    if (instance) mutationHandler({ instance, snapshotName });
+  };
 
   return (
     <ActionModal
@@ -52,8 +54,9 @@ const BackupActionPage = ({
       isPending={isPending}
       handleInstanceAction={handleInstanceAction}
       handleModalClose={handleModalClose}
-      instanceName={instance.name}
+      instanceName={instance?.name}
       section={section}
+      isLoading={isLoading}
     >
       <div className="flex flex-col gap-2">
         <p className="text-sm font-medium">
@@ -67,7 +70,7 @@ const BackupActionPage = ({
             setSnapshotName(e.target.value)
           }
         />
-        {!!price && !isLoading && (
+        {!!price && !isBackupLoading && (
           <p className="text-sm font-medium">
             {t('pci_instances_actions_backup_instance_price', {
               price,

@@ -1,17 +1,18 @@
 import { PropsWithChildren } from 'react';
 import { ActionModalContent } from '@/pages/instances/action/modal/ActionModalContent.component';
 import Modal from '@/components/modal/Modal.component';
-import { TSectionType } from '@/pages/instances/action/InstanceAction.page';
 import { Spinner } from '../spinner/Spinner.component';
+import { TSectionType } from '@/data/hooks/instance/action/useCachedInstanceAction';
 
 export type TActionModalProps = PropsWithChildren<{
   title: string;
   isPending: boolean;
   handleInstanceAction: () => void;
   handleModalClose: () => void;
-  instanceName: string;
+  instanceName?: string;
   section: TSectionType;
   variant?: 'primary' | 'warning';
+  isLoading: boolean;
 }>;
 
 export const ActionModal = ({
@@ -23,10 +24,11 @@ export const ActionModal = ({
   instanceName,
   section,
   variant,
+  isLoading,
 }: TActionModalProps) => (
   <Modal
     title={title}
-    isPending={isPending}
+    isPending={isPending || isLoading}
     handleInstanceAction={handleInstanceAction}
     handleModalClose={handleModalClose}
     variant={variant}
@@ -36,7 +38,11 @@ export const ActionModal = ({
         <Spinner />
       </div>
     ) : (
-      <ActionModalContent type={section} instanceName={instanceName}>
+      <ActionModalContent
+        isLoading={isLoading}
+        type={section}
+        instanceName={instanceName}
+      >
         {children}
       </ActionModalContent>
     )}
