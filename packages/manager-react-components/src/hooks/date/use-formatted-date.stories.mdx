@@ -1,0 +1,137 @@
+import { Meta, Source, ArgTypes, ArgsTable } from '@storybook/blocks';
+
+<Meta title="Hooks/useFormatDate"
+  argTypes={{
+    defaultLocale: {
+      control: 'text',
+      type: 'string',
+      default: 'FR-fr',
+      description: 'Fallback locale if i18n is not available.',
+      table: {
+        defaultValue: { summary: 'FR-fr' },
+        type: { summary: 'string' }
+      }
+    },
+    unknownDateLabelDefault: {
+      control: 'text',
+      value: 'N/A',
+      description: 'Label used when the date is invalid or missing.',
+      table: {
+        defaultValue: { summary: 'N/A' },
+        type: { summary: 'string' }
+      }
+    },
+    date: {
+      control: 'date',
+      description: 'Date to format',
+      table: {
+        defaultValue: { summary: 'undefined' },
+        type: { summary: 'date | string' }
+      }
+    },
+    unknownDateLabel: {
+      control: 'text',
+      description: 'Label used when the date is invalid or missing. (Overwrite `unknownDateLabelDefault`)',
+      table: {
+        defaultValue: { summary: 'undefined' },
+        type: { summary: 'string' }
+      }
+    },
+    format: {
+      control: 'select',
+      options: ['DateFormat.compact', 'DateFormat.display', 'DateFormat.fullDisplay'],
+      description: 'Format of date expected',
+      table: {
+        defaultValue: { summary: 'DateFormat.display' },
+        type: { summary: 'enum' }
+      }
+    },
+    timeFormat: {
+      control: 'select',
+      options: ['TimeFormat.hidden', 'TimeFormat.hourAndMinute', 'TimeFormat.fullDisplay'],
+      description: 'Format of time expected',
+      table: {
+        defaultValue: { summary: 'TimeFormat.hidden' },
+        type: { summary: 'enum' }
+      }
+    },
+  }}
+/>
+
+# useFormatDate
+
+The `useFormatDate` hook is a utility that provides a `formatDate` function to format date strings or `Date` objects into localized human-readable strings.
+
+## Usage
+
+<Source
+  code={`const { formatDate } = useFormatDate();
+
+formatDate({ date: '2024-09-14T09:21:21.943Z' });
+// → "14 Sept 2024" (default format)`}
+  language="ts"
+/>
+
+## Parameters
+
+### Parameters of hook
+
+<ArgTypes include={['defaultLocale', 'unknownDateLabelDefault']} />
+
+### Parameters of formatDate
+
+<ArgTypes include={['date', 'format', 'timeFormat', 'unknownDateLabel']} />
+
+## Output examples
+
+<Source
+  code={`
+const { formatDate } = useFormatDate();
+
+// Default formatting
+formatDate({ date: '2024-09-14T09:21:21.943Z' });
+// → "14 Sept 2024"
+
+// With full month name
+formatDate({ date: '2024-09-14T09:21:21.943Z', format: DateFormat.fullDisplay });
+// → "14 September 2024"
+
+// Compact date format
+formatDate({ date: '2024-06-14T09:21:21.943Z', format: DateFormat.compact });
+// → "14/06/2024"
+
+// With time included
+formatDate({
+  date: '2024-01-14T09:21:21.943Z',
+  format: DateFormat.display,
+  timeFormat: TimeFormat.hourAndMinute,
+});
+// → "14 Jan 2024, 10:21"
+
+// Full display with time
+formatDate({
+  date: '2024-01-14T09:21:21.943Z',
+  format: DateFormat.fullDisplay,
+  timeFormat: TimeFormat.fullDisplay,
+});
+// → "14 January 2024 at 10:21:21"`}
+  language="ts"
+/>
+
+## Handling invalid or missing dates
+
+<Source
+  code={`formatDate({ date: undefined });
+// → "N/A"
+
+formatDate({ date: null });
+// → "N/A"
+
+formatDate({ date: '', unknownDateLabel: 'Unknown' });
+// → "Unknown"`}
+  language="ts"
+/>
+
+## Localization
+
+The locale is automatically inferred from `i18n.language`. If not available, it falls back to `'FR-fr'`
