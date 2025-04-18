@@ -1,6 +1,7 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { generateCsv, mkConfig, download } from 'export-to-csv';
+import { useVirtualizer } from '@tanstack/react-virtual';
 import {
   BaseLayout,
   Datagrid,
@@ -27,6 +28,9 @@ import { GUIDE_URL, ORDER_URL } from './websites.constants';
 
 export default function Websites() {
   const { t } = useTranslation('common');
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [isLoadingAll, setIsLoadingAll] = useState(false);
+
   const {
     data,
     fetchNextPage,
@@ -38,6 +42,18 @@ export default function Websites() {
   const { notifications, addSuccess } = useNotifications();
 
   const items = data ? data.map((website: WebsiteType) => website) : [];
+
+  const rowVirtualizer = useVirtualizer({
+    count: isLoadingAll ? items.length : Math.min(items.length, 500),
+    getScrollElement: () => scrollContainerRef.current,
+    estimateSize: () => parseInt('35px', 15),
+    paddingEnd: 80,
+  });
+
+  const handleLoadAll = async () => {
+    setIsLoadingAll(true);
+    await fetchAllPages();
+  };
 
   const displayColumns: DatagridColumn<WebsiteType>[] = [
     {
@@ -328,38 +344,46 @@ export default function Websites() {
       }}
       message={notifications.length ? <Notifications /> : null}
     >
-      <Datagrid
-        data-testid="websites-page-datagrid"
-        columns={displayColumns}
-        items={items}
-        totalItems={items.length}
-        hasNextPage={!isFetchingNextPage && hasNextPage}
-        onFetchNextPage={fetchNextPage}
-        onFetchAllPages={fetchAllPages}
-        isLoading={isFetchingNextPage || isLoading}
-        topbar={
-          <div className="flex items-center gap-4">
-            <OdsButton
-              label={t('web_hosting_header_order')}
-              variant={ODS_BUTTON_VARIANT.default}
-              color={ODS_BUTTON_COLOR.primary}
-              onClick={goToOrder}
-              icon={ODS_ICON_NAME.externalLink}
-              iconAlignment={ODS_LINK_ICON_ALIGNMENT.right}
-              data-testid="websites-page-order-button"
-            />
-            <OdsButton
-              label={t('web_hosting_export_label')}
-              variant={ODS_BUTTON_VARIANT.outline}
-              color={ODS_BUTTON_COLOR.primary}
-              icon={ODS_ICON_NAME.download}
-              iconAlignment={ODS_LINK_ICON_ALIGNMENT.right}
-              onClick={handleExportWithExportToCsv}
-              data-testid="websites-page-export-button"
-            />
-          </div>
-        }
-      />
+      <div ref={scrollContainerRef} className="overflow-auto">
+        <Datagrid
+          data-testid="websites-page-datagrid"
+          columns={displayColumns}
+          items={
+            isLoadingAll
+              ? rowVirtualizer
+                  .getVirtualItems()
+                  .map((virtualRow) => items[virtualRow.index])
+              : items.slice(0, 50)
+          }
+          totalItems={items.length}
+          hasNextPage={!isFetchingNextPage && hasNextPage}
+          onFetchNextPage={fetchNextPage}
+          onFetchAllPages={handleLoadAll}
+          isLoading={isFetchingNextPage || isLoading}
+          topbar={
+            <div className="flex items-center gap-4">
+              <OdsButton
+                label={t('web_hosting_header_order')}
+                variant={ODS_BUTTON_VARIANT.default}
+                color={ODS_BUTTON_COLOR.primary}
+                onClick={goToOrder}
+                icon={ODS_ICON_NAME.externalLink}
+                iconAlignment={ODS_LINK_ICON_ALIGNMENT.right}
+                data-testid="websites-page-order-button"
+              />
+              <OdsButton
+                label={t('web_hosting_export_label')}
+                variant={ODS_BUTTON_VARIANT.outline}
+                color={ODS_BUTTON_COLOR.primary}
+                icon={ODS_ICON_NAME.download}
+                iconAlignment={ODS_LINK_ICON_ALIGNMENT.right}
+                onClick={handleExportWithExportToCsv}
+                data-testid="websites-page-export-button"
+              />
+            </div>
+          }
+        />
+      </div>
     </BaseLayout>
   );
 }
