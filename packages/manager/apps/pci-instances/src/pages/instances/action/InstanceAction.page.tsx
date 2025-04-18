@@ -1,42 +1,29 @@
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import { FC, useCallback, useEffect, useMemo } from 'react';
+import { FC, useCallback, useMemo } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { DefaultError } from '@tanstack/react-query';
-import {
-  getInstanceById,
-  updateInstanceFromCache,
-} from '@/data/hooks/instance/useInstances';
+import { updateInstanceFromCache } from '@/data/hooks/instance/useInstances';
 import { usePathMatch } from '@/hooks/url/usePathMatch';
 import NotFound from '@/pages/404/NotFound.page';
 import queryClient from '@/queryClient';
 import { isApiErrorResponse, replaceToSnakeCase } from '@/utils';
 import BaseInstanceActionPage from './BaseAction.page';
-import { RescueActionPage } from './RescueAction.page';
+import {
+  TSectionType,
+  useCachedInstanceAction,
+} from '@/data/hooks/instance/action/useCachedInstanceAction';
+import { useProjectId } from '@/hooks/project/useProjectId';
 import BackupActionPage from './BackupActionPage';
-
-export type TSectionType =
-  | 'delete'
-  | 'start'
-  | 'stop'
-  | 'shelve'
-  | 'unshelve'
-  | 'soft-reboot'
-  | 'hard-reboot'
-  | 'reinstall'
-  | 'rescue/start'
-  | 'rescue/end'
-  | 'backup';
+import { RescueActionPage } from './RescueAction.page';
 
 const actionSectionRegex = /(?:rescue\/(start|end)|(?<!rescue\/)(start|stop|shelve|unshelve|delete|soft-reboot|hard-reboot|reinstall|backup))$/;
 
 const InstanceAction: FC = () => {
   const { t } = useTranslation(['actions', 'common']);
   const navigate = useNavigate();
-  const { projectId, instanceId } = useParams() as {
-    projectId: string;
-    instanceId?: string;
-  };
+  const projectId = useProjectId();
+  const { instanceId } = useParams();
   const { addError, addSuccess, addInfo } = useNotifications();
   const section = usePathMatch<TSectionType>(actionSectionRegex);
 
@@ -45,14 +32,7 @@ const InstanceAction: FC = () => {
     [section],
   );
 
-  const instance = useMemo(
-    () => getInstanceById(projectId, instanceId, queryClient),
-    [instanceId, projectId],
-  );
-
-  const instanceName = instance?.name;
-
-  const canExecuteAction = !!instanceId && !!instanceName && !!section;
+  const { instance, isLoading } = useCachedInstanceAction(instanceId, section);
 
   const executeSuccessCallback = useCallback((): void => {
     if (!instance) return;
@@ -74,7 +54,10 @@ const InstanceAction: FC = () => {
       addInfo(
         <Trans
           i18nKey={`pci_instances_actions_rescue_start_instance_info_message`}
-          values={{ name: instanceName, ip: instance?.addresses[0].ip }}
+          values={{
+            name: instance?.name,
+            ip: instance?.addresses[0].ip,
+          }}
           ns={'actions'}
           components={
             isRescue
@@ -93,7 +76,7 @@ const InstanceAction: FC = () => {
 
     addSuccess(
       t(`pci_instances_actions_${snakeCaseSection}_instance_success_message`, {
-        name: instanceName,
+        name: instance?.name,
       }),
       true,
     );
@@ -107,7 +90,7 @@ const InstanceAction: FC = () => {
       : (rawError as DefaultError).message;
     addError(
       t(`pci_instances_actions_${snakeCaseSection}_instance_error_message`, {
-        name: instanceName,
+        name: instance?.name,
         error: errorMessage,
       }),
       true,
@@ -115,17 +98,7 @@ const InstanceAction: FC = () => {
     handleModalClose();
   };
 
-  const handleUnknownError = useCallback(() => {
-    if (!canExecuteAction)
-      addError(t('pci_instances_actions_instance_unknown_error_message'), true);
-  }, [addError, canExecuteAction, t]);
-
-  useEffect(() => {
-    handleUnknownError();
-  }, [handleUnknownError, instanceId, instanceName, section]);
-
   if (!instanceId || !section) return <NotFound />;
-  if (!instanceName) return <Navigate to={'..'} />;
 
   const title = t(`pci_instances_actions_${snakeCaseSection}_instance_title`);
 
@@ -136,6 +109,7 @@ const InstanceAction: FC = () => {
     onSuccess,
     handleModalClose,
     instance,
+    isLoading,
   };
 
   if (section === 'backup') {

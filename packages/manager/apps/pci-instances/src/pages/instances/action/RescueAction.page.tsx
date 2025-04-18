@@ -22,7 +22,8 @@ export type TRescueActionPageProps = {
   onError: (error: unknown) => void;
   onSuccess: () => void;
   handleModalClose: () => void;
-  instance: TInstanceDto;
+  instance?: TInstanceDto;
+  isLoading: boolean;
 };
 
 export const RescueActionPage: FC<TRescueActionPageProps> = ({
@@ -33,11 +34,12 @@ export const RescueActionPage: FC<TRescueActionPageProps> = ({
   onSuccess,
   handleModalClose,
   instance,
+  isLoading,
 }) => {
   const { t } = useTranslation('actions');
-  const { data: images, isLoading } = useImages({
+  const { data: images, isLoading: isImageLoading } = useImages({
     projectId,
-    region: instance.region,
+    region: instance?.region ?? '',
     params: {
       visibility: 'public',
     },
@@ -59,8 +61,10 @@ export const RescueActionPage: FC<TRescueActionPageProps> = ({
     onSuccess,
   });
 
-  const handleInstanceAction = () =>
-    mutationHandler({ instance, imageId, isRescue: isRescueMode });
+  const handleInstanceAction = () => {
+    if (instance)
+      mutationHandler({ instance, imageId, isRescue: isRescueMode });
+  };
 
   const imageOptions = useMemo(
     () =>
@@ -77,8 +81,9 @@ export const RescueActionPage: FC<TRescueActionPageProps> = ({
       isPending={isPending}
       handleInstanceAction={handleInstanceAction}
       handleModalClose={handleModalClose}
-      instanceName={instance.name}
+      instanceName={instance?.name}
       section={section}
+      isLoading={isLoading}
     >
       {isRescueMode && (
         <Select
@@ -86,7 +91,7 @@ export const RescueActionPage: FC<TRescueActionPageProps> = ({
           name="image"
           onValueChange={setImageId}
           value={imageId}
-          disabled={isLoading || !imageOptions?.length}
+          disabled={isImageLoading || !imageOptions?.length}
         >
           <p className="text-grey-500 my-2 font-bold text-xs">
             {t(

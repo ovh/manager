@@ -108,21 +108,21 @@ const getActionHrefByName = (
 
   if (name === 'rescue') {
     return {
-      path: `region/${region}/instance/${id}/rescue/start`,
+      path: `rescue/start?instanceId=${id}&region=${region}`,
       isExternal: false,
     };
   }
 
   if (name === 'unrescue') {
     return {
-      path: `region/${region}/instance/${id}/rescue/end`,
+      path: `rescue/end?instanceId=${id}&region=${region}`,
       isExternal: false,
     };
   }
 
   if (name === 'create_backup') {
     return {
-      path: `region/${region}/instance/${id}/backup`,
+      path: `backup?instanceId=${id}&region=${region}`,
       isExternal: false,
     };
   }
