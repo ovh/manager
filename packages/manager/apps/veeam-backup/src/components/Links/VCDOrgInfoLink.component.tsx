@@ -31,21 +31,23 @@ const urls: Partial<{ [key in OvhSubsidiary]: string }> = {
 };
 
 export const VCDOrgInfoLink: React.FC<{
-  label: string;
+  label?: string;
   className?: string;
-}> = ({ label, className }) => {
+  children?: string;
+}> = ({ label, className, children }) => {
   const { environment } = React.useContext(ShellContext);
-
   const href =
     urls[environment.user.ovhSubsidiary as OvhSubsidiary] || urls.DEFAULT;
 
   return (
     <Links
       className={className}
+      label={label || undefined}
       type={LinkType.external}
       target="_blank"
-      label={label}
       href={href}
-    />
+    >
+      {children}
+    </Links>
   );
 };

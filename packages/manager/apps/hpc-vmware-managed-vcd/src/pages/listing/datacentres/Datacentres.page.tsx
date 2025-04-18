@@ -1,5 +1,5 @@
-import { DataGridTextCell, Links } from '@ovh-ux/manager-react-components';
 import React from 'react';
+import { DataGridTextCell, Links } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import {
@@ -16,6 +16,7 @@ import { capitalize } from '@/utils/capitalize';
 import { ID_LABEL } from '@/pages/dashboard/dashboard.constants';
 import TEST_IDS from '@/utils/testIds.constants';
 import { TRACKING } from '@/tracking.constants';
+import { VIRTUAL_DATACENTERS_LABEL } from '@/pages/dashboard/organization/organizationDashboard.constants';
 
 /* ========= datagrid cells ========= */
 const DatagridIdCell = (vcdDatacentre: VCDDatacentre) => {
@@ -119,7 +120,7 @@ export default function DatacentresListing() {
   ];
 
   const datagridProps: TDatagridContainerProps = {
-    title: tVdc('managed_vcd_vdc_title'),
+    title: VIRTUAL_DATACENTERS_LABEL,
     queryKey: getVcdDatacentreListQueryKey(id),
     isEmbedded: true,
     route: {

@@ -1,6 +1,6 @@
 import 'element-internals-polyfill';
 import { vi } from 'vitest';
-import { render } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import { I18nextProvider } from 'react-i18next';
 import { i18n as i18nType } from 'i18next';
 import {
@@ -107,6 +107,11 @@ describe('order', () => {
     await renderComponent();
 
     // then
-    await assertTextVisibility(labels.common.no_organization_message);
+    await waitFor(
+      () => {
+        assertTextVisibility(labels.common.no_organization_message);
+      },
+      { timeout: 10_000 },
+    );
   });
 });

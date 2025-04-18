@@ -16,6 +16,7 @@ import { useAutoRefetch } from '@/data/hooks/useAutoRefetch';
 import { isUpdatingTargetSpec } from '@/utils/refetchConditions';
 import { CHANGELOG_LINKS } from '@/utils/changelog.constants';
 import { TRACKING_TABS_ACTIONS } from '@/tracking.constants';
+import { VIRTUAL_DATACENTERS_LABEL } from '../organization/organizationDashboard.constants';
 
 function DatacentreDashboardPage() {
   const { id, vdcId } = useParams();
@@ -70,8 +71,8 @@ function DatacentreDashboardPage() {
       label: vcdOrganization?.data?.currentState?.fullName,
     },
     {
-      id: 'datacentres',
-      label: t('managed_vcd_dashboard_datacentres_label'),
+      id: subRoutes.virtualDatacenters,
+      label: VIRTUAL_DATACENTERS_LABEL,
     },
     {
       id: vdcId,
