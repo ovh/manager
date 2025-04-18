@@ -22,7 +22,7 @@ const queryClient = new QueryClient();
 /** MOCKS */
 const useGetIpReverseMock = vi.hoisted(() =>
   vi.fn(() => ({
-    ipReverse: ipReverseList,
+    ipsReverse: undefined,
     isLoading: true,
     error: undefined,
   })),
@@ -141,7 +141,7 @@ const renderComponent = () => {
 describe('IpDatagrid Component', async () => {
   beforeAll(() => {
     useGetIpReverseMock.mockReturnValue({
-      ipReverse: ipReverseList,
+      ipsReverse: ipReverseList,
       isLoading: false,
       error: undefined,
     });
@@ -193,11 +193,6 @@ describe('IpDatagrid Component', async () => {
     });
   });
   it('Should display block ip reverse child', async () => {
-    useGetIpReverseMock.mockReturnValue({
-      ipReverse: ipReverseList,
-      isLoading: false,
-      error: undefined,
-    });
     const { getAllByText, queryByText } = renderComponent();
     await waitFor(() => {
       expect(queryByText('listingColumnsIp')).toBeNull();
