@@ -93,6 +93,45 @@
                 links="$ctrl.constants.CHANGELOG.vrack.links"
                 chapters="$ctrl.constants.CHANGELOG.vrack.chapters"
             ></changelog-button>
+            <oui-guide-menu
+                data-text="{{:: 'list_layout_vrack_guides_title' | translate }}"
+            >
+                <div class="pr-4">
+                    <oui-guide-menu-item
+                        data-ng-href="{{:: $ctrl.guideLinks.link1 }}"
+                        data-external="true"
+                    >
+                        <span
+                            data-translate="{{:: 'list_layout_vrack_guides_link1' | translate }}"
+                        ></span>
+                    </oui-guide-menu-item>
+                    <oui-guide-menu-item
+                        data-ng-href="{{:: $ctrl.guideLinks.link2 }}"
+                        data-external="true"
+                    >
+                        <span
+                            data-translate="{{:: 'list_layout_vrack_guides_link2' | translate }}"
+                        ></span>
+                    </oui-guide-menu-item>
+                    <oui-guide-menu-item
+                        data-ng-if="$ctrl.user.ovhSubsidiary !== 'US'"
+                        data-ng-href="{{:: $ctrl.guideLinks.link3 }}"
+                        data-external="true"
+                    >
+                        <span
+                            data-translate="{{:: 'list_layout_vrack_guides_link3' | translate }}"
+                        ></span>
+                    </oui-guide-menu-item>
+                    <oui-guide-menu-item
+                        data-ng-href="{{:: $ctrl.guideLinks.link4 }}"
+                        data-external="true"
+                    >
+                        <span
+                            data-translate="{{:: 'list_layout_vrack_guides_link4' | translate }}"
+                        ></span>
+                    </oui-guide-menu-item>
+                </div>
+            </oui-guide-menu>
             <a
                 data-ng-if="$ctrl.surveyUrl"
                 class="btn btn-link h-fit-content"

@@ -19,6 +19,7 @@ export default {
     topbarOptions: '<?',
     customizeColumnsMap: '<?',
     isDeleteOptionsAvailable: '<',
+    guideLinks: '<',
   },
   template,
   controller,
