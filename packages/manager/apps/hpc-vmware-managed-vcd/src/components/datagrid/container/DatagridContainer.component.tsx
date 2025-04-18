@@ -16,6 +16,7 @@ import {
   UpdatableResource,
 } from '@/utils/refetchConditions';
 import { CHANGELOG_LINKS } from '@/utils/changelog.constants';
+import VcdGuidesHeader from '@/components/guide/VcdGuidesHeader';
 
 export type TDatagridContainerProps = {
   route: TDatagridRoute;
@@ -105,7 +106,12 @@ export default function DatagridContainer({
         >
           {title}
         </OdsText>
-        {!isEmbedded && <ChangelogButton links={CHANGELOG_LINKS} />}
+        {!isEmbedded && (
+          <div className="flex">
+            <ChangelogButton links={CHANGELOG_LINKS} />
+            <VcdGuidesHeader />
+          </div>
+        )}
       </div>
       {orderButton && <div className="w-fit mt-4 mb-8">{orderButton}</div>}
       <React.Suspense>
