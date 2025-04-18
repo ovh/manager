@@ -1,0 +1,45 @@
+<div class="overthebox-ip-display">
+    <div
+        class="oui-tile__term"
+        data-translate="overTheBox_detail_ip_v4"
+        data-ng-if="$ctrl.isIpv4"
+    ></div>
+    <div
+        class="oui-tile__term"
+        data-translate="overTheBox_detail_ip_v6"
+        data-ng-if="$ctrl.isIpv6"
+    ></div>
+    <div class="oui-tile__description">
+        <div class="my-2" data-ng-if="$ctrl.isIpv6">
+            <div
+                class="overthebox-ip-display_ip-activation"
+                data-ng-hide="$ctrl.isUpdating"
+            >
+                <oui-checkbox
+                    name="ipv6_activated"
+                    data-model="$ctrl.isIpv6Enabled"
+                    data-on-change="$ctrl.onIpv6ActivationChange(modelValue)"
+                >
+                    <span
+                        data-translate="overTheBox_detail_ip_v6_activated"
+                    ></span>
+                </oui-checkbox>
+            </div>
+            <div
+                class="overthebox-ip-display_ip-activation"
+                data-ng-show="$ctrl.isUpdating"
+            >
+                <oui-spinner
+                    size="s"
+                    class="align-middle overthebox-ip-display_ip-activation"
+                />
+                <span
+                    ng-class="$ctrl.loaderLabelClass()"
+                    class="align-middle d-inline-block"
+                    data-translate="overTheBox_detail_ip_v6_activated"
+                ></span>
+            </div>
+        </div>
+        <div class="my-2" data-ng-bind="$ctrl.formatIp()"></div>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+.overthebox-ip-display {
+  $ip-activation-line-height: 1.5em;
+
+  &_ip-activation {
+    max-height: $ip-activation-line-height;
+    line-height: $ip-activation-line-height;
+    overflow: hidden;
+
+    &_from-enabled {
+      font-weight: bold;
+    }
+    &_from-disabled {
+      font-weight: normal;
+    }
+  }
+}
