@@ -4,7 +4,6 @@ const helpRoot = 'https://help.ovhcloud.com/csm';
 const homeIndex = '-home?id=csm_index';
 const support = `${helpRoot}?id=csm_cases_requests&ovhSubsidiary=`;
 
-
 export interface ContentURLS {
   help: {
     [key in string]: string;
@@ -70,8 +69,17 @@ export function useURL(environment: Environment): UseURL {
       const user = environment.getUser();
       const regionURL = urls[region];
       const url = regionURL[id];
-      if(!url) return;
-      return typeof url === 'string' ? (id === 'support' ? url + user.ovhSubsidiary : url) : url[user.ovhSubsidiary];
+
+      if (!url) return undefined;
+
+      if (typeof url === 'string') {
+        if (id === 'support') {
+          return url + user.ovhSubsidiary;
+        }
+        return url;
+      }
+
+      return url[user.ovhSubsidiary];
     },
   };
 }

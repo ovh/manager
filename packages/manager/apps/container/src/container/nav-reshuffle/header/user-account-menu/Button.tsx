@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { useTranslation } from 'react-i18next';
 
 import { OsdsButton } from '@ovhcloud/ods-components/react';

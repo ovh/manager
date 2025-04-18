@@ -6,7 +6,7 @@ export const ONBOARDING_STATUS_ENUM = {
 };
 
 export const MAX_DISPLAY_COUNT = 3;
-export const MINIMUM_TIME_INTERVAL_IN_MS = 86400000; //24h
+export const MINIMUM_TIME_INTERVAL_IN_MS = 86400000; // 24h
 
 export const ONBOARDING_OPENED_STATE_ENUM = {
   CLOSED: 'CLOSED', // the widget is closed nothing is displayed

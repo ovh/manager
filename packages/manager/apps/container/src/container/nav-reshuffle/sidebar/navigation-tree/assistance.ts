@@ -1,4 +1,4 @@
-import { Node } from "./node";
+import { Node } from './node';
 
 export const assistanceTree: Node = {
   id: 'assistance',
@@ -23,7 +23,7 @@ export const assistanceTree: Node = {
       translation: 'sidebar_roadmap_changelog',
       routing: {
         application: 'hub',
-        hash: '#/roadmap-changelog'
+        hash: '#/roadmap-changelog',
       },
     },
     {
@@ -56,6 +56,6 @@ export const assistanceTree: Node = {
         application: 'carbon-calculator',
         hash: '#',
       },
-    }
-  ]
-}
+    },
+  ],
+};

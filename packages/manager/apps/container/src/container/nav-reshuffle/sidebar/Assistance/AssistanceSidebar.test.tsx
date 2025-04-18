@@ -3,7 +3,6 @@ import { render, screen } from '@testing-library/react';
 import AssistanceSidebar, { AssistanceProps } from '.';
 import { mockShell } from '../mocks/sidebarMocks';
 import { assistanceTree } from '../navigation-tree/assistance';
-import { useRef } from 'react';
 
 vi.mock('@/context', () => ({
   useShell: () => {
@@ -43,7 +42,7 @@ const props: AssistanceProps = {
   nodeTree: assistanceTree,
   isShort: false,
   selectedNode: null,
-  isLoading: false
+  isLoading: false,
 };
 
 const renderAssistanceSidebar = (props: AssistanceProps) => {
@@ -57,7 +56,7 @@ const renderAssistanceSidebar = (props: AssistanceProps) => {
   );
 };
 
-const id: string = 'assistance-sidebar';
+const id = 'assistance-sidebar';
 
 describe('AssistanceSidebar.component', () => {
   it('should render', () => {
@@ -79,6 +78,8 @@ describe('AssistanceSidebar.component', () => {
   it('should only render assistance link item if short is true', () => {
     props.isShort = true;
     renderAssistanceSidebar(props);
-    expect(screen.queryAllByTestId('short-assistance-link-popover-anchor')).not.toBeNull();
+    expect(
+      screen.queryAllByTestId('short-assistance-link-popover-anchor'),
+    ).not.toBeNull();
   });
 });
