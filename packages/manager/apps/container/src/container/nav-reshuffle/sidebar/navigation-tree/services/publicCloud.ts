@@ -475,6 +475,20 @@ pciNode.children = [
         isExternal: true,
       },
       {
+        id: 'pci-dataplatform',
+        idAttr: 'pci-dataplatform-link',
+        universe: PUBLICCLOUD_UNIVERSE_ID,
+        translation: 'sidebar_pci_analytics_data_platform',
+        hasService: false,
+        routing: {
+          application: 'public-cloud',
+          hash:
+            '#/pci/projects/{projectId}/dataplatform',
+        },
+        features: ['pci-dataplatform'],
+        tag: NodeTag.NEW,
+      },
+      {
         id: 'pci-logs-data-platform',
         idAttr: 'pci-logs-data-platform-link',
         universe: PUBLICCLOUD_UNIVERSE_ID,
