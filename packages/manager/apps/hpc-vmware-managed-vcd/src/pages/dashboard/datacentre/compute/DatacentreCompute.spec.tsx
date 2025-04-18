@@ -1,4 +1,5 @@
 import { waitFor } from '@testing-library/dom';
+import { act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {
   organizationList,
@@ -7,14 +8,15 @@ import {
 import {
   assertElementLabel,
   assertElementVisibility,
-  assertTextVisibility,
   WAIT_FOR_DEFAULT_OPTIONS,
   getElementByTestId,
   getNthElementByTestId,
+  getAsyncElementByTestId,
+  assertAsyncTextVisibility,
+  assertIsDisabled,
 } from '@ovh-ux/manager-core-test-utils';
 import { expect, vi } from 'vitest';
 import { OdsMessageColor } from '@ovhcloud/ods-components';
-import { act } from '@testing-library/react';
 import {
   DEFAULT_LISTING_ERROR,
   labels,
@@ -48,29 +50,29 @@ describe('Datacentre Compute Listing Page', () => {
     });
 
     // access compute tab
-    await assertTextVisibility(COMPUTE_LABEL);
+    await assertAsyncTextVisibility(COMPUTE_LABEL);
     const tab = getByText(COMPUTE_LABEL);
-    await waitFor(() => userEvent.click(tab));
+    await act(() => userEvent.click(tab));
 
     // check page title
-    await assertTextVisibility(VHOSTS_LABEL);
+    await assertAsyncTextVisibility(VHOSTS_LABEL);
 
     // check order CTA
-    const orderButton = await getElementByTestId(TEST_IDS.computeOrderCta);
-    await assertElementVisibility(orderButton);
-    await assertElementLabel({
+    const orderButton = getElementByTestId(TEST_IDS.computeOrderCta);
+    assertElementVisibility(orderButton);
+    assertElementLabel({
       element: orderButton,
       label: labels.datacentresCompute.managed_vcd_vdc_compute_order_cta,
     });
 
     // check datagrid delete CTA
-    const deleteButton = await getNthElementByTestId({
+    const deleteButton = getNthElementByTestId({
       testId: TEST_IDS.cellDeleteCta,
     });
-    await assertElementVisibility(deleteButton);
-    expect(deleteButton).toBeDisabled();
+    assertElementVisibility(deleteButton);
+    assertIsDisabled(deleteButton);
 
-    const tooltip = await getNthElementByTestId({
+    const tooltip = getNthElementByTestId({
       testId: TEST_IDS.cellDeleteTooltip,
     });
     expect(tooltip).toHaveTextContent(
@@ -92,9 +94,9 @@ describe('Datacentre Compute Listing Page', () => {
     });
 
     // access compute tab
-    await assertTextVisibility(COMPUTE_LABEL);
+    await assertAsyncTextVisibility(COMPUTE_LABEL);
     const tab = getByText(COMPUTE_LABEL);
-    await waitFor(() => userEvent.click(tab));
+    await act(() => userEvent.click(tab));
 
     // check banner info for special offer
     await waitFor(() => {
@@ -108,7 +110,7 @@ describe('Datacentre Compute Listing Page', () => {
     const user = userEvent.setup();
     await renderTest({ initialRoute: computeRoute });
 
-    const orderButton = await getElementByTestId(TEST_IDS.computeOrderCta);
+    const orderButton = await getAsyncElementByTestId(TEST_IDS.computeOrderCta);
 
     await act(() => user.click(orderButton));
     expect(trackClickMock).toHaveBeenCalledWith(
@@ -118,6 +120,6 @@ describe('Datacentre Compute Listing Page', () => {
 
   it('display an error', async () => {
     await renderTest({ initialRoute: computeRoute, isComputeKO: true });
-    await assertTextVisibility(DEFAULT_LISTING_ERROR);
+    await assertAsyncTextVisibility(DEFAULT_LISTING_ERROR);
   });
 });

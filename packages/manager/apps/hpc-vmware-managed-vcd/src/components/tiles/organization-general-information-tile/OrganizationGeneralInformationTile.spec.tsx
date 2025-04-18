@@ -3,15 +3,20 @@ import { describe, it, vi } from 'vitest';
 import React from 'react';
 import { VCDOrganization } from '@ovh-ux/manager-module-vcd-api';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { i18n as i18nType } from 'i18next';
+import { I18nextProvider } from 'react-i18next';
 import {
+  assertAsyncTextVisibility,
   assertElementLabel,
   assertTextVisibility,
   getElementByTestId,
+  initTestI18n,
 } from '@ovh-ux/manager-core-test-utils';
 import userEvent from '@testing-library/user-event';
 import OrganizationGeneralInformationTile from './OrganizationGeneralInformationTile.component';
 import TEST_IDS from '../../../utils/testIds.constants';
-import { TRACKING } from '../../../tracking.constants';
+import { APP_NAME, TRACKING } from '../../../tracking.constants';
+import { labels, translations } from '../../../test-utils';
 
 const trackClickMock = vi.fn();
 vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
@@ -51,38 +56,49 @@ const vcdOrg: VCDOrganization = {
   },
 };
 
+let i18n: i18nType;
+const renderComponent = async () => {
+  if (!i18n) {
+    i18n = await initTestI18n(APP_NAME, translations);
+  }
+
+  render(
+    <I18nextProvider i18n={i18n}>
+      <QueryClientProvider client={new QueryClient()}>
+        <OrganizationGeneralInformationTile vcdOrganization={vcdOrg} />
+      </QueryClientProvider>
+    </I18nextProvider>,
+  );
+};
+
 describe('OrganizationGeneralInformationTile component unit test suite', () => {
   it('should define tileTitle and sections', async () => {
     const user = userEvent.setup();
     // when
-    render(
-      <QueryClientProvider client={new QueryClient()}>
-        <OrganizationGeneralInformationTile vcdOrganization={vcdOrg} />,
-      </QueryClientProvider>,
-    );
+    renderComponent();
 
     // then
     const elements = [
-      'managed_vcd_dashboard_general_information',
-      'managed_vcd_dashboard_name',
-      'managed_vcd_dashboard_description',
-      'managed_vcd_dashboard_location',
-      'managed_vcd_dashboard_region',
-      'managed_vcd_dashboard_datacentres_count',
-      'managed_vcd_dashboard_management_interface',
+      labels.dashboard.managed_vcd_dashboard_general_information,
+      labels.dashboard.managed_vcd_dashboard_name,
+      labels.dashboard.managed_vcd_dashboard_description,
+      labels.dashboard.managed_vcd_dashboard_location,
+      labels.dashboard.managed_vcd_dashboard_region,
+      labels.dashboard.managed_vcd_dashboard_datacentres_count,
+      labels.dashboard.managed_vcd_dashboard_management_interface,
       vcdOrg.currentState.fullName,
       vcdOrg.currentState.description,
     ];
 
-    elements.forEach(async (element) => assertTextVisibility(element));
+    // TESTING : check asynchronously for the first element, then check synchronously
+    await assertAsyncTextVisibility(elements[0]);
+    elements.slice(1).forEach(assertTextVisibility);
 
     // and
-    const webUrlLink = await getElementByTestId(
-      TEST_IDS.dashboardVcdInterfaceLink,
-    );
-    await assertElementLabel({
+    const webUrlLink = getElementByTestId(TEST_IDS.dashboardVcdInterfaceLink);
+    assertElementLabel({
       element: webUrlLink,
-      label: 'managed_vcd_dashboard_management_interface_access',
+      label: labels.dashboard.managed_vcd_dashboard_management_interface_access,
     });
     expect(webUrlLink).toHaveAttribute(
       'href',
