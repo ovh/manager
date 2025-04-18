@@ -2,11 +2,16 @@ import { MinusCircle, PlusCircle } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';
+import {
+  Button,
+  Table,
+  TableBody,
+  TableCell,
+  TableRow,
+} from '@datatr-ux/uxlib';
 import { humanizeEngine } from '@/lib/engineNameHelper';
 import * as database from '@/types/cloud/project/database';
 import { useServiceData } from '../../Service.context';
-import { Button } from '@/components/ui/button';
 import { compareStorage, formatStorage } from '@/lib/bytesHelper';
 import { useGetAvailabilities } from '@/hooks/api/database/availability/useGetAvailabilities.hook';
 
@@ -84,8 +89,6 @@ const UpdateTable = () => {
               <TableCell className="text-right">
                 <Button
                   data-testid={`update-button-${row.title}`}
-                  variant="default"
-                  size="default"
                   className="py-0 h-auto"
                   onClick={row.onClick}
                   disabled={
@@ -107,8 +110,7 @@ const UpdateTable = () => {
               {service.capabilities.nodes?.delete && (
                 <Button
                   data-testid="delete-node-button"
-                  variant={'ghost'}
-                  size="table"
+                  mode={'ghost'}
                   className="p-0 h-auto text-destructive"
                   onClick={() => navigate('./delete-node')}
                   disabled={
@@ -122,8 +124,7 @@ const UpdateTable = () => {
               {service.capabilities.nodes?.create && (
                 <Button
                   data-testid="create-node-button"
-                  variant={'ghost'}
-                  size="table"
+                  mode={'ghost'}
                   className="p-0 h-auto text-primary"
                   onClick={() => navigate('./add-node')}
                   disabled={

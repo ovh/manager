@@ -1,6 +1,5 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import Price from '@/components/price/Price.component';
 import {
   Table,
   TableBody,
@@ -8,10 +7,11 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table';
+  Badge,
+} from '@datatr-ux/uxlib';
+import Price from '@/components/price/Price.component';
 import { formatStorage } from '@/lib/bytesHelper';
 import { Flavor } from '@/types/orderFunnel';
-import { Badge } from '@/components/ui/badge';
 import { getTagVariant } from '@/lib/tagsHelper';
 import { cn } from '@/lib/utils';
 

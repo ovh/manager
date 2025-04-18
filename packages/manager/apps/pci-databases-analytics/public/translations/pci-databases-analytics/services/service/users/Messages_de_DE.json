@@ -81,5 +81,9 @@
   "formUserAclConfiguredAcls": "Konfigurierte ACLs",
   "formUseAclPatternErrorPattern": "Das Pattern darf nur Buchstaben, Zahlen, Bindestriche, Unterstriche, Punkte, Sternchen oder Fragezeichen enthalten.",
   "formUserInvalidPermission": "Bitte wählen Sie eine gültige Berechtigung aus der folgenden Liste aus: {values}",
-  "formUserAclDuplicate": "Eine ähnliche ACL ist bereits konfiguriert."
+  "formUserAclDuplicate": "Eine ähnliche ACL ist bereits konfiguriert.",
+  "resetUserPasswordCode": "Passwort des Benutzers",
+  "resetUserConnectionTitle": "URI für schnelle Verbindung",
+  "resetUserConnectionCode": "Verbindungszeichenfolge",
+  "resetUserConnectionCodeCopy": "Verbindungs-URI in die Zwischenablage kopiert"
 }

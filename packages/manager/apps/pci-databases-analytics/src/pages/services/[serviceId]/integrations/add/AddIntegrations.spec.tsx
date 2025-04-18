@@ -81,9 +81,11 @@ describe('Integrations page', () => {
       };
     });
 
-    vi.mock('@/components/ui/use-toast', () => {
+    vi.mock('@datatr-ux/uxlib', async () => {
+      const mod = await vi.importActual('@datatr-ux/uxlib');
       const toastMock = vi.fn();
       return {
+        ...mod,
         useToast: vi.fn(() => ({
           toast: toastMock,
         })),

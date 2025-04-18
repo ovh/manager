@@ -1,38 +1,35 @@
 import { z } from 'zod';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
 import {
+  Button,
   DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { Input } from '@/components/ui/input';
-import {
-  GenericUser,
-  UserCreation,
-  UserEdition,
-} from '@/data/api/database/user.api';
-import * as database from '@/types/cloud/project/database';
-import {
+  Input,
   Form,
   FormControl,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form';
-
+  useToast,
+} from '@datatr-ux/uxlib';
+import {
+  GenericUser,
+  UserCreation,
+  UserEdition,
+} from '@/data/api/database/user.api';
+import * as database from '@/types/cloud/project/database';
 import TagsInput from '@/components/tags-input/TagsInput.component';
 import {
   UseAddUser,
   useAddUser,
 } from '@/hooks/api/database/user/useAddUser.hook';
 import { useEditUser } from '@/hooks/api/database/user/useEditUser.hook';
-import { useToast } from '@/components/ui/use-toast';
 import { useUserForm } from './formUser/useUserForm.hook';
 import RolesSelect from './formUser/RolesSelect.component';
 import { useServiceData } from '../../Service.context';
@@ -328,7 +325,7 @@ const AddEditUserModal = ({
               <DialogClose asChild>
                 <Button
                   type="button"
-                  variant="outline"
+                  mode="outline"
                   data-testid="add-edit-user-cancel-button"
                 >
                   {t('formUserButtonCancel')}

@@ -1,16 +1,16 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useEffect } from 'react';
-import { Button } from '@/components/ui/button';
 import {
+  Button,
   DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { useToast } from '@/components/ui/use-toast';
+  useToast,
+} from '@datatr-ux/uxlib';
 import { useDeleteIntegration } from '@/hooks/api/database/integration/useDeleteIntegration.hook';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import { useServiceData } from '../../Service.context';
@@ -85,7 +85,7 @@ const DeleteIntegration = () => {
             <Button
               data-testid="delete-integrations-cancel-button"
               type="button"
-              variant="outline"
+              mode="outline"
             >
               {t('deleteIntegrationButtonCancel')}
             </Button>

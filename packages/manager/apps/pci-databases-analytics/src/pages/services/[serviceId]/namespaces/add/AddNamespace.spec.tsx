@@ -7,7 +7,7 @@ import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
 import * as namespacesApi from '@/data/api/database/namespace.api';
 import { mockedNamespaces } from '@/__tests__/helpers/mocks/namespaces';
 
-vi.mock('@/components/ui/skeleton', () => ({
+vi.mock('@datatr-ux/uxlib', () => ({
   Skeleton: vi.fn(() => <div data-testid="skeleton" />),
 }));
 vi.mock('../_components/AddEditNamespace.component', () => ({

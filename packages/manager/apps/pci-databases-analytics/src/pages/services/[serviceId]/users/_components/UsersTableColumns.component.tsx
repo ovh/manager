@@ -1,6 +1,6 @@
 import { ColumnDef } from '@tanstack/react-table';
 import { useTranslation } from 'react-i18next';
-import { Badge } from '@/components/ui/badge';
+import { Badge } from '@datatr-ux/uxlib';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 import { GenericUser } from '@/data/api/database/user.api';
 import DataTable from '@/components/data-table';
@@ -73,7 +73,7 @@ export const getColumns = ({
       return (
         <div className="flex flex-col gap-1">
           {roles.map((role) => (
-            <Badge variant={'default'} key={role} className="text-xs w-fit">
+            <Badge variant="primary" key={role} className="text-xs w-fit">
               {role}
             </Badge>
           ))}

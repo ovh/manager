@@ -3,27 +3,28 @@ import { UseQueryResult } from '@tanstack/react-query';
 import { HelpCircle, Network as NetworkIcon } from 'lucide-react';
 import { Trans, useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
-import { Label } from '@/components/ui/label';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Network, NetworkTypeEnum, Subnet } from '@/types/cloud/network';
-import { NetworkOptionValue } from '@/types/orderFunnel';
-import * as database from '@/types/cloud/project/database';
-import { Skeleton } from '@/components/ui/skeleton';
 import {
+  Label,
+  RadioGroup,
+  RadioGroupItem,
+  Skeleton,
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import A from '@/components/links/A.component';
-import OvhLink from '@/components/links/OvhLink.component';
-import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from '@/components/ui/popover';
+} from '@datatr-ux/uxlib';
+import { Network, NetworkTypeEnum, Subnet } from '@/types/cloud/network';
+import { NetworkOptionValue } from '@/types/orderFunnel';
+import * as database from '@/types/cloud/project/database';
+import A from '@/components/links/A.component';
+import OvhLink from '@/components/links/OvhLink.component';
 
 interface NetworkOptionsProps {
   value: NetworkOptionValue;

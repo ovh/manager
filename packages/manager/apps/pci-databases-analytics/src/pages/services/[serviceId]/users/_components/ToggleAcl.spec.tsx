@@ -1,11 +1,11 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import { UseQueryResult } from '@tanstack/react-query';
+import { useToast } from '@datatr-ux/uxlib';
 import ToggleAcl from './ToggleAcl.component';
 import { useServiceData } from '../../Service.context';
 import { mockedService } from '@/__tests__/helpers/mocks/services';
 import * as database from '@/types/cloud/project/database';
-import { useToast } from '@/components/ui/use-toast';
 
 import * as serviceApi from '@/data/api/database/service.api';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
@@ -39,33 +39,32 @@ vi.mock('@/data/api/database/service.api', () => ({
   })),
 }));
 
-vi.mock('@/components/ui/use-toast', () => {
+vi.mock('@datatr-ux/uxlib', async () => {
+  const mod = await vi.importActual('@datatr-ux/uxlib');
   const toastMock = vi.fn();
   return {
+    ...mod,
+    Switch: ({
+      checked,
+      disabled,
+      onCheckedChange,
+    }: {
+      checked: boolean;
+      disabled: boolean;
+      onCheckedChange: (val: boolean) => void;
+    }) => (
+      <input
+        type="checkbox"
+        checked={checked}
+        disabled={disabled}
+        onChange={(e) => onCheckedChange(e.target.checked)}
+      />
+    ),
     useToast: vi.fn(() => ({
       toast: toastMock,
     })),
   };
 });
-
-vi.mock('@/components/ui/switch', () => ({
-  Switch: ({
-    checked,
-    disabled,
-    onCheckedChange,
-  }: {
-    checked: boolean;
-    disabled: boolean;
-    onCheckedChange: (val: boolean) => void;
-  }) => (
-    <input
-      type="checkbox"
-      checked={checked}
-      disabled={disabled}
-      onChange={(e) => onCheckedChange(e.target.checked)}
-    />
-  ),
-}));
 
 describe('ToggleAcl Component', () => {
   afterEach(() => {

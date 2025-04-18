@@ -1,5 +1,4 @@
 import { ExternalLink } from 'lucide-react';
-import A from '@/components/links/A.component';
 import {
   Card,
   CardContent,
@@ -7,7 +6,8 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
+} from '@datatr-ux/uxlib';
+import A from '@/components/links/A.component';
 
 interface OnboardingTileProps {
   title: string;

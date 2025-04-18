@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
-import { PrometheusData } from '@/data/api/database/prometheus.api';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
-import { Table, TableBody } from '@/components/ui/table';
+  Table,
+  TableBody,
+} from '@datatr-ux/uxlib';
+import { PrometheusData } from '@/data/api/database/prometheus.api';
 import * as database from '@/types/cloud/project/database';
 import PrometheusTableRow from './PrometheusTableRow.component';
 

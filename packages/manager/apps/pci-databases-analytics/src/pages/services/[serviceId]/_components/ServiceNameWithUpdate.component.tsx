@@ -2,20 +2,20 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Check, Pen, X } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { Skeleton } from '@/components/ui/skeleton';
-import * as database from '@/types/cloud/project/database';
 import {
+  Input,
+  Button,
+  Skeleton,
   Form,
   FormControl,
   FormField,
   FormItem,
   FormMessage,
-} from '@/components/ui/form';
-import { Button } from '@/components/ui/button';
+  useToast,
+} from '@datatr-ux/uxlib';
+import * as database from '@/types/cloud/project/database';
 import { useRenameServiceForm } from './useRenameServiceForm';
-import { Input } from '@/components/ui/input';
 import { useEditService } from '@/hooks/api/database/service/useEditService.hook';
-import { useToast } from '@/components/ui/use-toast';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 
 const ServiceNameWithUpdate = ({ service }: { service: database.Service }) => {
@@ -82,22 +82,20 @@ const ServiceNameWithUpdate = ({ service }: { service: database.Service }) => {
               </FormItem>
             )}
           />
-          <div className="flex gap-2 justify-end">
+          <div className="flex gap-2 justify-end items-center">
             <Button
               type="button"
               onClick={() => setIsEditing(false)}
-              variant="ghost"
-              size="table"
-              className="py-0 h-auto"
+              mode="ghost"
+              className="text-text size-4 p-0 hover:bg-transparent hover:text-primary"
               data-testid="cancel-button"
             >
               <X />
             </Button>
             <Button
               type="submit"
-              variant="ghost"
-              size="table"
-              className="py-0 h-auto"
+              mode="ghost"
+              className="text-text size-4 p-0 hover:bg-transparent hover:text-primary"
               data-testid="validate-button"
             >
               <Check />
@@ -108,13 +106,12 @@ const ServiceNameWithUpdate = ({ service }: { service: database.Service }) => {
     );
   }
   return (
-    <div className="flex gap-2">
+    <div className="flex gap-2 items-center">
       <h2>{service.description}</h2>
       <Button
         onClick={() => setIsEditing(true)}
-        variant="ghost"
-        size="table"
-        className="py-0 h-auto"
+        mode="ghost"
+        className="text-text size-4 p-0 hover:bg-transparent hover:text-primary"
         data-testid="edit-button"
       >
         <Pen />
