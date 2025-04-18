@@ -19,6 +19,7 @@ export default {
     canEditVolumes: '<',
     isDashboardAvailable: '<',
     trackClick: '<',
+    goToEditVolumeReserveSpace: '<',
     totalVolumesStorage: '<',
   },
   template,
