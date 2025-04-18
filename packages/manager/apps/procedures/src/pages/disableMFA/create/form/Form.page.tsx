@@ -12,7 +12,7 @@ import {
   OsdsText,
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
@@ -36,15 +36,18 @@ const FormCreateRequest = () => {
   const { handleSubmit, control, reset, formState, watch } = useForm({
     mode: 'onChange',
   });
+  const { user } = useUser();
 
   const { t } = useTranslation('account-disable-2fa');
   const { t: tdoc } = useTranslation('account-disable-2fa-documents');
   const [selectedByFRLegalForm, setSelectedByFRLegalForm] = useState<LegalFrom>(
     null,
   );
+  const { useUploadDocuments, useUploadLinks } = useProcedures('2FA');
+
   const [showConfirmModal, setShowConfirmModal] = useState<boolean>(false);
   const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false);
-  const { useUploadDocuments, useUploadLinks } = useProcedures('2FA');
+  const [legalForm, setLegalForm] = useState(null);
 
   const files = flatFiles(watch());
   const isAnyFileSelected = files.length > 0;
@@ -84,6 +87,9 @@ const FormCreateRequest = () => {
 
   const isPending = areUploadLinksPending || isUploadPending;
   const isError = hasUploadLinksError || hasUploadError;
+  const isOtherLegalFormForFR =
+    user.legalForm === 'other' && user.subsidiary === 'FR';
+  const { subsidiary } = user;
 
   const handleLegalFormChange = (
     e: OsdsSelectCustomEvent<OdsSelectValueChangeEventDetail>,
@@ -91,16 +97,16 @@ const FormCreateRequest = () => {
     reset();
     resetUpload();
     setSelectedByFRLegalForm(e.target.value as LegalFrom);
+    setLegalForm(
+      isOtherLegalFormForFR ? selectedByFRLegalForm : user.legalForm,
+    );
   };
 
-  const { user } = useUser();
-
-  const isOtherLegalFormForFR =
-    user.legalForm === 'other' && user.subsidiary === 'FR';
-  const legalForm = isOtherLegalFormForFR
-    ? selectedByFRLegalForm
-    : user.legalForm;
-  const { subsidiary } = user;
+  useEffect(() => {
+    setLegalForm(
+      isOtherLegalFormForFR ? selectedByFRLegalForm : user.legalForm,
+    );
+  }, [legalForm]);
 
   return (
     <form onSubmit={handleSubmit(() => setShowConfirmModal(true))}>
