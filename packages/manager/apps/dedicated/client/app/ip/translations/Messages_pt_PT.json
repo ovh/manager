@@ -774,5 +774,10 @@
   "ip_unused_banner_text": "Tem endereços IP não utilizados. Como os endereços IPv4 são um recurso cada vez mais escasso, sugerimos que os liberte caso não precise deles.",
   "ip_unused_banner_link": "Ver os meus endereços IP não utilizados.",
   "ip_table_ipBlock_under_creation": "Criação em curso",
-  "ip_table_ipblock_under_division": "Divisão em curso"
+  "ip_table_ipblock_under_division": "Divisão em curso",
+  "ip_guide_title": "Manual",
+  "ip_guide_link_additional_ip": "Configurar um Additional IP",
+  "ip_guide_link_ip_alias": "Configurar um endereço IP como alias",
+  "ip_guide_link_ip_proxmox": "Configurar um Additional IP em Proxmox VE",
+  "ip_guide_link_floating_ip": "Conceitos - Additional IP ou Floating IP no Public Cloud"
 }
