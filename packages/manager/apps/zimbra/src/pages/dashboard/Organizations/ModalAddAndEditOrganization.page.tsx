@@ -25,7 +25,6 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { z } from 'zod';
 import { useGenerateUrl, useOrganization } from '@/hooks';
 import Modal from '@/components/Modals/Modal';
 import {
@@ -41,7 +40,7 @@ import {
   CONFIRM,
   EDIT_ORGANIZATION,
 } from '@/tracking.constant';
-import { organizationSchema } from '@/utils';
+import { OrganizationSchema, organizationSchema } from '@/utils';
 
 export default function ModalAddAndEditOrganization() {
   const { t } = useTranslation(['organizations/form', 'common']);
@@ -132,9 +131,7 @@ export default function ModalAddAndEditOrganization() {
     }
   }, [organization, isLoading]);
 
-  const handleSaveClick: SubmitHandler<z.infer<typeof organizationSchema>> = (
-    data,
-  ) => {
+  const handleSaveClick: SubmitHandler<OrganizationSchema> = (data) => {
     trackClick({
       location: PageLocation.popup,
       buttonType: ButtonType.button,
