@@ -46,44 +46,42 @@ const KmsTabs: React.FC<KmsTabsProps> = ({ tabs }) => {
   const activeTabIndex = getActiveTabIndex(tabs, location.pathname);
 
   return (
-    <div className="mb-6">
-      <OdsTabs
-        onOdsTabsSelected={(event) => {
-          const { id: url } = event.detail.target as HTMLElement;
+    <OdsTabs
+      onOdsTabsSelected={(event) => {
+        const { id: url } = event.detail.target as HTMLElement;
 
-          const trackingTag = url.split('/').pop().length
-            ? url.split('/').pop()
-            : 'general-informations';
+        const trackingTag = url.split('/').pop().length
+          ? url.split('/').pop()
+          : 'general-informations';
 
-          trackClick({
-            location: PageLocation.page,
-            buttonType: ButtonType.tab,
-            actionType: 'navigation',
-            actions: [trackingTag],
-          });
-          navigate(url);
-        }}
-      >
-        {tabs.map((tab: KmsTabProps, index) => (
-          <OdsTab
-            key={`ods-tab-bar-item-${tab.url}`}
-            id={tab.url}
-            isSelected={index === activeTabIndex}
-            isDisabled={tab.disabled}
-            className="flex items-center justify-center"
-          >
-            {tab.content}
-            {tab.disabled && (
-              <OdsBadge
-                size={ODS_BADGE_SIZE.sm}
-                className="ml-2"
-                label={t('key_management_service_dashboard_tab_comming_soon')}
-              />
-            )}
-          </OdsTab>
-        ))}
-      </OdsTabs>
-    </div>
+        trackClick({
+          location: PageLocation.page,
+          buttonType: ButtonType.tab,
+          actionType: 'navigation',
+          actions: [trackingTag],
+        });
+        navigate(url);
+      }}
+    >
+      {tabs.map((tab: KmsTabProps, index) => (
+        <OdsTab
+          key={`ods-tab-bar-item-${tab.url}`}
+          id={tab.url}
+          isSelected={index === activeTabIndex}
+          isDisabled={tab.disabled}
+          className="flex items-center justify-center"
+        >
+          {tab.content}
+          {tab.disabled && (
+            <OdsBadge
+              size={ODS_BADGE_SIZE.sm}
+              className="ml-2"
+              label={t('key_management_service_dashboard_tab_comming_soon')}
+            />
+          )}
+        </OdsTab>
+      ))}
+    </OdsTabs>
   );
 };
 

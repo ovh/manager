@@ -31,7 +31,7 @@ const ServiceAccounts = ({ identities }: IServiceAccounts) => {
   ];
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-3">
       <Subtitle>
         {t(
           'key_management_service_credential_identities_service_account_title',

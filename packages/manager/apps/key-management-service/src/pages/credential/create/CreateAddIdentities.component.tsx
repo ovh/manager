@@ -7,7 +7,12 @@ import React, {
   useState,
 } from 'react';
 import { useTranslation } from 'react-i18next';
-import { OdsButton, OdsIcon, OdsText } from '@ovhcloud/ods-components/react';
+import {
+  OdsButton,
+  OdsIcon,
+  OdsText,
+  OdsDivider,
+} from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_COLOR,
   ODS_BUTTON_SIZE,
@@ -76,6 +81,8 @@ const CreateAddIdentities = ({
             isRootAccount={isRootAccount}
             setIsRootAccount={setIsRootAccount}
           />
+
+          <OdsDivider />
 
           {!isRootAccount && (
             <>
