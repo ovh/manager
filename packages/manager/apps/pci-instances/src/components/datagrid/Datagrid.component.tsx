@@ -82,7 +82,7 @@ const DatagridComponent = ({
     isError,
     pendingTasks,
   } = useInstances({
-    limit: 10,
+    limit: 20,
     sort: sorting.id,
     sortOrder: sorting.desc ? 'desc' : 'asc',
     filters,

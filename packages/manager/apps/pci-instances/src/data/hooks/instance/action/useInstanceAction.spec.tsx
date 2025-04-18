@@ -123,7 +123,7 @@ describe('Considering the useInstanceAction hook', () => {
         const { result: useInstancesResult } = renderHook(
           () =>
             useInstances({
-              limit: 10,
+              limit: 20,
               sort: 'name',
               sortOrder: 'asc',
               filters: [],
