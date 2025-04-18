@@ -27,3 +27,9 @@ export enum ServiceInfoRenewMode {
   Automatic = 'automatic',
   Manual = 'manual',
 }
+
+export enum ServiceInfoUpdateEnum {
+  Empty = 'empty',
+  TerminateAtEngagementDate = 'terminateAtEngagementDate',
+  TerminateAtExpirationDate = 'terminateAtExpirationDate',
+}
