@@ -154,6 +154,12 @@ export default class LogsHomeCtrl {
    */
   prepareUsageGraphData(metric, chart, label) {
     const updatedChart = chart;
+
+    updatedChart.options.scales.y = {
+      suggestedMin: 0,
+      suggestedMax: max(chart.data[0]) * 1.3 || 5,
+    };
+
     updatedChart.data.labels = this.dataUsage[
       metric
     ].timestamps.map((timestamp) => moment(timestamp).format('DD MMM YY'));
@@ -164,8 +170,6 @@ export default class LogsHomeCtrl {
     });
 
     updatedChart.options.scales.y.ticks = {
-      suggestedMin: 0,
-      suggestedMax: max(chart.data[0]) * 1.3 || 5,
       callback: (value) => {
         return value % 1 === 0 ? this.bytes(value, 2, true) : '';
       },
