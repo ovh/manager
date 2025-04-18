@@ -222,7 +222,6 @@ Filters.args = {
 export const Visibility = DatagridStory.bind({});
 
 Visibility.args = {
-  columnVisibility: ['label', 'price'],
   items: [...Array(pageSize).keys()].map((_, i) => ({
     label: `Item #${i}`,
     price: Math.floor(1 + Math.random() * 100),
