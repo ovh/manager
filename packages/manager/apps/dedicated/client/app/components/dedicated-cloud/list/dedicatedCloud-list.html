@@ -5,10 +5,13 @@
                 class="oui-header__title"
                 data-translate="{{:: $ctrl.header }}"
             ></h1>
-            <changelog-button
-                links="$ctrl.constants.CHANGELOG.managed_baremetal.links"
-                chapters="$ctrl.constants.CHANGELOG.managed_baremetal.chapters"
-            ></changelog-button>
+            <div class="d-flex">
+                <changelog-button
+                    links="$ctrl.constants.CHANGELOG.managed_baremetal.links"
+                    chapters="$ctrl.constants.CHANGELOG.managed_baremetal.chapters"
+                ></changelog-button>
+                <ovh-manager-pcc-guides />
+            </div>
         </div>
     </oui-header-heading>
 </oui-header>

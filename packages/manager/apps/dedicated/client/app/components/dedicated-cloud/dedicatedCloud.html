@@ -23,10 +23,13 @@
                             ></span>
                         </button>
                     </div>
-                    <changelog-button
-                        links="$ctrl.constants.CHANGELOG.managed_baremetal.links"
-                        chapters="$ctrl.constants.CHANGELOG.managed_baremetal.chapters"
-                    ></changelog-button>
+                    <div class="d-flex">
+                        <changelog-button
+                            links="$ctrl.constants.CHANGELOG.managed_baremetal.links"
+                            chapters="$ctrl.constants.CHANGELOG.managed_baremetal.chapters"
+                        ></changelog-button>
+                        <ovh-manager-pcc-guides />
+                    </div>
                 </div>
                 <h2
                     class="oui-header__description"
