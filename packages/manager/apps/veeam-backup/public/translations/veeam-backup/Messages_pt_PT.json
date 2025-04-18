@@ -17,5 +17,8 @@
   "status-DISABLING": "Em curso de desativação",
   "status-UPDATING": "Modificação em curso",
   "status-DISABLED": "Não subscrito",
-  "status-REMOVED": "Não subscrito"
+  "status-REMOVED": "Não subscrito",
+  "guides_header_veeam_quick_start": "Utilizar a interface VCD",
+  "guides_header_veeam_usage": "Backup VCD com Veeam",
+  "guides_header_veeam_faq": "FAQ VCD"
 }
