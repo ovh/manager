@@ -64,8 +64,8 @@ const CreateGeneralInformationsValidity = ({
 
   return (
     <>
-      <OdsFormField>
-        <div slot="label">
+      <OdsFormField className="space-y-2">
+        <div slot="label" className="space-y-2">
           <OdsText className="block" preset={ODS_TEXT_PRESET.heading5}>
             {t(
               'key_management_service_credential_create_general_information_validity_title',

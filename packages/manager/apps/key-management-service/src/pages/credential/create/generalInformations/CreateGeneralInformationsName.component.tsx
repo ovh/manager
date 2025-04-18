@@ -40,8 +40,11 @@ const CreateGeneralInformationsName = ({
   };
 
   return (
-    <OdsFormField error={getNameErrorMessage(credentialNameError)}>
-      <div slot="label">
+    <OdsFormField
+      className="space-y-2"
+      error={getNameErrorMessage(credentialNameError)}
+    >
+      <div slot="label" className="space-y-2">
         <OdsText className="block" preset={ODS_TEXT_PRESET.heading5}>
           {t(
             'key_management_service_credential_create_general_information_display_name_title',
