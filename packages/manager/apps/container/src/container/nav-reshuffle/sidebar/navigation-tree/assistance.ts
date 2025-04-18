@@ -42,6 +42,13 @@ export const assistanceTree: Node = {
       isExternal: true,
     },
     {
+      id: 'create_ticket',
+      translation: 'sidebar_create_ticket',
+      url: 'createTicket',
+      hasService: false,
+      isExternal: true,
+    },
+    {
       id: 'livechat',
       features: ['livechat'],
       translation: 'sidebar_assistance_live_chat',

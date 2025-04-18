@@ -209,5 +209,6 @@
   "sidebar_cloud_changelog": "Cloud-Changelog",
   "sidebar_hosting_and_collab_changelog": "Changelog für Hosting und Zusammenarbeit",
   "sidebar_roadmap_changelog": "Roadmap und Changelog",
-  "sidebar_license_office_list": "Meine Microsoft 365-Accounts"
+  "sidebar_license_office_list": "Meine Microsoft 365-Accounts",
+  "sidebar_create_ticket": "Ticket erstellen"
 }
