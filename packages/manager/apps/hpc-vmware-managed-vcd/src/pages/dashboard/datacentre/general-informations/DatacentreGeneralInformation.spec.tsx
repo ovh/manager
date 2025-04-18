@@ -21,7 +21,7 @@ import TEST_IDS from '../../../../utils/testIds.constants';
 describe('Datacentre General Information Page Updates', () => {
   it('display the datacentre dashboard general page', async () => {
     await renderTest({
-      initialRoute: `/${organizationList[0].id}/datacentres/${datacentreList[0].id}`,
+      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}`,
     });
 
     await assertTextVisibility(
@@ -33,7 +33,7 @@ describe('Datacentre General Information Page Updates', () => {
 describe('Datacentre General Information Page Updates', () => {
   it.skip('update the description of the datacentre', async () => {
     const { container } = await renderTest({
-      initialRoute: `/${organizationList[0].id}/datacentres/${datacentreList[0].id}`,
+      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}`,
     });
 
     await assertTextVisibility(labels.datacentres.managed_vcd_vdc_vcpu_count);
@@ -56,7 +56,7 @@ describe('Datacentre General Information Page Updates', () => {
 
   it('display helper message when the description input is invalid', async () => {
     const { container } = await renderTest({
-      initialRoute: `/${organizationList[0].id}/datacentres/${datacentreList[0].id}/edit-description`,
+      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}/edit-description`,
     });
     const expectedError =
       labels.dashboard
@@ -76,7 +76,7 @@ describe('Datacentre General Information Page Updates', () => {
 
   it.skip('display an error if update datacentre service is KO', async () => {
     const { container } = await renderTest({
-      initialRoute: `/${organizationList[0].id}/datacentres/${datacentreList[0].id}/edit-description`,
+      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}/edit-description`,
       isDatacentreUpdateKo: true,
     });
 
