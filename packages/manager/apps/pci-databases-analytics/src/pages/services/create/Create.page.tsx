@@ -1,6 +1,6 @@
 import { useSearchParams, useParams } from 'react-router-dom';
 import { Trans, useTranslation } from 'react-i18next';
-import { Skeleton } from '@/components/ui/skeleton';
+import { Skeleton } from '@datatr-ux/uxlib';
 import LegalMentions from '@/pages/_components/LegalMentions.component';
 import OrderFunnel from './_components/OrderFunnel.component';
 import * as database from '@/types/cloud/project/database';

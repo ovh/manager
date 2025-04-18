@@ -2,33 +2,32 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import FlavorsSelect from '@/components/order/flavor/FlavorSelect.component';
-import { Button } from '@/components/ui/button';
 import {
+  Button,
   DialogClose,
   DialogContent,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
-import * as database from '@/types/cloud/project/database';
-import { useServiceData } from '@/pages/services/[serviceId]/Service.context';
-import {
+  ScrollArea,
+  ScrollBar,
   Form,
   FormControl,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form';
-import { useToast } from '@/components/ui/use-toast';
+  useToast,
+  Label,
+} from '@datatr-ux/uxlib';
+import FlavorsSelect from '@/components/order/flavor/FlavorSelect.component';
+import * as database from '@/types/cloud/project/database';
+import { useServiceData } from '@/pages/services/[serviceId]/Service.context';
 import { useEditService } from '@/hooks/api/database/service/useEditService.hook';
 import Price from '@/components/price/Price.component';
 import StorageConfig from '@/components/order/cluster-configuration/StorageConfig.component';
 import { formatStorage } from '@/lib/bytesHelper';
 import PriceUnitSwitch from '@/components/price-unit-switch/PriceUnitSwitch.component';
-import { Label } from '@/components/ui/label';
 import PricingDetails from '../_components/PricingDetails.component';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import { useGetAvailabilities } from '@/hooks/api/database/availability/useGetAvailabilities.hook';
@@ -105,19 +104,20 @@ const UpdateFlavor = () => {
       isLoading={!listFlavors || !initialFlavorObject || !newPrice || !oldPrice}
     >
       <DialogContent className="sm:max-w-2xl">
-        <Form {...form}>
-          <form onSubmit={onSubmit}>
-            <DialogHeader className="mb-2">
-              <DialogTitle data-testid="update-flavor-modal">
-                {t('updateFlavorTitle')}
-              </DialogTitle>
-            </DialogHeader>
-            <Label>{t('priceUnitSwitchLabel')}</Label>
-            <PriceUnitSwitch
-              showMonthly={showMonthly}
-              onChange={setShowMonthly}
-            />
-            <ScrollArea>
+        <ScrollArea className="max-h-[80vh] px-6">
+          <Form {...form}>
+            <form onSubmit={onSubmit} id="updateFlavorForm">
+              <DialogHeader className="mb-2">
+                <DialogTitle data-testid="update-flavor-modal">
+                  {t('updateFlavorTitle')}
+                </DialogTitle>
+              </DialogHeader>
+              <Label>{t('priceUnitSwitchLabel')}</Label>
+              <PriceUnitSwitch
+                showMonthly={showMonthly}
+                onChange={setShowMonthly}
+              />
+
               <FormField
                 control={form.control}
                 name="flavor"
@@ -167,67 +167,65 @@ const UpdateFlavor = () => {
                   )}
                 />
               )}
-
-              <ScrollBar orientation="horizontal" />
-            </ScrollArea>
-            <DialogFooter className="flex justify-between sm:justify-between mt-2 w-full gap-2">
-              <div className="flex-col w-full">
-                <div className="flex items-center gap-2">
-                  <Price
-                    priceInUcents={
-                      oldPrice?.servicePrice[showMonthly ? 'monthly' : 'hourly']
-                        .price
-                    }
-                    taxInUcents={
-                      oldPrice?.servicePrice[showMonthly ? 'monthly' : 'hourly']
-                        .tax
-                    }
-                    decimals={showMonthly ? 2 : 3}
-                  />
-                  <PricingDetails
-                    service={service}
-                    pricing={oldPrice}
-                    showMonthly={showMonthly}
-                  />
-                  <ArrowRight className="size-4" />
-                  <Price
-                    priceInUcents={
-                      newPrice?.servicePrice[showMonthly ? 'monthly' : 'hourly']
-                        .price
-                    }
-                    taxInUcents={
-                      newPrice?.servicePrice[showMonthly ? 'monthly' : 'hourly']
-                        .tax
-                    }
-                    decimals={showMonthly ? 2 : 3}
-                  />
-                  <PricingDetails
-                    service={service}
-                    pricing={newPrice}
-                    showMonthly={showMonthly}
-                  />
-                </div>
-                <div className="flex gap-2 mt-2 justify-end">
-                  <DialogClose asChild>
-                    <Button
-                      data-testid="update-flavor-cancel-button"
-                      type="button"
-                      variant="outline"
-                    >
-                      {t('updateFlavorCancelButton')}
-                    </Button>
-                  </DialogClose>
-                  <Button
-                    disabled={isPending}
-                    data-testid="update-flavor-submit-button"
-                  >
-                    {t('updateFlavorSubmitButton')}
-                  </Button>
-                </div>
-              </div>
-            </DialogFooter>
-          </form>
-        </Form>
+            </form>
+          </Form>
+          <ScrollBar orientation="vertical" />
+        </ScrollArea>
+        <DialogFooter className="flex justify-between sm:justify-between mt-2 w-full gap-2">
+          <div className="flex-col w-full">
+            <div className="flex items-center gap-2">
+              <Price
+                priceInUcents={
+                  oldPrice?.servicePrice[showMonthly ? 'monthly' : 'hourly']
+                    .price
+                }
+                taxInUcents={
+                  oldPrice?.servicePrice[showMonthly ? 'monthly' : 'hourly'].tax
+                }
+                decimals={showMonthly ? 2 : 3}
+              />
+              <PricingDetails
+                service={service}
+                pricing={oldPrice}
+                showMonthly={showMonthly}
+              />
+              <ArrowRight className="size-4" />
+              <Price
+                priceInUcents={
+                  newPrice?.servicePrice[showMonthly ? 'monthly' : 'hourly']
+                    .price
+                }
+                taxInUcents={
+                  newPrice?.servicePrice[showMonthly ? 'monthly' : 'hourly'].tax
+                }
+                decimals={showMonthly ? 2 : 3}
+              />
+              <PricingDetails
+                service={service}
+                pricing={newPrice}
+                showMonthly={showMonthly}
+              />
+            </div>
+            <div className="flex gap-2 mt-2 justify-end">
+              <DialogClose asChild>
+                <Button
+                  data-testid="update-flavor-cancel-button"
+                  type="button"
+                  mode="outline"
+                >
+                  {t('updateFlavorCancelButton')}
+                </Button>
+              </DialogClose>
+              <Button
+                form="updateFlavorForm"
+                disabled={isPending}
+                data-testid="update-flavor-submit-button"
+              >
+                {t('updateFlavorSubmitButton')}
+              </Button>
+            </div>
+          </div>
+        </DialogFooter>
       </DialogContent>
     </RouteModal>
   );

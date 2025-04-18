@@ -2,26 +2,27 @@ import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useMemo, useState } from 'react';
 import { AlertTriangle } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import {
+  Button,
+  useToast,
+  Input,
+  Alert,
+  AlertDescription,
   DialogClose,
   DialogContent,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { useToast } from '@/components/ui/use-toast';
-import { Input } from '@/components/ui/input';
+  Label,
+} from '@datatr-ux/uxlib';
 import * as database from '@/types/cloud/project/database';
 import { useDeleteService } from '@/hooks/api/database/service/useDeleteService.hook';
 import { useGetServices } from '@/hooks/api/database/service/useGetServices.hook';
-import { Alert, AlertDescription } from '@/components/ui/alert';
 import { useTrackAction } from '@/hooks/useTracking';
 import { TRACKING } from '@/configuration/tracking.constants';
 import { useGetIntegrations } from '@/hooks/api/database/integration/useGetIntegrations.hook';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import { TERMINATE_CONFIRMATION } from '@/configuration/polling.constants';
-import { Label } from '@/components/ui/label';
 import RouteModal from '@/components/route-modal/RouteModal';
 
 interface DeleteServiceModalProps {
@@ -127,7 +128,7 @@ const DeleteService = ({
         </DialogHeader>
         <div className="p-6 pt-0">
           {integratedServices?.length > 0 && (
-            <Alert variant="info">
+            <Alert variant="primary">
               <AlertDescription className="mt-2 text-base">
                 <div className="flex flex-row gap-5 items-center text-foreground">
                   <AlertTriangle className="h-6 w-6" />
@@ -174,7 +175,7 @@ const DeleteService = ({
             <Button
               data-testid="delete-service-cancel-button"
               type="button"
-              variant="outline"
+              mode="outline"
               onClick={() =>
                 track(
                   TRACKING.deleteService.cancel(

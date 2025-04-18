@@ -1,8 +1,7 @@
 import { useTranslation } from 'react-i18next';
+import { Alert, AlertDescription, Skeleton } from '@datatr-ux/uxlib';
 import { useServiceData } from '../../Service.context';
-import { Alert, AlertDescription } from '@/components/ui/alert';
 import AdvancedConfigurationForm from './advancedConfiguration/AdvancedConfigurationForm.component';
-import { Skeleton } from '@/components/ui/skeleton';
 import { useGetAdvancedConfiguration } from '@/hooks/api/database/advancedConfiguration/useGetAdvancedConfiguration.hook';
 import { useGetAdvancedConfigurationCapabilities } from '@/hooks/api/database/advancedConfiguration/useGetAdvancedConfigurationCapabilities.hook';
 
@@ -23,7 +22,7 @@ const AdvancedConfigurationUpdate = () => {
   );
   return (
     <>
-      <Alert variant="info">
+      <Alert variant="primary">
         <AlertDescription>
           {t('advancedConfigurationAlertMessage')}
         </AlertDescription>

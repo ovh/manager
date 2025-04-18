@@ -1,9 +1,9 @@
 import { ColumnDef } from '@tanstack/react-table';
 import { useTranslation } from 'react-i18next';
+import { Badge } from '@datatr-ux/uxlib';
 import DataTable from '@/components/data-table';
 import { DatatableSortableHeader } from '@/components/data-table/DatatableSortableHeader.component';
 import * as database from '@/types/cloud/project/database';
-import { Badge } from '@/components/ui/badge';
 
 interface PatternSubRowProps {
   user: database.opensearch.User;

@@ -10,6 +10,7 @@ export function useRenameServiceForm(service: database.Service) {
   const schema = z.object({
     description: z
       .string()
+      .trim()
       .min(3, {
         message: t('renameServiceErrorMinLength', { min: 3 }),
       })
