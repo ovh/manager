@@ -18,6 +18,7 @@ vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
   return {
     ...actual,
     ChangelogButton: vi.fn().mockReturnValue(<div></div>),
+    GuideButton: () => <div data-testid="guide-button">Guide Button</div>,
   };
 });
 
@@ -68,5 +69,26 @@ describe('dashboard', () => {
     expect(deleteButton).toBeDisabled();
 
     await assertTextVisibility(labels.dashboard.terminated_service);
+  });
+
+  it('display guide button on the layout', async () => {
+    await renderTest({
+      initialRoute: urls.dashboard.replace(':id', backupList[2].id),
+    });
+
+    await waitFor(
+      () =>
+        expect(
+          screen.getByText(
+            new RegExp(
+              labels.dashboard.administrator_contact.replace('{{code}}', '.*'),
+            ),
+          ),
+        ),
+      WAIT_FOR_DEFAULT_OPTIONS,
+    );
+
+    const guideButton = await getElementByTestId('guide-button');
+    expect(guideButton).toBeInTheDocument();
   });
 });
