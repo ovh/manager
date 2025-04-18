@@ -9,6 +9,7 @@ export type ProductNavReshuffleContextType = {
   navigationTree: Node;
   isMobile: boolean;
   isAnimated: boolean;
+  popoverPosition: number;
   startOnboarding: () => void;
   openOnboarding: () => void;
   closeOnboarding: (isDone?: boolean) => void;
@@ -20,6 +21,7 @@ export type ProductNavReshuffleContextType = {
   setCurrentNavigationNode: (node: Node) => void;
   setNavigationTree: (tree: Node) => void;
   setIsAnimated: (isAnimated: boolean) => void;
+  setPopoverPosition: (value: number) => void;
 };
 
 const ProductNavReshuffleContext = createContext<ProductNavReshuffleContextType | null>(

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { MutableRefObject, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useURL, ContentURLS } from '@/container/common/urls-constants';
 import { useShell } from '@/context';
@@ -7,6 +7,7 @@ import useContainer from '@/core/container';
 import { Node } from '../navigation-tree/node';
 import { AssistanceLinkItem } from './AssistanceLinkItem';
 import { ShortAssistanceLinkItem } from './ShortAssistanceLinkItem';
+import { createPortal } from 'react-dom';
 import {
   OsdsButton,
   OsdsIcon,
@@ -19,6 +20,7 @@ import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
+  ODS_ICON_SIZE,
 } from '@ovhcloud/ods-components';
 
 export interface AssistanceProps {
@@ -32,7 +34,7 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
   nodeTree,
   selectedNode,
   isShort,
-  isLoading
+  isLoading,
 }): JSX.Element => {
   const { t } = useTranslation('sidebar');
   const shell = useShell();
@@ -42,7 +44,8 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
   const urls = useURL(environment);
   const trackingPlugin = shell.getPlugin('tracking');
   const isEUOrCA = ['EU', 'CA'].includes(environment.getRegion());
-  const { closeNavigationSidebar, setIsAnimated } = useProductNavReshuffle();
+  const { closeNavigationSidebar, setPopoverPosition } = useProductNavReshuffle();
+  const popoverAnchorRef = useRef(null);
 
   useEffect(() => {
     nodeTree.children.forEach((node: Node) => {
@@ -102,33 +105,42 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
     });
   }, []);
 
+  useEffect(() => {
+    const updatePopoverPosition = () => {
+      if (popoverAnchorRef?.current)
+        setPopoverPosition(
+          popoverAnchorRef.current.getBoundingClientRect().bottom,
+        );
+    };
+    updatePopoverPosition();
+
+    window.addEventListener('resize', updatePopoverPosition);
+    window.addEventListener('scroll', updatePopoverPosition, true);
+
+    return () => {
+      window.removeEventListener('resize', updatePopoverPosition);
+      window.removeEventListener('scroll', updatePopoverPosition, true);
+    };
+  }, [popoverAnchorRef, isShort]);
+
   const trackNode = (id: string) => {
     trackingPlugin.trackClick({
       name: `navbar_v3_entry_home::${id}`,
       type: 'navigation',
     });
   };
-
-  if (isShort) return (
-      <OsdsPopover className='fixed z-[1000] left-[0.3rem] bottom-[4rem]' id="useful-links" role="menu">
-        <OsdsButton
-          slot="popover-trigger"
-          className='w-[4rem]'
-          color={ODS_THEME_COLOR_INTENT.primary}
-          variant={ODS_BUTTON_VARIANT.ghost}
-          size={ODS_BUTTON_SIZE.md}
-          title={t('sidebar_assistance_title')}
-          onClick={() => setIsAnimated(true)}
-          contrasted
+  if (isShort)
+    return (
+      <>
+        <div
+          ref={popoverAnchorRef}
+          className="flex justify-center my-2 h-[3.5rem]"
+          tabIndex={0}
+          onFocus={() => document.getElementById('useful-links-button')?.focus()}
+          data-testid="short-assistance-link-popover-anchor"
         >
-          <OsdsIcon name={ODS_ICON_NAME.ELLIPSIS} contrasted />
-        </OsdsButton>
-        <OsdsPopoverContent>
-          {nodeTree.children.map((node: Node) => (
-            <ShortAssistanceLinkItem key={node.id} node={node} />
-          ))}
-        </OsdsPopoverContent>
-      </OsdsPopover>
+        </div>
+      </>
     );
 
   return (
