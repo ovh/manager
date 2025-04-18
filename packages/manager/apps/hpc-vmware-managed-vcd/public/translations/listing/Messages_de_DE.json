@@ -5,5 +5,8 @@
   "managed_vcd_listing_location": "Standort",
   "managed_vcd_listing_description": "Beschreibung",
   "managed_vcd_listing_web_interface_url": "Webinterface-URL",
-  "managed_vcd_listing_region": "Region"
+  "managed_vcd_listing_region": "Region",
+  "managed_vcd_listing_vcd_tutorial_guides": "Alle VCD Hilfen",
+  "managed_vcd_listing_vcd_fondamentals_guides": "Grundlegende VCD-Konzepte",
+  "managed_vcd_listing_vcd_faq_guides": "VCD FAQ"
 }
