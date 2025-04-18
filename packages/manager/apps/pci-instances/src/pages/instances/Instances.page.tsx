@@ -167,12 +167,13 @@ const Instances: FC = () => {
                   onClick={handleRefresh}
                   {...(isFetching && { disabled: true })}
                 >
-                  <OsdsIcon
-                    name={ODS_ICON_NAME.REFRESH}
-                    size={ODS_ICON_SIZE.xs}
-                    className={'mr-2'}
-                    color={ODS_THEME_COLOR_INTENT.primary}
-                  />
+                  <span slot="start" className="flex items-center mr-0">
+                    <OsdsIcon
+                      name={ODS_ICON_NAME.REFRESH}
+                      size={ODS_ICON_SIZE.sm}
+                      color={ODS_THEME_COLOR_INTENT.primary}
+                    />
+                  </span>
                 </OsdsButton>
               </div>
               <OsdsSearchBar
@@ -191,13 +192,14 @@ const Instances: FC = () => {
                     disabled: true,
                   })}
                 >
-                  <OsdsIcon
-                    name={ODS_ICON_NAME.FILTER}
-                    size={ODS_ICON_SIZE.xs}
-                    className={'mr-2'}
-                    color={ODS_THEME_COLOR_INTENT.primary}
-                  />
-                  {t('common:pci_instances_common_filter')}
+                  <span slot="start" className="flex items-center mr-0">
+                    <OsdsIcon
+                      name={ODS_ICON_NAME.FILTER}
+                      size={ODS_ICON_SIZE.sm}
+                      color={ODS_THEME_COLOR_INTENT.primary}
+                    />
+                    <span>{t('common:pci_instances_common_filter')}</span>
+                  </span>
                 </OsdsButton>
                 <OsdsPopoverContent>
                   <FilterAdd
