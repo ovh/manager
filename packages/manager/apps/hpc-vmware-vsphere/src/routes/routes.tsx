@@ -1,3 +1,4 @@
+import { getLogsRoute } from '@ovh-ux/logs-to-customer';
 import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { lazy } from 'react';
@@ -10,7 +11,7 @@ const DashboardPage = lazy(() => import('@/pages/dashboard'));
 const GeneralInfosPage = lazy(() =>
   import('@/pages/dashboard/general-informations'),
 );
-const Tab2Page = lazy(() => import('@/pages/dashboard/tab2'));
+const LogsPage = lazy(() => import('@/pages/dashboard/logs/Logs.page'));
 const OnboardingPage = lazy(() => import('@/pages/onboarding'));
 
 export default (
@@ -27,7 +28,7 @@ export default (
     }
   >
     <Route
-      path={urls.listing}
+      index
       Component={ListingPage}
       id="listing"
       handle={{
@@ -39,7 +40,7 @@ export default (
     />
     <Route path={urls.dashboard} Component={DashboardPage} id="dashboard">
       <Route
-        path=""
+        index
         id="general-info"
         Component={GeneralInfosPage}
         handle={{
@@ -50,16 +51,18 @@ export default (
         }}
       />
       <Route
-        path={urls.tab2}
-        id="tab2"
-        Component={Tab2Page}
+        path={urls.logs}
+        id="logs"
+        Component={LogsPage}
         handle={{
           tracking: {
-            pageName: 'tab2',
+            pageName: 'logs',
             pageType: PageType.dashboard,
           },
         }}
-      />
+      >
+        {getLogsRoute()}
+      </Route>
     </Route>
     <Route
       path={urls.onboarding}
