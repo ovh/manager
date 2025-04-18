@@ -33,7 +33,7 @@ const Onboarding: FC = () => {
   useHidePreloader();
 
   const { data, isLoading } = useInstances({
-    limit: 10,
+    limit: 20,
     sort: 'name',
     sortOrder: 'asc',
     filters: [],
