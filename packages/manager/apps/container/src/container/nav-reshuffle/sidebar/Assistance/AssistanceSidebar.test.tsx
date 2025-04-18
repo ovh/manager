@@ -14,6 +14,7 @@ vi.mock('@/context', () => ({
 vi.mock('@/core/product-nav-reshuffle', () => ({
   default: () => ({
     closeNavigationSidebar: () => vi.fn(),
+    setPopoverPosition: () => vi.fn(),
   }),
 }));
 
@@ -42,19 +43,16 @@ const props: AssistanceProps = {
   nodeTree: assistanceTree,
   isShort: false,
   selectedNode: null,
-  isLoading: false,
-  containerRef: null
+  isLoading: false
 };
 
 const renderAssistanceSidebar = (props: AssistanceProps) => {
-  const containerRef = { current: document.createElement("div")};
   return render(
     <AssistanceSidebar
       nodeTree={props.nodeTree}
       selectedNode={props.selectedNode}
       isShort={props.isShort}
       isLoading={props.isLoading}
-      containerRef={containerRef}
     />,
   );
 };
