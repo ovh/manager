@@ -1,4 +1,11 @@
-import { useEffect, useState, useMemo, Suspense, useCallback } from 'react';
+import {
+  useEffect,
+  useState,
+  useMemo,
+  Suspense,
+  useCallback,
+  useRef,
+} from 'react';
 import { useLocation } from 'react-router-dom';
 import { aapi } from '@ovh-ux/manager-core-api';
 import { useTranslation } from 'react-i18next';
@@ -26,10 +33,21 @@ import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 import { fetchFeatureAvailabilityData } from '@ovh-ux/manager-react-components';
 import { SvgIconWrapper } from '@ovh-ux/ovh-product-icons/utils/SvgIconWrapper';
 import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
-import { OsdsButton } from '@ovhcloud/ods-components/react';
+import {
+  OsdsButton,
+  OsdsPopover,
+  OsdsPopoverContent,
+  OsdsIcon,
+} from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import {
+  ODS_BUTTON_SIZE,
+  ODS_BUTTON_VARIANT,
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
+} from '@ovhcloud/ods-components';
 import { ExcludedNodeIdsList } from './navigation-tree/excluded';
+import { ShortAssistanceLinkItem } from './Assistance/ShortAssistanceLinkItem';
 
 interface ServicesCountError {
   url: string;
@@ -56,13 +74,16 @@ const Sidebar = (): JSX.Element => {
     isMobile,
     isAnimated,
     setIsAnimated,
-    isNavigationSidebarOpened
+    isNavigationSidebarOpened,
+    popoverPosition,
   } = useProductNavReshuffle();
   const [servicesCount, setServicesCount] = useState<ServicesCount>(null);
   const [selectedNode, setSelectedNode] = useState<Node>(null);
   const [showSubTree, setShowSubTree] = useState<boolean>(false);
   const [selectedSubMenu, setSelectedSubMenu] = useState<Node>(null);
-  const [open, setOpen] = useState<boolean>(isNavigationSidebarOpened);
+  const [open, setOpen] = useState<boolean>(
+    isMobile ? isNavigationSidebarOpened : true,
+  );
   const [assistanceTree, setAssistanceTree] = useState<Node>(null);
   const logoLink = navigationPlugin.getURL('hub', '#/');
   const savedLocationKey = 'NAVRESHUFFLE_SAVED_LOCATION';
@@ -101,9 +122,12 @@ const Sidebar = (): JSX.Element => {
   }, []);
 
   useEffect(() => {
-    aapi.get('/services/count').then((result) => {
-      setServicesCount(result.data);
-    }).catch(() => {});
+    aapi
+      .get('/services/count')
+      .then((result) => {
+        setServicesCount(result.data);
+      })
+      .catch(() => {});
   }, []);
 
   useEffect(() => {
@@ -164,8 +188,14 @@ const Sidebar = (): JSX.Element => {
 
   // Functions
 
-  const processNode = (servicesTypes: ServicesTypes, node: Node, isCurrentNavigationNode = false) => {
-    node.children?.map((childNode: Node) => processNode(servicesTypes, childNode));
+  const processNode = (
+    servicesTypes: ServicesTypes,
+    node: Node,
+    isCurrentNavigationNode = false,
+  ) => {
+    node.children?.map((childNode: Node) =>
+      processNode(servicesTypes, childNode),
+    );
     node.hasService = hasService(servicesTypes, node, ExcludedNodeIdsList);
     if (isCurrentNavigationNode) forceUpdate();
   };
@@ -261,15 +291,14 @@ const Sidebar = (): JSX.Element => {
     if (firstElement) firstElement.focus();
   };
 
-  const isLoading = useMemo<boolean>(
-    () => !currentNavigationNode,
-    [currentNavigationNode],
-  );
+  const isLoading = useMemo<boolean>(() => !currentNavigationNode, [
+    currentNavigationNode,
+  ]);
 
   return (
     <div
       className={`${style.sidebar} ${
-        (selectedNode && !isManuallyClosed) ? style.sidebar_selected : ''
+        selectedNode && !isManuallyClosed ? style.sidebar_selected : ''
       }`}
     >
       <div
@@ -277,22 +306,22 @@ const Sidebar = (): JSX.Element => {
           style.sidebar_short} ${isAnimated && style.sidebar_animated}`}
       >
         <div className={style.sidebar_lvl1}>
-            {!isMobile && (
-              <a
-                role="img"
-                className={`block ${style.sidebar_logo}`}
-                aria-label="OVHcloud"
-                target="_top"
-                href={logoLink}
-              >
-                <img
-                  className={`${open ? 'mx-4' : 'mx-2'} my-3`}
-                  src={open ? logo : shortLogo}
-                  alt="OVHcloud"
-                  aria-hidden="true"
-                />
-              </a>
-            )}
+          {!isMobile && (
+            <a
+              role="img"
+              className={`block ${style.sidebar_logo}`}
+              aria-label="OVHcloud"
+              target="_top"
+              href={logoLink}
+            >
+              <img
+                className={`${open ? 'mx-4' : 'mx-2'} my-3`}
+                src={open ? logo : shortLogo}
+                alt="OVHcloud"
+                aria-hidden="true"
+              />
+            </a>
+          )}
 
           <div className={style.sidebar_menu} role="menubar">
             <ul id="menu" role="menu">
@@ -400,6 +429,38 @@ const Sidebar = (): JSX.Element => {
           open={showSubTree}
         ></SubTree>
       )}
+      {!open && popoverPosition && (
+      <div
+        className="flex justify-center my-2 position-fixed left-[2px] z-[10000]"
+        style={{
+          top: popoverPosition - 70,
+        }}
+      >
+        <OsdsPopover id="useful-links" role="menu">
+          <OsdsButton
+            slot="popover-trigger"
+            className="w-[4rem]"
+            color={ODS_THEME_COLOR_INTENT.primary}
+            variant={ODS_BUTTON_VARIANT.ghost}
+            size={ODS_BUTTON_SIZE.md}
+            title={t('sidebar_assistance_title')}
+            onClick={() => setIsAnimated(true)}
+            contrasted
+          >
+            <OsdsIcon
+              name={ODS_ICON_NAME.ELLIPSIS}
+              size={ODS_ICON_SIZE.sm}
+              contrasted
+            />
+          </OsdsButton>
+          <OsdsPopoverContent>
+            {assistanceTree.children.map((node: Node) => (
+              <ShortAssistanceLinkItem key={node.id} node={node} />
+            ))}
+          </OsdsPopoverContent>
+        </OsdsPopover>
+      </div>
+    )}
     </div>
   );
 };
