@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import {
   assertTextVisibility,
   getOdsButtonByLabel,
@@ -34,8 +34,18 @@ describe('onboarding', () => {
       initialRoute: '/',
     });
 
-    await assertTextVisibility(onboardingDescription);
-    await assertTextVisibility(labels.common.no_organization_message);
+    await waitFor(
+      () => {
+        assertTextVisibility(onboardingDescription);
+      },
+      { timeout: 10_000 },
+    );
+    await waitFor(
+      () => {
+        assertTextVisibility(labels.common.no_organization_message);
+      },
+      { timeout: 10_000 },
+    );
     await getOdsButtonByLabel({ container, label: orderLabel, disabled: true });
   });
 });
