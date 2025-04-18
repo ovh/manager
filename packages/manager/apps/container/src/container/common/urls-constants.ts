@@ -3,12 +3,14 @@ import { Environment, Region } from '@ovh-ux/manager-config';
 const helpRoot = 'https://help.ovhcloud.com/csm';
 const homeIndex = '-home?id=csm_index';
 const support = `${helpRoot}?id=csm_cases_requests&ovhSubsidiary=`;
+const createTicket = `${helpRoot}?id=csm_get_help&ovhSubsidiary=`;
 
 export interface ContentURLS {
   help: {
     [key in string]: string;
   };
   support?: string;
+  createTicket?: string;
   status: string;
   marketplace?: string;
 }
@@ -34,6 +36,7 @@ const urls: URLLinks = {
       TN: `${helpRoot}/fr-tn${homeIndex}`,
     },
     support,
+    createTicket,
     status: 'https://www.status-ovhcloud.com/',
     marketplace: 'https://marketplace.ovhcloud.com/',
   },
@@ -48,6 +51,7 @@ const urls: URLLinks = {
       WS: `${helpRoot}/es${homeIndex}`,
     },
     support,
+    createTicket,
     status: 'https://www.status-ovhcloud.com/',
   },
   US: {
@@ -73,10 +77,9 @@ export function useURL(environment: Environment): UseURL {
       if (!url) return undefined;
 
       if (typeof url === 'string') {
-        if (id === 'support') {
-          return url + user.ovhSubsidiary;
-        }
-        return url;
+        return ['support', 'createTicket'].includes(id)
+          ? url + user.ovhSubsidiary
+          : url;
       }
 
       return url[user.ovhSubsidiary];
