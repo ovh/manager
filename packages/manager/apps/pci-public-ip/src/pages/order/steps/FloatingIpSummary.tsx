@@ -53,6 +53,7 @@ export const FloatingIpSummary = ({
   );
   const { data: rawSubnets, isPending: isSubnetsPending } = useSubnets(
     projectId,
+    ipRegion,
     networkId,
   );
 
