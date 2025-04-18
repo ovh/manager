@@ -15,6 +15,7 @@ export interface ChangelogLinks {
 export interface ChangelogButtonProps {
   links: ChangelogLinks;
   chapters?: string[];
+  isWithTracking?: boolean;
 }
 
 export const CHANGELOG_PREFIXES = ['tile-changelog-roadmap', 'external-link'];
@@ -23,9 +24,10 @@ const GO_TO = (link: string) => `go-to-${link}`;
 export const ChangelogButton: React.FC<ChangelogButtonProps> = ({
   links,
   chapters = [],
+  isWithTracking = true,
 }) => {
   const { t } = useTranslation('buttons');
-  const { trackClick } = useOvhTracking();
+  const ovhTracking = isWithTracking ? useOvhTracking() : null;
   return (
     <>
       <div id="navigation-menu-changelog-trigger">
@@ -51,7 +53,7 @@ export const ChangelogButton: React.FC<ChangelogButtonProps> = ({
               rel={LinkType.external}
               label={t(`mrc_changelog_${key}`)}
               onClickReturn={() =>
-                trackClick({
+                ovhTracking?.trackClick({
                   actionType: 'navigation',
                   actions: [...chapters, ...CHANGELOG_PREFIXES, GO_TO(key)],
                 })
