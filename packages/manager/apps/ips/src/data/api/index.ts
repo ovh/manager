@@ -6,3 +6,4 @@ export * from './vps';
 export * from './vrack';
 export * from './service-list';
 export * from './postorput';
+export * from './delete';
