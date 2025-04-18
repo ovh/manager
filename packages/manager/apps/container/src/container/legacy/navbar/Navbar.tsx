@@ -3,6 +3,7 @@ import React, { Suspense, useCallback, useState } from 'react';
 import { Environment } from '@ovh-ux/manager-config';
 
 import { useTranslation } from 'react-i18next';
+import { useMediaQuery } from 'react-responsive';
 import { TRANSLATE_NAMESPACE } from './constants';
 
 import Account from './Account';
@@ -19,16 +20,14 @@ import Notifications from '@/container/common/notifications-sidebar/Notification
 import { useShell } from '@/context';
 import { useHeader } from '@/context/header';
 import { useUniverses } from '@/hooks/useUniverses';
-import { useMediaQuery } from 'react-responsive';
-import { SMALL_DEVICE_MAX_SIZE, MOBILE_WIDTH_RESOLUTION } from '@/container/common/constants';
+import {
+  SMALL_DEVICE_MAX_SIZE,
+  MOBILE_WIDTH_RESOLUTION,
+} from '@/container/common/constants';
 
 const HamburgerMenu = React.lazy(() => import('./HamburgerMenu'));
 
-type Props = {
-  environment: Environment;
-};
-
-function Navbar({ environment }: Props): JSX.Element {
+function Navbar(): JSX.Element {
   const shell = useShell();
   const { universe, setUniverse } = useContainer();
   const { getUniverses, getHubUniverse } = useUniverses();
@@ -71,8 +70,9 @@ function Navbar({ environment }: Props): JSX.Element {
   return (
     <>
       <div
-        className={`${modalStyle.popoverClickAway} ${isDropdownOpen ? '' : modalStyle.hidden
-          }`}
+        className={`${modalStyle.popoverClickAway} ${
+          isDropdownOpen ? '' : modalStyle.hidden
+        }`}
       ></div>
       <div
         className={`oui-navbar ${style.navbar}`}
@@ -81,10 +81,7 @@ function Navbar({ environment }: Props): JSX.Element {
       >
         {isMobile && (
           <Suspense fallback={<></>}>
-            <HamburgerMenu
-              universe={universe}
-              universes={getUniverses()}
-            />
+            <HamburgerMenu universe={universe} universes={getUniverses()} />
           </Suspense>
         )}
         <Brand
@@ -104,11 +101,11 @@ function Navbar({ environment }: Props): JSX.Element {
               <Search targetURL={searchURL} />
             </div>
           )}
-          {!isSmallDevice &&
+          {!isSmallDevice && (
             <div className="oui-navbar-list__item">
               <NavReshuffleSwitchBack />
             </div>
-          }
+          )}
           <div className="oui-navbar-list__item">
             <LanguageMenu
               setUserLocale={setUserLocale}
@@ -125,11 +122,11 @@ function Navbar({ environment }: Props): JSX.Element {
           <Account />
         </div>
       </div>
-      {isSmallDevice &&
+      {isSmallDevice && (
         <div className={style['small-device-pnr-switch']}>
           <NavReshuffleSwitchBack />
         </div>
-      }
+      )}
     </>
   );
 }

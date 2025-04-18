@@ -1,9 +1,5 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import style from './style.module.scss';
-import SidebarLinkTag from './SidebarLinkTag';
-import { Node } from './navigation-tree/node';
-import StaticLink from '@/container/nav-reshuffle/sidebar/StaticLink';
 import {
   OsdsIcon,
   OsdsSkeleton,
@@ -16,6 +12,10 @@ import {
   ODS_SPINNER_SIZE,
 } from '@ovhcloud/ods-components';
 import { SvgIconWrapper } from '@ovh-ux/ovh-product-icons/utils/SvgIconWrapper';
+import style from './style.module.scss';
+import SidebarLinkTag from './SidebarLinkTag';
+import { Node } from './navigation-tree/node';
+import StaticLink from '@/container/nav-reshuffle/sidebar/StaticLink';
 
 export type SidebarLinkProps = {
   hasService?: boolean;

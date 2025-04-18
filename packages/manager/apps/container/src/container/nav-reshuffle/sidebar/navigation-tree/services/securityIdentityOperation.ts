@@ -1,8 +1,8 @@
+import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
 import illustration from '@/assets/images/sidebar/security-identity-operations.png';
 import { Node } from '../node';
-import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
 
-const sioUniverse : Node = {
+const sioUniverse: Node = {
   id: 'security-identity-operation',
   idAttr: 'security-identity-operation-link',
   translation: 'sidebar_security_identity_operations',
@@ -46,14 +46,14 @@ sioUniverse.children = [
           hash: '#/',
         },
       },
-    ]
+    ],
   },
   {
     id: 'security-operations',
     idAttr: 'security-operations-link',
     translation: 'sidebar_security_operations',
     universe: sioUniverse.id,
-    features:['logs-data-platform'],
+    features: ['logs-data-platform'],
     children: [
       {
         id: 'security-identity-operation-logs',
@@ -61,14 +61,14 @@ sioUniverse.children = [
         translation: 'sidebar_security_identity_operations_logs',
         universe: sioUniverse.id,
         serviceType: 'DBAAS_LOGS',
-        features:['logs-data-platform'],
+        features: ['logs-data-platform'],
         routing: {
           application: 'dedicated',
           hash: '#/dbaas/logs',
         },
-      }
-    ]
-  }
+      },
+    ],
+  },
 ];
 
 export default sioUniverse;

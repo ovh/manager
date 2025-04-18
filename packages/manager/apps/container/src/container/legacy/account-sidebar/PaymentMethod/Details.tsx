@@ -1,10 +1,4 @@
-import React from 'react';
-
 import { useTranslation } from 'react-i18next';
-
-import { TRANSLATE_NAMESPACE } from '../constants';
-
-import { PaymentMethodType } from './usePaymentMethod';
 
 import { OsdsChip, OsdsText } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_LEVEL } from '@ovhcloud/ods-components';
@@ -13,6 +7,8 @@ import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_COLOR_HUE,
 } from '@ovhcloud/ods-common-theming';
+import { PaymentMethodType } from './usePaymentMethod';
+import { TRANSLATE_NAMESPACE } from '../constants';
 
 type Props = {
   defaultPaymentMethod?: PaymentMethodType;

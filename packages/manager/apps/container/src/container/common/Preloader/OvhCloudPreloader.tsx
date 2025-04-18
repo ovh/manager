@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import LoadingMessage from './Messages/LoadingMessage';
 import WelcomeMessage from './Messages/WelcomeMessage';
 

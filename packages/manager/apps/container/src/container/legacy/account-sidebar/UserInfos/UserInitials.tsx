@@ -1,5 +1,4 @@
 import { User } from '@ovh-ux/manager-config';
-import React from 'react';
 
 import useUserInfos from './useUserInfos';
 
