@@ -1,5 +1,6 @@
-import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useState } from 'react';
+import './styles.scss';
 import {
   OsdsButton,
   OsdsModal,
@@ -11,11 +12,14 @@ import {
 } from '@ovhcloud/ods-common-theming';
 import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { useApplication } from '@/context';
-import './styles.scss';
 import { useModals } from '@/context/modals';
 
 export interface IPaymentMethod {
-  icon?: any;
+  icon?: {
+    data?: string;
+    name: string;
+    url?: string;
+  };
   label: string;
   status: string;
   default: boolean;

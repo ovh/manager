@@ -27,10 +27,9 @@ export async function fetchUniverses(): Promise<Universe[]> {
 
 export function useUniverses() {
   const { data: universes, isLoading } = useQuery({
-    queryKey: ["universes"],
-    queryFn: fetchUniverses
-  })
-
+    queryKey: ['universes'],
+    queryFn: fetchUniverses,
+  });
 
   return {
     getUniverses: (): Universe[] => universes ?? [],

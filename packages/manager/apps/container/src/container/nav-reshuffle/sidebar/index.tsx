@@ -2,6 +2,22 @@ import { useEffect, useState, useMemo, Suspense, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
 import { aapi } from '@ovh-ux/manager-core-api';
 import { useTranslation } from 'react-i18next';
+import { fetchFeatureAvailabilityData } from '@ovh-ux/manager-react-components';
+import { SvgIconWrapper } from '@ovh-ux/ovh-product-icons/utils/SvgIconWrapper';
+import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
+import {
+  OsdsButton,
+  OsdsPopover,
+  OsdsPopoverContent,
+  OsdsIcon,
+} from '@ovhcloud/ods-components/react';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import {
+  ODS_BUTTON_SIZE,
+  ODS_BUTTON_VARIANT,
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
+} from '@ovhcloud/ods-components';
 import { useShell } from '@/context';
 import logo from '@/assets/images/OVHcloud_logo.svg';
 import shortLogo from '@/assets/images/icon-logo-ovh.svg';
@@ -17,19 +33,14 @@ import {
   initFeatureNames,
   shouldHideElement,
   findNodeByRouting,
-  splitPathIntoSegmentsWithoutRouteParams,
+  isMatchingNode,
   ServicesTypes,
   hasService,
 } from './utils';
 import { Node } from './navigation-tree/node';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
-import { fetchFeatureAvailabilityData } from '@ovh-ux/manager-react-components';
-import { SvgIconWrapper } from '@ovh-ux/ovh-product-icons/utils/SvgIconWrapper';
-import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
-import { OsdsButton } from '@ovhcloud/ods-components/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { ExcludedNodeIdsList } from './navigation-tree/excluded';
+import { ShortAssistanceLinkItem } from './Assistance/ShortAssistanceLinkItem';
 
 interface ServicesCountError {
   url: string;
@@ -56,13 +67,16 @@ const Sidebar = (): JSX.Element => {
     isMobile,
     isAnimated,
     setIsAnimated,
-    isNavigationSidebarOpened
+    isNavigationSidebarOpened,
+    popoverPosition,
   } = useProductNavReshuffle();
   const [servicesCount, setServicesCount] = useState<ServicesCount>(null);
   const [selectedNode, setSelectedNode] = useState<Node>(null);
   const [showSubTree, setShowSubTree] = useState<boolean>(false);
   const [selectedSubMenu, setSelectedSubMenu] = useState<Node>(null);
-  const [open, setOpen] = useState<boolean>(isNavigationSidebarOpened);
+  const [open, setOpen] = useState<boolean>(
+    isMobile ? isNavigationSidebarOpened : true,
+  );
   const [assistanceTree, setAssistanceTree] = useState<Node>(null);
   const logoLink = navigationPlugin.getURL('hub', '#/');
   const savedLocationKey = 'NAVRESHUFFLE_SAVED_LOCATION';
@@ -74,116 +88,22 @@ const Sidebar = (): JSX.Element => {
   // As we don't update any state when we set the hasService variable
   // we miss a render when we don't open the subtree
   // So we simulate a state update when we set the hasService variable
-  const [, updateState]: any = useState();
+  const [, updateState]: [
+    unknown,
+    React.Dispatch<React.SetStateAction<unknown>>,
+  ] = useState<unknown>();
   const forceUpdate = useCallback(() => updateState({}), []);
-
-  /** Initialize navigation tree */
-  useEffect(() => {
-    const initializeNavigationTree = async () => {
-      if (currentNavigationNode) return;
-      const features = initFeatureNames(navigationTree);
-      setCurrentNavigationNode(findNodeById(navigationTree, 'sidebar'));
-
-      const results = await fetchFeatureAvailabilityData(features);
-
-      const region = environmentPlugin.getEnvironment().getRegion();
-      const [tree] = initTree([navigationTree], results, region);
-
-      const mxPlanNode = findNodeById(tree, 'mxplan');
-      if (mxPlanNode && region === 'CA') {
-        mxPlanNode.routing.hash = '#/email_mxplan';
-      }
-      setAssistanceTree(findNodeById(tree, 'assistance'));
-      setCurrentNavigationNode(findNodeById(tree, 'sidebar'));
-
-      return tree;
-    };
-    initializeNavigationTree();
-  }, []);
-
-  useEffect(() => {
-    aapi.get('/services/count').then((result) => {
-      setServicesCount(result.data);
-    }).catch(() => {});
-  }, []);
-
-  useEffect(() => {
-    if (isMobile) setOpen(isNavigationSidebarOpened);
-  }, [isMobile, isNavigationSidebarOpened]);
-
-  useEffect(() => {
-    if (!currentNavigationNode) return;
-
-    // We want to know if we already stored a node in the memory or in the local storage
-    const pathname = location.pathname;
-    let savedNode: Node = null;
-    if (savedNodeID && !selectedSubMenu) {
-      savedNode = findNodeById(currentNavigationNode, savedNodeID);
-      if (!savedNode || !savedNode.universe) {
-        setSavedNode(null);
-        return;
-      }
-    }
-    const currentNode: Node = selectedSubMenu || savedNode;
-
-    if (currentNode?.routing) {
-      // We already stored a node, we want to know if it stills in coherence with the current path
-      // If not, we reset the node to null to not keep wrong information.
-      const universe = findNodeById(
-        currentNavigationNode,
-        currentNode.universe,
-      );
-      // A node need a valid universe, if we can't find it, we reset it.
-      if (universe) {
-        // We have to parse the path to try to match it with the stored node
-        const parsedPath = splitPathIntoSegmentsWithoutRouteParams(
-          currentNode.routing.hash
-            ? currentNode.routing.hash.replace(
-                '#',
-                currentNode.routing.application,
-              )
-            : '/' + currentNode.routing.application,
-        );
-
-        // If we match the stored node with the path, it's coherent and we reselect the stored node.
-        // If not, we reset it
-        if (
-          parsedPath.reduce(
-            (acc: boolean, segment: string) =>
-              acc && pathname.includes(segment),
-            true,
-          )
-        ) {
-          selectSubMenu(currentNode);
-          selectLvl1Node(universe);
-
-          return;
-        }
-      }
-    }
-    selectedNode ? selectLvl1Node(null) : setSavedNode(null);
-
-    // If we didn't have a stored node or if we have reset it,
-    // we search in the full navigation tree a node that could match the current path
-    const foundNode = findNodeByRouting(currentNavigationNode, pathname);
-    if (foundNode) {
-      selectSubMenu(foundNode.node);
-      selectLvl1Node(foundNode.universe);
-    }
-  }, [currentNavigationNode, location]);
-
-  /**
-   * Initialize menu items based on currentNavigationNode
-   */
-  useEffect(() => {
-    if (!currentNavigationNode || !servicesCount) return;
-    processNode({ ...servicesCount.serviceTypes }, currentNavigationNode, true);
-  }, [currentNavigationNode, servicesCount]);
 
   // Functions
 
-  const processNode = (servicesTypes: ServicesTypes, node: Node, isCurrentNavigationNode = false) => {
-    node.children?.map((childNode: Node) => processNode(servicesTypes, childNode));
+  const processNode = (
+    servicesTypes: ServicesTypes,
+    node: Node,
+    isCurrentNavigationNode = false,
+  ) => {
+    node.children?.map((childNode: Node) =>
+      processNode(servicesTypes, childNode),
+    );
     node.hasService = hasService(servicesTypes, node, ExcludedNodeIdsList);
     if (isCurrentNavigationNode) forceUpdate();
   };
@@ -203,6 +123,104 @@ const Sidebar = (): JSX.Element => {
     setShowSubTree(!!node);
   };
 
+  const selectSubMenu = (node: Node) => {
+    setSelectedSubMenu(node);
+    setSavedNode(node);
+    if (isMobile) {
+      closeNavigationSidebar();
+    } else {
+      setOpen(false);
+    }
+  };
+
+  /** Initialize navigation tree */
+  useEffect(() => {
+    const initializeNavigationTree = async () => {
+      if (currentNavigationNode) return;
+      const features = initFeatureNames(navigationTree);
+
+      const results = await fetchFeatureAvailabilityData(features);
+
+      const region = environmentPlugin.getEnvironment().getRegion();
+      const [tree] = initTree([navigationTree], results, region);
+
+      const mxPlanNode = findNodeById(tree, 'mxplan');
+      if (mxPlanNode && region === 'CA') {
+        mxPlanNode.routing.hash = '#/email_mxplan';
+      }
+      setAssistanceTree(findNodeById(tree, 'assistance'));
+      setCurrentNavigationNode(findNodeById(tree, 'sidebar'));
+    };
+    initializeNavigationTree();
+  }, []);
+
+  useEffect(() => {
+    aapi
+      .get('/services/count')
+      .then((result) => {
+        setServicesCount(result.data);
+      })
+      .catch(() => {});
+  }, []);
+
+  useEffect(() => {
+    if (isMobile) setOpen(isNavigationSidebarOpened);
+  }, [isMobile, isNavigationSidebarOpened]);
+
+  useEffect(() => {
+    if (!currentNavigationNode) return;
+
+    // We want to know if we already stored a node in the memory or in the local storage
+    const { pathname } = location;
+    let savedNode: Node = null;
+    if (savedNodeID && !selectedSubMenu) {
+      savedNode = findNodeById(currentNavigationNode, savedNodeID);
+      if (!savedNode || !savedNode.universe) {
+        setSavedNode(null);
+        return;
+      }
+    }
+    const currentNode: Node = selectedSubMenu || savedNode;
+
+    if (currentNode?.routing) {
+      // We already stored a node, we want to know if it stills in coherence with the current path
+      // If not, we reset the node to null to not keep wrong information.
+      const universe = findNodeById(
+        currentNavigationNode,
+        currentNode.universe,
+      );
+      // A node need a valid universe, if we can't find it, we reset it.
+      if (universe) {
+        if (isMatchingNode(currentNode, pathname)?.value) {
+          selectSubMenu(currentNode);
+          selectLvl1Node(universe);
+          return;
+        }
+      }
+    }
+    if (selectedNode) {
+      selectLvl1Node(null);
+    } else {
+      setSavedNode(null);
+    }
+
+    // If we didn't have a stored node or if we have reset it,
+    // we search in the full navigation tree a node that could match the current path
+    const foundNode = findNodeByRouting(currentNavigationNode, pathname);
+    if (foundNode) {
+      selectSubMenu(foundNode.node);
+      selectLvl1Node(foundNode.universe);
+    }
+  }, [currentNavigationNode, location]);
+
+  /**
+   * Initialize menu items based on currentNavigationNode
+   */
+  useEffect(() => {
+    if (!currentNavigationNode || !servicesCount) return;
+    processNode({ ...servicesCount.serviceTypes }, currentNavigationNode, true);
+  }, [currentNavigationNode, servicesCount]);
+
   // Callbacks
 
   const toggleSidebar = () => {
@@ -220,12 +238,6 @@ const Sidebar = (): JSX.Element => {
     });
   };
 
-  const selectSubMenu = (node: Node) => {
-    setSelectedSubMenu(node);
-    setSavedNode(node);
-    isMobile ? closeNavigationSidebar() : setOpen(false);
-  };
-
   const closeSubMenu = () => {
     setIsAnimated(true);
     setShowSubTree(false);
@@ -235,11 +247,13 @@ const Sidebar = (): JSX.Element => {
       setSelectedSubMenu(null);
     };
 
-    isMobile
-      ? close()
-      : setTimeout(() => {
-          close();
-        }, 300);
+    if (isMobile) {
+      close();
+    } else {
+      setTimeout(() => {
+        close();
+      }, 300);
+    }
   };
 
   const menuClickHandler = (node: Node) => {
@@ -279,15 +293,14 @@ const Sidebar = (): JSX.Element => {
     if (firstElement) firstElement.focus();
   };
 
-  const isLoading = useMemo<boolean>(
-    () => !currentNavigationNode,
-    [currentNavigationNode],
-  );
+  const isLoading = useMemo<boolean>(() => !currentNavigationNode, [
+    currentNavigationNode,
+  ]);
 
   return (
     <div
       className={`${style.sidebar} ${
-        (selectedNode && !isManuallyClosed) ? style.sidebar_selected : ''
+        selectedNode && !isManuallyClosed ? style.sidebar_selected : ''
       }`}
     >
       <div
@@ -295,22 +308,22 @@ const Sidebar = (): JSX.Element => {
           style.sidebar_short} ${isAnimated && style.sidebar_animated}`}
       >
         <div className={style.sidebar_lvl1}>
-            {!isMobile && (
-              <a
-                role="img"
-                className={`block ${style.sidebar_logo}`}
-                aria-label="OVHcloud"
-                target="_top"
-                href={logoLink}
-              >
-                <img
-                  className={`${open ? 'mx-4' : 'mx-2'} my-3`}
-                  src={open ? logo : shortLogo}
-                  alt="OVHcloud"
-                  aria-hidden="true"
-                />
-              </a>
-            )}
+          {!isMobile && (
+            <a
+              role="img"
+              className={`block ${style.sidebar_logo}`}
+              aria-label="OVHcloud"
+              target="_top"
+              href={logoLink}
+            >
+              <img
+                className={`${open ? 'mx-4' : 'mx-2'} my-3`}
+                src={open ? logo : shortLogo}
+                alt="OVHcloud"
+                aria-hidden="true"
+              />
+            </a>
+          )}
 
           <div className={style.sidebar_menu} role="menubar">
             <ul id="menu" role="menu">
@@ -417,6 +430,38 @@ const Sidebar = (): JSX.Element => {
           rootNode={selectedNode}
           open={showSubTree}
         ></SubTree>
+      )}
+      {!open && popoverPosition && (
+        <div
+          className="flex justify-center my-2 position-fixed left-[2px] z-[10000]"
+          style={{
+            top: popoverPosition - 70,
+          }}
+        >
+          <OsdsPopover id="useful-links" role="menu">
+            <OsdsButton
+              slot="popover-trigger"
+              className="w-[4rem]"
+              color={ODS_THEME_COLOR_INTENT.primary}
+              variant={ODS_BUTTON_VARIANT.ghost}
+              size={ODS_BUTTON_SIZE.md}
+              title={t('sidebar_assistance_title')}
+              onClick={() => setIsAnimated(true)}
+              contrasted
+            >
+              <OsdsIcon
+                name={ODS_ICON_NAME.ELLIPSIS}
+                size={ODS_ICON_SIZE.sm}
+                contrasted
+              />
+            </OsdsButton>
+            <OsdsPopoverContent>
+              {assistanceTree.children.map((node: Node) => (
+                <ShortAssistanceLinkItem key={node.id} node={node} />
+              ))}
+            </OsdsPopoverContent>
+          </OsdsPopover>
+        </div>
       )}
     </div>
   );

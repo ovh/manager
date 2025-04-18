@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react';
-import useContainer from '@/core/container/useContainer';
+import { useMediaQuery } from 'react-responsive';
+import { useLocation } from 'react-router-dom';
 import { useShell } from '@/context/useApplicationContext';
 import ProductNavReshuffleContext, { ProductNavReshuffleContextType } from './product-nav-reshuffle.context';
 import { Node } from '@/container/nav-reshuffle/sidebar/navigation-tree/node';
 import { MOBILE_WIDTH_RESOLUTION } from '@/container/common/constants';
-import { useMediaQuery } from 'react-responsive';
 import useOnboarding, { ONBOARDING_OPENED_STATE_ENUM } from '../onboarding';
-import { useLocation } from 'react-router-dom';
 
 type Props = {
   children: JSX.Element | JSX.Element[];
@@ -19,13 +18,13 @@ export const ProductNavReshuffleProvider = ({
   const location = useLocation();
   const [currentNavigationNode, setCurrentNavigationNode] = useState<Node>(null);
   const [navigationTree, setNavigationTree] = useState({});
-  const { betaVersion } = useContainer();
   const shell = useShell();
   const [isMobile, setIsMobile] = useState(useMediaQuery({
     query: `(max-width: ${MOBILE_WIDTH_RESOLUTION}px)`,
   }));
   const [isAnimated, setIsAnimated] = useState(false);
   const [isLocationChangesOnce, setIsLocationChangesOnce] = useState(false);
+  const [popoverPosition, setPopoverPosition] = useState<number>(0);
 
   const onboarding = useOnboarding();
 
@@ -81,8 +80,11 @@ export const ProductNavReshuffleProvider = ({
 
   useEffect(() => {
     const handleResize = () => {
-      window.innerWidth <= MOBILE_WIDTH_RESOLUTION ?
-        setIsMobile(true) : setIsMobile(false);
+      if(window.innerWidth <= MOBILE_WIDTH_RESOLUTION){
+        setIsMobile(true);
+      } else{
+        setIsMobile(false);
+      }
     }
 
     window.addEventListener('resize', handleResize);
@@ -119,7 +121,11 @@ export const ProductNavReshuffleProvider = ({
     setNavigationTree,
     isMobile,
     isAnimated,
-    setIsAnimated
+    setIsAnimated,
+    popoverPosition,
+    setPopoverPosition
+    // FIXME: Can be removed after updating Prettier
+    // eslint-disable-next-line prettier/prettier
   } satisfies ProductNavReshuffleContextType;
 
   return (

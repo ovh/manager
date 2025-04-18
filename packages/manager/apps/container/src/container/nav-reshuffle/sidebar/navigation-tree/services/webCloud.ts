@@ -1,6 +1,6 @@
-import illustration from '@/assets/images/sidebar/web-cloud.png';
-import { Node } from "../node";
 import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
+import illustration from '@/assets/images/sidebar/web-cloud.png';
+import { Node } from '../node';
 
 const webCloudUniverse: Node = {
   id: 'web-cloud',
@@ -13,7 +13,7 @@ const webCloudUniverse: Node = {
     application: 'web',
     hash: '#/',
   },
-  features: ['web']
+  features: ['web'],
 };
 
 webCloudUniverse.children = [
@@ -22,7 +22,12 @@ webCloudUniverse.children = [
     idAttr: 'domain-dns-link',
     universe: webCloudUniverse.id,
     translation: 'sidebar_domain_dns',
-    features: ['web:domains', 'web:domains:zone', 'web:domains:operations', 'web-ongoing-operations'],
+    features: [
+      'web:domains',
+      'web:domains:zone',
+      'web:domains:operations',
+      'web-ongoing-operations',
+    ],
     children: [
       {
         id: 'domains-operations',
@@ -188,7 +193,7 @@ webCloudUniverse.children = [
     idAttr: 'microsoft-link',
     universe: webCloudUniverse.id,
     translation: 'sidebar_microsoft',
-    features: ['office','web-office', 'exchange'],
+    features: ['office', 'web-office', 'exchange'],
     children: [
       {
         id: 'office',

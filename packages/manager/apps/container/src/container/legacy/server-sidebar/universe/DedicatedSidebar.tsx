@@ -1,5 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { OsdsIcon } from '@ovhcloud/ods-components/react';
+import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import { useShell } from '@/context';
 import { sanitizeMenu, SidebarMenuItem } from '../sidebarMenu';
 import Sidebar from '../Sidebar';
@@ -8,10 +12,6 @@ import dedicatedShopConfig from '../order/shop-config/dedicated';
 import OrderTrigger from '../order/OrderTrigger';
 import { ShopItem } from '../order/OrderPopupContent';
 import getIcon from './GetIcon';
-import { OsdsIcon } from '@ovhcloud/ods-components/react';
-import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 
 export const features = [
   'dedicated-server',
@@ -89,7 +89,7 @@ export default function DedicatedSidebar() {
                 ...service,
                 icon: getIcon('oui-icon oui-icon-cluster_concept'),
                 async loader() {
-                  return await loadServices(
+                  return loadServices(
                     `/dedicated/cluster/${service.serviceName}`,
                   );
                 },

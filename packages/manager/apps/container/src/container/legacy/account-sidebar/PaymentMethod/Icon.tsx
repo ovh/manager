@@ -1,10 +1,8 @@
-import React from 'react';
-import { PaymentMethodType } from './usePaymentMethod';
-
 import { OsdsIcon } from '@ovhcloud/ods-components/react';
 import { ODS_ICON_SIZE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { PaymentMethodType } from './usePaymentMethod';
 
 type Props = {
   defaultPaymentMethod?: PaymentMethodType;

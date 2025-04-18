@@ -18,7 +18,9 @@ if (window.top !== window.self) {
   window.top.location.href = window.self.location.href;
 }
 
-__VERSION__ && defineApplicationVersion(__VERSION__);
+if (__VERSION__) {
+  defineApplicationVersion(__VERSION__);
+}
 
 initSso();
 
@@ -29,7 +31,7 @@ const root = createRoot(document.querySelector('#app'));
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-        <App />
+      <App />
     </QueryClientProvider>
   </React.StrictMode>,
 );

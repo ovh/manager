@@ -490,7 +490,7 @@
   "ip_firewall_rule_flags_established": "ESTABLISHED",
   "ip_firewall_rule_flags_NONE": "Brak",
   "ip_firewall_rule_flags_none": "Brak",
-  "ip_table_manage_delete_ipblock": "Usuń ",
+  "ip_table_manage_delete_ipblock": "Zrezygnuj ",
   "ip_table_manage_delete_ipblock_question": "Ze względów bezpieczeństwa prześlemy Ci e-mail dotyczący potwierdzenia usunięcia adresu IP.",
   "ip_table_manage_delete_ipblock_question2": "Czy chcesz kontynuować procedurę rezygnacji z adresu IP {{t0}}?",
   "ip_table_manage_delete_ipblock_success": "Przesłaliśmy e-mail w celu potwierdzenia operacji rezygnacji.",
@@ -774,5 +774,7 @@
   "ip_unused_banner_text": "Dysponujesz adresami IP, których nie używasz. Adresy IPv4 są zasobem deficytowym, zatem jeśli ich nie potrzebujesz, prosimy o ich zwolnienie.",
   "ip_unused_banner_link": "Sprawdź nieużywane adresy IP.",
   "ip_table_ipBlock_under_creation": "Trwa tworzenie",
-  "ip_table_ipblock_under_division": "Trwa podział"
+  "ip_table_ipblock_under_division": "Trwa podział",
+  "ip_table_manage_delete_ipblock_us": "Rezygnacja ",
+  "ip_table_manage_delete_ipblock_question_us": "Otrzymasz e-mail z potwierdzeniem usunięcia adresu IP. Twój adres IP zostanie usunięty z konta zgodnie ze standardową procedurą."
 }

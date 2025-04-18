@@ -490,7 +490,7 @@
   "ip_firewall_rule_flags_established": "ESTABLISHED",
   "ip_firewall_rule_flags_NONE": "Keine",
   "ip_firewall_rule_flags_none": "Keine",
-  "ip_table_manage_delete_ipblock": "Löschen ",
+  "ip_table_manage_delete_ipblock": "Kündigen ",
   "ip_table_manage_delete_ipblock_question": "Aus Sicherheitsgründen senden wir Ihnen eine E-Mail zur Bestätigung der Kündigung der IP-Adresse zu.",
   "ip_table_manage_delete_ipblock_question2": "Möchten Sie mit dem Kündigungsprozess der IP-Adresse {{t0}} fortfahren?",
   "ip_table_manage_delete_ipblock_success": "Es wurde eine E-Mail zur Bestätigung der Kündigung an Sie versandt.",

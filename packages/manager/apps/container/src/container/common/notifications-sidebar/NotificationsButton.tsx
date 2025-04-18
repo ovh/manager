@@ -1,15 +1,13 @@
-import React from 'react';
-
 import { useTranslation } from 'react-i18next';
 
+import { OsdsIcon } from '@ovhcloud/ods-components/react';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
 import style from './notifications-sidebar.module.scss';
 
 import useNotifications from '@/core/notifications';
 import { useHeader } from '@/context/header';
 import { useShell } from '@/context';
-import { OsdsIcon } from '@ovhcloud/ods-components/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
 
 function NavbarNotifications(): JSX.Element {
   const { t } = useTranslation('navbar');

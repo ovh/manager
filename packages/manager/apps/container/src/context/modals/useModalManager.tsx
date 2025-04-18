@@ -15,7 +15,7 @@ import { useTime } from '@/hooks/time/useTime';
 
 type ModalFullContext = {
   isDisplayed?: boolean;
-  data?: any;
+  data?: unknown;
 };
 
 export const useModalManager = (

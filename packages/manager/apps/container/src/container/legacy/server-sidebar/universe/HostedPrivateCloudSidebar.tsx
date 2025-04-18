@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useShell } from '@/context';
-import { sanitizeMenu, SidebarMenuItem } from '../sidebarMenu';
-import Sidebar from '../Sidebar';
-import useServiceLoader from "./useServiceLoader";
-import dedicatedShopConfig from '../order/shop-config/dedicated';
-import OrderTrigger from '../order/OrderTrigger';
-import { ShopItem } from '../order/OrderPopupContent';
-import  getIcon  from './GetIcon';
 import { OsdsIcon } from '@ovhcloud/ods-components/react';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
+import { useShell } from '@/context';
+import { sanitizeMenu, SidebarMenuItem } from '../sidebarMenu';
+import Sidebar from '../Sidebar';
+import useServiceLoader from './useServiceLoader';
+import dedicatedShopConfig from '../order/shop-config/dedicated';
+import OrderTrigger from '../order/OrderTrigger';
+import { ShopItem } from '../order/OrderPopupContent';
+import getIcon from './GetIcon';
 import infinityCLoud from '@/assets/images/sidebar/infinity-cloud.png';
 import hycuLogo from '@/assets/images/sidebar/hycu-logo.svg';
 import veeamBackupLogo from '@/assets/images/sidebar/veeam-backup-logo.png';
@@ -47,7 +47,7 @@ const features = [
   'dedicated-server:ecoRangeOrder',
   'dedicated-server:nutanixOrder',
   'network-security',
-  'key-management-service'
+  'key-management-service',
 ];
 
 export default function HostedPrivateCloudSidebar() {
@@ -105,8 +105,12 @@ export default function HostedPrivateCloudSidebar() {
         icon: getIcon('ovh-font ovh-font-dedicatedCloud'),
         pathMatcher: new RegExp(`^/hpc-vmware-managed-vcd`),
         async loader() {
-          const app = 'hpc-vmware-managed-vcd'
-          const services = await loadServices('/vmwareCloudDirector/organization', null, app);
+          const app = 'hpc-vmware-managed-vcd';
+          const services = await loadServices(
+            '/vmwareCloudDirector/organization',
+            null,
+            app,
+          );
           const icon = getIcon('ovh-font ovh-font-dedicatedCloud');
           return [
             {
@@ -182,7 +186,9 @@ export default function HostedPrivateCloudSidebar() {
         label: t('sidebar_network'),
         icon: getIcon('oui-icon oui-icon-bandwidth_concept'),
         minSearchItems: 0,
-        routeMatcher: new RegExp('^(/ip(/|$)|/network-security|(/network)?/iplb|/vrack|/cloud-connect|/vrack-services)'),
+        routeMatcher: new RegExp(
+          '^(/ip(/|$)|/network-security|(/network)?/iplb|/vrack|/cloud-connect|/vrack-services)',
+        ),
         pathMatcher: new RegExp('^(/vrack-services/)'),
         subItems: [
           feature.ip && {
@@ -199,22 +205,21 @@ export default function HostedPrivateCloudSidebar() {
             href: navigation.getURL('dedicated', '#/network-security'),
             routeMatcher: new RegExp('^/network-security'),
           },
-          feature['ip-load-balancer'] &&
-            {
-              id: 'ip-loadbalancer',
-              label: t('sidebar_pci_load_balancer'),
-              icon: getIcon('ovh-font ovh-font-iplb'),
-              routeMatcher: new RegExp('^(/network)?/iplb'),
-              async loader() {
-                const iplb = await loadServices('/ipLoadbalancing');
-                return [
-                  ...iplb.map((iplbItem) => ({
-                    ...iplbItem,
-                    icon: getIcon('ovh-font ovh-font-iplb'),
-                  })),
-                ];
-              },
+          feature['ip-load-balancer'] && {
+            id: 'ip-loadbalancer',
+            label: t('sidebar_pci_load_balancer'),
+            icon: getIcon('ovh-font ovh-font-iplb'),
+            routeMatcher: new RegExp('^(/network)?/iplb'),
+            async loader() {
+              const iplb = await loadServices('/ipLoadbalancing');
+              return [
+                ...iplb.map((iplbItem) => ({
+                  ...iplbItem,
+                  icon: getIcon('ovh-font ovh-font-iplb'),
+                })),
+              ];
             },
+          },
           feature['vrack:bare-metal-cloud'] && {
             id: 'hpc-vrack',
             label: t('sidebar_vrack'),
@@ -231,7 +236,11 @@ export default function HostedPrivateCloudSidebar() {
             pathMatcher: new RegExp('^/vrack-services'),
             async loader() {
               const appId = 'vrack-services';
-              const items = await loadServices('/vrackServices/resource', undefined, appId);
+              const items = await loadServices(
+                '/vrackServices/resource',
+                undefined,
+                appId,
+              );
 
               return [
                 {
@@ -240,7 +249,7 @@ export default function HostedPrivateCloudSidebar() {
                   href: navigation.getURL(appId, '#/'),
                   ignoreSearch: true,
                 },
-                ...items
+                ...items,
               ];
             },
           },
@@ -272,22 +281,32 @@ export default function HostedPrivateCloudSidebar() {
       });
     }
 
-    if (feature['hycu'] || feature['veeam-backup']) {
+    if (feature.hycu || feature['veeam-backup']) {
       menu.push({
         id: 'hpc-storage-backup',
         label: t('sidebar_storage_backup'),
-        icon: <img className="mb-1 mr-1 w-6 aspect-square" alt="" src={infinityCLoud} />,
+        icon: (
+          <img
+            className="mb-1 mr-1 w-6 aspect-square"
+            alt=""
+            src={infinityCLoud}
+          />
+        ),
         pathMatcher: new RegExp('^/(hycu|veeam-backup)'),
         badge: 'new',
         subItems: [
-          (feature['veeam-backup']) && {
+          feature['veeam-backup'] && {
             id: 'hpc-veeam-backup',
             label: t('sidebar_veeam_backup'),
             icon: <img alt="" src={veeamBackupLogo} />,
             pathMatcher: new RegExp('^/veeam-backup'),
             async loader() {
               const appId = 'veeam-backup';
-              const items = await loadServices('/vmwareCloudDirector/backup', null, appId);
+              const items = await loadServices(
+                '/vmwareCloudDirector/backup',
+                null,
+                appId,
+              );
 
               return [
                 {
@@ -296,16 +315,18 @@ export default function HostedPrivateCloudSidebar() {
                   href: navigation.getURL(appId, '#/'),
                   ignoreSearch: true,
                 },
-                ...items
+                ...items,
               ];
             },
           },
-          (feature['hycu']) && {
+          feature.hycu && {
             id: 'hpc-hycu',
             label: t('sidebar_hycu'),
-            icon: <img alt="" src={hycuLogo} className="mb-1 w-6 aspect-square" />,
+            icon: (
+              <img alt="" src={hycuLogo} className="mb-1 w-6 aspect-square" />
+            ),
             pathMatcher: new RegExp('^/hycu'),
-            badge: "new",
+            badge: 'new',
             async loader() {
               const appId = 'hycu';
               const items = await loadServices('/license/hycu');
@@ -320,20 +341,32 @@ export default function HostedPrivateCloudSidebar() {
                 ...items.map((service) => ({
                   ...service,
                   href: navigation.getURL(appId, `#/${service.serviceName}`),
-                }))
+                })),
               ];
             },
-          }
-        ]
+          },
+        ],
       });
     }
 
     if (feature['key-management-service']) {
-      const keyIcon = <OsdsIcon name={ODS_ICON_NAME.KEY_CONCEPT} size={ODS_ICON_SIZE.xxs} color={ODS_THEME_COLOR_INTENT.text}/>
+      const keyIcon = (
+        <OsdsIcon
+          name={ODS_ICON_NAME.KEY_CONCEPT}
+          size={ODS_ICON_SIZE.xxs}
+          color={ODS_THEME_COLOR_INTENT.text}
+        />
+      );
       menu.push({
         id: 'identity-security-operations',
         label: t('sidebar_identity_security_operations'),
-        icon: <OsdsIcon name={ODS_ICON_NAME.CLOUD_EYE_CONCEPT} size={ODS_ICON_SIZE.xxs} color={ODS_THEME_COLOR_INTENT.text}/>,
+        icon: (
+          <OsdsIcon
+            name={ODS_ICON_NAME.CLOUD_EYE_CONCEPT}
+            size={ODS_ICON_SIZE.xxs}
+            color={ODS_THEME_COLOR_INTENT.text}
+          />
+        ),
         pathMatcher: new RegExp('^/key-management-service'),
         subItems: [
           {
@@ -344,7 +377,11 @@ export default function HostedPrivateCloudSidebar() {
             icon: keyIcon,
             async loader() {
               const app = 'key-management-service';
-              const services = await loadServices('/okms/resource', undefined, app);
+              const services = await loadServices(
+                '/okms/resource',
+                undefined,
+                app,
+              );
 
               return [
                 {
@@ -369,7 +406,7 @@ export default function HostedPrivateCloudSidebar() {
     return menu;
   };
 
-  const {data: availability} = useFeatureAvailability(features);
+  const { data: availability } = useFeatureAvailability(features);
 
   useEffect(() => {
     if (availability) {

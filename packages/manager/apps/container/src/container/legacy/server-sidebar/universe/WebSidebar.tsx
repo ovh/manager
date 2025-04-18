@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import { useShell } from '@/context';
 import { sanitizeMenu, SidebarMenuItem } from '../sidebarMenu';
 import Sidebar from '../Sidebar';
-import useServiceLoader from "./useServiceLoader";
+import useServiceLoader from './useServiceLoader';
 import OrderTrigger from '../order/OrderTrigger';
 import webShopConfig from '../order/shop-config/web';
 import { ShopItem } from '../order/OrderPopupContent';
 import getIcon from './GetIcon';
-import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 
 export const webFeatures = [
   'web:domains',
@@ -32,7 +32,7 @@ export const webFeatures = [
   'cloud-web',
   'cloud-database',
   'web-office',
-  'zimbra'
+  'zimbra',
 ];
 
 export default function WebSidebar() {
@@ -55,7 +55,9 @@ export default function WebSidebar() {
         state: 'app.domain.all',
         label: t('sidebar_domain'),
         icon: getIcon('ovh-font ovh-font-domain'),
-        routeMatcher: new RegExp(`^(/configuration)?/(domain|all_dom|zone|dns|upload|tracking)`),
+        routeMatcher: new RegExp(
+          `^(/configuration)?/(domain|all_dom|zone|dns|upload|tracking)`,
+        ),
         async loader() {
           const allDom = features['web:domains:all-dom']
             ? await loadServices('/allDom')
@@ -98,7 +100,13 @@ export default function WebSidebar() {
               },
             })),
             ...domains
-              .filter((domain) => !domain.parentName || !allDom.find((item) => domain.parentName === item.serviceName))
+              .filter(
+                (domain) =>
+                  !domain.parentName ||
+                  !allDom.find(
+                    (item) => domain.parentName === item.serviceName,
+                  ),
+              )
               .map((domain: SidebarMenuItem) => ({
                 ...domain,
                 icon: getIcon('ovh-font ovh-font-domain'),
@@ -146,7 +154,9 @@ export default function WebSidebar() {
         id: 'privateDatabases',
         label: t('sidebar_web_db'),
         icon: getIcon('ovh-font ovh-font-database'),
-        routeMatcher: new RegExp(`^(/configuration)?/(private_database|order-cloud-db)`),
+        routeMatcher: new RegExp(
+          `^(/configuration)?/(private_database|order-cloud-db)`,
+        ),
         async loader() {
           const databases = await loadServices('/hosting/privateDatabase');
 
@@ -171,10 +181,7 @@ export default function WebSidebar() {
         label: t('sidebar_zimbra'),
         icon: getIcon('ovh-font ovh-font-mail'),
         routeMatcher: new RegExp('^/zimbra'),
-        href: navigation.getURL(
-          'zimbra',
-          '#/',
-        ),
+        href: navigation.getURL('zimbra', '#/'),
       });
     }
 
@@ -283,8 +290,7 @@ export default function WebSidebar() {
               }));
             },
           },
-          features['web-office'] &&
-          {
+          features['web-office'] && {
             id: 'web-office',
             label: t('sidebar_license_office'),
             icon: getIcon('ms-Icon ms-Icon--OfficeLogo'),
@@ -295,10 +301,7 @@ export default function WebSidebar() {
                 {
                   id: 'web_office_list',
                   label: t('sidebar_license_office_list'),
-                  href: navigation.getURL(
-                    'web-office',
-                    `#/`
-                  ),
+                  href: navigation.getURL('web-office', `#/`),
                   icon: getIcon('oui-icon oui-icon-list'),
                   ignoreSearch: true,
                 },
@@ -307,30 +310,29 @@ export default function WebSidebar() {
                   icon: getIcon('ms-Icon ms-Icon--OfficeLogo'),
                   href: navigation.getURL(
                     'web-office',
-                    `#/license/${service.serviceName}`
+                    `#/license/${service.serviceName}`,
                   ),
                 })),
               ];
             },
-          },]
-      });
-    } else {
-      if (features['exchange:web-dashboard']) {
-        menu.push({
-          id: 'exchange',
-          label: t('sidebar_microsoft_exchange'),
-          icon: getIcon('ms-Icon ms-Icon--ExchangeLogo'),
-          routeMatcher: new RegExp('/exchange'),
-          async loader() {
-            const services = await loadServices('/email/exchange');
-            return services.map((service) => ({
-              ...service,
-              icon: getIcon('ms-Icon ms-Icon--ExchangeLogo'),
-              routeMatcher: new RegExp(`/exchange/${service.serviceName}`),
-            }));
           },
-        });
-      }
+        ],
+      });
+    } else if (features['exchange:web-dashboard']) {
+      menu.push({
+        id: 'exchange',
+        label: t('sidebar_microsoft_exchange'),
+        icon: getIcon('ms-Icon ms-Icon--ExchangeLogo'),
+        routeMatcher: new RegExp('/exchange'),
+        async loader() {
+          const services = await loadServices('/email/exchange');
+          return services.map((service) => ({
+            ...service,
+            icon: getIcon('ms-Icon ms-Icon--ExchangeLogo'),
+            routeMatcher: new RegExp(`/exchange/${service.serviceName}`),
+          }));
+        },
+      });
     }
 
     return menu;

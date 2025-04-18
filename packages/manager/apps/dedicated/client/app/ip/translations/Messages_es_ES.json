@@ -490,7 +490,7 @@
   "ip_firewall_rule_flags_established": "ESTABLISHED",
   "ip_firewall_rule_flags_NONE": "Ninguna",
   "ip_firewall_rule_flags_none": "Ninguna",
-  "ip_table_manage_delete_ipblock": "Eliminar ",
+  "ip_table_manage_delete_ipblock": "Dar de baja ",
   "ip_table_manage_delete_ipblock_question": "Por motivos de seguridad, vamos a enviarle un mensaje de correo electrónico para confirmar la eliminación de la IP.",
   "ip_table_manage_delete_ipblock_question2": "¿Quiere continuar el procedimiento de eliminación de la IP {{t0}}?",
   "ip_table_manage_delete_ipblock_success": "Acabamos enviarle un mensaje de correo electrónico para confirmar la eliminación.",

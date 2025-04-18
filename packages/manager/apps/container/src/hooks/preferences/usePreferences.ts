@@ -9,8 +9,8 @@ import { createPreferences, fetchPreferences } from '@/api/preferences';
 
 export const usePreferences = (
   preference: string,
-  options: Partial<DefinedInitialDataOptions<any>> = {},
-): UseQueryResult<any> =>
+  options: Partial<DefinedInitialDataOptions<unknown>> = {},
+): UseQueryResult<unknown> =>
   useQuery({
     ...options,
     queryKey: ['preferences', preference],
@@ -20,7 +20,7 @@ export const usePreferences = (
 
 export const useCreatePreference = (
   key: string,
-  value: any,
+  value: unknown,
   invalidateQueries = true,
 ) => {
   const queryClient = useQueryClient();

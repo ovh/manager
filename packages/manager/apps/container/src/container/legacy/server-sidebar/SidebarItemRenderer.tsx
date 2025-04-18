@@ -1,8 +1,5 @@
-import React, { useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useLegacyContainer } from '@/container/legacy/legacy.context';
-import { SidebarMenuItem } from './sidebarMenu';
-import style from './index.module.scss';
 import {
   OsdsSpinner,
   OsdsLink,
@@ -22,6 +19,9 @@ import {
   OdsHTMLAnchorElementRel,
 } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import style from './index.module.scss';
+import { SidebarMenuItem } from './sidebarMenu';
+import { useLegacyContainer } from '../legacy.context';
 
 function ServerSidebarSearchField({
   item,
@@ -67,7 +67,7 @@ export default function ServerSidebarItemRenderer({
   const [isClicked, setIsClicked] = useState(false);
   let itemRender = null;
 
-  let linkColor = item.isSelected
+  const linkColor = item.isSelected
     ? ODS_THEME_COLOR_INTENT.primary
     : ODS_THEME_COLOR_INTENT.text;
 

@@ -490,7 +490,7 @@
   "ip_firewall_rule_flags_established": "ESTABLISHED",
   "ip_firewall_rule_flags_NONE": "Nenhum",
   "ip_firewall_rule_flags_none": "Nenhum",
-  "ip_table_manage_delete_ipblock": "Eliminar ",
+  "ip_table_manage_delete_ipblock": "Rescindir ",
   "ip_table_manage_delete_ipblock_question": "Por razões de segurança vamos enviar-lhe um e-mail para que confirme a eliminação do seu IP.",
   "ip_table_manage_delete_ipblock_question2": "Deseja continuar o procedimento de restituição do IP {{t0}}?",
   "ip_table_manage_delete_ipblock_success": "Acaba de lhe ser enviado um e-mail para confirmar a eliminação.",
@@ -774,5 +774,7 @@
   "ip_unused_banner_text": "Tem endereços IP não utilizados. Como os endereços IPv4 são um recurso cada vez mais escasso, sugerimos que os liberte caso não precise deles.",
   "ip_unused_banner_link": "Ver os meus endereços IP não utilizados.",
   "ip_table_ipBlock_under_creation": "Criação em curso",
-  "ip_table_ipblock_under_division": "Divisão em curso"
+  "ip_table_ipblock_under_division": "Divisão em curso",
+  "ip_table_manage_delete_ipblock_us": "Rescindir ",
+  "ip_table_manage_delete_ipblock_question_us": "Receberá um e-mail para o informar da rescisão do seu IP. O seu IP será eliminado da sua conta e seguirá o procedimento normal de eliminação."
 }

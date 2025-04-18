@@ -493,7 +493,7 @@
   "ip_firewall_rule_flags_established": "ESTABLISHED",
   "ip_firewall_rule_flags_NONE": "Aucun",
   "ip_firewall_rule_flags_none": "Aucun",
-  "ip_table_manage_delete_ipblock": "Supprimer ",
+  "ip_table_manage_delete_ipblock": "Résilier ",
   "ip_table_manage_delete_ipblock_question": "Pour des raisons de sécurité, nous allons vous envoyer un e-mail afin de confirmer la suppression de votre IP.",
   "ip_table_manage_delete_ipblock_question2": "Souhaitez-vous continuer la procédure de résiliation de l'IP {{t0}} ?",
   "ip_table_manage_delete_ipblock_success": "Un e-mail vient de vous être envoyé pour confirmer la résiliation.",

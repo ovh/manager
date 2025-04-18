@@ -1,4 +1,3 @@
-import React from 'react';
 import OvhCloudPreloader from './OvhCloudPreloader';
 
 import styles from './styles.module.scss';
