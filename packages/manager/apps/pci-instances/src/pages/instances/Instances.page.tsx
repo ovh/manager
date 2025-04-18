@@ -61,7 +61,7 @@ const Instances: FC = () => {
   const notFoundAction: boolean = location.state?.notFoundAction;
 
   const { data, isFetchingNextPage, refresh, isFetching } = useInstances({
-    limit: 10,
+    limit: 20,
     sort: sorting.id,
     sortOrder: sorting.desc ? 'desc' : 'asc',
     filters,

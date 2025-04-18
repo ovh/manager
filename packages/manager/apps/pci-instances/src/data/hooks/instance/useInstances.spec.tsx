@@ -70,7 +70,7 @@ type Data = {
 };
 
 const fakeQueryParamaters1: TUseInstancesQueryParams = {
-  limit: 10,
+  limit: 20,
   sort: 'name',
   sortOrder: 'asc',
   filters: [],
@@ -82,13 +82,13 @@ const fakeQueryParamaters2: TUseInstancesQueryParams = {
   filters: [],
 };
 const fakeQueryParamaters3: TUseInstancesQueryParams = {
-  limit: 10,
+  limit: 20,
   sort: 'image',
   sortOrder: 'desc',
   filters: [],
 };
 const fakeQueryParamaters4: TUseInstancesQueryParams = {
-  limit: 10,
+  limit: 20,
   sort: 'flavor',
   sortOrder: 'asc',
   filters: [
