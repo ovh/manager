@@ -8,18 +8,19 @@ import {
   assertTextVisibility,
   getElementByTestId,
 } from '@ovh-ux/manager-core-test-utils';
-import { DEFAULT_LISTING_ERROR, labels, renderTest } from '../../../test-utils';
+import { DEFAULT_LISTING_ERROR, renderTest } from '../../../test-utils';
 import TEST_IDS from '../../../utils/testIds.constants';
+import { VIRTUAL_DATACENTERS_LABEL } from '../../dashboard/organization/organizationDashboard.constants';
 
 describe('Datacentres Listing Page', () => {
   it('displays the virtual datacentres listing page', async () => {
     // when
     await renderTest({
-      initialRoute: `/${organizationList[0].id}/datacentres`,
+      initialRoute: `/${organizationList[0].id}/virtual-datacenters`,
     });
 
     // then
-    await assertTextVisibility(labels.datacentres.managed_vcd_vdc_title);
+    await assertTextVisibility(VIRTUAL_DATACENTERS_LABEL);
 
     // and
     const vdcLink = await getElementByTestId(
@@ -35,7 +36,7 @@ describe('Datacentres Listing Page', () => {
 
   it('display an error', async () => {
     await renderTest({
-      initialRoute: `/${organizationList[0].id}/datacentres`,
+      initialRoute: `/${organizationList[0].id}/virtual-datacenters`,
       isDatacentresKo: true,
     });
 

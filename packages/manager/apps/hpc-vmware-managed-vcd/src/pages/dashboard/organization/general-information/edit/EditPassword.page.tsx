@@ -20,13 +20,13 @@ export default function EditPassword() {
         addSuccess({
           content: t('managed_vcd_dashboard_password_renew_success'),
           includedSubRoutes: [id],
-          excludedSubRoutes: [subRoutes.datacentres],
+          excludedSubRoutes: [subRoutes.virtualDatacenters],
         }),
       onError: () =>
         addError({
           content: t('managed_vcd_dashboard_password_renew_error'),
           includedSubRoutes: [id],
-          excludedSubRoutes: [subRoutes.datacentres],
+          excludedSubRoutes: [subRoutes.virtualDatacenters],
         }),
     },
   );
