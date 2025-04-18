@@ -1,15 +1,15 @@
-import { screen, waitFor } from '@testing-library/dom';
+import { expect } from 'vitest';
+import { act, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {
   organizationList,
   datacentreList,
 } from '@ovh-ux/manager-module-vcd-api';
 import {
-  assertElementLabel,
-  assertElementVisibility,
+  assertAsyncTextVisibility,
+  assertIsDisabled,
   assertTextVisibility,
-  getElementByTestId,
-  getNthElementByTestId,
+  getAsyncElementByTestId,
 } from '@ovh-ux/manager-core-test-utils';
 import {
   DEFAULT_LISTING_ERROR,
@@ -26,31 +26,27 @@ describe('Datacentre Storage Listing Page', () => {
     });
 
     // access storage tab
-    await assertTextVisibility(STORAGE_LABEL);
+    await assertAsyncTextVisibility(STORAGE_LABEL);
     const tab = screen.getByText(STORAGE_LABEL);
-    await waitFor(() => userEvent.click(tab));
+    await act(() => userEvent.click(tab));
 
     // check page title
-    await assertTextVisibility(STORAGE_LABEL);
+    assertTextVisibility(STORAGE_LABEL);
 
     // check page order CTA
-    const orderButton = await getElementByTestId(TEST_IDS.storageOrderCta);
-    await assertElementVisibility(orderButton);
-    await assertElementLabel({
-      element: orderButton,
-      label: labels.datacentresStorage.managed_vcd_vdc_storage_order_cta,
-    });
+    const orderButton = await getAsyncElementByTestId(TEST_IDS.storageOrderCta);
+    expect(orderButton).toBeVisible();
+    expect(orderButton).toHaveAttribute(
+      'label',
+      labels.datacentresStorage.managed_vcd_vdc_storage_order_cta,
+    );
 
     // check datagrid delete CTA
-    const deleteButton = await getNthElementByTestId({
-      testId: TEST_IDS.cellDeleteCta,
-    });
-    await assertElementVisibility(deleteButton);
-    expect(deleteButton).toBeDisabled();
+    const deleteButton = screen.getAllByTestId(TEST_IDS.cellDeleteCta)[0];
+    expect(deleteButton).toBeVisible();
+    assertIsDisabled(deleteButton);
 
-    const tooltip = await getNthElementByTestId({
-      testId: TEST_IDS.cellDeleteTooltip,
-    });
+    const tooltip = screen.getAllByTestId(TEST_IDS.cellDeleteTooltip)[0];
     expect(tooltip).toHaveTextContent(
       labels.datacentres.managed_vcd_vdc_contact_support,
     );
@@ -62,6 +58,6 @@ describe('Datacentre Storage Listing Page', () => {
       isStorageKO: true,
     });
 
-    await assertTextVisibility(DEFAULT_LISTING_ERROR);
+    await assertAsyncTextVisibility(DEFAULT_LISTING_ERROR);
   });
 });

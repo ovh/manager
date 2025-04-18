@@ -1,20 +1,17 @@
+import { expect, vi } from 'vitest';
 import { waitFor } from '@testing-library/dom';
+import { act, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {
   organizationList,
   datacentreList,
 } from '@ovh-ux/manager-module-vcd-api';
 import {
-  assertElementLabel,
-  assertElementVisibility,
-  assertTextVisibility,
-  WAIT_FOR_DEFAULT_OPTIONS,
-  getElementByTestId,
-  getNthElementByTestId,
+  getAsyncElementByTestId,
+  assertAsyncTextVisibility,
+  assertIsDisabled,
 } from '@ovh-ux/manager-core-test-utils';
-import { expect, vi } from 'vitest';
 import { OdsMessageColor } from '@ovhcloud/ods-components';
-import { act } from '@testing-library/react';
 import {
   DEFAULT_LISTING_ERROR,
   labels,
@@ -48,31 +45,27 @@ describe('Datacentre Compute Listing Page', () => {
     });
 
     // access compute tab
-    await assertTextVisibility(COMPUTE_LABEL);
+    await assertAsyncTextVisibility(COMPUTE_LABEL);
     const tab = getByText(COMPUTE_LABEL);
-    await waitFor(() => userEvent.click(tab));
+    await act(() => userEvent.click(tab));
 
     // check page title
-    await assertTextVisibility(VHOSTS_LABEL);
+    await assertAsyncTextVisibility(VHOSTS_LABEL);
 
     // check order CTA
-    const orderButton = await getElementByTestId(TEST_IDS.computeOrderCta);
-    await assertElementVisibility(orderButton);
-    await assertElementLabel({
-      element: orderButton,
-      label: labels.datacentresCompute.managed_vcd_vdc_compute_order_cta,
-    });
+    const orderButton = screen.getByTestId(TEST_IDS.computeOrderCta);
+    expect(orderButton).toBeVisible();
+    expect(orderButton).toHaveAttribute(
+      'label',
+      labels.datacentresCompute.managed_vcd_vdc_compute_order_cta,
+    );
 
     // check datagrid delete CTA
-    const deleteButton = await getNthElementByTestId({
-      testId: TEST_IDS.cellDeleteCta,
-    });
-    await assertElementVisibility(deleteButton);
-    expect(deleteButton).toBeDisabled();
+    const deleteButton = screen.getAllByTestId(TEST_IDS.cellDeleteCta)[0];
+    expect(deleteButton).toBeVisible();
+    assertIsDisabled(deleteButton);
 
-    const tooltip = await getNthElementByTestId({
-      testId: TEST_IDS.cellDeleteTooltip,
-    });
+    const tooltip = screen.getAllByTestId(TEST_IDS.cellDeleteTooltip)[0];
     expect(tooltip).toHaveTextContent(
       labels.datacentres.managed_vcd_vdc_contact_support,
     );
@@ -86,29 +79,29 @@ describe('Datacentre Compute Listing Page', () => {
   });
 
   it('access and display compute listing page with banner info for special offer', async () => {
-    const { getByText, getByTestId } = await renderTest({
+    await renderTest({
       initialRoute: vdcRoute,
       feature: { 'hpc-vmware-managed-vcd:compute-special-offer-banner': true },
     });
 
     // access compute tab
-    await assertTextVisibility(COMPUTE_LABEL);
-    const tab = getByText(COMPUTE_LABEL);
-    await waitFor(() => userEvent.click(tab));
+    await assertAsyncTextVisibility(COMPUTE_LABEL);
+    const tab = screen.getByText(COMPUTE_LABEL);
+    await act(() => userEvent.click(tab));
 
     // check banner info for special offer
-    await waitFor(() => {
-      const banner = getByTestId(TEST_IDS.computeSpecialOfferBanner);
-      const expectedColor: OdsMessageColor = 'information';
-      expect(banner).toHaveAttribute('color', expectedColor);
-    }, WAIT_FOR_DEFAULT_OPTIONS);
+    const banner = await getAsyncElementByTestId(
+      TEST_IDS.computeSpecialOfferBanner,
+    );
+    const expectedColor: OdsMessageColor = 'information';
+    expect(banner).toHaveAttribute('color', expectedColor);
   });
 
   it('should track click on orderButton', async () => {
     const user = userEvent.setup();
     await renderTest({ initialRoute: computeRoute });
 
-    const orderButton = await getElementByTestId(TEST_IDS.computeOrderCta);
+    const orderButton = await getAsyncElementByTestId(TEST_IDS.computeOrderCta);
 
     await act(() => user.click(orderButton));
     expect(trackClickMock).toHaveBeenCalledWith(
@@ -118,6 +111,6 @@ describe('Datacentre Compute Listing Page', () => {
 
   it('display an error', async () => {
     await renderTest({ initialRoute: computeRoute, isComputeKO: true });
-    await assertTextVisibility(DEFAULT_LISTING_ERROR);
+    await assertAsyncTextVisibility(DEFAULT_LISTING_ERROR);
   });
 });

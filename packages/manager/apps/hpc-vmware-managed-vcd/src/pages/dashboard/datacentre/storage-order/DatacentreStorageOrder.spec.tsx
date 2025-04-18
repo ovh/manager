@@ -1,6 +1,6 @@
 import React from 'react';
-import { vitest } from 'vitest';
-import { waitFor } from '@testing-library/dom';
+import { vitest, expect } from 'vitest';
+import { act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {
   organizationList,
@@ -8,9 +8,9 @@ import {
   orderableResourceData,
 } from '@ovh-ux/manager-module-vcd-api';
 import {
-  assertElementLabel,
+  assertAsyncTextVisibility,
   assertTextVisibility,
-  getElementByTestId,
+  getAsyncElementByTestId,
 } from '@ovh-ux/manager-core-test-utils';
 import { labels, renderTest } from '../../../../test-utils';
 import { PERFORMANCE_CLASS_LABEL } from './datacentreStorageOrder.constants';
@@ -41,14 +41,14 @@ describe('Datacentre Storage Order Page', () => {
     const { name, performanceClass } = orderableResourceData.storage[0];
 
     // checks CTA
-    const orderButton = await getElementByTestId(TEST_IDS.storageOrderCta);
-    await assertElementLabel({ element: orderButton, label: orderLabel });
-    await waitFor(() => userEvent.click(orderButton));
+    const orderButton = await getAsyncElementByTestId(TEST_IDS.storageOrderCta);
+    expect(orderButton).toHaveAttribute('label', orderLabel);
+    await act(() => userEvent.click(orderButton));
 
-    await assertTextVisibility(orderTitle);
+    await assertAsyncTextVisibility(orderTitle);
 
     // check datagrid content
-    const datagridElements = [
+    const elements = [
       labels.datacentresOrder.managed_vcd_vdc_order_type,
       name,
       PERFORMANCE_CLASS_LABEL,
@@ -59,7 +59,9 @@ describe('Datacentre Storage Order Page', () => {
       '80.00 €',
     ];
 
-    datagridElements.forEach(async (element) => assertTextVisibility(element));
+    // TESTING : check asynchronously for the first element, then check synchronously
+    await assertAsyncTextVisibility(elements[0]);
+    elements.slice(1).forEach(assertTextVisibility);
   });
 
   it('display an error if orderableResource service is KO', async () => {
@@ -67,7 +69,7 @@ describe('Datacentre Storage Order Page', () => {
       initialRoute: `/${organizationList[0].id}/datacentres/${datacentreList[0].id}/storage/order`,
       isOrderableResourceKO: true,
     });
-    await assertTextVisibility(orderError);
+    await assertAsyncTextVisibility(orderError);
   });
 
   it('display an error if there is no orderableResource', async () => {
@@ -75,7 +77,7 @@ describe('Datacentre Storage Order Page', () => {
       initialRoute: `/${organizationList[0].id}/datacentres/${datacentreList[0].id}/storage/order`,
       nbOrderableResource: 0,
     });
-    await assertTextVisibility(orderError);
+    await assertAsyncTextVisibility(orderError);
   });
 
   it('display an error if catalog service is KO', async () => {
@@ -83,7 +85,7 @@ describe('Datacentre Storage Order Page', () => {
       initialRoute: `/${organizationList[0].id}/datacentres/${datacentreList[0].id}/storage/order`,
       isCatalogKO: true,
     });
-    await assertTextVisibility(orderError);
+    await assertAsyncTextVisibility(orderError);
   });
 
   it('display an error if there is no catalog products', async () => {
@@ -91,6 +93,6 @@ describe('Datacentre Storage Order Page', () => {
       initialRoute: `/${organizationList[0].id}/datacentres/${datacentreList[0].id}/storage/order`,
       nbCatalogProduct: 0,
     });
-    await assertTextVisibility(orderError);
+    await assertAsyncTextVisibility(orderError);
   });
 });

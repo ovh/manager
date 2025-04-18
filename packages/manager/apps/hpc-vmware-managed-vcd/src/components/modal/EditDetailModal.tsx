@@ -54,7 +54,12 @@ export const EditDetailModal = ({
   };
 
   return (
-    <OdsModal onOdsClose={onCloseModal} isOpen isDismissible>
+    <OdsModal
+      onOdsClose={onCloseModal}
+      isOpen
+      isDismissible
+      data-testid={TEST_IDS.modalEdit}
+    >
       <div className="flex flex-col">
         <OdsText preset="heading-3">{headline}</OdsText>
         {!!error && isErrorVisible && (

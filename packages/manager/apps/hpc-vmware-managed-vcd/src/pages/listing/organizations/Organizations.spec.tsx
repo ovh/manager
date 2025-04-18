@@ -1,8 +1,8 @@
+import { expect } from 'vitest';
+import { screen } from '@testing-library/react';
 import {
-  assertElementLabel,
-  assertElementVisibility,
+  assertAsyncTextVisibility,
   assertTextVisibility,
-  getElementByTestId,
 } from '@ovh-ux/manager-core-test-utils';
 import { organizationList } from '@ovh-ux/manager-module-vcd-api';
 import { labels, renderTest } from '../../../test-utils';
@@ -14,7 +14,7 @@ describe('Organizations Listing Page', () => {
     await renderTest({ nbOrganization: 1 });
 
     // then
-    const headers = [
+    const elements = [
       labels.listing.managed_vcd_listing_name,
       labels.listing.managed_vcd_listing_description,
       labels.listing.managed_vcd_listing_location,
@@ -22,17 +22,16 @@ describe('Organizations Listing Page', () => {
       labels.listing.managed_vcd_listing_web_interface_url,
     ];
 
-    headers.forEach((element) => assertTextVisibility(element));
+    // TESTING : check asynchronously for the first element, then check synchronously
+    await assertAsyncTextVisibility(elements[0]);
+    elements.slice(1).forEach(assertTextVisibility);
 
     // and
     const vcdDetails = organizationList[0].currentState;
-    const vcdNameLink = await getElementByTestId(TEST_IDS.listingVcdNameLink);
+    const vcdNameLink = screen.getByTestId(TEST_IDS.listingVcdNameLink);
 
-    await assertTextVisibility(vcdDetails.description);
-    await assertElementVisibility(vcdNameLink);
-    await assertElementLabel({
-      element: vcdNameLink,
-      label: vcdDetails.fullName,
-    });
+    assertTextVisibility(vcdDetails.description);
+    expect(vcdNameLink).toBeVisible();
+    expect(vcdNameLink).toHaveAttribute('label', vcdDetails.fullName);
   });
 });

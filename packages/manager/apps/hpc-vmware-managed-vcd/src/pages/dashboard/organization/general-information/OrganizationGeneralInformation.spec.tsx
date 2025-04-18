@@ -1,8 +1,11 @@
+import '@testing-library/jest-dom';
+import { expect } from 'vitest';
+import { screen, within } from '@testing-library/react';
 import { organizationList } from '@ovh-ux/manager-module-vcd-api';
 import {
-  assertOdsModalVisibility,
-  getElementByTestId,
-  assertOdsModalText,
+  assertAsyncTextVisibility,
+  getAsyncElementByTestId,
+  assertIsDisabled,
   assertTextVisibility,
 } from '@ovh-ux/manager-core-test-utils';
 import {
@@ -17,14 +20,16 @@ describe('Organization General Information Page', () => {
   it('display the VCD dashboard general page', async () => {
     await renderTest({ initialRoute: `/${organizationList[0].id}` });
 
-    const dashboardElements = [
-      labels.dashboard.managed_vcd_dashboard_general_information,
+    const elements = [
       labels.dashboard.managed_vcd_dashboard_options,
       labels.dashboard.managed_vcd_dashboard_data_protection,
       labels.dashboard.managed_vcd_dashboard_service_management,
+      labels.dashboard.managed_vcd_dashboard_datacentres_title,
     ];
 
-    dashboardElements.forEach(async (element) => assertTextVisibility(element));
+    // TESTING : check asynchronously for the first element, then check synchronously
+    await assertAsyncTextVisibility(elements[0]);
+    elements.slice(1).forEach(assertTextVisibility);
   });
 });
 
@@ -46,9 +51,10 @@ describe('Organization General Information Page Updates', () => {
         labels.dashboard.managed_vcd_dashboard_edit_description_modal_success,
     },
   ])('update the $inputName of the organization', async ({ initialRoute }) => {
-    const { container } = await renderTest({ initialRoute });
+    await renderTest({ initialRoute });
 
-    await assertOdsModalVisibility({ container, isVisible: true });
+    const modal = await getAsyncElementByTestId(TEST_IDS.modalEdit);
+    expect(modal).toBeVisible();
   });
 
   it.each([
@@ -68,18 +74,19 @@ describe('Organization General Information Page Updates', () => {
   ])(
     'display helper message when the input $inputName is invalid',
     async ({ initialRoute, error }) => {
-      const { container } = await renderTest({ initialRoute });
+      await renderTest({ initialRoute });
 
-      await assertOdsModalVisibility({ container, isVisible: true });
-      const submitCta = await getElementByTestId(TEST_IDS.modalSubmitCta);
+      const modal = await getAsyncElementByTestId(TEST_IDS.modalEdit);
+      expect(modal).toBeVisible();
+      const submitCta = screen.getByTestId(TEST_IDS.modalSubmitCta);
 
       await mockEditInputValue('');
-      await assertOdsModalText({ container, text: error });
-      expect(submitCta).toBeDisabled();
+      expect(within(modal).getByText(error)).toBeVisible();
+      assertIsDisabled(submitCta);
 
       await mockEditInputValue('a'.repeat(256));
-      await assertOdsModalText({ container, text: error });
-      expect(submitCta).toBeDisabled();
+      expect(within(modal).getByText(error)).toBeVisible();
+      assertIsDisabled(submitCta);
     },
   );
 
@@ -89,17 +96,15 @@ describe('Organization General Information Page Updates', () => {
   ])(
     'keeps modal open if trying to update $inputName while updateOrganizationService is KO',
     async ({ initialRoute }) => {
-      const { container } = await renderTest({
-        initialRoute,
-        isOrganizationUpdateKo: true,
-      });
+      await renderTest({ initialRoute, isOrganizationUpdateKo: true });
 
-      await assertOdsModalVisibility({ container, isVisible: true });
+      const modal = await getAsyncElementByTestId(TEST_IDS.modalEdit);
+      expect(modal).toBeVisible();
 
-      const submitCta = await getElementByTestId(TEST_IDS.modalSubmitCta);
+      const submitCta = screen.getByTestId(TEST_IDS.modalSubmitCta);
       await mockSubmitNewValue({ submitCta });
 
-      await assertOdsModalVisibility({ container, isVisible: true });
+      expect(modal).toBeVisible();
     },
   );
 });
