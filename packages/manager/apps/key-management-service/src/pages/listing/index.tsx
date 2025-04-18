@@ -37,6 +37,7 @@ import { getOkmsServicesResourceListQueryKey } from '@/data/api/okms';
 import KmsActionMenu from '@/components/menu/KmsActionMenu.component';
 import kmsListingTestIds from './KmsListing.constants';
 import { CHANGELOG_LINKS, SERVICE_KEYS_LABEL } from '@/constants';
+import { Drawer } from '@/components/drawer/Drawer';
 
 export default function Listing() {
   const { t } = useTranslation('key-management-service/listing');
@@ -111,6 +112,21 @@ export default function Listing() {
     changelogButton: <ChangelogButton links={CHANGELOG_LINKS} />,
   };
 
+  const drawerRef1 = React.useRef(null);
+  const drawerRef2 = React.useRef(null);
+
+  const handleToggleDrawer1 = () => {
+    if (drawerRef1.current) {
+      drawerRef1.current.toggle();
+    }
+  };
+
+  const handleToggleDrawer2 = () => {
+    if (drawerRef2.current) {
+      drawerRef2.current.toggle();
+    }
+  };
+
   return (
     <RedirectionGuard
       isLoading={isLoading || !flattenData}
@@ -146,6 +162,8 @@ export default function Listing() {
             label={t('key_management_service_listing_add_kms_button')}
             data-testid={kmsListingTestIds.ctaOrder}
           />
+          <OdsButton onClick={handleToggleDrawer1} label={'Toggle Drawer 1'} />
+          <OdsButton onClick={handleToggleDrawer2} label={'Toggle Drawer 2'} />
           {flattenData && (
             <Datagrid
               columns={columns}
@@ -159,6 +177,12 @@ export default function Listing() {
         </div>
         <Outlet />
       </BaseLayout>
+      <Drawer ref={drawerRef1}>
+        <div className="font-bold text-2xl">DRAWER 1</div>
+      </Drawer>
+      <Drawer ref={drawerRef2} position="left">
+        <div className="font-bold text-2xl">DRAWER 2</div>
+      </Drawer>
     </RedirectionGuard>
   );
 }
