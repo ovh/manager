@@ -34,7 +34,7 @@ const useUsefulLinks = (): UseUsefulLinks => {
         external: true,
         href: navigation.getURL('hub', '#/roadmap-changelog'),
         tracking: `${trackingPrefix}::go-to-cloud-changelog`,
-        icon: getSvgIcon(OvhProductName.CLOUD_CHANGELOG)
+        icon: getSvgIcon(OvhProductName.CLOUD_CHANGELOG),
       },
       {
         id: 'helpCenter',

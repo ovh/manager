@@ -1,9 +1,8 @@
 import { describe, expect, it, vi } from 'vitest';
 import { render } from '@testing-library/react';
-import SidebarLink from './SidebarLink';
-import { Node } from './navigation-tree/node';
-import { SidebarLinkProps } from './SidebarLink';
 import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
+import SidebarLink, { SidebarLinkProps } from './SidebarLink';
+import { Node } from './navigation-tree/node';
 
 const handleOnClick = vi.fn();
 const handleOnEnter = vi.fn();
@@ -35,10 +34,10 @@ const externalNode: Node = {
 
 const props: SidebarLinkProps = {
   hasService: false,
-  node: node,
+  node,
   linkParams: null,
-  handleOnClick: handleOnClick,
-  handleOnEnter: handleOnEnter,
+  handleOnClick,
+  handleOnEnter,
   id: node.idAttr,
   isShortText: false,
 };
@@ -64,13 +63,13 @@ const renderSidebarLinkComponent = (props: SidebarLinkProps) => {
 
 describe('SidebarLink.component', () => {
   it('SidebarLink should render a static link', () => {
-    const {queryByTestId} = renderSidebarLinkComponent(props);
+    const { queryByTestId } = renderSidebarLinkComponent(props);
     expect(queryByTestId('static-link-mocked')).not.toBeNull();
   });
 
   it('SidebarLink with child should render a button as div', () => {
     props.node.children = [externalNode];
-    const {queryByTestId} = renderSidebarLinkComponent(props);
+    const { queryByTestId } = renderSidebarLinkComponent(props);
     expect(queryByTestId(props.id)).not.toBeNull();
-  })
+  });
 });

@@ -10,7 +10,7 @@ import { ShopItem } from '../OrderPopupContent';
 import { getOrderURL } from './order.constants';
 
 const telephony = (
-  navigation: any,
+  navigation: Record<string, CallableFunction>,
   region: string,
   sub: string,
   features: Record<string, boolean>,
@@ -86,7 +86,7 @@ const office = (region: string, sub: string): ShopItem => ({
 });
 
 const sms = (
-  navigation: any,
+  navigation: Record<string, CallableFunction>,
   region: string,
   sub: string,
   features: Record<string, boolean>,
@@ -116,7 +116,7 @@ const sms = (
     : null;
 
 const telecomShopConfig = (
-  navigation: any,
+  navigation: Record<string, CallableFunction>,
   region: string,
   sub: string,
   features: Record<string, boolean>,

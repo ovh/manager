@@ -1,11 +1,11 @@
 import { User } from '@ovh-ux/manager-config';
-import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { TRANSLATE_NAMESPACE } from '../constants';
 
 import { OsdsText } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { TRANSLATE_NAMESPACE } from '../constants';
+
 type Props = {
   user?: User;
 };

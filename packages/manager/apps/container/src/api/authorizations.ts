@@ -1,4 +1,4 @@
-import { fetchIcebergV2 } from "@ovh-ux/manager-core-api";
+import { fetchIcebergV2 } from '@ovh-ux/manager-core-api';
 
 type IamResource = {
   id: string;

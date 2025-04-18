@@ -1,5 +1,3 @@
-import React from 'react';
-
 import DOMPurify from 'dompurify';
 
 import style from './notification.module.scss';
