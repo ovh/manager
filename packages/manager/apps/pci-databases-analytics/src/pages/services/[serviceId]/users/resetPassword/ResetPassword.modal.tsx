@@ -1,23 +1,29 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
-import { Copy } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import {
+  Button,
   DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { useToast } from '@/components/ui/use-toast';
+  useToast,
+  Code,
+  githubDark,
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from '@datatr-ux/uxlib';
 import { useResetUserPassword } from '@/hooks/api/database/user/useResetUserPassword.hook';
-import { Alert } from '@/components/ui/alert';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import { useServiceData } from '../../Service.context';
 import { useGetUsers } from '@/hooks/api/database/user/useGetUsers.hook';
 import RouteModal from '@/components/route-modal/RouteModal';
+import * as database from '@/types/cloud/project/database';
 
 const ResetUserPassword = () => {
   const { userId } = useParams();
@@ -30,6 +36,10 @@ const ResetUserPassword = () => {
   const user = users?.find((u) => u.id === userId);
 
   const [newPass, setNewPass] = useState<string>();
+  const [selectedEndpoint, setSelectedEndpoint] = useState<
+    database.service.Endpoint | undefined
+  >(service.endpoints[0]);
+
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/users',
   );
@@ -65,12 +75,6 @@ const ResetUserPassword = () => {
       userId: user.id,
     });
   };
-  const handleCopyPass = () => {
-    navigator.clipboard.writeText(newPass);
-    toast.toast({
-      title: t('resetUserPasswordCopy'),
-    });
-  };
 
   return (
     <RouteModal isLoading={!users}>
@@ -80,22 +84,63 @@ const ResetUserPassword = () => {
             {t('resetUserPasswordTitle')}
           </DialogTitle>
           {newPass ? (
-            <Alert variant="success">
+            <div data-testid="pwd-connection-info">
               <p>{t('resetUserPasswordSuccess')}</p>
-              <div className="relative my-4">
-                <Button
-                  onClick={() => handleCopyPass()}
-                  className="absolute top-0 right-0 m-2 p-2 text-sm bg-primary-500 text-white rounded hover:bg-primary-700 transition duration-300"
-                  data-testid="reset-password-copy-button"
-                >
-                  <Copy className="size-4" />
-                  <span className="sr-only">copy</span>
-                </Button>
-                <pre className="p-4 bg-gray-100 rounded">
-                  <code>{newPass}</code>
-                </pre>
+              <div data-testid="code-pwd-container" className="p-2">
+                <Code
+                  code={newPass}
+                  label={t('resetUserPasswordCode')}
+                  theme={githubDark}
+                  onCopied={() =>
+                    toast.toast({
+                      title: t('resetUserPasswordCopy'),
+                    })
+                  }
+                />
               </div>
-            </Alert>
+              <p>{t('resetUserConnectionTitle')}</p>
+              <div data-testid="code-uri-container" className="p-2">
+                {service.endpoints.length > 1 && (
+                  <Select
+                    value={selectedEndpoint?.component}
+                    onValueChange={(v) =>
+                      setSelectedEndpoint(
+                        service.endpoints.find(
+                          (endpoint) => endpoint.component === v,
+                        ),
+                      )
+                    }
+                  >
+                    <SelectTrigger
+                      data-testid="dashboard-connection-detail-select"
+                      className="h-8 mb-3"
+                    >
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {service.endpoints.map((ep) => (
+                        <SelectItem key={ep.component} value={ep.component}>
+                          {ep.component}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                )}
+                <Code
+                  code={selectedEndpoint?.uri.replace(
+                    '<username>:<password>',
+                    `${user.username}:${newPass}`,
+                  )}
+                  label={t('resetUserConnectionCode')}
+                  theme={githubDark}
+                  onCopied={() =>
+                    toast.toast({
+                      title: t('resetUserConnectionCodeCopy'),
+                    })
+                  }
+                />
+              </div>
+            </div>
           ) : (
             <DialogDescription>
               {t('resetUserPasswordDescription', { name: user?.username })}
@@ -107,7 +152,7 @@ const ResetUserPassword = () => {
             <DialogClose asChild>
               <Button
                 type="button"
-                variant="outline"
+                mode="outline"
                 data-testid="reset-password-close-button"
               >
                 {t('resetUserPasswordButtonClose')}
@@ -118,7 +163,7 @@ const ResetUserPassword = () => {
               <DialogClose asChild>
                 <Button
                   type="button"
-                  variant="outline"
+                  mode="outline"
                   data-testid="reset-password-cancel-button"
                 >
                   {t('resetUserPasswordButtonCancel')}

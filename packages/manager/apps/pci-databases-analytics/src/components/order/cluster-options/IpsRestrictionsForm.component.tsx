@@ -4,17 +4,17 @@ import { z } from 'zod';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { MinusCircle, PlusCircle } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import * as database from '@/types/cloud/project/database';
 import {
+  Input,
+  Button,
   Form,
   FormControl,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form';
+} from '@datatr-ux/uxlib';
+import * as database from '@/types/cloud/project/database';
 
 interface IpsRestrictionsFormProps {
   value: database.IpRestrictionCreation[];
@@ -116,7 +116,7 @@ const IpsRestrictionsForm = React.forwardRef<
         </div>
         <Button
           data-testid="ip-add-button"
-          variant={'ghost'}
+          mode={'ghost'}
           onClick={form.handleSubmit(onSubmit)}
           disabled={disabled}
           className="mt-[1.875rem] text-primary rounded-full p-2 ml-2 hover:text-primary"
@@ -130,7 +130,7 @@ const IpsRestrictionsForm = React.forwardRef<
             <Button
               data-testid={`ip-remove-button-${index}`}
               className="text-red-500 rounded-full p-2 ml-2 hover:text-red-500 h-8 w-8"
-              variant={'ghost'}
+              mode={'ghost'}
               type="button"
               onClick={() => removeIp(index)}
               disabled={disabled}
