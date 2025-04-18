@@ -1,4 +1,4 @@
-import { fetchIcebergV2, fetchIcebergV6 } from '@ovh-ux/manager-core-api';
+import { fetchIcebergV2, apiClient } from '@ovh-ux/manager-core-api';
 import { LogKind } from '../types/dbaas/logs';
 import { ApiUrls } from '../../LogsToCustomer.module';
 
@@ -13,8 +13,13 @@ export const getLogKindsv2 = async (logKindUrl: ApiUrls['logKind']) => {
 };
 
 export const getLogKindsv6 = async (logKindUrl: ApiUrls['logKind']) => {
-  const { data } = await fetchIcebergV6<LogKind>({
-    route: logKindUrl,
-  });
-  return data;
+  const { data } = await apiClient.v6.get<string[]>(logKindUrl);
+  return data.sort().map(
+    (kind) =>
+      ({
+        name: kind,
+        displayName: kind,
+        kindId: kind,
+      } as LogKind),
+  );
 };
