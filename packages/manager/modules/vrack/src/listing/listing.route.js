@@ -3,6 +3,7 @@ import {
   VRACK_TRACKING_PREFIX,
   VRACK_TRACKING_CONTEXT,
   VRACK_DELETE_FEATURE,
+  GUIDELINK,
 } from '../vrack.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -65,6 +66,8 @@ export default /* @ngInject */ ($stateProvider) => {
       }),
       header: /* @ngInject */ ($translate) => $translate.instant('vrack_title'),
       changelog: () => 'vrack',
+      guideLinks: /* @ngInject */ (coreConfig) =>
+        GUIDELINK[coreConfig.getUser().ovhSubsidiary] || GUIDELINK.DEFAULT,
       customizableColumns: () => true,
       getServiceNameLink: /* @ngInject */ ($state) => ({
         serviceName: vrackId,
