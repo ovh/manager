@@ -1,4 +1,4 @@
-import { StepComponent } from '@ovh-ux/manager-react-components';
+import { StepComponent, Subtitle } from '@ovh-ux/manager-react-components';
 import {
   RegionSelector,
   usePCICommonContextFactory,
@@ -41,7 +41,7 @@ export const LocationStep = ({
 }: {
   regions: TProductAvailabilityRegion[];
 }) => {
-  const { t } = useTranslation(['stepper', 'add']);
+  const { t } = useTranslation(['stepper', 'add', 'regions-list']);
   const { projectId } = useParams();
   const { tracking } = useContext(ShellContext).shell;
   const store = useNewGatewayStore();
@@ -88,7 +88,7 @@ export const LocationStep = ({
       isOpen={store.steps.get(StepsEnum.LOCATION).isOpen}
       isChecked={store.steps.get(StepsEnum.LOCATION).isChecked}
       isLocked={store.steps.get(StepsEnum.LOCATION).isLocked}
-      title={t('add:pci_projects_project_public_gateways_add_region_title')}
+      title={t('regions-list:pci_project_regions_list_region')}
       subtitle={
         <OsdsText
           level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
@@ -144,15 +144,22 @@ export const LocationStep = ({
         onChange={setSelectedRegionGroup}
         deployments={deployments}
       />
-      <PCICommonContext.Provider value={metaProps}>
-        <RegionSelector
-          projectId={projectId}
-          onSelectRegion={(region) => store.updateForm.regionName(region?.name)}
-          regionFilter={(r) =>
-            r.isMacro || filteredRegions.some(({ name }) => name === r.name)
-          }
-        />
-      </PCICommonContext.Provider>
+      <div className="flex flex-col gap-y-5">
+        <Subtitle>
+          {t('add:pci_projects_project_public_gateways_add_region_title')}
+        </Subtitle>
+        <PCICommonContext.Provider value={metaProps}>
+          <RegionSelector
+            projectId={projectId}
+            onSelectRegion={(region) =>
+              store.updateForm.regionName(region?.name)
+            }
+            regionFilter={(r) =>
+              r.isMacro || filteredRegions.some(({ name }) => name === r.name)
+            }
+          />
+        </PCICommonContext.Provider>
+      </div>
     </StepComponent>
   );
 };
