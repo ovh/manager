@@ -60,7 +60,7 @@ export default class VolumeCreateCtrl {
 
   onCreateVolume() {
     this.isLoading = true;
-    this.trackClick('create::confirm');
+    this.trackClick('button::add_volume::confirm');
 
     return this.$http
       .post(`/storage/netapp/${this.storage.id}/share`, {
@@ -101,7 +101,7 @@ export default class VolumeCreateCtrl {
   }
 
   goBack() {
-    this.trackClick('create::cancel');
+    this.trackClick('button::add_volume::cancel');
     return this.goToVolumes();
   }
 }
