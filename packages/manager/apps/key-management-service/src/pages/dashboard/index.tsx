@@ -19,7 +19,7 @@ import { ROUTES_URLS } from '@/routes/routes.constants';
 import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
 import { getOkmsResourceQueryKey } from '@/data/api/okms';
 import { OKMS } from '@/types/okms.type';
-import { useOKMSById } from '@/data/hooks/useOKMS';
+import { useOkmsById } from '@/data/hooks/useOkms';
 import { CHANGELOG_LINKS, SERVICE_KEYS_LABEL } from '@/constants';
 import KmsTabs, {
   KmsTabProps,
@@ -42,7 +42,7 @@ export default function DashboardPage() {
     isLoading: isOkmsLoading,
     isError: isOkmsError,
     error: okmsError,
-  } = useOKMSById(okmsId);
+  } = useOkmsById(okmsId);
 
   const {
     data: okmsServiceInfos,

@@ -29,7 +29,7 @@ import { ROUTES_URLS } from '@/routes/routes.constants';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import KmsGuidesHeader from '@/components/Guide/KmsGuidesHeader';
 import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
-import { useOKMSById } from '@/data/hooks/useOKMS';
+import { useOkmsById } from '@/data/hooks/useOkms';
 import { OKMS } from '@/types/okms.type';
 import { OkmsCredential } from '@/types/okmsCredential.type';
 
@@ -49,7 +49,7 @@ const CredentialDashboard = () => {
   const location = useLocation();
   const { okmsId, credentialId } = useParams();
 
-  const { data: okms, isLoading: isLoadingKms, error: errorKms } = useOKMSById(
+  const { data: okms, isLoading: isLoadingKms, error: errorKms } = useOkmsById(
     okmsId,
   );
 

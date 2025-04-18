@@ -22,8 +22,8 @@ vi.mock('react-router-dom', async (importOriginal) => {
   };
 });
 
-vi.mock('@/data/hooks/useOKMS', () => ({
-  useOKMSById: (id: string) =>
+vi.mock('@/data/hooks/useOkms', () => ({
+  useOkmsById: (id: string) =>
     ({ data: { data: { id, iam: { urn: `urn:${id}` } } } } as UseQueryResult<
       ApiResponse<OKMS>
     >),
