@@ -54,8 +54,14 @@ export const downloadContent = ({
   URL.revokeObjectURL(url);
 };
 
-export const getFormatedKubeVersion = (version: string) =>
-  version.substring(0, version.lastIndexOf('.'));
+export const getFormatedKubeVersion = (version: string) => {
+  const [major, minor] = version.split('.');
+
+  if (!minor) {
+    return major;
+  }
+  return `${major}.${minor}`;
+};
 
 export const formatIP = (ip: string) => {
   const [cidr, mask] = ip.split('/');
@@ -208,3 +214,5 @@ export const isMonoDeploymentZone = (type: DeploymentMode) =>
   type === DeploymentMode.MONO_ZONE;
 export const isMultiDeploymentZones = (type: DeploymentMode) =>
   type === DeploymentMode.MULTI_ZONES;
+export const isLocalDeploymentZone = (type: DeploymentMode) =>
+  type === DeploymentMode.LOCAL_ZONE;

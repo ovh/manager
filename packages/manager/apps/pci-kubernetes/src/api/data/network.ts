@@ -6,6 +6,13 @@ export type TRegion = {
   openstackId: string;
 };
 
+export type TNetworkRegion = {
+  id: string;
+  name: string;
+  visibility: string;
+  vlanId: number;
+};
+
 export type TNetwork = {
   id: string;
   name: string;
@@ -13,7 +20,7 @@ export type TNetwork = {
   type: string;
   status: string;
   regions: TRegion[];
-  clusterRegion?: TRegion;
+  clusterRegion?: TNetworkRegion;
 };
 
 export const getAllPrivateNetworks = async (
@@ -39,4 +46,15 @@ export const getPrivateNetworkName = (
   );
 
   return result ? result.name : privateNetworkId;
+};
+
+export const getAllPrivateNetworksByRegion = async (
+  projectId: string,
+  regionName: string,
+) => {
+  const { data } = await v6.get<TNetworkRegion[]>(
+    `/cloud/project/${projectId}/region/${regionName}/network`,
+  );
+
+  return data;
 };

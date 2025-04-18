@@ -1,4 +1,3 @@
-import { Dispatch, SetStateAction } from 'react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
@@ -13,17 +12,18 @@ import {
   selectedTileClass,
   tileClass,
 } from '../UpdatePolicySelector.component';
-import { NodePoolState } from '../NodePoolStep.component';
 
-const DeploymentZone = ({
-  setNodePoolState,
-  selectedAvailibilityZone,
-  availabilityZones,
-}: {
-  setNodePoolState: Dispatch<SetStateAction<NodePoolState>>;
+type DeploymentZoneProps = {
+  onSelect: (zone: string) => void;
   selectedAvailibilityZone: string;
   availabilityZones: string[];
-}) => {
+};
+
+const DeploymentZone = ({
+  onSelect,
+  selectedAvailibilityZone,
+  availabilityZones,
+}: DeploymentZoneProps) => {
   const { t } = useTranslation('node-pool');
 
   return (
@@ -41,7 +41,7 @@ const DeploymentZone = ({
         size={ODS_TEXT_SIZE._400}
         color={ODS_THEME_COLOR_INTENT.text}
       >
-        {t('kube_common_node_pool_deploy_description', {})}
+        {t('kube_common_node_pool_deploy_description')}
       </OsdsText>
       <div className="flex mt-8 gap-4">
         {availabilityZones?.map((zone) => (
@@ -55,12 +55,7 @@ const DeploymentZone = ({
               zone === selectedAvailibilityZone ? selectedTileClass : null,
               'selectedTileClass',
             )}
-            onClick={() =>
-              setNodePoolState((state) => ({
-                ...state,
-                availibilityZones: zone,
-              }))
-            }
+            onClick={() => onSelect(zone)}
             inline
           >
             <OsdsText
@@ -69,9 +64,7 @@ const DeploymentZone = ({
               size={ODS_TEXT_SIZE._200}
               color={ODS_THEME_COLOR_INTENT.text}
             >
-              {t(`${zone}`, {
-                ns: 'service',
-              })}
+              {zone}
             </OsdsText>
           </OsdsTile>
         ))}

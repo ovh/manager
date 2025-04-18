@@ -45,7 +45,7 @@ import {
   isMonoDeploymentZone,
   isMultiDeploymentZones,
 } from '@/helpers';
-import { useAvailablePrivateNetworks } from '@/api/hooks/useNetwork';
+import { usePrivateNetworkByRegion } from '@/api/hooks/useNetwork';
 import { KUBE_TRACK_PREFIX } from '@/tracking.constants';
 import { TNetwork } from '@/api/data/network';
 import { SubnetSelector } from '@/components/network/SubnetSelector.component';
@@ -84,7 +84,7 @@ export default function ResetClusterPage() {
   const {
     data: privateNetworks,
     isPending: isPendingPrivateNetworks,
-  } = useAvailablePrivateNetworks(projectId, kubernetesCluster?.region);
+  } = usePrivateNetworkByRegion(projectId, kubernetesCluster?.region);
 
   const {
     data: regionInformations,
@@ -95,11 +95,6 @@ export default function ResetClusterPage() {
     id: 'none',
     name: t('kubernetes_network_form_none'),
   } as TNetwork;
-
-  const getPrivateNetworkById = (id: string): TNetwork =>
-    privateNetworks?.find(
-      (privateNetwork) => privateNetwork.clusterRegion.openstackId === id,
-    );
 
   const [formState, setFormState] = useState({
     workerNodesPolicy: WORKER_NODE_POLICIES.DELETE,
@@ -323,7 +318,7 @@ export default function ResetClusterPage() {
                   formState.privateNetworkId ||
                   (isMonoDeploymentZone(regionInformations.type)
                     ? defaultNetwork?.id
-                    : privateNetworks[0]?.clusterRegion?.openstackId)
+                    : privateNetworks[0]?.id)
                 }
                 onOdsValueChange={(event) => {
                   const value = `${event.detail.value}`;
@@ -341,10 +336,7 @@ export default function ResetClusterPage() {
                   </OsdsSelectOption>
                 )}
                 {privateNetworks?.map((network) => (
-                  <OsdsSelectOption
-                    key={network.id}
-                    value={network?.clusterRegion?.openstackId}
-                  >
+                  <OsdsSelectOption key={network.id} value={network?.id}>
                     {network.name}
                   </OsdsSelectOption>
                 ))}
@@ -358,10 +350,7 @@ export default function ResetClusterPage() {
                   title={t('kubernetes_network_form_subnet')}
                   projectId={projectId}
                   networkId={formState.privateNetworkId}
-                  region={
-                    getPrivateNetworkById(formState.privateNetworkId)
-                      ?.clusterRegion?.region
-                  }
+                  region={kubernetesCluster.region}
                   onSelect={(subnet) =>
                     setFormState((network) => ({
                       ...network,
@@ -417,10 +406,7 @@ export default function ResetClusterPage() {
                       title={t('kubernetes_network_form_load_balancers_subnet')}
                       projectId={projectId}
                       networkId={formState.privateNetworkId}
-                      region={
-                        getPrivateNetworkById(formState.privateNetworkId)
-                          ?.clusterRegion?.region
-                      }
+                      region={kubernetesCluster.region}
                       onSelect={(loadBalancersSubnet) =>
                         setFormState((prevState) => ({
                           ...prevState,

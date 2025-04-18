@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 
 import { useAvailablePrivateNetworks } from '@/api/hooks/useNetwork';
 import { TPrivateNetworkSubnet } from '@/api/data/subnets';
-import { TNetwork } from '@/api/data/network';
+import { TNetworkRegion } from '@/api/data/network';
 
 import {
   GatewaySelector,
@@ -22,7 +22,7 @@ import { isMonoDeploymentZone, isMultiDeploymentZones } from '@/helpers';
 import MultiZoneInfo from '@/components/network/MultiZoneInfo.component';
 
 export type TNetworkFormState = {
-  privateNetwork?: TNetwork;
+  privateNetwork?: TNetworkRegion;
   subnet?: TPrivateNetworkSubnet;
   gateway?: GatewaySelectorState;
   loadBalancersSubnet?: TPrivateNetworkSubnet;
@@ -86,6 +86,7 @@ export default function NetworkClusterStep({
             <div>
               <SubnetSelect
                 key={form.privateNetwork?.id}
+                region={region}
                 className="mt-8"
                 projectId={projectId}
                 privateNetwork={form.privateNetwork}
@@ -111,6 +112,7 @@ export default function NetworkClusterStep({
                 }
               />
               <LoadBalancerSelect
+                region={region}
                 projectId={projectId}
                 network={form.privateNetwork}
                 onSelect={(loadBalancersSubnet) =>

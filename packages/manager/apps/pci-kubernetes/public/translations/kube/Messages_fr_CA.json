@@ -74,5 +74,9 @@
   "kube_service_cluster_network_attached": "Réseau attaché",
   "kube_service_cluster_network_ovh_gateway": "Passerelle Internet OVHcloud",
   "kube_service_cluster_network_vrack_default_gateway": "Passerelle par défaut du vRACK (DHCP)",
-  "kube_service_cluster_network_vrack_customer_gateway": "Passerelle : {{ vRackGatewayIp }}"
+  "kube_service_cluster_network_vrack_customer_gateway": "Passerelle : {{ vRackGatewayIp }}",
+  "pci_project_flavors_zone_global_region": "1-AZ",
+  "pci_project_flavors_zone_3az": "3-AZ",
+  "pci_project_flavors_zone_3az_tooltip": "A 3-AZ region comprises three availability zones located in the same metropolitan area, separated by a few miles. It meets the highest resilience requirements while guaranteeing extremely low latency between AZs.",
+  "pci_project_flavors_zone_globalregions_tooltip": "A 1-AZ (availability zone) region groups together one or more datacentres located on the same site."
 }
