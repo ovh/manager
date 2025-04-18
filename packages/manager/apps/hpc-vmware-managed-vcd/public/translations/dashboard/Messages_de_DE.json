@@ -52,5 +52,6 @@
   "managed_vcd_dashboard_password_modal_subtitle": "Sind Sie sicher, dass Sie Ihr Passwort ändern möchten?",
   "managed_vcd_dashboard_password_renew_success": "Sie erhalten eine E-Mail, um sich Ihr Passwort anzusehen.",
   "managed_vcd_dashboard_password_renew_error": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es später noch einmal oder kontaktieren Sie den Support, um Ihr Administrator-Passwort zu ändern.",
-  "managed_vcd_dashboard_edit_modal_cta_validate": "Bestätigen"
+  "managed_vcd_dashboard_edit_modal_cta_validate": "Bestätigen",
+  "managed_vcd_dashboard_cancellation_tooltip": "Wenn Sie Ihren Dienst kündigen möchten, kontaktieren Sie bitte unseren Support."
 }

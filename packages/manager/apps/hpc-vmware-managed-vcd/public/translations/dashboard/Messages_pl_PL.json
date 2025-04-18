@@ -52,5 +52,6 @@
   "managed_vcd_dashboard_password_modal_subtitle": "Czy na pewno chcesz zmienić hasło?",
   "managed_vcd_dashboard_password_renew_success": "Otrzymasz e-mail, który umożliwi zmianę hasła.",
   "managed_vcd_dashboard_password_renew_error": "Wystąpił błąd. Spróbuj ponownie później lub skontaktuj się z pomocą techniczną, aby zmienić hasło administratora.",
-  "managed_vcd_dashboard_edit_modal_cta_validate": "Zatwierdź"
+  "managed_vcd_dashboard_edit_modal_cta_validate": "Zatwierdź",
+  "managed_vcd_dashboard_cancellation_tooltip": "Jeśli chcesz zrezygnować z usługi, skontaktuj się z działem obsługi klienta."
 }
