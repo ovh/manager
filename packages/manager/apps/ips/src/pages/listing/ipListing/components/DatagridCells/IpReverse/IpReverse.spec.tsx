@@ -11,7 +11,7 @@ import { IpReverseType } from '@/data/api';
 const queryClient = new QueryClient();
 /** MOCKS */
 const useGetIpReverseMock = vi.hoisted(() =>
-  vi.fn(() => ({ ipReverse: undefined, isLoading: true, error: undefined })),
+  vi.fn(() => ({ ipsReverse: undefined, isLoading: true, error: undefined })),
 );
 
 vi.mock('@/data/hooks/ip', () => ({
@@ -36,20 +36,20 @@ const renderComponent = (params: IpReverseProps) => {
 describe('IpReverse Component', async () => {
   it('Should display reverse if exist', async () => {
     useGetIpReverseMock.mockReturnValue({
-      ipReverse: [
-        { ipReverse: '10.0.0.1', reverse: '10.0.0.1' },
+      ipsReverse: [
+        { ipReverse: '10.0.0.1', reverse: 'reverse-10.0.0.1' },
       ] as IpReverseType[],
       isLoading: false,
       error: undefined,
     });
-    const { getByText } = renderComponent({ ip: ipDetailsList[3].ip });
+    const { getByText } = renderComponent({ ip: '10.0.0.1' });
     await waitFor(() => {
-      expect(getByText('10.0.0.1')).toBeDefined();
+      expect(getByText('reverse-10.0.0.1')).toBeDefined();
     });
   });
   it('Should display "-" if no reverse exist', async () => {
     useGetIpReverseMock.mockReturnValue({
-      ipReverse: [],
+      ipsReverse: [],
       isLoading: false,
       error: undefined,
     });
