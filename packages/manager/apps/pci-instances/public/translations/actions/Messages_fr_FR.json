@@ -43,7 +43,7 @@
   "pci_instances_actions_start_instance_confirmation_message": "Vous allez démarrer votre instance {{ name }}.",
   "pci_instances_actions_start_instance_error_message": "Une erreur est survenue lors du démarrage de l'instance {{ name }} : {{ error }}",
   "pci_instances_actions_start_instance_success_message": "L'instance {{ name }} a été démarrée.",
-  "pci_instances_actions_instance_unknown_error_message": "Une erreur est survenue. Notre équipe technique est informée et travaille à résoudre le problème.",
+  "pci_instances_actions_instance_unknown_error_message": "Une erreur est survenue et nous ne pouvons pas accéder à votre demande : {{ error }}",
   "pci_instances_actions_shelve_instance_title": "Suspension de votre instance",
   "pci_instances_actions_shelve_instance_success_message": "L'instance {{ name }} est en cours de suspension.",
   "pci_instances_actions_unshelve_instance_title": "Réactivation de votre instance",
@@ -52,5 +52,6 @@
   "pci_instances_actions_shelve_instance_error_message": "Une erreur est survenue lors de la suspension de l'instance {{ name }} : {{ error }}",
   "pci_instances_actions_unshelve_instance_confirmation_message": "Vous allez réactiver votre instance {{ name }}. Les ressources dédiées à votre instance Public Cloud seront rétablies (adresse IP incluse). Les données de votre disque local seront restaurées, la durée de l'opération est en fonction de la taille de votre disque local.",
   "pci_instances_actions_shelve_instance_confirmation_message": "Vous allez suspendre votre instance {{ name }}. Les ressources dédiées à votre instance Public Cloud seront relâchées mais son IP sera conservée. Les données de votre disque local seront stockées, et seul le stockage utilisé pour cela sera facturé (1). La durée de l'opération est en fonction de la taille de votre disque local. Vous pourrez réactiver votre instance à tout moment.",
-  "pci_instances_actions_shelve_instance_nota_message": "(1) Attention : Pour les instances passées au mois, la facturation classique continuera tout de même, quelque soit le statut du service."
+  "pci_instances_actions_shelve_instance_nota_message": "(1) Attention : Pour les instances passées au mois, la facturation classique continuera tout de même, quelque soit le statut du service.",
+  "pci_instances_actions_instance_unavailable_action_error_message": "Cette action n'est pas disponible pour votre instance {{ name }}"
 }

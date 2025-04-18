@@ -148,7 +148,11 @@ describe('Considering the useInstanceAction hook', () => {
           expect(useInstancesResult.current.isPending).toBe(false),
         );
         expect(useInstanceActionResult.current.isIdle).toBeTruthy();
-        act(() => useInstanceActionResult.current.mutationHandler(instance));
+        act(() =>
+          useInstanceActionResult.current.mutationHandler(
+            instance as TInstanceDto,
+          ),
+        );
 
         if (mutationPayload === undefined) {
           await waitFor(() =>

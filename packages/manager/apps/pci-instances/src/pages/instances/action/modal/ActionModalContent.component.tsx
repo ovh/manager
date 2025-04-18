@@ -1,19 +1,24 @@
 import { FC, useMemo } from 'react';
-import { OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
+import {
+  OsdsMessage,
+  OsdsSkeleton,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
 import { ODS_MESSAGE_TYPE, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
 } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
-import { TSectionType } from '../InstanceAction.page';
 import { isCustomUrlSection, replaceToSnakeCase } from '@/utils';
 import { DeepReadonly } from '@/types/utils.type';
+import { TSectionType } from '@/data/hooks/instance/action/useCachedInstanceAction';
 
 type TActionModalProps = DeepReadonly<
   React.PropsWithChildren<{
     type: TSectionType;
-    instanceName: string;
+    instanceName?: string;
+    isLoading: boolean;
   }>
 >;
 
@@ -21,6 +26,7 @@ export const ActionModalContent: FC<TActionModalProps> = ({
   type,
   instanceName,
   children,
+  isLoading,
 }) => {
   const { t } = useTranslation('actions');
 
@@ -67,7 +73,13 @@ export const ActionModalContent: FC<TActionModalProps> = ({
     return null;
   }, [type, t]);
 
-  return (
+  return isLoading ? (
+    <div className="pt-6">
+      {[...new Array(3)].map((elt) => (
+        <OsdsSkeleton key={elt} />
+      ))}
+    </div>
+  ) : (
     <>
       {labels.map((label) => (
         <OsdsText
