@@ -52,5 +52,6 @@
   "managed_vcd_dashboard_password_modal_subtitle": "Tem a certeza de que pretende alterar a sua palavra-passe?",
   "managed_vcd_dashboard_password_renew_success": "Receberá um e-mail para visualizar a sua palavra-passe",
   "managed_vcd_dashboard_password_renew_error": "Ocorreu um erro. Tente novamente mais tarde ou contacte o suporte para alterar a sua palavra-passe de administrador",
-  "managed_vcd_dashboard_edit_modal_cta_validate": "Validar"
+  "managed_vcd_dashboard_edit_modal_cta_validate": "Validar",
+  "managed_vcd_dashboard_cancellation_tooltip": "Se pretender rescindir o seu serviço, contacte o nosso suporte."
 }
