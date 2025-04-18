@@ -1,6 +1,6 @@
 {
   "cloud_connect_datacenter_remove": "Delete availability zone configuration",
-  "cloud_connect_datacenter_remove_description": "This will delete the selected availability zone configuration",
-  "cloud_connect_datacenter_remove_success": "Availability zone configuration deleted. <a href=\"{{ tasksUrl }}\">Click here to view status.</a>",
-  "cloud_connect_datacenter_remove_error": "Unable to delete availability zone configuration: {{message}}"
+  "cloud_connect_datacenter_remove_description": "This will delete the availability zone configuration",
+  "cloud_connect_datacenter_remove_success": "Availability zone configuration deleted. <a href=\"{{ tasksUrl }}\">Click here to see the status.</a>",
+  "cloud_connect_datacenter_remove_error": "Failed to delete an availability zone configuration: {{message}}"
 }

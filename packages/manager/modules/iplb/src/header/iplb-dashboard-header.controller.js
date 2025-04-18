@@ -1,4 +1,4 @@
-import { GUIDE_HOME_URL, IPLB_GUIDES } from '../dashboard/iplb-url.constants';
+import { IPLB_GUIDES } from '../iplb.constant';
 
 export default class IpLoadBalancerDashboardHeaderCtrl {
   /* @ngInject */
@@ -42,23 +42,23 @@ export default class IpLoadBalancerDashboardHeaderCtrl {
   }
 
   initGuides() {
-    this.guides = {};
-    this.guides.title = this.$translate.instant('iplb_guides');
     const url = IPLB_GUIDES[this.user.ovhSubsidiary] || IPLB_GUIDES.DEFAULT;
-    this.guides.list = [
+    this.guides = [
       {
-        name: this.$translate.instant('iplb_guides_title'),
-        url,
+        name: this.$translate.instant('iplb_guides_link1'),
+        url: url.link1,
+        external: true,
+      },
+      {
+        name: this.$translate.instant('iplb_guides_link2'),
+        url: url.link2,
+        external: true,
+      },
+      {
+        name: this.$translate.instant('iplb_guides_link3'),
+        url: url.link3,
         external: true,
       },
     ];
-    this.guides = {
-      ...this.guides,
-      footer: {
-        name: this.$translate.instant('iplb_guide_footer'),
-        url: GUIDE_HOME_URL[this.user.ovhSubsidiary] || GUIDE_HOME_URL.DEFAULT,
-        external: true,
-      },
-    };
   }
 }

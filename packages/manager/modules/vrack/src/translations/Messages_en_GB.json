@@ -2,5 +2,10 @@
   "vrack_title": "vRack private network",
   "vrack_order": "Order",
   "list_layout_like_this": "Like it?",
-  "list_layout_like_this_tooltip": "Like this page? Send us your feedback!"
+  "list_layout_like_this_tooltip": "Like this page? Send us your feedback!",
+  "list_layout_vrack_guides_title": "Guides",
+  "list_layout_vrack_guides_link1": "Configuring the vRack on your dedicated servers",
+  "list_layout_vrack_guides_link2": "Public Cloud vRack configuration",
+  "list_layout_vrack_guides_link3": "Configure an IP block in the vRack",
+  "list_layout_vrack_guides_link4": "Configuring the vRack between Public Cloud and a dedicated server"
 }

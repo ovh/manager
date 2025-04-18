@@ -17,24 +17,18 @@
             ></h2>
         </div>
         <div
-            class="d-flex justify-content-end align-items-center gap-1 flex-wrap"
+            class="col-md-4 col-xs-4 d-flex justify-content-end flex-wrap h-fit-content"
         >
             <changelog-button
                 links="ctrl.constants.CHANGELOG.iplb.links"
                 chapters="ctrl.constants.CHANGELOG.iplb.chapters"
             ></changelog-button>
-            <oui-guide-menu data-text="{{ ctrl.guides.title }}">
+            <oui-guide-menu data-text="{{:: 'iplb_guides' | translate }}">
                 <oui-guide-menu-item
-                    data-ng-repeat="guideItem in ctrl.guides.list track by guideItem.url"
+                    data-ng-repeat="guideItem in ctrl.guides track by guideItem.name"
                     data-href="{{ guideItem.url }}"
                     data-external="guideItem.external"
                     ><span data-ng-bind="guideItem.name"></span>
-                </oui-guide-menu-item>
-                <oui-guide-menu-divider></oui-guide-menu-divider>
-                <oui-guide-menu-item
-                    data-href="{{ ctrl.guides.footer.url }}"
-                    data-external="ctrl.guides.footer.external"
-                    ><span data-ng-bind="ctrl.guides.footer.name"></span>
                 </oui-guide-menu-item>
             </oui-guide-menu>
         </div>

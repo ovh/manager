@@ -774,5 +774,10 @@
   "ip_unused_banner_text": "Dysponujesz adresami IP, których nie używasz. Adresy IPv4 są zasobem deficytowym, zatem jeśli ich nie potrzebujesz, prosimy o ich zwolnienie.",
   "ip_unused_banner_link": "Sprawdź nieużywane adresy IP.",
   "ip_table_ipBlock_under_creation": "Trwa tworzenie",
-  "ip_table_ipblock_under_division": "Trwa podział"
+  "ip_table_ipblock_under_division": "Trwa podział",
+  "ip_guide_title": "Przewodnik",
+  "ip_guide_link_additional_ip": "Skonfiguruj Additional IP",
+  "ip_guide_link_ip_alias": "Konfiguracja adresu IP jako aliasu",
+  "ip_guide_link_ip_proxmox": "Konfiguracja Additional IP na serwerze Proxmox VE",
+  "ip_guide_link_floating_ip": "Concepts - Additional IP lub Floating IP on Public Cloud"
 }

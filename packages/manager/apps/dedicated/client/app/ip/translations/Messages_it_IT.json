@@ -774,5 +774,10 @@
   "ip_unused_banner_text": "Disponi di indirizzi IP non utilizzati. Gli indirizzi IPv4 sono una risorsa sempre più rara. Se non effettivamente necessari, consigliamo pertanto di liberarli.",
   "ip_unused_banner_link": "Visualizza i miei IP non utilizzati",
   "ip_table_ipBlock_under_creation": "Creazione in corso...",
-  "ip_table_ipblock_under_division": "Eliminazione in corso..."
+  "ip_table_ipblock_under_division": "Eliminazione in corso...",
+  "ip_guide_title": "Guida",
+  "ip_guide_link_additional_ip": "Configura un Additional IP",
+  "ip_guide_link_ip_alias": "Configurare un alias per un indirizzo IP",
+  "ip_guide_link_ip_proxmox": "Configurare un Additional IP su Proxmox VE",
+  "ip_guide_link_floating_ip": "Concetti - Additional IP o Floating IP su Public Cloud"
 }
