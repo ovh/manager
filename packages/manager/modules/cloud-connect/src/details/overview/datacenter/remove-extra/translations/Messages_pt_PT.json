@@ -1,6 +1,6 @@
 {
   "cloud_connect_routing_remove": "Eliminar configuração suplementar",
-  "cloud_connect_routing_remove_description": "Isto eliminará a configuração suplementar da zona de disponibilidade selecionada.",
+  "cloud_connect_routing_remove_description": "Isto eliminará a configuração adicional da zona de disponibilidade selecionada.",
   "cloud_connect_datacenter_remove_routing_error": "Erro ao eliminar uma configuração de roteamento: {{message}}",
   "cloud_connect_datacenter_remove_routing_success": "Eliminação de uma configuração de roteamento. <a href=\"{{ tasksUrl }}\">Clique aqui para ver o estado</a>."
 }
