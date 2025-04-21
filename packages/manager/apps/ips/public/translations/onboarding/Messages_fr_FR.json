@@ -33,12 +33,12 @@
   "optionsColumnIpv6": "IPv6",
 
   "optionsAddressTypes": "Types d'adresses",
-  "optionsAddressTypesIpv4": "Adresse IP unique (/32)\nBloc d'IP (entre /30 et /24)\nBlocs d'adresses IP",
+  "optionsAddressTypesIpv4": "Adresse IP unique (/32)\nBloc d'IP (entre /30 et /24)",
   "optionsAddressTypesIpv6": "Blocs d'adresses IP",
 
   "optionsModes": "Modes*",
-  "optionsModesIpv4": "Ponté (avec option vMac)\nPonté\nRouté",
-  "optionsModesIpv6": "Routé",
+  "optionsModesIpv4": "Ponté (avec option vMac)",
+  "optionsModesIpv6": "Ponté\nRouté",
 
   "optionsGeolocation": "Géolocalisation**",
   "optionsGeolocationIpv4": "Disponible dans plusieurs pays",
