@@ -192,6 +192,28 @@ const URL_LIST: { [guideName: string]: Partial<GuideLinks> } = {
     DEFAULT:
       'https://help.ovhcloud.com/csm?id=kb_search&query=additional%20IP&language=en',
   },
+  byoipLink: {
+    DE: 'https://www.ovhcloud.com/de/network/byoip/',
+    NL: 'https://www.ovhcloud.com/nl/network/byoip/',
+    ES: 'https://www.ovhcloud.com/es-es/network/byoip/',
+    IE: 'https://www.ovhcloud.com/en-ie/network/byoip/',
+    IT: 'https://www.ovhcloud.com/it/network/byoip/',
+    PL: 'https://www.ovhcloud.com/pl/network/byoip/',
+    PT: 'https://www.ovhcloud.com/pt/network/byoip/',
+    FR: 'https://www.ovhcloud.com/fr/network/byoip/',
+    GB: 'https://www.ovhcloud.com/en-gb/network/byoip/',
+    CA: 'https://www.ovhcloud.com/en-ca/network/byoip/',
+    QC: 'https://www.ovhcloud.com/fr-ca/network/byoip/',
+    IN: 'https://www.ovhcloud.com/en-in/network/byoip/',
+    SN: 'https://www.ovhcloud.com/fr-sn/network/byoip/',
+    MA: 'https://www.ovhcloud.com/fr-ma/network/byoip/',
+    TN: 'https://www.ovhcloud.com/fr-tn/network/byoip/',
+    SG: 'https://www.ovhcloud.com/en-sg/network/byoip/',
+    ASIA: 'https://www.ovhcloud.com/asia/network/byoip/',
+    AU: 'https://www.ovhcloud.com/en-au/network/byoip/',
+    US: 'https://us.ovhcloud.com/network/byoip/',
+    DEFAULT: 'https://www.ovhcloud.com/en-gb/network/byoip/',
+  },
   /*
   addNewGuideLink : {
     DEFAULT: '/guide-link-3-path',

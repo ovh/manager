@@ -4,7 +4,7 @@ import {
   useResolvedPath,
   useLocation,
   Outlet,
-  NavLink,
+  useNavigate,
 } from 'react-router-dom';
 import { OdsTabs, OdsTab } from '@ovhcloud/ods-components/react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
@@ -39,6 +39,7 @@ export default function Listing() {
       label: t('ips_dashboard_guide'),
     },
   ];
+  const navigate = useNavigate();
 
   const tabsList = [
     {
@@ -69,10 +70,9 @@ export default function Listing() {
               isSelected={location.pathname === tab.to}
               className="flex items-center justify-center"
               title={tab.title}
+              onClick={() => navigate(tab.to)}
             >
-              <NavLink to={tab.to} className="flex no-underline">
-                {tab.title}
-              </NavLink>
+              {tab.title}
             </OdsTab>
           ))}
         </OdsTabs>
