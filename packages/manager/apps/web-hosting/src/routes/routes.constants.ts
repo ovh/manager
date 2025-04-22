@@ -13,4 +13,5 @@ export const urls = {
   importSsl: `/${subRoutes.serviceName}/import-ssl`,
   orderSectigo: `/${subRoutes.serviceName}/order-sectigo`,
   disableSsl: `/${subRoutes.serviceName}/${subRoutes.domain}/disable-ssl`,
+  regenerateSsl: `/${subRoutes.serviceName}/${subRoutes.domain}/regenerate-ssl`,
 };

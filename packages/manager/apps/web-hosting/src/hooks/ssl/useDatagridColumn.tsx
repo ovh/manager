@@ -41,6 +41,13 @@ export const DatagridActionCell = (props: SslCertificate) => {
     {
       id: 2,
       label: t('regenerate_ssl'),
+      onClick: () => {
+        navigate(
+          urls.regenerateSsl
+            .replace(subRoutes.serviceName, serviceName)
+            .replace(subRoutes.domain, props?.currentState?.mainDomain),
+        );
+      },
     },
   ];
 
