@@ -33,3 +33,53 @@ export type TCertificate = {
   taskId?: number;
   type: string;
 };
+
+export enum CertificateType {
+  COMODO = 'COMODO',
+  CUSTOM = 'CUSTOM',
+  LETSENCRYPT = 'LETSENCRYPT',
+  SECTIGO = 'SECTIGO',
+}
+
+export enum State {
+  ENABLED = 'ENABLED',
+  TO_REGENERATE = 'TO_REGENERATE',
+}
+
+export enum Status {
+  ERROR = 'ERROR',
+  PENDING = 'PENDING',
+  RUNNING = 'RUNNING',
+  SCHEDULED = 'SCHEDULED',
+}
+
+export enum ResourceStatus {
+  CREATING = 'CREATING',
+  DELETING = 'DELETING',
+  ERROR = 'ERROR',
+  READY = 'READY',
+  SUSPENDED = 'SUSPENDED',
+  UPDATING = 'UPDATING',
+}
+
+export type SslCertificate = {
+  checksum: string;
+  currentState: {
+    additionalDomains: string[];
+    certificateType: CertificateType;
+    createdAt: string;
+    expiredAt: string;
+    mainDomain: string;
+    state: State;
+  };
+  currentTasks: [
+    {
+      id: string;
+      link: string;
+      status: Status;
+      type: string;
+    },
+  ];
+  id: string;
+  resourceStatus: ResourceStatus;
+};
