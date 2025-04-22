@@ -2,6 +2,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render } from '@testing-library/react';
 import Actions from './Actions.component';
 import { TVolumeBackup } from '@/data/api/api.types';
+import { VOLUME_BACKUP_STATUS } from '@/constants';
 
 // Mock ActionMenu component
 vi.mock('@ovh-ux/manager-react-components', () => ({
@@ -29,7 +30,7 @@ const mockBackup: TVolumeBackup = {
   id: 'backup-123',
   name: 'Test Backup',
   volumeId: 'volume-456',
-  status: 'available',
+  status: VOLUME_BACKUP_STATUS.OK,
   size: 10,
   region: 'us-east-1',
   creationDate: '2023-01-01T00:00:00Z',
@@ -70,7 +71,10 @@ describe('Actions Component', () => {
     // Check first menu item (restore volume)
     const createVolumeItem = getByTestId('menu-item-1');
     expect(createVolumeItem).toBeInTheDocument();
-    expect(createVolumeItem).toHaveAttribute('href', './restore-volume');
+    expect(createVolumeItem).toHaveAttribute(
+      'href',
+      `./restore-volume/${mockBackup.volume?.id}`,
+    );
     expect(createVolumeItem).toHaveTextContent(
       'pci_projects_project_storages_volume_backup_list_datagrid_menu_action_restore',
     );
@@ -101,11 +105,27 @@ describe('Actions Component', () => {
     );
   });
 
-  it('passes the correct total number of menu items', () => {
-    const { getAllByTestId } = render(<Actions backup={mockBackup} />);
+  it.each([
+    VOLUME_BACKUP_STATUS.CREATING,
+    VOLUME_BACKUP_STATUS.DELETING,
+    VOLUME_BACKUP_STATUS.ERROR,
+    VOLUME_BACKUP_STATUS.RESTORING,
+  ])(
+    'should remove restore item from the actions list when the backup status is %s',
+    (status) => {
+      const backup = { ...mockBackup, status };
+      const { getAllByTestId, debug, container } = render(
+        <Actions backup={backup} />,
+      );
 
-    // There should be exactly 2 menu items
-    const menuItems = getAllByTestId(/^menu-item-/);
-    expect(menuItems.length).toBe(3);
-  });
+      const menuItems = getAllByTestId(/^menu-item-/);
+      debug(menuItems);
+      expect(menuItems.length).toBe(2);
+      expect(menuItems[0]).toHaveAttribute(
+        'href',
+        './backup-123/create-volume',
+      );
+      expect(menuItems[1]).toHaveAttribute('href', './delete');
+    },
+  );
 });

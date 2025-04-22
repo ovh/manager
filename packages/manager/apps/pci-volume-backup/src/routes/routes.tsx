@@ -6,6 +6,7 @@ import { urls } from '@/routes/routes.constant';
 
 const LayoutPage = lazy(() => import('@/pages/layout'));
 const ListingPage = lazy(() => import('@/pages/listing'));
+const RestorePage = lazy(() => import('@/pages/restore/Restore.page'));
 const OnboardingPage = lazy(() => import('@/pages/onboarding'));
 const CreateVolumePage = lazy(() =>
   import('@/pages/create-volume/CreateVolume.page'),
@@ -33,7 +34,18 @@ export default (
           pageType: PageType.listing,
         },
       }}
-    />
+    >
+      <Route
+        path={urls.restore}
+        Component={RestorePage}
+        handle={{
+          tracking: {
+            pageName: 'restore',
+            pageType: PageType.popup,
+          },
+        }}
+      ></Route>
+    </Route>
     <Route
       path={urls.onboarding}
       Component={OnboardingPage}
