@@ -33,3 +33,13 @@ export type TCertificate = {
   taskId?: number;
   type: string;
 };
+
+export type DomainDetails = {
+  domain: string;
+  additional: string[];
+  type: string;
+  state: string;
+  creationDate: string;
+  expirationDate: string;
+  setMessage?: ({ status, label }: { status: string; label: string }) => void;
+};
