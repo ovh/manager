@@ -1,3 +1,7 @@
 {
-  "iplb_title": "Load Balancer"
+  "iplb_title": "Load Balancer",
+  "iplb_guides": "Guías",
+  "iplb_guides_link1": "Load Balancer - Primeros pasos",
+  "iplb_guides_link2": "Contratar un certificado SSL gratis",
+  "iplb_guides_link3": "Configuración SMTP en un servicio Load Balancer"
 }
