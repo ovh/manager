@@ -41,6 +41,7 @@ export const WEBSITES = 'websites';
 export const SSL = 'ssl';
 export const IMPORT_SSL = 'import-ssl';
 export const ORDER_SECTIGO = 'order-sectigo';
+export const DISABLE_SSL = 'disable-ssl';
 
 export const GUIDE_GETTING_STARTED = 'getting-started-guide';
 export const GUIDE_PUBLISHING = 'publishing-guide';

@@ -25,15 +25,6 @@ export type AttachedDomain = {
   };
 };
 
-export type TCertificate = {
-  isReportable: boolean;
-  provider: string;
-  regenerable: boolean;
-  status: string;
-  taskId?: number;
-  type: string;
-};
-
 export type DomainDetails = {
   domain: string;
   additional: string[];
@@ -42,4 +33,13 @@ export type DomainDetails = {
   creationDate: string;
   expirationDate: string;
   setMessage?: ({ status, label }: { status: string; label: string }) => void;
+};
+
+export type TCertificate = {
+  isReportable: boolean;
+  provider: string;
+  regenerable: boolean;
+  status: string;
+  taskId?: number;
+  type: string;
 };
