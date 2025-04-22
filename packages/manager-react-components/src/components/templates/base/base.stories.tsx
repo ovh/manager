@@ -205,7 +205,7 @@ export const DashboardTemplate = () => (
 );
 
 const meta: Meta<typeof BaseLayout> = {
-  title: 'Templates/Base',
+  title: 'Core/Manager React Components/Templates/Base',
   component: BaseLayout,
   argTypes: {},
   args: listingTemplateProps,

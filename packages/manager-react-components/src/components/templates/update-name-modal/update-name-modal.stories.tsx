@@ -10,7 +10,7 @@ export const UpdateNameModal = (props: UpdateNameModalProps) => (
 );
 
 const meta: Meta = {
-  title: 'Templates/Update Name Modal',
+  title: 'Core/Manager React Components/Templates/Update Name Modal',
   component: UpdateNameModalComponent,
   argTypes: {
     isLoading: { control: 'boolean' },
