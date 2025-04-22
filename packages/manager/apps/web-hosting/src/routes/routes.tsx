@@ -7,6 +7,7 @@ import {
   DASHBOARD,
   DISABLE_SSL,
   ONBOARDING,
+  REGENERATE_SSL,
   SSL,
   WEBSITES,
 } from '@/utils/tracking.constants';
@@ -94,6 +95,19 @@ export default [
         handle: {
           tracking: {
             pageName: DISABLE_SSL,
+            pageType: PageType.popup,
+          },
+        },
+      },
+      {
+        id: REGENERATE_SSL,
+        path: urls.regenerateSsl,
+        ...lazyRouteConfig(() =>
+          import('@/pages/dashboard/ssl/manage/regenerateSsl.page'),
+        ),
+        handle: {
+          tracking: {
+            pageName: REGENERATE_SSL,
             pageType: PageType.popup,
           },
         },

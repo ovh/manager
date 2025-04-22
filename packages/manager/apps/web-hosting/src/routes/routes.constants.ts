@@ -11,4 +11,5 @@ export const urls = {
   ssl: `/${subRoutes.serviceName}/ssl`,
   hosting: '/web/hosting',
   disableSsl: `/${subRoutes.serviceName}/${subRoutes.domain}/disable-ssl`,
+  regenerateSsl: `/${subRoutes.serviceName}/${subRoutes.domain}/regenerate-ssl`,
 };
