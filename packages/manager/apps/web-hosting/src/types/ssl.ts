@@ -12,3 +12,13 @@ export const SERVICE_INFOS_STATUS = {
   PENDING_DEPT: 'pendingDebt',
   UNPAID: 'unPaid',
 };
+
+export type DomainDetails = {
+  domain: string;
+  additional: string[];
+  type: string;
+  state: string;
+  creationDate: string;
+  expirationDate: string;
+  setMessage?: ({ status, label }: { status: string; label: string }) => void;
+};
