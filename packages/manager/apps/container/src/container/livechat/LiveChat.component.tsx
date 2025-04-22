@@ -83,7 +83,7 @@ export default function LiveChat({
 
   const [snowContext, setSnowContext] = useState<SnowChatContext>({
     skip_load_history: 'false',
-    live_agent_only: 'true',
+    live_agent_only: 'false',
     language,
     region,
     branding_key: 'adrielly',
