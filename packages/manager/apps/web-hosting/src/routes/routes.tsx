@@ -9,6 +9,7 @@ import {
   DISABLE_SSL,
   ONBOARDING,
   ORDER_SECTIGO,
+  REGENERATE_SSL,
   SSL,
   WEBSITE,
 } from '@/utils/tracking.constants';
@@ -120,6 +121,19 @@ export default [
         handle: {
           tracking: {
             pageName: DISABLE_SSL,
+            pageType: PageType.popup,
+          },
+        },
+      },
+      {
+        id: REGENERATE_SSL,
+        path: urls.regenerateSsl,
+        ...lazyRouteConfig(() =>
+          import('@/pages/dashboard/ssl/manage/regenerateSsl.page'),
+        ),
+        handle: {
+          tracking: {
+            pageName: REGENERATE_SSL,
             pageType: PageType.popup,
           },
         },

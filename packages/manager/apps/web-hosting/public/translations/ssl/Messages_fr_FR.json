@@ -12,7 +12,8 @@
   "disable_ssl": "Désactiver SSL",
   "delete_ssl": "Suppression SSL",
   "delete_ssl_message": "Êtes-vous sûr de vouloir supprimer le SSL sur votre hébergement ?",
-  "regenerate_ssl": "Régénérer le certificat SSL",
+  "regenerate_ssl": "Régénérer SSL",
+  "regenerate_ssl_message": "Êtes-vous sûr de vouloir régénérer l'intégralité de votre certificat SSL sur votre hébergement ?",
   "buttons_validate": "Valider",
   "buttons_cancel": "Annuler",
   "select_domain": "Sélectionnez un domaine",
@@ -44,5 +45,7 @@
   "hosting_dashboard_ssl_order_success": "La commande a bien été prise en compte.",
   "hosting_dashboard_ssl_delete_success": "Votre demande de suppression a bien été prise en compte. Elle sera exécutée d'ici quelques instants.",
   "hosting_dashboard_ssl_delete_error": "Une erreur est survenue lors de la suppression d'un certificat SSL. ({{error}})",
-  "hosting_domain_name": "Nom du domaine:"
+  "hosting_domain_name": "Nom du domaine:",
+  "hosting_dashboard_ssl_regenerate_success": "La régénération a bien été prise en compte.",
+  "hosting_dashboard_ssl_regenerate_error": "Une erreur est survenue lors de la régénération d'un certificat SSL."
 }
