@@ -1,5 +1,6 @@
 export const subRoutes = {
   serviceName: ':serviceName',
+  domain: ':domain',
 };
 
 export const urls = {
@@ -11,4 +12,5 @@ export const urls = {
   hosting: '/web/hosting',
   importSsl: `/${subRoutes.serviceName}/import-ssl`,
   orderSectigo: `/${subRoutes.serviceName}/order-sectigo`,
+  disableSsl: `/${subRoutes.serviceName}/${subRoutes.domain}/disable-ssl`,
 };
