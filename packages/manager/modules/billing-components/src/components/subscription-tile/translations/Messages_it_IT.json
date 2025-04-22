@@ -33,8 +33,5 @@
   "manager_billing_subscription_resiliate_my_engagement": "Rescindi l’impegno contrattuale",
   "manager_billing_subscription_pay_bill": "Saldare",
   "manager_billing_subscription_pay_bill_renew": "Rinnovare",
-  "manager_billing_subscription_engagement_commit_cancel": "Annulla la richiesta di sottoscrizione di un impegno contrattuale",
-  "manager_billing_subscription_creation_region_us": "Data dell’impegno contrattuale",
-  "manager_billing_subscription_engagement_status_none_region_us": "1 mese",
-  "manager_billing_subscription_resiliate_cancel_region_us": "Disattivare"
+  "manager_billing_subscription_engagement_commit_cancel": "Annulla la richiesta di sottoscrizione di un impegno contrattuale"
 }
