@@ -3,4 +3,5 @@ export const urls = {
   onboarding: 'onboarding',
   listing: 'list',
   createVolume: 'list/:backupId/create-volume',
+  restore: 'restore-volume/:volumeId',
 };

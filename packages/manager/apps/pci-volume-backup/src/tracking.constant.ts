@@ -16,8 +16,8 @@ export const LEVEL2 = {
   },
 };
 export const UNIVERSE = 'PublicCloud';
-export const SUB_UNIVERSE = 'PublicCloud';
-export const APP_NAME = 'pci-volume-backup';
+export const SUB_UNIVERSE = 'storages';
+export const APP_NAME = 'volume-backup';
 export const VOLUME_BACKUP_BASE_TRACKING =
   'pci::projects::project::storages::volume-backup';
 export const VOLUME_BACKUP_CTA_TRACKING = `PublicCloud::${VOLUME_BACKUP_BASE_TRACKING}`;
@@ -46,11 +46,11 @@ export const VOLUME_BACKUP_TRACKING = {
     ROW_CTA_DELETE_VOLUME: `${VOLUME_BACKUP_CTA_TRACKING}::table-option-menu::delete-volume`,
   },
   RESTORE_VOLUME: {
-    PAGE: `${VOLUME_BACKUP_BASE_TRACKING}::restore`,
-    CTA_CANCEL: `${VOLUME_BACKUP_CTA_TRACKING}::restore::cancel`,
-    CTA_CONFIRM: `${VOLUME_BACKUP_CTA_TRACKING}::restore::confirm`,
-    REQUEST_FAIL: `${VOLUME_BACKUP_CTA_TRACKING}::restore_error`,
-    REQUEST_SUCCESS: `${VOLUME_BACKUP_CTA_TRACKING}::restore_success`,
+    PAGE: 'restore',
+    CTA_CANCEL: 'cancel',
+    CTA_CONFIRM: 'confirm',
+    REQUEST_FAIL: 'restore_error',
+    REQUEST_SUCCESS: 'restore_success',
   },
   CREATE_VOLUME: {
     PAGE: `${VOLUME_BACKUP_BASE_TRACKING}::create-volume`,
