@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.26.5...@ovh-ux/manager-dedicated@20.27.0) (2025-04-22)
+
+
+### Bug Fixes
+
+* **dedicated:** base configuration link by subsidiaries ([#16094](https://github.com/ovh/manager/issues/16094)) ([44db09f](https://github.com/ovh/manager/commit/44db09ff890af282ee5e6235ff6ecb1fbf98fe69)), closes [#MANAGER-17503](https://github.com/ovh/manager/issues/MANAGER-17503)
+
+
+### Features
+
+* **dedicated.byoip:** update guide links ([#16519](https://github.com/ovh/manager/issues/16519)) ([4c162f0](https://github.com/ovh/manager/commit/4c162f07468faa4c12e1cead24dd91c7d93dbb79)), closes [#MANAGER-17196](https://github.com/ovh/manager/issues/MANAGER-17196)
+* **dedicated:** add guid link for ip listing ([#16602](https://github.com/ovh/manager/issues/16602)) ([c93c6b9](https://github.com/ovh/manager/commit/c93c6b93836cadebb0e42a5538a76868bf6b7d70)), closes [#MANAGER-17943](https://github.com/ovh/manager/issues/MANAGER-17943)
+
+
+
+
+
 ## [20.26.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.26.4...@ovh-ux/manager-dedicated@20.26.5) (2025-04-22)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated

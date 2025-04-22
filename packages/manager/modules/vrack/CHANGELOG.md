@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.18.1...@ovh-ux/manager-vrack@1.19.0) (2025-04-22)
+
+
+### Bug Fixes
+
+* **dedicated:** remove polling when vrack is expired ([#16466](https://github.com/ovh/manager/issues/16466)) ([193f752](https://github.com/ovh/manager/commit/193f7525139afb5bcd30ad62372c2424dcd0bf54)), closes [#MANAGER-17747](https://github.com/ovh/manager/issues/MANAGER-17747)
+
+
+### Features
+
+* **dedicated:** add guide links on iplb and vrack ([#16358](https://github.com/ovh/manager/issues/16358)) ([590a9ca](https://github.com/ovh/manager/commit/590a9ca36ac0dc9e3380f12b2a9b1340e038a2c6)), closes [#MANAGER-17524](https://github.com/ovh/manager/issues/MANAGER-17524)
+
+
+
+
+
 ## [1.18.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.18.0...@ovh-ux/manager-vrack@1.18.1) (2025-04-03)
 
 

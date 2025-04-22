@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.35.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.35.0...@ovh-ux/manager-new-billing@0.35.1) (2025-04-22)
+
+
+### Bug Fixes
+
+* **dedicated:** base configuration link by subsidiaries ([#16094](https://github.com/ovh/manager/issues/16094)) ([44db09f](https://github.com/ovh/manager/commit/44db09ff890af282ee5e6235ff6ecb1fbf98fe69)), closes [#MANAGER-17503](https://github.com/ovh/manager/issues/MANAGER-17503)
+
+
+
+
+
 # [0.35.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.34.1...@ovh-ux/manager-new-billing@0.35.0) (2025-04-17)
 
 
