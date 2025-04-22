@@ -3,7 +3,6 @@ import { render, fireEvent, act, waitFor } from '@testing-library/react';
 import { useNavigate } from 'react-router-dom';
 import {
   TBackup,
-  TBackupStatus,
   TRegion,
   TRegionQuota,
   TVolume,
@@ -17,7 +16,6 @@ import {
   useVolume,
   TNewVolumeFromBackupData,
 } from '@/data/hooks/useVolume';
-import { useBackups } from '@/data/hooks/useVolumeBackup';
 
 const MOCK_REGION: TRegion = {
   name: 'AF-NORTH-LZ-RBA-A',

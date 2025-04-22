@@ -26,4 +26,3 @@ export const deleteBackup = async (
   );
   return data;
 };
-
