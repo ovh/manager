@@ -11,6 +11,7 @@ import {
   DISABLE_SSL,
   ONBOARDING,
   ORDER_SECTIGO,
+  REGENERATE_SSL,
   SSL,
   WEBSITE,
 } from '@/utils/tracking.constants';
@@ -30,6 +31,9 @@ const OrderSectigoPage = React.lazy(() =>
 );
 const DisableSslPage = React.lazy(() =>
   import('@/pages/dashboard/ssl/manage/disableSsl.page'),
+);
+const RegenerateSslPage = React.lazy(() =>
+  import('@/pages/dashboard/ssl/manage/regenerateSsl.page'),
 );
 
 export default (
@@ -124,6 +128,17 @@ export default (
         handle={{
           tracking: {
             pageName: DISABLE_SSL,
+            pageType: PageType.popup,
+          },
+        }}
+      />
+      <Route
+        id={REGENERATE_SSL}
+        path={urls.regenerateSsl}
+        Component={RegenerateSslPage}
+        handle={{
+          tracking: {
+            pageName: REGENERATE_SSL,
             pageType: PageType.popup,
           },
         }}
