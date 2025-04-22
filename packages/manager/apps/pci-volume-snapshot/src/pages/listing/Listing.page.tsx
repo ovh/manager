@@ -83,6 +83,8 @@ export default function ListingPage() {
     setSearchField('');
   };
 
+  // TODO : to remove this comment. It's only here to be able to generate a staging
+
   const shouldRedirectToOnBoarding =
     !isAllSnapshotPending && !!allSnapshots && allSnapshots.length === 0;
 
