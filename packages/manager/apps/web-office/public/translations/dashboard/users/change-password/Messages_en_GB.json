@@ -1,16 +1,16 @@
 {
   "dashboard_users_change_password_title": "Modify password",
-  "dashboard_users_change_password_radio_1": "I generate a random password",
-  "dashboard_users_change_password_radio_2": "Personalize my password",
+  "dashboard_users_change_password_radio_1": "Generate a random password",
+  "dashboard_users_change_password_radio_2": "Personalise my password",
   "dashboard_users_change_password_label_password": "New password",
   "dashboard_users_change_password_label_confirm_password": "New password confirmation",
   "dashboard_users_change_password_label_email": "Email account for receiving the password",
   "dashboard_users_change_password_helper1": "Please note that the password must meet the following criteria:",
   "dashboard_users_change_password_helper2": "Minimum 8 characters",
-  "dashboard_users_change_password_helper3": "Maximum 16 characters.",
-  "dashboard_users_change_password_helper4": "At least 1 lower-case letter, 1 upper-case letter, 1 number, or 1 special character",
-  "dashboard_users_change_password_email-edit-title": "If you do not enter a password, it will be generated randomly and sent by email to the address specified",
+  "dashboard_users_change_password_helper3": "Maximum 16 characters",
+  "dashboard_users_change_password_helper4": "At least 1 lower case letter, 1 upper case letter, 1 number, or 1 special character",
+  "dashboard_users_change_password_email-edit-title": "If you do not enter a password, it will be generated randomly and sent to the specified address by email",
   "dashboard_users_change_password_email-edit": "Send by email",
-  "dashboard_users_change_password_message_error": "An error has occurred retrieving information",
+  "dashboard_users_change_password_message_error": "An error has occurred while retrieving information.",
   "dashboard_users_change_password_message_success": "Your password change has been processed."
 }

@@ -82,7 +82,7 @@
   "region_US-WEST-OR_micro": "Oregon ({{ micro }})",
   "region_continent_US-EAST-VA": "North America",
   "region_continent_US-WEST-OR": "North America",
-  "region_EU-WEST-PAR": "Montreal",
+  "region_EU-WEST-PAR": "Paris",
   "region_EU-WEST-PAR_micro": "Paris ({{ micro }})",
   "region_location_EU-WEST-PAR": "Western Europe (France)",
   "region_continent_EU-WEST-PAR": "Western Europe"
