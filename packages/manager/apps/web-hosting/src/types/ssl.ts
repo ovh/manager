@@ -27,7 +27,7 @@ export type AttachedDomain = {
 
 export type DomainDetails = {
   domain: string;
-  additional: string[];
+  additional: string;
   type: string;
   state: string;
   creationDate: string;
