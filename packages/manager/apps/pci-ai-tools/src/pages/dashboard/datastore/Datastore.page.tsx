@@ -40,7 +40,7 @@ const Datastore = () => {
       navigate(`./delete/${datastore.region}/${datastore.alias}`),
   });
 
-  const userPath = `#/pci/project/${projectId}/users`;
+  const userPath = `#/pci/project/${projectId}/storages/objects/users`;
 
   useEffect(() => {
     if (!regionQuery.data) return;
