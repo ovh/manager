@@ -1,26 +1,59 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
-import { OdsButton } from '@ovhcloud/ods-components/react';
-import { ODS_BUTTON_SIZE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import {
-  Breadcrumb,
+  OdsButton,
+  OdsBreadcrumb,
+  OdsBreadcrumbItem,
+} from '@ovhcloud/ods-components/react';
+import { ODS_BUTTON_SIZE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { useProject } from '@ovh-ux/manager-pci-common';
+import { FilterTypeCategories } from '@ovh-ux/manager-core-api';
+import {
   Datagrid,
   BaseLayout,
-  useResourcesV6,
   RedirectionGuard,
+  useProjectUrl,
+  PciGuidesHeader,
+  ChangelogButton,
 } from '@ovh-ux/manager-react-components';
-import appConfig from '@/pci-volume-backup.config';
-import {
-  useDatagridColumn,
-  toColumnDatagrids,
-} from '@/pages/listing/useDatagridColumn';
+import { useDatagridColumn } from '@/pages/listing/useDatagridColumn';
 import { TVolumeBackup } from '@/data/api/api.types';
+import { useVolumeBackups } from '@/data/hooks/useVolumeBackups';
+import {
+  getVolumeBackups,
+  refetchInterval,
+} from '@/data/api/pci-volume-backup';
+import config from '@/pci-volume-backup.config';
+
+type ProjectParams = {
+  projectId: string;
+};
 
 export default function Listing() {
   const columns = useDatagridColumn();
   const { t } = useTranslation('listing');
-  const { projectId } = useParams();
+  const { projectId } = useParams() as ProjectParams;
+  const hrefProject = useProjectUrl('public-cloud');
+  const { data: project } = useProject();
+
+  const columnsWithSearchable = useMemo(() => {
+    return [
+      ...columns.map((column) => ({
+        ...column,
+        isSearchable: false,
+      })),
+      {
+        id: 'search',
+        label: '',
+        cell: () => <></>,
+        isSearchable: true,
+        isFilterable: false,
+        isSortable: false,
+        type: FilterTypeCategories.String,
+      },
+    ];
+  }, [columns]);
 
   const {
     data: { data: volumeBackups } = {},
@@ -33,14 +66,28 @@ export default function Listing() {
     sorting,
     setSorting,
     filters,
-  } = useResourcesV6<TVolumeBackup>({
-    columns: toColumnDatagrids(columns),
+  } = useVolumeBackups<TVolumeBackup>({
+    columns: columnsWithSearchable,
     route: `/cloud/project/${projectId}/aggregated/volumeBackup`,
+    queryFn: async () =>
+      getVolumeBackups(projectId)().then(({ data }) => {
+        return {
+          data: data.map((volume: TVolumeBackup) => ({
+            ...volume,
+            search: `${volume.id} ${volume.name} ${volume.region}`,
+          })),
+        };
+      }),
+    refetchInterval,
     queryKey: [
       'pci-volume-backup',
       `/cloud/project/${projectId}/aggregated/volumeBackup`,
     ],
     pageSize: 10,
+    defaultSorting: {
+      id: 'creationDate',
+      desc: true,
+    },
   });
 
   const shouldRedirectToOnboarding =
@@ -48,6 +95,8 @@ export default function Listing() {
 
   const header = {
     title: t('pci_projects_project_storages_volume_backup_list_header'),
+    headerButton: <PciGuidesHeader category="volumeBackup" />,
+    changelogButton: <ChangelogButton links={config.changeLogLinks} />,
   };
 
   const TopbarCTA = () => (
@@ -70,30 +119,36 @@ export default function Listing() {
     >
       <BaseLayout
         breadcrumb={
-          <Breadcrumb
-            rootLabel={appConfig.rootLabel}
-            appName="pci-volume-backup"
-          />
+          <OdsBreadcrumb>
+            <OdsBreadcrumbItem
+              label={project?.description}
+              href={hrefProject}
+            />
+            <OdsBreadcrumbItem
+              label={t(
+                'pci_projects_project_storages_volume_backup_list_header',
+              )}
+              href="#"
+            />
+          </OdsBreadcrumb>
         }
         header={header}
       >
-        <React.Suspense>
-          {columns && (
-            <Datagrid
-              columns={columns}
-              items={flattenData || []}
-              totalItems={totalCount || 0}
-              hasNextPage={hasNextPage && !isLoading}
-              onFetchNextPage={fetchNextPage}
-              sorting={sorting}
-              onSortChange={setSorting}
-              isLoading={isLoading}
-              filters={filters}
-              search={search}
-              topbar={<TopbarCTA />}
-            />
-          )}
-        </React.Suspense>
+        {columns && (
+          <Datagrid
+            columns={columns}
+            items={flattenData || []}
+            totalItems={totalCount || 0}
+            hasNextPage={hasNextPage && !isLoading}
+            onFetchNextPage={fetchNextPage}
+            sorting={sorting}
+            onSortChange={setSorting}
+            isLoading={isLoading}
+            filters={filters}
+            search={search}
+            topbar={<TopbarCTA />}
+          />
+        )}
       </BaseLayout>
     </RedirectionGuard>
   );

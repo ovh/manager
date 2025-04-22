@@ -55,10 +55,19 @@ vi.mock('@ovh-ux/manager-react-components', async () => {
     RedirectionGuard: ({
       children,
       condition,
+      route,
     }: {
       children: React.ReactNode;
       condition: boolean;
-    }) => (condition ? <div>Redirected</div> : <div>{children}</div>),
+      route: string;
+    }) =>
+      condition ? (
+        <div data-testid="redirected" data-route={route}>
+          Redirected
+        </div>
+      ) : (
+        <div data-testid="not-redirected">{children}</div>
+      ),
     Notifications: vi
       .fn()
       .mockReturnValue(<div data-testid="notifications"></div>),
@@ -73,6 +82,24 @@ vi.mock('@ovh-ux/manager-react-components', async () => {
     useCatalogPrice: vi.fn(() => ({
       getFormattedCatalogPrice: () => `PRICE`,
     })),
+    Datagrid: (props: Partial<{ topbar: JSX.Element }>) => (
+      <div data-testid="datagrid">{props.topbar}</div>
+    ),
+    BaseLayout: ({
+      children,
+      header,
+      breadcrumb,
+    }: {
+      children: React.ReactNode;
+      header?: { title: string };
+      breadcrumb: JSX.Element;
+    }) => (
+      <div data-testid="base-layout">
+        <div data-testid="header">{header?.title}</div>
+        <div data-testid="breadcrumb-container">{breadcrumb}</div>
+        {children}
+      </div>
+    ),
   };
 });
 
@@ -93,14 +120,14 @@ vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
       isDisabled: string | boolean;
       onClick: () => void;
       className: string;
-      'data-testid': string;
+      'data-testid'?: string;
     }) => (
       <button
         type="button"
         className={className}
         disabled={isDisabled === 'true' || isDisabled === true}
         onClick={onClick}
-        data-testid={dataTestId}
+        data-testid={dataTestId || 'button'}
       >
         {icon && <span className={`icon-${icon}`} />}
         {label}
@@ -178,6 +205,14 @@ vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
       'data-testid': string;
     }) => (
       <div data-testid={testId} data-color={color}>
+        {label}
+      </div>
+    ),
+    OdsBreadcrumb: ({ children }: { children: React.ReactNode }) => (
+      <div data-testid="breadcrumb">{children}</div>
+    ),
+    OdsBreadcrumbItem: ({ label, href }: { label: string; href: string }) => (
+      <div data-testid="breadcrumb-item" data-label={label} data-href={href}>
         {label}
       </div>
     ),
