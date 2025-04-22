@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.22.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.22.1...@ovh-ux/manager-zimbra-app@0.22.2) (2025-04-22)
+
+
+### Bug Fixes
+
+* **zimbra:** account deletion notification message ([7d0f26b](https://github.com/ovh/manager/commit/7d0f26b30016cd8dd9473857fd7a0b4034be5d12)), closes [#MANAGER-17876](https://github.com/ovh/manager/issues/MANAGER-17876)
+
+
+
+
+
 ## [0.22.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.22.0...@ovh-ux/manager-zimbra-app@0.22.1) (2025-04-17)
 
 **Note:** Version bump only for package @ovh-ux/manager-zimbra-app
