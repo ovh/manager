@@ -3,7 +3,7 @@ import {
   DataGridTextCell,
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import { TVolume } from '@/api/data/volume';
+import { TVolume } from '@/api/hooks/useVolume';
 import CapacityComponent from '@/components/list/Capacity.component';
 import ActionsComponent from '@/components/list/Actions.component';
 import AttachedInstanceComponent from '@/components/list/AttachedInstance.component';

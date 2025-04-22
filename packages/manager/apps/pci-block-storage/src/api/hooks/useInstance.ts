@@ -15,7 +15,9 @@ export const useAttachableInstances = (projectId: string, volumeId: string) => {
 
   const select = useMemo(
     () =>
-      volume ? selectAttachableInstances(volume.availabilityZone) : undefined,
+      volume
+        ? selectAttachableInstances(volume.availabilityZone, volume.attachedTo)
+        : undefined,
     [volume],
   );
 

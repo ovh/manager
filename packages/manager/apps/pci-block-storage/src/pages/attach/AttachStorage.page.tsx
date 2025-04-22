@@ -103,13 +103,6 @@ export default function AttachStorage() {
   const isPending = isInstancesPending || isVolumePending || isAttachPending;
   const canAttach = !isPending && selectedInstance?.id;
 
-  // redirect to listing if volume is already attached
-  useEffect(() => {
-    if (!isPending && volume?.attachedTo?.length > 0) {
-      navigate(`/pci/projects/${projectId}/storages/blocks`);
-    }
-  }, [navigate, projectId, volume, isPending]);
-
   return (
     <OsdsModal
       headline={t('pci_projects_project_storages_blocks_block_attach_title')}

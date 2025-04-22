@@ -1,7 +1,12 @@
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
 import { getMacroRegion } from '@ovh-ux/manager-react-components';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import {
+  useMutation,
+  useQueries,
+  useQuery,
+  UseQueryResult,
+} from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import {
   addVolume,
@@ -12,71 +17,109 @@ import {
   getAllVolumes,
   getVolume,
   getVolumeSnapshot,
-  paginateResults,
-  sortResults,
-  TVolume,
+  TAPIVolume,
   TVolumeSnapshot,
   updateVolume,
   VolumeOptions,
 } from '@/api/data/volume';
 import { UCENTS_FACTOR } from '@/hooks/currency-constants';
 import queryClient from '@/queryClient';
+import { getVolumeCatalogQuery } from '@/api/hooks/useCatalog';
+import {
+  mapVolumeStatus,
+  sortResults,
+  paginateResults,
+} from '@/api/select/volume';
+import { TVolumeCatalog } from '@/api/data/catalog';
 
-export const useAllVolumes = (projectId: string) => {
+export type TVolume = TAPIVolume & {
+  statusGroup: string;
+  regionName: string;
+  canAttachInstance: boolean;
+  canDetachInstance: boolean;
+};
+
+export const useAllVolumes = (projectId: string | null) => {
   const { t } = useTranslation('region');
-  return useQuery({
-    queryKey: ['project', projectId, 'volumes'],
-    queryFn: () => getAllVolumes(projectId),
-    select: (data) =>
-      data.map((volume: TVolume) => {
-        let statusGroup = '';
-        if (['available', 'in-use'].includes(volume.status)) {
-          statusGroup = 'ACTIVE';
-        }
-        if (
-          [
-            'creating',
-            'attaching',
-            'detaching',
-            'deleting',
-            'backing-up',
-            'restoring-backup',
-            'snapshotting',
-            'awaiting-transfer',
-          ].includes(volume.status)
-        ) {
-          statusGroup = 'PENDING';
-        }
-        if (
-          [
-            'error',
-            'error_deleting',
-            'error_restoring',
-            'error_extending',
-          ].includes(volume.status)
-        ) {
-          statusGroup = 'ERROR';
-        }
-        return {
-          ...volume,
-          statusGroup,
-          regionName: t(
-            `manager_components_region_${getMacroRegion(volume.region)}_micro`,
-            {
-              micro:
-                volume.availabilityZone && volume.availabilityZone !== 'any'
-                  ? volume.availabilityZone
-                  : volume.region,
+
+  const mapVolumeRegionName = useCallback(
+    <V extends TAPIVolume>(volume: V): V & { regionName: string } => ({
+      ...volume,
+      regionName: t(
+        `manager_components_region_${getMacroRegion(volume.region)}_micro`,
+        {
+          micro:
+            volume.availabilityZone && volume.availabilityZone !== 'any'
+              ? volume.availabilityZone
+              : volume.region,
+        },
+      ),
+    }),
+    [t],
+  );
+
+  const combine = useCallback(
+    ([{ data, ...restQuery }, { data: catalogData }]: [
+      UseQueryResult<TAPIVolume[]>,
+      UseQueryResult<TVolumeCatalog>,
+    ]) => {
+      const catalogPricing = new Map(
+        catalogData?.models.map((m) => [
+          m.name,
+          new Map(m.pricings.flatMap((p) => p.regions.map((r) => [r, p]))),
+        ]),
+      );
+
+      return {
+        data: data
+          ?.map(mapVolumeStatus)
+          .map(mapVolumeRegionName)
+          .map(
+            (volume): TVolume => {
+              const pricing = catalogPricing
+                .get(volume.type)
+                ?.get(volume.region);
+
+              // TODO : update this block when api is up to date
+              let maxAttachableInstances = 1;
+              if (pricing && pricing.specs.maxAttachableInstances) {
+                maxAttachableInstances = pricing.specs.maxAttachableInstances;
+              } else if (
+                volume.type === 'classic' &&
+                volume.region === 'EU-WEST-PAR'
+              ) {
+                maxAttachableInstances = 16;
+              }
+
+              return {
+                ...volume,
+                canAttachInstance:
+                  maxAttachableInstances > volume.attachedTo.length,
+                canDetachInstance: volume.attachedTo.length > 0,
+              };
             },
           ),
-        };
-      }),
-    enabled: !!projectId,
+        ...restQuery,
+      };
+    },
+    [mapVolumeRegionName],
+  );
+
+  return useQueries({
+    queries: [
+      {
+        queryKey: ['project', projectId, 'volumes'],
+        queryFn: () => getAllVolumes(projectId),
+        enabled: !!projectId,
+      },
+      getVolumeCatalogQuery(projectId),
+    ],
+    combine,
   });
 };
 
 export const useVolumes = (
-  projectId: string,
+  projectId: string | null,
   { pagination, sorting }: VolumeOptions,
   filters: Filter[] = [],
 ) => {
@@ -106,7 +149,7 @@ export const getVolumeQueryKey = (projectId: string, volumeId: string) => [
 
 export const getVolumeQuery = (projectId: string, volumeId: string) => ({
   queryKey: getVolumeQueryKey(projectId, volumeId),
-  queryFn: (): Promise<TVolume> => getVolume(projectId, volumeId),
+  queryFn: () => getVolume(projectId, volumeId),
   enabled: !!volumeId,
 });
 
@@ -235,8 +278,8 @@ export const convertUcentsToCurrency = (value: number, interval = 1) =>
 
 interface UpdateVolumeProps {
   projectId: string;
-  volumeToEdit: TVolume;
-  originalVolume: TVolume;
+  volumeToEdit: Partial<TAPIVolume>;
+  originalVolume: TAPIVolume;
   onError: (cause: Error) => void;
   onSuccess: () => void;
 }
