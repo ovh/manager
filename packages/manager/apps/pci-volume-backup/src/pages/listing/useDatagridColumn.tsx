@@ -1,6 +1,5 @@
 import {
   DataGridTextCell,
-  ColumnDatagrid,
   DatagridColumn,
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
@@ -44,7 +43,7 @@ export const useDatagridColumn = () => {
       cell: (props: TVolumeBackup) => (
         <DataGridTextCell>{props.id}</DataGridTextCell>
       ),
-      isSearchable: true,
+      isSearchable: false,
       isSortable: true,
       isFilterable: true,
       type: FilterTypeCategories.String,
@@ -57,7 +56,7 @@ export const useDatagridColumn = () => {
       cell: (props: TVolumeBackup) => (
         <DataGridTextCell>{props.region}</DataGridTextCell>
       ),
-      isSearchable: true,
+      isSearchable: false,
       isSortable: true,
       isFilterable: true,
       type: FilterTypeCategories.String,
@@ -126,12 +125,3 @@ export const useDatagridColumn = () => {
 
   return columns;
 };
-
-export const toColumnDatagrids = (columns: DatagridColumn<TVolumeBackup>[]) =>
-  columns.map((column) => ({
-    id: column.id,
-    label: column.label,
-    cell: column.cell,
-    isSearchable: column.isSearchable,
-    type: column.type,
-  })) as ColumnDatagrid[];
