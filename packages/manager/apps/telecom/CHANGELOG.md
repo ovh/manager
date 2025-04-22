@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.9.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.9.2...@ovh-ux/manager-telecom@16.9.3) (2025-04-22)
+
+
+### Bug Fixes
+
+* **telecom:** add upload files for ios ([09d29ae](https://github.com/ovh/manager/commit/09d29ae31dd60538b49d7e4889e2a76548be3cda)), closes [#MANAGER-17849](https://github.com/ovh/manager/issues/MANAGER-17849)
+* **telecom:** problem when downloading records ([e57b239](https://github.com/ovh/manager/commit/e57b239797e4d941c2691d5a2788a565e2c2fc9b)), closes [#MANAGER-17915](https://github.com/ovh/manager/issues/MANAGER-17915)
+
+
+
+
+
 ## [16.9.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.9.1...@ovh-ux/manager-telecom@16.9.2) (2025-04-17)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom

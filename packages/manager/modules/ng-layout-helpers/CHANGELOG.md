@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-ng-layout-helpers@2.11.0...@ovh-ux/manager-ng-layout-helpers@2.11.1) (2025-04-22)
+
+
+### Bug Fixes
+
+* **dedicated.vps and web:** add guide on listing page and dashboard ([#16344](https://github.com/ovh/manager/issues/16344)) ([c3730ed](https://github.com/ovh/manager/commit/c3730ed0dfe016a0e1b191c1a6cacdb3bee8b75b)), closes [#MANAGER-17587](https://github.com/ovh/manager/issues/MANAGER-17587)
+
+
+
+
+
 # [2.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-ng-layout-helpers@2.10.0...@ovh-ux/manager-ng-layout-helpers@2.11.0) (2025-02-20)
 
 

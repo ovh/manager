@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.10.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.10.12...@ovh-ux/manager-web@19.10.13) (2025-04-22)
+
+
+### Bug Fixes
+
+* **dedicated.vps and web:** add guide on listing page and dashboard ([#16344](https://github.com/ovh/manager/issues/16344)) ([c3730ed](https://github.com/ovh/manager/commit/c3730ed0dfe016a0e1b191c1a6cacdb3bee8b75b)), closes [#MANAGER-17587](https://github.com/ovh/manager/issues/MANAGER-17587)
+* **web.hosting:** remove statistics cdn in multisite section ([ef78337](https://github.com/ovh/manager/commit/ef7833741f06a98b507deb66736a19b5377c60c2)), closes [#MANAGER-17062](https://github.com/ovh/manager/issues/MANAGER-17062)
+
+
+
+
+
 ## [19.10.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.10.11...@ovh-ux/manager-web@19.10.12) (2025-04-17)
 
 
