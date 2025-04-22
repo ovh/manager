@@ -6,6 +6,7 @@ import { urls } from '@/routes/routes.constants';
 import {
   DASHBOARD,
   IMPORT_SSL,
+  DISABLE_SSL,
   ONBOARDING,
   ORDER_SECTIGO,
   SSL,
@@ -106,6 +107,19 @@ export default [
         handle: {
           tracking: {
             pageName: ORDER_SECTIGO,
+            pageType: PageType.popup,
+          },
+        },
+      },
+      {
+        id: DISABLE_SSL,
+        path: urls.disableSsl,
+        ...lazyRouteConfig(() =>
+          import('@/pages/dashboard/ssl/manage/disableSsl.page'),
+        ),
+        handle: {
+          tracking: {
+            pageName: DISABLE_SSL,
             pageType: PageType.popup,
           },
         },
