@@ -17,7 +17,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { Trans, Translation, useTranslation } from 'react-i18next';
 import { useHref, useParams } from 'react-router-dom';
 
-import { FC, PropsWithChildren, useMemo, useState } from 'react';
+import { FC, useMemo, useState } from 'react';
 import { ODS_LINK_COLOR } from '@ovhcloud/ods-components';
 import { TCreateTicketResponse } from '@/api/data/ticket';
 import {
@@ -255,13 +255,15 @@ const IncreaseQuotaSupport = () => {
         label={t('pci_projects_project_quota_increase_back_label')}
         href={backHref}
       />
-      <OdsMessage className="mt-4">
-        {t('pci_projects_project_quota_increase_banner')}
-      </OdsMessage>
+      <div>
+        <OdsMessage className="my-4">
+          {t('pci_projects_project_quota_increase_banner')}
+        </OdsMessage>
+      </div>
       {ticketCreated ? (
         <>
           <Notifications />
-          <OdsText className="mt-5 whitespace-pre-wrap">
+          <OdsText className="whitespace-pre-wrap">
             {t('pci_projects_project_quota_assistance_success')}
           </OdsText>
         </>
