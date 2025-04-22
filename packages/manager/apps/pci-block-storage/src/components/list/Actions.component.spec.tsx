@@ -2,7 +2,7 @@ import { describe, it, vi } from 'vitest';
 import { render } from '@testing-library/react';
 import { useHref } from 'react-router-dom';
 import ActionsComponent from '@/components/list/Actions.component';
-import { TVolume } from '@/api/data/volume';
+import { TVolume } from '@/api/hooks/useVolume';
 
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({ t: (key: string) => key }),
@@ -26,6 +26,9 @@ const mockVolume: TVolume = {
   type: 'ssd',
   regionName: 'US West 2',
   availabilityZone: 'any',
+  canAttachInstance: true,
+  canDetachInstance: false,
+  maxAttachedInstances: 1,
 };
 const mockVolumeDetach: TVolume = {
   id: '1',
@@ -42,6 +45,9 @@ const mockVolumeDetach: TVolume = {
   type: 'ssd',
   regionName: 'US West 2',
   availabilityZone: 'any',
+  canAttachInstance: false,
+  canDetachInstance: true,
+  maxAttachedInstances: 1,
 };
 describe('ActionsComponent', () => {
   it('ActionsComponent renders correct button with correct links', () => {
@@ -64,7 +70,7 @@ describe('ActionsComponent', () => {
       './delete/1',
     );
 
-    expect(getByTestId('actionComponent-attach-detach-button')).toHaveAttribute(
+    expect(getByTestId('actionComponent-attach-button')).toHaveAttribute(
       'href',
       './attach/1',
     );
@@ -80,7 +86,7 @@ describe('ActionsComponent', () => {
       <ActionsComponent volume={mockVolumeDetach} projectUrl="/project" />,
     );
 
-    expect(getByTestId('actionComponent-attach-detach-button')).toHaveAttribute(
+    expect(getByTestId('actionComponent-detach-button')).toHaveAttribute(
       'href',
       './detach/1',
     );
