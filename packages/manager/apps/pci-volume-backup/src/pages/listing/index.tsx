@@ -1,11 +1,11 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
 import {
   OdsButton,
   OdsBreadcrumb,
   OdsBreadcrumbItem,
 } from '@ovhcloud/ods-components/react';
+import { Outlet, useParams } from 'react-router-dom';
 import { ODS_BUTTON_SIZE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { useProject } from '@ovh-ux/manager-pci-common';
 import { FilterTypeCategories } from '@ovh-ux/manager-core-api';
@@ -16,6 +16,7 @@ import {
   useProjectUrl,
   PciGuidesHeader,
   ChangelogButton,
+  Notifications,
 } from '@ovh-ux/manager-react-components';
 import { useDatagridColumn } from '@/pages/listing/useDatagridColumn';
 import { TVolumeBackup } from '@/data/api/api.types';
@@ -134,6 +135,10 @@ export default function Listing() {
         }
         header={header}
       >
+        <div className="my-4">
+          <Notifications />
+        </div>
+
         {columns && (
           <Datagrid
             columns={columns}
@@ -149,6 +154,10 @@ export default function Listing() {
             topbar={<TopbarCTA />}
           />
         )}
+
+        <Suspense>
+          <Outlet />
+        </Suspense>
       </BaseLayout>
     </RedirectionGuard>
   );
