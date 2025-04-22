@@ -33,5 +33,8 @@
   "manager_billing_subscription_resiliate_my_engagement": "Rescindir o meu compromisso",
   "manager_billing_subscription_pay_bill": "Regularizar",
   "manager_billing_subscription_pay_bill_renew": "Renovar",
-  "manager_billing_subscription_engagement_commit_cancel": "Anular o pedido de compromisso"
+  "manager_billing_subscription_engagement_commit_cancel": "Anular o pedido de compromisso",
+  "manager_billing_subscription_creation_region_us": "Data de compromisso",
+  "manager_billing_subscription_engagement_status_none_region_us": "1 mês",
+  "manager_billing_subscription_resiliate_cancel_region_us": "Rescindir"
 }

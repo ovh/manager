@@ -33,5 +33,8 @@
   "manager_billing_subscription_resiliate_my_engagement": "Cancel subscription",
   "manager_billing_subscription_pay_bill": "Pay",
   "manager_billing_subscription_pay_bill_renew": "Renew",
-  "manager_billing_subscription_engagement_commit_cancel": "Cancel subscription request"
+  "manager_billing_subscription_engagement_commit_cancel": "Cancel subscription request",
+  "manager_billing_subscription_creation_region_us": "Commitment date",
+  "manager_billing_subscription_engagement_status_none_region_us": "1 month",
+  "manager_billing_subscription_resiliate_cancel_region_us": "Cancel"
 }
