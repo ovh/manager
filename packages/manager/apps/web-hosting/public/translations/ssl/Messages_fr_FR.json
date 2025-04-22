@@ -10,6 +10,8 @@
   "cell_creation_date": "Date de création",
   "cell_expiration_date": "Date d'expiration",
   "disable_ssl": "Désactiver SSL",
+  "delete_ssl": "Suppression SSL",
+  "delete_ssl_message": "Êtes-vous sûr de vouloir supprimer le SSL sur votre hébergement ?",
   "regenerate_ssl": "Régénérer le certificat SSL",
   "buttons_validate": "Valider",
   "buttons_cancel": "Annuler",
@@ -39,5 +41,8 @@
   "hosting_dashboard_ssl_selected_item": "Élément sélectionné",
   "hosting_dashboard_ssl_import_success": "Votre demande d'import a bien été prise en compte. Elle sera exécutée d'ici quelques instants.",
   "hosting_dashboard_ssl_order_error": "Une erreur est survenue lors de la commande d'un certificat SSL. ({{error}})",
-  "hosting_dashboard_ssl_order_success": "La commande a bien été prise en compte."
+  "hosting_dashboard_ssl_order_success": "La commande a bien été prise en compte.",
+  "hosting_dashboard_ssl_delete_success": "Votre demande de suppression a bien été prise en compte. Elle sera exécutée d'ici quelques instants.",
+  "hosting_dashboard_ssl_delete_error": "Une erreur est survenue lors de la suppression d'un certificat SSL. ({{error}})",
+  "hosting_domain_name": "Nom du domaine:"
 }
