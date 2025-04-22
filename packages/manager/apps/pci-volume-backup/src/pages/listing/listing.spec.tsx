@@ -9,6 +9,7 @@ vi.mock('@ovh-ux/manager-react-components', async () => {
   const mod = await vi.importActual('@ovh-ux/manager-react-components');
   return {
     ...mod,
+    useProjectUrl: vi.fn().mockReturnValue('mockProjectUrl'),
     BaseLayout: vi.fn().mockReturnValue(<div></div>),
     useResourcesV6: vi.fn().mockReturnValue({
       flattenData: [],
@@ -49,8 +50,8 @@ const wrapper = ({ children }: { children: ReactNode }) => (
 
 describe('listing page', () => {
   it('displays loading spinner while main request are loading', () => {
-    render(<Listing />, { wrapper });
-    expect('todo').toBe('todo');
-    // expect(getByTestId('listing-page-spinner')).toBeInTheDocument();
+    const { container } = render(<Listing />, { wrapper });
+    const spinner = container.querySelector('ods-spinner');
+    expect(spinner).toBeInTheDocument();
   });
 });
