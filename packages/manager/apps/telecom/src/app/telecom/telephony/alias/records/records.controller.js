@@ -164,14 +164,35 @@ export default class TelecomTelephonyAliasRecordsCtrl {
   }
 
   downloadRecords(records) {
-    return records.reduce(
-      (promise, { fileUrl }) =>
-        promise.then(() =>
-          this.$timeout(() => {
-            window.location = fileUrl;
-          }, 300),
-        ),
-      this.$q.when(),
-    );
+    this.downloadNext = (i) => {
+      if (i >= records.length) {
+        return;
+      }
+
+      // create a element with the url and click it
+      const a = document.createElement('a');
+      a.href = records[i].fileUrl;
+      a.target = '_parent';
+
+      if ('download' in a) {
+        a.download = records[i].filename || '';
+      }
+
+      (document.body || document.documentElement).appendChild(a);
+
+      if (a.click) {
+        a.click();
+      }
+
+      // remove a element
+      a.parentNode.removeChild(a);
+
+      // The timeout is necessary for IE otherwise only download the first file
+      setTimeout(() => {
+        this.downloadNext(i + 1);
+      }, 500);
+    };
+
+    this.downloadNext(0);
   }
 }
