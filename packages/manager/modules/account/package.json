@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-account",
-  "version": "0.9.2",
+  "version": "0.9.3",
   "private": true,
   "description": "OVHcloud Account product",
   "repository": {

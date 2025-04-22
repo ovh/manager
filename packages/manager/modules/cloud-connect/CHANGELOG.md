@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.20.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.20.3...@ovh-ux/manager-cloud-connect@1.20.4) (2025-04-22)
+
+
+### Bug Fixes
+
+* **cloud-connect:** occ content modifications ([#16174](https://github.com/ovh/manager/issues/16174)) ([165053c](https://github.com/ovh/manager/commit/165053c35421f7c48391c0617f44e3958b2ef37f)), closes [#MANAGER-17347](https://github.com/ovh/manager/issues/MANAGER-17347)
+
+
+
+
+
 ## [1.20.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.20.2...@ovh-ux/manager-cloud-connect@1.20.3) (2025-04-03)
 
 
