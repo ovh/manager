@@ -64,4 +64,5 @@ export type TVolume = {
 
 export type TVolumeBackup = TBackup & {
   volume?: TVolume | null;
+  search: string;
 };
