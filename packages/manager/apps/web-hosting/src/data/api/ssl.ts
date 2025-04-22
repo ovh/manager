@@ -54,3 +54,16 @@ export const deleteDomainCertificate = async (
 
   return data;
 };
+
+export const regenerateDomainCertificate = async (
+  serviceName: string,
+  domain: string,
+): Promise<TCertificate> => {
+  const { data } = await v6.put<TCertificate>(
+    `/hosting/web/${serviceName}/attachedDomain/${domain}/ssl`,
+    {
+      regenerate: true,
+    },
+  );
+  return data;
+};
