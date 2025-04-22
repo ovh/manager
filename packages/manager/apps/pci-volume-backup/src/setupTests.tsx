@@ -14,7 +14,7 @@ vi.mock('react-router-dom', async () => {
     useParams: () => ({
       projectId: 'project-id',
       backupId: 'backup-id',
-      kubeId: 'kube-id',
+      volumeId: 'volume-id',
     }),
     useHref: vi.fn().mockImplementation((to: string) => to),
     useLocation: vi.fn(),
