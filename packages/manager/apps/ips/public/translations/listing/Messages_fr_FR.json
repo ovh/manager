@@ -1,5 +1,6 @@
 {
   "title": "Gérer les IPs",
+  "ips_dashboard_guide": "Tous les guides",
   "listingTabIpTitle": "Toutes les IP",
   "listingTabManageIpOrganisationsTitle": "Gérer mes organisations",
   "listingTabIpDescription": "Mes adresses IP publiques et services associés",
@@ -7,7 +8,7 @@
   "orderIpsButtonLabel": "Commander des IPs",
   "orderByoipButtonLabel": "Bring your own IP",
   "listingColumnsIp": "Adresse IP",
-  "listingColumnsIpType": "Type",
+  "listingColumnsIpType": "IP Type",
   "listingColumnsIpRegion": "Régions",
   "listingColumnsIpCountry": "Pays",
   "listingColumnsIpAttachedService": "Service Attaché",
