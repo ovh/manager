@@ -3,6 +3,10 @@ import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { render } from '@testing-library/react';
 import { describe, vi } from 'vitest';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import {
+  ShellContext,
+  ShellContextType,
+} from '@ovh-ux/manager-react-shell-client';
 import DatagridContainer, {
   TDatagridContainerProps,
 } from './DatagridContainer.component';
@@ -40,14 +44,27 @@ vi.mock('@ovh-ux/manager-react-components', async (managerComponents) => {
     ChangelogButton: () => (
       <div data-testid="changelog-button">Changelog Button</div>
     ),
+    GuideButton: () => <div data-testid="guide-button">Guide Button</div>,
   };
 });
+const shellContext = {
+  shell: {
+    environment: {
+      getRegion: vi.fn(),
 
+      getEnvironment: () => ({ getUser: () => ({ ovhSubsidiary: 'FR' }) }),
+    },
+  },
+};
 const renderComponent = (props: TDatagridContainerProps) => {
   const queryClient = new QueryClient();
   return render(
     <QueryClientProvider client={queryClient}>
-      <DatagridContainer {...props} />
+      <ShellContext.Provider
+        value={(shellContext as unknown) as ShellContextType}
+      >
+        <DatagridContainer {...props} />
+      </ShellContext.Provider>
     </QueryClientProvider>,
   );
 };
@@ -94,6 +111,9 @@ describe('DatagridContainer component unit test suite', () => {
 
       // and
       if (!isEmbedded) expect(getByTestId('changelog-button')).toBeDefined();
+
+      // and
+      if (!isEmbedded) expect(getByTestId('guide-button')).toBeDefined();
     },
   );
 });

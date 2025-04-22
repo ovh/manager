@@ -9,6 +9,7 @@ import {
   RedirectionGuard,
   Region,
   ChangelogButton,
+  HeadersProps,
 } from '@ovh-ux/manager-react-components';
 import {
   getRegionNameFromAzName,
@@ -29,6 +30,7 @@ import { Loading } from '@/components/Loading/Loading';
 import { BackupStatusBadge } from '@/components/BackupStatus/BackupStatusBadge.component';
 
 import { CHANGELOG_LINKS } from '@/constants';
+import VeeamGuidesHeader from '@/components/Guide/VeeamGuidesHeader';
 
 export default function DashboardPage() {
   const { id } = useParams();
@@ -38,10 +40,11 @@ export default function DashboardPage() {
   const { t } = useTranslation('dashboard');
   const displayName = getVeeamBackupDisplayName(data?.data);
 
-  const header = {
+  const header: HeadersProps = {
     title: displayName,
     description: displayName !== data?.data?.id ? data?.data?.id : null,
     changelogButton: <ChangelogButton links={CHANGELOG_LINKS} />,
+    headerButton: <VeeamGuidesHeader />,
   };
 
   return (

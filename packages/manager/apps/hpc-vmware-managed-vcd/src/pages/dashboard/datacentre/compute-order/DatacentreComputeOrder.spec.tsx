@@ -32,7 +32,7 @@ const orderError = labels.datacentresOrder.managed_vcd_vdc_order_unavailable;
 describe('Datacentre Compute Order Page', () => {
   it('access and display compute order page', async () => {
     await renderTest({
-      initialRoute: `/${organizationList[0].id}/datacentres/${datacentreList[0].id}/compute`,
+      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}/compute`,
     });
 
     const orderButton = await getElementByTestId(TEST_IDS.computeOrderCta);
@@ -43,7 +43,7 @@ describe('Datacentre Compute Order Page', () => {
 
   it('display an error if orderableResource service is KO', async () => {
     await renderTest({
-      initialRoute: `/${organizationList[0].id}/datacentres/${datacentreList[0].id}/compute/order`,
+      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}/compute/order`,
       isOrderableResourceKO: true,
     });
     await assertTextVisibility(orderError);
@@ -51,7 +51,7 @@ describe('Datacentre Compute Order Page', () => {
 
   it('display an error if there is no orderableResource', async () => {
     await renderTest({
-      initialRoute: `/${organizationList[0].id}/datacentres/${datacentreList[0].id}/compute/order`,
+      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}/compute/order`,
       nbOrderableResource: 0,
     });
     await assertTextVisibility(orderError);
@@ -59,7 +59,7 @@ describe('Datacentre Compute Order Page', () => {
 
   it('display an error if catalog service is KO', async () => {
     await renderTest({
-      initialRoute: `/${organizationList[0].id}/datacentres/${datacentreList[0].id}/compute/order`,
+      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}/compute/order`,
       isCatalogKO: true,
     });
     await assertTextVisibility(orderError);
@@ -67,7 +67,7 @@ describe('Datacentre Compute Order Page', () => {
 
   it('display an error if there is no catalog products', async () => {
     await renderTest({
-      initialRoute: `/${organizationList[0].id}/datacentres/${datacentreList[0].id}/compute/order`,
+      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}/compute/order`,
       nbCatalogProduct: 0,
     });
     await assertTextVisibility(orderError);

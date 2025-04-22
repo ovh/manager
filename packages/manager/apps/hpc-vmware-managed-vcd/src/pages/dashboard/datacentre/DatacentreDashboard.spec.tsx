@@ -17,7 +17,7 @@ import TEST_IDS from '../../../utils/testIds.constants';
 describe('Datacentre Dashboard Page', () => {
   it('display the datacentre dashboard page', async () => {
     await renderTest({
-      initialRoute: `/${organizationList[0].id}/datacentres/${datacentreList[0].id}`,
+      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}`,
     });
 
     const layoutElements = [
@@ -33,7 +33,7 @@ describe('Datacentre Dashboard Page', () => {
 
   it('display an error is datacentre service is KO', async () => {
     await renderTest({
-      initialRoute: `/${organizationList[0].id}/datacentres/${datacentreList[0].id}`,
+      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}`,
       isDatacentresKo: true,
     });
 

@@ -5,7 +5,7 @@
   "managed_vcd_dashboard_description": "Descrição",
   "managed_vcd_dashboard_name": "Nome",
   "managed_vcd_dashboard_localisation": "Região",
-  "managed_vcd_dashboard_datacentres_count": "Número de datacenters",
+  "managed_vcd_dashboard_datacentres_count": "Número de Virtual Datacenters",
   "managed_vcd_dashboard_management_interface": "Interface de gestão",
   "managed_vcd_dashboard_management_interface_access": "Aceder ao VCD",
   "managed_vcd_dashboard_api_url": "URL API",
@@ -52,5 +52,6 @@
   "managed_vcd_dashboard_password_modal_subtitle": "Tem a certeza de que pretende alterar a sua palavra-passe?",
   "managed_vcd_dashboard_password_renew_success": "Receberá um e-mail para visualizar a sua palavra-passe",
   "managed_vcd_dashboard_password_renew_error": "Ocorreu um erro. Tente novamente mais tarde ou contacte o suporte para alterar a sua palavra-passe de administrador",
-  "managed_vcd_dashboard_edit_modal_cta_validate": "Validar"
+  "managed_vcd_dashboard_edit_modal_cta_validate": "Validar",
+  "managed_vcd_dashboard_cancellation_tooltip": "Se pretender rescindir o seu serviço, contacte o nosso suporte."
 }

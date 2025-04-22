@@ -15,6 +15,7 @@ import {
 import { labels, renderTest } from '../../../../test-utils';
 import { PERFORMANCE_CLASS_LABEL } from './datacentreStorageOrder.constants';
 import TEST_IDS from '../../../../utils/testIds.constants';
+import { IOPS_LABEL } from '../../../../utils/label.constants';
 
 // remove mock when ods element-internals-polyfill is fixed
 vitest.mock('@ovhcloud/ods-components/react', async () => {
@@ -35,7 +36,7 @@ const orderError = labels.datacentresOrder.managed_vcd_vdc_order_unavailable;
 describe('Datacentre Storage Order Page', () => {
   it('access and display storage order page', async () => {
     await renderTest({
-      initialRoute: `/${organizationList[0].id}/datacentres/${datacentreList[0].id}/storage`,
+      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}/storage`,
     });
 
     const { name, performanceClass } = orderableResourceData.storage[0];
@@ -54,7 +55,7 @@ describe('Datacentre Storage Order Page', () => {
       PERFORMANCE_CLASS_LABEL,
       labels.datacentresOrder.managed_vcd_vdc_order_performance_class
         .toString()
-        .replace('{{performanceClass}}', performanceClass),
+        .replace('{{performanceClass}}', `${performanceClass} ${IOPS_LABEL}`),
       labels.datacentresOrder.managed_vcd_vdc_order_price,
       '80.00 €',
     ];
@@ -64,7 +65,7 @@ describe('Datacentre Storage Order Page', () => {
 
   it('display an error if orderableResource service is KO', async () => {
     await renderTest({
-      initialRoute: `/${organizationList[0].id}/datacentres/${datacentreList[0].id}/storage/order`,
+      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}/storage/order`,
       isOrderableResourceKO: true,
     });
     await assertTextVisibility(orderError);
@@ -72,7 +73,7 @@ describe('Datacentre Storage Order Page', () => {
 
   it('display an error if there is no orderableResource', async () => {
     await renderTest({
-      initialRoute: `/${organizationList[0].id}/datacentres/${datacentreList[0].id}/storage/order`,
+      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}/storage/order`,
       nbOrderableResource: 0,
     });
     await assertTextVisibility(orderError);
@@ -80,7 +81,7 @@ describe('Datacentre Storage Order Page', () => {
 
   it('display an error if catalog service is KO', async () => {
     await renderTest({
-      initialRoute: `/${organizationList[0].id}/datacentres/${datacentreList[0].id}/storage/order`,
+      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}/storage/order`,
       isCatalogKO: true,
     });
     await assertTextVisibility(orderError);
@@ -88,7 +89,7 @@ describe('Datacentre Storage Order Page', () => {
 
   it('display an error if there is no catalog products', async () => {
     await renderTest({
-      initialRoute: `/${organizationList[0].id}/datacentres/${datacentreList[0].id}/storage/order`,
+      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}/storage/order`,
       nbCatalogProduct: 0,
     });
     await assertTextVisibility(orderError);

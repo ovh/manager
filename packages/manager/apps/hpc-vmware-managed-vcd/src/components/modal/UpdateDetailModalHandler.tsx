@@ -44,7 +44,7 @@ export const UpdateDetailModalHandler = ({
       addSuccess({
         content: t(`managed_vcd_dashboard_edit_${detailName}_modal_success`),
         includedSubRoutes: [id],
-        excludedSubRoutes: [subRoutes.datacentres],
+        excludedSubRoutes: [subRoutes.virtualDatacenters],
       });
       closeModal();
     },

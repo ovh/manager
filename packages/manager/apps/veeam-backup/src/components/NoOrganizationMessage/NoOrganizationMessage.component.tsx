@@ -1,6 +1,7 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { OdsMessage } from '@ovhcloud/ods-components/react';
+import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { Trans, useTranslation } from 'react-i18next';
+import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 import { VCDOrganization } from '@ovh-ux/manager-module-vcd-api';
 import { VCDOrgInfoLink } from '../Links/VCDOrgInfoLink.component';
 
@@ -12,14 +13,18 @@ export const NoOrganizationMessage: React.FC<NoOrganizationMessageProps> = ({
   organizationList,
 }) => {
   const { t } = useTranslation('veeam-backup');
-
   return (
     organizationList.length === 0 && (
       <OdsMessage color="warning">
-        <div className="flex flex-col">
-          {t('no_organization_message')}
-          <VCDOrgInfoLink label={t('no_organization_link')} />
-        </div>
+        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+          <Trans
+            t={t}
+            i18nKey="no_organization_message"
+            components={{
+              ExternalLink: <VCDOrgInfoLink />,
+            }}
+          />
+        </OdsText>
       </OdsMessage>
     )
   );

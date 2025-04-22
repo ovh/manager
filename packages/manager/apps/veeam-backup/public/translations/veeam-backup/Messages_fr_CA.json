@@ -10,12 +10,14 @@
   "update_veeam_backup_display_name_success": "Le nom a été modifié avec succès.",
   "coming_soon": "Prochainement",
   "unknown_date": "N/A",
-  "no_organization_message": "Vous n'avez pas de service VMware Cloud Director actuellement. Si vous voulez en savoir plus sur notre produit Managed VMware Cloud Director, vous pouvez consulter notre page",
-  "no_organization_link": "Consultez la page",
+  "no_organization_message": "Vous n'avez pas de service VMware Cloud Director actuellement. Si vous voulez en savoir plus sur notre produit Managed VMware Cloud Director, vous pouvez consulter notre <ExternalLink>page</ExternalLink>",
   "status-READY": "Souscrit",
   "status-CREATING": "En cours d'activation",
   "status-DISABLING": "En cours de désactivation",
   "status-UPDATING": "En cours de modification",
   "status-DISABLED": "Non souscrit",
-  "status-REMOVED": "Non souscrit"
+  "status-REMOVED": "Non souscrit",
+  "guides_header_veeam_quick_start": "Utiliser l'interface VCD",
+  "guides_header_veeam_usage": "Sauvegarde VCD avec Veeam",
+  "guides_header_veeam_faq": "FAQ VCD"
 }
