@@ -573,7 +573,7 @@
   "ip_order_finish_error": "An error occurred on ordering additional IPs.",
   "ip_order_free_activation_fee": "If you have a server with free IPs included, you will not be billed these activation fees following the renewal of your server.",
   "ip_organisation_title": "Manage my organisations",
-  "ip_organisation_button": "Manage my organisation",
+  "ip_organisation_button": "Manage my organisations",
   "ip_organisation_table_organisation": "Organisation",
   "ip_organisation_table_type": "Type",
   "ip_organisation_table_lastname": "Surname",
