@@ -1,4 +1,3 @@
-import { Meta } from '@storybook/react/*';
 import React from 'react';
 import {
   DEFAULT_UNKNOWN_DATE_LABEL,
@@ -27,10 +26,8 @@ export const Default = {
   },
 };
 
-const useFormatDateStories: Meta<
-  React.ComponentProps<typeof FormatDateComponent>
-> = {
-  title: 'Hooks/useFormatDate',
+const useFormatDateStories = {
+  title: 'Core/Manager React Components/Hooks/useFormatDate',
   component: FormatDateComponent,
   argTypes: {
     defaultUnknownLabel: {

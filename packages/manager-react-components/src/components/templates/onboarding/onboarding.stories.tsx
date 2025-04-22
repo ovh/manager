@@ -179,7 +179,7 @@ export const OnboardingWithoutHeadingSection = () => (
 );
 
 const meta: Meta<typeof OnboardingLayout> = {
-  title: 'Templates/Onboarding',
+  title: 'Core/Manager React Components/Templates/Onboarding',
   component: OnboardingLayout,
 };
 
