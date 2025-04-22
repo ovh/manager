@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-load-balancer-app@0.9.1...@ovh-ux/manager-pci-load-balancer-app@0.10.0) (2025-04-22)
+
+
+### Features
+
+* **pci:** update ldp guide links ([05b0187](https://github.com/ovh/manager/commit/05b018766f2ac9b7eeb272ae672059bcd26a7c17)), closes [#MANAGER-17594](https://github.com/ovh/manager/issues/MANAGER-17594)
+
+
+
+
+
 ## [0.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-load-balancer-app@0.9.0...@ovh-ux/manager-pci-load-balancer-app@0.9.1) (2025-04-17)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-load-balancer-app

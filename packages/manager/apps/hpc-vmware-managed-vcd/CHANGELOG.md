@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.11.5...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.12.0) (2025-04-22)
+
+
+### Bug Fixes
+
+* **hpc-managed-vcd:** remove usage of datacentres label ([245b60a](https://github.com/ovh/manager/commit/245b60abc5887c76e40949d5356afe69ceee2807)), closes [#MANAGER-17400](https://github.com/ovh/manager/issues/MANAGER-17400)
+
+
+### Features
+
+* **hpc-managed-vcd:** add tooltip on cancel service  ([6c5ea57](https://github.com/ovh/manager/commit/6c5ea57bf15b576bdea58761c8986727e25f22a1)), closes [#MANAGER-17401](https://github.com/ovh/manager/issues/MANAGER-17401)
+* **managed-vcd:** add guides on listing and dashboard ([37f266e](https://github.com/ovh/manager/commit/37f266e6dfc2ebe2cb554603b0b48d3a71aea080)), closes [#MANAGER-17572](https://github.com/ovh/manager/issues/MANAGER-17572)
+* **managed-vcd:** add IOPS unit for perfomance class ([f734254](https://github.com/ovh/manager/commit/f7342540d96b9fd8b133e2c6dae4dcbbc4f058b0)), closes [#MANAGER-17897](https://github.com/ovh/manager/issues/MANAGER-17897)
+
+
+
+
+
 ## [0.11.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.11.4...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.11.5) (2025-04-17)
 
 **Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-managed-vcd-app

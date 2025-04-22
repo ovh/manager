@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.24.1...@ovh-ux/manager-key-management-service-app@0.25.0) (2025-04-22)
+
+
+### Features
+
+* **kms:** add tracking on guides links ([2cfc2e1](https://github.com/ovh/manager/commit/2cfc2e1adc651801c05aef2c74c88a17d1304ecc)), closes [#MANAGER-16058](https://github.com/ovh/manager/issues/MANAGER-16058)
+
+
+
+
+
 ## [0.24.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.24.0...@ovh-ux/manager-key-management-service-app@0.24.1) (2025-04-17)
 
 **Note:** Version bump only for package @ovh-ux/manager-key-management-service-app
