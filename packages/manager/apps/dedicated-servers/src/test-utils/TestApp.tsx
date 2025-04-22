@@ -15,7 +15,7 @@ export function TestApp({ initialRoute = '/' }) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
+      <RouterProvider router={router} fallbackElement={<div>Loading...</div>} />
     </QueryClientProvider>
   );
 }

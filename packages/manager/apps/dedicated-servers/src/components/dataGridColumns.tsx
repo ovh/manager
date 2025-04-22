@@ -1,6 +1,6 @@
 import React from 'react';
 import { FilterTypeCategories } from '@ovh-ux/manager-core-api';
-import { OdsBadge, OdsLink } from '@ovhcloud/ods-components/react';
+import { OdsBadge } from '@ovhcloud/ods-components/react';
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
 import {
   DataGridTextCell,
@@ -10,7 +10,11 @@ import { ActionCell } from '@/components/actionCell';
 import { DedicatedServer } from '@/data/types/server.type';
 import MonitoringStatusChip from '@/components/monitoringStatus';
 import { DSVrack } from './vRackCell';
-import { DSBilling } from './billingCell';
+import NameCell from './cells/nameCell';
+import RenewCell from './cells/renewCell';
+import ExpirationCell from './cells/expirationCell';
+import EngagementCell from './cells/engagementCell';
+import PriceCell from './cells/priceCell';
 
 const colorByProductStatus: Record<string, ODS_BADGE_COLOR> = {
   ok: ODS_BADGE_COLOR.success,
@@ -23,14 +27,6 @@ const textByProductStatus: Record<string, string> = {
   hacked: 'server_configuration_state_HACKED',
   hackedBlocked: 'server_configuration_state_HACKED_BLOCKED',
 };
-
-function formatDate(input: string) {
-  const date = new Date(input);
-  const day = String(date.getDate()).padStart(2, '0');
-  const month = String(date.getMonth() + 1).padStart(2, '0');
-  const year = date.getFullYear();
-  return `${day}-${month}-${year}`;
-}
 
 export function getColumns(
   t: (v: string) => string,
@@ -56,16 +52,7 @@ export function getColumns(
       type: FilterTypeCategories.String,
       label: t('server_display_name'),
       cell: (server: DedicatedServer) => (
-        <DataGridTextCell>
-          <OdsLink
-            color="primary"
-            href={`#/server/${server.name}`}
-            onClick={() => {
-              goToServer(server.name);
-            }}
-            label={t(server?.iam?.displayName)}
-          />
-        </DataGridTextCell>
+        <NameCell server={server} navigate={goToServer} t={t} />
       ),
     },
     {
@@ -109,7 +96,7 @@ export function getColumns(
       type: FilterTypeCategories.String,
       label: t('server_display_vrack'),
       cell: (server: DedicatedServer) => {
-        return <DSVrack server={server.name}/>;
+        return <DSVrack server={server.name} />;
       },
     },
     {
@@ -119,23 +106,7 @@ export function getColumns(
       enableHiding: true,
       type: FilterTypeCategories.String,
       label: t('server_display_renew'),
-      cell: (server: DedicatedServer) => {
-        return (
-          <DSBilling server={server.name}>
-            {(billingInfo) => (
-              <DataGridTextCell>
-                {billingInfo?.billing?.renew?.current?.mode ? (
-                  t(
-                    `server_display_renew-${billingInfo?.billing?.renew?.current?.mode}`,
-                  )
-                ) : (
-                  <>-</>
-                )}
-              </DataGridTextCell>
-            )}
-          </DSBilling>
-        );
-      },
+      cell: (server: DedicatedServer) => <RenewCell server={server} t={t} />,
     },
     {
       id: 'expiration',
@@ -144,17 +115,7 @@ export function getColumns(
       enableHiding: true,
       type: FilterTypeCategories.String,
       label: t('server_display_expiration'),
-      cell: (server: DedicatedServer) => {
-        return (
-          <DSBilling server={server.name}>
-            {(billingInfo) => (
-              <DataGridTextCell>
-                {formatDate(billingInfo?.billing?.expirationDate)}
-              </DataGridTextCell>
-            )}
-          </DSBilling>
-        );
-      },
+      cell: (server: DedicatedServer) => <ExpirationCell server={server} />,
     },
     {
       id: 'engagement',
@@ -163,27 +124,9 @@ export function getColumns(
       enableHiding: true,
       type: FilterTypeCategories.String,
       label: t('server_display_engagement'),
-      cell: (server: DedicatedServer) => {
-        return (
-          <DSBilling server={server.name}>
-            {(billingInfo) =>
-              billingInfo?.billing?.engagement ? (
-                <OdsBadge
-                  label={t('server_display_with-engagement')}
-                  color={ODS_BADGE_COLOR.success}
-                  className="mt-3"
-                />
-              ) : (
-                <OdsBadge
-                  label={t('server_display_without-engagement')}
-                  color={ODS_BADGE_COLOR.warning}
-                  className="mt-3"
-                />
-              )
-            }
-          </DSBilling>
-        );
-      },
+      cell: (server: DedicatedServer) => (
+        <EngagementCell server={server} t={t} />
+      ),
     },
     {
       id: 'price',
@@ -192,17 +135,7 @@ export function getColumns(
       enableHiding: true,
       type: FilterTypeCategories.String,
       label: t('server_display_price'),
-      cell: (server: DedicatedServer) => {
-        return (
-          <DSBilling server={server.name}>
-            {(billingInfo) => (
-              <DataGridTextCell>
-                {billingInfo?.billing?.pricing?.price?.text}
-              </DataGridTextCell>
-            )}
-          </DSBilling>
-        );
-      },
+      cell: (server: DedicatedServer) => <PriceCell server={server} />,
     },
     {
       id: 'reverse',

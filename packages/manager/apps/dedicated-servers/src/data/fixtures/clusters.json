@@ -1,0 +1,58 @@
+[
+  {
+    "id": "1d853f96-a466-432a-9e11-c17da67e547c",
+    "iam": {
+      "id": "e8ef0c29-e953-40f5-8fba-3aea026e7999",
+      "urn": "urn:v1:eu:resource:clusterDelivery:1d853f96-a466-432a-9e11-c17da67e547c",
+      "displayName": "1d853f96-a466-432a-9e11-c17da67e547c"
+    },
+    "model": "Cluster of 3AZ Scale-i1 servers",
+    "nodes": [
+      {
+        "id": "e11156f0-1eec-4ef4-8c3d-72b6e143c9c4",
+        "serverId": 1782630,
+        "serverName": "ns3254980.ip-57-130-15.eu"
+      },
+      {
+        "id": "628ecc13-7149-4689-babd-bcde90903c54",
+        "serverId": 1783797,
+        "serverName": "ns3254657.ip-57-130-14.eu"
+      },
+      {
+        "id": "2acf149a-b53d-4cde-b3b5-c39e5a8bb4c3",
+        "serverId": 1783804,
+        "serverName": "ns3254651.ip-57-130-16.eu"
+      }
+    ],
+    "region": "eu-west-par",
+    "status": "done"
+  },
+  {
+    "id": "3aeeacbc-d308-46a9-ae0a-b3f3e0f4d06e",
+    "iam": {
+      "id": "bef0c485-9be3-4ced-b7df-ac5056b513ff",
+      "urn": "urn:v1:eu:resource:clusterDelivery:3aeeacbc-d308-46a9-ae0a-b3f3e0f4d06e",
+      "displayName": "3aeeacbc-d308-46a9-ae0a-b3f3e0f4d06e"
+    },
+    "model": "Cluster of 3AZ HGR-HCI-i1 servers",
+    "nodes": [
+      {
+        "id": "f717769a-f618-4d0b-bb63-f64f547cfd6c",
+        "serverId": 1728582,
+        "serverName": "ns3240686.ip-57-130-9.eu"
+      },
+      {
+        "id": "9648d87d-869f-4062-97bc-5bdd55f3449b",
+        "serverId": 1728584,
+        "serverName": "ns3240403.ip-57-130-8.eu"
+      },
+      {
+        "id": "6dd537a0-ed79-47a2-b0ca-060affd6c245",
+        "serverId": 1728585,
+        "serverName": "ns3240451.ip-57-130-10.eu"
+      }
+    ],
+    "region": "eu-west-par",
+    "status": "done"
+  }
+]

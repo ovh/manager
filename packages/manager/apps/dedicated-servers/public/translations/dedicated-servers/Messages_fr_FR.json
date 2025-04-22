@@ -11,7 +11,7 @@
   "server_configuration_monitoring_status_proactive": "Activé avec intervention proactive",
   "server_configuration_monitoring_status_no-proactive": "Activé sans intervention proactive",
   "action-goDetails": "Détails",
-  "server_display_id": "Id Serveur",
+  "server_display_id": "ID Serveur",
   "server_display_name": "Nom",
   "server_display_ip": "Adresse IP",
   "server_display_reverse": "Reverse",
