@@ -2,15 +2,6 @@
     <oui-spinner></oui-spinner>
 </div>
 <section data-ng-if="!$ctrl.isLoading">
-    <pci-maintenance-banner
-        data-steins="$ctrl.steins"
-        data-customer-regions="$ctrl.customerRegions"
-        data-product-regions="$ctrl.storagesRegions"
-        data-is-dashboard-page="true"
-        data-product-service-name="$ctrl.editStorage.name"
-        data-product-region="$ctrl.editStorage.region"
-    ></pci-maintenance-banner>
-
     <cui-message-container
         data-messages="$ctrl.messages"
     ></cui-message-container>

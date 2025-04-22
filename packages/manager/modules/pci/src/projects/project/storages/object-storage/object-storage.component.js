@@ -11,7 +11,6 @@ export default {
     containers: '<',
     userList: '<',
     allUserList: '<',
-    steins: '<',
     customerRegions: '<',
     containersRegions: '<',
     containersLink: '<',

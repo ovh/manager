@@ -10,7 +10,6 @@ export default {
     user: '<',
     onListParamChange: '<',
     getStateName: '<',
-    steins: '<',
     customerRegions: '<',
     loadBalancersRegions: '<',
     goToRegion: '<',

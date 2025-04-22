@@ -19,7 +19,6 @@ export default {
     stopNotebook: '<',
     pollNotebookStatus: '<',
     stopPollingNotebookStatus: '<',
-    steins: '<',
     customerRegions: '<',
     notebooksRegions: '<',
     trackNotebooks: '<',

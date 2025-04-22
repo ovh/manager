@@ -48,9 +48,13 @@ export default class ProjectController {
   $onInit() {
     this.productImages = PRODUCT_IMAGES;
 
-    this.projectQuotaAboveThreshold = this.quotas.find(
-      (quota) => quota.quotaAboveThreshold,
-    );
+    this.projectQuotaAboveThreshold = false;
+    if (!this.isDiscoveryProject)
+      this.loadQuotas().then((quotas) => {
+        this.projectQuotaAboveThreshold = quotas.find(
+          (quota) => quota.quotaAboveThreshold,
+        );
+      });
 
     this.PciProject.setProjectInfo(this.project);
     this.loadMessages();
