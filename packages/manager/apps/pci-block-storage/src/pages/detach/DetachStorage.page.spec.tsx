@@ -6,8 +6,12 @@ import {
   OsdsSelect,
 } from '@ovhcloud/ods-components';
 import DetachStorage from '@/pages/detach/DetachStorage.page';
-import { useDetachVolume, useVolume } from '@/api/hooks/useVolume';
-import { TVolume } from '@/api/data/volume';
+import {
+  useDetachVolume,
+  useVolume,
+  UseVolumeResult,
+  TVolume,
+} from '@/api/hooks/useVolume';
 import { useAttachedInstances } from '@/api/hooks/useInstance';
 import { TAttachedInstance } from '@/api/select/instances';
 
@@ -38,7 +42,7 @@ describe('DetachStorage', () => {
     } as UseQueryResult<TAttachedInstance[]>);
     vi.mocked(useVolume).mockReturnValue({
       isPending: true,
-    } as UseQueryResult<TVolume>);
+    } as UseQueryResult<UseVolumeResult>);
 
     const { getByTestId } = render(<DetachStorage />);
     expect(getByTestId('detachStorage-spinner')).toBeInTheDocument();
@@ -52,7 +56,7 @@ describe('DetachStorage', () => {
     vi.mocked(useVolume).mockReturnValue({
       data: { name: 'Volume 1', attachedTo: ['Instance 1'] },
       isPending: false,
-    } as UseQueryResult<TVolume>);
+    } as UseQueryResult<UseVolumeResult>);
 
     const { getByText } = render(<DetachStorage />);
     await waitFor(() => {

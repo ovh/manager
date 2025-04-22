@@ -3,7 +3,6 @@ import { Outlet, useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   ChangelogButton,
-  ChangelogLinks,
   Datagrid,
   FilterAdd,
   FilterList,

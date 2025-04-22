@@ -1,8 +1,18 @@
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
-import { getMacroRegion } from '@ovh-ux/manager-react-components';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import {
+  ColumnSort,
+  getMacroRegion,
+  PaginationState,
+} from '@ovh-ux/manager-react-components';
+import {
+  useMutation,
+  useQueries,
+  useQuery,
+  UseQueryResult,
+} from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
+import { pipe } from 'lodash/fp';
 import {
   addVolume,
   AddVolumeProps,
@@ -12,77 +22,91 @@ import {
   getAllVolumes,
   getVolume,
   getVolumeSnapshot,
-  paginateResults,
-  sortResults,
-  TVolume,
+  TAPIVolume,
   TVolumeSnapshot,
   updateVolume,
-  VolumeOptions,
 } from '@/api/data/volume';
 import { UCENTS_FACTOR } from '@/hooks/currency-constants';
 import queryClient from '@/queryClient';
+import { getVolumeCatalogQuery } from '@/api/hooks/useCatalog';
+import {
+  mapVolumeStatus,
+  sortResults,
+  paginateResults,
+  mapVolumeAttach,
+  WithAttach,
+} from '@/api/select/volume';
+import { TVolumeCatalog } from '@/api/data/catalog';
 
-export const getVolumesQueryKey = (projectId: string) => [
+export type TVolume = WithAttach<
+  TAPIVolume & {
+    statusGroup: string;
+    regionName: string;
+  }
+>;
+
+export const getVolumesQueryKey = (projectId: string | null) => [
   'project',
   projectId,
   'volumes',
 ];
 
-export const useAllVolumes = (projectId: string) => {
+export const useAllVolumes = (projectId: string | null) => {
   const { t } = useTranslation('region');
-  return useQuery({
-    queryKey: getVolumesQueryKey(projectId),
-    queryFn: () => getAllVolumes(projectId),
-    select: (data) =>
-      data.map((volume: TVolume) => {
-        let statusGroup = '';
-        if (['available', 'in-use'].includes(volume.status)) {
-          statusGroup = 'ACTIVE';
-        }
-        if (
-          [
-            'creating',
-            'attaching',
-            'detaching',
-            'deleting',
-            'backing-up',
-            'restoring-backup',
-            'snapshotting',
-            'awaiting-transfer',
-          ].includes(volume.status)
-        ) {
-          statusGroup = 'PENDING';
-        }
-        if (
-          [
-            'error',
-            'error_deleting',
-            'error_restoring',
-            'error_extending',
-          ].includes(volume.status)
-        ) {
-          statusGroup = 'ERROR';
-        }
-        return {
-          ...volume,
-          statusGroup,
-          regionName: t(
-            `manager_components_region_${getMacroRegion(volume.region)}_micro`,
-            {
-              micro:
-                volume.availabilityZone && volume.availabilityZone !== 'any'
-                  ? volume.availabilityZone
-                  : volume.region,
-            },
-          ),
-        };
-      }),
-    enabled: !!projectId,
+
+  const mapVolumeRegionName = useCallback(
+    <V extends TAPIVolume>(volume: V): V & { regionName: string } => ({
+      ...volume,
+      regionName: t(
+        `manager_components_region_${getMacroRegion(volume.region)}_micro`,
+        {
+          micro:
+            volume.availabilityZone && volume.availabilityZone !== 'any'
+              ? volume.availabilityZone
+              : volume.region,
+        },
+      ),
+    }),
+    [t],
+  );
+
+  const combine = useCallback(
+    ([{ data, ...restQuery }, { data: catalogData }]: [
+      UseQueryResult<TAPIVolume[]>,
+      UseQueryResult<TVolumeCatalog>,
+    ]) => ({
+      data: data?.map(
+        pipe(
+          mapVolumeStatus,
+          mapVolumeRegionName,
+          mapVolumeAttach(catalogData),
+        ),
+      ),
+      ...restQuery,
+    }),
+    [mapVolumeRegionName],
+  );
+
+  return useQueries({
+    queries: [
+      {
+        queryKey: getVolumesQueryKey(projectId),
+        queryFn: () => getAllVolumes(projectId),
+        enabled: !!projectId,
+      },
+      getVolumeCatalogQuery(projectId),
+    ],
+    combine,
   });
 };
 
+export type VolumeOptions = {
+  pagination: PaginationState;
+  sorting: ColumnSort;
+};
+
 export const useVolumes = (
-  projectId: string,
+  projectId: string | null,
   { pagination, sorting }: VolumeOptions,
   filters: Filter[] = [],
 ) => {
@@ -112,12 +136,27 @@ export const getVolumeQueryKey = (projectId: string, volumeId: string) => [
 
 export const getVolumeQuery = (projectId: string, volumeId: string) => ({
   queryKey: getVolumeQueryKey(projectId, volumeId),
-  queryFn: (): Promise<TVolume> => getVolume(projectId, volumeId),
+  queryFn: () => getVolume(projectId, volumeId),
   enabled: !!volumeId,
 });
 
+export type UseVolumeResult = WithAttach<TAPIVolume>;
+
 export const useVolume = (projectId: string, volumeId: string) =>
-  useQuery({ ...getVolumeQuery(projectId, volumeId) });
+  useQueries({
+    queries: [
+      getVolumeQuery(projectId, volumeId),
+      getVolumeCatalogQuery(projectId),
+    ],
+    combine: ([{ data, ...restQuery }, { data: catalogData }]) => {
+      const mapAttach = mapVolumeAttach(catalogData);
+
+      return {
+        data: data ? mapAttach(data) : undefined,
+        ...restQuery,
+      };
+    },
+  });
 
 export const getVolumeSnapshotQueryKey = (projectId: string) => [
   'volume-snapshot',
@@ -151,7 +190,7 @@ export const useDeleteVolume = ({
         queryKey: getVolumeQueryKey(projectId, volumeId),
       });
       queryClient.setQueryData(
-        ['project', projectId, 'volumes'],
+        getVolumesQueryKey(projectId),
         (data: { id: string }[]) => data?.filter((v) => v.id !== volumeId),
       );
       onSuccess();
@@ -183,7 +222,7 @@ export const useAttachVolume = ({
     onError,
     onSuccess: (volume: TVolume) => {
       queryClient.setQueryData(
-        ['project', projectId, 'volumes'],
+        getVolumesQueryKey(projectId),
         (data: { id: string }[]) =>
           data?.map((v) =>
             v.id === volumeId ? { ...volume, attachedTo: [instanceId] } : v,
@@ -245,8 +284,8 @@ export const convertUcentsToCurrency = (value: number, interval = 1) =>
 
 interface UpdateVolumeProps {
   projectId: string;
-  volumeToEdit: TVolume;
-  originalVolume: TVolume;
+  volumeToEdit: Partial<TAPIVolume>;
+  originalVolume: TAPIVolume;
   onError: (cause: Error) => void;
   onSuccess: () => void;
 }
@@ -267,7 +306,7 @@ export const useUpdateVolume = ({
         queryKey: getVolumeQueryKey(projectId, originalVolume.id),
       });
       await queryClient.invalidateQueries({
-        queryKey: ['project', projectId, 'volumes'],
+        queryKey: getVolumesQueryKey(projectId),
       });
       onSuccess();
     },
@@ -306,7 +345,7 @@ export const useAddVolume = ({
     onError,
     onSuccess: async () => {
       await queryClient.invalidateQueries({
-        queryKey: ['project', projectId, 'volumes'],
+        queryKey: getVolumesQueryKey(projectId),
       });
       return onSuccess();
     },
