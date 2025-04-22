@@ -16,8 +16,8 @@ import EditPage from './Edit.page';
 
 import * as volumeHook from '@/api/hooks/useVolume';
 
-import { TVolume } from '@/api/data/volume';
 import queryClient from '@/queryClient';
+import { UseVolumeResult } from '@/api/hooks/useVolume';
 
 vi.mock('@/core/HidePreloader', () => ({
   default: () => <div>HidePeloader</div>,
@@ -96,7 +96,7 @@ describe('Edit volume page', () => {
       },
       isLoading: false,
       isPending: false,
-    } as UseQueryResult<TVolume>);
+    } as UseQueryResult<UseVolumeResult>);
 
     renderEditPage();
 
@@ -118,7 +118,7 @@ describe('Edit volume page', () => {
       },
       isLoading: false,
       isPending: false,
-    } as UseQueryResult<TVolume>);
+    } as UseQueryResult<UseVolumeResult>);
 
     renderEditPage();
 
@@ -135,7 +135,7 @@ describe('Edit volume page', () => {
       data: null,
       isLoading: true,
       isPending: true,
-    } as UseQueryResult<TVolume>);
+    } as UseQueryResult<UseVolumeResult>);
 
     renderEditPage();
 
@@ -155,7 +155,7 @@ describe('Edit volume page', () => {
       },
       isLoading: false,
       isPending: false,
-    } as UseQueryResult<TVolume>);
+    } as UseQueryResult<UseVolumeResult>);
     vi.spyOn(volumeHook, 'useUpdateVolume').mockReturnValue(({
       updateVolume: mockUpdateVolume,
     } as unknown) as never);

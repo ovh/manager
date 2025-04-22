@@ -10,9 +10,8 @@ import {
   ShellContext,
   ShellContextType,
 } from '@ovh-ux/manager-react-shell-client';
-import { useAllVolumes } from '@/api/hooks/useVolume';
+import { useAllVolumes, TVolume } from '@/api/hooks/useVolume';
 import OnBoardingPage from './OnBoarding.page';
-import { TVolume } from '@/api/data/volume';
 
 vi.mock('@/api/hooks/useVolume');
 vi.mock('react-router-dom', () => ({

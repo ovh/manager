@@ -1,4 +1,4 @@
-import { TVolume } from '@/api/data/volume';
+import { TVolume } from '@/api/hooks/useVolume';
 import { TInstance } from '@/entity/instance';
 
 export type TAttachableInstance = Pick<TInstance, 'id' | 'name'>;
@@ -18,9 +18,14 @@ function canAttachVolume(
 
 export const selectAttachableInstances = (
   availabilityZone: TVolume['availabilityZone'],
+  attachedInstances: TInstance['id'][],
 ) => (instances: TInstance[]): TAttachableInstance[] =>
   instances
-    .filter((i) => canAttachVolume(i, availabilityZone))
+    .filter(
+      (i) =>
+        canAttachVolume(i, availabilityZone) &&
+        !attachedInstances.includes(i.id),
+    )
     .map(({ id, name }) => ({
       id,
       name,

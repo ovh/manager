@@ -9,12 +9,12 @@ import {
   useVolumes,
 } from '@/api/hooks/useVolume';
 import {
-  TVolume,
   getVolume,
   getAllVolumes,
   deleteVolume,
   attachVolume,
   detachVolume,
+  TAPIVolume,
 } from '@/api/data/volume';
 
 vi.mock('@/api/data/volume', async (importOriginal) => {
@@ -29,14 +29,20 @@ vi.mock('@/api/data/volume', async (importOriginal) => {
   };
 });
 
+vi.mock('@/api/data/catalog');
+
 const queryClient = new QueryClient();
 
 const wrapper = ({ children }) => (
   <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
 );
 
-afterEach(() => {
+afterAll(() => {
   vi.restoreAllMocks();
+});
+
+afterEach(() => {
+  vi.clearAllMocks();
 });
 
 const onSuccess = vi.fn();
@@ -44,7 +50,7 @@ const onError = vi.fn();
 
 describe('useVolume', () => {
   it('returns volume data when volumeId is provided', async () => {
-    const volumeMock: TVolume = {
+    const volumeMock: TAPIVolume = {
       id: '1',
       name: 'Volume 1',
       attachedTo: [],
@@ -52,12 +58,10 @@ describe('useVolume', () => {
       description: '',
       size: 0,
       status: '',
-      statusGroup: '',
-      region: '',
+      region: 'region1',
       bootable: false,
       planCode: '',
-      type: '',
-      regionName: '',
+      type: 'model1',
       availabilityZone: 'any',
     };
 
@@ -69,7 +73,7 @@ describe('useVolume', () => {
 
     await waitFor(() => {
       expect(getVolume).toHaveBeenCalledWith('123', '1');
-      expect(result.current.data).toEqual(volumeMock);
+      expect(result.current.data).toEqual(expect.objectContaining(volumeMock));
     });
   });
 
@@ -83,21 +87,19 @@ describe('useVolume', () => {
 
 describe('useVolumes', () => {
   it('returns volumes data when projectId is provided', async () => {
-    const volumesMock: TVolume[] = [
+    const volumesMock: TAPIVolume[] = [
       {
         id: '1',
         name: 'Volume 1',
-        attachedTo: [],
+        attachedTo: ['inst1'],
         creationDate: '',
         description: '',
         size: 0,
         status: 'available',
-        statusGroup: '',
         region: 'region1',
         bootable: false,
         planCode: '',
-        type: '',
-        regionName: '',
+        type: 'model1',
         availabilityZone: 'any',
       },
       {
@@ -108,12 +110,10 @@ describe('useVolumes', () => {
         description: '',
         size: 0,
         status: 'available',
-        statusGroup: '',
         region: 'region2',
         bootable: false,
         planCode: '',
-        type: '',
-        regionName: '',
+        type: 'model1',
         availabilityZone: 'any',
       },
     ];
@@ -136,8 +136,8 @@ describe('useVolumes', () => {
       expect(result.current.data).toEqual({
         pageCount: 1,
         rows: [
-          {
-            attachedTo: [],
+          expect.objectContaining({
+            attachedTo: ['inst1'],
             bootable: false,
             creationDate: '',
             description: '',
@@ -149,10 +149,12 @@ describe('useVolumes', () => {
             size: 0,
             status: 'available',
             statusGroup: 'ACTIVE',
-            type: '',
+            type: 'model1',
             availabilityZone: 'any',
-          },
-          {
+            canAttachInstance: false,
+            canDetachInstance: true,
+          }),
+          expect.objectContaining({
             attachedTo: [],
             bootable: false,
             creationDate: '',
@@ -165,9 +167,11 @@ describe('useVolumes', () => {
             size: 0,
             status: 'available',
             statusGroup: 'ACTIVE',
-            type: '',
+            type: 'model1',
             availabilityZone: 'any',
-          },
+            canAttachInstance: true,
+            canDetachInstance: false,
+          }),
         ],
         totalRows: 2,
       });
@@ -243,12 +247,10 @@ describe('useAttachVolume', () => {
       description: '',
       size: 0,
       status: 'available',
-      statusGroup: '',
       region: 'region',
       bootable: false,
       planCode: '',
       type: '',
-      regionName: '',
       availabilityZone: 'any',
     });
 
@@ -285,12 +287,10 @@ describe('useDetachVolume', () => {
       description: '',
       size: 0,
       status: 'available',
-      statusGroup: '',
       region: 'region',
       bootable: false,
       planCode: '',
       type: '',
-      regionName: '',
       availabilityZone: 'any',
     });
 

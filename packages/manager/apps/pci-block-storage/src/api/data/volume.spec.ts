@@ -7,9 +7,6 @@ import {
   getAllVolumes,
   getVolume,
   getVolumeSnapshot,
-  paginateResults,
-  sortResults,
-  TVolume,
 } from './volume';
 
 vi.mock('@ovh-ux/manager-core-api');
@@ -53,30 +50,6 @@ describe('getAllVolumes', () => {
 
     expect(v6.get).toHaveBeenCalledWith('/cloud/project/123/volume');
     expect(volumes).toEqual(mockVolumes);
-  });
-});
-
-describe('paginateResults and sortResults', () => {
-  it('should paginate and sort results', () => {
-    const mockVolumes = [
-      { id: '1', name: 'Volume 1' },
-      { id: '2', name: 'Volume 2' },
-    ];
-    const pagination = { pageIndex: 0, pageSize: 10 };
-    const sorting = { id: 'name', desc: false };
-
-    const paginatedResults = paginateResults(mockVolumes, pagination);
-    const sortedResults = sortResults(
-      paginatedResults.rows as TVolume[],
-      sorting,
-    );
-
-    expect(paginatedResults).toEqual({
-      rows: mockVolumes,
-      pageCount: 1,
-      totalRows: 2,
-    });
-    expect(sortedResults).toEqual(mockVolumes);
   });
 });
 
