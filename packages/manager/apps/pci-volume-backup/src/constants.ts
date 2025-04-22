@@ -150,3 +150,11 @@ export const URL_INFO = {
   LOCAL_ZONE: LOCAL_ZONE_URL,
   GLOBAL_REGIONS: GLOBAL_REGIONS_URL,
 };
+
+export const VOLUME_BACKUP_STATUS = {
+  CREATING: 'creating',
+  DELETING: 'deleting',
+  ERROR: 'error',
+  OK: 'ok',
+  RESTORING: 'restoring',
+};

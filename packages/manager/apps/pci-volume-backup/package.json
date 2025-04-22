@@ -18,7 +18,7 @@
     "start": "lerna exec --stream --scope='@ovh-ux/manager-pci-volume-backup-app' --include-dependencies -- npm run build --if-present",
     "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-pci-volume-backup-app' --include-dependencies -- npm run dev --if-present",
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-pci-volume-backup-app' --include-dependencies -- npm run dev:watch --if-present",
-    "test": "vitest run"
+    "test": "vitest run --pool=threads"
   },
   "dependencies": {
     "@ovh-ux/manager-config": "*",
@@ -57,7 +57,7 @@
     "react-error-boundary": "^5.0.0",
     "typescript": "^5.4.5",
     "vite": "^5.3.3",
-    "vitest": "^1.6.0"
+    "vitest": "^2.1.9"
   },
   "regions": [
     "CA",
