@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.11.0...@ovh-ux/manager-veeam-backup-app@0.12.0) (2025-04-22)
+
+
+### Bug Fixes
+
+* **veeam-backup:** change no organization link label ([b3c8565](https://github.com/ovh/manager/commit/b3c8565c1c44348cd9a63d05dbcb5f202bb318ba)), closes [#MANAGER-17374](https://github.com/ovh/manager/issues/MANAGER-17374)
+
+
+### Features
+
+* **veeam-backup:** guides implementation on dashboard and listing ([e3e81b8](https://github.com/ovh/manager/commit/e3e81b87825c6b65c2fff1a7727204d6076ad631)), closes [#MANAGER-17585](https://github.com/ovh/manager/issues/MANAGER-17585)
+
+
+
+
+
 # [0.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.10.2...@ovh-ux/manager-veeam-backup-app@0.11.0) (2025-04-17)
 
 

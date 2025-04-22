@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.27.0...@ovh-ux/manager-dedicated@20.28.0) (2025-04-22)
+
+
+### Features
+
+* **dedicated:** add guides on listing and dashboard pcc ([bc32bc9](https://github.com/ovh/manager/commit/bc32bc9f495b8f9f9ecdf488b429e3571adc94b5)), closes [#MANAGER-17571](https://github.com/ovh/manager/issues/MANAGER-17571)
+
+
+
+
+
 # [20.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.26.5...@ovh-ux/manager-dedicated@20.27.0) (2025-04-22)
 
 
