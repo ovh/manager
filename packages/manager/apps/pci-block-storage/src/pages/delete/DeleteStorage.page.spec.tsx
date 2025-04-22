@@ -8,7 +8,9 @@ import {
 } from '@tanstack/react-query';
 import DeleteStorage from './DeleteStorage.page';
 import * as useVolumeModule from '@/api/hooks/useVolume';
-import { TVolume, TVolumeSnapshot } from '@/api/data/volume';
+import { TAPIVolume, TVolumeSnapshot } from '@/api/data/volume';
+import { WithAttach } from '@/api/select/volume';
+import { UseVolumeResult } from '@/api/hooks/useVolume';
 
 type UseDeleteVolumeReturnType = UseMutationResult<
   never,
@@ -44,7 +46,7 @@ describe('DeleteStorage', () => {
     vi.spyOn(useVolumeModule, 'useVolume').mockReturnValue({
       data: {},
       isPending: true,
-    } as UseQueryResult<TVolume>);
+    } as UseQueryResult<UseVolumeResult>);
     const { getByTestId } = render(<DeleteStorage />, { wrapper });
     expect(getByTestId('deleteStorage-spinner')).toBeInTheDocument();
   });
@@ -56,7 +58,7 @@ describe('DeleteStorage', () => {
         attachedTo: ['testGateway'],
       },
       isPending: false,
-    } as UseQueryResult<TVolume>);
+    } as UseQueryResult<UseVolumeResult>);
     vi.spyOn(useVolumeModule, 'useDeleteVolume').mockReturnValue(({
       deleteVolume: vi.fn(),
       isPending: false,
@@ -76,7 +78,7 @@ describe('DeleteStorage', () => {
     vi.spyOn(useVolumeModule, 'useVolume').mockReturnValue({
       data: { name: 'testVolume', attachedTo: [] }, // Empty array to make isAttached false
       isPending: false,
-    } as UseQueryResult<TVolume>);
+    } as UseQueryResult<UseVolumeResult>);
     vi.spyOn(useVolumeModule, 'useDeleteVolume').mockReturnValue(({
       deleteVolume: vi.fn(),
       isPending: false,
