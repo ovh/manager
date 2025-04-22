@@ -9,6 +9,7 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { subRoutes, urls } from '@/routes/routes.constants';
+
 import { DomainDetails } from '@/types/ssl';
 
 export const DatagridActionCell = (props: DomainDetails) => {
@@ -31,6 +32,13 @@ export const DatagridActionCell = (props: DomainDetails) => {
     {
       id: 2,
       label: t('regenerate_ssl'),
+      onClick: () => {
+        navigate(
+          urls.regenerateSsl
+            .replace(subRoutes.serviceName, serviceName)
+            .replace(subRoutes.domain, props.domain),
+        );
+      },
     },
   ];
 
