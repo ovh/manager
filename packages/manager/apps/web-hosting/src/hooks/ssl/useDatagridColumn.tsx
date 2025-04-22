@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import {
   ActionMenu,
@@ -17,14 +18,25 @@ import {
 } from '@ovhcloud/ods-components';
 
 import { SslCertificate } from '@/types/ssl';
+import { subRoutes, urls } from '@/routes/routes.constants';
 
 export const DatagridActionCell = (props: SslCertificate) => {
+  const { serviceName } = useParams();
+  const navigate = useNavigate();
+
   const { t } = useTranslation('ssl');
 
   const items: ActionMenuItem[] = [
     {
       id: 1,
       label: t('disable_ssl'),
+      onClick: () => {
+        navigate(
+          urls.disableSsl
+            .replace(subRoutes.serviceName, serviceName)
+            .replace(subRoutes.domain, props?.currentState?.mainDomain),
+        );
+      },
     },
     {
       id: 2,

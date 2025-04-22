@@ -8,6 +8,7 @@ import { urls } from '@/routes/routes.constants';
 import {
   DASHBOARD,
   IMPORT_SSL,
+  DISABLE_SSL,
   ONBOARDING,
   ORDER_SECTIGO,
   SSL,
@@ -26,6 +27,9 @@ const ImportSslPage = React.lazy(() =>
 );
 const OrderSectigoPage = React.lazy(() =>
   import('@/pages/dashboard/ssl/add/orderSectigo.page'),
+);
+const DisableSslPage = React.lazy(() =>
+  import('@/pages/dashboard/ssl/manage/disableSsl.page'),
 );
 
 export default (
@@ -109,6 +113,17 @@ export default (
         handle={{
           tracking: {
             pageName: ORDER_SECTIGO,
+            pageType: PageType.popup,
+          },
+        }}
+      />
+      <Route
+        id={DISABLE_SSL}
+        path={urls.disableSsl}
+        Component={DisableSslPage}
+        handle={{
+          tracking: {
+            pageName: DISABLE_SSL,
             pageType: PageType.popup,
           },
         }}
