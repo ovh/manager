@@ -282,7 +282,10 @@ export const Datagrid = <T,>({
         .map((column) => ({
           id: column.id,
           label: column.label,
-          ...(column?.type && { comparators: FilterCategories[column.type] }),
+          ...(column?.type && {
+            comparators: FilterCategories[column.type],
+            type: column?.type,
+          }),
           ...(column?.comparator && { comparators: column.comparator }),
           ...(column?.filterOptions && { options: column.filterOptions }),
         })),

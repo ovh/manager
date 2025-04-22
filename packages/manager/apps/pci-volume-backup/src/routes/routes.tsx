@@ -1,5 +1,5 @@
 import React, { lazy } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Navigate } from 'react-router-dom';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import { urls } from '@/routes/routes.constant';
@@ -20,6 +20,7 @@ export default (
       />
     }
   >
+    <Route path="" element={<Navigate to={urls.listing} replace />} />
     <Route
       path={urls.listing}
       Component={ListingPage}
