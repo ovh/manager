@@ -6,9 +6,9 @@ import {
   OsdsText,
 } from '@ovhcloud/ods-components/react';
 import {
-  ODS_ICON_NAME,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
+  ODS_MESSAGE_TYPE,
 } from '@ovhcloud/ods-components';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
@@ -24,10 +24,18 @@ import {
 import {
   Subtitle,
   Links,
+  LinksProps,
   useCatalogPrice,
 } from '@ovh-ux/manager-react-components';
 import { useTranslation, Trans } from 'react-i18next';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+  FC,
+  PropsWithChildren,
+} from 'react';
 import { useData } from '@/api/hooks/useData';
 import { RegionType, StepIdsEnum, TRegion } from '@/api/types';
 import { useOrderStore } from '@/hooks/order/useStore';
@@ -41,16 +49,10 @@ import { useDeployments } from '@/api/hooks/useDeployments/useDeployments';
 const isRegionWith3AZ = (regions: TRegion[]) =>
   regions.some((region) => region.type === RegionType['3AZ']);
 
-const GuideLink = ({
+const MessageLink: FC<PropsWithChildren<LinksProps>> = ({
   children,
-  href,
-}: Readonly<{ href: string; children?: string }>) => (
-  <Links
-    label={children}
-    href={href}
-    target={OdsHTMLAnchorElementTarget._blank}
-  />
-);
+  ...props
+}) => <Links label={children} {...props} />;
 
 export const FloatingSteps = ({
   projectId,
@@ -181,7 +183,12 @@ export const FloatingSteps = ({
         key={StepIdsEnum.FLOATING_REGION}
         {...steps.get(StepIdsEnum.FLOATING_REGION)}
         title={t('regions:pci_project_regions_list_region')}
-        next={{ action: form.floatingRegion && On.next }}
+        next={
+          form.floatingRegion && selectedRegionInstances.length !== 0
+            ? { action: On.next }
+            : {}
+        }
+        showDisabledAction
         onEdit={On.edit}
         order={2}
       >
@@ -205,6 +212,28 @@ export const FloatingSteps = ({
               }
             />
           </PCICommonContext.Provider>
+          {((form.floatingRegion && selectedRegionInstances.length === 0) ||
+            isInstanceFetching) && (
+            <OsdsMessage
+              color={ODS_THEME_COLOR_INTENT.warning}
+              type={ODS_MESSAGE_TYPE.warning}
+              className="mt-4"
+            >
+              <OsdsText
+                level={ODS_TEXT_LEVEL.body}
+                size={ODS_TEXT_SIZE._400}
+                color={ODS_THEME_COLOR_INTENT.text}
+              >
+                <Trans
+                  t={t}
+                  i18nKey="pci_additional_ip_create_no_instance_message_floating_ip"
+                  components={{
+                    Link: <MessageLink href={instanceCreationURL} />,
+                  }}
+                />
+              </OsdsText>
+            </OsdsMessage>
+          )}
           {form.floatingRegion?.type === RegionType['3AZ'] && (
             <div className="mt-8">
               <OsdsText
@@ -216,7 +245,12 @@ export const FloatingSteps = ({
                   t={t}
                   i18nKey="pci_floating_ip_3az_guide_description"
                   components={{
-                    Link: <GuideLink href={guides['3AZ']} />,
+                    Link: (
+                      <MessageLink
+                        href={guides['3AZ']}
+                        target={OdsHTMLAnchorElementTarget._blank}
+                      />
+                    ),
                   }}
                 />
               </OsdsText>
@@ -224,126 +258,106 @@ export const FloatingSteps = ({
           )}
         </div>
       </StepComponent>
-      <StepComponent
-        key={StepIdsEnum.FLOATING_INSTANCE}
-        {...steps.get(StepIdsEnum.FLOATING_INSTANCE)}
-        title={t('pci_additional_ip_create_step_attach_instance')}
-        next={{ action: form.instance && form.ipAddress && On.next }}
-        onEdit={On.edit}
-        order={3}
-      >
-        {isInstanceFetching ? (
-          <div className="text-center">
-            <OsdsSpinner inline />
-          </div>
-        ) : (
-          <>
-            {selectedRegionInstances.length !== 0 ? (
-              <>
-                <p>
-                  <OsdsText>
-                    {t(
-                      'pci_additional_ip_create_step_attach_instance_description_floating_ip',
-                    )}
-                  </OsdsText>
-                </p>
-                <div>
-                  <OsdsText>
-                    {t('pci_additional_ips_failoverip_order_instance')}
-                  </OsdsText>
-                </div>
-                <OsdsSelect
-                  className="mb-4"
-                  required
-                  value={form.instance?.id}
-                  onOdsValueChange={(event) => {
-                    setForm({
-                      ...form,
-                      instance: getInstanceById(String(event.detail.value)),
-                    });
-                  }}
-                >
-                  <span slot="placeholder">
-                    {t('pci_additional_ip_create_step_attach_instance_label')}
-                  </span>
-                  {selectedRegionInstances.map((instance) => (
-                    <OsdsSelectOption key={instance.id} value={instance.id}>
-                      {instance.name}
-                    </OsdsSelectOption>
-                  ))}
-                </OsdsSelect>
-                {form.instance && (
-                  <>
-                    <div>
-                      <OsdsText>
-                        {t('pci_additional_ip_select_network_label')}
-                      </OsdsText>
-                    </div>
-                    <OsdsSelect
-                      required
-                      value={form.ipAddress?.ip}
-                      onOdsValueChange={(event) => {
-                        setForm({
-                          ...form,
-                          ipAddress: form.instance.ipAddresses.find(
-                            (ipAddress) =>
-                              ipAddress.ip === String(event.detail.value),
-                          ),
-                        });
-                      }}
-                    >
-                      <span slot="placeholder">
-                        {t('pci_additional_ip_select_network_label')}
-                      </span>
-                      {selectedInstanceIpAddresses.map((ipAddress, idx) => (
-                        <OsdsSelectOption key={idx} value={ipAddress.ip}>
-                          {ipAddress.ip}
-                        </OsdsSelectOption>
-                      ))}
-                    </OsdsSelect>
-                  </>
-                )}
-              </>
-            ) : (
-              <OsdsMessage
-                icon={ODS_ICON_NAME.ERROR_CIRCLE}
-                color={ODS_THEME_COLOR_INTENT.error}
-              >
-                <p className="text-base font-sans">
+      {isInstanceFetching ? (
+        <div className="text-center mt-4">
+          <OsdsSpinner inline />
+        </div>
+      ) : (
+        <>
+          <StepComponent
+            key={StepIdsEnum.FLOATING_INSTANCE}
+            {...steps.get(StepIdsEnum.FLOATING_INSTANCE)}
+            title={t('pci_additional_ip_create_step_attach_instance')}
+            next={{ action: form.instance && form.ipAddress && On.next }}
+            onEdit={On.edit}
+            order={3}
+          >
+            <>
+              <p>
+                <OsdsText>
                   {t(
-                    'pci_additional_ip_create_no_instance_message_floating_ip',
-                  )}{' '}
-                  <span
-                    dangerouslySetInnerHTML={{
-                      __html: t('pci_additional_ip_create_create_instance', {
-                        url: instanceCreationURL,
-                      }),
+                    'pci_additional_ip_create_step_attach_instance_description_floating_ip',
+                  )}
+                </OsdsText>
+              </p>
+              <div>
+                <OsdsText>
+                  {t('pci_additional_ips_failoverip_order_instance')}
+                </OsdsText>
+              </div>
+              <OsdsSelect
+                className="mb-4"
+                required
+                value={form.instance?.id}
+                onOdsValueChange={(event) => {
+                  setForm({
+                    ...form,
+                    instance: getInstanceById(String(event.detail.value)),
+                  });
+                }}
+              >
+                <span slot="placeholder">
+                  {t('pci_additional_ip_create_step_attach_instance_label')}
+                </span>
+                {selectedRegionInstances.map((instance) => (
+                  <OsdsSelectOption key={instance.id} value={instance.id}>
+                    {instance.name}
+                  </OsdsSelectOption>
+                ))}
+              </OsdsSelect>
+              {form.instance && (
+                <>
+                  <div>
+                    <OsdsText>
+                      {t('pci_additional_ip_select_network_label')}
+                    </OsdsText>
+                  </div>
+                  <OsdsSelect
+                    required
+                    value={form.ipAddress?.ip}
+                    onOdsValueChange={(event) => {
+                      setForm({
+                        ...form,
+                        ipAddress: form.instance.ipAddresses.find(
+                          (ipAddress) =>
+                            ipAddress.ip === String(event.detail.value),
+                        ),
+                      });
                     }}
-                  ></span>
-                </p>
-              </OsdsMessage>
-            )}
-          </>
-        )}
-      </StepComponent>
-      <StepComponent
-        key={StepIdsEnum.FLOATING_SUMMARY}
-        {...steps.get(StepIdsEnum.FLOATING_SUMMARY)}
-        title={t('pci_additional_ip_create_step_summary')}
-        order={4}
-      >
-        <FloatingIpSummary
-          projectId={projectId}
-          ipRegion={form.floatingRegion?.name}
-          networkId={form.ipAddress?.networkId}
-          onSelectedSizeChanged={(selectedSize: string) =>
-            setForm({
-              ...form,
-              floatingGatewaySize: selectedSize,
-            })
-          }
-        />
-      </StepComponent>
+                  >
+                    <span slot="placeholder">
+                      {t('pci_additional_ip_select_network_label')}
+                    </span>
+                    {selectedInstanceIpAddresses.map((ipAddress, idx) => (
+                      <OsdsSelectOption key={idx} value={ipAddress.ip}>
+                        {ipAddress.ip}
+                      </OsdsSelectOption>
+                    ))}
+                  </OsdsSelect>
+                </>
+              )}
+            </>
+          </StepComponent>
+          <StepComponent
+            key={StepIdsEnum.FLOATING_SUMMARY}
+            {...steps.get(StepIdsEnum.FLOATING_SUMMARY)}
+            title={t('pci_additional_ip_create_step_summary')}
+            order={4}
+          >
+            <FloatingIpSummary
+              projectId={projectId}
+              ipRegion={form.floatingRegion?.name}
+              networkId={form.ipAddress?.networkId}
+              onSelectedSizeChanged={(selectedSize: string) =>
+                setForm({
+                  ...form,
+                  floatingGatewaySize: selectedSize,
+                })
+              }
+            />
+          </StepComponent>
+        </>
+      )}
     </>
   );
 };
