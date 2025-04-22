@@ -2207,8 +2207,8 @@ export default class ServerInstallationOvhCtrl {
       hardwareRaid: [],
       partitioning: {
         disks:
-          this.$scope.informations.nbDisk > 2 &&
-          this.$scope.installation.nbDiskUse > 1
+          this.$scope.informations.nbDisk > 1 &&
+          this.$scope.installation.nbDiskUse
             ? this.$scope.installation.nbDiskUse
             : 0,
       },
