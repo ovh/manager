@@ -37,8 +37,6 @@
   "telephony_group_billing_dashboard_no_phone": "Naked line",
   "telephony_group_billing_dashboard_RMA_title": "RMA",
   "telephony_group_billing_dashboard_calls": "Llamadas",
-  "telephony_group_billing_dashboard_suspended_info": "Este grupo está actualmente suspendido.",
-  "telephony_group_billing_dashboard_suspended_info_link": "Haga clic aquí para aumentar el depósito de garantía.",
   "telephony_group_line_softphone_apply_theme_globally": "Aplicar tema Softphone",
   "telephony_group_line_softphone_your_logo": "Su logotipo",
   "telephony_group_line_softphone_apply_theme_error": "No se ha podido aplicar el tema: {{errorMessage}}",
@@ -54,5 +52,6 @@
   "telephony_group_line_softphone_logo_delete": "Restaurar logotipo predeterminado",
   "telephony_group_line_softphone_logo_format": "Formatos aceptados: {{format}} (Peso &lt; {{weight}}, tamaño nativo: {{size}})",
   "telephony_group_line_softphone_save_logo": "Debe reiniciar la aplicación para que el logotipo esté activo.",
-  "telephony_group_line_softphone_save_theme": "Debe reiniciar la aplicación para que el tema esté activo."
+  "telephony_group_line_softphone_save_theme": "Debe reiniciar la aplicación para que el tema esté activo.",
+  "telephony_group_billing_dashboard_suspended_info_link": "Haga clic aquí para aumentar el depósito de garantía."
 }

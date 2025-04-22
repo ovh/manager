@@ -37,8 +37,6 @@
   "telephony_group_billing_dashboard_no_phone": "Ligne nue",
   "telephony_group_billing_dashboard_RMA_title": "RMA",
   "telephony_group_billing_dashboard_calls": "Połączenia",
-  "telephony_group_billing_dashboard_suspended_info": "Grupa ta jest obecnie zawieszona.",
-  "telephony_group_billing_dashboard_suspended_info_link": "Kliknij tutaj, aby zwiększyć wysokość kaucji.",
   "telephony_group_line_softphone_apply_theme_globally": "Zastosuj motyw Softphone",
   "telephony_group_line_softphone_your_logo": "Twoje logo",
   "telephony_group_line_softphone_apply_theme_error": "Twój motyw nie mógł zostać zastosowany: {{errorMessage}}",
@@ -54,5 +52,6 @@
   "telephony_group_line_softphone_logo_delete": "Przywróć logo domyślne",
   "telephony_group_line_softphone_logo_format": "Akceptowane formaty: {{format}} (Waga &lt; {{weight}} , rozmiar natywny: {{size}})",
   "telephony_group_line_softphone_save_logo": "Aby logo było aktywne, należy ponownie uruchomić aplikację.",
-  "telephony_group_line_softphone_save_theme": "Aby motyw był aktywny, musisz ponownie uruchomić aplikację."
+  "telephony_group_line_softphone_save_theme": "Aby motyw był aktywny, musisz ponownie uruchomić aplikację.",
+  "telephony_group_billing_dashboard_suspended_info_link": "Kliknij tutaj, aby zwiększyć wysokość kaucji."
 }

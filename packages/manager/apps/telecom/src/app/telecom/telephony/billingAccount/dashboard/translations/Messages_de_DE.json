@@ -37,8 +37,6 @@
   "telephony_group_billing_dashboard_no_phone": "Ligne nue",
   "telephony_group_billing_dashboard_RMA_title": "RMA",
   "telephony_group_billing_dashboard_calls": "Anrufe",
-  "telephony_group_billing_dashboard_suspended_info": "Diese Gruppe ist derzeit ausgesetzt.",
-  "telephony_group_billing_dashboard_suspended_info_link": "Klicken Sie hier, um Ihr Garantiedepot zu erhöhen.",
   "telephony_group_line_softphone_apply_theme_globally": "Softphone-Design anwenden",
   "telephony_group_line_softphone_your_logo": "Ihr Logo",
   "telephony_group_line_softphone_apply_theme_error": "Ihr Design konnte nicht angewendet werden: {{errorMessage}}",
@@ -54,5 +52,6 @@
   "telephony_group_line_softphone_logo_delete": "Standardlogo wiederherstellen",
   "telephony_group_line_softphone_logo_format": "Zulässige Formate: {{format}} (Gewicht &lt; {{weight}} , native Größe: {{size}})",
   "telephony_group_line_softphone_save_logo": "Sie müssen die Anwendung neu starten, damit das Logo aktiv ist.",
-  "telephony_group_line_softphone_save_theme": "Sie müssen die Anwendung neu starten, damit das Design aktiv wird."
+  "telephony_group_line_softphone_save_theme": "Sie müssen die Anwendung neu starten, damit das Design aktiv wird.",
+  "telephony_group_billing_dashboard_suspended_info_link": "Klicken Sie hier, um Ihr Garantiedepot zu erhöhen."
 }
