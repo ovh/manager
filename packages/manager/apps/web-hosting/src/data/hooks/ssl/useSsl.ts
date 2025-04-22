@@ -5,6 +5,7 @@ import {
   createDomainCertificate,
   createDomainCertificates,
   deleteDomainCertificate,
+  regenerateDomainCertificate,
 } from '../../api/ssl';
 
 export const useCreateCertificate = (
@@ -82,6 +83,24 @@ export const useDeleteDomainCertificate = (
 
   return {
     deleteDomainCertificate: mutation.mutate,
+    ...mutation,
+  };
+};
+
+export const useRegenerateDomainCertificate = (
+  serviceName: string,
+  onSuccess: () => void,
+  onError: () => void,
+) => {
+  const mutation = useMutation({
+    mutationFn: (domain: string) =>
+      regenerateDomainCertificate(serviceName, domain),
+    onSuccess,
+    onError,
+  });
+
+  return {
+    regenerateDomainCertificate: mutation.mutate,
     ...mutation,
   };
 };
