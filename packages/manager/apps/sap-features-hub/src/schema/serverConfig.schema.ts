@@ -49,7 +49,6 @@ const APPLICATION_SERVER_LIST_SCHEMA = z
     }[] = [
       { key: 'name', label: 'duplicatedName' },
       { key: 'ipAddress', label: 'duplicatedIp' },
-      { key: 'instanceNumber', label: 'duplicatedInstance' },
     ] as const;
 
     withoutDuplicateFields.forEach(({ key, label }) => {

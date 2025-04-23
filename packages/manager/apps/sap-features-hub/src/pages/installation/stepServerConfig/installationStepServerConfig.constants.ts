@@ -11,7 +11,7 @@ export const SERVER_CONFIG_LIMITS = {
   vmMaxVcpu: 192,
   vmMaxRam: 4096,
   vmHanaMinVcpu: 8,
-  vmHanaMinRam: 8,
+  vmHanaMinRam: 64,
   vmApplicationMinVcpu: 1,
   vmApplicationMinRam: 1,
   instanceNumberLength: 2,
