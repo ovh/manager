@@ -33,7 +33,11 @@ export default function ServiceDetail() {
       <React.Suspense>
         <section className="grid grid-cols-1 gap-6 lg:grid-cols-2">
           <div className="flex flex-col gap-6">
-            <ServiceDetailInformation />
+            <ServiceDetailInformation
+              allDomProperty={serviceInfoDetail.allDomProperty}
+              domainsAttached={serviceInfoDetail.domainAttached}
+              status={serviceInfoDetail.serviceInfo.billing.renew.current.mode}
+            />
             <ServiceDetailDomains
               domainsAttached={serviceInfoDetail.domainAttached}
             />

@@ -1,15 +1,58 @@
-import { ODS_CARD_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsCard, OdsText } from '@ovhcloud/ods-components/react';
+import {
+  ODS_CARD_COLOR,
+  ODS_DIVIDER_COLOR,
+  ODS_DIVIDER_SPACING,
+  ODS_TEXT_PRESET,
+} from '@ovhcloud/ods-components';
+import { OdsCard, OdsDivider, OdsText } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { TServiceDetail } from '@/alldoms/types';
+import DatagridColumnRenewMode from '@/alldoms/components/DatagridColumns/DatagridColumnRenewMode';
+import { ServiceInfoRenewMode } from '@/alldoms/enum/service.enum';
 
-export default function ServiceDetailInformation() {
+interface ServiceDetailInformationProps {
+  readonly allDomProperty: TServiceDetail['allDomProperty'];
+  readonly domainsAttached: TServiceDetail['domainAttached'];
+  readonly status: ServiceInfoRenewMode;
+}
+
+export default function ServiceDetailInformation({
+  allDomProperty,
+  domainsAttached,
+  status,
+}: ServiceDetailInformationProps) {
   const { t } = useTranslation('allDom');
   return (
-    <OdsCard color={ODS_CARD_COLOR.neutral} className="w-full p-6">
+    <OdsCard
+      color={ODS_CARD_COLOR.neutral}
+      className="w-full p-6"
+      data-testid="ServiceDetailInformation"
+    >
       <OdsText preset={ODS_TEXT_PRESET.heading4}>
         {t('allDom_detail_page_information_title')}
       </OdsText>
+
+      <OdsDivider
+        color={ODS_DIVIDER_COLOR.light}
+        spacing={ODS_DIVIDER_SPACING._24}
+      />
+
+      <div className="flex flex-col gap-y-3">
+        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+          {t('allDom_page_detail_information_general_pack', {
+            t0: allDomProperty.type,
+          })}
+        </OdsText>
+        <OdsText>
+          {t('allDom_page_detail_information_general_extensions', {
+            t0: domainsAttached
+              .map((domain) => `.${domain.split('.')[1]}`)
+              .join('; '),
+          })}
+        </OdsText>
+        <DatagridColumnRenewMode renewMode={status} />
+      </div>
     </OdsCard>
   );
 }
