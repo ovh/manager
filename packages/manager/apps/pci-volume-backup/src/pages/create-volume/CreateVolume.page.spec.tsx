@@ -135,11 +135,6 @@ vi.mock('@/data/hooks/useVolumeBackup', () => ({
 describe('CreateVolumePage', () => {
   beforeEach(() => {
     vi.clearAllMocks();
-
-    vi.mocked(useVolume).mockReturnValue({
-      data: MOCK_VOLUME,
-      isPending: false,
-    } as ReturnType<typeof useVolume>);
   });
 
   it('should render loading state', () => {
@@ -156,7 +151,12 @@ describe('CreateVolumePage', () => {
     );
     const spinner = container.querySelector('ods-spinner');
     expect(title).toBeFalsy();
-    expect(spinner).toBeTruthy();
+    expect(spinner).toBeVisible();
+
+    vi.mocked(useVolume).mockReturnValue({
+      data: MOCK_VOLUME,
+      isLoading: false,
+    } as ReturnType<typeof useVolume>);
   });
 
   it('go back to listing page on cancellation', async () => {

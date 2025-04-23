@@ -60,16 +60,15 @@ export default function BadgeRegionType({
 
   return (
     <>
-      <div id={triggerId}>
-        <OdsButton
-          className="badge-region-type"
-          icon="circle-question"
-          iconAlignment="right"
-          size="sm"
-          variant="ghost"
-          label={label}
-        />
-      </div>
+      <OdsButton
+        id={triggerId}
+        className="badge-region-type"
+        icon="circle-question"
+        iconAlignment="right"
+        size="sm"
+        variant="ghost"
+        label={label}
+      />
       <OdsPopover triggerId={triggerId} position="right" withArrow>
         <div className="max-w-[18rem] region-tooltip-content">
           <OdsText className="inline" preset="span">

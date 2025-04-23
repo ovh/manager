@@ -104,7 +104,7 @@ describe('VolumeEdit', () => {
   });
 
   describe('Name input', () => {
-    it('uses suggested name as default value if specified', async () => {
+    it('uses suggested name as default value if specified', () => {
       const { container } = render(
         <VolumeEdit
           projectId="fake-project-id"
@@ -120,7 +120,7 @@ describe('VolumeEdit', () => {
       expect(nameInput).toHaveValue('Some suggested name');
     });
 
-    it('uses volume.name as default value if no suggested name', async () => {
+    it('uses volume.name as default value if no suggested name', () => {
       const { container } = render(
         <VolumeEdit
           projectId="fake-project-id"

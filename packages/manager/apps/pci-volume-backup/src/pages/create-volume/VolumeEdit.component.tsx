@@ -116,7 +116,7 @@ export default function VolumeEdit({
   return (
     <form className="flex flex-col" onSubmit={handleSubmit}>
       <OdsFormField className="my-4 w-full">
-        <OdsText className="font-bold-class text-critical" preset="caption">
+        <OdsText className="fw-bold text-critical" preset="caption">
           {t(
             'pci_projects_project_storages_blocks_block_volume-edit_region_label',
           )}
@@ -134,7 +134,7 @@ export default function VolumeEdit({
         </div>
       </OdsFormField>
       <OdsFormField className="my-4 w-full">
-        <OdsText className="font-bold-class text-critical" preset="caption">
+        <OdsText className="fw-bold text-critical" preset="caption">
           {t(
             'pci_projects_project_storages_blocks_block_volume-edit_type_label',
           )}
@@ -142,7 +142,7 @@ export default function VolumeEdit({
         <OdsText>{volume.type}</OdsText>
       </OdsFormField>
       <OdsFormField className="my-4 w-full">
-        <OdsText className="font-bold-class" preset="caption">
+        <OdsText className="fw-bold" preset="caption">
           {t(
             'pci_projects_project_storages_blocks_block_volume-edit_name_label',
           )}
@@ -166,7 +166,7 @@ export default function VolumeEdit({
       <div className="flex items-end mt-6 mb-3">
         <OdsFormField>
           <OdsText
-            className={clsx('font-bold-class', {
+            className={clsx('fw-bold', {
               'text-critical': hasSizeError,
             })}
             preset="caption"
