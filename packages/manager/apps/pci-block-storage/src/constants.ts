@@ -1,6 +1,13 @@
-import { ChangelogLinks } from '@ovh-ux/manager-react-components';
+import {
+  ChangelogLinks,
+  OvhSubsidiary,
+} from '@ovh-ux/manager-react-components';
 
-export const LOCAL_ZONE_INFO_URL = {
+export type UrlRecord = { [Key in OvhSubsidiary]?: string } & {
+  DEFAULT: string;
+};
+
+export const LOCAL_ZONE_INFO_URL: UrlRecord = {
   DEFAULT: 'https://ovhcloud.com/en/public-cloud/local-zone-compute/',
   ASIA: 'https://ovhcloud.com/asia/public-cloud/local-zone-compute/',
   DE: 'https://ovhcloud.com/de/public-cloud/local-zone-compute/',
@@ -24,7 +31,7 @@ export const LOCAL_ZONE_INFO_URL = {
   US: 'https://us.ovhcloud.com/public-cloud/local-zone-compute/',
 };
 
-export const GLOBAL_REGIONS_INFO_URL = {
+export const GLOBAL_REGIONS_INFO_URL: UrlRecord = {
   DEFAULT: 'https://ovhcloud.com/en/public-cloud/compute/',
   ASIA: 'https://ovhcloud.com/asia/public-cloud/compute/',
   DE: 'https://ovhcloud.com/de/public-cloud/compute/',
@@ -51,6 +58,11 @@ export const GLOBAL_REGIONS_INFO_URL = {
 export const URL_INFO = {
   GLOBAL_REGIONS: GLOBAL_REGIONS_INFO_URL,
   LOCAL_ZONE: LOCAL_ZONE_INFO_URL,
+};
+
+export const MULTI_ATTACH_INFO_URL: UrlRecord = {
+  // TODO : add other guides
+  DEFAULT: 'https://example.com',
 };
 
 export const VOLUME_MIN_SIZE = 10; // 10 Gio
