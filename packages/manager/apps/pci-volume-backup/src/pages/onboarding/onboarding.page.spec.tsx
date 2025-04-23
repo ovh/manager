@@ -20,13 +20,16 @@ describe('OnBoardingPage', () => {
   });
 
   it('displays the correct title and button label', () => {
-    const { container, getByText } = render(<OnBoardingPage />, {
+    const { container, getAllByText } = render(<OnBoardingPage />, {
       wrapper: createWrapper(),
     });
 
-    expect(
-      getByText('pci_projects_project_storages_volume_backup_onboarding_title'),
-    ).toBeVisible();
+    const titles = getAllByText(
+      'pci_projects_project_storages_volume_backup_onboarding_title',
+    );
+    expect(titles).toHaveLength(2);
+    expect(titles[0]).toBeVisible();
+    expect(titles[1]).toBeVisible();
     expect(
       container.querySelector(
         'ods-button[label="pci_projects_project_storages_volume_backup_onboarding_action_title"]',
@@ -60,15 +63,15 @@ describe('OnBoardingPage', () => {
   });
 
   it('renders breadcrumb with correct project information', () => {
-    const { container } = render(<OnBoardingPage />, {
+    render(<OnBoardingPage />, {
       wrapper: createWrapper(),
     });
 
-    const breadcrumbItems = container.querySelectorAll('ods-breadcrumb-item');
-    expect(container.querySelector('ods-breadcrumb')).toBeVisible();
+    expect(screen.getByTestId('breadcrumb')).toBeInTheDocument();
+    const breadcrumbItems = screen.getAllByTestId('breadcrumb-item');
     expect(breadcrumbItems).toHaveLength(2);
-    expect(breadcrumbItems[0].getAttribute('href')).toBe('mockProjectUrl');
-    expect(breadcrumbItems[1].getAttribute('label')).toBe(
+    expect(breadcrumbItems[0].getAttribute('data-href')).toBe('mockProjectUrl');
+    expect(breadcrumbItems[1].getAttribute('data-label')).toBe(
       'pci_projects_project_storages_volume_backup_onboarding_title',
     );
   });

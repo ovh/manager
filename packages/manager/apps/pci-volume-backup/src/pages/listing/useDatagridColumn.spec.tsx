@@ -8,10 +8,6 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
   DataGridTextCell: ({ children }: { children: React.ReactNode }) => (
     <div>{children}</div>
   ),
-  useTranslatedMicroRegions: () => ({
-    translateMicroRegion: (region: string) =>
-      `manager_components_region_${region}_micro`,
-  }),
 }));
 
 vi.mock('@/hooks/useFormattedDate', () => ({
@@ -23,8 +19,8 @@ vi.mock('./Status.component', () => ({
 }));
 
 vi.mock('./Actions.component', () => ({
-  default: ({ snapshot }: { snapshot: { id: string } }) =>
-    `Actions for ${snapshot.id}`,
+  default: ({ backup }: { backup: { id: string } }) =>
+    `Actions for ${backup.id}`,
 }));
 
 // Sample backup data
@@ -32,14 +28,14 @@ const mockBackup: TVolumeBackup = {
   id: 'backup-123',
   name: 'Test Backup',
   volumeId: 'volume-456',
-  status: 'available',
+  status: 'ok',
   size: 10,
   region: 'us-east-1',
   creationDate: '2023-01-01T00:00:00Z',
   volume: {
     id: 'volume-456',
     name: 'Test Backup',
-    status: 'available',
+    status: 'ok',
     size: 10,
     region: 'us-east-1',
     creationDate: '2023-01-01T00:00:00Z',
@@ -50,6 +46,7 @@ const mockBackup: TVolumeBackup = {
     availabilityZone: null,
     type: 'classic',
   },
+  search: 'Test Backup backup-123 us-east-1',
 };
 
 describe('useDatagridColumn', () => {
@@ -106,6 +103,16 @@ describe('useDatagridColumn', () => {
     expect(otherColumnsSortable).toBe(true);
   });
 
+  it('should have only 1 column with isSearchable set to true', () => {
+    // Because search uses AND instead of OR, thus a computed searchable column
+    // is added programmatically in the listing page (and other are turned off)
+    const { result } = renderHook(() => useDatagridColumn());
+    const searchableColumns = result.current.filter(
+      (column) => column.isSearchable,
+    );
+    expect(searchableColumns).toHaveLength(1);
+  });
+
   it('should render cell content correctly for each column', () => {
     const { result } = renderHook(() => useDatagridColumn());
 
@@ -138,32 +145,30 @@ describe('useDatagridColumn', () => {
     expect(sizeCell.textContent).toBe('10 unit_size_GiB');
 
     // Test status column cell renderer
-    // TODO
-    // const { container: statusCell } = render(
-    //   result.current[6].cell(mockBackup),
-    // );
-    // expect(statusCell.textContent).toBe('Status: available');
+    const { container: statusCell } = render(
+      result.current[6].cell(mockBackup),
+    );
+    expect(statusCell.textContent).toBe('Status: ok');
 
     // Test actions column cell renderer
-    // TODO
-    // const { container: actionsCell } = render(
-    //   result.current[7].cell(mockBackup),
-    // );
-    // expect(actionsCell.textContent).toBe('Actions for backup-123');
+    const { container: actionsCell } = render(
+      result.current[7].cell(mockBackup),
+    );
+    expect(actionsCell.textContent).toBe('Actions for backup-123');
   });
 
   it('should handle missing volume data gracefully', () => {
     const { result } = renderHook(() => useDatagridColumn());
 
-    // Create a snapshot without volume info
-    const snapshotWithoutVolume = {
+    // Create a backup without volume info
+    const backupWithoutVolume = {
       ...mockBackup,
       volume: undefined,
     };
 
     // The cell should not throw an error
     expect(() => {
-      result.current[3].cell(snapshotWithoutVolume);
+      result.current[3].cell(backupWithoutVolume);
     }).not.toThrow();
   });
 });
