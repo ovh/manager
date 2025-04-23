@@ -19,7 +19,6 @@ export const ProductNavReshuffleProvider = ({
   const location = useLocation();
   const [currentNavigationNode, setCurrentNavigationNode] = useState<Node>(null);
   const [navigationTree, setNavigationTree] = useState({});
-  const { betaVersion } = useContainer();
   const shell = useShell();
   const [isMobile, setIsMobile] = useState(useMediaQuery({
     query: `(max-width: ${MOBILE_WIDTH_RESOLUTION}px)`,
