@@ -8,19 +8,24 @@ import { OdsCard, OdsDivider, OdsText } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { TServiceDetail } from '@/alldoms/types';
-import DatagridColumnRenewMode from '@/alldoms/components/DatagridColumns/DatagridColumnRenewMode';
-import { ServiceInfoRenewMode } from '@/alldoms/enum/service.enum';
+import DatagridColumnRenewMode from '@/alldoms/components/AllDomDatagridColumns/DatagridColumnRenewMode';
+import {
+  ServiceInfoRenewMode,
+  ServiceResourceStatus,
+} from '@/alldoms/enum/service.enum';
 
 interface ServiceDetailInformationProps {
   readonly allDomProperty: TServiceDetail['allDomProperty'];
-  readonly domainsAttached: TServiceDetail['domainAttached'];
+  readonly extensionsList?: string[];
   readonly status: ServiceInfoRenewMode;
+  readonly serviceStatus: ServiceResourceStatus;
 }
 
 export default function ServiceDetailInformation({
   allDomProperty,
-  domainsAttached,
+  extensionsList,
   status,
+  serviceStatus,
 }: ServiceDetailInformationProps) {
   const { t } = useTranslation('allDom');
   return (
@@ -46,12 +51,15 @@ export default function ServiceDetailInformation({
         </OdsText>
         <OdsText>
           {t('allDom_page_detail_information_general_extensions', {
-            t0: domainsAttached
-              .map((domain) => `.${domain.split('.')[1]}`)
+            t0: extensionsList
+              .map((extension) => `.${extension.toLowerCase()}`)
               .join('; '),
           })}
         </OdsText>
-        <DatagridColumnRenewMode renewMode={status} />
+        <DatagridColumnRenewMode
+          renewMode={status}
+          serviceStatus={serviceStatus}
+        />
       </div>
     </OdsCard>
   );

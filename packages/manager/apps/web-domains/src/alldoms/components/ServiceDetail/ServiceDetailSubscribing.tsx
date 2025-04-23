@@ -8,7 +8,7 @@ import { OdsCard, OdsDivider, OdsText } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useFormatDate } from '@ovh-ux/manager-react-components';
-import DatagridColumnActionMenu from '../DatagridColumns/DatagridColumnActionMenu';
+import ServiceActionMenu from '@/alldoms/components/ActionMenu/ServiceActionMenu';
 import { TServiceDetail } from '@/alldoms/types';
 
 interface ServiceDetailSubscribingProps {
@@ -44,13 +44,13 @@ export default function ServiceDetailSubscribing({
             })}
           </OdsText>
         </div>
-        <DatagridColumnActionMenu
+        <ServiceActionMenu
           serviceId={`${serviceId}`}
           serviceName={serviceInfoDetail.allDomProperty.name}
-          serviceRenewMode={
-            serviceInfoDetail.serviceInfo.billing.renew.current.mode
+          terminateUrl={'terminate'}
+          serviceRegistrationStatus={
+            serviceInfoDetail.domainAttached.resourceStatus
           }
-          isServiceNameUrl={false}
         />
       </div>
 

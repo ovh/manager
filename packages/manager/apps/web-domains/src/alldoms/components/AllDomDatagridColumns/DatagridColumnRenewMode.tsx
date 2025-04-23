@@ -2,19 +2,33 @@ import React from 'react';
 import { OdsBadge } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
-import { ServiceInfoRenewMode } from '@/alldoms/enum/service.enum';
+import {
+  ServiceInfoRenewMode,
+  ServiceResourceStatus,
+} from '@/alldoms/enum/service.enum';
 
 interface DatagridColumnBadgeProps {
   readonly renewMode: ServiceInfoRenewMode | null;
+  readonly serviceStatus: ServiceResourceStatus;
 }
 
 export default function DatagridColumnRenewMode({
   renewMode,
+  serviceStatus,
 }: DatagridColumnBadgeProps) {
   const { t } = useTranslation('allDom');
 
   if (!renewMode) {
-    return '-';
+    return '';
+  }
+
+  if (serviceStatus === ServiceResourceStatus.Deleting) {
+    return (
+      <OdsBadge
+        label={t('allDom_table_status_terminate')}
+        color={ODS_BADGE_COLOR.critical}
+      />
+    );
   }
 
   return (
