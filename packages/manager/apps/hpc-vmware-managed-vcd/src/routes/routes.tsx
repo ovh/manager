@@ -68,6 +68,10 @@ const DatacentreComputeOrderPage = React.lazy(() =>
   ),
 );
 
+const DatacenterVrackNetworkPage = React.lazy(() =>
+  import('@/pages/dashboard/datacentre/vrack-network/VrackNetwork.page'),
+);
+
 export default (
   <Route
     path={urls.root}
@@ -204,6 +208,11 @@ export default (
             pageType: PageType.funnel,
           },
         }}
+      />
+      <Route
+        id={'vrack-network'}
+        path={urls.vrackNetwork}
+        Component={DatacenterVrackNetworkPage}
       />
       <Route
         id={'vDcCompute'}
