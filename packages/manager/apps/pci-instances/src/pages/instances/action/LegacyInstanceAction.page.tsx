@@ -4,7 +4,7 @@ import { useUrlSearchParams } from '@/hooks/url/useUrlSearchParams';
 import { usePathMatch } from '@/hooks/url/usePathMatch';
 
 type TSectionType = 'delete' | 'start' | 'stop' | 'shelve' | 'unshelve';
-const actionSectionRegex = /(?:rescue\/(start|end)|(?<!rescue\/)(start|stop|shelve|unshelve|delete))$/;
+const actionSectionRegex = /(?:rescue\/(start|end)|(?<!rescue\/)(start|stop|shelve|unshelve|delete|soft-reboot|hard-reboot|reinstall|backup|billing\/monthly\/activate))$/;
 
 /**
  * React component to handle leagcy non-regionalized routes for instance actions.

@@ -63,13 +63,19 @@ export const ActionModalContent: FC<TActionModalProps> = ({
   }, [instanceName, t, type]);
 
   const warningMessage = useMemo(() => {
-    if (type === 'reinstall') {
-      return t(`pci_instances_actions_${type}_instance_warning_message`);
+    if (
+      type === 'reinstall' ||
+      type === 'billing/monthly/activate' ||
+      type === 'backup'
+    ) {
+      const sectionSnakeCase = isCustomUrlSection(type)
+        ? replaceToSnakeCase(type)
+        : type;
+      return t(
+        `pci_instances_actions_${sectionSnakeCase}_instance_warning_message`,
+      );
     }
 
-    if (type === 'backup') {
-      return t(`pci_instances_actions_${type}_instance_warning_message`);
-    }
     return null;
   }, [type, t]);
 
