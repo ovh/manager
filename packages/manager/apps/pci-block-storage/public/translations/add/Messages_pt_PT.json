@@ -41,5 +41,6 @@
   "pci_projects_project_storages_blocks_add_type_availability_zone_other": "Dados localizados em {{count}} zona(s) de disponibilidade",
   "pci_projects_project_storages_blocks_add_availability_zone_subtitle": "A escolha de uma zona de disponibilidade é definitiva. Se pretender alterar o volume de zona, deverá eliminá-lo e criá-lo novamente na nova zona desejada.",
   "pci_projects_project_storages_blocks_add_type_addon_iops_dynamic": "{{iops}} IOPS/GB até {{max}} IOPS{{separator}} ",
+  "pci_projects_project_storages_blocks_add_type_multi_attach_banner": "É imperativo utilizar um sistema de ficheiros compatível com a gestão multi-anexo ou em cluster para os seus volumes quando várias instâncias são associadas a estes últimos. Sem esta configuração, os seus dados poderão ficar danificados. Para mais informações, <Link>consulte o nosso guia sobre a configuração dos volumes multi-anexo</Link>",
   "pci_projects_project_storages_blocks_add_type_subtitle_3AZ_link": "Saber mais sobre as especificidades dos serviços 3AZ"
 }
