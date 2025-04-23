@@ -77,7 +77,6 @@ export default function Container(): JSX.Element {
           style={{ position: 'absolute' }}
         ></LiveChat>
       </ProgressProvider>
-
       <Suspense fallback="">
         <SSOAuthModal />
       </Suspense>
