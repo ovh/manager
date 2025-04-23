@@ -1,17 +1,7 @@
-export enum ServiceInfoRenewEnum {
-  AutomaticForce = 'automaticForcedProduct',
-  Automatic2012 = 'automaticV2012',
-  Automatic2014 = 'automaticV2014',
-  Automatic2016 = 'automaticV2016',
-  Manual = 'manual',
-  OneShot = 'oneShot',
-  Option = 'option',
-}
-
 export enum ServiceInfoType {
-  French = 'french',
-  FrenchInternational = 'french+international',
-  International = 'international',
+  French = 'FRENCH',
+  FrenchInternational = 'FRENCH+INTERNATIONAL',
+  International = 'INTERNATIONAL',
 }
 
 export enum ServiceInfoRenewMode {
@@ -29,4 +19,25 @@ export enum ServiceInfoContactEnum {
   Administrator = 'administrator',
   Technical = 'technical',
   Billing = 'billing',
+}
+
+export enum DomainRegistrationStateEnum {
+  Registered = 'REGISTERED',
+  Unregistered = 'UNREGISTERED',
+}
+
+export enum DomainProtectionStateEnum {
+  Protected = 'PROTECTED',
+  NotProtected = 'NOT_PROTECTED',
+}
+
+export enum Gender {
+  Masc = 'masc',
+  Fem = 'fem',
+}
+
+export enum ActionEnum {
+  All = 'all',
+  OnlyContact = 'onlycontact',
+  OnlyRenew = 'onlyrenew',
 }

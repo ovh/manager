@@ -10,11 +10,11 @@ export default function Domain() {
   return (
     <React.Suspense>
       <DashboardPage
+        searchableColumnID={ParentEnum.DOMAIN}
         parent={ParentEnum.DOMAIN}
         notifications={notifications}
         route={`${taskMeDomain.join('/')}?type=domain`}
         queryKey={taskMeDomain}
-        testID={'domain'}
       />
     </React.Suspense>
   );

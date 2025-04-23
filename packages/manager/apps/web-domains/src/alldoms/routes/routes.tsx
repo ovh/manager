@@ -15,9 +15,6 @@ const AllDomDetailPage = React.lazy(() =>
 const AllDomTerminatePage = React.lazy(() =>
   import('@/alldoms/pages/service/serviceTerminate/serviceTerminate'),
 );
-const OnboardingPage = React.lazy(() =>
-  import('@/alldoms/pages/onboarding/onboarding'),
-);
 
 export default (
   <>
@@ -69,17 +66,6 @@ export default (
           id="allDomDetailTerminate"
         ></Route>
       </Route>
-      <Route
-        path={urls.alldomsOnboarding}
-        Component={OnboardingPage}
-        id="onboarding"
-        handle={{
-          tracking: {
-            pageName: 'onboarding',
-            pageType: PageType.onboarding,
-          },
-        }}
-      ></Route>
     </Route>
     <Route path="*" element={<NotFound />} />
   </>

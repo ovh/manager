@@ -13,6 +13,7 @@ vi.mock('react-i18next', () => ({
   getI18n: () => ({
     language: (language: string) => language,
   }),
+  Trans: ({ i18nKey }: { i18nKey: string }) => <span>{i18nKey}</span>,
 }));
 
 vi.mock(import('@ovh-ux/manager-react-components'), async (importOriginal) => {
@@ -61,4 +62,8 @@ vi.mock('@ovh-ux/manager-react-shell-client', () => ({
       data: `https://ovh.test/#/${linkParams[0]}${linkParams[1]}`,
     } as UseQueryResult<unknown, Error>;
   },
+}));
+
+vi.mock('punycode', () => ({
+  toUnicode: vi.fn(),
 }));

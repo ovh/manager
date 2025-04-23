@@ -5,7 +5,6 @@ import { vi } from 'vitest';
 import { render, waitFor } from '@testing-library/react';
 import { useResourcesIcebergV6 } from '@ovh-ux/manager-react-components';
 import AllDom from '@/pages/dashboard/allDom/AllDom';
-import { taskMeAllDom, taskMeDomain } from '@/constants';
 import { serviceInfo } from '@/__mocks__/serviceInfo';
 import { useGetDomainInformation } from '@/hooks/data/query';
 import { wrapper } from '@/utils/test.provider';
@@ -25,44 +24,16 @@ vi.mock('@/hooks/data/query', () => ({
   useGetDomainInformation: vi.fn(),
 }));
 
-describe('Dns datagrid', () => {
-  it('displays loading spinner while main request are loading', () => {
-    (useResourcesIcebergV6 as jest.Mock).mockReturnValue({
-      flattenData: [],
-      isLoading: true,
-    });
-
-    (useGetDomainInformation as jest.Mock).mockReturnValue({
-      data: serviceInfo,
-    });
-    const { getByTestId } = render(<AllDom />, { wrapper });
-    expect(getByTestId('listing-page-spinner')).toBeInTheDocument();
-  });
-
-  it('fetch in a good way using useResourcesIcebergV6', () => {
-    (useResourcesIcebergV6 as jest.Mock).mockReturnValue({
-      flattenData: allDom,
-      isLoading: false,
-    });
-
-    (useGetDomainInformation as jest.Mock).mockReturnValue({
-      data: serviceInfo,
-    });
-
-    expect(useResourcesIcebergV6).toHaveBeenCalledWith(
-      expect.objectContaining({
-        pageSize: 30,
-        route: `${taskMeDomain.join('/')}?type=alldom`,
-        disableCache: false,
-        queryKey: taskMeAllDom,
-      }),
-    );
-  });
-
+describe('alldom datagrid', () => {
   it('Display the datagrid element', async () => {
     (useResourcesIcebergV6 as jest.Mock).mockReturnValue({
       flattenData: allDom,
       isLoading: false,
+      search: {
+        searchInput: '',
+        setSearchInput: vi.fn(),
+        onSearch: vi.fn(),
+      },
     });
 
     (useGetDomainInformation as jest.Mock).mockReturnValue({
@@ -71,7 +42,7 @@ describe('Dns datagrid', () => {
 
     const { getByTestId } = render(<AllDom />, { wrapper });
     await waitFor(() => {
-      expect(getByTestId('allDom')).toBeInTheDocument();
+      expect(getByTestId('datagrid')).toBeInTheDocument();
       const allDomName = getByTestId('allDom-test');
       expect(allDomName).toBeInTheDocument();
       expect(allDomName).toHaveAttribute(

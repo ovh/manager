@@ -7,7 +7,7 @@ export const serviceInfoProperty: TServiceProperty[] = [
       id: '000',
       urn: 'urn:v1:eu:resource:alldom:testdomain',
     },
-    name: 'testdomain-puweb',
+    name: 'alldom-french-international-example',
     offer: 'gold',
     type: ServiceInfoType.FrenchInternational,
   },
