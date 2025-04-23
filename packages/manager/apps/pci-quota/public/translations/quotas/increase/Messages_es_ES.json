@@ -15,5 +15,6 @@
   "pci_projects_project_quota_increase_banner": "Por favor, rellene todos los campos de este formulario para que podamos procesar su solicitud de aumento. Si el formulario no está totalmente completo, no podremos responder favorablemente a su solicitud. ¡Gracias por su comprensión!",
   "pci_projects_project_quota_increase_description": "Cree y acceda a sus solicitudes de asistencia en función de sus necesidades. Consulte, organice y acceda a las solicitudes ya guardadas.",
   "pci_projects_project_quota_increase_error_message_min": "Introduzca un mínimo de {{ min }} caracteres.",
-  "pci_projects_project_quota_increase_back_label": "Volver a la página anterior"
+  "pci_projects_project_quota_increase_back_label": "Volver a la página anterior",
+  "pci_projects_project_quota_increase_success_message": "La solicitud de aumento de cuota se ha enviado. <Link>Haga clic aquí para consultar su evolución</Link>"
 }
