@@ -22,7 +22,10 @@ import {
   DomainOperationsEnum,
 } from '@/constants';
 
-export const useOngoingOperationDatagridColumns = (parent: ParentEnum) => {
+export const useOngoingOperationDatagridColumns = (
+  searchableColumnID: string,
+  parent: ParentEnum,
+) => {
   const { t } = useTranslation('dashboard');
   const { clearNotifications } = useNotifications();
   const navigate = useNavigate();
@@ -31,7 +34,7 @@ export const useOngoingOperationDatagridColumns = (parent: ParentEnum) => {
 
   const columns = [
     {
-      id: parent,
+      id: searchableColumnID,
       cell: (props: TOngoingOperations) => (
         <OngoingOperationDatagridDomain parent={parent} props={props} />
       ),

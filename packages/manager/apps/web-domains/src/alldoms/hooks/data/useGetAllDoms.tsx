@@ -1,8 +1,7 @@
 import { useQueries } from '@tanstack/react-query';
 import {
-  getAllDomainAttachedToAllDom,
-  getAllDomProperty,
-  getallDomService,
+  getAllDomResource,
+  getAllDomService,
 } from '@/alldoms/data/api/web-domains';
 import { TServiceDetail, TServiceProperty } from '@/alldoms/types';
 import { findContact } from '@/alldoms/utils/utils';
@@ -12,32 +11,28 @@ interface UseGetDatagridServiceInfoListProps {
   readonly allDomList: TServiceProperty[];
 }
 
-export const useGetDatagridServiceInfoList = ({
+export const useGetAllDoms = ({
   allDomList = [],
 }: UseGetDatagridServiceInfoListProps) => {
   const queries = useQueries({
-    queries: allDomList.map((serviceName) => ({
-      queryKey: ['serviceInfoList', serviceName.name],
+    queries: allDomList.map((allDom) => ({
+      queryKey: ['serviceInfoList', allDom.name],
       queryFn: async () => {
-        const [
-          allDomProperty,
-          serviceInfo,
-          domainAttached,
-        ] = await Promise.all([
-          getAllDomProperty(serviceName.name),
-          getallDomService(serviceName.name),
-          getAllDomainAttachedToAllDom(serviceName.name),
+        const [serviceInfo, allDomResource] = await Promise.all([
+          getAllDomService(allDom.name),
+          getAllDomResource(allDom.name),
         ]);
 
         const contacts = serviceInfo?.customer?.contacts ?? [];
 
         return {
-          allDomProperty,
           serviceInfo,
-          domainAttached,
+          allDomResource,
           nicAdmin: findContact(contacts, ServiceInfoContactEnum.Administrator),
           nicBilling: findContact(contacts, ServiceInfoContactEnum.Billing),
           nicTechnical: findContact(contacts, ServiceInfoContactEnum.Technical),
+          allDomResourceState:
+            serviceInfo?.billing?.lifecycle?.capacities?.actions[0],
         };
       },
     })),
