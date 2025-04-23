@@ -31,5 +31,7 @@
   "allDom_modal_step_previous": "Précédent",
   "allDom_modal_step_terminate": "Résilier",
   "allDom_modal_success_message": "Le service {{t0}} et le(s) domaine(s) {{t1}} ont bien été mis à jour",
-  "allDom_modal_error_message": "Une erreur est survenue : {{t0}}"
+  "allDom_modal_error_message": "Une erreur est survenue : {{t0}}",
+  "allDom_page_detail_information_general_pack": "Pack {{t0}}",
+  "allDom_page_detail_information_general_extensions": "Les extensions incluses : {{t0}}"
 }
