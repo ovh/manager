@@ -13,7 +13,7 @@ import Loading from '@/alldoms/components/Loading/Loading';
 
 import appConfig from '@/web-domains.config';
 import { useAllDomDatagridColumns } from '@/alldoms/hooks/useAllDomDatagridColumns';
-import { useGetDatagridServiceInfoList } from '@/alldoms/hooks/data/useDatagridServiceInfoList';
+import { useGetDatagridServiceInfoList } from '@/alldoms/hooks/data/useGetDatagridServiceInfoList';
 import { TServiceDetail, TServiceProperty } from '@/alldoms/types';
 import Modal from '@/alldoms/components/Modal/Modal';
 
@@ -39,8 +39,7 @@ export default function ServiceList() {
     queryKey: ['/allDom'],
     pageSize: 30,
   });
-
-  const { serviceInfoList, listLoading } = useGetDatagridServiceInfoList({
+  const { data: serviceInfoList, listLoading } = useGetDatagridServiceInfoList({
     allDomList,
   });
 
