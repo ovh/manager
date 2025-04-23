@@ -43,6 +43,7 @@ import {
   OdsToggle,
 } from '@ovhcloud/ods-components/react';
 
+import { ColumnSort } from '@tanstack/react-table';
 import {
   usePaginatedObjects,
   useServerContainer,
@@ -213,13 +214,38 @@ export default function ObjectPage() {
     }
   };
 
+  const [sortingDatagrid, setSortingDatagrid] = useState<ColumnSort>();
+
   const containerObjectsWithIndex = useMemo(() => {
     if (!containerObjects || !container?.s3StorageType) return [];
-    return containerObjects.map((object, index) => ({
+
+    const sortedObjects = [...containerObjects];
+
+    if (sortingDatagrid) {
+      const { id, desc } = sortingDatagrid;
+      sortedObjects.sort((a, b) => {
+        if (a[id] == null) return desc ? -1 : 1;
+        if (b[id] == null) return desc ? 1 : -1;
+
+        if (id === 'lastModified') {
+          const dateA = new Date(a[id]).getTime();
+          const dateB = new Date(b[id]).getTime();
+          return desc ? dateB - dateA : dateA - dateB;
+        }
+
+        if (typeof a[id] === 'string' && typeof b[id] === 'string') {
+          return desc ? b[id].localeCompare(a[id]) : a[id].localeCompare(b[id]);
+        }
+
+        return desc ? b[id] - a[id] : a[id] - b[id];
+      });
+    }
+
+    return sortedObjects.map((object, index) => ({
       ...object,
       index: `${index}`,
     }));
-  }, [containerObjects]);
+  }, [containerObjects, sortingDatagrid]);
 
   const shouldHideButton = useMemo(() => {
     return !container?.tags?.[BACKUP_KEY];
@@ -633,7 +659,17 @@ export default function ObjectPage() {
           </div>
 
           {container?.s3StorageType && (
-            <div className="mt-8">
+            <div className="mt-[32px]" id="containerDataGrid">
+              <OdsText preset="heading-4" className="mt-6 block">
+                {tContainer(
+                  'pci_projects_project_storages_containers_container_objects',
+                )}
+              </OdsText>
+              <OdsText preset="paragraph" className="mt-4 block mb-6">
+                {tContainer(
+                  'pci_projects_project_storages_containers_container_objects_sort_warining',
+                )}
+              </OdsText>
               <Datagrid
                 topbar={
                   <div className="flex w-full justify-between items-center">
@@ -675,6 +711,8 @@ export default function ObjectPage() {
                   </div>
                 }
                 columns={objectsColumns}
+                sorting={sortingDatagrid}
+                onSortChange={setSortingDatagrid}
                 hasNextPage={hasNextPage}
                 items={isObjectsLoading ? [] : containerObjectsWithIndex}
                 onFetchNextPage={handleFetchNextPage}
