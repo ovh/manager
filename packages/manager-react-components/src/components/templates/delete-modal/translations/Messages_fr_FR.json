@@ -3,6 +3,6 @@
   "deleteModalCancelButton": "Non, refuser",
   "deleteModalDeleteButton": "Oui, résilier",
   "deleteModalDescription": "La résiliation de votre service effacera définitivement toutes les données correspondantes. Souhaitez-vous procéder à la résiliation de votre service ?",
-  "deleteModalHeadline": "Résilier mon {{serviceType}} ?",
-  "deleteModalHeadlineService": "Service"
+  "deleteModalHeadline": "Résilier {{serviceType}} ?",
+  "deleteModalHeadlineService": "le service"
 }

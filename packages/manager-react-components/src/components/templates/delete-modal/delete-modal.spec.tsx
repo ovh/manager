@@ -1,24 +1,14 @@
-import { Mock, vitest } from 'vitest';
-import React, { waitFor, screen, fireEvent } from '@testing-library/react';
+import { vitest } from 'vitest';
+import { waitFor, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { render } from '../../../utils/test.provider';
-import { DeleteModal } from './delete-modal.component';
-import fr_FR from './translations/Messages_fr_FR.json';
+import { DeleteModal, DeleteModalProps } from './delete-modal.component';
 import '@testing-library/jest-dom';
 
-export const sharedProps: {
-  closeModal: Mock;
-  onConfirmDelete: Mock;
-  serviceTypeName: string;
-  cancelButtonLabel: string;
-  confirmButtonLabel: string;
-  isOpen: boolean;
-} = {
+export const sharedProps: DeleteModalProps = {
   closeModal: vitest.fn(),
   onConfirmDelete: vitest.fn(),
   serviceTypeName: 'serviceType',
-  cancelButtonLabel: fr_FR.deleteModalCancelButton,
-  confirmButtonLabel: fr_FR.deleteModalDeleteButton,
   isOpen: true,
 };
 
@@ -28,28 +18,21 @@ describe('Delete Modal component', () => {
     expect(true).toBeTruthy();
   });
   it('renders correctly', async () => {
-    const { container } = render(<DeleteModal {...sharedProps} />);
+    render(<DeleteModal {...sharedProps} />);
     await waitFor(() => {
       expect(
-        screen.getByText(fr_FR.deleteModalDescription),
+        screen.getByTestId('manager-delete-modal-description'),
       ).toBeInTheDocument();
       expect(
-        container.querySelector(`[label="${sharedProps.cancelButtonLabel}"]`),
+        screen.getByTestId('manager-delete-modal-cancel'),
       ).toBeInTheDocument();
       expect(
-        container.querySelector(`[label="${sharedProps.confirmButtonLabel}"]`),
+        screen.getByTestId('manager-delete-modal-confirm'),
       ).toBeInTheDocument();
     });
   });
   it('renders loading modal', async () => {
-    const { asFragment } = render(
-      <DeleteModal
-        {...sharedProps}
-        isLoading
-        cancelButtonLabel={undefined}
-        confirmButtonLabel={undefined}
-      />,
-    );
+    const { asFragment } = render(<DeleteModal {...sharedProps} isLoading />);
     await waitFor(() => {
       expect(asFragment()).toMatchSnapshot();
     });
