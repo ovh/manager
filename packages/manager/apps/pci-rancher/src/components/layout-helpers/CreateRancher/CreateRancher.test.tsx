@@ -1,13 +1,15 @@
 import userEvent from '@testing-library/user-event';
 import React from 'react';
+import { vi } from 'vitest';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+
+import dashboardTranslation from '@translation/dashboard/Messages_fr_FR.json';
+import listingTranslation from '@translation/listing/Messages_fr_FR.json';
 import {
   rancherPlan,
   rancherVersion,
   rancherPlansPricing,
 } from '@/_mock_/rancher-resource';
-import dashboardTranslation from '../../../../public/translations/dashboard/Messages_fr_FR.json';
-import listingTranslation from '../../../../public/translations/listing/Messages_fr_FR.json';
 import {
   act,
   fireEvent,
@@ -18,47 +20,47 @@ import {
 import { getRanchersUrl } from '@/utils/route';
 import CreateRancher, { CreateRancherProps } from './CreateRancher.component';
 
-const onCreateRancher = jest.fn();
-const mockedUsedNavigate = jest.fn();
+const onCreateRancher = vi.fn();
+const mockedUsedNavigate = vi.fn();
 
 afterEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 });
 
-jest.mock('react-use', () => ({
-  useMedia: jest.fn(),
+vi.mock('react-use', () => ({
+  useMedia: vi.fn(),
 }));
 
-jest.mock('@ovh-ux/manager-react-components', () => ({
-  ...jest.requireActual('@ovh-ux/manager-react-components'),
-  Subtitle: jest.fn(),
-  Title: jest.fn(),
-  useCatalogPrice: jest.fn((val) => ({
-    getFormattedCatalogPrice: jest.fn(() => parseFloat((0.0171).toFixed(val))),
+vi.mock('@ovh-ux/manager-react-components', () => ({
+  ...vi.importActual('@ovh-ux/manager-react-components'),
+  Subtitle: vi.fn(),
+  Title: vi.fn(),
+  useCatalogPrice: vi.fn((val) => ({
+    getFormattedCatalogPrice: vi.fn(() => parseFloat((0.0171).toFixed(val))),
   })),
 }));
 
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
+vi.mock('react-router-dom', () => ({
+  ...vi.importActual('react-router-dom'),
   useNavigate: () => mockedUsedNavigate,
 }));
 
-jest.mock('@ovh-ux/manager-pci-common', () => ({
-  useProject: jest.fn(() => ({ data: {} })),
-  PciDiscoveryBanner: jest.fn(
+vi.mock('@ovh-ux/manager-pci-common', () => ({
+  useProject: vi.fn(() => ({ data: {} })),
+  PciDiscoveryBanner: vi.fn(
     () => 'pci_projects_project_activate_project_banner_message',
   ),
-  usePciUrl: jest.fn(() => '/url'),
+  usePciUrl: vi.fn(() => '/url'),
 }));
 
-jest.mock('@ovh-ux/manager-react-shell-client', () => ({
-  useNavigation: jest.fn(() => ({
-    getURL: jest.fn(() => Promise.resolve('123')),
+vi.mock('@ovh-ux/manager-react-shell-client', () => ({
+  useNavigation: vi.fn(() => ({
+    getURL: vi.fn(() => Promise.resolve('123')),
     data: [],
   })),
-  useTracking: jest.fn(() => ({
-    trackPage: jest.fn(),
-    trackClick: jest.fn(),
+  useTracking: vi.fn(() => ({
+    trackPage: vi.fn(),
+    trackClick: vi.fn(),
   })),
 }));
 
