@@ -27,7 +27,7 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
 // Sample backup data
 const mockBackup: TVolumeBackup = {
   id: 'backup-123',
-  name: 'Test Snapshot',
+  name: 'Test Backup',
   volumeId: 'volume-456',
   status: 'available',
   size: 10,
@@ -35,18 +35,19 @@ const mockBackup: TVolumeBackup = {
   creationDate: '2023-01-01T00:00:00Z',
   volume: {
     id: 'volume-456',
-    name: 'Test Snapshot',
+    name: 'Test Backup',
     status: 'available',
     size: 10,
     region: 'us-east-1',
     creationDate: '2023-01-01T00:00:00Z',
-    description: 'Test snapshot description',
+    description: 'Test backup description',
     planCode: 'test-plan-code',
     attachedTo: [],
     bootable: false,
     availabilityZone: null,
     type: 'classic',
   },
+  search: 'Test Backup backup-123 us-east-1',
 };
 
 describe('Actions Component', () => {
@@ -83,13 +84,13 @@ describe('Actions Component', () => {
     );
   });
 
-  it('renders with different snapshot IDs', () => {
+  it('renders with different backup IDs', () => {
     const { rerender, getByTestId } = render(<Actions backup={mockBackup} />);
 
     // Check initial render
     expect(getByTestId('action-menu')).toHaveAttribute('data-id', 'backup-123');
 
-    // Rerender with a different snapshot
+    // Rerender with a different backup
     const anotherBackup = { ...mockBackup, id: 'another-backup-456' };
     rerender(<Actions backup={anotherBackup} />);
 
