@@ -6,7 +6,7 @@ import { instancesQueryKey } from '@/utils';
 
 export type TUseInstanceQueryOptions = Pick<
   UseQueryOptions<TInstanceDto>,
-  'enabled' | 'retry'
+  'enabled' | 'retry' | 'gcTime'
 >;
 
 export const useInstance = (
