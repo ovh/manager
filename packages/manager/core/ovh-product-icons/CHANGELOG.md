@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-product-icons@0.9.0...@ovh-ux/ovh-product-icons@0.10.0) (2025-04-23)
+
+
+### Features
+
+* **container:** update globe svg icon ([#16581](https://github.com/ovh/manager/issues/16581)) ([c3fef48](https://github.com/ovh/manager/commit/c3fef48a361b075229a9532e750d340d9e40a75c)), closes [#MANAGER-17754](https://github.com/ovh/manager/issues/MANAGER-17754)
+
+
+
+
+
 # [0.9.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-product-icons@0.8.0...@ovh-ux/ovh-product-icons@0.9.0) (2025-02-24)
 
 
