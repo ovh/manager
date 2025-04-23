@@ -40,11 +40,11 @@ export type DeleteModalProps = {
   onConfirmDelete: () => void;
   error?: string;
   /**
-   * @deprecated the button label is now fixed
+   * @deprecated the button label is now fixed text
    */
   cancelButtonLabel?: string;
   /**
-   * @deprecated the button label is now fixed
+   * @deprecated the button label is now fixed text
    */
   confirmButtonLabel?: string;
   children?: React.ReactNode;
@@ -94,6 +94,7 @@ export const DeleteModal: React.FC<DeleteModalProps> = ({
         </OsdsMessage>
       )}
       <OsdsText
+        data-testid="manager-delete-modal-description"
         color={ODS_THEME_COLOR_INTENT.text}
         level={ODS_TEXT_LEVEL.body}
         className="block my-4"
@@ -109,6 +110,7 @@ export const DeleteModal: React.FC<DeleteModalProps> = ({
       <OsdsButton
         disabled={isLoading || undefined}
         slot="actions"
+        data-testid="manager-delete-modal-cancel"
         type={ODS_BUTTON_TYPE.button}
         variant={ODS_BUTTON_VARIANT.ghost}
         color={ODS_THEME_COLOR_INTENT.primary}
@@ -119,6 +121,7 @@ export const DeleteModal: React.FC<DeleteModalProps> = ({
       <OsdsButton
         disabled={isLoading || undefined}
         slot="actions"
+        data-testid="manager-delete-modal-confirm"
         type={ODS_BUTTON_TYPE.button}
         variant={ODS_BUTTON_VARIANT.flat}
         color={ODS_THEME_COLOR_INTENT.primary}

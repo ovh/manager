@@ -1,21 +1,12 @@
-import { Mock, vitest } from 'vitest';
-import React, { waitFor, screen } from '@testing-library/react';
+import { vitest } from 'vitest';
+import { waitFor, screen } from '@testing-library/react';
 import { render } from '../../../utils/test.provider';
-import { DeleteModal } from './delete-modal.component';
-import fr_Fr from './translations/Messages_fr_FR.json';
+import { DeleteModal, DeleteModalProps } from './delete-modal.component';
 
-export const sharedProps: {
-  closeModal: Mock<unknown[], unknown>;
-  onConfirmDelete: Mock<unknown[], unknown>;
-  serviceTypeName: string;
-  cancelButtonLabel: string;
-  confirmButtonLabel: string;
-} = {
+export const sharedProps: DeleteModalProps = {
   closeModal: vitest.fn(),
   onConfirmDelete: vitest.fn(),
   serviceTypeName: 'serviceType',
-  cancelButtonLabel: fr_Fr.deleteModalCancelButton,
-  confirmButtonLabel: fr_Fr.deleteModalDeleteButton,
 };
 
 describe('Delete Modal component', () => {
@@ -24,13 +15,13 @@ describe('Delete Modal component', () => {
 
     await waitFor(() => {
       expect(
-        screen.getByText(fr_Fr.deleteModalDescription),
+        screen.getByTestId('manager-delete-modal-description'),
       ).toBeInTheDocument();
       expect(
-        screen.getByText(sharedProps.cancelButtonLabel),
+        screen.getByTestId('manager-delete-modal-cancel'),
       ).toBeInTheDocument();
       expect(
-        screen.getByText(sharedProps.confirmButtonLabel),
+        screen.getByTestId('manager-delete-modal-confirm'),
       ).toBeInTheDocument();
     });
   });
@@ -57,7 +48,7 @@ describe('Delete Modal component', () => {
   it('clicking cancel should call closeModal', async () => {
     render(<DeleteModal {...sharedProps} />);
 
-    screen.getByText(sharedProps.cancelButtonLabel).click();
+    screen.getByTestId('manager-delete-modal-cancel').click();
 
     await waitFor(() => {
       expect(sharedProps.closeModal).toHaveBeenCalled();
@@ -67,7 +58,7 @@ describe('Delete Modal component', () => {
   it('clicking confirm should call onConfirmDelete', async () => {
     render(<DeleteModal {...sharedProps} />);
 
-    screen.getByText(sharedProps.confirmButtonLabel).click();
+    screen.getByTestId('manager-delete-modal-confirm').click();
 
     await waitFor(() => {
       expect(sharedProps.closeModal).toHaveBeenCalled();
