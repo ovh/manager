@@ -68,7 +68,8 @@ export type TVolumeBackup = TBackup & {
   volume?: TVolume | null;
 };
 
-export type TVolumePricing = Pick<TAddon['pricings'][number], 'price'> & {
+export type TVolumePricing = {
+  price: number;
   regions: TRegion['name'][];
   showAvailabilityZones: boolean;
   interval: 'day' | 'hour' | 'month' | 'none';

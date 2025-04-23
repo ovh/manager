@@ -16,6 +16,9 @@ import {
   useVolume,
   TNewVolumeFromBackupData,
 } from '@/data/hooks/useVolume';
+import { useVolumeCatalog } from '@/data/hooks/useCatalog';
+import { useRegionsQuota } from '@/data/hooks/useQuota';
+import { useBackups } from '@/data/hooks/useVolumeBackup';
 
 const MOCK_REGION: TRegion = {
   name: 'AF-NORTH-LZ-RBA-A',
@@ -108,16 +111,16 @@ const MOCK_BACKUP: TBackup = {
 };
 
 // Mock hooks and dependencies
-vi.mock('@/data/api/hooks/useCatalog', () => ({
-  useVolumeCatalog: vi.fn(() => ({ data: MOCK_CATALOG })),
+vi.mock('@/data/hooks/useCatalog', () => ({
+  useVolumeCatalog: vi.fn(),
 }));
 
-vi.mock('@/data/api/hooks/useQuota', () => ({
-  useRegionsQuota: vi.fn(() => ({ data: MOCK_QUOTA })),
+vi.mock('@/data/hooks/useQuota', () => ({
+  useRegionsQuota: vi.fn(),
 }));
 
 vi.mock('@/data/hooks/useVolume', () => ({
-  useVolume: vi.fn(() => ({ data: MOCK_VOLUME, isLoading: false })),
+  useVolume: vi.fn(),
   useCreateVolumeFromBackup: vi.fn(
     ({ onSuccess }: TCreateVolumeFromBackupArguments) => ({
       isPending: false,
@@ -129,19 +132,33 @@ vi.mock('@/data/hooks/useVolume', () => ({
 }));
 
 vi.mock('@/data/hooks/useVolumeBackup', () => ({
-  useBackups: vi.fn(() => ({ data: [MOCK_BACKUP], isLoading: false })),
+  useBackups: vi.fn(),
 }));
 
 describe('CreateVolumePage', () => {
+  const setupMocks = ({ loading = false } = {}) => {
+    vi.mocked(useVolumeCatalog).mockReturnValue({
+      data: MOCK_CATALOG,
+    } as ReturnType<typeof useVolumeCatalog>);
+    vi.mocked(useRegionsQuota).mockReturnValue({
+      data: MOCK_QUOTA,
+    } as ReturnType<typeof useRegionsQuota>);
+    vi.mocked(useVolume).mockReturnValue({
+      data: loading ? undefined : MOCK_VOLUME,
+      isLoading: loading,
+    } as ReturnType<typeof useVolume>);
+    vi.mocked(useBackups).mockReturnValue({
+      data: loading ? undefined : [MOCK_BACKUP],
+      isLoading: loading,
+    } as ReturnType<typeof useBackups>);
+  };
+
   beforeEach(() => {
-    vi.clearAllMocks();
+    setupMocks({ loading: false });
   });
 
   it('should render loading state', () => {
-    vi.mocked(useVolume).mockReturnValue({
-      data: undefined,
-      isLoading: true,
-    } as ReturnType<typeof useVolume>);
+    setupMocks({ loading: true });
     const { container, queryByText } = render(<CreateVolumePage />, {
       wrapper: createWrapper(),
     });
@@ -152,11 +169,6 @@ describe('CreateVolumePage', () => {
     const spinner = container.querySelector('ods-spinner');
     expect(title).toBeFalsy();
     expect(spinner).toBeVisible();
-
-    vi.mocked(useVolume).mockReturnValue({
-      data: MOCK_VOLUME,
-      isLoading: false,
-    } as ReturnType<typeof useVolume>);
   });
 
   it('go back to listing page on cancellation', async () => {
