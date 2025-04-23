@@ -49,6 +49,12 @@ function DatacentreDashboardPage() {
       to: useResolvedPath('storage').pathname,
       trackingActions: TRACKING_TABS_ACTIONS.storage,
     },
+    {
+      name: 'vrack-network',
+      title: t('managed_vcd_dashboard_vrack_network_title'),
+      to: useResolvedPath('vrack-network').pathname,
+      trackingActions: TRACKING_TABS_ACTIONS.vrackNetwork,
+    },
   ];
 
   const serviceName = vcdDatacentre?.data?.currentState?.description ?? vdcId;
@@ -77,6 +83,34 @@ function DatacentreDashboardPage() {
     {
       id: vdcId,
       label: serviceName,
+    },
+    {
+      id: subRoutes.vrackSegments,
+      label: t('dashboard:managed_vcd_dashboard_vrack_title'),
+    },
+    {
+      id: subRoutes.edit,
+      label: t(
+        'datacentres/vrack-segment:managed_vcd_dashboard_vrack_edit_vlan',
+      ),
+    },
+    {
+      id: subRoutes.deleteSegment,
+      label: t(
+        'datacentres/vrack-segment:managed_vcd_dashboard_vrack_delete_segment',
+      ),
+    },
+    {
+      id: subRoutes.deleteNetwork,
+      label: t(
+        'datacentres/vrack-segment:managed_vcd_dashboard_vrack_delete_network',
+      ),
+    },
+    {
+      id: subRoutes.addNetwork,
+      label: t(
+        'datacentres/vrack-segment:managed_vcd_dashboard_vrack_segment_add_title',
+      ),
     },
   ];
 
