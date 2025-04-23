@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.122.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.121.0...@ovh-ux/manager-container-app@0.122.0) (2025-04-23)
+
+
+### Bug Fixes
+
+* **container:** fix assitance menu button overlap ([#16407](https://github.com/ovh/manager/issues/16407)) ([9c8d8ab](https://github.com/ovh/manager/commit/9c8d8ab4d31723f8a985388ecd0481baf0fd98b4)), closes [#MANAGER-17744](https://github.com/ovh/manager/issues/MANAGER-17744)
+* **container:** fix navigation by routing into pnr ([#16411](https://github.com/ovh/manager/issues/16411)) ([30b793e](https://github.com/ovh/manager/commit/30b793e4a0231ff1feda666273cca0f8bd9b51b4)), closes [#MANAGER-17231](https://github.com/ovh/manager/issues/MANAGER-17231)
+
+
+### Features
+
+* **container:** fix all eslint errors in the container app ([#16295](https://github.com/ovh/manager/issues/16295)) ([e7beb23](https://github.com/ovh/manager/commit/e7beb23028d062d4c8643d6d415e9fba759b6d1f)), closes [#MANAGER-15630](https://github.com/ovh/manager/issues/MANAGER-15630)
+* **pnr:** add a create ticket link ([#16547](https://github.com/ovh/manager/issues/16547)) ([d65c85d](https://github.com/ovh/manager/commit/d65c85d43b6deb055f87ee93312208514cc6deef)), closes [#MANAGER-15604](https://github.com/ovh/manager/issues/MANAGER-15604)
+* **pnr:** remove veeam cloud connect from pnr ([#16496](https://github.com/ovh/manager/issues/16496)) ([c3f3b2d](https://github.com/ovh/manager/commit/c3f3b2d99b41e874949dca661a514278fd1e495a)), closes [#MANAGER-17766](https://github.com/ovh/manager/issues/MANAGER-17766)
+
+
+
+
+
 # [0.121.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.120.1...@ovh-ux/manager-container-app@0.121.0) (2025-04-23)
 
 

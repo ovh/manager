@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.28.0...@ovh-ux/manager-dedicated@20.29.0) (2025-04-23)
+
+
+### Features
+
+* **dedicated:** reword delete to cancel for us ([#16333](https://github.com/ovh/manager/issues/16333)) ([ed1a63a](https://github.com/ovh/manager/commit/ed1a63aab6901762a6f33f48d90937e58cf7c9fb)), closes [#MANAGER-17652](https://github.com/ovh/manager/issues/MANAGER-17652)
+
+
+
+
+
 # [20.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.27.0...@ovh-ux/manager-dedicated@20.28.0) (2025-04-22)
 
 
