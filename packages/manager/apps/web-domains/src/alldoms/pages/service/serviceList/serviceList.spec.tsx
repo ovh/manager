@@ -6,9 +6,9 @@ import { fireEvent, render, waitFor, screen } from '@testing-library/react';
 import ServiceList from './serviceList';
 import { wrapper } from '@/alldoms/utils/test.provider';
 import { serviceInfoDetail } from '@/alldoms/__mocks__/serviceInfoDetail';
-import { useGetDatagridServiceInfoList } from '@/alldoms/hooks/data/useDatagridServiceInfoList';
+import { useGetDatagridServiceInfoList } from '@/alldoms/hooks/data/useGetDatagridServiceInfoList';
 
-vi.mock('@/alldoms/hooks/data/useDatagridServiceInfoList', () => ({
+vi.mock('@/alldoms/hooks/data/useGetDatagridServiceInfoList', () => ({
   useGetDatagridServiceInfoList: vi.fn(),
 }));
 
@@ -19,7 +19,7 @@ describe('AllDom datagrid', () => {
     });
 
     (useGetDatagridServiceInfoList as jest.Mock).mockReturnValue({
-      serviceInfoList: [],
+      data: [],
       listLoading: true,
     });
 
@@ -29,7 +29,7 @@ describe('AllDom datagrid', () => {
 
   it('display the datagrid data', async () => {
     (useGetDatagridServiceInfoList as jest.Mock).mockReturnValue({
-      serviceInfoList: serviceInfoDetail,
+      data: serviceInfoDetail,
       listLoading: false,
     });
     const { getByTestId } = render(<ServiceList />, { wrapper });
