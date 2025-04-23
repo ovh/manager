@@ -11,7 +11,29 @@ export type TVolumePricing = Pick<TAddon['pricings'][number], 'price'> & {
   regions: TRegion['name'][];
   showAvailabilityZones: boolean;
   interval: 'day' | 'hour' | 'month' | 'none';
-  specs: TAddon['blobs']['technical'];
+  specs: {
+    name: string;
+    bandwidth: {
+      guaranteed: boolean;
+      level: number;
+      max: number;
+      unit: string;
+      unlimited: boolean;
+    } | null;
+    volume: {
+      iops: {
+        level: number;
+        max: number;
+        guaranteed: boolean;
+        unit: string;
+        maxUnit: string;
+      };
+      capacity: {
+        max: number;
+      };
+    };
+    maxAttachedInstances: number;
+  };
   areIOPSDynamic: boolean;
 };
 
