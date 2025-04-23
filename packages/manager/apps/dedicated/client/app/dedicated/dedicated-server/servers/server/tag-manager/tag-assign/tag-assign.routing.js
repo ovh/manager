@@ -13,7 +13,7 @@ export default /* @ngInject */ ($stateProvider) => {
         breadcrumb: () => null,
         resourceUrn: /* @ngInject */ (server) => server?.iam?.urn,
         goBack: /* @ngInject */ (goToTagManager) => (reload = false) => {
-          goToTagManager(reload);
+          return goToTagManager(reload);
         },
       },
     },
