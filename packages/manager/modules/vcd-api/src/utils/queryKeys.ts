@@ -67,3 +67,8 @@ export const updateVdcDetailsMutationKey = (vdcId: string) => [
   'put',
   ...getVdcQueryKey(vdcId),
 ];
+
+export const getVcdVrackNetworkQueryKey = (id: string, vdcId: string) => [
+  ...getVcdDatacentreQueryKey(id, vdcId),
+  'vrackNetwork',
+];
