@@ -10,6 +10,7 @@ import {
   reinstallInstance,
   rescueMode,
   backupInstance,
+  activateMonthlyBilling,
 } from '@/data/api/instance';
 import { DeepReadonly } from '@/types/utils.type';
 import { instancesQueryKey } from '@/utils';
@@ -23,7 +24,8 @@ export type TMutationFnType =
   | 'unshelve'
   | 'soft-reboot'
   | 'hard-reboot'
-  | 'reinstall';
+  | 'reinstall'
+  | 'billing/monthly/activate';
 
 export type TMutationFnVariables = TInstanceDto | undefined;
 
@@ -152,6 +154,8 @@ export const useBaseInstanceAction = (
             });
           case 'reinstall':
             return reinstallInstance(projectId, id, imageId);
+          case 'billing/monthly/activate':
+            return activateMonthlyBilling(projectId, id);
           default:
             return Promise.reject(unknownError);
         }

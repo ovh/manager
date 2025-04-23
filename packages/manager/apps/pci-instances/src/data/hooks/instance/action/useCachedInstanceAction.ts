@@ -20,7 +20,8 @@ export type TSectionType =
   | 'reinstall'
   | 'rescue/start'
   | 'rescue/end'
-  | 'backup';
+  | 'backup'
+  | 'billing/monthly/activate';
 
 const formatSection = (section: TSectionType | null): string | null => {
   if (!section) return null;
@@ -30,6 +31,11 @@ const formatSection = (section: TSectionType | null): string | null => {
   if (section === 'rescue/end') {
     return 'unrescue';
   }
+
+  if (section === 'billing/monthly/activate') {
+    return 'activate_monthly_billing';
+  }
+
   return section.replace('-', '_');
 };
 

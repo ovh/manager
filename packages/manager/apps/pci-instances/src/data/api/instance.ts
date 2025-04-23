@@ -13,7 +13,8 @@ type TInstanceAction =
   | 'reboot'
   | 'reinstall'
   | 'rescueMode'
-  | 'snapshot';
+  | 'snapshot'
+  | 'activeMonthlyBilling';
 
 const instanceActionUrl = (
   projectId: string,
@@ -126,6 +127,16 @@ export const reinstallInstance = (
   v6.post(instanceActionUrl(projectId, instanceId, 'reinstall'), {
     imageId,
   });
+
+export const activateMonthlyBilling = (
+  projectId: string,
+  instanceId: string,
+): Promise<null> =>
+  v6.post(instanceActionUrl(projectId, instanceId, 'activeMonthlyBilling'), {
+    instanceId, // TODO: Works well and ISO prod but need to check if we really need this to not send useless data
+    serviceName: projectId,
+  });
+
 export const getInstance = ({
   projectId,
   instanceId,
