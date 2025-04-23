@@ -6,7 +6,7 @@ import {
   parentTenantMock,
   licensesMock,
   licensesPrepaidMock,
-} from '@/data/api/_mock_';
+} from '@/data/api/__mocks__';
 import { useParentTenant } from '@/data/hooks';
 import { wrapper } from '@/utils/test.provider';
 

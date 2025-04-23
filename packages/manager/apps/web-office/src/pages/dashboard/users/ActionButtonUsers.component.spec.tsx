@@ -7,7 +7,7 @@ import {
   licensesMock,
   licensesPrepaidExpandedMock,
   usersMock,
-} from '@/data/api/_mock_';
+} from '@/data/api/__mocks__';
 
 describe('Users datagrid (licence) action menu', () => {
   it('we have good number of item with good content for office native user', () => {

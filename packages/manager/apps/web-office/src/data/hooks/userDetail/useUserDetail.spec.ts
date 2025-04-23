@@ -7,7 +7,7 @@ import {
   licensesPrepaidMock,
   licensesPrepaidExpandedMock,
   usersMock,
-} from '@/data/api/_mock_';
+} from '@/data/api/__mocks__';
 import { useUserDetail } from '@/data/hooks';
 import { wrapper } from '@/utils/test.provider';
 
