@@ -31,11 +31,11 @@ export const useGetDatagridServiceInfoList = ({
     })),
   });
 
-  const serviceInfoList = queries
+  const data = queries
     .map((query) => query.data)
     .filter(Boolean) as TServiceDetail[];
 
   const listLoading = queries.some((query) => query.isLoading);
 
-  return { serviceInfoList, listLoading };
+  return { data, listLoading };
 };
