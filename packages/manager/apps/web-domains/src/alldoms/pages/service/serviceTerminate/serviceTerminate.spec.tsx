@@ -5,16 +5,26 @@ import { render, waitFor, screen, fireEvent } from '@testing-library/react';
 import { wrapper } from '@/alldoms/utils/test.provider';
 import { serviceInfoDetail } from '@/alldoms/__mocks__/serviceInfoDetail';
 import ServiceTerminate from '@/alldoms/pages/service/serviceTerminate/serviceTerminate';
-import { useGetServiceInfo } from '@/alldoms/hooks/data/useGetServiceInfo';
+import {
+  useGetAllDomResource,
+  useGetDomainBillingInformation,
+} from '@/alldoms/hooks/data/query';
+import { domainBillingDetail } from '@/alldoms/__mocks__/domainBillingDetail';
 
-vi.mock('@/alldoms/hooks/data/useGetServiceInfo', () => ({
-  useGetServiceInfo: vi.fn(),
+vi.mock('@/alldoms/hooks/data/query', () => ({
+  useGetAllDomResource: vi.fn(),
+  useGetDomainBillingInformation: vi.fn(),
 }));
 
 describe('Terminate service', () => {
   it('display the modal', async () => {
-    (useGetServiceInfo as jest.Mock).mockReturnValue({
-      data: serviceInfoDetail,
+    (useGetAllDomResource as jest.Mock).mockReturnValue({
+      data: serviceInfoDetail.allDomResource,
+      isLoading: false,
+    });
+
+    (useGetDomainBillingInformation as jest.Mock).mockReturnValue({
+      data: domainBillingDetail,
       isLoading: false,
     });
 
@@ -30,16 +40,21 @@ describe('Terminate service', () => {
     });
   });
 
-  (useGetServiceInfo as jest.Mock).mockReturnValue({
-    data: serviceInfoDetail,
+  (useGetAllDomResource as jest.Mock).mockReturnValue({
+    data: serviceInfoDetail.allDomResource,
     isLoading: false,
   });
 
-  serviceInfoDetail.domainAttached.forEach((domain) => {
-    it(`should render ${domain} checkbox`, async () => {
+  (useGetDomainBillingInformation as jest.Mock).mockReturnValue({
+    data: domainBillingDetail,
+    isLoading: false,
+  });
+
+  serviceInfoDetail.allDomResource.currentState.domains.forEach((domain) => {
+    it(`should render ${domain.name} checkbox`, async () => {
       render(<ServiceTerminate />, { wrapper });
       await waitFor(async () => {
-        const checkbox = await screen.findByTestId(`checkbox-${domain}`);
+        const checkbox = await screen.findByTestId(`checkbox-${domain.name}`);
         const input = checkbox.querySelector('input');
         expect(input).toBeInTheDocument();
         expect(input?.checked).toBe(false);
@@ -50,8 +65,13 @@ describe('Terminate service', () => {
   });
 
   it('should select all checkboxes when the "select all" checkbox is clicked', async () => {
-    (useGetServiceInfo as jest.Mock).mockReturnValue({
-      data: serviceInfoDetail,
+    (useGetAllDomResource as jest.Mock).mockReturnValue({
+      data: serviceInfoDetail.allDomResource,
+      isLoading: false,
+    });
+
+    (useGetDomainBillingInformation as jest.Mock).mockReturnValue({
+      data: domainBillingDetail,
       isLoading: false,
     });
 
@@ -65,11 +85,15 @@ describe('Terminate service', () => {
 
     await waitFor(async () => {
       await Promise.all(
-        serviceInfoDetail.domainAttached.map(async (domain) => {
-          const checkbox = await screen.findByTestId(`checkbox-${domain}`);
-          const input = checkbox.querySelector('input');
-          expect(input?.checked).toBe(true);
-        }),
+        serviceInfoDetail.allDomResource.currentState.domains.map(
+          async (domain) => {
+            const checkbox = await screen.findByTestId(
+              `checkbox-${domain.name}`,
+            );
+            const input = checkbox.querySelector('input');
+            expect(input?.checked).toBe(true);
+          },
+        ),
       );
     });
   });
