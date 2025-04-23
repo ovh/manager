@@ -222,6 +222,15 @@ export const Routes: any = [
               },
             },
           },
+          {
+            id: 'vrack-network',
+            path: urls.vrackNetwork,
+            ...lazyRouteConfig(() =>
+              import(
+                '@/pages/dashboard/datacentre/vrack-network/VrackNetwork.page'
+              ),
+            ),
+          },
         ],
       },
       {
