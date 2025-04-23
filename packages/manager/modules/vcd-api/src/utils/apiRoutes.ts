@@ -26,3 +26,10 @@ export const getVcdDatacentreStorageRoute = (id: string, vdcId: string) => {
 export const getVdcOrderableResourceRoute = (id: string, vdcId: string) => {
   return `${getVcdDatacentreRoute(id, vdcId)}/orderableResource`;
 };
+
+export const getVcdDatacentreVrackNetworkRoute = (
+  id: string,
+  vdcId: string,
+) => {
+  return `${getVcdDatacentresRoute(id)}/${vdcId}`;
+};
