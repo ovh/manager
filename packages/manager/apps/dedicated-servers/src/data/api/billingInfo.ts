@@ -1,5 +1,4 @@
-import { apiClient } from '@ovh-ux/manager-core-api';
-import { AxiosResponse } from 'axios';
+import { apiClient, ApiResponse } from '@ovh-ux/manager-core-api';
 import { BillingInfo } from '../types/billing.type';
 
 export const getBillingInfoQueryKey = (serverName: string) => [
@@ -8,7 +7,7 @@ export const getBillingInfoQueryKey = (serverName: string) => [
 
 export const getBillingInfo = async (
   serviceName: string,
-): Promise<AxiosResponse<BillingInfo>> => {
+): Promise<ApiResponse<BillingInfo>> => {
   const { data } = await apiClient.v6.get<{ serviceId: string }>(
     `/dedicated/server/${serviceName}/serviceInfos`,
   );
