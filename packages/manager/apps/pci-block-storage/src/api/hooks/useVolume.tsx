@@ -22,10 +22,16 @@ import {
 import { UCENTS_FACTOR } from '@/hooks/currency-constants';
 import queryClient from '@/queryClient';
 
+export const getVolumesQueryKey = (projectId: string) => [
+  'project',
+  projectId,
+  'volumes',
+];
+
 export const useAllVolumes = (projectId: string) => {
   const { t } = useTranslation('region');
   return useQuery({
-    queryKey: ['project', projectId, 'volumes'],
+    queryKey: getVolumesQueryKey(projectId),
     queryFn: () => getAllVolumes(projectId),
     select: (data) =>
       data.map((volume: TVolume) => {
@@ -207,20 +213,24 @@ export const useDetachVolume = ({
     mutationFn: async () => detachVolume(projectId, volumeId, instanceId),
     onError,
     onSuccess: (volume: TVolume) => {
+      const newVolume = {
+        ...volume,
+        attachedTo: volume.attachedTo.filter((id) => id !== instanceId),
+      };
       queryClient.setQueryData(
-        ['project', projectId, 'volumes'],
+        getVolumesQueryKey(projectId),
         (data: { id: string; attachedTo: string }[]) =>
           data?.map((v) => {
-            if (v.attachedTo && v.id === volumeId) {
-              return { ...volume, attachedTo: [] };
+            if (v.id === volumeId) {
+              return newVolume;
             }
             return v;
           }),
       );
-      queryClient.setQueryData(getVolumeQueryKey(projectId, volumeId), () => ({
-        ...volume,
-        attachedTo: [],
-      }));
+      queryClient.setQueryData(
+        getVolumeQueryKey(projectId, volumeId),
+        () => newVolume,
+      );
       onSuccess(volume);
     },
   });
