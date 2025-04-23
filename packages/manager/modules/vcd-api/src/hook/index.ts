@@ -8,3 +8,4 @@ export * from './useVcdOrder';
 export * from './useVcdOrganization';
 export * from './useVeeamBackup';
 export * from './useVeeamBackupCatalog';
+export * from './useVcdVrackNetwork';
