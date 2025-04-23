@@ -1,7 +1,7 @@
 import '@/alldoms/setupTests';
 import { renderHook } from '@testing-library/react';
 import { vi } from 'vitest';
-import { useAllDomDatagridColumns } from './useAllDomDatagridColumns';
+import { useAllDomDatagridColumns } from '@/alldoms/hooks/allDomDatagrid/useAllDomDatagridColumns';
 
 vi.mock('react-router-dom', async (importOriginal) => {
   const original: typeof import('react-router-dom') = await importOriginal();

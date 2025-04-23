@@ -3,6 +3,7 @@ import {
   getAllDomainAttachedToAllDom,
   getAllDomProperty,
   getallDomService,
+  getDomainDetailInformation,
 } from '@/alldoms/data/api/web-domains';
 import { findContact } from '@/alldoms/utils/utils';
 import { ServiceInfoContactEnum } from '@/alldoms/enum/service.enum';
@@ -26,7 +27,7 @@ export const useGetServiceInfo = ({
       },
       {
         queryKey: ['domainAttached', serviceName],
-        queryFn: () => getAllDomainAttachedToAllDom(serviceName),
+        queryFn: () => getDomainDetailInformation(serviceName),
       },
     ],
     combine: (results) => {

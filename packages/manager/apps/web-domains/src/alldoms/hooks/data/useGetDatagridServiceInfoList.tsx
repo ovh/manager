@@ -3,6 +3,7 @@ import {
   getAllDomainAttachedToAllDom,
   getAllDomProperty,
   getallDomService,
+  getDomainDetailInformation,
 } from '@/alldoms/data/api/web-domains';
 import { TServiceDetail, TServiceProperty } from '@/alldoms/types';
 import { findContact } from '@/alldoms/utils/utils';
@@ -26,7 +27,7 @@ export const useGetDatagridServiceInfoList = ({
         ] = await Promise.all([
           getAllDomProperty(serviceName.name),
           getallDomService(serviceName.name),
-          getAllDomainAttachedToAllDom(serviceName.name),
+          getDomainDetailInformation(serviceName.name),
         ]);
 
         const contacts = serviceInfo?.customer?.contacts ?? [];
