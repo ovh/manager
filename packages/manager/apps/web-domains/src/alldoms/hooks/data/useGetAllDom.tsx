@@ -1,8 +1,8 @@
 import { useQueries } from '@tanstack/react-query';
 import {
-  getAllDomainAttachedToAllDom,
   getAllDomProperty,
   getallDomService,
+  getDomainAttachedToAllDom,
 } from '@/alldoms/data/api/web-domains';
 import { findContact } from '@/alldoms/utils/utils';
 import { ServiceInfoContactEnum } from '@/alldoms/enum/service.enum';
@@ -11,7 +11,7 @@ interface UseGetDatagridServiceInfoProps {
   readonly serviceName: string;
 }
 
-export const useGetServiceInfo = ({
+export const useGetAllDom = ({
   serviceName,
 }: UseGetDatagridServiceInfoProps) => {
   const queries = useQueries({
@@ -26,7 +26,7 @@ export const useGetServiceInfo = ({
       },
       {
         queryKey: ['domainAttached', serviceName],
-        queryFn: () => getAllDomainAttachedToAllDom(serviceName),
+        queryFn: () => getDomainAttachedToAllDom(serviceName),
       },
     ],
     combine: (results) => {
@@ -42,6 +42,7 @@ export const useGetServiceInfo = ({
           nicAdmin: findContact(contacts, ServiceInfoContactEnum.Administrator),
           nicBilling: findContact(contacts, ServiceInfoContactEnum.Billing),
           nicTechnical: findContact(contacts, ServiceInfoContactEnum.Technical),
+          allDomResourceState: serviceInfo?.resource.state,
         },
         isLoading: results.some((r) => r.isLoading),
       };

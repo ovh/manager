@@ -1,15 +1,26 @@
 import {
+  DomainRegistrationStateEnum,
   ServiceInfoRenewMode,
   ServiceInfoType,
+  ServiceResourceStatus,
 } from '@/alldoms/enum/service.enum';
 
 export interface TServiceDetail {
-  domainAttached: string[];
+  domainAttached: TAllDomDomains;
   serviceInfo: TServiceInfo;
   allDomProperty: TServiceProperty;
   nicAdmin: string;
   nicBilling: string;
   nicTechnical: string;
+  allDomResourceState?: ServiceResourceStatus;
+}
+
+export interface TAllDomDomains {
+  resourceStatus: ServiceResourceStatus;
+  currentState: {
+    domains: TDomainsInfo[];
+    extensions: string[];
+  };
 }
 
 export interface TServiceInfo {
@@ -33,6 +44,9 @@ export interface TServiceInfo {
       type: string;
     }[];
   };
+  resource: {
+    state: ServiceResourceStatus;
+  };
 }
 
 export interface TServiceProperty {
@@ -45,8 +59,32 @@ export interface TServiceProperty {
   offer: string;
 }
 
+export interface TDomainsInfo {
+  name: string;
+  registrationStatus: DomainRegistrationStateEnum;
+  expiresAt?: string;
+  extension?: string;
+  mainState?: string;
+  protectionState?: string | null;
+  suspensionState?: string | null;
+  nameServers: {
+    nameServer: string;
+  }[];
+  dnssecActivated: boolean;
+}
+
+export interface UpdateAllDomProps {
+  serviceName: string;
+  displayName: string;
+  renew?: {
+    mode?: ServiceInfoRenewMode;
+    period?: string;
+  };
+  terminationPolicy?: string;
+}
+
 export interface ModalStepsProps {
-  domainAttached?: string[];
+  domainsAttached?: TDomainsInfo[];
   domainAttachedChecked?: string[];
   domainTerminateList?: string[];
   serviceName?: string;
@@ -55,11 +93,4 @@ export interface ModalStepsProps {
   handleDomainAttached?: (domainSelected: string[]) => void;
   handleCheckAllDomain?: (checked: boolean) => void;
   closeModal?: () => void;
-}
-
-export interface UpdateAllDomServiceProps {
-  serviceName: string;
-  renew: {
-    mode: ServiceInfoRenewMode;
-  };
 }

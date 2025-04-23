@@ -1,13 +1,3 @@
-export enum ServiceInfoRenewEnum {
-  AutomaticForce = 'automaticForcedProduct',
-  Automatic2012 = 'automaticV2012',
-  Automatic2014 = 'automaticV2014',
-  Automatic2016 = 'automaticV2016',
-  Manual = 'manual',
-  OneShot = 'oneShot',
-  Option = 'option',
-}
-
 export enum ServiceInfoType {
   French = 'french',
   FrenchInternational = 'french+international',
@@ -29,4 +19,28 @@ export enum ServiceInfoContactEnum {
   Administrator = 'administrator',
   Technical = 'technical',
   Billing = 'billing',
+}
+
+export enum DomainRegistrationStateEnum {
+  Registered = 'REGISTERED',
+  Unregistered = 'UNREGISTERED',
+}
+
+export enum DomainProtectionStateEnum {
+  Protected = 'PROTECTED',
+  NotProtected = 'NOT_PROTECTED',
+}
+
+export enum ServiceResourceStatus {
+  Active = 'active',
+  Deleted = 'Deleted',
+  Suspended = 'Suspended',
+  ToActivate = 'toActivate',
+  ToDelete = 'toDelete',
+  ToSuspend = 'toSuspend',
+}
+
+export enum Gender {
+  Masc = 'masc',
+  Fem = 'fem',
 }
