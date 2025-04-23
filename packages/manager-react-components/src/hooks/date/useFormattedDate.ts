@@ -15,6 +15,10 @@ export enum DateFormat {
    * dd month YYYY
    */
   fullDisplay = 'fullDisplay',
+  /**
+   * dd/MM/YYY HH:mm
+   */
+  compactWithTime = 'compactWithTime',
 }
 
 export type FormattedDateProps = {
@@ -38,11 +42,19 @@ export const useFormattedDate = ({
     return unknownDateLabel;
   }
 
-  return format === DateFormat.compact
-    ? date.toLocaleDateString(locale)
-    : date.toLocaleString(locale, {
+  switch (format) {
+    case DateFormat.compactWithTime:
+      return date.toLocaleString(locale, {
+        timeStyle: 'short',
+        dateStyle: 'short',
+      });
+    case DateFormat.compact:
+      return date.toLocaleDateString(locale);
+    default:
+      return date.toLocaleString(locale, {
         day: 'numeric',
         month: format === DateFormat.fullDisplay ? 'long' : 'short',
         year: 'numeric',
       });
+  }
 };

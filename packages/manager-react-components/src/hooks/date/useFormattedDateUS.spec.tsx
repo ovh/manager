@@ -10,7 +10,7 @@ vitest.mock('react-i18next', () => ({
   useTranslation: () => ({
     t: (key: string) => key,
     i18n: {
-      language: 'en-GB',
+      language: 'en-US',
     },
   }),
 }));
@@ -36,42 +36,42 @@ describe('useFormattedDate', () => {
       input: 'null',
       dateString: null,
       format: undefined,
-      expected: '1 Jan 1970',
+      expected: 'Jan 1, 1970',
     },
     {
       case: 'a valid date with abbreviated month',
       input: 'valid',
       dateString: '2024-09-14T09:21:21.943Z',
       format: undefined,
-      expected: '14 Sept 2024',
+      expected: 'Sep 14, 2024',
     },
     {
       case: 'a valid date with abbreviated month',
       input: 'valid',
       dateString: '2024-10-14T09:21:21.943Z',
       format: DateFormat.display,
-      expected: '14 Oct 2024',
+      expected: 'Oct 14, 2024',
     },
     {
       case: 'a valid date with non-abbreviated month',
       input: 'valid',
       dateString: '2024-09-14T09:21:21.943Z',
       format: DateFormat.fullDisplay,
-      expected: '14 September 2024',
+      expected: 'September 14, 2024',
     },
     {
       case: 'a valid date with compact format',
       input: 'valid and format is compact',
       dateString: '2024-06-14T09:21:21.943Z',
       format: DateFormat.compact,
-      expected: '14/06/2024',
+      expected: '6/14/2024',
     },
     {
       case: 'a valid date with compact format including time',
       input: 'valid and format is compact with time',
       dateString: '2024-06-14T18:21:21.943',
       format: DateFormat.compactWithTime,
-      expected: '14/06/2024, 18:21',
+      expected: '6/14/24, 6:21 PM',
     },
   ])(
     'displays %s if the date is %s',

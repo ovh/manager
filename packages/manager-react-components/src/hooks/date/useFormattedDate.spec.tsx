@@ -66,6 +66,13 @@ describe('useFormattedDate', () => {
       format: DateFormat.compact,
       expected: '14/06/2024',
     },
+    {
+      case: 'a valid date with compact format including time',
+      input: 'valid and format is compact with time',
+      dateString: '2024-06-14T18:21:21.943',
+      format: DateFormat.compactWithTime,
+      expected: '14/06/2024 18:21',
+    },
   ])(
     'displays %s if the date is %s',
     async ({ dateString, format, expected }) => {
