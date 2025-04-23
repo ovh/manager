@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Environment } from '@ovh-ux/manager-config';
 import { useFeatureAvailability } from '@ovh-ux/manager-react-components';

@@ -1,6 +1,6 @@
+import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
 import illustration from '@/assets/images/sidebar/hosted-private-cloud.png';
 import { Node, NodeTag } from '../node';
-import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
 
 const hostedPrivateCloudUniverse: Node = {
   id: 'hosted-private-cloud',
@@ -88,18 +88,6 @@ hostedPrivateCloudUniverse.children = [
           hash: '#/veeam-enterprise',
         },
         features: ['veeam-enterprise'],
-      },
-      {
-        id: 'veeam-cloud-connect',
-        idAttr: 'veeam-cloud-connect-link',
-        universe: hostedPrivateCloudUniverse.id,
-        translation: 'sidebar_veeamcc',
-        serviceType: 'VEEAMCLOUDCONNECT',
-        routing: {
-          application: 'dedicated',
-          hash: '#/veeam',
-        },
-        features: ['veeam-cloud-connect'],
       },
       {
         id: 'hycu',

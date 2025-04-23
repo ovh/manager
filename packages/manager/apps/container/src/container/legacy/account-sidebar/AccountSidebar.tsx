@@ -1,5 +1,3 @@
-import React from 'react';
-
 import PaymentMethod from './PaymentMethod/PaymentMethod';
 import Shortcuts from './Shortcuts';
 import UsefulLinks from './UsefulLinks';

@@ -1,6 +1,6 @@
+import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
 import illustration from '@/assets/images/sidebar/bare-metal-cloud.png';
 import { Node } from '../node';
-import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
 
 const baremetalUniverse: Node = {
   id: 'baremetal-cloud',
@@ -133,18 +133,6 @@ baremetalUniverse.children = [
           hash: '#/cda',
         },
         features: ['cloud-disk-array'],
-      },
-      {
-        id: 'veeam-cloud-connect',
-        universe: baremetalUniverse.id,
-        idAttr: 'veeam-cloud-connect-link',
-        translation: 'sidebar_veeamcc',
-        serviceType: 'VEEAMCLOUDCONNECT',
-        routing: {
-          application: 'dedicated',
-          hash: '#/veeam',
-        },
-        features: ['veeam-cloud-connect'],
       },
     ],
   },

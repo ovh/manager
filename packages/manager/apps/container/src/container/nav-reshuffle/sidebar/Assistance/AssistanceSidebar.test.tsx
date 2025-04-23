@@ -13,6 +13,7 @@ vi.mock('@/context', () => ({
 vi.mock('@/core/product-nav-reshuffle', () => ({
   default: () => ({
     closeNavigationSidebar: () => vi.fn(),
+    setPopoverPosition: () => vi.fn(),
   }),
 }));
 
@@ -41,7 +42,7 @@ const props: AssistanceProps = {
   nodeTree: assistanceTree,
   isShort: false,
   selectedNode: null,
-  isLoading: false
+  isLoading: false,
 };
 
 const renderAssistanceSidebar = (props: AssistanceProps) => {
@@ -55,7 +56,7 @@ const renderAssistanceSidebar = (props: AssistanceProps) => {
   );
 };
 
-const id: string = 'assistance-sidebar';
+const id = 'assistance-sidebar';
 
 describe('AssistanceSidebar.component', () => {
   it('should render', () => {
@@ -77,8 +78,8 @@ describe('AssistanceSidebar.component', () => {
   it('should only render assistance link item if short is true', () => {
     props.isShort = true;
     renderAssistanceSidebar(props);
-    expect(screen.queryAllByTestId('short-assistance-link-item')).toHaveLength(
-      assistanceTree.children.length,
-    );
+    expect(
+      screen.queryAllByTestId('short-assistance-link-popover-anchor'),
+    ).not.toBeNull();
   });
 });

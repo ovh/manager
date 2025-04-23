@@ -490,7 +490,7 @@
   "ip_firewall_rule_flags_established": "ESTABLISHED",
   "ip_firewall_rule_flags_NONE": "Nenhum",
   "ip_firewall_rule_flags_none": "Nenhum",
-  "ip_table_manage_delete_ipblock": "Eliminar ",
+  "ip_table_manage_delete_ipblock": "Rescindir ",
   "ip_table_manage_delete_ipblock_question": "Por razões de segurança vamos enviar-lhe um e-mail para que confirme a eliminação do seu IP.",
   "ip_table_manage_delete_ipblock_question2": "Deseja continuar o procedimento de restituição do IP {{t0}}?",
   "ip_table_manage_delete_ipblock_success": "Acaba de lhe ser enviado um e-mail para confirmar a eliminação.",
@@ -779,5 +779,7 @@
   "ip_guide_link_additional_ip": "Configurar um Additional IP",
   "ip_guide_link_ip_alias": "Configurar um endereço IP como alias",
   "ip_guide_link_ip_proxmox": "Configurar um Additional IP em Proxmox VE",
-  "ip_guide_link_floating_ip": "Conceitos - Additional IP ou Floating IP no Public Cloud"
+  "ip_guide_link_floating_ip": "Conceitos - Additional IP ou Floating IP no Public Cloud",
+  "ip_table_manage_delete_ipblock_us": "Rescindir ",
+  "ip_table_manage_delete_ipblock_question_us": "Receberá um e-mail para o informar da rescisão do seu IP. O seu IP será eliminado da sua conta e seguirá o procedimento normal de eliminação."
 }

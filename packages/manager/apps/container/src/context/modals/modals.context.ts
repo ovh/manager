@@ -1,7 +1,7 @@
 import { createContext } from 'react';
 
 export type ModalsContextType = {
-  data: any;
+  data: unknown;
 };
 
 const ModalsContext = createContext<ModalsContextType>({} as ModalsContextType);
