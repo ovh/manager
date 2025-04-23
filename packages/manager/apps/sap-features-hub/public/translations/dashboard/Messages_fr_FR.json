@@ -1,4 +1,19 @@
 {
   "error_service": "No services info",
-  "description": "Découvrez notre gamme de fonctionnalités SAP optionnelles pour faciliter vos déploiements SAP."
+  "description": "Découvrez notre gamme de fonctionnalités SAP optionnelles pour faciliter vos déploiements SAP.",
+  "blocks_documentation": "Documentation",
+  "blocks_pre_installation_sap_hana_title": "Pré-installation SAP HANA",
+  "blocks_pre_installation_sap_hana_description": "Pré-installation de la base de données SAP HANA en utilisant notre image SLES4SAP spécifique SAP HANA depuis la bibliothèque d'images.*",
+  "blocks_infrastructure_as_code_title": "Infrastructure SAP \"as code\"",
+  "blocks_infrastructure_as_code_description": "Déployez votre infrastructure SAP \"as code\" en utilisant notre module OVHcloud Terraform*.",
+  "blocks_backup_sap_hana_description": "Utilisez notre agent de sauvegarde OVHcloud Backint*, certifié SAP, pour sauvegarder nativement vos bases de données SAP HANA sur notre service Object Storage.",
+  "blocks_download": "Téléchargement",
+  "blocks_pre_installation_wizzard_sap_title": "Assistant de pré-installation SAP",
+  "blocks_pre_installation_wizzard_sap_description": "Laissez-vous guider par notre assistant* à travers les étapes vous permettant de pré-installer un système SAP complet, depuis la création des machines virtuelles jusqu'à l'installation de SAP S/4HANA ou NetWeaver.",
+  "blocks_start_wizzard": "Démarrer un assistant",
+  "blocks_pre_install_list": "Liste des pré-installations",
+  "blocks_logs_analysis_and_extract_title": "Extraction et analyse des logs SAP",
+  "blocks_logs_analysis_and_extract_description": "Utilisez nos outils pour configurer simplement le formatage et l'extraction de vos logs SAP via la Logs Data Platform d'OVHcloud à moindre coût. Disponible sur toutes solutions d'hébergement du système SAP, même hors OVHcloud.",
+  "blocks_code_source": "Code source",
+  "blocks_explanations": "*Option disponible uniquement pour la solution VMware on OVHcloud, hors environnement Private Cloud qualifié SecNumCloud"
 }
