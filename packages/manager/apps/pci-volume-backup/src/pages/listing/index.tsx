@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import {
@@ -8,6 +8,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_SIZE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { useProject } from '@ovh-ux/manager-pci-common';
+import { FilterTypeCategories } from '@ovh-ux/manager-core-api';
 import {
   Datagrid,
   BaseLayout,
@@ -36,6 +37,24 @@ export default function Listing() {
   const hrefProject = useProjectUrl('public-cloud');
   const { data: project } = useProject();
 
+  const columnsWithSearchable = useMemo(() => {
+    return [
+      ...columns.map((column) => ({
+        ...column,
+        isSearchable: false,
+      })),
+      {
+        id: 'search',
+        label: '',
+        cell: () => <></>,
+        isSearchable: true,
+        isFilterable: false,
+        isSortable: false,
+        type: FilterTypeCategories.String,
+      },
+    ];
+  }, [columns]);
+
   const {
     data: { data: volumeBackups } = {},
     flattenData,
@@ -48,9 +67,17 @@ export default function Listing() {
     setSorting,
     filters,
   } = useVolumeBackups<TVolumeBackup>({
-    columns,
+    columns: columnsWithSearchable,
     route: `/cloud/project/${projectId}/aggregated/volumeBackup`,
-    queryFn: getVolumeBackups(projectId),
+    queryFn: async () =>
+      getVolumeBackups(projectId)().then(({ data }) => {
+        return {
+          data: data.map((volume: TVolumeBackup) => ({
+            ...volume,
+            search: `${volume.id} ${volume.name} ${volume.region}`,
+          })),
+        };
+      }),
     refetchInterval,
     queryKey: [
       'pci-volume-backup',

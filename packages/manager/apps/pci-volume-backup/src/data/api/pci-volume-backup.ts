@@ -1,4 +1,4 @@
-import apiClient from '@ovh-ux/manager-core-api';
+import { v6 } from '@ovh-ux/manager-core-api';
 import { Query } from '@tanstack/react-query';
 import { TBackup, TVolumeBackup } from '@/data/api/api.types';
 import { ApiData } from '@/data/hooks/useVolumeBackups';
@@ -21,7 +21,7 @@ export const refetchInterval = (
 export const getVolumeBackups = (projectId: string) => async (): Promise<
   ApiData<TVolumeBackup[]>
 > => {
-  const data = await apiClient.v6.get(
+  const data = await v6.get(
     `/cloud/project/${projectId}/aggregated/volumeBackup`,
   );
   const { resources } = data.data;
@@ -31,7 +31,7 @@ export const getVolumeBackups = (projectId: string) => async (): Promise<
 };
 
 export const getBackups = async (projectId: string) => {
-  const { data } = await apiClient.v6.get<{ resources: TBackup[] }>(
+  const { data } = await v6.get<{ resources: TBackup[] }>(
     `/cloud/project/${projectId}/aggregated/volumeBackup`,
   );
 
@@ -43,7 +43,7 @@ export const getVolumeBackup = async (
   regionName: string,
   volumeBackupId: string,
 ): Promise<TVolumeBackup> => {
-  const data = await apiClient.v6.get(
+  const data = await v6.get(
     `/cloud/project/${projectId}/region/${regionName}/volumeBackup/${volumeBackupId}`,
   );
   return data.data;
