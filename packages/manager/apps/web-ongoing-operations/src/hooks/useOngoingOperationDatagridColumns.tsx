@@ -18,7 +18,10 @@ import { DNS_OPERATIONS_TABLE_HEADER_DOMAIN } from '@/pages/dashboard/Dashboard'
 import { StatusEnum } from '@/enum/status.enum';
 import { DOMAIN_OPERATIONS, DNS_OPERATIONS } from '@/constants';
 
-export const useOngoingOperationDatagridColumns = (parent: ParentEnum) => {
+export const useOngoingOperationDatagridColumns = (
+  searchableColumnID: string,
+  parent: ParentEnum,
+) => {
   const { t } = useTranslation('dashboard');
   const { clearNotifications } = useNotifications();
   const navigate = useNavigate();
@@ -27,7 +30,7 @@ export const useOngoingOperationDatagridColumns = (parent: ParentEnum) => {
 
   const columns = [
     {
-      id: parent,
+      id: searchableColumnID,
       cell: (props: TOngoingOperations) => (
         <OngoingOperationDatagridDomain parent={parent} props={props} />
       ),
