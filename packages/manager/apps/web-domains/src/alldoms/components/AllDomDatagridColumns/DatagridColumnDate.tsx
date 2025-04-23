@@ -1,7 +1,6 @@
 import {
   DataGridTextCell,
-  DateFormat,
-  useFormattedDate,
+  useFormatDate,
 } from '@ovh-ux/manager-react-components';
 import React from 'react';
 
@@ -12,9 +11,10 @@ interface DatagridColumnDateProps {
 export function DatagridColumnDate({
   expirationDate,
 }: DatagridColumnDateProps) {
-  const date = useFormattedDate({
-    dateString: expirationDate,
-    format: DateFormat.compact,
+  const formatDate = useFormatDate();
+  const date = formatDate({
+    date: expirationDate,
+    format: 'P',
   });
 
   return <DataGridTextCell>{date}</DataGridTextCell>;

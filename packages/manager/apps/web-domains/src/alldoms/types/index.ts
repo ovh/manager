@@ -1,10 +1,12 @@
 import {
+  DomainDnssecStatus,
+  DomainRegistrationStateEnum,
   ServiceInfoRenewMode,
   ServiceInfoType,
 } from '@/alldoms/enum/service.enum';
 
 export interface TServiceDetail {
-  domainAttached: string[];
+  domainAttached: TAllDomDomains;
   serviceInfo: TServiceInfo;
   allDomProperty: TServiceProperty;
   nicAdmin: string;
@@ -46,7 +48,7 @@ export interface TServiceProperty {
 }
 
 export interface ModalStepsProps {
-  domainAttached?: string[];
+  domains?: TDomainsInfo[];
   domainAttachedChecked?: string[];
   domainTerminateList?: string[];
   serviceName?: string;
@@ -62,4 +64,23 @@ export interface UpdateAllDomServiceProps {
   renew: {
     mode: ServiceInfoRenewMode;
   };
+}
+
+export interface TAllDomDomains {
+  currentState: {
+    domains: TDomainsInfo[];
+    extensions: string[];
+  };
+}
+
+export interface TDomainsInfo {
+  name: string;
+  registrationStatus: DomainRegistrationStateEnum;
+  expiration?: string;
+  extension?: string;
+  mainState?: string;
+  protectionState?: string;
+  suspensionState?: string;
+  nameServers: string[];
+  isDnssecActivated: boolean;
 }
