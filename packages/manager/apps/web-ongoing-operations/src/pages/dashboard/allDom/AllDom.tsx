@@ -12,11 +12,11 @@ export default function AllDom() {
   return (
     <React.Suspense>
       <DashboardPage
+        searchableColumnID={ParentEnum.DOMAIN}
         parent={ParentEnum.ALLDOM}
         notifications={notifications}
         route={`${taskMeDomain.join('/')}?type=alldom`}
         queryKey={taskMeAllDom}
-        testID={'allDom'}
       />
     </React.Suspense>
   );

@@ -1,7 +1,7 @@
 import '@/alldoms/setupTests';
 import { renderHook } from '@testing-library/react';
 import { vi } from 'vitest';
-import { useAllDomDatagridColumns } from './useAllDomDatagridColumns';
+import { useDomainDatagridColumns } from '@/alldoms/hooks/domainDatagrid/useDomainDatagridColumns';
 
 vi.mock('react-router-dom', async (importOriginal) => {
   const original: typeof import('react-router-dom') = await importOriginal();
@@ -16,23 +16,20 @@ vi.mock('react-router-dom', async (importOriginal) => {
 });
 
 describe('Datagrid columns', () => {
-  const { result } = renderHook(() => useAllDomDatagridColumns());
+  const { result } = renderHook(() => useDomainDatagridColumns());
   const columns = result.current;
   it('should return the correct number of column', () => {
-    expect(columns).toHaveLength(10);
+    expect(columns).toHaveLength(6);
   });
 
   it('should return the good labels', () => {
     const tests: Record<string, string> = {
-      serviceName: 'allDom_table_header_serviceName',
-      renewMode: 'allDom_table_header_renewMode',
-      type: 'allDom_table_header_type',
-      register_domain: 'allDom_table_header_register_domain',
-      authorized_domain: 'allDom_table_header_authorized_domain',
-      expiration_date: 'allDom_table_header_expirationDate',
-      nicAdmin: 'allDom_table_header_nicAdmin',
-      nicTech: 'allDom_table_header_nicTech',
-      nicBilling: 'allDom_table_header_nicBilling',
+      domainName: 'allDom_domain_table_header_domain_name',
+      status: 'allDom_domain_table_header_status',
+      dns_server: 'allDom_domain_table_header_dns_server',
+      transfert_protection: 'allDom_domain_table_header_transfert_protection',
+      dnssec: 'allDom_domain_table_header_dnssec',
+      expiration_date: 'allDom_domain_table_header_expiration_date',
     };
 
     Object.keys(tests).forEach((key) => {

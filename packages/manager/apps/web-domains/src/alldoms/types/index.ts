@@ -1,15 +1,26 @@
 import {
+  DomainRegistrationStateEnum,
   ServiceInfoRenewMode,
   ServiceInfoType,
+  ServiceInfoUpdateEnum,
 } from '@/alldoms/enum/service.enum';
 
 export interface TServiceDetail {
-  domainAttached: string[];
+  allDomResource: TAllDomDomains;
   serviceInfo: TServiceInfo;
-  allDomProperty: TServiceProperty;
   nicAdmin: string;
   nicBilling: string;
   nicTechnical: string;
+  allDomResourceState?: ServiceInfoUpdateEnum;
+}
+
+export interface TAllDomDomains {
+  currentState: {
+    name: string;
+    type: ServiceInfoType;
+    domains: TDomainsInfo[];
+    extensions: string[];
+  };
 }
 
 export interface TServiceInfo {
@@ -19,11 +30,15 @@ export interface TServiceInfo {
     renew: {
       current: {
         mode: ServiceInfoRenewMode | null;
+        nextDate: string;
       };
     } | null;
     lifecycle: {
       current: {
         creationDate: string | null;
+      };
+      capacities: {
+        actions: [ServiceInfoUpdateEnum];
       };
     } | null;
   };
@@ -45,8 +60,34 @@ export interface TServiceProperty {
   offer: string;
 }
 
+export interface TDomainsInfo {
+  name: string;
+  registrationStatus: DomainRegistrationStateEnum;
+  expiresAt?: string;
+  extension?: string;
+  mainState?: string;
+  protectionState?: string;
+  suspensionState?: string;
+  nameServers:
+    | {
+        nameServer: string;
+      }[]
+    | null;
+  dnssecActivated: boolean | null;
+}
+
+export interface UpdateAllDomProps {
+  serviceName: string;
+  displayName: string;
+  renew?: {
+    mode?: ServiceInfoRenewMode;
+    period?: number;
+  };
+  terminationPolicy?: ServiceInfoUpdateEnum;
+}
+
 export interface ModalStepsProps {
-  domainAttached?: string[];
+  domainsAttached?: TDomainsInfo[];
   domainAttachedChecked?: string[];
   domainTerminateList?: string[];
   serviceName?: string;
@@ -57,9 +98,15 @@ export interface ModalStepsProps {
   closeModal?: () => void;
 }
 
-export interface UpdateAllDomServiceProps {
-  serviceName: string;
-  renew: {
-    mode: ServiceInfoRenewMode;
+export interface DomainBillingInformation {
+  list: {
+    results: [
+      {
+        renew: {
+          deleteAtExpiration: boolean;
+          forced: boolean;
+        };
+      },
+    ];
   };
 }

@@ -8,19 +8,15 @@ import { OdsCard, OdsDivider, OdsText } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { TServiceDetail } from '@/alldoms/types';
-import DatagridColumnRenewMode from '@/alldoms/components/DatagridColumns/DatagridColumnRenewMode';
-import { ServiceInfoRenewMode } from '@/alldoms/enum/service.enum';
 
 interface ServiceDetailInformationProps {
-  readonly allDomProperty: TServiceDetail['allDomProperty'];
-  readonly domainsAttached: TServiceDetail['domainAttached'];
-  readonly status: ServiceInfoRenewMode;
+  readonly allDomResource: TServiceDetail['allDomResource'];
+  readonly extensionsList?: string[];
 }
 
 export default function ServiceDetailInformation({
-  allDomProperty,
-  domainsAttached,
-  status,
+  allDomResource,
+  extensionsList,
 }: ServiceDetailInformationProps) {
   const { t } = useTranslation('allDom');
   return (
@@ -39,19 +35,23 @@ export default function ServiceDetailInformation({
       />
 
       <div className="flex flex-col gap-y-3">
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <OdsText preset={ODS_TEXT_PRESET.heading6}>
           {t('allDom_page_detail_information_general_pack', {
-            t0: allDomProperty.type,
+            t0: allDomResource.currentState.name,
           })}
         </OdsText>
-        <OdsText>
-          {t('allDom_page_detail_information_general_extensions', {
-            t0: domainsAttached
-              .map((domain) => `.${domain.split('.')[1]}`)
-              .join('; '),
-          })}
-        </OdsText>
-        <DatagridColumnRenewMode renewMode={status} />
+        <div>
+          <OdsText>
+            <strong>
+              {t('allDom_page_detail_information_general_extensions')}
+            </strong>
+          </OdsText>
+          <OdsText preset={ODS_TEXT_PRESET.span}>
+            {extensionsList
+              .map((extension) => `.${extension.toLowerCase()}`)
+              .join('; ')}
+          </OdsText>
+        </div>
       </div>
     </OdsCard>
   );

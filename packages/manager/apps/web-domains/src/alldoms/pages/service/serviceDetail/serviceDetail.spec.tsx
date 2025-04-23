@@ -3,17 +3,21 @@ import React from 'react';
 import { vi } from 'vitest';
 import { render, waitFor } from '@testing-library/react';
 import { wrapper } from '@/alldoms/utils/test.provider';
-import { useGetServiceInfo } from '@/alldoms/hooks/data/useGetServiceInfo';
+import { useGetAllDom } from '@/alldoms/hooks/data/useGetAllDom';
 import ServiceDetail from '@/alldoms/pages/service/serviceDetail/serviceDetail';
 import { serviceInfoDetail } from '@/alldoms/__mocks__/serviceInfoDetail';
 
-vi.mock('@/alldoms/hooks/data/useGetServiceInfo', () => ({
-  useGetServiceInfo: vi.fn(),
+vi.mock('@/alldoms/hooks/data/useGetAllDom', () => ({
+  useGetAllDom: vi.fn(),
+}));
+
+vi.mock('@ovh-ux/manager-react-shell-client', () => ({
+  useContext: vi.fn(),
 }));
 
 describe('AllDom datagrid', () => {
   it('displays loading spinner while main request are loading', async () => {
-    (useGetServiceInfo as jest.Mock).mockReturnValue({
+    (useGetAllDom as jest.Mock).mockReturnValue({
       data: [],
       isLoading: true,
     });
@@ -23,7 +27,7 @@ describe('AllDom datagrid', () => {
   });
 
   it('display the information general pack', async () => {
-    (useGetServiceInfo as jest.Mock).mockReturnValue({
+    (useGetAllDom as jest.Mock).mockReturnValue({
       data: serviceInfoDetail,
       isLoading: false,
     });

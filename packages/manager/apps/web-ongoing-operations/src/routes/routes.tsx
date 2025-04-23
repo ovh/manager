@@ -4,6 +4,7 @@ import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { Route } from 'react-router-dom';
 import NotFound from '@/pages/404';
 import { urls } from '@/routes/routes.constant';
+import AllDom from '@/pages/dashboard/allDom/AllDom';
 
 const LayoutPage = React.lazy(() => import('@/pages/layout'));
 const DashboardPage = React.lazy(() => import('@/pages/dashboard/Dashboard'));
@@ -46,6 +47,17 @@ export default (
         handle={{
           tracking: {
             pageName: 'dns',
+            pageType: PageType.dashboard,
+          },
+        }}
+      />
+      <Route
+        id="dashboard.alldom"
+        path={urls.allDom}
+        Component={AllDom}
+        handle={{
+          tracking: {
+            pageName: 'allDom',
             pageType: PageType.dashboard,
           },
         }}

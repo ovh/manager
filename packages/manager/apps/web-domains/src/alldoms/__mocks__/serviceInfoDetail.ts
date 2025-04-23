@@ -1,26 +1,75 @@
-import { ServiceInfoRenewMode, ServiceInfoType } from '../enum/service.enum';
+import {
+  DomainRegistrationStateEnum,
+  ServiceInfoRenewMode,
+  ServiceInfoType,
+  ServiceInfoUpdateEnum,
+} from '../enum/service.enum';
 import { TServiceDetail } from '@/alldoms/types';
 
 export const serviceInfoDetail: TServiceDetail = {
-  allDomProperty: {
-    iam: {
-      id: '000',
-      urn: 'urn:v1:eu:resource:alldom:testdomain',
+  allDomResource: {
+    currentState: {
+      name: 'alldom-french-international-example',
+      type: ServiceInfoType.French,
+      domains: [
+        {
+          name: 'alldom-french-international-example.be',
+          registrationStatus: DomainRegistrationStateEnum.Registered,
+          expiresAt: '2025-10-10T18:48:22+02:00',
+          mainState: 'OK',
+          suspensionState: 'NOT_SUSPENDED',
+          protectionState: 'PROTECTED',
+          extension: 'be',
+          dnssecActivated: false,
+          nameServers: [
+            {
+              nameServer: 'testdns.ovh.net',
+            },
+            {
+              nameServer: 'testdns.ovh.net',
+            },
+          ],
+        },
+        {
+          name: 'alldom-french-international-example.eu',
+          registrationStatus: DomainRegistrationStateEnum.Registered,
+          expiresAt: '2025-10-10T23:59:59+02:00',
+          mainState: 'OK',
+          suspensionState: 'NOT_SUSPENDED',
+          protectionState: 'PROTECTED',
+          extension: 'eu',
+          dnssecActivated: false,
+          nameServers: [
+            {
+              nameServer: 'testdns.ovh.net',
+            },
+            {
+              nameServer: 'testdns.ovh.net',
+            },
+          ],
+        },
+        {
+          name: 'alldom-french-international-example.fr',
+          registrationStatus: DomainRegistrationStateEnum.Registered,
+          expiresAt: '2025-10-01T18:59:40+02:00',
+          mainState: 'OK',
+          suspensionState: 'NOT_SUSPENDED',
+          protectionState: 'PROTECTED',
+          extension: 'fr',
+          dnssecActivated: false,
+          nameServers: [
+            {
+              nameServer: 'alldom-french-international-example.ovh.net',
+            },
+            {
+              nameServer: 'alldom-french-international-example.ovh.net',
+            },
+          ],
+        },
+      ],
+      extensions: ['BE', 'BIZ', 'COM', 'EU', 'FR', 'INFO', 'NET', 'ORG'],
     },
-    name: 'testdomain',
-    offer: 'gold',
-    type: ServiceInfoType.FrenchInternational,
   },
-  domainAttached: [
-    'testdomain.be',
-    'testdomain.biz',
-    'testdomain.com',
-    'testdomain.eu',
-    'testdomain.fr',
-    'testdomain.info',
-    'testdomain.net',
-    'testdomain.org',
-  ],
   serviceInfo: {
     serviceId: 1111111,
     billing: {
@@ -28,15 +77,18 @@ export const serviceInfoDetail: TServiceDetail = {
       renew: {
         current: {
           mode: ServiceInfoRenewMode.Automatic,
+          nextDate: '2024-09-25T06:40:26Z',
         },
       },
       lifecycle: {
         current: {
           creationDate: '2024-09-25T06:40:26Z',
         },
+        capacities: {
+          actions: [ServiceInfoUpdateEnum.Empty],
+        },
       },
     },
-
     customer: {
       contacts: [
         {
