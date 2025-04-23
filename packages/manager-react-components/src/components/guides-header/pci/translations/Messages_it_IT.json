@@ -3,6 +3,7 @@
   "pci_project_guides_header_all_guides": "Tutte le guide",
   "pci_project_guides_header_all_storage_guides": "Tutte le guide di storage e backup",
   "pci_project_guides_header_first_steps_with_instances": "Iniziare a utilizzare le istanze",
+  "pci_project_guides_header_storages_volume_backup_overview": "Creare il backup di un volume",
   "pci_project_guides_header_ip_fail_over": "IP Failover",
   "pci_project_guides_header_user_root_and_password": "Utente root e password",
   "pci_project_guides_header_reverse_dns": "Reverse DNS",
