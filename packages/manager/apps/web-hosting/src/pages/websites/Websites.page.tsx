@@ -1,6 +1,7 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { generateCsv, mkConfig, download } from 'export-to-csv';
+import { useVirtualizer } from '@tanstack/react-virtual';
 import {
   BaseLayout,
   Datagrid,
@@ -27,242 +28,290 @@ import { GUIDE_URL, ORDER_URL } from './websites.constants';
 
 export default function Websites() {
   const { t } = useTranslation('common');
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const context = useContext(ShellContext);
+  const { ovhSubsidiary } = context.environment.getUser();
+
   const {
     data,
     fetchNextPage,
     hasNextPage,
     isLoading,
     isFetchingNextPage,
-    fetchAllPages,
   } = useWebHostingAttachedDomain();
   const { notifications, addSuccess } = useNotifications();
 
-  const items = data ? data.map((website: WebsiteType) => website) : [];
+  const items = useMemo(
+    () => (data ? data.map((website: WebsiteType) => website) : []),
+    [data],
+  );
 
-  const displayColumns: DatagridColumn<WebsiteType>[] = [
-    {
-      id: 'fqdn',
-      label: t('web_hosting_status_header_fqdn'),
-      cell: (webSiteItem: WebsiteType) => (
-        <LinkCell
-          webSiteItem={webSiteItem}
-          label={webSiteItem?.currentState.fqdn}
-          withMultisite
-        />
-      ),
-      enableHiding: false,
+  const rowVirtualizer = useVirtualizer({
+    count: items.length,
+    getScrollElement: () => scrollContainerRef.current,
+    estimateSize: () => parseInt('35px', 15),
+    paddingEnd: 80,
+    overscan: 20,
+    onChange: (instance) => {
+      const lastItem = instance.getVirtualItems()[
+        instance.getVirtualItems().length - 1
+      ];
+      if (
+        lastItem &&
+        lastItem.index >= items.length - 20 &&
+        hasNextPage &&
+        !isFetchingNextPage
+      ) {
+        fetchNextPage();
+      }
     },
-    {
-      id: 'diagnostic',
-      label: t('web_hosting_status_header_diagnostic'),
-      cell: (webSiteItem: WebsiteType) => (
-        <DiagnosticCell webSiteItem={webSiteItem} />
-      ),
-      enableHiding: true,
-    },
-    {
-      id: 'path',
-      label: t('web_hosting_status_header_path'),
-      cell: (webSiteItem: WebsiteType) => (
-        <LinkCell
-          webSiteItem={webSiteItem}
-          label={webSiteItem?.currentState.path}
-          withMultisite
-        />
-      ),
-    },
-    {
-      id: 'serviceName',
-      label: t('web_hosting_status_header_serviceName'),
-      cell: (webSiteItem: WebsiteType) => (
-        <LinkCell
-          webSiteItem={webSiteItem}
-          label={webSiteItem?.currentState.hosting.serviceName}
-        />
-      ),
-    },
-    {
-      id: 'displayName',
-      label: t('web_hosting_status_header_displayName'),
-      cell: (webSiteItem: WebsiteType) => (
-        <LinkCell
-          webSiteItem={webSiteItem}
-          label={webSiteItem?.currentState.hosting.displayName}
-        />
-      ),
-    },
-    {
-      id: 'offer',
-      label: t('web_hosting_status_header_offer'),
-      cell: (webSiteItem: WebsiteType) => (
-        <LinkCell
-          webSiteItem={webSiteItem}
-          label={t([
-            `web_hosting_dashboard_offer_${webSiteItem?.currentState.hosting.offer}`,
-            webSiteItem?.currentState.hosting.offer,
-          ])}
-        />
-      ),
-    },
-    {
-      id: 'git',
-      label: t('web_hosting_status_header_git'),
-      cell: (webSiteItem: WebsiteType) => (
-        <BadgeStatusCell
-          webSiteItem={webSiteItem}
-          status={webSiteItem?.currentState.git?.status}
-          withMultisite
-        />
-      ),
-    },
-    {
-      id: 'ownLog',
-      label: t('web_hosting_status_header_ownlog'),
-      cell: (webSiteItem: WebsiteType) => (
-        <BadgeStatusCell
-          webSiteItem={webSiteItem}
-          status={
-            webSiteItem?.currentState.ownLog
-              ? ServiceStatus.ACTIVE
-              : ServiceStatus.NONE
-          }
-          withMultisite
-        />
-      ),
-    },
-    {
-      id: 'CDN',
-      label: t('web_hosting_status_header_cdn'),
-      cell: (webSiteItem: WebsiteType) => (
-        <BadgeStatusCell
-          webSiteItem={webSiteItem}
-          status={webSiteItem?.currentState.cdn.status}
-          withMultisite
-        />
-      ),
-    },
-    {
-      id: 'ssl',
-      label: t('web_hosting_status_header_ssl'),
-      cell: (webSiteItem: WebsiteType) => (
-        <BadgeStatusCell
-          webSiteItem={webSiteItem}
-          status={webSiteItem?.currentState.ssl.status}
-          withMultisite
-        />
-      ),
-    },
-    {
-      id: 'firewall',
-      label: t('web_hosting_status_header_firewall'),
-      cell: (webSiteItem: WebsiteType) => (
-        <BadgeStatusCell
-          webSiteItem={webSiteItem}
-          status={webSiteItem?.currentState.firewall.status}
-          withMultisite
-        />
-      ),
-    },
-    {
-      id: 'boostOffer',
-      label: t('web_hosting_status_header_boostOffer'),
-      cell: (webSiteItem: WebsiteType) => (
-        <BadgeStatusCell
-          webSiteItem={webSiteItem}
-          status={
-            webSiteItem?.currentState.hosting.boostOffer
-              ? ServiceStatus.ACTIVE
-              : ServiceStatus.NONE
-          }
-          withBoost
-        />
-      ),
-    },
-    {
-      id: 'actions',
-      label: '',
-      cell: (webSiteItem: WebsiteType) => (
-        <ActionButtonStatistics webSiteItem={webSiteItem} />
-      ),
-    },
-  ];
+  });
+
+  const virtualItems = useMemo(
+    () =>
+      rowVirtualizer
+        .getVirtualItems()
+        .map((virtualRow) => items[virtualRow.index]),
+    [rowVirtualizer.getVirtualItems(), items],
+  );
+
+  const displayColumns = useMemo<DatagridColumn<WebsiteType>[]>(
+    () => [
+      {
+        id: 'fqdn',
+        label: t('web_hosting_status_header_fqdn'),
+        cell: (webSiteItem: WebsiteType) => (
+          <LinkCell
+            webSiteItem={webSiteItem}
+            label={webSiteItem?.currentState.fqdn}
+            withMultisite
+          />
+        ),
+        enableHiding: false,
+      },
+      {
+        id: 'diagnostic',
+        label: t('web_hosting_status_header_diagnostic'),
+        cell: (webSiteItem: WebsiteType) => (
+          <DiagnosticCell webSiteItem={webSiteItem} />
+        ),
+        enableHiding: true,
+      },
+      {
+        id: 'path',
+        label: t('web_hosting_status_header_path'),
+        cell: (webSiteItem: WebsiteType) => (
+          <LinkCell
+            webSiteItem={webSiteItem}
+            label={webSiteItem?.currentState.path}
+            withMultisite
+          />
+        ),
+      },
+      {
+        id: 'serviceName',
+        label: t('web_hosting_status_header_serviceName'),
+        cell: (webSiteItem: WebsiteType) => (
+          <LinkCell
+            webSiteItem={webSiteItem}
+            label={webSiteItem?.currentState.hosting.serviceName}
+          />
+        ),
+      },
+      {
+        id: 'displayName',
+        label: t('web_hosting_status_header_displayName'),
+        cell: (webSiteItem: WebsiteType) => (
+          <LinkCell
+            webSiteItem={webSiteItem}
+            label={webSiteItem?.currentState.hosting.displayName}
+          />
+        ),
+      },
+      {
+        id: 'offer',
+        label: t('web_hosting_status_header_offer'),
+        cell: (webSiteItem: WebsiteType) => (
+          <LinkCell
+            webSiteItem={webSiteItem}
+            label={t([
+              `web_hosting_dashboard_offer_${webSiteItem?.currentState.hosting.offer}`,
+              webSiteItem?.currentState.hosting.offer,
+            ])}
+          />
+        ),
+      },
+      {
+        id: 'git',
+        label: t('web_hosting_status_header_git'),
+        cell: (webSiteItem: WebsiteType) => (
+          <BadgeStatusCell
+            webSiteItem={webSiteItem}
+            status={webSiteItem?.currentState.git?.status}
+            withMultisite
+          />
+        ),
+      },
+      {
+        id: 'ownLog',
+        label: t('web_hosting_status_header_ownlog'),
+        cell: (webSiteItem: WebsiteType) => (
+          <BadgeStatusCell
+            webSiteItem={webSiteItem}
+            status={
+              webSiteItem?.currentState.ownLog
+                ? ServiceStatus.ACTIVE
+                : ServiceStatus.NONE
+            }
+            withMultisite
+          />
+        ),
+      },
+      {
+        id: 'CDN',
+        label: t('web_hosting_status_header_cdn'),
+        cell: (webSiteItem: WebsiteType) => (
+          <BadgeStatusCell
+            webSiteItem={webSiteItem}
+            status={webSiteItem?.currentState.cdn.status}
+            withMultisite
+          />
+        ),
+      },
+      {
+        id: 'ssl',
+        label: t('web_hosting_status_header_ssl'),
+        cell: (webSiteItem: WebsiteType) => (
+          <BadgeStatusCell
+            webSiteItem={webSiteItem}
+            status={webSiteItem?.currentState.ssl.status}
+            withMultisite
+          />
+        ),
+      },
+      {
+        id: 'firewall',
+        label: t('web_hosting_status_header_firewall'),
+        cell: (webSiteItem: WebsiteType) => (
+          <BadgeStatusCell
+            webSiteItem={webSiteItem}
+            status={webSiteItem?.currentState.firewall.status}
+            withMultisite
+          />
+        ),
+      },
+      {
+        id: 'boostOffer',
+        label: t('web_hosting_status_header_boostOffer'),
+        cell: (webSiteItem: WebsiteType) => (
+          <BadgeStatusCell
+            webSiteItem={webSiteItem}
+            status={
+              webSiteItem?.currentState.hosting.boostOffer
+                ? ServiceStatus.ACTIVE
+                : ServiceStatus.NONE
+            }
+            withBoost
+          />
+        ),
+      },
+      {
+        id: 'actions',
+        label: '',
+        cell: (webSiteItem: WebsiteType) => (
+          <ActionButtonStatistics webSiteItem={webSiteItem} />
+        ),
+      },
+    ],
+    [t],
+  );
+
   interface ExportColumn {
     id: string;
     label: string;
     getValue: (item: WebsiteType) => string;
   }
 
-  const exportColumns: ExportColumn[] = [
-    {
-      id: 'fqdn',
-      label: t('web_hosting_status_header_fqdn'),
-      getValue: (item) => item?.currentState.fqdn,
-    },
-    {
-      id: 'path',
-      label: t('web_hosting_status_header_path'),
-      getValue: (item) => item?.currentState.path,
-    },
-    {
-      id: 'serviceName',
-      label: t('web_hosting_status_header_serviceName'),
-      getValue: (item) => item?.currentState.hosting.serviceName,
-    },
-    {
-      id: 'displayName',
-      label: t('web_hosting_status_header_displayName'),
-      getValue: (item) => item?.currentState.hosting.displayName,
-    },
-    {
-      id: 'offer',
-      label: t('web_hosting_status_header_offer'),
-      getValue: (item) =>
-        t([
-          `web_hosting_dashboard_offer_${item?.currentState.hosting.offer}`,
-          item?.currentState.hosting.offer,
-        ]),
-    },
-    {
-      id: 'git',
-      label: t('web_hosting_status_header_git'),
-      getValue: (item) =>
-        t(`web_hosting_status_${item?.currentState.git?.status.toLowerCase()}`),
-    },
-    {
-      id: 'ownLog',
-      label: t('web_hosting_status_header_ownlog'),
-      getValue: (item) =>
-        item?.currentState.ownLog ? ServiceStatus.ACTIVE : ServiceStatus.NONE,
-    },
-    {
-      id: 'CDN',
-      label: t('web_hosting_status_header_cdn'),
-      getValue: (item) =>
-        t(`web_hosting_status_${item?.currentState.cdn?.status.toLowerCase()}`),
-    },
-    {
-      id: 'ssl',
-      label: t('web_hosting_status_header_ssl'),
-      getValue: (item) =>
-        t(`web_hosting_status_${item?.currentState.ssl?.status.toLowerCase()}`),
-    },
-    {
-      id: 'firewall',
-      label: t('web_hosting_status_header_firewall'),
-      getValue: (item) =>
-        t(
-          `web_hosting_status_${item?.currentState.firewall?.status.toLowerCase()}`,
-        ),
-    },
-    {
-      id: 'boostOffer',
-      label: t('web_hosting_status_header_boostOffer'),
-      getValue: (item) =>
-        item?.currentState.hosting.boostOffer
-          ? ServiceStatus.ACTIVE
-          : ServiceStatus.NONE,
-    },
-  ];
+  const exportColumns = useMemo<ExportColumn[]>(
+    () => [
+      {
+        id: 'fqdn',
+        label: t('web_hosting_status_header_fqdn'),
+        getValue: (item) => item?.currentState.fqdn,
+      },
+      {
+        id: 'path',
+        label: t('web_hosting_status_header_path'),
+        getValue: (item) => item?.currentState.path,
+      },
+      {
+        id: 'serviceName',
+        label: t('web_hosting_status_header_serviceName'),
+        getValue: (item) => item?.currentState.hosting.serviceName,
+      },
+      {
+        id: 'displayName',
+        label: t('web_hosting_status_header_displayName'),
+        getValue: (item) => item?.currentState.hosting.displayName,
+      },
+      {
+        id: 'offer',
+        label: t('web_hosting_status_header_offer'),
+        getValue: (item) =>
+          t([
+            `web_hosting_dashboard_offer_${item?.currentState.hosting.offer}`,
+            item?.currentState.hosting.offer,
+          ]),
+      },
+      {
+        id: 'git',
+        label: t('web_hosting_status_header_git'),
+        getValue: (item) =>
+          t(
+            `web_hosting_status_${item?.currentState.git?.status.toLowerCase()}`,
+          ),
+      },
+      {
+        id: 'ownLog',
+        label: t('web_hosting_status_header_ownlog'),
+        getValue: (item) =>
+          item?.currentState.ownLog ? ServiceStatus.ACTIVE : ServiceStatus.NONE,
+      },
+      {
+        id: 'CDN',
+        label: t('web_hosting_status_header_cdn'),
+        getValue: (item) =>
+          t(
+            `web_hosting_status_${item?.currentState.cdn?.status.toLowerCase()}`,
+          ),
+      },
+      {
+        id: 'ssl',
+        label: t('web_hosting_status_header_ssl'),
+        getValue: (item) =>
+          t(
+            `web_hosting_status_${item?.currentState.ssl?.status.toLowerCase()}`,
+          ),
+      },
+      {
+        id: 'firewall',
+        label: t('web_hosting_status_header_firewall'),
+        getValue: (item) =>
+          t(
+            `web_hosting_status_${item?.currentState.firewall?.status.toLowerCase()}`,
+          ),
+      },
+      {
+        id: 'boostOffer',
+        label: t('web_hosting_status_header_boostOffer'),
+        getValue: (item) =>
+          item?.currentState.hosting.boostOffer
+            ? ServiceStatus.ACTIVE
+            : ServiceStatus.NONE,
+      },
+    ],
+    [t],
+  );
 
   const handleExportWithExportToCsv = () => {
     const csvConfig = mkConfig({
@@ -303,22 +352,22 @@ export default function Websites() {
     download(csvConfig)(csv);
   };
 
-  const context = useContext(ShellContext);
-  const { ovhSubsidiary } = context.environment.getUser();
+  const guideItems = useMemo<GuideItem[]>(
+    () => [
+      {
+        id: 1,
+        href: GUIDE_URL[ovhSubsidiary as OvhSubsidiary] || GUIDE_URL.DEFAULT,
+        target: '_blank',
+        label: t('web_hosting_header_guide_general_informations'),
+      },
+    ],
+    [t, ovhSubsidiary],
+  );
 
   const goToOrder = () => {
     const url = ORDER_URL[ovhSubsidiary as OvhSubsidiary] || ORDER_URL.DEFAULT;
     window.open(url, '_blank');
   };
-
-  const guideItems: GuideItem[] = [
-    {
-      id: 1,
-      href: GUIDE_URL[ovhSubsidiary as OvhSubsidiary] || GUIDE_URL.DEFAULT,
-      target: '_blank',
-      label: t('web_hosting_header_guide_general_informations'),
-    },
-  ];
 
   return (
     <BaseLayout
@@ -328,38 +377,37 @@ export default function Websites() {
       }}
       message={notifications.length ? <Notifications /> : null}
     >
-      <Datagrid
-        data-testid="websites-page-datagrid"
-        columns={displayColumns}
-        items={items}
-        totalItems={items.length}
-        hasNextPage={!isFetchingNextPage && hasNextPage}
-        onFetchNextPage={fetchNextPage}
-        onFetchAllPages={fetchAllPages}
-        isLoading={isFetchingNextPage || isLoading}
-        topbar={
-          <div className="flex items-center gap-4">
-            <OdsButton
-              label={t('web_hosting_header_order')}
-              variant={ODS_BUTTON_VARIANT.default}
-              color={ODS_BUTTON_COLOR.primary}
-              onClick={goToOrder}
-              icon={ODS_ICON_NAME.externalLink}
-              iconAlignment={ODS_LINK_ICON_ALIGNMENT.right}
-              data-testid="websites-page-order-button"
-            />
-            <OdsButton
-              label={t('web_hosting_export_label')}
-              variant={ODS_BUTTON_VARIANT.outline}
-              color={ODS_BUTTON_COLOR.primary}
-              icon={ODS_ICON_NAME.download}
-              iconAlignment={ODS_LINK_ICON_ALIGNMENT.right}
-              onClick={handleExportWithExportToCsv}
-              data-testid="websites-page-export-button"
-            />
-          </div>
-        }
-      />
+      <div ref={scrollContainerRef} className="overflow-auto">
+        <Datagrid
+          data-testid="websites-page-datagrid"
+          columns={displayColumns}
+          items={virtualItems}
+          totalItems={items.length}
+          isLoading={isFetchingNextPage || isLoading}
+          topbar={
+            <div className="flex items-center gap-4">
+              <OdsButton
+                label={t('web_hosting_header_order')}
+                variant={ODS_BUTTON_VARIANT.default}
+                color={ODS_BUTTON_COLOR.primary}
+                onClick={goToOrder}
+                icon={ODS_ICON_NAME.externalLink}
+                iconAlignment={ODS_LINK_ICON_ALIGNMENT.right}
+                data-testid="websites-page-order-button"
+              />
+              <OdsButton
+                label={t('web_hosting_export_label')}
+                variant={ODS_BUTTON_VARIANT.outline}
+                color={ODS_BUTTON_COLOR.primary}
+                icon={ODS_ICON_NAME.download}
+                iconAlignment={ODS_LINK_ICON_ALIGNMENT.right}
+                onClick={handleExportWithExportToCsv}
+                data-testid="websites-page-export-button"
+              />
+            </div>
+          }
+        />
+      </div>
     </BaseLayout>
   );
 }
