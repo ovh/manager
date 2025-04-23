@@ -2,12 +2,11 @@ import { useNavigate } from 'react-router-dom';
 import { ColumnDef } from '@tanstack/react-table';
 import { Plus } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { Skeleton, Button } from '@datatr-ux/uxlib';
 import * as database from '@/types/cloud/project/database';
-import { Skeleton } from '@/components/ui/skeleton';
 import { getColumns } from './ServiceListColumns.component';
 import { useTrackAction } from '@/hooks/useTracking';
 import { TRACKING } from '@/configuration/tracking.constants';
-import { Button } from '@/components/ui/button';
 import { getFilters } from './ServiceListFilters.component';
 import DataTable from '@/components/data-table';
 

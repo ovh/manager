@@ -8,6 +8,10 @@ import {
 } from './instances.constants';
 import { getCriteria } from '../project.utils';
 
+const FAKE_INSTANCES = new Array(10).fill({
+  fakeInstance: true,
+});
+
 export default class CloudProjectComputeInfrastructureListCtrl {
   /* @ngInject */
   constructor(
@@ -40,53 +44,65 @@ export default class CloudProjectComputeInfrastructureListCtrl {
     this.checkHelpDisplay();
 
     this.criteria = getCriteria('id', this.instanceId);
-
-    this.fetchInstances();
   }
 
   fetchInstances() {
-    this.loading = true;
-    return this.$q
-      .all({
-        instances: this.PciProjectsProjectInstanceService.getAll(
-          this.projectId,
-          this.customerRegions,
-        ),
-        floatingIps: this.getFloatingIps(),
-      })
-      .then(({ instances, floatingIps }) => {
-        const updatedInstances = instances.map((instance) => ({
-          ...instance,
-          floatingIp: floatingIps.find(
-            (floatingIp) => floatingIp?.associatedEntity?.id === instance.id,
+    if (
+      !this.instances ||
+      (this.instances.length === 1 && this.instances[0].fakeInstance)
+    ) {
+      this.loading = true;
+      // When we have an element that triggers the row-loader from the oui-datagrid we get a skeleton instead of a placeholder
+      this.instances = FAKE_INSTANCES;
+      this.instancesPromise = this.$q
+        .all({
+          instances: this.PciProjectsProjectInstanceService.getAll(
+            this.projectId,
+            this.customerRegions,
           ),
-        }));
-        return this.$q.all(
-          updatedInstances.map((instance) => {
-            return this.PciProjectsProjectInstanceService.getInstanceFlavor(
-              this.projectId,
-              instance,
-            ).then((flavor) => {
-              return new Instance({
-                ...instance,
-                flavor,
+          floatingIps: this.getFloatingIps(),
+        })
+        .then(({ instances, floatingIps }) => {
+          const updatedInstances = instances.map((instance) => ({
+            ...instance,
+            floatingIp: floatingIps.find(
+              (floatingIp) => floatingIp?.associatedEntity?.id === instance.id,
+            ),
+          }));
+          return this.$q.all(
+            updatedInstances.map((instance) => {
+              return this.PciProjectsProjectInstanceService.getInstanceFlavor(
+                this.projectId,
+                instance,
+              ).then((flavor) => {
+                return new Instance({
+                  ...instance,
+                  flavor,
+                });
               });
-            });
-          }),
-        );
-      })
-      .then((instances) => {
-        if (instances.length === 0) {
-          this.$state.go('pci.projects.project.instances.onboarding');
-        } else {
+            }),
+          );
+        })
+        .then((instances) => {
           this.instances = instances;
           this.instancesRegions = Array.from(
             new Set(instances.map(({ region }) => region)),
           );
           this.loading = false;
           this.pollInstances();
-        }
-      });
+        });
+    } else {
+      this.instancesPromise = this.$q.resolve();
+    }
+
+    this.instancesPromise.then(() => {
+      if (
+        this.$state.current.name === 'pci.projects.project.instances' &&
+        this.instances.length === 0
+      ) {
+        this.$state.go('pci.projects.project.instances.onboarding');
+      }
+    });
   }
 
   pollInstances() {
@@ -101,7 +117,7 @@ export default class CloudProjectComputeInfrastructureListCtrl {
           namespace: poller.namespace,
           notifyOnError: false,
         })
-          .then(() => this.refreshInstances())
+          .then(() => this.fetchInstances())
           .then(() =>
             this.CucCloudMessage.success(
               this.$translate.instant(poller.successMessage, {
@@ -133,6 +149,8 @@ export default class CloudProjectComputeInfrastructureListCtrl {
   }
 
   loadInstanceDetail(instance) {
+    // We simulate fetching to have a skeleton while the instances are loading
+    if (instance.fakeInstance) return this.instancesPromise.then(() => {});
     return this.PciProjectsProjectInstanceService.getInstanceDetails(
       this.projectId,
       instance,

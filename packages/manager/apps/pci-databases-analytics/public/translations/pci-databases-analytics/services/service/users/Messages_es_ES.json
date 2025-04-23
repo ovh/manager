@@ -81,5 +81,9 @@
   "formUserAclConfiguredAcls": "ACL configuradas",
   "formUseAclPatternErrorPattern": "El patrón solo puede contener letras, números, guiones, barras bajas, puntos, asteriscos o signos de interrogación.",
   "formUserInvalidPermission": "Seleccione un permiso válido de la siguiente lista: {values}",
-  "formUserAclDuplicate": "Una ACL similar ya está configurada"
+  "formUserAclDuplicate": "Una ACL similar ya está configurada",
+  "resetUserPasswordCode": "Contraseña del usuario",
+  "resetUserConnectionTitle": "URI que se usará para una conexión rápida",
+  "resetUserConnectionCode": "Cadena de conexión",
+  "resetUserConnectionCodeCopy": "URI de conexión copiado al portapapeles"
 }

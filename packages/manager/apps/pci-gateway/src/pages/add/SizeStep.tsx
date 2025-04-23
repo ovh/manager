@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { OsdsText } from '@ovhcloud/ods-components/react';
 import {
   StepComponent,
@@ -29,7 +29,6 @@ export const SizeStep = (): JSX.Element => {
 
   const { t } = useTranslation(['add', 'stepper', 'catalog-selector']);
 
-  const [size, setSize] = useState<TProductAddonDetail>();
   const store = useNewGatewayStore();
 
   const addons = useRegionGatewayAddons(
@@ -87,13 +86,10 @@ export const SizeStep = (): JSX.Element => {
     >
       <TilesInputComponent<TProductAddonDetail, string, string>
         id="gateway-size-input"
-        value={size}
+        value={addons.find((addon) => addon.size === store.form.size)}
         items={addons}
         label={(props) => <SizeLabel {...props} />}
-        onInput={(item) => {
-          store.updateForm.size(item.size);
-          setSize(addons.find((addon) => addon.size === item.size));
-        }}
+        onInput={(item) => store.updateForm.size(item.size)}
       />
     </StepComponent>
   );

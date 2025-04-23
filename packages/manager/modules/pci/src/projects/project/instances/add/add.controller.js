@@ -273,6 +273,12 @@ export default class PciInstancesAddController {
   onDeploymentModeChange(deploymentMode) {
     this.selectedDeploymentMode = deploymentMode;
     this.getFilteredRegions();
+    this.trackAddInstance([
+      'tile',
+      'add_instance',
+      'select_location_mode',
+      deploymentMode.name,
+    ]);
   }
 
   updateLocation(location, datacenters) {
@@ -294,6 +300,22 @@ export default class PciInstancesAddController {
     if (auto) {
       this.model.threeAzRegion.zone = '';
     }
+    this.trackAddInstance([
+      'box',
+      'add_instance',
+      'select_location',
+      `3AZ-${auto ? 'automated' : 'manually'}`,
+    ]);
+  }
+
+  on3AZZoneChange(zone) {
+    this.trackAddInstance([
+      'box',
+      'add_instance',
+      'select_location',
+      zone,
+      '3AZ-manually-selected',
+    ]);
   }
 
   onContinentChange(_, datacentersMap) {
@@ -718,7 +740,11 @@ export default class PciInstancesAddController {
       'button',
       'add_instance',
       'select_localisation',
-      `add_${this.instance.region.toLowerCase()}`,
+      `add_${this.instance.region.toLowerCase()}}`.concat(
+        this.is3AZRegion()
+          ? `-${this.model.threeAzRegion.auto ? 'automated' : 'manually'}`
+          : '',
+      ),
     ]);
 
     this.model.image = null;
@@ -991,7 +1017,13 @@ export default class PciInstancesAddController {
       [
         ...(type === 'create' ? ['instances', 'created'] : []),
         mode,
-        this.instance.region.toLowerCase(),
+        this.instance.region
+          .toLowerCase()
+          .concat(
+            this.is3AZRegion()
+              ? `-${this.model.threeAzRegion.auto ? 'automated' : 'manually'}`
+              : '',
+          ),
         this.model.flavorGroup.name,
         this.selectedMode.name.replace('_mode', ''),
         this.model.image.nameGeneric,

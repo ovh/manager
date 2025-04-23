@@ -3,15 +3,15 @@ import { z } from 'zod';
 import { X, PlusCircle } from 'lucide-react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Input } from '../ui/input';
 import {
+  Button,
+  Input,
   Form,
   FormControl,
   FormField,
   FormItem,
   FormMessage,
-} from '../ui/form';
-import { Button } from '../ui/button';
+} from '@datatr-ux/uxlib';
 
 interface TagsInputProps {
   value: string[];
@@ -117,7 +117,7 @@ const TagsInput = React.forwardRef<HTMLInputElement, TagsInputProps>(
                   <Button
                     data-testid="add_tag_button"
                     ref={addTagBtnRef}
-                    variant={'ghost'}
+                    mode={'ghost'}
                     type="button"
                     onClick={form.handleSubmit(handleAddTag)}
                     className="text-primary rounded-full p-2 ml-2 hover:text-primary"
@@ -141,9 +141,8 @@ const TagsInput = React.forwardRef<HTMLInputElement, TagsInputProps>(
                     data-testid={`remove_tag_button_${index}`}
                     type="button"
                     onClick={() => handleRemoveTag(index)}
-                    variant={'ghost'}
-                    size={'icon'}
-                    className="w-3 h-3 p-0"
+                    mode={'ghost'}
+                    className="w-3 h-3 p-0 size-3 text-text hover:bg-transparent hover:text-primary"
                   >
                     <X />
                   </Button>

@@ -1,8 +1,7 @@
 import { useTranslation } from 'react-i18next';
+import { Badge, Skeleton } from '@datatr-ux/uxlib';
 import * as database from '@/types/cloud/project/database';
 import ServiceStatusBadge from '../../_components/ServiceStatusBadge.component';
-import { Badge } from '@/components/ui/badge';
-import { Skeleton } from '@/components/ui/skeleton';
 import { humanizeEngine } from '@/lib/engineNameHelper';
 import ServiceNameWithUpdate from './ServiceNameWithUpdate.component';
 import { EngineIcon } from '@/components/engine-icon/EngineIcon.component';

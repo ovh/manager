@@ -13,37 +13,32 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form';
-import { Button } from '@/components/ui/button';
-import {
+  Button,
   DialogContent,
   DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { useToast } from '@/components/ui/use-toast';
-import { ForkSourceType } from '@/types/orderFunnel';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import {
+  useToast,
+  RadioGroup,
+  RadioGroupItem,
   Select,
   SelectContent,
   SelectGroup,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
-import { useServiceData } from '../../Service.context';
-import FormattedDate from '@/components/formatted-date/FormattedDate.component';
-import { formatStorage } from '@/lib/bytesHelper';
-import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from '@/components/ui/popover';
+  Calendar,
+  TimePicker,
+} from '@datatr-ux/uxlib';
+import { ForkSourceType } from '@/types/orderFunnel';
+import { useServiceData } from '../../Service.context';
+import FormattedDate from '@/components/formatted-date/FormattedDate.component';
+import { formatStorage } from '@/lib/bytesHelper';
 import { cn } from '@/lib/utils';
-import { Calendar } from '@/components/ui/calendar';
-import { TimePicker } from '@/components/ui/time-picker';
 import { useDateFnsLocale } from '@/hooks/useDateFnsLocale.hook';
 import { useRestoreBackup } from '@/hooks/api/database/backup/useRestoreBackup.hook';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
@@ -271,7 +266,7 @@ const RestoreServiceModal = () => {
                         <PopoverTrigger asChild>
                           <Button
                             ref={field.ref}
-                            variant={'ghost'}
+                            mode={'ghost'}
                             className={cn(
                               'text-left justify-start flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50',
                               !field.value && 'text-muted-foreground',

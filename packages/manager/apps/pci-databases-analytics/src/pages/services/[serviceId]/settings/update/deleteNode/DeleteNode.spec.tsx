@@ -6,9 +6,9 @@ import {
   fireEvent,
   act,
 } from '@testing-library/react';
+import { useToast } from '@datatr-ux/uxlib';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import DeleteNode from './DeleteNode.modal';
-import { useToast } from '@/components/ui/use-toast';
 import { mockedService } from '@/__tests__/helpers/mocks/services';
 import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
 import * as nodeApi from '@/data/api/database/node.api';
@@ -35,9 +35,11 @@ vi.mock('react-i18next', () => ({
   }),
   Trans: ({ children }: { children: React.ReactNode }) => children,
 }));
-vi.mock('@/components/ui/use-toast', () => {
+vi.mock('@datatr-ux/uxlib', async () => {
+  const mod = await vi.importActual('@datatr-ux/uxlib');
   const toastMock = vi.fn();
   return {
+    ...mod,
     useToast: vi.fn(() => ({
       toast: toastMock,
     })),

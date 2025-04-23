@@ -264,16 +264,55 @@ const setPrices = (
     tax: 0,
   } as order.publicOrder.Pricing;
 
-  const planCode = getPlanCodeFromString(availability.planCode);
-  const planCodeStorage = getPlanCodeFromString(availability.planCodeStorage);
+  const hasStorage = flavor.storage?.step;
+  const isNewPricingFormat = availability.planCode.includes(
+    '.hour.consumption',
+  );
+
+  let hourlyPricing = defaultPricing;
+  let monthlyPricing = defaultPricing;
+  let hourlyStoragePricing = defaultPricing;
+  let monthlyStoragePricing = defaultPricing;
 
   const findPricing = (pricingPlanCode: string) =>
     catalog.addons.find((addon) => addon.planCode === pricingPlanCode)
       ?.pricings?.[0] || defaultPricing;
 
-  // Extract pricing for hourly and monthly consumption
-  const hourlyPricing = findPricing(planCode(PRICING_SUFFIX.HOUR));
-  const monthlyPricing = findPricing(planCode(PRICING_SUFFIX.MONTH));
+  // new format
+  if (isNewPricingFormat) {
+    hourlyPricing = findPricing(`${PRICING_PREFIX}.${availability.planCode}`);
+    monthlyPricing = findPricing(
+      `${PRICING_PREFIX}.${availability.planCode.replace(
+        '.hour.consumption',
+        '.month.consumption',
+      )}`,
+    );
+    if (hasStorage) {
+      hourlyStoragePricing = findPricing(
+        `${PRICING_PREFIX}.${availability.planCodeStorage}`,
+      );
+      monthlyStoragePricing = findPricing(
+        `${PRICING_PREFIX}.${availability.planCodeStorage.replace(
+          '.hour.consumption',
+          '.month.consumption',
+        )}`,
+      );
+    }
+  } else {
+    const planCode = getPlanCodeFromString(availability.planCode);
+    const planCodeStorage = getPlanCodeFromString(availability.planCodeStorage);
+
+    // Extract pricing for hourly and monthly consumption
+    hourlyPricing = findPricing(planCode(PRICING_SUFFIX.HOUR));
+    monthlyPricing = findPricing(planCode(PRICING_SUFFIX.MONTH));
+
+    if (hasStorage) {
+      hourlyStoragePricing = findPricing(planCodeStorage(PRICING_SUFFIX.HOUR));
+      monthlyStoragePricing = findPricing(
+        planCodeStorage(PRICING_SUFFIX.MONTH),
+      );
+    }
+  }
 
   // Assign extracted pricing to the flavor
   flavor.pricing.hourly = hourlyPricing;
@@ -285,10 +324,10 @@ const setPrices = (
   }
 
   // Handle storage pricing if flavor has storage with step
-  if (flavor.storage?.step) {
+  if (hasStorage) {
     flavor.storage.pricing = {
-      hourly: findPricing(planCodeStorage(PRICING_SUFFIX.HOUR)),
-      monthly: findPricing(planCodeStorage(PRICING_SUFFIX.MONTH)),
+      hourly: hourlyStoragePricing,
+      monthly: monthlyStoragePricing,
     };
   }
 };

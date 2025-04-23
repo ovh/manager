@@ -8,9 +8,6 @@ import Loading from './components/loading/Loading.component';
 import { useLoadingIndicatorContext } from './contexts/LoadingIndicator.context';
 import ProgressLoader from './components/loading/ProgressLoader.component';
 
-import '@ovhcloud/ods-theme-blue-jeans';
-import './global.css';
-
 function App() {
   const { loading } = useLoadingIndicatorContext();
   const shell = useShell();

@@ -1,7 +1,6 @@
 import { ReactNode } from 'react';
 import { Search } from 'lucide-react';
-import { Input } from '../ui/input';
-import { Button } from '../ui/button';
+import { Button, Input } from '@datatr-ux/uxlib';
 import { useDataTableContext } from './DataTable.context';
 
 export function DatatableSearchBar({ children }: { children?: ReactNode }) {

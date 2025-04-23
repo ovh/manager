@@ -5,14 +5,12 @@ import {
   Tooltip,
   TooltipProvider,
   TooltipTrigger,
-} from '@/components/ui/tooltip';
-import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { Button } from '@/components/ui/button';
+  Button,
+} from '@datatr-ux/uxlib';
 import * as database from '@/types/cloud/project/database';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 import { DatatableSortableHeader } from '@/components/data-table/DatatableSortableHeader.component';
