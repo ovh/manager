@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.29.0...@ovh-ux/manager-dedicated@20.30.0) (2025-04-23)
+
+
+### Features
+
+* **dedicated.vmware:** custom nsx edges sizing ([99ec55b](https://github.com/ovh/manager/commit/99ec55bade0780b3c00db2d1d067ca44116d5155)), closes [#MANAGER-17413](https://github.com/ovh/manager/issues/MANAGER-17413)
+
+
+
+
+
 # [20.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.28.0...@ovh-ux/manager-dedicated@20.29.0) (2025-04-23)
 
 
