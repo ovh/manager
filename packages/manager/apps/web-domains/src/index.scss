@@ -41,3 +41,7 @@ html {
     }
   }
 }
+
+.text-warning::part(text) {
+  color: var(--ods-color-warning-700);
+}

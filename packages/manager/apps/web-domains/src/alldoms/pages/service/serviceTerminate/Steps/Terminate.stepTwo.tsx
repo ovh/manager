@@ -12,10 +12,13 @@ import { useNavigate } from 'react-router-dom';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ModalStepsProps } from '@/alldoms/types';
 import {
+  ServiceInfoRenewMode,
+  ServiceInfoUpdateEnum,
+} from '@/alldoms/enum/service.enum';
+import {
   useUpdateAllDomService,
   useUpdateDomainServiceInfo,
-} from '@/alldoms/hooks/data/query';
-import { ServiceInfoRenewMode } from '@/alldoms/enum/service.enum';
+} from '@/alldoms/hooks/data/mutation/mutation';
 
 export default function TerminateModalStepTwo({
   domainTerminateList,
@@ -33,9 +36,11 @@ export default function TerminateModalStepTwo({
     try {
       await updateAllDomServiceMutation.mutateAsync({
         serviceName,
+        displayName: serviceName,
         renew: {
           mode: ServiceInfoRenewMode.Manual,
         },
+        terminationPolicy: ServiceInfoUpdateEnum.TerminateAtExpirationDate,
       });
 
       await Promise.all(

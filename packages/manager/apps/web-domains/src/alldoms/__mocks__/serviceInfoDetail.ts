@@ -1,4 +1,9 @@
-import { ServiceInfoRenewMode, ServiceInfoType } from '../enum/service.enum';
+import {
+  DomainRegistrationStateEnum,
+  ServiceInfoRenewMode,
+  ServiceInfoType,
+  ServiceResourceStatus,
+} from '../enum/service.enum';
 import { TServiceDetail } from '@/alldoms/types';
 
 export const serviceInfoDetail: TServiceDetail = {
@@ -11,16 +16,68 @@ export const serviceInfoDetail: TServiceDetail = {
     offer: 'gold',
     type: ServiceInfoType.FrenchInternational,
   },
-  domainAttached: [
-    'testdomain.be',
-    'testdomain.biz',
-    'testdomain.com',
-    'testdomain.eu',
-    'testdomain.fr',
-    'testdomain.info',
-    'testdomain.net',
-    'testdomain.org',
-  ],
+  domainAttached: {
+    resourceStatus: ServiceResourceStatus.Creating,
+    currentState: {
+      domains: [
+        {
+          name: 'tomlebossdavenir.be',
+          registrationStatus: DomainRegistrationStateEnum.Registered,
+          expiresAt: '2025-10-10T18:48:22+02:00',
+          mainState: 'OK',
+          suspensionState: 'NOT_SUSPENDED',
+          protectionState: 'PROTECTED',
+          extension: 'be',
+          dnssecActivated: false,
+          nameServers: [
+            {
+              nameServer: 'ns19.ovh.net',
+            },
+            {
+              nameServer: 'dns19.ovh.net',
+            },
+          ],
+        },
+        {
+          name: 'tomlebossdavenir.eu',
+          registrationStatus: DomainRegistrationStateEnum.Registered,
+          expiresAt: '2025-10-10T23:59:59+02:00',
+          mainState: 'OK',
+          suspensionState: 'NOT_SUSPENDED',
+          protectionState: 'PROTECTED',
+          extension: 'eu',
+          dnssecActivated: false,
+          nameServers: [
+            {
+              nameServer: 'ns19.ovh.net',
+            },
+            {
+              nameServer: 'dns19.ovh.net',
+            },
+          ],
+        },
+        {
+          name: 'tomlebossdavenir.fr',
+          registrationStatus: DomainRegistrationStateEnum.Registered,
+          expiresAt: '2025-10-01T18:59:40+02:00',
+          mainState: 'OK',
+          suspensionState: 'NOT_SUSPENDED',
+          protectionState: 'PROTECTED',
+          extension: 'fr',
+          dnssecActivated: false,
+          nameServers: [
+            {
+              nameServer: 'dns108.ovh.net',
+            },
+            {
+              nameServer: 'ns108.ovh.net',
+            },
+          ],
+        },
+      ],
+      extensions: ['BE', 'BIZ', 'COM', 'EU', 'FR', 'INFO', 'NET', 'ORG'],
+    },
+  },
   serviceInfo: {
     serviceId: 1111111,
     billing: {
