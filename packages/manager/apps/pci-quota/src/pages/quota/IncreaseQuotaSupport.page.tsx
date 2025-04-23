@@ -255,20 +255,23 @@ const IncreaseQuotaSupport = () => {
         label={t('pci_projects_project_quota_increase_back_label')}
         href={backHref}
       />
-      <div>
-        <OdsMessage className="my-4">
-          {t('pci_projects_project_quota_increase_banner')}
-        </OdsMessage>
-      </div>
+
       {ticketCreated ? (
         <>
           <Notifications />
-          <OdsText className="whitespace-pre-wrap">
-            {t('pci_projects_project_quota_assistance_success')}
-          </OdsText>
+          <div>
+            <OdsText className="whitespace-pre-wrap">
+              {t('pci_projects_project_quota_assistance_success')}
+            </OdsText>
+          </div>
         </>
       ) : (
         <>
+          <div>
+            <OdsMessage className="my-4" isDismissible={false}>
+              {t('pci_projects_project_quota_increase_banner')}
+            </OdsMessage>
+          </div>
           {quotaQuestions && quotaQuestions.fields.length > 0 && (
             <IncreaseQuotaForm
               goBackHref={backHref}
