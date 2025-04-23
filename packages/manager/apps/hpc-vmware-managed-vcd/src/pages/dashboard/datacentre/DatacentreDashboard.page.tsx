@@ -49,6 +49,12 @@ function DatacentreDashboardPage() {
       to: useResolvedPath('storage').pathname,
       trackingActions: TRACKING_TABS_ACTIONS.storage,
     },
+    {
+      name: 'vrack-network',
+      title: t('managed_vcd_dashboard_vrack_network_title'),
+      to: useResolvedPath('vrack-network').pathname,
+      trackingActions: TRACKING_TABS_ACTIONS.vrackNetwork,
+    },
   ];
 
   const serviceName = vcdDatacentre?.data?.currentState?.description ?? vdcId;
