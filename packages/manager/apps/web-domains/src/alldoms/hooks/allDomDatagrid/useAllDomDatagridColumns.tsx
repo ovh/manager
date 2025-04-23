@@ -2,12 +2,12 @@ import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { TServiceDetail } from '@/alldoms/types';
-import DatagridColumnDomainNumber from '@/alldoms/components/DatagridColumns/DatagridColumnDomainNumber';
-import DatagridColumnServiceName from '@/alldoms/components/DatagridColumns/DatagridColumnServiceName';
-import { DatagridColumnDate } from '@/alldoms/components/DatagridColumns/DatagridColumnDate';
-import DatagridColumnActionMenu from '@/alldoms/components/DatagridColumns/DatagridColumnActionMenu';
-import DatagridColumnContact from '@/alldoms/components/DatagridColumns/DatagridColumnContact';
-import DatagridColumnRenewMode from '@/alldoms/components/DatagridColumns/DatagridColumnRenewMode';
+import DatagridColumnDomainNumber from '@/alldoms/components/AllDomDatagridColumns/DatagridColumnDomainNumber';
+import DatagridColumnServiceName from '@/alldoms/components/AllDomDatagridColumns/DatagridColumnServiceName';
+import { DatagridColumnDate } from '@/alldoms/components/AllDomDatagridColumns/DatagridColumnDate';
+import DatagridColumnContact from '@/alldoms/components/AllDomDatagridColumns/DatagridColumnContact';
+import DatagridColumnRenewMode from '@/alldoms/components/AllDomDatagridColumns/DatagridColumnRenewMode';
+import ServiceActionMenu from '@/alldoms/components/ActionMenu/ServiceActionMenu';
 
 export const useAllDomDatagridColumns = () => {
   const { t } = useTranslation('allDom');
@@ -26,6 +26,7 @@ export const useAllDomDatagridColumns = () => {
       cell: (props: TServiceDetail) => (
         <DatagridColumnRenewMode
           renewMode={props.serviceInfo.billing.renew.current.mode}
+          allDomResourceState={props.allDomResourceState}
         />
       ),
       label: t('allDom_table_header_renewMode'),
@@ -44,7 +45,9 @@ export const useAllDomDatagridColumns = () => {
     {
       id: 'register_domain',
       cell: (props: TServiceDetail) => (
-        <DataGridTextCell>{props.domainAttached.length}</DataGridTextCell>
+        <DataGridTextCell>
+          {props.domainAttached.currentState.domains.length}
+        </DataGridTextCell>
       ),
       label: t('allDom_table_header_register_domain'),
       enableHiding: true,
@@ -95,11 +98,12 @@ export const useAllDomDatagridColumns = () => {
     {
       id: 'actions',
       cell: (props: TServiceDetail) => (
-        <DatagridColumnActionMenu
+        <ServiceActionMenu
           serviceId={`${props.serviceInfo.serviceId}`}
           serviceName={props.allDomProperty.name}
-          serviceRenewMode={props.serviceInfo.billing.renew.current.mode}
-          isServiceNameUrl={true}
+          terminateUrl={`terminate/${props.allDomProperty.name}`}
+          allDomResourceState={props.allDomResourceState}
+          isContact={true}
         />
       ),
       label: '',

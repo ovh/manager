@@ -41,3 +41,15 @@ html {
     }
   }
 }
+
+.text-warning::part(text) {
+  color: var(--ods-color-warning-700);
+}
+
+.link-banner::part(link) {
+  color: var(--ods-color-information-500);
+}
+
+.ods-link__link__label::part(link) {
+  overflow: visible;
+}

@@ -3,20 +3,16 @@ import {
   ODS_MESSAGE_COLOR,
   ODS_BUTTON_VARIANT,
 } from '@ovhcloud/ods-components';
-import {
-  OdsButton,
-  OdsCheckbox,
-  OdsMessage,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
+import { OdsButton, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useNavigate } from 'react-router-dom';
 import { ModalStepsProps } from '@/alldoms/types';
+import DomainsCheckboxes from '../DomainsCheckboxes/DomainsCheckboxes';
 
 export default function TerminateModalStepOne({
-  domainAttached,
+  domainsAttached,
   domainAttachedChecked,
   checkAllDomain,
   changeStep,
@@ -41,32 +37,20 @@ export default function TerminateModalStepOne({
             checked={checkAllDomain}
             onChange={(e) => {
               handleCheckAllDomain(e.target.checked);
-              handleDomainAttached(e.target.checked ? [...domainAttached] : []);
+              handleDomainAttached(
+                e.target.checked
+                  ? domainsAttached.map((domain) => domain.name)
+                  : [],
+              );
             }}
           />
           <label htmlFor="alldomains">{t('allDom_modal_all_my_domains')}</label>
         </div>
-        <div className="flex flex-col gap-y-2 pl-9">
-          {domainAttached.map((domain) => (
-            <div key={domain} className="flex items-center gap-x-4">
-              <OdsCheckbox
-                name={domain}
-                inputId={domain}
-                isChecked={domainAttachedChecked.includes(domain)}
-                onOdsChange={(e) => {
-                  const updatedCheckedDomains = e.detail.checked
-                    ? [...domainAttachedChecked, domain]
-                    : domainAttachedChecked.filter(
-                        (domainChecked) => domainChecked !== domain,
-                      );
-                  handleDomainAttached(updatedCheckedDomains);
-                }}
-                data-testid={`checkbox-${domain}`}
-              />
-              <label htmlFor={domain}>{domain}</label>
-            </div>
-          ))}
-        </div>
+        <DomainsCheckboxes
+          domainsAttached={domainsAttached}
+          domainAttachedChecked={domainAttachedChecked}
+          handleDomainAttached={handleDomainAttached}
+        />
       </div>
 
       <OdsMessage
