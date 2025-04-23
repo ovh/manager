@@ -1,22 +1,38 @@
-import { OsdsButton, OsdsText, OsdsChip } from '@ovhcloud/ods-components/react';
+import {
+  OsdsButton,
+  OsdsChip,
+  OsdsMessage,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
-import { ODS_CHIP_SIZE, ODS_BUTTON_SIZE } from '@ovhcloud/ods-components';
 import {
+  ODS_BUTTON_SIZE,
+  ODS_CHIP_SIZE,
+  ODS_MESSAGE_TYPE,
+  ODS_TEXT_COLOR_HUE,
+  ODS_TEXT_COLOR_INTENT,
+} from '@ovhcloud/ods-components';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import {
+  Links,
+  LinkType,
   TilesInputComponent,
   useCatalogPrice,
 } from '@ovh-ux/manager-react-components';
 
-import { useTranslation } from 'react-i18next';
-import { useMemo, useState } from 'react';
+import { Trans, useTranslation } from 'react-i18next';
+import { FC, PropsWithChildren, useContext, useMemo, useState } from 'react';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useTranslateBytes } from '@/pages/new/hooks/useTranslateBytes';
 import { StepState } from '@/pages/new/hooks/useStep';
 import { useVolumeCatalog } from '@/api/hooks/useCatalog';
 import { TVolumeAddon } from '@/api/data/catalog';
 import { TRegion } from '@/api/data/regions';
+import { MULTI_ATTACH_INFO_URL } from '@/constants';
 
 const BETA_TAG = 'is_new';
 
@@ -113,6 +129,18 @@ function VolumeTypeTile({
   );
 }
 
+const GuideLink: FC<PropsWithChildren<{ href: string }>> = ({
+  children,
+  href,
+}) => (
+  <Links
+    label={children}
+    href={href}
+    target={OdsHTMLAnchorElementTarget._blank}
+    type={LinkType.external}
+  />
+);
+
 export interface VolumeTypeStepProps {
   projectId: string;
   region: TRegion;
@@ -126,8 +154,9 @@ export function VolumeTypeStep({
   step,
   onSubmit,
 }: Readonly<VolumeTypeStepProps>) {
-  const { t } = useTranslation('stepper');
+  const { t } = useTranslation(['stepper', 'add']);
   const { data } = useVolumeCatalog(projectId);
+  const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
 
   const [volumeType, setVolumeType] = useState<TVolumeAddon>(undefined);
 
@@ -145,6 +174,9 @@ export function VolumeTypeStep({
   const displayedTypes =
     volumeType && step.isLocked ? [volumeType] : volumeTypes;
 
+  const attachGuideLink =
+    MULTI_ATTACH_INFO_URL[ovhSubsidiary] || MULTI_ATTACH_INFO_URL.DEFAULT;
+
   return (
     <>
       <TilesInputComponent<TVolumeAddon>
@@ -158,6 +190,23 @@ export function VolumeTypeStep({
         )}
         onInput={setVolumeType}
       />
+      {volumeType?.name === 'classic-multiattach' && (
+        <OsdsMessage type={ODS_MESSAGE_TYPE.warning}>
+          <OsdsText
+            color={ODS_TEXT_COLOR_INTENT.warning}
+            size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+            hue={ODS_TEXT_COLOR_HUE._700}
+          >
+            <Trans
+              t={t}
+              i18nKey="add:pci_projects_project_storages_blocks_add_type_multi_attach_banner"
+              components={{
+                Link: <GuideLink href={attachGuideLink} />,
+              }}
+            />
+          </OsdsText>
+        </OsdsMessage>
+      )}
       {volumeType && !step.isLocked && (
         <div className="mt-6">
           <OsdsButton
