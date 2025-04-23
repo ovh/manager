@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.16.5...@ovh-ux/manager-pci-gateway-app@0.17.0) (2025-04-23)
+
+
+### Bug Fixes
+
+* **pci-gateway:** get the value of the size input from store ([#16485](https://github.com/ovh/manager/issues/16485)) ([7c76426](https://github.com/ovh/manager/commit/7c76426ef4bf7741a759440b4cf6f086c3bc0f9e)), closes [#TAPC-3626](https://github.com/ovh/manager/issues/TAPC-3626)
+
+
+### Features
+
+* **pci-gateway:** add title for the region selector ([#16491](https://github.com/ovh/manager/issues/16491)) ([891b5f1](https://github.com/ovh/manager/commit/891b5f16fe85d346b14b13e284bb6f5e5dab706c)), closes [#TAPC-3589](https://github.com/ovh/manager/issues/TAPC-3589)
+
+
+
+
+
 ## [0.16.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.16.4...@ovh-ux/manager-pci-gateway-app@0.16.5) (2025-04-17)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-gateway-app

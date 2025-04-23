@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.88.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.87.0...@ovh-ux/manager-pci@6.88.0) (2025-04-23)
+
+
+### Bug Fixes
+
+* **pci-instances:** remove redirection when not on listing page ([#16486](https://github.com/ovh/manager/issues/16486)) ([72be597](https://github.com/ovh/manager/commit/72be597c986b256e875caeac5b660aa16041eedd)), closes [#TAPC-3708](https://github.com/ovh/manager/issues/TAPC-3708)
+
+
+### Features
+
+* **pci-instances:** add 3AZ tracking ([#16551](https://github.com/ovh/manager/issues/16551)) ([8ca9463](https://github.com/ovh/manager/commit/8ca946322666c54a5f6eecf0040a5471975003f1)), closes [#TAPC-2569](https://github.com/ovh/manager/issues/TAPC-2569)
+
+
+
+
+
 # [6.87.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.86.1...@ovh-ux/manager-pci@6.87.0) (2025-04-15)
 
 
