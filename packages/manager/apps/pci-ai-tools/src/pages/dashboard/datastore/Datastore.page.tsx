@@ -1,7 +1,6 @@
 import { ColumnDef } from '@tanstack/react-table';
 import { AlertCircle, ArrowRight, Plus } from 'lucide-react';
 import { Alert, Button } from '@datatr-ux/uxlib';
-import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import ai from '@/types/AI';
@@ -30,10 +29,11 @@ const Datastore = () => {
   const { t } = useTranslation('ai-tools/dashboard/datastores');
   const { projectId } = useParams();
   const navigate = useNavigate();
-  const [regions, setRegions] = useState<ai.capabilities.Region[]>([]);
   const regionQuery = useGetRegions(projectId);
+  const regions = regionQuery.data || [];
   const datastoreQuery = useGetDatastoresWithRegions(projectId, regions, {
     refetchInterval: POLLING.DATASTORE,
+    enabled: !!regionQuery.data,
   });
   const columns: ColumnDef<DataStoresWithRegion>[] = getColumns({
     onDeleteClick: (datastore: DataStoresWithRegion) =>
@@ -41,11 +41,6 @@ const Datastore = () => {
   });
 
   const userPath = `#/pci/projects/${projectId}/storages/objects/users`;
-
-  useEffect(() => {
-    if (!regionQuery.data) return;
-    setRegions(regionQuery.data);
-  }, [regionQuery.isSuccess]);
 
   return (
     <>

@@ -51,12 +51,10 @@ const AddGit = () => {
       });
     },
     onAddSuccess() {
-      form.reset();
       toast.toast({
         title: t('formGitToastSuccessTitle'),
         description: t(`formGitToastSuccessDescription`),
       });
-      form.reset();
       navigate('../');
     },
   };

@@ -32,7 +32,7 @@ const SharedDocker = ({ regions }: SharedDockerProps) => {
   const [selectedRegion, setSelectedRegion] = useState<ai.capabilities.Region>(
     regions[0],
   );
-  const userPath = `#/pci/project/${projectId}/users`;
+  const userPath = `#/pci/projects/${projectId}/users`;
   const dockerLogin = `docker login ${selectedRegion.registryUrl}/${projectId}`;
   const dockerTag = `docker tag <image> ${selectedRegion.registryUrl}/${projectId}/<image>`;
   const dockerPush = `docker push ${selectedRegion.registryUrl}/${projectId}/<image>`;

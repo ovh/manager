@@ -50,12 +50,10 @@ const AddDatastore = () => {
       });
     },
     onAddSuccess() {
-      form.reset();
       toast.toast({
         title: t('formDatastoreToastSuccessTitle'),
         description: t(`formDatastoreToastSuccessDescription`),
       });
-      form.reset();
       navigate('../');
     },
   };
