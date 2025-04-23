@@ -52,8 +52,8 @@ function VolumeTypeTile({
           size={ODS_THEME_TYPOGRAPHY_SIZE._300}
           color={ODS_THEME_COLOR_INTENT.text}
         >
-          {volumeType.name === 'classic' && is3AZRegionSelected
-            ? 'Classic 3AZ'
+          {volumeType.name === 'classic-multiattach' && is3AZRegionSelected
+            ? 'Classic 3-AZ'
             : volumeType.name}
         </OsdsText>
         {isNew && (
