@@ -1,0 +1,15 @@
+{
+  "dedicatedCloud_datacenter_network_onboarding_description1": "Ao ativar esta opção, poderá redimensionar, adicionar ou eliminar NSX Edges consoante as necessidades.",
+  "dedicatedCloud_datacenter_network_onboarding_description2": "Esta opção funciona com base num modelo de faturação em função do consumo: qualquer modificação da configuração padrão dos NSX Edges implicará custos suplementares.",
+  "dedicatedCloud_datacenter_network_onboarding_cta_activate": "Ativar",
+  "dedicatedCloud_datacenter_network_onboarding_cta_more": "Saber mais",
+  "dedicatedCloud_datacenter_network_onboarding_doc_category_tutorial": "Tutorial",
+  "dedicatedCloud_datacenter_network_onboarding_doc_category_faq": "FAQ",
+  "dedicatedCloud_datacenter_network_onboarding_doc1_title": "Primeiros passos com o NSX",
+  "dedicatedCloud_datacenter_network_onboarding_doc1_description": "Descubra o NSX, uma solução de gestão de rede Software-Defined Networking (SDN) fornecida pela VMware.",
+  "dedicatedCloud_datacenter_network_onboarding_doc2_title": "Como ativar o NSX-T na solução VMware on OVHcloud",
+  "dedicatedCloud_datacenter_network_onboarding_doc2_description": "Saiba como atribuir permissões a um utilizador e aos datacenters para o NSX-T.",
+  "dedicatedCloud_datacenter_network_onboarding_doc3_title": "NSX - FAQ",
+  "dedicatedCloud_datacenter_network_onboarding_doc3_description": "Encontre respostas às dúvidas mais frequentes sobre a utilização do NSX no ecossistema Hosted Private Cloud.",
+  "dedicatedCloud_datacenter_network_onboarding_order_success": "A sua encomenda relativa à opção NSX Edge encontra-se em curso. Se ainda não a tiver finalizado, pode completá-la clicando <a href=\"{{link}}\" target=\"_blank\" rel=\"noopener noreferrer\">aqui</a>:"
+}

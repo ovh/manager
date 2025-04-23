@@ -8,6 +8,7 @@ import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 import routing from './dedicatedClouds.routing';
 import dedicatedCloudListComponent from '../components/dedicated-cloud/list';
 import dedicatedCloudService from '../components/dedicated-cloud/dedicatedCloud.service';
+import IcebergUtils from '../icebergUtils.services';
 
 const moduleName = 'ovhManagerDedicatedCloud';
 
@@ -20,6 +21,7 @@ angular
     'ui.router',
     dedicatedCloudService,
     dedicatedCloudListComponent,
+    IcebergUtils,
   ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);

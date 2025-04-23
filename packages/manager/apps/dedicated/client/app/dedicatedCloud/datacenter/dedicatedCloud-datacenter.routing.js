@@ -1,3 +1,10 @@
+import {
+  NSX_EDGE_FEATURE,
+  NSX_COMPATIBLE_COMMERCIAL_RANGE,
+  MIN_NSX_EDGES,
+  MAX_NSX_EDGES,
+} from './dedicatedCloud-datacenter.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dedicatedCloud.details.datacenter.details', {
     url: '/:datacenterId',
@@ -28,6 +35,26 @@ export default /* @ngInject */ ($stateProvider) => {
             id: datacenterId,
           },
         })),
+      commercialRangeName: /* @ngInject */ (
+        DedicatedCloud,
+        datacenterId,
+        productId,
+      ) =>
+        DedicatedCloud.getDatacenterInfoProxy(productId, datacenterId).then(
+          ({ commercialRangeName }) => commercialRangeName,
+        ),
+      isNsxEdgeAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability(NSX_EDGE_FEATURE)
+          .then((featureAvailability) =>
+            featureAvailability.isFeatureAvailable(NSX_EDGE_FEATURE),
+          ),
+      isNsxtCompatible: /* @ngInject */ (commercialRangeName) =>
+        NSX_COMPATIBLE_COMMERCIAL_RANGE.some(
+          (range) =>
+            range === commercialRangeName ||
+            range.toLocaleLowerCase() === commercialRangeName,
+        ),
       deleteDatacenter: /* @ngInject */ ($state) => () =>
         $state.go(
           'app.dedicatedCloud.details.datacenter.details.dashboard.delete',
@@ -39,14 +66,21 @@ export default /* @ngInject */ ($stateProvider) => {
         'app.dedicatedCloud.details.datacenter.details.datastores',
       drpState: () => 'app.dedicatedCloud.details.datacenter.details.drp',
       hostsState: () => 'app.dedicatedCloud.details.datacenter.details.hosts',
-      goToHosts: /* @ngInject */ ($state) => () =>
-        $state.go('app.dedicatedCloud.details.datacenter.details.hosts'),
-      goToDatastores: /* @ngInject */ ($state) => () =>
-        $state.go('app.dedicatedCloud.details.datacenter.details.datastores'),
-      goToBackup: /* @ngInject */ ($state) => () =>
-        $state.go('app.dedicatedCloud.details.datacenter.details.backup'),
-      goToDrp: /* @ngInject */ ($state) => () =>
-        $state.go('app.dedicatedCloud.details.datacenter.details.drp'),
+      networkState: () =>
+        'app.dedicatedCloud.details.datacenter.details.network',
+      addNsxState: () =>
+        'app.dedicatedCloud.details.datacenter.details.dashboard.add-nsx',
+      goToHosts: /* @ngInject */ ($state, hostsState) => () =>
+        $state.go(hostsState),
+      goToDatastores: /* @ngInject */ ($state, datastoresState) => () =>
+        $state.go(datastoresState),
+      goToBackup: /* @ngInject */ ($state, backupState) => () =>
+        $state.go(backupState),
+      goToDrp: /* @ngInject */ ($state, drpState) => () => $state.go(drpState),
+      goToNetwork: /* @ngInject */ ($state, networkState) => () =>
+        $state.go(networkState),
+      goToAddNsx: /* @ngInject */ ($state, addNsxState) => () =>
+        $state.go(addNsxState),
       goToDrpSummary: /* @ngInject */ ($state, currentDrp) => () =>
         $state.go('app.dedicatedCloud.details.datacenter.details.drp.summary', {
           drpInformations: currentDrp,
@@ -55,6 +89,25 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go(
           'app.dedicatedCloud.details.datacenter.details.dashboard.deleteDrp',
         ),
+      totalCountNsx: /* @ngInject */ (
+        ovhManagerPccDatacenterService,
+        serviceName,
+        datacenterId,
+      ) =>
+        ovhManagerPccDatacenterService
+          .getNsxtEdgeByDatacenter(serviceName, datacenterId, {
+            pageSize: 1,
+          })
+          .then(({ meta }) => {
+            return meta.totalCount;
+          })
+          .catch(() => {
+            return 0;
+          }),
+      hasMaximumNsx: /* @ngInject */ (totalCountNsx) =>
+        totalCountNsx >= MAX_NSX_EDGES,
+      hasOnlyMinimumNsx: /* @ngInject */ (totalCountNsx) =>
+        totalCountNsx <= MIN_NSX_EDGES,
       setMessage: /* @ngInject */ (Alerter) => (
         message = false,
         type = 'success',

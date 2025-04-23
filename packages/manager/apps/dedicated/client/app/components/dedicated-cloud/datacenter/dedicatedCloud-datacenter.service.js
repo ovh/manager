@@ -5,9 +5,10 @@ import map from 'lodash/map';
 
 export default class OvhManagerPccDatacenterService {
   /* @ngInject */
-  constructor($http, OvhApiMe) {
+  constructor($http, OvhApiMe, icerbergUtils) {
     this.OvhApiMe = OvhApiMe;
     this.$http = $http;
+    this.icerbergUtils = icerbergUtils;
   }
 
   getCommercialRangeName(serviceName, datacenterId) {
@@ -56,5 +57,53 @@ export default class OvhManagerPccDatacenterService {
 
   static keepOnlyElement(id) {
     return (element) => element.uniqueId.split('@')[0] === `${id}`;
+  }
+
+  getNsxtEdgeByDatacenter(serviceName, datacenterId, paginationParams) {
+    return this.icerbergUtils.icebergQuery(
+      `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/nsxtEdge`,
+      paginationParams,
+    );
+  }
+
+  getConsumptionForecastByServiceId(serviceId) {
+    return this.$http
+      .get(`/services/${serviceId}/consumption/forecast`)
+      .then(({ data }) => data);
+  }
+
+  getOrderCatalog(catalog, subsidiary) {
+    return this.$http
+      .get(`/order/catalog/public/${catalog}?ovhSubsidiary=${subsidiary}`)
+      .then(({ data }) => data);
+  }
+
+  postRelocateNsxtEdge({ serviceName, datacenterId, nsxtEdgeId, datastore }) {
+    return this.$http.post(
+      `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/nsxtEdge/${nsxtEdgeId}/relocateEdge`,
+      {
+        datastore,
+      },
+    );
+  }
+
+  addNsxtEdge(serviceName, datacenterId) {
+    return this.$http.post(
+      `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/nsxtEdge`,
+    );
+  }
+
+  removeNsxtEdge({ serviceName, datacenterId, nsxtEdgeId }) {
+    return this.$http.delete(
+      `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/nsxtEdge/${nsxtEdgeId}`,
+    );
+  }
+
+  isResilienceModeEnabled({ serviceName, datacenterId, nsxtEdgeId }) {
+    return this.$http
+      .get(
+        `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/nsxtEdge/${nsxtEdgeId}/resilience`,
+      )
+      .then(({ data }) => data.state === 'enabled');
   }
 }
