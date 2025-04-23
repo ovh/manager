@@ -220,6 +220,9 @@ export const useInstances = ({
   const { data, ...rest } = useInfiniteQuery({
     queryKey,
     retry: false,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    refetchOnReconnect: false,
     initialPageParam: 0,
     getNextPageParam: (lastPage, _allPages, lastPageParam) =>
       lastPage.length > limit ? lastPageParam + 1 : null,
