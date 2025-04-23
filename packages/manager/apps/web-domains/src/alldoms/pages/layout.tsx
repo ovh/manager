@@ -7,6 +7,7 @@ import {
   ShellContext,
 } from '@ovh-ux/manager-react-shell-client';
 import { useGetAllDomServiceList } from '../hooks/data/query';
+import Loading from '../components/Loading/Loading';
 
 export default function Layout() {
   const location = useLocation();
@@ -31,7 +32,9 @@ export default function Layout() {
 
   return (
     <>
-      <Outlet />
+      <React.Suspense fallback={<Loading />}>
+        <Outlet />
+      </React.Suspense>
       {!data && !isLoading && (
         <Navigate key={location.pathname} to="onboarding" replace={true} />
       )}

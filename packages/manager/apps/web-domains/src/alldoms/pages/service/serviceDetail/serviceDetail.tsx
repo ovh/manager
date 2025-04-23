@@ -1,4 +1,9 @@
-import { BaseLayout, Breadcrumb } from '@ovh-ux/manager-react-components';
+import {
+  BaseLayout,
+  Breadcrumb,
+  Notifications,
+  useNotifications,
+} from '@ovh-ux/manager-react-components';
 import React from 'react';
 import { Outlet, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -6,18 +11,19 @@ import appConfig from '@/web-domains.config';
 import ServiceDetailDomains from '@/alldoms/components/ServiceDetail/ServiceDetailDomains';
 import ServiceDetailInformation from '@/alldoms/components/ServiceDetail/ServiceDetailInformation';
 import ServiceDetailSubscribing from '@/alldoms/components/ServiceDetail/ServiceDetailSubscribing';
-import { useGetServiceInfo } from '@/alldoms/hooks/data/useGetServiceInfo';
+import { useGetAllDom } from '@/alldoms/hooks/data/useGetAllDom';
 import Loading from '@/alldoms/components/Loading/Loading';
 
 export default function ServiceDetail() {
   const { serviceName } = useParams<{ serviceName: string }>();
   const { t } = useTranslation(['allDom', 'web-domains/error']);
+  const { notifications } = useNotifications();
 
   const header = {
     title: serviceName,
   };
 
-  const { data: serviceInfoDetail, isLoading } = useGetServiceInfo({
+  const { data: serviceInfoDetail, isLoading } = useGetAllDom({
     serviceName,
   });
 
@@ -35,23 +41,24 @@ export default function ServiceDetail() {
         />
       }
       header={header}
+      message={notifications.length ? <Notifications /> : null}
     >
-      <React.Suspense>
-        <section className="grid grid-cols-1 gap-6 items-start lg:grid-cols-2">
-          <div className="flex flex-col gap-6">
-            <ServiceDetailInformation
-              allDomProperty={serviceInfoDetail.allDomProperty}
-              domainsAttached={serviceInfoDetail.domainAttached}
-              status={serviceInfoDetail.serviceInfo.billing.renew.current.mode}
-            />
-            <ServiceDetailDomains
-              domainsAttached={serviceInfoDetail.domainAttached}
-            />
-          </div>
+      <section>
+        <div className="grid grid-cols-1 gap-6 items-start mb-8 lg:grid-cols-2">
+          <ServiceDetailInformation
+            allDomProperty={serviceInfoDetail.allDomProperty}
+            extensionsList={
+              serviceInfoDetail.domainAttached.currentState.extensions
+            }
+            status={serviceInfoDetail.serviceInfo.billing.renew.current.mode}
+          />
           <ServiceDetailSubscribing serviceInfoDetail={serviceInfoDetail} />
-        </section>
-        <Outlet />
-      </React.Suspense>
+        </div>
+        <ServiceDetailDomains
+          items={serviceInfoDetail.domainAttached.currentState.domains}
+        />
+      </section>
+      <Outlet />
     </BaseLayout>
   );
 }

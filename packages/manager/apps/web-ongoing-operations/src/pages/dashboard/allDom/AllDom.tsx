@@ -12,11 +12,12 @@ export default function AllDom() {
   return (
     <React.Suspense>
       <DashboardPage
+        id={ParentEnum.DOMAIN}
         parent={ParentEnum.ALLDOM}
         notifications={notifications}
         route={`${taskMeDomain.join('/')}?type=alldom`}
         queryKey={taskMeAllDom}
-        testID={'allDom'}
+        testID={'datagrid'}
       />
     </React.Suspense>
   );
