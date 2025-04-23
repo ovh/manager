@@ -57,6 +57,7 @@ export const useCachedInstanceAction = (
   const { data, isLoading, error } = useInstance(instanceId ?? '', {
     enabled: !!instanceId && !cachedInstance,
     retry: 1,
+    gcTime: 0,
   });
 
   const instance = useMemo(() => cachedInstance ?? data, [

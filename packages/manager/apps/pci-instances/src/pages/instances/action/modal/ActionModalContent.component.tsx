@@ -81,8 +81,8 @@ export const ActionModalContent: FC<TActionModalProps> = ({
 
   return isLoading ? (
     <div className="pt-6">
-      {[...new Array(3)].map((elt) => (
-        <OsdsSkeleton key={elt} />
+      {[...new Array(3)].map((_elt, index) => (
+        <OsdsSkeleton key={index} />
       ))}
     </div>
   ) : (
