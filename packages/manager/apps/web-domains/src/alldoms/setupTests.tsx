@@ -30,6 +30,11 @@ vi.mock('react-router-dom', () => ({
     pathname: '',
     search: '',
   })),
+  useParams: () => {
+    return {
+      id: '1',
+    };
+  },
 }));
 
 const mocks = vi.hoisted(() => ({
