@@ -1,26 +1,27 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import isDate from 'lodash.isdate';
 import {
-  IcebergFetchParamsV6,
-  fetchIcebergV6,
   applyFilters,
   FilterTypeCategories,
   FilterComparator,
+  Filter,
+  v6,
 } from '@ovh-ux/manager-core-api';
-import { useQuery } from '@tanstack/react-query';
-import { useColumnFilters, ColumnSort } from '../../components';
+import { Query, useQuery } from '@tanstack/react-query';
+import { DatagridColumn, useColumnFilters, ColumnSort } from '../../components';
 
-export interface ColumnDatagrid {
-  cell: (props: any) => React.JSX.Element;
-  id: string;
-  label: string;
-  type: string;
-  isSearchable?: boolean;
-}
+export type FetchResultV6<T> = {
+  data: T[];
+};
 
-export interface ResourcesV6Hook {
+export interface ResourcesV6Params<T> {
   queryKey: string[];
-  columns: ColumnDatagrid[];
+  queryFn?: (route: string) => Promise<FetchResultV6<T>>;
+  refetchInterval?: (query: Query<FetchResultV6<T>>) => number | false;
+  columns: DatagridColumn<T>[];
+  defaultSorting?: ColumnSort;
+  route: string;
+  pageSize?: number;
 }
 
 export function dataType(a) {
@@ -31,91 +32,86 @@ export function dataType(a) {
   return typeof a;
 }
 
-function sortColumn(type: string, a: any, b: any, desc: boolean) {
+function sortColumn(
+  type: FilterTypeCategories,
+  a: string,
+  b: string,
+  desc: boolean,
+) {
   if (!a || !b) return -1;
   switch (type) {
     case FilterTypeCategories.Numeric:
       return desc
-        ? parseFloat(a) - parseFloat(b)
-        : parseFloat(b) - parseFloat(a);
+        ? parseFloat(b) - parseFloat(a)
+        : parseFloat(a) - parseFloat(b);
     case FilterTypeCategories.Date:
       return desc
-        ? new Date(a).getTime() - new Date(b).getTime()
-        : new Date(b).getTime() - new Date(a).getTime();
+        ? new Date(b).getTime() - new Date(a).getTime()
+        : new Date(a).getTime() - new Date(b).getTime();
     case FilterTypeCategories.Boolean:
-      return desc ? Number(a) - Number(b) : Number(b) - Number(a);
+      return desc ? Number(b) - Number(a) : Number(a) - Number(b);
     case FilterTypeCategories.String:
       return desc
-        ? a
+        ? b
             ?.trim()
             .toLowerCase()
-            ?.localeCompare?.(b?.trim().toLowerCase())
-        : b
+            ?.localeCompare?.(a?.trim().toLowerCase())
+        : a
             .trim()
             ?.toString()
             ?.toLowerCase()
-            ?.localeCompare?.(a?.trim()?.toLowerCase());
+            ?.localeCompare?.(b?.trim()?.toLowerCase());
     default:
       return -1;
   }
 }
 
-function applySearch(items, filters) {
-  if (!filters?.length) return items;
-  return items.filter((item) =>
-    filters.some(
-      ({ key, value }) =>
-        item[key]?.toString()?.toLowerCase().includes(value.toLowerCase()),
-    ),
-  );
-}
-
-/**
- * @deprecated use fetchIcebergV6 from @ovh-ux/manager-core-api
- */
-export const getResourcesV6 = fetchIcebergV6;
-
-export function useResourcesV6<T = unknown>({
+export function useResourcesV6<T extends Record<string, unknown>>({
   route,
   queryKey,
+  queryFn,
+  refetchInterval,
   pageSize = 10,
   columns = [],
-}: IcebergFetchParamsV6 & ResourcesV6Hook) {
+  defaultSorting,
+}: ResourcesV6Params<T>) {
   const [searchInput, setSearchInput] = useState('');
-  const [searchFilter, setSearchFilter] = useState<any>(null);
+  const [searchFilter, setSearchFilter] = useState<Filter[]>([]);
   const { data, isError, isLoading, error, status } = useQuery({
     queryKey: [queryKey],
-    queryFn: () => fetchIcebergV6<T>({ route }),
+    queryFn: queryFn ? () => queryFn(route) : () => v6.get(route),
+    refetchInterval: refetchInterval || false,
     retry: false,
   });
+
   const [sorting, setSorting] = useState<ColumnSort>();
   const [pageIndex, setPageIndex] = useState(0);
   const [totalCount, setTotalCount] = useState(0);
   const [flattenData, setFlattenData] = useState<T[]>([]);
   const { filters, addFilter, removeFilter } = useColumnFilters();
 
-  const searchedData = useMemo(() => {
+  const filteredData = useMemo(() => {
     if (!data?.data) return [];
-    let processedData = data?.data;
-    if (searchFilter) {
-      processedData = applySearch(data?.data, searchFilter);
-    }
-    if (filters) {
-      processedData = applyFilters(processedData, filters);
-    }
-    return processedData;
+    return applyFilters(data?.data, [...searchFilter, ...filters]);
   }, [searchFilter, data?.data, filters]);
 
-  const sortedData = useMemo(() => {
-    if (sorting) {
-      const columnType = columns.find((col) => col.id === sorting.id)?.type;
-      const array = searchedData.length > 0 ? searchedData : data?.data;
-      return [...array].sort((a, b) =>
-        sortColumn(columnType, a?.[sorting.id], b?.[sorting.id], sorting.desc),
+  const filteredAndSortedData = useMemo(() => {
+    const currSorting = sorting || defaultSorting;
+    if (currSorting) {
+      const columnType =
+        columns.find((col) => col.id === currSorting.id)?.type ||
+        FilterTypeCategories.String;
+      return [...filteredData].sort((a, b) =>
+        sortColumn(
+          columnType,
+          `${a?.[currSorting.id]}`,
+          `${b?.[currSorting.id]}`,
+          currSorting.desc,
+        ),
       );
     }
-    return searchedData.length > 0 ? searchedData : data?.data;
-  }, [sorting, searchedData]);
+    return filteredData;
+  }, [sorting, filteredData]);
 
   useEffect(() => {
     if (data?.data && data?.data?.length > 0 && totalCount === 0) {
@@ -126,20 +122,20 @@ export function useResourcesV6<T = unknown>({
 
   useEffect(() => {
     setPageIndex(0);
-    setFlattenData(sortedData);
-  }, [sortedData]);
+    setFlattenData(filteredAndSortedData);
+  }, [filteredAndSortedData]);
 
   const fetchNextPage = useCallback(() => setPageIndex((prev) => prev + 1), []);
 
   const searchableColumns = useMemo(
-    () => columns.filter((col: ColumnDatagrid) => col.isSearchable),
+    () => columns.filter((col: DatagridColumn<T>) => col.isSearchable),
     [columns],
   );
 
-  const onSearch = useCallback((search) => {
+  const onSearch = useCallback((search: string | undefined) => {
     setSearchFilter(
       !search
-        ? null
+        ? []
         : searchableColumns.map(({ id }) => ({
             key: id,
             value: search,
