@@ -1,12 +1,15 @@
-import { render, waitFor } from '@testing-library/react';
+import { act, render, waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
 import { UseQueryResult } from '@tanstack/react-query';
-import { useParams } from 'react-router-dom';
-import * as pciCommonModule from '@ovh-ux/manager-pci-common';
-import { TInstance } from '@ovh-ux/manager-pci-common';
+import {
+  OdsSelectValueChangeEventDetail,
+  OsdsSelect,
+} from '@ovhcloud/ods-components';
 import DetachStorage from '@/pages/detach/DetachStorage.page';
-import * as useVolumeModule from '@/api/hooks/useVolume';
+import { useDetachVolume, useVolume } from '@/api/hooks/useVolume';
 import { TVolume } from '@/api/data/volume';
+import { useAttachedInstances } from '@/api/hooks/useInstance';
+import { TAttachedInstance } from '@/api/select/instances';
 
 vi.mock('@/api/hooks/useVolume', () => ({
   useVolume: vi
@@ -17,18 +20,23 @@ vi.mock('@/api/hooks/useVolume', () => ({
     .mockReturnValue({ isPending: false, detachVolume: vi.fn() }),
 }));
 
+vi.mock('@/api/hooks/useInstance');
+
 vi.mock('react-router-dom', () => ({
   useNavigate: vi.fn(),
-  useParams: vi.fn(),
+  useParams: vi.fn().mockReturnValue({ projectId: '1', volumeId: '1' }),
 }));
+
+afterEach(() => {
+  vi.clearAllMocks();
+});
 
 describe('DetachStorage', () => {
   it('renders spinner when data is pending', () => {
-    vi.mocked(useParams).mockReturnValue({ projectId: '1', volumeId: '1' });
-    vi.spyOn(pciCommonModule, 'useInstance').mockReturnValue({
+    vi.mocked(useAttachedInstances).mockReturnValue({
       isPending: true,
-    } as UseQueryResult<TInstance>);
-    vi.spyOn(useVolumeModule, 'useVolume').mockReturnValue({
+    } as UseQueryResult<TAttachedInstance[]>);
+    vi.mocked(useVolume).mockReturnValue({
       isPending: true,
     } as UseQueryResult<TVolume>);
 
@@ -37,11 +45,11 @@ describe('DetachStorage', () => {
   });
 
   it('renders volume and instance names when data is available', async () => {
-    vi.spyOn(pciCommonModule, 'useInstance').mockReturnValue({
-      data: { name: 'Instance 1' },
+    vi.mocked(useAttachedInstances).mockReturnValue({
       isPending: false,
-    } as UseQueryResult<TInstance>);
-    vi.spyOn(useVolumeModule, 'useVolume').mockReturnValue({
+      data: [{ id: 'Instance 1', name: 'Instance 1' }],
+    } as UseQueryResult<TAttachedInstance[]>);
+    vi.mocked(useVolume).mockReturnValue({
       data: { name: 'Volume 1', attachedTo: ['Instance 1'] },
       isPending: false,
     } as UseQueryResult<TVolume>);
@@ -54,5 +62,59 @@ describe('DetachStorage', () => {
         ),
       ).toBeInTheDocument();
     });
+  });
+
+  it('renders instances when multiple are available', async () => {
+    vi.mocked(useAttachedInstances).mockReturnValue({
+      isPending: false,
+      data: [
+        { id: 'i1', name: 'Instance 1' },
+        { id: 'i2', name: 'Instance 2' },
+      ],
+    } as UseQueryResult<TAttachedInstance[]>);
+    vi.mocked(useVolume).mockReturnValue({
+      data: { name: 'Volume 1', attachedTo: ['i1', 'i2'] },
+      isPending: false,
+    } as UseQueryResult<TVolume>);
+
+    const { queryByText, getByText, getByTestId } = render(<DetachStorage />);
+    expect(
+      queryByText(
+        'pci_projects_project_storages_blocks_block_detach_detachvolume',
+      ),
+    ).not.toBeInTheDocument();
+
+    const select = (getByTestId(
+      'detachStorage-select-instance',
+    ) as unknown) as OsdsSelect;
+    expect(select).toBeInTheDocument();
+
+    const button = getByText(
+      'pci_projects_project_storages_blocks_block_detach_submit_label',
+    );
+    expect(button).toBeDisabled();
+
+    act(() => {
+      select.odsValueChange.emit({
+        value: 'i2',
+      } as OdsSelectValueChangeEventDetail);
+    });
+
+    expect(
+      getByText(
+        'pci_projects_project_storages_blocks_block_detach_detachvolume',
+      ),
+    ).toBeInTheDocument();
+
+    expect(button).toBeInTheDocument();
+    expect(button).not.toBeDisabled();
+
+    act(() => {
+      button.click();
+    });
+
+    expect(vi.mocked(useDetachVolume)).toHaveBeenLastCalledWith(
+      expect.objectContaining({ instanceId: 'i2' }),
+    );
   });
 });
