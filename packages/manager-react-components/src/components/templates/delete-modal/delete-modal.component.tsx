@@ -92,7 +92,10 @@ export const DeleteModal: React.FC<DeleteModalProps> = ({
             {t('deleteModalError', { error })}
           </OdsMessage>
         )}
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <OdsText
+          preset={ODS_TEXT_PRESET.paragraph}
+          data-testid="manager-delete-modal-description"
+        >
           {t('deleteModalDescription')}
         </OdsText>
         {children}
