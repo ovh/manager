@@ -1,7 +1,7 @@
 import { describe, it } from 'vitest';
 import { renderHook } from '@testing-library/react';
 import { useDatagridColumn } from '@/hooks/useDatagridColumn';
-import { TVolume } from '@/api/data/volume';
+import { TVolume } from '@/api/hooks/useVolume';
 
 const volumeTestData: TVolume[] = [
   {
@@ -19,6 +19,9 @@ const volumeTestData: TVolume[] = [
     type: 'gp2',
     regionName: 'US West (Oregon)',
     availabilityZone: 'any',
+    canDetachInstance: true,
+    canAttachInstance: true,
+    maxAttachedInstances: 3,
   },
 ];
 
