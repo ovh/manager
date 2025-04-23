@@ -1,6 +1,6 @@
 import { ODS_MODAL_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Modal } from '@ovh-ux/manager-react-components';
 import { useParams } from 'react-router-dom';
@@ -8,7 +8,7 @@ import ModalStepOne from '@/alldoms/pages/service/serviceTerminate/Steps/Termina
 import ModalStepTwo from '@/alldoms/pages/service/serviceTerminate/Steps/Terminate.stepTwo';
 import { useGetServiceInfo } from '@/alldoms/hooks/data/useGetServiceInfo';
 
-export default function serviceTerminate() {
+export default function ServiceTerminate() {
   const { t } = useTranslation(['allDom']);
   const { serviceName } = useParams<{ serviceName: string }>();
   const [domainAttachedChecked, setDomainAttachedChecked] = useState<string[]>(
@@ -33,6 +33,10 @@ export default function serviceTerminate() {
     setIsAllDomainChecked(checked);
   };
 
+  useEffect(() => {
+    console.log(domainAttachedChecked);
+  }, [domainAttachedChecked]);
+
   return (
     <Modal
       isLoading={isLoading}
@@ -48,7 +52,9 @@ export default function serviceTerminate() {
 
         {isStepOne ? (
           <ModalStepOne
-            domainAttached={serviceInfoDetail.domainAttached}
+            domainsAttached={
+              serviceInfoDetail.domainAttached?.currentState.domains
+            }
             checkAllDomain={isAllDomainChecked}
             changeStep={changeStep}
             domainAttachedChecked={domainAttachedChecked}

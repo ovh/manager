@@ -1,5 +1,10 @@
-import { v6 } from '@ovh-ux/manager-core-api';
-import { TServiceInfo, TServiceProperty } from '@/alldoms/types';
+import { v2, v6 } from '@ovh-ux/manager-core-api';
+import {
+  TAllDomDomains,
+  TDomainDetail,
+  TServiceInfo,
+  TServiceProperty,
+} from '@/alldoms/types';
 import { ServiceInfoRenewMode } from '@/alldoms/enum/service.enum';
 
 /**
@@ -39,6 +44,17 @@ export const getallDomService = async (
 };
 
 /**
+ *  : Get current domain properties
+ */
+
+export const getDomainDetail = async (
+  domainName: string,
+): Promise<TDomainDetail> => {
+  const { data } = await v6.get(`/domain/${domainName}`);
+  return data;
+};
+
+/**
  *  : Terminate the domain
  */
 export const updateAllDomService = async (
@@ -70,4 +86,11 @@ export const updateDomainServiceInfo = async (domainName: string) => {
   );
 
   return promiseDomainServiceInfoId;
+};
+
+export const getDomainDetailInformation = async (serviceName: string) => {
+  const { data } = await v2.get<TAllDomDomains>(
+    `/domain/alldom/${serviceName}`,
+  );
+  return data;
 };

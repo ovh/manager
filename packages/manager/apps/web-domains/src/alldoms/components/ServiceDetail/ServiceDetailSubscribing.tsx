@@ -8,7 +8,7 @@ import { OdsCard, OdsDivider, OdsText } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useFormatDate } from '@ovh-ux/manager-react-components';
-import DatagridColumnActionMenu from '../DatagridColumns/DatagridColumnActionMenu';
+import DatagridColumnActionMenu from '@/alldoms/components/AllDomDatagridColumns/DatagridColumnActionMenu';
 import { TServiceDetail } from '@/alldoms/types';
 
 interface ServiceDetailSubscribingProps {

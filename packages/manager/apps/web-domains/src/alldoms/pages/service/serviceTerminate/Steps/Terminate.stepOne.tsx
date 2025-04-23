@@ -9,14 +9,14 @@ import {
   OdsMessage,
   OdsText,
 } from '@ovhcloud/ods-components/react';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useNavigate } from 'react-router-dom';
 import { ModalStepsProps } from '@/alldoms/types';
 
 export default function TerminateModalStepOne({
-  domainAttached,
+  domainsAttached,
   domainAttachedChecked,
   checkAllDomain,
   changeStep,
@@ -41,29 +41,33 @@ export default function TerminateModalStepOne({
             checked={checkAllDomain}
             onChange={(e) => {
               handleCheckAllDomain(e.target.checked);
-              handleDomainAttached(e.target.checked ? [...domainAttached] : []);
+              handleDomainAttached(
+                e.target.checked
+                  ? domainsAttached.map((domain) => domain.name)
+                  : [],
+              );
             }}
           />
           <label htmlFor="alldomains">{t('allDom_modal_all_my_domains')}</label>
         </div>
         <div className="flex flex-col gap-y-2 pl-9">
-          {domainAttached.map((domain) => (
-            <div key={domain} className="flex items-center gap-x-4">
+          {domainsAttached.map((domain) => (
+            <div key={domain.name} className="flex items-center gap-x-4">
               <OdsCheckbox
-                name={domain}
-                inputId={domain}
-                isChecked={domainAttachedChecked.includes(domain)}
+                name={domain.name}
+                inputId={domain.name}
+                isChecked={domainAttachedChecked.includes(domain.name)}
                 onOdsChange={(e) => {
                   const updatedCheckedDomains = e.detail.checked
-                    ? [...domainAttachedChecked, domain]
+                    ? [...domainAttachedChecked, domain.name]
                     : domainAttachedChecked.filter(
-                        (domainChecked) => domainChecked !== domain,
+                        (domainChecked) => domainChecked !== domain.name,
                       );
                   handleDomainAttached(updatedCheckedDomains);
                 }}
-                data-testid={`checkbox-${domain}`}
+                data-testid={`checkbox-${domain.name}`}
               />
-              <label htmlFor={domain}>{domain}</label>
+              <label htmlFor={domain.name}>{domain.name}</label>
             </div>
           ))}
         </div>
