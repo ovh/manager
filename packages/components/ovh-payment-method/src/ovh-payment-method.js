@@ -1,3 +1,4 @@
+import { v6 } from '@ovh-ux/manager-core-api';
 import { PaymentMethod, AvailablePaymentMethod } from './models';
 import { PAYMENT_METHOD_STATUS_ENUM } from './enums';
 import {
@@ -5,18 +6,25 @@ import {
   DEFAULT_GET_AVAILABLE_OPTIONS,
 } from './constants';
 
-export const useOvhPaymentMethod = ({ reketInstance }) => {
-  const usedReketInstance = reketInstance;
-
+export const useOvhPaymentMethod = () => {
   /*= ================================================
   =            Available Payment Methods            =
   ================================================= */
 
-  const getAvailablePaymentMethods = (
+  /**
+   * Get the available payment methods
+   * @param {boolean} onlyRegisterable If true, only the registerable payment methods will be returned
+   * @returns {Promise<Array<AvailablePaymentMethod>>}
+   */
+  const getAvailablePaymentMethods = async (
     onlyRegisterable = DEFAULT_GET_AVAILABLE_OPTIONS.onlyRegisterable,
   ) => {
-    return usedReketInstance
+    return v6
       .get('/me/payment/availableMethods')
+      .then(({ data }) => data)
+      .catch((error) =>
+        error.response.status === 404 ? [] : Promise.reject(error),
+      )
       .then((availableMethods) => {
         const availablePaymentMethods = onlyRegisterable
           ? availableMethods.filter(({ registerable }) => registerable)
@@ -25,13 +33,12 @@ export const useOvhPaymentMethod = ({ reketInstance }) => {
         return availablePaymentMethods.map(
           (availableMethod) => new AvailablePaymentMethod(availableMethod),
         );
-      })
-      .catch((error) => (error.status === 404 ? [] : Promise.reject(error)));
+      });
   };
 
   /**
-   *  Get all the available payment method
-   *  @return {Promise} That returns a list of available payment methods
+   *  Get all the available payment methods that are registerable
+   *  @return {Promise<Array<AvailablePaymentMethod>>} That returns a list of available payment methods
    */
   const getAllAvailablePaymentMethods = (
     options = DEFAULT_GET_AVAILABLE_OPTIONS,
@@ -48,23 +55,28 @@ export const useOvhPaymentMethod = ({ reketInstance }) => {
 
   /**
    *  Add an new payment method
+   *  @param  {Object}          params The attributes of payment method to add
+   *  @return {Promise<PaymentMethod>} returns an instance of PaymentMethod.
    */
-  const addPaymentMethod = (availablePaymentMethod, params = {}) => {
-    return usedReketInstance
+  const addPaymentMethod = async (availablePaymentMethod, params = {}) => {
+    return v6
       .post('/me/payment/method', {
         ...params,
         paymentType: availablePaymentMethod.paymentType,
       })
-      .then((response) => {
-        if (params.orderId && response.paymentMethodId) {
-          return usedReketInstance.post(`/me/order/${params.orderId}/pay`, {
-            paymentMethod: {
-              id: response.paymentMethodId,
-            },
-          });
+      .then(({ data }) => new PaymentMethod(data))
+      .then((paymentMethod) => {
+        if (params.orderId && paymentMethod.paymentMethodId) {
+          return v6
+            .post(`/me/order/${params.orderId}/pay`, {
+              paymentMethod: {
+                id: paymentMethod.paymentMethodId,
+              },
+            })
+            .then(({ data }) => new PaymentMethod(data));
         }
 
-        return response;
+        return paymentMethod;
       });
   };
 
@@ -73,20 +85,19 @@ export const useOvhPaymentMethod = ({ reketInstance }) => {
    *
    *  @param  {PaymentMethod}   paymentMethod The payment method to edit
    *  @param  {Object}          params        The attributes of payment method to edit
-   *  @return {Promise}         That returns
+   *  @return {Promise<PaymentMethod>}         That returns
    */
-  const editPaymentMethod = (paymentMethod, params) => {
-    return usedReketInstance.put(
-      `/me/payment/method/${paymentMethod.paymentMethodId}`,
-      params,
-    );
+  const editPaymentMethod = async (paymentMethod, params) => {
+    return v6
+      .put(`/me/payment/method/${paymentMethod.paymentMethodId}`, params)
+      .then(({ data }) => new PaymentMethod(data));
   };
 
   /**
    *  Set given payment method as default.
    *
    *  @param  {PaymentMethod} paymentMethod The payment method to set as default
-   *  @return {Promise}
+   *  @return {Promise<PaymentMethod>}
    */
   const setDefaultPaymentMethod = (paymentMethod) => {
     return editPaymentMethod(paymentMethod, {
@@ -101,11 +112,12 @@ export const useOvhPaymentMethod = ({ reketInstance }) => {
    *  @param  {Object}        challenge     The challenge value
    *  @return {Promise}
    */
-  const challengePaymentMethod = (paymentMethod, challenge) => {
-    return usedReketInstance.post(
-      `/me/payment/method/${paymentMethod.paymentMethodId}/challenge`,
-      { challenge },
-    );
+  const challengePaymentMethod = async (paymentMethod, challenge) => {
+    return v6
+      .post(`/me/payment/method/${paymentMethod.paymentMethodId}/challenge`, {
+        challenge,
+      })
+      .then(({ data }) => data);
   };
 
   /**
@@ -115,11 +127,10 @@ export const useOvhPaymentMethod = ({ reketInstance }) => {
    * @param  {Object}   details         The details to add
    * @return {Promise}  Which returns an object representing a payment method valdiation.
    */
-  const addPaymentMethodDetails = (paymentMethodId, details) => {
-    return usedReketInstance.post(
-      `/me/payment/method/${paymentMethodId}/details`,
-      details,
-    );
+  const addPaymentMethodDetails = async (paymentMethodId, details) => {
+    return v6
+      .post(`/me/payment/method/${paymentMethodId}/details`, details)
+      .then(({ data }) => data);
   };
 
   /**
@@ -127,30 +138,30 @@ export const useOvhPaymentMethod = ({ reketInstance }) => {
    *  @param  {Object} paymentMethodValidation  The payment method validation object to finalize.
    *  @param  {Object} finalizeData             The data needed for finalizing the payment method
    *                                            registration.
-   *  @return {Promise} Which returns an instance of PaymentMethod.
+   *  @return {Promise<PaymentMethod>} Which returns an instance of PaymentMethod.
    */
-  const finalizePaymentMethod = (
+  const finalizePaymentMethod = async (
     paymentMethodValidation,
     finalizeData = {},
   ) => {
-    return usedReketInstance
+    return v6
       .post(
         `/me/payment/method/${paymentMethodValidation.paymentMethodId}/finalize`,
         finalizeData,
       )
-      .then((paymentMethodOptions) => new PaymentMethod(paymentMethodOptions));
+      .then(({ data }) => new PaymentMethod(data));
   };
 
   /**
    *  Delete given payment method.
 
    *  @param  {PaymentMethod} paymentMethod The paymentMethod to delete
-   *  @return {Promise}
+   *  @return {Promise<PaymentMethod>}
    */
-  const deletePaymentMethod = (paymentMethod) => {
-    return usedReketInstance.delete(
-      `/me/payment/method/${paymentMethod.paymentMethodId}`,
-    );
+  const deletePaymentMethod = async (paymentMethod) => {
+    return v6
+      .delete(`/me/payment/method/${paymentMethod.paymentMethodId}`)
+      .then(({ data }) => new PaymentMethod(data));
   };
 
   /* -----  End of Actions on payment methods  ------*/
@@ -160,39 +171,42 @@ export const useOvhPaymentMethod = ({ reketInstance }) => {
    * This is the result of the call to GET /me/payment/method/{paymentMethodId}
    *
    * @param  {Number} paymentMethodId The payment method id to get
-   * @return {PaymentMethod}          The details of the desired payment method
+   * @return {Promise<PaymentMethod>}          The details of the desired payment method
    */
   const getPaymentMethod = (paymentMethodId) => {
-    return usedReketInstance
+    return v6
       .get(`/me/payment/method/${paymentMethodId}`)
-      .then((paymentMethodOptions) => new PaymentMethod(paymentMethodOptions));
+      .then(({ data }) => new PaymentMethod(data));
   };
 
   /**
    *  Get the payment methods returned by /me/payment/method APIs
    *
    *  @param  {Obejct}  options           Options to get the payment methods
-   *  @return {Promise}                   That returns an Array of PaymentMethod instances
+   *  @return {Promise<Array<PaymentMethod>>}                   That returns an Array of PaymentMethod instances
    */
-  const getPaymentMethods = (options = DEFAULT_GET_OPTIONS) => {
+  const getPaymentMethods = async (options = DEFAULT_GET_OPTIONS) => {
     const params = options.onlyValid
       ? {
           status: PAYMENT_METHOD_STATUS_ENUM.VALID,
         }
       : {};
 
-    return usedReketInstance
+    return v6
       .get('/me/payment/method', {
         params,
       })
+      .then(({ data }) => data)
+      .catch((error) =>
+        error.response.status === 404 ? [] : Promise.reject(error),
+      )
       .then((paymentMethodIds) =>
         Promise.all(
           paymentMethodIds.map((paymentMethodId) =>
             getPaymentMethod(paymentMethodId),
           ),
         ),
-      )
-      .catch((error) => (error.status === 404 ? [] : Promise.reject(error)));
+      );
   };
 
   /*= =============================================
@@ -201,9 +215,9 @@ export const useOvhPaymentMethod = ({ reketInstance }) => {
 
   /**
    *  Get the default payment method of the user.
-   *  @return {Promise} That returns the default payment method instance.
+   *  @return {Promise<PaymentMethod | null>} That returns the default payment method instance.
    */
-  const getDefaultPaymentMethod = () => {
+  const getDefaultPaymentMethod = async () => {
     return getPaymentMethods({
       onlyValid: true,
       transform: true,
@@ -215,9 +229,9 @@ export const useOvhPaymentMethod = ({ reketInstance }) => {
 
   /**
    *  Check if connected user has a default payment method.
-   *  @return {Promise} That returns a boolean
+   *  @return {Promise<boolean>} That returns a boolean
    */
-  const hasDefaultPaymentMethod = () => {
+  const hasDefaultPaymentMethod = async () => {
     return getDefaultPaymentMethod().then((method) => !!method);
   };
 
