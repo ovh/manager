@@ -18,6 +18,7 @@
     "test:coverage": "manager-test run --coverage"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.0.1",
     "@ovh-ux/manager-common-translations": "^0.5.3",
     "@ovh-ux/manager-config": "^8.5.0",
     "@ovh-ux/manager-core-api": "^0.15.0",

@@ -23,6 +23,7 @@ import {
 import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { useHref } from 'react-router-dom';
 import VrackNetworkDatagridSubDatagrid from './VrackNetworkDatagridSubDatagrid.component';
+import { subRoutes, urls } from '@/routes/routes.constant';
 
 export type VrackNetworkDatagridProps = {
   id: string;
@@ -59,6 +60,18 @@ export default function VrackNetworkDatagrid({
       })),
   });
 
+  const hrefEdit = useHref(
+    urls.vrackSegmentsEditVlanId
+      .replace(subRoutes.dashboard, id)
+      .replace(subRoutes.vdcId, vdcId),
+  );
+
+  const hrefAddNetwork = useHref(
+    urls.vrackSegmentsAddNetwork
+      .replace(subRoutes.dashboard, id)
+      .replace(subRoutes.vdcId, vdcId),
+  );
+
   const columns = [
     {
       id: 'searchableValue',
@@ -86,29 +99,29 @@ export default function VrackNetworkDatagrid({
       isSortable: false,
       isFilterable: false,
       cell: (item: VrackSegment) => (
-        <div className="flex items-center justify-end">
+        <div className="flex justify-end">
           <ActionMenu
-            isCompact={true}
-            variant={ODS_BUTTON_VARIANT.ghost}
+            popover-position="bottom-end"
             id={item.targetSpec.vlanId}
             isCompact
             variant={ODS_BUTTON_VARIANT.ghost}
             items={[
               {
                 id: 1,
-                target: '_blank',
+                href: hrefEdit,
                 label: t('managed_vcd_dashboard_vrack_network_edit_vlan'),
               },
               {
                 id: 2,
-                target: '_blank',
+                href: hrefAddNetwork,
                 label: t('managed_vcd_dashboard_vrack_network_add_subnet'),
               },
               ...(vrackNetworks?.length ?? 0 > 5
                 ? [
                     {
                       id: 3,
-                      target: '_blank',
+                      color: ODS_BUTTON_COLOR.critical,
+                      onClick: () => {},
                       label: t(
                         'managed_vcd_dashboard_vrack_network_delete_segment',
                       ),
@@ -123,7 +136,7 @@ export default function VrackNetworkDatagrid({
   ];
 
   return (
-    <div>
+    <div className="flex flex-col gap-8">
       <div className="flex flex-col justify-between">
         <OdsText preset="heading-3" className="mb-4">
           {t('managed_vcd_dashboard_vrack_network_segments')}
