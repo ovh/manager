@@ -109,7 +109,6 @@
       "path": "/pci/projects/{project}/storages/cold-archive/new"
     }
   },
-
   {
     "public": {
       "application": "public-cloud",
@@ -408,6 +407,16 @@
     "redirect": {
       "application": "public-cloud",
       "path": "/pci/projects/{project}/training/onboarding"
+    }
+  },
+  {
+    "public": {
+      "application": "public-cloud",
+      "path": "/create-ai-endpoints"
+    },
+    "redirect": {
+      "application": "public-cloud",
+      "path": "/pci/projects/{project}/ai/endpoints/onboarding"
     }
   },
   {
