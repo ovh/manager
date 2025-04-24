@@ -1,7 +1,6 @@
-import React, { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect } from 'react';
 
 import { useOvhPaymentMethod } from '@ovh-ux/ovh-payment-method';
-import { useReket } from '@ovh-ux/ovh-reket';
 import useClickAway from 'react-use/lib/useClickAway';
 
 import UserAccountMenuButton from './Button';
@@ -18,7 +17,6 @@ import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { tracking } from './constants';
 import { LEGAL_FORMS } from '@/container/common/constants';
-import { Environment } from '@ovh-ux/manager-config';
 import useUser from '@/hooks/user/useUser';
 
 type Props = {
@@ -32,9 +30,7 @@ export const UserAccountMenu = ({ onToggle }: Props): JSX.Element => {
   const { setIsNotificationsSidebarVisible } = useHeader();
 
   const pluginEnvironement = shell.getPlugin('environment');
-  const environment: Environment = pluginEnvironement.getEnvironment();
   const user = useUser();
-  const region = environment.getRegion();
 
   const {
     onboardingOpenedState,
@@ -44,10 +40,7 @@ export const UserAccountMenu = ({ onToggle }: Props): JSX.Element => {
   } = useProductNavReshuffle();
   const onboardingHelper = useOnboarding();
 
-  const ovhPaymentMethod = useOvhPaymentMethod({
-    reketInstance: useReket(),
-    region,
-  });
+  const ovhPaymentMethod = useOvhPaymentMethod();
 
   const [isPaymentMethodLoading, setIsPaymentMethodLoading] = useState(true);
   const [defaultPaymentMethod, setDefaultPaymentMethod] = useState(null);
