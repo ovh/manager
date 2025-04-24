@@ -1,6 +1,6 @@
 import { vi } from 'vitest';
 import React from 'react';
-import { attachedDomainDigStatusMock, websitesMocks } from '../data/_mock_';
+import { attachedDomainDigStatusMock, websitesMocks } from '../data/__mocks__';
 
 const mocksAxios = vi.hoisted(() => ({
   get: vi.fn(),
