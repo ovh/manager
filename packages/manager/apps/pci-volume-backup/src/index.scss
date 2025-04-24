@@ -25,3 +25,9 @@ html {
 .fw-bold::part(text) {
   font-weight: bold;
 }
+
+.delete-modal-input-caption + ods-form-field {
+  width: 100%;
+  display: flex;
+  margin-top: 0;
+}

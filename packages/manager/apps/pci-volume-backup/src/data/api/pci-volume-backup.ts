@@ -75,3 +75,19 @@ export const restoreVolume = async ({
 
   return data;
 };
+
+export const deleteBackup = async ({
+  projectId,
+  regionName,
+  backupId,
+}: {
+  projectId: string;
+  regionName: string;
+  backupId: string;
+}) => {
+  const { data } = await v6.delete(
+    `/cloud/project/${projectId}/region/${regionName}/volumeBackup/${backupId}`,
+  );
+
+  return { backupId };
+};

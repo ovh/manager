@@ -5,8 +5,10 @@ import {
   getVolumeBackups,
   getVolume,
   restoreVolume,
+  deleteBackup,
 } from '@/data/api/pci-volume-backup';
 import queryClient from '@/queryClient';
+import { TVolumeBackup } from '@/data/api/api.types';
 
 export const backupsQueryKey = (projectId: string | undefined) => [
   'pci-volume-backup',
@@ -89,6 +91,43 @@ export const useRestoreVolume = ({
   return {
     restoreVolume: (params: { volumeId: string; backupId: string }) =>
       mutation.mutate(params),
+    ...mutation,
+  };
+};
+
+export const useDeleteBackup = ({
+  projectId,
+  regionName,
+  onError,
+  onSuccess,
+}: {
+  projectId: string;
+  regionName: string;
+  onError: (cause: ApiError) => void;
+  onSuccess: () => void;
+}) => {
+  const mutation = useMutation({
+    mutationFn: async (backupId: string) =>
+      deleteBackup({
+        projectId,
+        regionName,
+        backupId,
+      }),
+    onError,
+    onSuccess: ({ backupId }: { backupId: string }) => {
+      const previousBackups = queryClient.getQueryData(
+        backupsQueryKey(projectId),
+      ) as { data: TVolumeBackup[] };
+      const updatedBackups = {
+        data: previousBackups.data.filter((d) => d.id !== backupId),
+      };
+      queryClient.setQueryData(backupsQueryKey(projectId), updatedBackups);
+      onSuccess();
+    },
+  });
+
+  return {
+    deleteBackup: (backupId: string) => mutation.mutate(backupId),
     ...mutation,
   };
 };
