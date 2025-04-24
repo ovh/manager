@@ -22,6 +22,9 @@
     "dev:watch": "rollup -c --environment BUILD:development --watch",
     "prepare": "rollup -c --environment BUILD:production"
   },
+  "dependencies": {
+    "@ovh-ux/manager-core-api": "^0.10.1"
+  },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^13.1.0"
   }
