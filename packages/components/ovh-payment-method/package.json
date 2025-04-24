@@ -23,6 +23,7 @@
     "prepare": "rollup -c --environment BUILD:production"
   },
   "dependencies": {
+    "@ovh-ux/manager-core-api": "^0.10.1",
     "lodash-es": "^4.17.21"
   },
   "devDependencies": {
