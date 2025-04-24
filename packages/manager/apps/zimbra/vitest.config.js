@@ -11,13 +11,11 @@ export default defineConfig({
     coverage: {
       include: ['src'],
       exclude: [
-        'src/configInterface.ts',
-        'src/api',
+        'src/data/api',
         'src/zimbra.config.ts',
         'src/vite-*.ts',
         'src/App.tsx',
         'src/hooks/index.ts',
-        'src/hooks/types.ts',
         'src/index.tsx',
         'src/routes/routes.tsx',
         'src/utils/index.ts',
