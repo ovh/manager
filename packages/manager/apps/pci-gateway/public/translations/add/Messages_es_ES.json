@@ -39,5 +39,6 @@
   "pci_projects_project_public_gateways_add_creating_wait_message": "Creando el servicio Gateway... La configuración de todos los componentes puede tardar algunos minutos. Por favor, no cierre ni actualice esta página, ya que podría afectar al proceso de creación.",
   "pci_projects_project_public_gateways_add_region_activate_line1": "Esta región todavía no está activada. Puede activarla en la pestaña ",
   "pci_projects_project_public_gateways_add_region_activate_line2": "«Quota and Localisation» ",
-  "pci_projects_project_public_gateways_add_region_activate_line3": "y, a continuación, crear su Gateway."
+  "pci_projects_project_public_gateways_add_region_activate_line3": "y, a continuación, crear su Gateway.",
+  "pci_projects_project_public_gateways_3az_guide_description": "Para obtener más información sobre las especificaciones de los servicios 3-AZ y cómo utilizarlos para diseñar una infraestructura resiliente, <Link>haga clic aquí</Link>"
 }
