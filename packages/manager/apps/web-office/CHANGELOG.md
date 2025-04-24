@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.1.7...@ovh-ux/manager-web-office-app@0.1.8) (2025-04-24)
+
+
+### Bug Fixes
+
+* **web-office:** display of service ko ([c317502](https://github.com/ovh/manager/commit/c317502aef127d78b9274f39af2aab6b868197a2)), closes [#INC0125546](https://github.com/ovh/manager/issues/INC0125546)
+
+
+
+
+
 ## [0.1.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.1.6...@ovh-ux/manager-web-office-app@0.1.7) (2025-04-22)
 
 **Note:** Version bump only for package @ovh-ux/manager-web-office-app
