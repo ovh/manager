@@ -1,7 +1,13 @@
 import { useTranslation } from 'react-i18next';
 import { ArrowUpRightFromSquare, Plus } from 'lucide-react';
 import { Outlet, useNavigate } from 'react-router-dom';
-import { Button } from '@datatr-ux/uxlib';
+import {
+  Button,
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@datatr-ux/uxlib';
 import A from '@/components/links/A.component';
 import VolumesList from './VolumesListTable.component';
 import Guides from '@/components/guides/Guides.component';
@@ -56,30 +62,55 @@ const Containers = ({
       </A>
       <div className="flex flex-row gap-4 pb-2 pt-4">
         {updateMode && (
-          <Button
-            data-testid="add-volume-button"
-            size="sm"
-            type="button"
-            className="text-base"
-            onClick={() => navigate('./add-container')}
-            disabled={status !== ai.notebook.NotebookStateEnum.STOPPED}
-          >
-            <Plus className="size-5" />
-            {t('addVolumeButton')}
-          </Button>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <span className="inline-block" tabIndex={0}>
+                  <Button
+                    data-testid="add-volume-button"
+                    size="sm"
+                    type="button"
+                    className="text-base"
+                    onClick={() => navigate('./add-container')}
+                    disabled={status !== ai.notebook.NotebookStateEnum.STOPPED}
+                  >
+                    <Plus className="size-5" />
+                    {t('addVolumeButton')}
+                  </Button>
+                </span>
+              </TooltipTrigger>
+              {status !== ai.notebook.NotebookStateEnum.STOPPED && (
+                <TooltipContent>{t('disabledButtonTooltip')}</TooltipContent>
+              )}
+            </Tooltip>
+          </TooltipProvider>
         )}
-
-        <Button
-          data-testid="general-data-sync-button"
-          mode="outline"
-          size="sm"
-          type="button"
-          className="text-base"
-          onClick={() => navigate('./data-sync')}
-          disabled={!isDataSync(status)}
-        >
-          {t('synchroniseDataButton')}
-        </Button>
+        {volumes.length > 0 && (
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <span className="inline-block" tabIndex={0}>
+                  <Button
+                    data-testid="general-data-sync-button"
+                    mode="outline"
+                    size="sm"
+                    type="button"
+                    className="text-base"
+                    onClick={() => navigate('./data-sync')}
+                    disabled={!isDataSync(status)}
+                  >
+                    {t('synchroniseDataButton')}
+                  </Button>
+                </span>
+              </TooltipTrigger>
+              {!isDataSync(status) && (
+                <TooltipContent>
+                  {t('disabledSyncButtonTooltip')}
+                </TooltipContent>
+              )}
+            </Tooltip>
+          </TooltipProvider>
+        )}
       </div>
       <VolumesList
         volumes={volumes}

@@ -13,6 +13,10 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
 } from '@datatr-ux/uxlib';
 import { bytesConverter, octetConverter } from '@/lib/bytesHelper';
 import ai from '@/types/AI';
@@ -20,8 +24,13 @@ import ai from '@/types/AI';
 interface ResourcesProps {
   resources: ai.Resources;
   allowUpdate?: boolean;
+  disabled?: boolean;
 }
-const ResourcesSpec = ({ resources, allowUpdate = false }: ResourcesProps) => {
+const ResourcesSpec = ({
+  resources,
+  allowUpdate = false,
+  disabled,
+}: ResourcesProps) => {
   const { t } = useTranslation('ai-tools/components/resources');
   const navigate = useNavigate();
   return (
@@ -57,15 +66,27 @@ const ResourcesSpec = ({ resources, allowUpdate = false }: ResourcesProps) => {
           </div>
         )}
         {allowUpdate && (
-          <Button
-            data-testid="update-flavor-button"
-            size="sm"
-            mode="outline"
-            onClick={() => navigate('./update-flavor')}
-          >
-            <span>{t('modifyLabel')}</span>
-            <Pen className="ml-2 size-4" />
-          </Button>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <span className="inline-block" tabIndex={0}>
+                  <Button
+                    data-testid="update-flavor-button"
+                    size="sm"
+                    mode="outline"
+                    onClick={() => navigate('./update-flavor')}
+                    disabled={disabled}
+                  >
+                    <span>{t('modifyLabel')}</span>
+                    <Pen className="ml-2 size-4" />
+                  </Button>
+                </span>
+              </TooltipTrigger>
+              {disabled && (
+                <TooltipContent>{t('disabledButtonTooltip')}</TooltipContent>
+              )}
+            </Tooltip>
+          </TooltipProvider>
         )}
       </div>
       <div className="flex flex-col mt-2">

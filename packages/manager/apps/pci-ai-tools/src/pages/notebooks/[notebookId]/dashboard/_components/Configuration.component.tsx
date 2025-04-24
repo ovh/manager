@@ -1,7 +1,14 @@
 import { Files } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { Button, useToast } from '@datatr-ux/uxlib';
+import {
+  Button,
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+  useToast,
+} from '@datatr-ux/uxlib';
 import { useNotebookData } from '../../Notebook.context';
 import { isStoppedNotebook } from '@/lib/statusHelper';
 
@@ -36,15 +43,26 @@ const Configurations = () => {
           <span className="sr-only">copy</span>
         </Button>
       </div>
-      <Button
-        data-testid="notebook-config-delete-button"
-        variant="destructive"
-        className="w-full mt-4"
-        onClick={() => navigate('./delete')}
-        disabled={!isStoppedNotebook(notebook.status.state)}
-      >
-        {t('deleteNotebookButton')}
-      </Button>
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <span className="inline-block w-full" tabIndex={0}>
+              <Button
+                data-testid="notebook-config-delete-button"
+                variant="destructive"
+                className="w-full mt-4"
+                onClick={() => navigate('./delete')}
+                disabled={!isStoppedNotebook(notebook.status.state)}
+              >
+                {t('deleteNotebookButton')}
+              </Button>
+            </span>
+          </TooltipTrigger>
+          {!isStoppedNotebook(notebook.status.state) && (
+            <TooltipContent>{t('deleteNotebookTooltip')}</TooltipContent>
+          )}
+        </Tooltip>
+      </TooltipProvider>
     </div>
   );
 };

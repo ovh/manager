@@ -3,7 +3,7 @@ import ai from '@/types/AI';
 import { NotebookData } from '@/data/api';
 
 export interface DataSyncProps extends NotebookData {
-  dataSyncSpec: ai.volume.DataSyncSpec;
+  dataSyncSpec: Omit<ai.volume.DataSyncSpec, 'manual'>;
 }
 
 export const dataSync = async ({

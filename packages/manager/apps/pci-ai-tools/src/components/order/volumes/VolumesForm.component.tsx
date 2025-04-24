@@ -34,7 +34,7 @@ const VolumeForm = React.forwardRef<HTMLInputElement, VolumesFormProps>(
           {t('fieldVolumeDescription1')}{' '}
           <OvhLink
             application="public-cloud"
-            path={`#/pci/projects/${projectId}/ai/dashboard/datastore`}
+            path={`#/pci/projects/${projectId}/ai-ml/dashboard/datastore`}
             target="_blank"
             rel="noopener noreferrer"
           >

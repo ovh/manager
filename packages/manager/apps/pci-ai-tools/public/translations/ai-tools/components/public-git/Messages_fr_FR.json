@@ -20,5 +20,6 @@
   "deletePublicGitButtonConfirm": "Supprimer",
   "addPublicGitToastSuccessDescription": "Le dépots Git a été ajouté",
   "addPublicGitTitle": "Ajouter un dépots Git",
+  "disabledButtonTooltip": "Le notebook doit être en statut arrêté",
   "addPublicGitButtonConfirm": "Ajouter"
 }

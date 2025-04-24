@@ -39,7 +39,12 @@ const AccessLink = () => {
         <h5>{t('grafanaTitle')}</h5>
         <Activity className="size-4" />
       </div>
-      <Button className="w-full" type="button" mode="outline">
+      <Button
+        className="w-full"
+        type="button"
+        mode="outline"
+        disabled={!notebook.status.monitoringUrl}
+      >
         <A
           href={notebook.status.monitoringUrl}
           target="_blank"
