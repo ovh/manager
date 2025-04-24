@@ -8,7 +8,7 @@ import {
   ShellContext,
   ShellContextType,
 } from '@ovh-ux/manager-react-shell-client';
-import userEvent from '@testing-library/user-event';
+import userEvent, { UserEvent } from '@testing-library/user-event';
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
 import dashboardTranslation from '@/public/translations/dashboard/Messages_fr_FR.json';
 import organizationsTranslation from '@/public/translations/organizations/Messages_fr_FR.json';
@@ -120,7 +120,9 @@ const customRender = (
 
 // We should look into using that
 // https://testing-library.com/docs/user-event/intro
-export function setup(jsx: React.ReactElement): unknown {
+export function setup(
+  jsx: React.ReactElement,
+): RenderResult & { user: UserEvent } {
   return {
     user: userEvent.setup(),
     ...customRender(jsx),

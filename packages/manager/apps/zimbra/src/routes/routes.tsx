@@ -1,7 +1,7 @@
-/* eslint-disable prettier/prettier */
 import React from 'react';
-import { RouteObject } from 'react-router-dom';
+import { RouteObject, UIMatch } from 'react-router-dom';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
+import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import NotFound from '@/pages/404';
 import {
   ADD_AUTO_REPLY,
@@ -48,7 +48,21 @@ import {
   VERIFY_DOMAIN,
   ONBOARDING_CONFIGURE_DOMAIN,
   ONBOARDING_CONFIGURE_EMAIL_ACCOUNTS,
-} from '@/tracking.constant';
+} from '@/tracking.constants';
+
+export type RouteHandle = {
+  isOverridePage?: boolean;
+  tracking?: {
+    pageName?: string;
+    pageType?: PageType;
+  };
+  breadcrumb?: {
+    label: string;
+    icon?: ODS_ICON_NAME;
+  };
+};
+
+export type RouteMatch = UIMatch<unknown, RouteHandle>;
 
 const lazyRouteConfig = (importFn: CallableFunction): Partial<RouteObject> => {
   return {
@@ -62,16 +76,14 @@ const lazyRouteConfig = (importFn: CallableFunction): Partial<RouteObject> => {
   };
 };
 
-export const Routes: any = [
+export const Routes: RouteObject[] = [
   {
     path: '',
     ...lazyRouteConfig(() => import('@/pages/layout')),
     children: [
       {
         path: ':platformId',
-        ...lazyRouteConfig(() =>
-          import('@/components/layout-helpers/Dashboard/Dashboard'),
-        ),
+        ...lazyRouteConfig(() => import('@/pages/dashboard/Dashboard.layout')),
         handle: {
           breadcrumb: {
             label: 'common:app_name',
@@ -81,7 +93,9 @@ export const Routes: any = [
           {
             path: '',
             ...lazyRouteConfig(() =>
-              import('@/pages/dashboard/GeneralInformation/GeneralInformation'),
+              import(
+                '@/pages/dashboard/generalInformations/GeneralInformations.page'
+              ),
             ),
             handle: {
               tracking: {
@@ -96,7 +110,7 @@ export const Routes: any = [
           {
             path: 'organizations',
             ...lazyRouteConfig(() =>
-              import('@/pages/dashboard/Organizations/Organizations'),
+              import('@/pages/dashboard/organizations/Organizations.page'),
             ),
             handle: {
               tracking: {
@@ -112,7 +126,7 @@ export const Routes: any = [
                 path: 'add',
                 ...lazyRouteConfig(() =>
                   import(
-                    '@/pages/dashboard/Organizations/ModalAddAndEditOrganization.page'
+                    '@/pages/dashboard/organizations/addEdit/AddEdit.modal'
                   ),
                 ),
                 handle: {
@@ -137,7 +151,7 @@ export const Routes: any = [
                     path: 'edit',
                     ...lazyRouteConfig(() =>
                       import(
-                        '@/pages/dashboard/Organizations/ModalAddAndEditOrganization.page'
+                        '@/pages/dashboard/organizations/addEdit/AddEdit.modal'
                       ),
                     ),
                     handle: {
@@ -154,7 +168,7 @@ export const Routes: any = [
                     path: 'delete',
                     ...lazyRouteConfig(() =>
                       import(
-                        '@/pages/dashboard/Organizations/ModalDeleteOrganization.component'
+                        '@/pages/dashboard/organizations/delete/Delete.modal'
                       ),
                     ),
                     handle: {
@@ -174,7 +188,7 @@ export const Routes: any = [
           {
             path: 'domains',
             ...lazyRouteConfig(() =>
-              import('@/pages/dashboard/Domains/Domains'),
+              import('@/pages/dashboard/domains/Domains.page'),
             ),
             handle: {
               tracking: {
@@ -189,7 +203,7 @@ export const Routes: any = [
               {
                 path: 'add',
                 ...lazyRouteConfig(() =>
-                  import('@/pages/dashboard/Domains/AddDomain.page'),
+                  import('@/pages/dashboard/domains/add/Add.page'),
                 ),
                 handle: {
                   isOverridePage: true,
@@ -213,9 +227,7 @@ export const Routes: any = [
                   {
                     path: 'edit',
                     ...lazyRouteConfig(() =>
-                      import(
-                        '@/pages/dashboard/Domains/ModalEditDomain.component'
-                      ),
+                      import('@/pages/dashboard/domains/edit/Edit.modal'),
                     ),
                     handle: {
                       tracking: {
@@ -230,9 +242,7 @@ export const Routes: any = [
                   {
                     path: 'delete',
                     ...lazyRouteConfig(() =>
-                      import(
-                        '@/pages/dashboard/Domains/ModalDeleteDomain.component'
-                      ),
+                      import('@/pages/dashboard/domains/delete/Delete.modal'),
                     ),
                     handle: {
                       tracking: {
@@ -247,7 +257,7 @@ export const Routes: any = [
                   {
                     path: 'verify',
                     ...lazyRouteConfig(() =>
-                      import('@/pages/dashboard/Domains/VerifyDomain.page'),
+                      import('@/pages/dashboard/domains/verify/Verify.page'),
                     ),
                     handle: {
                       isOverridePage: true,
@@ -263,7 +273,9 @@ export const Routes: any = [
                   {
                     path: 'diagnostics/mx',
                     ...lazyRouteConfig(() =>
-                      import('@/pages/dashboard/Domains/Diagnostics.page'),
+                      import(
+                        '@/pages/dashboard/domains/diagnostics/Diagnostics.page'
+                      ),
                     ),
                     handle: {
                       isOverridePage: true,
@@ -279,7 +291,9 @@ export const Routes: any = [
                   {
                     path: 'diagnostics/srv',
                     ...lazyRouteConfig(() =>
-                      import('@/pages/dashboard/Domains/Diagnostics.page'),
+                      import(
+                        '@/pages/dashboard/domains/diagnostics/Diagnostics.page'
+                      ),
                     ),
                     handle: {
                       isOverridePage: true,
@@ -295,7 +309,9 @@ export const Routes: any = [
                   {
                     path: 'diagnostics/spf',
                     ...lazyRouteConfig(() =>
-                      import('@/pages/dashboard/Domains/Diagnostics.page'),
+                      import(
+                        '@/pages/dashboard/domains/diagnostics/Diagnostics.page'
+                      ),
                     ),
                     handle: {
                       isOverridePage: true,
@@ -311,7 +327,9 @@ export const Routes: any = [
                   {
                     path: 'diagnostics/dkim',
                     ...lazyRouteConfig(() =>
-                      import('@/pages/dashboard/Domains/Diagnostics.page'),
+                      import(
+                        '@/pages/dashboard/domains/diagnostics/Diagnostics.page'
+                      ),
                     ),
                     handle: {
                       isOverridePage: true,
@@ -331,7 +349,7 @@ export const Routes: any = [
           {
             path: 'email_accounts',
             ...lazyRouteConfig(() =>
-              import('@/pages/dashboard/EmailAccounts/EmailAccounts'),
+              import('@/pages/dashboard/emailAccounts/EmailAccounts.page'),
             ),
             handle: {
               tracking: {
@@ -346,9 +364,7 @@ export const Routes: any = [
               {
                 path: 'add',
                 ...lazyRouteConfig(() =>
-                  import(
-                    '@/pages/dashboard/EmailAccounts/AddEmailAccount.page'
-                  ),
+                  import('@/pages/dashboard/emailAccounts/add/Add.page'),
                 ),
                 handle: {
                   isOverridePage: true,
@@ -366,7 +382,7 @@ export const Routes: any = [
                 path: ':accountId',
                 ...lazyRouteConfig(() =>
                   import(
-                    '@/pages/dashboard/EmailAccounts/EmailAccountSettings.layout'
+                    '@/pages/dashboard/emailAccounts/settings/Settings.layout'
                   ),
                 ),
                 handle: {
@@ -380,7 +396,7 @@ export const Routes: any = [
                     path: 'settings',
                     ...lazyRouteConfig(() =>
                       import(
-                        '@/pages/dashboard/EmailAccounts/AddAndEditEmailAccount.form'
+                        '@/pages/dashboard/emailAccounts/EmailAccountForm.component'
                       ),
                     ),
                     handle: {
@@ -398,7 +414,7 @@ export const Routes: any = [
                     path: 'aliases',
                     ...lazyRouteConfig(() =>
                       import(
-                        '@/pages/dashboard/EmailAccounts/EmailAccountsAlias.page'
+                        '@/pages/dashboard/emailAccounts/settings/aliases/Aliases.page'
                       ),
                     ),
                     handle: {
@@ -416,7 +432,7 @@ export const Routes: any = [
                         path: 'add',
                         ...lazyRouteConfig(() =>
                           import(
-                            '@/pages/dashboard/EmailAccounts/ModalAddAlias.component'
+                            '@/pages/dashboard/emailAccounts/settings/aliases/add/Add.modal'
                           ),
                         ),
                         handle: {
@@ -433,7 +449,7 @@ export const Routes: any = [
                         path: ':aliasId/delete',
                         ...lazyRouteConfig(() =>
                           import(
-                            '@/pages/dashboard/EmailAccounts/ModalDeleteAlias.component'
+                            '@/pages/dashboard/emailAccounts/settings/aliases/delete/Delete.modal'
                           ),
                         ),
                         handle: {
@@ -451,7 +467,9 @@ export const Routes: any = [
                   {
                     path: 'redirections',
                     ...lazyRouteConfig(() =>
-                      import('@/pages/dashboard/Redirections/Redirections'),
+                      import(
+                        '@/pages/dashboard/redirections/Redirections.page'
+                      ),
                     ),
                     handle: {
                       isOverridePage: true,
@@ -476,7 +494,7 @@ export const Routes: any = [
                             path: 'edit',
                             ...lazyRouteConfig(() =>
                               import(
-                                '@/pages/dashboard/Redirections/ModalAddAndEditRedirection.page'
+                                '@/pages/dashboard/redirections/addEdit/AddEdit.modal'
                               ),
                             ),
                             handle: {
@@ -493,7 +511,7 @@ export const Routes: any = [
                             path: 'delete',
                             ...lazyRouteConfig(() =>
                               import(
-                                '@/pages/dashboard/Redirections/ModalDeleteRedirection.component'
+                                '@/pages/dashboard/redirections/delete/Delete.modal'
                               ),
                             ),
                             handle: {
@@ -512,7 +530,7 @@ export const Routes: any = [
                         path: 'add',
                         ...lazyRouteConfig(() =>
                           import(
-                            '@/pages/dashboard/Redirections/ModalAddAndEditRedirection.page'
+                            '@/pages/dashboard/redirections/addEdit/AddEdit.modal'
                           ),
                         ),
                         handle: {
@@ -540,15 +558,13 @@ export const Routes: any = [
                       },
                     },
                     ...lazyRouteConfig(() =>
-                      import('@/pages/dashboard/AutoReplies/AutoReplies'),
+                      import('@/pages/dashboard/autoReplies/AutoReplies.page'),
                     ),
                     children: [
                       {
                         path: 'add',
                         ...lazyRouteConfig(() =>
-                          import(
-                            '@/pages/dashboard/AutoReplies/AddAutoReply.page'
-                          ),
+                          import('@/pages/dashboard/autoReplies/add/Add.page'),
                         ),
                         handle: {
                           isOverridePage: true,
@@ -565,7 +581,7 @@ export const Routes: any = [
                         path: ':autoReplyId/delete',
                         ...lazyRouteConfig(() =>
                           import(
-                            '@/pages/dashboard/AutoReplies/ModalDeleteAutoReply.component'
+                            '@/pages/dashboard/autoReplies/delete/Delete.modal'
                           ),
                         ),
                         handle: {
@@ -594,7 +610,7 @@ export const Routes: any = [
                     path: 'delete',
                     ...lazyRouteConfig(() =>
                       import(
-                        '@/pages/dashboard/EmailAccounts/ModalDeleteEmailAccount.component'
+                        '@/pages/dashboard/emailAccounts/delete/Delete.modal'
                       ),
                     ),
                     handle: {
@@ -612,9 +628,7 @@ export const Routes: any = [
               {
                 path: 'order',
                 ...lazyRouteConfig(() =>
-                  import(
-                    '@/pages/dashboard/EmailAccounts/EmailAccountsOrder.page'
-                  ),
+                  import('@/pages/dashboard/emailAccounts/order/Order.page'),
                 ),
                 handle: {
                   isOverridePage: true,
@@ -632,7 +646,7 @@ export const Routes: any = [
           {
             path: 'mailing_lists',
             ...lazyRouteConfig(() =>
-              import('@/pages/dashboard/MailingLists/MailingLists'),
+              import('@/pages/dashboard/mailingLists/MailingLists.page'),
             ),
             handle: {
               tracking: {
@@ -656,7 +670,7 @@ export const Routes: any = [
                     path: 'settings',
                     ...lazyRouteConfig(() =>
                       import(
-                        '@/pages/dashboard/MailingLists/AddAndEditMailingList.page'
+                        '@/pages/dashboard/mailingLists/addEdit/AddEdit.page'
                       ),
                     ),
                     handle: {
@@ -675,9 +689,7 @@ export const Routes: any = [
               {
                 path: 'add',
                 ...lazyRouteConfig(() =>
-                  import(
-                    '@/pages/dashboard/MailingLists/AddAndEditMailingList.page'
-                  ),
+                  import('@/pages/dashboard/mailingLists/addEdit/AddEdit.page'),
                 ),
                 handle: {
                   isOverridePage: true,
@@ -695,7 +707,7 @@ export const Routes: any = [
           {
             path: 'redirections',
             ...lazyRouteConfig(() =>
-              import('@/pages/dashboard/Redirections/Redirections'),
+              import('@/pages/dashboard/redirections/Redirections.page'),
             ),
             handle: {
               tracking: {
@@ -719,7 +731,7 @@ export const Routes: any = [
                     path: 'edit',
                     ...lazyRouteConfig(() =>
                       import(
-                        '@/pages/dashboard/Redirections/ModalAddAndEditRedirection.page'
+                        '@/pages/dashboard/redirections/addEdit/AddEdit.modal'
                       ),
                     ),
                     handle: {
@@ -736,7 +748,7 @@ export const Routes: any = [
                     path: 'delete',
                     ...lazyRouteConfig(() =>
                       import(
-                        '@/pages/dashboard/Redirections/ModalDeleteRedirection.component'
+                        '@/pages/dashboard/redirections/delete/Delete.modal'
                       ),
                     ),
                     handle: {
@@ -755,7 +767,7 @@ export const Routes: any = [
                 path: 'add',
                 ...lazyRouteConfig(() =>
                   import(
-                    '@/pages/dashboard/Redirections/ModalAddAndEditRedirection.page'
+                    '@/pages/dashboard/redirections/addEdit/AddEdit.modal'
                   ),
                 ),
                 handle: {
@@ -773,7 +785,7 @@ export const Routes: any = [
           {
             path: 'auto_replies',
             ...lazyRouteConfig(() =>
-              import('@/pages/dashboard/AutoReplies/AutoReplies'),
+              import('@/pages/dashboard/autoReplies/AutoReplies.page'),
             ),
             handle: {
               tracking: {
@@ -797,7 +809,7 @@ export const Routes: any = [
                     path: 'delete',
                     ...lazyRouteConfig(() =>
                       import(
-                        '@/pages/dashboard/AutoReplies/ModalDeleteAutoReply.component'
+                        '@/pages/dashboard/autoReplies/delete/Delete.modal'
                       ),
                     ),
                     handle: {
@@ -815,7 +827,7 @@ export const Routes: any = [
               {
                 path: 'add',
                 ...lazyRouteConfig(() =>
-                  import('@/pages/dashboard/AutoReplies/AddAutoReply.page'),
+                  import('@/pages/dashboard/autoReplies/add/Add.page'),
                 ),
                 handle: {
                   tracking: {
@@ -837,7 +849,9 @@ export const Routes: any = [
         children: [
           {
             path: '',
-            ...lazyRouteConfig(() => import('@/pages/onboarding')),
+            ...lazyRouteConfig(() =>
+              import('@/pages/onboarding/Onboarding.page'),
+            ),
             handle: {
               tracking: {
                 pageName: ONBOARDING,
@@ -847,7 +861,9 @@ export const Routes: any = [
           },
           {
             path: 'welcome',
-            ...lazyRouteConfig(() => import('@/pages/onboarding/Welcome.page')),
+            ...lazyRouteConfig(() =>
+              import('@/pages/onboarding/welcome/Welcome.page'),
+            ),
             handle: {
               tracking: {
                 pageName: ONBOARDING_WELCOME,
@@ -858,13 +874,15 @@ export const Routes: any = [
           {
             path: 'configure/:platformId',
             ...lazyRouteConfig(() =>
-              import('@/pages/onboarding/Configure/Configure.layout'),
+              import('@/pages/onboarding/configure/Configure.layout'),
             ),
             children: [
               {
                 path: 'organization',
                 ...lazyRouteConfig(() =>
-                  import('@/pages/onboarding/Configure/Organization.page'),
+                  import(
+                    '@/pages/onboarding/configure/organization/Organization.page'
+                  ),
                 ),
                 handle: {
                   tracking: {
@@ -876,7 +894,7 @@ export const Routes: any = [
               {
                 path: 'domain',
                 ...lazyRouteConfig(() =>
-                  import('@/pages/onboarding/Configure/Domain.page'),
+                  import('@/pages/onboarding/configure/domain/Domain.page'),
                 ),
                 handle: {
                   tracking: {
@@ -888,7 +906,9 @@ export const Routes: any = [
               {
                 path: 'email_accounts',
                 ...lazyRouteConfig(() =>
-                  import('@/pages/onboarding/Configure/EmailAccounts.page'),
+                  import(
+                    '@/pages/onboarding/configure/emailAccounts/EmailAccounts.page'
+                  ),
                 ),
                 handle: {
                   tracking: {
@@ -907,4 +927,4 @@ export const Routes: any = [
     path: '*',
     element: <NotFound />,
   },
-];
+] as RouteObject[];
