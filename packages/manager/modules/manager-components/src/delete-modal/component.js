@@ -1,14 +1,12 @@
 import template from './template.html';
-import controller from './controller';
 
 export default {
   bindings: {
-    serviceType: '<',
-    description: '<',
+    serviceType: '@',
+    description: '@',
     isOpenModal: '<',
-    onClose: '@',
-    onConfirm: '@',
+    onClose: '&',
+    onConfirm: '&',
   },
   template,
-  controller,
 };
