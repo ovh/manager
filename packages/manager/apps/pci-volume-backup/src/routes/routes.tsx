@@ -7,6 +7,7 @@ import { urls } from '@/routes/routes.constant';
 const LayoutPage = lazy(() => import('@/pages/layout'));
 const ListingPage = lazy(() => import('@/pages/listing'));
 const RestorePage = lazy(() => import('@/pages/restore/Restore.page'));
+const DeletePage = lazy(() => import('@/pages/delete/Delete.page'));
 const OnboardingPage = lazy(() => import('@/pages/onboarding'));
 const CreateVolumePage = lazy(() =>
   import('@/pages/create-volume/CreateVolume.page'),
@@ -45,6 +46,16 @@ export default (
           },
         }}
       ></Route>
+      <Route
+        path={urls.deleteBackup}
+        Component={DeletePage}
+        handle={{
+          tracking: {
+            pageName: 'delete',
+            pageType: PageType.popup,
+          },
+        }}
+      />
     </Route>
     <Route
       path={urls.onboarding}

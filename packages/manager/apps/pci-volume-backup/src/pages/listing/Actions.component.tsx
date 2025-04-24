@@ -38,7 +38,7 @@ export default function Actions({ backup }: Readonly<ActionsProps>) {
     },
     {
       id: 3,
-      href: useHref(`./delete`),
+      href: useHref(`./delete/${backup.id}`),
       label: t(
         'pci_projects_project_storages_volume_backup_list_datagrid_menu_action_delete',
       ),
