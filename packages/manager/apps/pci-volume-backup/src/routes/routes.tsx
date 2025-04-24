@@ -7,6 +7,9 @@ import { urls } from '@/routes/routes.constant';
 const LayoutPage = lazy(() => import('@/pages/layout'));
 const ListingPage = lazy(() => import('@/pages/listing'));
 const OnboardingPage = lazy(() => import('@/pages/onboarding'));
+const CreateVolumePage = lazy(() =>
+  import('@/pages/create-volume/CreateVolume.page'),
+);
 
 export default (
   <Route
@@ -38,6 +41,15 @@ export default (
         tracking: {
           pageName: 'onboarding',
           pageType: PageType.onboarding,
+        },
+      }}
+    />
+    <Route
+      path={urls.createVolume}
+      Component={CreateVolumePage}
+      handle={{
+        tracking: {
+          pageName: 'create-volume',
         },
       }}
     />
