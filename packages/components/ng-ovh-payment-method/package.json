@@ -38,7 +38,6 @@
   "dependencies": {
     "@adyen/adyen-web": "5.61.0",
     "@ovh-ux/ovh-payment-method": "^0.5.3",
-    "@ovh-ux/ovh-reket": "^2.1.9",
     "lodash-es": "^4.17.11",
     "validator": "^13.7.0"
   },
