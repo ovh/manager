@@ -29,6 +29,7 @@ import {
   mapVolumeStatus,
   sortResults,
   paginateResults,
+  mapVolumeAttach,
 } from '@/api/select/volume';
 import { TVolumeCatalog } from '@/api/data/catalog';
 
@@ -63,42 +64,13 @@ export const useAllVolumes = (projectId: string | null) => {
       UseQueryResult<TAPIVolume[]>,
       UseQueryResult<TVolumeCatalog>,
     ]) => {
-      const catalogPricing = new Map(
-        catalogData?.models.map((m) => [
-          m.name,
-          new Map(m.pricings.flatMap((p) => p.regions.map((r) => [r, p]))),
-        ]),
-      );
+      const mapAttach = mapVolumeAttach(catalogData);
 
       return {
         data: data
           ?.map(mapVolumeStatus)
           .map(mapVolumeRegionName)
-          .map(
-            (volume): TVolume => {
-              const pricing = catalogPricing
-                .get(volume.type)
-                ?.get(volume.region);
-
-              // TODO : update this block when api is up to date
-              let maxAttachableInstances = 1;
-              if (pricing && pricing.specs.maxAttachableInstances) {
-                maxAttachableInstances = pricing.specs.maxAttachableInstances;
-              } else if (
-                volume.type === 'classic' &&
-                volume.region === 'EU-WEST-PAR'
-              ) {
-                maxAttachableInstances = 16;
-              }
-
-              return {
-                ...volume,
-                canAttachInstance:
-                  maxAttachableInstances > volume.attachedTo.length,
-                canDetachInstance: volume.attachedTo.length > 0,
-              };
-            },
-          ),
+          .map(mapAttach),
         ...restQuery,
       };
     },
@@ -154,7 +126,20 @@ export const getVolumeQuery = (projectId: string, volumeId: string) => ({
 });
 
 export const useVolume = (projectId: string, volumeId: string) =>
-  useQuery({ ...getVolumeQuery(projectId, volumeId) });
+  useQueries({
+    queries: [
+      getVolumeQuery(projectId, volumeId),
+      getVolumeCatalogQuery(projectId),
+    ],
+    combine: ([{ data, ...restQuery }, { data: catalogData }]) => {
+      const mapAttach = mapVolumeAttach(catalogData);
+
+      return {
+        data: data ? mapAttach(data) : undefined,
+        ...restQuery,
+      };
+    },
+  });
 
 export const getVolumeSnapshotQueryKey = (projectId: string) => [
   'volume-snapshot',

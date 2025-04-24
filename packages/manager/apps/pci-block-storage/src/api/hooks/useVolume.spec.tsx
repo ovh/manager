@@ -72,7 +72,7 @@ describe('useVolume', () => {
 
     await waitFor(() => {
       expect(getVolume).toHaveBeenCalledWith('123', '1');
-      expect(result.current.data).toEqual(volumeMock);
+      expect(result.current.data).toEqual(expect.objectContaining(volumeMock));
     });
   });
 
