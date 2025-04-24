@@ -31,6 +31,10 @@ angular.module('App').service(
 
       const target = get(this.SERVICES_TARGET_URLS, get(service, 'route.path'));
 
+      if (!(target?.universe && target?.url)) {
+        return '';
+      }
+
       return this.coreURLBuilder.buildURL(
         kebabCase(target.universe),
         target.url,
