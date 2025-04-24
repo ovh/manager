@@ -1,5 +1,9 @@
 import React from 'react';
-import { DataGridTextCell, Links } from '@ovh-ux/manager-react-components';
+import {
+  DataGridTextCell,
+  Links,
+  LinkType,
+} from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import {
@@ -7,16 +11,21 @@ import {
   getVcdDatacentresRoute,
   VCDDatacentre,
 } from '@ovh-ux/manager-module-vcd-api';
-import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import {
+  useOvhTracking,
+  useNavigationGetUrl,
+} from '@ovh-ux/manager-react-shell-client';
+
 import DatagridContainer, {
   TDatagridContainerProps,
 } from '@/components/datagrid/container/DatagridContainer.component';
 import { subRoutes, urls } from '@/routes/routes.constant';
 import { capitalize } from '@/utils/capitalize';
-import { ID_LABEL } from '@/pages/dashboard/dashboard.constants';
+import { ID_LABEL, VRACK_LABEL } from '@/pages/dashboard/dashboard.constants';
 import TEST_IDS from '@/utils/testIds.constants';
 import { TRACKING } from '@/tracking.constants';
 import { VIRTUAL_DATACENTERS_LABEL } from '@/pages/dashboard/organization/organizationDashboard.constants';
+import { VRACK_PATH, DEDICATED_PATH } from './Datacentres.constants';
 
 /* ========= datagrid cells ========= */
 const DatagridIdCell = (vcdDatacentre: VCDDatacentre) => {
@@ -80,6 +89,28 @@ const DatagridCommercialRange = (vcdDatacentre: VCDDatacentre) => (
   </DataGridTextCell>
 );
 
+const DatagridVrackCell = (vcdDatacentre: VCDDatacentre) => {
+  const { data: url } = useNavigationGetUrl([
+    DEDICATED_PATH,
+    `${VRACK_PATH}/${vcdDatacentre.currentState?.vRack}`,
+    {},
+  ]);
+
+  return (
+    <DataGridTextCell>
+      {vcdDatacentre.currentState?.vRack ? (
+        <Links
+          href={url as string}
+          target="_blank"
+          type={LinkType.external}
+          label={vcdDatacentre.currentState.vRack}
+        ></Links>
+      ) : (
+        ''
+      )}
+    </DataGridTextCell>
+  );
+};
 /* ======= listing page ======== */
 export default function DatacentresListing() {
   const { t } = useTranslation('listing');
@@ -116,6 +147,11 @@ export default function DatacentresListing() {
       id: 'vCpuSpeed',
       cell: DatagridCpuSpeedCell,
       label: tVdc('managed_vcd_vdc_vcpu_speed'),
+    },
+    {
+      id: 'vRack',
+      cell: DatagridVrackCell,
+      label: VRACK_LABEL,
     },
   ];
 
