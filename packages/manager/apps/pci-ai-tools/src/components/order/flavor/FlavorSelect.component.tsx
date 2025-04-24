@@ -80,9 +80,11 @@ const FlavorsSelect = React.forwardRef<HTMLTableElement, FlavorsSelectProps>(
               <TableHead className="font-bold text-base text-[#4d5592] h-10 px-2">
                 {t('tableHeadMemory')}
               </TableHead>
-              <TableHead className="font-bold text-base text-[#4d5592] h-10 px-2">
-                {t('tableHeadStorage')}
-              </TableHead>
+              {!isUpdate && (
+                <TableHead className="font-bold text-base text-[#4d5592] h-10 px-2">
+                  {t('tableHeadStorage')}
+                </TableHead>
+              )}
               <TableHead className="font-bold text-base text-[#4d5592] h-10 px-2">
                 {t('tableHeadPrice')}
               </TableHead>
@@ -136,14 +138,16 @@ const FlavorsSelect = React.forwardRef<HTMLTableElement, FlavorsSelectProps>(
                     0,
                   )}
                 </TableCell>
-                <TableCell className="text-[#4d5592] border border-primary-100 px-2 py-1">
-                  {bytesConverter(
-                    resourcesQuantity *
-                      flavor.resourcesPerUnit.ephemeralStorage,
-                    false,
-                    0,
-                  )}
-                </TableCell>
+                {!isUpdate && (
+                  <TableCell className="text-[#4d5592] border border-primary-100 px-2 py-1">
+                    {bytesConverter(
+                      resourcesQuantity *
+                        flavor.resourcesPerUnit.ephemeralStorage,
+                      false,
+                      0,
+                    )}
+                  </TableCell>
+                )}
                 <TableCell className="text-[#4d5592] border border-primary-100 px-2 py-1">
                   <Price
                     priceInUcents={
