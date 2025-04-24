@@ -3,7 +3,7 @@ import { describe, expect, vi } from 'vitest';
 import { useParams } from 'react-router-dom';
 import UpdateDisplayNameModal from './UpdateDisplayName.modal';
 import { render } from '@/utils/test.provider';
-import { licensesMock } from '@/data/api/_mock_';
+import { licensesMock } from '@/data/api/__mocks__';
 import dashboardGeneralInformationTranslation from '@/public/translations/dashboard/general-information/Messages_fr_FR.json';
 
 describe('GeneralInformation page', () => {

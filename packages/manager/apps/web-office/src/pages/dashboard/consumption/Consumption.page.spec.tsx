@@ -8,7 +8,7 @@ import {
   licensesMock,
   mockOfficeLicenseServiceInfos,
   mockUsageStatistics,
-} from '@/data/api/_mock_';
+} from '@/data/api/__mocks__';
 
 const hoistedMock = vi.hoisted(() => ({
   useServiceInfos: vi.fn(),
