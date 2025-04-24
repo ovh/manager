@@ -5,7 +5,7 @@ import {
   GUIDE_DNS_CONFIG,
   GUIDE_USER,
   GUIDE_WEBMAIL,
-} from './tracking.constant';
+} from '@/tracking.constants';
 
 export interface GuideLinks {
   [key: string]: string;

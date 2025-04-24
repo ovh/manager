@@ -4,11 +4,11 @@ import {
   useOvhTracking,
   ShellContext,
 } from '@ovh-ux/manager-react-shell-client';
-import ErrorBanner from '@/components/Error/Error';
-import { useOrganizations, usePlatform } from '@/hooks';
+import { Error } from '@/components';
+import { useOrganizations, usePlatform } from '@/data/hooks';
 import { isOnboarded } from '@/utils';
 
-export default function Layout() {
+export const Layout = () => {
   const location = useLocation();
   const { trackCurrentPage } = useOvhTracking();
   const { shell } = useContext(ShellContext);
@@ -36,7 +36,7 @@ export default function Layout() {
   return (
     <>
       <Outlet />
-      {isError && <ErrorBanner error={error} />}
+      {isError && <Error error={error} />}
       {!platformId && !isLoading && (
         <Navigate key={location.pathname} to="onboarding" replace={true} />
       )}
@@ -52,4 +52,6 @@ export default function Layout() {
       )}
     </>
   );
-}
+};
+
+export default Layout;
