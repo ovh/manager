@@ -42,7 +42,7 @@ describe('Datacentre Dashboard Page', () => {
 
   it('successfully updates description: closes modal and display success banner', async () => {
     const { container } = await renderTest({
-      initialRoute: `/${organizationList[0].id}/datacentres/${datacentreList[0].id}/edit-description`,
+      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}/edit-description`,
     });
     const value = 'description toto';
     const successMessage =
@@ -67,7 +67,7 @@ describe('Datacentre Dashboard Page', () => {
       labels.dashboard
         .managed_vcd_dashboard_edit_description_modal_helper_error;
     const { container } = await renderTest({
-      initialRoute: `/${organizationList[0].id}/datacentres/${datacentreList[0].id}/edit-description`,
+      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}/edit-description`,
     });
     await assertOdsModalVisibility({
       container,
@@ -85,7 +85,7 @@ describe('Datacentre Dashboard Page', () => {
 
   it('keeps modal open and display error message if api return error', async () => {
     const { container } = await renderTest({
-      initialRoute: `/${organizationList[0].id}/datacentres/${datacentreList[0].id}/edit-description`,
+      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}/edit-description`,
       isDatacentreUpdateKo: true,
     });
 
