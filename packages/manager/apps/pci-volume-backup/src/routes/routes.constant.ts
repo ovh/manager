@@ -4,4 +4,5 @@ export const urls = {
   listing: 'list',
   createVolume: 'list/:backupId/create-volume',
   restore: 'restore-volume/:volumeId',
+  deleteBackup: 'delete/:backupId',
 };
