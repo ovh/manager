@@ -3,6 +3,7 @@ import { useNotebookData } from '../Notebook.context';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import PublicGit from '@/components/public-git/PublicGit.component';
 import ai from '@/types/AI';
+import { isStoppedNotebook } from '@/lib/statusHelper';
 
 export function breadcrumb() {
   return (
@@ -22,6 +23,7 @@ const PublicGitJob = () => {
         (vol: ai.volume.Volume) => vol.volumeSource.publicGit,
       )}
       updateMode={true}
+      disabled={!isStoppedNotebook(notebook.status.state)}
       onDelete={(volume) => {
         const volumeId = notebook.status.volumes.find(
           (vol) => vol.mountPath === volume.mountPath,

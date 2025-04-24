@@ -9,13 +9,18 @@ import {
 import { useNotebookData } from '../../Notebook.context';
 import { bytesConverter } from '@/lib/bytesHelper';
 import ResourcesSpec from '@/components/resources-spec/ResourcesSpec.component';
+import { isStoppedNotebook } from '@/lib/statusHelper';
 
 const Resources = () => {
   const { notebook } = useNotebookData();
   const { t } = useTranslation('ai-tools/notebooks/notebook/dashboard');
   return (
     <div data-testid="resources-container">
-      <ResourcesSpec resources={notebook.spec.resources} allowUpdate={true} />
+      <ResourcesSpec
+        resources={notebook.spec.resources}
+        allowUpdate={true}
+        disabled={!isStoppedNotebook(notebook.status.state)}
+      />
       <div className="flex flex-row items-center gap-2">
         <span>
           {t('workspaceStorage', {
