@@ -38,7 +38,10 @@
   "dependencies": {
     "@adyen/adyen-web": "5.61.0",
     "@ovh-ux/ovh-payment-method": "^0.6.2",
+<<<<<<< HEAD
     "@ovh-ux/ovh-reket": "^2.1.18",
+=======
+>>>>>>> db53b26e88 (fix(*): fix usage of useOvhPaymentMethod in apps and packages)
     "lodash-es": "^4.17.11",
     "validator": "^13.7.0"
   },
