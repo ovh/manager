@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-ssh-keys-app",
-  "version": "0.11.5",
+  "version": "0.11.6",
   "private": true,
   "description": "PCI SSH Keys react app",
   "type": "module",

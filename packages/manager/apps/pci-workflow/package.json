@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-workflow-app",
-  "version": "0.6.5",
+  "version": "0.6.6",
   "private": true,
   "description": "PCI Workflow react app",
   "type": "module",
