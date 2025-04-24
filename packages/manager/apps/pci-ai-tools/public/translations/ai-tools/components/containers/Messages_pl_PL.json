@@ -32,5 +32,7 @@
   "dataSyncGlobalToastSuccessDescription": "Synchronizacja danych we wszystkich katalogach instalacji została pomyślnie rozpoczęta",
   "deleteContainerToastSuccessDescription": "Kontener został usunięty",
   "deleteContainerTitle": "Usuń kontener",
-  "deleteContainerDescription": "Czy na pewno chcesz usunąć ten kontener?"
+  "deleteContainerDescription": "Czy na pewno chcesz usunąć ten kontener?",
+  "disabledButtonTooltip": "Notebook musi być w stanie zatrzymania",
+  "disabledSyncButtonTooltip": "Notebook musi być w stanie aktywny lub nie może zostać zsynchronizowany"
 }

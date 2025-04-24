@@ -20,5 +20,6 @@
   "deletePublicGitButtonConfirm": "Delete",
   "addPublicGitToastSuccessDescription": "Git repository added",
   "addPublicGitTitle": "Add a Git repository",
-  "addPublicGitButtonConfirm": "Add"
+  "addPublicGitButtonConfirm": "Add",
+  "disabledButtonTooltip": "Notebook must be in stopped status"
 }

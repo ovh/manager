@@ -32,5 +32,7 @@
   "dataSyncGlobalToastSuccessDescription": "Die Datensynchronisierung in allen Bereitstellungsverzeichnissen wurde erfolgreich gestartet",
   "deleteContainerToastSuccessDescription": "Der Container wurde erfolgreich gelöscht",
   "deleteContainerTitle": "Container löschen",
-  "deleteContainerDescription": "Sind Sie sicher, dass Sie diesen Container löschen möchten?"
+  "deleteContainerDescription": "Sind Sie sicher, dass Sie diesen Container löschen möchten?",
+  "disabledButtonTooltip": "Das Notebook muss sich im Status „Beendet“ befinden",
+  "disabledSyncButtonTooltip": "Das Notebook muss den Status „In Betrieb“ oder „Synchronisierung fehlgeschlagen“ haben"
 }

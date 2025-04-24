@@ -8,5 +8,6 @@
   "publicNetworkField": "Sieć publiczna: {{ network }}/s",
   "temporaryLocalStorageField": "Lokalna krótkotrwała przestrzeń dyskowa: {{ storage }} SSD",
   "temporaryLocalStorageHelper": "Wydajna, ale nie zapisana lokalna przestrzeń dyskowa",
-  "modifyLabel": "Zmień"
+  "modifyLabel": "Zmień",
+  "disabledButtonTooltip": "Notebook musi być w stanie zatrzymania"
 }

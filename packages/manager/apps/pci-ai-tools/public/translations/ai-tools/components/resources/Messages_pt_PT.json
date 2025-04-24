@@ -8,5 +8,6 @@
   "publicNetworkField": "Rede pública: {{ network }}/s",
   "temporaryLocalStorageField": "Armazenamento local temporário: {{ storage }} SSD",
   "temporaryLocalStorageHelper": "Armazenamento local eficiente, mas sem backup",
-  "modifyLabel": "Modificar"
+  "modifyLabel": "Modificar",
+  "disabledButtonTooltip": "O notebook deve estar em estado parado"
 }
