@@ -4,7 +4,7 @@ import { vi } from 'vitest';
 import { render, waitFor } from '../../utils/test/test.provider';
 import { RancherService, RancherTaskType } from '@/types/api.type';
 import listingTranslation from '../../../public/translations/listing/Messages_fr_FR.json';
-import { rancherMocked } from '../../_mock_/rancher';
+import { rancherMocked } from '../../__mocks__/rancher';
 import Listing, { ListingProps } from './Listing.page';
 
 const defaultProps = {

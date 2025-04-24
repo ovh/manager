@@ -4,7 +4,7 @@ import listingTranslation from '@translation/listing/Messages_fr_FR.json';
 import Listing, { ListingProps } from './Listing.page';
 import { render, waitFor } from '@/utils/test/test.provider';
 import { RancherService, RancherTaskType } from '@/types/api.type';
-import { rancherMocked } from '@/_mock_/rancher';
+import { rancherMocked } from '@/__mocks__/rancher';
 
 const defaultProps = {
   data: [rancherMocked],

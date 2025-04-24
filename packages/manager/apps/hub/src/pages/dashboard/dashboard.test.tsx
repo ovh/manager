@@ -40,8 +40,8 @@ import {
   FourServices,
   NoServices,
   TwoServices,
-} from '@/_mock_/billingServices';
-import { catalogData } from '@/_mock_/catalog';
+} from '@/__mocks__/billingServices';
+import { catalogData } from '@/__mocks__/catalog';
 
 const queryClient = new QueryClient();
 

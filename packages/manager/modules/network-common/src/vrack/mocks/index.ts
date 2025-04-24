@@ -4,7 +4,7 @@ import {
   GetCartMocksParams,
   getOrderDetailsMocks,
   GetOrderDetailsMocksParams,
-} from '@ovh-ux/manager-module-order/mock';
+} from '@ovh-ux/manager-module-order/__mocks__';
 import {
   GetServicesMocksParams,
   getServicesMocks,

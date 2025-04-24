@@ -1,6 +1,6 @@
 import React from 'react';
 import { afterEach, describe, vi } from 'vitest';
-import { rancherPlan } from '@/_mock_/rancher-resource';
+import { rancherPlan } from '@/__mocks__/rancher-resource';
 import RancherPlanTile, { RancherPlanTileProps } from './RancherPlanTile';
 import { render, waitFor } from '@/utils/test/test.provider';
 

@@ -2,8 +2,8 @@ import React from 'react';
 import { vi } from 'vitest';
 import dashboardTranslation from '@translation/dashboard/Messages_fr_FR.json';
 import updateTranslation from '@translation/updateSoftware/Messages_fr_FR.json';
-import { versionsMocked } from '@/_mock_/version';
-import { rancherMocked } from '@/_mock_/rancher';
+import { versionsMocked } from '@/__mocks__/version';
+import { rancherMocked } from '@/__mocks__/rancher';
 import { ResourceStatus } from '@/types/api.type';
 
 import { fireEvent, render, waitFor } from '@/utils/test/test.provider';

@@ -9,7 +9,7 @@ import {
   rancherPlan,
   rancherVersion,
   rancherPlansPricing,
-} from '@/_mock_/rancher-resource';
+} from '@/__mocks__/rancher-resource';
 import {
   act,
   fireEvent,

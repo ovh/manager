@@ -6,7 +6,7 @@ import { render, waitFor } from '@/utils/test/test.provider';
 import GenerateAccessModal, {
   GenerateAccessModalProps,
 } from './GenerateAccesModal.component';
-import { rancherMocked } from '@/_mock_/rancher';
+import { rancherMocked } from '@/__mocks__/rancher';
 
 const mockedUsedNavigate = vi.fn();
 
