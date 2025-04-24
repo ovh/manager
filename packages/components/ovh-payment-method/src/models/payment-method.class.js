@@ -15,6 +15,11 @@ export class PaymentMethod {
    *  @param {String} options.icon.data Icon in base64.
    *  @param {String} [options.paymentSubType] Subtype of the payment method.
    *                                           eg: "VISA" for the payment type "CREDIT_CARD".
+   *
+   *  @param {String} options.formSessionId The ID of the form session.
+   *  @param {String} options.integration The integration type of the payment method.
+   *  @param {String} options.merchantId The merchant ID of the payment method.
+   *  @param {Boolean} options.oneclick The oneclick of the payment method.
    *  @param {String} options.status The status of the payment method.
    *  @param {Number} options.paymentMethodId The unique payment method ID.
    *  @param {Boolean} options.default Flag indicating if the payment method is the default one.
@@ -77,6 +82,34 @@ export class PaymentMethod {
     this.expirationDate = options.expirationDate
       ? new Date(options.expirationDate)
       : null;
+
+    /**
+     *  The ID of the form session.
+     *  @type {String}
+     *  @default null
+     */
+    this.formSessionId = options.formSessionId || null;
+
+    /**
+     *  The integration type of the payment method.
+     *  @type {String}
+     *  @default null
+     */
+    this.integration = options.integration || null;
+
+    /**
+     *  The merchant ID of the payment method.
+     *  @type {String}
+     *  @default null
+     */
+    this.merchantId = options.merchantId || null;
+
+    /**
+     *  The oneclick of the payment method.
+     *  @type {Boolean}
+     *  @default null
+     */
+    this.oneclick = options.oneclick || null;
 
     /**
      *  The type of the payment method.
