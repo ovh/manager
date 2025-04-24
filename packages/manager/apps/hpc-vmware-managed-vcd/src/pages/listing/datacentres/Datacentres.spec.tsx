@@ -8,9 +8,21 @@ import {
   assertTextVisibility,
   getElementByTestId,
 } from '@ovh-ux/manager-core-test-utils';
+import { vi } from 'vitest';
+
 import { DEFAULT_LISTING_ERROR, renderTest } from '../../../test-utils';
 import TEST_IDS from '../../../utils/testIds.constants';
 import { VIRTUAL_DATACENTERS_LABEL } from '../../dashboard/organization/organizationDashboard.constants';
+
+vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
+  const original: typeof import('@ovh-ux/manager-react-shell-client') = await importOriginal();
+  return {
+    ...original,
+    useNavigationGetUrl: vi.fn(([basePath, pathWithId]) => ({
+      data: `${basePath}${pathWithId}`,
+    })),
+  };
+});
 
 describe('Datacentres Listing Page', () => {
   it('displays the virtual datacentres listing page', async () => {
