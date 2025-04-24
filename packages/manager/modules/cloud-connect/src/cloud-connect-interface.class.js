@@ -5,18 +5,26 @@ export default class CloudConnectInterface {
   constructor({
     id,
     incomingLightStatus,
+    incomingLightValue,
     lightLastUpdate,
     outgoingLightStatus,
+    outgoingLightValue,
     status,
     enabling,
+    lastUpdateInterfaceStatus,
+    interfaceStatus,
   }) {
     Object.assign(this, {
       id,
       incomingLightStatus,
+      incomingLightValue,
       lightLastUpdate,
       outgoingLightStatus,
+      outgoingLightValue,
       status,
       enabling,
+      lastUpdateInterfaceStatus,
+      interfaceStatus,
     });
     this.localeLightLastUpdate = moment(
       this.lightLastUpdate,
@@ -81,5 +89,13 @@ export default class CloudConnectInterface {
         task.resourceId === this.id &&
         (task.status === STATUS.TODO || task.status === STATUS.DOING),
     );
+  }
+
+  isInterfaceStatusUp() {
+    return this.interfaceStatus === STATUS.UP;
+  }
+
+  isInterfaceStatusDown() {
+    return this.interfaceStatus === STATUS.DOWN;
   }
 }

@@ -13,6 +13,7 @@
   "main": "./src/index.js",
   "dependencies": {
     "bootstrap4": "twbs/bootstrap#v4.6.2",
+    "date-fns": "^3.6.0",
     "lodash": "^4.17.14"
   },
   "peerDependencies": {
