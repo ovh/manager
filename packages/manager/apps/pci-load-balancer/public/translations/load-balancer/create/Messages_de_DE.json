@@ -43,5 +43,6 @@
   "octavia_load_balancer_create_size_flavour_description_2xl": "Perfekt für trafficintensive Projekte. Bietet eine hohe Bandbreitenkapazität für starke Leistung.",
   "octavia_load_balancer_create_size_flavour_description_3xl": "Konzipiert für kritische Umgebungen mit hohem Traffic. Gewährleistet maximale Leistung dank großer Bandbreite.",
   "octavia_load_balancer_create_private_network": "In der ausgewählten Region ist kein privates Netzwerk vorhanden. Stellen Sie sicher, dass Sie <link /> , bevor der Loadbalancer erstellt wird.",
-  "octavia_load_balancer_create_private_network_label": "ein privates Netzwerk erstellen"
+  "octavia_load_balancer_create_private_network_label": "ein privates Netzwerk erstellen",
+  "octavia_load_balancer_create_3az_guide_description": "Wenn Sie mehr über die Spezifikationen der 3-AZ-Dienste und deren Verwendung zum Erstellen einer widerstandsfähigen Infrastruktur erfahren möchten, <Link>klicken Sie hier</Link>"
 }
