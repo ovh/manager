@@ -50,7 +50,7 @@ function DatacentreDashboardPage() {
       trackingActions: TRACKING_TABS_ACTIONS.storage,
     },
     {
-      name: 'vrack-network',
+      name: 'vrack-segments',
       title: t('managed_vcd_dashboard_vrack_network_title'),
       to: useResolvedPath('vrack-network').pathname,
       trackingActions: TRACKING_TABS_ACTIONS.vrackNetwork,
