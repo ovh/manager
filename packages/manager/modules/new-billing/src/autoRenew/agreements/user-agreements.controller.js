@@ -71,7 +71,7 @@ export default class UserAccountAgreementsController {
   loadAgreementsList({ pageSize, offset }) {
     return this.UserAccountServicesAgreements.getList(
       pageSize,
-      offset,
+      offset - 1,
       this.state,
       this.sorting,
     )
