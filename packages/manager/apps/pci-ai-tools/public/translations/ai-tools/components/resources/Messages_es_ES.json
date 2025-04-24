@@ -8,5 +8,6 @@
   "publicNetworkField": "Red pública: {{ network }}/s",
   "temporaryLocalStorageField": "Almacenamiento local temporal: {{ storage }} SSD",
   "temporaryLocalStorageHelper": "Almacenamiento local potente, pero sin backup",
-  "modifyLabel": "Modificar"
+  "modifyLabel": "Modificar",
+  "disabledButtonTooltip": "El notebook debe estar en estado detenido"
 }

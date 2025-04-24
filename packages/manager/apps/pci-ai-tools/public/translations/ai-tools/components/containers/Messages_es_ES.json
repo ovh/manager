@@ -32,5 +32,7 @@
   "dataSyncGlobalToastSuccessDescription": "La sincronización de datos en todos los directorios de montaje se inició correctamente",
   "deleteContainerToastSuccessDescription": "El contenedor se ha eliminado correctamente",
   "deleteContainerTitle": "Eliminar un contenedor",
-  "deleteContainerDescription": "¿Seguro que quiere eliminar este contenedor?"
+  "deleteContainerDescription": "¿Seguro que quiere eliminar este contenedor?",
+  "disabledButtonTooltip": "El notebook debe estar en estado detenido",
+  "disabledSyncButtonTooltip": "El notebook debe estar en estado de servicio o en error de sincronización"
 }

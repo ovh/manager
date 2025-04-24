@@ -15,6 +15,7 @@
   "notebookIdLabel": "Id du notebook",
   "notebookIdCopyToast": "L'identifiant du notebook a été copié",
   "deleteNotebookButton": "Supprimer le notebook",
+  "deleteNotebookTooltip": "Le notebook doit être en statut arrêté",
   "liveCodeEditorTitle": "Live code editor",
   "openEditor": "Ouvrir {{editor}}",
   "grafanaTitle": "Suivi de la consommation",

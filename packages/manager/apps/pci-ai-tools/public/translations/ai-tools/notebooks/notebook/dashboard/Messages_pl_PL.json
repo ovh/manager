@@ -21,5 +21,6 @@
   "grafanaButton": "Dashboard grafana",
   "addLabelTitle": "Dodaj etykietę",
   "keyFieldLabel": "Klucz",
-  "valueFieldLabel": "Wartość"
+  "valueFieldLabel": "Wartość",
+  "deleteNotebookTooltip": "Notebook musi być w stanie zatrzymania"
 }

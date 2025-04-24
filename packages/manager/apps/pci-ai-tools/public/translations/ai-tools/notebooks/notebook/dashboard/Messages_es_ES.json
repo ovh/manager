@@ -21,5 +21,6 @@
   "grafanaButton": "Dashboard grafana",
   "addLabelTitle": "Añadir un label",
   "keyFieldLabel": "Clave",
-  "valueFieldLabel": "Valor"
+  "valueFieldLabel": "Valor",
+  "deleteNotebookTooltip": "El notebook debe estar en estado detenido"
 }

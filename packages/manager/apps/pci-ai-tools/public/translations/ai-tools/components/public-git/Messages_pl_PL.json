@@ -20,5 +20,6 @@
   "deletePublicGitButtonConfirm": "Usuń",
   "addPublicGitToastSuccessDescription": "Repozytorium Git zostało dodane",
   "addPublicGitTitle": "Dodaj repozytorium Git",
-  "addPublicGitButtonConfirm": "Dodaj"
+  "addPublicGitButtonConfirm": "Dodaj",
+  "disabledButtonTooltip": "Notebook musi być w stanie zatrzymania"
 }

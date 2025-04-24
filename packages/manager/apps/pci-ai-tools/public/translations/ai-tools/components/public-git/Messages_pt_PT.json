@@ -20,5 +20,6 @@
   "deletePublicGitButtonConfirm": "Suprimir",
   "addPublicGitToastSuccessDescription": "Os repositórios Git foram adicionados",
   "addPublicGitTitle": "Adicionar um repositório Git",
-  "addPublicGitButtonConfirm": "Adicionar"
+  "addPublicGitButtonConfirm": "Adicionar",
+  "disabledButtonTooltip": "O notebook deve estar em estado parado"
 }

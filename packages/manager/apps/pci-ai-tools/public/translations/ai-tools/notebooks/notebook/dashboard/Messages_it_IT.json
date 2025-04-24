@@ -21,5 +21,6 @@
   "grafanaButton": "Dashboard grafana",
   "addLabelTitle": "Aggiungi un label",
   "keyFieldLabel": "Chiave",
-  "valueFieldLabel": "Valore"
+  "valueFieldLabel": "Valore",
+  "deleteNotebookTooltip": "Il notebook deve essere in stato interrotto"
 }
