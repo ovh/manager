@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.11.8...@ovh-ux/manager-procedures-app@0.11.9) (2025-04-24)
+
+
+### Bug Fixes
+
+* **procedures:** removed conflicting legal form value management ([b304185](https://github.com/ovh/manager/commit/b30418508e58fe599a562437ac27c25c809e1a98)), closes [#INC0125710](https://github.com/ovh/manager/issues/INC0125710)
+
+
+
+
+
 ## [0.11.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.11.7...@ovh-ux/manager-procedures-app@0.11.8) (2025-04-17)
 
 **Note:** Version bump only for package @ovh-ux/manager-procedures-app
