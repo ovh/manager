@@ -12,31 +12,30 @@ td:has(div.is-latest) {
   flex: 1;
 }
 
-#containerDataGrid {
+.container-data-grid {
   /* Override the table size from md to sm */
   ods-table.ods-table--md {
-    /* These are example styles for sm size - adjust as needed */
     font-size: 0.875rem; /* Smaller font size */
   }
 
   /* Adjust row height */
   ods-table.ods-table--md tr {
-    height: 2.5rem !important; /* Smaller row height */
+    height: 2.5rem;
   }
 
   /* Adjust header height */
   ods-table.ods-table--md thead tr th {
-    height: 2.5rem !important; /* Smaller header height */
+    height: 2.5rem;
   }
 
   /* Adjust padding if needed */
   ods-table.ods-table--md td,
   ods-table.ods-table--md th {
-    padding: 0.25rem 1rem !important; /* Smaller padding */
+    padding: 0.25rem 1rem;
   }
 
   /* Adjust button sizes in the actions column */
   ods-table.ods-table--md ods-button {
-    --ods-button-size-sm: 1.5rem !important;
+    --ods-button-size-sm: 1.5rem;
   }
 }

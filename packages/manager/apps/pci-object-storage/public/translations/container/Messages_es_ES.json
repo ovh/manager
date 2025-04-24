@@ -54,5 +54,7 @@
   "pci_projects_project_storages_containers_container_enable_encryption": "Activar el cifrado (SSE-OMK)",
   "pci_projects_project_storages_containers_container_delete_marker": "Marcador de eliminación",
   "pci_projects_project_storages_containers_container_show_versions": "Ver las versiones",
-  "pci_projects_project_storages_containers_container_back_to_versions": "Volver a mis objetos"
+  "pci_projects_project_storages_containers_container_back_to_versions": "Volver a mis objetos",
+  "pci_projects_project_storages_containers_container_objects": "Mis artículos",
+  "pci_projects_project_storages_containers_container_objects_sort_warining": "Las operaciones de ordenación en la lista de objetos sólo se realizan en los resultados que se muestran. Usar \"Cargar más\" para extender la ordenación a más resultados."
 }
