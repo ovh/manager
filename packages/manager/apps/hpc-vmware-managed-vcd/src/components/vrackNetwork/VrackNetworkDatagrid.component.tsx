@@ -20,7 +20,8 @@ import {
   useVcdVrackNetworkOptions,
   VrackSegment,
 } from '@ovh-ux/manager-module-vcd-api';
-import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import { useHref } from 'react-router-dom';
 import VrackNetworkDatagridSubDatagrid from './VrackNetworkDatagridSubDatagrid.component';
 
 export type VrackNetworkDatagridProps = {
@@ -90,6 +91,8 @@ export default function VrackNetworkDatagrid({
             isCompact={true}
             variant={ODS_BUTTON_VARIANT.ghost}
             id={item.targetSpec.vlanId}
+            isCompact
+            variant={ODS_BUTTON_VARIANT.ghost}
             items={[
               {
                 id: 1,
