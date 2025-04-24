@@ -16,6 +16,17 @@ export const PROTECTION_TYPES = {
   UNLOCKING: 'unlocking',
 };
 
+export const SUSPENSION_STATES = {
+  NOT_SUSPENDED: 'NOT_SUSPENDED',
+  SUSPENDED: 'SUSPENDED',
+};
+
+export const KYC_OPERATIONS = {
+  CONTACT_CONTROL: 'ContactControl',
+  CONTACT_CONTROL_CORRECT: 'ContactControlCorrect',
+  DOMAIN_CONTACT_CONTROL: 'DomainContactControl',
+};
+
 export const DOMAIN_SERVICE_STATES = {
   expired: 'expired',
   delete_at_expiration: 'delete_at_expiration',
