@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import onboardingTranslation from '@translation/onboarding/Messages_fr_FR.json';
@@ -5,34 +6,34 @@ import Onboarding from './Onboarding.page';
 import { render, waitFor } from '@/utils/test/test.provider';
 import { useGuideUtils } from '@/hooks/useGuideLink/useGuideLink';
 
-const mockedUsedNavigate = jest.fn();
+const mockedUsedNavigate = vi.fn();
 
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
+vi.mock('react-router-dom', () => ({
+  ...vi.importActual('react-router-dom'),
   useNavigate: () => mockedUsedNavigate,
   useParams: () => ({ projectId: '123' }),
 }));
 
-jest.mock('@ovh-ux/manager-react-shell-client', () => ({
-  useNavigation: jest.fn(() => ({
-    getURL: jest.fn(() => Promise.resolve('123')),
+vi.mock('@ovh-ux/manager-react-shell-client', () => ({
+  useNavigation: vi.fn(() => ({
+    getURL: vi.fn(() => Promise.resolve('123')),
     data: [],
   })),
-  useTracking: jest.fn(() => ({
-    trackPage: jest.fn(),
-    trackClick: jest.fn(),
+  useTracking: vi.fn(() => ({
+    trackPage: vi.fn(),
+    trackClick: vi.fn(),
   })),
 }));
 
-jest.mock('@/hooks/useGuideLink/useGuideLink', () => ({
-  useGuideUtils: jest.fn(() => ({
+vi.mock('@/hooks/useGuideLink/useGuideLink', () => ({
+  useGuideUtils: vi.fn(() => ({
     MANAGED_RANCHER_SERVICE_GETTING_STARTED: 'https://example.com/guide1',
     MANAGED_RANCHER_SERVICE_CREATION: 'https://example.com/guide2',
     MANAGED_RANCHER_SERVICE_LIFECYCLE_POLICY: 'https://example.com/guide3',
   })),
 }));
 
-jest.spyOn(React, 'useEffect').mockImplementation((t) => jest.fn(t));
+vi.spyOn(React, 'useEffect').mockImplementation((t) => vi.fn(t));
 
 const setupSpecTest = async () => waitFor(() => render(<Onboarding />));
 

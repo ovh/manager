@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import dashboardTranslation from '@translation/dashboard/Messages_fr_FR.json';
@@ -5,24 +6,24 @@ import { render, waitFor } from '@/utils/test/test.provider';
 import GenerateAccessModal, {
   GenerateAccessModalProps,
 } from './GenerateAccesModal.component';
-import { rancherMocked } from '@/_mock_/rancher';
+import { rancherMocked } from '@/__mocks__/rancher';
 
-const mockedUsedNavigate = jest.fn();
+const mockedUsedNavigate = vi.fn();
 
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
+vi.mock('react-router-dom', () => ({
+  ...vi.importActual('react-router-dom'),
   useNavigate: () => mockedUsedNavigate,
 }));
 
 const defaultProps: GenerateAccessModalProps = {
-  onClose: jest.fn(),
+  onClose: vi.fn(),
   rancher: rancherMocked,
-  onGenerateAccess: jest.fn(),
+  onGenerateAccess: vi.fn(),
   accessDetail: null,
 };
 
 afterEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 });
 
 const setupSpecTest = async (props: GenerateAccessModalProps = defaultProps) =>

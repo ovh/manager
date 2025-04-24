@@ -37,8 +37,6 @@
   "telephony_group_billing_dashboard_no_phone": "Ligne nue",
   "telephony_group_billing_dashboard_RMA_title": "RMA",
   "telephony_group_billing_dashboard_calls": "Chamadas",
-  "telephony_group_billing_dashboard_suspended_info": "Este grupo está atualmente suspenso.",
-  "telephony_group_billing_dashboard_suspended_info_link": "Clique aqui para aumentar o seu depósito de garantia.",
   "telephony_group_line_softphone_apply_theme_globally": "Aplicar um tema Softphone",
   "telephony_group_line_softphone_your_logo": "O seu logótipo",
   "telephony_group_line_softphone_apply_theme_error": "Não foi possível aplicar o seu tema: {{errorMessage}}",
@@ -49,10 +47,11 @@
   "telephony_group_line_softphone_apply_logo_remove_success": "O logótipo foi eliminado com êxito.",
   "telephony_group_line_softphone_btn_apply_theme": "Aplicar um tema",
   "telephony_group_line_softphone_save_theme_description": "Todas as alterações feitas ao nível das linhas substituirão o tema do grupo.",
-  "telephony_group_line_softphone_theme_by_default": "(Predefinição)",
+  "telephony_group_line_softphone_theme_by_default": "Predefinido",
   "telephony_group_line_softphone_logo_title": "Adicionar um logótipo",
   "telephony_group_line_softphone_logo_delete": "Restaurar logótipo predefinido",
   "telephony_group_line_softphone_logo_format": "Formatos aceites: {{format}} (Peso &lt; {{weight}}, tamanho nativo: {{size}})",
   "telephony_group_line_softphone_save_logo": "Deve reiniciar a aplicação para que o logótipo fique ativo.",
-  "telephony_group_line_softphone_save_theme": "Deve reiniciar a aplicação para que o tema esteja ativo."
+  "telephony_group_line_softphone_save_theme": "Deve reiniciar a aplicação para que o tema esteja ativo.",
+  "telephony_group_billing_dashboard_suspended_info_link": "Clique aqui para aumentar o seu depósito de garantia."
 }

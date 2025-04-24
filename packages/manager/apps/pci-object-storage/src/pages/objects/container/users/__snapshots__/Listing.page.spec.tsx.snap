@@ -335,6 +335,7 @@ exports[`ListingPage > sould display datagrid 1`] = `
                     </div>
                     <ods-popover
                       class="py-[8px] px-0 w-max"
+                      data-testid="navigation-action-trigger-action-popover"
                       trigger-id="navigation-action-trigger-id"
                       with-arrow="true"
                     >

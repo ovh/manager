@@ -22,7 +22,7 @@
     "@ovh-ux/manager-pci-common": "^0.16.4",
     "@ovh-ux/manager-react-components": "^1.46.0",
     "@ovh-ux/manager-react-core-application": "^0.11.19",
-    "@ovh-ux/manager-react-shell-client": "^0.8.5",
+    "@ovh-ux/manager-react-shell-client": "^0.8.7",
     "@ovh-ux/manager-tailwind-config": "^0.3.0",
     "@ovh-ux/shell": "^4.4.0",
     "@ovhcloud/ods-common-core": "17.2.2",
@@ -69,7 +69,7 @@
     "postcss": "^8.4.35",
     "rollup": "^4.9.6",
     "tailwindcss": "^3.4.4",
-    "vite": "^5.4.12",
+    "vite": "^5.4.18",
     "vitest": "^2.1.9"
   },
   "regions": [

@@ -5,7 +5,7 @@ import ModalEditUsers from './EditUsers.modal';
 import { fireEvent, render, act } from '@/utils/test.provider';
 import { putOfficeLicenseDetails } from '@/data/api/license';
 import { putOfficeUserDetail } from '@/data/api/users';
-import { licensesPrepaidExpandedMock, usersMock } from '@/data/api/_mock_';
+import { licensesPrepaidExpandedMock, usersMock } from '@/data/api/__mocks__';
 
 const hoistedMock = vi.hoisted(() => ({
   useUserDetail: vi.fn(),

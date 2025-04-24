@@ -1,16 +1,17 @@
+import { vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import updateTranslation from '@translation/updateSoftware/Messages_fr_FR.json';
 import dashboardTranslation from '@translation/dashboard/Messages_fr_FR.json';
-import { versionsMocked } from '@/_mock_/version';
+import { versionsMocked } from '@/__mocks__/version';
 import { render, waitFor } from '@/utils/test/test.provider';
 import UpdateSoftwareModal from './UpdateSoftwareConfirmModal.component';
 
-const onConfirmUpdated = jest.fn();
-const onClose = jest.fn();
+const onConfirmUpdated = vi.fn();
+const onClose = vi.fn();
 
 afterEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 });
 
 const setupSpecTest = async () =>

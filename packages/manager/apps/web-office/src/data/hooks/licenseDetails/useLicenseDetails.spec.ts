@@ -1,7 +1,7 @@
 import { describe, expect } from 'vitest';
 import '@testing-library/jest-dom';
 import { renderHook, waitFor } from '@testing-library/react';
-import { licensesMock } from '@/data/api/_mock_';
+import { licensesMock } from '@/data/api/__mocks__';
 import { useLicenseDetail } from '@/data/hooks';
 import { wrapper } from '@/utils/test.provider';
 

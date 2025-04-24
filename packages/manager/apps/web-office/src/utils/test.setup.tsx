@@ -13,7 +13,7 @@ import {
   mockOfficeLicenseServiceInfos,
   mockUsageStatistics,
   parentTenantMock,
-} from '@/data/api/_mock_';
+} from '@/data/api/__mocks__';
 
 const mocksAxios = vi.hoisted(() => ({
   get: vi.fn(),

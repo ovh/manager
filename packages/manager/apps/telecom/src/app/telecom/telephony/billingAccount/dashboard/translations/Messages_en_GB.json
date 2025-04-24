@@ -37,8 +37,6 @@
   "telephony_group_billing_dashboard_no_phone": "No phone",
   "telephony_group_billing_dashboard_RMA_title": "RMA",
   "telephony_group_billing_dashboard_calls": "Calls",
-  "telephony_group_billing_dashboard_suspended_info": "This group is currently suspended.",
-  "telephony_group_billing_dashboard_suspended_info_link": "Click here to increase your security deposit.",
   "telephony_group_line_softphone_apply_theme_globally": "Apply a Softphone theme",
   "telephony_group_line_softphone_your_logo": "Your logo",
   "telephony_group_line_softphone_apply_theme_error": "Your theme could not be applied: {{errorMessage}}",
@@ -49,10 +47,11 @@
   "telephony_group_line_softphone_apply_logo_remove_success": "Your logo has been deleted.",
   "telephony_group_line_softphone_btn_apply_theme": "Apply Theme",
   "telephony_group_line_softphone_save_theme_description": "Any changes made at the line level will replace the group theme.",
-  "telephony_group_line_softphone_theme_by_default": "(Default)",
+  "telephony_group_line_softphone_theme_by_default": "By default",
   "telephony_group_line_softphone_logo_title": "Add a logo",
   "telephony_group_line_softphone_logo_delete": "Restore Default Logo",
   "telephony_group_line_softphone_logo_format": "Accepted formats: {{format}} (Weight &lt; {{weight}} , native size: {{size}})",
   "telephony_group_line_softphone_save_logo": "You must restart the application for the logo to be active.",
-  "telephony_group_line_softphone_save_theme": "You must restart the application for the theme to be active."
+  "telephony_group_line_softphone_save_theme": "You must restart the application for the theme to be active.",
+  "telephony_group_billing_dashboard_suspended_info_link": "Click here to increase your security deposit."
 }

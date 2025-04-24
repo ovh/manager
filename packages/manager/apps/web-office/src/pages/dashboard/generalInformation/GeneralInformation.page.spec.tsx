@@ -7,7 +7,7 @@ import {
   licensesMock,
   licensesPrepaidExpandedMock,
   parentTenantMock,
-} from '@/data/api/_mock_';
+} from '@/data/api/__mocks__';
 import { getOfficeUsers } from '@/data/api/users';
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
 

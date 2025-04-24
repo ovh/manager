@@ -1,7 +1,10 @@
 import { describe, it, expect, vi } from 'vitest';
 import { renderHook, waitFor } from '@testing-library/react';
 import { useParams } from 'react-router-dom';
-import { mockOfficeLicenseServiceInfos, licensesMock } from '@/data/api/_mock_';
+import {
+  mockOfficeLicenseServiceInfos,
+  licensesMock,
+} from '@/data/api/__mocks__';
 import { useServiceInfos } from '../serviceInfos/useServiceInfos';
 import { wrapper } from '@/utils/test.provider';
 

@@ -4,7 +4,9 @@ const config: StorybookConfig = {
   stories: [
     '../src/**/*.stories.@(js|jsx|ts|tsx|mdx)',
     '../src/**/*.mdx',
-    '../src/docs/whatsnew/migration-guide/*.mdx',
+    '../src/docs/**/*.mdx',
+    './docs/**/*.mdx',
+    './docs/**/stories.tsx',
   ],
   addons: [
     '@storybook/addon-links',
@@ -22,6 +24,7 @@ const config: StorybookConfig = {
       },
     },
   },
+  staticDirs: ['../public/assets'],
   docs: {
     autodocs: true,
     defaultName: 'Technical information',
@@ -29,5 +32,15 @@ const config: StorybookConfig = {
   typescript: {
     reactDocgen: 'react-docgen-typescript', // Necessary for extracting TypeScript types
   },
+  managerHead: (head) => `
+    ${head}
+    <link rel="stylesheet" type="text/css" href="css/storybook.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="description" content="A collection of assets, guidelines and UI components for building consistent user experiences across OVHcloud products."/>
+  `,
+  previewHead: (head) => `
+    ${head}
+    <link rel="stylesheet" type="text/css" href="css/preview.css" />
+  `,
 };
 export default config;

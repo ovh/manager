@@ -1,14 +1,15 @@
 import React from 'react';
+import { vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import listingTranslation from '@translation/listing/Messages_fr_FR.json';
 import DeleteModal, { TERMINATE_TEXT } from './DeleteModal.component';
 import { fireEvent, render, waitFor, act } from '@/utils/test/test.provider';
-import { rancherMocked } from '@/_mock_/rancher';
+import { rancherMocked } from '@/__mocks__/rancher';
 
-const onDeleteMocked = jest.fn();
+const onDeleteMocked = vi.fn();
 
 afterEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 });
 
 const setupSpecTest = async () =>

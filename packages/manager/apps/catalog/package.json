@@ -24,7 +24,7 @@
     "@ovh-ux/manager-core-utils": "^0.3.0",
     "@ovh-ux/manager-react-components": "^1.41.1",
     "@ovh-ux/manager-react-core-application": "^0.11.19",
-    "@ovh-ux/manager-react-shell-client": "^0.8.5",
+    "@ovh-ux/manager-react-shell-client": "^0.8.7",
     "@ovh-ux/shell": "^4.4.0",
     "@ovhcloud/ods-common-core": "17.2.2",
     "@ovhcloud/ods-common-theming": "17.2.2",
@@ -48,7 +48,7 @@
     "@tanstack/react-query-devtools": "^5.51.21",
     "@vitejs/plugin-react": "^4.3.0",
     "@vitest/coverage-v8": "^2.1.9",
-    "vite": "^5.4.12",
+    "vite": "^5.4.18",
     "vitest": "^2.1.9"
   },
   "regions": [

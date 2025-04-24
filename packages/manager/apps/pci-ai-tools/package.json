@@ -24,7 +24,7 @@
   "dependencies": {
     "@ovh-ux/manager-config": "^8.2.1",
     "@ovh-ux/manager-core-api": "^0.11.0",
-    "@ovh-ux/manager-react-shell-client": "*",
+    "@ovh-ux/manager-react-shell-client": "^0.8.7",
     "@ovh-ux/request-tagger": "*",
     "@ovh-ux/shell": "^4.4.0",
     "@tanstack/react-query": "^5.51.21",
@@ -54,7 +54,7 @@
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.49",
     "typescript": "^5.3.3",
-    "vite": "4.3.1",
+    "vite": "4.5.13",
     "vitest": "^2.1.9"
   },
   "regions": [

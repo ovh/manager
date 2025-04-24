@@ -528,6 +528,7 @@ exports[`Show page > should display datagrid 1`] = `
                       </div>
                       <ods-popover
                         class="py-[8px] px-0 w-max"
+                        data-testid="navigation-action-trigger-action-popover"
                         trigger-id="navigation-action-trigger-undefined"
                         with-arrow="true"
                       >

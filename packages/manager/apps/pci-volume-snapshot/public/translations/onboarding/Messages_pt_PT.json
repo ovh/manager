@@ -1,10 +1,10 @@
 {
   "pci_projects_project_storages_snapshots_onboarding_content1": "Ainda não criou nenhuma snapshot de volumes.",
   "pci_projects_project_storages_snapshots_onboarding_content2": "Ative uma snapshot nos seus volumes Block Storage.",
-  "pci_projects_project_storages_snapshots_onboarding_content3": "As snapshots de volumes são imagens de volumes Block Storage. Permitem-lhe voltar atrás e cirar novos volumes com base neste elemento fixo. Assim, poderá consultar dados ou situações do passado.",
+  "pci_projects_project_storages_snapshots_onboarding_content3": "As snapshots de volumes são imagens de volumes Block Storage num instante t. Permitem-lhe voltar atrás e criar novos volumes com base neste elemento fixo. Assim, poderá consultar dados ou situações do passado.",
   "pci_projects_project_storages_snapshots_onboarding_content4": "Uma snapshot de volumes é armazenada no mesmo sítio que o volume de onde provém e também beneficia de tripla replicação.",
   "pci_projects_project_storages_snapshots_onboarding_content5": "Para criar uma snapshot de volume, é obrigatório dispor de, pelo menos, um volume.",
-  "pci_projects_project_storages_snapshots_onboarding_action_label": "Criar uma snpashot de volume",
+  "pci_projects_project_storages_snapshots_onboarding_action_label": "Criar uma snapshot de volume",
   "pci_projects_project_storages_snapshots_onboarding_guides_transfer-volume-backup_title": "Transferir a cópia de segurança de um volume de um datacenter para outro",
   "pci_projects_project_storages_snapshots_onboarding_guides_transfer-volume-backup_description": "Saiba como transferir uma cópia de segurança de volume de um datacenter para outro",
   "onboarding_guide_title": "Tutorial"

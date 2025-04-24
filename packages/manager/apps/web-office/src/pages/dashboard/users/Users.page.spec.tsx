@@ -6,7 +6,7 @@ import {
   licensesMock,
   licensesPrepaidExpandedMock,
   usersMock,
-} from '@/data/api/_mock_';
+} from '@/data/api/__mocks__';
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
 
 const hoistedMock = vi.hoisted(() => ({

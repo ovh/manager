@@ -32,7 +32,7 @@
     "@ovh-ux/manager-config": "^8.2.1",
     "@ovh-ux/manager-core-api": "^0.11.0",
     "@ovh-ux/manager-react-components": "^1.47.1",
-    "@ovh-ux/manager-react-shell-client": "^0.8.5",
+    "@ovh-ux/manager-react-shell-client": "^0.8.7",
     "@ovh-ux/manager-vite-config": "^0.9.3",
     "@ovh-ux/ovh-payment-method": "^0.5.1",
     "@ovh-ux/ovh-product-icons": "^0.10.0",
@@ -88,7 +88,7 @@
     "http-proxy-middleware": "^2.0.7",
     "msw": "^0.38.0",
     "rollup": "^2.7.8",
-    "vite": "^5.4.12"
+    "vite": "^5.4.18"
   },
   "peerDependencies": {
     "axios": "^1.1.2",
