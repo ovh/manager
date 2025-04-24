@@ -126,5 +126,6 @@
   "pagination_display": "Anzeigen",
   "user_modal_confirm": "Bestätigen",
   "user_modal_cancel": "Abbrechen",
-  "user_users_disabled": "Die Verbindung über lokale User ist durch die SSO-Einstellung deaktiviert."
+  "user_users_disabled": "Die Verbindung über lokale User ist durch die SSO-Einstellung deaktiviert.",
+  "user_users_type": "Typ"
 }

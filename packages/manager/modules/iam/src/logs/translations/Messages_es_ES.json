@@ -2,5 +2,7 @@
   "iam_logs_label": "Identity Logs",
   "iam_audit_logs_label": "Audit Logs",
   "iam_activity_logs_label": "Activity Logs",
-  "iam_access_policy_logs_label": "Logs de las políticas de acceso"
+  "iam_access_policy_logs_label": "Logs de las políticas de acceso",
+  "iam_audit_logs_description_default": "A continuación se muestran los logs en tiempo real de las acciones relacionadas con la seguridad de su cuenta de cliente: acción de inicio de sesión de los usuarios, cambio de contraseña, creación y modificación de usuarios y grupos de usuarios.",
+  "iam_access_policy_logs_description_default": "A continuación se muestran los logs en tiempo real de la evaluación de las políticas de acceso durante las acciones sobre los recursos de su cuenta."
 }
