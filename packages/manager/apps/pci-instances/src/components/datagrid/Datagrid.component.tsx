@@ -59,7 +59,7 @@ const DatagridComponent = ({
   onSortChange,
 }: TDatagridComponentProps) => {
   const pciUrl = usePciUrl();
-  const { t } = useTranslation(['list', 'common']);
+  const { t } = useTranslation(['list', 'common', 'actions']);
   const queryClient = useQueryClient();
   const projectId = useProjectId();
   const { translateMicroRegion } = useTranslatedMicroRegions();
@@ -68,6 +68,7 @@ const DatagridComponent = ({
     clearNotifications,
     notifications,
     addError,
+    addSuccess,
   } = useNotifications();
 
   const {
@@ -97,8 +98,16 @@ const DatagridComponent = ({
         projectId,
         instance: isDeleted ? deletedInstance : instance,
       });
+
+      if (!instance.pendingTask) {
+        addSuccess(
+          t(`actions:pci_instances_actions_instance_success_message`, {
+            name: instance.name,
+          }),
+        );
+      }
     },
-    [projectId, queryClient],
+    [projectId, queryClient, addSuccess, t],
   );
 
   const handlePollingError = useCallback(
