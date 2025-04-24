@@ -28,7 +28,6 @@ import { ActionsCell } from '@/pages/instances/datagrid/cell/ActionsCell.compone
 import { StatusCell } from '@/pages/instances/datagrid/cell/StatusCell.component';
 import { ListCell } from '@/pages/instances/datagrid/cell/ListCell.component';
 import { mapAddressesToListItems } from '@/pages/instances/mapper';
-import { Spinner } from '../spinner/Spinner.component';
 import { DeepReadonly } from '@/types/utils.type';
 import { TInstance } from '@/types/instance/entity.type';
 import {
@@ -52,6 +51,27 @@ type TDatagridComponentProps = DeepReadonly<{
   onSortChange: Dispatch<SetStateAction<TSorting>>;
 }>;
 
+const getPlaceHolderData = (count: number): TInstance[] =>
+  [...new Array(count)].map((_elt, index) => ({
+    id: String(index),
+    name: '',
+    flavorId: '',
+    flavorName: '',
+    status: {
+      label: 'ACTIVE',
+      severity: 'success',
+    },
+    region: '',
+    imageId: '',
+    imageName: '',
+    addresses: new Map(),
+    volumes: [],
+    pendingTask: false,
+    actions: new Map(),
+    availabilityZone: null,
+    taskState: null,
+  }));
+
 const DatagridComponent = ({
   sorting,
   filters,
@@ -72,7 +92,7 @@ const DatagridComponent = ({
   } = useNotifications();
 
   const {
-    data,
+    data = getPlaceHolderData(10),
     isLoading: instancesQueryLoading,
     fetchNextPage,
     hasNextPage,
@@ -137,7 +157,7 @@ const DatagridComponent = ({
       {
         id: 'name',
         cell: (instance) => (
-          <NameIdCell isLoading={isRefetching} instance={instance} />
+          <NameIdCell isLoading={instancesQueryLoading} instance={instance} />
         ),
         label: t('pci_instances_list_column_nameId'),
         isSortable: true,
@@ -150,7 +170,12 @@ const DatagridComponent = ({
             availabilityZone !== null
               ? availabilityZone
               : translateMicroRegion(instance.region);
-          return <TextCell isLoading={isRefetching} label={formattedRegion} />;
+          return (
+            <TextCell
+              isLoading={instancesQueryLoading}
+              label={formattedRegion}
+            />
+          );
         },
         label: t('pci_instances_list_column_region'),
         isSortable: false,
@@ -158,7 +183,10 @@ const DatagridComponent = ({
       {
         id: 'flavor',
         cell: (instance) => (
-          <TextCell isLoading={isRefetching} label={instance.flavorName} />
+          <TextCell
+            isLoading={instancesQueryLoading}
+            label={instance.flavorName}
+          />
         ),
         label: t('pci_instances_list_column_flavor'),
         isSortable: true,
@@ -166,7 +194,10 @@ const DatagridComponent = ({
       {
         id: 'image',
         cell: (instance) => (
-          <TextCell isLoading={isRefetching} label={instance.imageName} />
+          <TextCell
+            isLoading={instancesQueryLoading}
+            label={instance.imageName}
+          />
         ),
         label: t('pci_instances_list_column_image'),
         isSortable: true,
@@ -182,7 +213,7 @@ const DatagridComponent = ({
           ).map((i) => ({ ...i, href: `${pciUrl}/public-ips/floating-ips` }));
 
           const items = [...publicIps, ...floatingIps];
-          return <ListCell isLoading={isRefetching} items={items} />;
+          return <ListCell isLoading={instancesQueryLoading} items={items} />;
         },
         label: t('pci_instances_list_column_public_IPs'),
         isSortable: false,
@@ -191,7 +222,7 @@ const DatagridComponent = ({
         id: 'privateIPs',
         cell: (instance) => (
           <ListCell
-            isLoading={isRefetching}
+            isLoading={instancesQueryLoading}
             items={mapAddressesToListItems(instance.addresses.get('private'))}
           />
         ),
@@ -201,7 +232,10 @@ const DatagridComponent = ({
       {
         id: 'volumes',
         cell: (instance) => (
-          <ListCell isLoading={isRefetching} items={instance.volumes} />
+          <ListCell
+            isLoading={instancesQueryLoading}
+            items={instance.volumes}
+          />
         ),
         label: t('pci_instances_list_column_volumes'),
         isSortable: false,
@@ -214,7 +248,7 @@ const DatagridComponent = ({
 
           return (
             <StatusCell
-              isLoading={isRefetching}
+              isLoading={instancesQueryLoading}
               instance={instance}
               isPolling={isPolling}
             />
@@ -226,13 +260,13 @@ const DatagridComponent = ({
       {
         id: 'actions',
         cell: (instance) => (
-          <ActionsCell isLoading={isRefetching} instance={instance} />
+          <ActionsCell isLoading={instancesQueryLoading} instance={instance} />
         ),
         label: t('pci_instances_list_column_actions'),
         isSortable: false,
       },
     ],
-    [t, isRefetching, translateMicroRegion, pciUrl, pollingData],
+    [t, instancesQueryLoading, translateMicroRegion, pciUrl, pollingData],
   );
 
   const errorMessage = useMemo(
@@ -275,27 +309,23 @@ const DatagridComponent = ({
     if (isError) addError(errorMessage, true);
   }, [isError, addError, t, errorMessage]);
 
-  if (instancesQueryLoading) return <Spinner />;
-
   return (
     <div>
-      {data && (
-        <div className="mt-10">
-          <Datagrid
-            columns={datagridColumns}
-            hasNextPage={!isFetchingNextPage && !isRefetching && hasNextPage}
-            items={data}
-            onFetchNextPage={fetchNextPage}
-            totalItems={data.length}
-            sorting={sorting}
-            onSortChange={onSortChange}
-            manualSorting
-            className={
-              '[&_osds-table_table_thead_tr_th]:bg-[--ods-color-default-050]'
-            }
-          />
-        </div>
-      )}
+      <div className="mt-10">
+        <Datagrid
+          columns={datagridColumns}
+          hasNextPage={!isFetchingNextPage && !isRefetching && hasNextPage}
+          items={data}
+          onFetchNextPage={fetchNextPage}
+          totalItems={data.length}
+          sorting={sorting}
+          onSortChange={onSortChange}
+          manualSorting
+          className={
+            '[&_osds-table_table_thead_tr_th]:bg-[--ods-color-default-050]'
+          }
+        />
+      </div>
     </div>
   );
 };
