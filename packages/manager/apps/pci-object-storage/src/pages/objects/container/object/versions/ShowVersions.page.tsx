@@ -34,6 +34,7 @@ import { useStorage, useStorageEndpoint } from '@/api/hooks/useStorages';
 import '../show/style.scss';
 import { useServerContainerObjectVersions } from '@/api/hooks/useContainerObjectVersions';
 import { TContainer } from '../show/Show.page';
+import { useSortedObjects } from '../show/useSortedObjectsWithIndex';
 
 export default function ObjectPage() {
   const { storageId, objectName: encodedObjectName } = useParams();
@@ -134,36 +135,11 @@ export default function ObjectPage() {
 
   const [sortingDatagrid, setSortingDatagrid] = useState<ColumnSort>();
 
-  const containerObjectsWithIndex = useMemo(() => {
-    if (!objectsVersions || !container?.s3StorageType) return [];
-
-    const sortedObjects = [...objectsVersions];
-
-    if (sortingDatagrid) {
-      const { id, desc } = sortingDatagrid;
-      sortedObjects.sort((a, b) => {
-        if (a[id] == null) return desc ? -1 : 1;
-        if (b[id] == null) return desc ? 1 : -1;
-
-        if (id === 'lastModified') {
-          const dateA = new Date(a[id]).getTime();
-          const dateB = new Date(b[id]).getTime();
-          return desc ? dateB - dateA : dateA - dateB;
-        }
-
-        if (typeof a[id] === 'string' && typeof b[id] === 'string') {
-          return desc ? b[id].localeCompare(a[id]) : a[id].localeCompare(b[id]);
-        }
-
-        return desc ? b[id] - a[id] : a[id] - b[id];
-      });
-    }
-
-    return sortedObjects.map((object, index) => ({
-      ...object,
-      index: `${index}`,
-    }));
-  }, [objectsVersions, sortingDatagrid]);
+  const containerObjectsWithIndex = useSortedObjects(
+    objectsVersions,
+    sortingDatagrid,
+    container?.s3StorageType,
+  );
 
   const is = useMemo(
     () => ({
@@ -244,7 +220,7 @@ export default function ObjectPage() {
         <>
           {container?.s3StorageType &&
             (!isObjectsLoading ? (
-              <div className="mt-8" id="containerDataGrid">
+              <div className="mt-8 container-data-grid">
                 <Datagrid
                   columns={objectsColumns}
                   sorting={sortingDatagrid}

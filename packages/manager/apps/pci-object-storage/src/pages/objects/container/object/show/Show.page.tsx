@@ -74,6 +74,7 @@ import { TRegion } from '@/api/data/region';
 import { useServerContainerObjects } from '@/api/hooks/useContainerObjects';
 
 import './style.scss';
+import { useSortedObjects } from './useSortedObjectsWithIndex';
 
 export type TContainer = {
   id: string;
@@ -214,38 +215,15 @@ export default function ObjectPage() {
     }
   };
 
-  const [sortingDatagrid, setSortingDatagrid] = useState<ColumnSort>();
+  const [sortingDatagrid, setSortingDatagrid] = useState<ColumnSort | null>(
+    null,
+  );
 
-  const containerObjectsWithIndex = useMemo(() => {
-    if (!containerObjects || !container?.s3StorageType) return [];
-
-    const sortedObjects = [...containerObjects];
-
-    if (sortingDatagrid) {
-      const { id, desc } = sortingDatagrid;
-      sortedObjects.sort((a, b) => {
-        if (a[id] == null) return desc ? -1 : 1;
-        if (b[id] == null) return desc ? 1 : -1;
-
-        if (id === 'lastModified') {
-          const dateA = new Date(a[id]).getTime();
-          const dateB = new Date(b[id]).getTime();
-          return desc ? dateB - dateA : dateA - dateB;
-        }
-
-        if (typeof a[id] === 'string' && typeof b[id] === 'string') {
-          return desc ? b[id].localeCompare(a[id]) : a[id].localeCompare(b[id]);
-        }
-
-        return desc ? b[id] - a[id] : a[id] - b[id];
-      });
-    }
-
-    return sortedObjects.map((object, index) => ({
-      ...object,
-      index: `${index}`,
-    }));
-  }, [containerObjects, sortingDatagrid]);
+  const containerObjectsWithIndex = useSortedObjects(
+    containerObjects,
+    sortingDatagrid,
+    container?.s3StorageType,
+  );
 
   const shouldHideButton = useMemo(() => {
     return !container?.tags?.[BACKUP_KEY];
@@ -659,7 +637,7 @@ export default function ObjectPage() {
           </div>
 
           {container?.s3StorageType && (
-            <div className="mt-[32px]" id="containerDataGrid">
+            <div className="mt-[32px] container-data-grid">
               <OdsText preset="heading-4" className="mt-6 block">
                 {tContainer(
                   'pci_projects_project_storages_containers_container_objects',
