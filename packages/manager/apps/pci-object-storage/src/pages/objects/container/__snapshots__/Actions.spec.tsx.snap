@@ -19,6 +19,7 @@ exports[`Actions > Action sould displayed 1`] = `
   </div>
   <ods-popover
     class="py-[8px] px-0 w-max"
+    data-testid="navigation-action-trigger-action-popover"
     trigger-id="navigation-action-trigger-name-deploymentMode-region-s3"
     with-arrow="true"
   >
