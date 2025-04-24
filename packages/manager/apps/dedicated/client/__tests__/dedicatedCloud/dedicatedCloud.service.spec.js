@@ -1,12 +1,14 @@
+import { vi } from 'vitest';
 import { VCD_MIGRATION_STATUS } from '../../app/components/dedicated-cloud/dedicatedCloud.constant';
 import '../../../../../../components/ng-ovh-feature-flipping/src';
 import '../../app/components/dedicated-cloud/dedicatedCloud.service';
 
 describe('DedicatedCloud service test suites', () => {
+  global.angular = angular;
   let DedicatedCloud;
   let $httpBackend;
   const coreConfigSpy = {
-    getUser: jest.fn(),
+    getUser: vi.fn(),
   };
 
   beforeEach(() => {

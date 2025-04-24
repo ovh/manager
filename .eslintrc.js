@@ -93,7 +93,7 @@ module.exports = {
       },
     },
     {
-      files: ['*.spec.js', 'jest.config.js'],
+      files: ['*.spec.js'],
       env: {
         mocha: true,
         node: true,

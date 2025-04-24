@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import '../../../../../../../modules/nutanix/src/dashboard/nodes/list/module.js';
 import { CLUSTER_RESPONSE_MOCK } from './cluster.mock';
 import Cluster from '../../../../../../../modules/nutanix/src/cluster.class';
@@ -9,11 +10,11 @@ describe('ovhManagerNutanixAllNodes component tests suite', () => {
   let $rootScope;
 
   const mockCoreConfig = {
-    getUser: jest.fn().mockReturnValue({ ovhSubsidiary: 'FR' }),
+    getUser: vi.fn().mockReturnValue({ ovhSubsidiary: 'FR' }),
   };
 
   const mockNutanixNode = {
-    getNodeDetails: jest
+    getNodeDetails: vi
       .fn()
       .mockResolvedValue(CLUSTER_RESPONSE_MOCK.targetSpec.nodes[0]),
   };
@@ -55,15 +56,15 @@ describe('ovhManagerNutanixAllNodes component tests suite', () => {
       serviceName: 'serviceName',
       cluster,
       nodes: [node],
-      powerOnNode: jest.fn(),
-      goToAddNode: jest.fn(),
-      powerOffNode: jest.fn(),
-      installNode: jest.fn(),
-      reinstallNode: jest.fn(),
-      uninstallNode: jest.fn(),
-      terminateNode: jest.fn(),
-      handleSuccess: jest.fn(),
-      handleError: jest.fn(),
+      powerOnNode: vi.fn(),
+      goToAddNode: vi.fn(),
+      powerOffNode: vi.fn(),
+      installNode: vi.fn(),
+      reinstallNode: vi.fn(),
+      uninstallNode: vi.fn(),
+      terminateNode: vi.fn(),
+      handleSuccess: vi.fn(),
+      handleError: vi.fn(),
     });
   }
 
