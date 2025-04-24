@@ -1,4 +1,4 @@
-import { rancherMocked } from '@/_mock_/rancher';
+import { rancherMocked } from '@/__mocks__/rancher';
 import {
   extractDriversAndPlanFromSwitchPlanError,
   getLatestVersionAvailable,
@@ -8,7 +8,7 @@ import {
   getI18nextDriverError,
   sortVersions,
 } from './rancher';
-import { versionsMocked } from '@/_mock_/version';
+import { versionsMocked } from '@/__mocks__/version';
 import { RancherVersion } from '@/types/api.type';
 
 describe('Should validate rancher name', () => {

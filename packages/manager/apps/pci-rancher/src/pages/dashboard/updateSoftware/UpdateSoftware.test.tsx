@@ -3,8 +3,8 @@ import { vi } from 'vitest';
 import updateTranslation from '../../../../public/translations/updateSoftware/Messages_fr_FR.json';
 import { fireEvent, render, waitFor } from '@/utils/test/test.provider';
 
-import { versionsMocked } from '@/_mock_/version';
-import { rancherMocked } from '@/_mock_/rancher';
+import { versionsMocked } from '@/__mocks__/version';
+import { rancherMocked } from '@/__mocks__/rancher';
 
 import UpdateSoftware, {
   UpdateSoftwareProps,

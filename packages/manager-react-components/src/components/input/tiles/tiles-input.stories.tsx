@@ -7,7 +7,7 @@ import TilesInputComponent from './TilesInput.component';
 import {
   countries as allCountries,
   TCountry,
-} from '../../../_mock_/tiles-input';
+} from '../../../__mocks__/tiles-input';
 
 export default {
   title: 'Components/TilesInput',

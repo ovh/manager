@@ -15,5 +15,5 @@
     "declarationDir": "./dist/types",
     "jsx": "react-jsx"
   },
-  "exclude": ["node_modules", "dist", "types", "**/__tests__", "mock"]
+  "exclude": ["node_modules", "dist", "types", "**/__tests__", "__mocks__"]
 }
