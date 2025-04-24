@@ -126,5 +126,6 @@
   "pagination_display": "Mostrar",
   "user_modal_confirm": "Confirmar",
   "user_modal_cancel": "Cancelar",
-  "user_users_disabled": "La conexión a través de usuarios locales está desactivada por la configuración SSO."
+  "user_users_disabled": "La conexión a través de usuarios locales está desactivada por la configuración SSO.",
+  "user_users_type": "Tipo"
 }

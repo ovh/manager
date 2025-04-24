@@ -126,5 +126,6 @@
   "pagination_display": "Show",
   "user_modal_confirm": "Confirm",
   "user_modal_cancel": "Cancel",
-  "user_users_disabled": "Connection via local users is disabled by the SSO setting."
+  "user_users_disabled": "Connection via local users is disabled by the SSO setting.",
+  "user_users_type": "Type"
 }

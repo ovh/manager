@@ -126,5 +126,6 @@
   "pagination_display": "Wyświetl",
   "user_modal_confirm": "Zatwierdź",
   "user_modal_cancel": "Anuluj",
-  "user_users_disabled": "Logowanie przy użyciu lokalnych kont użytkowników jest wyłączone przez ustawienie SSO."
+  "user_users_disabled": "Logowanie przy użyciu lokalnych kont użytkowników jest wyłączone przez ustawienie SSO.",
+  "user_users_type": "Typ"
 }

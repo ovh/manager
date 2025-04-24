@@ -126,5 +126,6 @@
   "pagination_display": "Mostrar",
   "user_modal_confirm": "Validar",
   "user_modal_cancel": "Anular",
-  "user_users_disabled": "A ligação através dos utilizadores locais é desativada através da configuração SSO."
+  "user_users_disabled": "A ligação através dos utilizadores locais é desativada através da configuração SSO.",
+  "user_users_type": "Tipo"
 }
