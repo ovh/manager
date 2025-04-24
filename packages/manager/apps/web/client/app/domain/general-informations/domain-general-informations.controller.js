@@ -19,7 +19,9 @@ import {
   DNSSEC_STATUS,
   DOMAIN_SERVICE_STATES,
   DOMAIN_STATE_TYPE,
+  KYC_OPERATIONS,
   PROTECTION_TYPES,
+  SUSPENSION_STATES,
   TRACKING_DOMAIN,
 } from './general-information.constants';
 
@@ -114,6 +116,8 @@ export default class DomainTabGeneralInformationsCtrl {
     this.options = {};
     this.zoneActivationLink = this.$state.href('.zoneActivate');
     this.displayAllSubdomains = false;
+    this.hasProcedureInProgress = false;
+    this.isSuspended = false;
 
     this.loading = {
       allDom: false,
@@ -152,6 +156,14 @@ export default class DomainTabGeneralInformationsCtrl {
         },
       },
     };
+
+    this.ongoingOperationsLink = this.coreURLBuilder.buildURL(
+      'web-ongoing-operations',
+      '#/domain',
+      {
+        filter: `[{"field":"domain","comparator":"contains","reference":["${this.$stateParams.productId}"]}]`,
+      },
+    );
 
     forEach(
       [
@@ -194,6 +206,7 @@ export default class DomainTabGeneralInformationsCtrl {
     });
 
     this.updateVmStatus();
+    this.getResource(this.domain.name);
     this.getAllNameServer(this.domain.name);
     this.getHostingInfos(this.domain.name);
     this.getAssociatedHostingsSubdomains();
@@ -373,6 +386,23 @@ export default class DomainTabGeneralInformationsCtrl {
       .finally(() => {
         this.loading.hosting = false;
       });
+  }
+
+  getResource(serviceName) {
+    return this.Domain.getResource(serviceName).then((resource) => {
+      const kycOperations = [
+        KYC_OPERATIONS.CONTACT_CONTROL,
+        KYC_OPERATIONS.CONTACT_CONTROL_CORRECT,
+        KYC_OPERATIONS.DOMAIN_CONTACT_CONTROL,
+      ];
+
+      this.hasProcedureInProgress = resource.currentTasks.some((task) =>
+        kycOperations.includes(task.type),
+      );
+
+      this.isSuspended =
+        resource.currentState.suspensionState === SUSPENSION_STATES.SUSPENDED;
+    });
   }
 
   getAllNameServer(serviceName) {
