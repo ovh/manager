@@ -55,6 +55,19 @@ describe('useFilteredConsumption', () => {
     expect(result.current.flavorOptions).toEqual([
       { label: 'b3-8', value: 'b3-8', prefix: 'Instance' },
       { label: 'b3-16', value: 'b3-16', prefix: 'Instance' },
+      {
+        label: 'rancher.standard',
+        value: 'rancher.standard',
+        prefix: 'Rancher',
+      },
+      { label: 'b3-32', value: 'b3-32', prefix: 'Instance' },
+      { label: 'b3-64', value: 'b3-64', prefix: 'Instance' },
+      { label: 'c3-4', value: 'c3-4', prefix: 'Rancher' },
+      {
+        label: 'rancher.ovhcloud-edition',
+        value: 'rancher.ovhcloud-edition',
+        prefix: 'Rancher',
+      },
     ]);
   });
 
