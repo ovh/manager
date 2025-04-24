@@ -41,7 +41,6 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
   const fetchBetaAcknowledged = async () => {
     if (betaAcknowledged) return true;
 
-    if (!isUS) {
     return v6
       .get<boolean>(`/me/preferences/manager/${BETA_ACKNOWLEDGED_STORAGE_KEY}`)
       .then((response) => {
@@ -54,9 +53,6 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
         }
         throw error;
       });
-    }
-
-    return availability['pnr'];
   };
 
   const acknowledgeBeta = (value = true) => {
@@ -134,7 +130,11 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
 
       if (availability.pnr) {
         setBetaVersion(BETA_VERSION);
-        fetchBetaChoice();
+        if (isUS) {
+          fetchBetaChoice();
+        } else {
+          setUseBeta(true);
+        }
       }
     }
   }, [availability]);
@@ -171,6 +171,7 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
   const containerContext: ContainerContextType = {
     betaVersion,
     useBeta,
+    createBetaChoice,
     betaAcknowledged,
     acknowledgeBeta,
     isLivechatEnabled,
