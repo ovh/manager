@@ -224,6 +224,18 @@ export default class CloudConnectService {
                   },
                 )
                 .then((config) => {
+                  if (config.data.type === POP_TYPE_CONSTANT.L3) {
+                    return this.getBgpPopConfigStatus(
+                      cloudConnect.id,
+                      popConfigId,
+                    ).then((result) => {
+                      const newConfig = config.data;
+                      newConfig.bgpStatus = result.status;
+                      newConfig.lastUpdateBgpStatus = result.lastUpdate;
+                      cloudConnect.setPopConfiguration(newConfig);
+                      return config.data;
+                    });
+                  }
                   cloudConnect.setPopConfiguration(config.data);
                   return config.data;
                 });
@@ -272,7 +284,20 @@ export default class CloudConnectService {
               },
             )
             .then(({ data }) => {
-              return new CloudConnectInterface(data);
+              const cloudConnectInterface = new CloudConnectInterface(data);
+              if (!cloudConnect.isDirectService()) {
+                return cloudConnectInterface;
+              }
+
+              // Interface status is only available for Direct service
+              return this.getInterfaceStatus(cloudConnect.id, interfaceId).then(
+                (value) => {
+                  cloudConnectInterface.lastUpdateInterfaceStatus =
+                    value.lastUpdate;
+                  cloudConnectInterface.interfaceStatus = value.status;
+                  return cloudConnectInterface;
+                },
+              );
             });
         }),
       )
@@ -637,5 +662,33 @@ export default class CloudConnectService {
         subscriptions: [...notificationTypes],
       })
       .then(({ data }) => data);
+  }
+
+  getBgpPopConfigStatus(cloudConnectId, popId) {
+    return this.$http
+      .get(`/ovhCloudConnect/${cloudConnectId}/config/pop/${popId}/status`)
+      .then(({ data }) => data);
+  }
+
+  getInterfaceStatus(cloudConnectId, interfaceId) {
+    return this.$http
+      .get(`/ovhCloudConnect/${cloudConnectId}/interface/${interfaceId}/status`)
+      .then(({ data }) => data);
+  }
+
+  loadPopStatistics(cloudConnectId, pop, options) {
+    if (!pop) {
+      return [];
+    }
+    return this.$http
+      .get(
+        `/ovhCloudConnect/${cloudConnectId}/config/pop/${pop.id}/statistics`,
+        { params: options },
+      )
+      .then((statistics) => {
+        const stats = statistics.data || [];
+        return stats.map(({ timestamp, value }) => [timestamp * 1000, value]);
+      })
+      .catch(() => []);
   }
 }

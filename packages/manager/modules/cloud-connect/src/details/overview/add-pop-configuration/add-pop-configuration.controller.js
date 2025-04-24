@@ -51,14 +51,12 @@ export default class AddPopConfigurationCtrl {
           type: this.popType.id,
         });
         return this.goBack(
-          {
-            textHtml: this.$translate.instant(
-              'cloud_connect_pop_add_configuration_success',
-              {
-                tasksUrl: this.tasksHref,
-              },
-            ),
-          },
+          this.$translate.instant(
+            'cloud_connect_pop_add_configuration_success',
+            {
+              tasksUrl: this.tasksHref,
+            },
+          ),
           'success',
           false,
         ).then(() => {
