@@ -2169,7 +2169,12 @@ export default class ServerInstallationOvhCtrl {
         const newPartition = {
           fileSystem: partition.fileSystem,
           mountPoint: partition.mountPoint,
-          size: partition.size,
+          size:
+            this.$scope.installation.options.variablePartition &&
+            this.$scope.installation.options.variablePartition.mountPoint ===
+              partition.mountPoint
+              ? 0
+              : partition.size,
           raidLevel: partition.raidLevel,
           extras: {},
         };
@@ -2226,7 +2231,7 @@ export default class ServerInstallationOvhCtrl {
     } else {
       storage.partitioning.schemeName = this.$scope.installation.selectPartitionScheme;
     }
-    this.$scope.installation.storage.push(storage);
+    this.$scope.installation.storage = [storage];
   }
 
   install() {
