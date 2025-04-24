@@ -1,3 +1,5 @@
+import { TAddon } from '@ovh-ux/manager-pci-common';
+
 export type TVolumeType =
   | 'classic'
   | 'classic-BETA'
@@ -65,4 +67,60 @@ export type TVolume = {
 export type TVolumeBackup = TBackup & {
   volume?: TVolume | null;
   search: string;
+};
+
+export type TVolumePricing = {
+  price: number;
+  regions: TRegion['name'][];
+  showAvailabilityZones: boolean;
+  interval: 'day' | 'hour' | 'month' | 'none';
+  specs: TAddon['blobs']['technical'];
+  areIOPSDynamic: boolean;
+};
+
+export type TCatalogGroup = {
+  name: string;
+  tags: string[];
+};
+
+export type TVolumeCatalogFilter = {
+  [key in 'deployment' | 'region']: TCatalogGroup[];
+};
+
+export type TVolumeCatalogElementFilter = {
+  [Property in keyof TVolumeCatalogFilter]?: TVolumeCatalogFilter[Property][number]['name'][];
+};
+
+export type TRegion = {
+  name: string;
+  type: 'region-3-az' | 'region' | 'localzone';
+  availabilityZones: string[];
+  isInMaintenance: boolean;
+  isActivated: boolean;
+  country: string;
+  filters: TVolumeCatalogElementFilter;
+  datacenter: string;
+};
+
+export type TVolumeAddon = {
+  name: string;
+  tags: string[];
+  filters: TVolumeCatalogElementFilter;
+  pricings: TVolumePricing[];
+};
+
+export type TVolumeCatalog = {
+  filters: TVolumeCatalogFilter;
+  regions: TRegion[];
+  models: TVolumeAddon[];
+};
+
+export type TRegionQuota = {
+  region: string;
+  volume: {
+    maxGigabytes: number;
+    usedGigabytes: number;
+    volumeCount: number;
+    maxVolumeCount: number;
+  };
 };

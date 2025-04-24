@@ -1,0 +1,22 @@
+{
+  "pci_projects_project_storages_blocks_block_volume-edit_region_label": "Location",
+  "pci_projects_project_storages_blocks_block_volume-edit_type_label": "Volume type ",
+  "pci_projects_project_storages_blocks_block_volume-edit_name_label": "Volume name",
+  "pci_projects_project_storages_blocks_block_volume-edit_size_label": "Volume capacity",
+  "pci_projects_project_storages_blocks_block_volume-edit_size_help": "The maximum size depends on your available quota.",
+  "pci_projects_project_storages_blocks_block_volume-edit_size_unit": "GB",
+  "pci_projects_project_storages_blocks_block_volume-edit_bootable_label": "Bootable",
+  "pci_projects_project_storages_blocks_block_volume-edit_bootable_help": "By defining a volume as bootable, you can use the volume when your instance is booted.",
+  "pci_projects_project_storages_blocks_block_volume-edit_cancel_label": "Cancel",
+
+  "pci_project_flavors_zone_localzone": "Local Zone",
+  "pci_project_flavors_zone_localzone_tooltip": "A Local Zone is a method of deploying OVHcloud Public Cloud products in datacentres that are located as close as possible to the end users.",
+  "pci_project_flavors_zone_tooltip_link": "Find out more",
+  "pci_project_flavors_zone_global_region": "1-AZ",
+  "pci_project_flavors_zone_globalregions_tooltip": "A 1-AZ (availability zone) region groups together one or more datacentres located on the same site.",
+  "pci_project_flavors_zone_globalregions_tooltip_2": "With the arrival of the 3-AZ regions, the ‘Regions’ deployment type is changing its name! A 1-AZ (availability zone) region groups together one or more datacentres located on the same site.",
+  "pci_project_flavors_zone_3az_region": "3-AZ",
+  "pci_project_flavors_zone_3az_tooltip": "A 3-AZ region comprises three availability zones located in the same metropolitan area, separated by a few miles. It meets the highest resilience requirements while guaranteeing extremely low latency between AZs.",
+
+  "pci_projects_project_storages_blocks_add_submit_price_text": "Estimated amount: {{price}} ex. VAT/month"
+}
