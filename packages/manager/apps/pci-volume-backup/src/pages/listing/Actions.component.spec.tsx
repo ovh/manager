@@ -123,7 +123,7 @@ describe('Actions Component', () => {
         'href',
         './backup-123/create-volume',
       );
-      expect(menuItems[1]).toHaveAttribute('href', './delete');
+      expect(menuItems[1]).toHaveAttribute('href', './delete/backup-123');
     },
   );
 });
