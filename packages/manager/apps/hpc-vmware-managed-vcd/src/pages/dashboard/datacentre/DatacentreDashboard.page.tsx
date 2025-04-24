@@ -53,7 +53,7 @@ function DatacentreDashboardPage() {
     {
       name: 'vrack-segments',
       title: VRACK_LABEL,
-      to: useResolvedPath(subRoutes.vrackNetwork).pathname,
+      to: useResolvedPath(subRoutes.vrackSegments).pathname,
       trackingActions: TRACKING_TABS_ACTIONS.vrackNetwork,
     },
   ];

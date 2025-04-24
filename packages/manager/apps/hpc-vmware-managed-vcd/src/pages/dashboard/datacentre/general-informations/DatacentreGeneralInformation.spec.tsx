@@ -8,6 +8,8 @@ import {
   datacentreList,
   organizationList,
 } from '@ovh-ux/manager-module-vcd-api';
+import { vi } from 'vitest';
+
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {
@@ -16,7 +18,18 @@ import {
   mockSubmitNewValue,
   renderTest,
 } from '../../../../test-utils';
+
 import TEST_IDS from '../../../../utils/testIds.constants';
+
+vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
+  const original: typeof import('@ovh-ux/manager-react-shell-client') = await importOriginal();
+  return {
+    ...original,
+    useNavigationGetUrl: vi.fn(([basePath, pathWithId]) => ({
+      data: `${basePath}${pathWithId}`,
+    })),
+  };
+});
 
 describe('Datacentre General Information Page Updates', () => {
   it('display the datacentre dashboard general page', async () => {
