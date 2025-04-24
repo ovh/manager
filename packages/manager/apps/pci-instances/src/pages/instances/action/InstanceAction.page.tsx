@@ -3,6 +3,9 @@ import { FC, useCallback, useMemo } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { DefaultError } from '@tanstack/react-query';
+import { OsdsLink } from '@ovhcloud/ods-components/react';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { updateInstanceFromCache } from '@/data/hooks/instance/useInstances';
 import { usePathMatch } from '@/hooks/url/usePathMatch';
 import NotFound from '@/pages/404/NotFound.page';
@@ -25,7 +28,7 @@ const InstanceAction: FC = () => {
   const navigate = useNavigate();
   const projectId = useProjectId();
   const { instanceId } = useParams();
-  const { addError, addSuccess, addInfo } = useNotifications();
+  const { addError, addInfo } = useNotifications();
   const section = usePathMatch<TSectionType>(actionSectionRegex);
 
   const snakeCaseSection = useMemo(
@@ -75,12 +78,37 @@ const InstanceAction: FC = () => {
       );
     }
 
-    addSuccess(
-      t(`pci_instances_actions_${snakeCaseSection}_instance_success_message`, {
-        name: instance?.name,
-      }),
-      true,
-    );
+    if (section === 'shelve') {
+      addInfo(
+        <Trans
+          i18nKey={`pci_instances_actions_shelve_instance_success_message`}
+          values={{
+            name: instance?.name,
+          }}
+          ns="actions"
+          components={[
+            <OsdsLink
+              color={ODS_THEME_COLOR_INTENT.primary}
+              key="0"
+              href={
+                'https://help.ovhcloud.com/csm/fr-public-cloud-compute-shelve-pause-instance?id=kb_article_view&sysparm_article=KB0051278'
+              }
+              target={OdsHTMLAnchorElementTarget._blank}
+            />,
+          ]}
+        />,
+      );
+    } else {
+      addInfo(
+        t(
+          `pci_instances_actions_${snakeCaseSection}_instance_success_message`,
+          {
+            name: instance?.name,
+          },
+        ),
+        true,
+      );
+    }
 
     handleModalClose();
   };
