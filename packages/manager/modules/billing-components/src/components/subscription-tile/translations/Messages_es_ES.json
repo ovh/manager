@@ -1,9 +1,9 @@
 {
   "manager_billing_subscription": "Mi solución",
-  "manager_billing_subscription_creation": "Fecha de contratación",
+  "manager_billing_subscription_creation": "Fecha del contrato de compromiso",
   "manager_billing_subscription_next_due_date": "Próxima fecha de vencimiento",
   "manager_billing_subscription_engagement": "Compromiso",
-  "manager_billing_subscription_engagement_status_none": "Sin compromiso",
+  "manager_billing_subscription_engagement_status_none": "1 mes",
   "manager_billing_subscription_contacts": "Contactos",
   "manager_billing_subscription_contacts_admin": "Administrador",
   "manager_billing_subscription_contacts_tech": "Técnico",

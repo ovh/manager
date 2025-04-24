@@ -1,9 +1,9 @@
 {
   "manager_billing_subscription": "A minha oferta",
-  "manager_billing_subscription_creation": "Data de subscrição",
+  "manager_billing_subscription_creation": "Data de compromisso",
   "manager_billing_subscription_next_due_date": "Próxima data de vencimento",
   "manager_billing_subscription_engagement": "Compromisso",
-  "manager_billing_subscription_engagement_status_none": "Sem compromisso",
+  "manager_billing_subscription_engagement_status_none": "1 mês",
   "manager_billing_subscription_contacts": "Contactos",
   "manager_billing_subscription_contacts_admin": "Administrador",
   "manager_billing_subscription_contacts_tech": "Técnico",

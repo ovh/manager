@@ -1,9 +1,9 @@
 {
   "manager_billing_subscription": "Mein Angebot",
-  "manager_billing_subscription_creation": "Anmeldungsdatum",
+  "manager_billing_subscription_creation": "Datum des Vertragsbeginns",
   "manager_billing_subscription_next_due_date": "Nächstes Ablaufdatum",
   "manager_billing_subscription_engagement": "Verpflichtung",
-  "manager_billing_subscription_engagement_status_none": "Ohne Vertragsbindung",
+  "manager_billing_subscription_engagement_status_none": "1 Monat",
   "manager_billing_subscription_contacts": "Kontakte",
   "manager_billing_subscription_contacts_admin": "Administrator",
   "manager_billing_subscription_contacts_tech": "Technisch",
