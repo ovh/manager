@@ -9,6 +9,7 @@ import {
   PRICING_PREFIX,
   PRICING_SUFFIX,
 } from '@/configuration/pricing.constants';
+import { LocationRegion } from '@/pages/services/create/_components/OrderFunnel2.component';
 
 function updatePlanStorage(
   availability: database.Availability,
@@ -193,9 +194,28 @@ const mapRegion = (
   availability: database.Availability,
   capabilities: FullCapabilities,
   engineSuggestion: database.availability.Suggestion,
+  regions: LocationRegion[],
 ) => {
   let treeRegion = treePlan.regions.find((r) => r.name === availability.region);
   if (!treeRegion) {
+    // TODO: fetch api endpoint
+    const foundRegion = regions?.find((r) =>
+      [/* r.code, */ r.name].includes(availability.region/* .toLocaleLowerCase() */),
+    );
+    const getRegionType = (type: string) => {
+      switch (type) {
+        case 'LOCAL-ZONE':
+        case'REGION-1-AZ':
+        case 'REGION-3-AZ':
+          return type;
+        case 'localzone': return 'LOCAL-ZONE';
+        case 'region': return 'REGION-1-AZ';
+        case 'region-3-az': return 'REGION-3-AZ';
+        default: return '?';
+      }
+    }
+    const regionType = getRegionType(foundRegion?.type);
+
     const regionCapability = capabilities.regions.find(
       (r) => r.name === availability.region,
     );
@@ -204,6 +224,7 @@ const mapRegion = (
       default: engineSuggestion.region === availability.region,
       order: regionCapability.order,
       tags: regionCapability.tags,
+      type: regionType,
       flavors: [],
     };
     treePlan.regions.push(treeRegion);
@@ -337,6 +358,7 @@ export function createTree(
   capabilities: FullCapabilities,
   suggestions: database.availability.Suggestion[],
   catalog: order.publicOrder.Catalog,
+  regions?: LocationRegion[],
 ) {
   const tree = availabilities.reduce((acc, curr) => {
     const engineSuggestion = suggestions.find((s) => s.engine === curr.engine);
@@ -357,6 +379,7 @@ export function createTree(
       curr,
       capabilities,
       engineSuggestion,
+      regions,
     );
     // Map flavor
     const treeFlavor = mapFlavor(

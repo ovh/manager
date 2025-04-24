@@ -6,8 +6,9 @@ interface PriceProps {
   priceInUcents: number;
   taxInUcents: number;
   decimals: number;
+  className?: string;
 }
-const Price = ({ priceInUcents, taxInUcents, decimals = 2 }: PriceProps) => {
+const Price = ({ priceInUcents, taxInUcents, decimals = 2, className }: PriceProps) => {
   const { t } = useTranslation('pricing');
   const catalog = useGetCatalog();
   const locale = useLocale();
@@ -34,14 +35,14 @@ const Price = ({ priceInUcents, taxInUcents, decimals = 2 }: PriceProps) => {
     return formatter.format(value);
   };
   return (
-    <>
+    <div className={className}>
       <span data-testid="pricing-ht" className="font-bold">
         {t('pricing_ht', { price: formatPrice(price) })}
       </span>{' '}
       <span data-testid="pricing-ttc" className="text-xs">
         ({t('pricing_ttc', { price: formatPrice(priceWithTax) })})
       </span>
-    </>
+    </div>
   );
 };
 

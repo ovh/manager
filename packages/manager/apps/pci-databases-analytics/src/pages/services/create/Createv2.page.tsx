@@ -1,8 +1,12 @@
 import { useSearchParams, useParams } from 'react-router-dom';
 import { Trans, useTranslation } from 'react-i18next';
 import { Skeleton } from '@datatr-ux/uxlib';
+import { useQuery } from '@tanstack/react-query';
+import apiClient from '@ovh-ux/manager-core-api';
 import LegalMentions from '@/pages/_components/LegalMentions.component';
-import OrderFunnel2 from './_components/OrderFunnel2.component';
+import OrderFunnel2, {
+  LocationRegion,
+} from './_components/OrderFunnel2.component';
 import * as database from '@/types/cloud/project/database';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import OvhLink from '@/components/links/OvhLink.component';
@@ -40,11 +44,25 @@ const Service = () => {
     refetchOnWindowFocus: false,
   });
   const catalogQuery = useGetCatalog({ refetchOnWindowFocus: false });
+
+  const regionsQuery = useQuery({
+    queryKey: ['location'],
+    queryFn: () =>
+      // apiClient.v2.get('/location').then((res) => res.data as LocationRegion[]),
+    apiClient.v6.get(`/cloud/project/${projectId}/region`, {
+      headers: {
+        'X-Pagination-Mode': 'CachedObjectList-Pages',
+        'X-Pagination-Size': '50000',
+      },
+    }).then((res) => res.data as LocationRegion[]),
+  });
+
   const loading =
     availabilitiesQuery.isPending ||
     suggestionsQuery.isPending ||
     capabilitiesQuery.isPending ||
-    catalogQuery.isPending;
+    catalogQuery.isPending ||
+    regionsQuery.isPending;
 
   // if we have en engine set in query params, override suggestions
   const stepEngine = searchParams.get('STEP_1');
@@ -113,6 +131,7 @@ const Service = () => {
           capabilities={capabilitiesQuery.data}
           suggestions={suggestions}
           catalog={catalogQuery.data}
+          regions={regionsQuery.data}
         />
       )}
       <LegalMentions />

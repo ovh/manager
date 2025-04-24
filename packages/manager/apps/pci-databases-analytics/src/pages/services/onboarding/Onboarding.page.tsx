@@ -38,7 +38,7 @@ const Onboarding = () => {
       <Button data-testid="create-service-link" asChild>
         <Link
           onClick={() => track(TRACKING.onboarding.createDatabaseClick())}
-          to="../new"
+          to="../new2"
           className="hover:no-underline hover:text-primary-foreground"
         >
           {t('createServiceButton')}
