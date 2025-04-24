@@ -40,5 +40,6 @@
   "pci_projects_network_cidr": "Gültige IP-Adresse angeben",
   "pci_project_network_private_localisation": "Wählen Sie einen Standort aus.",
   "pci_projects_project_network_private_create_subnet": "Subnetz konfigurieren",
-  "pci_projects_project_network_private_gateway_options": "Netzwerk-Gateway-Optionen"
+  "pci_projects_project_network_private_gateway_options": "Netzwerk-Gateway-Optionen",
+  "pci_projects_project_network_private_3az_guide_description": "Wenn Sie mehr über die Spezifikationen der 3-AZ-Dienste und deren Verwendung zum Erstellen einer widerstandsfähigen Infrastruktur erfahren möchten, <Link>klicken Sie hier</Link>"
 }

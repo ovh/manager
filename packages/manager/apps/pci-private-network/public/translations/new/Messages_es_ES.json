@@ -40,5 +40,6 @@
   "pci_projects_network_cidr": "Introduzca una dirección IP válida",
   "pci_project_network_private_localisation": "Seleccione una localización",
   "pci_projects_project_network_private_create_subnet": "Configure su subred",
-  "pci_projects_project_network_private_gateway_options": "Opciones de puerta de enlace de red"
+  "pci_projects_project_network_private_gateway_options": "Opciones de puerta de enlace de red",
+  "pci_projects_project_network_private_3az_guide_description": "Para obtener más información sobre las especificaciones de los servicios 3-AZ y cómo utilizarlos para diseñar una infraestructura resiliente, <Link>haga clic aquí</Link>"
 }

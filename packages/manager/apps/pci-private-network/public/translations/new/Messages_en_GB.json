@@ -40,5 +40,6 @@
   "pci_projects_network_cidr": "Please enter a valid IP address",
   "pci_project_network_private_localisation": "Select a region",
   "pci_projects_project_network_private_create_subnet": "Configure your subnet",
-  "pci_projects_project_network_private_gateway_options": "Network gateway options"
+  "pci_projects_project_network_private_gateway_options": "Network gateway options",
+  "pci_projects_project_network_private_3az_guide_description": "To learn more about 3-AZ service specifications and how to use them to build a resilient infrastructure, <Link>click here</Link>"
 }
