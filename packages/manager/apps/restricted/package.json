@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-restricted-app",
-  "version": "0.11.6",
+  "version": "0.11.7",
   "private": true,
   "description": "OVHcloud Manager Restricted Access App.",
   "repository": {

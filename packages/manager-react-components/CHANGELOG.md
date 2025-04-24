@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.19.0...@ovh-ux/manager-react-components@2.20.0) (2025-04-24)
+
+### Bug Fixes
+
+- **manager-react-components:** target property ([#16574](https://github.com/ovh/manager/issues/16574)) ([6e5539f](https://github.com/ovh/manager/commit/6e5539f4edb30c211a14f7c8092f1c17792bb827)), closes [#MANAGER-17877](https://github.com/ovh/manager/issues/MANAGER-17877)
+
+### Features
+
+- **manager-react-components:** add position props to actionmenu component ([54d5b1c](https://github.com/ovh/manager/commit/54d5b1c7db56fcc2c28dcaeda3517a30be1d0d60)), closes [#MANAGER-17893](https://github.com/ovh/manager/issues/MANAGER-17893)
+- **manager-react-components:** add template for docuentation ([b260ba5](https://github.com/ovh/manager/commit/b260ba5de5f672a66e3aa60f1187b0f57454f74f)), closes [#MANAGER-16566](https://github.com/ovh/manager/issues/MANAGER-16566)
+- **manager-react-components:** update storybook to version 8.6 ([15f9dc0](https://github.com/ovh/manager/commit/15f9dc015805502d5783bf79c98eb101538af2aa)), closes [#MANAGER-16566](https://github.com/ovh/manager/issues/MANAGER-16566)
+- **mrc:** export modal component ([c1f7b60](https://github.com/ovh/manager/commit/c1f7b601dbaf76426ff645f347370e1c2854fe46))
+
 # [2.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.18.1...@ovh-ux/manager-react-components@2.19.0) (2025-04-17)
 
 ### Bug Fixes

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-key-management-service-app",
-  "version": "0.25.0",
+  "version": "0.25.1",
   "private": true,
   "description": "ovh key-management-service",
   "repository": {
@@ -20,13 +20,13 @@
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "@ovh-ux/logs-to-customer": "^1.2.1",
+    "@ovh-ux/logs-to-customer": "^1.2.2",
     "@ovh-ux/manager-config": "^8.2.1",
     "@ovh-ux/manager-core-api": "^0.11.0",
     "@ovh-ux/manager-core-utils": "*",
-    "@ovh-ux/manager-module-common-api": "^0.3.6",
-    "@ovh-ux/manager-module-order": "^0.9.6",
-    "@ovh-ux/manager-react-components": "^2.19.0",
+    "@ovh-ux/manager-module-common-api": "^0.3.7",
+    "@ovh-ux/manager-module-order": "^0.9.7",
+    "@ovh-ux/manager-react-components": "^2.20.0",
     "@ovh-ux/manager-react-core-application": "^0.11.19",
     "@ovh-ux/manager-react-shell-client": "^0.8.7",
     "@ovh-ux/request-tagger": "^0.4.0",
@@ -43,7 +43,7 @@
     "tailwindcss": "^3.4.4"
   },
   "devDependencies": {
-    "@ovh-ux/manager-core-test-utils": "^0.4.2",
+    "@ovh-ux/manager-core-test-utils": "^0.4.3",
     "@ovh-ux/manager-vite-config": "^0.9.3",
     "@tanstack/react-query-devtools": "^5.51.21",
     "@testing-library/jest-dom": "^6.6.3",

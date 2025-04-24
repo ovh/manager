@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-snapshot-app@0.1.2...@ovh-ux/manager-pci-volume-snapshot-app@0.1.3) (2025-04-24)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3889] ([3475eb9](https://github.com/ovh/manager/commit/3475eb9a4c16b4efdf870ccdc1fc2252e15178e2))
+* **i18n:** add missing translations [CDS 3903] ([ef76a26](https://github.com/ovh/manager/commit/ef76a26dfc5de9ca2511032eb9f0b37f1ef66b59))
+
+
+
+
+
 ## [0.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-snapshot-app@0.1.1...@ovh-ux/manager-pci-volume-snapshot-app@0.1.2) (2025-04-17)
 
 
