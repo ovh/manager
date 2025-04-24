@@ -9,12 +9,21 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { VCDDatacentre, VCDOrganization } from '@ovh-ux/manager-module-vcd-api';
 import { OdsText } from '@ovhcloud/ods-components/react';
-import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import {
+  useOvhTracking,
+  useNavigationGetUrl,
+} from '@ovh-ux/manager-react-shell-client';
 import { subRoutes } from '@/routes/routes.constant';
 import { iamActions } from '@/utils/iam.constants';
 import EditableTileItem from '../editable-tile-item/EditableTileItem.component';
+import {
+  VRACK_PATH,
+  DEDICATED_PATH,
+  VRACK_ONBOARDING_PATH,
+} from '../../../pages/listing/datacentres/Datacentres.constants';
+
 import { capitalize } from '@/utils/capitalize';
-import { ID_LABEL } from '@/pages/dashboard/dashboard.constants';
+import { ID_LABEL, VRACK_LABEL } from '@/pages/dashboard/dashboard.constants';
 import TEST_IDS from '@/utils/testIds.constants';
 import { TRACKING } from '@/tracking.constants';
 
@@ -31,6 +40,12 @@ export default function DatacentreGenerationInformationTile({
   const { t: tVdc } = useTranslation('datacentres');
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
+  const { data: urlVrack } = useNavigationGetUrl([
+    DEDICATED_PATH,
+    `/${VRACK_PATH}/${vcdDatacentre.currentState?.vRack ||
+      VRACK_ONBOARDING_PATH}`,
+    {},
+  ]);
 
   return (
     <DashboardTile
@@ -103,6 +118,20 @@ export default function DatacentreGenerationInformationTile({
               data-testid={TEST_IDS.dashboardDatacentreInterfaceLink}
               onClickReturn={() =>
                 trackClick(TRACKING.datacentreDashboard.goToVcdPortal)
+              }
+            />
+          ),
+        },
+        {
+          id: 'vRack',
+          label: VRACK_LABEL,
+          value: (
+            <Links
+              href={urlVrack as string}
+              type={LinkType.next}
+              label={
+                vcdDatacentre.currentState?.vRack ||
+                tVdc('managed_vcd_vdc_associate_vrack')
               }
             />
           ),
