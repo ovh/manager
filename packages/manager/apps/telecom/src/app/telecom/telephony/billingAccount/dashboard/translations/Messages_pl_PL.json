@@ -47,7 +47,7 @@
   "telephony_group_line_softphone_apply_logo_remove_success": "Twoje logo zostało usunięte.",
   "telephony_group_line_softphone_btn_apply_theme": "Zastosuj motyw",
   "telephony_group_line_softphone_save_theme_description": "Wszelkie zmiany wprowadzone na poziomie wierszy zastąpią motyw grupy.",
-  "telephony_group_line_softphone_theme_by_default": "(Domyślnie)",
+  "telephony_group_line_softphone_theme_by_default": "Domyślny",
   "telephony_group_line_softphone_logo_title": "Dodaj logo",
   "telephony_group_line_softphone_logo_delete": "Przywróć logo domyślne",
   "telephony_group_line_softphone_logo_format": "Akceptowane formaty: {{format}} (Waga &lt; {{weight}} , rozmiar natywny: {{size}})",

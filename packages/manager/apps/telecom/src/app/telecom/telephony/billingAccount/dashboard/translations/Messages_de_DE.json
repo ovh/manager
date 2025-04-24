@@ -47,7 +47,7 @@
   "telephony_group_line_softphone_apply_logo_remove_success": "Ihr Logo wurde gelöscht.",
   "telephony_group_line_softphone_btn_apply_theme": "Design übernehmen",
   "telephony_group_line_softphone_save_theme_description": "Alle auf Zeilenebene vorgenommenen Änderungen überschreiben das Gruppendesign.",
-  "telephony_group_line_softphone_theme_by_default": "(Standard)",
+  "telephony_group_line_softphone_theme_by_default": "Standard",
   "telephony_group_line_softphone_logo_title": "Logo hinzufügen",
   "telephony_group_line_softphone_logo_delete": "Standardlogo wiederherstellen",
   "telephony_group_line_softphone_logo_format": "Zulässige Formate: {{format}} (Gewicht &lt; {{weight}} , native Größe: {{size}})",

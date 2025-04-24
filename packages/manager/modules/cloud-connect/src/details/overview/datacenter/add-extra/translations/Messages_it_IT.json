@@ -15,7 +15,7 @@
   "cloud_connect_datacenter_add_routing_success": "Aggiunta di una configurazione di routing in corso... <a href=\"{{ tasksUrl }}\">Clicca qui per visualizzare lo stato.</a>",
   "cloud_connect_datacenter_add_routing_bgp_area_placeholder": "ASN del cliente",
   "cloud_connect_datacenter_add_routing_bgp_ip_popover": "Indirizzo IP del Neighbor BGP del tuo router nella zona di disponibilità. Questo indirizzo deve far parte della sottorete configurata nella sezione \"Configurazione AZ\"",
-  "cloud_connect_datacenter_add_routing_ip_help_message": "Indirizzo IPv4 appartenente alla zona di disponibilità.",
+  "cloud_connect_datacenter_add_routing_ip_help_message": "Indirizzo IPv4 appartenente alle zone di disponibilità.",
   "cloud_connect_datacenter_add_routing_ip_invalid_message": "Inserisci un blocco IPv4 valido.",
   "cloud_connect_datacenter_add_routing_asn_helper": "Numero positivo non nullo e diverso da 65501",
   "cloud_connect_datacenter_add_routing_asn_popover": "Il tuo numero di AS BGP, configurato sul tuo router situato nella zona di disponibilità.",

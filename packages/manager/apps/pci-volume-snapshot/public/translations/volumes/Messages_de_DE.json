@@ -1,5 +1,5 @@
 {
-  "pci_projects_project_storages_snapshots_title": "Volume-Snapshot",
+  "pci_projects_project_storages_snapshots_title": "Volume Snapshot",
   "pci_projects_project_storages_snapshots_name_label": "Name",
   "pci_projects_project_storages_snapshots_region_label": "Standort",
   "pci_projects_project_storages_snapshots_volume_label": "Volume",
@@ -11,7 +11,7 @@
   "pci_projects_project_storages_snapshots_status_CREATING": "Wird erstellt",
   "pci_projects_project_storages_snapshots_status_DELETING": "Wird gelöscht",
   "pci_projects_project_storages_snapshots_status_ERROR": "Fehler",
-  "pci_projects_project_storages_snapshots_add_label": "Volume-Snapshot erstellen",
+  "pci_projects_project_storages_snapshots_add_label": "Volume Snapshot erstellen",
   "pci_projects_project_storages_snapshots_create_volume_label": "Volume erstellen",
   "pci_projects_project_storages_snapshots_delete_label": "Löschen",
   "pci_projects_project_storages_snapshots_id_label": "ID"

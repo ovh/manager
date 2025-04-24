@@ -50,7 +50,7 @@
   "telephony_line_softphone_delete_device_success": "Il dispositivo è stato eliminato correttamente.",
   "telephony_line_softphone_delete_all_devices_success": "Dispositivi disconnessi correttamente.",
   "telephony_line_softphone_download_link": "Link di download",
-  "telephony_line_softphone_button_save": "Salva",
+  "telephony_line_softphone_button_save": "Registra",
   "telephony_line_softphone_theme_title": "Applica tema",
   "telephony_line_softphone_logo_format": "Formati accettati: {{format}} (Peso &lt; {{weight}}, dimensione nativa: {{size}})",
   "telephony_line_softphone_logo_image": "Logo Softphone",

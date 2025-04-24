@@ -125,12 +125,12 @@
   "wizard_confirm": "Bestätigen",
   "domain_operations_update_key_authinfo": "AuthInfo",
   "domain_operations_update_key_authInfo": "AuthInfo",
-  "domain_operations_nicOperation_DnssecEnable": "DNSSEC Aktivierung",
-  "domain_operations_nicOperation_ZoneCut": "Delegation der DNS Zone",
-  "domain_operations_nicOperation_ZoneDelete": "Löschung der DNS Zone",
+  "domain_operations_nicOperation_DnssecEnable": "Aktivierung von DNSSEC",
+  "domain_operations_nicOperation_ZoneCut": "Delegierung der DNS-Zone",
+  "domain_operations_nicOperation_ZoneDelete": "Löschung der DNS-Zone",
   "domain_operations_nicOperation_Zonerestore": "Wiederherstellung der DNS Zone",
-  "domain_operations_update_key_legitimacyAfnic": "Berechtigung zur Verwendung des Domainnamens",
-  "domain_operations_update_contact_administrator": "Wenden Sie sich an den Administrator, um dieses Problem zu beheben.",
-  "domain_operations_nicOperation_ZoneRestore": "Wiederherstellung der DNS Zone",
-  "wizard_close": "Schliessen"
+  "domain_operations_update_key_legitimacyAfnic": "Verwendung des Domainnamens rechtfertigen",
+  "domain_operations_update_contact_administrator": "Wenden Sie sich an Ihren Administrator, um dieses Problem zu beheben.",
+  "domain_operations_nicOperation_ZoneRestore": "Wiederherstellung der DNS-Zone",
+  "wizard_close": "Schließen"
 }

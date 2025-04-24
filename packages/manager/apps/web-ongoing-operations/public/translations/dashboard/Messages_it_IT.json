@@ -130,7 +130,7 @@
   "domain_operations_nicOperation_ZoneDelete": "Eliminazione della zona DNS",
   "domain_operations_nicOperation_Zonerestore": "Ripristino della zona DNS",
   "domain_operations_update_key_legitimacyAfnic": "Giustificare l'uso del dominio",
-  "domain_operations_update_contact_administrator": "Contattare l'amministratore per risolvere il problema.",
+  "domain_operations_update_contact_administrator": "Contattare il tuo amministratore per risolvere il problema.",
   "domain_operations_nicOperation_ZoneRestore": "Ripristino della zona DNS",
   "wizard_close": "Chiudere"
 }

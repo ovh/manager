@@ -47,7 +47,7 @@
   "telephony_group_line_softphone_apply_logo_remove_success": "O logótipo foi eliminado com êxito.",
   "telephony_group_line_softphone_btn_apply_theme": "Aplicar um tema",
   "telephony_group_line_softphone_save_theme_description": "Todas as alterações feitas ao nível das linhas substituirão o tema do grupo.",
-  "telephony_group_line_softphone_theme_by_default": "(Predefinição)",
+  "telephony_group_line_softphone_theme_by_default": "Predefinido",
   "telephony_group_line_softphone_logo_title": "Adicionar um logótipo",
   "telephony_group_line_softphone_logo_delete": "Restaurar logótipo predefinido",
   "telephony_group_line_softphone_logo_format": "Formatos aceites: {{format}} (Peso &lt; {{weight}}, tamanho nativo: {{size}})",

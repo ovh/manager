@@ -777,7 +777,7 @@
   "ip_table_ipblock_under_division": "Wird geteilt",
   "ip_guide_title": "Anleitung",
   "ip_guide_link_additional_ip": "Eine Additional IP konfigurieren",
-  "ip_guide_link_ip_alias": "Konfiguration der IP-Adresse als Alias",
+  "ip_guide_link_ip_alias": "Eine IP-Adresse als Alias konfigurieren",
   "ip_guide_link_ip_proxmox": "Eine Additional IP auf Proxmox VE konfigurieren",
-  "ip_guide_link_floating_ip": "Konzepte - Additional IP oder Floating IP bei der Public Cloud"
+  "ip_guide_link_floating_ip": "Konzepte – Additional IP oder Floating IP mit der Public Cloud"
 }

@@ -3,6 +3,6 @@
   "pci_projects_project_storages_snapshots_snapshot_delete_submit_label": "Confirm",
   "pci_projects_project_storages_snapshots_snapshot_delete_cancel_label": "Cancel",
   "pci_projects_project_storages_snapshots_snapshot_delete_content": "Permanently delete the {{ snapshot }} snapshot",
-  "pci_projects_project_storages_snapshots_snapshot_delete_success_message": "The {{ snapshot }} snapshot is being deleted",
+  "pci_projects_project_storages_snapshots_snapshot_delete_success_message": "Deleting {{ snapshot }} snapshot...",
   "pci_projects_project_storages_snapshots_snapshot_delete_error_delete": "An error has occurred deleting the {{ snapshot }} snapshot: {{ message }}."
 }
