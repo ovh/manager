@@ -22,10 +22,19 @@ export const useUsers = () => {
       : () =>
           getOfficePrepaidLicenses(serviceName).then((data) => {
             const [tenant] = serviceName.split('-');
-            return Promise.all(
+            return Promise.allSettled(
               data
                 .filter((license) => license.includes(tenant))
                 .map((license) => getOfficePrepaidLicenseDetails(license)),
+            ).then((results) =>
+              results
+                .filter(
+                  (result) =>
+                    result.status === 'fulfilled' &&
+                    result.value !== null &&
+                    result.value !== undefined,
+                )
+                .map((result) => (result as PromiseFulfilledResult<any>).value),
             );
           }),
     enabled: !!serviceName,
