@@ -3,6 +3,7 @@ import { FC, useContext, useMemo } from 'react';
 import { Trans } from 'react-i18next';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import ActionModal from '@/components/actionModal/ActionModal.component';
@@ -71,6 +72,7 @@ const BillingMonthlyActionPage: FC<TBillingMonthlyActionPageProps> = ({
               color={ODS_THEME_COLOR_INTENT.primary}
               href={pricingHref}
               dir="ltr"
+              target={OdsHTMLAnchorElementTarget._blank}
             />,
           ]}
         />
