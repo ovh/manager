@@ -5,17 +5,17 @@ import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { useNichandle } from '@/hooks/nichandle/useNichandle';
 
-interface MeComponentProps {
+interface UpdateMeComponentProps {
   readonly argumentKey: string;
   readonly value: string;
   readonly fields: string[];
 }
 
-export default function MeComponent({
+export default function UpdateMeComponent({
   argumentKey,
   value,
   fields,
-}: MeComponentProps) {
+}: UpdateMeComponentProps) {
   const { t } = useTranslation('dashboard');
   const { data: url } = useNavigationGetUrl(['new-account', '', {}]);
   const { nichandle } = useNichandle();
@@ -42,8 +42,7 @@ export default function MeComponent({
         href={`${url}/useraccount/infos`}
         color="primary"
         label={t(`domain_operations_update_${argumentKey}_click`)}
-        className="block modal-link"
-        target="_blank"
+        className="block"
         icon="external-link"
         isDisabled={!url}
       />
