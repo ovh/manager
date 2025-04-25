@@ -383,19 +383,18 @@ export default function Websites() {
               iconAlignment={ODS_LINK_ICON_ALIGNMENT.right}
               data-testid="websites-page-order-button"
             />
-            <div id="export-popover-trigger" className="w-min">
-              <OdsButton
-                label={t('web_hosting_export_action_label')}
-                variant={ODS_BUTTON_VARIANT.outline}
-                onClick={handleExportPopoverToggle}
-                data-testid="websites-page-export-button"
-                icon={
-                  isExportPopoverOpen
-                    ? ODS_ICON_NAME.chevronUp
-                    : ODS_ICON_NAME.chevronDown
-                }
-              />
-            </div>
+            <OdsButton
+              id="export-popover-trigger"
+              label={t('web_hosting_export_action_label')}
+              variant={ODS_BUTTON_VARIANT.outline}
+              onClick={handleExportPopoverToggle}
+              data-testid="websites-page-export-button"
+              icon={
+                isExportPopoverOpen
+                  ? ODS_ICON_NAME.chevronUp
+                  : ODS_ICON_NAME.chevronDown
+              }
+            />
 
             <OdsPopover
               className="py-[8px] px-0 w-max"
