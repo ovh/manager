@@ -17,6 +17,7 @@ import failover from './failover';
 import onboarding from './onboarding';
 
 import routing from './ip.routing';
+import { deleteModal } from '../../../../../modules/manager-components/src';
 
 const moduleName = 'Ip';
 
@@ -35,6 +36,7 @@ angular
     byoip,
     failover,
     onboarding,
+    deleteModal,
   ])
   .config(routing)
   .filter('availableIpText', availableTextFilter)

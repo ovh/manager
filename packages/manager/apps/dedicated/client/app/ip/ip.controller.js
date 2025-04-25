@@ -64,6 +64,18 @@ export default /* @ngInject */ function IpMainCtrl(
     url: GUIDE_LINKS[key][ovhSubsidiary] || GUIDE_LINKS[key].DEFAULT,
   }));
 
+  $scope.onClose = () => {
+    console.log('on close');
+    $scope.isOpenModal = false;
+  };
+  $scope.onConfirm = () => {
+    console.log('on confirm');
+    $scope.isOpenModal = false;
+  };
+  $scope.isOpenModal = false;
+
+  // ip/block/delete/ip-ip-block-delete
+
   // ---
 
   $scope.resetAction = function resetAction() {
@@ -78,11 +90,15 @@ export default /* @ngInject */ function IpMainCtrl(
     $scope.currentAction = action;
     $scope.currentActionData = data;
     if ($scope.currentAction) {
-      $scope.stepPath = `${$scope.currentAction}.html`;
-      $('#currentAction').modal({
-        keyboard: false,
-        backdrop: 'static',
-      });
+      if ($scope.currentAction === 'ip/block/delete/ip-ip-block-delete') {
+        $scope.isOpenModal = true;
+      } else {
+        $scope.stepPath = `${$scope.currentAction}.html`;
+        $('#currentAction').modal({
+          keyboard: false,
+          backdrop: 'static',
+        });
+      }
     } else {
       $('#currentAction').modal('hide');
       $timeout(() => {
