@@ -20,18 +20,24 @@ import {
   OdsButton,
 } from '@ovhcloud/ods-components/react';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useGetMeModels } from '@/data/hooks/organisation/useGetMeModels';
 import { useGetSingleOrganisationDetail } from '@/data/hooks/organisation';
-import { postorputOrganisations, OrgDetails } from '@/data/api';
+import {
+  postorputOrganisations,
+  getOrganisationListQueryKey,
+  getOrganisationsDetailsQueryKey,
+  OrgDetails,
+} from '@/data/api';
 import Loading from '../components/Loading/Loading';
 import '../../../../index.scss';
 
 export const OpenOrganisationsModal: React.FC<{ isOpen: boolean }> = ({
   isOpen = true,
 }) => {
+  const queryClient = useQueryClient();
   const [registry, setRegistry] = useState([]);
   const [countrylist, setCountrylist] = useState([]);
   const { t, t: tcommon } = useTranslation([
@@ -94,6 +100,16 @@ export const OpenOrganisationsModal: React.FC<{ isOpen: boolean }> = ({
         </OdsText>,
         true,
       );
+      queryClient.invalidateQueries({
+        queryKey: getOrganisationListQueryKey(),
+      });
+      if (isEditMode) {
+        queryClient.invalidateQueries({
+          queryKey: getOrganisationsDetailsQueryKey({
+            organisationId,
+          }),
+        });
+      }
       navigate('..');
     },
     onError: (error: ApiError) => {
