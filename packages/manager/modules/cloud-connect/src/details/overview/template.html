@@ -439,10 +439,6 @@
                                         <span
                                             data-translate="cloud_connect_pop_diagnostic_link"
                                         ></span>
-                                        <span
-                                            aria-hidden="true"
-                                            class="oui-icon oui-icon-arrow-right align-middle d-inline-block"
-                                        ></span>
                                     </a>
                                 </div>
                             </oui-tile-description>
@@ -518,9 +514,23 @@
                 class="col-sm-12 col-md-5 m-2"
                 data-ng-repeat="(configurationGroups, configurations) in $ctrl.cloudConnect.datacenterConfigurationsGroups"
             >
-                <h4
-                    data-ng-bind="('cloud_connect_region_' + configurations[0].region | translate) + ' ' + ('cloud_connect_region_type' | translate)+ ' ' + configurations[0].regionType"
-                ></h4>
+                <h4>
+                    <span
+                        data-translate="{{'cloud_connect_region_' + configurations[0].region}}"
+                    ></span>
+                    <span
+                        class="oui-badge"
+                        data-ng-class="{
+                        'oui-badge_info': configurations[0].regionType === $ctrl.REGION_TYPE['1AZ'],
+                        'oui-badge_best-seller':  configurations[0].regionType === $ctrl.REGION_TYPE['3AZ']
+                    }"
+                    >
+                        <span
+                            data-translate="cloud_connect_region_AZ_type"
+                            data-translate-values="{regionType: configurations[0].regionType}"
+                        ></span>
+                    </span>
+                </h4>
                 <div
                     class="oui-tile datacenter-configuration mb-2"
                     data-ng-repeat="configuration in configurations track by configuration.id"
