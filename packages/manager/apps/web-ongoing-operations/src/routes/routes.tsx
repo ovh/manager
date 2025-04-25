@@ -54,9 +54,9 @@ export const Routes = [
         ...lazyRouteConfig(() => import('@/pages/tracking/Tracking')),
       },
       {
-        id: 'upload',
-        path: urls.upload,
-        ...lazyRouteConfig(() => import('@/pages/upload/Upload')),
+        id: 'action',
+        path: urls.update,
+        ...lazyRouteConfig(() => import('@/pages/update/Update')),
       },
       {
         id: '404',
