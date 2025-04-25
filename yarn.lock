@@ -10769,11 +10769,11 @@
     tinyspy "^3.0.2"
 
 "@vitest/ui@^1.4.0":
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/@vitest/ui/-/ui-1.6.0.tgz#ffcc97ebcceca7fec840c29ab68632d0cd01db93"
-  integrity sha512-k3Lyo+ONLOgylctiGovRKy7V4+dIN2yxstX3eY5cWFXH6WP+ooVX79YSyi0GagdTQzLmT43BF27T0s6dOIPBXA==
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/@vitest/ui/-/ui-1.6.1.tgz#e94c42af392ddb47531b2401d8871bc246f1947e"
+  integrity sha512-xa57bCPGuzEFqGjPs3vVLyqareG8DX0uMkr5U/v5vLv5/ZUrBrPL7gzxzTJedEyZxFMfsozwTIbbYfEQVo3kgg==
   dependencies:
-    "@vitest/utils" "1.6.0"
+    "@vitest/utils" "1.6.1"
     fast-glob "^3.3.2"
     fflate "^0.8.1"
     flatted "^3.2.9"
@@ -10793,16 +10793,6 @@
     sirv "^3.0.0"
     tinyglobby "^0.2.10"
     tinyrainbow "^1.2.0"
-
-"@vitest/utils@1.6.0":
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/@vitest/utils/-/utils-1.6.0.tgz#5c5675ca7d6f546a7b4337de9ae882e6c57896a1"
-  integrity sha512-21cPiuGMoMZwiOHa2i4LXkMkMkCGzA+MVFV70jRwHo95dL4x/ts5GZhML1QWuy7yfp3WzK3lRvZi3JnXTYqrBw==
-  dependencies:
-    diff-sequences "^29.6.3"
-    estree-walker "^3.0.3"
-    loupe "^2.3.7"
-    pretty-format "^29.7.0"
 
 "@vitest/utils@1.6.1":
   version "1.6.1"
@@ -15363,7 +15353,7 @@ element-internals-polyfill@^1.3.12:
   resolved "https://registry.yarnpkg.com/element-internals-polyfill/-/element-internals-polyfill-1.3.12.tgz#4a9464a15f2d50a36c7e21e0c40aeed30fb8efb0"
   integrity sha512-KW1k+cMGwXlx3X9nqhgmuElAfR/c/ccFt0pG4KpwK++Mx9Y+mPExxJW+jgQnqux/NQrJejgOxxg4Naf3f6y67Q==
 
-element-internals-polyfill@^3.0.0:
+element-internals-polyfill@^3.0.0, element-internals-polyfill@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/element-internals-polyfill/-/element-internals-polyfill-3.0.1.tgz#46e69c38c87313d9863fa4ec949517c26ca3beb5"
   integrity sha512-gHt0mrRy/y7VIymHIcq1U/IZOci3Z8qUy/YyMBSoSIfMHqO4v6Sm6igGpoFeljroo0Q2wjkInUafB79M6WAocQ==

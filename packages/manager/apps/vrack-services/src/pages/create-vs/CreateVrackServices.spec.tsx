@@ -1,71 +1,60 @@
 import { describe, it } from 'vitest';
-import '@testing-library/jest-dom';
+import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
+import { screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import {
   assertModalText,
+  labels,
+  renderTest,
   assertModalVisibility,
-  assertTextVisibility,
   getButtonByLabel,
-} from '@ovh-ux/manager-core-test-utils';
-import { screen, waitFor, act, fireEvent } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { assertModalTitle, labels, renderTest } from '../../test-utils';
+  assertDisabled,
+  assertEnabled,
+} from '@/test-utils';
 import { urls } from '@/routes/routes.constants';
 
 describe('Vrack Services create page test suite', () => {
   it('should display the create form with regions', async () => {
-    const user = userEvent.setup();
-
     const { container } = await renderTest({
-      initialRoute: '/create',
+      initialRoute: urls.createVrackServices,
       nbVs: 1,
     });
 
-    await waitFor(() => {
-      expect(screen.getAllByText(labels.create.createPageTitle).length).toBe(2);
-    });
-
-    await getButtonByLabel({
-      container,
-      label: labels.create.createButtonLabel,
-      disabled: true,
-    });
-
-    const regionRadio = await waitFor(() => {
-      const regionRadioInput = screen.getByText('eu-west-rbx');
-      expect(regionRadioInput).toBeDefined();
-      return regionRadioInput;
-    });
-
-    await waitFor(() => user.click(regionRadio));
-
-    await waitFor(() => {
-      expect(regionRadio.closest('osds-radio')).toHaveAttribute('checked');
-    });
+    await assertTextVisibility(labels.create.regionDescription);
+    await assertTextVisibility(
+      labels.regionSelector['region-selector-city-name_eu-west-rbx'],
+    );
 
     const submitButton = await getButtonByLabel({
       container,
-      label: labels.create.createButtonLabel,
-      disabled: false,
+      value: labels.create.createButtonLabel,
     });
+    await assertDisabled(submitButton);
 
-    await act(() => {
-      user.click(submitButton);
-    });
+    await waitFor(() =>
+      userEvent.click(
+        screen.getByText(
+          labels.regionSelector['region-selector-city-name_eu-west-rbx'],
+        ),
+      ),
+    );
+
+    await assertEnabled(submitButton);
+    await waitFor(() => userEvent.click(submitButton));
 
     await assertModalVisibility({ container, isVisible: true });
-    await assertModalTitle({ container, title: labels.create.modalHeadline });
+    await assertModalText({
+      container,
+      text: labels.create.modalDescriptionLine1,
+    });
   });
 
   it('should redirect to listing page if user has no right to order vrs', async () => {
     await renderTest({
-      initialRoute: '/create',
+      initialRoute: urls.createVrackServices,
       isVrackServicesOrderFeatureUnavailable: true,
       isFeatureAvailabilityServiceKo: false,
       nbVs: 1,
-    });
-
-    await waitFor(() => {
-      expect(screen.getAllByText(labels.create.createPageTitle).length).toBe(2);
     });
 
     await assertTextVisibility(labels.listing.listingDescription);
@@ -77,12 +66,11 @@ describe('Vrack Services create page test suite', () => {
       nbVs: 1,
     });
 
-    const createvrackButton = await getButtonByLabel({
+    const createVrackButton = await getButtonByLabel({
       container,
-      label: labels.create.modalConfirmVrackButtonLabel,
+      value: labels.create.modalConfirmVrackButtonLabel,
     });
-
-    await waitFor(() => fireEvent.click(createvrackButton));
+    await waitFor(() => userEvent.click(createVrackButton));
 
     await assertModalText({
       container,
@@ -95,10 +83,10 @@ describe('Vrack Services create page test suite', () => {
 
     const cancelButton = await getButtonByLabel({
       container,
-      label: labels.create.modalCancelButtonLabel,
+      value: labels.create.modalCancelButtonLabel,
     });
 
-    await waitFor(() => fireEvent.click(cancelButton));
+    await waitFor(() => userEvent.click(cancelButton));
 
     await assertModalVisibility({ container, isVisible: false });
   });
@@ -111,15 +99,15 @@ describe('Vrack Services create page test suite', () => {
 
     const createWithoutVrackButton = await getButtonByLabel({
       container,
-      label: labels.create.modalNoVrackButtonLabel,
+      value: labels.create.modalNoVrackButtonLabel,
     });
 
-    await waitFor(() => fireEvent.click(createWithoutVrackButton));
+    await waitFor(() => userEvent.click(createWithoutVrackButton));
 
     await waitFor(() => {
       expect(
         screen.queryByText(labels.create.modalDescriptionLine4),
-      ).toBeNull();
+      ).not.toBeInTheDocument();
     });
 
     await assertModalText({

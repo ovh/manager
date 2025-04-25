@@ -1,8 +1,8 @@
 import React from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { Subsidiaries } from '@/utils/subsidiaries';
+import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
 
-type GuideLinks = { [key in Subsidiaries]: string };
+type GuideLinks = { [key in OvhSubsidiary]: string };
 
 const GUIDE_LIST: { [guideName: string]: Partial<GuideLinks> } = {
   guideLink2: {
@@ -75,7 +75,7 @@ const GUIDE_LIST: { [guideName: string]: Partial<GuideLinks> } = {
 
 type GetGuideLinkProps = {
   name?: string;
-  subsidiary: Subsidiaries;
+  subsidiary: OvhSubsidiary;
 };
 
 function getGuideListLink({ subsidiary }: GetGuideLinkProps) {
@@ -96,6 +96,6 @@ export function useGuideUtils() {
   const { environment } = React.useContext(ShellContext);
 
   return getGuideListLink({
-    subsidiary: environment.getUser().ovhSubsidiary as Subsidiaries,
+    subsidiary: environment.getUser().ovhSubsidiary as OvhSubsidiary,
   });
 }
