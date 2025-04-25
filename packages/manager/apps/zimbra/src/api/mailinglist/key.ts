@@ -1,13 +1,17 @@
 export const getZimbraPlatformMailingListsQueryKey = (
   platformId: string,
-  queryParameters?: {
-    organizationId?: string;
-    organizationLabel?: string;
-  },
-) => {
-  const params = new URLSearchParams(queryParameters).toString();
-  return ['get', 'zimbra', 'platform', platformId, 'mailingLists', params];
-};
+  searchParams?: string,
+  shouldFetchAll?: boolean,
+) =>
+  [
+    'get',
+    'zimbra',
+    'platform',
+    platformId,
+    'mailingLists',
+    searchParams,
+    shouldFetchAll ? 'all' : '',
+  ].filter(Boolean);
 
 export const getZimbraPlatformMailingListDetailsQueryKey = (
   platformId: string,

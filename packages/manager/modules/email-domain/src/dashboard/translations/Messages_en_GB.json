@@ -173,7 +173,7 @@
   "email_tab_modal_create_redirection_info": "Please enter the redirection information",
   "email_tab_modal_redirection_create_keep_copy_title": "Select a copy format:",
   "email_tab_modal_redirection_create_email_error": "Email address invalid",
-  "email_tab_modal_redirection_create_copy_local": "Keep a copy of the email with OVHcloud",
+  "email_tab_modal_redirection_create_copy_local": "Keep a copy of the email at OVHcloud",
   "email_tab_modal_redirection_create_copy_none": "Do not store a copy of the email",
   "email_tab_modal_redirection_create_copy_select": "Please choose an option ",
   "email_tab_popover_redirection_delete": "Delete redirection",

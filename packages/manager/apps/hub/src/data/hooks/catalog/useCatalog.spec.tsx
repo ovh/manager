@@ -6,7 +6,7 @@ import { aapi as Api } from '@ovh-ux/manager-core-api';
 import { useFetchHubCatalog } from '@/data/hooks/catalog/useCatalog';
 import { ApiEnvelope } from '@/types/apiEnvelope.type';
 import { CatalogData, CatalogItem } from '@/types/catalog';
-import { catalogData, rawCatalogData } from '@/_mock_/catalog';
+import { catalogData, rawCatalogData } from '@/__mocks__/catalog';
 
 const queryClient = new QueryClient();
 

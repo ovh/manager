@@ -101,5 +101,8 @@
   "iam_resource_type_xdsl": "Accès Internet (ADSL, SDSL, VDSL, FTTH)",
   "iam_resource_type_xdslEmail": "Email XDSL",
   "iam_resource_type_xdslModem": "Modem XDSL",
-  "iam_resource_type_xdslSpare": "Modem XDSL Spare"
+  "iam_resource_type_xdslSpare": "Modem XDSL Spare",
+  "iam_resource_type_zimbraPlatform": "Zimbra",
+  "iam_resource_type_zimbraPlatform/account": "Zimbra / Compte email",
+  "iam_resource_type_zimbraPlatform/organization": "Zimbra / Organisation"
 }

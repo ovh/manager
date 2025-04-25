@@ -40,7 +40,7 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
       livechat: boolean;
     }
     const getBetaVersion = (value: CurrentContextAvailability) => {
-      if (value['pnr']) {
+      if (value.pnr) {
         return BETA;
       }
       return null;

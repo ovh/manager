@@ -7,7 +7,7 @@
   "kubernetes_add_version_title": "Seleziona una versione minor di Kubernetes",
   "kubernetes_add_name_title": "Assegna un nome al tuo cluster",
   "kubernetes_add_name": "Nome",
-  "kubernetes_add_billing_type_description": "Tutti i futuri nodi di questo pool saranno soggetti a questa modalità di fatturazione. Successivamente sarà possibile modificare la modalità di fatturazione dei singoli nodi, dalla fatturazione oraria a quella mensile.",
+  "kubernetes_add_billing_type_description": "Questa modalità di fatturazione verrà applicata a tutti i futuri nodi di questo pool.",
   "kubernetes_add_region_info": "La Region selezionata non è ancora attiva sul tuo progetto. Questa aggiunta richiede pochi secondi e non ha alcun impatto sulla fatturazione.",
   "kubernetes_add_region_inprogress": "Aggiunta Region {{ name }} in corso...",
   "kubernetes_add_region_failed": "Si è verificato un errore durante l’aggiunta della Region {{ name }}: {{ message }}",
@@ -48,5 +48,5 @@
   "kubernetes_add_billing_savings_plan_cta": "Configura i tuoi Savings Plan",
   "kubernetes_add_name_placeholder": "Nome del cluster",
   "kubernetes_add_nodepool_name_placeholder": "Nome del pool di nodi",
-  "kubernetes_add_billing_type_description_monthly": "Successivamente sarà possibile modificare la modalità di fatturazione dei singoli nodi, dalla fatturazione oraria a quella mensile."
+  "kubernetes_add_billing_type_description_monthly": "Successivamente potrai modificare la modalità di fatturazione di ciascun nodo da oraria a mensile."
 }

@@ -493,7 +493,7 @@
   "ip_firewall_rule_flags_established": "ESTABLISHED",
   "ip_firewall_rule_flags_NONE": "Aucun",
   "ip_firewall_rule_flags_none": "Aucun",
-  "ip_table_manage_delete_ipblock": "Supprimer ",
+  "ip_table_manage_delete_ipblock": "Résilier ",
   "ip_table_manage_delete_ipblock_question": "Pour des raisons de sécurité, nous allons vous envoyer un e-mail afin de confirmer la suppression de votre IP.",
   "ip_table_manage_delete_ipblock_question2": "Souhaitez-vous continuer la procédure de résiliation de l'IP {{t0}} ?",
   "ip_table_manage_delete_ipblock_success": "Un e-mail vient de vous être envoyé pour confirmer la résiliation.",
@@ -776,5 +776,10 @@
   "ip_repricing_banner_list_item_2": "A partir du 1er décembre 2022, pour vos adresses existantes (commandées avant le 6 octobre 2022).",
   "ip_repricing_banner_link": "Plus d'informations",
   "ip_unused_banner_text": "Vous avez des adresses IP non utilisées. Les adresses IPv4 étant une ressource qui se raréfie, si vous n'en avez pas besoin, nous vous invitons à les relâcher.",
-  "ip_unused_banner_link": "Voir mes IP non utilisées."
+  "ip_unused_banner_link": "Voir mes IP non utilisées.",
+  "ip_guide_title": "Guide",
+  "ip_guide_link_additional_ip": "Configurer une Additional IP",
+  "ip_guide_link_ip_alias": "Configurer son adresse IP en alias",
+  "ip_guide_link_ip_proxmox": "Configurer une Additional IP sur Proxmox VE",
+  "ip_guide_link_floating_ip": "Concepts - Additional IP ou Floating IP sur Public Cloud"
 }

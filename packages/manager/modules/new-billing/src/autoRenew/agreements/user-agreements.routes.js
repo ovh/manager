@@ -29,6 +29,9 @@ export default /* @ngInject */ (
           page_category: TRACKING_PAGE_CATEGORY,
         });
       },
+      onExit: /* @ngInject */ (shellClient) => {
+        shellClient.ux.notifyModalActionDone('AgreementsUpdateModal');
+      },
       resolve: {
         gotoAcceptAllAgreements: /* @ngInject */ ($state, atInternet) => (
           agreements,

@@ -8,6 +8,7 @@ import {
   DatagridColumn,
   RedirectionGuard,
   ChangelogButton,
+  HeadersProps,
 } from '@ovh-ux/manager-react-components';
 import {
   VeeamBackup,
@@ -30,6 +31,7 @@ import { productName } from '@/veeam-backup.config';
 import { Loading } from '@/components/Loading/Loading';
 import { BackupStatusBadge } from '@/components/BackupStatus/BackupStatusBadge.component';
 import { CHANGELOG_LINKS } from '@/constants';
+import VeeamGuidesHeader from '@/components/Guide/VeeamGuidesHeader';
 
 export default function Listing() {
   const { t } = useTranslation('listing');
@@ -96,9 +98,10 @@ export default function Listing() {
     },
   ];
 
-  const header = {
+  const header: HeadersProps = {
     title: productName,
     changelogButton: <ChangelogButton links={CHANGELOG_LINKS} />,
+    headerButton: <VeeamGuidesHeader />,
   };
 
   return (

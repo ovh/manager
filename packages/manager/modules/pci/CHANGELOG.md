@@ -3,6 +3,84 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.88.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.87.0...@ovh-ux/manager-pci@6.88.0) (2025-04-23)
+
+
+### Bug Fixes
+
+* **pci-instances:** remove redirection when not on listing page ([#16486](https://github.com/ovh/manager/issues/16486)) ([72be597](https://github.com/ovh/manager/commit/72be597c986b256e875caeac5b660aa16041eedd)), closes [#TAPC-3708](https://github.com/ovh/manager/issues/TAPC-3708)
+
+
+### Features
+
+* **pci-instances:** add 3AZ tracking ([#16551](https://github.com/ovh/manager/issues/16551)) ([8ca9463](https://github.com/ovh/manager/commit/8ca946322666c54a5f6eecf0040a5471975003f1)), closes [#TAPC-2569](https://github.com/ovh/manager/issues/TAPC-2569)
+
+
+
+
+
+# [6.87.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.86.1...@ovh-ux/manager-pci@6.87.0) (2025-04-15)
+
+
+### Bug Fixes
+
+* **pci-instances:** add missing 3az link ([2c731be](https://github.com/ovh/manager/commit/2c731bed26e1f984cccace9170f9d1899d6eae41)), closes [#TAPC-3389](https://github.com/ovh/manager/issues/TAPC-3389)
+* **pci-instances:** add missing private network translations ([#16327](https://github.com/ovh/manager/issues/16327)) ([25f8ce0](https://github.com/ovh/manager/commit/25f8ce021c4b2b0aea8bfd01c21d7930f4a84d53)), closes [#TAPC-2525](https://github.com/ovh/manager/issues/TAPC-2525)
+* **pci-instances:** remove region reset on new deployment mode ([3f8bd96](https://github.com/ovh/manager/commit/3f8bd96e8026e7a8cbd91000a77edb9071c02c63)), closes [#TAPC-3635](https://github.com/ovh/manager/issues/TAPC-3635)
+* **pci-instances:** rename location step ([7baf3e5](https://github.com/ovh/manager/commit/7baf3e5497e0795f59823a7ebf5366ce685f39ff)), closes [#TAPC-3591](https://github.com/ovh/manager/issues/TAPC-3591)
+
+
+### Features
+
+* **pci-instances:** add license price in missing pages ([#16314](https://github.com/ovh/manager/issues/16314)) ([f85521a](https://github.com/ovh/manager/commit/f85521a5fdac8a387020038fb51c9d43fcaf8a2a)), closes [#TAPC-2926](https://github.com/ovh/manager/issues/TAPC-2926)
+* **pci-instances:** add prices on deployment modes  ([#16409](https://github.com/ovh/manager/issues/16409)) ([92f53ab](https://github.com/ovh/manager/commit/92f53ab64f65eec07d3cba7a454c5eed3305ab53)), closes [#TAPC-3284](https://github.com/ovh/manager/issues/TAPC-3284)
+
+
+
+
+
+## [6.86.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.86.0...@ovh-ux/manager-pci@6.86.1) (2025-04-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3844] ([7880506](https://github.com/ovh/manager/commit/78805069fb9da4df6b494a4aee06a31a2a6f55d4))
+* **i18n:** add missing translations [CDS 3847] ([b32c5d3](https://github.com/ovh/manager/commit/b32c5d32f508c8af5208e7276309fdd783342ce0))
+
+
+
+
+
+# [6.86.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.85.0...@ovh-ux/manager-pci@6.86.0) (2025-04-08)
+
+
+### Features
+
+* **pci-instances:** add windows licence 2025 ([#16275](https://github.com/ovh/manager/issues/16275)) ([17b010e](https://github.com/ovh/manager/commit/17b010e0edd0c665ffd69121225f30905466cee8)), closes [#TAPC-3479](https://github.com/ovh/manager/issues/TAPC-3479)
+
+
+
+
+
+# [6.85.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.84.0...@ovh-ux/manager-pci@6.85.0) (2025-04-02)
+
+
+### Bug Fixes
+
+* **pci-instances:** allow LZ and 3AZ backup images ([#16303](https://github.com/ovh/manager/issues/16303)) ([f5fdb3e](https://github.com/ovh/manager/commit/f5fdb3e4e3ca5d0e16aebe0fb17105fb47e302d1)), closes [#TAPC-3543](https://github.com/ovh/manager/issues/TAPC-3543)
+* **pci:** add missing translations [CDS 3793] ([#16141](https://github.com/ovh/manager/issues/16141)) ([4b163df](https://github.com/ovh/manager/commit/4b163df7059ca2e858917e1a7a3b79c9c8b376f4)), closes [#TAPC-1865](https://github.com/ovh/manager/issues/TAPC-1865)
+* **pci:** handle external links in new tabs to avoid infinite loop ([#16189](https://github.com/ovh/manager/issues/16189)) ([d458e7b](https://github.com/ovh/manager/commit/d458e7b1f6aaa6ebdf17f8ace99b164a866d046d)), closes [#DATATR-2078](https://github.com/ovh/manager/issues/DATATR-2078)
+* **pci:** inject correctly storage container service ([#16167](https://github.com/ovh/manager/issues/16167)) ([822bff5](https://github.com/ovh/manager/commit/822bff5dafa636d4d23f006c2f162375e986ca08)), closes [#DATATR-2075](https://github.com/ovh/manager/issues/DATATR-2075)
+
+
+### Features
+
+* **pci:** add dataplaform card ([#16114](https://github.com/ovh/manager/issues/16114)) ([728c217](https://github.com/ovh/manager/commit/728c217055a54c4882cfbf425e235e3b2d57e1df)), closes [#TAPC-3150](https://github.com/ovh/manager/issues/TAPC-3150)
+
+
+
+
+
 # [6.84.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.83.0...@ovh-ux/manager-pci@6.84.0) (2025-03-31)
 
 

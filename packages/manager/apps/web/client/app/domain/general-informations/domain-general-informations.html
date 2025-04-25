@@ -26,6 +26,40 @@
             ></span>
         </a>
     </oui-message>
+    <oui-message
+        data-ng-if="$ctrl.hasProcedureInProgress && !$ctrl.isSuspended"
+        data-type="warning"
+    >
+        <span
+            data-translate="domain_dashboard_general_information_being_suspended_by_procedure_message"
+        ></span>
+        <a
+            data-ng-href="{{ $ctrl.ongoingOperationsLink }}"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            <span
+                data-translate="domain_dashboard_general_information_see_operations"
+            ></span>
+        </a>
+    </oui-message>
+    <oui-message
+        data-ng-if="$ctrl.hasProcedureInProgress && $ctrl.isSuspended"
+        data-type="error"
+    >
+        <span
+            data-translate="domain_dashboard_general_information_suspended_by_procedure_message"
+        ></span>
+        <a
+            data-ng-href="{{ $ctrl.ongoingOperationsLink }}"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            <span
+                data-translate="domain_dashboard_general_information_see_operations"
+            ></span>
+        </a>
+    </oui-message>
     <div class="row d-lg-flex">
         <div class="col-md-4 mb-5">
             <oui-tile

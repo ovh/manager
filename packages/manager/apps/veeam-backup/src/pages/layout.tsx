@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { defineCurrentPage } from '@ovh-ux/request-tagger';
 import { Outlet, useLocation, useMatches } from 'react-router-dom';
 import {
@@ -7,6 +7,7 @@ import {
   useRouteSynchro,
 } from '@ovh-ux/manager-react-shell-client';
 import { appName } from '@/veeam-backup.config';
+import { Loading } from '@/components/Loading/Loading';
 
 export default function Layout() {
   const { shell } = React.useContext(ShellContext);
@@ -26,5 +27,9 @@ export default function Layout() {
     trackCurrentPage();
   }, [location]);
 
-  return <Outlet />;
+  return (
+    <Suspense fallback={<Loading />}>
+      <Outlet />
+    </Suspense>
+  );
 }

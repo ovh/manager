@@ -1,0 +1,27 @@
+<oui-modal
+    data-on-dismiss="$ctrl.goBack()"
+    data-primary-action="$ctrl.onConfirm()"
+    data-primary-label="{{:: 'dedicatedcloud_datacenter_network_delete_nsx_confirm' | translate }}"
+    data-loading="$ctrl.isLoading"
+    data-primary-disabled="$ctrl.isNotReady && $ctrl.hasResilienceModeError || $ctrl.hasPendingDeleteTaskError"
+    data-secondary-action="$ctrl.goBack()"
+    data-secondary-label="{{:: 'dedicatedcloud_datacenter_network_delete_nsx_cancel' | translate }}"
+    data-heading="{{:: 'dedicatedcloud_datacenter_network_delete_nsx_title' | translate }}"
+>
+    <!-- <oui-message data-ng-if="$ctrl.hasResilienceModeError" type="error"
+        ><span
+            data-translate="dedicatedcloud_datacenter_network_delete_nsx_unable_delete_resilience_mode"
+        ></span
+    ></oui-message>
+    <oui-message
+        data-ng-if="$ctrl.hasPendingDeleteTaskError && !$ctrl.hasResilienceModeError"
+        type="error"
+        ><span
+            data-translate="dedicatedcloud_datacenter_network_delete_nsx_unable_delete_during_another_delete_action"
+        ></span
+    ></oui-message> -->
+    <oui-message type="warning"> </oui-message>
+    <p
+        data-translate="dedicatedcloud_datacenter_network_delete_nsx_description"
+    ></p>
+</oui-modal>

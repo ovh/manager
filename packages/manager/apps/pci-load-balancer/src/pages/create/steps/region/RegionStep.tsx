@@ -15,6 +15,7 @@ import {
   StepComponent,
   Links,
   useProjectUrl,
+  Subtitle,
 } from '@ovh-ux/manager-react-components';
 import { Trans, useTranslation } from 'react-i18next';
 import {
@@ -49,7 +50,11 @@ export const RegionStep = ({
   ovhSubsidiary,
   projectId,
 }: Readonly<TRegionStepProps>): JSX.Element => {
-  const { t } = useTranslation(['load-balancer/create', 'pci-common']);
+  const { t } = useTranslation([
+    'load-balancer/create',
+    'pci-common',
+    'regions-list',
+  ]);
   const projectUrl = useProjectUrl('public-cloud');
 
   const { trackStep } = useTracking();
@@ -109,7 +114,7 @@ export const RegionStep = ({
 
   return (
     <StepComponent
-      title={t('octavia_load_balancer_create_region_title')}
+      title={t('regions-list:pci_project_regions_list_region')}
       isOpen={store.steps.get(StepsEnum.REGION).isOpen}
       isChecked={store.steps.get(StepsEnum.REGION).isChecked}
       isLocked={store.steps.get(StepsEnum.REGION).isLocked}
@@ -148,7 +153,8 @@ export const RegionStep = ({
         onChange={setSelectedRegionGroup}
         deployments={deployments}
       />
-      <div className="mb-4">
+      <div className="mb-4 flex flex-col gap-y-2">
+        <Subtitle>{t('octavia_load_balancer_create_region_title')}</Subtitle>
         <OsdsText
           size={ODS_TEXT_SIZE._400}
           level={ODS_TEXT_LEVEL.body}

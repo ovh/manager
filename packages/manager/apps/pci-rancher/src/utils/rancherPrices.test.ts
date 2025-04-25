@@ -5,7 +5,7 @@ import {
   getRancherPlanName,
   getPlanPricing,
 } from './rancherPrices';
-import { mockCatalog } from '@/_mock_/catalog';
+import { mockCatalog } from '@/__mocks__/catalog';
 
 describe('Rancher Prices Utilities', () => {
   const EXPECTED_MONTHLY_PRICING = 73_000;

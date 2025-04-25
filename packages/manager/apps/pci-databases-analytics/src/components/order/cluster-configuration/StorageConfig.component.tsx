@@ -1,7 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Label } from '@/components/ui/label';
-import { Slider } from '@/components/ui/slider';
+import { Label, Slider } from '@datatr-ux/uxlib';
 import { formatStorage } from '@/lib/bytesHelper';
 import * as database from '@/types/cloud/project/database';
 

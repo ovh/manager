@@ -8,7 +8,7 @@ import {
   IconLinkAlignmentType,
 } from '@ovh-ux/manager-react-components';
 import { Trans, useTranslation } from 'react-i18next';
-import { useSearchParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { OdsText, OdsMessage } from '@ovhcloud/ods-components/react';
 import {
   ODS_TEXT_PRESET,
@@ -34,12 +34,14 @@ export enum DomainOwnership {
 export default function ValidateOwnership() {
   const { t } = useTranslation('domains/form');
   const { trackClick } = useOvhTracking();
-  const [searchParams] = useSearchParams();
-  const domainId = searchParams.get('domainId');
-  const { data: domain, isFetching, isError } = useDomain({ domainId });
+  const { domainId } = useParams();
+  const { data: domain, isFetching, isError } = useDomain({
+    domainId,
+    gcTime: 0,
+  });
 
   const cname = domain?.currentState?.expectedDNSConfig?.ownership?.cname;
-  const goBackUrl = useGenerateUrl('..', 'href');
+  const goBackUrl = useGenerateUrl('../..', 'href');
 
   return (
     <>

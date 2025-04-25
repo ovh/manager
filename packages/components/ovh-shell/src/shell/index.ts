@@ -1,4 +1,4 @@
-import { Environment, fetchConfiguration } from '@ovh-ux/manager-config';
+import { Environment } from '@ovh-ux/manager-config';
 
 import Shell from './shell';
 import DirectClientMessageBus from '../message-bus/direct-client';
@@ -18,70 +18,68 @@ function isStagingEnvironment() {
   return /\.dev$/.test(window.location.hostname);
 }
 
-export function initShell(): Promise<Shell> {
-  return fetchConfiguration('shell').then((environment: Environment) => {
-    const shell = new Shell();
+export function initShell(environment: Environment): Shell {
+  const shell = new Shell();
 
-    if (isStagingEnvironment()) {
-      Object.entries(environment.getApplications()).forEach(
-        ([appName, appConfig]) => {
-          const url = new URL(appConfig.publicURL);
-          url.pathname = appConfig.container?.enabled
-            ? '/container'
-            : `/${appName}`;
-          appConfig.publicURL = `${window.location.origin}${url.pathname}/${url.hash}`;
-        },
-      );
-    }
+  if (isStagingEnvironment()) {
+    Object.entries(environment.getApplications()).forEach(
+      ([appName, appConfig]) => {
+        const url = new URL(appConfig.publicURL);
+        url.pathname = appConfig.container?.enabled
+          ? '/container'
+          : `/${appName}`;
+        appConfig.publicURL = `${window.location.origin}${url.pathname}/${url.hash}`;
+      },
+    );
+  }
 
-    // set message bus
-    shell.setMessageBus(new DirectClientMessageBus());
+  // set message bus
+  shell.setMessageBus(new DirectClientMessageBus());
 
-    // register authentication plugin
-    shell.getPluginManager().registerPlugin('auth', authenticationPlugin());
+  // register authentication plugin
+  shell.getPluginManager().registerPlugin('auth', authenticationPlugin());
 
-    // register environment plugin
-    shell.getPluginManager().registerPlugin('routing', routingPlugin());
+  // register environment plugin
+  shell.getPluginManager().registerPlugin('routing', routingPlugin());
 
-    // register environment plugin
-    shell
-      .getPluginManager()
-      .registerPlugin('environment', environmentPlugin(environment));
+  // register environment plugin
+  shell
+    .getPluginManager()
+    .registerPlugin('environment', environmentPlugin(environment));
 
-    // register i18n plugin
-    shell
-      .getPluginManager()
-      .registerPlugin('i18n', i18nPlugin(shell, environment));
+  // register i18n plugin
+  shell
+    .getPluginManager()
+    .registerPlugin('i18n', i18nPlugin(shell, environment));
 
-    // register ux plugin
-    const uxPlugin = new UXPlugin(shell);
-    shell
-      .getPluginManager()
-      .registerPlugin('ux', uxPlugin as UXPluginType<UXPlugin>);
+  // register ux plugin
+  const uxPlugin = new UXPlugin(shell);
+  shell
+    .getPluginManager()
+    .registerPlugin('ux', uxPlugin as UXPluginType<UXPlugin>);
 
-    // register navigation plugin
-    shell
-      .getPluginManager()
-      .registerPlugin('navigation', navigationPlugin(environment));
-    // Register Tracking plugin
-    const trackingPlugin = new TrackingPlugin();
+  // register navigation plugin
+  shell
+    .getPluginManager()
+    .registerPlugin('navigation', navigationPlugin(environment));
+  // Register Tracking plugin
+  const trackingPlugin = new TrackingPlugin();
 
-    trackingPlugin.configureTracking(
-      environment.getRegion(),
-      environment.getUser(),
+  trackingPlugin.configureTracking(
+    environment.getRegion(),
+    environment.getUser(),
+  );
+
+  shell
+    .getPluginManager()
+    .registerPlugin(
+      'tracking',
+      trackingPlugin as TrackingPluginType<TrackingPlugin>,
     );
 
-    shell
-      .getPluginManager()
-      .registerPlugin(
-        'tracking',
-        trackingPlugin as TrackingPluginType<TrackingPlugin>,
-      );
+  shell.getPluginManager().registerPlugin('logger', loggerPlugin());
 
-    shell.getPluginManager().registerPlugin('logger', loggerPlugin());
-
-    return shell;
-  });
+  return shell;
 }
 
 export default { initShell };

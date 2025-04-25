@@ -24,7 +24,6 @@ export default function StatusComponent({
   return (
     <DataGridTextCell>
       <OdsBadge
-        className="font-bold"
         color={COLD_ARCHIVE_CONTAINER_STATUS_LABEL[status.toUpperCase()]}
         label={t(`pci_projects_project_storages_containers_status_${status}`)}
         data-testid="status_badge"

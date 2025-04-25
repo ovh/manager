@@ -3,9 +3,8 @@ import {
   UseInfiniteQueryOptions,
   UseInfiniteQueryResult,
 } from '@tanstack/react-query';
-import { useSearchParams } from 'react-router-dom';
-import { useEffect } from 'react';
-import { usePlatform } from '@/hooks';
+import { useParams, useSearchParams } from 'react-router-dom';
+import { useCallback, useEffect, useState } from 'react';
 import {
   AccountType,
   getZimbraPlatformAccounts,
@@ -25,7 +24,8 @@ type UseAccountsParams = Omit<
 
 export const useAccounts = (props: UseAccountsParams = {}) => {
   const { domainId, organizationId, email, shouldFetchAll, ...options } = props;
-  const { platformId } = usePlatform();
+  const [allPages, setAllPages] = useState(!!shouldFetchAll);
+  const { platformId } = useParams();
   const [searchParams] = useSearchParams();
 
   const urlSearchParams = buildURLSearchParams({
@@ -40,14 +40,14 @@ export const useAccounts = (props: UseAccountsParams = {}) => {
     queryKey: getZimbraPlatformAccountsQueryKey(
       platformId,
       urlSearchParams,
-      shouldFetchAll,
+      allPages,
     ),
     queryFn: ({ pageParam }) =>
       getZimbraPlatformAccounts({
         platformId,
         searchParams: urlSearchParams,
         pageParam,
-        ...(shouldFetchAll ? { pageSize: APIV2_MAX_PAGESIZE } : {}),
+        ...(allPages ? { pageSize: APIV2_MAX_PAGESIZE } : {}),
       }),
     enabled: (q) =>
       (typeof options.enabled === 'function'
@@ -62,11 +62,28 @@ export const useAccounts = (props: UseAccountsParams = {}) => {
       ),
   });
 
+  const fetchAllPages = useCallback(() => {
+    if (!allPages) {
+      setAllPages(true);
+    }
+  }, [allPages, setAllPages]);
+
   useEffect(() => {
-    if (shouldFetchAll && query.hasNextPage) {
+    if (allPages && query.hasNextPage && !query.isFetchingNextPage) {
       query.fetchNextPage();
     }
-  }, [query.data]);
+  }, [query.data, allPages]);
 
-  return query;
+  // reset when searchParams changes
+  useEffect(() => {
+    if (!shouldFetchAll) {
+      setAllPages(false);
+    }
+  }, [urlSearchParams]);
+
+  // use object assign instead of spread
+  // to avoid unecessary rerenders
+  return Object.assign(query, {
+    fetchAllPages,
+  });
 };

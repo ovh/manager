@@ -28,7 +28,8 @@
                 class="oui-badge"
                 data-ng-class="{
                     'oui-badge_info': $row.status === 'TODO' || $row.status === 'DOING' || $row.status === 'CANCELLED',
-                    'oui-badge_error': $row.status === 'ERROR',
+                    'oui-badge_error': $row.status === 'PROBLEM',
+                    'oui-badge_warning': $row.status === 'ERROR',
                     'oui-badge_success': $row.status === 'DONE'
                   }"
                 data-ng-bind="'domain_tab_TASKS_status_' +  $row.status | translate"

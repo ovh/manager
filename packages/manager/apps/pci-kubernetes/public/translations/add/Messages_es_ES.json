@@ -7,7 +7,7 @@
   "kubernetes_add_version_title": "Seleccione la versión menor de Kubernetes que desee",
   "kubernetes_add_name_title": "Asigne un nombre a su cluster",
   "kubernetes_add_name": "Nombre",
-  "kubernetes_add_billing_type_description": "Todos los nodos futuros de este pool de nodos estarán sujetos a este modo de facturación. Más adelante podrá pasar cada uno de sus nodos individualmente de la facturación por horas a la facturación mensual.",
+  "kubernetes_add_billing_type_description": "Este modo de facturación se aplicará a todos los nodos futuros de este pool de nodos.",
   "kubernetes_add_billing_type_payment_method": "El importe se cargará en su forma de pago por defecto.",
   "kubernetes_add_billing_anti_affinity_title": "Facturación y antiafinidad",
   "kubernetes_add_region_info": "La región seleccionada todavía no está activa en su proyecto. Esta adición tardará unos segundos y no afectará a la facturación.",
@@ -27,7 +27,7 @@
   "kube_add_node_pool_creating": "Creación de un pool de nodos",
   "kube_add_node_pool_success": "El pool de nodos «{{nodePoolName}}» se ha creado correctamente.",
   "kube_add_node_pool_error": "No es posible crear el pool de nodos '{{ nodePoolName }}': {{ message }}",
-  "kube_add_billing_type_description": "Este modo de facturación se aplicará a todos los nodos futuros de este pool.",
+  "kube_add_billing_type_description": "Este modo de facturación se aplicará a todos los nodos futuros del pool.",
   "kube_add_billing_type_payment_method": "El importe se cargará en su forma de pago por defecto.",
   "kube_add_billing_anti_affinity_title": "Facturación y antiafinidad",
   "kube_add_node_pool_error_InsufficientVCPUsQuota": "El límite de vCPU de su proyecto es insuficiente para realizar esta operación. Por favor, aumente los límites de su cuota o solicite menos recursos.",
@@ -48,5 +48,5 @@
   "kubernetes_add_billing_savings_plan_cta": "Configure sus Savings Plans",
   "kubernetes_add_name_placeholder": "Nombre del cluster",
   "kubernetes_add_nodepool_name_placeholder": "Nombre del pool de nodos",
-  "kubernetes_add_billing_type_description_monthly": "Más adelante podrá pasar cada uno de sus nodos individualmente de la facturación por horas a la facturación mensual."
+  "kubernetes_add_billing_type_description_monthly": "Más adelante podrá modificar la facturación de cada uno de sus nodos pasando de la modalidad por horas a la mensual."
 }

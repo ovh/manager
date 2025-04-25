@@ -128,9 +128,7 @@ export default function AddDomain() {
 
   const [domainToVerify, setDomainToVerify] = useState('');
 
-  const verifyUrl = useGenerateUrl('../verify', 'path', {
-    domainId: domainToVerify,
-  });
+  const verifyUrl = useGenerateUrl(`../${domainToVerify}/verify`, 'path');
 
   useEffect(() => {
     if (domainToVerify) {

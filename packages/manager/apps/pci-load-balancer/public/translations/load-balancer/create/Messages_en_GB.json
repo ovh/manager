@@ -9,7 +9,7 @@
   "octavia_load_balancer_create_size_flavour_description_m": "Suitable for most projects with moderate traffic needs.",
   "octavia_load_balancer_create_size_flavour_description_l": "Designed for high traffic applications, it delivers peak performance to handle heavy loads.",
   "octavia_load_balancer_create_size_flavour_price_interval": " /hour",
-  "octavia_load_balancer_create_region_title": "Select a location",
+  "octavia_load_balancer_create_region_title": "Select a region",
   "octavia_load_balancer_create_region_intro": "Please select the Public Cloud region where your Load Balancer will be hosted. From the list of Public Cloud regions with defined private network, choose the region where the Load Balancer will be hosted. Can't find the region you want in the list? To learn more about feature availability by region, ",
   "octavia_load_balancer_create_region_link": "Click here ",
   "octavia_load_balancer_create_floating_ip_title": "Attach a Public IP",

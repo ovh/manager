@@ -2,6 +2,7 @@ module.exports = {
   extends: [
     '../../../../.eslintrc.js',
     'plugin:react/recommended',
+    'plugin:react/jsx-runtime',
   ],
   settings: {
     react: {

@@ -1,12 +1,16 @@
 import { Pen } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';
+import {
+  Button,
+  Table,
+  TableBody,
+  TableCell,
+  TableRow,
+  useToast,
+} from '@datatr-ux/uxlib';
 import { useServiceData } from '../../Service.context';
-import { Button } from '@/components/ui/button';
 import { useEditService } from '@/hooks/api/database/service/useEditService.hook';
-import { useGetServices } from '@/hooks/api/database/service/useGetServices.hook';
-import { useToast } from '@/components/ui/use-toast';
 import TimeUpdate from './serviceConfiguration/TimeUpdate.component';
 import * as database from '@/types/cloud/project/database';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
@@ -90,9 +94,7 @@ const ServiceConfiguration = () => {
                     service.capabilities.service?.update ===
                     database.service.capability.StateEnum.disabled
                   }
-                  variant="ghost"
-                  size="table"
-                  className="py-0 h-auto"
+                  className="text-text p-0 bg-transparent hover:bg-primary-100 hover:text-primary-700 hover:font-semibold h-4 w-4 my-auto"
                   onClick={() => navigate('./rename')}
                 >
                   <Pen />

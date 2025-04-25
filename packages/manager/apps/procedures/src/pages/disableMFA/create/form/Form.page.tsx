@@ -39,8 +39,13 @@ const FormCreateRequest = () => {
 
   const { t } = useTranslation('account-disable-2fa');
   const { t: tdoc } = useTranslation('account-disable-2fa-documents');
-  const [selectedByFRLegalForm, setSelectedByFRLegalForm] = useState<LegalFrom>(
-    null,
+
+  const {
+    user: { legalForm, subsidiary },
+  } = useUser();
+  const isOtherLegalFormForFR = legalForm === 'other' && subsidiary === 'FR';
+  const [parsedLegalForm, setParsedLegalForm] = useState<LegalFrom>(
+    isOtherLegalFormForFR ? null : legalForm,
   );
   const [showConfirmModal, setShowConfirmModal] = useState<boolean>(false);
   const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false);
@@ -88,19 +93,12 @@ const FormCreateRequest = () => {
   const handleLegalFormChange = (
     e: OsdsSelectCustomEvent<OdsSelectValueChangeEventDetail>,
   ) => {
-    reset();
-    resetUpload();
-    setSelectedByFRLegalForm(e.target.value as LegalFrom);
+    setParsedLegalForm(() => {
+      reset();
+      resetUpload();
+      return e.detail.value as LegalFrom;
+    });
   };
-
-  const { user } = useUser();
-
-  const isOtherLegalFormForFR =
-    user.legalForm === 'other' && user.subsidiary === 'FR';
-  const legalForm = isOtherLegalFormForFR
-    ? selectedByFRLegalForm
-    : user.legalForm;
-  const { subsidiary } = user;
 
   return (
     <form onSubmit={handleSubmit(() => setShowConfirmModal(true))}>
@@ -116,7 +114,6 @@ const FormCreateRequest = () => {
           </OsdsText>
           <OsdsSelect
             onOdsValueChange={handleLegalFormChange}
-            value={selectedByFRLegalForm}
             data-testid="account-disable-2fa-create-form-select"
           >
             <span slot="placeholder">
@@ -132,11 +129,11 @@ const FormCreateRequest = () => {
         </div>
       )}
 
-      {(!isOtherLegalFormForFR || legalForm) && (
+      {(!isOtherLegalFormForFR || parsedLegalForm) && (
         <>
           <FormDocumentFieldList
             control={control}
-            legalForm={legalForm}
+            legalForm={parsedLegalForm}
             subsidiary={subsidiary}
             disabled={Boolean(links)}
           />

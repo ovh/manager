@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.4.0](https://github.com/ovh/manager/compare/@ovh-ux/shell@4.3.0...@ovh-ux/shell@4.4.0) (2025-04-17)
+
+
+### Features
+
+* **container:** removal of legacy sidebar code from ux plugin ([e129b59](https://github.com/ovh/manager/commit/e129b5945106b1e23a2b8c3d9b576281b5d09497)), closes [#MANAGER-15625](https://github.com/ovh/manager/issues/MANAGER-15625)
+
+
+
+
+
+# [4.3.0](https://github.com/ovh/manager/compare/@ovh-ux/shell@4.2.0...@ovh-ux/shell@4.3.0) (2025-04-07)
+
+
+### Features
+
+* display maintenance mode ([#16413](https://github.com/ovh/manager/issues/16413)) ([b7f71f3](https://github.com/ovh/manager/commit/b7f71f33ab188cbc7c96772efad012c337e041fc)), closes [#MANAGER-17748](https://github.com/ovh/manager/issues/MANAGER-17748) [#MANAGER-17748](https://github.com/ovh/manager/issues/MANAGER-17748)
+
+
+
+
+
 # [4.2.0](https://github.com/ovh/manager/compare/@ovh-ux/shell@4.1.11...@ovh-ux/shell@4.2.0) (2025-03-27)
 
 

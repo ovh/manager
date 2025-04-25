@@ -1,0 +1,11 @@
+{
+  "pci_projects_project_storages_snapshots_onboarding_content1": "Sie haben noch keinen Volume Snapshot erstellt.",
+  "pci_projects_project_storages_snapshots_onboarding_content2": "Erstellen Sie einen Snapshot Ihrer Block Storage Volumes.",
+  "pci_projects_project_storages_snapshots_onboarding_content3": "Volume Snapshots sind Abbilder von Block Storage Volumes zu einem bestimmten Zeitpunkt. Sie ermöglichen es Ihnen, später neue Volumes basierend auf diesem festgehaltenen Zustand zu erstellen. So finden Sie Daten oder eine gewünschte Situation aus der Vergangenheit wieder.",
+  "pci_projects_project_storages_snapshots_onboarding_content4": "Ein Volume Snapshot wird am selben Ort gespeichert wie das Volume, von dem er erstellt wurde, und er wird ebenfalls dreifach repliziert.",
+  "pci_projects_project_storages_snapshots_onboarding_content5": "Für die Erstellung eines Volume Snapshots müssen Sie unbedingt mindestens ein Volume erstellt haben.",
+  "pci_projects_project_storages_snapshots_onboarding_action_label": "Volume Snapshot erstellen",
+  "pci_projects_project_storages_snapshots_onboarding_guides_transfer-volume-backup_title": "Transfer a volume backup from one datacentre to another",
+  "pci_projects_project_storages_snapshots_onboarding_guides_transfer-volume-backup_description": "In dieser Anleitung erfahren Sie, wie Sie das Backup eines Volumes von einem Rechenzentrum in ein anderes übertragen.",
+  "onboarding_guide_title": "Anleitung"
+}

@@ -1,12 +1,29 @@
 import { ResourceStatus } from '../api.type';
 
+export const AliasTargetType = {
+  ACCOUNT: 'ACCOUNT',
+  MAILING_LIST: 'MAILING_LIST',
+} as const;
+
+export type AliasBodyParamsType = {
+  targetId: string;
+  alias: string;
+};
+
 export type AliasType = {
   checksum: string;
   currentState: {
-    alias: string;
-    aliasTarget: string;
-    organizationId: string;
-    organizationLabel: string;
+    alias: {
+      domainId: string;
+      name: string;
+      organizationId: string;
+      organizationLabel: string;
+    };
+    target: {
+      domainId: string;
+      id: string;
+      type: keyof typeof AliasTargetType;
+    };
   };
   currentTasks: {
     id: string;
@@ -16,16 +33,5 @@ export type AliasType = {
   }[];
   id: string;
   resourceStatus: ResourceStatus;
-  targetSpec: {
-    alias: string;
-    aliasTarget: string;
-    organizationId: string;
-    organizationLabel: string;
-  };
-};
-
-export type AliasBodyParamsType = {
-  organizationId?: string;
-  aliasTarget?: string;
-  alias?: string;
+  targetSpec: AliasBodyParamsType;
 };

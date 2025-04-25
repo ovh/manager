@@ -644,7 +644,8 @@
   "domain_tab_TASKS_status_CANCELLED": "Annulée",
   "domain_tab_TASKS_status_DOING": "En cours",
   "domain_tab_TASKS_status_DONE": "Terminée",
-  "domain_tab_TASKS_status_ERROR": "En erreur",
+  "domain_tab_TASKS_status_ERROR": "A traiter",
+  "domain_tab_TASKS_status_PROBLEM": "Echouée",
   "domain_tab_TASKS_status_TODO": "Planifiée",
   "domain_order_start10M_choose_duration": "Choisissez la durée de votre Start10M.",
   "domain_order_start10M_duration_choosed": "Cliquez sur \"Suivant\" pour continuer.",
@@ -833,5 +834,8 @@
   "domain_dashboard_general_information_domain_automatic": "Renouvellement automatique",
   "domain_dashboard_general_information_alldom_termination_info": "Votre pack expirera le {{ expirationDate }}. Les domaines non résiliés inclus dans celui-ci seront <strong>renouvelés gratuitement jusqu’à l’expiration définitive de votre pack.</strong> Au-delà de cette date, vos domaines non résiliés seront facturés individuellement.",
   "domain_dashboard_general_information_alldom_renewal_link": "Annuler la résiliation du pack",
-  "domain_dashboard_general_information_alldom_termination_warning_close": "fermer"
+  "domain_dashboard_general_information_alldom_termination_warning_close": "fermer",
+  "domain_dashboard_general_information_suspended_by_procedure_message": "Votre nom de domaine est suspendu dans le cadre d'une procédure de vérification des données de contacts. Veuillez consulter les opérations en cours afin de déterminer si une action de votre part est requise. ",
+  "domain_dashboard_general_information_being_suspended_by_procedure_message": "Votre nom de domaine fait l'objet d'une procédure de vérification des données de contacts. Veuillez consulter les opérations en cours afin de déterminer si une action de votre part est requise. ",
+  "domain_dashboard_general_information_see_operations": "Voir les opérations en cours"
 }

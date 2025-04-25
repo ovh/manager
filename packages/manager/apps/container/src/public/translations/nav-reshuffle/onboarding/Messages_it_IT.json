@@ -18,5 +18,7 @@
   "onboarding_walkme_popover_step5_content": "Consulta tutte le fatture, i pagamenti in corso e il credito disponibile in questa sezione.",
   "onboarding_popover_later_hide_button": "Forse più tardi",
   "onboarding_popover_do_not_show_again_button": "Non mostrare più",
-  "onboarding_popover_done_button": "Terminare la visita"
+  "onboarding_popover_done_button": "Terminare la visita",
+  "onboarding_walkme_popover_step2_content_us": "Aggiorna il tuo profilo e i tuoi metodi di pagamento. Accedi a fatture, servizi e ordini. Consulta le tue comunicazioni.",
+  "onboarding_walkme_popover_step4_content_us": "Resta aggiornato sullo stato dei nostri servizi in tempo reale. Hai bisogno di aiuto? Accedi alle nostre guide pratiche e alle risorse di supporto. Utilizza la nostra chat per ottenere soluzioni, risorse aggiuntive e trovare una risposta alle tue domande."
 }

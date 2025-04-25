@@ -29,11 +29,23 @@
                     <span data-ng-bind=":: BRING_YOUR_OWN_IP"></span>
                 </oui-button>
             </h1>
-            <div class="d-flex justify-content-end flex-grow-1">
+            <div
+                class="d-flex justify-content-end ip-guide-block gap-1 flex-wrap"
+            >
                 <changelog-button
                     links="constants.CHANGELOG.ip.links"
                     chapters="constants.CHANGELOG.ip.chapters"
                 ></changelog-button>
+                <oui-guide-menu
+                    data-text="{{:: 'ip_guide_title' | translate }}"
+                >
+                    <oui-guide-menu-item
+                        data-ng-repeat="guideItem in guides track by guideItem.url"
+                        data-href="{{ guideItem.url }}"
+                        data-external
+                        ><span data-ng-bind="guideItem.name"></span>
+                    </oui-guide-menu-item>
+                </oui-guide-menu>
             </div>
         </div>
         <oui-header-tabs>

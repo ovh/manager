@@ -10,5 +10,5 @@
   "pci_project_flavors_billing_price_monthly_floatingip_price_label": "Floating IP:",
   "pci_projects_project_instances_add_total_price_label": "Gesamt",
   "pci_project_flavors_billing_addons_price_hourly": "{{price}} / Stunde (zzgl. MwSt)",
-  "pci_projects_project_instances_configure_billing_type": "Fakturierungstyp konfigurieren"
+  "pci_projects_project_instances_configure_billing_type": "Abrechnungstyp konfigurieren"
 }

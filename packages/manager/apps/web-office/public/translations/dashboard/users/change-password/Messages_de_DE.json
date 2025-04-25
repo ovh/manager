@@ -1,0 +1,16 @@
+{
+  "dashboard_users_change_password_title": "Passwort ändern",
+  "dashboard_users_change_password_radio_1": "Ich generiere ein zufälliges Passwort.",
+  "dashboard_users_change_password_radio_2": "Ich personalisiere mein Passwort.",
+  "dashboard_users_change_password_label_password": "Neues Passwort",
+  "dashboard_users_change_password_label_confirm_password": "Bestätigung des neuen Passworts",
+  "dashboard_users_change_password_label_email": "E-Mail-Account für den Empfang des Passworts",
+  "dashboard_users_change_password_helper1": "Bitte beachten Sie, dass das Passwort nach folgenden Regeln vergeben werden muss:",
+  "dashboard_users_change_password_helper2": "Mindestens 8 Zeichen",
+  "dashboard_users_change_password_helper3": "Maximal 16 Zeichen",
+  "dashboard_users_change_password_helper4": "Mindestens 1 Kleinbuchstabe, 1 Großbuchstabe, 1 Ziffer oder 1 Sonderzeichen",
+  "dashboard_users_change_password_email-edit-title": "Wenn Sie kein Passwort eingeben, wird dieses zufällig generiert und per E-Mail an die angegebene Adresse gesendet.",
+  "dashboard_users_change_password_email-edit": "Per E-Mail versenden",
+  "dashboard_users_change_password_message_error": "Fehler beim Abrufen der Informationen",
+  "dashboard_users_change_password_message_success": "Ihre Passwortänderung wurde registriert."
+}

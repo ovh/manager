@@ -2,12 +2,12 @@ import { useTranslation } from 'react-i18next';
 import { ColumnDef } from '@tanstack/react-table';
 import { Plus } from 'lucide-react';
 import { Outlet, useNavigate } from 'react-router-dom';
+import { Button } from '@datatr-ux/uxlib';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import * as database from '@/types/cloud/project/database';
 import { useServiceData } from '../Service.context';
 import DataTable from '@/components/data-table';
 import { getColumns } from './_components/DatabasesTableColumns.component';
-import { Button } from '@/components/ui/button';
 import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import { POLLING } from '@/configuration/polling.constants';
 import { useGetDatabases } from '@/hooks/api/database/database/useGetDatabases.hook';
@@ -45,7 +45,7 @@ const Databases = () => {
       <h2>{t('title')}</h2>
       {service.capabilities.databases?.create && (
         <Button
-          variant={'outline'}
+          mode={'outline'}
           size="sm"
           className="text-base"
           data-testid="add-button"
@@ -64,7 +64,7 @@ const Databases = () => {
         <DataTable.Provider
           columns={columns}
           data={databasesQuery.data}
-          pageSize={25}
+          pageSize={10}
         />
       ) : (
         <div data-testid="table-skeleton">

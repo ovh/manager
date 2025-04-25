@@ -8,6 +8,7 @@ export default {
     staticResources: '<?',
     header: '@?',
     changelog: '@?',
+    guides: '<?',
     id: '@',
     description: '<',
     loadResource: '<?',

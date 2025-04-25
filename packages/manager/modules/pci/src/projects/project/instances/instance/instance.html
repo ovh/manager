@@ -424,6 +424,18 @@
                 </oui-tile-definition>
 
                 <oui-tile-definition
+                    data-ng-if="$ctrl.instancePrice.licensePrice"
+                    data-term="{{:: 'pci_projects_project_instances_instance_license_price_label' | translate}}"
+                >
+                    <oui-tile-description>
+                        <span
+                            data-translate="pci_projects_project_instances_instance_price_hourly_value"
+                            data-translate-values="{ price : $ctrl.instancePrice.licensePrice }"
+                        ></span>
+                    </oui-tile-description>
+                </oui-tile-definition>
+
+                <oui-tile-definition
                     data-term="{{:: 'pci_projects_project_instances_instance_volumes_label' | translate }}"
                 >
                     <oui-tile-description

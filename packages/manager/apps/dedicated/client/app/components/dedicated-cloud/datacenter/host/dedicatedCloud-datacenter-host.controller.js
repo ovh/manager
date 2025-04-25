@@ -1,7 +1,7 @@
 import get from 'lodash/get';
 
 import {
-  RESOURCE_BILLING_TYPES,
+  RESOURCE_BILLING_2API_TYPES,
   RESOURCE_UPGRADE_TYPES,
 } from '../../resource/upgrade/upgrade.constants';
 
@@ -23,25 +23,10 @@ export default class {
   }
 
   $onInit() {
-    this.RESOURCE_BILLING_TYPES = RESOURCE_BILLING_TYPES;
+    this.RESOURCE_BILLING_TYPES = RESOURCE_BILLING_2API_TYPES;
     this.RESOURCE_UPGRADE_TYPES = RESOURCE_UPGRADE_TYPES;
 
-    return this.fetchDatacenterInfoProxy();
-  }
-
-  fetchDatacenterInfoProxy() {
-    this.loading = true;
-
-    return this.DedicatedCloud.getDatacenterInfoProxy(
-      this.productId,
-      this.datacenterId,
-    )
-      .then(({ commercialRangeName }) => {
-        this.datacenter.model.commercialRangeName = commercialRangeName;
-      })
-      .finally(() => {
-        this.loading = false;
-      });
+    this.datacenter.model.commercialRangeName = this.commercialRangeName;
   }
 
   fetchLegacyHostConsumption(hosts) {

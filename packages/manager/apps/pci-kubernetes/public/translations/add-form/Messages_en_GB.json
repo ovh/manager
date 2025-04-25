@@ -1,5 +1,5 @@
 {
-  "kubernetes_add_node_pool_description": "You can configure one or more node pools as soon as the cluster is created. A node pool refers to a set of worker nodes that share the same type.",
+  "kubernetes_add_node_pool_description": "You can configure one or more node pools as soon as the cluster is created. A node pool is a group of worker nodes that all have the same configuration.",
   "kubernetes_add_node_pool_node_count": "Number of nodes",
   "kubernetes_add_node_pool_node_type": "Node type",
   "kube_common_node_pool_model_type_selector": "Select a model"

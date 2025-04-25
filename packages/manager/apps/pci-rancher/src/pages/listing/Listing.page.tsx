@@ -97,7 +97,7 @@ const Listing: React.FC<ListingProps> = ({ data, refetchRanchers }) => {
     if (data.length === 0) {
       navigate(getOnboardingUrl(projectId));
     }
-  }, [projectId, data.length]);
+  }, [data.length]);
 
   return data.length ? (
     <ListingTablePage data={data} refetchRanchers={refetchRanchers} />

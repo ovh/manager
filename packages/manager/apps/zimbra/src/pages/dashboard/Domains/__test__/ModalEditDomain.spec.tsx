@@ -2,19 +2,17 @@ import React from 'react';
 import 'element-internals-polyfill';
 import '@testing-library/jest-dom';
 import { vi, describe, expect } from 'vitest';
-import { useSearchParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { fireEvent, render, waitFor, act } from '@/utils/test.provider';
-import { domainDetailMock } from '@/api/_mock_';
+import { domainDetailMock, platformMock } from '@/api/_mock_';
 import ModalEditDomain from '../ModalEditDomain.component';
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
 import { putZimbraDomain } from '@/api/domain';
 
-vi.mocked(useSearchParams).mockReturnValue([
-  new URLSearchParams({
-    editDomainId: domainDetailMock.id,
-  }),
-  vi.fn(),
-]);
+vi.mocked(useParams).mockReturnValue({
+  platformId: platformMock[0].id,
+  domainId: domainDetailMock.id,
+});
 
 describe('Domains edit modal', () => {
   it('check if it is displayed', async () => {

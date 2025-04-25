@@ -1,8 +1,12 @@
 import React from 'react';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { RouterProvider, createHashRouter } from 'react-router-dom';
-import { routes } from './routes/routes';
+import {
+  RouterProvider,
+  createHashRouter,
+  createRoutesFromElements,
+} from 'react-router-dom';
+import Routes from './routes/routes';
 import { MessageContextProvider } from './components/Messages/Messages.context';
 
 const queryClient = new QueryClient({
@@ -14,12 +18,12 @@ const queryClient = new QueryClient({
 });
 
 export default function App() {
-  const router = createHashRouter(routes);
+  const routes = createHashRouter(createRoutesFromElements(Routes));
 
   return (
     <QueryClientProvider client={queryClient}>
       <MessageContextProvider>
-        <RouterProvider router={router} />
+        <RouterProvider router={routes} />
       </MessageContextProvider>
       <ReactQueryDevtools />
     </QueryClientProvider>

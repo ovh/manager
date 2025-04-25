@@ -15,9 +15,14 @@ export const features = [
   'databases-operational',
   'databases-streaming',
   'databases-analysis',
+  'pci-ai-dashboard',
+  'pci-ai-notebooks',
+  'pci-ai-training',
+  'pci-ai-deploy',
   'pci-databases-analytics-operational',
   'pci-databases-analytics-streaming',
   'pci-databases-analytics-analysis',
+  'pci-dataplatform',
   'archive',
   'cold-archive',
   'snapshot',
@@ -261,6 +266,7 @@ export function getPciProjectMenu(
       'data-processing',
       'databases-analysis',
       'pci-databases-analytics-analysis',
+      'pci-dataplatform',
       'data-platform',
       'logs-data-platform',
     )
@@ -269,7 +275,7 @@ export function getPciProjectMenu(
       id: 'analytics',
       title: 'Databases & Analytics',
       subItems: [
-        //Entry menu for PCI Databases for Angular
+        // Entry menu for PCI Databases for Angular
         isFeaturesAvailable('databases-operational') && {
           id: 'databases-operational',
           title: 'Databases',
@@ -278,7 +284,7 @@ export function getPciProjectMenu(
             `#/pci/projects/${projectId}/storages/databases-analytics/databases`,
           ),
         },
-        //Entry menu for PCI Databases for React
+        // Entry menu for PCI Databases for React
         isFeaturesAvailable('pci-databases-analytics-operational') && {
           id: 'pci-databases-analytics-operational',
           title: 'Databases',
@@ -287,7 +293,7 @@ export function getPciProjectMenu(
             `#/pci/projects/${projectId}/databases-analytics/operational/services`,
           ),
         },
-        //Entry menu for PCI Data Streaming for Angular
+        // Entry menu for PCI Data Streaming for Angular
         isFeaturesAvailable('databases-streaming') && {
           id: 'databases-streaming',
           title: 'Data Streaming',
@@ -296,7 +302,7 @@ export function getPciProjectMenu(
             `#/pci/projects/${projectId}/storages/databases-analytics/data-streaming`,
           ),
         },
-        //Entry menu for PCI Data Streaming for React
+        // Entry menu for PCI Data Streaming for React
         isFeaturesAvailable('pci-databases-analytics-streaming') && {
           id: 'pci-databases-analytics-streaming',
           title: 'Data Streaming',
@@ -313,7 +319,7 @@ export function getPciProjectMenu(
             `#/pci/projects/${projectId}/data-processing`,
           ),
         },
-        //Entry menu for PCI Data Analysis for Angular
+        // Entry menu for PCI Data Analysis for Angular
         isFeaturesAvailable('databases-analysis') && {
           id: 'databases-analysis',
           title: 'Data Analysis',
@@ -322,7 +328,7 @@ export function getPciProjectMenu(
             `#/pci/projects/${projectId}/storages/databases-analytics/data-analysis`,
           ),
         },
-        //Entry menu for PCI Data Analysis for React
+        // Entry menu for PCI Data Analysis for React
         isFeaturesAvailable('pci-databases-analytics-analysis') && {
           id: 'pci-databases-analytics-analysis',
           title: 'Data Analysis',
@@ -337,6 +343,15 @@ export function getPciProjectMenu(
           href: `https://hq-api.eu.dataplatform.ovh.net/iam/v4/login?authentication_provider=ovh&project=${projectId}&app_id=forepaas&&response_type=token&redirect_uri=https%3A%2F%2Feu.dataplatform.ovh.net&authorize_bypass=true&token_mode=cookie&force_auth=false`,
           badge: 'new',
           external: true,
+        },
+        isFeaturesAvailable('pci-dataplatform') && {
+          id: 'pci-dataplatform',
+          title: 'Data Platform',
+          badge: 'new',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/dataplatform`,
+          ),
         },
         isFeaturesAvailable('logs-data-platform') && {
           id: 'logs-data-platform',
@@ -353,13 +368,49 @@ export function getPciProjectMenu(
       'notebooks',
       'training',
       'ai-apps',
-      'pci-ai-endpoints'
+      'pci-ai-endpoints',
+      'pci-ai-dashboard',
+      'pci-ai-notebooks',
+      'pci-ai-training',
+      'pci-ai-deploy',
     )
   ) {
     pciMenu.push({
       id: 'ai',
       title: 'AI & Machine Learning',
       subItems: [
+        isFeaturesAvailable('pci-ai-dashboard') && {
+          id: 'pci-dashboard',
+          title: 'AI Dashboard',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/ai-ml/dashboard`,
+          ),
+        },
+        isFeaturesAvailable('pci-ai-notebooks') && {
+          id: 'pci-notebooks',
+          title: 'AI Notebooks',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/ai-ml/notebook`,
+          ),
+        },
+        isFeaturesAvailable('pci-ai-training') && {
+          id: 'pci-training',
+          title: 'AI Training',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/ai-ml/training`,
+          ),
+        },
+        isFeaturesAvailable('pci-ai-deploy') && {
+          id: 'pci-deploy',
+          title: 'AI Deploy',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/ai-ml/deploy`,
+          ),
+        },
         isFeaturesAvailable('ai-dashboard') && {
           id: 'dashboard',
           title: 'AI Dashboard',
@@ -386,8 +437,13 @@ export function getPciProjectMenu(
         isFeaturesAvailable('pci-ai-endpoints') && {
           id: 'pci-ai-endpoints',
           title: 'AI Endpoints',
-          badge: 'beta',
-          href: getURL('public-cloud', `#/pci/projects/${projectId}/ai/endpoints`),
+          badge: isFeaturesAvailable('pci-ai-endpoints:create-token')
+            ? 'new'
+            : 'beta',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/ai/endpoints`,
+          ),
         },
       ],
     });
@@ -426,8 +482,7 @@ export function getPciProjectMenu(
           href: getURL('key-management-service', `/`),
         },
       ],
-    },
-    )
+    });
   }
 
   if (
@@ -439,7 +494,7 @@ export function getPciProjectMenu(
       'public-cloud:vouchers',
       'public-cloud:contacts',
       'public-cloud:project-settings',
-      'pci-savings-plan'
+      'pci-savings-plan',
     )
   ) {
     pciMenu.push({
@@ -475,7 +530,10 @@ export function getPciProjectMenu(
           id: 'savings',
           title: 'Savings Plans',
           badge: 'new',
-          href: getURL('public-cloud', `#/pci/projects/${projectId}/savings-plan`),
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/savings-plan`,
+          ),
         },
         isFeaturesAvailable('public-cloud:contacts') && {
           id: 'contacts',

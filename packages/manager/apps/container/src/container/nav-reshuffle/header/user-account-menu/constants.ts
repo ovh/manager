@@ -4,16 +4,16 @@ export const tracking = {
   open: 'topnav_v3::user_widget::open',
   goToProfile: 'topnav_v3::user_widget::go_to_profile',
   connexionMethode: 'topnav_v3::user_widget::connexion_method',
-  supportLevel:'topnav_v3::user_widget::support_level',
+  supportLevel: 'topnav_v3::user_widget::support_level',
   paymentMethod: 'topnav_v3::user_widget::payment_method',
   myAccount: 'topnav_v3::user_widget::my_account',
-  myServices:'topnav_v3::user_widget::my_services',
+  myServices: 'topnav_v3::user_widget::my_services',
   billingBills: 'topnav_v3::user_widget::billing_bills',
   accountContacts: 'topnav_v3::user_widget::account_contacts',
-  orders:'topnav_v3::user_widget::orders',
-  contacts:'topnav_v3::user_widget::contacts',
-  logout:'topnav_v3::user_widget::logout'
-}
+  orders: 'topnav_v3::user_widget::orders',
+  contacts: 'topnav_v3::user_widget::contacts',
+  logout: 'topnav_v3::user_widget::logout',
+};
 
 export const links: UserLink[] = [
   {
@@ -35,7 +35,7 @@ export const links: UserLink[] = [
     key: 'myServices',
     hash: '#/billing/autorenew',
     i18nKey: 'user_account_menu_my_services',
-    trackingHit: tracking.myServices
+    trackingHit: tracking.myServices,
   },
   {
     app: 'dedicated',
@@ -50,7 +50,6 @@ export const links: UserLink[] = [
     hash: '#/billing/payment/method',
     i18nKey: 'user_account_menu_my_payment_methods',
     trackingHit: tracking.paymentMethod,
-
   },
   {
     app: 'dedicated',
@@ -65,6 +64,5 @@ export const links: UserLink[] = [
     hash: '#/contacts/services',
     i18nKey: 'user_account_menu_my_contacts',
     trackingHit: tracking.contacts,
-
-  }
+  },
 ];

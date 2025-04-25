@@ -5,6 +5,7 @@ export default {
   bindings: {
     features: '<',
     goToMoveDialog: '<',
+    guideLinks: '<',
   },
   controller,
   template,

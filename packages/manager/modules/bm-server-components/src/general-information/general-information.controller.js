@@ -16,15 +16,21 @@ export default class BmServerComponentsGeneralInformationController {
     this.INFORMATION_UNKNOWN = INFORMATION_UNKNOWN;
   }
 
-  getOperatingSystemLabel() {
+  hasOperatingSystem() {
     const { os } = this.server;
     if (!os || Object.values(OPERATING_SYSTEM_ENUM).includes(os)) {
-      return this.$translate.instant(
-        'dedicated_server_dashboard_distribution_none',
-      );
+      return false;
     }
+    return true;
+  }
 
-    return os;
+  getOperatingSystemLabel() {
+    if (this.hasOperatingSystem()) {
+      return this.server.os;
+    }
+    return this.$translate.instant(
+      'dedicated_server_dashboard_distribution_none',
+    );
   }
 
   openOsInstallation(type) {

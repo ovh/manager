@@ -65,7 +65,7 @@ const useNotifications = () => {
     })
       .then(() => {
         notification.setStatus(status);
-        queryClient.invalidateQueries({queryKey: ['notifications']});
+        queryClient.invalidateQueries({ queryKey: ['notifications'] });
       })
       .finally(() => {
         notification.setUpdating(false);
@@ -78,7 +78,7 @@ const useNotifications = () => {
         .filter(({ updating, isActive }) => !updating && isActive())
         .map(({ id }) => id),
     });
-    queryClient.invalidateQueries({queryKey: ['notifications']});
+    queryClient.invalidateQueries({ queryKey: ['notifications'] });
   };
 
   const toggleNotificationReadStatus = (

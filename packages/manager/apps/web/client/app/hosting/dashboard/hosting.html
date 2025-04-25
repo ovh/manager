@@ -109,10 +109,24 @@
                     <div
                         class="d-flex align-items-center justify-content-end flex-wrap gap-1 mt-4"
                     >
-                        <changelog-button
-                            links="$ctrl.constants.CHANGELOG.hosting_plan.links"
-                            chapters="$ctrl.constants.CHANGELOG.hosting_plan.chapters"
-                        ></changelog-button>
+                        <div class="d-flex">
+                            <changelog-button
+                                links="$ctrl.constants.CHANGELOG.hosting_plan.links"
+                                chapters="$ctrl.constants.CHANGELOG.hosting_plan.chapters"
+                            ></changelog-button>
+                            <oui-guide-menu
+                                data-ng-if="$ctrl.guides"
+                                text="{{ 'hostings_guides_title' | translate }}"
+                            >
+                                <oui-guide-menu-item
+                                    data-ng-repeat="guide in $ctrl.guides track by $index"
+                                    data-href="{{:: guide.href }}"
+                                    data-external
+                                >
+                                    <span data-ng-bind="guide.title"></span>
+                                </oui-guide-menu-item>
+                            </oui-guide-menu>
+                        </div>
                         <div
                             class="btn-group ml-auto mt-1"
                             data-uib-dropdown

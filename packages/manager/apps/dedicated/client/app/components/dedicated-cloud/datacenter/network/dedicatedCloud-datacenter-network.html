@@ -1,0 +1,119 @@
+<div data-ui-view class="d-flex flex-column gap-8">
+    <div>
+        <div class="d-flex justify-content-between">
+            <h2 data-ng-bind="$ctrl.NETWORK_LABEL"></h2>
+
+            <oui-guide-menu
+                class="mt-2"
+                data-text="{{:: 'dedicatedCloud_datacenter_network_guides' | translate }}"
+            >
+                <oui-guide-menu-item
+                    data-ng-href="{{:: $ctrl.guideUrl }}"
+                    data-external="true"
+                >
+                    <span data-ng-bind="$ctrl.NETWORK_LABEL"></span>
+                </oui-guide-menu-item>
+            </oui-guide-menu>
+        </div>
+        <p
+            data-translate="dedicatedCloud_network_description"
+            data-translate-values="{ price: $ctrl.vcpuTextPrice, link: $ctrl.guideUrl }"
+        ></p>
+    </div>
+    <div>
+        <h3
+            class="oui-heading_4"
+            data-translate="dedicatedCloud_network_facturation_summary_title"
+        ></h3>
+        <dl class="row mb-0">
+            <dt
+                class="col-md-2"
+                data-translate="dedicatedCloud_network_option_price_label"
+            ></dt>
+            <dd data-ng-if="$ctrl.consumptionLoading" class="col-md-3">
+                <oui-skeleton size="xs"></oui-skeleton>
+            </dd>
+            <dd
+                data-ng-if="!$ctrl.consumptionLoading && $ctrl.consumption.price.value === 0"
+                class="col-md-3"
+                data-translate="dedicatedCloud_network_included_in_offer"
+            ></dd>
+            <dd
+                data-ng-if="!$ctrl.consumptionLoading && $ctrl.consumption.price.value !== 0"
+                class="col-md-3 mb-0"
+                data-ng-bind="$ctrl.consumption.price.text"
+            ></dd>
+        </dl>
+    </div>
+    <div>
+        <oui-button
+            variant="primary"
+            data-disabled="$ctrl.hasMaximumNsx || !!$ctrl.pollNsxTaskId"
+            data-ng-click="$ctrl.goToAddNsx()"
+            ><span data-translate="dedicatedCloud_network_add_edge_cta"></span
+        ></oui-button>
+        <oui-button
+            variant="secondary"
+            data-ng-click="$ctrl.goToResize()"
+            data-disabled="!!$ctrl.pollNsxTaskId"
+            ><span
+                data-translate="dedicatedCloud_network_resize_edge_cta"
+            ></span
+        ></oui-button>
+    </div>
+
+    <div>
+        <oui-datagrid data-rows-loader="$ctrl.loadNsxtEdgeNetworks($config)">
+            <oui-datagrid-column
+                data-title=":: 'dedicatedCloud_network_id' | translate"
+                data-property="nsxtEdgeId"
+            >
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title=":: 'dedicatedCloud_network_name' | translate"
+                data-property="name"
+            >
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title=":: 'dedicatedCloud_network_vm_list' | translate"
+                data-property="moRef"
+            >
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title=":: 'dedicatedCloud_network_sizing' | translate"
+                data-property="size"
+            >
+                <span data-ng-bind="$row.size | capitalize"></span>
+            </oui-datagrid-column>
+
+            <oui-action-menu
+                data-compact
+                data-disabled="!!$ctrl.pollNsxTaskId"
+                data-placement="end"
+            >
+                <oui-action-menu-item
+                    data-ng-if=":: $ctrl.isNsxEdgeRelocateAvailable"
+                    data-on-click="$ctrl.goToRelocate($row.nsxtEdgeId)"
+                    ><span
+                        data-translate="dedicatedCloud_network_relocate_action"
+                    ></span
+                ></oui-action-menu-item>
+                <!-- <oui-action-menu-item
+                    data-disabled="$ctrl.hasOnlyMinimumNsx"
+                    data-oui-tooltip="{{ $ctrl.hasOnlyMinimumNsx ? ('dedicatedCloud_network_unable_have_minimum_nsx' | translate: { minimumNsx: $ctrl.MIN_NSX_EDGES }) : undefined }}"
+                    data-on-click="$ctrl.goToRemove($row.nsxtEdgeId)"
+                    ><span
+                        data-translate="dedicatedCloud_network_delete_action"
+                    ></span
+                ></oui-action-menu-item> -->
+                <oui-action-menu-item
+                    data-disabled="true"
+                    data-oui-tooltip="{{ 'dedicatedCloud_network_unable_delete_not_developed_yet' | translate }}"
+                    ><span
+                        data-translate="dedicatedCloud_network_delete_action"
+                    ></span
+                ></oui-action-menu-item>
+            </oui-action-menu>
+        </oui-datagrid>
+    </div>
+</div>

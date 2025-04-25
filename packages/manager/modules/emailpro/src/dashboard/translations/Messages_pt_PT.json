@@ -893,7 +893,7 @@
   "email_tab_modal_create_redirection_info": "Queira introduzir as informações do reencaminhamento",
   "email_tab_modal_redirection_create_keep_copy_title": "Escolha o modo de cópia:",
   "email_tab_modal_redirection_create_email_error": "O endereço de e-mail não é válido",
-  "email_tab_modal_redirection_create_copy_local": "Conservar uma cópia do e-mail na OVHcloud",
+  "email_tab_modal_redirection_create_copy_local": "Manter uma cópia do e-mail na OVHcloud",
   "email_tab_modal_redirection_create_copy_none": "Não manter uma cópia do e-mail",
   "email_tab_modal_redirection_create_copy_select": "Queira selecionar uma opção",
   "email_tab_modal_create_redirection_success": "O redirecionamento está em processo de criação. A operação terá efeito minutos mais tarde.",

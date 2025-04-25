@@ -1,0 +1,13 @@
+{
+  "microsoft_office_licenses_order": "Bestellen",
+  "microsoft_office_licenses_servicename": "Name des Dienstes",
+  "microsoft_office_licenses_firstname": "Vorname",
+  "microsoft_office_licenses_lastname": "Name",
+  "microsoft_office_licenses_zipcode": "Postleitzahl",
+  "microsoft_office_licenses_city": "Stadt",
+  "microsoft_office_licenses_address": "Adresse",
+  "microsoft_office_licenses_phone": "Telefon",
+  "microsoft_office_licenses_servicetype": "Diensttyp",
+  "microsoft_office_licenses_status": "Status",
+  "microsoft_office_licenses_displayName": "Anzeigename"
+}

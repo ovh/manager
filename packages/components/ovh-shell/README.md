@@ -147,8 +147,6 @@ This plugin handles everything that is UI related, such as elements shown or hid
 Currently, it handles the state of the account sidebar, notifications sidebar and verifies cookie verification for the ssoAuthModal.
 
 - `showAccountSidebar() => void`): display the account sidebar.
-- `disableAccountSidebarToggle() => void`): Disallows toggle of the Account Sidebar. After calling this function, the Account Sidebar won't toggle anymore unless you call `enableAccountSidebarToggle`.
-- `enableAccountSidebarToggle() => void`): Allows Account sidebar to be toggled.
 - `isAccountSidebarVisible() => boolean`): Returns if Account Sidebar is shown or not.
 - `setForceAccountSiderBarDisplayOnLargeScreen(isForced: boolean) => void`): forces the display on large screens. This option can be disabled by passing the false parameter to `isFalse`.
 - `resetAccountSidebar() => void`: Sets the Account Sidebar to its default state.

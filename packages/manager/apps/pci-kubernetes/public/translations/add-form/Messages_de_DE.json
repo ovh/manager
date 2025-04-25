@@ -1,6 +1,6 @@
 {
-  "kubernetes_add_node_pool_description": "Sie können einen oder mehrere Node-Pools direkt nach der Erstellung des Clusters konfigurieren. Ein Node-Pool ist eine Gruppe von Worker-Nodes desselben Typs.",
-  "kubernetes_add_node_pool_node_count": "Anzahl der Nodes",
+  "kubernetes_add_node_pool_description": "Sie können einen oder mehrere Node-Pools direkt nach der Erstellung des Clusters konfigurieren. Ein Node-Pool bezeichnet eine Gruppe von Worker-Nodes des gleichen Typs.",
+  "kubernetes_add_node_pool_node_count": "Anzahl an Nodes",
   "kubernetes_add_node_pool_node_type": "Node-Typ",
-  "kube_common_node_pool_model_type_selector": "Vorlage auswählen"
+  "kube_common_node_pool_model_type_selector": "Wählen Sie ein Modell aus"
 }

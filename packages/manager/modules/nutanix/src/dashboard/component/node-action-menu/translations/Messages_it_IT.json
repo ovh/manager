@@ -1,18 +1,18 @@
 {
   "nutanix_node_action_menu_action_aria_label": "Azioni dei nodi",
-  "nutanix_node_action_menu_install": "Installa",
-  "nutanix_node_action_menu_reinstall": "Reinstalla",
-  "nutanix_node_action_menu_uninstall": "Disinstalla",
-  "nutanix_node_action_menu_terminate": "Disattiva",
+  "nutanix_node_action_menu_install": "Installare",
+  "nutanix_node_action_menu_reinstall": "Reinstallare",
+  "nutanix_node_action_menu_uninstall": "Disinstallare",
+  "nutanix_node_action_menu_terminate": "Disattivare",
   "nutanix_node_action_menu_power_on": "Accendere",
   "nutanix_node_action_menu_power_off": "Spegnere",
-  "nutanix_node_disable_reason_node_already_installed": "Il nodo è già stato implementato",
-  "nutanix_node_disable_reason_node_is_powered_on": "È necessario spegnere il nodo prima di eseguire questa azione",
-  "nutanix_node_disable_reason_node_not_uninstalled": "Per motivi di sicurezza, è necessario disinstallare il nodo prima di poterlo disattivare",
+  "nutanix_node_disable_reason_node_already_installed": "Il nodo è già in esecuzione.",
+  "nutanix_node_disable_reason_node_is_powered_on": "È necessario spegnere il nodo prima di effettuare questa azione",
+  "nutanix_node_disable_reason_node_not_uninstalled": "Per motivi di sicurezza, è necessario disinstallare il nodo prima di poterlo disattivare.",
   "nutanix_node_disable_reason_node_not_installed": "È necessario eseguire prima un'operazione di installazione",
   "nutanix_node_disable_reason_node_already_uninstalled": "Questo nodo è già stato disinstallato",
   "nutanix_node_disable_reason_node_is_powered_off": "Il server è spento",
   "nutanix_node_disable_reason_cluster_has_active_todo": "Sul cluster è già in corso un’operazione di installazione",
   "nutanix_node_disable_reason_server_is_rebooting": "Sul nodo è già in corso un'operazione",
-  "nutanix_node_disable_reason_lower_than_initial_commitment_size": "Un cluster nutanix non può funzionare con meno di {{nb_nodes_minimal}} nodi"
+  "nutanix_node_disable_reason_lower_than_initial_commitment_size": "Un cluster Nutanix non può funzionare con meno di {{nb_nodes_minimal}} nodi"
 }

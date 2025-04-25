@@ -1,5 +1,6 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
+import { ODS_POPOVER_POSITION } from '@ovhcloud/ods-components';
 import {
   ActionMenu,
   ActionMenuItem,
@@ -47,6 +48,7 @@ export const actionMenuStandard = {
   args: {
     items: actionItems,
     isCompact: false,
+    popoverPosition: ODS_POPOVER_POSITION.bottomEnd,
   },
 };
 

@@ -11,5 +11,6 @@
   "ai_endpoints_guide2Description": "Découvrez les fonctionnalités, capacités et limitations actuelles d'AI Endpoints",
   "ai_endpoints_tutoCategory": "Tutoriels",
   "ai_endpoints_guide3Title": "Cas d'usage avec AI Endpoints",
-  "ai_endpoints_guide3Description": "Explorez nos tutoriels pour enrichir vos applications avec AI Endpoints. Apprenez comment créer des chatbots, intégrer des LLM ou des outils pour des solutions d'IA puissantes."
+  "ai_endpoints_guide3Description": "Explorez nos tutoriels pour enrichir vos applications avec AI Endpoints. Apprenez comment créer des chatbots, intégrer des LLM ou des outils pour des solutions d'IA puissantes.",
+  "ai_endpoints_create_API_key": "Générer ma première clé d'accès"
 }

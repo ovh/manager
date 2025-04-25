@@ -21,6 +21,7 @@ export default class DomainDnsModifyCtrl {
     $translate,
     Domain,
     WucValidator,
+    coreURLBuilder,
   ) {
     this.$scope = $scope;
     this.$q = $q;
@@ -29,6 +30,7 @@ export default class DomainDnsModifyCtrl {
     this.$translate = $translate;
     this.Domain = Domain;
     this.WucValidator = WucValidator;
+    this.coreURLBuilder = coreURLBuilder;
 
     // Watch for changes in modifiedDnsList
     this.$scope.$watch(
@@ -65,6 +67,13 @@ export default class DomainDnsModifyCtrl {
     this.selectedConfigurationType = CONFIGURATION_TYPES.EMPTY;
     this.isLoading = true;
     this.isUpdating = false;
+    this.ongoingOperationsLink = this.coreURLBuilder.buildURL(
+      'web-ongoing-operations',
+      '#/domain',
+      {
+        filter: `[{"field":"domain","comparator":"contains","reference":["${this.$stateParams.productId}"]}]`,
+      },
+    );
 
     this.init();
     this.initFormControls();
@@ -358,10 +367,6 @@ export default class DomainDnsModifyCtrl {
     );
 
     if (this.isOperationOngoing) {
-      const href = this.$state.href('app.domain.operation.domain', {
-        filter: `[{"field":"domain","comparator":"contains","reference":["${this.$stateParams.productId}"]}]`,
-      });
-
       this.$scope.alerts.main = {
         message: 'domain_dns_error_operation_ongoing',
         type: 'info',
@@ -369,7 +374,7 @@ export default class DomainDnsModifyCtrl {
           domain: this.$stateParams.productId,
         },
         link: {
-          href,
+          href: this.ongoingOperationsLink,
           message: 'domain_dns_error_operation_ongoing_link',
         },
       };

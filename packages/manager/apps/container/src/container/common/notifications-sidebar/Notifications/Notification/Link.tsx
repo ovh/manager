@@ -1,5 +1,3 @@
-import React from 'react';
-
 import useNotifications from '@/core/notifications';
 
 type Props = {

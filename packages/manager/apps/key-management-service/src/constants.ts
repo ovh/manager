@@ -8,3 +8,5 @@ export const CHANGELOG_LINKS: ChangelogLinks = {
   'feature-request':
     'https://github.com/ovh/management-security-operations-roadmap/issues/new',
 };
+
+export const SERVICE_KEYS_LABEL = 'Service Keys';

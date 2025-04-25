@@ -8,7 +8,7 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import Products from '@/components/products/Products.component';
 import { ProductList } from '@/types/services.type';
-import { aFewProductsMocked, lotsOfProductsMocked } from '@/_mock_/products';
+import { aFewProductsMocked, lotsOfProductsMocked } from '@/__mocks__/products';
 
 const trackClickMock = vi.fn();
 const url = 'https://fake-link.com';

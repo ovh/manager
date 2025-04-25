@@ -18,14 +18,14 @@
   "kubernetes_add_error_InsufficientPortsQuota": "Your project’s port quota is too low to complete the operation. Please increase your quota, or request fewer resources.",
   "kubernetes_add_error_InsufficientInstancesQuota": "Your project’s instance quota is too low to complete the operation. Please increase your quota, or request fewer resources.",
   "kubernetes_add_error_quota_link": "Increase your quota.",
-  "kubernetes_add_billing_auto_scaling_monthly_warning": "You can enable auto-scaling and monthly billing for this node pool at the same time. Each time you create a node via auto-scaling, you will be billed for one node immediately, calculated on a pro rata basis for the time remaining in the current month. We recommend avoiding this combination if you anticipate frequent reductions in the size of your node pool.",
+  "kubernetes_add_billing_auto_scaling_monthly_warning": "You can enable auto-scaling and monthly billing at the same time for this node pool. Each time you create a node via auto-scaling, you will be billed for one node immediately, on a pro rata basis for the remaining time in the current month. This combination is not recommended if you plan on frequently downscaling the size of your node pool.",
   "kubernetes_add_cluster_name_input_pattern_validation_error": "The name must start with an alphabetical character, end with an alpha-numeric character, and the only special characters allowed are hyphens and underscores.",
   "kubernetes_add_billing_anti_affinity_coming_soon_message_title": "Monthly prices",
   "kubernetes_add_billing_anti_affinity_coming_soon_message_description": "With the launch of Saving Plans, we will soon be able to bill you monthly.",
   "kubernetes_node_pool_anti_affinity": "Anti-affinity",
-  "kubernetes_node_pool_anti_affinity_description": "By enabling anti-affinity, current and future nodes will be deployed on different hypervisors (physical servers), guaranteeing better fault tolerance. Anti-affinity node pools can only contain up to {{maxNodes}} nodes. Please note that the anti-affinity feature is not compatible with auto-scaling activation.",
+  "kubernetes_node_pool_anti_affinity_description": "By enabling anti-affinity, current and future nodes will be deployed on different hypervisors (physical servers), guaranteeing higher fault tolerance. Anti-affinity node pools can only contain up to {{maxNodes}} nodes. Please note that the anti-affinity feature is not compatible with auto-scaling activation.",
   "kubernetes_add_billing_savings_plan_banner": "Take advantage of low monthly rates with Savings Plans—save money without sacrificing the flexibility to use instances whenever you need them.",
   "kubernetes_add_billing_savings_plan_cta": "Set up your Savings Plan",
   "kubernetes_node_pool_anti_affinity_true": "Active anti-affinity",
-  "kubernetes_node_pool_anti_affinity_false": "Anti-affinity inactive"
+  "kubernetes_node_pool_anti_affinity_false": "Inactive anti-affinity"
 }

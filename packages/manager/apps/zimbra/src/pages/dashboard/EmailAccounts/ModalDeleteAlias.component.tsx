@@ -1,7 +1,6 @@
 import React from 'react';
-import { useSearchParams, useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useMutation } from '@tanstack/react-query';
@@ -13,7 +12,7 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { useGenerateUrl, usePlatform } from '@/hooks';
+import { useGenerateUrl } from '@/hooks';
 import Modal from '@/components/Modals/Modal';
 import {
   deleteZimbraPlatformAlias,
@@ -26,25 +25,18 @@ import {
   EMAIL_ACCOUNT_DELETE_ALIAS,
 } from '@/tracking.constant';
 
-export default function ModalDeleteDomain() {
+export default function ModalDeleteAlias() {
   const { trackClick, trackPage } = useOvhTracking();
   const { t } = useTranslation(['accounts/alias', 'common']);
   const navigate = useNavigate();
-
-  const [searchParams] = useSearchParams();
-  const deleteAliasId = searchParams.get('deleteAliasId');
-  const params = Object.fromEntries(searchParams.entries());
-  delete params.deleteAliasId;
-
-  const { platformId } = usePlatform();
-
+  const { platformId, aliasId } = useParams();
   const { addError, addSuccess } = useNotifications();
 
-  const goBackUrl = useGenerateUrl('..', 'path', params);
+  const goBackUrl = useGenerateUrl('..', 'path');
   const onClose = () => navigate(goBackUrl);
 
   const { mutate: deleteAlias, isPending: isDeleting } = useMutation({
-    mutationFn: () => deleteZimbraPlatformAlias(platformId, deleteAliasId),
+    mutationFn: () => deleteZimbraPlatformAlias(platformId, aliasId),
     onSuccess: () => {
       trackPage({
         pageType: PageType.bannerSuccess,

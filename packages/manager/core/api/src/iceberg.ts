@@ -4,6 +4,7 @@ import apiClient from './client';
 export type IcebergCommonOptions = {
   route: string;
   pageSize?: number;
+  disableCache?: boolean;
   search?: {
     key: string;
     value: string;
@@ -15,7 +16,6 @@ export type IcebergFetchParamsV6 = {
   filters?: Filter[];
   sortBy?: string;
   sortReverse?: boolean;
-  disableCache?: boolean;
 } & IcebergCommonOptions;
 
 export type IcebergFetchParamsV2 = { cursor?: string } & IcebergCommonOptions;
@@ -69,10 +69,12 @@ export async function fetchIcebergV2<T>({
   route,
   pageSize,
   cursor,
+  disableCache,
 }: IcebergFetchParamsV2): Promise<IcebergFetchResultV2<T>> {
   const requestHeaders: Record<string, string> = {
     'X-Pagination-Size': `${encodeURIComponent(pageSize || 5000)}`,
     ...(cursor ? { 'X-Pagination-Cursor': `${cursor}` } : {}),
+    ...(disableCache ? { Pragma: 'no-cache' } : {}),
   };
 
   const { data, headers, status } = await apiClient.v2.get(route, {

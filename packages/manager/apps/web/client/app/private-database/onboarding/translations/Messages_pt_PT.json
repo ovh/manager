@@ -3,7 +3,6 @@
   "private_databases_onboarding_description": "Tem a possibilidade de adicionar ao seu alojamento bases de dados Start SQL MySQL suplementares. Aumente a potência do alojamento, assim como as possibilidades de armazenamento. As bases de dados MySQL também permitem uma gestão otimizada dos seus dados. Esta solução é ideal para dar um boost aos seus alojamentos Perso ou Pro.",
   "private_databases_onboarding_description2": "Também pode optar por bases de dados SQL privadas. Escolha entre as nossas diferentes soluções MySQL, MariaDB ou PostgreSQL. Elas dão-lhe mais liberdade de configuração no seio do seu alojamento.",
   "private_databases_onboarding_order": "Encomendar uma base de dados Web Cloud Databases",
-  "private_databases_onboarding_order2": "Encomendar SQL Privado",
   "private_databases_onboarding_guide1_title": "Primeiros passos com o serviço Web Cloud Databases",
   "private_databases_onboarding_guide1_description": "Saiba como começar a usar o serviço Web Cloud Databases",
   "private_databases_onboarding_guide2_title": "Criar bases de dados e utilizadores no seu servidor de bases de dados",

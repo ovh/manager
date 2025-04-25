@@ -33,6 +33,7 @@ export default class PciProjectInstanceService {
     Poller,
     coreConfig,
     CucPriceHelper,
+    CucCurrencyService,
     ovhManagerRegionService,
     OvhApiCloudProject,
     OvhApiCloudProjectFlavor,
@@ -52,6 +53,7 @@ export default class PciProjectInstanceService {
     this.Poller = Poller;
     this.coreConfig = coreConfig;
     this.CucPriceHelper = CucPriceHelper;
+    this.CucCurrencyService = CucCurrencyService;
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.OvhApiCloudProject = OvhApiCloudProject;
     this.OvhApiCloudProjectFlavor = OvhApiCloudProjectFlavor;
@@ -69,6 +71,15 @@ export default class PciProjectInstanceService {
     this.FLAVORS_WITHOUT_VNC = FLAVORS_WITHOUT_VNC;
     this.FLAVORS_WITHOUT_ADDITIONAL_IPS = FLAVORS_WITHOUT_ADDITIONAL_IPS;
     this.FLAVORS_WITHOUT_AUTOMATED_BACKUP = FLAVORS_WITHOUT_AUTOMATED_BACKUP;
+
+    this.licensePriceFormatter = new Intl.NumberFormat(
+      this.coreConfig.getUserLocale().replace('_', '-'),
+      {
+        style: 'currency',
+        currency: this.coreConfig.getUser().currency.code,
+        maximumFractionDigits: 5,
+      },
+    );
   }
 
   getBaseApiRoute(projectId) {
@@ -485,18 +496,43 @@ export default class PciProjectInstanceService {
   }
 
   getInstancePrice(projectId, instance, catalogEndpoint) {
-    return this.CucPriceHelper.getPrices(projectId, catalogEndpoint)
-      .then((prices) => {
-        const price = prices[instance.planCode];
-        // Set 3 digits for hourly price
-        if (!instance.isMonthlyBillingActivated()) {
-          price.price.text = price.price.text.replace(
-            /\d+(?:[.,]\d+)?/,
-            `${price.price.value.toFixed(3)}`,
+    return this.getCatalog(catalogEndpoint, this.coreConfig.getUser())
+      .then((catalog) => {
+        const instanceAddon = catalog.addons.find(
+          (a) => a.planCode === instance.planCode,
+        );
+        if (instanceAddon) {
+          const price = this.CucPriceHelper.transformPrice(
+            instanceAddon.pricings.find(
+              (p) =>
+                p.capacities.includes('renew') ||
+                p.capacities.includes('consumption'),
+            ),
+            catalog.locale.currencyCode,
           );
-        }
+          // Set 3 digits for hourly price
+          if (!instance.isMonthlyBillingActivated()) {
+            price.price.text = price.price.text.replace(
+              /\d+(?:[.,]\d+)?/,
+              `${price.price.value.toFixed(3)}`,
+            );
+          }
 
-        return price;
+          if (instance.licensePlanCode) {
+            const licensePricing = catalog.addons
+              .find((a) => a.planCode === instance.licensePlanCode)
+              ?.pricings.find((p) => p.capacities.includes('consumption'));
+            if (licensePricing)
+              price.licensePrice = this.formatLicensePrice(
+                this.CucCurrencyService.convertUcentsToCurrency(
+                  licensePricing.price,
+                ) * instanceAddon.blobs.technical.cpu.cores,
+              );
+          }
+
+          return price;
+        }
+        return null;
       })
       .catch(() => null);
   }
@@ -1043,5 +1079,22 @@ export default class PciProjectInstanceService {
           (a, b) => a.vlanId - b.vlanId,
         );
       });
+  }
+
+  getLicensePrice(catalog, flavor) {
+    if (flavor.planCodes.license) {
+      const price = catalog.addons
+        .find(({ planCode }) => planCode === flavor.planCodes.license)
+        ?.pricings.find((p) => p.type === 'consumption').price;
+
+      if (price) {
+        return this.CucCurrencyService.convertUcentsToCurrency(price);
+      }
+    }
+    return null;
+  }
+
+  formatLicensePrice(price) {
+    return this.licensePriceFormatter.format(price);
   }
 }

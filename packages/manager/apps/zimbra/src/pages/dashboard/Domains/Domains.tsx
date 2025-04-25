@@ -102,6 +102,7 @@ export default function Domains() {
 
   const {
     data: domains,
+    fetchAllPages,
     fetchNextPage,
     hasNextPage,
     isLoading,
@@ -193,6 +194,7 @@ export default function Domains() {
           totalItems={items.length}
           hasNextPage={hasNextPage}
           onFetchNextPage={fetchNextPage}
+          onFetchAllPages={fetchAllPages}
           isLoading={isLoading || isFetchingNextPage}
         />
       )}

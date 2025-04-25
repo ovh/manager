@@ -27,5 +27,5 @@
   "autorenew_agora_terminate_service_NUTANIX_NODE": "Diesen Node kündigen",
   "autorenew_agora_terminate_service_warning_NUTANIX_NODE": "Sie sind im Begriff, das Abonnement des Nodes „{{serviceName}}“ zu kündigen.",
   "autorenew_agora_terminate_service_success_NUTANIX_NODE": "Die Kündigung Ihres Nodes „{{serviceName}}“ wurde registriert. Sie erhalten eine E-Mail mit den Details zum weiteren Vorgehen.",
-  "autorenew_agora_terminate_service_error_NUTANIX_NODE": "Ihre Kündigungsanfrage wurde nicht durchgeführt: {{error}}"
+  "autorenew_agora_terminate_service_error_NUTANIX_NODE": "Ihre Kündigungsanfrage wurde nicht registriert: {{error}}"
 }

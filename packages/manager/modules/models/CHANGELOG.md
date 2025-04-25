@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@2.4.1...@ovh-ux/manager-models@2.4.2) (2025-04-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-models
+
+
+
+
+
+## [2.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@2.4.0...@ovh-ux/manager-models@2.4.1) (2025-04-17)
+
+
+### Bug Fixes
+
+* **billing:** rename extra sql perso status type and manage actions ([#16003](https://github.com/ovh/manager/issues/16003)) ([f31b266](https://github.com/ovh/manager/commit/f31b2665e16f8e751774092fac3356d8556cbc69)), closes [#WEB-20255](https://github.com/ovh/manager/issues/WEB-20255)
+
+
+
+
+
+# [2.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@2.3.3...@ovh-ux/manager-models@2.4.0) (2025-04-09)
+
+
+### Features
+
+* **billing:** handle new 2api renew period correctly ([e7585f1](https://github.com/ovh/manager/commit/e7585f1f624981e21f709cffc5143401ae26a0a3)), closes [#MANAGER-16329](https://github.com/ovh/manager/issues/MANAGER-16329)
+
+
+
+
+
+## [2.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@2.3.2...@ovh-ux/manager-models@2.3.3) (2025-04-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-models
+
+
+
+
+
 ## [2.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@2.3.1...@ovh-ux/manager-models@2.3.2) (2025-03-27)
 
 **Note:** Version bump only for package @ovh-ux/manager-models

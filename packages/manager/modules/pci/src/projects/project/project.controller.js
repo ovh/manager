@@ -5,6 +5,7 @@ import {
   PRODUCT_IMAGES,
   PCI_FEATURES,
   DATABASE_UAPP_CONFIG,
+  DATA_PLATFORM_CONFIG,
 } from './project.constants';
 
 export default class ProjectController {
@@ -77,6 +78,19 @@ export default class ProjectController {
           ...DATABASE_UAPP_CONFIG,
           url,
         });
+        if (
+          this.pciFeatures.isFeatureAvailable(
+            PCI_FEATURES.PRODUCTS.DATA_PLATFORM,
+          )
+        ) {
+          this.uAppActions.push({
+            ...DATA_PLATFORM_CONFIG,
+            url: DATA_PLATFORM_CONFIG.url.replace(
+              '{projectId}',
+              this.projectId,
+            ),
+          });
+        }
       });
     }
   }

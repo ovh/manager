@@ -58,7 +58,7 @@ export const Card: React.FC<CardProps> = ({
         color="neutral"
         data-tracking={trackingLabel}
       >
-        <div className="flex flex-col">
+        <div className="flex flex-col h-full">
           {img?.src && (
             <img
               className="max-w-full my-3 mx-auto"
@@ -85,7 +85,7 @@ export const Card: React.FC<CardProps> = ({
               {description}
             </p>
           )}
-          <div className="section-see-more-label">
+          <div className="section-see-more-label mt-auto">
             <Links
               tab-index="-1"
               label={hrefLabel ?? t('see_more_label')}

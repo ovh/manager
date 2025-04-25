@@ -1,7 +1,7 @@
 import React from 'react';
 import { vitest } from 'vitest';
 import { waitFor, screen, fireEvent } from '@testing-library/react';
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { ODS_ICON_NAME, ODS_POPOVER_POSITION } from '@ovhcloud/ods-components';
 import { ActionMenu, ActionMenuProps } from './action.component';
 import { render } from '../../../../utils/test.provider';
 import { useAuthorizationIam } from '../../../../hooks/iam';
@@ -75,5 +75,15 @@ describe('ActionMenu', () => {
       'navigation-action-trigger-action',
     );
     expect(actionMenuIcon.getAttribute('icon')).toBe('ellipsis-horizontal');
+  });
+
+  it('renders compact menu with popover position bottom-end', async () => {
+    await setupSpecTest({
+      popoverPosition: ODS_POPOVER_POSITION.bottomEnd,
+    });
+    const popover = screen.getByTestId(
+      'navigation-action-trigger-action-popover',
+    );
+    expect(popover.getAttribute('position')).toBe('bottom-end');
   });
 });

@@ -3,11 +3,11 @@ import { z } from 'zod';
 import { MinusCircle, PlusCircle } from 'lucide-react';
 import React, { useEffect, useMemo, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { ScrollArea } from '@/components/ui/scroll-area';
 import {
+  Badge,
+  Button,
+  Input,
+  ScrollArea,
   Select,
   SelectContent,
   SelectGroup,
@@ -15,18 +15,16 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
-import {
   FormControl,
   FormField,
   FormItem,
   FormMessage,
-} from '@/components/ui/form';
+  Skeleton,
+} from '@datatr-ux/uxlib';
 import { useRolesSelectForm } from './useRolesSelectForm.hook';
 import { USER_CONFIG } from './user.constants';
 import { useGetRoles } from '@/hooks/api/database/user/useGetRoles.hook';
 import { useServiceData } from '../../../Service.context';
-import { Skeleton } from '@/components/ui/skeleton';
 import * as database from '@/types/cloud/project/database';
 
 interface RoleSelectProps {
@@ -232,7 +230,7 @@ const RoleSelect = React.forwardRef<HTMLInputElement, RoleSelectProps>(
           )}
           <Button
             ref={addRoleBtnRef}
-            variant={'ghost'}
+            mode={'ghost'}
             type="button"
             onClick={form.handleSubmit(handleAddRole)}
             data-testid="roles-select-submit-button"
@@ -263,7 +261,7 @@ const RoleSelect = React.forwardRef<HTMLInputElement, RoleSelectProps>(
                 >
                   <Button
                     className="text-destructive rounded-full p-2 ml-2 hover:text-destructive h-8 w-8"
-                    variant={'ghost'}
+                    mode={'ghost'}
                     type="button"
                     onClick={() => handleRemoveRole(index)}
                   >

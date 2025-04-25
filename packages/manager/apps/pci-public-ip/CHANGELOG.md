@@ -3,6 +3,88 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.15.1...@ovh-ux/manager-pci-public-ip-app@0.15.2) (2025-04-24)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-public-ip-app
+
+
+
+
+
+## [0.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.15.0...@ovh-ux/manager-pci-public-ip-app@0.15.1) (2025-04-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-public-ip-app
+
+
+
+
+
+# [0.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.14.4...@ovh-ux/manager-pci-public-ip-app@0.15.0) (2025-04-15)
+
+
+### Bug Fixes
+
+* **pci-public-ip:** land user to step 3 to assign Floating IP from instance ([#16360](https://github.com/ovh/manager/issues/16360)) ([d6b83cc](https://github.com/ovh/manager/commit/d6b83ccbb0b82e6f6b90239ce20a59b3431031f1)), closes [#TAPC-3628](https://github.com/ovh/manager/issues/TAPC-3628)
+
+
+### Features
+
+* **pci-public-ip:** add title for the region selector ([#16431](https://github.com/ovh/manager/issues/16431)) ([aa4ffa4](https://github.com/ovh/manager/commit/aa4ffa45cceb3aa7ffc44b6020896d7f806596c2)), closes [#TAPC-3634](https://github.com/ovh/manager/issues/TAPC-3634)
+
+
+
+
+
+## [0.14.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.14.3...@ovh-ux/manager-pci-public-ip-app@0.14.4) (2025-04-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3844] ([7880506](https://github.com/ovh/manager/commit/78805069fb9da4df6b494a4aee06a31a2a6f55d4))
+* **i18n:** add missing translations [CDS 3847] ([b32c5d3](https://github.com/ovh/manager/commit/b32c5d32f508c8af5208e7276309fdd783342ce0))
+
+
+
+
+
+## [0.14.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.14.2...@ovh-ux/manager-pci-public-ip-app@0.14.3) (2025-04-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-public-ip-app
+
+
+
+
+
+## [0.14.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.14.1...@ovh-ux/manager-pci-public-ip-app@0.14.2) (2025-04-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-public-ip-app
+
+
+
+
+
+## [0.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.14.0...@ovh-ux/manager-pci-public-ip-app@0.14.1) (2025-04-03)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3825] ([c6d2754](https://github.com/ovh/manager/commit/c6d2754e2c52befd9a757525dfa32c00e3757ac1))
+
+
+
+
+
+# [0.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.13.0...@ovh-ux/manager-pci-public-ip-app@0.14.0) (2025-04-02)
+
+
+### Features
+
+* **mrc:** bump version ([#16251](https://github.com/ovh/manager/issues/16251)) ([2f21862](https://github.com/ovh/manager/commit/2f218623919905e69d012c53474613785fe76991)), closes [#TAPC-2786](https://github.com/ovh/manager/issues/TAPC-2786)
+
+
+
+
+
 # [0.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.12.9...@ovh-ux/manager-pci-public-ip-app@0.13.0) (2025-03-31)
 
 

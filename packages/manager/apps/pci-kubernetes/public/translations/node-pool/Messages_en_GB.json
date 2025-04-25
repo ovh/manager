@@ -1,5 +1,5 @@
 {
-  "kubernetes_add_node_pool_description": "You can configure one or more node pools as soon as the cluster is created. A node pool refers to a set of worker nodes that share the same type.",
+  "kubernetes_add_node_pool_description": "You can configure one or more node pools as soon as the cluster is created. A node pool is a group of worker nodes that all have the same configuration.",
   "kubernetes_add_node_pool_node_count": "Number of nodes",
   "kubernetes_add_node_pool_node_type": "Node type",
   "kube_node_pool_name": "Pool name",
@@ -20,16 +20,16 @@
   "kube_node_pool_autoscale_false": "Inactive",
   "kube_common_node_pool_configure_true": "Configure node pools",
   "kube_common_node_pool_configure_false": " Create a cluster without a node pool",
-  "kube_common_node_pool_estimated_cost": "Estimated monthly cost of the cluster:",
+  "kube_common_node_pool_estimated_cost": "Estimated monthly cluster cost:",
   "kube_common_node_pool_estimation_text": "This estimate does not include a potential Savings Plan discount.",
   "kube_common_node_pool_estimation_price": "Node pools: {{estimation}}",
-  "kube_common_node_pool_estimation_text_end": "The exact cost depends on the actual resource usage, which cannot be accurately estimated before a cluster is created.",
+  "kube_common_node_pool_estimation_text_end": "The exact cost will depend on the actual resources used, which we can only determine after the cluster is set up.",
   "kube_common_node_pool_size_title": "Node pool size",
   "kube_common_node_pool_desired_node": "Number of nodes",
-  "kube_common_node_pool_autoscaling": "Auto-scaling",
+  "kube_common_node_pool_autoscaling": "Autoscaling",
   "kube_common_node_pool_localisation": "Location",
-  "kube_common_node_pool_model": "Model",
+  "kube_common_node_pool_model": "Template",
   "kube_common_node_pool_liste": "List of node pools",
   "kube_common_add_node_pool": "Add node pool",
-  "kube_common_min_max_nodes": "Min {{minNodes}}, Max {{maxNodes}}"
+  "kube_common_min_max_nodes": "Min: {{minNodes}}, Max: {{maxNodes}}"
 }

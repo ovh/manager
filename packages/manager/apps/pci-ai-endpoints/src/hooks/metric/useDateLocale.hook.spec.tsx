@@ -75,14 +75,13 @@ describe('useDateLocale', () => {
       result.current.handleStartTimeChange(newStartTime);
     });
 
-    const timezoneOffset = newStartTime.getTimezoneOffset();
-    const adjustedStartTime = new Date(newStartTime);
-    adjustedStartTime.setHours(
-      adjustedStartTime.getHours() - timezoneOffset / 60,
+    const currentUtcOffset = new Date().getTimezoneOffset() * 60000;
+    const expectedStartTime = new Date(
+      newStartTime.getTime() - currentUtcOffset,
     );
 
     expect(result.current.startTime.toISOString()).toBe(
-      adjustedStartTime.toISOString(),
+      expectedStartTime.toISOString(),
     );
   });
 

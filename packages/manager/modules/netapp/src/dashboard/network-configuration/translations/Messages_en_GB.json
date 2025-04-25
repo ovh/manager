@@ -11,7 +11,7 @@
   "netapp_network_configuration_subnet_field_placeholder": "Select your subnet",
   "netapp_network_configuration_no_vrack_services_field": "You do not have any vRack Services attached to the {{ vrack }} vRack",
   "netapp_network_configuration_create_vrack_services_text": "Do you want to enable vRack Services?",
-  "netapp_network_configuration_subnet_field_label": "Subnetwork",
+  "netapp_network_configuration_subnet_field_label": "Subnet",
   "netapp_network_configuration_no_subnet_field": "You do not have any subnets attached to vRack Services",
   "netapp_network_configuration_no_subnet_text": "Would you like to create a new subnet?",
   "netapp_network_configuration_create_button": "Activate",

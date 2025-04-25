@@ -1,51 +1,85 @@
 import {
-  useQuery,
-  UseQueryOptions,
-  UseQueryResult,
+  useInfiniteQuery,
+  UseInfiniteQueryOptions,
+  UseInfiniteQueryResult,
 } from '@tanstack/react-query';
-import { useSearchParams } from 'react-router-dom';
-import { usePlatform } from '@/hooks';
+import { useParams, useSearchParams } from 'react-router-dom';
+import { useCallback, useEffect, useState } from 'react';
 import {
   getZimbraPlatformMailingLists,
   getZimbraPlatformMailingListsQueryKey,
   MailingListType,
 } from '@/api/mailinglist';
+import { APIV2_MAX_PAGESIZE, buildURLSearchParams } from '@/utils';
 
 type UseMailingListsParams = Omit<
-  UseQueryOptions,
-  'queryKey' | 'queryFn' | 'select'
+  UseInfiniteQueryOptions,
+  'queryKey' | 'queryFn' | 'select' | 'getNextPageParam' | 'initialPageParam'
 > & {
   organizationId?: string;
-  organizationLabel?: string;
+  shouldFetchAll?: boolean;
 };
 
 export const useMailingLists = (props: UseMailingListsParams = {}) => {
-  const { platformId } = usePlatform();
+  const { organizationId, shouldFetchAll, ...options } = props;
+  const [allPages, setAllPages] = useState(!!shouldFetchAll);
+  const { platformId } = useParams();
   const [searchParams] = useSearchParams();
-  const { organizationId, organizationLabel, ...options } = props;
-  const selectedOrganizationId =
-    organizationId ?? searchParams.get('organizationId');
-  const selectedOrganizationLabel =
-    organizationLabel ?? searchParams.get('organizationLabel');
 
-  const queryParameters = {
-    ...(selectedOrganizationId && { organizationId: selectedOrganizationId }),
-    ...(selectedOrganizationLabel && {
-      organizationLabel: selectedOrganizationLabel,
-    }),
-  };
+  const urlSearchParams = buildURLSearchParams({
+    organizationId: organizationId ?? searchParams.get('organizationId'),
+  });
 
-  return useQuery({
+  const query = useInfiniteQuery({
     ...options,
+    initialPageParam: null,
     queryKey: getZimbraPlatformMailingListsQueryKey(
       platformId,
-      queryParameters,
+      urlSearchParams,
+      allPages,
     ),
-    queryFn: () => getZimbraPlatformMailingLists(platformId, queryParameters),
-    enabled: (query) =>
+    queryFn: ({ pageParam }) =>
+      getZimbraPlatformMailingLists({
+        platformId,
+        searchParams: urlSearchParams,
+        pageParam,
+        ...(allPages ? { pageSize: APIV2_MAX_PAGESIZE } : {}),
+      }),
+    enabled: (q) =>
       (typeof options.enabled === 'function'
-        ? options.enabled(query)
+        ? options.enabled(q)
         : typeof options.enabled !== 'boolean' || options.enabled) &&
       !!platformId,
-  }) as UseQueryResult<MailingListType[]>;
+    getNextPageParam: (lastPage: { cursorNext?: string }) =>
+      lastPage.cursorNext,
+    select: (data) =>
+      data?.pages.flatMap(
+        (page: UseInfiniteQueryResult<MailingListType[]>) => page.data,
+      ),
+  });
+
+  const fetchAllPages = useCallback(() => {
+    if (!allPages) {
+      setAllPages(true);
+    }
+  }, [allPages, setAllPages]);
+
+  useEffect(() => {
+    if (allPages && query.hasNextPage && !query.isFetchingNextPage) {
+      query.fetchNextPage();
+    }
+  }, [query.data, allPages]);
+
+  // reset when searchParams changes
+  useEffect(() => {
+    if (!shouldFetchAll) {
+      setAllPages(false);
+    }
+  }, [urlSearchParams]);
+
+  // use object assign instead of spread
+  // to avoid unecessary rerenders
+  return Object.assign(query, {
+    fetchAllPages,
+  });
 };

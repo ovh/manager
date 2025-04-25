@@ -1,8 +1,8 @@
 {
   "key_management_service_create_title": "Zamów KMS",
-  "key_management_service_create_subtitle": "Wskaż region, w którym ma zostać zostanie wdrożony. Następnie będziesz mógł tworzyć i zarządzać własnymi kluczami szyfrowania i certyfikatami dostępu w tym KMS.",
+  "key_management_service_create_subtitle": "Wskaż region, w którym zostanie wdrożony. Następnie będziesz mógł tworzyć i zarządzać własnymi Service Keys i certyfikatami dostępu w tym KMS.",
   "key_management_service_create_region_title": "Region",
-  "key_management_service_create_region_description": "Klucze szyfrujące i certyfikaty dostępu dla tego serwera KMS będą przechowywane we wskazanym regionie. Będzie można je wykorzystać we wszystkich produktach OVHcloud bez względu na region.",
+  "key_management_service_create_region_description": "Kryptograficzne obiekty tego KMS będą przechowywane we wskazanym regionie. Będzie można je wykorzystać we wszystkich produktach OVHcloud bez względu na region.",
   "key_management_service_create_cta_cancel": "Anuluj",
   "key_management_service_create_cta_order": "Zamów",
   "key_management_service_create_order_initiated_title": "Zamówienie serwera KMS zostało rozpoczęte",

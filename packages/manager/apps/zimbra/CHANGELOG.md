@@ -3,6 +3,79 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.22.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.22.2...@ovh-ux/manager-zimbra-app@0.22.3) (2025-04-24)
+
+**Note:** Version bump only for package @ovh-ux/manager-zimbra-app
+
+
+
+
+
+## [0.22.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.22.1...@ovh-ux/manager-zimbra-app@0.22.2) (2025-04-22)
+
+
+### Bug Fixes
+
+* **zimbra:** account deletion notification message ([7d0f26b](https://github.com/ovh/manager/commit/7d0f26b30016cd8dd9473857fd7a0b4034be5d12)), closes [#MANAGER-17876](https://github.com/ovh/manager/issues/MANAGER-17876)
+
+
+
+
+
+## [0.22.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.22.0...@ovh-ux/manager-zimbra-app@0.22.1) (2025-04-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-zimbra-app
+
+
+
+
+
+# [0.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.21.2...@ovh-ux/manager-zimbra-app@0.22.0) (2025-04-14)
+
+
+### Features
+
+* **zimbra:** add load all button to datagrids ([72b847a](https://github.com/ovh/manager/commit/72b847a685a4a2e4b194b281fdc4063671fb965b)), closes [#MANAGER-17717](https://github.com/ovh/manager/issues/MANAGER-17717)
+* **zimbra:** plug Aliases & rework url management ([7e06f6e](https://github.com/ovh/manager/commit/7e06f6ec5f775d86085f6456236167e74b053729)), closes [#MANAGER-17769](https://github.com/ovh/manager/issues/MANAGER-17769)
+
+
+
+
+
+## [0.21.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.21.1...@ovh-ux/manager-zimbra-app@0.21.2) (2025-04-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-zimbra-app
+
+
+
+
+
+## [0.21.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.21.0...@ovh-ux/manager-zimbra-app@0.21.1) (2025-04-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-zimbra-app
+
+
+
+
+
+# [0.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.20.0...@ovh-ux/manager-zimbra-app@0.21.0) (2025-04-03)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3814] ([6930871](https://github.com/ovh/manager/commit/693087130e9ef267d610438e426db3851e684064))
+* **i18n:** add missing translations [CDS 3819] ([f6bbe60](https://github.com/ovh/manager/commit/f6bbe606bcd84541fdca006295a97b884e244c37))
+* **zimbra:** add padding in top of datagrid topbar ([47f33a4](https://github.com/ovh/manager/commit/47f33a4482323e3f3248a6df0be382f513e40b78)), closes [#MANAGER-17616](https://github.com/ovh/manager/issues/MANAGER-17616)
+
+
+### Features
+
+* **mrc:** set datagrid searchbar as input search ([#16354](https://github.com/ovh/manager/issues/16354)) ([c82395f](https://github.com/ovh/manager/commit/c82395fd078a6a5dc121bd9df1e9ce11bfcdf37b)), closes [#16266](https://github.com/ovh/manager/issues/16266)
+
+
+
+
+
 # [0.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.19.14...@ovh-ux/manager-zimbra-app@0.20.0) (2025-03-31)
 
 

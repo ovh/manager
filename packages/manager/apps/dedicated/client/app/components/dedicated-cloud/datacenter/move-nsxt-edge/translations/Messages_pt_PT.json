@@ -1,0 +1,9 @@
+{
+  "dedicatedCloud_datacenter_edge_relocate_title": "Relocalizar um NSX Edge",
+  "dedicatedCloud_datacenter_edge_relocate_label_select_nsx_edge": "Escolher um NSX Edge",
+  "dedicatedCloud_datacenter_edge_relocate_label_select_datastore": "Escolher um datastore",
+  "dedicatedCloud_datacenter_edge_relocate_confirm": "Relocalizar",
+  "dedicatedCloud_datacenter_edge_relocate_cancel": "Anular",
+  "dedicatedCloud_datacenter_edge_relocate_success_banner": "A modificação do datastore do seu NSX Edge foi efetuada com sucesso",
+  "dedicatedCloud_datacenter_edge_relocate_error_banner": "O pedido de modificação não foi bem-sucedido. Se o erro persistir, contacte os nossos serviços. {{ error }}"
+}

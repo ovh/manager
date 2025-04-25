@@ -1,8 +1,8 @@
 {
   "key_management_service_create_title": "Ordinare un KMS",
-  "key_management_service_create_subtitle": "Indica la Region in cui sarà attivato. In seguito potrai creare e gestire le tue chiavi di crittografia e i certificati di accesso in questo KMS.",
+  "key_management_service_create_subtitle": "Indica la Region in cui sarà attivato. In seguito potrai creare e gestire i tuoi Service Keys e certificati di accesso in questo KMS.",
   "key_management_service_create_region_title": "Region",
-  "key_management_service_create_region_description": "Le chiavi di crittografia e i certificati di accesso di questo KMS saranno archiviati nella Region indicata. Potranno essere utilizzati in tutti i prodotti OVHcloud, indipendentemente dalla Region.",
+  "key_management_service_create_region_description": "Gli oggetti crittografici di questo KMS saranno salvati nella Region indicata. Potranno essere utilizzati in tutti i prodotti OVHcloud, indipendentemente dalla Region.",
   "key_management_service_create_cta_cancel": "Annullare",
   "key_management_service_create_cta_order": "Ordinare",
   "key_management_service_create_order_initiated_title": "Ordine del tuo KMS avviato",

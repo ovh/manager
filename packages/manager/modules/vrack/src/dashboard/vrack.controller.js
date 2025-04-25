@@ -908,6 +908,7 @@ export default class VrackMoveDialogCtrl {
       )
       .catch((error) => {
         if (error.status === 460) {
+          this.clearPolling();
           this.serviceExpired = true;
           this.CucCloudMessage.error(
             [
@@ -1060,11 +1061,13 @@ export default class VrackMoveDialogCtrl {
       })
       .finally(() => {
         // if there are some pending tasks, poll
-        if (poll && !this.poller) {
-          this.poller = this.$timeout(() => {
-            this.poller = null;
-            this.refreshData();
-          }, POLLING_INTERVAL);
+        if (!this.serviceExpired) {
+          if (poll && !this.poller) {
+            this.poller = this.$timeout(() => {
+              this.poller = null;
+              this.refreshData();
+            }, POLLING_INTERVAL);
+          }
         }
         this.loaders.init = false;
       });

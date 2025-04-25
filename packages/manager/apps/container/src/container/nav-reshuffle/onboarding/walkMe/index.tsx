@@ -1,14 +1,9 @@
-import React, {
-  useState,
-  useEffect,
-  useRef,
-  useCallback,
-  useMemo,
-} from 'react';
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { createPopper, Instance, Placement } from '@popperjs/core';
 import { useDebounce } from 'react-use';
 
+import { Environment } from '@ovh-ux/manager-config';
 import popoverStyle from '@/container/common/popover.module.scss';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 import { ONBOARDING_STATUS_ENUM } from '@/core/onboarding';
@@ -18,7 +13,6 @@ import style from './style.module.scss';
 import { Node } from '../../sidebar/navigation-tree/node';
 
 const ELEMENT_OFFSET = 10;
-const MOBILE_WIDTH_RESOLUTION = 1024;
 
 export const OnboardingWalkMe = () => {
   const { t } = useTranslation('nav-reshuffle/onboarding');
@@ -27,7 +21,12 @@ export const OnboardingWalkMe = () => {
   const popoverElement = useRef();
   const [arrowPlacement, setArrowPlacement] = useState<Placement>();
   const [popperInstance, setPopperInstance] = useState<Instance>();
-  const trackingPlugin = useShell().getPlugin('tracking');
+  const shell = useShell();
+  const trackingPlugin = shell.getPlugin('tracking');
+  const environment: Environment = shell
+    .getPlugin('environment')
+    .getEnvironment();
+  const region = environment.getRegion();
 
   const {
     closeOnboarding,
@@ -84,7 +83,11 @@ export const OnboardingWalkMe = () => {
       placement: 'left-start',
       mobilePlacement: 'bottom-start',
       title: t('onboarding_walkme_popover_step2_title'),
-      content: t('onboarding_walkme_popover_step2_content'),
+      content: t(
+        `onboarding_walkme_popover_step2_content${
+          region === 'US' ? '_us' : ''
+        }`,
+      ),
       trackingVariant: 'my_profile',
       trackingLabel: 'my_profile',
       onBeforeEnter: async () => {
@@ -112,7 +115,11 @@ export const OnboardingWalkMe = () => {
       placement: 'right-end',
       mobilePlacement: 'right-end',
       title: t('onboarding_walkme_popover_step4_title'),
-      content: t('onboarding_walkme_popover_step4_content'),
+      content: t(
+        `onboarding_walkme_popover_step4_content${
+          region === 'US' ? '_us' : ''
+        }`,
+      ),
       trackingVariant: '',
       trackingLabel: 'see_useful_links',
       onBeforeEnter: async () => {
@@ -283,11 +290,15 @@ export const OnboardingWalkMe = () => {
     [currentStepIndex],
   );
 
-  useDebounce(() => {
-    setIsPopoverVisible(false);
-    calculateTargetBound();
-    updatePopper();
-  }, 100, [windowSize]);
+  useDebounce(
+    () => {
+      setIsPopoverVisible(false);
+      calculateTargetBound();
+      updatePopper();
+    },
+    100,
+    [windowSize],
+  );
 
   useEffect(() => {
     setIsPopoverVisible(false);

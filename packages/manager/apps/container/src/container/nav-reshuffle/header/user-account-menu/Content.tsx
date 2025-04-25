@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useTranslation, Trans } from 'react-i18next';
 import { OsdsChip } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
@@ -38,9 +38,6 @@ const UserAccountMenu = ({
   const [isNewAccountAvailable, setIsNewAccountAvailable] = useState<boolean>(
     false,
   );
-  const [isNewBillingAvailable, setIsNewBillingAvailable] = useState<boolean>(
-    false,
-  );
   const user = shell
     .getPlugin('environment')
     .getEnvironment()
@@ -55,7 +52,7 @@ const UserAccountMenu = ({
 
   const onTrackNavigation = (name: string) => {
     trackingPlugin.trackClick({
-      name: name,
+      name,
       type: 'navigation',
     });
   };
@@ -75,7 +72,7 @@ const UserAccountMenu = ({
   const getUrl = (key: string, hash: string) =>
     shell.getPlugin('navigation').getURL(key, hash);
   const ssoLink = getUrl('iam', '#/dashboard/users');
-  let [supportLink, setSupportLink] = useState(
+  const [supportLink, setSupportLink] = useState(
     getUrl('dedicated', '#/useraccount/support/level'),
   );
 
@@ -102,8 +99,7 @@ const UserAccountMenu = ({
       }
 
       setIsNewAccountAvailable(!!featureAvailability['new-account']);
-      setIsNewBillingAvailable(!!featureAvailability['new-billing']);
-
+      const isNewBillingAvailable = !!featureAvailability['new-billing'];
       if (isNewAccountAvailable) {
         setSupportLink(getUrl('new-account', '#/useraccount/support/level'));
       }
@@ -156,7 +152,7 @@ const UserAccountMenu = ({
           : []),
       ]);
     },
-    [],
+    [isNewAccountAvailable],
   );
 
   useEffect(() => {

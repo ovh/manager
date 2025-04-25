@@ -79,6 +79,6 @@
   "pack_xdsl_information_links_travaux": "Status",
   "pack_xdsl_information_links_guides": "Guides",
   "pack_xdsl_line_order_headset": "Order a headset",
-  "pack_xdsl_followUp_label": "Order follow-up",
-  "pack_xdsl_followUp_label_step_name_detail": "Show Trace"
+  "pack_xdsl_followUp_label": "Order tracking",
+  "pack_xdsl_followUp_label_step_name_detail": "Show tracking"
 }

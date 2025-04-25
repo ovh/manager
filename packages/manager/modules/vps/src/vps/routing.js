@@ -11,6 +11,7 @@ import { FEATURE_CLOUDDATABASE, PRODUCT_NAME } from './constants';
 
 import detailComponent from '../detail/vps-detail.component';
 import headerComponent from '../header/vps-header.component';
+import { VPS_GUIDES } from '../vps.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('vps.detail', {
@@ -141,6 +142,12 @@ export default /* @ngInject */ ($stateProvider) => {
           params,
           options,
         ),
+      guides: /* @ngInject */ ($translate, coreConfig) =>
+        VPS_GUIDES.map((guide) => ({
+          title: $translate.instant(guide.translateKey),
+          href:
+            guide.url[coreConfig.getUser().ovhSubsidiary] || guide.url.DEFAULT,
+        })),
       breadcrumb: /* @ngInject */ (serviceName) => serviceName,
     },
     views: {

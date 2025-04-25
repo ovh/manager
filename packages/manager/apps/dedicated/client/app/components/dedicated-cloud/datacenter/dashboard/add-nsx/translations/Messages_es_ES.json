@@ -1,0 +1,9 @@
+{
+  "dedicatedCloud_add_nsx_edge_title": "Añadir nodos NSX Edge",
+  "dedicatedCloud_add_nsx_description_line_1": "Por defecto, todos los datacenters virtuales (VDC) NSX disponen de un clúster NSX Edge compuesto por dos NSX Edge Medium. A continuación, podrá modificar el tamaño de los Edges, siempre que disponga de los recursos necesarios para ajustar su tamaño o su número.",
+  "dedicatedCloud_add_nsx_description_line_2": "Esta interfaz le permite añadir NSX Edge Nodes. Estos se facturan con una tarifa mensual de {{ price }} por vCPU. Pueden aplicarse descuentos dependiendo del nivel de compromiso contractual. Para más información, consulte nuestro <a class=\"oui-link_icon\" href=\"{{link}}\" target=\"_blank\" rel=\"noopener noreferrer\">sitio web <i class=\"oui-icon oui-icon-external-link\" aria-label=\"External link\" aria-hidden=\"true\" >  </i> </a>.",
+  "dedicatedCloud_add_nsx_price": "desde {{ price }} por vCPU/mes +IVA",
+  "dedicatedCloud_add_nsx_success_banner": "El NSX Edge se ha añadido correctamente.",
+  "dedicatedCloud_add_nsx_error_banner": "No fue posible añadir el NSX debido al siguiente error: {{error}}. Si el error persiste, por favor, contacte con nuestro equipo de soporte",
+  "dedicatedCloud_add_nsx_order": "Contratar"
+}

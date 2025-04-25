@@ -31,9 +31,10 @@ const ActionButtonMailingList: React.FC<ActionButtonMailingListProps> = ({
   const { platformUrn } = usePlatform();
   const navigate = useNavigate();
 
-  const hrefDeleteMailingList = useGenerateUrl('./delete', 'path', {
-    deleteMailingListId: mailingListItem.id,
-  });
+  const hrefDeleteMailingList = useGenerateUrl(
+    `./${mailingListItem.id}/delete`,
+    'path',
+  );
 
   const handleDeleteMailingListClick = () => {
     trackClick({
@@ -45,9 +46,10 @@ const ActionButtonMailingList: React.FC<ActionButtonMailingListProps> = ({
     navigate(hrefDeleteMailingList);
   };
 
-  const hrefEditMailingList = useGenerateUrl('./settings', 'path', {
-    editMailingListId: mailingListItem.id,
-  });
+  const hrefEditMailingList = useGenerateUrl(
+    `./${mailingListItem.id}/settings`,
+    'path',
+  );
 
   const handleEditMailingListClick = () => {
     trackClick({
@@ -60,11 +62,8 @@ const ActionButtonMailingList: React.FC<ActionButtonMailingListProps> = ({
   };
 
   const hrefDefineMembersMailingList = useGenerateUrl(
-    './define_members',
+    `./${mailingListItem.id}/define_members`,
     'path',
-    {
-      mailingListId: mailingListItem.id,
-    },
   );
 
   const handleDefineMembersMailingListClick = () => {
@@ -78,11 +77,8 @@ const ActionButtonMailingList: React.FC<ActionButtonMailingListProps> = ({
   };
 
   const hrefConfigureDelegationMailingList = useGenerateUrl(
-    './configure_delegation',
+    `./${mailingListItem.id}/configure_delegation`,
     'path',
-    {
-      mailingListId: mailingListItem.id,
-    },
   );
 
   const handleDefineConfigureDelegationMailingList = () => {

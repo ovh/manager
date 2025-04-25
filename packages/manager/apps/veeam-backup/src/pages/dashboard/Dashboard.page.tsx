@@ -1,11 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  OdsBadge,
-  OdsMessage,
-  OdsSkeleton,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
+import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import {
   DashboardGridLayout,
@@ -14,12 +9,12 @@ import {
   RedirectionGuard,
   Region,
   ChangelogButton,
+  HeadersProps,
 } from '@ovh-ux/manager-react-components';
 import {
   getRegionNameFromAzName,
   getVeeamBackupDisplayName,
   useVeeamBackup,
-  VeeamBackupOffer,
 } from '@ovh-ux/manager-module-vcd-api';
 import { Breadcrumb } from '@/components/Breadcrumb/Breadcrumb';
 import { urls } from '@/routes/routes.constant';
@@ -33,36 +28,23 @@ import { ComingSoonBadge } from '@/components/ComingSoonBadge/ComingSoonBadge';
 import { BillingLink } from '@/components/Links/BillingLink.component';
 import { Loading } from '@/components/Loading/Loading';
 import { BackupStatusBadge } from '@/components/BackupStatus/BackupStatusBadge.component';
-import useVeeamBackupConsumption from '@/data/hooks/useVeeamBackupConsumption';
 
-import { VEEAM_BACKUP_CONSUMPTION_PLAN_CODE } from '@/pages/dashboard/Dashboard.constants';
 import { CHANGELOG_LINKS } from '@/constants';
+import VeeamGuidesHeader from '@/components/Guide/VeeamGuidesHeader';
 
 export default function DashboardPage() {
   const { id } = useParams();
   const { data, isLoading, isError } = useVeeamBackup(id);
-  const {
-    data: consumptions,
-    isLoading: isLoadingConsumption,
-  } = useVeeamBackupConsumption(id);
+
   const navigate = useNavigate();
   const { t } = useTranslation('dashboard');
   const displayName = getVeeamBackupDisplayName(data?.data);
 
-  const getRealOfferConsumption = (
-    offer: VeeamBackupOffer,
-  ): VeeamBackupOffer => {
-    const consumption = consumptions?.find(
-      ({ planCode }) =>
-        planCode === VEEAM_BACKUP_CONSUMPTION_PLAN_CODE[offer.name],
-    );
-    return { ...offer, usedSpaceInGB: consumption?.quantity ?? 0 };
-  };
-
-  const header = {
+  const header: HeadersProps = {
     title: displayName,
     description: displayName !== data?.data?.id ? data?.data?.id : null,
     changelogButton: <ChangelogButton links={CHANGELOG_LINKS} />,
+    headerButton: <VeeamGuidesHeader />,
   };
 
   return (
@@ -151,14 +133,7 @@ export default function DashboardPage() {
                   label: `${offer.name
                     .at(0)
                     .toUpperCase()}${offer.name.substring(1).toLowerCase()}`,
-                  value: isLoadingConsumption ? (
-                    <>
-                      <OdsSkeleton />
-                      <OdsSkeleton />
-                    </>
-                  ) : (
-                    <OfferProgress {...getRealOfferConsumption(offer)} />
-                  ),
+                  value: <OfferProgress offer={offer} id={id} />,
                 })) || []),
                 data?.data?.currentState.offers.every(
                   (offer) => offer.name !== 'GOLD',

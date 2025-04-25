@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.46.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.46.3...@ovh-ux/manager-vps@2.46.4) (2025-04-22)
+
+
+### Bug Fixes
+
+* **dedicated.vps and web:** add guide on listing page and dashboard ([#16344](https://github.com/ovh/manager/issues/16344)) ([c3730ed](https://github.com/ovh/manager/commit/c3730ed0dfe016a0e1b191c1a6cacdb3bee8b75b)), closes [#MANAGER-17587](https://github.com/ovh/manager/issues/MANAGER-17587)
+
+
+
+
+
 ## [2.46.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.46.2...@ovh-ux/manager-vps@2.46.3) (2025-03-24)
 
 

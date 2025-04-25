@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.20.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.20.4...@ovh-ux/manager-cloud-connect@1.20.5) (2025-04-24)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3903] ([ef76a26](https://github.com/ovh/manager/commit/ef76a26dfc5de9ca2511032eb9f0b37f1ef66b59))
+
+
+
+
+
+## [1.20.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.20.3...@ovh-ux/manager-cloud-connect@1.20.4) (2025-04-22)
+
+
+### Bug Fixes
+
+* **cloud-connect:** occ content modifications ([#16174](https://github.com/ovh/manager/issues/16174)) ([165053c](https://github.com/ovh/manager/commit/165053c35421f7c48391c0617f44e3958b2ef37f)), closes [#MANAGER-17347](https://github.com/ovh/manager/issues/MANAGER-17347)
+
+
+
+
+
+## [1.20.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.20.2...@ovh-ux/manager-cloud-connect@1.20.3) (2025-04-03)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3808] ([4a47657](https://github.com/ovh/manager/commit/4a47657ea1a25d5227cd711ec0c390910b1f9880))
+* **i18n:** add missing translations [CDS 3809] ([72d2360](https://github.com/ovh/manager/commit/72d23603f50ffe3e712c71762ea1104cfd47c315))
+* **i18n:** add missing translations [CDS 3814] ([6930871](https://github.com/ovh/manager/commit/693087130e9ef267d610438e426db3851e684064))
+* **i18n:** add missing translations [CDS 3819] ([f6bbe60](https://github.com/ovh/manager/commit/f6bbe606bcd84541fdca006295a97b884e244c37))
+
+
+
+
+
 ## [1.20.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.20.1...@ovh-ux/manager-cloud-connect@1.20.2) (2025-03-27)
 
 

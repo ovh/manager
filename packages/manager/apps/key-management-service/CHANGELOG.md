@@ -3,6 +3,82 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.25.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.25.0...@ovh-ux/manager-key-management-service-app@0.25.1) (2025-04-24)
+
+**Note:** Version bump only for package @ovh-ux/manager-key-management-service-app
+
+
+
+
+
+# [0.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.24.1...@ovh-ux/manager-key-management-service-app@0.25.0) (2025-04-22)
+
+
+### Features
+
+* **kms:** add tracking on guides links ([2cfc2e1](https://github.com/ovh/manager/commit/2cfc2e1adc651801c05aef2c74c88a17d1304ecc)), closes [#MANAGER-16058](https://github.com/ovh/manager/issues/MANAGER-16058)
+
+
+
+
+
+## [0.24.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.24.0...@ovh-ux/manager-key-management-service-app@0.24.1) (2025-04-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-key-management-service-app
+
+
+
+
+
+# [0.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.23.6...@ovh-ux/manager-key-management-service-app@0.24.0) (2025-04-14)
+
+
+### Features
+
+* **kms:** update service key translations ([7afac38](https://github.com/ovh/manager/commit/7afac386ed8227131541ea48f93b6f7e03e02af4)), closes [#MANAGER-17187](https://github.com/ovh/manager/issues/MANAGER-17187)
+
+
+
+
+
+## [0.23.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.23.5...@ovh-ux/manager-key-management-service-app@0.23.6) (2025-04-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-key-management-service-app
+
+
+
+
+
+## [0.23.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.23.4...@ovh-ux/manager-key-management-service-app@0.23.5) (2025-04-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-key-management-service-app
+
+
+
+
+
+## [0.23.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.23.3...@ovh-ux/manager-key-management-service-app@0.23.4) (2025-04-07)
+
+
+### Bug Fixes
+
+* **kms:** remove duplicate region column in listing ([2302238](https://github.com/ovh/manager/commit/2302238b9eac7a8d84bbf6af3b05e4a35974a19a)), closes [#MANAGER-17505](https://github.com/ovh/manager/issues/MANAGER-17505)
+
+
+
+
+
+## [0.23.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.23.2...@ovh-ux/manager-key-management-service-app@0.23.3) (2025-04-03)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3814] ([6930871](https://github.com/ovh/manager/commit/693087130e9ef267d610438e426db3851e684064))
+
+
+
+
+
 ## [0.23.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.23.1...@ovh-ux/manager-key-management-service-app@0.23.2) (2025-03-31)
 
 

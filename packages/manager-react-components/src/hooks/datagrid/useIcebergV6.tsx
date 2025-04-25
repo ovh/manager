@@ -29,6 +29,7 @@ export function useResourcesIcebergV6<T = unknown>({
   defaultSorting = undefined,
   shouldFetchAll = false,
   columns,
+  disableCache,
 }: IcebergFetchParamsV6 & IcebergV6Hook<T>) {
   const [searchInput, setSearchInput] = useState('');
   const [searchFilter, setSearchFilter] = useState<any>(null);
@@ -59,6 +60,7 @@ export function useResourcesIcebergV6<T = unknown>({
         sortBy: sorting?.id || null,
         sortReverse: sorting?.desc,
         filters: searchFilter ? [searchFilter, ...filters] : filters,
+        disableCache,
       }),
     getNextPageParam: (lastPage, _allPages, lastPageIndex) => {
       if (lastPage.totalCount / pageSize > lastPageIndex) {

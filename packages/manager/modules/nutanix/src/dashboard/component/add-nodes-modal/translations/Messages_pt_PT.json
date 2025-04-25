@@ -7,15 +7,15 @@
   "nutanix_dashboard_add_nodes_stokage": "Armazenamento:",
   "nutanix_dashboard_add_nodes_informations": "Informações",
   "nutanix_dashboard_add_nodes_price_preffix": "O preço de um nó adicional é de",
-  "nutanix_dashboard_add_nodes_price_suffix": "/mês + IVA",
-  "nutanix_dashboard_add_nodes_number_of_nodes_available": "O seu cluster é composto por {{numberOfNodes}} nós atualmente e pode ser aumentado para 15 nós.",
+  "nutanix_dashboard_add_nodes_price_suffix": "HT/mois",
+  "nutanix_dashboard_add_nodes_number_of_nodes_available": "Atualmente, o seu cluster é composto por {{NumberOfNodes}} nós e pode alargá-lo até 15 nós.",
   "nutanix_dashboard_add_nodes_number_of_additional_nodes_to_command": "Número de nós suplementares a encomendar.",
   "nutanix_dashboard_add_nodes_confirm": "Encomendar",
   "nutanix_dashboard_add_nodes_cancel": "Anular",
-  "nutanix_dashboard_add_nodes_success_banner": "A encomenda de nó(s) foi iniciada. Se ainda não o tiver finalizado, pode complementá-lo clicando na seguinte hiperligação: ",
+  "nutanix_dashboard_add_nodes_success_banner": "A encomenda de nó(s) foi iniciada. Se ainda não a tiver finalizado, pode completá-la clicando aqui: ",
   "nutanix_dashboard_add_nodes_success_banner_link_label": "Finalizar a encomenda",
-  "nutanix_dashboard_add_nodes_informations_max_nodes": "O seu cluster é composto por {{currentNumberOfNodes}} nós atualmente e pode alargá-lo até {{maxNumberOfNodes}} nós.",
+  "nutanix_dashboard_add_nodes_informations_max_nodes": "Atualmente, o seu cluster é composto por {{currentNumberOfNodes}} nós e pode alargá-lo até {{maxNumberOfNodes}} nós.",
   "nutanix_dashboard_add_nodes_error_too_many_nodes": "Ultrapassou o número máximo de nós permitidos num cluster",
   "nutanix_dashboard_add_nodes_error_not_enough_nodes": "Deve encomendar pelo menos 1 nó",
-  "nutanix_dashboard_add_nodes_single_node_limit_alert": "Apenas pode encomendar um único nó suplementar, estando disponível em breve uma encomenda simultânea de vários nós"
+  "nutanix_dashboard_add_nodes_single_node_limit_alert": "Neste momento apenas pode encomendar um único nó suplementar; em breve estará disponível a encomenda simultânea de vários nós"
 }

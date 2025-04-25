@@ -2,17 +2,15 @@ import React from 'react';
 import 'element-internals-polyfill';
 import '@testing-library/jest-dom';
 import { vi, describe, expect } from 'vitest';
-import { useSearchParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import { fireEvent, render, waitFor, act } from '@/utils/test.provider';
-import { mailingListsMock } from '@/api/_mock_';
+import { mailingListsMock, platformMock } from '@/api/_mock_';
 import { ReplyToChoices, ModerationChoices } from '@/api/mailinglist';
 import AddAndEditMailingList from '../AddAndEditMailingList.page';
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
 
 describe('mailing lists add and edit page', async () => {
-  const editMailingListId = mailingListsMock[0].id;
-
-  it('should be in add mode if no editMailingListId param', async () => {
+  it('should be in add mode', async () => {
     const { getByTestId, queryByTestId } = render(<AddAndEditMailingList />);
 
     await waitFor(() => {
@@ -24,6 +22,22 @@ describe('mailing lists add and edit page', async () => {
     );
   });
 
+  it('should be in edit mode', async () => {
+    vi.mocked(useParams).mockReturnValue({
+      platformId: platformMock[0].id,
+      mailingListId: mailingListsMock[0].id,
+    });
+
+    const { getByTestId, queryByTestId } = render(<AddAndEditMailingList />);
+
+    await waitFor(() => {
+      expect(queryByTestId('spinner')).toBeNull();
+    });
+
+    expect(getByTestId('page-title')).toHaveTextContent(
+      commonTranslation.edit_mailing_list,
+    );
+  });
   // @TODO: find why this test is inconsistent
   // sometimes ODS component return attribute empty while it can
   // only be "true" or "false"
@@ -117,24 +131,5 @@ describe('mailing lists add and edit page', async () => {
     expect(inputOwner).toHaveAttribute('has-error', 'true');
 
     expect(button).toHaveAttribute('is-disabled', 'true');
-  });
-
-  it('should be in edit mode if editMailingListId param is present', async () => {
-    vi.mocked(useSearchParams).mockReturnValue([
-      new URLSearchParams({
-        editMailingListId,
-      }),
-      vi.fn(),
-    ]);
-
-    const { getByTestId, queryByTestId } = render(<AddAndEditMailingList />);
-
-    await waitFor(() => {
-      expect(queryByTestId('spinner')).toBeNull();
-    });
-
-    expect(getByTestId('page-title')).toHaveTextContent(
-      commonTranslation.edit_mailing_list,
-    );
   });
 });

@@ -1,42 +1,36 @@
 import React from 'react';
-import updateTranslation from '@translation/updateSoftware/Messages_fr_FR.json';
+import { vi } from 'vitest';
+import updateTranslation from '../../../../public/translations/updateSoftware/Messages_fr_FR.json';
 import { fireEvent, render, waitFor } from '@/utils/test/test.provider';
 
-import { versionsMocked } from '@/_mock_/version';
-import { rancherMocked } from '@/_mock_/rancher';
+import { versionsMocked } from '@/__mocks__/version';
+import { rancherMocked } from '@/__mocks__/rancher';
 
 import UpdateSoftware, {
   UpdateSoftwareProps,
 } from './UpdateSoftware.component';
 
-const mockedUsedNavigate = jest.fn();
-
-jest.mock('@ovh-ux/manager-react-shell-client', () => ({
-  useNavigation: jest.fn(() => ({
-    getURL: jest.fn(() => Promise.resolve('123')),
+vi.mock('@ovh-ux/manager-react-shell-client', () => ({
+  useNavigation: vi.fn(() => ({
+    getURL: vi.fn(() => Promise.resolve('123')),
     data: [],
   })),
-  useTracking: jest.fn(() => ({
-    trackPage: jest.fn(),
-    trackClick: jest.fn(),
+  useTracking: vi.fn(() => ({
+    trackPage: vi.fn(),
+    trackClick: vi.fn(),
   })),
-}));
-
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
-  useNavigate: () => mockedUsedNavigate,
 }));
 
 const defaultProps: UpdateSoftwareProps = {
   rancher: rancherMocked,
   versions: versionsMocked,
   isUpdatePending: false,
-  onClickUpdate: jest.fn(),
+  onClickUpdate: vi.fn(),
   currentVersionDetails: versionsMocked[0],
 };
 
 afterEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 });
 
 const setupSpecTest = async (props: UpdateSoftwareProps = defaultProps) =>

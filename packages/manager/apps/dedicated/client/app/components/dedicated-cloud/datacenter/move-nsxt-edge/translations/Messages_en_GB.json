@@ -1,0 +1,9 @@
+{
+  "dedicatedCloud_datacenter_edge_relocate_title": "Relocate an NSX Edge",
+  "dedicatedCloud_datacenter_edge_relocate_label_select_nsx_edge": "Select an Edge NSX",
+  "dedicatedCloud_datacenter_edge_relocate_label_select_datastore": "Select a datastore",
+  "dedicatedCloud_datacenter_edge_relocate_confirm": "Relocate",
+  "dedicatedCloud_datacenter_edge_relocate_cancel": "Cancel",
+  "dedicatedCloud_datacenter_edge_relocate_success_banner": "Your NSX Edge datastore has been updated",
+  "dedicatedCloud_datacenter_edge_relocate_error_banner": "The change request could not be completed. If the error persists, please contact our support team {{ error }}"
+}

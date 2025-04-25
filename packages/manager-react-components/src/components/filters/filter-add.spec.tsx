@@ -126,6 +126,52 @@ describe('FilterAdd tests', () => {
   });
 });
 
+it('should disable submit button when the filter type is Numeric and the value is not', async () => {
+  const mockOnAddFilter = vitest.fn();
+  const props = {
+    columns: [
+      {
+        id: 'size',
+        label: 'Size',
+        type: 'Numeric',
+        comparators: ['is_lower', 'is_higher', 'is_equal'],
+      },
+    ],
+    onAddFilter: mockOnAddFilter,
+  } as FilterAddProps;
+
+  const { getByTestId } = renderComponent(props);
+
+  const valueField = getByTestId('filter-add_value-numeric');
+  const addFilterButton = getByTestId('filter-add_submit');
+
+  const badValue = 'foo';
+  const goodValue = '-123.12';
+
+  // Submit button is initially disabled
+  await waitFor(() => {
+    expect(addFilterButton).toHaveAttribute('is-disabled', 'true');
+  });
+
+  act(() => {
+    fireEvent.change(valueField, { target: { value: goodValue } });
+  });
+
+  // Submit button is enabled with a valid number
+  await waitFor(() => {
+    expect(addFilterButton).toHaveAttribute('is-disabled', 'false');
+  });
+
+  act(() => {
+    fireEvent.change(valueField, { target: { value: badValue } });
+  });
+
+  // Submit button is disabled with an invalid number
+  await waitFor(() => {
+    expect(addFilterButton).toHaveAttribute('is-disabled', 'true');
+  });
+});
+
 it('should set the select option', () => {
   const mockOnAddFilter = vitest.fn();
   const props = {

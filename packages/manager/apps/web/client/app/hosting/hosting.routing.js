@@ -1,6 +1,6 @@
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 import { getHostingOrderUrl } from './hosting.order';
-import { NEW_OFFERS_NAME } from './hosting.constants';
+import { NEW_OFFERS_NAME, HOSTING_GUIDES } from './hosting.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.hosting.index', {
@@ -36,6 +36,12 @@ export default /* @ngInject */ ($stateProvider) => {
       header: /* @ngInject */ ($translate) =>
         $translate.instant('hostings_title'),
       changelog: () => 'hosting_plan',
+      guides: /* @ngInject */ ($translate, coreConfig) =>
+        HOSTING_GUIDES.map((guide) => ({
+          title: $translate.instant(guide.translateKey),
+          href:
+            guide.url[coreConfig.getUser().ovhSubsidiary] || guide.url.DEFAULT,
+        })),
       customizableColumns: () => true,
       getServiceNameLink: /* @ngInject */ ($state) => ({
         serviceName: productId,

@@ -59,6 +59,6 @@
   "key_management_service_dashboard_dashboard_field_state_toSuspend": "Da sospendere",
   "key_management_service_dashboard_back_link": "Ritorna alla lista dei KMS",
   "key_management_service_dashboard_field_label_kmip_count": "Numero di oggetti KMIP",
-  "key_management_service_dashboard_field_label_service-keys_count": "Numero di chiavi",
+  "key_management_service_dashboard_field_label_service-keys_count": "Numero di Service Keys",
   "logs": "Log"
 }

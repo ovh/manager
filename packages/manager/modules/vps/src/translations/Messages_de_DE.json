@@ -1,3 +1,7 @@
 {
-  "vps_title": "Virtual Private Server (VPS)"
+  "vps_title": "Virtual Private Server (VPS)",
+  "vps_guides_title": "Guides",
+  "vps_guides_get_started": "Erste Schritte mit einem VPS",
+  "vps_guides_advanced_usage": "Fortgeschrittene Nutzung",
+  "vps_guides_tutorials": "Tutorials"
 }

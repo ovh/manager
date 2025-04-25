@@ -13,7 +13,6 @@ $sidebar-font-size: 0.875rem;
   height: 100vh;
   position: relative;
   color: white;
-
   &_animated {
     transition: width 0.3s ease-in, min-width 0.3s ease-in;
   }
@@ -38,7 +37,8 @@ $sidebar-font-size: 0.875rem;
   &_lvl1 {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    min-height: 100%;
+    height: fit-content;
   }
 
   &_logo {
@@ -50,16 +50,16 @@ $sidebar-font-size: 0.875rem;
   }
 
   &_short {
-    width: 4.5rem;
+    width: 4.25rem;
     min-width: 0rem;
     & .sidebar_menu_items > button {
-      justify-content: center;
+      justify-content: start;
     }
     & .sidebar_menu ul {
       text-align: center;
     }
     & .subtree {
-      left: 4.5rem;
+      left: 4.25rem;
     }
     & .sidebar_toggle_btn {
       justify-content: center;

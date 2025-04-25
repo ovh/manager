@@ -1,4 +1,3 @@
-import React from 'react';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import { act, screen } from '@testing-library/react';
@@ -61,7 +60,7 @@ describe('UI testing of the navbar', () => {
     await act(async () => {
       render = await renderWithShell(
         <LegacyContainerProvider>
-          <Navbar environment={environment as Environment}></Navbar>
+          <Navbar></Navbar>
         </LegacyContainerProvider>,
         { environment },
       );

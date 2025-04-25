@@ -11,7 +11,7 @@ import {
   lotsOfProductsMocked,
   lotsOfProductsParsedExpandedMocked,
   lotsOfProductsParsedMocked,
-} from '@/_mock_/products';
+} from '@/__mocks__/products';
 
 const shellContext = {
   environment: {

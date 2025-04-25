@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { useSearchParams, useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   ODS_INPUT_TYPE,
@@ -27,7 +27,6 @@ import {
   useDomain,
   useGenerateUrl,
   useOrganizations,
-  usePlatform,
   useOdsModalOverflowHack,
 } from '@/hooks';
 import {
@@ -43,17 +42,14 @@ export default function ModalEditDomain() {
   const { t } = useTranslation(['domains', 'common']);
   const navigate = useNavigate();
   const { trackClick, trackPage } = useOvhTracking();
-  const [searchParams] = useSearchParams();
-  const editDomainId = searchParams.get('editDomainId');
-
-  const { platformId } = usePlatform();
+  const { platformId, domainId } = useParams();
 
   // @TODO refactor when ods modal overflow is fixed
   const modalRef = useRef<HTMLOdsModalElement>(undefined);
   useOdsModalOverflowHack(modalRef);
 
   const { data: domain, isLoading: isLoadingDomain } = useDomain({
-    domainId: editDomainId,
+    domainId,
     gcTime: 0,
   });
   const {
@@ -63,7 +59,7 @@ export default function ModalEditDomain() {
 
   const { addError, addSuccess } = useNotifications();
 
-  const goBackUrl = useGenerateUrl('..', 'path');
+  const goBackUrl = useGenerateUrl('../..', 'path');
   const onClose = () => navigate(goBackUrl);
 
   const { mutate: editDomain, isPending: isSending } = useMutation({
@@ -113,7 +109,7 @@ export default function ModalEditDomain() {
     formState: { isDirty, isValid, errors },
   } = useForm({
     defaultValues: {
-      domainId: editDomainId,
+      domainId,
       organizationId: domain?.currentState?.organizationId || '',
     },
     mode: 'onTouched',
@@ -123,7 +119,7 @@ export default function ModalEditDomain() {
   useEffect(() => {
     if (domain) {
       reset({
-        domainId: editDomainId,
+        domainId,
         organizationId: domain?.currentState?.organizationId,
       });
     }

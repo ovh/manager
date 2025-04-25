@@ -1,4 +1,3 @@
-import React from 'react';
 import { useMediaQuery } from 'react-responsive';
 
 import { useTranslation } from 'react-i18next';

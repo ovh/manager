@@ -3,6 +3,119 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.10.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.10.13...@ovh-ux/manager-web@19.10.14) (2025-04-25)
+
+
+### Bug Fixes
+
+* **web:** add error message when procedure is ongoing ([#16764](https://github.com/ovh/manager/issues/16764)) ([5d6426a](https://github.com/ovh/manager/commit/5d6426a490c40df580d6692327b98a82c456bb0c)), closes [#MANAGER-18069](https://github.com/ovh/manager/issues/MANAGER-18069)
+
+
+
+
+
+## [19.10.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.10.12...@ovh-ux/manager-web@19.10.13) (2025-04-22)
+
+
+### Bug Fixes
+
+* **dedicated.vps and web:** add guide on listing page and dashboard ([#16344](https://github.com/ovh/manager/issues/16344)) ([c3730ed](https://github.com/ovh/manager/commit/c3730ed0dfe016a0e1b191c1a6cacdb3bee8b75b)), closes [#MANAGER-17587](https://github.com/ovh/manager/issues/MANAGER-17587)
+* **web.hosting:** remove statistics cdn in multisite section ([ef78337](https://github.com/ovh/manager/commit/ef7833741f06a98b507deb66736a19b5377c60c2)), closes [#MANAGER-17062](https://github.com/ovh/manager/issues/MANAGER-17062)
+
+
+
+
+
+## [19.10.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.10.11...@ovh-ux/manager-web@19.10.12) (2025-04-17)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([cb80951](https://github.com/ovh/manager/commit/cb80951610be03f884de1535c3cac864cec2061d))
+
+
+
+
+
+## [19.10.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.10.10...@ovh-ux/manager-web@19.10.11) (2025-04-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.10.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.10.9...@ovh-ux/manager-web@19.10.10) (2025-04-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.10.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.10.8...@ovh-ux/manager-web@19.10.9) (2025-04-14)
+
+
+### Bug Fixes
+
+* **web.private-database:** remove old order link on onboarding page ([27e7c19](https://github.com/ovh/manager/commit/27e7c196dca39bda09cf514b3eb052f227016f1d)), closes [#MANAGER-17809](https://github.com/ovh/manager/issues/MANAGER-17809)
+
+
+
+
+
+## [19.10.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.10.7...@ovh-ux/manager-web@19.10.8) (2025-04-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.10.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.10.6...@ovh-ux/manager-web@19.10.7) (2025-04-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.10.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.10.5...@ovh-ux/manager-web@19.10.6) (2025-04-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.10.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.10.4...@ovh-ux/manager-web@19.10.5) (2025-04-07)
+
+
+### Bug Fixes
+
+* **web.domain:** fix subdomain input value prefilled ([88fb941](https://github.com/ovh/manager/commit/88fb94158558ac45900975289965d0568bad9db4)), closes [#MANAGER-17631](https://github.com/ovh/manager/issues/MANAGER-17631)
+* **web.hosting:** disable email activation if no have zone dns ([#15871](https://github.com/ovh/manager/issues/15871)) ([1ae55bb](https://github.com/ovh/manager/commit/1ae55bbc29907eb561414a3976665b3f4fa8dabe)), closes [#MANAGER-11843](https://github.com/ovh/manager/issues/MANAGER-11843)
+
+
+
+
+
+## [19.10.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.10.3...@ovh-ux/manager-web@19.10.4) (2025-04-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.10.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.10.2...@ovh-ux/manager-web@19.10.3) (2025-04-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
 ## [19.10.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.10.1...@ovh-ux/manager-web@19.10.2) (2025-03-31)
 
 

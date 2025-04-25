@@ -14,13 +14,13 @@
   "nutanix_cluster_list_prism_central_url": "URL Prism Central",
   "nutanix_cluster_admin_interface": "Verwaltungs-Interface",
   "nutanix_cluster_list_localisation_value": "{{dcName}} (Rack {{rackName}})",
-  "nutanix_cluster_list_pack_type": "Pakettyp",
-  "nutanix_cluster_list_pack_type_details": "Details ansehen",
+  "nutanix_cluster_list_pack_type": "Paket-Typ",
+  "nutanix_cluster_list_pack_type_details": "Details anzeigen",
   "nutanix_cluster_unit_gbps": "{{t0}} Gbit/s",
   "nutanix_dashboard_technical_details_cpu_frequency_unit": "GHz",
   "nutanix_dashboard_technical_details_ram_size_unit": "GB",
   "nutanix_dashboard_technical_details_ram_frequency_unit": "MHz",
   "nutanix_dashboard_service_status_active": "Aktiv",
   "nutanix_dashboard_service_status_suspended": "Ausgesetzt",
-  "nutanix_dashboard_service_status_toSuspend": "Anzuhalten"
+  "nutanix_dashboard_service_status_toSuspend": "Auszusetzen"
 }

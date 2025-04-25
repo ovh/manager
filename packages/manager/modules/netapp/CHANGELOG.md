@@ -3,6 +3,67 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.11.0...@ovh-ux/manager-netapp@2.11.1) (2025-04-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-netapp
+
+
+
+
+
+# [2.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.10.0...@ovh-ux/manager-netapp@2.11.0) (2025-04-14)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3854] ([b4213bc](https://github.com/ovh/manager/commit/b4213bced78b12532b49cb30cef0fec81dd41dd9))
+
+
+### Features
+
+* **netapp:** create volume from snapshot ([cc5d56f](https://github.com/ovh/manager/commit/cc5d56f15f359062a65ab7da36cc5aca0b1883f5)), closes [#MANAGER-16849](https://github.com/ovh/manager/issues/MANAGER-16849)
+
+
+
+
+
+# [2.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.9.4...@ovh-ux/manager-netapp@2.10.0) (2025-04-08)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3837] ([030221c](https://github.com/ovh/manager/commit/030221cc2337b3c5cb9a1edc3498128d03df1248))
+
+
+### Features
+
+* few improvements on efs and vrackservice ([#16049](https://github.com/ovh/manager/issues/16049)) ([67acbc9](https://github.com/ovh/manager/commit/67acbc9377e1e2a8bd454e1206cbf244316e5369)), closes [#MANAGER-16532](https://github.com/ovh/manager/issues/MANAGER-16532)
+
+
+
+
+
+## [2.9.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.9.3...@ovh-ux/manager-netapp@2.9.4) (2025-04-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-netapp
+
+
+
+
+
+## [2.9.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.9.2...@ovh-ux/manager-netapp@2.9.3) (2025-04-03)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3809] ([72d2360](https://github.com/ovh/manager/commit/72d23603f50ffe3e712c71762ea1104cfd47c315))
+* **i18n:** add missing translations [CDS 3814] ([6930871](https://github.com/ovh/manager/commit/693087130e9ef267d610438e426db3851e684064))
+* **i18n:** add missing translations [CDS 3819] ([f6bbe60](https://github.com/ovh/manager/commit/f6bbe606bcd84541fdca006295a97b884e244c37))
+
+
+
+
+
 ## [2.9.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.9.1...@ovh-ux/manager-netapp@2.9.2) (2025-03-27)
 
 **Note:** Version bump only for package @ovh-ux/manager-netapp

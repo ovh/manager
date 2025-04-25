@@ -3,19 +3,16 @@ import { Environment, Region } from '@ovh-ux/manager-config';
 const helpRoot = 'https://help.ovhcloud.com/csm';
 const homeIndex = '-home?id=csm_index';
 const support = `${helpRoot}?id=csm_cases_requests&ovhSubsidiary=`;
-
-const cloud_changelog = 'https://github.com/orgs/ovh/projects/16/views/6';
-const hosting_and_collab_changelog = 'https://github.com/orgs/ovh/projects/18/views/2';
+const createTicket = `${helpRoot}?id=csm_get_help&ovhSubsidiary=`;
 
 export interface ContentURLS {
   help: {
     [key in string]: string;
   };
   support?: string;
+  createTicket?: string;
   status: string;
   marketplace?: string;
-  cloud_changelog?:string;
-  hosting_and_collab_changelog?:string;
 }
 
 type URLLinks = {
@@ -39,10 +36,9 @@ const urls: URLLinks = {
       TN: `${helpRoot}/fr-tn${homeIndex}`,
     },
     support,
+    createTicket,
     status: 'https://www.status-ovhcloud.com/',
     marketplace: 'https://marketplace.ovhcloud.com/',
-    cloud_changelog,
-    hosting_and_collab_changelog,
   },
   CA: {
     help: {
@@ -55,17 +51,14 @@ const urls: URLLinks = {
       WS: `${helpRoot}/es${homeIndex}`,
     },
     support,
+    createTicket,
     status: 'https://www.status-ovhcloud.com/',
-    cloud_changelog,
-    hosting_and_collab_changelog,
   },
   US: {
     help: {
       US: 'https://us.ovhcloud.com/support',
     },
     status: 'https://status.us.ovhcloud.com/',
-    cloud_changelog,
-    hosting_and_collab_changelog,
   },
 };
 
@@ -80,8 +73,16 @@ export function useURL(environment: Environment): UseURL {
       const user = environment.getUser();
       const regionURL = urls[region];
       const url = regionURL[id];
-      if(!url) return;
-      return typeof url === 'string' ? (id === 'support' ? url + user.ovhSubsidiary : url) : url[user.ovhSubsidiary];
+
+      if (!url) return undefined;
+
+      if (typeof url === 'string') {
+        return ['support', 'createTicket'].includes(id)
+          ? url + user.ovhSubsidiary
+          : url;
+      }
+
+      return url[user.ovhSubsidiary];
     },
   };
 }

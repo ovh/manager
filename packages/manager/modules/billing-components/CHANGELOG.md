@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.13.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.13.1...@ovh-ux/manager-billing-components@4.13.2) (2025-04-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing-components
+
+
+
+
+
+## [4.13.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.13.0...@ovh-ux/manager-billing-components@4.13.1) (2025-04-17)
+
+
+### Bug Fixes
+
+* **billing:** rename extra sql perso status type and manage actions ([#16003](https://github.com/ovh/manager/issues/16003)) ([f31b266](https://github.com/ovh/manager/commit/f31b2665e16f8e751774092fac3356d8556cbc69)), closes [#WEB-20255](https://github.com/ovh/manager/issues/WEB-20255)
+
+
+
+
+
+# [4.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.12.4...@ovh-ux/manager-billing-components@4.13.0) (2025-04-09)
+
+
+### Features
+
+* **billing:** add renewal modal replacing page in my services ([ad179fe](https://github.com/ovh/manager/commit/ad179fe10f7ac257ec1f851607024b91e2ddc7c8))
+
+
+### Reverts
+
+* Revert "feat(billing): add renewal modal replacing page in my services" ([85b3f50](https://github.com/ovh/manager/commit/85b3f50c764e56200fb710f47dfa41bb54ca3ed0))
+
+
+
+
+
+## [4.12.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.12.3...@ovh-ux/manager-billing-components@4.12.4) (2025-04-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing-components
+
+
+
+
+
 ## [4.12.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.12.2...@ovh-ux/manager-billing-components@4.12.3) (2025-04-01)
 
 

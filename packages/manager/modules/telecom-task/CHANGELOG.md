@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-task@6.4.2...@ovh-ux/manager-telecom-task@6.5.0) (2025-04-16)
+
+
+### Features
+
+* **telecom.telephony:** softphone ([#12734](https://github.com/ovh/manager/issues/12734)) ([9604893](https://github.com/ovh/manager/commit/9604893c3763a1a8400970f5883384815b01a5db)), closes [#MANAGER-12958](https://github.com/ovh/manager/issues/MANAGER-12958)
+
+
+
+
+
 ## [6.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-task@6.4.1...@ovh-ux/manager-telecom-task@6.4.2) (2024-11-28)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom-task

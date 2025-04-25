@@ -2,5 +2,10 @@
   "vrack_title": "Das private Netzwerk vRack",
   "vrack_order": "Bestellen",
   "list_layout_like_this": "Gefällt Ihnen das?",
-  "list_layout_like_this_tooltip": "Gefällt Ihnen diese Seite? Teilen Sie uns Ihre Anmerkungen mit!"
+  "list_layout_like_this_tooltip": "Gefällt Ihnen diese Seite? Teilen Sie uns Ihre Anmerkungen mit!",
+  "list_layout_vrack_guides_title": "Guides",
+  "list_layout_vrack_guides_link1": "vRack auf Ihren Dedicated Servern konfigurieren",
+  "list_layout_vrack_guides_link2": "Konfiguration des Public Cloud vRack",
+  "list_layout_vrack_guides_link3": "IP-Block im vRack konfigurieren",
+  "list_layout_vrack_guides_link4": "vRack zwischen Public Cloud und einem Dedicated Server konfigurieren"
 }

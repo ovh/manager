@@ -32,3 +32,4 @@ export * from './region/region.component';
 export * from './order';
 
 export * from './badge';
+export * from './Modal';

@@ -2,26 +2,18 @@ import React from 'react';
 import 'element-internals-polyfill';
 import '@testing-library/jest-dom';
 import { vi, describe, expect } from 'vitest';
-import { useResolvedPath, useSearchParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { fireEvent, render, screen, waitFor, act } from '@/utils/test.provider';
-import { accountDetailMock } from '@/api/_mock_';
+import { accountDetailMock, platformMock } from '@/api/_mock_';
 import ModalAddAlias from '../ModalAddAlias.component';
-
-vi.mocked(useResolvedPath).mockReturnValue({
-  pathname: '/:serviceName/email_accounts/alias/add',
-  search: '',
-  hash: '',
-});
-
-vi.mocked(useSearchParams).mockReturnValue([
-  new URLSearchParams({
-    editEmailAccountId: accountDetailMock.id,
-  }),
-  vi.fn(),
-]);
 
 describe('add alias modal', () => {
   it('should display modal', async () => {
+    vi.mocked(useParams).mockReturnValue({
+      platformId: platformMock[0].id,
+      accountId: accountDetailMock.id,
+    });
+
     const { queryByTestId } = render(<ModalAddAlias />);
 
     await waitFor(() => {

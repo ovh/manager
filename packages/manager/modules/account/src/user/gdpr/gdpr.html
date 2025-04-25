@@ -1,0 +1,165 @@
+<div class="module-useraccount-sections-advanced-container" data-ui-view>
+    <div
+        data-ovh-alert="gdpr-features.alerts.global"
+        data-ovh-alert-hide-remove-button="true"
+    ></div>
+    <oui-tile
+        data-heading="{{ ::'gdpr_erasure_title' | translate }}"
+        class="h-100 oui-tile-h-100"
+    >
+        <p>
+            <strong data-translate="gdpr_erasure_description_emphasis"></strong>
+        </p>
+        <p data-translate="gdpr_erasure_description"></p>
+        <oui-button
+            type="button"
+            variant="primary"
+            data-disabled="!$ctrl.canCreateErasureRequest || $ctrl.loading.capabilities || !$ctrl.capabilities.canCreateErasureRequest"
+            data-on-click="$ctrl.askErasureConfirmation()"
+        >
+            <oui-spinner
+                data-size="s"
+                ng-if="$ctrl.loading.capabilities"
+            ></oui-spinner>
+            <span
+                ng-if="!$ctrl.loading.capabilities"
+                data-translate="gdpr_erasure_cta"
+            ></span>
+        </oui-button>
+    </oui-tile>
+
+    <div class="mt-5">
+        <h4 data-translate="gdpr_erasure_requests_grid_title"></h4>
+        <oui-datagrid data-rows="$ctrl.requests">
+            <oui-datagrid-column
+                data-title=":: 'gdpr_erasure_requests_grid_date_column' | translate"
+                data-property="createdAt"
+            >
+                <span>{{ $row.createdAt | date : 'shortDate' }}</span>
+            </oui-datagrid-column>
+
+            <oui-datagrid-column
+                data-title=":: 'gdpr_erasure_requests_grid_type_column' | translate"
+                data-property="type"
+            >
+                <span data-translate="gdpr_erasure_right_request_type"></span>
+            </oui-datagrid-column>
+
+            <oui-datagrid-column
+                data-title=":: 'gdpr_erasure_requests_grid_status_column' | translate"
+                data-property="status"
+            >
+                <span
+                    class="oui-badge {{$ctrl.constructor.getErasureRequestStatusColor($row.status)}}"
+                    data-translate="{{ $ctrl.constructor.getErasureRequestStatusMessage($row.status) }}"
+                ></span>
+            </oui-datagrid-column>
+
+            <oui-datagrid-column
+                data-title=":: 'gdpr_erasure_requests_grid_ticket_column' | translate"
+                data-property="csmTicket"
+            >
+                <a
+                    data-ng-href="{{:: $ctrl.viewTicketsUrl }}"
+                    class="oui-link"
+                    target="_blank"
+                >
+                    {{ $row.csmTicket }}
+                </a>
+            </oui-datagrid-column>
+
+            <oui-datagrid-column
+                class="oui-datagrid-column-reasons"
+                data-title=":: 'gdpr_erasure_requests_grid_reasons_column' | translate"
+                data-property="result.reasons"
+            >
+                <p
+                    class="oui-datagrid-column-reasons"
+                    data-translate="{{ $ctrl.constructor.getErasureRequestReasonMessage($row.result.reasons) }}"
+                ></p>
+            </oui-datagrid-column>
+
+            <oui-datagrid-column
+                data-title="::'gdpr_erasure_requests_grid_actions_column' | translate"
+            >
+                <oui-action-menu data-compact>
+                    <oui-action-menu-item
+                        disabled="!$row.canConfirm"
+                        data-on-click="$ctrl.trackAction('datagrid::button::confirm::delete_account')"
+                        data-href="{{ $ctrl.$state.href('account.user.gdpr.confirm', {
+                        publicId: $row.publicId,
+                      }) }}"
+                    >
+                        <span
+                            data-translate="gdpr_erasure_requests_grid_action_confirm"
+                        ></span>
+                    </oui-action-menu-item>
+
+                    <oui-action-menu-item
+                        disabled="!$row.canResendCode"
+                        data-on-click="$ctrl.sendErasureRequestConfirmationEmail($row)"
+                    >
+                        <span
+                            data-translate="gdpr_erasure_requests_grid_action_resend_code"
+                        ></span>
+                    </oui-action-menu-item>
+
+                    <oui-action-menu-divider></oui-action-menu-divider>
+
+                    <oui-action-menu-item
+                        disabled="!$row.canCancel"
+                        data-on-click="$ctrl.cancelRequestErasure($row)"
+                    >
+                        <span
+                            class="oui-color-ae-500"
+                            data-translate="gdpr_erasure_requests_grid_action_resend_cancel"
+                        ></span>
+                    </oui-action-menu-item>
+                </oui-action-menu>
+            </oui-datagrid-column>
+        </oui-datagrid>
+    </div>
+</div>
+<div data-ng-if="$ctrl.showErasureConfirmationModal">
+    <div class="modal d-block">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <oui-modal
+                    data-on-dismiss="$ctrl.closeErasureConfirmationModal()"
+                >
+                    <p
+                        class="mb-4 confirmation-message"
+                        data-translate="gdpr_erasure_confirmation_modal"
+                        data-translate-values="{ nic: $ctrl.nic }"
+                    ></p>
+                    <div class="d-flex justify-content-end">
+                        <oui-button
+                            data-on-click="$ctrl.closeErasureConfirmationModal()"
+                            data-disabled="$ctrl.loading.createErasureRequest"
+                        >
+                            <span
+                                data-translate="gdpr_erasure_confirmation_modal_cancel"
+                            ></span>
+                        </oui-button>
+                        <oui-button
+                            class="ml-4"
+                            data-variant="primary"
+                            data-on-click="$ctrl.submitErasureRequest()"
+                            data-disabled="$ctrl.loading.createErasureRequest"
+                        >
+                            <oui-spinner
+                                data-size="s"
+                                ng-if="$ctrl.loading.createErasureRequest"
+                            ></oui-spinner>
+                            <span
+                                ng-if="!$ctrl.loading.createErasureRequest"
+                                data-translate="gdpr_erasure_confirmation_modal_confirm"
+                            ></span>
+                        </oui-button>
+                    </div>
+                </oui-modal>
+            </div>
+        </div>
+    </div>
+    <div class="oui-modal-backdrop"></div>
+</div>

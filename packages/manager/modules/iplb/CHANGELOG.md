@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.21.0...@ovh-ux/manager-iplb@1.22.0) (2025-04-22)
+
+
+### Features
+
+* **dedicated:** add guide links on iplb and vrack ([#16358](https://github.com/ovh/manager/issues/16358)) ([590a9ca](https://github.com/ovh/manager/commit/590a9ca36ac0dc9e3380f12b2a9b1340e038a2c6)), closes [#MANAGER-17524](https://github.com/ovh/manager/issues/MANAGER-17524)
+
+
+
+
+
 # [1.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.20.0...@ovh-ux/manager-iplb@1.21.0) (2025-03-11)
 
 

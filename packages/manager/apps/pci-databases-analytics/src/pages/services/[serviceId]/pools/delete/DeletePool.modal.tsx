@@ -1,16 +1,16 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useEffect } from 'react';
-import { Button } from '@/components/ui/button';
 import {
+  Button,
   DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { useToast } from '@/components/ui/use-toast';
+  useToast,
+} from '@datatr-ux/uxlib';
 import { useDeleteConnectionPool } from '@/hooks/api/database/connectionPool/useDeleteConnectionPool.hook';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import { useServiceData } from '../../Service.context';
@@ -86,7 +86,7 @@ const DeletePool = () => {
             <Button
               data-testid="delete-pools-cancel-button"
               type="button"
-              variant="outline"
+              mode="outline"
             >
               {t('deleteConnectionPoolButtonCancel')}
             </Button>

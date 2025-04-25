@@ -1,0 +1,8 @@
+{
+  "dashboard_users_order_users_type": "Tipo de licencia",
+  "dashboard_users_order_users_type_placeholder": "Seleccionar",
+  "dashboard_users_order_users_price": "Precio",
+  "dashboard_users_order_users_message": "La facturación se calculará según las licencias activadas en el mes corriente.",
+  "dashboard_users_order_users_message_error": "Se ha producido un error al añadir el usuario. {{ error }}",
+  "dashboard_users_order_users_message_success": "La solicitud de adición de usuario se ha enviado correctamente."
+}

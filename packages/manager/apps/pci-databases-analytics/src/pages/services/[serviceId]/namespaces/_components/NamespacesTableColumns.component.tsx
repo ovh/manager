@@ -6,15 +6,13 @@ import {
   Tooltip,
   TooltipProvider,
   TooltipTrigger,
-} from '@/components/ui/tooltip';
-import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { Button } from '@/components/ui/button';
+  Button,
+} from '@datatr-ux/uxlib';
 
 import { useDateFnsLocale } from '@/hooks/useDateFnsLocale.hook';
 

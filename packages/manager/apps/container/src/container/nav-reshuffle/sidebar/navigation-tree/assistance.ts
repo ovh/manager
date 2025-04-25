@@ -1,32 +1,9 @@
-import { Node } from "./node";
+import { Node } from './node';
 
 export const assistanceTree: Node = {
   id: 'assistance',
   translation: 'sidebar_assistance_title',
   children: [
-    {
-      id: 'cloud_changelog',
-      translation: 'sidebar_cloud_changelog',
-      url: 'cloud_changelog',
-      hasService: false,
-      isExternal: true,
-    },
-    {
-      id: 'hosting_and_collab_changelog',
-      translation: 'sidebar_hosting_and_collab_changelog',
-      url: 'hosting_and_collab_changelog',
-      hasService: false,
-      isExternal: true,
-      region: ['EU', 'CA'],
-    },
-    {
-      id: 'marketplace',
-      translation: 'sidebar_marketplace',
-      url: 'marketplace',
-      hasService: false,
-      isExternal: true,
-      region: ['EU'],
-    },
     {
       id: 'help',
       translation: 'sidebar_assistance_help_center',
@@ -42,9 +19,32 @@ export const assistanceTree: Node = {
       hasService: false,
     },
     {
+      id: 'roadmap_changelog',
+      translation: 'sidebar_roadmap_changelog',
+      routing: {
+        application: 'hub',
+        hash: '#/roadmap-changelog',
+      },
+    },
+    {
+      id: 'marketplace',
+      translation: 'sidebar_marketplace',
+      url: 'marketplace',
+      hasService: false,
+      isExternal: true,
+      region: ['EU'],
+    },
+    {
       id: 'assistance_status',
       translation: 'sidebar_assistance_status',
       url: 'status',
+      hasService: false,
+      isExternal: true,
+    },
+    {
+      id: 'create_ticket',
+      translation: 'sidebar_create_ticket',
+      url: 'createTicket',
       hasService: false,
       isExternal: true,
     },
@@ -63,6 +63,6 @@ export const assistanceTree: Node = {
         application: 'carbon-calculator',
         hash: '#',
       },
-    }
-  ]
-}
+    },
+  ],
+};

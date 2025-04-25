@@ -6,7 +6,7 @@ import {
   organizationListMock,
   platformMock,
   taskMocks,
-  aliasMock,
+  aliasesMock,
   domainZone,
   orderCatalogMock,
   domainsDiagnosticMock,
@@ -116,13 +116,16 @@ vi.mock('@/api/domain', async (importActual) => {
 vi.mock('@/api/alias', async (importActual) => {
   return {
     ...(await importActual<typeof import('@/api/alias')>()),
-    getZimbraPlatformAliasDetail: vi.fn((_platformId, aliasId) => {
-      return Promise.resolve(aliasMock.find((alias) => alias.id === aliasId));
+    getZimbraPlatformAlias: vi.fn((_platformId, aliasId) => {
+      return Promise.resolve(aliasesMock.find((alias) => alias.id === aliasId));
     }),
-    getZimbraPlatformAlias: vi.fn(() => {
-      return Promise.resolve(aliasMock);
+    getZimbraPlatformAliases: vi.fn(() => {
+      return Promise.resolve({ data: aliasesMock });
     }),
     deleteZimbraPlatformAlias: vi.fn(() => {
+      return Promise.resolve();
+    }),
+    postZimbraPlatformAlias: vi.fn(() => {
       return Promise.resolve();
     }),
   };
@@ -135,7 +138,7 @@ vi.mock('@/api/mailinglist', async (importActual) => {
       return Promise.resolve(mailingListsMock.find((ml) => ml.id === mlId));
     }),
     getZimbraPlatformMailingLists: vi.fn(() => {
-      return Promise.resolve(mailingListsMock);
+      return Promise.resolve({ data: mailingListsMock });
     }),
   };
 });
@@ -215,6 +218,9 @@ vi.mock('react-router-dom', async (importActual) => {
     useNavigate: vi.fn(() => navigate),
     useSearchParams: vi.fn(() => [new URLSearchParams(), vi.fn()]),
     useMatches: vi.fn(() => []),
+    useParams: vi.fn(() => ({
+      platformId: platformMock[0].id,
+    })),
   };
 });
 

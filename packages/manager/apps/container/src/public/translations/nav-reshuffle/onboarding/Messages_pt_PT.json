@@ -18,5 +18,7 @@
   "onboarding_walkme_popover_step5_content": "Encontre todas as suas faturas, pagamentos em curso e notas de crédito nesta secção.",
   "onboarding_popover_later_hide_button": "Talvez mais tarde",
   "onboarding_popover_do_not_show_again_button": "Não mostrar mais",
-  "onboarding_popover_done_button": "Concluir a visita"
+  "onboarding_popover_done_button": "Concluir a visita",
+  "onboarding_walkme_popover_step2_content_us": "Atualize o seu perfil e os seus métodos de pagamento. Aceda às suas faturas, serviços e encomendas. Consulte as suas comunicações.",
+  "onboarding_walkme_popover_step4_content_us": "Mantenha-se informado sobre o estado dos nossos serviços em tempo real. Precisa de ajuda? Aceda aos nossos guias práticos e recursos de ajuda. Troque informações através do nosso chat para obter soluções, recursos adicionais e respostas às suas dúvidas."
 }

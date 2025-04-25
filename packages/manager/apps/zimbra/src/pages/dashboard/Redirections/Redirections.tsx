@@ -6,19 +6,19 @@ import {
   Subtitle,
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import { Outlet, useNavigate, useSearchParams } from 'react-router-dom';
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import {
   ODS_BUTTON_COLOR,
   ODS_BUTTON_SIZE,
   ODS_ICON_NAME,
 } from '@ovhcloud/ods-components';
-import ActionButtonRedirections from './ActionButtonRedirections.component';
+import ActionButtonRedirection from './ActionButtonRedirection.component';
 import { useGenerateUrl, usePlatform } from '@/hooks';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import { ResourceStatus } from '@/api/api.type';
 import { BadgeStatus } from '@/components/BadgeStatus';
 
-export type RedirectionsItem = {
+export type RedirectionItem = {
   id: string;
   from: string;
   to: string;
@@ -26,7 +26,7 @@ export type RedirectionsItem = {
   status: ResourceStatus;
 };
 
-const items: RedirectionsItem[] = [
+const items: RedirectionItem[] = [
   {
     status: ResourceStatus.ERROR,
     from: 'from@example.com',
@@ -43,7 +43,7 @@ const items: RedirectionsItem[] = [
   },
 ];
 
-const columns: DatagridColumn<RedirectionsItem>[] = [
+const columns: DatagridColumn<RedirectionItem>[] = [
   {
     id: 'from',
     cell: (item) => <div>{item.from}</div>,
@@ -67,9 +67,9 @@ const columns: DatagridColumn<RedirectionsItem>[] = [
   {
     id: 'tooltip',
     cell: (item) => (
-      <ActionButtonRedirections
+      <ActionButtonRedirection
         data-testid="add-redirection-btn"
-        redirectionsItem={item}
+        redirectionItem={item}
       />
     ),
     label: '',
@@ -80,10 +80,8 @@ export function Redirections() {
   const { t } = useTranslation(['redirections', 'common']);
   const navigate = useNavigate();
   const { platformUrn } = usePlatform();
-  const [searchParams] = useSearchParams();
-  const params = Object.fromEntries(searchParams.entries());
-  const editEmailAccountId = searchParams.get('editEmailAccountId');
-  const hrefAddRedirection = useGenerateUrl('./add', 'path', params);
+  const { accountId } = useParams();
+  const hrefAddRedirection = useGenerateUrl('./add', 'path');
 
   const handleAddEmailRedirectionClick = () => {
     navigate(hrefAddRedirection);
@@ -96,8 +94,8 @@ export function Redirections() {
       <Outlet />
       {platformUrn && (
         <>
-          {editEmailAccountId && (
-            <div className="mb-8">
+          {accountId && (
+            <div className="mb-6">
               <Subtitle>{t('zimbra_redirections_account_title')}</Subtitle>
             </div>
           )}

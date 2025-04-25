@@ -644,7 +644,7 @@
   "domain_tab_TASKS_status_CANCELLED": "Cancelled",
   "domain_tab_TASKS_status_DOING": "Running",
   "domain_tab_TASKS_status_DONE": "Closed",
-  "domain_tab_TASKS_status_ERROR": "Error",
+  "domain_tab_TASKS_status_ERROR": "To be processed",
   "domain_tab_TASKS_status_TODO": "Planned",
   "domain_order_start10M_choose_duration": "Select the duration of your Start 10M plan.",
   "domain_order_start10M_duration_choosed": "Click \"Next\" to continue.",
@@ -833,5 +833,9 @@
   "domain_dashboard_general_information_alldom_termination_info": "Your pack will expire on {{expirationDate}}. The non-cancelled domains included in this pack will be <strong>renewed for free until your pack expires permanently.</strong> After this date, your non-cancelled domains will be billed individually.",
   "domain_dashboard_general_information_alldom_renewal_link": "Undo pack cancellation",
   "domain_dashboard_general_information_alldom_termination_warning_close": "Close",
-  "domain_tab_contact": "Manage contacts"
+  "domain_tab_contact": "Manage contacts",
+  "domain_tab_TASKS_status_PROBLEM": "Failed",
+  "domain_dashboard_general_information_suspended_by_procedure_message": "Your domain name is suspended as part of a contact data verification procedure. Please review the current operations to determine if any action is required on your part. ",
+  "domain_dashboard_general_information_being_suspended_by_procedure_message": "Your domain name is subject to a procedure to verify contact data. Please review the current operations to determine if any action is required on your part. ",
+  "domain_dashboard_general_information_see_operations": "View ongoing operations"
 }

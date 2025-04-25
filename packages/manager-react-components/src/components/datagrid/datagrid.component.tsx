@@ -108,10 +108,12 @@ export interface DatagridProps<T> {
   className?: string;
   /** option to adjust content on the left */
   contentAlignLeft?: boolean;
-  /** boolean to display load more button */
+  /** boolean to display load more button, and load all button if onFetchAllPages is defined */
   hasNextPage?: boolean;
-  /** callback when click on load more button */
+  /** callback on load more button click */
   onFetchNextPage?: any;
+  /** callback on load all button click, the button will be displayed only if this function is defined and hasNextPage is true */
+  onFetchAllPages?: React.MouseEventHandler<HTMLOdsButtonElement>;
   /** Enables manual sorting for the table */
   manualSorting?: boolean;
   /** Enables manual pagination */
@@ -166,6 +168,7 @@ export const Datagrid = <T,>({
   contentAlignLeft = true,
   hasNextPage,
   onFetchNextPage,
+  onFetchAllPages,
   manualSorting = true,
   manualPagination = true,
   noResultLabel,
@@ -348,7 +351,8 @@ export const Datagrid = <T,>({
                                   ? 'cursor-pointer select-none'
                                   : '',
                               ...(onSortChange && {
-                                onClick: header.column.getToggleSortingHandler(),
+                                onClick:
+                                  header.column.getToggleSortingHandler(),
                               }),
                             }}
                             data-testid={`header-${header.id}`}
@@ -493,8 +497,8 @@ export const Datagrid = <T,>({
       ) : (
         <></>
       )}
-      {hasNextPage && (
-        <div className="grid justify-items-center my-5">
+      {hasNextPage ? (
+        <div className="flex justify-center gap-5 my-5">
           <OdsButton
             data-testid="load-more-btn"
             variant={ODS_BUTTON_VARIANT.outline}
@@ -502,8 +506,17 @@ export const Datagrid = <T,>({
             onClick={onFetchNextPage}
             isLoading={isLoading}
           />
+          {onFetchAllPages && (
+            <OdsButton
+              data-testid="load-all-btn"
+              variant={ODS_BUTTON_VARIANT.outline}
+              label={t('common_pagination_load_all')}
+              onClick={onFetchAllPages}
+              isLoading={isLoading}
+            />
+          )}
         </div>
-      )}
+      ) : null}
     </div>
   );
 };

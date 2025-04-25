@@ -20,7 +20,7 @@
   "account_contacts_service_category_NASHA": "NAS-HA",
   "account_contacts_service_category_VRACK": "vRack",
   "account_contacts_service_category_DOMAIN": "Dominio",
-  "account_contacts_service_category_EMAIL_DOMAIN": "Direcciones de correo",
+  "account_contacts_service_category_EMAIL_DOMAIN": "Correo electrónico",
   "account_contacts_service_category_CDN_WEBSTORAGE": "CDN WebStorage",
   "account_contacts_service_category_CDN_WEBSITE": "CDN WebSite",
   "account_contacts_service_category_CDN_DEDICATED": "CDN Dedicada",

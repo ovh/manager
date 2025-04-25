@@ -3,6 +3,7 @@ import {
   NETWORK_STATUS,
   POLLING_TYPE,
   VRACK_ORDER_URLS,
+  SNAPSHOT_TYPE,
 } from './constants';
 
 export default class NetAppDashboardService {
@@ -206,6 +207,39 @@ export default class NetAppDashboardService {
           ...volume,
           path: data.map(({ path }) => path),
         };
+      });
+  }
+
+  /**
+   * Get Manual snapshots
+   * @param {*} eligibleVolumes array of volumes
+   * @param {*} storage
+   * @returns Result of all manual snapshots
+   */
+
+  getManualsnapshots(eligibleVolumes, storage) {
+    return this.$q.all(
+      eligibleVolumes.map((volume) =>
+        this.getManualsnapshotsFromVolume(volume, storage),
+      ),
+    );
+  }
+
+  getManualsnapshotsFromVolume(volume, storage) {
+    return this.$http
+      .get(
+        `/storage/netapp/${storage.id}/share/${volume.id}/snapshot?detail=true`,
+      )
+      .then(({ data: shareSnapshot }) => {
+        return shareSnapshot
+          .filter(({ type }) => type === SNAPSHOT_TYPE.SYSTEM)
+          .map((snapshot) => {
+            return {
+              size: volume.size,
+              snapshotID: snapshot.id,
+              key: `${storage.name} : ${snapshot.name}`,
+            };
+          });
       });
   }
 }

@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Label } from '@/components/ui/label';
-import { Switch } from '@/components/ui/switch';
+import { Label, Switch, useToast } from '@datatr-ux/uxlib';
 import { useServiceData } from '../../Service.context';
-import { useToast } from '@/components/ui/use-toast';
 import { useEditService } from '@/hooks/api/database/service/useEditService.hook';
 import * as database from '@/types/cloud/project/database';
 

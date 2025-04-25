@@ -5,7 +5,11 @@ import isNull from 'lodash/isNull';
 import snakeCase from 'lodash/snakeCase';
 import 'moment';
 
-import { DEBT_STATUS, BYOIP_SERVICE_PREFIX } from './billing-service.constants';
+import {
+  DEBT_STATUS,
+  BYOIP_SERVICE_PREFIX,
+  SERVICE_TYPE,
+} from './billing-service.constants';
 
 export default class BillingService {
   constructor(service) {
@@ -36,12 +40,35 @@ export default class BillingService {
     return this.renew.period;
   }
 
+  /**
+   * Note:
+   * Converts the renewal period from ISO 8601 format to the total number of months.
+   * Only years Y and months M are considered.
+   */
+  get cleanRenewPeriod() {
+    if (this.renew.period && !Number.isInteger(this.renew.period)) {
+      const matches = this.renew.period.match(/P(?:(\d+)Y)?(?:(\d+)M)?/);
+      if (!matches) return this.renew.period;
+
+      const years = Number(matches[1]) || 0;
+      const months = Number(matches[2]) || 0;
+
+      const totalMonths = years * 12 + months;
+      return Number(totalMonths);
+    }
+    return this.renew.period;
+  }
+
   isBillingSuspended() {
     return this.status === 'BILLING_SUSPENDED';
   }
 
   isManualForced() {
     return this.status === 'FORCED_MANUAL';
+  }
+
+  isExtraSqlPerso() {
+    return this.serviceType === SERVICE_TYPE.HOSTING_WEB_EXTRA_SQL_PERSO;
   }
 
   getRenew() {

@@ -3,6 +3,193 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [20.30.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.30.0...@ovh-ux/manager-dedicated@20.30.1) (2025-04-24)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3903] ([ef76a26](https://github.com/ovh/manager/commit/ef76a26dfc5de9ca2511032eb9f0b37f1ef66b59))
+* remove unused translations [CDS] ([0c666c2](https://github.com/ovh/manager/commit/0c666c29c9a64a9a909a093804c763f2280a12b3))
+
+
+
+
+
+# [20.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.29.0...@ovh-ux/manager-dedicated@20.30.0) (2025-04-23)
+
+
+### Features
+
+* **dedicated.vmware:** custom nsx edges sizing ([99ec55b](https://github.com/ovh/manager/commit/99ec55bade0780b3c00db2d1d067ca44116d5155)), closes [#MANAGER-17413](https://github.com/ovh/manager/issues/MANAGER-17413)
+
+
+
+
+
+# [20.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.28.0...@ovh-ux/manager-dedicated@20.29.0) (2025-04-23)
+
+
+### Features
+
+* **dedicated:** reword delete to cancel for us ([#16333](https://github.com/ovh/manager/issues/16333)) ([ed1a63a](https://github.com/ovh/manager/commit/ed1a63aab6901762a6f33f48d90937e58cf7c9fb)), closes [#MANAGER-17652](https://github.com/ovh/manager/issues/MANAGER-17652)
+
+
+
+
+
+# [20.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.27.0...@ovh-ux/manager-dedicated@20.28.0) (2025-04-22)
+
+
+### Features
+
+* **dedicated:** add guides on listing and dashboard pcc ([bc32bc9](https://github.com/ovh/manager/commit/bc32bc9f495b8f9f9ecdf488b429e3571adc94b5)), closes [#MANAGER-17571](https://github.com/ovh/manager/issues/MANAGER-17571)
+
+
+
+
+
+# [20.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.26.5...@ovh-ux/manager-dedicated@20.27.0) (2025-04-22)
+
+
+### Bug Fixes
+
+* **dedicated:** base configuration link by subsidiaries ([#16094](https://github.com/ovh/manager/issues/16094)) ([44db09f](https://github.com/ovh/manager/commit/44db09ff890af282ee5e6235ff6ecb1fbf98fe69)), closes [#MANAGER-17503](https://github.com/ovh/manager/issues/MANAGER-17503)
+
+
+### Features
+
+* **dedicated.byoip:** update guide links ([#16519](https://github.com/ovh/manager/issues/16519)) ([4c162f0](https://github.com/ovh/manager/commit/4c162f07468faa4c12e1cead24dd91c7d93dbb79)), closes [#MANAGER-17196](https://github.com/ovh/manager/issues/MANAGER-17196)
+* **dedicated:** add guid link for ip listing ([#16602](https://github.com/ovh/manager/issues/16602)) ([c93c6b9](https://github.com/ovh/manager/commit/c93c6b93836cadebb0e42a5538a76868bf6b7d70)), closes [#MANAGER-17943](https://github.com/ovh/manager/issues/MANAGER-17943)
+
+
+
+
+
+## [20.26.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.26.4...@ovh-ux/manager-dedicated@20.26.5) (2025-04-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [20.26.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.26.3...@ovh-ux/manager-dedicated@20.26.4) (2025-04-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [20.26.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.26.2...@ovh-ux/manager-dedicated@20.26.3) (2025-04-17)
+
+
+### Bug Fixes
+
+* **dedicated.vmware:** fix host menu switch billing plan ([5802463](https://github.com/ovh/manager/commit/58024636657b3e4c741ed44ced6c68c4a0009fce)), closes [#MANAGER-17947](https://github.com/ovh/manager/issues/MANAGER-17947) [#INC0125325](https://github.com/ovh/manager/issues/INC0125325)
+
+
+
+
+
+## [20.26.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.26.1...@ovh-ux/manager-dedicated@20.26.2) (2025-04-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [20.26.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.26.0...@ovh-ux/manager-dedicated@20.26.1) (2025-04-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+# [20.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.25.1...@ovh-ux/manager-dedicated@20.26.0) (2025-04-14)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3842] ([764e862](https://github.com/ovh/manager/commit/764e862bb5de9d166e5c2328effb33f68545c216))
+* **nutanix:** fix display IPMI tab ([db2c273](https://github.com/ovh/manager/commit/db2c273a3f37eeebd7bcbb15717c4de669149429)), closes [#MANAGER-17836](https://github.com/ovh/manager/issues/MANAGER-17836) [#INC0123559](https://github.com/ovh/manager/issues/INC0123559)
+
+
+### Features
+
+* **dedicated.pcc:** remove 2API to fetch datastores ([406e3ac](https://github.com/ovh/manager/commit/406e3acb2850ade1b45e3682ced0feffdd2a34d5)), closes [#MANAGER-17154](https://github.com/ovh/manager/issues/MANAGER-17154)
+* **dedicated:** cut all APIv6 /me/installationTemplate dependencies ([#14192](https://github.com/ovh/manager/issues/14192)) ([295b31e](https://github.com/ovh/manager/commit/295b31e813bc8abace80b9f05a0a2a92e051ac4b))
+
+
+
+
+
+## [20.25.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.25.0...@ovh-ux/manager-dedicated@20.25.1) (2025-04-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+# [20.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.24.0...@ovh-ux/manager-dedicated@20.25.0) (2025-04-09)
+
+
+### Features
+
+* **account:** cleanup code after slicing /dedicated ([da8ae0f](https://github.com/ovh/manager/commit/da8ae0f972804269ffec5141b906345cbbefbd69)), closes [#MANAGER-17277](https://github.com/ovh/manager/issues/MANAGER-17277)
+* **container:** added an invitation modal to accept contracts ([3390858](https://github.com/ovh/manager/commit/33908580cfde1e913c73ffc7fd59e3c9724c1cac))
+
+
+### Reverts
+
+* Revert "feat(account): cleanup code after slicing /dedicated" ([79c24db](https://github.com/ovh/manager/commit/79c24dbc71566f6770099a737f3f91e27b6dcbc1))
+
+
+
+
+
+# [20.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.23.4...@ovh-ux/manager-dedicated@20.24.0) (2025-04-08)
+
+
+### Features
+
+* **dedicated.license:** fix plesk translation ([#15643](https://github.com/ovh/manager/issues/15643)) ([a17c379](https://github.com/ovh/manager/commit/a17c37998f6be4790a685057cd0c7ba8cae65537)), closes [#MANAGER-16911](https://github.com/ovh/manager/issues/MANAGER-16911)
+* **dedicated:** remove old ola option section ([#16325](https://github.com/ovh/manager/issues/16325)) ([187d7e7](https://github.com/ovh/manager/commit/187d7e71fb4f6f6dde924d3c4ee5feb867d132f8)), closes [#MANAGER-16494](https://github.com/ovh/manager/issues/MANAGER-16494)
+
+
+
+
+
+## [20.23.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.23.3...@ovh-ux/manager-dedicated@20.23.4) (2025-04-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [20.23.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.23.2...@ovh-ux/manager-dedicated@20.23.3) (2025-04-03)
+
+
+### Bug Fixes
+
+* **web:** harmonize email products naming ([#16324](https://github.com/ovh/manager/issues/16324)) ([0471f44](https://github.com/ovh/manager/commit/0471f440945666c208282882d49c02f99b590ed9)), closes [#MANAGER-17668](https://github.com/ovh/manager/issues/MANAGER-17668)
+
+
+
+
+
+## [20.23.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.23.1...@ovh-ux/manager-dedicated@20.23.2) (2025-04-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
 ## [20.23.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.23.0...@ovh-ux/manager-dedicated@20.23.1) (2025-04-01)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated

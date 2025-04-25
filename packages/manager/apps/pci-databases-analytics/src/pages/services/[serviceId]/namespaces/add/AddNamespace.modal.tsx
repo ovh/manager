@@ -1,6 +1,6 @@
+import { Skeleton } from '@datatr-ux/uxlib';
 import { useServiceData } from '../../Service.context';
 import AddEditNamespace from '../_components/AddEditNamespace.component';
-import { Skeleton } from '@/components/ui/skeleton';
 import { useGetNamespaces } from '@/hooks/api/database/namespace/useGetNamespaces.hook';
 
 const AddNamespaceModal = () => {

@@ -1,20 +1,24 @@
 import React from 'react';
+import { vi } from 'vitest';
 
 import { render, waitFor } from '../../utils/test/test.provider';
 import { RancherService, RancherTaskType } from '@/types/api.type';
 import listingTranslation from '../../../public/translations/listing/Messages_fr_FR.json';
-import { rancherMocked } from '../../_mock_/rancher';
+import { rancherMocked } from '../../__mocks__/rancher';
 import Listing, { ListingProps } from './Listing.page';
 
 const defaultProps = {
   data: [rancherMocked],
-  refetchRanchers: jest.fn(),
+  refetchRanchers: vi.fn(),
 };
 
-jest.mock('@ovh-ux/manager-react-components', () => ({
-  ...jest.requireActual('@ovh-ux/manager-react-components'),
-  ChangelogButton: jest.fn(),
-}));
+vi.mock('@ovh-ux/manager-react-components', async () => {
+  const module = await vi.importActual('@ovh-ux/manager-react-components');
+  return {
+    ...module,
+    ChangelogButton: () => <div>ChangelogButton</div>,
+  };
+});
 
 const setupSpecTest = async (props: ListingProps = defaultProps) =>
   waitFor(() => render(<Listing {...props} />));
@@ -22,14 +26,8 @@ const setupSpecTest = async (props: ListingProps = defaultProps) =>
 describe('Listing Page', () => {
   it('Page should display correctly', async () => {
     const screen = await setupSpecTest({
-      data: [
-        {
-          id: '123',
-          currentState: { name: 'Rancher1' },
-          currentTasks: [],
-        } as RancherService,
-      ],
-      refetchRanchers: jest.fn(),
+      data: [{ ...rancherMocked }],
+      refetchRanchers: vi.fn(),
     });
 
     const title = screen.getByText(listingTranslation.rancherTitle);
@@ -41,7 +39,7 @@ describe('Listing Page', () => {
     it('Should display the onboarding page', async () => {
       const screen = await setupSpecTest({
         data: [] as RancherService[],
-        refetchRanchers: jest.fn(),
+        refetchRanchers: vi.fn(),
       });
 
       const title = screen.queryByText('title');
@@ -71,7 +69,7 @@ describe('Listing Page', () => {
           currentTasks: [{ id: '1', type: RancherTaskType.RANCHER_DELETE }],
         },
       ],
-      refetchRanchers: jest.fn(),
+      refetchRanchers: vi.fn(),
     });
     const deletingMessage = queryByText(
       listingTranslation.rancherStatusDeleting,
@@ -92,7 +90,7 @@ describe('Listing Page', () => {
           currentTasks: [{ id: '1', type: RancherTaskType.RANCHER_CREATE }],
         },
       ],
-      refetchRanchers: jest.fn(),
+      refetchRanchers: vi.fn(),
     });
     const deletingMessage = queryByText(
       listingTranslation.rancherStatusDeleting,

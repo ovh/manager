@@ -1,3 +1,5 @@
+<div data-ovh-alert="dedicated-cloud-datacenter-dashboard-alert"></div>
+
 <ovh-manager-dedicated-cloud-datacenter-drp-alerts
     data-current-drp="$ctrl.currentDrp"
     data-current-user="$ctrl.currentUser"
@@ -186,16 +188,73 @@
             <oui-tile
                 data-heading="{{:: 'dedicatedCloud_nsx_edge_title' | translate }}"
                 data-loading="$ctrl.loading"
+                data-ng-if="$ctrl.isNsxEdgeAvailable && $ctrl.datacenter.model.isNsxCommercialRangeName"
             >
                 <oui-tile-definition
                     data-term="{{:: 'dedicatedCloud_nsx_edge_level' | translate }}"
-                    data-description="{{:: $ctrl.datacenter.model.edgesLevel }}"
+                    data-ng-if="!$ctrl.pollNsxTaskId"
                 >
+                    <oui-tile-description>
+                        <span
+                            data-ng-bind="$ctrl.datacenter.model.edgesLevel"
+                        ></span>
+                    </oui-tile-description>
+                    <oui-action-menu data-compact data-placement="end">
+                        <oui-action-menu-item
+                            aria-label="{{:: 'dedicatedCloud_datacenter_activate' | translate }}"
+                            data-ng-click="$ctrl.goToDatacenterNetwork()"
+                            data-ng-if="!$ctrl.isNsxtEnabled"
+                        >
+                            <span
+                                data-translate="dedicatedCloud_datacenter_activate"
+                            ></span>
+                        </oui-action-menu-item>
+                        <oui-action-menu-item
+                            aria-label="{{:: 'dedicatedCloud_datacenter_resize' | translate }}"
+                            data-ng-click="$ctrl.goToResizeNsxEdge()"
+                            data-disabled="!$ctrl.isNsxtEnabled"
+                        >
+                            <span
+                                data-translate="dedicatedCloud_datacenter_resize"
+                            ></span>
+                        </oui-action-menu-item>
+                        <oui-action-menu-item
+                            aria-label="{{:: 'dedicatedCloud_datacenter_add_edge' | translate }}"
+                            data-disabled="!$ctrl.isNsxtEnabled || $ctrl.hasMaximumNsx"
+                            data-ng-click="$ctrl.goToAddNsx()"
+                        >
+                            <span
+                                data-translate="dedicatedCloud_datacenter_add_edge"
+                            ></span>
+                        </oui-action-menu-item>
+                        <oui-action-menu-item
+                            data-ng-if=":: $ctrl.isNsxEdgeRelocateAvailable"
+                            aria-label="{{:: 'dedicatedCloud_datacenter_relocate_datastore' | translate }}"
+                            data-ng-click="$ctrl.goToRelocateNsxtEdge()"
+                        >
+                            <span
+                                data-translate="dedicatedCloud_datacenter_relocate_datastore"
+                            ></span>
+                        </oui-action-menu-item>
+                    </oui-action-menu>
                 </oui-tile-definition>
 
                 <oui-tile-definition
+                    data-term="{{:: 'dedicatedCloud_nsx_edge_level' | translate }}"
+                    data-ng-if="$ctrl.pollNsxTaskId"
+                >
+                    <oui-tile-description>
+                        <span class="oui-badge oui-badge_warning">
+                            <span
+                                data-translate="dedicatedCloud_nsx_task_progress"
+                            ></span>
+                        </span>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
                     data-term="{{:: 'dedicatedCloud_nsx_edge_quantity' | translate }}"
-                    data-description="{{:: $ctrl.datacenter.model.edgesCount }}"
+                    data-description="{{ $ctrl.datacenter.model.edgesCount }}"
+                    data-ng-if="!$ctrl.pollNsxTaskId"
                 >
                 </oui-tile-definition>
             </oui-tile>

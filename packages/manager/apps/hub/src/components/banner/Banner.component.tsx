@@ -9,7 +9,7 @@ import {
   OdsHTMLAnchorElementRel,
 } from '@ovhcloud/ods-common-core';
 import { useFetchHubBanner } from '@/data/hooks/banner/useBanner';
-import { useHubContext } from '@/pages/layout/context';
+import { useHubContext } from '@/pages/dashboard/context';
 
 const DEFAULT_TRACKING = ['hub', 'dashboard', 'event-banner'];
 

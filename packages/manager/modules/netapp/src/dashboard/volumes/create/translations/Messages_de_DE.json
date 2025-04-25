@@ -16,5 +16,7 @@
   "netapp_volume_mount_path": "Mount Path (optional)",
   "netapp_volume_mount_path_format_error": "Sonderzeichen sind nicht zulässig.",
   "netapp_volume_mount_path_character_limit_error": "Die maximale Anzahl von 255 Zeichen wurde überschritten.",
-  "netapp_volume_mount_path_already_used_error": "Der Mount Path wird bereits auf einem anderen Volume verwendet. Bitte geben Sie einen neuen ein."
+  "netapp_volume_mount_path_already_used_error": "Der Mount Path wird bereits auf einem anderen Volume verwendet. Bitte geben Sie einen neuen ein.",
+  "netapp_volume_create_snapshot_selection": "Wählen Sie den Snapshot aus, mit dem Sie ein Volume erstellen möchten.",
+  "netapp_volume_create_snapshot_selection_placeholder": "Auswahl..."
 }

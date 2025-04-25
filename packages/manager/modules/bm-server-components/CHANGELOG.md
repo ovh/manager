@@ -3,6 +3,61 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.9.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.9.1...@ovh-ux/manager-bm-server-components@2.9.2) (2025-04-24)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3903] ([ef76a26](https://github.com/ovh/manager/commit/ef76a26dfc5de9ca2511032eb9f0b37f1ef66b59))
+* remove unused translations [CDS] ([0c666c2](https://github.com/ovh/manager/commit/0c666c29c9a64a9a909a093804c763f2280a12b3))
+
+
+
+
+
+## [2.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.9.0...@ovh-ux/manager-bm-server-components@2.9.1) (2025-04-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-bm-server-components
+
+
+
+
+
+# [2.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.8.0...@ovh-ux/manager-bm-server-components@2.9.0) (2025-04-14)
+
+
+### Bug Fixes
+
+* **nutanix:** fix display IPMI tab ([db2c273](https://github.com/ovh/manager/commit/db2c273a3f37eeebd7bcbb15717c4de669149429)), closes [#MANAGER-17836](https://github.com/ovh/manager/issues/MANAGER-17836) [#INC0123559](https://github.com/ovh/manager/issues/INC0123559)
+
+
+### Features
+
+* **dedicated:** cut all APIv6 /me/installationTemplate dependencies ([#14192](https://github.com/ovh/manager/issues/14192)) ([295b31e](https://github.com/ovh/manager/commit/295b31e813bc8abace80b9f05a0a2a92e051ac4b))
+
+
+
+
+
+# [2.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.7.4...@ovh-ux/manager-bm-server-components@2.8.0) (2025-04-08)
+
+
+### Features
+
+* **dedicated:** remove old ola option section ([#16325](https://github.com/ovh/manager/issues/16325)) ([187d7e7](https://github.com/ovh/manager/commit/187d7e71fb4f6f6dde924d3c4ee5feb867d132f8)), closes [#MANAGER-16494](https://github.com/ovh/manager/issues/MANAGER-16494)
+
+
+
+
+
+## [2.7.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.7.3...@ovh-ux/manager-bm-server-components@2.7.4) (2025-04-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-bm-server-components
+
+
+
+
+
 ## [2.7.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.7.2...@ovh-ux/manager-bm-server-components@2.7.3) (2025-04-01)
 
 

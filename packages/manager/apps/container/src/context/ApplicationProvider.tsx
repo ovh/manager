@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Environment } from '@ovh-ux/manager-config';
 import { Shell } from '@ovh-ux/shell';
 

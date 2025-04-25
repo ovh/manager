@@ -1,7 +1,7 @@
 {
   "pci_projects_project_storages_containers_container_back_label": "Retroceder",
   "pci_projects_project_storages_containers_container_archive_info_storedObjects": "Arquivos: {{ count }}",
-  "pci_projects_project_storages_containers_container_object_info_storedObjects": "Objetos: {{ count }}",
+  "pci_projects_project_storages_containers_container_object_info_storedObjects": "Objetos: {{ objects }}",
   "pci_projects_project_storages_containers_container_info_storedBytes": "Espaço utilizado: {{ bytes }}",
   "pci_projects_project_storages_containers_container_info_publicUrl": "Endpoint",
   "pci_projects_project_storages_containers_container_info_publicUrl_help": "Esta informação é necessária para recuperar ou manipular os seus objetos através da API. Consulte os nossos manuais para obter mais informações.",
@@ -53,5 +53,6 @@
   "pci_projects_project_storages_containers_container_storage_class_STANDARD_IA": "Standard IA",
   "pci_projects_project_storages_containers_container_enable_encryption": "Ativar a encriptação (SSE-OMK)",
   "pci_projects_project_storages_containers_container_delete_marker": "Marcador de eliminação",
-  "pci_projects_project_storages_containers_container_show_versions": "Ver as versões"
+  "pci_projects_project_storages_containers_container_show_versions": "Ver as versões",
+  "pci_projects_project_storages_containers_container_back_to_versions": "Voltar aos meus objetos"
 }

@@ -1,4 +1,4 @@
-import { BRING_YOUR_OWN_IP, ADDITIONAL_IP } from './ip.constant';
+import { BRING_YOUR_OWN_IP, ADDITIONAL_IP, GUIDE_LINKS } from './ip.constant';
 import {
   DASHBOARD_TRACKING_PREFIX,
   DASHBOARD_TRACKING_HIT,
@@ -57,6 +57,12 @@ export default /* @ngInject */ function IpMainCtrl(
       DASHBOARD_TRACKING_PREFIX.REPRICING_BANNER,
     );
   }
+
+  const { ovhSubsidiary } = $scope.currentUser;
+  $scope.guides = Object.keys(GUIDE_LINKS).map((key) => ({
+    name: $translate.instant(`ip_guide_link_${key}`),
+    url: GUIDE_LINKS[key][ovhSubsidiary] || GUIDE_LINKS[key].DEFAULT,
+  }));
 
   // ---
 

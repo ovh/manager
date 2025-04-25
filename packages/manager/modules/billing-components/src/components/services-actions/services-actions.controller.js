@@ -78,6 +78,7 @@ export default class ServicesActionsCtrl {
           !this.service.hasPendingResiliation() &&
           !this.service.hasDebt();
         this.canDisplayRenewConfigurationMenuEntry =
+          !this.service.isExtraSqlPerso() &&
           !this.service.isOneShot() &&
           !this.service.hasForcedRenew() &&
           !this.service.isResiliated() &&
@@ -127,7 +128,10 @@ export default class ServicesActionsCtrl {
         this.canDisplaySmsSpecificMenuEntries =
           this.service.serviceType === this.SERVICE_TYPE.SMS;
         this.canDisplayCancelResiliationMenuEntry =
-          this.service.serviceType !== this.SERVICE_TYPE.VRACK &&
+          ![
+            this.SERVICE_TYPE.VRACK,
+            this.SERVICE_TYPE.HOSTING_WEB_EXTRA_SQL_PERSO,
+          ].includes(this.service.serviceType) &&
           this.cancelResiliationLink &&
           (this.service.canBeUnresiliated(this.user.nichandle) ||
             this.service.canCancelResiliationByEndRule());

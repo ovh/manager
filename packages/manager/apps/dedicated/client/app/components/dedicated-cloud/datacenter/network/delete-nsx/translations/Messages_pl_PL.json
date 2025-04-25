@@ -1,0 +1,10 @@
+{
+  "dedicatedcloud_datacenter_network_delete_nsx_title": "Usuń NSX Edge",
+  "dedicatedcloud_datacenter_network_delete_nsx_description": "Czy na pewno chcesz usunąć NSX Edge?",
+  "dedicatedcloud_datacenter_network_delete_nsx_confirm": "Zatwierdź",
+  "dedicatedcloud_datacenter_network_delete_nsx_cancel": "Anuluj",
+  "dedicatedcloud_datacenter_network_delete_nsx_success": "NSX Edge został usunięty.",
+  "dedicatedcloud_datacenter_network_delete_nsx_error": "Zlecenie usunięcia NSX Edge nie zostało zrealizowane z powodu wystąpienia błędu: {{error}}. Jeśli błąd się powtórzy, prosimy o kontakt z pomocą techniczną.",
+  "dedicatedcloud_datacenter_network_delete_nsx_unable_delete_during_another_delete_action": "Nie można usunąć NSX Edge, kiedy realizowane jest inne zadanie usuwania.",
+  "dedicatedcloud_datacenter_network_delete_nsx_unable_delete_resilience_mode": "Wyłącznie NSX Edge w trybie „Resilience” mogą być usunięte."
+}

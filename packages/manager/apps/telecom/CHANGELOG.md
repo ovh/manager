@@ -3,6 +3,113 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.9.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.9.3...@ovh-ux/manager-telecom@16.9.4) (2025-04-24)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3903] ([ef76a26](https://github.com/ovh/manager/commit/ef76a26dfc5de9ca2511032eb9f0b37f1ef66b59))
+* remove unused translations [CDS] ([0c666c2](https://github.com/ovh/manager/commit/0c666c29c9a64a9a909a093804c763f2280a12b3))
+
+
+
+
+
+## [16.9.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.9.2...@ovh-ux/manager-telecom@16.9.3) (2025-04-22)
+
+
+### Bug Fixes
+
+* **telecom:** add upload files for ios ([09d29ae](https://github.com/ovh/manager/commit/09d29ae31dd60538b49d7e4889e2a76548be3cda)), closes [#MANAGER-17849](https://github.com/ovh/manager/issues/MANAGER-17849)
+* **telecom:** problem when downloading records ([e57b239](https://github.com/ovh/manager/commit/e57b239797e4d941c2691d5a2788a565e2c2fc9b)), closes [#MANAGER-17915](https://github.com/ovh/manager/issues/MANAGER-17915)
+
+
+
+
+
+## [16.9.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.9.1...@ovh-ux/manager-telecom@16.9.2) (2025-04-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [16.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.9.0...@ovh-ux/manager-telecom@16.9.1) (2025-04-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+# [16.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.8.6...@ovh-ux/manager-telecom@16.9.0) (2025-04-16)
+
+
+### Features
+
+* **telecom.telephony:** softphone ([#12734](https://github.com/ovh/manager/issues/12734)) ([9604893](https://github.com/ovh/manager/commit/9604893c3763a1a8400970f5883384815b01a5db)), closes [#MANAGER-12958](https://github.com/ovh/manager/issues/MANAGER-12958)
+
+
+
+
+
+## [16.8.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.8.5...@ovh-ux/manager-telecom@16.8.6) (2025-04-14)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [16.8.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.8.4...@ovh-ux/manager-telecom@16.8.5) (2025-04-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3832] ([797ea8e](https://github.com/ovh/manager/commit/797ea8e2cee6e2b37ab6a6d8b23ece0613dc6b51))
+* **i18n:** add missing translations [CDS 3841] ([88a06b4](https://github.com/ovh/manager/commit/88a06b43e43216b9be472111fd77dbac3e86aa9b))
+* **i18n:** add missing translations [CDS 3844] ([7880506](https://github.com/ovh/manager/commit/78805069fb9da4df6b494a4aee06a31a2a6f55d4))
+
+
+
+
+
+## [16.8.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.8.3...@ovh-ux/manager-telecom@16.8.4) (2025-04-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [16.8.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.8.2...@ovh-ux/manager-telecom@16.8.3) (2025-04-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [16.8.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.8.1...@ovh-ux/manager-telecom@16.8.2) (2025-04-03)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3825] ([c6d2754](https://github.com/ovh/manager/commit/c6d2754e2c52befd9a757525dfa32c00e3757ac1))
+
+
+
+
+
+## [16.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.8.0...@ovh-ux/manager-telecom@16.8.1) (2025-04-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
 # [16.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.7.1...@ovh-ux/manager-telecom@16.8.0) (2025-03-31)
 
 

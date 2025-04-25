@@ -1,5 +1,5 @@
 {
-  "kubernetes_node_pool_autoscaling_description": "È possibile configurare la scalatura automatica di ogni pool di nodi. Questa funzionalità, chiamata anche \"cluster autoscaler\", completa l’\"horizontal pod autoscaler\" di Kubernetes. La funzionalità di autoscaling non è compatibile con l'attivazione dell'anti-affinità.",
+  "kubernetes_node_pool_autoscaling_description": "Puoi configurare lo scaling automatico di ogni pool di nodi. Questa funzionalità, chiamata anche \"cluster autoscaler\", completa l’\"horizontal pod autoscaler\" di Kubernetes. La funzionalità di autoscaling non è compatibile con l'attivazione dell'anti-affinità.",
   "kubernetes_node_pool_autoscaling_description_link": "Ulteriori informazioni.",
   "kubernetes_node_pool_autoscaling_autoscale": "Autoscaling",
   "kubernetes_node_pool_autoscaling_autoscale_toggle_true": "Autoscaling attivo",

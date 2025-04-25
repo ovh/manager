@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { formatTechnicalInfo, formatPricingInfo } from './formatter';
-import { createPricing } from '@/_mock_/commercial-catalog/pricing';
-import { createTechnicalInfo } from '@/_mock_/commercial-catalog/technical';
+import { createPricing } from '@/__mocks__/commercial-catalog/pricing';
+import { createTechnicalInfo } from '@/__mocks__/commercial-catalog/technical';
 
 describe('formatter utility functions', () => {
   describe('formatTechnicalInfo', () => {

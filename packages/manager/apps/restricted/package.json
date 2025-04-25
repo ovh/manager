@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-restricted-app",
-  "version": "0.11.4",
+  "version": "0.11.7",
   "private": true,
   "description": "OVHcloud Manager Restricted Access App.",
   "repository": {
@@ -20,7 +20,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-restricted-app' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^8.1.0",
+    "@ovh-ux/manager-config": "^8.2.1",
     "@ovh-ux/manager-vite-config": "^0.9.3",
     "@ovh-ux/request-tagger": "^0.4.0",
     "@ovh-ux/ui-kit": "^6.10.5",
@@ -44,7 +44,7 @@
     "eslint-plugin-react": "^7.20.3",
     "express": "^4.17.1",
     "http-proxy-middleware": "^2.0.7",
-    "vite": "^5.4.12"
+    "vite": "^5.4.18"
   },
   "regions": [
     "CA",

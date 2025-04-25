@@ -33,7 +33,7 @@ export default class Image {
   }
 
   isBackup() {
-    return this.planCode === 'snapshot.consumption';
+    return !!this.planCode && this.planCode.startsWith('snapshot.consumption');
   }
 
   getApplications() {

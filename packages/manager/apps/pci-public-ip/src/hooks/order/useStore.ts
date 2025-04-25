@@ -11,20 +11,25 @@ type Store = {
   closeAllSteps: () => void;
   floatingIpCreation: boolean;
   setFloatingIpCreation: () => void;
+  reset: () => void;
+};
+
+const initialState = {
+  form: {
+    ipType: null,
+    failoverCountry: null,
+    floatingRegion: null,
+    instance: null,
+    ipAddress: null,
+    floatingGatewaySize: null,
+    isSubmitting: false,
+  },
+  steps: new Map(),
 };
 
 export const useOrderStore = create<Store>()((set) => {
   return {
-    form: {
-      ipType: null,
-      failoverCountry: null,
-      floatingRegion: null,
-      instance: null,
-      ipAddress: null,
-      floatingGatewaySize: null,
-      isSubmitting: false,
-    },
-    steps: new Map(),
+    ...initialState,
     setSteps: (newSteps: Map<StepIdsEnum, TStepState>) => {
       set(() => {
         return {
@@ -78,5 +83,6 @@ export const useOrderStore = create<Store>()((set) => {
         ...state,
         floatingIpCreation: true,
       })),
+    reset: () => set(initialState),
   };
 });

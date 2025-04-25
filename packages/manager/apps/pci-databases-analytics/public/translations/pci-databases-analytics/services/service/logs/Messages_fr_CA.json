@@ -2,5 +2,10 @@
   "title": "Logs",
   "breadcrumb": "Logs",
   "description": "Pour vous aider à suivre et à piloter votre service de base de données, vous trouverez les derniers événements (logs) ci-dessous, quasiment en direct. Leur durée de rétention dépend de votre offre de service.",
-  "autoRefreshInputLabel": "Auto-Refresh"
+  "autoRefreshInputLabel": "Auto-Refresh",
+  "streamsTitle": "Flux de données",
+  "streamsBreadcrumb": "Flux",
+  "streamsBackLink": "Retour à la page précédente",
+  "streamsDescription": "En vous abonnant aux audit logs de votre service, ils seront transférés dans Logs Data Platform et vous pourrez les centraliser avec vos autres logs, effectuer des recherches avancées, gérer leurs rétentions, définir des alertes ainsi que des tableaux de bord pour observer facilement vos clusters.",
+  "streamsAdd": "Ajouter un flux de données"
 }

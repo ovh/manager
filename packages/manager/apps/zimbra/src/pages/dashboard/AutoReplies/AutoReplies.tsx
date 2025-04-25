@@ -10,6 +10,7 @@ import {
   Outlet,
   useLocation,
   useNavigate,
+  useParams,
   useSearchParams,
 } from 'react-router-dom';
 import {
@@ -98,18 +99,16 @@ export function AutoReplies() {
   const { platformUrn } = usePlatform();
   const navigate = useNavigate();
   const location = useLocation();
+  const { accountId } = useParams();
   const [searchParams] = useSearchParams();
   const params = Object.fromEntries(searchParams.entries());
-  const editEmailAccountId = searchParams.get('editEmailAccountId');
   const hrefAddAutoReply = useGenerateUrl('./add', 'href', params);
   const handleAddClick = () => {
     trackClick({
       location: PageLocation.page,
       buttonType: ButtonType.button,
       actionType: 'navigation',
-      actions: [
-        editEmailAccountId ? EMAIL_ACCOUNT_ADD_AUTO_REPLY : ADD_AUTO_REPLY,
-      ],
+      actions: [accountId ? EMAIL_ACCOUNT_ADD_AUTO_REPLY : ADD_AUTO_REPLY],
     });
 
     navigate(hrefAddAutoReply);
@@ -124,8 +123,8 @@ export function AutoReplies() {
       <Outlet />
       {platformUrn && !shouldHide && (
         <>
-          {editEmailAccountId && (
-            <div className="mb-8">
+          {accountId && (
+            <div className="mb-6">
               <Subtitle>{t('zimbra_auto_replies_account_title')}</Subtitle>
             </div>
           )}

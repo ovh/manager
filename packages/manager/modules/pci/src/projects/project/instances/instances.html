@@ -40,12 +40,6 @@
         </oui-header-heading>
     </oui-header>
 
-    <oui-spinner
-        oui-spinner
-        data-size="s"
-        data-ng-if="$ctrl.loading"
-    ></oui-spinner>
-
     <pci-maintenance-banner
         data-ng-if="!$ctrl.loading"
         data-steins="$ctrl.steins"
@@ -75,11 +69,11 @@
 
     <oui-datagrid
         id="publicCloudInstancesDatagrid"
-        data-ng-if="!$ctrl.loading"
         data-rows="$ctrl.instances"
         data-row-loader="$ctrl.loadInstanceDetail($row)"
         criteria="$ctrl.criteria"
         on-criteria-change="$ctrl.onListParamChange($criteria)"
+        data-ng-init="$ctrl.fetchInstances()"
     >
         <oui-datagrid-column
             title=":: 'pci_projects_project_instances_name_id_label' | translate"
@@ -377,14 +371,23 @@
                     data-translate="pci_projects_project_instances_add_label"
                 ></span>
             </button>
-            <button
-                type="button"
-                class="ml-2 float-right oui-button oui-button_secondary oui-button_icon-only oui-button_s"
-                aria-label="{{:: 'pci_projects_project_instances_refresh' | translate }}"
-                data-ng-click="$ctrl.refreshInstances()"
-            >
-                <span class="fa fa-refresh" aria-hidden="true"></span>
-            </button>
+
+            <div class="float-right d-flex align-items-center">
+                <oui-spinner
+                    oui-spinner
+                    data-size="s"
+                    data-ng-if="$ctrl.loading"
+                ></oui-spinner>
+
+                <button
+                    type="button"
+                    class="ml-2 oui-button oui-button_secondary oui-button_icon-only oui-button_s"
+                    aria-label="{{:: 'pci_projects_project_instances_refresh' | translate }}"
+                    data-ng-click="$ctrl.loading = true; $ctrl.refreshInstances()"
+                >
+                    <span class="fa fa-refresh" aria-hidden="true"></span>
+                </button>
+            </div>
         </oui-datagrid-topbar>
         <oui-datagrid-row-detail>
             <div class="text-center" data-ng-if="$row.privateIpV4.length === 0">

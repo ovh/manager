@@ -8,6 +8,7 @@ import userEvent from '@testing-library/user-event';
 import { renderTestApp } from '@/utils/tests/renderTestApp';
 import { labels } from '@/utils/tests/init.i18n';
 import { okmsMock } from '@/mocks/kms/okms.mock';
+import { SERVICE_KEYS_LABEL } from '@/constants';
 
 describe('KMS listing test suite', () => {
   it('should redirect to the onboarding page when the kms list is empty', async () => {
@@ -30,6 +31,23 @@ describe('KMS listing test suite', () => {
     expect(
       screen.queryByText(labels.onboarding.description),
     ).not.toBeInTheDocument();
+  });
+
+  it('should display the listing table with all columns', async () => {
+    await renderTestApp();
+
+    const tableHeaders = [
+      labels.listing.key_management_service_listing_name_cell,
+      labels.listing.key_management_service_listing_id_cell,
+      labels.listing.key_management_service_listing_kmip_cell,
+      SERVICE_KEYS_LABEL,
+      labels.listing.key_management_service_listing_region_cell,
+      labels.listing.key_management_service_listing_status_cell,
+    ];
+
+    tableHeaders.forEach((header) => {
+      expect(screen.queryAllByText(header)).toHaveLength(1);
+    });
   });
 
   it(`should navigate to the kms creation form on click on "${labels.listing.key_management_service_listing_add_kms_button}" button`, async () => {

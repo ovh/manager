@@ -3,6 +3,70 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.30](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-app@3.0.29...@ovh-ux/manager-vrack-app@3.0.30) (2025-04-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-vrack-app
+
+
+
+
+
+## [3.0.29](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-app@3.0.28...@ovh-ux/manager-vrack-app@3.0.29) (2025-04-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-vrack-app
+
+
+
+
+
+## [3.0.28](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-app@3.0.27...@ovh-ux/manager-vrack-app@3.0.28) (2025-04-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-vrack-app
+
+
+
+
+
+## [3.0.27](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-app@3.0.26...@ovh-ux/manager-vrack-app@3.0.27) (2025-04-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-vrack-app
+
+
+
+
+
+## [3.0.26](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-app@3.0.25...@ovh-ux/manager-vrack-app@3.0.26) (2025-04-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-vrack-app
+
+
+
+
+
+## [3.0.25](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-app@3.0.24...@ovh-ux/manager-vrack-app@3.0.25) (2025-04-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-vrack-app
+
+
+
+
+
+## [3.0.24](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-app@3.0.23...@ovh-ux/manager-vrack-app@3.0.24) (2025-04-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-vrack-app
+
+
+
+
+
+## [3.0.23](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-app@3.0.22...@ovh-ux/manager-vrack-app@3.0.23) (2025-04-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-vrack-app
+
+
+
+
+
 ## [3.0.22](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-app@3.0.21...@ovh-ux/manager-vrack-app@3.0.22) (2025-04-01)
 
 **Note:** Version bump only for package @ovh-ux/manager-vrack-app

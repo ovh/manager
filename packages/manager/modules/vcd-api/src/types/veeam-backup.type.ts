@@ -25,6 +25,8 @@ export type VeeamBackupOffer = {
     | 'DISABLING'
     | 'REMOVED'
     | 'UPDATING';
+  protectionPrimaryRegion?: string;
+  protectionReplicatedRegion?: string;
 };
 
 export type VeeamBackup = WithIam<{
