@@ -33,7 +33,7 @@ import { clsx } from 'clsx';
 import { Option, ColumnFilter } from '../filters/filter-add.component';
 import { FilterWithLabel } from '../filters/interface';
 import { DataGridTextCell } from './text-cell.component';
-import { defaultNumberOfLoadingRows } from './datagrid.contants';
+import { defaultNumberOfLoadingRows } from './datagrid.constants';
 import { DatagridTopbar } from './datagrid-topbar.component';
 import './translations';
 
