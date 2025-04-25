@@ -1,7 +1,7 @@
 import { it, vi, describe, expect } from 'vitest';
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { useReket } from '@ovh-ux/ovh-reket';
+import { aapi } from '@ovh-ux/manager-core-api';
 import { ApplicationProvider } from '@/context';
 import NotificationsButton from './NotificationsButton';
 import { Environment } from '@ovh-ux/manager-config';
@@ -9,7 +9,7 @@ import { Shell } from '@ovh-ux/shell';
 
 let notificationsVisible = false;
 const setIsNotificationsSidebarVisible = vi.fn((visibility) => { notificationsVisible = visibility; });
-const postNotificationsUpdate = vi.fn();
+const postNotificationsUpdate = vi.fn(() => Promise.resolve(null));
 const environment = new Environment();
 const shell = new Shell();
 shell.registerPlugin('ux', {
@@ -48,13 +48,13 @@ vi.mock('@/context/header', async (importOriginal) => {
     })),
   };
 });
-vi.mock('@ovh-ux/ovh-reket');
+vi.mock('@ovh-ux/manager-core-api');
 
 describe('NotificationsButton', () => {
   describe('Display', () => {
     it('should render without notification count if there is no notifications', () => {
-      vi.mocked(useReket).mockReturnValue({
-        get: () => Promise.resolve([]),
+      vi.mocked(aapi.get).mockResolvedValue({
+       data: [],
       });
       renderNotificationsButton();
 
@@ -64,8 +64,8 @@ describe('NotificationsButton', () => {
       expect(screen.queryByTestId('notifications-count-icon')).not.toBeInTheDocument();
     });
     it('should render without notification count if there is no active notifications', () => {
-      vi.mocked(useReket).mockReturnValue({
-        get: () => Promise.resolve([{
+      vi.mocked(aapi.get).mockResolvedValue({
+        data:[{
           date: '2025-09-01',
           id: '1',
           status: 'acknowledged',
@@ -74,7 +74,7 @@ describe('NotificationsButton', () => {
           updating: false,
           urlDetails: { href: '' },
           level: 'HIGH',
-        }]),
+        }],
       });
       renderNotificationsButton();
 
@@ -84,8 +84,8 @@ describe('NotificationsButton', () => {
       expect(screen.queryByTestId('notifications-count-icon')).not.toBeInTheDocument();
     });
     it('should render with notification count', async () => {
-      vi.mocked(useReket).mockReturnValue({
-        get: () => Promise.resolve([{
+      vi.mocked(aapi.get).mockResolvedValue({
+        data:[{
           date: '2025-09-01',
           id: '1',
           status: 'delivered',
@@ -94,7 +94,7 @@ describe('NotificationsButton', () => {
           updating: false,
           urlDetails: { href: '' },
           level: 'HIGH',
-        }]),
+        }],
       });
       renderNotificationsButton();
 
@@ -109,8 +109,8 @@ describe('NotificationsButton', () => {
 
   describe('Sidebar visibility', () => {
     it('should switch sidebar visibility on the button click', async () => {
-      vi.mocked(useReket).mockReturnValue({
-        get: () => Promise.resolve([{
+      vi.mocked(aapi.get).mockResolvedValue({
+        data:[{
           date: '2025-09-01',
           id: '1',
           status: 'delivered',
@@ -119,9 +119,10 @@ describe('NotificationsButton', () => {
           updating: false,
           urlDetails: { href: '' },
           level: 'HIGH',
-        }]),
-        post: postNotificationsUpdate,
+        }],
       });
+      vi.mocked(aapi.post).mockImplementationOnce(postNotificationsUpdate);
+    
       renderNotificationsButton();
 
       const notificationsButton = screen.getByTitle('navbar_notifications');
@@ -146,9 +147,8 @@ describe('NotificationsButton', () => {
 
   describe('Notification status update', () => {
     it('should update all active notifications on closing the sidebar', async () => {
-      postNotificationsUpdate.mockClear();
-      vi.mocked(useReket).mockReturnValue({
-        get: () => Promise.resolve([{
+      vi.mocked(aapi.get).mockResolvedValue({
+        data:[{
           date: '2025-09-01',
           id: '1',
           status: 'delivered',
@@ -166,9 +166,10 @@ describe('NotificationsButton', () => {
           updating: false,
           urlDetails: { href: '' },
           level: 'HIGH',
-        }]),
-        post: postNotificationsUpdate,
+        }],
       });
+      vi.mocked(aapi.post).mockImplementationOnce(postNotificationsUpdate);
+
       renderNotificationsButton();
 
       const notificationsButton = screen.getByTitle('navbar_notifications');
@@ -186,11 +187,10 @@ describe('NotificationsButton', () => {
       await waitFor(() => {
         expect(notificationsVisible).toBe(false);
       });
-
-      expect(postNotificationsUpdate).toHaveBeenCalledWith(
+      
+      expect(aapi.post).toHaveBeenCalledWith(
         '/notification',
         { 'acknowledged': ['1'] },
-        { requestType: 'aapi' }
       );
     });
   });
