@@ -8,5 +8,6 @@ export default {
     onClose: '&',
     onConfirm: '&',
   },
+  transclude: true,
   template,
 };
