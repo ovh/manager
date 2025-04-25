@@ -14,14 +14,12 @@ interface FileUploadProps {
   readonly argument: TArgument;
   readonly addFileUpload: (file: OdsFile[]) => void;
   readonly removeFileUpload: (fileName: string) => void;
-  readonly maxFile: number;
 }
 
 export default function FileUpload({
   argument,
   addFileUpload,
   removeFileUpload,
-  maxFile,
 }: FileUploadProps) {
   const { t } = useTranslation('dashboard');
   const [uploadedFiles, setUploadedFiles] = useState<OdsFile[]>([]);
@@ -32,6 +30,7 @@ export default function FileUpload({
       acceptedFormats.map((acceptedFormat) => `.${acceptedFormat}`).join(', '),
     [acceptedFormats],
   );
+  const maxFile = 1;
 
   return (
     <div>
@@ -54,10 +53,7 @@ export default function FileUpload({
           e: OdsFileUploadCustomEvent<OdsFileRejectedEventDetail>,
         ) => setErrorUpload(e.detail.reason)}
         error={
-          errorUpload &&
-          t(`domain_operations_upload_error_with_value`, {
-            t0: errorUpload,
-          })
+          errorUpload && t(`domain_operations_upload_error_${errorUpload}`)
         }
         maxFile={maxFile}
         maxSize={maximumSize}
