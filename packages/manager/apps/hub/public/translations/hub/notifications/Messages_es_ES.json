@@ -1,4 +1,5 @@
 {
   "GLOBAL_COMMUNICATION_PHISHING_title": "Información general",
-  "GLOBAL_COMMUNICATION_PHISHING_description": "¡Tenga cuidado con los mensajes de correo electrónico fraudulentos que circulan online y redirigen hacia páginas falsas de OVHcloud! <anchor>Más información</anchor>"
+  "GLOBAL_COMMUNICATION_PHISHING_description": "¡Tenga cuidado con los mensajes de correo electrónico fraudulentos que circulan online y redirigen hacia páginas falsas de OVHcloud! <anchor>Más información</anchor>",
+  "email_unreachable_notifications_description": "Parece que no ha recibido nuestros últimos correos en su bandeja de entrada. Puede consultarlos en el área de cliente, en la sección «Mi cuenta», en la pestaña «Mensajes recibidos». Por favor, compruebe la <anchor>dirección de correo electrónico de contacto de su cuenta.</anchor> "
 }
