@@ -20,7 +20,7 @@ export const IpCountry = ({ ip }: IpCountryProps) => {
   return (
     <SkeletonCell isLoading={isLoading}>
       {ipDetails?.country ? (
-        t(`region-selector-country-name_${ipDetails?.country}`)
+        t(`region-selector-country-name_${ipDetails?.country?.toUpperCase()}`)
       ) : (
         <>-</>
       )}
