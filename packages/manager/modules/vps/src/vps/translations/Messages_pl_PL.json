@@ -161,7 +161,7 @@
   "vps_configuration_reversedns_step3_newValue": "Nowy rewers DNS:",
   "vps_configuration_reversedns_step3_alert": "Zmiana będzie natychmiastowa, ale propagacja zmian może trwać około 24 godziny.",
   "vps_configuration_reversedns_success": "Rewers DNS VPS {{serviceName}} został zmodyfikowany.",
-  "vps_configuration_reversedns_fail": "Wystąpił błąd podczas modyfikacji rewersu DNS.",
+  "vps_configuration_reversedns_fail": "Wystąpił błąd podczas modyfikacji rewersu DNS. {{error}}",
   "vps_configuration_reversedns_step1_title": "Rewers DNS",
   "vps_configuration_reversedns_step1_desc1": "Rewers DNS to przeciwieństwo klasycznego rekordu DNS: przypisuje on domenę do adresu IP.",
   "vps_configuration_reversedns_step1_desc2": "Reverse DNS jest szczególnie przydatny, jeśli Twój VPS jest używany jako prywatny serwer pocztowy.  Wiele serwerów poczty elektronicznej jest skonfigurowanych tak, aby odrzucać wiadomości pochodzące z adresów IP, które nie zawierają rewersu DNS.",
