@@ -42,6 +42,7 @@ import {
   TwoServices,
 } from '@/__mocks__/billingServices';
 import { catalogData } from '@/__mocks__/catalog';
+import NotificationsEmailUnreachable from './NotificationsEmailUnreachable.component';
 
 const queryClient = new QueryClient();
 
@@ -129,6 +130,7 @@ const mocks: any = vi.hoisted(() => ({
         companyNationalIdentificationNumber: null,
         legalform: 'corporation',
         country: 'FR',
+        certificates: ['email-unreachable'],
       } as User,
       getUser: vi.fn(() => ({
         currency: {
@@ -985,6 +987,18 @@ describe('Layout.page', () => {
       expect(getByTestId('notification_content')).not.toBeNull();
       expect(queryByTestId('next-notification-button')).not.toBeInTheDocument();
       expect(queryByTestId('notification-navigation')).not.toBeInTheDocument();
+    });
+  });
+
+  describe('NotificationsEmailUnreachable component', () => {
+    it('should render NotificationsEmailUnreachable component', async () => {
+      const { findByTestId } = renderComponent(
+        <NotificationsEmailUnreachable />,
+      );
+
+      expect(
+        await findByTestId('email_unreachable_notifications'),
+      ).not.toBeNull();
     });
   });
 

@@ -28,6 +28,7 @@ import { Context } from '@/pages/dashboard/context';
 import Welcome from '@/components/welcome/Welcome.component';
 import Banner from '@/components/banner/Banner.component';
 import HubDashboardSubtitle from '@/pages/dashboard/HubDashboardSubtitle';
+import NotificationsEmailUnreachable from './NotificationsEmailUnreachable.component';
 
 const Products = lazy(() => import('@/components/products/Products.component'));
 const Catalog = lazy(() => import('@/pages/dashboard/Catalog.component'));
@@ -147,9 +148,9 @@ export default function Dashboard() {
                 <div className="pb-12">
                   <Welcome />
                   <Banner />
-                  {/* I doubt this height as we will have dots when we have more than 1 notification */}
-                  <div className="h-[56px]">
+                  <div>
                     <NotificationsCarousel />
+                    <NotificationsEmailUnreachable />
                   </div>
                   <SiretBanner />
                   <SiretModal />
