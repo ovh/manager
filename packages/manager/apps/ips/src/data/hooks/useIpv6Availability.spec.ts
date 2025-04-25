@@ -53,7 +53,9 @@ describe('getUnavailableRegionList', () => {
         [failoverIp, failoverIp, failoverIp],
         'pn-00001',
       ),
-    ).toEqual(['eu-west-rbx']);
+    ).toEqual([
+      { region: 'eu-west-rbx', has3blocks: true, alreadyInCurrentVrack: false },
+    ]);
   });
 
   it('doest not disable a region if there is less than 3 ipv6 block on that region', () => {
@@ -63,7 +65,17 @@ describe('getUnavailableRegionList', () => {
   });
 
   it('disable a region if there is already an ip block on this region for this service', () => {
-    expect(getUnavailableRegionList([ip], 'pn-00001')).toEqual(['eu-west-rbx']);
+    expect(getUnavailableRegionList([ip], 'pn-00001')).toEqual([
+      { region: 'eu-west-rbx', has3blocks: false, alreadyInCurrentVrack: true },
+    ]);
+  });
+
+  it('disable a region if there is already an ip block on this region for this service and there are 3 blocks also', () => {
+    expect(
+      getUnavailableRegionList([ip, failoverIp, failoverIp], 'pn-00001'),
+    ).toEqual([
+      { region: 'eu-west-rbx', has3blocks: true, alreadyInCurrentVrack: true },
+    ]);
   });
 
   it('does not disable a region if there is already an ip block on this region for a different service', () => {
