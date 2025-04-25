@@ -57,10 +57,14 @@ export const RegionSelectionSection: React.FC = () => {
             regionList={regionList}
             selectedRegion={selectedRegion}
             setSelectedRegion={setSelectedRegion}
-            disabledRegions={disabledRegionList?.map((region) => ({
-              region,
-              message: t('ipv6_per_region_limit_reached_error'),
-            }))}
+            disabledRegions={disabledRegionList?.map(
+              ({ region, has3blocks }) => ({
+                region,
+                message: has3blocks
+                  ? t('ipv6_region_3_blocks_limit_reached_error')
+                  : t('ipv6_region_already_used_error'),
+              }),
+            )}
           />
         </React.Suspense>
       )}

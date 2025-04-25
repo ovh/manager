@@ -43,5 +43,6 @@
   "new_prefix_ipv6_card_title": "Nouveau préfixe /56 IPv6 (attribué par OVHcloud)",
   "new_prefix_ipv6_card_description": "Obtenez votre nouveau préfixe IPv6 à utiliser dans les services vRack.",
   "ipv6_limit_reached_error": "Le nombre maximum de blocs IPv6 supplémentaires a déjà été atteint",
-  "ipv6_per_region_limit_reached_error": "Le nombre maximum de 3 blocs IPv6 supplémentaires a déjà été atteint dans la région sélectionnée. Veuillez choisir une autre région"
+  "ipv6_region_3_blocks_limit_reached_error": "Le nombre maximum de 3 blocs IPv6 supplémentaires a déjà été atteint dans la région sélectionnée. Veuillez choisir une autre région.",
+  "ipv6_region_already_used_error": "Vous disposez déjà un d'un bloc de la région sélectionnée dans votre vRack. Veuillez choisir une autre région."
 }
