@@ -22,10 +22,7 @@ describe('Framework Select component', () => {
     render(
       <FrameworksSelect
         frameworks={[mockedFramework, mockedFrameworkBis]}
-        value={{
-          framework: mockedFramework.id,
-          version: mockedFramework.versions[0],
-        }}
+        value={mockedFramework.id}
         onChange={onChange}
       />,
     );
@@ -44,10 +41,7 @@ describe('Framework Select component', () => {
     render(
       <FrameworksSelect
         frameworks={[mockedFramework, mockedFrameworkBis]}
-        value={{
-          framework: mockedFramework.id,
-          version: mockedFramework.versions[0],
-        }}
+        value={mockedFramework.id}
         onChange={onChange}
       />,
     );
@@ -59,10 +53,7 @@ describe('Framework Select component', () => {
       fireEvent.click(screen.getByTestId(fmkRadioTileId));
     });
     await waitFor(() => {
-      expect(onChange).toHaveBeenCalledWith({
-        framework: mockedFrameworkBis.id,
-        version: mockedFrameworkBis.versions[0],
-      });
+      expect(onChange).toHaveBeenCalledWith(mockedFrameworkBis.id);
     });
   });
 });

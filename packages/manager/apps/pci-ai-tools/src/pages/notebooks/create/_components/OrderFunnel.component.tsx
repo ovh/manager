@@ -1,8 +1,10 @@
 import { useTranslation } from 'react-i18next';
 import { SshKey } from '@datatr-ux/ovhcloud-types/cloud/sshkey/index';
 import {
+  Check,
   ChevronDown,
   ChevronUp,
+  ChevronsUpDown,
   HelpCircle,
   Plus,
   TerminalSquare,
@@ -13,9 +15,16 @@ import {
   Button,
   Card,
   CardContent,
+  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
   Form,
   FormControl,
   FormField,
@@ -23,10 +32,10 @@ import {
   FormLabel,
   FormMessage,
   Input,
-  Label,
   Popover,
   PopoverContent,
   PopoverTrigger,
+  Separator,
   useToast,
 } from '@datatr-ux/uxlib';
 import { useOrderFunnel } from './useOrderFunnel.hook';
@@ -51,6 +60,7 @@ import OrderSummary from './OrderSummary.component';
 import OrderPrice from '@/components/order/price/OrderPrice.component';
 import CliEquivalent from './CliEquivalent.component';
 import publicCatalog from '@/types/Catalog';
+import { cn } from '@/lib/utils';
 
 interface OrderFunnelProps {
   regions: ai.capabilities.Region[];
@@ -160,198 +170,342 @@ const OrderFunnel = ({
         >
           <div
             data-testid="order-funnel-container"
-            className="col-span-1 md:col-span-3 divide-y-[24px] divide-transparent"
+            className="col-span-1 md:col-span-3"
           >
-            <section id="name" data-testid="name-section">
-              <Label className="mb-2 text-lg font-semibold">
-                {t('fieldDimensionLabel')}
-              </Label>
-              <FormField
-                control={model.form.control}
-                name="notebookName"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className={classNameLabel}>
-                      {t('fieldConfigurationNameLabel')}
-                    </FormLabel>
-                    <FormControl>
-                      <Input placeholder={field.value} {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </section>
-
-            <section id="region" data-testid="region-section">
-              <FormField
-                control={model.form.control}
-                name="region"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className={classNameLabel}>
-                      {t('fieldRegionLabel')}
-                    </FormLabel>
-                    <FormControl>
-                      <RegionsSelect
-                        {...field}
-                        regions={model.lists.regions}
-                        value={field.value}
-                        onChange={(newRegion) => {
-                          model.form.setValue('region', newRegion);
-                          model.form.setValue('volumes', []);
-                        }}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </section>
-            <section id="flavor" data-testid="flavor-section">
-              <FormField
-                control={model.form.control}
-                name="flavorWithQuantity.flavor"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormControl>
-                      <FlavorsSelect
-                        {...field}
-                        flavors={model.lists.flavors}
-                        value={field.value}
-                        resourcesQuantity={model.result.resourcesQuantity}
-                        onChange={(newFlavor) => {
-                          model.form.setValue(
-                            'flavorWithQuantity.flavor',
-                            newFlavor,
-                          );
-                          model.form.setValue('flavorWithQuantity.quantity', 1);
-                        }}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={model.form.control}
-                defaultValue={1}
-                name="flavorWithQuantity.quantity"
-                render={({ field }) => (
-                  <FormItem>
-                    <p className="mt-2 text-sm">
-                      {t('fieldFlavorQuantityDescription')}
-                    </p>
-                    <FormControl>
-                      <Input
-                        type="number"
-                        max={model.result?.flavor?.max}
-                        min={1}
-                        value={field.value}
-                        {...field}
-                      />
-                    </FormControl>
-                    <div className="flex flex-row justify-between">
+            <Card
+              id="name"
+              data-testid="name-section"
+              className="shadow-sm mt-4"
+            >
+              <CardHeader>
+                <CardTitle>{t('fieldConfigurationNameLabel')}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <FormField
+                  control={model.form.control}
+                  name="notebookName"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <Input placeholder={field.value} {...field} />
+                      </FormControl>
                       <FormMessage />
-                      {model.result.flavor && (
-                        <div className="inline-block text-xs">
-                          <span>{t('fieldFlavorQuantityInformation')}</span>{' '}
-                          <span className="capitalize font-bold">
-                            {model.result?.flavor?.id}
-                          </span>
-                          {': '}
-                          <span>{model.result?.flavor?.max}</span>
-                        </div>
-                      )}
-                    </div>
-                  </FormItem>
-                )}
-              />
-            </section>
-            <section id="framework" data-testid="framework-section">
-              <Label className="mb-2 text-lg font-semibold">
-                {t('fieldCaracteristicLabel')}
-              </Label>
-              <FormField
-                control={model.form.control}
-                name="frameworkWithVersion"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className={classNameLabel}>
-                      {t('fieldFrameworkLabel')}
-                    </FormLabel>
-                    <FormControl>
-                      {model.result.version && (
-                        <FrameworksSelect
+                    </FormItem>
+                  )}
+                />
+              </CardContent>
+            </Card>
+
+            <Card
+              id="region"
+              data-testid="region-section"
+              className="shadow-sm mt-4"
+            >
+              <CardHeader>
+                <CardTitle>{t('fieldRegionLabel')}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <FormField
+                  control={model.form.control}
+                  name="region"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <RegionsSelect
                           {...field}
-                          frameworks={model.lists.frameworks}
-                          value={model.form.getValues('frameworkWithVersion')}
-                          onChange={(newFrameworkWithVersion) =>
+                          regions={model.lists.regions}
+                          value={field.value}
+                          onChange={(newRegion) => {
+                            model.form.setValue('region', newRegion);
+                            model.form.setValue('volumes', []);
+                          }}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </CardContent>
+            </Card>
+
+            <Card
+              id="flavor"
+              data-testid="flavor-section"
+              className="shadow-sm mt-4"
+            >
+              <CardHeader>
+                <CardTitle>{t('fieldFlavorLabel')}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription className="mb-2">
+                  {t('fieldFlavorDescription')}
+                </CardDescription>
+                <FormField
+                  control={model.form.control}
+                  name="flavorWithQuantity.flavor"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <FlavorsSelect
+                          {...field}
+                          flavors={model.lists.flavors}
+                          value={field.value}
+                          resourcesQuantity={model.result.resourcesQuantity}
+                          onChange={(newFlavor) => {
                             model.form.setValue(
-                              'frameworkWithVersion',
-                              newFrameworkWithVersion,
-                            )
+                              'flavorWithQuantity.flavor',
+                              newFlavor,
+                            );
+                            model.form.setValue(
+                              'flavorWithQuantity.quantity',
+                              1,
+                            );
+                          }}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </CardContent>
+              <CardContent>
+                <CardDescription className="mb-2">
+                  {t('fieldFlavorQuantityDescription')}
+                </CardDescription>
+                <FormField
+                  control={model.form.control}
+                  defaultValue={1}
+                  name="flavorWithQuantity.quantity"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <Input
+                          type="number"
+                          max={model.result?.flavor?.max}
+                          min={1}
+                          value={field.value}
+                          {...field}
+                        />
+                      </FormControl>
+                      <div className="flex flex-row justify-between">
+                        <FormMessage />
+                        {model.result.flavor && (
+                          <div className="inline-block text-xs">
+                            <span>{t('fieldFlavorQuantityInformation')}</span>{' '}
+                            <span className="capitalize font-bold">
+                              {model.result?.flavor?.id}
+                            </span>
+                            {': '}
+                            <span>{model.result?.flavor?.max}</span>
+                          </div>
+                        )}
+                      </div>
+                    </FormItem>
+                  )}
+                />
+              </CardContent>
+            </Card>
+
+            <Card
+              id="framework"
+              data-testid="framework-section"
+              className="shadow-sm mt-4"
+            >
+              <CardHeader>
+                <CardTitle>{t('fieldFrameworkLabel')}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <FormField
+                  control={model.form.control}
+                  name="frameworkWithVersion.framework"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        {model.result.framework && (
+                          <FrameworksSelect
+                            {...field}
+                            frameworks={model.lists.frameworks}
+                            value={model.result.framework.id}
+                            onChange={(newFramework) => {
+                              model.form.setValue(
+                                'frameworkWithVersion.framework',
+                                newFramework,
+                              );
+                              model.form.setValue(
+                                'frameworkWithVersion.version',
+                                model.lists.frameworks.find(
+                                  (fmk) => fmk.id === newFramework,
+                                ).versions[0],
+                              );
+                            }}
+                          />
+                        )}
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </CardContent>
+              {model.result.framework?.versions.length > 1 && (
+                <CardContent>
+                  <CardDescription>
+                    {t('fieldFrameworkVersionDescription')}
+                  </CardDescription>
+                  <FormField
+                    control={model.form.control}
+                    defaultValue={model.result.version}
+                    name="frameworkWithVersion.version"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <Popover>
+                            <div
+                              data-testid="fmk-tile-version-container"
+                              className="hidden"
+                            >
+                              {model.result.framework?.versions.map(
+                                (fmkVersion) => (
+                                  <input
+                                    type="radio"
+                                    name="version-select"
+                                    value={fmkVersion}
+                                    key={fmkVersion}
+                                    readOnly
+                                    checked={fmkVersion === field.value}
+                                  />
+                                ),
+                              )}
+                            </div>
+                            <PopoverTrigger asChild>
+                              <Button
+                                data-testid="popover-trigger-button"
+                                size="sm"
+                                mode="outline"
+                                className="text-text"
+                              >
+                                {field.value}
+                                <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                              </Button>
+                            </PopoverTrigger>
+                            <PopoverContent
+                              className="w-full p-0"
+                              side="bottom"
+                            >
+                              <Command>
+                                <CommandInput
+                                  placeholder={t('select a version')}
+                                />
+                                <CommandList>
+                                  <CommandEmpty>
+                                    {t('noVersionFound')}
+                                  </CommandEmpty>
+                                  <CommandGroup>
+                                    {model.result.framework?.versions.map(
+                                      (fmkVersion) => (
+                                        <CommandItem
+                                          key={fmkVersion}
+                                          value={fmkVersion}
+                                          onSelect={(value) => {
+                                            model.form.setValue(
+                                              'frameworkWithVersion.version',
+                                              value,
+                                            );
+                                          }}
+                                        >
+                                          <Check
+                                            className={cn(
+                                              'mr-2 h-4 w-4',
+                                              fmkVersion === field.value
+                                                ? 'opacity-100'
+                                                : 'opacity-0',
+                                            )}
+                                          />
+                                          <span className="w-full cursor-pointer overflow-hidden">
+                                            {fmkVersion}
+                                          </span>
+                                        </CommandItem>
+                                      ),
+                                    )}
+                                  </CommandGroup>
+                                </CommandList>
+                              </Command>
+                            </PopoverContent>
+                          </Popover>
+                        </FormControl>
+                      </FormItem>
+                    )}
+                  />
+                </CardContent>
+              )}
+            </Card>
+
+            <Card
+              id="editor"
+              data-testid="editor-section"
+              className="shadow-sm mt-4"
+            >
+              <CardHeader>
+                <CardTitle>{t('fieldEditorLabel')}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <FormField
+                  control={model.form.control}
+                  name="editor"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <EditorsSelect
+                          {...field}
+                          editors={model.lists.editors}
+                          value={field.value}
+                          onChange={(newEditor) =>
+                            model.form.setValue('editor', newEditor)
                           }
                         />
-                      )}
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </section>
-            <section id="editor" data-testid="editor-section">
-              <FormField
-                control={model.form.control}
-                name="editor"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className={classNameLabel}>
-                      {t('fieldEditorLabel')}
-                    </FormLabel>
-                    <FormControl>
-                      <EditorsSelect
-                        {...field}
-                        editors={model.lists.editors}
-                        value={field.value}
-                        onChange={(newEditor) =>
-                          model.form.setValue('editor', newEditor)
-                        }
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </section>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </CardContent>
+            </Card>
 
-            <section id="access" data-testid="access-section">
-              <FormField
-                control={model.form.control}
-                name="privacy"
-                render={({ field }) => (
-                  <FormItem className="flex flex-col gap-1">
-                    <PrivacyRadioInput
-                      value={field.value}
-                      onChange={(newPrivacyValue: PrivacyEnum) =>
-                        model.form.setValue('privacy', newPrivacyValue)
-                      }
-                      className={classNameLabel}
-                    />
-                  </FormItem>
-                )}
-              />
-            </section>
+            <Card
+              id="access"
+              data-testid="access-section"
+              className="shadow-sm mt-4"
+            >
+              <CardHeader>
+                <CardTitle>{t('fieldConfigurationPrivacyLabel')}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <FormField
+                  control={model.form.control}
+                  name="privacy"
+                  render={({ field }) => (
+                    <FormItem className="flex flex-col gap-1">
+                      <PrivacyRadioInput
+                        value={field.value}
+                        onChange={(newPrivacyValue: PrivacyEnum) =>
+                          model.form.setValue('privacy', newPrivacyValue)
+                        }
+                        className={classNameLabel}
+                      />
+                    </FormItem>
+                  )}
+                />
+              </CardContent>
+            </Card>
 
             {/* Advanced configuration */}
             <section id="advancedConfig" data-testid="advance-config-section">
-              <Card>
+              <Card className="mt-4">
                 <CardHeader>
                   <Button
                     data-testid="advanced-config-button"
                     type="button"
                     mode="ghost"
-                    className="w-full flex flex-row items-center justify-between font-semibold text-xl"
+                    className="w-full flex flex-row items-center justify-between font-semibold text-xl text-primary-500"
                     onClick={() => {
                       setShowAdvancedConfiguration((prevValue) => !prevValue);
                     }}
@@ -482,6 +636,7 @@ const OrderFunnel = ({
                   scrollToDiv(target);
                 }}
               />
+              <Separator className="my-2" />
               {model.result.flavor && (
                 <OrderPrice
                   minuteConverter={60} // affichage du prix à l'heure

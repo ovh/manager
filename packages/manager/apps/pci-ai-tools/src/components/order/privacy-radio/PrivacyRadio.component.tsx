@@ -18,14 +18,11 @@ interface PrivacyRadioProps {
 }
 
 const PrivacyRadioInput = React.forwardRef<HTMLInputElement, PrivacyRadioProps>(
-  ({ value, onChange, className }, ref) => {
+  ({ value, onChange }, ref) => {
     const { t } = useTranslation('ai-tools/components/privacy');
 
     return (
       <>
-        <Label className={className}>
-          {t('fieldConfigurationPrivacyLabel')}
-        </Label>
         <div
           data-testid="privacy-radio-container"
           className="flex items-center space-x-2"
