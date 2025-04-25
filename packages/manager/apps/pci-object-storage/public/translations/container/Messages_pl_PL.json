@@ -54,10 +54,14 @@
   "pci_projects_project_storages_containers_container_enable_encryption": "Włącz szyfrowanie (SSE-OMK)",
   "pci_projects_project_storages_containers_container_delete_marker": "Znacznik usunięcia",
   "pci_projects_project_storages_containers_container_show_versions": "Wyświetl wersje",
+<<<<<<< HEAD
   "pci_projects_project_storages_containers_container_back_to_versions": "Powrót do moich przedmiotów",
   "pci_projects_project_storages_containers_container_objects": "Moje obiekty",
   "pci_projects_project_storages_containers_container_objects_sort_warining": "Sortowanie listy obiektów dotyczy tylko aktualnie wyświetlanych wyników. Aby poszerzyć zakres sortowania, kliknij „Załaduj więcej”.",
   "pci_projects_project_storages_containers_container_storage_class_standard_infrequent_access_STANDARD": "Standard",
   "pci_projects_project_storages_containers_container_storage_class_standard_infrequent_access_HIGH_PERF": "High Performance",
   "pci_projects_project_storages_containers_container_storage_class_standard_infrequent_access_STANDARD_IA": "Standard Infrequent Access"
+=======
+  "pci_projects_project_storages_containers_container_back_to_versions": "Powrót do moich obiektów"
+>>>>>>> 591ee98507 (fix(i18n): add missing translations [CDS 3914])
 }
