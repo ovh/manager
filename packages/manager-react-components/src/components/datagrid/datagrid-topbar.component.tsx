@@ -16,10 +16,8 @@ import { FilterWithLabel } from '../filters/interface';
 import { FilterAdd, FilterList } from '../filters';
 import { ColumnFilter } from '../filters/filter-add.component';
 import './translations';
-import {
-  ColumnsVisibility,
-  VisibilityManagement,
-} from './visibility/visibility-management.component';
+import { VisibilityManagement } from './visibility/visibility-management.component';
+import { ColumnsVisibility } from './datagrid.constants';
 
 type ColumnFilterProps = {
   key: string;

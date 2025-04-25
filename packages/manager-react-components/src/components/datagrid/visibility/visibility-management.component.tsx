@@ -13,19 +13,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-
-export type ColumnsVisibility = {
-  id: string;
-  isDisabled: boolean;
-  label: string;
-  enableHiding: boolean;
-  isVisible: () => boolean;
-  onChange: () => void;
-};
-
-export type ColumnsVisibilityProps = {
-  columnsVisibility: ColumnsVisibility[];
-};
+import { ColumnsVisibilityProps } from '../datagrid.constants';
 
 export function VisibilityManagement({
   columnsVisibility,
@@ -33,23 +21,13 @@ export function VisibilityManagement({
   const { t } = useTranslation('datagrid');
   const visibilityPopoverRef = useRef(null);
   const columnsIncludedInCounter = columnsVisibility.filter(
-    (column) => !['expander'].includes(column.id) && column.label !== '',
+    (column) =>
+      !['expander', 'actions'].includes(column.id) && column.label !== '',
   );
 
-  const columnsVisibilityState = columnsIncludedInCounter.reduce(
-    (acc, current) => {
-      if (current.isVisible()) {
-        acc.enabled += 1;
-      }
-      acc.haveToDisplay = acc.enabled < acc.total;
-      return acc;
-    },
-    {
-      enabled: 0,
-      total: columnsIncludedInCounter.length,
-      haveToDisplay: false,
-    },
-  );
+  const visibleColumnsCount = columnsIncludedInCounter.filter((column) =>
+    column.isVisible(),
+  ).length;
 
   return (
     <>
@@ -61,9 +39,9 @@ export function VisibilityManagement({
         variant={ODS_BUTTON_VARIANT.outline}
         icon={ODS_ICON_NAME.columns}
         aria-label={t('common_topbar_columns')}
-        label={`${t('common_topbar_columns')} ${
-          columnsVisibilityState.haveToDisplay
-            ? `(${columnsVisibilityState.enabled})`
+        label={`${t('common_topbar_columns')}${
+          visibleColumnsCount < columnsIncludedInCounter.length
+            ? ` (${visibleColumnsCount})`
             : ''
         }`}
       />

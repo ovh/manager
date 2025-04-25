@@ -1,6 +1,6 @@
 import { ColumnSort, PaginationState } from '@tanstack/react-table';
 import { useSearchParams } from 'react-router-dom';
-import { DEFAULT_PAGINATION, PAGE_SIZES } from './datagrid.contants';
+import { DEFAULT_PAGINATION, PAGE_SIZES } from './datagrid.constants';
 
 /**
  * This hooks allows to store and synchronize the datagrid pagination & sorting
