@@ -1,11 +1,10 @@
 {
-  "fieldFlavorLabel": "Ressources",
   "fieldFlavorDescription": "Séléctionner le type de ressources",
   "tableHeadType": "Type",
   "tableHeadDescription": "Description",
   "tableHeadVcores": "Vcores",
   "tableHeadMemory": "RAM",
-  "tableHeadStorage": "Stockage éphémère",
+  "tableHeadStorage": "Stockage",
   "tableHeadPrice": "Prix / heure",
   "gpuMemorySpec": "{{memory}} RAM",
   "cpuCores_one": "CPU: {{count}} vCore",

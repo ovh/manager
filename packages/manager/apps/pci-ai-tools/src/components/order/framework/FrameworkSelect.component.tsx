@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
-import { Tabs, TabsList, TabsTrigger } from '@datatr-ux/uxlib';
-import FrameworkTile from './FrameworkTile.component';
-import { FrameworkWithVersion } from '@/types/orderFunnel';
+import { Hammer } from 'lucide-react';
+import {
+  RadioGroup,
+  RadioTile,
+  Separator,
+  Tabs,
+  TabsList,
+  TabsTrigger,
+} from '@datatr-ux/uxlib';
 import ai from '@/types/AI';
 
 interface FrameworkSelectProps {
   frameworks: ai.capabilities.notebook.Framework[];
-  value: FrameworkWithVersion;
-  onChange: (newFrameworkWithVersion: FrameworkWithVersion) => void;
+  value: string;
+  onChange: (newFramework: string) => void;
 }
 const FrameworksSelect = React.forwardRef<
   HTMLInputElement,
@@ -15,7 +21,7 @@ const FrameworksSelect = React.forwardRef<
 >(({ frameworks, value, onChange }, ref) => {
   const fmkTypes = [...new Set(frameworks.map((fmk) => fmk.type))].sort();
   const [selectedFrameworkTypeIndex, setSelectedFrameworkTypeIndex] = useState(
-    frameworks.find((fmk) => fmk.id === value?.framework)?.type,
+    frameworks.find((fmk) => fmk.id === value)?.type,
   );
 
   return (
@@ -25,41 +31,53 @@ const FrameworksSelect = React.forwardRef<
           defaultValue={selectedFrameworkTypeIndex}
           onValueChange={(type) => setSelectedFrameworkTypeIndex(type)}
         >
-          <TabsList className="bg-white justify-start p-0">
+          <TabsList className="grid grid-cols-2 w-1/2">
             {fmkTypes.map((fmkType) => (
               <TabsTrigger
                 key={fmkType}
                 value={fmkType}
-                className="-mb-[1px] px-4 text-lg text-primary-600 font-semibold h-full bg-white border border-primary-100 rounded-t-md rounded-b-none data-[state=active]:bg-background data-[state=active]:shadow-none data-[state=active]:bg-primary-50 data-[state=active]:border-b-primary-50 data-[state=active]:font-bold data-[state=active]:text-primary-800"
+                className="font-semibold"
               >
                 {fmkType}
               </TabsTrigger>
             ))}
           </TabsList>
-          <div className="p-4 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2 bg-primary-50 border border-primary-100 rounded-b-md">
-            {frameworks
-              .filter((r) => r.type === selectedFrameworkTypeIndex)
-              .map((fmk) => (
-                <FrameworkTile
-                  key={fmk.name}
-                  framework={fmk}
-                  version={
-                    fmk.name === value.framework
-                      ? fmk.versions.find((v: string) => v === value.version)
-                      : fmk.versions[0]
-                  }
-                  selected={fmk.id === value.framework}
-                  onChange={(
-                    newFramework: ai.capabilities.notebook.Framework,
-                    newVersion: string,
-                  ) => {
-                    onChange({
-                      framework: newFramework.id,
-                      version: newVersion,
-                    });
-                  }}
-                />
-              ))}
+          <div className="p-4 border rounded-b-md rounded-md">
+            <RadioGroup
+              ref={ref}
+              className="px-2 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2 rounded-b-md"
+              value={value}
+              onValueChange={onChange}
+            >
+              {frameworks
+                .filter((r) => r.type === selectedFrameworkTypeIndex)
+                .map((fmk) => (
+                  <RadioTile
+                    key={fmk.id}
+                    data-testid={`fmk-radio-tile-${fmk.id}`}
+                    value={fmk.id}
+                    checked={fmk.id === value}
+                    onChange={() => onChange(fmk.id)}
+                  >
+                    <div className="flex justify-between items-center">
+                      <div className="flex gap-2">
+                        <h5 className="capitalize">{fmk.name}</h5>
+                      </div>
+                      {fmk.logoUrl ? (
+                        <img
+                          className="block w-[25px] h-[25px]"
+                          src={fmk.logoUrl}
+                          alt={fmk.name}
+                        />
+                      ) : (
+                        <Hammer className="size-6" />
+                      )}
+                    </div>
+                    <Separator className="my-2" />
+                    <p className="text-sm leading-relaxed">{fmk.description}</p>
+                  </RadioTile>
+                ))}
+            </RadioGroup>
           </div>
         </Tabs>
       </div>

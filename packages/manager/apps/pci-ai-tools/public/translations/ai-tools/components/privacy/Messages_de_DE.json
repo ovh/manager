@@ -1,5 +1,4 @@
 {
-  "fieldConfigurationPrivacyLabel": "Vertraulichkeit",
   "privateAccess": "Eingeschränkter Zugriff",
   "privateAccessDescription": "Der Zugriff ist auf die Public Cloud Nutzer von OVHcloud beschränkt, die in Ihrem Projekt erstellt wurden.",
   "publicAccess": "Öffentlicher Zugang",

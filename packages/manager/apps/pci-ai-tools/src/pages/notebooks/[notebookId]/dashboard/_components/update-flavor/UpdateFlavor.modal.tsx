@@ -120,6 +120,7 @@ const UpdateFlavor = () => {
             {t('updateFlavorTitle')}
           </DialogTitle>
         </DialogHeader>
+        <p className="text-sm">{t('fieldFlavorDescription')}</p>
         <Form {...form}>
           <form onSubmit={onSubmit} className="flex flex-col gap-2">
             <ScrollArea className="mx-2">

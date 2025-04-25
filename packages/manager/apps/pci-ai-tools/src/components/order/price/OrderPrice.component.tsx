@@ -10,11 +10,8 @@ interface OrderPriceProps {
 const OrderPrice = ({ minuteConverter, price, quantity }: OrderPriceProps) => {
   const { t } = useTranslation('ai-tools/pricing');
   return (
-    <div
-      data-testid="order-price-container"
-      className="flex justify-between items-baseline gap-2"
-    >
-      <span>{t('pricingLabel')}</span>
+    <div data-testid="order-price-container" className="flex flex-col gap-2">
+      <p>{t('pricingLabel')}</p>
       <div className="inline-block">
         <Price
           decimals={2}

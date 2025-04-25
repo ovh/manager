@@ -2,7 +2,6 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Cpu, Zap } from 'lucide-react';
 import {
-  Label,
   Table,
   TableBody,
   TableCell,
@@ -51,120 +50,114 @@ const FlavorsSelect = React.forwardRef<HTMLTableElement, FlavorsSelectProps>(
       }
     };
     return (
-      <>
-        <Label className="scroll-m-20 text-xl font-semibold">
-          {t('fieldFlavorLabel')}
-        </Label>
-        <p className="text-sm">{t('fieldFlavorDescription')}</p>
-        <Table
-          data-testid="flavor-select-table"
-          ref={ref}
-          className={cn('min-w-max w-full', className)}
+      <Table
+        data-testid="flavor-select-table"
+        ref={ref}
+        className={cn('min-w-max w-full', className)}
+      >
+        <TableHeader
+          className="border bg-[#f7f8f8]"
+          data-testid="flavor-select-table-header"
         >
-          <TableHeader
-            className=" border border-primary-100"
-            data-testid="flavor-select-table-header"
-          >
-            <TableRow className="bg-primary-100 hover:bg-primary-10">
-              <TableHead className="font-bold text-base text-[#4d5592] h-10 px-2">
-                {t('tableHeadType')}
+          <TableRow>
+            <TableHead className="h-10 px-2 border font-semibold text-primary-800">
+              {t('tableHeadType')}
+            </TableHead>
+            {!isUpdate && (
+              <TableHead className="h-10 px-2 border font-semibold text-primary-800">
+                {t('tableHeadDescription')}
               </TableHead>
+            )}
+            <TableHead className="h-10 px-2 border font-semibold text-primary-800">
+              {t('tableHeadVcores')}
+            </TableHead>
+            <TableHead className="h-10 px-2 border font-semibold text-primary-800">
+              {t('tableHeadMemory')}
+            </TableHead>
+            {!isUpdate && (
+              <TableHead className="h-10 px-2 border font-semibold text-primary-800">
+                {t('tableHeadStorage')}
+              </TableHead>
+            )}
+            <TableHead className="h-10 px-2 border font-semibold text-primary-800">
+              {t('tableHeadPrice')}
+            </TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody data-testid="flavor-select-table-body">
+          {flavors.map((flavor) => (
+            <TableRow
+              data-testid={`flavor-table-row-${flavor.id}`}
+              tabIndex={0}
+              onClick={() => clickInput(flavor.id)}
+              onKeyDown={(e) => handleKeyDown(e, flavor.id)}
+              key={flavor.id}
+              className={`border hover:bg-primary-50 cursor-pointer text-[#4d5592] ${
+                value === flavor.id
+                  ? 'bg-primary-50 font-semibold !border-2 border-primary-500'
+                  : ''
+              }`}
+            >
+              <td className="hidden">
+                <input
+                  type="radio"
+                  name="flavor-select"
+                  onChange={(e) => onChange(e.target.value)}
+                  className="hidden"
+                  id={`flavor-${flavor.id}`}
+                  value={flavor.id}
+                  checked={value === flavor.id}
+                />
+              </td>
+              <TableCell className="text-[#4d5592] border capitalize">
+                <div className="flex gap-2 w-full items-center">
+                  {flavor.type === ai.capabilities.FlavorTypeEnum.cpu ? (
+                    <Cpu className="size-4" />
+                  ) : (
+                    <Zap className="size-4" />
+                  )}
+                  <span>{flavor.id}</span>
+                </div>
+              </TableCell>
               {!isUpdate && (
-                <TableHead className="font-bold text-base text-[#4d5592] h-10 px-2">
-                  {t('tableHeadDescription')}
-                </TableHead>
-              )}
-              <TableHead className="font-bold text-base text-[#4d5592] h-10 px-2">
-                {t('tableHeadVcores')}
-              </TableHead>
-              <TableHead className="font-bold text-base text-[#4d5592] h-10 px-2">
-                {t('tableHeadMemory')}
-              </TableHead>
-              {!isUpdate && (
-                <TableHead className="font-bold text-base text-[#4d5592] h-10 px-2">
-                  {t('tableHeadStorage')}
-                </TableHead>
-              )}
-              <TableHead className="font-bold text-base text-[#4d5592] h-10 px-2">
-                {t('tableHeadPrice')}
-              </TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody data-testid="flavor-select-table-body">
-            {flavors.map((flavor) => (
-              <TableRow
-                data-testid={`flavor-table-row-${flavor.id}`}
-                tabIndex={0}
-                onClick={() => clickInput(flavor.id)}
-                onKeyDown={(e) => handleKeyDown(e, flavor.id)}
-                key={flavor.id}
-                className={`h-8 border border-primary-100 hover:bg-primary-50 cursor-pointer text-[#4d5592] ${
-                  value === flavor.id ? 'bg-[#DEF8FF] font-bold' : ''
-                }`}
-              >
-                <td className="hidden">
-                  <input
-                    type="radio"
-                    name="flavor-select"
-                    onChange={(e) => onChange(e.target.value)}
-                    className="hidden"
-                    id={`flavor-${flavor.id}`}
-                    value={flavor.id}
-                    checked={value === flavor.id}
-                  />
-                </td>
-                <TableCell className="text-[#4d5592] border border-primary-100 capitalize px-2 py-1">
-                  <div className="flex gap-2 w-full items-center">
-                    {flavor.type === ai.capabilities.FlavorTypeEnum.cpu ? (
-                      <Cpu className="size-4" />
-                    ) : (
-                      <Zap className="size-4" />
-                    )}
-                    <span>{flavor.id}</span>
-                  </div>
+                <TableCell className="text-[#4d5592] border capitalize">
+                  {flavor.description}
                 </TableCell>
-                {!isUpdate && (
-                  <TableCell className="text-[#4d5592] border border-primary-100 px-2 py-1">
-                    {flavor.description}
-                  </TableCell>
+              )}
+              <TableCell className="text-[#4d5592] border capitalize">
+                {resourcesQuantity * flavor.resourcesPerUnit.cpu}
+              </TableCell>
+              <TableCell className="text-[#4d5592] border capitalize">
+                {bytesConverter(
+                  resourcesQuantity * flavor.resourcesPerUnit.memory,
+                  false,
+                  0,
                 )}
-                <TableCell className="text-[#4d5592] border border-primary-100 px-2 py-1">
-                  {resourcesQuantity * flavor.resourcesPerUnit.cpu}
-                </TableCell>
-                <TableCell className="text-[#4d5592] border border-primary-100 px-2 py-1">
+              </TableCell>
+              {!isUpdate && (
+                <TableCell className="text-[#4d5592] border capitalize">
                   {bytesConverter(
-                    resourcesQuantity * flavor.resourcesPerUnit.memory,
+                    resourcesQuantity *
+                      flavor.resourcesPerUnit.ephemeralStorage,
                     false,
                     0,
                   )}
                 </TableCell>
-                {!isUpdate && (
-                  <TableCell className="text-[#4d5592] border border-primary-100 px-2 py-1">
-                    {bytesConverter(
-                      resourcesQuantity *
-                        flavor.resourcesPerUnit.ephemeralStorage,
-                      false,
-                      0,
-                    )}
-                  </TableCell>
-                )}
-                <TableCell className="text-[#4d5592] border border-primary-100 px-2 py-1">
-                  <Price
-                    priceInUcents={
-                      60 * resourcesQuantity * flavor.pricing[0]?.price
-                    }
-                    taxInUcents={
-                      60 * resourcesQuantity * flavor.pricing[0]?.tax
-                    }
-                    decimals={2}
-                    displayInHour={false}
-                  />
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </>
+              )}
+              <TableCell className="text-[#4d5592] border capitalize">
+                <Price
+                  priceInUcents={
+                    60 * resourcesQuantity * flavor.pricing[0]?.price
+                  }
+                  taxInUcents={60 * resourcesQuantity * flavor.pricing[0]?.tax}
+                  decimals={2}
+                  displayInHour={false}
+                />
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
     );
   },
 );

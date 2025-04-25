@@ -1,7 +1,6 @@
 import React from 'react';
 import { UserRound, UsersRound } from 'lucide-react';
-import { cn } from '@/lib/utils';
-import RadioTile from '@/components/radio-tile/RadioTile.component';
+import { RadioGroup, RadioTile, Separator } from '@datatr-ux/uxlib';
 import { EDITOR_CONFIG } from './editor.constants';
 import ai from '@/types/AI';
 
@@ -9,24 +8,21 @@ interface EditorsSelectProps {
   editors: ai.capabilities.notebook.Editor[];
   value: string;
   onChange: (newEditor: string) => void;
-  className?: string;
 }
 
 const EditorsSelect = React.forwardRef<HTMLInputElement, EditorsSelectProps>(
-  ({ editors, value, onChange, className }, ref) => {
+  ({ editors, value, onChange }, ref) => {
     return (
-      <div
+      <RadioGroup
         data-testid="editors-select-container"
         ref={ref}
-        className={cn(
-          'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2',
-          className,
-        )}
+        className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2 rounded-b-md "
+        value={value}
+        onValueChange={onChange}
       >
         {editors.map((editor) => (
           <RadioTile
             data-testid={`editor-radio-tile-${editor.id}`}
-            name="editor-select"
             key={editor.id}
             onChange={() => onChange(editor.id)}
             value={editor.id}
@@ -34,13 +30,7 @@ const EditorsSelect = React.forwardRef<HTMLInputElement, EditorsSelectProps>(
           >
             <div className="flex justify-between items-center">
               <div className="flex gap-2 items-center">
-                <span
-                  className={`capitalize text-lg ${
-                    editor.id === value ? 'font-bold' : 'font-normal'
-                  }`}
-                >
-                  {editor.name}
-                </span>
+                <h5 className="capitalize">{editor.name}</h5>
                 {editor.id === EDITOR_CONFIG.jupyterColab ? (
                   <UsersRound className="size-4" />
                 ) : (
@@ -49,17 +39,17 @@ const EditorsSelect = React.forwardRef<HTMLInputElement, EditorsSelectProps>(
               </div>
               {editor.logoUrl && (
                 <img
-                  className="block w-[40px] h-[40px]"
+                  className="block w-[25px] h-[25px]"
                   src={editor.logoUrl}
                   alt={editor.name}
                 />
               )}
             </div>
-            <RadioTile.Separator />
+            <Separator className="my-2" />
             <p className="text-sm leading-relaxed">{editor.description}</p>
           </RadioTile>
         ))}
-      </div>
+      </RadioGroup>
     );
   },
 );
