@@ -9,7 +9,10 @@ import {
   DatagridColumn,
 } from '@ovh-ux/manager-react-components';
 import { useGetOrganisationsDetails } from '@/data/hooks/organisation';
-import { OrganisationsActionsCell } from '../DatagridCells';
+import {
+  OrganisationsActionsCell,
+  OrganisationsAddressCell,
+} from '../DatagridCells';
 import { OrgDetails } from '@/data/api';
 
 export const ManageOrganisationsDatagrid: React.FC = () => {
@@ -28,6 +31,15 @@ export const ManageOrganisationsDatagrid: React.FC = () => {
       </DataGridTextCell>
     );
   };
+
+  const DatagridAddressCell = (org: OrgDetails) => {
+    return (
+      <DataGridTextCell>
+        <OrganisationsAddressCell {...org} />
+      </DataGridTextCell>
+    );
+  };
+
   const columns: DatagridColumn<OrgDetails>[] = useMemo(() => {
     return [
       {
@@ -70,9 +82,7 @@ export const ManageOrganisationsDatagrid: React.FC = () => {
       {
         id: 'address',
         label: t('manageOrganisationsTabAddress'),
-        cell: ({ address }: OrgDetails) => (
-          <DataGridTextCell>{address}</DataGridTextCell>
-        ),
+        cell: DatagridAddressCell,
       },
       {
         id: 'action',
