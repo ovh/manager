@@ -237,13 +237,26 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
     setOfferIdSelected(undefined);
   };
 
+  const selectedDuration = useMemo(
+    () =>
+      offerIdSelected &&
+      pricingByDuration?.find((price) => price.id === offerIdSelected)
+        ?.duration,
+    [pricingByDuration, offerIdSelected],
+  );
+  const selectedOs = activeInstance?.technical?.os?.family;
+
   const onCreateSavingsPlan = () => {
     if (offerIdSelected) {
       trackClick({
         location: PageLocation.funnel,
         buttonType: ButtonType.button,
         actionType: 'action',
-        actions: [`add_savings_plan::cancell`],
+        actions: [
+          `add_savings_plan`,
+          `confirm`,
+          `savings_plan_created_${selectedDuration}M_${selectedOs}_${technicalModel}_${quantity}_${deploymentMode}`,
+        ],
       });
       onCreatePlan({
         offerId: offerIdSelected,
@@ -338,7 +351,18 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
           label={t('cta_cancel')}
           className="mr-4"
           variant={ODS_BUTTON_VARIANT.outline}
-          onClick={() => navigate('..')}
+          onClick={() => {
+            navigate('..');
+            trackClick({
+              location: PageLocation.funnel,
+              buttonType: ButtonType.button,
+              actionType: 'action',
+              actions: [
+                `add_savings_plan`,
+                `cancel_${selectedDuration}M_${selectedOs}_${technicalModel}_${quantity}_${deploymentMode}`,
+              ],
+            });
+          }}
         />
 
         <OdsButton
