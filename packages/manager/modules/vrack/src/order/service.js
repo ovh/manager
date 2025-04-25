@@ -46,7 +46,7 @@ export default class vrackOrderService {
 
   order(cartId, withPaymentMethod = true) {
     return this.$http
-      .post(`/order/cart/${cartId}/checkout`, {
+      .post(`/order/cart/${cartId}/checkout1`, {
         autoPayWithPreferredPaymentMethod: withPaymentMethod,
         waiveRetractationPeriod: true,
       })
