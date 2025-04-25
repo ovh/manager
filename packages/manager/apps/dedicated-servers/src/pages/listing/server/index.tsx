@@ -13,10 +13,19 @@ import {
 import { DedicatedServer } from '@/data/types/server.type';
 import OrderMenu from '@/components/orderMenu';
 import { getColumns } from '@/components/dataGridColumns';
+import { useDedicatedServer } from '@/hooks/useDedicatedServer';
 import { urls } from '@/routes/routes.constant';
 
 export default function ServerListing() {
   const [columns] = useState([]);
+  const [visibleColumns] = useState([
+    'name',
+    'ip',
+    'model',
+    'region',
+    'status',
+    'actions',
+  ]);
   const { t } = useTranslation('dedicated-servers');
   const { shell } = React.useContext(ShellContext);
   const { sorting, setSorting } = useDataGrid({
@@ -39,6 +48,7 @@ export default function ServerListing() {
     route: `/dedicated/server`,
     queryKey: ['dedicated-servers', `/dedicated/server`],
   });
+  const { error: errorListing, data: dedicatedServer } = useDedicatedServer();
 
   const sortServersListing = (
     colSorting: ColumnSort,
@@ -59,22 +69,26 @@ export default function ServerListing() {
     return colSorting?.desc ? serverList.reverse() : serverList;
   };
 
-  if (isError) {
-    const { response }: any = error;
-    const errorObj = {
-      data: error,
-      headers: response?.headers,
-      status: response?.status,
-    };
+  if (isError || errorListing) {
+    let errorObj;
+    if (isError) {
+      const { response }: any = error;
+      errorObj = {
+        data: error,
+        headers: response?.headers,
+        status: response?.status,
+      };
+    } else {
+      errorObj = errorListing;
+    }
     return <ErrorBanner error={errorObj} />;
   }
 
   return (
     <RedirectionGuard
-      isLoading={isLoading || !flattenData}
-      condition={isSuccess && flattenData?.length === 0}
+      isLoading={isLoading || !dedicatedServer}
+      condition={dedicatedServer && dedicatedServer?.length === 0}
       route={urls.onboarding}
-      isError={isError}
     >
       <React.Suspense>
         {flattenData && (
@@ -98,6 +112,7 @@ export default function ServerListing() {
               onSortChange={setSorting}
               isLoading={isLoading}
               filters={filters}
+              columnVisibility={visibleColumns}
               search={search}
               className="server-data-grid"
               topbar={<OrderMenu />}
