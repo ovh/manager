@@ -577,7 +577,7 @@
   "ip_order_finish_error": "Une erreur est survenue lors de la commande d'IPs additionnelles.",
   "ip_order_free_activation_fee": "Pour les serveurs dont l'abonnement des IPs additionnelles est offert, ces frais d'activation ne seront pas refacturés à l'issu du renouvellement du serveur.",
   "ip_organisation_title": "Gérer mes organisations",
-  "ip_organisation_button": "Gérer mes organisation",
+  "ip_organisation_button": "Gérer mes organisations",
   "ip_organisation_table_organisation": "Organisation",
   "ip_organisation_table_type": "Type",
   "ip_organisation_table_lastname": "Nom",
