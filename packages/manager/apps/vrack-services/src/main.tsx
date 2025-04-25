@@ -6,8 +6,7 @@ import {
   initI18n,
 } from '@ovh-ux/manager-react-shell-client';
 import { App } from './App';
-import '@ovhcloud/ods-theme-blue-jeans/dist/index.css';
-import './index.css';
+import './index.scss';
 import './vite-hmr';
 import { getTrackingContext } from './utils/tracking';
 

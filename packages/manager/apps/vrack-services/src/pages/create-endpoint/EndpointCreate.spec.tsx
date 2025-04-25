@@ -1,16 +1,17 @@
 import { describe, it } from 'vitest';
-import '@testing-library/jest-dom';
+import { waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
-import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { vrackServicesListMocks } from '@ovh-ux/manager-network-common';
 import { iamResourcesMocks } from '@/data/mocks/iam';
 import {
   changeSelectValueByLabelText,
-  getButtonByVariant,
+  getButtonByLabel,
   labels,
   renderTest,
-} from '../../test-utils';
-
+  assertDisabled,
+  assertEnabled,
+} from '@/test-utils';
 import { urls } from '@/routes/routes.constants';
 
 describe('Vrack Services endpoint creation page test suite', () => {
@@ -26,32 +27,26 @@ describe('Vrack Services endpoint creation page test suite', () => {
 
     await assertTextVisibility(labels.endpoints.createEndpointPageDescription);
 
-    await getButtonByVariant({
+    const submitButton = await getButtonByLabel({
       container,
-      variant: ODS_BUTTON_VARIANT.flat,
-      disabled: true,
+      value: labels.endpoints.createEndpointButtonLabel,
     });
+    await assertDisabled(submitButton);
 
     await changeSelectValueByLabelText({
       selectLabel: labels.endpoints.serviceNameLabel,
-      value: iamResourcesMocks[0].displayName,
+      value: iamResourcesMocks[0].urn,
     });
-
-    await getButtonByVariant({
-      container,
-      variant: ODS_BUTTON_VARIANT.flat,
-      disabled: true,
-    });
+    await assertDisabled(submitButton);
 
     await changeSelectValueByLabelText({
       selectLabel: labels.endpoints.subnetLabel,
       value: vrackServicesListMocks[20].currentState.subnets[0].cidr,
     });
 
-    await getButtonByVariant({
-      container,
-      variant: ODS_BUTTON_VARIANT.flat,
-      disabled: false,
-    });
+    await assertEnabled(submitButton);
+    await waitFor(() => userEvent.click(submitButton));
+
+    await assertTextVisibility(labels.endpoints.endpointsOnboardingDescription);
   });
 });
