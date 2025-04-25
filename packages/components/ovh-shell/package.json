@@ -27,8 +27,8 @@
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^8.1.0",
+    "@ovh-ux/manager-core-api": "^0.10.1",
     "@ovh-ux/ovh-at-internet": "^0.21.4",
-    "@ovh-ux/ovh-reket": "^2.1.7",
     "@ovh-ux/request-tagger": "^0.4.0",
     "@ovh-ux/url-builder": "^2.0.0",
     "dompurify": "^3.2.4",

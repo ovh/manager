@@ -30,7 +30,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-config' --include-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
-    "@ovh-ux/ovh-reket": "^2.1.7",
+    "@ovh-ux/manager-core-api": "^0.10.1",
     "lodash-es": "^4.17.15"
   },
   "devDependencies": {
