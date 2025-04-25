@@ -1,8 +1,8 @@
 import React from 'react';
-import { ODS_BUTTON_SIZE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import { useVrackService } from '@ovh-ux/manager-network-common';
-import { OnboardingLayout } from '@/components/layout-helpers/OnboardingLayout.component';
+import { PageLayout, OnboardingLayout } from '@ovh-ux/manager-react-components';
 import onboardingImgSrc from '@/assets/onboarding-img.png';
 import { useNavigateToCreateEndpointPage } from '../endpoints.hook';
 import { hasSubnet, isEditable } from '@/utils/vrack-services';
@@ -13,19 +13,18 @@ export default function EndpointsOnboarding() {
   const navigateToCreateEndpointPage = useNavigateToCreateEndpointPage();
 
   return (
-    <OnboardingLayout
-      secondaryButtonLabel={t('createEndpointButtonLabel')}
-      secondaryOnClick={navigateToCreateEndpointPage}
-      secondaryButtonIcon={ODS_ICON_NAME.ADD}
-      secondaryButtonSize={ODS_BUTTON_SIZE.sm}
-      secondaryButtonIconPosition="start"
-      secondaryButtonDisabled={
-        !isEditable(vrackServices) || !hasSubnet(vrackServices) || undefined
-      }
-      title={t('endpointsOnboardingTitle')}
-      description={t('endpointsOnboardingDescription')}
-      imageSrc={onboardingImgSrc}
-      noBreadcrumb
-    />
+    <PageLayout>
+      <OnboardingLayout
+        moreInfoButtonLabel={t('createEndpointButtonLabel')}
+        onmoreInfoButtonClick={navigateToCreateEndpointPage}
+        moreInfoIcon={ODS_ICON_NAME.plus}
+        isMoreInfoDisabled={
+          !isEditable(vrackServices) || !hasSubnet(vrackServices)
+        }
+        title={t('endpointsOnboardingTitle')}
+        description={t('endpointsOnboardingDescription')}
+        img={{ src: onboardingImgSrc }}
+      />
+    </PageLayout>
   );
 }

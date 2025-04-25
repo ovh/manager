@@ -42,6 +42,7 @@ export default function EditVrackServicesDisplayNameModal() {
 
   return (
     <UpdateIamNameModal
+      isOpen
       closeModal={onClose}
       inputLabel={t('updateVrackServicesDisplayNameInputLabel')}
       headline={t('modalUpdateVrackServicesHeadline', { id })}

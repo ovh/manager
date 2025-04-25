@@ -4,22 +4,25 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useTask } from '@ovh-ux/manager-react-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useDissociateVrack } from './useDissociateVrack';
-import {
-  dissociateVrackServices,
-  useVrackService,
-} from '../index';
+import { dissociateVrackServices } from '../api';
+import { useVrackService } from '../../vrack-services/hooks/useVrackServices';
+import { VrackServicesProductStatus, VrackServicesWithIAM } from '../../types';
 import '@testing-library/jest-dom';
 
-import {
-  VrackServicesProductStatus,
-  VrackServicesWithIAM,
-} from '../../vrack-services';
-
-vi.mock('../index', async () => {
-  const actual = await vi.importActual<typeof import('../index')>('../index');
+vi.mock('../api', async () => {
+  const actual = await vi.importActual<typeof import('../api')>('../api');
   return {
     ...actual,
     dissociateVrackServices: vi.fn(),
+  };
+});
+
+vi.mock('../../vrack-services/hooks/useVrackServices', async () => {
+  const actual = await vi.importActual<
+    typeof import('../../vrack-services/hooks/useVrackServices')
+  >('../../vrack-services/hooks/useVrackServices');
+  return {
+    ...actual,
     useVrackService: vi.fn(),
   };
 });
