@@ -3,7 +3,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { describe, it, vi } from 'vitest';
 import { getInstancesByRegion, TInstance } from '@ovh-ux/manager-pci-common';
 import { useAttachableInstances } from '@/api/hooks/useInstance';
-import { getVolume, TVolume } from '@/api/data/volume';
+import { getVolume, TAPIVolume } from '@/api/data/volume';
 
 vi.mock('@ovh-ux/manager-pci-common');
 vi.mock('@/api/data/volume');
@@ -57,7 +57,8 @@ describe('useAttachableInstances', () => {
   it('returns instances data when volumeId is provided', async () => {
     vi.mocked(getVolume).mockResolvedValue({
       region: 'region1',
-    } as TVolume);
+      attachedTo: [],
+    } as TAPIVolume);
 
     const { result } = renderHook(
       () => useAttachableInstances('123', 'volume1'),
@@ -86,7 +87,8 @@ describe('useAttachableInstances', () => {
   it('returns active instances', async () => {
     vi.mocked(getVolume).mockResolvedValue({
       region: 'region1',
-    } as TVolume);
+      attachedTo: [],
+    } as TAPIVolume);
     const { result } = renderHook(
       () => useAttachableInstances('123', 'volume1'),
       {
@@ -107,7 +109,8 @@ describe('useAttachableInstances', () => {
     vi.mocked(getVolume).mockResolvedValue({
       region: 'region2',
       availabilityZone: 'any',
-    } as TVolume);
+      attachedTo: [],
+    } as TAPIVolume);
     const { result } = renderHook(
       () => useAttachableInstances('123', 'volume1'),
       {
@@ -128,7 +131,8 @@ describe('useAttachableInstances', () => {
     vi.mocked(getVolume).mockResolvedValue({
       region: 'region2',
       availabilityZone: 'region2-a',
-    } as TVolume);
+      attachedTo: [],
+    } as TAPIVolume);
     const { result } = renderHook(
       () => useAttachableInstances('123', 'volume1'),
       {
@@ -140,6 +144,28 @@ describe('useAttachableInstances', () => {
       expect(result.current.data).toEqual([
         expect.objectContaining({
           id: '4',
+        }),
+      ]);
+    });
+  });
+
+  it('returns instances not already attached', async () => {
+    vi.mocked(getVolume).mockResolvedValue({
+      region: 'region2',
+      availabilityZone: 'region2-a',
+      attachedTo: ['1'],
+    } as TAPIVolume);
+    const { result } = renderHook(
+      () => useAttachableInstances('123', 'volume1'),
+      {
+        wrapper,
+      },
+    );
+
+    await waitFor(() => {
+      expect(result.current.data).toEqual([
+        expect.not.objectContaining({
+          id: '1',
         }),
       ]);
     });
