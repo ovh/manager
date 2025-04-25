@@ -21,5 +21,6 @@
   "manageOrganisationsOrgModelPostcodeLabel": "Code postal",
   "manageOrganisationsOrgModelPhoneLabel": "Téléphone",
   "manageOrganisationsErrorMessage": "Une erreur est survenue {{error}}.",
-  "manageOrganisationsSuccessMessage": "Vos informations ont bien été prises en comptes"
+  "manageOrganisationsSuccessMessage": "Vos informations ont bien été prises en comptes",
+  "manageOrganisationsOrgModelPhoneInvalid": "Format internationnal requis {{countryCode}}"
 }
