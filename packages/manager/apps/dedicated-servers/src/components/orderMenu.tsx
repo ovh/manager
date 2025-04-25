@@ -1,17 +1,15 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { OdsPopover, OdsButton, OdsLink } from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_SIZE,
   ODS_ICON_NAME,
   ODS_POPOVER_POSITION,
 } from '@ovhcloud/ods-components';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import useLinkUtils, { UrlLinks } from '@/hooks/useLinkUtils';
 import { orderLinks } from '@/data/constants/orderLinks';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 export const OrderMenu: React.FC = () => {
   const { t } = useTranslation('dedicated-servers');
