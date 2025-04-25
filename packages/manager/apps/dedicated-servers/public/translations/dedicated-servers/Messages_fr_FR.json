@@ -11,7 +11,7 @@
   "server_configuration_monitoring_status_proactive": "Activé avec intervention proactive",
   "server_configuration_monitoring_status_no-proactive": "Activé sans intervention proactive",
   "action-goDetails": "Détails",
-  "server_display_id": "Id Serveur",
+  "server_display_id": "ID Serveur",
   "server_display_name": "Nom",
   "server_display_ip": "Adresse IP",
   "server_display_reverse": "Reverse",
@@ -21,5 +21,16 @@
   "server_display_state": "Statut",
   "server_display_monitoring": "État Monitoring",
   "server_order_dedicated": "Serveurs dédiés",
-  "server_order_eco": "Serveurs Eco"
+  "server_order_eco": "Serveurs Eco",
+  "server_display_datacentre": "Datacentre",
+  "server_display_operating_system": "Système d'exploitation",
+  "server_display_vrack": "VRack",
+  "server_display_renew": "Type de renouvellement",
+  "server_display_expiration": "Date d'expiration",
+  "server_display_engagement": "Engagement",
+  "server_display_price": "Tarif mensuel",
+  "server_display_with-engagement": "avec engagement",
+  "server_display_without-engagement": "sans engagement",
+  "server_display_renew-automatic": "automatique",
+  "server_display_renew-manual": "manuel"
 }
