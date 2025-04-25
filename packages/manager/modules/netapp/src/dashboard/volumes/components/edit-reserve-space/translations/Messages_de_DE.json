@@ -1,0 +1,9 @@
+{
+  "netapp_volumes_edit_reserve_space_title": "Snapshot-Reserve ändern",
+  "netapp_volumes_edit_reserve_space_submit": "Platz ändern",
+  "netapp_volumes_edit_reserve_space_cancel": "Abbrechen",
+  "netapp_volumes_edit_reserve_space_label": "Reservierter Platz",
+  "netapp_volumes_edit_reserve_space_rules": "Zulässige Größe: min. {{min}} %, max. {{max}} %",
+  "netapp_volumes_edit_reserve_space_success": "Der für Snapshots reservierte Platz wird in einigen Augenblicken geändert.",
+  "netapp_volumes_edit_reserve_space_error": "Es ist ein Fehler aufgetreten. <br> {{message}} <br> request_id: {{requestId}}"
+}

@@ -87,6 +87,26 @@ export default /* @ngInject */ ($stateProvider) => {
           volumeId,
         });
       },
+      volumeReserveSpacePercentage: /* @ngInject */ (
+        $http,
+        serviceName,
+        volumeId,
+      ) =>
+        $http
+          .get(
+            `/storage/netapp/${serviceName}/share/${volumeId}/snapshotReserve`,
+          )
+          .then(({ data }) => data?.percent || 5)
+          .catch(() => null),
+      goToEditVolumeReserveSpace: /* @ngInject */ (
+        $state,
+        serviceName,
+        volumeId,
+      ) => () =>
+        $state.go('netapp.dashboard.volumes.dashboard.edit-reserve-space', {
+          serviceName,
+          volumeId,
+        }),
       breadcrumb: /* @ngInject */ (volumeId) => volumeId,
     },
   });
