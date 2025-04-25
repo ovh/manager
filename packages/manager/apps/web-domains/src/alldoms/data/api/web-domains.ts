@@ -39,17 +39,15 @@ export const getallDomService = async (
  */
 export const updateAllDomService = async (
   serviceName: string,
-  payload: {
-    renew: {
-      mode: ServiceInfoRenewMode;
-    };
+  renew: {
+    mode: ServiceInfoRenewMode;
   },
 ): Promise<TServiceInfo> => {
   const { data: allDomServiceId } = await v6.get(
     `/services?resourceName=${serviceName}`,
   );
 
-  const { data } = await v6.put(`/services/${allDomServiceId}`, payload);
+  const { data } = await v6.put(`/services/${allDomServiceId}`, renew);
   return data;
 };
 
