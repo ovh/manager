@@ -1,4 +1,5 @@
 {
   "GLOBAL_COMMUNICATION_PHISHING_title": "General information",
-  "GLOBAL_COMMUNICATION_PHISHING_description": "Fraudulent emails circulate and direct to scam websites claiming to be OVHcloud. <anchor>Find out more</anchor>"
+  "GLOBAL_COMMUNICATION_PHISHING_description": "Fraudulent emails circulate and direct to scam websites claiming to be OVHcloud. <anchor>Find out more</anchor>",
+  "email_unreachable_notifications_description": "It looks like our recent emails didn’t reach your mailbox. You can view them in the OVHcloud Control Panel by going to the “My account” section, then the “Emails received” tab. Please review your <anchor>account’s contact email address.</anchor>"
 }
