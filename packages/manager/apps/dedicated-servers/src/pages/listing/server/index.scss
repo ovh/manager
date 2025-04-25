@@ -1,6 +1,5 @@
 .server-data-grid {
-    overflow: scroll;
-    ods-table {
-        overflow: scroll!important;
-    }
+  overflow: scroll;
+  display: block;
+  width: 100%;
 }
