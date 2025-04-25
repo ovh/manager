@@ -41,7 +41,13 @@ export const useGetOrganisationsDetails = ({
   const formattedResult = {
     isLoading: isLoading || !!results.find((result) => !!result.isLoading),
     isError: isError || !!results.find((result) => !!result.isError),
-    orgDetails: results.map(({ data }) => data?.data),
+    orgDetails: results
+      .map(({ data }) => data?.data)
+      .sort((a, b) => {
+        // Sort in reverse order based on organization ID
+        // Assuming newer organizations have higher IDs
+        return (b?.organisationId || '').localeCompare(a?.organisationId || '');
+      }),
   };
 
   return formattedResult;
