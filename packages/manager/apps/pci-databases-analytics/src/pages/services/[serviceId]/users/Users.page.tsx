@@ -45,10 +45,10 @@ const Users = () => {
       database.EngineEnum.mongodb,
       database.EngineEnum.postgresql,
     ].includes(service.engine),
-    displayKeysCols: service.engine === database.EngineEnum.redis,
-    displayCategoriesCol: service.engine === database.EngineEnum.redis,
-    displayCommandsCol: service.engine === database.EngineEnum.redis,
-    displayChannelsCol: service.engine === database.EngineEnum.redis,
+    displayKeysCols: [database.EngineEnum.redis, database.EngineEnum.valkey].includes(service.engine),
+    displayCategoriesCol: [database.EngineEnum.redis, database.EngineEnum.valkey].includes(service.engine),
+    displayCommandsCol: [database.EngineEnum.redis, database.EngineEnum.valkey].includes(service.engine),
+    displayChannelsCol: [database.EngineEnum.redis, database.EngineEnum.valkey].includes(service.engine),
     onDeleteClicked: (user: GenericUser) => {
       navigate(`./delete/${user.id}`);
     },

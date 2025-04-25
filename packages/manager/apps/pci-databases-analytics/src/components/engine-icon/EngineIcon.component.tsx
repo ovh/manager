@@ -35,6 +35,7 @@ export const EngineIcon = ({
     opensearch: 'from-blue-500 to-blue-300',
     postgresql: 'from-indigo-900 to-blue-400',
     redis: 'from-red-700 to-red-400',
+    valkey: 'from-purple-700 to-blue-200',
   };
 
   return (

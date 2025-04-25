@@ -42,19 +42,19 @@ const OrderPrice2 = ({ showMonthly, prices }: OrderPriceProps) => {
           </TableCell>
         </TableRow>
         <TableRow>
-          <TableCell className="font-semibold text-green">
+          <TableCell className="font-semibold text-text">
             Total per hour
           </TableCell>
           <TableCell className="text-right">
             <Price
-              className="text-green"
+              className="text-text"
               decimals={3}
               priceInUcents={prices.servicePrice.hourly.price}
               taxInUcents={prices.servicePrice.hourly.tax}
             />
           </TableCell>
         </TableRow>
-        <TableRow className="text-xs text-gray-500">
+        <TableRow className="text-sm text-gray-500 italic">
           <TableCell>Monthly (estimated)</TableCell>
           <TableCell className="text-right">
             <Price

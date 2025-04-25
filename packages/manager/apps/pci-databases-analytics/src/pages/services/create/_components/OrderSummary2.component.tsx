@@ -1,10 +1,13 @@
 import { useTranslation } from 'react-i18next';
 import {
+  Box,
   Boxes,
   Cloud,
   Cloudy,
   Cpu,
   HardDrive,
+  HardDriveDownload,
+  HardDriveUpload,
   Hash,
   HelpCircle,
   MemoryStick,
@@ -158,7 +161,7 @@ const FlavorDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
           type="button"
           onClick={() => onSectionClicked('flavor')}
         >
-          {t('summaryFieldFlavorLabel')}
+          Instance
         </Button>
         {order.flavor ? (
           <span className="capitalize">{order.flavor.name}</span>
@@ -168,6 +171,10 @@ const FlavorDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
       </div>
       {(order.flavor?.vcores > 0 || order.flavor?.ram.value > 0) && (
         <div>
+          <div className="flex items-center pl-4 gap-2">
+          <Boxes className="size-4" />
+          <span>{t('summaryFieldClusterNodes', { count: order.nodes })}</span>
+        </div>
           {order.flavor.vcores > 0 && (
             <div className="flex items-center pl-4 gap-2">
               <Cpu className="size-4" />
@@ -191,7 +198,7 @@ const FlavorDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
     </div>
   );
 };
-const ClusterDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
+const StorageDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
   const { t } = useTranslation('pci-databases-analytics/services/new');
   const totalStorage = order.flavor?.storage
     ? addStorage(order.flavor.storage.minimum, {
@@ -205,34 +212,40 @@ const ClusterDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
         data-testid="cluster-section-button"
         className="h-auto p-0 bg-transparent hover:bg-transparent font-bold text-primary underline-offset-4 hover:underline"
         type="button"
-        onClick={() => onSectionClicked('cluster')}
+        onClick={() => onSectionClicked('storage')}
       >
-        {t('summaryFieldClusterLabel')}
+        Stockage
       </Button>
       <div>
         <div className="flex items-center pl-4 gap-2">
-          <Boxes className="size-4" />
-          <span>{t('summaryFieldClusterNodes', { count: order.nodes })}</span>
+          <Box className="size-4" />
+          <span>Type: High speed gen2</span>
         </div>
-        {order.flavor?.storage && (
-          <div className="flex items-center pl-4 gap-2">
-            <HardDrive className="size-4" />
-            {order.additionalStorage > 0 ? (
-              <span>
-                {t('summaryFieldClusterStorageExtra', {
-                  storage: formatStorage(totalStorage),
-                  includedStorage: formatStorage(order.flavor.storage.minimum),
-                })}
-              </span>
-            ) : (
-              <span>
-                {t('summaryFieldClusterStorage', {
-                  storage: formatStorage(order.flavor.storage.minimum),
-                })}
-              </span>
-            )}
-          </div>
-        )}
+        <div className="flex items-center pl-4 gap-2">
+          <HardDriveDownload className="size-4" />
+          <span>{Math.min(20000, 30 * totalStorage.value)} IOPS</span>
+        </div>
+        <div className="flex items-center pl-4 gap-2">
+          <HardDriveUpload className="size-4" />
+          <span>{totalStorage.value} GB/s</span>
+        </div>
+        <div className="flex items-center pl-4 gap-2">
+          <HardDrive className="size-4" />
+          {order.additionalStorage > 0 ? (
+            <span>
+              {t('summaryFieldClusterStorageExtra', {
+                storage: formatStorage(totalStorage),
+                includedStorage: formatStorage(order.flavor.storage.minimum),
+              })}
+            </span>
+          ) : (
+            <span>
+              {t('summaryFieldClusterStorage', {
+                storage: formatStorage(order.flavor.storage.minimum),
+              })}
+            </span>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -311,7 +324,9 @@ const OrderSummary2 = ({ order, onSectionClicked }: OrderSummaryProps) => {
       <PlanDetails order={order} onSectionClicked={onSectionClicked} />
       <RegionDetails order={order} onSectionClicked={onSectionClicked} />
       <FlavorDetails order={order} onSectionClicked={onSectionClicked} />
-      <ClusterDetails order={order} onSectionClicked={onSectionClicked} />
+      {order.flavor?.storage && (
+        <StorageDetails order={order} onSectionClicked={onSectionClicked} />
+      )}
       <NetworkDetails order={order} onSectionClicked={onSectionClicked} />
       <IpsDetails order={order} onSectionClicked={onSectionClicked} />
     </div>

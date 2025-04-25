@@ -11,9 +11,9 @@ interface NodesConfigProps {
 const NodesConfig = React.forwardRef<HTMLInputElement, NodesConfigProps>(
   ({ value, onChange, minimum, maximum }, ref) => {
     const { t } = useTranslation('pci-databases-analytics/components/cluster');
-    if (minimum === maximum) {
-      return <></>;
-    }
+    // if (minimum === maximum) {
+    //   return <></>;
+    // }
     return (
       <div>
         <Label
@@ -31,6 +31,7 @@ const NodesConfig = React.forwardRef<HTMLInputElement, NodesConfigProps>(
           max={maximum}
           value={value}
           onChange={(e) => onChange(e.target.valueAsNumber)}
+          disabled={minimum === maximum}
         />
       </div>
     );

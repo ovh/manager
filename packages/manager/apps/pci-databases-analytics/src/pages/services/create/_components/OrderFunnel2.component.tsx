@@ -35,6 +35,12 @@ import {
   AccordionItem,
   AccordionTrigger,
   AccordionContent,
+  Label,
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
 } from '@datatr-ux/uxlib';
 import { order } from '@/types/catalog';
 import * as database from '@/types/cloud/project/database';
@@ -572,9 +578,10 @@ const OrderFunnel2 = ({
               </RadioGroup>
             </CardContent>
           </Card>
+          
           <Card
             id="flavor"
-            className={cn('shadow-sm hidden', isAdvanced && 'block')}
+            className={cn('shadow-sm')}
           >
             <CardHeader>
               <CardTitle>Instance</CardTitle>
@@ -644,67 +651,43 @@ const OrderFunnel2 = ({
                 }}
                 flavors={model.lists.flavors}
               />
+              <h6 className="mt-2">{t('fieldNodesLabel')}</h6>
+              <NodesConfig
+                minimum={
+                  model.result.availability?.specifications.nodes.minimum
+                }
+                maximum={
+                  model.result.availability?.specifications.nodes.maximum
+                }
+                value={model.form.getValues('nbNodes')}
+                onChange={(newNbNodes) =>
+                  model.form.setValue('nbNodes', newNbNodes)
+                }
+              />
             </CardContent>
           </Card>
 
-          {model.result.availability &&
-            (hasNodeSelection || hasStorageSelection) && (
-              <Card id="cluster" className="shadow-sm">
-                <CardHeader className="pb-4">
-                  <CardTitle>{t('sectionClusterTitle')}</CardTitle>
-                  <CardDescription>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Sint, itaque tempore sit sapiente quam quas!
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="flex flex-col gap-2">
-                  {hasNodeSelection && (
-                    // add label
-                    <>
-                      <h6>{t('fieldNodesLabel')}</h6>
-                      <Card>
-                        <CardContent className="py-2">
-                          <NodesConfig
-                            minimum={
-                              model.result.availability?.specifications.nodes
-                                .minimum
-                            }
-                            maximum={
-                              model.result.availability?.specifications.nodes
-                                .maximum
-                            }
-                            value={model.form.getValues('nbNodes')}
-                            onChange={(newNbNodes) =>
-                              model.form.setValue('nbNodes', newNbNodes)
-                            }
-                          />
-                        </CardContent>
-                      </Card>
-                    </>
-                  )}
-                  {hasStorageSelection && (
-                    <>
-                      <h6>{t('fieldStorageLabel')}</h6>
-                      <Card>
-                        <CardContent className="py-2">
-                          <StorageConfig2
-                            storageMode={model.result.engine.storageMode}
-                            availability={model.result.availability}
-                            value={model.form.getValues('additionalStorage')}
-                            onChange={(newStorage) =>
-                              model.form.setValue(
-                                'additionalStorage',
-                                newStorage,
-                              )
-                            }
-                          />
-                        </CardContent>
-                      </Card>
-                    </>
-                  )}
-                </CardContent>
-              </Card>
-            )}
+          {model.result.availability && hasStorageSelection && (
+            <Card id="storage" className={cn('shadow-sm hidden', isAdvanced && 'block')}>
+              <CardHeader className="pb-4">
+                <CardTitle>Stockage</CardTitle>
+                <CardDescription>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint,
+                  itaque tempore sit sapiente quam quas!
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="flex flex-col gap-2">
+                <StorageConfig2
+                  storageMode={model.result.engine.storageMode}
+                  availability={model.result.availability}
+                  value={model.form.getValues('additionalStorage')}
+                  onChange={(newStorage) =>
+                    model.form.setValue('additionalStorage', newStorage)
+                  }
+                />
+              </CardContent>
+            </Card>
+          )}
 
           <Card
             id="options"
@@ -871,7 +854,7 @@ const OrderFunnel2 = ({
               onSectionClicked={(section) => scrollToDiv(section)}
             />
             <Separator className="my-2" />
-            <p className="font-bold">Pricing :</p>
+            <p className="font-bold">Pricing</p>
             <OrderPrice2
               showMonthly={showMonthlyPrice}
               prices={model.result.price}

@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Label,
   Popover,
   PopoverContent,
   PopoverTrigger,
+  RadioGroup,
+  RadioTile,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+  Separator,
   Slider,
 } from '@datatr-ux/uxlib';
 import { HelpCircle } from 'lucide-react';
@@ -20,6 +28,7 @@ interface StorageConfigProps {
 const DEFAULT_UNIT = 'GB';
 const StorageConfig2 = React.forwardRef<HTMLInputElement, StorageConfigProps>(
   ({ storageMode, availability, value, onChange }, ref) => {
+    const [storageType, setStoageType] = useState('highspeedgen2');
     const { t } = useTranslation('pci-databases-analytics/components/cluster');
     if (!availability.specifications.storage) return <></>;
     const { storage, flavor } = availability.specifications;
@@ -29,22 +38,59 @@ const StorageConfig2 = React.forwardRef<HTMLInputElement, StorageConfigProps>(
     }
     const minAddable = 0;
     const maxAddable = maximum.value - minimum.value;
+
+    const totalStorage = minimum.value + value;
+    const IOPS =
+      storageType === 'highspeed' ? 3000 : Math.min(20000, 30 * totalStorage);
+    const throughput = storageType === 'highspeed' ? -1 : totalStorage;
     return (
       <div data-testid="storage-configuration-container">
-        <p>
-          {t('storageFlavorDescription', {
-            flavor,
-            includedStorage: formatStorage(minimum),
-            maxAdditionalStorage: formatStorage({
-              value: maxAddable,
-              unit: DEFAULT_UNIT,
-            }),
-            step: formatStorage(step),
-          })}
-        </p>
-
         <div className="py-2">
-          <p className="flex gap-2">
+          {/* <Select defaultValue="highspeedgen2" value={storageType} onValueChange={setStoageType}>
+            <SelectTrigger>
+              <SelectValue placeholder="type de stockage" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="highspeed">High speed</SelectItem>
+              <SelectItem value="highspeedgen2">High speed gen2</SelectItem>
+            </SelectContent>
+          </Select> */}
+
+          {/* <b>Type de stockage :</b> */}
+          <RadioGroup
+            className="mb-2 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-2"
+            defaultValue="highspeedgen2"
+            value={storageType}
+            onValueChange={setStoageType}
+          >
+            <RadioTile value={'highspeed'} disabled className="text-left">
+              <h5 className="capitalize">High speed</h5>
+              <Separator className="my-2" />
+              <p className="text-sm">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                Cupiditate esse non consectetur modi tenetur.
+              </p>
+            </RadioTile>
+            <RadioTile value={'highspeedgen2'} className="text-left">
+              <h5 className="capitalize">High speed Gen2</h5>
+              <Separator className="my-2" />
+              <p className="text-sm">
+               Lorem ipsum dolor sit amet consectetur adipisicing elit. Et qui consequuntur minus veniam atque.
+              </p>
+            </RadioTile>
+          </RadioGroup>
+          {/* <p>
+            {t('storageFlavorDescription', {
+              flavor,
+              includedStorage: formatStorage(minimum),
+              maxAdditionalStorage: formatStorage({
+                value: maxAddable,
+                unit: DEFAULT_UNIT,
+              }),
+              step: formatStorage(step),
+            })}
+          </p> */}
+          <p className="flex gap-2 mt-2">
             <b>Mode de stockage : </b>
             <span>{storageMode}</span>
             <Popover>
@@ -58,7 +104,19 @@ const StorageConfig2 = React.forwardRef<HTMLInputElement, StorageConfigProps>(
           </p>
           <p className="flex gap-2">
             <b>IOPS: </b>
-            <span>3000</span>
+            <span>{IOPS}</span>
+            <Popover>
+              <PopoverTrigger>
+                <HelpCircle className="size-4" />
+                <PopoverContent>
+                  Lorem ipsum, dolor sit amet consectetur adipisicing.
+                </PopoverContent>
+              </PopoverTrigger>
+            </Popover>
+          </p>
+          <p className="flex gap-2">
+            <b>Throughput: </b>
+            <span>{throughput === -1 ? '-' : `${throughput} GB/s`}</span>
             <Popover>
               <PopoverTrigger>
                 <HelpCircle className="size-4" />
@@ -69,15 +127,17 @@ const StorageConfig2 = React.forwardRef<HTMLInputElement, StorageConfigProps>(
             </Popover>
           </p>
         </div>
-        <Label className="mt-2" htmlFor="storage-select">
-          {t('inputStorageLabel')}
-        </Label>
         <div className="flex flex-col">
           <div className="flex justify-between mb-2">
-            <span>{t('inputStorageNoneValue')}</span>
             <span>
               {formatStorage({
-                value: maxAddable,
+                value: minimum.value,
+                unit: DEFAULT_UNIT,
+              })}
+            </span>
+            <span>
+              {formatStorage({
+                value: maximum.value,
                 unit: DEFAULT_UNIT,
               })}
             </span>
@@ -100,7 +160,7 @@ const StorageConfig2 = React.forwardRef<HTMLInputElement, StorageConfigProps>(
           >
             <span className="font-bold">
               {formatStorage({
-                value,
+                value: minimum.value + value,
                 unit: DEFAULT_UNIT,
               })}
             </span>
