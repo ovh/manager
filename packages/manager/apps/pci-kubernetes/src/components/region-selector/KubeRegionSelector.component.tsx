@@ -39,22 +39,7 @@ export function KubeRegionSelector({
 
       return (
         region.isMacro ||
-        [
-          // FIXME remove this mock !!
-          {
-            name: 'EU-WEST-PAR',
-            datacenter: 'WAW',
-            continentCode: 'EU',
-            enabled: true,
-            type: 'region-3-az',
-            availabilityZones: [
-              'eu-west-par-a',
-              'eu-west-par-b',
-              'eu-west-par-c',
-            ],
-          },
-          ...product.regions,
-        ].some(({ name, type }) =>
+        product?.regions.some(({ name, type }) =>
           selectedDeployment
             ? name === region.name && type === selectedDeployment
             : name === region.name,

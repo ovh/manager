@@ -19,19 +19,7 @@ const useHas3AZRegions = () => {
     ({ name }) => name === 'kubernetes',
   );
 
-  const regionTypes =
-    // FIXME remove this mock !!
-    [
-      {
-        name: 'EU-WEST-PAR',
-        datacenter: 'WAW',
-        continentCode: 'EU',
-        enabled: true,
-        type: 'region-3-az',
-        availabilityZones: ['eu-west-par-a', 'eu-west-par-b', 'eu-west-par-c'],
-      },
-      ...(product ? product.regions : []),
-    ].map(({ type }) => type) || [];
+  const regionTypes = product?.regions.map(({ type }) => type) || [];
 
   const uniqueRegions = [...new Set(regionTypes)].sort((a, b) => {
     if (a === (RegionType.Region3Az as string)) return 1;
