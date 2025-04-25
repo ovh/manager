@@ -16,11 +16,9 @@
                     <span
                         data-translate="manager_components_delete_modal_description"
                     ></span>
-                    <span
-                        data-ng-if="$ctrl.description"
-                        class="mt-3 text-secondary"
-                    >
-                    </span>
+                    <div class="mt-3">
+                        <ng-transclude></ng-transclude>
+                    </div>
                 </oui-modal>
             </div>
         </div>
