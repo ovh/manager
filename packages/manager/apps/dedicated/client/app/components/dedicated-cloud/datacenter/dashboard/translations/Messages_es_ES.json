@@ -125,5 +125,7 @@
   "dedicatedCloud_manage_nsx_choice_description_XLARGE": "El formato XL es recomendable si se quiere configurar un gran número de pares BGP con el nodo Edge. Es adecuado cuando la tasa de transferencia total requerida es de varios Gb/s para el balanceador de carga L7 y la VPN.",
   "dedicatedCloud_nsx_task_progress": "En curso",
   "dedicatedCloud_datacenter_nsx_resize_error": "Se ha producido un error",
-  "dedicatedCloud_tab_datacenter_global_information": "Por defecto, todos los datacenters virtuales (vDC) NSX disponen de un clúster NSX Edge compuesto por 2 NSX Edges. A continuación puede modificar el tamaño de los Edges. Sin embargo, tenga en cuenta que necesitará disponer de recursos necesarios para modificar el tamaño o el número de Edges."
+  "dedicatedCloud_tab_datacenter_global_information": "Por defecto, todos los datacenters virtuales (vDC) NSX disponen de un clúster NSX Edge compuesto por 2 NSX Edges. A continuación puede modificar el tamaño de los Edges. Sin embargo, tenga en cuenta que necesitará disponer de recursos necesarios para modificar el tamaño o el número de Edges.",
+  "dedicatedCloud_manage_nsx_vcpu_price": "desde {{ price }} por vCPU/mes + IVA",
+  "dedicatedCloud_manage_nsx_additionnal_price_informations": "* 2x4 vCPU incluidas en la oferta estándar"
 }

@@ -125,7 +125,7 @@
   "wizard_confirm": "Zatwierdź",
   "domain_operations_update_key_authinfo": "AuthInfo",
   "domain_operations_update_key_authInfo": "AuthInfo",
-  "domain_operations_nicOperation_DnssecEnable": "Aktywacja DNSSEC",
+  "domain_operations_nicOperation_DnssecEnable": "Włączenie DNSSEC",
   "domain_operations_nicOperation_ZoneCut": "Delegacja strefy DNS",
   "domain_operations_nicOperation_ZoneDelete": "Usunięcie strefy DNS",
   "domain_operations_nicOperation_Zonerestore": "Przywrócenie strefy DNS",
