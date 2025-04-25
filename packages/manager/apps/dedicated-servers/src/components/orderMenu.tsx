@@ -1,17 +1,15 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { OdsPopover, OdsButton, OdsLink } from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_SIZE,
   ODS_ICON_NAME,
   ODS_POPOVER_POSITION,
 } from '@ovhcloud/ods-components';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import useLinkUtils, { UrlLinks } from '@/hooks/useLinkUtils';
 import { orderLinks } from '@/data/constants/orderLinks';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 export const OrderMenu: React.FC = () => {
   const { t } = useTranslation('dedicated-servers');
@@ -32,32 +30,30 @@ export const OrderMenu: React.FC = () => {
         triggerId="server-orders-action"
         position={ODS_POPOVER_POSITION.bottomStart}
       >
-        <div>
-          <OdsLink
-            color="primary"
-            href="#"
-            target="_blank"
-            icon={ODS_ICON_NAME.externalLink}
-            onClick={(e) => {
-              window.open(links.dedicatedOrder as string);
-              e.preventDefault();
-            }}
-            label={t('server_order_dedicated')}
-          />
-        </div>
-        <div>
-          <OdsLink
-            color="primary"
-            href="#"
-            target="_blank"
-            icon={ODS_ICON_NAME.externalLink}
-            onClick={(e) => {
-              window.open(links.dedicatedEcoRangeOrder as string);
-              e.preventDefault();
-            }}
-            label={t('server_order_eco')}
-          />
-        </div>
+        <OdsLink
+          color="primary"
+          className="block"
+          href="#"
+          target="_blank"
+          icon={ODS_ICON_NAME.externalLink}
+          onClick={(e) => {
+            window.open(links.dedicatedOrder as string);
+            e.preventDefault();
+          }}
+          label={t('server_order_dedicated')}
+        />
+        <OdsLink
+          color="primary"
+          className="block"
+          href="#"
+          target="_blank"
+          icon={ODS_ICON_NAME.externalLink}
+          onClick={(e) => {
+            window.open(links.dedicatedEcoRangeOrder as string);
+            e.preventDefault();
+          }}
+          label={t('server_order_eco')}
+        />
       </OdsPopover>
     </div>
   );
