@@ -311,8 +311,16 @@ WithDatagridSubComponent.args = {
         <Datagrid
           columns={subComponentColumns}
           items={[
-            { label: 'sub component label', price: 10 },
-            { label: 'sub component label #2', price: 100 },
+            {
+              label: 'sub component label',
+              price: 10,
+              status: '',
+            },
+            {
+              label: 'sub component label #2',
+              price: 100,
+              status: '',
+            },
           ]}
           totalItems={2}
           hideHeader={true}
