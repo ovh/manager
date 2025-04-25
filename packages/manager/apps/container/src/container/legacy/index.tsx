@@ -64,7 +64,7 @@ function LegacyContainer(): JSX.Element {
         <Progress isAnimating={isProgressAnimating}></Progress>
 
         <div className={style.managerShell}>
-          {isUS && (
+          {isUS && betaVersion && (
             <Suspense fallback="">
               <NavReshuffleBetaAccessModalLegacy />
             </Suspense>
