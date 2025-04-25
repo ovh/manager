@@ -1,6 +1,6 @@
 import React from 'react';
 import { FilterTypeCategories } from '@ovh-ux/manager-core-api';
-import { OdsBadge, OdsLink } from '@ovhcloud/ods-components/react';
+import { OdsBadge } from '@ovhcloud/ods-components/react';
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
 import {
   DataGridTextCell,
@@ -9,6 +9,12 @@ import {
 import { ActionCell } from '@/components/actionCell';
 import { DedicatedServer } from '@/data/types/server.type';
 import MonitoringStatusChip from '@/components/monitoringStatus';
+import { DSVrack } from './vRackCell';
+import NameCell from './cells/nameCell';
+import RenewCell from './cells/renewCell';
+import ExpirationCell from './cells/expirationCell';
+import EngagementCell from './cells/engagementCell';
+import PriceCell from './cells/priceCell';
 
 const colorByProductStatus: Record<string, ODS_BADGE_COLOR> = {
   ok: ODS_BADGE_COLOR.success,
@@ -24,9 +30,8 @@ const textByProductStatus: Record<string, string> = {
 
 export function getColumns(
   t: (v: string) => string,
-  goToServer: (name: string) => void,
-) {
-  const serverColumns: DatagridColumn<DedicatedServer>[] = [
+): DatagridColumn<DedicatedServer>[] {
+  return [
     {
       id: 'serverId',
       isSearchable: true,
@@ -42,21 +47,10 @@ export function getColumns(
       id: 'iam.displayName',
       isSearchable: true,
       isFilterable: true,
-      enableHiding: true,
+      enableHiding: false,
       type: FilterTypeCategories.String,
       label: t('server_display_name'),
-      cell: (server: DedicatedServer) => (
-        <DataGridTextCell>
-          <OdsLink
-            color="primary"
-            href={`#/server/${server.name}`}
-            onClick={() => {
-              goToServer(server.name);
-            }}
-            label={t(server?.iam?.displayName)}
-          />
-        </DataGridTextCell>
-      ),
+      cell: NameCell,
     },
     {
       id: 'ip',
@@ -92,6 +86,27 @@ export function getColumns(
       ),
     },
     {
+      id: 'os',
+      isSearchable: true,
+      isFilterable: true,
+      enableHiding: true,
+      type: FilterTypeCategories.String,
+      label: t('server_display_operating_system'),
+      cell: (server: DedicatedServer) => (
+        <DataGridTextCell>{t(server.os)}</DataGridTextCell>
+      ),
+    },
+    {
+      id: 'region',
+      isSearchable: true,
+      enableHiding: true,
+      type: FilterTypeCategories.String,
+      label: t('server_display_region'),
+      cell: (server: DedicatedServer) => (
+        <DataGridTextCell>{t(server.region)}</DataGridTextCell>
+      ),
+    },
+    {
       id: 'rack',
       isSearchable: true,
       isFilterable: true,
@@ -103,13 +118,14 @@ export function getColumns(
       ),
     },
     {
-      id: 'region',
+      id: 'datacentre',
       isSearchable: true,
+      isFilterable: true,
       enableHiding: true,
       type: FilterTypeCategories.String,
-      label: t('server_display_region'),
+      label: t('server_display_datacentre'),
       cell: (server: DedicatedServer) => (
-        <DataGridTextCell>{t(server.region)}</DataGridTextCell>
+        <DataGridTextCell>{t(server.datacenter)}</DataGridTextCell>
       ),
     },
     {
@@ -133,12 +149,52 @@ export function getColumns(
       enableHiding: true,
       type: FilterTypeCategories.Boolean,
       label: t('server_display_monitoring'),
-      cell: (server: DedicatedServer) => (
-        <MonitoringStatusChip
-          monitoring={server.monitoring}
-          noIntervention={server.noIntervention}
-        />
-      ),
+      cell: MonitoringStatusChip,
+    },
+    {
+      id: 'vrack',
+      isSearchable: true,
+      isFilterable: true,
+      enableHiding: true,
+      type: FilterTypeCategories.String,
+      label: t('server_display_vrack'),
+      cell: DSVrack,
+    },
+    {
+      id: 'renew',
+      isSearchable: false,
+      isFilterable: false,
+      enableHiding: true,
+      type: FilterTypeCategories.String,
+      label: t('server_display_renew'),
+      cell: RenewCell,
+    },
+    {
+      id: 'expiration',
+      isSearchable: false,
+      isFilterable: false,
+      enableHiding: true,
+      type: FilterTypeCategories.String,
+      label: t('server_display_expiration'),
+      cell: ExpirationCell,
+    },
+    {
+      id: 'engagement',
+      isSearchable: false,
+      isFilterable: false,
+      enableHiding: true,
+      type: FilterTypeCategories.String,
+      label: t('server_display_engagement'),
+      cell: EngagementCell,
+    },
+    {
+      id: 'price',
+      isSearchable: false,
+      isFilterable: false,
+      enableHiding: true,
+      type: FilterTypeCategories.String,
+      label: t('server_display_price'),
+      cell: PriceCell,
     },
     {
       id: 'actions',
@@ -146,8 +202,7 @@ export function getColumns(
       enableHiding: false,
       label: '',
       isSortable: false,
-      cell: (server: DedicatedServer) => <ActionCell {...server} />,
+      cell: ActionCell,
     },
   ];
-  return serverColumns;
 }
