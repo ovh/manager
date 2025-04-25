@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { Environment } from "@ovh-ux/manager-config";
 import { useOvhPaymentMethod } from '@ovh-ux/ovh-payment-method';
-import { useReket } from '@ovh-ux/ovh-reket';
 import { useApplication } from "@/context";
 import { PAYMENT_ALERTS } from "@/components/payment-modal/paymentModal.constants";
 import { IPaymentMethod } from "@/types/payment-method";
@@ -11,11 +10,7 @@ export const useExpiredDefaultCreditCardAlert = (enabled: boolean) => {
   const environment: Environment = shell
     .getPlugin('environment')
     .getEnvironment();
-  const region = environment.getRegion();
-  const ovhPaymentMethodService = useOvhPaymentMethod({
-    reketInstance: useReket(),
-    region,
-  });
+  const ovhPaymentMethodService = useOvhPaymentMethod();
   return useQuery({
     queryKey: ['expired-credit-card'],
     queryFn: ovhPaymentMethodService.getPaymentMethods,

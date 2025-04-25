@@ -1,4 +1,5 @@
-import { useReket } from '@ovh-ux/ovh-reket';
+import { aapi } from '@ovh-ux/manager-core-api';
+import type { ApiError } from '@ovh-ux/manager-core-api';
 import { getHeaders } from '@ovh-ux/request-tagger';
 
 import Environment from './environment';
@@ -24,87 +25,85 @@ export * from './environment';
 
 export const isTopLevelApplication = () => window.top === window.self;
 
-interface ApiError {
-  status: number;
-  data?: {
-    region?: string;
-    applications?: {
-      restricted?: { publicURL?: string };
-    };
-    class?: string;
+export type ConfigurationApiResponse = {
+  region?: string;
+  applications?: {
+    restricted?: { publicURL?: string };
   };
-  response?: {
-    statusText?: string;
-    data?: unknown;
-  };
-}
+  class?: string;
+};
 
 export const fetchConfiguration = async (applicationName: string): Promise<Environment> => {
   const environment = new Environment();
-  const configRequestOptions = {
-    requestType: 'aapi',
-    headers: {
-      'Content-Type': 'application/json;charset=utf-8',
-      Accept: 'application/json',
-      ...getHeaders('/engine/2api/configuration'),
-    },
-    credentials: 'same-origin',
-  };
   let configurationURL = '/configuration';
   if (applicationName) {
     environment.setApplicationName(applicationName);
     configurationURL = `${configurationURL}?app=${encodeURIComponent(applicationName)}`;
   }
-  const Reket = useReket(true);
 
-  return Reket.get<Environment>(configurationURL, configRequestOptions)
-    .then((config) => {
-      environment.setRegion(config.region);
-      environment.setUser(config.user);
-      environment.setApplicationURLs(config.applicationURLs);
-      environment.setUniverse(config.universe || '');
-      environment.setMessage(config.message);
-      environment.setApplications(config.applications);
+  return aapi
+    .get(configurationURL, {
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Accept: 'application/json',
+        ...getHeaders('/engine/2api/configuration'),
+      },
+    })
+    .then(({ data }: { data: Environment }) => {
+      environment.setRegion(data.region);
+      environment.setUser(data.user);
+      environment.setApplicationURLs(data.applicationURLs);
+      environment.setUniverse(data.universe || '');
+      environment.setMessage(data.message);
+      environment.setApplications(data.applications);
       return environment;
     })
-    .catch((exception) => {
-      const apiError = exception as ApiError;
-      if (apiError && apiError.status === 401 && !isTopLevelApplication()) {
-        window.parent.postMessage({
-          id: 'ovh-auth-redirect',
-          url: `/auth?action=disconnect&onsuccess=${encodeURIComponent(window.location.href)}`,
-        });
-      }
-      if (apiError?.status === 403) {
-        const region = apiError?.data?.region || RESTRICTED_DEFAULTS.region;
-        const publicURL =
-          apiError?.data?.applications?.restricted?.publicURL || RESTRICTED_DEFAULTS.publicURL;
-        if (window?.top) {
-          window.top.location.href = `${publicURL}?region=${region}`;
+    .catch(
+      (
+        err: ApiError & {
+          response: {
+            data: ConfigurationApiResponse;
+          };
+        },
+      ) => {
+        const { status, data } = err?.response || {};
+
+        if (status === 401 && !isTopLevelApplication()) {
+          window.parent.postMessage({
+            id: 'ovh-auth-redirect',
+            url: `/auth?action=disconnect&onsuccess=${encodeURIComponent(window.location.href)}`,
+          });
         }
-      }
-      environment.setRegion(HOSTNAME_REGIONS[window.location.hostname]);
-      if (
-        apiError?.status === 500 &&
-        apiError?.data?.class === 'Server::InternalServerError::ApiUnreachableMaintenance'
-      ) {
-        const errorObj = {
-          error: apiError.data,
-          environment,
-        };
-        // eslint-disable-next-line @typescript-eslint/only-throw-error
-        throw errorObj;
-      }
-      if (apiError?.status >= 500) {
-        const errorObj = {
-          error: {
-            message: apiError?.response?.data || apiError?.response?.statusText,
-          },
-          environment,
-        };
-        // eslint-disable-next-line @typescript-eslint/only-throw-error
-        throw errorObj;
-      }
-      return environment;
-    });
+        if (status === 403) {
+          const region = data?.region || RESTRICTED_DEFAULTS.region;
+          const publicURL =
+            data?.applications?.restricted?.publicURL || RESTRICTED_DEFAULTS.publicURL;
+          if (window.top) {
+            window.top.location.href = `${publicURL}?region=${region}`;
+          } else {
+            window.location.href = `${publicURL}?region=${region}`;
+          }
+        }
+        environment.setRegion(HOSTNAME_REGIONS[window.location.hostname]);
+        if (
+          status === 500 &&
+          data?.class === 'Server::InternalServerError::ApiUnreachableMaintenance'
+        ) {
+          const errorObj = new Error('Server::InternalServerError::ApiUnreachableMaintenance');
+          Object.assign(errorObj, { error: data, environment });
+          throw errorObj;
+        }
+        if (status && status >= 500) {
+          const errorObj = new Error('Server Error');
+          Object.assign(errorObj, {
+            error: {
+              message: data || err?.response?.statusText,
+            },
+            environment,
+          });
+          throw errorObj;
+        }
+        return environment;
+      },
+    );
 };

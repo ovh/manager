@@ -14,6 +14,7 @@ import { ShopItem } from '../order/OrderPopupContent';
 import getIcon from './GetIcon';
 import { v6 } from '@ovh-ux/manager-core-api';
 import { Preference } from '@/types/preferences';
+import { AxiosError } from 'axios';
 
 const features = [
   'sms',
@@ -47,7 +48,7 @@ export default function TelecomSidebar() {
           .then(({ data }) => {
             resolve(data.value || false);
           })
-          .catch((error: any) => {
+          .catch((error: AxiosError) => {
             if (error?.response?.status === 404) {
               resolve(false);
             } else {
