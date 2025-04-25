@@ -21,11 +21,7 @@ export const useOvhPaymentMethod = () => {
   ) => {
     return v6
       .get('/me/payment/availableMethods')
-      .then(({ data }) => data)
-      .catch((error) =>
-        error.response.status === 404 ? [] : Promise.reject(error),
-      )
-      .then((availableMethods) => {
+      .then(({ data: availableMethods }) => {
         const availablePaymentMethods = onlyRegisterable
           ? availableMethods.filter(({ registerable }) => registerable)
           : availableMethods;
@@ -33,7 +29,10 @@ export const useOvhPaymentMethod = () => {
         return availablePaymentMethods.map(
           (availableMethod) => new AvailablePaymentMethod(availableMethod),
         );
-      });
+      })
+      .catch((error) =>
+        error.response.status === 404 ? [] : Promise.reject(error),
+      );
   };
 
   /**
@@ -63,8 +62,7 @@ export const useOvhPaymentMethod = () => {
         ...params,
         paymentType: availablePaymentMethod.paymentType,
       })
-      .then(({ data }) => data)
-      .then((paymentMethod) => {
+      .then(({ data: paymentMethod }) => {
         if (params.orderId && paymentMethod.paymentMethodId) {
           return v6
             .post(`/me/order/${params.orderId}/pay`, {
@@ -195,16 +193,15 @@ export const useOvhPaymentMethod = () => {
       .get('/me/payment/method', {
         params,
       })
-      .then(({ data }) => data)
-      .catch((error) =>
-        error.response.status === 404 ? [] : Promise.reject(error),
-      )
-      .then((paymentMethodIds) =>
+      .then(({ data: paymentMethodIds }) =>
         Promise.all(
           paymentMethodIds.map((paymentMethodId) =>
             getPaymentMethod(paymentMethodId),
           ),
         ),
+      )
+      .catch((error) =>
+        error.response.status === 404 ? [] : Promise.reject(error),
       );
   };
 
