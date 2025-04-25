@@ -1,15 +1,13 @@
 import React from 'react';
 import {
-  OsdsIcon,
-  OsdsMessage,
-  OsdsSpinner,
-  OsdsTooltip,
-  OsdsTooltipContent,
+  OdsIcon,
+  OdsMessage,
+  OdsSpinner,
+  OdsTooltip,
 } from '@ovhcloud/ods-components/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
+  ODS_MESSAGE_COLOR,
   ODS_ICON_NAME,
-  ODS_ICON_SIZE,
   ODS_SPINNER_SIZE,
 } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
@@ -27,39 +25,35 @@ export type InfoInconProps = {
 export const InfoIcon: React.FC<InfoInconProps> = ({ className, vs }) => {
   const { t } = useTranslation('vrack-services');
   const displayName = getDisplayName(vs);
-  const size = ODS_ICON_SIZE.xs;
 
   if (vs.resourceStatus === VrackServicesResourceStatus.READY) {
     return null;
   }
 
   return (
-    <OsdsTooltip>
+    <>
       {vs.resourceStatus === VrackServicesResourceStatus.ERROR ? (
-        <OsdsIcon
+        <OdsIcon
+          id={`${vs.id}-info`}
           className={className}
-          color={ODS_THEME_COLOR_INTENT.warning}
-          size={size}
-          name={ODS_ICON_NAME.WARNING_CIRCLE}
-          data-testid="warning-icon"
+          name={ODS_ICON_NAME.triangleExclamation}
         />
       ) : (
-        <OsdsSpinner
+        <OdsSpinner
           className={className}
           style={{ maxWidth: 20 }}
           size={ODS_SPINNER_SIZE.sm}
-          data-testid="vs-loader-operation-in-progress"
         />
       )}
-      <OsdsTooltipContent slot="tooltip-content">
+      <OdsTooltip triggerId={`${vs.id}-info`} withArrow>
         {vs.resourceStatus === VrackServicesResourceStatus.ERROR ? (
-          <OsdsMessage color={ODS_THEME_COLOR_INTENT.warning}>
+          <OdsMessage isDismissible={false} color={ODS_MESSAGE_COLOR.warning}>
             {t('vrackServicesInErrorMessage', { displayName })}
-          </OsdsMessage>
+          </OdsMessage>
         ) : (
           t('vrackServicesNotReadyInfoMessage', { displayName })
         )}
-      </OsdsTooltipContent>
-    </OsdsTooltip>
+      </OdsTooltip>
+    </>
   );
 };

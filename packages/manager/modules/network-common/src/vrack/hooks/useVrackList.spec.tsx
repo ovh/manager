@@ -2,7 +2,7 @@ import { renderHook } from '@testing-library/react-hooks';
 import { useQuery } from '@tanstack/react-query';
 import { vi } from 'vitest';
 import { useVrackList } from './useVrackList';
-import { vrackListMocks } from '../mocks';
+import { vrackListMocks } from '../../mocks';
 
 vi.mock('@tanstack/react-query', () => ({
   useQuery: vi.fn(),

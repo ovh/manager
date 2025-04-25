@@ -6,21 +6,14 @@ import {
   useNavigate,
   useParams,
 } from 'react-router-dom';
-import {
-  OsdsTabs,
-  OsdsTabBar,
-  OsdsTabBarItem,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { OdsTabs, OdsTab } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { ChangelogButton } from '@ovh-ux/manager-react-components';
-import { PageLayout } from './PageLayout.component';
+import { BaseLayout, ChangelogButton } from '@ovh-ux/manager-react-components';
 import { DashboardTabItemProps } from './layout-helpers.type';
 import { OperationMessages } from '../feedback-messages/OperationMessages.component';
 import { SuccessMessages } from '../feedback-messages/SuccessMessage.component';
 import { CHANGELOG_LINKS } from '@/utils/constants';
+import { Breadcrumb } from '../Breadcrumb.component';
 
 export type DashboardLayoutProps = {
   tabs: DashboardTabItemProps[];
@@ -52,46 +45,39 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ tabs }) => {
   }, [location.pathname]);
 
   return (
-    <PageLayout>
-      <div className="py-4">
-        <div className="flex items-center justify-between">
-          <OsdsText
-            className="block mb-5"
-            level={ODS_TEXT_LEVEL.heading}
-            color={ODS_THEME_COLOR_INTENT.text}
-            size={ODS_TEXT_SIZE._600}
-          >
-            {t('dashboardPageTitle')}
-          </OsdsText>
-          <ChangelogButton links={CHANGELOG_LINKS} />
-        </div>
-
-        <OsdsText
-          className="block mb-8"
-          level={ODS_TEXT_LEVEL.body}
-          color={ODS_THEME_COLOR_INTENT.default}
-          size={ODS_TEXT_SIZE._400}
-        >
-          {t('dashboardPageDescription')}
-        </OsdsText>
-        <OperationMessages id={id} />
-        <SuccessMessages id={id} />
-      </div>
-      <OsdsTabs panel={activePanel}>
-        <OsdsTabBar slot="top">
+    <BaseLayout
+      breadcrumb={<Breadcrumb />}
+      header={{
+        title: t('dashboardPageTitle'),
+        changelogButton: <ChangelogButton links={CHANGELOG_LINKS} />,
+      }}
+      description={t('dashboardPageDescription')}
+      message={
+        <>
+          <OperationMessages id={id} />
+          <SuccessMessages id={id} />
+        </>
+      }
+      tabs={
+        <OdsTabs>
           {tabs.map((tab: DashboardTabItemProps) => (
-            <NavLink
-              to={tab.to}
-              className="no-underline"
-              key={`osds-tab-bar-item-${tab.name}`}
-              onClick={tab.onClick}
+            <OdsTab
+              key={`osds-tab-${tab.name}`}
+              isSelected={activePanel === tab.name}
             >
-              <OsdsTabBarItem panel={tab.name}>{tab.title}</OsdsTabBarItem>
-            </NavLink>
+              <NavLink
+                to={tab.to}
+                className="no-underline"
+                onClick={tab.onClick}
+              >
+                {tab.title}
+              </NavLink>
+            </OdsTab>
           ))}
-        </OsdsTabBar>
-      </OsdsTabs>
+        </OdsTabs>
+      }
+    >
       <Outlet />
-    </PageLayout>
+    </BaseLayout>
   );
 };
