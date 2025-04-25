@@ -45,15 +45,15 @@ export const ManageOrganisationsDatagrid: React.FC = () => {
       {
         id: 'organisationId',
         label: t('manageOrganisationsTabOrganisaton'),
-        cell: ({ organisationId }: OrgDetails) => (
-          <DataGridTextCell>{organisationId}</DataGridTextCell>
+        cell: (org: OrgDetails) => (
+          <DataGridTextCell>{org?.organisationId}</DataGridTextCell>
         ),
       },
       {
         id: 'type',
         label: t('manageOrganisationsTabType'),
-        cell: ({ registry }: OrgDetails) => (
-          <DataGridTextCell>{registry}</DataGridTextCell>
+        cell: (org: OrgDetails) => (
+          <DataGridTextCell>{org?.registry}</DataGridTextCell>
         ),
       },
       {
@@ -75,8 +75,8 @@ export const ManageOrganisationsDatagrid: React.FC = () => {
       {
         id: 'phone',
         label: t('manageOrganisationsTabPhone'),
-        cell: ({ phone }: OrgDetails) => (
-          <DataGridTextCell>{phone}</DataGridTextCell>
+        cell: (org: OrgDetails) => (
+          <DataGridTextCell>{org?.phone}</DataGridTextCell>
         ),
       },
       {
