@@ -1,6 +1,6 @@
 import React from 'react';
 import { FilterTypeCategories } from '@ovh-ux/manager-core-api';
-import { OdsBadge, OdsLink } from '@ovhcloud/ods-components/react';
+import { OdsBadge } from '@ovhcloud/ods-components/react';
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
 import {
   DataGridTextCell,
@@ -9,6 +9,12 @@ import {
 import { ActionCell } from '@/components/actionCell';
 import { DedicatedServer } from '@/data/types/server.type';
 import MonitoringStatusChip from '@/components/monitoringStatus';
+import { DSVrack } from './vRackCell';
+import NameCell from './cells/nameCell';
+import RenewCell from './cells/renewCell';
+import ExpirationCell from './cells/expirationCell';
+import EngagementCell from './cells/engagementCell';
+import PriceCell from './cells/priceCell';
 
 const colorByProductStatus: Record<string, ODS_BADGE_COLOR> = {
   ok: ODS_BADGE_COLOR.success,
@@ -46,16 +52,7 @@ export function getColumns(
       type: FilterTypeCategories.String,
       label: t('server_display_name'),
       cell: (server: DedicatedServer) => (
-        <DataGridTextCell>
-          <OdsLink
-            color="primary"
-            href={`#/server/${server.name}`}
-            onClick={() => {
-              goToServer(server.name);
-            }}
-            label={t(server?.iam?.displayName)}
-          />
-        </DataGridTextCell>
+        <NameCell server={server} navigate={goToServer} t={t} />
       ),
     },
     {
@@ -68,6 +65,77 @@ export function getColumns(
       cell: (server: DedicatedServer) => (
         <DataGridTextCell>{t(server.ip)}</DataGridTextCell>
       ),
+    },
+    {
+      id: 'os',
+      isSearchable: true,
+      isFilterable: true,
+      enableHiding: true,
+      type: FilterTypeCategories.String,
+      label: t('server_display_operating_system'),
+      cell: (server: DedicatedServer) => (
+        <DataGridTextCell>{t(server.os)}</DataGridTextCell>
+      ),
+    },
+    {
+      id: 'datacentre',
+      isSearchable: true,
+      isFilterable: true,
+      enableHiding: true,
+      type: FilterTypeCategories.String,
+      label: t('server_display_datacentre'),
+      cell: (server: DedicatedServer) => (
+        <DataGridTextCell>{t(server.datacenter)}</DataGridTextCell>
+      ),
+    },
+    {
+      id: 'vrack',
+      isSearchable: true,
+      isFilterable: true,
+      enableHiding: true,
+      type: FilterTypeCategories.String,
+      label: t('server_display_vrack'),
+      cell: (server: DedicatedServer) => {
+        return <DSVrack server={server.name} />;
+      },
+    },
+    {
+      id: 'renew',
+      isSearchable: false,
+      isFilterable: false,
+      enableHiding: true,
+      type: FilterTypeCategories.String,
+      label: t('server_display_renew'),
+      cell: (server: DedicatedServer) => <RenewCell server={server} t={t} />,
+    },
+    {
+      id: 'expiration',
+      isSearchable: false,
+      isFilterable: false,
+      enableHiding: true,
+      type: FilterTypeCategories.String,
+      label: t('server_display_expiration'),
+      cell: (server: DedicatedServer) => <ExpirationCell server={server} />,
+    },
+    {
+      id: 'engagement',
+      isSearchable: false,
+      isFilterable: false,
+      enableHiding: true,
+      type: FilterTypeCategories.String,
+      label: t('server_display_engagement'),
+      cell: (server: DedicatedServer) => (
+        <EngagementCell server={server} t={t} />
+      ),
+    },
+    {
+      id: 'price',
+      isSearchable: false,
+      isFilterable: false,
+      enableHiding: true,
+      type: FilterTypeCategories.String,
+      label: t('server_display_price'),
+      cell: (server: DedicatedServer) => <PriceCell server={server} />,
     },
     {
       id: 'reverse',
