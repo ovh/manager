@@ -1,5 +1,5 @@
 {
-  "cloud_connect_bgp_peering": "Test połączenia BGP",
+  "cloud_connect_bgp_peering": "Sprawdź peering BGP",
   "cloud_connect_bgp_peering_description": "Wybierz diagnostykę, którą chcesz przeprowadzić",
   "cloud_connect_bgp_peering_choice_default": "<b>Default</b>",
   "cloud_connect_bgp_peering_choice_routes": "<b>Routes</b>",
