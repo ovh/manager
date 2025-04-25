@@ -42,5 +42,6 @@
   "pci_additional_ip_create_floating_ip_error": "Failed to assign Floating IP: {{message}}",
   "pci_floating_ip_price_per_hour": "from ",
   "pci_floating_ip_resume_hour": "Hourly ",
-  "pci_floating_ip_resume_price": "Price: "
+  "pci_floating_ip_resume_price": "Price: ",
+  "pci_floating_ip_3az_guide_description": "To learn more about 3-AZ service specifications and how to use them to build a resilient infrastructure, <Link>click here</Link>"
 }
