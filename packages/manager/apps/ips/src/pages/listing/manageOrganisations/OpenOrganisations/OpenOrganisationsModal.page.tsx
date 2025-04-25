@@ -8,6 +8,7 @@ import {
   ODS_SPINNER_SIZE,
   ODS_BUTTON_COLOR,
   ODS_BUTTON_VARIANT,
+  OdsPhoneNumberCountryIsoCode,
 } from '@ovhcloud/ods-components';
 import {
   OdsModal,
@@ -33,8 +34,11 @@ export const OpenOrganisationsModal: React.FC<{ isOpen: boolean }> = ({
 }) => {
   const [registry, setRegistry] = useState([]);
   const [countrylist, setCountrylist] = useState([]);
-  const { t } = useTranslation('manage-organisations');
-  const { t: tcommon } = useTranslation(NAMESPACES?.ACTIONS);
+  const { t, t: tcommon } = useTranslation([
+    'manage-organisations',
+    NAMESPACES?.ACTIONS,
+  ]);
+  const { t: tcountry } = useTranslation('region-selector');
   const navigate = useNavigate();
   const location = useLocation();
   const { organisationId } = useParams();
@@ -53,9 +57,14 @@ export const OpenOrganisationsModal: React.FC<{ isOpen: boolean }> = ({
     control,
     handleSubmit,
     formState: { isDirty, isValid, isSubmitted, errors },
+    watch,
+    setError,
+    clearErrors,
   } = useForm<OrgDetails>({
     defaultValues,
   });
+
+  const selectedCountry = watch('country');
 
   const { models, isLoading } = useGetMeModels();
 
@@ -230,11 +239,19 @@ export const OpenOrganisationsModal: React.FC<{ isOpen: boolean }> = ({
                     onOdsChange={onChange}
                     onOdsBlur={onBlur}
                   >
-                    {countrylist?.map((item) => (
-                      <option key={item} value={item}>
-                        {item}
-                      </option>
-                    )) || []}
+                    {countrylist
+                      ?.sort((a, b) =>
+                        tcountry(
+                          `region-selector-country-name_${a}`,
+                        ).localeCompare(
+                          tcountry(`region-selector-country-name_${b}`),
+                        ),
+                      )
+                      .map((item) => (
+                        <option key={item} value={item}>
+                          {tcountry(`region-selector-country-name_${item}`)}
+                        </option>
+                      )) || []}
                   </OdsSelect>
                   {isLoading && (
                     <Loading
@@ -345,20 +362,40 @@ export const OpenOrganisationsModal: React.FC<{ isOpen: boolean }> = ({
           <Controller
             control={control}
             name="phone"
-            render={({ field: { name, value, onChange } }) => (
-              <OdsFormField className="mb-1">
+            render={({
+              field: { onChange, value, name },
+              fieldState: { error },
+            }) => (
+              <OdsFormField className="mb-1" error={error?.message}>
                 <label htmlFor={name} slot="label">
                   {t('manageOrganisationsOrgModelPhoneLabel')}
                 </label>
                 <OdsPhoneNumber
                   className="w-full mt-1"
-                  countries="all"
                   name={name}
                   value={value}
                   isRequired
-                  onOdsChange={(e) => onChange(e.detail.value)}
-                  hasError={!!errors[name]}
-                ></OdsPhoneNumber>
+                  isClearable={true}
+                  isoCode={
+                    selectedCountry?.toLowerCase() as OdsPhoneNumberCountryIsoCode
+                  }
+                  onOdsChange={(e) => {
+                    onChange(e.detail.value);
+                    if (e.detail.value && e.detail.validity?.valid) {
+                      clearErrors(name);
+                    } else if (selectedCountry) {
+                      setError(name, {
+                        type: 'manual',
+                        message: t('manageOrganisationsOrgModelPhoneInvalid', {
+                          countryCode: tcountry(
+                            `region-selector-country-name_${selectedCountry}`,
+                          ),
+                        }),
+                      });
+                    }
+                  }}
+                  hasError={!!error}
+                />
               </OdsFormField>
             )}
           />
