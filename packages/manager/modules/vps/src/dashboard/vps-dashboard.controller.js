@@ -1,4 +1,3 @@
-import find from 'lodash/find';
 import get from 'lodash/get';
 import groupBy from 'lodash/groupBy';
 import isArray from 'lodash/isArray';
@@ -185,10 +184,9 @@ export default class {
   loadIps() {
     this.loaders.ips = true;
     this.VpsService.getIps(this.serviceName).then((ips) => {
-      this.vps.ipv6Gateway = get(
-        find(ips.results, { version: 'v6' }),
-        'gateway',
-      );
+      this.vps.ipv6Gateway = ips.find(
+        ({ version }) => version === 'v6',
+      )?.gateway;
       this.loaders.ips = false;
     });
   }
