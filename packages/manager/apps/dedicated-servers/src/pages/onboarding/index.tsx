@@ -1,10 +1,10 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Card, OnboardingLayout } from '@ovh-ux/manager-react-components';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import useGuideUtils, { UrlLinks } from '@/hooks/useLinkUtils';
 import onboardingImgSrc from '@/assets/onboarding-img.png';
 import { onboardingLinks, CTAS } from '@/data/constants/onboardingLinks';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 export default function Onboarding() {
   const { t } = useTranslation('onboarding');

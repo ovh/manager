@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FilterTypeCategories } from '@ovh-ux/manager-core-api';
+import { ApiError, FilterTypeCategories } from '@ovh-ux/manager-core-api';
 import { OdsButton, OdsLink } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_SIZE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import {
@@ -20,6 +20,7 @@ import useLinkUtils, { UrlEntry } from '@/hooks/useLinkUtils';
 import { orderLinks } from '@/data/constants/orderLinks';
 import { Cluster } from '@/data/types/cluster.type';
 import { urls } from '@/routes/routes.constant';
+import { ErrorComponent } from '@/components/errorComponent';
 
 export default function Listing() {
   const [columns] = useState([]);
@@ -74,7 +75,7 @@ export default function Listing() {
       id: 'name',
       isSearchable: true,
       isFilterable: true,
-      enableHiding: true,
+      enableHiding: false,
       type: FilterTypeCategories.String,
       label: t('dedicated_clusters_name'),
       cell: (item: Cluster) => (
@@ -129,47 +130,50 @@ export default function Listing() {
   }
 
   const TopbarCTA = () => (
-    <div>
-      <OdsButton
-        icon={ODS_ICON_NAME.plus}
-        size={ODS_BUTTON_SIZE.sm}
-        variant="outline"
-        label={tCommon('order')}
-        onClick={(e) => {
-          window.open(links.threeAZClusterOrder);
-          e.preventDefault();
-        }}
-      />
-    </div>
+    <OdsButton
+      icon={ODS_ICON_NAME.plus}
+      size={ODS_BUTTON_SIZE.sm}
+      variant="outline"
+      label={tCommon('order')}
+      onClick={(e) => {
+        window.open(links.threeAZClusterOrder);
+        e.preventDefault();
+      }}
+    />
   );
 
   return (
-    <RedirectionGuard
-      isLoading={isLoading || !flattenData}
-      condition={isSuccess && flattenData?.length === 0}
-      route={urls.onboarding}
-      isError={isError}
-    >
-      <React.Suspense>
-        {columns && (
-          <Datagrid
-            columns={clusterColumns}
-            items={sortClusterListing(
-              sorting,
-              (flattenData as unknown) as Cluster[],
+    <>
+      {isError && <ErrorComponent error={error as ApiError} />}
+      {!isError && (
+        <RedirectionGuard
+          isLoading={isLoading || !flattenData}
+          condition={isSuccess && flattenData?.length === 0}
+          route={urls.onboarding}
+          isError={isError}
+        >
+          <React.Suspense>
+            {columns && (
+              <Datagrid
+                columns={clusterColumns}
+                items={sortClusterListing(
+                  sorting,
+                  (flattenData as unknown) as Cluster[],
+                )}
+                totalItems={totalCount || 0}
+                hasNextPage={hasNextPage && !isLoading}
+                onFetchNextPage={fetchNextPage}
+                sorting={sorting}
+                onSortChange={setSorting}
+                isLoading={isLoading}
+                filters={filters}
+                search={search}
+                topbar={<TopbarCTA />}
+              />
             )}
-            totalItems={totalCount || 0}
-            hasNextPage={hasNextPage && !isLoading}
-            onFetchNextPage={fetchNextPage}
-            sorting={sorting}
-            onSortChange={setSorting}
-            isLoading={isLoading}
-            filters={filters}
-            search={search}
-            topbar={<TopbarCTA />}
-          />
-        )}
-      </React.Suspense>
-    </RedirectionGuard>
+          </React.Suspense>
+        </RedirectionGuard>
+      )}
+    </>
   );
 }

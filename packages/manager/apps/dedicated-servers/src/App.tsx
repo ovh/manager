@@ -3,7 +3,7 @@ import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { RouterProvider, createHashRouter } from 'react-router-dom';
-import { Routes } from './routes/routes';
+import { routes } from './routes/routes';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -17,7 +17,7 @@ const queryClient = new QueryClient({
 });
 
 function App() {
-  const router = createHashRouter(Routes);
+  const router = createHashRouter(routes);
 
   return (
     <QueryClientProvider client={queryClient}>

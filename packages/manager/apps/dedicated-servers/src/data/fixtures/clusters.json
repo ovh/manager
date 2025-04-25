@@ -1,0 +1,58 @@
+[
+  {
+    "id": "1d853f96-1d853f96-1d853f96-1d853f96",
+    "iam": {
+      "id": "e8ef0c29-e8ef0c29-e8ef0c29-e8ef0c29",
+      "urn": "urn:v1:eu:resource:clusterDelivery:1d853f96-1d853f96-1d853f96-1d853f96",
+      "displayName": "1d853f96-1d853f96-1d853f96-1d853f96c"
+    },
+    "model": "Cluster of 3AZ Scale-i1 servers",
+    "nodes": [
+      {
+        "id": "e11156f0-e11156f0-e11156f0-e11156f0",
+        "serverId": 1700000,
+        "serverName": "ns10000.test.eu"
+      },
+      {
+        "id": "628ecc13-7149-4689-babd-bcde90903c54",
+        "serverId": 1700001,
+        "serverName": "ns20000.test.eu"
+      },
+      {
+        "id": "2acf149a-b53d-4cde-b3b5-c39e5a8bb4c3",
+        "serverId": 1700002,
+        "serverName": "ns30000.test.eu"
+      }
+    ],
+    "region": "eu-west-par",
+    "status": "done"
+  },
+  {
+    "id": "3aeeacbc-3aeeacbc-3aeeacbc-3aeeacbc",
+    "iam": {
+      "id": "bef0c485-bef0c485-bef0c485-bef0c485",
+      "urn": "urn:v1:eu:resource:clusterDelivery:3aeeacbc-3aeeacbc-3aeeacbc-3aeeacbc",
+      "displayName": "3aeeacbc-3aeeacbc-3aeeacbc-3aeeacbc"
+    },
+    "model": "Cluster of 3AZ HGR-HCI-i1 servers",
+    "nodes": [
+      {
+        "id": "f717769a-ff717769a-f717769a",
+        "serverId": 180000,
+        "serverName": "ns1000.eu"
+      },
+      {
+        "id": "9648d87d-9648d87d-9648d87d",
+        "serverId": 180001,
+        "serverName": "ns2000.eu"
+      },
+      {
+        "id": "6dd537a0-6dd537a0-6dd537a0",
+        "serverId": 180002,
+        "serverName": "ns30000.eu"
+      }
+    ],
+    "region": "eu-west-par",
+    "status": "done"
+  }
+]

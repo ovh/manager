@@ -16,7 +16,7 @@ const lazyRouteConfig = (importFn: CallableFunction): Partial<RouteObject> => {
   };
 };
 
-export const Routes: any = [
+export const routes: any = [
   {
     path: urls.root,
     ...lazyRouteConfig(() => import('@/pages/listing/index')),
