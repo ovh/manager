@@ -28,11 +28,15 @@ export const getUnavailableRegionList = (
       ) || {};
 
   return Object.entries(serviceListByRegion)
+    .map(([region, serviceList]) => ({
+      region,
+      has3blocks: serviceList.length >= 3,
+      alreadyInCurrentVrack: serviceList.includes(serviceName),
+    }))
     .filter(
-      ([, serviceList]) =>
-        serviceList.length >= 3 || serviceList.includes(serviceName),
-    )
-    .map(([region]) => region);
+      ({ has3blocks, alreadyInCurrentVrack }) =>
+        has3blocks || alreadyInCurrentVrack,
+    );
 };
 
 export const useIpv6Availability = ({
