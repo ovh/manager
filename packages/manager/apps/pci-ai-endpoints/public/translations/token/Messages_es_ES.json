@@ -15,16 +15,16 @@
   "ai_endpoints_token_deletion": "Eliminar la clave API",
   "ai_endpoints_token_update": "Actualizar la clave API",
   "ai_endpoints_token_deletion_confirm": "Eliminar la clave API",
-  "ai_endpoints_token_udpate_confirm": "Actualizar",
+  "ai_endpoints_token_udpate_confirm": "Actualizar ahora",
   "ai_endpoints_token_create": "Crear",
   "ai_endpoints_token_success_message": "La clave API se ha generado correctamente. Solo será visible una vez. No olvide copiarla y guardarla de forma segura.",
-  "ai_endpoints_token_understand": "Lo entendí",
-  "ai_endpoints_token_deletion_message": "¿Seguro que quiere eliminar la clave API",
+  "ai_endpoints_token_understand": "Lo he entendido",
+  "ai_endpoints_token_deletion_message": "¿Seguro que quiere eliminar la clave API?",
   "ai_endpoints_token_name_error": "Este nombre de clave ya está en uso",
   "ai_endpoints_token_name_required": "Es necesario asignar un nombre a la clave",
   "ai_endpoints_token_invalid_format": "La clave no debe contener espacios ni caracteres especiales",
   "ai_endpoints_token_description_placeholder": "Añadir una descripción",
-  "ai_endpoints_token_expiration_date": "Establecer una fecha de caducidad en la clave API",
-  "ai_endpoints_token_expiration_date_update": "Restablecer una fecha de expiración en la clave API",
-  "ai_endpoints_token_discovery_mod": "Su proyecto de Public Cloud está actualmente en modo «de lanzamiento». Para utilizar AI Endpoints, debe activar su proyecto añadiendo una forma de pago a su cuenta, que le permitirá crear su primera clave API e iniciar su uso."
+  "ai_endpoints_token_expiration_date": "Establecer una fecha de caducidad para la clave API",
+  "ai_endpoints_token_expiration_date_update": "Restablecer una fecha de expiración para la clave API",
+  "ai_endpoints_token_discovery_mod": "Su proyecto de Public Cloud está actualmente en modo «Discovery». Para utilizar AI Endpoints, debe activar su proyecto añadiendo una forma de pago a su cuenta, que le permitirá crear su primera clave API e iniciar su uso."
 }
