@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.10.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.10.13...@ovh-ux/manager-web@19.10.14) (2025-04-25)
+
+
+### Bug Fixes
+
+* **web:** add error message when procedure is ongoing ([#16764](https://github.com/ovh/manager/issues/16764)) ([5d6426a](https://github.com/ovh/manager/commit/5d6426a490c40df580d6692327b98a82c456bb0c)), closes [#MANAGER-18069](https://github.com/ovh/manager/issues/MANAGER-18069)
+
+
+
+
+
 ## [19.10.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.10.12...@ovh-ux/manager-web@19.10.13) (2025-04-22)
 
 
