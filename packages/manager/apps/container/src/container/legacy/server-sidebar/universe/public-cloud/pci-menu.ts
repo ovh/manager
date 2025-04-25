@@ -392,7 +392,7 @@ export function getPciProjectMenu(
           title: 'AI Notebooks',
           href: getURL(
             'public-cloud',
-            `#/pci/projects/${projectId}/ai-ml/notebook`,
+            `#/pci/projects/${projectId}/ai-ml/notebooks`,
           ),
         },
         isFeaturesAvailable('pci-ai-training') && {
