@@ -7,6 +7,7 @@ import {
   CLOUD_CONNECT_LISTING_TRACKING_CONTEXT,
   getDiagnosticDashboardTrackingContext,
 } from '../../cloud-connect.constants';
+import { REGION_TYPE } from './overview.constants';
 
 export default class CloudConnectOverviewCtrl {
   /* @ngInject */
@@ -26,6 +27,7 @@ export default class CloudConnectOverviewCtrl {
     this.cloudConnectService = cloudConnectService;
     this.$translate = $translate;
     this.POP_MAP = POP_MAP;
+    this.REGION_TYPE = REGION_TYPE;
   }
 
   $onInit() {

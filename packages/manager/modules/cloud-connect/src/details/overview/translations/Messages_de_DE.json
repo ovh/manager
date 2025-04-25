@@ -80,9 +80,9 @@
   "cloud_connect_product_name": "Handelsname",
   "cloud_connect_change_bandwidth": "Bandbreite ändern",
   "cloud_connect_pop_diagnostic": "POP-Diagnose",
-  "cloud_connect_pop_diagnostic_link": "Ergebnisse meiner </br> Diagnosen anzeigen",
-  "cloud_connect_pop_diagnostic_check": "BGP-Peering-Test",
-  "cloud_connect_pop_get_mac_list": "Liste meiner MAC-Adressen anzeigen",
+  "cloud_connect_pop_diagnostic_link": "Meine Ergebnisse anzeigen",
+  "cloud_connect_pop_diagnostic_check": "BGP-Peering überprüfen",
+  "cloud_connect_pop_get_mac_list": "MAC-Liste abrufen",
   "cloud_connect_region_type": "Typ",
   "cloud_connect_region_eu-west-par": "Europa (Frankreich – Paris)",
   "cloud_connect_region_eu-west-gra": "Europa (Frankreich – Gravelines)",
@@ -114,5 +114,6 @@
   "cloud_connect_region_us-west-lz-pao": "Nordamerika (USA – Westen – Palo Alto)",
   "cloud_connect_region_us-west-lz-den": "Nordamerika (USA – Westen – Denver)",
   "cloud_connect_region_us-east-lz-atl": "Nordamerika (USA – Osten – Atlanta)",
-  "cloud_connect_region_eu-west-lz-mrs": "Europa (Frankreich – Marseille)"
+  "cloud_connect_region_eu-west-lz-mrs": "Europa (Frankreich – Marseille)",
+  "cloud_connect_region_AZ_type": "Region {{regionType}}"
 }
