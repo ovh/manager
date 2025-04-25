@@ -11,6 +11,7 @@ import create from './create';
 import deleteModule from './delete';
 import dashboard from './dashboard';
 import editSize from './edit-size';
+import editReserveSpace from './edit-reserve-space';
 
 const moduleName = 'ovhManagerNetAppVolumes';
 
@@ -24,6 +25,7 @@ angular
     deleteModule,
     dashboard,
     editSize,
+    editReserveSpace,
   ])
   .config(routing)
   .component('ovhManagerNetAppVolumes', component)
