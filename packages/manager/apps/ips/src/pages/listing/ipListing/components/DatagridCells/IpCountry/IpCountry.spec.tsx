@@ -41,7 +41,9 @@ describe('IpCountry Component', async () => {
     const { getByText } = renderComponent({ ip: ipDetailsList[3].ip });
     await waitFor(() => {
       expect(
-        getByText(`region-selector-country-name_${ipDetailsList[3].country}`),
+        getByText(
+          `region-selector-country-name_${ipDetailsList[3].country.toUpperCase()}`,
+        ),
       ).toBeDefined();
     });
   });

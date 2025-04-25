@@ -1,8 +1,10 @@
 import React from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { IP_FAILOVER_PLANCODE } from './catalog.utils';
 import { useCatalogIps } from './useCatalogIps';
-import { CatalogIpPlan } from '@/data/api';
+import { CatalogIpPlan, PccCatalogPlan } from '@/data/api';
+
+const isIpv6Plan = (plan: CatalogIpPlan | PccCatalogPlan) =>
+  plan.planCode.includes('ip-v6');
 
 const getLowestPlanPrice = (lowestPrice: number, plan: CatalogIpPlan) => {
   const currentPrice = plan?.details?.pricings?.default[0].priceInUcents;
@@ -19,13 +21,11 @@ export const useCatalogLowestPrice = () => {
     ...query,
     ipv4LowestPrice:
       data?.data?.plans
-        .filter((plan) =>
-          Object.values(IP_FAILOVER_PLANCODE).includes(plan.planCode),
-        )
+        .filter((plan: CatalogIpPlan) => !isIpv6Plan(plan))
         .reduce(getLowestPlanPrice, Number.POSITIVE_INFINITY) ?? null,
     ipv6LowestPrice:
       data?.data?.plans
-        .filter((plan) => plan.planCode.includes('ip-v6'))
+        .filter(isIpv6Plan)
         .reduce(getLowestPlanPrice, Number.POSITIVE_INFINITY) ?? null,
   };
 };

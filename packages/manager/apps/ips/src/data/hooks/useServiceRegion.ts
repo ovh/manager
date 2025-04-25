@@ -60,8 +60,9 @@ export const useServiceRegion = ({
       dedicatedCloudLocation?.isLoading,
     region:
       dedicatedServerData?.data?.data?.region ||
+      dedicatedCloudLocation?.data?.data?.region ||
       DATACENTER_TO_REGION[vpsDatacenter?.data?.data?.name] ||
-      dedicatedCloudLocation?.data?.data?.region,
+      vpsDatacenter?.data?.data?.name?.toLowerCase(),
     isError:
       dedicatedServerData.isError ||
       vpsDatacenter.isError ||
