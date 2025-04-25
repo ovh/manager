@@ -4,7 +4,7 @@
   "tableHeadDescription": "Description",
   "tableHeadVcores": "Vcores",
   "tableHeadMemory": "RAM",
-  "tableHeadStorage": "Temporary storage",
+  "tableHeadStorage": "Storage",
   "tableHeadPrice": "Price per hour",
   "gpuMemorySpec": "{{memory}} RAM",
   "cpuCores_one": "CPU: {{count}} vCore",

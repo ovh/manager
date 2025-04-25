@@ -46,5 +46,9 @@
   "cliEquivalentModalToastMessage": "Kod został skopiowany",
   "errorCreatingNotebook": "Błąd",
   "successCreatingNotebookTitle": "Sukces",
-  "successCreatingNotebookDescription": "Twój notebook został utworzony"
+  "successCreatingNotebookDescription": "Twój notebook został utworzony",
+  "fieldFlavorLabel": "Zasoby",
+  "fieldFlavorDescription": "Wybierz typ zasobów",
+  "fieldFrameworkVersionDescription": "Wybierz wersję",
+  "fieldConfigurationPrivacyLabel": "Poufność"
 }

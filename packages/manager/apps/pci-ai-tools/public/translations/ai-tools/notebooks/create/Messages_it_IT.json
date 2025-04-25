@@ -46,5 +46,9 @@
   "cliEquivalentModalToastMessage": "Codice copiato",
   "errorCreatingNotebook": "Errore",
   "successCreatingNotebookTitle": "Risultato",
-  "successCreatingNotebookDescription": "Il notebook è stato creato correttamente"
+  "successCreatingNotebookDescription": "Il notebook è stato creato correttamente",
+  "fieldFlavorLabel": "Risorse",
+  "fieldFlavorDescription": "Seleziona il tipo di risorse",
+  "fieldFrameworkVersionDescription": "Seleziona la versione",
+  "fieldConfigurationPrivacyLabel": "Confidenzialità"
 }
