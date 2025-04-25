@@ -6,19 +6,17 @@
                     data-heading="{{:: 'manager_components_delete_modal_headline' | translate:{
                       serviceType: $ctrl.serviceType,
                     } }}"
-                    data-primary-action="$ctrl.onClose()"
+                    data-primary-action="$ctrl.onConfirm()"
                     data-primary-label="{{:: 'manager_components_delete_modal_delete_button' | translate }}"
                     data-secondary-label="{{:: 'manager_components_delete_modal_cancel_button' | translate }}"
-                    data-secondary-action="$ctrl.onConfirm()"
+                    data-secondary-action="$ctrl.onClose()"
                     data-on-dismiss="$ctrl.onClose()"
                     data-type="info"
                 >
                     <span
                         data-translate="manager_components_delete_modal_description"
                     ></span>
-                    <div class="mt-3">
-                        <ng-transclude></ng-transclude>
-                    </div>
+                    <div class="mt-3" data-ng-transclude></div>
                 </oui-modal>
             </div>
         </div>
