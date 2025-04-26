@@ -109,7 +109,7 @@
   "formUserInvalidPermission": "Please choose a valid permission from the following list: {values}",
   "formUserAclDuplicate": "A similar ACL is already configured",
   "resetUserPasswordCode": "User password",
-  "resetUserConnectionTitle": "The URI to use for a fast connection",
+  "resetUserConnectionTitle": "The URL to use for a fast connection",
   "resetUserConnectionCode": "Connection string",
-  "resetUserConnectionCodeCopy": "Connection URI copied to clipboard"
+  "resetUserConnectionCodeCopy": "Connection URL copied to clipboard"
 }
