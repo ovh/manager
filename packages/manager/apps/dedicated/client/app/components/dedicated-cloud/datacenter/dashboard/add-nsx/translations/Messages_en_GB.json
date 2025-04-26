@@ -4,6 +4,6 @@
   "dedicatedCloud_add_nsx_description_line_2": "You can add NSX Edge nodes on this interface. You’ll be billed {{ price }} monthly for each vCPU. Discounts may apply depending on your contractual commitment. To find out more, visit our <a class=\"oui-link_icon\" href=\"{{link}}\" target=\"_blank\" rel=\"noopener noreferrer\">website <i class=\"oui-icon oui-icon-external-link\" aria-label=\"External link\" aria-hidden=\"true\" ></i></a>.",
   "dedicatedCloud_add_nsx_price": "from {{ price }} ex. VAT/vCPU/month",
   "dedicatedCloud_add_nsx_success_banner": "Your NSX Edge has been added.",
-  "dedicatedCloud_add_nsx_error_banner": "Your request to add an nsx file could not be completed: {{error}}. If the error persists, please contact Support",
+  "dedicatedCloud_add_nsx_error_banner": "Your request to add an nsx file could not be completed: {{error}}. If the error persists, please contact our support team",
   "dedicatedCloud_add_nsx_order": "Order"
 }
