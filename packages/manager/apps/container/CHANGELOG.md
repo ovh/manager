@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.123.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.122.1...@ovh-ux/manager-container-app@0.123.0) (2025-04-28)
+
+
+### Bug Fixes
+
+* **container:** remove replace when navigating from children ([f8bce92](https://github.com/ovh/manager/commit/f8bce9265fc4d262d852e40ee979939585c6348a))
+
+
+### Features
+
+* **container:** implement multiple hashes in container ([9012594](https://github.com/ovh/manager/commit/9012594997c45a3dace24ed7ddc8eac5490b754e))
+
+
+
+
+
 ## [0.122.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.122.0...@ovh-ux/manager-container-app@0.122.1) (2025-04-24)
 
 

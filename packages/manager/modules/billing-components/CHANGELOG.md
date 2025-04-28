@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.13.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.13.2...@ovh-ux/manager-billing-components@4.13.3) (2025-04-28)
+
+
+### Bug Fixes
+
+* **billing:** show cancel sub zimbra only if auto ([5e053e2](https://github.com/ovh/manager/commit/5e053e2a3503d68cfc41f06990a32f34d71f2b87)), closes [#MANAGER-17976](https://github.com/ovh/manager/issues/MANAGER-17976)
+
+
+
+
+
 ## [4.13.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.13.1...@ovh-ux/manager-billing-components@4.13.2) (2025-04-17)
 
 **Note:** Version bump only for package @ovh-ux/manager-billing-components

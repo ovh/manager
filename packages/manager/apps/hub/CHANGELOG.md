@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.12.4...@ovh-ux/manager-hub-app@0.13.0) (2025-04-28)
+
+
+### Features
+
+* **hub:** display notifications when email unreachable ([#15977](https://github.com/ovh/manager/issues/15977)) ([400a46f](https://github.com/ovh/manager/commit/400a46fc00c853b019710a2dec77dae2e08dc9dc)), closes [#MANAGER-17027](https://github.com/ovh/manager/issues/MANAGER-17027)
+
+
+
+
+
 ## [0.12.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.12.3...@ovh-ux/manager-hub-app@0.12.4) (2025-04-24)
 
 **Note:** Version bump only for package @ovh-ux/manager-hub-app

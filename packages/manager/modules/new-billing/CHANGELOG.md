@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.36.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.35.1...@ovh-ux/manager-new-billing@0.36.0) (2025-04-28)
+
+
+### Bug Fixes
+
+* **billing:** autorenew cancel termination zimbra ([fa8a4a3](https://github.com/ovh/manager/commit/fa8a4a3a9302d34f7c43c655143144d32b4aa829)), closes [#MANAGER-17976](https://github.com/ovh/manager/issues/MANAGER-17976)
+* **billing:** fix services retrieval in pay as you go page ([#16469](https://github.com/ovh/manager/issues/16469)) ([4582f38](https://github.com/ovh/manager/commit/4582f38d053419c3a4ee7ecdfbcc0f953c54ce21)), closes [#DTRSD-118701](https://github.com/ovh/manager/issues/DTRSD-118701) [#PRB0041684](https://github.com/ovh/manager/issues/PRB0041684) [#MANAGER-17839](https://github.com/ovh/manager/issues/MANAGER-17839)
+
+
+### Features
+
+* **billing:** add filter and sort on agreements listing page ([#16668](https://github.com/ovh/manager/issues/16668)) ([98add50](https://github.com/ovh/manager/commit/98add501aeeab41b777d1a4ccdd122f29fe31d85)), closes [#MANAGER-17517](https://github.com/ovh/manager/issues/MANAGER-17517)
+
+
+
+
+
 ## [0.35.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.35.0...@ovh-ux/manager-new-billing@0.35.1) (2025-04-22)
 
 
