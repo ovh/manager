@@ -40,6 +40,7 @@ export const PREDEFINED_CONTACT_PROFILES = {
     'address.province',
     'email',
     'phone',
+    'language',
   ],
 };
 

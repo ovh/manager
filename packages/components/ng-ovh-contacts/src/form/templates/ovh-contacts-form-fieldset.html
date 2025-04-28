@@ -223,6 +223,25 @@
                             />
                         </div>
                     </oui-field>
+                    <oui-field
+                        data-label="{{ :: 'ovh_contact_form_language' | translate }}"
+                    >
+                        <label class="oui-select">
+                            <select
+                                class="oui-select__input"
+                                name="language"
+                                id="language"
+                                data-ng-model="$ctrl.model.language"
+                                data-ng-options="language.value as language.label for language in $ctrl.rules.language.enum"
+                                required="$ctrl.rules.language.required"
+                            >
+                            </select>
+                            <span
+                                class="oui-icon oui-icon-chevron-down"
+                                aria-hidden="true"
+                            ></span>
+                        </label>
+                    </oui-field>
                 </div>
             </div>
         </fieldset>

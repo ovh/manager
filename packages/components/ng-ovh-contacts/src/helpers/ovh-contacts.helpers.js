@@ -179,16 +179,29 @@ export default class OvhContactsHelper {
     predefinedProperties,
     nicValue,
   ) {
-    const meContactApi = find(apiSchemas.apis, {
-      path: '/me/contact',
-    });
+    const meContactApi = apiSchemas.apis.find(
+      (api) => api.path === '/me/contact',
+    );
+    const meContactPostEndpoint = meContactApi.operations.find(
+      (endpoint) => endpoint.httpMethod === 'POST',
+    );
 
     // take the POST operations parameters as the API schema allows null value and POST not...
-    const postParams = keyBy(
-      find(meContactApi.operations, {
-        httpMethod: 'POST',
-      }).parameters,
-      'name',
+    const postParams = meContactPostEndpoint.parameters.reduce(
+      (postParameters, endpointParameter) => {
+        const type = apiSchemas.models[endpointParameter.fullType];
+        if (endpointParameter.name) {
+          return {
+            ...postParameters,
+            [endpointParameter.name]: type.properties,
+          };
+        }
+        return {
+          ...postParameters,
+          ...type.properties,
+        };
+      },
+      {},
     );
     const addressProps = get(
       apiSchemas,
