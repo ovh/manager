@@ -1,11 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
-import { getPccCatalog } from '../../api/catalog';
+import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+import { PccCatalogResponse, getPccCatalog } from '../../api/catalog';
 
 export const getPccCatalogQueryKey = (serviceName: string) => [
   'pccCatalog',
   serviceName,
 ];
-
 export const usePccCatalog = ({
   serviceName,
   enabled = true,
@@ -13,7 +13,7 @@ export const usePccCatalog = ({
   serviceName: string;
   enabled?: boolean;
 }) =>
-  useQuery({
+  useQuery<ApiResponse<PccCatalogResponse>, ApiError>({
     queryKey: getPccCatalogQueryKey(serviceName),
     queryFn: () => getPccCatalog(serviceName),
     enabled,

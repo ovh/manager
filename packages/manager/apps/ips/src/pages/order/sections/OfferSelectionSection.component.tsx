@@ -24,9 +24,7 @@ import { OrderSection } from '@/components/OrderSection/OrderSection.component';
 import { OptionCard } from '@/components/OptionCard/OptionCard.component';
 import { PriceDescription } from '@/components/PriceDescription/PriceDescription';
 import {
-  IP_FAILOVER_PLANCODE,
-  getContinentKeyFromRegion,
-  useAdditionalIpBlockPricings,
+  useAdditionalIpPricings,
   useCatalogLowestPrice,
 } from '@/data/hooks/catalog';
 import { useServiceRegion } from '@/data/hooks/useServiceRegion';
@@ -57,7 +55,11 @@ export const OfferSelectionSection: React.FC = () => {
     serviceName: selectedService,
     serviceType: selectedServiceType,
   });
-  const { pricingList, isLoading } = useAdditionalIpBlockPricings({
+  const {
+    additionalIpPlanCode,
+    ipBlockPricingList,
+    isLoading,
+  } = useAdditionalIpPricings({
     ipVersion,
     region: region || selectedRegion,
     serviceName: selectedService,
@@ -86,11 +88,7 @@ export const OfferSelectionSection: React.FC = () => {
             isSelected={selectedOffer === IpOffer.additionalIp}
             onClick={() => {
               setSelectedOffer(IpOffer.additionalIp);
-              setSelectedPlanCode(
-                IP_FAILOVER_PLANCODE[
-                  getContinentKeyFromRegion(region || selectedRegion)
-                ],
-              );
+              setSelectedPlanCode(additionalIpPlanCode);
             }}
           >
             <OdsQuantity
@@ -120,13 +118,13 @@ export const OfferSelectionSection: React.FC = () => {
             onClick={() => {
               setSelectedOffer(IpOffer.blockAdditionalIp);
               if (
-                pricingList?.length > 0 &&
-                pricingList?.every(
+                ipBlockPricingList?.length > 0 &&
+                ipBlockPricingList?.every(
                   (pricing) => pricing.value !== selectedPlanCode,
                 )
               ) {
-                setSelectedPlanCode(pricingList[0].value);
-                setPricingMode(pricingList[0].pricingMode);
+                setSelectedPlanCode(ipBlockPricingList[0].value);
+                setPricingMode(ipBlockPricingList[0].pricingMode);
               }
             }}
           >
@@ -136,7 +134,7 @@ export const OfferSelectionSection: React.FC = () => {
               </div>
             ) : (
               <OdsSelect
-                key={pricingList.reduce(
+                key={ipBlockPricingList.reduce(
                   (result, { value }) => result + value,
                   '',
                 )}
@@ -144,20 +142,21 @@ export const OfferSelectionSection: React.FC = () => {
                 value={selectedPlanCode}
                 onOdsChange={(event) => {
                   if (
-                    pricingList.some(
+                    ipBlockPricingList.some(
                       (pricing) => pricing.value === event.target.value,
                     )
                   ) {
                     setSelectedOffer(IpOffer.blockAdditionalIp);
                     setSelectedPlanCode(event.target.value as string);
                     setPricingMode(
-                      pricingList.find((p) => p.value === event.target.value)
-                        ?.pricingMode || DEFAULT_PRICING_MODE,
+                      ipBlockPricingList.find(
+                        (p) => p.value === event.target.value,
+                      )?.pricingMode || DEFAULT_PRICING_MODE,
                     );
                   }
                 }}
               >
-                {pricingList.map(({ label, value }) => (
+                {ipBlockPricingList.map(({ label, value }) => (
                   <option key={value} value={value}>
                     {label}
                   </option>

@@ -1,10 +1,6 @@
 import JSURL from 'jsurl';
 import { DEFAULT_PRICING_MODE, IpOffer, IpVersion } from './order.constant';
-import {
-  IP_FAILOVER_PLANCODE,
-  getContinentKeyFromRegion,
-  getDatacenterFromRegion,
-} from '@/data/hooks/catalog/catalog.utils';
+import { getDatacenterFromRegion } from '@/data/hooks/catalog/catalog.utils';
 import { ServiceType } from '@/types';
 
 export type OrderParams = {
@@ -19,14 +15,6 @@ export type OrderParams = {
   quantity?: number;
   pricingMode?: string;
 };
-
-/**
- * Returns the express order plan code to use
- */
-const getPlanCode = (planCode: string, offer: IpOffer, region: string) =>
-  offer === IpOffer.additionalIp
-    ? IP_FAILOVER_PLANCODE[getContinentKeyFromRegion(region)]
-    : planCode;
 
 /**
  * Returns the express order settings
@@ -61,7 +49,7 @@ export const getAdditionalIpsProductSettings = ({
         },
     ].filter(Boolean),
     duration: 'P1M',
-    planCode: getPlanCode(planCode, offer, region),
+    planCode,
     pricingMode,
     productId:
       serviceType === ServiceType.dedicatedCloud ? 'privateCloud' : 'ip',
