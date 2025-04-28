@@ -24,6 +24,7 @@ export const GeolocationSection: React.FC = () => {
     planCode: selectedPlanCode,
   });
   const isDisabled =
+    !geolocations ||
     geolocations.length < 2 ||
     (selectedOffer === IpOffer.additionalIp &&
       ServiceType.ipParking === selectedServiceType);
@@ -43,7 +44,11 @@ export const GeolocationSection: React.FC = () => {
           className="max-w-[384px]"
           countryCodeList={geolocations}
           isDisabled={isDisabled}
-          value={selectedGeolocation}
+          value={
+            selectedGeolocation && geolocations.includes(selectedGeolocation)
+              ? selectedGeolocation
+              : geolocations?.[0]
+          }
           onChange={(event) => {
             setSelectedGeolocation(event.target.value as string);
           }}

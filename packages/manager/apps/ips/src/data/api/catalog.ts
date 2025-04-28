@@ -28,6 +28,14 @@ export type Pricing = {
   duration?: string;
 };
 
+export type CatalogIpConfiguration = {
+  defaultValue: string | null;
+  isCustom: boolean;
+  isMandatory: boolean;
+  name: string;
+  values: string[];
+};
+
 export type CatalogIpPlan = {
   addonsFamily: unknown[];
   consumptionBillingStrategy: string | null;
@@ -37,13 +45,7 @@ export type CatalogIpPlan = {
       default: Pricing[];
     };
     product: {
-      configurations: {
-        defaultValue: string | null;
-        isCustom: boolean;
-        isMandatory: boolean;
-        name: string;
-        values: string[];
-      }[];
+      configurations: CatalogIpConfiguration[];
       description: string;
       internalType:
         | 'cloud_service'
@@ -74,7 +76,7 @@ export const getCatalogIps = (
 ): Promise<ApiResponse<CatalogIpsResponse>> =>
   apiClient.v6.get(`/order/catalog/formatted/ip?ovhSubsidiary=${sub}`);
 
-export type PccCatalogResponse = {
+export type PccCatalogPlan = {
   productType: string;
   productName: string;
   family:
@@ -91,7 +93,9 @@ export type PccCatalogResponse = {
   planCode: string;
   exclusive: boolean;
   mandatory: boolean;
-}[];
+};
+
+export type PccCatalogResponse = PccCatalogPlan[];
 
 export const getPccCatalog = (
   serviceName: string,
