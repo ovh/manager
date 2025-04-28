@@ -3,6 +3,8 @@ import { useMemo } from 'react';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import {
   getVolumeBackups,
+  createVolumeBackup,
+  createVolumeSnapshot,
   getVolume,
   restoreVolume,
   deleteBackup,
@@ -123,6 +125,63 @@ export const useDeleteBackup = ({
 
   return {
     deleteBackup: (backupId: string) => mutation.mutate(backupId),
+  };
+};
+
+type UseCreateBackupProps = {
+  projectId: string;
+  onSuccess: () => void;
+  onError: (error: ApiError) => void;
+};
+
+type CreateBackupProps = {
+  regionName?: string;
+  volumeId: string;
+  backupName: string;
+};
+
+export const useCreateVolumeBackup = ({
+  projectId,
+  onSuccess,
+  onError,
+}: UseCreateBackupProps) => {
+  const mutation = useMutation({
+    mutationFn: (params: CreateBackupProps) =>
+      createVolumeBackup(
+        projectId,
+        params.volumeId,
+        params.regionName as NonNullable<typeof params.regionName>,
+        params.backupName,
+      ),
+    onError,
+    onSuccess: async () => {
+      queryClient.invalidateQueries({
+        queryKey: backupsQueryKey(projectId),
+      });
+
+      onSuccess();
+    },
+  });
+  return {
+    createVolumeBackup: (params: CreateBackupProps) => mutation.mutate(params),
+    ...mutation,
+  };
+};
+
+export const useCreateVolumeSnapshot = ({
+  projectId,
+  onSuccess,
+  onError,
+}: UseCreateBackupProps) => {
+  const mutation = useMutation({
+    mutationFn: (params: CreateBackupProps) =>
+      createVolumeSnapshot(projectId, params.volumeId, params.backupName),
+    onError,
+    onSuccess,
+  });
+  return {
+    createVolumeSnapshot: (params: CreateBackupProps) =>
+      mutation.mutate(params),
     ...mutation,
   };
 };
