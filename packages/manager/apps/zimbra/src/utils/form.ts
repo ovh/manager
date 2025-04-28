@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import i18n from 'i18next';
-import { ZimbraPlanCodes } from '@/api/order';
+import { ZimbraOffer, ZimbraPlanCodes } from '@/data/api/type';
 
 const customErrorMap: z.ZodErrorMap = (error, ctx) => {
   switch (error.code) {
@@ -110,14 +110,44 @@ export const baseEmailAccountSchema = z.object({
   lastName: z.string().optional(),
   firstName: z.string().optional(),
   displayName: z.string().optional(),
+  offer: z.enum([ZimbraOffer.STARTER, ZimbraOffer.PRO]).optional(),
 });
 
 export const addEmailAccountSchema = baseEmailAccountSchema.merge(withPassword);
+
+export const addEmailAccountsSchema = z
+  .object({
+    accounts: z
+      .array(
+        // in this schema first and last names are required
+        addEmailAccountSchema.merge(
+          z.object({
+            firstName: requiredString,
+            lastName: requiredString,
+          }),
+        ),
+      )
+      .min(1),
+  })
+  .superRefine((data, ctx) => {
+    const emails = data.accounts.map(
+      (item) => `${item.account}@${item.domain}`,
+    );
+    const uniqueEmails = new Set(emails);
+
+    if (emails.length !== uniqueEmails.size) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+      });
+    }
+  });
+
 export const editEmailAccountSchema = baseEmailAccountSchema.merge(
   withOptionalPassword,
 );
 
 export type AddEmailAccountSchema = z.infer<typeof addEmailAccountSchema>;
+export type AddEmailAccountsSchema = z.infer<typeof addEmailAccountsSchema>;
 export type EditEmailAccountSchema = z.infer<typeof editEmailAccountSchema>;
 
 export const orderEmailAccountSchema = z.object({
@@ -133,11 +163,17 @@ export const orderEmailAccountSchema = z.object({
 export type OrderEmailAccountSchema = z.infer<typeof orderEmailAccountSchema>;
 
 export const organizationSchema = z.object({
-  name: requiredString,
+  name: requiredString.min(2),
   label: requiredString.min(2).max(12),
 });
 
 export type OrganizationSchema = z.infer<typeof organizationSchema>;
+
+export const simpleOrganizationSchema = z.object({
+  name: requiredString.min(2),
+});
+
+export type SimpleOrganizationSchema = z.infer<typeof simpleOrganizationSchema>;
 
 export const domainSchema = z.object({
   organizationId: requiredString,

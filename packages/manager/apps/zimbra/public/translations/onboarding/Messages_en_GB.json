@@ -21,5 +21,10 @@
   "card_guide_title_3": "Become a Zimbra webmail pro",
   "card_guide_description_1": "Find out how to create your first mailboxes and manage your service",
   "card_guide_description_2": "Learn how to set up and use your Zimbra account on an external device (PC or smartphone)",
-  "card_guide_description_3": "Explore the Zimbra web interface and features"
+  "card_guide_description_3": "Explore the Zimbra web interface and features",
+  "welcome_title": "Welcome to Zimbra",
+  "welcome_description": "Would you like to set up your account now?",
+  "configure_title": "Let’s configure your service together",
+  "configure_exit": "Exit configuration",
+  "configure_success_message": "Congratulations, your service is now configured!"
 }

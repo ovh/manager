@@ -78,5 +78,9 @@
   "form_valid_domain": "Bitte geben Sie eine gültige Domain an.",
   "form_valid_account": "Bitte geben Sie einen gültigen Account-Namen ein.",
   "form_valid_date": "Bitte geben Sie ein gültiges Datum ein.",
-  "form_valid_number": "Bitte geben Sie eine gültige Zahl an."
+  "form_valid_number": "Bitte geben Sie eine gültige Zahl an.",
+  "configure_now": "Jetzt konfigurieren",
+  "configure_later": "Später konfigurieren",
+  "skip_step": "Schritt überspringen",
+  "configure_another_account": "Anderen Account einrichten"
 }
