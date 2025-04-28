@@ -125,5 +125,7 @@
   "dedicatedCloud_manage_nsx_choice_description_XLARGE": "Użyj formatu XL, jeśli chcesz skonfigurować dużą liczbę peerów BGP z węzłem Edge. Odpowiedni, gdy całkowita wymagana przepustowość wynosi kilka Gbps dla load balancera L7 i VPN.",
   "dedicatedCloud_nsx_task_progress": "W realizacji",
   "dedicatedCloud_datacenter_nsx_resize_error": "Wystąpił błąd",
-  "dedicatedCloud_tab_datacenter_global_information": "Domyślnie wszystkie wirtualne centra danych (VDC) NSX dysponują klastrem NSX Edge składającym się z 2 NSX Edges. Następnie możesz zmienić rozmiar Edges. Do zmiany rozmiaru lub liczby Edges wymagane są odpowiednie zasoby."
+  "dedicatedCloud_tab_datacenter_global_information": "Domyślnie wszystkie wirtualne centra danych (VDC) NSX dysponują klastrem NSX Edge składającym się z 2 NSX Edges. Następnie możesz zmienić rozmiar Edges. Do zmiany rozmiaru lub liczby Edges wymagane są odpowiednie zasoby.",
+  "dedicatedCloud_manage_nsx_vcpu_price": "od {{ price }} netto/vCPU/m-c*",
+  "dedicatedCloud_manage_nsx_additionnal_price_informations": "* 2x4 vCPU zawarte w ofercie Standard"
 }
