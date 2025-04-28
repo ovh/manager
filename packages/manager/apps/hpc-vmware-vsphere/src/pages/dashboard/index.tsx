@@ -5,7 +5,6 @@ import {
   NavLink,
   useLocation,
   useNavigate,
-  useParams,
   useResolvedPath,
 } from 'react-router-dom';
 import { OdsTabs, OdsTab } from '@ovhcloud/ods-components/react';
@@ -25,8 +24,7 @@ export type DashboardLayoutProps = {
 };
 
 export default function DashboardPage() {
-  const [panel, setActivePanel] = useState('');
-  const { serviceName } = useParams();
+  const [activePanel, setActivePanel] = useState('');
   const location = useLocation();
   const navigate = useNavigate();
   const { t } = useTranslation('dashboard');
@@ -45,11 +43,13 @@ export default function DashboardPage() {
   ];
 
   useEffect(() => {
-    const activeTab = tabsList.find((tab) => tab.to === location.pathname);
+    const activeTab = [...tabsList]
+      .reverse()
+      .find((tab) => location.pathname.startsWith(tab.to));
     if (activeTab) {
-      setActivePanel(activeTab.name);
+      setActivePanel(activeTab.to);
     } else {
-      setActivePanel(tabsList[0].name);
+      setActivePanel(tabsList[0].to);
       navigate(`${tabsList[0].to}`);
     }
   }, [location.pathname]);
@@ -71,7 +71,10 @@ export default function DashboardPage() {
       tabs={
         <OdsTabs>
           {tabsList.map((tab: DashboardTabItemProps) => (
-            <OdsTab key={`osds-tab-bar-item-${tab.name}`}>
+            <OdsTab
+              key={`osds-tab-bar-item-${tab.name}`}
+              isSelected={activePanel === tab.to}
+            >
               <NavLink to={tab.to} className="no-underline">
                 {tab.title}
               </NavLink>
