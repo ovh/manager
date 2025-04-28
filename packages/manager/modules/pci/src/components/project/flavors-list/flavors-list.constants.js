@@ -35,7 +35,6 @@ export const CATEGORIES = [
     category: 'baremetal',
     title: 'Metal',
     pattern: /baremetal/,
-    isNew: true,
   },
 ];
 
