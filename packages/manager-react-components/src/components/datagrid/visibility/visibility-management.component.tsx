@@ -13,19 +13,31 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ColumnsVisibilityProps } from '../datagrid.constants';
+import { INTERNAL_COLUMNS } from '../datagrid.constants';
+
+export type ColumnsVisibility = {
+  id: string;
+  isDisabled: boolean;
+  label: string;
+  enableHiding: boolean;
+  isVisible: () => boolean;
+  onChange: () => void;
+};
+
+export type ColumnsVisibilityProps = {
+  columnsVisibility: ColumnsVisibility[];
+};
 
 export function VisibilityManagement({
   columnsVisibility,
 }: Readonly<ColumnsVisibilityProps>) {
   const { t } = useTranslation('datagrid');
   const visibilityPopoverRef = useRef(null);
-  const columnsIncludedInCounter = columnsVisibility.filter(
-    (column) =>
-      !['expander', 'actions'].includes(column.id) && column.label !== '',
+  const eligibleColumns = columnsVisibility.filter(
+    (column) => !INTERNAL_COLUMNS.includes(column.id) && column.label !== '',
   );
 
-  const visibleColumnsCount = columnsIncludedInCounter.filter((column) =>
+  const visibleColumnsCount = eligibleColumns.filter((column) =>
     column.isVisible(),
   ).length;
 
@@ -40,7 +52,7 @@ export function VisibilityManagement({
         icon={ODS_ICON_NAME.columns}
         aria-label={t('common_topbar_columns')}
         label={`${t('common_topbar_columns')}${
-          visibleColumnsCount < columnsIncludedInCounter.length
+          visibleColumnsCount < eligibleColumns.length
             ? ` (${visibleColumnsCount})`
             : ''
         }`}
@@ -51,7 +63,7 @@ export function VisibilityManagement({
         with-arrow
       >
         <div className="flex flex-col">
-          {columnsIncludedInCounter.map((column) => (
+          {eligibleColumns.map((column) => (
             <OdsFormField key={column.id}>
               <div className="flex flex-row items-center gap-x-2">
                 <OdsCheckbox
