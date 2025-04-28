@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.15](https://github.com/ovh/manager/compare/@ovh-ux/manager-carrier-sip-app@4.0.14...@ovh-ux/manager-carrier-sip-app@4.0.15) (2025-04-28)
+
+**Note:** Version bump only for package @ovh-ux/manager-carrier-sip-app
+
+
+
+
+
 ## [4.0.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-carrier-sip-app@4.0.13...@ovh-ux/manager-carrier-sip-app@4.0.14) (2025-04-17)
 
 **Note:** Version bump only for package @ovh-ux/manager-carrier-sip-app

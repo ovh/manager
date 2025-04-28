@@ -21,6 +21,7 @@ import {
 } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
+  ODS_BUTTON_TYPE,
   ODS_BUTTON_VARIANT,
   ODS_INPUT_TYPE,
   ODS_MESSAGE_TYPE,
@@ -63,8 +64,8 @@ export const NetworkStep = (): JSX.Element => {
   const [isInputTouched, setIsInputTouched] = useState(false);
 
   const { addError, addSuccess, clearNotifications } = useNotifications();
-  const { t: tAdd } = useTranslation('add');
-  const { t: tGlobal } = useTranslation('global');
+  const { t } = useTranslation(['add', 'global', 'stepper']);
+
   const navigate = useNavigate();
   const store = useNewGatewayStore();
   const [searchParams] = useSearchParams();
@@ -97,7 +98,7 @@ export const NetworkStep = (): JSX.Element => {
             invalidateGatewaysList();
             navigate('..');
             addSuccess(
-              tAdd('pci_projects_project_public_gateways_add_success'),
+              t('pci_projects_project_public_gateways_add_success'),
               true,
             );
             setState((prev) => ({ ...prev, isOperationPending: false }));
@@ -105,7 +106,7 @@ export const NetworkStep = (): JSX.Element => {
           }
           if (['in-error', 'unknown'].includes(operation.status)) {
             addError(
-              tAdd(
+              t(
                 'pci_projects_project_public_gateways_add_modal_add_private_network_error',
                 { message: '' },
               ),
@@ -121,7 +122,7 @@ export const NetworkStep = (): JSX.Element => {
     },
     onError: (error) => {
       addError(
-        tAdd(
+        t(
           'pci_projects_project_public_gateways_add_modal_add_private_network_error',
           { message: error },
         ),
@@ -145,7 +146,7 @@ export const NetworkStep = (): JSX.Element => {
             invalidateGatewaysList();
             navigate('..');
             addSuccess(
-              tAdd('pci_projects_project_public_gateways_add_success'),
+              t('pci_projects_project_public_gateways_add_success'),
               true,
             );
             setState((prev) => ({ ...prev, isOperationPending: false }));
@@ -153,7 +154,7 @@ export const NetworkStep = (): JSX.Element => {
           }
           if (['in-error', 'unknown'].includes(operation.status)) {
             addError(
-              tAdd('pci_projects_project_public_gateways_add_error', {
+              t('pci_projects_project_public_gateways_add_error', {
                 message: '',
               }),
               true,
@@ -168,7 +169,7 @@ export const NetworkStep = (): JSX.Element => {
     },
     onError: (error) => {
       addError(
-        tAdd('pci_projects_project_public_gateways_add_error', {
+        t('pci_projects_project_public_gateways_add_error', {
           message: error,
         }),
       );
@@ -263,7 +264,7 @@ export const NetworkStep = (): JSX.Element => {
       isOpen={store.steps.get(StepsEnum.NETWORK).isOpen}
       isChecked={store.steps.get(StepsEnum.NETWORK).isChecked}
       isLocked={store.steps.get(StepsEnum.NETWORK).isLocked}
-      title={tAdd(
+      title={t(
         'pci_projects_project_public_gateways_add_attach_private_network_to_public_gateway_sub_title',
       )}
     >
@@ -273,7 +274,7 @@ export const NetworkStep = (): JSX.Element => {
           size={ODS_THEME_TYPOGRAPHY_SIZE._400}
           color={ODS_THEME_COLOR_INTENT.text}
         >
-          {tAdd(
+          {t(
             'pci_projects_project_public_gateways_add_attach_private_network_to_public_gateway_intro1',
           )}
         </OsdsText>
@@ -284,7 +285,7 @@ export const NetworkStep = (): JSX.Element => {
           size={ODS_THEME_TYPOGRAPHY_SIZE._400}
           color={ODS_THEME_COLOR_INTENT.text}
         >
-          {tAdd(
+          {t(
             'pci_projects_project_public_gateways_add_attach_private_network_to_public_gateway_intro2',
           )}
         </OsdsText>
@@ -296,7 +297,7 @@ export const NetworkStep = (): JSX.Element => {
           color={ODS_THEME_COLOR_INTENT.warning}
           className="my-6 flex-row"
         >
-          {tAdd(
+          {t(
             'pci_projects_project_public_gateways_add_no_private_network_warning',
           )}
         </OsdsMessage>
@@ -306,7 +307,7 @@ export const NetworkStep = (): JSX.Element => {
         inline
         error={
           isInputTouched && !store.form.name
-            ? tGlobal('common_field_error_required')
+            ? t('global:common_field_error_required')
             : ''
         }
       >
@@ -317,7 +318,7 @@ export const NetworkStep = (): JSX.Element => {
           level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
           className="mt-4 font-bold"
         >
-          {tAdd(
+          {t(
             'pci_projects_project_public_gateways_add_modal_add_public_gateway_field_label',
           )}
         </OsdsText>
@@ -344,7 +345,7 @@ export const NetworkStep = (): JSX.Element => {
             level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
             className="mt-4 font-bold"
           >
-            {tAdd(
+            {t(
               'pci_projects_project_public_gateways_add_select_private_network',
             )}
           </OsdsText>
@@ -359,7 +360,7 @@ export const NetworkStep = (): JSX.Element => {
             }}
           >
             <span slot="placeholder">
-              {tAdd(
+              {t(
                 'pci_projects_project_public_gateways_add_select_private_network',
               )}
             </span>
@@ -394,7 +395,7 @@ export const NetworkStep = (): JSX.Element => {
             });
           }}
         >
-          {tAdd(
+          {t(
             'pci_projects_project_public_gateways_add_private_network_add_action',
           )}
         </OsdsButton>
@@ -407,16 +408,27 @@ export const NetworkStep = (): JSX.Element => {
             <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
           )}
           {(!store.form.network?.id || !isSubnetsLoading) && (
-            <OsdsButton
-              size={ODS_BUTTON_SIZE.md}
-              inline
-              variant={ODS_BUTTON_VARIANT.flat}
-              color={ODS_THEME_COLOR_INTENT.primary}
-              {...(isNextButtonDisabled ? { disabled: true } : {})}
-              onClick={() => create()}
-            >
-              {tAdd('pci_projects_project_public_gateways_add_submit_label')}
-            </OsdsButton>
+            <div className="flex gap-x-5 mt-10">
+              <OsdsButton
+                type={ODS_BUTTON_TYPE.button}
+                variant={ODS_BUTTON_VARIANT.stroked}
+                color={ODS_THEME_COLOR_INTENT.primary}
+                inline
+                onClick={() => navigate('..')}
+              >
+                {t('stepper:common_stepper_cancel_button_label')}
+              </OsdsButton>
+              <OsdsButton
+                size={ODS_BUTTON_SIZE.md}
+                inline
+                variant={ODS_BUTTON_VARIANT.flat}
+                color={ODS_THEME_COLOR_INTENT.primary}
+                {...(isNextButtonDisabled && { disabled: true })}
+                onClick={create}
+              >
+                {t('pci_projects_project_public_gateways_add_submit_label')}
+              </OsdsButton>
+            </div>
           )}
         </div>
       ) : (
@@ -427,7 +439,7 @@ export const NetworkStep = (): JSX.Element => {
             size={ODS_THEME_TYPOGRAPHY_SIZE._400}
             color={ODS_THEME_COLOR_INTENT.text}
           >
-            {tAdd(
+            {t(
               'pci_projects_project_public_gateways_add_creating_wait_message',
             )}
           </OsdsText>

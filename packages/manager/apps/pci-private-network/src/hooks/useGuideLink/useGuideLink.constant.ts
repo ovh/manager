@@ -1,14 +1,10 @@
-import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
-
-type GuideLinks = { [key in OvhSubsidiary]: string };
-
 const HELP_DOC_ROOT = 'https://docs.ovh.com/';
 const HELP_ROOT = 'https://www.ovhcloud.com/';
 const PRIVATE_NETWORK_URL =
   '/publiccloud/network-services/creating-private-network-with-gateway/';
 const REGION_AVAILABILITY_URL = '/public-cloud/regions-availability/';
 
-export const GUIDE_LINKS: { [guideName: string]: Partial<GuideLinks> } = {
+export const GUIDE_LINKS = {
   PRIVATE_NETWORK_WITH_GATEWAY: {
     DEFAULT: `${HELP_DOC_ROOT}gb/en${PRIVATE_NETWORK_URL}`,
     ASIA: `${HELP_DOC_ROOT}asia/en${PRIVATE_NETWORK_URL}`,
@@ -84,5 +80,31 @@ export const GUIDE_LINKS: { [guideName: string]: Partial<GuideLinks> } = {
       'https://help.ovhcloud.com/csm/en-dedicated-servers-multiple-vlans?id=kb_article_view&sysparm_article=KB0043368',
     US:
       'https://support.us.ovhcloud.com/hc/en-us/articles/25276312027027-Creating-Multiple-vLANs-in-a-vRack',
+  },
+  '3AZ': {
+    DEFAULT:
+      'https://help.ovhcloud.com/csm/en-ie-public-cloud-deployments-modes-reference-architecture?id=kb_article_view&sysparm_article=KB0067034',
+    FR:
+      'https://help.ovhcloud.com/csm/fr-public-cloud-deployments-modes-reference-architecture?id=kb_article_view&sysparm_article=KB0067031',
+    GB:
+      'https://help.ovhcloud.com/csm/en-gb-public-cloud-deployments-modes-reference-architecture?id=kb_article_view&sysparm_article=KB0067024',
+    DE:
+      'https://help.ovhcloud.com/csm/de-public-cloud-deployments-modes-reference-architecture?id=kb_article_view&sysparm_article=KB0067014',
+    ES:
+      'https://help.ovhcloud.com/csm/es-es-public-cloud-deployments-modes-reference-architecture?id=kb_article_view&sysparm_article=KB0067026',
+    IT:
+      'https://help.ovhcloud.com/csm/it-public-cloud-deployments-modes-reference-architecture?id=kb_article_view&sysparm_article=KB0067036',
+    PT:
+      'https://help.ovhcloud.com/csm/pt-public-cloud-deployments-modes-reference-architecture?id=kb_article_view&sysparm_article=KB0067033',
+    PL:
+      'https://help.ovhcloud.com/csm/pl-public-cloud-deployments-modes-reference-architecture?id=kb_article_view&sysparm_article=KB0067032',
+    CA:
+      'https://help.ovhcloud.com/csm/en-ca-public-cloud-deployments-modes-reference-architecture?id=kb_article_view&sysparm_article=KB0067028',
+    QC:
+      'https://help.ovhcloud.com/csm/fr-ca-public-cloud-deployments-modes-reference-architecture?id=kb_article_view&sysparm_article=KB0067037',
+    AU:
+      'https://help.ovhcloud.com/csm/en-au-public-cloud-deployments-modes-reference-architecture?id=kb_article_view&sysparm_article=KB0067029',
+    ASIA:
+      'https://help.ovhcloud.com/csm/asia-public-cloud-deployments-modes-reference-architecture?id=kb_article_view&sysparm_article=KB0067025',
   },
 };

@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useMemo } from 'react';
+import { Suspense, useEffect, useMemo, useState } from 'react';
 import { Outlet, useHref, useParams, useSearchParams } from 'react-router-dom';
 import {
   BaseLayout,
@@ -18,6 +18,7 @@ import {
   OdsBreadcrumbItem,
   OdsSpinner,
 } from '@ovhcloud/ods-components/react';
+import { ColumnSort } from '@tanstack/react-table';
 
 import { useServerContainer } from '@/api/hooks/useContainer';
 import { useDatagridColumn } from '../show/useDatagridColumn';
@@ -33,6 +34,7 @@ import { useStorage, useStorageEndpoint } from '@/api/hooks/useStorages';
 import '../show/style.scss';
 import { useServerContainerObjectVersions } from '@/api/hooks/useContainerObjectVersions';
 import { TContainer } from '../show/Show.page';
+import { useSortedObjects } from '../show/useSortedObjectsWithIndex';
 
 export default function ObjectPage() {
   const { storageId, objectName: encodedObjectName } = useParams();
@@ -131,13 +133,13 @@ export default function ObjectPage() {
     }
   };
 
-  const containerObjectsWithIndex = useMemo(() => {
-    if (!objectsVersions || !container?.s3StorageType) return [];
-    return objectsVersions.map((object, index) => ({
-      ...object,
-      index: `${index}`,
-    }));
-  }, [objectsVersions]);
+  const [sortingDatagrid, setSortingDatagrid] = useState<ColumnSort>();
+
+  const containerObjectsWithIndex = useSortedObjects(
+    objectsVersions,
+    sortingDatagrid,
+    container?.s3StorageType,
+  );
 
   const is = useMemo(
     () => ({
@@ -218,9 +220,11 @@ export default function ObjectPage() {
         <>
           {container?.s3StorageType &&
             (!isObjectsLoading ? (
-              <div className="mt-8">
+              <div className="mt-8 container-data-grid">
                 <Datagrid
                   columns={objectsColumns}
+                  sorting={sortingDatagrid}
+                  onSortChange={setSortingDatagrid}
                   hasNextPage={hasNextPage}
                   items={containerObjectsWithIndex}
                   onFetchNextPage={handleFetchNextPage}
