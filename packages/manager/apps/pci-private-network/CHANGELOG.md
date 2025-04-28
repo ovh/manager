@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-network-app@0.17.7...@ovh-ux/manager-pci-private-network-app@0.18.0) (2025-04-28)
+
+
+### Features
+
+* **pci-public-ip:** add guide link for 3az region ([c33a4db](https://github.com/ovh/manager/commit/c33a4dbeb37b9645120ec34d6f5b02f615e7de75)), closes [#TAPC-3598](https://github.com/ovh/manager/issues/TAPC-3598) [#TAPC-3320](https://github.com/ovh/manager/issues/TAPC-3320) [#TAPC-3480](https://github.com/ovh/manager/issues/TAPC-3480) [#TAPC-2667](https://github.com/ovh/manager/issues/TAPC-2667) [#TAPC-3605](https://github.com/ovh/manager/issues/TAPC-3605) [#TAPC-3610](https://github.com/ovh/manager/issues/TAPC-3610)
+
+
+
+
+
 ## [0.17.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-network-app@0.17.6...@ovh-ux/manager-pci-private-network-app@0.17.7) (2025-04-28)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-private-network-app
