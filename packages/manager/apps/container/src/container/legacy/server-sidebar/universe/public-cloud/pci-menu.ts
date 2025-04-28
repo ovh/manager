@@ -55,6 +55,7 @@ export const features = [
   'key-management-service',
   'pci-savings-plan',
   'pci-ai-endpoints',
+  'pci-ai-endpoints:create-token'
 ];
 
 export function getPciProjectMenu(
