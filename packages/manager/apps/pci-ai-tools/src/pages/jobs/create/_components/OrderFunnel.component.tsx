@@ -12,6 +12,7 @@ import {
   Button,
   Card,
   CardContent,
+  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -22,10 +23,10 @@ import {
   FormLabel,
   FormMessage,
   Input,
-  Label,
   Popover,
   PopoverContent,
   PopoverTrigger,
+  Separator,
   useToast,
 } from '@datatr-ux/uxlib';
 import * as sshKey from '@datatr-ux/ovhcloud-types/cloud/sshkey/index';
@@ -157,162 +158,203 @@ const OrderFunnel = ({
         >
           <div
             data-testid="order-funnel-container"
-            className="col-span-1 md:col-span-3 divide-y-[24px] divide-transparent"
+            className="col-span-1 md:col-span-3"
           >
-            <section id="name" data-testid="name-section">
-              <Label className="mb-2 text-lg font-semibold">
-                {t('fieldDimensionLabel')}
-              </Label>
-              <FormField
-                control={model.form.control}
-                name="jobName"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className={classNameLabel}>
-                      {t('fieldConfigurationNameLabel')}
-                    </FormLabel>
-                    <FormControl>
-                      <Input placeholder={field.value} {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </section>
-
-            <section id="region" data-testid="region-section">
-              <FormField
-                control={model.form.control}
-                name="region"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className={classNameLabel}>
-                      {t('fieldRegionLabel')}
-                    </FormLabel>
-                    <FormControl>
-                      <RegionsSelect
-                        {...field}
-                        regions={model.lists.regions}
-                        value={field.value}
-                        onChange={(newRegion) => {
-                          model.form.setValue('region', newRegion);
-                          model.form.setValue('volumes', []);
-                        }}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </section>
-
-            <section id="flavor" data-testid="flavor-section">
-              <FormField
-                control={model.form.control}
-                name="flavorWithQuantity.flavor"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormControl>
-                      <FlavorsSelect
-                        {...field}
-                        flavors={model.lists.flavors}
-                        value={field.value}
-                        resourcesQuantity={model.result.resourcesQuantity}
-                        onChange={(newFlavor) => {
-                          model.form.setValue(
-                            'flavorWithQuantity.flavor',
-                            newFlavor,
-                          );
-                          model.form.setValue('flavorWithQuantity.quantity', 1);
-                        }}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={model.form.control}
-                defaultValue={1}
-                name="flavorWithQuantity.quantity"
-                render={({ field }) => (
-                  <FormItem>
-                    <p className="mt-2">
-                      {t('fieldFlavorQuantityDescription')}
-                    </p>
-                    <FormControl>
-                      <Input
-                        type="number"
-                        max={model.result?.flavor?.max}
-                        min={1}
-                        value={field.value}
-                        {...field}
-                      />
-                    </FormControl>
-                    <div className="flex flex-row justify-between">
+            <Card
+              id="name"
+              data-testid="name-section"
+              className="shadow-sm mt-4"
+            >
+              <CardHeader>
+                <CardTitle>{t('fieldConfigurationNameLabel')}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <FormField
+                  control={model.form.control}
+                  name="jobName"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <Input placeholder={field.value} {...field} />
+                      </FormControl>
                       <FormMessage />
-                      {model.result.flavor && (
-                        <div className="inline-block text-xs">
-                          <span>{t('fieldFlavorQuantityInformation')}</span>{' '}
-                          <span className="capitalize font-bold">
-                            {model.result?.flavor?.id}
-                          </span>
-                          {': '}
-                          <span>{model.result?.flavor?.max}</span>
-                        </div>
-                      )}
-                    </div>
-                  </FormItem>
-                )}
-              />
-            </section>
+                    </FormItem>
+                  )}
+                />
+              </CardContent>
+            </Card>
 
-            <section id="image" data-testid="image-section">
-              <FormField
-                control={model.form.control}
-                name="image"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className={classNameLabel}>
-                      {t('fieldImageLabel')}
-                    </FormLabel>
-                    <FormControl>
-                      <JobImagesSelect
-                        {...field}
-                        images={model.lists.presetImage}
+            <Card
+              id="region"
+              data-testid="region-section"
+              className="shadow-sm mt-4"
+            >
+              <CardHeader>
+                <CardTitle>{t('fieldRegionLabel')}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <FormField
+                  control={model.form.control}
+                  name="region"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <RegionsSelect
+                          {...field}
+                          regions={model.lists.regions}
+                          value={field.value}
+                          onChange={(newRegion) => {
+                            model.form.setValue('region', newRegion);
+                            model.form.setValue('volumes', []);
+                          }}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </CardContent>
+            </Card>
+
+            <Card
+              id="flavor"
+              data-testid="flavor-section"
+              className="shadow-sm mt-4"
+            >
+              <CardHeader>
+                <CardTitle>{t('fieldFlavorLabel')}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription className="mb-2">
+                  {t('fieldFlavorDescription')}
+                </CardDescription>
+                <FormField
+                  control={model.form.control}
+                  name="flavorWithQuantity.flavor"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <FlavorsSelect
+                          {...field}
+                          flavors={model.lists.flavors}
+                          value={field.value}
+                          resourcesQuantity={model.result.resourcesQuantity}
+                          onChange={(newFlavor) => {
+                            model.form.setValue(
+                              'flavorWithQuantity.flavor',
+                              newFlavor,
+                            );
+                            model.form.setValue(
+                              'flavorWithQuantity.quantity',
+                              1,
+                            );
+                          }}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </CardContent>
+              <CardContent>
+                <CardDescription className="mb-2">
+                  {t('fieldFlavorQuantityDescription')}
+                </CardDescription>
+                <FormField
+                  control={model.form.control}
+                  defaultValue={1}
+                  name="flavorWithQuantity.quantity"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <Input
+                          type="number"
+                          max={model.result?.flavor?.max}
+                          min={1}
+                          value={field.value}
+                          {...field}
+                        />
+                      </FormControl>
+                      <div className="flex flex-row justify-between">
+                        <FormMessage />
+                        {model.result.flavor && (
+                          <div className="inline-block text-xs">
+                            <span>{t('fieldFlavorQuantityInformation')}</span>{' '}
+                            <span className="capitalize font-bold">
+                              {model.result?.flavor?.id}
+                            </span>
+                            {': '}
+                            <span>{model.result?.flavor?.max}</span>
+                          </div>
+                        )}
+                      </div>
+                    </FormItem>
+                  )}
+                />
+              </CardContent>
+            </Card>
+
+            <Card
+              id="image"
+              data-testid="image-section"
+              className="shadow-sm mt-4"
+            >
+              <CardHeader>
+                <CardTitle>{t('fieldImageLabel')}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <FormField
+                  control={model.form.control}
+                  name="image"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <JobImagesSelect
+                          {...field}
+                          images={model.lists.presetImage}
+                          value={field.value}
+                          onChange={(newImage) =>
+                            model.form.setValue('image', newImage)
+                          }
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </CardContent>
+            </Card>
+
+            <Card
+              id="access"
+              data-testid="access-section"
+              className="shadow-sm mt-4"
+            >
+              <CardHeader>
+                <CardTitle>{t('fieldConfigurationPrivacyLabel')}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <FormField
+                  control={model.form.control}
+                  name="privacy"
+                  render={({ field }) => (
+                    <FormItem className="flex flex-col gap-1">
+                      <PrivacyRadioInput
                         value={field.value}
-                        onChange={(newImage) =>
-                          model.form.setValue('image', newImage)
+                        onChange={(newPrivacyValue: PrivacyEnum) =>
+                          model.form.setValue('privacy', newPrivacyValue)
                         }
+                        className={classNameLabel}
                       />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </section>
-
-            <section id="access" data-testid="access-section">
-              <FormField
-                control={model.form.control}
-                name="privacy"
-                render={({ field }) => (
-                  <FormItem className="flex flex-col gap-1">
-                    <PrivacyRadioInput
-                      value={field.value}
-                      onChange={(newPrivacyValue: PrivacyEnum) =>
-                        model.form.setValue('privacy', newPrivacyValue)
-                      }
-                      className={classNameLabel}
-                    />
-                  </FormItem>
-                )}
-              />
-            </section>
+                    </FormItem>
+                  )}
+                />
+              </CardContent>
+            </Card>
 
             {/* Advanced configuration */}
             <section id="advancedConfig" data-testid="advance-config-section">
-              <Card>
+              <Card className="mt-4">
                 <CardHeader>
                   <Button
                     data-testid="advanced-config-button"
@@ -449,6 +491,7 @@ const OrderFunnel = ({
                   scrollToDiv(target);
                 }}
               />
+              <Separator className="my-2" />
               {model.result.flavor && (
                 <OrderPrice
                   minuteConverter={60} // affichage du prix à l'heure

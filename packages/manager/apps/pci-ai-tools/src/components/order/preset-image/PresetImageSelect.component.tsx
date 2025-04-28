@@ -1,12 +1,18 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Card, CardContent, CardHeader, CardTitle } from '@datatr-ux/uxlib';
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  RadioGroup,
+  RadioTile,
+  Separator,
+} from '@datatr-ux/uxlib';
 import {
   ArrowUpRightFromSquare,
   ArrowUpRightFromSquareIcon,
+  Wrench,
 } from 'lucide-react';
-import { cn } from '@/lib/utils';
-import RadioTile from '@/components/radio-tile/RadioTile.component';
 import A from '@/components/links/A.component';
 import ai from '@/types/AI';
 
@@ -14,18 +20,17 @@ interface PresetImageSelectProps {
   images: ai.job.PresetImage[];
   value: string;
   onChange: (newImage: string) => void;
-  className?: string;
 }
 
 const PresetImageSelect = React.forwardRef<
   HTMLInputElement,
   PresetImageSelectProps
->(({ images, value, onChange, className }, ref) => {
+>(({ images, value, onChange }, ref) => {
   const { t } = useTranslation('ai-tools/components/preset-image');
   return (
     <Card data-testid="preset-image-select">
       <CardHeader>
-        <CardTitle>{t('presetImageTitle')}</CardTitle>
+        <h5>{t('presetImageTitle')}</h5>
         <div className="pt-4 text-sm">
           <p>{t('presetImageDesc')}</p>
           <p>
@@ -43,18 +48,16 @@ const PresetImageSelect = React.forwardRef<
         </div>
       </CardHeader>
       <CardContent className="space-y-2">
-        <div
+        <RadioGroup
           data-testid="images-select-container"
           ref={ref}
-          className={cn(
-            'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2',
-            className,
-          )}
+          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2"
+          value={value}
+          onValueChange={onChange}
         >
           {images.map((image) => (
             <RadioTile
               data-testid={`image-radio-tile-${image.id}`}
-              name="image-select"
               key={image.id}
               onChange={() => {
                 onChange(image.id);
@@ -64,24 +67,20 @@ const PresetImageSelect = React.forwardRef<
             >
               <div className="flex flex-col gap-2">
                 <div className="flex justify-between items-center">
-                  <span
-                    className={`text-lg capitalize ${
-                      image.id === value ? 'font-bold' : 'font-normal'
-                    }`}
-                  >
-                    {image.name}
-                  </span>
-                  {image.logo && (
+                  <h5>{image.name}</h5>
+                  {image.logo ? (
                     <img
-                      className="block w-[60px] h-[40px]"
+                      className="block w-[50px] h-[30px]"
                       src={image.logo}
                       alt={image.name}
                     />
+                  ) : (
+                    <Wrench className="size-6 shrink-0" />
                   )}
                 </div>
                 <p className="text-sm">{image.description}</p>
               </div>
-              <RadioTile.Separator />
+              <Separator className="my-2" />
               <A
                 href={image.link}
                 target="_blank"
@@ -93,7 +92,7 @@ const PresetImageSelect = React.forwardRef<
               </A>
             </RadioTile>
           ))}
-        </div>
+        </RadioGroup>
       </CardContent>
     </Card>
   );

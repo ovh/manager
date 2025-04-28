@@ -299,7 +299,7 @@ const SshKeysDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
 };
 const OrderSummary = ({ order, onSectionClicked }: OrderSummaryProps) => {
   return (
-    <div className="grid grid-cols-1 gap-2">
+    <div className="grid grid-cols-1">
       <NameDetails order={order} onSectionClicked={onSectionClicked} />
       <RegionDetails order={order} onSectionClicked={onSectionClicked} />
       <FlavorDetails order={order} onSectionClicked={onSectionClicked} />
