@@ -55,6 +55,10 @@ export default function DatagridColumnActionMenu({
             });
           },
         },
+        {
+          id: 4,
+          label: t('allDom_table_action_handle_contact'),
+        },
       ]}
     />
   );
