@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.22.3...@ovh-ux/manager-zimbra-app@0.23.0) (2025-04-28)
+
+
+### Features
+
+* **zimbra:** add onboarding tunnel ([#16106](https://github.com/ovh/manager/issues/16106)) ([eb2978f](https://github.com/ovh/manager/commit/eb2978f09fc28c2ed14de202b33707ac88498011)), closes [#MANAGER-17519](https://github.com/ovh/manager/issues/MANAGER-17519)
+
+
+
+
+
 ## [0.22.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.22.2...@ovh-ux/manager-zimbra-app@0.22.3) (2025-04-24)
 
 **Note:** Version bump only for package @ovh-ux/manager-zimbra-app
