@@ -21,7 +21,7 @@ export function useAddJob({ onError, onSuccess }: AddJobProps) {
       // invalidate notebook list to avoid displaying
       // old list
       queryClient.invalidateQueries({
-        queryKey: [projectId, 'ai/job'],
+        queryKey: [projectId, 'ai', 'job'],
         refetchType: 'none',
       });
       onSuccess(data);
