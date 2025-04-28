@@ -1,5 +1,8 @@
 {
   "deleteModalError": "L'erreur suivante est survenue : {{error}}.",
-  "deleteModalCancelButton": "Annuler",
-  "deleteModalDeleteButton": "Résilier"
+  "deleteModalCancelButton": "Non, refuser",
+  "deleteModalDeleteButton": "Oui, résilier",
+  "deleteModalDescription": "La résiliation de votre service effacera définitivement toutes les données correspondantes. Souhaitez-vous procéder à la résiliation de votre service ?",
+  "deleteModalHeadline": "Résilier {{serviceType}} ?",
+  "deleteModalHeadlineService": "le service"
 }
