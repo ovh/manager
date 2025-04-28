@@ -10,15 +10,4 @@ export const DEFAULT_PAGINATION: PaginationState = {
 
 export const defaultNumberOfLoadingRows = 5;
 
-export type ColumnsVisibility = {
-  id: string;
-  isDisabled: boolean;
-  label: string;
-  enableHiding: boolean;
-  isVisible: () => boolean;
-  onChange: () => void;
-};
-
-export type ColumnsVisibilityProps = {
-  columnsVisibility: ColumnsVisibility[];
-};
+export const INTERNAL_COLUMNS = ['expander', 'actions'];
