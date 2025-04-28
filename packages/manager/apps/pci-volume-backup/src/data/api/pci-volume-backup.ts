@@ -55,6 +55,20 @@ export const getVolume = async ({
   return data;
 };
 
+export const createVolumeBackup = async (
+  projectId: string,
+  volumeId: string,
+  regionName: string,
+  backupName: string,
+) => {
+  const data = await v6.post(
+    `/cloud/project/${projectId}/region/${regionName}/volumeBackup`,
+    { name: backupName, volumeId },
+  );
+
+  return data;
+};
+
 export const restoreVolume = async ({
   projectId,
   regionName,
@@ -88,4 +102,17 @@ export const deleteBackup = async ({
   await v6.delete(
     `/cloud/project/${projectId}/region/${regionName}/volumeBackup/${backupId}`,
   );
+};
+
+export const createVolumeSnapshot = async (
+  projectId: string,
+  volumeId: string,
+  backupName: string,
+) => {
+  const data = await v6.post(
+    `/cloud/project/${projectId}/volume/${volumeId}/snapshot`,
+    { name: backupName },
+  );
+
+  return data;
 };
