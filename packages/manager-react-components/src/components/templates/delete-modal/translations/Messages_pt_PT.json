@@ -1,5 +1,8 @@
 {
   "deleteModalError": "Ocorreu o seguinte erro: {{error}}.",
-  "deleteModalCancelButton": "Anular",
-  "deleteModalDeleteButton": "Rescindir"
+  "deleteModalCancelButton": "Não, recusar",
+  "deleteModalDeleteButton": "Sim, rescindir",
+  "deleteModalDescription": "A rescisão do serviço eliminará definitivamente todos os dados correspondentes. Pretende proceder à rescisão do seu serviço?",
+  "deleteModalHeadline": "Rescindir {{serviceType}}?",
+  "deleteModalHeadlineService": "o serviço"
 }
