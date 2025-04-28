@@ -158,3 +158,11 @@ export const VOLUME_BACKUP_STATUS = {
   OK: 'ok',
   RESTORING: 'restoring',
 };
+
+export const VOLUME_OPTION_SNAPSHOT = 'SNAPSHOT';
+export const VOLUME_OPTION_BACKUP = 'BACKUP';
+
+export const BACKUP_NAME_PREFIX = {
+  [VOLUME_OPTION_SNAPSHOT]: 'snapshot',
+  [VOLUME_OPTION_BACKUP]: 'backup',
+};

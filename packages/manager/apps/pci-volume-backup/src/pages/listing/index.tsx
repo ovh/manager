@@ -5,7 +5,7 @@ import {
   OdsBreadcrumb,
   OdsBreadcrumbItem,
 } from '@ovhcloud/ods-components/react';
-import { Outlet, useParams } from 'react-router-dom';
+import { Outlet, useParams, useNavigate } from 'react-router-dom';
 import { ODS_BUTTON_SIZE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { useProject } from '@ovh-ux/manager-pci-common';
 import { FilterTypeCategories } from '@ovh-ux/manager-core-api';
@@ -38,6 +38,7 @@ export default function Listing() {
   const { projectId } = useParams() as ProjectParams;
   const hrefProject = useProjectUrl('public-cloud');
   const { data: project } = useProject();
+  const navigate = useNavigate();
 
   const columnsWithSearchable = useMemo(() => {
     return [
@@ -108,6 +109,7 @@ export default function Listing() {
         label={t(
           'pci_projects_project_storages_volume_backup_list_datagrid_menu_topbar_action_create',
         )}
+        onClick={() => navigate('../create')}
       />
     </div>
   );
