@@ -55,6 +55,7 @@ export const features = [
   'key-management-service',
   'pci-savings-plan',
   'pci-ai-endpoints',
+  'pci-ai-endpoints:create-token'
 ];
 
 export function getPciProjectMenu(
@@ -392,7 +393,7 @@ export function getPciProjectMenu(
           title: 'AI Notebooks',
           href: getURL(
             'public-cloud',
-            `#/pci/projects/${projectId}/ai-ml/notebook`,
+            `#/pci/projects/${projectId}/ai-ml/notebooks`,
           ),
         },
         isFeaturesAvailable('pci-ai-training') && {

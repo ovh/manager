@@ -14,7 +14,7 @@ import {
   SERVICE_STATES,
   SERVICE_STATUS,
   SERVICE_RENEW_MODES,
-  SERVICE_TYPES_USING_V6_SERVICES,
+  SERVICE_TYPES,
 } from './autorenew.constants';
 
 export default class {
@@ -289,14 +289,15 @@ export default class {
         : Promise.resolve([]);
 
     return agreementsPromise.then(() => {
-      if (SERVICE_TYPES_USING_V6_SERVICES.includes(service?.serviceType)) {
+      if (service?.serviceType === SERVICE_TYPES.ZIMBRA_SLOT) {
         const mode = service?.renew?.automatic
           ? SERVICE_RENEW_MODES.AUTOMATIC
           : SERVICE_RENEW_MODES.MANUAL;
 
-        const period = Number.isInteger(service?.renew?.period)
-          ? `P${service?.renew?.period || 1}M`
-          : service?.renew?.period;
+        const period =
+          Number.isInteger(service?.renew?.period) || !service?.renew?.period
+            ? `P${service?.renew?.period || 1}M`
+            : service?.renew?.period;
 
         return this.putServiceV6(service, {
           renew: {

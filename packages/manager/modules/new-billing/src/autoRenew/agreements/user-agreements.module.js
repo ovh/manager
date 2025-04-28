@@ -9,6 +9,9 @@ import acceptAll from './popup-agreement/popup-agreement.module';
 import details from './details/details.module';
 import routing from './user-agreements.routes';
 import service from './user-agreements.service';
+import component from './user-agreements.component';
+
+import './user-agreements.style.less';
 
 const moduleName = 'ovhManagerBillingAgreements';
 
@@ -24,6 +27,7 @@ angular
   ])
   .config(routing)
   .service('UserAccountServicesAgreements', service)
+  .component('userAgreements', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

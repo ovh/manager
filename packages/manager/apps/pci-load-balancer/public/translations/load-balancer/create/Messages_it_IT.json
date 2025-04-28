@@ -43,5 +43,6 @@
   "octavia_load_balancer_create_size_flavour_description_2xl": "Perfetto per progetti esigenti in termini di traffico, grazie a un’elevata capacità di banda passante che permette di ottenere prestazioni costanti.",
   "octavia_load_balancer_create_size_flavour_description_3xl": "Progettato per ambienti critici con traffico massivo, grazie a una banda passante estesa che permette di garantire prestazioni massime.",
   "octavia_load_balancer_create_private_network": "Nella Region selezionata non sono presenti reti private. Assicurati di <link /> prima della creazione del Load Balancer.",
-  "octavia_load_balancer_create_private_network_label": "creare una rete privata"
+  "octavia_load_balancer_create_private_network_label": "creare una rete privata",
+  "octavia_load_balancer_create_3az_guide_description": "Per maggiori informazioni sulle caratteristiche dei servizi 3-AZ e su come utilizzarli per progettare un'infrastruttura resiliente, <Link>clicca qui</Link>"
 }

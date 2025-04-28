@@ -5,6 +5,7 @@ export interface Container {
   isDefault: boolean;
   path: string;
   hash?: string;
+  hashes?: string[];
   containerURL: string;
 }
 

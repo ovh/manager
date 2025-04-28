@@ -1,5 +1,12 @@
 import { useCallback, useMemo, useState } from 'react';
-import { Subtitle } from '@ovh-ux/manager-react-components';
+import { Links, Subtitle } from '@ovh-ux/manager-react-components';
+import {
+  ODS_TEXT_COLOR_INTENT,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
+} from '@ovhcloud/ods-components';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import { OsdsText } from '@ovhcloud/ods-components/react';
 import {
   RegionSelector,
   useProject,
@@ -10,10 +17,14 @@ import {
   TDeployment,
   TLocalisation,
   FeaturedDeploymentTilesInput,
+  TRegionType,
 } from '@ovh-ux/manager-pci-common';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { useFormContext } from 'react-hook-form';
 import { NewPrivateNetworkForm } from '@/types/private-network-form.type';
+import useGuideLink from '@/hooks/useGuideLink/useGuideLink';
+
+const REGION_3AZ_TYPE = 'region-3-az';
 
 const isNetworkUp = (services: TRegion['services']) =>
   services.some(
@@ -22,8 +33,19 @@ const isNetworkUp = (services: TRegion['services']) =>
 
 const isRegionWith3AZ = (regions: TRegion[]) =>
   regions.some(
-    (region) => region.type === 'region-3-az' && isNetworkUp(region.services),
+    (region) => region.type === REGION_3AZ_TYPE && isNetworkUp(region.services),
   );
+
+const GuideLink = ({
+  children,
+  href,
+}: Readonly<{ href: string; children?: string }>) => (
+  <Links
+    label={children}
+    href={href}
+    target={OdsHTMLAnchorElementTarget._blank}
+  />
+);
 
 const LocalisationConfig: React.FC = () => {
   const { t } = useTranslation('new');
@@ -43,14 +65,22 @@ const LocalisationConfig: React.FC = () => {
     setSelectedRegionGroup,
   ] = useState<TDeployment | null>(null);
 
+  const [selectedRegionType, setSelectedRegionType] = useState<
+    TRegionType | undefined
+  >();
+
+  const guides = useGuideLink();
+
   const onSelectRegion = (region: TLocalisation) => {
     unregister('region');
+    setSelectedRegionType(undefined);
 
     if (region) {
       setValue('region', region.name, { shouldValidate: true });
       setValue('isLocalZone', region.isLocalZone, {
         shouldValidate: true,
       });
+      setSelectedRegionType(region.type);
     }
   };
 
@@ -83,6 +113,23 @@ const LocalisationConfig: React.FC = () => {
           regionFilter={filterRegion}
         />
       </PCICommonContext.Provider>
+      {selectedRegionType === REGION_3AZ_TYPE && (
+        <div>
+          <OsdsText
+            color={ODS_TEXT_COLOR_INTENT.text}
+            size={ODS_TEXT_SIZE._400}
+            level={ODS_TEXT_LEVEL.body}
+          >
+            <Trans
+              t={t}
+              i18nKey="pci_projects_project_network_private_3az_guide_description"
+              components={{
+                Link: <GuideLink href={guides['3AZ']} />,
+              }}
+            />
+          </OsdsText>
+        </div>
+      )}
     </div>
   );
 };

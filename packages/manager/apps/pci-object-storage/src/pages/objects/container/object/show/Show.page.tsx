@@ -43,6 +43,7 @@ import {
   OdsToggle,
 } from '@ovhcloud/ods-components/react';
 
+import { ColumnSort } from '@tanstack/react-table';
 import {
   usePaginatedObjects,
   useServerContainer,
@@ -73,6 +74,7 @@ import { TRegion } from '@/api/data/region';
 import { useServerContainerObjects } from '@/api/hooks/useContainerObjects';
 
 import './style.scss';
+import { useSortedObjects } from './useSortedObjectsWithIndex';
 
 export type TContainer = {
   id: string;
@@ -213,13 +215,15 @@ export default function ObjectPage() {
     }
   };
 
-  const containerObjectsWithIndex = useMemo(() => {
-    if (!containerObjects || !container?.s3StorageType) return [];
-    return containerObjects.map((object, index) => ({
-      ...object,
-      index: `${index}`,
-    }));
-  }, [containerObjects]);
+  const [sortingDatagrid, setSortingDatagrid] = useState<ColumnSort | null>(
+    null,
+  );
+
+  const containerObjectsWithIndex = useSortedObjects(
+    containerObjects,
+    sortingDatagrid,
+    container?.s3StorageType,
+  );
 
   const shouldHideButton = useMemo(() => {
     return !container?.tags?.[BACKUP_KEY];
@@ -633,7 +637,17 @@ export default function ObjectPage() {
           </div>
 
           {container?.s3StorageType && (
-            <div className="mt-8">
+            <div className="mt-[32px] container-data-grid">
+              <OdsText preset="heading-4" className="mt-6 block">
+                {tContainer(
+                  'pci_projects_project_storages_containers_container_objects',
+                )}
+              </OdsText>
+              <OdsText preset="paragraph" className="mt-4 block mb-6">
+                {tContainer(
+                  'pci_projects_project_storages_containers_container_objects_sort_warining',
+                )}
+              </OdsText>
               <Datagrid
                 topbar={
                   <div className="flex w-full justify-between items-center">
@@ -675,6 +689,8 @@ export default function ObjectPage() {
                   </div>
                 }
                 columns={objectsColumns}
+                sorting={sortingDatagrid}
+                onSortChange={setSortingDatagrid}
                 hasNextPage={hasNextPage}
                 items={isObjectsLoading ? [] : containerObjectsWithIndex}
                 onFetchNextPage={handleFetchNextPage}

@@ -543,7 +543,7 @@ pciNode.children = [
         serviceType: 'CLOUD_PROJECT_AI_NOTEBOOK',
         routing: {
           application: 'public-cloud',
-          hash: '#/pci/projects/{projectId}/ai-ml/notebook',
+          hash: '#/pci/projects/{projectId}/ai-ml/notebooks',
         },
         features: ['pci-ai-notebooks'],
         forceVisibility: true,
