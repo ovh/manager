@@ -10,12 +10,6 @@ export const getContinentKeyFromRegion = (region: string) => {
   return 'CA';
 };
 
-export const IP_FAILOVER_PLANCODE = {
-  EU: 'ip-failover-ripe',
-  CA: 'ip-failover-arin',
-  US: 'ip-failover-arin',
-};
-
 export const DATACENTER_TO_REGION: { [datacenter: string]: string } = {
   RBX: 'eu-west-rbx',
   GRA: 'eu-west-gra',
@@ -52,3 +46,5 @@ export const isBlockIpPlan = (plan: CatalogIpPlan) => {
     defaultPricing.maximumQuantity === 1
   );
 };
+
+export const isAdditionalIpPlan = (plan: CatalogIpPlan) => !isBlockIpPlan(plan);

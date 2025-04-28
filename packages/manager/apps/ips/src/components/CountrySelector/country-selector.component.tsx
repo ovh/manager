@@ -16,7 +16,7 @@ export type CountrySelectorProps = {
 };
 
 export const CountrySelector: React.FC<CountrySelectorProps> = ({
-  countryCodeList,
+  countryCodeList = [],
   onChange,
   className,
   ...props
