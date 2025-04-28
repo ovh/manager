@@ -97,6 +97,7 @@ const InstanceAction: FC = () => {
             />,
           ]}
         />,
+        true,
       );
     } else {
       addInfo(

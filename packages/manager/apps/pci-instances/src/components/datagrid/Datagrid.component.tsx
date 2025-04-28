@@ -124,6 +124,7 @@ const DatagridComponent = ({
           t(`actions:pci_instances_actions_instance_success_message`, {
             name: instance.name,
           }),
+          true,
         );
       }
     },
