@@ -2,7 +2,7 @@ import { PropsWithChildren } from 'react';
 import { ActionModalContent } from '@/pages/instances/action/modal/ActionModalContent.component';
 import Modal from '@/components/modal/Modal.component';
 import { Spinner } from '../spinner/Spinner.component';
-import { TSectionType } from '@/data/hooks/instance/action/useCachedInstanceAction';
+import { TSectionType } from '@/types/instance/action/action.type';
 
 export type TActionModalProps = PropsWithChildren<{
   title: string;
