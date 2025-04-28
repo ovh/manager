@@ -18,6 +18,7 @@ import MfaEnrollment from '@/container/mfa-enrollment/MfaEnrollment';
 
 function NavReshuffleContainer(): JSX.Element {
   const iframeRef = useRef(null);
+  const secondaryIframeRef = useRef(null);
   const [iframe, setIframe] = useState(null);
   const shell = useShell();
   const { isStarted: isProgressAnimating } = useProgress();
@@ -87,12 +88,20 @@ function NavReshuffleContainer(): JSX.Element {
               <IFrameAppRouter
                 iframeRef={iframeRef}
                 configuration={applications}
+                secondaryIframeRef={secondaryIframeRef}
               />
               <iframe
                 title="app"
                 role="document"
                 src="about:blank"
                 ref={iframeRef}
+              ></iframe>
+              <iframe
+                title="secondary-app"
+                role="document"
+                src="about:blank"
+                ref={secondaryIframeRef}
+                sandbox="allow-scripts allow-top-navigation allow-forms allow-popups allow-same-origin allow-downloads"
               ></iframe>
             </>
           </Preloader>
