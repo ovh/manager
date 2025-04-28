@@ -31,6 +31,7 @@ export default /* @ngInject */ function BillingUserService(
       hasAutorenew2016: () =>
         AUTORENEW_2016_SUBSIDIARIES.includes(result.ovhSubsidiary),
       auth: result.auth,
+      language: result.language,
     }));
 
   this.getMe = () => $q.when(coreConfig.getUser());
