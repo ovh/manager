@@ -52,7 +52,7 @@ interface OrderSummaryProps {
 const NameDetails = ({ order }: OrderSummaryProps) => {
   const { t } = useTranslation('pci-databases-analytics/services/new');
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-2 flex-wrap">
       <b>{t('summaryFieldNameLabel')}</b>
       <span>{order.name}</span>
       <Popover>
@@ -129,7 +129,7 @@ const RegionDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
   const { t } = useTranslation('pci-databases-analytics/services/new');
   const { t: tRegions } = useTranslation('regions');
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-start gap-2">
       <Button
         data-testid="region-section-button"
         className="h-auto p-0 bg-transparent hover:bg-transparent font-bold text-primary underline-offset-4 hover:underline"

@@ -17,8 +17,9 @@ const OrderPrice2 = ({ showMonthly, prices }: OrderPriceProps) => {
       <TableBody>
         <TableRow className="text-xs">
           <TableCell>Instance</TableCell>
-          <TableCell className="text-right">
+          <TableCell className="text-right px-0">
             <Price
+              className="flex flex-row justify-end items-center flex-wrap gap-2"
               decimals={3}
               priceInUcents={prices.flavorPrice.hourly.price}
               taxInUcents={prices.flavorPrice.hourly.tax}
@@ -27,8 +28,9 @@ const OrderPrice2 = ({ showMonthly, prices }: OrderPriceProps) => {
         </TableRow>
         <TableRow className="text-xs">
           <TableCell>Storage</TableCell>
-          <TableCell className="text-right">
+          <TableCell className="text-right px-0">
             <Price
+              className="flex flex-row justify-end items-center flex-wrap gap-2"
               decimals={3}
               priceInUcents={prices.storagePrice.hourly.price}
               taxInUcents={prices.storagePrice.hourly.tax}
@@ -37,17 +39,19 @@ const OrderPrice2 = ({ showMonthly, prices }: OrderPriceProps) => {
         </TableRow>
         <TableRow className="text-xs">
           <TableCell>Backup</TableCell>
-          <TableCell className="text-right">
-            <Price decimals={3} priceInUcents={0} taxInUcents={0} />
+          <TableCell className="text-right px-0">
+            <Price 
+              className="flex flex-row justify-end items-center flex-wrap gap-2"
+              decimals={3} priceInUcents={0} taxInUcents={0} />
           </TableCell>
         </TableRow>
         <TableRow>
           <TableCell className="font-semibold text-text">
             Total per hour
           </TableCell>
-          <TableCell className="text-right">
+          <TableCell className="text-right px-0">
             <Price
-              className="text-text"
+              className="flex flex-row justify-end items-center flex-wrap gap-2"
               decimals={3}
               priceInUcents={prices.servicePrice.hourly.price}
               taxInUcents={prices.servicePrice.hourly.tax}
@@ -56,8 +60,9 @@ const OrderPrice2 = ({ showMonthly, prices }: OrderPriceProps) => {
         </TableRow>
         <TableRow className="text-sm text-gray-500 italic">
           <TableCell>Monthly (estimated)</TableCell>
-          <TableCell className="text-right">
+          <TableCell className="text-right px-0">
             <Price
+              className="flex flex-row justify-end items-center flex-wrap gap-2"
               decimals={0}
               priceInUcents={prices.servicePrice.monthly.price}
               taxInUcents={prices.servicePrice.monthly.tax}

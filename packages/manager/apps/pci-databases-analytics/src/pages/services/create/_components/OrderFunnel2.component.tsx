@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { ReactNode, useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
@@ -41,6 +41,7 @@ import {
   SelectValue,
   SelectContent,
   SelectItem,
+  Switch,
 } from '@datatr-ux/uxlib';
 import { order } from '@/types/catalog';
 import * as database from '@/types/cloud/project/database';
@@ -69,6 +70,7 @@ import OrderSummary2 from './OrderSummary2.component';
 import IpsRestrictionsForm2 from '@/components/order/cluster-options/IpsRestrictionsForm.component2';
 import StorageConfig2 from '@/components/order/cluster-configuration/StorageConfig.component2';
 import NetworkOptions2 from '@/components/order/cluster-options/NetworkOptions.component2';
+import OrderSection from './OrderSection.component';
 
 // export interface LocationRegion {
 //   /** List of availability zones for the region */
@@ -168,6 +170,7 @@ const OrderFunnel2 = ({
     regions,
   );
   const projectData = usePciProject();
+  const [tileMode, setTileMode] = useState(true);
   const [mode, setMode] = useState('advanced');
   const [showMonthlyPrice, setShowMonthlyPrice] = useState(false);
   const [regionType, setRegionType] = useState('REGION-1-AZ');
@@ -278,63 +281,55 @@ const OrderFunnel2 = ({
       )}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
         <div className="col-span-1 md:col-span-3 flex flex-col gap-4">
-          <Card id="mode" className="shadow-sm">
-            <CardHeader>
-              <CardTitle>Mode</CardTitle>
-              <CardDescription>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur
-                commodi debitis reiciendis praesentium eum eaque?
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <RadioGroup
-                className="flex flex-col md:grid grid-cols-2 justify-stretch gap-2"
-                defaultValue={'advanced'}
-                value={mode}
-                onValueChange={setMode}
-              >
-                <RadioTile value="simple" className="flex flex-col">
-                  <div className="flex gap-2">
-                    <h5>Simple</h5>
-                  </div>
-                  <Separator className="my-2" />
-                  <div className="flex flex-col h-full justify-between items-start gap-2">
-                    <p className="text-sm">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    </p>
-                  </div>
-                </RadioTile>
-                <RadioTile value="advanced" className="flex flex-col">
-                  <div className="flex gap-2 items-center">
-                    <h5>Advanced</h5>
-                    <Wrench className="size-4" />
-                  </div>
-                  <Separator className="my-2" />
-                  <div className="flex flex-col h-full justify-between items-start gap-2">
-                    <p className="text-sm">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                      Ut quas quis illum nulla dolor?
-                    </p>
-                  </div>
-                </RadioTile>
-              </RadioGroup>
-            </CardContent>
-          </Card>
-
-          <Card
-            id="region"
-            className={cn('shadow-sm hidden', isAdvanced && 'block')}
+          <OrderSection
+            cardMode={tileMode}
+            id="mode"
+            title="Mode"
+            description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur commodi debitis reiciendis praesentium eum eaque?"
           >
-            <CardHeader>
-              <CardTitle>Availability and durability</CardTitle>
-              <CardDescription>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                Laboriosam cumque nemo debitis cupiditate libero incidunt?
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
+            <RadioGroup
+              className="flex flex-col md:grid grid-cols-2 justify-stretch gap-2"
+              defaultValue={'advanced'}
+              value={mode}
+              onValueChange={setMode}
+            >
+              <RadioTile value="simple" className="flex flex-col">
+                <div className="flex gap-2">
+                  <h5>Simple</h5>
+                </div>
+                <Separator className="my-2" />
+                <div className="flex flex-col h-full justify-between items-start gap-2">
+                  <p className="text-sm">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  </p>
+                </div>
+              </RadioTile>
+              <RadioTile value="advanced" className="flex flex-col">
+                <div className="flex gap-2 items-center">
+                  <h5>Advanced</h5>
+                  <Wrench className="size-4" />
+                </div>
+                <Separator className="my-2" />
+                <div className="flex flex-col h-full justify-between items-start gap-2">
+                  <p className="text-sm">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut
+                    quas quis illum nulla dolor?
+                  </p>
+                </div>
+              </RadioTile>
+            </RadioGroup>
+          </OrderSection>
+
+          <OrderSection
+            cardMode={tileMode}
+            id="region"
+            title="Region"
+            description="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam cumque nemo debitis cupiditate libero incidunt?"
+            className={cn('hidden', isAdvanced && 'block')}
+          >
+            <div>
               <RadioGroup
-                className="flex flex-col md:grid grid-cols-3 justify-stretch gap-2"
+                className="flex flex-col md:grid grid-cols-3 justify-stretch gap-2 mb-4"
                 value={regionType}
                 onValueChange={setRegionType}
               >
@@ -406,17 +401,6 @@ const OrderFunnel2 = ({
                   </p>
                 </RadioTile>
               </RadioGroup>
-            </CardContent>
-          </Card>
-          <Card className={cn('shadow-sm hidden', isAdvanced && 'block')}>
-            <CardHeader>
-              <CardTitle>Region</CardTitle>
-              <CardDescription>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro
-                odit eum tempora.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
               <RegionsSelect2
                 value={model.form.getValues('region')}
                 onChange={(newRegion) => {
@@ -427,170 +411,155 @@ const OrderFunnel2 = ({
                   [regionType, '?'].includes(r.type),
                 )}
               />
-            </CardContent>
-          </Card>
-          <Card id="engine" className="shadow-sm">
-            <CardHeader>
-              <CardTitle>Engine</CardTitle>
-              <CardDescription>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Id
-                quasi earum aliquam, inventore alias cumque quo!
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <RadioGroup
-                className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2"
-                value={model.form.getValues('engineWithVersion.engine')}
-                onValueChange={(newEngine) => {
-                  model.form.setValue('engineWithVersion', {
-                    engine: newEngine,
-                    version: model.lists.engines.find(
-                      (e) => e.name === newEngine,
-                    )?.defaultVersion,
-                  });
-                }}
-              >
-                {model.lists.engines?.map((engine) => (
-                  <RadioTile
-                    value={engine.name}
-                    className="flex flex-col"
-                    key={engine.name}
-                  >
-                    <div className="flex justify-between items-center w-full">
-                      <div className="flex gap-2">
-                        <h5 className={'capitalize'}>
-                          {humanizeEngine(engine.name as database.EngineEnum)}
-                        </h5>
-                        <div className="flex gap-1 items-center">
-                          {engine.tags.map((tag) => (
-                            <Badge
-                              variant={getTagVariant(tag)}
-                              data-testid={`Badge${tag}`}
-                              key={tag}
-                              className="text-xs h-4"
-                            >
-                              {t(`versionTag-${tag}`, tag)}
-                            </Badge>
-                          ))}
-                        </div>
-                      </div>
-                      <EngineIcon
-                        engine={engine.name as database.EngineEnum}
-                        category={engine.category}
-                      />
-                    </div>
-                    <Separator className="my-2" />
-                    <p className="text-sm">
-                      {t(`description-${engine.name}`, engine.description)}
-                    </p>
-                  </RadioTile>
-                ))}
-              </RadioGroup>
-            </CardContent>
-          </Card>
-          <Card className="shadow-sm">
-            <CardHeader>
-              <CardTitle>Version</CardTitle>
-              <CardDescription>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Libero
-                asperiores cumque ea facilis dolorum, consectetur recusandae
-                quas vero! Temporibus laudantium veniam exercitationem vitae
-                ratione nemo fugit magnam, odit doloremque quos!
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <RadioGroup
-                value={model.form.getValues('engineWithVersion.version')}
-                onValueChange={(newVersion) => {
-                  model.form.setValue('engineWithVersion', {
-                    engine: model.form.getValues('engineWithVersion.engine'),
-                    version: newVersion,
-                  });
-                }}
-                className="flex"
-              >
-                {model.result.engine?.versions.map((version) => (
-                  <RadioTile
-                    key={version.name}
-                    value={version.name}
-                    className="flex flex-col h-auto py-2 px-4 relative"
-                  >
-                    <div className="flex gap-1 items-center">
-                      <h5>{version.name}</h5>
-                      <div className="flex gap-1 items-center absolute right-0 -top-3">
-                        {version.tags.map((tag) => (
-                          <HoverCard key={tag}>
-                            <HoverCardTrigger>
-                              <Badge
-                                variant={getTagVariant(tag)}
-                                data-testid={`Badge${tag}`}
-                                className="size-3 p-0 text-center"
-                              >
-                                <span className="size-3 flex justify-center items-center">
-                                  !
-                                </span>
-                              </Badge>
-                            </HoverCardTrigger>
-                            <HoverCardContent side="top">
-                              {t(`versionTag-${tag}`, tag)}
-                            </HoverCardContent>
-                          </HoverCard>
+            </div>
+          </OrderSection>
+
+          <OrderSection
+            cardMode={tileMode}
+            id="engine"
+            title="Engine"
+            description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro odit eum tempora."
+          >
+            <RadioGroup
+              className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2"
+              value={model.form.getValues('engineWithVersion.engine')}
+              onValueChange={(newEngine) => {
+                model.form.setValue('engineWithVersion', {
+                  engine: newEngine,
+                  version: model.lists.engines.find((e) => e.name === newEngine)
+                    ?.defaultVersion,
+                });
+              }}
+            >
+              {model.lists.engines?.map((engine) => (
+                <RadioTile
+                  value={engine.name}
+                  className="flex flex-col"
+                  key={engine.name}
+                >
+                  <div className="flex justify-between items-center w-full">
+                    <div className="flex gap-2">
+                      <h5 className={'capitalize'}>
+                        {humanizeEngine(engine.name as database.EngineEnum)}
+                      </h5>
+                      <div className="flex gap-1 items-center">
+                        {engine.tags.map((tag) => (
+                          <Badge
+                            variant={getTagVariant(tag)}
+                            data-testid={`Badge${tag}`}
+                            key={tag}
+                            className="text-xs h-4"
+                          >
+                            {t(`versionTag-${tag}`, tag)}
+                          </Badge>
                         ))}
                       </div>
                     </div>
-                  </RadioTile>
-                ))}
-              </RadioGroup>
-            </CardContent>
-          </Card>
-          <Card
+                    <EngineIcon
+                      engine={engine.name as database.EngineEnum}
+                      category={engine.category}
+                    />
+                  </div>
+                  <Separator className="my-2" />
+                  <p className="text-sm">
+                    {t(`description-${engine.name}`, engine.description)}
+                  </p>
+                </RadioTile>
+              ))}
+            </RadioGroup>
+          </OrderSection>
+
+          <OrderSection
+            cardMode={tileMode}
+            title="Version"
+            description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Libero
+                asperiores cumque ea facilis dolorum, consectetur recusandae
+                quas vero! Temporibus laudantium veniam exercitationem vitae
+                ratione nemo fugit magnam, odit doloremque quos!"
+          >
+            <RadioGroup
+              value={model.form.getValues('engineWithVersion.version')}
+              onValueChange={(newVersion) => {
+                model.form.setValue('engineWithVersion', {
+                  engine: model.form.getValues('engineWithVersion.engine'),
+                  version: newVersion,
+                });
+              }}
+              className="flex"
+            >
+              {model.result.engine?.versions.map((version) => (
+                <RadioTile
+                  key={version.name}
+                  value={version.name}
+                  className="flex flex-col h-auto py-2 px-4 relative"
+                >
+                  <div className="flex gap-1 items-center">
+                    <h5>{version.name}</h5>
+                    <div className="flex gap-1 items-center absolute right-0 -top-3">
+                      {version.tags.map((tag) => (
+                        <HoverCard key={tag}>
+                          <HoverCardTrigger>
+                            <Badge
+                              variant={getTagVariant(tag)}
+                              data-testid={`Badge${tag}`}
+                              className="size-3 p-0 text-center"
+                            >
+                              <span className="size-3 flex justify-center items-center">
+                                !
+                              </span>
+                            </Badge>
+                          </HoverCardTrigger>
+                          <HoverCardContent side="top">
+                            {t(`versionTag-${tag}`, tag)}
+                          </HoverCardContent>
+                        </HoverCard>
+                      ))}
+                    </div>
+                  </div>
+                </RadioTile>
+              ))}
+            </RadioGroup>
+          </OrderSection>
+
+          <OrderSection
+            cardMode={tileMode}
             id="plan"
-            className={cn('shadow-sm hidden', isAdvanced && 'block')}
+            className={cn('hidden', isAdvanced && 'block')}
+            title="Plan"
+            description="Lorem ipsum dolor, sit amet consectetur adipisicing elit."
           >
-            <CardHeader>
-              <CardTitle>Plan</CardTitle>
-              <CardDescription>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <RadioGroup
-                value={model.form.getValues('plan')}
-                onValueChange={(newPlan) => {
-                  model.form.setValue('plan', newPlan);
-                }}
-                className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2"
-              >
-                {model.lists.plans.map((plan) => (
-                  <RadioTile
-                    value={plan.name}
-                    className="text-left"
-                    key={plan.name}
-                  >
-                    <h5 className="capitalize">{plan.name}</h5>
-                    <Separator className="my-2" />
-                    <p className="text-sm">
-                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                      Cupiditate esse non consectetur modi tenetur.
-                    </p>
-                  </RadioTile>
-                ))}
-              </RadioGroup>
-            </CardContent>
-          </Card>
-          
-          <Card
+            <RadioGroup
+              value={model.form.getValues('plan')}
+              onValueChange={(newPlan) => {
+                model.form.setValue('plan', newPlan);
+              }}
+              className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2"
+            >
+              {model.lists.plans.map((plan) => (
+                <RadioTile
+                  value={plan.name}
+                  className="text-left"
+                  key={plan.name}
+                >
+                  <h5 className="capitalize">{plan.name}</h5>
+                  <Separator className="my-2" />
+                  <p className="text-sm">
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                    Cupiditate esse non consectetur modi tenetur.
+                  </p>
+                </RadioTile>
+              ))}
+            </RadioGroup>
+          </OrderSection>
+
+          <OrderSection
+            cardMode={tileMode}
             id="flavor"
-            className={cn('shadow-sm')}
+            title="Instance"
+            description="Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                Blanditiis earum placeat ratione quibusdam."
           >
-            <CardHeader>
-              <CardTitle>Instance</CardTitle>
-              <CardDescription>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Blanditiis earum placeat ratione quibusdam.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
+            <div>
               <RadioGroup
                 defaultValue={'general-purpose'}
                 className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-2 mb-4"
@@ -664,19 +633,19 @@ const OrderFunnel2 = ({
                   model.form.setValue('nbNodes', newNbNodes)
                 }
               />
-            </CardContent>
-          </Card>
+            </div>
+          </OrderSection>
 
           {model.result.availability && hasStorageSelection && (
-            <Card id="storage" className={cn('shadow-sm hidden', isAdvanced && 'block')}>
-              <CardHeader className="pb-4">
-                <CardTitle>Stockage</CardTitle>
-                <CardDescription>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint,
-                  itaque tempore sit sapiente quam quas!
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="flex flex-col gap-2">
+            <OrderSection
+              cardMode={tileMode}
+              id="storage"
+              className={cn('hidden', isAdvanced && 'block')}
+              title="Stockage"
+              description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint,
+                  itaque tempore sit sapiente quam quas!"
+            >
+              <div className="flex flex-col gap-2">
                 <StorageConfig2
                   storageMode={model.result.engine.storageMode}
                   availability={model.result.availability}
@@ -685,22 +654,20 @@ const OrderFunnel2 = ({
                     model.form.setValue('additionalStorage', newStorage)
                   }
                 />
-              </CardContent>
-            </Card>
+              </div>
+            </OrderSection>
           )}
 
-          <Card
+          <OrderSection
+            cardMode={tileMode}
             id="options"
-            className={cn('shadow-sm hidden', isAdvanced && 'block')}
-          >
-            <CardHeader className="pb-4">
-              <CardTitle>{t('sectionOptionsTitle')}</CardTitle>
-              <CardDescription>
+            className={cn('hidden', isAdvanced && 'block')}
+            title={t('sectionOptionsTitle')}
+            description="
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint,
-                itaque tempore sit sapiente quam quas!
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="flex flex-col gap-2">
+                itaque tempore sit sapiente quam quas!"
+          >
+            <div className="flex flex-col gap-2">
               {model.result.plan && (
                 <>
                   <h6>{t('fieldNetworkLabel')}</h6>
@@ -733,8 +700,8 @@ const OrderFunnel2 = ({
                   />
                 </CardContent>
               </Card>
-            </CardContent>
-          </Card>
+            </div>
+          </OrderSection>
 
           <Card
             id="debug"
@@ -745,6 +712,14 @@ const OrderFunnel2 = ({
               <CardDescription>Lorem ipsum dolor sit amet.</CardDescription>
             </CardHeader>
             <CardContent>
+              <div className="flex items-center space-x-2">
+                <Switch
+                  id="tileMode"
+                  checked={tileMode}
+                  onCheckedChange={setTileMode}
+                />
+                <Label htmlFor="tileMode">Use Cards</Label>
+              </div>
               <Accordion type="single" collapsible>
                 <AccordionItem value="availability">
                   <AccordionTrigger className="text-sm">
