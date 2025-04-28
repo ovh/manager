@@ -83,7 +83,7 @@
   "formUserInvalidPermission": "Wybierz poprawne uprawnienie z poniższej listy: {values}",
   "formUserAclDuplicate": "Podobna lista ACL jest już skonfigurowana",
   "resetUserPasswordCode": "Hasło użytkownika",
-  "resetUserConnectionTitle": "Identyfikator URI używany do szybkiego logowania",
+  "resetUserConnectionTitle": "URI do szybkiego logowania",
   "resetUserConnectionCode": "Ciąg połączenia",
-  "resetUserConnectionCodeCopy": "Identyfikator URI połączenia skopiowany do schowka"
+  "resetUserConnectionCodeCopy": "URI połączenia został skopiowany do schowka"
 }
