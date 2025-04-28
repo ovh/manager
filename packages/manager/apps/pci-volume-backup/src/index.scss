@@ -6,22 +6,6 @@ html {
   font-family: var(--ods-font-family-default);
 }
 
-.text-critical::part(text) {
-  color: var(--ods-color-critical-400);
-}
-
-.badge-region-type::part(button) {
-  background-color: var(--ods-color-primary-100);
-  min-height: 1em;
-  padding: 0 6px;
-  border-radius: var(--ods-border-radius-lg);
-  cursor: help;
-}
-
-.region-tooltip-content *::part(text) {
-  @apply text-sm;
-}
-
 .fw-bold::part(text) {
   font-weight: bold;
 }
