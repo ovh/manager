@@ -1,5 +1,8 @@
 {
   "deleteModalError": "The following error has occurred: {{error}}.",
-  "deleteModalCancelButton": "Cancel",
-  "deleteModalDeleteButton": "Terminate"
+  "deleteModalCancelButton": "No, dismiss",
+  "deleteModalDeleteButton": "Yes, cancel",
+  "deleteModalDescription": "Cancelling your service will irretrievably erase all related data. Do you wish to cancel your service?",
+  "deleteModalHeadline": "Cancel {{serviceType}}?",
+  "deleteModalHeadlineService": "the service"
 }
