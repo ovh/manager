@@ -9,7 +9,6 @@ import {
   Card,
   CardContent,
   CardHeader,
-  CardTitle,
   Form,
   FormControl,
   FormField,
@@ -57,7 +56,7 @@ const DockerCustomImageInput = React.forwardRef<
   return (
     <Card data-testid="docker-custom-image">
       <CardHeader>
-        <CardTitle>{t('customImageTitle')}</CardTitle>
+        <h5>{t('customImageTitle')}</h5>
         <div className="pt-4 text-sm">
           <p>{t('privateImageDesc')}</p>
           <ul className="list-disc my-3">

@@ -9,11 +9,10 @@ interface ImageSelectProps {
   images: ai.job.PresetImage[];
   value: string;
   onChange: (newImage: string) => void;
-  className?: string;
 }
 
 const JobImagesSelect = React.forwardRef<HTMLInputElement, ImageSelectProps>(
-  ({ images, value, onChange, className }, ref) => {
+  ({ images, value, onChange }, ref) => {
     const { t } = useTranslation('ai-tools/components/job-image');
 
     return (
@@ -26,16 +25,15 @@ const JobImagesSelect = React.forwardRef<HTMLInputElement, ImageSelectProps>(
             {t('customImageTabsLabel')}
           </TabsTrigger>
         </TabsList>
-        <TabsContent value="ovhImage">
+        <TabsContent value="ovhImage" className="mt-0">
           <PresetImageSelect
             images={images}
             value={value}
             onChange={onChange}
-            className={className}
             ref={ref}
           />
         </TabsContent>
-        <TabsContent value="customerImage">
+        <TabsContent value="customerImage" className="mt-0">
           <DockerCustomImageInput value={value} onChange={onChange} ref={ref} />
         </TabsContent>
       </Tabs>
