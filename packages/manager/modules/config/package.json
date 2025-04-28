@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-config",
-  "version": "8.2.1",
+  "version": "8.3.0",
   "description": "Retrieve configuration based on the environment.",
   "homepage": "https://github.com/ovh/manager/tree/master/packages/manager/modules/config#readme",
   "bugs": {

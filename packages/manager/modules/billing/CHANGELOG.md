@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.35.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.35.2...@ovh-ux/manager-billing@0.35.3) (2025-04-28)
+
+
+### Bug Fixes
+
+* **billing:** fix services retrieval in pay as you go page ([#16469](https://github.com/ovh/manager/issues/16469)) ([4582f38](https://github.com/ovh/manager/commit/4582f38d053419c3a4ee7ecdfbcc0f953c54ce21)), closes [#DTRSD-118701](https://github.com/ovh/manager/issues/DTRSD-118701) [#PRB0041684](https://github.com/ovh/manager/issues/PRB0041684) [#MANAGER-17839](https://github.com/ovh/manager/issues/MANAGER-17839)
+
+
+
+
+
 ## [0.35.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.35.1...@ovh-ux/manager-billing@0.35.2) (2025-04-17)
 
 
