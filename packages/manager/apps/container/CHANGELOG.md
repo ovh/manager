@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.124.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.123.0...@ovh-ux/manager-container-app@0.124.0) (2025-04-28)
+
+
+### Bug Fixes
+
+* **pci-ai-endpoint:** add feature-flipping on tag ([#16798](https://github.com/ovh/manager/issues/16798)) ([c5e5233](https://github.com/ovh/manager/commit/c5e5233104c6ec84b78ccb1b63f7ffc47575169d)), closes [#AIS-1211](https://github.com/ovh/manager/issues/AIS-1211)
+
+
+### Features
+
+* **pci-ai-tools:** fix new react link for notebooks ([#16705](https://github.com/ovh/manager/issues/16705)) ([008ec0d](https://github.com/ovh/manager/commit/008ec0da445406192ef2a5735bd89622902e8680)), closes [#DATATR-2194](https://github.com/ovh/manager/issues/DATATR-2194)
+
+
+
+
+
 # [0.123.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.122.1...@ovh-ux/manager-container-app@0.123.0) (2025-04-28)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.1.5...@ovh-ux/manager-pci-ai-tools-app@1.2.0) (2025-04-28)
+
+
+### Features
+
+* **pci-ai-tools:** move ai dashboard to react ([#16051](https://github.com/ovh/manager/issues/16051)) ([d574efa](https://github.com/ovh/manager/commit/d574efa174b89ccdb98e3c521dc3a206edcf8853)), closes [#DATATR-1183](https://github.com/ovh/manager/issues/DATATR-1183)
+
+
+
+
+
 ## [1.1.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.1.4...@ovh-ux/manager-pci-ai-tools-app@1.1.5) (2025-04-28)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-ai-tools-app
