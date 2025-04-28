@@ -4,6 +4,7 @@ import { useCatalogIps } from './useCatalogIps';
 import { ServiceType } from '@/types';
 import { useDedicatedCloudGeolocations } from './useDedicatedCloudGeolocations';
 import { useVpsGeolocations } from './useVpsGeolocations';
+import { CatalogIpConfiguration, CatalogIpPlan } from '@/data/api';
 
 export const useAvailableGeolocationFromPlanCode = ({
   planCode,
@@ -47,11 +48,11 @@ export const useAvailableGeolocationFromPlanCode = ({
       return {
         ...query,
         geolocations: data?.data?.plans
-          ?.find((plan) => plan.planCode === planCode)
+          ?.find((plan: CatalogIpPlan) => plan.planCode === planCode)
           ?.details.product.configurations.find(
-            (config) => config.name === 'country',
+            (config: CatalogIpConfiguration) => config.name === 'country',
           )
-          ?.values.map((v) => v.toLowerCase()),
+          ?.values.map((v: string) => v.toLowerCase()),
       };
   }
 };
