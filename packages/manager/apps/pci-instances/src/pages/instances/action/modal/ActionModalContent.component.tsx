@@ -12,7 +12,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import { isCustomUrlSection, replaceToSnakeCase } from '@/utils';
 import { DeepReadonly } from '@/types/utils.type';
-import { TSectionType } from '@/data/hooks/instance/action/useCachedInstanceAction';
+import { TSectionType } from '@/types/instance/action/action.type';
 
 type TActionModalProps = DeepReadonly<
   React.PropsWithChildren<{

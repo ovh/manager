@@ -7,21 +7,16 @@ import { OsdsLink } from '@ovhcloud/ods-components/react';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { updateInstanceFromCache } from '@/data/hooks/instance/useInstances';
-import { usePathMatch } from '@/hooks/url/usePathMatch';
 import NotFound from '@/pages/404/NotFound.page';
 import queryClient from '@/queryClient';
 import { isApiErrorResponse, replaceToSnakeCase } from '@/utils';
 import BaseInstanceActionPage from './BaseAction.page';
-import {
-  TSectionType,
-  useCachedInstanceAction,
-} from '@/data/hooks/instance/action/useCachedInstanceAction';
+import { useCachedInstanceAction } from '@/data/hooks/instance/action/useCachedInstanceAction';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import BackupActionPage from './BackupActionPage';
 import { RescueActionPage } from './RescueAction.page';
 import BillingMonthlyActionPage from './BillingMonthlyActionPage';
-
-const actionSectionRegex = /(?:rescue\/(start|end)|(?<!rescue\/)(start|stop|shelve|unshelve|delete|soft-reboot|hard-reboot|reinstall|backup|billing\/monthly\/activate))$/;
+import { useActionSection } from '@/hooks/instance/action/useActionSection';
 
 const InstanceAction: FC = () => {
   const { t } = useTranslation(['actions', 'common']);
@@ -29,7 +24,7 @@ const InstanceAction: FC = () => {
   const projectId = useProjectId();
   const { instanceId } = useParams();
   const { addError, addInfo } = useNotifications();
-  const section = usePathMatch<TSectionType>(actionSectionRegex);
+  const section = useActionSection();
 
   const snakeCaseSection = useMemo(
     () => (section ? replaceToSnakeCase(section) : ''),

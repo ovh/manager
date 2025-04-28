@@ -21,3 +21,5 @@ export const INSTANCE_PRICING_LINKS = {
   DE: 'https://www.ovhcloud.com/de/public-cloud/prices',
   NL: 'https://www.ovhcloud.com/nl/public-cloud/prices',
 };
+
+export const actionSectionRegex = /(?:rescue\/(start|end)|(?<!rescue\/)(start|stop|shelve|unshelve|delete|soft-reboot|hard-reboot|reinstall|backup|billing\/monthly\/activate))$/;

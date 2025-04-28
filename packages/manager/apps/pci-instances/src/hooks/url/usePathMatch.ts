@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom';
+import { getPathMatch } from '@/utils';
 
 export const usePathMatch = <T extends string>(regex: RegExp): T | null => {
   const location = useLocation();
-  const match = location.pathname.match(regex);
-  return match ? (match[0] as T) : null;
+  return getPathMatch(location.pathname, regex);
 };
