@@ -1,12 +1,12 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
+import { withRouter } from 'storybook-addon-react-router-v6';
 import Headers, { HeadersProps } from './headers.component';
 import ActionMenu from '../../navigation/menus/action/action.component';
 import GuideButton from '../../navigation/menus/guide/guide.component';
 import ChangelogButton, {
   ChangelogLinks,
 } from '../../navigation/menus/changelog/changelog.component';
-import { withRouter } from 'storybook-addon-react-router-v6';
 
 const Heading: HeadersProps = {
   title: 'Example for header',
