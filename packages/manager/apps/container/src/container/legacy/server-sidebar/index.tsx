@@ -102,7 +102,7 @@ export default function ServerSidebarIndex() {
         }`}
       >
         {universe === 'public-cloud' && <PublicCloudSidebar />}
-        {universe === 'server' || universe === 'dedicated' && <DedicatedSidebar />}
+        {(universe === 'server' || universe === 'dedicated') && <DedicatedSidebar />}
         {universe === 'telecom' && <TelecomSidebar />}
         {universe === 'web' && <WebSidebar />}
       </div>
