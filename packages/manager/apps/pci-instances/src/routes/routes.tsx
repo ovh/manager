@@ -2,6 +2,7 @@ import { RouteObject } from 'react-router-dom';
 import { getProjectQuery } from '@ovh-ux/manager-pci-common';
 import queryClient from '@/queryClient';
 import { withSuspendedMigrateRoutes } from '@/hooks/migration/useSuspendNonMigratedRoutes';
+import { instanceActionLegacyLoader } from './loaders/instanceAction/instanceActionLegacy.loader';
 
 const lazyRouteConfig = (importFn: CallableFunction) => ({
   lazy: async () => {
@@ -81,12 +82,13 @@ const instanceActionsSections = [
   SECTIONS.activateMonthlyBilling,
 ];
 
-const instanceActionLegacyRoutes = instanceActionsSections.map((section) => ({
-  path: section,
-  ...lazyRouteConfig(() =>
-    import('@/pages/instances/action/LegacyInstanceAction.page'),
-  ),
-}));
+const instanceActionLegacyRoutes: RouteObject[] = instanceActionsSections.map(
+  (section) => ({
+    id: section,
+    path: section,
+    loader: instanceActionLegacyLoader,
+  }),
+);
 
 const instanceActionRoutes = instanceActionsSections.map((section) => ({
   path: `${REGION_PATH}/${INSTANCE_PATH}/${section}`,

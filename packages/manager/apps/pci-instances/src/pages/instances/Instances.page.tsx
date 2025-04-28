@@ -33,7 +33,6 @@ import {
   Navigate,
   Outlet,
   useHref,
-  useLocation,
   useRouteLoaderData,
 } from 'react-router-dom';
 import NotFoundPage from '../404/NotFound.page';
@@ -43,6 +42,7 @@ import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
 import { Spinner } from '@/components/spinner/Spinner.component';
 import { SECTIONS } from '@/routes/routes';
 import { SearchNotifications } from '@/components/SearchNotifications/SearchNotifications';
+import { useActionSection } from '@/hooks/instance/action/useActionSection';
 
 const initialSorting = {
   id: 'name',
@@ -59,8 +59,10 @@ const Instances: FC = () => {
   const { filters, addFilter, removeFilter } = useColumnFilters();
 
   const filterPopoverRef = useRef<HTMLOsdsPopoverElement>(null);
-  const location = useLocation();
-  const notFoundAction: boolean = location.state?.notFoundAction;
+  const section = useActionSection();
+  const routeLoaderData = useRouteLoaderData(section ?? '') as {
+    notFoundAction?: boolean;
+  };
 
   const {
     data,
@@ -128,7 +130,7 @@ const Instances: FC = () => {
   if (data && !data.length && !filters.length && !isFetching)
     return <Navigate to={SECTIONS.onboarding} />;
 
-  if (notFoundAction) {
+  if (routeLoaderData?.notFoundAction) {
     return <NotFoundPage />;
   }
 

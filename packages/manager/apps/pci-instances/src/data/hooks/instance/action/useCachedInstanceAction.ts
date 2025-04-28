@@ -8,20 +8,7 @@ import { useProjectId } from '@/hooks/project/useProjectId';
 import { useInstance } from '../useInstance';
 import { TInstanceActionDto } from '@/types/instance/api.type';
 import { isApiErrorResponse } from '@/utils';
-
-export type TSectionType =
-  | 'delete'
-  | 'start'
-  | 'stop'
-  | 'shelve'
-  | 'unshelve'
-  | 'soft-reboot'
-  | 'hard-reboot'
-  | 'reinstall'
-  | 'rescue/start'
-  | 'rescue/end'
-  | 'backup'
-  | 'billing/monthly/activate';
+import { TSectionType } from '@/types/instance/action/action.type';
 
 const formatSection = (section: TSectionType | null): string | null => {
   if (!section) return null;
