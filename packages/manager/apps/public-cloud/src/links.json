@@ -423,16 +423,6 @@
   {
     "public": {
       "application": "public-cloud",
-      "path": "/create-ai-endpoints"
-    },
-    "redirect": {
-      "application": "public-cloud",
-      "path": "/pci/projects/{project}/ai/endpoints/onboarding"
-    }
-  },
-  {
-    "public": {
-      "application": "public-cloud",
       "path": "/create-ai-app"
     },
     "redirect": {
