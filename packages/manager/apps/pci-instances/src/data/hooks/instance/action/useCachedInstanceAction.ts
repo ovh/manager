@@ -23,6 +23,10 @@ const formatSection = (section: TSectionType | null): string | null => {
     return 'activate_monthly_billing';
   }
 
+  if (section === 'backup') {
+    return 'create_backup';
+  }
+
   return section.replace('-', '_');
 };
 
