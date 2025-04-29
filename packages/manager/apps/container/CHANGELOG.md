@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.125.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.124.0...@ovh-ux/manager-container-app@0.125.0) (2025-04-29)
+
+
+### Bug Fixes
+
+* **pnr:** fix release issues ([#16755](https://github.com/ovh/manager/issues/16755)) ([1cbd112](https://github.com/ovh/manager/commit/1cbd11245238640ff90a6ba60c50e503b1e56428)), closes [#MANAGER-18065](https://github.com/ovh/manager/issues/MANAGER-18065)
+
+
+### Features
+
+* **container:** update beta modal ([#15199](https://github.com/ovh/manager/issues/15199)) ([0b5f59d](https://github.com/ovh/manager/commit/0b5f59dfa451a66b4a3768258caf0d6ce099f595)), closes [#MANAGER-16786](https://github.com/ovh/manager/issues/MANAGER-16786)
+* **pnr:** remove switchback from pnr eu ca ([#16589](https://github.com/ovh/manager/issues/16589)) ([017b49c](https://github.com/ovh/manager/commit/017b49cb0c91beeb9ea8ee5ce331a5ecb9535782)), closes [#MANAGER-16732](https://github.com/ovh/manager/issues/MANAGER-16732)
+
+
+
+
+
 # [0.124.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.123.0...@ovh-ux/manager-container-app@0.124.0) (2025-04-28)
 
 
