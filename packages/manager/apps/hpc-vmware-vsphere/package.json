@@ -20,7 +20,7 @@
     "test": "vitest run --reporter=verbose"
   },
   "dependencies": {
-    "@ovh-ux/logs-to-customer": "^1.2.0",
+    "@ovh-ux/logs-to-customer": "^1.4.6",
     "@ovh-ux/manager-config": "^8.2.0",
     "@ovh-ux/manager-core-api": "^0.11.0",
     "@ovh-ux/manager-core-utils": "^0.3.0",
