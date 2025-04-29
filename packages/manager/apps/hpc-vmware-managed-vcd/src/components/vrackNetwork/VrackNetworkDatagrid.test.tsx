@@ -11,8 +11,16 @@ import VrackNetworkDatagrid from './VrackNetworkDatagrid.component';
 
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
-    t: (translationKey: string) =>
-      fr_FR[translationKey as keyof typeof fr_FR] ?? translationKey,
+    t: (translationKey: string, params: Record<string, string>) => {
+      let translatedKey =
+        fr_FR[translationKey as keyof typeof fr_FR] ?? translationKey;
+      if (params) {
+        Object.keys(params).forEach((key) => {
+          translatedKey = translatedKey.replace(`{{ ${key} }}`, params[key]);
+        });
+      }
+      return translatedKey;
+    },
   }),
 }));
 
@@ -50,7 +58,9 @@ describe('VrackNetworkDatagrid', () => {
 
     // Check if title is rendered
     expect(
-      screen.getAllByText(fr_FR.managed_vcd_dashboard_vrack_network_title)[0],
+      screen.getAllByText(
+        fr_FR.managed_vcd_dashboard_vrack_network_segments,
+      )[0],
     ).toBeInTheDocument();
 
     // Check if description is rendered
@@ -64,13 +74,23 @@ describe('VrackNetworkDatagrid', () => {
 
     // Check if column headers are rendered
     expect(
-      screen.getAllByText(fr_FR.managed_vcd_dashboard_vrack_network_title)[0],
+      screen.getAllByText(
+        fr_FR.managed_vcd_dashboard_vrack_network_segments,
+      )[0],
     ).toBeInTheDocument();
     expect(
-      screen.getAllByText(fr_FR.managed_vcd_dashboard_vrack_network_title)[1],
+      screen.getAllByText(fr_FR.managed_vcd_dashboard_vrack_network_segment)[0],
     ).toBeInTheDocument();
 
     waitFor(() => {
+      expect(
+        screen.getAllByText(
+          fr_FR.managed_vcd_dashboard_vrack_network_column_segment_vrack_label.replace(
+            '{{ vlanId }}',
+            mockVrackSegmentList[0].targetSpec.vlanId,
+          ),
+        )[0],
+      ).toBeInTheDocument();
       // Check if all VLAN IDs are rendered
       mockVrackSegmentList.forEach((network) => {
         expect(screen.getByText(network.targetSpec.vlanId)).toBeInTheDocument();

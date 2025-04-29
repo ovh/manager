@@ -22,7 +22,6 @@ import {
 } from '@ovh-ux/manager-module-vcd-api';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import VrackNetworkDatagridSubDatagrid from './VrackNetworkDatagridSubDatagrid.component';
-import { LABELS } from '@/utils/labels.constants';
 
 export type VrackNetworkDatagridProps = {
   id: string;
@@ -49,16 +48,27 @@ export default function VrackNetworkDatagrid({
         headers: {},
         config: {},
       } as ApiResponse<VrackSegment[]>),
+    select: (data) =>
+      data.data.map((item) => ({
+        ...item,
+        searchableValue: `${t(
+          'managed_vcd_dashboard_vrack_network_column_segment_vrack_label',
+          { vlanId: item.targetSpec.vlanId },
+        )} ${item.targetSpec.networks.map((network) => network).join(' ')}`,
+      })),
   });
 
   const columns = [
     {
-      id: 'targetSpec.vlanId',
-      label: t('managed_vcd_dashboard_vrack_network_title'),
+      id: 'searchableValue',
+      label: t('managed_vcd_dashboard_vrack_network_segment'),
       cell: (item: VrackSegment) => {
         return (
           <OdsText preset="paragraph">
-            {LABELS.vRackNetwork} - {LABELS.vlan} {item.targetSpec.vlanId}
+            {t(
+              'managed_vcd_dashboard_vrack_network_column_segment_vrack_label',
+              { vlanId: item.targetSpec.vlanId },
+            )}
           </OdsText>
         );
       },
@@ -70,7 +80,7 @@ export default function VrackNetworkDatagrid({
     },
     {
       id: 'actions',
-      label: 'Actions',
+      label: '',
       isSearchable: false,
       isSortable: false,
       isFilterable: false,
@@ -79,7 +89,7 @@ export default function VrackNetworkDatagrid({
           <ActionMenu
             isCompact={true}
             variant={ODS_BUTTON_VARIANT.ghost}
-            id={item.targetSpec.vlanId.toString()}
+            id={item.targetSpec.vlanId}
             items={[
               {
                 id: 1,
@@ -111,18 +121,17 @@ export default function VrackNetworkDatagrid({
 
   return (
     <div>
-      <div className="flex flex-col justify-between mt-4">
-        <OdsText preset="heading-1">
-          {t('managed_vcd_dashboard_vrack_network_title')}
+      <div className="flex flex-col justify-between">
+        <OdsText preset="heading-3" className="mb-4">
+          {t('managed_vcd_dashboard_vrack_network_segments')}
         </OdsText>
-        <OdsText preset="paragraph" className="mb-8">
+        <OdsText preset="paragraph">
           {t('managed_vcd_dashboard_vrack_network_description')}
         </OdsText>
       </div>
       <React.Suspense>
         <Datagrid<VrackSegment>
           columns={columns}
-          columnVisibility={['targetSpec.vlanId', 'actions']}
           isLoading={isLoading}
           items={applyFilters(
             vrackNetworks ?? [],
