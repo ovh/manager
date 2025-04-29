@@ -2,19 +2,16 @@ import React from 'react';
 import { BaseLayout } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import { OdsText } from '@ovhcloud/ods-components/react';
 import { urls } from '@/routes/routes.constant';
 import { Breadcrumb } from '@/components/Breadcrumb/Breadcrumb';
-import { IpVersionSection } from './sections/IpVersionSection.component';
-import { OrderContextProvider } from './order.context';
-import { Ipv4Order } from './Ipv4Order.component';
-import { Ipv6Order } from './Ipv6Order.component';
 import { useHeader } from '@/components/Header/Header';
 
-export const OrderPage: React.FC = () => {
-  const { t: tOrder } = useTranslation('order');
+export const ByoipPage: React.FC = () => {
+  const { t: tByoip } = useTranslation('byoip');
   const { t: tCommon } = useTranslation('common');
   const navigate = useNavigate();
-  const header = useHeader(tOrder('title'));
+  const header = useHeader(tByoip('title'));
 
   return (
     <BaseLayout
@@ -23,13 +20,11 @@ export const OrderPage: React.FC = () => {
       header={header}
       breadcrumb={<Breadcrumb />}
     >
-      <OrderContextProvider>
-        <IpVersionSection />
-        <Ipv4Order />
-        <Ipv6Order />
-      </OrderContextProvider>
+      <div>
+        <OdsText>{tByoip('description')}</OdsText>
+      </div>
     </BaseLayout>
   );
 };
 
-export default OrderPage;
+export default ByoipPage;
