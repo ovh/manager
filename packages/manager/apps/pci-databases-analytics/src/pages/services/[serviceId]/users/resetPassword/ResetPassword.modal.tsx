@@ -129,7 +129,7 @@ const ResetUserPassword = () => {
                 <Code
                   code={selectedEndpoint?.uri.replace(
                     '<username>:<password>',
-                    `${user.username}:${newPass}`,
+                    `${user.username.replace(/@.*/, '')}:${newPass}`,
                   )}
                   label={t('resetUserConnectionCode')}
                   theme={githubDark}
