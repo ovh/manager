@@ -1,7 +1,12 @@
 import { useQuery, useMutation } from '@tanstack/react-query';
+import { ApiError } from '@ovh-ux/manager-core-api';
 import queryClient from '@/queryClient';
 import { TVolume } from '@/data/api/api.types';
-import { createVolumeFromBackup, getVolume } from '@/data/api/volume';
+import {
+  createVolumeFromBackup,
+  detachVolume,
+  getVolume,
+} from '@/data/api/volume';
 
 export type TNewVolumeFromBackupData = {
   regionName: string;
@@ -46,6 +51,56 @@ export const useCreateVolumeFromBackup = ({
   return {
     createVolumeFromBackup: (data: TNewVolumeFromBackupData) =>
       mutation.mutate(data),
+    ...mutation,
+  };
+};
+
+type DetachVolumeProps = {
+  projectId: string;
+  volumeId: string | null;
+  instanceId: string | null;
+  onError: (cause: ApiError) => void;
+  onSuccess: (volume: TVolume) => void;
+};
+
+export const useDetachVolume = ({
+  projectId,
+  volumeId,
+  instanceId,
+  onError,
+  onSuccess,
+}: DetachVolumeProps) => {
+  const mutation = useMutation({
+    mutationFn: () =>
+      detachVolume(
+        projectId,
+        volumeId as NonNullable<string>,
+        instanceId as NonNullable<string>,
+      ),
+    onError,
+    onSuccess: (volume: TVolume) => {
+      queryClient.setQueryData(
+        ['project', projectId, 'volumes'],
+        (data: TVolume[]) =>
+          data?.map((volumeItem) => {
+            if (volumeItem.attachedTo && volumeItem.id === volumeId) {
+              return { ...volume, attachedTo: [] };
+            }
+            return volumeItem;
+          }),
+      );
+      queryClient.setQueryData(
+        ['project', projectId, 'volume', volumeId],
+        () => ({
+          ...volume,
+          attachedTo: [],
+        }),
+      );
+      onSuccess(volume);
+    },
+  });
+  return {
+    detachVolume: () => mutation.mutate(),
     ...mutation,
   };
 };
