@@ -7,6 +7,9 @@ import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNotifications } from '@ovh-ux/manager-react-components';
+import { useQueryClient } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ModalStepsProps } from '@/alldoms/types';
 import {
   useUpdateAllDomService,
@@ -14,22 +17,22 @@ import {
 } from '@/alldoms/hooks/data/query';
 import { ServiceInfoRenewMode } from '@/alldoms/enum/service.enum';
 
-export default function ModalStepTwo({
+export default function TerminateModalStepTwo({
   domainTerminateList,
-  serviceInfoDetail,
+  serviceName,
   changeStep,
-  closeModal,
 }: Readonly<ModalStepsProps>) {
-  const { t } = useTranslation('allDom');
-  const { name: serviceName } = serviceInfoDetail.allDomProperty;
+  const { t } = useTranslation(['allDom', NAMESPACES.ACTIONS]);
   const { addError, addSuccess } = useNotifications();
   const updateAllDomServiceMutation = useUpdateAllDomService();
   const updateDomainServiceInfoMutation = useUpdateDomainServiceInfo();
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
 
   const handleTerminate = async () => {
     try {
       await updateAllDomServiceMutation.mutateAsync({
-        serviceName: serviceInfoDetail.allDomProperty.name,
+        serviceName,
         renew: {
           mode: ServiceInfoRenewMode.Manual,
         },
@@ -49,6 +52,9 @@ export default function ModalStepTwo({
           })}
         </OdsText>,
       );
+      await queryClient.invalidateQueries({
+        queryKey: ['serviceInfo'],
+      });
     } catch (error) {
       addError(
         <OdsText>
@@ -58,7 +64,7 @@ export default function ModalStepTwo({
         </OdsText>,
       );
     } finally {
-      closeModal();
+      navigate(-1);
     }
   };
 
@@ -76,7 +82,7 @@ export default function ModalStepTwo({
       </ul>
       <div className="flex items-center gap-x-6 justify-end">
         <OdsButton
-          label={t('allDom_modal_step_previous')}
+          label={t(`${NAMESPACES.ACTIONS}:previous`)}
           variant={ODS_BUTTON_VARIANT.ghost}
           onClick={() => changeStep()}
         />
@@ -85,7 +91,9 @@ export default function ModalStepTwo({
           variant={ODS_BUTTON_VARIANT.default}
           color={ODS_BUTTON_COLOR.critical}
           isDisabled={!domainTerminateList}
-          onClick={handleTerminate}
+          onClick={async () => {
+            handleTerminate();
+          }}
         />
       </div>
     </div>
