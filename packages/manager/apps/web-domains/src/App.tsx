@@ -1,9 +1,13 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, Suspense } from 'react';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { RouterProvider, createHashRouter } from 'react-router-dom';
-import { Routes } from './alldoms/routes/routes';
+import {
+  RouterProvider,
+  createHashRouter,
+  createRoutesFromElements,
+} from 'react-router-dom';
+import Routes from '@/alldoms/routes/routes';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -15,7 +19,7 @@ const queryClient = new QueryClient({
 
 function App() {
   const { shell } = useContext(ShellContext);
-  const router = createHashRouter(Routes);
+  const routes = createHashRouter(createRoutesFromElements(Routes));
 
   useEffect(() => {
     shell.ux.hidePreloader();
@@ -23,7 +27,9 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
+      <Suspense>
+        <RouterProvider router={routes} />
+      </Suspense>
       <ReactQueryDevtools />
     </QueryClientProvider>
   );
