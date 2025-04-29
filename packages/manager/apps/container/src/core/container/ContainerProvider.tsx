@@ -40,6 +40,7 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
   const fetchBetaAcknowledged = async () => {
     if (betaAcknowledged) return true;
 
+    if (!isUS) {
     return v6
       .get<boolean>(`/me/preferences/manager/${BETA_ACKNOWLEDGED_STORAGE_KEY}`)
       .then((response) => {
@@ -52,6 +53,9 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
         }
         throw error;
       });
+    }
+
+    return availability['pnr'];
   };
 
   const acknowledgeBeta = (value = true) => {
@@ -74,7 +78,7 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
       )
       .then((response) => {
         const data: any = response.data;
-        setUseBeta(JSON.parse(data.value) as boolean);
+        setUseBeta(isUS ? JSON.parse(data.value) as boolean : true);
       })
       .catch((error) => {
         if (error.response.status !== 404) {
@@ -129,11 +133,7 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
 
       if (availability.pnr) {
         setBetaVersion(BETA_VERSION);
-        if (isUS) {
-          fetchBetaChoice();
-        } else {
-          setUseBeta(true);
-        }
+        fetchBetaChoice();
       }
     }
   }, [availability]);
@@ -170,7 +170,6 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
   const containerContext: ContainerContextType = {
     betaVersion,
     useBeta,
-    createBetaChoice,
     betaAcknowledged,
     acknowledgeBeta,
     isLivechatEnabled,
