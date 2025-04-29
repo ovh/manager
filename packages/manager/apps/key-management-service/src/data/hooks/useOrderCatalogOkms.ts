@@ -7,7 +7,7 @@ export type OrderCatalogProps = {
   ovhSubsidiary: string;
 };
 
-export const useOrderCatalogOKMS = (ovhSubsidiary: string) => {
+export const useOrderCatalogOkms = (ovhSubsidiary: string) => {
   return useQuery<OKMSCatalog, ErrorResponse>({
     queryKey: ['order/catalog/public/okms', ovhSubsidiary],
     queryFn: () => getOrderCatalogOKMS(ovhSubsidiary),
