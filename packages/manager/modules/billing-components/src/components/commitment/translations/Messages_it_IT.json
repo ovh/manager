@@ -32,14 +32,5 @@
   "billing_commitment_commit_again_description_with_discount": "Al momento hai un impegno contrattuale per il servizio {{ serviceName }} fino al {{ endDate }}. Per continuare a usufruire di una tariffa preferenziale, sottoscrivi un nuovo impegno contrattuale sul tuo {{ serviceType }}.",
   "billing_commitment_none_region_us": "Al momento non hai sottoscritto nessun impegno contrattuale per il servizio {{ serviceName }}.",
   "billing_commitment_none_with_discount_region_us": "Al momento non hai sottoscritto nessun impegno contrattuale per il servizio {{ serviceName }}. Per usufruire di uno sconto per il servizio {{ serviceType }} sottoscrivi un impegno contrattuale.",
-  "billing_commitment_duration_region_us": "Selezionare un impegno contrattuale",
-  "billing_commitment_commit_again_description_region_us": "Al momento hai un impegno contrattuale per il servizio {{ serviceName }} fino al {{ endDate }}. Da questo momento è possibile rinnovare l’impegno contrattuale per la durata che preferisci.",
-  "billing_commitment_commit_again_description_with_discount_region_us": "Al momento hai un impegno contrattuale per il servizio {{ serviceName }} fino al {{ endDate }}. Per continuare a usufruire di una tariffa preferenziale, sottoscrivi un nuovo impegno contrattuale sul tuo {{ serviceType }}.",
-  "billing_commitment_summary_description_periodic_region_us": "A partire dal {{ renewDate }} la tua modalità di pagamento predefinita ({{ paymentMethodName }}) verrà automaticamente fatturata {{ monthlyPrice }} per il servizio {{ serviceName }}, con cadenza mensile fino al {{ engagementEndDate }}.",
-  "billing_commitment_summary_description_periodic_end_region_us": "Dopo il {{ endDate }} il servizio verrà rinnovato tacitamente per una durata corrispondente all'ultimo impegno contrattuale sottoscritto.",
-  "billing_commitment_summary_description_upfront_region_us": "Dal {{ renewDate }} la tua modalità di pagamento predefinita ({{ paymentMethodName }}) verrà automaticamente fatturata {{ upfrontPrice }} per l'intero periodo contrattuale.",
-  "billing_commitment_summary_description_upfront_end_region_us": "Dopo il {{ engagementEndDate }}, il servizio {{ serviceName }} verrà rinnovato tacitamente per una durata e con la modalità di pagamento scelti nell’ultimo impegno contrattuale sottoscritto.",
-  "billing_commitment_summary_description_payment_region_us": "L'importo verrà addebitato sul metodo di pagamento predefinito: {{ paymentMethodType }} {{ paymentMethodName }}.",
-  "billing_commitment_success_region_us": "La richiesta di sottoscrizione di un impegno contrattuale per il servizio è stata presa in carico. ",
-  "billing_commitment_summary_description_end_region_us": "Dopo il {{ endDate }} il servizio verrà rinnovato tacitamente per una durata corrispondente all'ultimo impegno contrattuale sottoscritto."
+  "billing_commitment_duration_region_us": "Seleziona la durata del contratto"
 }

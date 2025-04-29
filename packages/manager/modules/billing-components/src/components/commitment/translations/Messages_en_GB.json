@@ -30,16 +30,7 @@
   "billing_commitment_commit_again_with_discount": "Re-commit and get a discount",
   "billing_commitment_none_with_discount": "You do not have a commitment on your {{serviceName}} subscription. You can get a discount today if you add a commitment duration to your {{serviceName}} {{serviceType}} subscription.",
   "billing_commitment_commit_again_description_with_discount": "You are currently committed to your {{serviceName}} subscription until {{endDate}}. By extending your subscription, you can maintain your discount for your new commitment period. You can also increase your commitment and adjust your payment option for additional discounts.",
-  "billing_commitment_none_region_us": "You do not have a commitment on your {{serviceName}} commitment.",
-  "billing_commitment_none_with_discount_region_us": "You do not have a commitment on your {{serviceName}} commitment. You can get a discount today if you add a commitment duration to your {{serviceName}} {{serviceType}} commitment.",
-  "billing_commitment_duration_region_us": "Select a commitment",
-  "billing_commitment_commit_again_description_region_us": "You are currently committed to your {{serviceName}} subscription until {{endDate}}. You can now renew your contract for any period of time.",
-  "billing_commitment_commit_again_description_with_discount_region_us": "You are currently committed to your {{serviceName}} subscription until {{endDate}}. By extending your subscription, you can maintain your discount for your new commitment period. You can also increase your commitment and adjust your payment option for additional discounts.",
-  "billing_commitment_summary_description_periodic_region_us": "From {{renewDate}} onwards, your default payment method ({{paymentMethodName}}) will be automatically billed {{monthlyPrice}} for your {{serviceName}} service every month until {{engagementEndDate}}.",
-  "billing_commitment_summary_description_periodic_end_region_us": "After {{engagementEndDate}}, your {{serviceName}} service will be automatically renewed for the same duration as your last subscription.",
-  "billing_commitment_summary_description_upfront_region_us": "On {{renewDate}}, your default payment method ({{paymentMethodName}}) will automatically be billed at {{upfrontPrice}} for the entire subscription period.",
-  "billing_commitment_summary_description_upfront_end_region_us": "After {{engagementEndDate}}, your {{serviceName}} service will be automatically renewed for the same duration as your last subscription, and billed via the same payment method.",
-  "billing_commitment_summary_description_payment_region_us": "The amount will be taken from your default payment method: {{ paymentMethodType }} {{ paymentMethodName }}",
-  "billing_commitment_success_region_us": "The service subscription request has been processed. ",
-  "billing_commitment_summary_description_end_region_us": "After {{endDate}}, your service subscription will be automatically renewed for the same commitment period."
+  "billing_commitment_none_region_us": "You do not have a commitment on your {{serviceName}} subscription.",
+  "billing_commitment_none_with_discount_region_us": "You do not have a commitment on your {{serviceName}} subscription. You can get a discount today if you add a commitment duration to your {{serviceName}} {{serviceType}} subscription.",
+  "billing_commitment_duration_region_us": "Select a subscription commitment"
 }
