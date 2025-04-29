@@ -5,6 +5,7 @@ import { ServiceType } from '@/types';
 import { useDedicatedCloudGeolocations } from './useDedicatedCloudGeolocations';
 import { useVpsGeolocations } from './useVpsGeolocations';
 import { CatalogIpConfiguration, CatalogIpPlan } from '@/data/api';
+import { useDedicatedServerGeolocations } from './useDedicatedServerGeolocations';
 
 export const useAvailableGeolocationFromPlanCode = ({
   planCode,
@@ -23,6 +24,14 @@ export const useAvailableGeolocationFromPlanCode = ({
     ),
   });
 
+  const {
+    data: dedicatedServerData,
+    ...dedicatedServerQuery
+  } = useDedicatedServerGeolocations({
+    serviceName,
+    enabled: serviceType === ServiceType.server,
+  });
+
   const { data: pccData, ...pccQuery } = useDedicatedCloudGeolocations({
     serviceName,
     enabled: serviceType === ServiceType.dedicatedCloud,
@@ -34,6 +43,11 @@ export const useAvailableGeolocationFromPlanCode = ({
   });
 
   switch (serviceType) {
+    case ServiceType.server:
+      return {
+        ...dedicatedServerQuery,
+        geolocations: dedicatedServerData?.data || [],
+      };
     case ServiceType.dedicatedCloud:
       return {
         ...pccQuery,
