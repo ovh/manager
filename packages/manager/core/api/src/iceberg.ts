@@ -1,4 +1,9 @@
-import { Filter, FilterComparator } from './filters';
+import {
+  Filter,
+  FilterComparator,
+  FilterTypeCategories,
+  transformTagsFiltersToQuery,
+} from './filters';
 import apiClient from './client';
 
 export type IcebergCommonOptions = {
@@ -99,22 +104,38 @@ export async function fetchIcebergV6<T>({
     'x-pagination-size': `${encodeURIComponent(pageSize || 5000)}`,
   };
 
+  const params = new URLSearchParams();
+
   if (sortBy) {
     requestHeaders['x-pagination-sort'] = encodeURIComponent(sortBy);
     requestHeaders['x-pagination-sort-order'] = sortReverse ? 'DESC' : 'ASC';
   }
   if (filters?.length) {
     requestHeaders['x-pagination-filter'] = filters
+      .filter(({ type }) => type !== FilterTypeCategories.Tags)
       .map(
         ({ comparator, key, value }) =>
           `${encodeURIComponent(key)}:${icebergFilter(comparator, value)}`,
       )
       .join('&');
+
+    const tagsFilterParams = transformTagsFiltersToQuery(filters);
+    if (tagsFilterParams) {
+      params.append('iamTags', tagsFilterParams);
+    }
   }
+
+  if (requestHeaders['x-pagination-filter'] === '') {
+    delete requestHeaders['x-pagination-filter'];
+  }
+
   if (disableCache) {
     requestHeaders.Pragma = 'no-cache';
   }
-  const { data, headers, status } = await apiClient.v6.get(route, {
+
+  const routeWithParmas = params.size ? `${route}?${params.toString()}` : route;
+
+  const { data, headers, status } = await apiClient.v6.get(routeWithParmas, {
     headers: requestHeaders,
   });
   const totalCount = parseInt(headers['x-pagination-elements'], 10) || 0;

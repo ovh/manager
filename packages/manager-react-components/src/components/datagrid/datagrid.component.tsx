@@ -149,6 +149,8 @@ export interface DatagridProps<T> {
   resetExpandedRowsOnItemsChange?: boolean;
   /** When true, will fix the columns size by column definition size */
   tableLayoutFixed?: boolean;
+  /** Resource type */
+  resourceType?: string;
 }
 
 export const Datagrid = <T,>({
@@ -179,6 +181,7 @@ export const Datagrid = <T,>({
   resetExpandedRowsOnItemsChange,
   hideHeader,
   tableLayoutFixed,
+  resourceType,
 }: DatagridProps<T>) => {
   const { t } = useTranslation('datagrid');
   const pageCount = pagination
@@ -320,6 +323,7 @@ export const Datagrid = <T,>({
         filters={filters}
         search={search}
         topbar={topbar}
+        resourceType={resourceType}
       />
       <div className={`contents px-[1px] ${className || ''}`}>
         <OdsTable className="overflow-x-visible">

@@ -1,6 +1,7 @@
-import { apiClient } from '@ovh-ux/manager-core-api';
+import { apiClient, fetchIcebergV2 } from '@ovh-ux/manager-core-api';
 import { useQuery, keepPreviousData } from '@tanstack/react-query';
-import { IamCheckResponse, IamInterface } from './iam.interface';
+import { IamCheckResponse, IamInterface, IamObject } from './iam.interface';
+import { formatIamTagsFromResources } from '../../utils/format-tags';
 
 export const fetchAuthorizationsCheck = async ({
   actions,
@@ -63,4 +64,51 @@ export function useAuthorizationIam(
     data,
     ...query,
   };
+}
+
+export const fetchResourceTags = async ({
+  resourceType,
+  primaryResourceUrn,
+}: {
+  resourceType?: string;
+  primaryResourceUrn: string;
+}) => {
+  let url = '/iam/resource';
+
+  if (!!resourceType) {
+    url = `${url}?resourceType=${resourceType}`;
+  }
+
+  let { data: resources, cursorNext } = await fetchIcebergV2<IamObject>({
+    route: url,
+    pageSize: 5000,
+  });
+
+  while (!!cursorNext) {
+    const { data, cursorNext: nextCursor } = await fetchIcebergV2<IamObject>({
+      route: url,
+      pageSize: 500,
+      cursor: cursorNext,
+    });
+    resources = resources.concat(data);
+    cursorNext = nextCursor;
+  }
+
+  return formatIamTagsFromResources(resources);
+};
+
+export function useGetResourceTags({
+  resourceType,
+  primaryResourceUrn,
+  enabled,
+}: {
+  resourceType?: string;
+  primaryResourceUrn?: string;
+  enabled: boolean;
+}) {
+  return useQuery({
+    queryKey: ['iam/resource', resourceType, primaryResourceUrn],
+    queryFn: () => fetchResourceTags({ resourceType, primaryResourceUrn }),
+    enabled,
+  });
 }
