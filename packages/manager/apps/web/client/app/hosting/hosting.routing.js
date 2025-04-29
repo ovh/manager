@@ -33,6 +33,43 @@ export default /* @ngInject */ ($stateProvider) => {
         };
       },
       defaultFilterColumn: () => 'serviceName',
+      columnConfig: /* @ngInject */ ($translate) => ({
+        data: [
+          {
+            label: $translate.instant('hosting_databgrid_column_service_name'),
+            property: 'serviceName',
+            serviceLink: true,
+            hidden: false,
+          },
+          {
+            label: $translate.instant('hosting_databgrid_column_offer'),
+            property: 'offer',
+            hidden: false,
+          },
+          {
+            label: $translate.instant('hosting_databgrid_column_state'),
+            property: 'state',
+            hidden: false,
+          },
+          {
+            label: $translate.instant('hosting_databgrid_column_resource_type'),
+            property: 'resourceType',
+            hidden: false,
+          },
+          {
+            label: $translate.instant('hosting_databgrid_column_datacenter'),
+            property: 'datacenter',
+            hidden: false,
+          },
+          {
+            label: $translate.instant('hosting_databgrid_column_display_name'),
+            property: 'displayName',
+            hidden: false,
+          },
+        ],
+      }),
+      description: /* @ngInject */ ($translate) =>
+        $translate.instant('hosting_datagrid_description'),
       header: /* @ngInject */ ($translate) =>
         $translate.instant('hostings_title'),
       changelog: () => 'hosting_plan',
