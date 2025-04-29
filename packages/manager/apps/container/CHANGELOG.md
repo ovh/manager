@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.125.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.125.0...@ovh-ux/manager-container-app@0.125.1) (2025-04-29)
+
+
+### Reverts
+
+* Revert "feat(container): update beta modal (#15199)" ([cfd43b1](https://github.com/ovh/manager/commit/cfd43b1b4102da4e6b08d3af951917c659565f6f)), closes [#15199](https://github.com/ovh/manager/issues/15199)
+* Revert "feat(pnr): remove switchback from pnr eu ca (#16589)" ([746d8f9](https://github.com/ovh/manager/commit/746d8f9573d40c8a1558e7591aee79e10022acd1)), closes [#16589](https://github.com/ovh/manager/issues/16589)
+* Revert "fix(pnr): fix release issues (#16755)" ([dcacd7a](https://github.com/ovh/manager/commit/dcacd7af4ba39d76ba267bcf365231347b770f9d)), closes [#16755](https://github.com/ovh/manager/issues/16755)
+
+
+
+
+
 # [0.125.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.124.0...@ovh-ux/manager-container-app@0.125.0) (2025-04-29)
 
 
