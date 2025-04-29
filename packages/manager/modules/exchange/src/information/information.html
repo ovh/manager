@@ -287,50 +287,6 @@
                     </oui-tile-description>
                 </oui-tile-definition>
             </oui-tile>
-            <oui-spinner data-ng-if="ctrl.loading.sharePoint"></oui-spinner>
-            <oui-tile
-                class="h-100 mb-5"
-                data-heading="{{:: 'exchange_tab_INFORMATIONS_sharepoint' | translate}}"
-                data-ng-if="!ctrl.loading.sharePoint && ctrl.sharepoint"
-            >
-                <oui-tile-definition
-                    data-term="{{:: 'exchange_tab_INFORMATIONS_sharepoint_url' | translate}}"
-                >
-                    <oui-tile-description>
-                        <a
-                            class="word-break oui-link"
-                            target="_blank"
-                            rel="noopener"
-                            data-ng-href="https://{{ctrl.sharepoint.url}}"
-                            data-ng-if="ctrl.sharepoint.state !== 'creating'"
-                        >
-                            <span
-                                class="sr-only"
-                                data-translate="common_newtab"
-                            ></span>
-                            <span
-                                data-ng-bind="'https://' + ctrl.sharepoint.url"
-                            ></span>
-                            <span
-                                class="fa fa-external-link"
-                                aria-hidden="true"
-                            ></span>
-                        </a>
-                        <span
-                            data-translate="exchange_tab_INFORMATIONS_wait_activation"
-                            data-ng-if="ctrl.sharepoint.state === 'creating'"
-                        ></span>
-                        <div class="mt-3">
-                            <a
-                                class="oui-link"
-                                data-ng-href="{{ ctrl.SHAREPOINT_URL }}"
-                                data-translate="exchange_tab_INFORMATIONS_service_url"
-                                target="_top"
-                            ></a>
-                        </div>
-                    </oui-tile-description>
-                </oui-tile-definition>
-            </oui-tile>
         </div>
     </div>
 </div>

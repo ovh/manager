@@ -31,7 +31,6 @@ export default class HeaderController {
     this.exchangeService = this.wucExchange.value;
     this.remoteDisplayName = this.exchangeService.displayName;
     this.displayNameToUpdate = this.remoteDisplayName;
-    this.fetchingCanActivateSharepoint();
 
     this.URLS = this.coreURLBuilder.buildURLs({
       AUTORENEW: {
@@ -42,26 +41,6 @@ export default class HeaderController {
         },
       },
     });
-  }
-
-  fetchingCanActivateSharepoint() {
-    const infrastructureAllowsSharepoint = this.exchangeServiceInfrastructure.isHosted();
-    const subsidiaryAllowsSharepoint = this.constants.target === 'EU';
-
-    return this.wucExchange
-      .getSharepointService(this.exchangeService)
-      .then((sharepoint) => {
-        const isAlreadyActivated = sharepoint != null;
-
-        this.canSubscribeToSharepoint =
-          !isAlreadyActivated &&
-          infrastructureAllowsSharepoint &&
-          subsidiaryAllowsSharepoint;
-      })
-      .catch(() => {
-        this.canSubscribeToSharepoint =
-          infrastructureAllowsSharepoint && subsidiaryAllowsSharepoint;
-      });
   }
 
   cancelEdition() {
