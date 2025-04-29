@@ -1,6 +1,6 @@
 import { ActionMenu } from '@ovh-ux/manager-react-components';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
 import { useNavigate } from 'react-router-dom';
