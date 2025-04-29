@@ -29,8 +29,5 @@
   "billing_commitment_commit_with_discount": "Sottoscrivi un impegno contrattuale e usufruisci di uno sconto",
   "billing_commitment_commit_again_with_discount": "Sottoscrivi un nuovo impegno contrattuale e usufruisci di uno sconto",
   "billing_commitment_none_with_discount": "Al momento non hai sottoscritto nessun impegno contrattuale per il servizio {{ serviceName }}. Per usufruire di uno sconto per il servizio {{ serviceType }} sottoscrivi un impegno contrattuale.",
-  "billing_commitment_commit_again_description_with_discount": "Al momento hai un impegno contrattuale per il servizio {{ serviceName }} fino al {{ endDate }}. Per continuare a usufruire di una tariffa preferenziale, sottoscrivi un nuovo impegno contrattuale sul tuo {{ serviceType }}.",
-  "billing_commitment_none_region_us": "Al momento non hai sottoscritto nessun impegno contrattuale per il servizio {{ serviceName }}.",
-  "billing_commitment_none_with_discount_region_us": "Al momento non hai sottoscritto nessun impegno contrattuale per il servizio {{ serviceName }}. Per usufruire di uno sconto per il servizio {{ serviceType }} sottoscrivi un impegno contrattuale.",
-  "billing_commitment_duration_region_us": "Seleziona la durata del contratto"
+  "billing_commitment_commit_again_description_with_discount": "Al momento hai un impegno contrattuale per il servizio {{ serviceName }} fino al {{ endDate }}. Per continuare a usufruire di una tariffa preferenziale, sottoscrivi un nuovo impegno contrattuale sul tuo {{ serviceType }}."
 }
