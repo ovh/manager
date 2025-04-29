@@ -27,13 +27,11 @@ export default class {
   $onInit() {
     this.user = this.coreConfig.getUser();
 
-    this.translationKeySuffix =
+    const translationKeySuffix =
       this.user.ovhSubsidiary === 'US' ? '_region_us' : '';
-    this.billingCommitmentNoneTranslationKey = `billing_commitment_none${this.translationKeySuffix}`;
-    this.billingCommitmentNoneWithDiscountTranslationKey = `billing_commitment_none_with_discount${this.translationKeySuffix}`;
-    this.billingCommitmentDurationTranslationKey = `billing_commitment_duration${this.translationKeySuffix}`;
-    this.billingCommitmentCommitAgainDescriptionTranslationKey = `billing_commitment_commit_again_description${this.translationKeySuffix}`;
-    this.billingCommitmentCommitAgainDescriptionWithDiscountTranslationKey = `billing_commitment_commit_again_description_with_discount${this.translationKeySuffix}`;
+    this.billingCommitmentNoneTranslationKey = `billing_commitment_none${translationKeySuffix}`;
+    this.billingCommitmentNoneWithDiscountTranslationKey = `billing_commitment_none_with_discount${translationKeySuffix}`;
+    this.billingCommitmentDurationTranslationKey = `billing_commitment_duration${translationKeySuffix}`;
 
     this.isLoadingService = true;
     this.paymentMethod = null;
@@ -96,9 +94,6 @@ export default class {
       (commitment) => commitment.durationInMonths === duration.monthlyDuration,
     );
     [this.model.engagement] = this.pricingModes;
-
-    this.billingCommitmentSummaryDescriptionEndTranslationKey = `billing_commitment_summary_description_${this.model.engagement.commitmentType}_end${this.translationKeySuffix}`;
-    this.billingCommitmentSummaryDescriptionTranslationKey = `billing_commitment_summary_description_${this.model.engagement.commitmentType}${this.translationKeySuffix}`;
   }
 
   getStartingDate() {
@@ -155,9 +150,7 @@ export default class {
         }
 
         return this.goBack(
-          `${this.$translate.instant(
-            `billing_commitment_success${this.translationKeySuffix}`,
-          )}${
+          `${this.$translate.instant('billing_commitment_success')}${
             order
               ? this.$translate.instant('billing_commitment_success_purchase', {
                   url: order.url,
