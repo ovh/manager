@@ -1,5 +1,7 @@
 <div>
-    <wuc-mxplan-banner data-ng-if="exchange.isMXPlan"></wuc-mxplan-banner>
+    <wuc-mxplan-banner
+        data-ng-if="exchange.isMXPlan && !exchange.isZimbra"
+    ></wuc-mxplan-banner>
     <div class="row">
         <div class="col-md-9">
             <div data-ovh-alert="{{alerts.main}}"></div>
