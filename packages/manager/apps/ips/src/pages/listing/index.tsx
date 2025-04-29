@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   useResolvedPath,
@@ -7,16 +7,10 @@ import {
   useNavigate,
 } from 'react-router-dom';
 import { OdsTabs, OdsTab } from '@ovhcloud/ods-components/react';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import {
-  BaseLayout,
-  ChangelogButton,
-  GuideButton,
-  GuideItem,
-  Notifications,
-} from '@ovh-ux/manager-react-components';
-import { CHANGELOG_LINKS, GUIDES_LIST } from '@/utils/links.constants';
+import { BaseLayout, Notifications } from '@ovh-ux/manager-react-components';
+
 import { subRoutes } from '@/routes/routes.constant';
+import { useHeader } from '@/components/Header/Header';
 
 export type DashboardTabItemProps = {
   name: string;
@@ -28,17 +22,7 @@ export default function Listing() {
   const { t } = useTranslation('listing');
 
   const location = useLocation();
-  const context = useContext(ShellContext);
-  const { ovhSubsidiary } = context.environment.getUser();
-  const guideItems: GuideItem[] = [
-    {
-      id: 1,
-      href: (GUIDES_LIST.documentation_link.url[ovhSubsidiary] ||
-        GUIDES_LIST.documentation_link.url.DEFAULT) as string,
-      target: '_blank',
-      label: t('ips_dashboard_guide'),
-    },
-  ];
+  const header = useHeader(t('title'));
   const navigate = useNavigate();
 
   const tabsList = [
@@ -51,12 +35,6 @@ export default function Listing() {
       to: useResolvedPath(subRoutes.manageOrganisations).pathname,
     },
   ] as const;
-
-  const header = {
-    title: t('title'),
-    changelogButton: <ChangelogButton links={CHANGELOG_LINKS} />,
-    headerButton: <GuideButton items={guideItems} />,
-  };
 
   return (
     <BaseLayout

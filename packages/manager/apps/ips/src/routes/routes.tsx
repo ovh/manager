@@ -101,6 +101,17 @@ export const Routes: any = [
           },
         },
       },
+      {
+        id: 'byoip',
+        path: urls.byoip,
+        ...lazyRouteConfig(() => import('@/pages/byoip/Byoip.page')),
+        handle: {
+          tracking: {
+            pageName: 'byoip',
+            pageType: PageType.funnel,
+          },
+        },
+      },
     ],
   },
   {
