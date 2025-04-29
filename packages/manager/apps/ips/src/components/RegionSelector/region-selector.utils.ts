@@ -87,7 +87,7 @@ export const getCountryCode = (region?: string) =>
   )?.[1];
 
 export const getCountryKey = (region: string) =>
-  `region-selector-country-name_${getCountryCode(region)}`;
+  `region-selector-country-name_${getCountryCode(region)?.toUpperCase()}`;
 
 export const getCityNameKey = (region: string) =>
   `region-selector-city-name_${region}`;
