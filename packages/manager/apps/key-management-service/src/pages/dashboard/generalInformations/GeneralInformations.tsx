@@ -4,8 +4,12 @@ import {
   DashboardGridLayout,
   useServiceDetails,
 } from '@ovh-ux/manager-react-components';
+<<<<<<< HEAD
 import { BillingInformationsTileStandard } from '@ovh-ux/billing-informations';
 import { useOKMSById } from '@/data/hooks/useOKMS';
+=======
+import { useOkmsById } from '@/data/hooks/useOkms';
+>>>>>>> 851cfae239 (feat(kms): add buttons for downloading public CA certificates)
 import { ROUTES_URLS } from '@/routes/routes.constants';
 import InformationsTile from '@/components/layout-helpers/Dashboard/GeneralInformationsTiles/InformationsTile';
 import Loading from '@/components/Loading/Loading';
@@ -14,7 +18,7 @@ import RestApiTile from '@/components/layout-helpers/Dashboard/GeneralInformatio
 
 function GeneralInformationsTab() {
   const { okmsId } = useParams();
-  const { data: okms, error, isLoading: isOkmsLoading } = useOKMSById(okmsId);
+  const { data: okms, error, isLoading: isOkmsLoading } = useOkmsById(okmsId);
   const {
     data: okmsService,
     isLoading: isOkmsServiceLoading,

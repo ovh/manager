@@ -1,24 +1,17 @@
 import { useQuery } from '@tanstack/react-query';
-import apiClient from '@ovh-ux/manager-core-api';
 import { useResourcesIcebergV2 } from '@ovh-ux/manager-react-components';
-
 import { OKMS } from '@/types/okms.type';
 import { ErrorResponse } from '@/types/api.type';
 import {
+  getOkmsResource,
   getOkmsResourceQueryKey,
   getOkmsServicesResourceListQueryKey,
-} from '../api/okms';
+} from '@/data/api/okms';
 
-export const getOKMSResource = async (
-  okmsId: string,
-): Promise<{ data: OKMS }> => {
-  return apiClient.v2.get(`okms/resource/${okmsId}`);
-};
-
-export const useOKMSById = (okmsId: string) => {
+export const useOkmsById = (okmsId: string) => {
   return useQuery<{ data: OKMS }, ErrorResponse>({
     queryKey: getOkmsResourceQueryKey(okmsId),
-    queryFn: () => getOKMSResource(okmsId),
+    queryFn: () => getOkmsResource(okmsId),
     retry: false,
     ...{
       keepPreviousData: true,
@@ -26,7 +19,7 @@ export const useOKMSById = (okmsId: string) => {
   });
 };
 
-export const useOKMSList = ({ pageSize }: { pageSize?: number }) =>
+export const useOkmsList = ({ pageSize }: { pageSize?: number }) =>
   useResourcesIcebergV2<OKMS>({
     route: '/okms/resource',
     queryKey: getOkmsServicesResourceListQueryKey,
