@@ -3320,7 +3320,7 @@
   resolved "https://registry.yarnpkg.com/@cucumber/tag-expressions/-/tag-expressions-6.1.0.tgz#cb7af908bdb43669b7574c606f71fa707196e962"
   integrity sha512-+3DwRumrCJG27AtzCIL37A/X+A/gSfxOPLg8pZaruh5SLumsTmpvilwroVWBT2fPzmno/tGXypeK5a7NHU4RzA==
 
-"@datatr-ux/ods-tailwind-config@1.0.3":
+"@datatr-ux/ods-tailwind-config@1.0.3", "@datatr-ux/ods-tailwind-config@^1.0.3":
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@datatr-ux/ods-tailwind-config/-/ods-tailwind-config-1.0.3.tgz#f4fe4cf803d9a1d5fbf2d5356b0cc58b0572f7a7"
   integrity sha512-bQrlP+Qj1OC2oj/CmzqswG6D6j/RPvC21ZnRQrOuRLFo+CM+LhQi94EErf1abivJWeXMa2BZ/eID6s+iB4dPHw==
@@ -3332,10 +3332,66 @@
   resolved "https://registry.yarnpkg.com/@datatr-ux/ovhcloud-types/-/ovhcloud-types-1.0.8.tgz#0e6a8359cc8a52389f65c1aebfae57261ec8215a"
   integrity sha512-Fze56Qv4qkucB3/w5/bl1lNVCNKlOdSBKYDVLaHNCJhHs+JbHCtMR4Ki29dA+Lk8mti0r3g1fdMZ7Hb2YBZ8gA==
 
+"@datatr-ux/ovhcloud-types@^1.0.11":
+  version "1.0.11"
+  resolved "https://registry.yarnpkg.com/@datatr-ux/ovhcloud-types/-/ovhcloud-types-1.0.11.tgz#bac1d9b460cc969a191967cd2b1d0858de713d78"
+  integrity sha512-NSqgUoIXKHxVRY5fnp5hV2kNQJxbX9/Om0naInG1tnztBvdkRuuhfzga9+ReYVqkktaSg/kb3CGZzyWi2tpvCg==
+
 "@datatr-ux/uxlib@0.0.10":
   version "0.0.10"
   resolved "https://registry.yarnpkg.com/@datatr-ux/uxlib/-/uxlib-0.0.10.tgz#0a66c5d3ad49b0e1effa1cd02c36167e3ac6eef1"
   integrity sha512-STOaCY/5w6R0CI7vHDs6nK0WOu1iNjPhr0eJnlVuYwDZgXeUUg0YoyVfKpXAKIbpXSxJhZj9VL/dewnD4Kli4g==
+  dependencies:
+    "@ovhcloud/ods-theme-blue-jeans" "^17.2.2"
+    "@ovhcloud/ods-themes" "^18.4.1"
+    "@radix-ui/react-accordion" "^1.2.2"
+    "@radix-ui/react-alert-dialog" "^1.1.4"
+    "@radix-ui/react-aspect-ratio" "^1.1.1"
+    "@radix-ui/react-avatar" "^1.1.2"
+    "@radix-ui/react-checkbox" "^1.1.3"
+    "@radix-ui/react-collapsible" "^1.1.2"
+    "@radix-ui/react-context-menu" "^2.2.4"
+    "@radix-ui/react-dialog" "^1.1.4"
+    "@radix-ui/react-dropdown-menu" "^2.1.4"
+    "@radix-ui/react-hover-card" "^1.1.4"
+    "@radix-ui/react-label" "^2.1.1"
+    "@radix-ui/react-menubar" "^1.1.4"
+    "@radix-ui/react-navigation-menu" "^1.2.3"
+    "@radix-ui/react-popover" "^1.1.4"
+    "@radix-ui/react-progress" "^1.1.1"
+    "@radix-ui/react-radio-group" "^1.2.2"
+    "@radix-ui/react-scroll-area" "^1.2.2"
+    "@radix-ui/react-select" "^2.1.4"
+    "@radix-ui/react-separator" "^1.1.1"
+    "@radix-ui/react-slider" "^1.2.2"
+    "@radix-ui/react-slot" "^1.1.1"
+    "@radix-ui/react-switch" "^1.1.2"
+    "@radix-ui/react-tabs" "^1.1.2"
+    "@radix-ui/react-toast" "^1.2.4"
+    "@radix-ui/react-toggle" "^1.1.1"
+    "@radix-ui/react-toggle-group" "^1.1.1"
+    "@radix-ui/react-tooltip" "^1.1.6"
+    class-variance-authority "^0.7.1"
+    clsx "^2.1.1"
+    cmdk "^1.0.0"
+    date-fns "^3.6.0"
+    embla-carousel-react "^8.5.1"
+    input-otp "^1.4.1"
+    lodash "^4.17.21"
+    lucide-react "^0.469.0"
+    next-themes "^0.4.4"
+    react-day-picker "^8.10.1"
+    react-resizable-panels "^2.1.7"
+    shiki "^3.2.1"
+    sonner "^1.7.1"
+    tailwind-merge "^2.6.0"
+    tailwindcss-animate "^1.0.7"
+    vaul "^1.1.2"
+
+"@datatr-ux/uxlib@^0.0.11-beta-8":
+  version "0.0.11-beta-8"
+  resolved "https://registry.yarnpkg.com/@datatr-ux/uxlib/-/uxlib-0.0.11-beta-8.tgz#e47edc3465d6ea8add18e81717193d3d543223c8"
+  integrity sha512-yAIPXaEVXtv0uxj7Z8A8GMIOUrtzuC06gG1Uw9proXtjCGSh6yBpnjaNIRhK0LWORtBQFxs9yVwy/M8CjkJkKw==
   dependencies:
     "@ovhcloud/ods-theme-blue-jeans" "^17.2.2"
     "@ovhcloud/ods-themes" "^18.4.1"
@@ -6333,7 +6389,7 @@
     tailwindcss "^3.4.4"
     uuid "^9.0.1"
 
-"@ovh-ux/manager-react-components@^1.44.0", "@ovh-ux/manager-react-components@^1.46.0":
+"@ovh-ux/manager-react-components@^1.46.0":
   version "1.46.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-components/-/manager-react-components-1.46.0.tgz#8c868c4098e210918de90041dbffdc0dabea82d5"
   integrity sha512-Xd5NdcpG0J21tfEyGOwnKAaP4xU0V6wa8mbypaR0dPOZb1zMkqJobUSW92usWHAHhK+vkNZROZ+n171W1gAByQ==
@@ -6373,7 +6429,7 @@
     tailwindcss "^3.4.4"
     uuid "^9.0.1"
 
-"@ovh-ux/manager-react-shell-client@^0.8.7":
+"@ovh-ux/manager-react-shell-client@^0.8.5", "@ovh-ux/manager-react-shell-client@^0.8.7":
   version "0.8.7"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-shell-client/-/manager-react-shell-client-0.8.7.tgz#aa40336eb8fc68458a89801d0ae24607d57c8252"
   integrity sha512-/+FTo1KThBGRQj15gyxZgjQG4E86mdeEZ4T3a0PdY3sixqgu30b7CI3NcIkPDEPmDv/3rfCNouceXvPNoICrIg==
