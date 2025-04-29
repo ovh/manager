@@ -18,7 +18,7 @@
     <div data-ng-if="!$ctrl.isLoadingService">
         <p
             data-ng-if="!$ctrl.service.isEngaged() || $ctrl.service.isEngagementExpired()"
-            data-translate="{{:: $ctrl.hasDiscountAvailable ? $ctrl.billingCommitmentNoneWithDiscountTranslationKey : $ctrl.billingCommitmentNoneTranslationKey }}"
+            data-translate="{{ $ctrl.hasDiscountAvailable ? 'billing_commitment_none_with_discount' : 'billing_commitment_none' }}"
             data-translate-values="{
                 serviceName: $ctrl.service.name,
                 serviceType:(('billing_commitment_service_' + $ctrl.service.productType) | translate)
@@ -38,7 +38,7 @@
     <oui-stepper on-finish="$ctrl.commit()">
         <oui-step-form
             name="duration"
-            header="{{:: $ctrl.billingCommitmentDurationTranslationKey | translate}}"
+            header="{{:: 'billing_commitment_duration' | translate}}"
             loading="$ctrl.isLoadingService"
             valid="$ctrl.model.duration"
         >

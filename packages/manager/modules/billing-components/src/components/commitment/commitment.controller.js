@@ -26,13 +26,6 @@ export default class {
 
   $onInit() {
     this.user = this.coreConfig.getUser();
-
-    const translationKeySuffix =
-      this.user.ovhSubsidiary === 'US' ? '_region_us' : '';
-    this.billingCommitmentNoneTranslationKey = `billing_commitment_none${translationKeySuffix}`;
-    this.billingCommitmentNoneWithDiscountTranslationKey = `billing_commitment_none_with_discount${translationKeySuffix}`;
-    this.billingCommitmentDurationTranslationKey = `billing_commitment_duration${translationKeySuffix}`;
-
     this.isLoadingService = true;
     this.paymentMethod = null;
     this.model = {
