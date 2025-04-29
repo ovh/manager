@@ -18,7 +18,6 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
   const [chatbotReduced, setChatbotReduced] = useState(false);
   const [application, setApplication] = useState<Application>(undefined);
   const [universe, setUniverse] = useState<string>();
-  const isUS = shell?.getPlugin('environment')?.getEnvironment()?.getRegion() === 'US';
 
   // 1 for beta, otherwise null if not a beta tester
   const [betaVersion, setBetaVersion] = useState<BetaVersion | string>(null);
@@ -36,6 +35,8 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
     'livechat',
     'pnr',
   ]);
+
+  const isUS = shell?.getPlugin('environment')?.getEnvironment()?.getRegion();
 
   const fetchBetaAcknowledged = async () => {
     if (betaAcknowledged) return true;
@@ -78,7 +79,7 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
       )
       .then((response) => {
         const data: any = response.data;
-        setUseBeta(isUS ? JSON.parse(data.value) as boolean : true);
+        setUseBeta(JSON.parse(data.value) as boolean);
       })
       .catch((error) => {
         if (error.response.status !== 404) {
