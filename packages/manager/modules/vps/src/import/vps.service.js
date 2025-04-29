@@ -6,7 +6,7 @@ import remove from 'lodash/remove';
 import set from 'lodash/set';
 import 'moment';
 
-import { ADDITIONAL_DISK, IP_PRIMARY_TYPE } from './constants';
+import { ADDITIONAL_DISK, IP_PRIMARY_TYPE, ZONE_TYPE } from './constants';
 
 export default /* @ngInject */ function VpsService(
   $cacheFactory,
@@ -1525,5 +1525,22 @@ export default /* @ngInject */ function VpsService(
       .get(`/services/${serviceId}`)
       .then(({ data }) => data?.resource?.product?.name.includes('-resell'))
       .catch(() => false);
+  };
+
+  this.isLocalzone = function isLocalzone(serviceName) {
+    return $http
+      .get(`/vps/${serviceName}/datacenter`)
+      .then(({ data: { zoneType } }) => zoneType === ZONE_TYPE.LOCALZONE);
+  };
+
+  this.vpsCapabilities = function vpsCapabilities(serviceName, stateVps) {
+    return $http
+      .get(`/vps/capabilities/${serviceName}`, {
+        serviceType: 'aapi',
+        params: {
+          modelName: stateVps.model.name,
+        },
+      })
+      .then(({ data }) => data);
   };
 }
