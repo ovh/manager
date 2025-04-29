@@ -11,5 +11,7 @@
   "card_middle_description": "Dive into advanced techniques, real-world examples, and best practices to unlock the full potential of Data Platform and become a true expert.",
   "card_right_title": "Detailed Product Specs",
   "card_right_description": "Find in-depth information on all of Data Platform's capabilities, data types, system requirements, and configurable parameters.",
-  "card_find_out_more": "Find out more"
+  "card_find_out_more": "Find out more",
+  "discoveryMode": "You are currently in Discovery mode. To access Data Platform and create services, you will need to activate your project.",
+  "discoveryModeActivate": "Activate your project"
 }
