@@ -4,7 +4,7 @@
   "manager_billing_subscription_statut": "Statut",
   "manager_billing_subscription_next_due_date": "Prochaine échéance",
   "manager_billing_subscription_engagement": "Engagement",
-  "manager_billing_subscription_engagement_status_none": "1 mois",
+  "manager_billing_subscription_engagement_status_none": "Sans engagement",
   "manager_billing_subscription_contacts": "Contacts",
   "manager_billing_subscription_contacts_admin": "Administrateur",
   "manager_billing_subscription_contacts_tech": "Technique",
