@@ -1,9 +1,9 @@
 {
   "manager_billing_subscription": "Il mio servizio",
-  "manager_billing_subscription_creation": "Data dell’impegno contrattuale",
+  "manager_billing_subscription_creation": "Data di sottoscrizione",
   "manager_billing_subscription_next_due_date": "Prossima scadenza",
   "manager_billing_subscription_engagement": "Impegno contrattuale",
-  "manager_billing_subscription_engagement_status_none": "1 mese",
+  "manager_billing_subscription_engagement_status_none": "Senza impegno contrattuale",
   "manager_billing_subscription_contacts": "Contatti",
   "manager_billing_subscription_contacts_admin": "Amministratore",
   "manager_billing_subscription_contacts_tech": "Tecnico",
