@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { useCatalogPrice } from '@ovh-ux/manager-react-components';
 import { Input } from '@datatr-ux/uxlib';
 import { useMemo, useState } from 'react';
 import ActionModal from '@/components/actionModal/ActionModal.component';
@@ -48,6 +49,8 @@ const BackupActionPage = ({
     if (instance) mutationHandler({ instance, snapshotName });
   };
 
+  const { getFormattedCatalogPrice } = useCatalogPrice(3);
+
   return (
     <ActionModal
       title={title}
@@ -73,7 +76,7 @@ const BackupActionPage = ({
         {!!price && !isBackupLoading && (
           <p className="text-sm font-medium">
             {t('pci_instances_actions_backup_instance_price', {
-              price,
+              price: getFormattedCatalogPrice(Number(price)),
             })}
           </p>
         )}

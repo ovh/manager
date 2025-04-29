@@ -9,7 +9,5 @@
   "pci_instances_onboarding_back_up_instance_title": "Sauvegarder une instance",
   "pci_instances_onboarding_instance_introduction_title": "Introduction aux instances et autres notions cloud",
   "pci_instances_onboarding_create_instance_description": "Ce guide vous montre comment créer une instance sur Public Cloud",
-  "pci_instances_onboarding_post_install_script_description": "",
-  "pci_instances_onboarding_back_up_instance_description": "Découvrez comment sauvegarder une instance Public Cloud en quelques clics",
-  "pci_instances_onboarding_instance_introduction_description": ""
+  "pci_instances_onboarding_back_up_instance_description": "Découvrez comment sauvegarder une instance Public Cloud en quelques clics"
 }
