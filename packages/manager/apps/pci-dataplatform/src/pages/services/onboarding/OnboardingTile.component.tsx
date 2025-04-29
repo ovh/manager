@@ -26,7 +26,10 @@ const OnboardingTile = ({
   const { t } = useTranslation('dataplatform');
 
   return (
-    <Card className="flex flex-col justify-between">
+    <Card
+      className="flex flex-col justify-between"
+      data-testid="onboarding-card"
+    >
       <CardHeader>
         <CardTitle className="text-xl text-primary">{title}</CardTitle>
         <CardDescription className="text-2xl text-heading font-semibold text-[#00185e]">
