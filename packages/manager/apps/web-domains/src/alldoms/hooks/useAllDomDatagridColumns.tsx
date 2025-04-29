@@ -7,12 +7,9 @@ import DatagridColumnServiceName from '@/alldoms/components/DatagridColumns/Data
 import { DatagridColumnDate } from '@/alldoms/components/DatagridColumns/DatagridColumnDate';
 import DatagridColumnActionMenu from '@/alldoms/components/DatagridColumns/DatagridColumnActionMenu';
 import DatagridColumnContact from '@/alldoms/components/DatagridColumns/DatagridColumnContact';
-import { ServiceInfoContactEnum } from '@/alldoms/enum/service.enum';
 import DatagridColumnRenewMode from '@/alldoms/components/DatagridColumns/DatagridColumnRenewMode';
 
-export const useAllDomDatagridColumns = (
-  openModal: (serviceInfoDetail: TServiceDetail) => void,
-) => {
+export const useAllDomDatagridColumns = () => {
   const { t } = useTranslation('allDom');
   return useMemo(
     () => [
@@ -69,32 +66,23 @@ export const useAllDomDatagridColumns = (
       },
       {
         id: 'nicAdmin',
-        cell: (props: TServiceDetail) => {
-          const contact = props.serviceInfo.customer.contacts.find(
-            (c) => c.type === ServiceInfoContactEnum.Administrator,
-          );
-          return <DatagridColumnContact contact={contact} />;
-        },
+        cell: (props: TServiceDetail) => (
+          <DatagridColumnContact contact={props.nicAdmin} />
+        ),
         label: t('allDom_table_header_nicAdmin'),
       },
       {
         id: 'nicTech',
-        cell: (props: TServiceDetail) => {
-          const contact = props.serviceInfo.customer.contacts.find(
-            (c) => c.type === ServiceInfoContactEnum.Technical,
-          );
-          return <DatagridColumnContact contact={contact} />;
-        },
+        cell: (props: TServiceDetail) => (
+          <DatagridColumnContact contact={props.nicTechnical} />
+        ),
         label: t('allDom_table_header_nicTech'),
       },
       {
         id: 'nicBilling',
-        cell: (props: TServiceDetail) => {
-          const contact = props.serviceInfo.customer.contacts.find(
-            (c) => c.type === ServiceInfoContactEnum.Billing,
-          );
-          return <DatagridColumnContact contact={contact} />;
-        },
+        cell: (props: TServiceDetail) => (
+          <DatagridColumnContact contact={props.nicBilling} />
+        ),
         label: t('allDom_table_header_nicBilling'),
       },
       {
@@ -102,8 +90,9 @@ export const useAllDomDatagridColumns = (
         cell: (props: TServiceDetail) => (
           <DatagridColumnActionMenu
             serviceId={`${props.serviceInfo.serviceId}`}
-            serviceInfoDetail={props}
-            openModal={openModal}
+            serviceName={props.allDomProperty.name}
+            serviceRenewMode={props.serviceInfo.billing.renew.current.mode}
+            isServiceNameUrl={true}
           />
         ),
         label: '',
