@@ -2,9 +2,9 @@ import React from 'react';
 import { OdsTag } from '@ovhcloud/ods-components/react';
 import { ODS_TAG_COLOR } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
-import { FilterTypeCategories } from '@ovh-ux/manager-core-api';
 import { FilterWithLabel } from './interface';
 import './translations';
+import { formatFilter } from './format-filter';
 
 export type FilterListProps = {
   filters: FilterWithLabel[];
@@ -33,11 +33,7 @@ export function FilterList({
           label={`${
             filter.label ? `${filter.label} ${tComp(filter.comparator)} ` : ''
           }
-          ${
-            filter.type === FilterTypeCategories.Date
-              ? new Date(`${filter.value}`).toLocaleDateString(locale)
-              : `${filter.value}`
-          }`}
+          ${formatFilter(filter, locale)}`}
         />
       ))}
     </>

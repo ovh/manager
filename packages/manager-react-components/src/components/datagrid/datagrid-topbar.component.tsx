@@ -51,6 +51,7 @@ export interface DatagridTopbarProps {
   filters?: FilterProps;
   search?: SearchProps;
   topbar?: React.ReactNode;
+  resourceType?: string;
 }
 
 export const DatagridTopbar = <T,>({
@@ -63,6 +64,7 @@ export const DatagridTopbar = <T,>({
   isSearchable,
   search,
   topbar,
+  resourceType,
 }: DatagridTopbarProps) => {
   const { t } = useTranslation('filters');
   const filterPopoverRef = useRef(null);
@@ -135,6 +137,7 @@ export const DatagridTopbar = <T,>({
                   >
                     <FilterAdd
                       columns={filtersColumns}
+                      resourceType={resourceType}
                       onAddFilter={(addedFilter, column) => {
                         filters.add({
                           ...addedFilter,
