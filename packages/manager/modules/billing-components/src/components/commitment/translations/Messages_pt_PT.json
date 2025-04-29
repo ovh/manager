@@ -32,5 +32,14 @@
   "billing_commitment_commit_again_description_with_discount": "Atualmente, tem um compromisso para o seu serviço {{ serviceName }} até {{ endDate }}. Pode continuar a beneficiar de um preço especial ao contratar novamente o seu {{ serviceType }} com compromisso.",
   "billing_commitment_none_region_us": "Atualmente, não tem nenhum compromisso para o seu serviço {{ serviceName }}.",
   "billing_commitment_none_with_discount_region_us": "Atualmente, não tem nenhum compromisso para o seu serviço {{ serviceName }}. A partir de hoje, pode usufruir de um desconto ao contratar o seu {{ serviceType }} com compromisso.",
-  "billing_commitment_duration_region_us": "Selecione uma duração de compromisso"
+  "billing_commitment_duration_region_us": "Selecionar um compromisso",
+  "billing_commitment_commit_again_description_region_us": "Atualmente, tem um compromisso para o seu serviço {{ serviceName }} até {{ endDate }}. A partir de agora, pode prolongar o seu compromisso para o período à sua escolha.",
+  "billing_commitment_commit_again_description_with_discount_region_us": "Atualmente, tem um compromisso para o seu serviço {{ serviceName }} até {{ endDate }}. Pode continuar a beneficiar de um preço especial ao contratar novamente o seu {{ serviceType }} com compromisso.",
+  "billing_commitment_summary_description_periodic_region_us": "A partir de {{ renewDate }}, o seu método de pagamento predefinido ({{ paymentMethodName }}) será automaticamente faturado no valor de {{ monthlyPrice }} quanto ao serviço {{ serviceName }} todos os meses até {{ engagementEndDate }}.",
+  "billing_commitment_summary_description_periodic_end_region_us": "Depois de {{ endDate }}, o serviço será tacitamente reiniciado por um período semelhante ao último compromisso.",
+  "billing_commitment_summary_description_upfront_region_us": "Em {{ renewDate }}, o seu método de pagamento predefinido ({{ paymentMethodName }}) será automaticamente faturado no valor de {{ upfrontPrice }} quanto à totalidade do período de compromisso.",
+  "billing_commitment_summary_description_upfront_end_region_us": "Depois de {{ engagementEndDate }}, o serviço {{ serviceName }} será tacitamente reiniciado por um período e uma modalidade de pagamento semelhantes ao seu último compromisso.",
+  "billing_commitment_summary_description_payment_region_us": "O montante será debitado no seu método de pagamento predefinido: {{ paymentMethodType }} {{ paymentMethodName }}.",
+  "billing_commitment_success_region_us": "O pedido de compromisso do serviço foi corretamente enviado. ",
+  "billing_commitment_summary_description_end_region_us": "Depois de {{ endDate }}, o seu serviço será tacitamente reiniciado por um período semelhante ao seu último compromisso."
 }

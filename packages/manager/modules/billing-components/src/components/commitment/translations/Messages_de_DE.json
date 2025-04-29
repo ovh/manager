@@ -32,5 +32,14 @@
   "billing_commitment_commit_again_description_with_discount": "Sie haben Ihren Dienst {{ serviceName }} derzeit bis zum {{ endDate }} abonniert. Sie können den Vorzugspreis weiterhin erhalten, indem Sie das Abonnement für Ihren {{ serviceType }} Dienst verlängern.",
   "billing_commitment_none_region_us": "Derzeit besteht keine feste Vertragslaufzeit für Ihren Dienst {{ serviceName }}.",
   "billing_commitment_none_with_discount_region_us": "Derzeit besteht keine feste Vertragslaufzeit für Ihren Dienst {{ serviceName }}. Ab jetzt können Sie von einem Rabatt profitieren, indem Sie Ihren Dienst {{ serviceType }} für eine bestimmte Vertragslaufzeit abonnieren.",
-  "billing_commitment_duration_region_us": "Wählen Sie eine Vertragslaufzeit aus"
+  "billing_commitment_duration_region_us": "Vertragsbindung auswählen",
+  "billing_commitment_commit_again_description_region_us": "Sie haben Ihren Dienst {{ serviceName }} derzeit bis zum {{ endDate }} abonniert. Ab sofort können Sie Ihren Vertrag um die Dauer Ihrer Wahl verlängern.",
+  "billing_commitment_commit_again_description_with_discount_region_us": "Sie haben Ihren Dienst {{ serviceName }} derzeit bis zum {{ endDate }} abonniert. Sie können den Vorzugspreis weiterhin erhalten, indem Sie das Abonnement für Ihren {{ serviceType }} Dienst verlängern.",
+  "billing_commitment_summary_description_periodic_region_us": "Ab dem {{ renewDate }} wird Ihr Standardzahlungsmittel ({{ paymentMethodName }}) für Ihren Dienst {{ serviceName }} automatisch monatlich bis zum {{ engagementEndDate }} mit {{ monthlyPrice }} belastet.",
+  "billing_commitment_summary_description_periodic_end_region_us": "Nach dem {{ engagementEndDate }} wird Ihr Dienst stillschweigend erneut für eine Laufzeit aktiviert, die Ihrer letzten Vertragslaufzeit entspricht.",
+  "billing_commitment_summary_description_upfront_region_us": "Am {{ renewDate }} wird Ihr Standardzahlungsmittel ({{ paymentMethodName }}) automatisch mit {{ upfrontPrice }} für die gesamte Vertragslaufzeit belastet.",
+  "billing_commitment_summary_description_upfront_end_region_us": "Nach dem {{ engagementEndDate }} wird Ihr Dienst {{ serviceName }} stillschweigend wieder aktiviert. Die Dauer und Zahlungsart entsprechen Ihrem letzten Abonnement.",
+  "billing_commitment_summary_description_payment_region_us": "Der Betrag wird von Ihrem Standardzahlungsmittel abgebucht: {{ paymentMethodType }} {{ paymentMethodName }}.",
+  "billing_commitment_success_region_us": "Die Abonnementbestellung des Dienstes wurde erfolgreich durchgeführt. ",
+  "billing_commitment_summary_description_end_region_us": "Nach dem {{ endDate }} wird Ihr Dienst stillschweigend erneut für eine Laufzeit aktiviert, die Ihrer letzten Vertragslaufzeit entspricht."
 }
