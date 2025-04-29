@@ -1,8 +1,12 @@
-import { Button } from '@datatr-ux/uxlib';
+import { Button, Alert, AlertDescription } from '@datatr-ux/uxlib';
+import { AlertCircle, ArrowRight } from 'lucide-react';
 import { useParams } from 'react-router-dom';
 import { Trans, useTranslation } from 'react-i18next';
 import onboardingImgSrc from '@/../public/assets/onboarding-image.png';
 import OnboardingTile from './OnboardingTile.component';
+import usePciProject from '@/hooks/api/project/usePciProject.hook';
+import { PlanCode } from '@/types/cloud/Project';
+import Link from '@/components/links/Link.component';
 
 const Onboarding = () => {
   const { t } = useTranslation('dataplatform/services');
@@ -13,6 +17,9 @@ const Onboarding = () => {
     '{projectId}',
     `${params?.projectId}`,
   );
+  const projectData = usePciProject();
+  const isProjectDiscoveryMode =
+    projectData.data?.planCode === PlanCode.DISCOVERY;
 
   return (
     <div
@@ -43,9 +50,32 @@ const Onboarding = () => {
           }}
         ></Trans>
       </div>
-      <Button asChild className="mt-2">
+      {isProjectDiscoveryMode && (
+        <Alert variant="warning">
+          <AlertDescription className="text-base">
+            <div
+              data-testid="discovery-container"
+              className="flex flex-col items-stretch  md:flex-row md:items-center justify-between gap-4"
+            >
+              <div className="flex flex-row gap-5 items-center">
+                <AlertCircle className="h-6 w-6 text-[#995400]" />
+                <p className="text-[#995400]">{t('discoveryMode')}</p>
+              </div>
+              <Button type="button" asChild>
+                <Link
+                  className="hover:no-underline hover:text-primary-foreground"
+                  to={`#/pci/projects/${projectData.data?.project_id}/activate`}
+                >
+                  {t('discoveryModeActivate')}
+                  <ArrowRight className="w-4 h-4 ml-2 mt-1" />
+                </Link>
+              </Button>
+            </div>
+          </AlertDescription>
+        </Alert>
+      )}
+      <Button className="mt-2" disabled={isProjectDiscoveryMode}>
         <a href={replacedDataplatformUrl} target="blank">
-          {' '}
           {t('button_text')}
         </a>
       </Button>
