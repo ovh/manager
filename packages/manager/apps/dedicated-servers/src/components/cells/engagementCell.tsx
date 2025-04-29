@@ -1,18 +1,16 @@
 import React from 'react';
 import { OdsBadge } from '@ovhcloud/ods-components/react';
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
+import { useTranslation } from 'react-i18next';
 import { DedicatedServer } from '@/data/types/server.type';
 import { DSBilling } from '../billingCell';
 
 type EngagementCellProps = {
   server: DedicatedServer;
-  t: (name: string) => string;
 };
 
-export const EngagementCell: React.FC<EngagementCellProps> = ({
-  server,
-  t,
-}) => {
+export const EngagementCell: React.FC<EngagementCellProps> = ({ server }) => {
+  const { t } = useTranslation('dedicated-servers');
   return (
     <DSBilling server={server.name}>
       {(billingInfo) =>

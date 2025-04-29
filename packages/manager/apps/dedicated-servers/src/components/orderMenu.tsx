@@ -30,32 +30,30 @@ export const OrderMenu: React.FC = () => {
         triggerId="server-orders-action"
         position={ODS_POPOVER_POSITION.bottomStart}
       >
-        <div>
-          <OdsLink
-            color="primary"
-            href="#"
-            target="_blank"
-            icon={ODS_ICON_NAME.externalLink}
-            onClick={(e) => {
-              window.open(links.dedicatedOrder as string);
-              e.preventDefault();
-            }}
-            label={t('server_order_dedicated')}
-          />
-        </div>
-        <div>
-          <OdsLink
-            color="primary"
-            href="#"
-            target="_blank"
-            icon={ODS_ICON_NAME.externalLink}
-            onClick={(e) => {
-              window.open(links.dedicatedEcoRangeOrder as string);
-              e.preventDefault();
-            }}
-            label={t('server_order_eco')}
-          />
-        </div>
+        <OdsLink
+          color="primary"
+          className="block"
+          href="#"
+          target="_blank"
+          icon={ODS_ICON_NAME.externalLink}
+          onClick={(e) => {
+            window.open(links.dedicatedOrder as string);
+            e.preventDefault();
+          }}
+          label={t('server_order_dedicated')}
+        />
+        <OdsLink
+          color="primary"
+          className="block"
+          href="#"
+          target="_blank"
+          icon={ODS_ICON_NAME.externalLink}
+          onClick={(e) => {
+            window.open(links.dedicatedEcoRangeOrder as string);
+            e.preventDefault();
+          }}
+          label={t('server_order_eco')}
+        />
       </OdsPopover>
     </div>
   );
