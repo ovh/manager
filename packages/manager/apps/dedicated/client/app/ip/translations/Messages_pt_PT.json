@@ -61,6 +61,8 @@
   "ip_table_empty": "Nenhum dado a apresentar",
   "ip_table_search": "Procurar...",
   "ip_table_ipblock_refresh": "A atualizar as informações do endereço IP {{t0}}...",
+  "ip_table_ipBlock_under_creation": "Criação em curso",
+  "ip_table_ipblock_under_division": "Divisão em curso",
   "ip_manage_task_pending": "Operação em curso para um dos endereços IP do seu servidor.",
   "ip_migration": "Importar os meus endereços IP da SYS para a OVHcloud",
   "ip_export": "Exportar os meus endereços IP para um ficheiro CSV",
@@ -773,13 +775,9 @@
   "ip_repricing_banner_link": "Mais informações",
   "ip_unused_banner_text": "Tem endereços IP não utilizados. Como os endereços IPv4 são um recurso cada vez mais escasso, sugerimos que os liberte caso não precise deles.",
   "ip_unused_banner_link": "Ver os meus endereços IP não utilizados.",
-  "ip_table_ipBlock_under_creation": "Criação em curso",
-  "ip_table_ipblock_under_division": "Divisão em curso",
   "ip_guide_title": "Manual",
   "ip_guide_link_additional_ip": "Configurar um Additional IP",
   "ip_guide_link_ip_alias": "Configurar um endereço IP como alias",
   "ip_guide_link_ip_proxmox": "Configurar um Additional IP em Proxmox VE",
-  "ip_guide_link_floating_ip": "Conceitos - Additional IP ou Floating IP no Public Cloud",
-  "ip_table_manage_delete_ipblock_us": "Rescindir ",
-  "ip_table_manage_delete_ipblock_question_us": "Receberá um e-mail para o informar da rescisão do seu IP. O seu IP será eliminado da sua conta e seguirá o procedimento normal de eliminação."
+  "ip_guide_link_floating_ip": "Conceitos - Additional IP ou Floating IP no Public Cloud"
 }
