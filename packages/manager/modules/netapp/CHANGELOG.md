@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.11.2...@ovh-ux/manager-netapp@2.12.0) (2025-04-29)
+
+
+### Features
+
+* **netapp:** modify efs snapshot reserve space ([#16652](https://github.com/ovh/manager/issues/16652)) ([9215c9a](https://github.com/ovh/manager/commit/9215c9a80d705ce2857e887a204d372d282decca)), closes [#MANAGER-17425](https://github.com/ovh/manager/issues/MANAGER-17425)
+
+
+
+
+
 ## [2.11.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.11.1...@ovh-ux/manager-netapp@2.11.2) (2025-04-28)
 
 **Note:** Version bump only for package @ovh-ux/manager-netapp

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.20.0...@ovh-ux/manager-react-components@2.21.0) (2025-04-29)
+
+### Features
+
+- **vrack-services:** bump ods 18 ([#16123](https://github.com/ovh/manager/issues/16123)) ([c082be3](https://github.com/ovh/manager/commit/c082be33ef1cd4efd7b6534052dbad72695e0b39)), closes [#MANAGER-16777](https://github.com/ovh/manager/issues/MANAGER-16777)
+
 # [2.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.19.0...@ovh-ux/manager-react-components@2.20.0) (2025-04-24)
 
 ### Bug Fixes
