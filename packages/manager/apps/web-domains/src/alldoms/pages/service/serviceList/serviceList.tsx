@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Breadcrumb,
@@ -9,20 +9,16 @@ import {
   useNotifications,
   Notifications,
 } from '@ovh-ux/manager-react-components';
+import { Outlet } from 'react-router-dom';
 import Loading from '@/alldoms/components/Loading/Loading';
 
 import appConfig from '@/web-domains.config';
 import { useAllDomDatagridColumns } from '@/alldoms/hooks/useAllDomDatagridColumns';
 import { useGetDatagridServiceInfoList } from '@/alldoms/hooks/data/useGetDatagridServiceInfoList';
-import { TServiceDetail, TServiceProperty } from '@/alldoms/types';
-import Modal from '@/alldoms/components/Modal/Modal';
+import { TServiceProperty } from '@/alldoms/types';
 
 export default function ServiceList() {
   const { t } = useTranslation(['allDom', 'web-domains/error']);
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [serviceInfoDetail, setServiceInfoDetail] = useState<TServiceDetail>(
-    null,
-  );
   const { notifications } = useNotifications();
 
   const {
@@ -39,21 +35,12 @@ export default function ServiceList() {
     queryKey: ['/allDom'],
     pageSize: 30,
   });
+
   const { data: serviceInfoList, listLoading } = useGetDatagridServiceInfoList({
     allDomList,
   });
 
-  const openModal = (serviceInfoFilter: TServiceDetail) => {
-    setIsModalOpen(true);
-    setServiceInfoDetail(serviceInfoFilter);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setServiceInfoDetail(null);
-  };
-
-  const columns = useAllDomDatagridColumns(openModal);
+  const columns = useAllDomDatagridColumns();
 
   const header = {
     title: t('title'),
@@ -82,13 +69,6 @@ export default function ServiceList() {
       header={header}
       message={notifications.length ? <Notifications /> : null}
     >
-      {serviceInfoDetail && (
-        <Modal
-          serviceDetail={serviceInfoDetail}
-          closeModal={closeModal}
-          modalOpen={isModalOpen}
-        />
-      )}
       <React.Suspense>
         <div data-testid="datagrid">
           <Datagrid
@@ -100,6 +80,7 @@ export default function ServiceList() {
             sorting={sorting}
             onSortChange={setSorting}
           />
+          <Outlet />
         </div>
       </React.Suspense>
     </BaseLayout>

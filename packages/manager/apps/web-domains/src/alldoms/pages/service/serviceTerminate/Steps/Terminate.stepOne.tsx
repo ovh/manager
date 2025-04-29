@@ -11,9 +11,11 @@ import {
 } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { useNavigate } from 'react-router-dom';
 import { ModalStepsProps } from '@/alldoms/types';
 
-export default function ModalStepOne({
+export default function TerminateModalStepOne({
   domainAttached,
   domainAttachedChecked,
   checkAllDomain,
@@ -21,7 +23,8 @@ export default function ModalStepOne({
   handleDomainAttached,
   handleCheckAllDomain,
 }: Readonly<ModalStepsProps>) {
-  const { t } = useTranslation('allDom');
+  const { t } = useTranslation(['allDom', NAMESPACES.ACTIONS]);
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -74,9 +77,14 @@ export default function ModalStepOne({
         {t('allDom_modal_step_one_message')}
       </OdsMessage>
 
-      <div className="flex justify-end">
+      <div className="flex justify-end gap-x-6">
         <OdsButton
-          label={t('allDom_modal_next_step')}
+          label={t(`${NAMESPACES.ACTIONS}:close`)}
+          variant={ODS_BUTTON_VARIANT.ghost}
+          onClick={() => navigate(-1)}
+        />
+        <OdsButton
+          label={t(`${NAMESPACES.ACTIONS}:next`)}
           variant={ODS_BUTTON_VARIANT.default}
           onClick={() => changeStep()}
           isDisabled={!domainAttachedChecked.length}
