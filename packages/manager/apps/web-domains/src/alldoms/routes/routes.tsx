@@ -16,7 +16,7 @@ const lazyRouteConfig = (importFn: CallableFunction): Partial<RouteObject> => {
   };
 };
 
-export const Routes: any = [
+export const Routes: RouteObject[] = [
   {
     path: urls.alldomsRoot,
     ...lazyRouteConfig(() => import('@/alldoms/pages/layout')),
@@ -33,6 +33,16 @@ export const Routes: any = [
             pageType: PageType.listing,
           },
         },
+        children: [
+          {
+            path: urls.alldomsListingTerminate,
+            ...lazyRouteConfig(() =>
+              import(
+                '@/alldoms/pages/service/serviceTerminate/serviceTerminate'
+              ),
+            ),
+          },
+        ],
       },
       {
         id: 'allDomDetail',
@@ -46,6 +56,16 @@ export const Routes: any = [
             pageType: PageType.listing,
           },
         },
+        children: [
+          {
+            path: urls.alldomsDetailTerminate,
+            ...lazyRouteConfig(() =>
+              import(
+                '@/alldoms/pages/service/serviceTerminate/serviceTerminate'
+              ),
+            ),
+          },
+        ],
       },
       {
         id: 'onboarding',
@@ -64,4 +84,4 @@ export const Routes: any = [
     path: '*',
     element: <NotFound />,
   },
-];
+] as RouteObject[];

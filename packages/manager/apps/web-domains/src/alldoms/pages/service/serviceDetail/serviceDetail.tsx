@@ -1,6 +1,6 @@
 import { BaseLayout, Breadcrumb } from '@ovh-ux/manager-react-components';
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 import appConfig from '@/web-domains.config';
 import ServiceDetailDomains from '@/alldoms/components/ServiceDetail/ServiceDetailDomains';
 import ServiceDetailInformation from '@/alldoms/components/ServiceDetail/ServiceDetailInformation';
@@ -31,7 +31,7 @@ export default function ServiceDetail() {
       header={header}
     >
       <React.Suspense>
-        <section className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+        <section className="grid grid-cols-1 gap-6 items-start lg:grid-cols-2">
           <div className="flex flex-col gap-6">
             <ServiceDetailInformation
               allDomProperty={serviceInfoDetail.allDomProperty}
@@ -42,8 +42,9 @@ export default function ServiceDetail() {
               domainsAttached={serviceInfoDetail.domainAttached}
             />
           </div>
-          <ServiceDetailSubscribing />
+          <ServiceDetailSubscribing serviceInfoDetail={serviceInfoDetail} />
         </section>
+        <Outlet />
       </React.Suspense>
     </BaseLayout>
   );

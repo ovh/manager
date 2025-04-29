@@ -27,12 +27,16 @@
   "allDom_modal_all_my_domains": "Tous mes domaines",
   "allDom_modal_choice": "Je souhaite supprimer :",
   "allDom_modal_step_one_message": "Les domaines non supprimés ne seront plus rattachés au pack, vous ne bénéficierez plus du tarif préférentiel. Les futurs renouvellements seront effectués au prix standard.",
-  "allDom_modal_next_step": "Suivant",
   "allDom_modal_step_two_warning": "Attention, les services suivants seront résiliés :",
-  "allDom_modal_step_previous": "Précédent",
   "allDom_modal_step_terminate": "Résilier",
   "allDom_modal_success_message": "Le service {{t0}} et le(s) domaine(s) {{t1}} ont bien été mis à jour",
   "allDom_modal_error_message": "Une erreur est survenue : {{t0}}",
   "allDom_page_detail_information_general_pack": "Pack {{t0}}",
-  "allDom_page_detail_information_general_extensions": "Les extensions incluses : {{t0}}"
+  "allDom_page_detail_information_general_extensions": "Les extensions incluses : {{t0}}",
+  "allDom_page_detail_subscribing_automatic_renew": "Renouvellement automatique prévu en",
+  "allDom_page_detail_subscribing_contact_title": "Contacts",
+  "allDom_page_detail_subscribing_contact_admin": "{{t0}} : Administrateur",
+  "allDom_page_detail_subscribing_contact_tech": "{{t0}} : Technique",
+  "allDom_page_detail_subscribing_contact_billing": "{{t0}} : Facturation",
+  "allDom_page_detail_subscribing_contact_creation_date": "Date de création"
 }
