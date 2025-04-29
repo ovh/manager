@@ -6429,7 +6429,7 @@
     tailwindcss "^3.4.4"
     uuid "^9.0.1"
 
-"@ovh-ux/manager-react-shell-client@^0.8.7":
+"@ovh-ux/manager-react-shell-client@^0.8.5", "@ovh-ux/manager-react-shell-client@^0.8.7":
   version "0.8.7"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-shell-client/-/manager-react-shell-client-0.8.7.tgz#aa40336eb8fc68458a89801d0ae24607d57c8252"
   integrity sha512-/+FTo1KThBGRQj15gyxZgjQG4E86mdeEZ4T3a0PdY3sixqgu30b7CI3NcIkPDEPmDv/3rfCNouceXvPNoICrIg==
@@ -27689,14 +27689,7 @@ stringify-entities@^4.0.0:
     character-entities-html4 "^2.0.0"
     character-entities-legacy "^3.0.0"
 
-"strip-ansi-cjs@npm:strip-ansi@^6.0.1":
-  version "6.0.1"
-  resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-6.0.1.tgz#9e26c63d30f53443e9489495b2105d37b67a85d9"
-  integrity sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==
-  dependencies:
-    ansi-regex "^5.0.1"
-
-strip-ansi@6.0.1, strip-ansi@^6.0.0, strip-ansi@^6.0.1:
+"strip-ansi-cjs@npm:strip-ansi@^6.0.1", strip-ansi@6.0.1, strip-ansi@^6.0.0, strip-ansi@^6.0.1:
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-6.0.1.tgz#9e26c63d30f53443e9489495b2105d37b67a85d9"
   integrity sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==
