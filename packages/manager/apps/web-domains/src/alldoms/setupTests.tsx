@@ -35,6 +35,7 @@ vi.mock('react-router-dom', () => ({
       id: '1',
     };
   },
+  Outlet: vi.fn(),
 }));
 
 const mocks = vi.hoisted(() => ({
