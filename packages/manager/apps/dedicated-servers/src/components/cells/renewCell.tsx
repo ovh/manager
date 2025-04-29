@@ -1,14 +1,15 @@
 import React from 'react';
 import { DataGridTextCell } from '@ovh-ux/manager-react-components';
+import { useTranslation } from 'react-i18next';
 import { DedicatedServer } from '@/data/types/server.type';
 import { DSBilling } from '../billingCell';
 
 type RenewCellProps = {
   server: DedicatedServer;
-  t: (name: string) => string;
 };
 
-export const RenewCell: React.FC<RenewCellProps> = ({ server, t }) => {
+export const RenewCell: React.FC<RenewCellProps> = ({ server }) => {
+  const { t } = useTranslation('dedicated-servers');
   return (
     <DSBilling server={server.name}>
       {(billingInfo) => (
