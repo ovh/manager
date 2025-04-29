@@ -1,87 +1,81 @@
 import React from 'react';
-import { RouteObject } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
+import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import NotFound from '@/alldoms/pages/404';
 import { urls } from '@/alldoms/routes/routes.constant';
 
-const lazyRouteConfig = (importFn: CallableFunction): Partial<RouteObject> => {
-  return {
-    lazy: async () => {
-      const { default: moduleDefault, ...moduleExports } = await importFn();
-      return {
-        Component: moduleDefault,
-        ...moduleExports,
-      };
-    },
-  };
-};
+const LayoutPage = React.lazy(() => import('@/alldoms/pages/layout'));
+const AllDomListingPage = React.lazy(() =>
+  import('@/alldoms/pages/service/serviceList/serviceList'),
+);
+const AllDomDetailPage = React.lazy(() =>
+  import('@/alldoms/pages/service/serviceDetail/serviceDetail'),
+);
+const AllDomTerminatePage = React.lazy(() =>
+  import('@/alldoms/pages/service/serviceTerminate/serviceTerminate'),
+);
+const OnboardingPage = React.lazy(() => import('@/alldoms/pages/onboarding'));
 
-export const Routes: RouteObject[] = [
-  {
-    path: urls.alldomsRoot,
-    ...lazyRouteConfig(() => import('@/alldoms/pages/layout')),
-    children: [
-      {
-        id: 'allDomListing',
-        path: urls.alldomsRoot,
-        ...lazyRouteConfig(() =>
-          import('@/alldoms/pages/service/serviceList/serviceList'),
-        ),
-        handle: {
-          tracking: {
-            pageName: 'listing',
-            pageType: PageType.listing,
-          },
+export default (
+  <Route
+    path={urls.alldomsRoot}
+    Component={LayoutPage}
+    id="root"
+    errorElement={
+      <ErrorBoundary
+        redirectionApp="web-domains-alldoms-backup"
+        isPreloaderHide={true}
+        isRouteShellSync={true}
+      />
+    }
+  >
+    <Route
+      path={urls.alldomsRoot}
+      Component={AllDomListingPage}
+      id="allDomListing"
+      handle={{
+        tracking: {
+          pageName: 'listing',
+          pageType: PageType.listing,
         },
-        children: [
-          {
-            path: urls.alldomsListingTerminate,
-            ...lazyRouteConfig(() =>
-              import(
-                '@/alldoms/pages/service/serviceTerminate/serviceTerminate'
-              ),
-            ),
-          },
-        ],
-      },
-      {
-        id: 'allDomDetail',
-        path: urls.alldomsDetail,
-        ...lazyRouteConfig(() =>
-          import('@/alldoms/pages/service/serviceDetail/serviceDetail'),
-        ),
-        handle: {
-          tracking: {
-            pageName: 'listing',
-            pageType: PageType.listing,
-          },
+      }}
+    >
+      <Route
+        path={urls.alldomsListingTerminate}
+        Component={AllDomTerminatePage}
+        id="allDomListingTerminate"
+      ></Route>
+    </Route>
+
+    <Route
+      path={urls.alldomsDetail}
+      Component={AllDomDetailPage}
+      id="allDomDetail"
+      handle={{
+        tracking: {
+          pageName: 'listing',
+          pageType: PageType.listing,
         },
-        children: [
-          {
-            path: urls.alldomsDetailTerminate,
-            ...lazyRouteConfig(() =>
-              import(
-                '@/alldoms/pages/service/serviceTerminate/serviceTerminate'
-              ),
-            ),
-          },
-        ],
-      },
-      {
-        id: 'onboarding',
-        path: urls.alldomsOnboarding,
-        ...lazyRouteConfig(() => import('@/alldoms/pages/onboarding')),
-        handle: {
-          tracking: {
-            pageName: 'onboarding',
-            pageType: PageType.onboarding,
-          },
+      }}
+    >
+      <Route
+        path={urls.alldomsDetailTerminate}
+        Component={AllDomTerminatePage}
+        id="allDomDetailTerminate"
+      ></Route>
+    </Route>
+    <Route
+      path={urls.alldomsOnboarding}
+      Component={OnboardingPage}
+      id="onboarding"
+      handle={{
+        tracking: {
+          pageName: 'onboarding',
+          pageType: PageType.onboarding,
         },
-      },
-    ],
-  },
-  {
-    path: '*',
-    element: <NotFound />,
-  },
-] as RouteObject[];
+      }}
+    ></Route>
+    <Route path="*" element={<NotFound />} />
+  </Route>
+);
