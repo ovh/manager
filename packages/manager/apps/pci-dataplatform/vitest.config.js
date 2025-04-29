@@ -23,6 +23,8 @@ export default defineConfig({
         'src/configuration',
         'src/**/*constants.ts',
       ],
+      reportsDirectory: './coverage', // Directory where the coverage reports will be stored
+      reportOnFailure: true,
     },
   },
   resolve: {

@@ -17,6 +17,8 @@ export default defineConfig({
         'src/index.tsx',
         'src/pages/layout.tsx',
       ],
+      reportsDirectory: './coverage', // Directory where the coverage reports will be stored
+      reportOnFailure: true,
     },
     testTimeout: 60_000,
     fileParallelism: false,

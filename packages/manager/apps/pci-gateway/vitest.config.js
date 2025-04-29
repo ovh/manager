@@ -25,6 +25,8 @@ export default defineConfig({
         'src/**/*.constants.ts',
         'src/queryClient.ts',
       ],
+      reportsDirectory: './coverage', // Directory where the coverage reports will be stored
+      reportOnFailure: true,
     },
   },
   resolve: {

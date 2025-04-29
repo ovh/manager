@@ -19,6 +19,8 @@ export default defineConfig({
         'src/index.tsx',
         'src/routes.tsx',
       ],
+      reportsDirectory: './coverage', // Directory where the coverage reports will be stored
+      reportOnFailure: true,
     },
   },
   resolve: {

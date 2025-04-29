@@ -18,6 +18,8 @@ export default defineConfig({
         'src/**/*enum.ts',
         'src/vite-*.ts',
       ],
+      reportsDirectory: './coverage', // Directory where the coverage reports will be stored
+      reportOnFailure: true
     },
     exclude: ['src/__tests__', 'node_modules', 'dist'],
   },

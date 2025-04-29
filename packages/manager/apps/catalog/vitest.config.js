@@ -10,6 +10,8 @@ export default defineConfig({
     environment: 'jsdom',
     coverage: {
       include: ['src'],
+      reportsDirectory: './coverage', // Directory where the coverage reports will be stored
+      reportOnFailure: true,
     },
   },
   resolve: {

@@ -21,6 +21,8 @@ export default defineConfig({
         'src/vite-hmr.ts',
         'src/utils/downloadTextAsFile.ts',
       ],
+      reportsDirectory: './coverage', // Directory where the coverage reports will be stored
+      reportOnFailure: true,
     },
     testTimeout: 60000,
     fileParallelism: false,

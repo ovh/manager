@@ -22,6 +22,8 @@ export default defineConfig({
         'src/**/*constants.ts',
         ...coverageConfigDefaults.exclude,
       ],
+      reportsDirectory: './coverage', // Directory where the coverage reports will be stored
+      reportOnFailure: true,
     },
     setupFiles: ['src/utils/test.setup.tsx'],
   },
