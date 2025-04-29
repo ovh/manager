@@ -91,7 +91,7 @@ export const useAdditionalIpPricings = ({
       .filter(isBlockIpPlan)
       .filter((plan: CatalogIpPlan) => {
         if (isUs) {
-          return true;
+          return plan.invoiceName.includes('USA');
         }
         return isEu
           ? plan.invoiceName.includes('EUROPE')
