@@ -108,6 +108,10 @@ function NavReshuffleContainer(): JSX.Element {
         <Suspense fallback="">
           <NavReshuffleOnboardingWidget />
         </Suspense>
+
+        {/* <Suspense fallback="">
+          <EloquantSurvey />
+        </Suspense> */}
       </div>
     </div>
   );
