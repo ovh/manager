@@ -9,7 +9,6 @@ export enum BetaVersion {
 export type ContainerContextType = {
   betaVersion: BetaVersion | string;
   useBeta: boolean;
-  createBetaChoice: (accept?: boolean) => Promise<unknown>;
   betaAcknowledged: boolean;
   acknowledgeBeta: () => void;
   isLivechatEnabled: boolean;
