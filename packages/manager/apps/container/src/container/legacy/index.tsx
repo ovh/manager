@@ -17,7 +17,6 @@ import usePreloader from '../common/Preloader/usePreloader';
 import useContainer from '@/core/container';
 import useMfaEnrollment from '@/container/mfa-enrollment';
 import MfaEnrollment from '@/container/mfa-enrollment/MfaEnrollment';
-import NavReshuffleBetaAccessModalLegacy from '../common/pnr-beta-modal/NavReshuffleBetaAccessModalLegacy';
 
 function LegacyContainer(): JSX.Element {
   const iframeRef = useRef(null);
@@ -37,8 +36,6 @@ function LegacyContainer(): JSX.Element {
     isMfaEnrollmentVisible,
     hideMfaEnrollment,
   } = useMfaEnrollment();
-
-  const isUS = shell?.getPlugin('environment')?.getEnvironment()?.getRegion() === 'US';
 
   useEffect(() => {
     setIframe(iframeRef.current);
@@ -64,11 +61,9 @@ function LegacyContainer(): JSX.Element {
         <Progress isAnimating={isProgressAnimating}></Progress>
 
         <div className={style.managerShell}>
-          {isUS && (
-            <Suspense fallback="">
-              <NavReshuffleBetaAccessModalLegacy />
-            </Suspense>
-          )}
+          <Suspense fallback="">
+            <NavReshuffleBetaAccessModal />
+          </Suspense>
           <div>
             <LegacyHeader />
           </div>

@@ -1,23 +1,30 @@
 import { useEffect, useState } from 'react';
+import { useReket } from '@ovh-ux/ovh-reket';
 import { Application } from '@ovh-ux/manager-config';
-import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
+import { fetchFeatureAvailabilityData } from '@ovh-ux/manager-react-components';
 import {
-  BETA_ACKNOWLEDGED_STORAGE_KEY,
-  NAV_RESHUFFLE_BETA_ACCESS_PREFERENCE_KEY,
-  BETA_VERSION,
-} from './container.constants';
-import { useLocalStorage } from 'react-use';
-import { BetaVersion, ContainerContext, ContainerContextType } from './container.context';
+  getBetaAvailabilityFromLocalStorage,
+  setBetaAvailabilityToLocalStorage,
+  isBetaForced,
+} from './localStorage';
+import { BetaVersion, ContainerContext } from './container.context';
 import { useShell } from '@/context';
-import { v6 } from '@ovh-ux/manager-core-api';
+
+export const BETA = 1;
 
 export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
+  const reketInstance = useReket();
   const shell = useShell();
   const uxPlugin = shell.getPlugin('ux');
+  const preferenceKey = 'NAV_RESHUFFLE_BETA_ACCESS';
+  const [isLoading, setIsLoading] = useState(true);
   const [chatbotOpen, setChatbotOpen] = useState(false);
   const [chatbotReduced, setChatbotReduced] = useState(false);
   const [application, setApplication] = useState<Application>(undefined);
   const [universe, setUniverse] = useState<string>();
+
+  // true if we should we ask the user if he want to test beta version
+  const [askBeta, setAskBeta] = useState(false);
 
   // 1 for beta, otherwise null if not a beta tester
   const [betaVersion, setBetaVersion] = useState<BetaVersion | string>(null);
@@ -25,102 +32,80 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
   // user choice about using or not the beta
   const [useBeta, setUseBeta] = useState(false);
 
-  const [betaAcknowledged, setBetaAcknowledged] = useLocalStorage<boolean>(
-    BETA_ACKNOWLEDGED_STORAGE_KEY,
-  );
-
   const [isLivechatEnabled, setIsLivechatEnabled] = useState(false);
 
-  const { data: availability, isLoading } = useFeatureAvailability([
-    'livechat',
-    'pnr',
-  ]);
-
-  const isUS = shell?.getPlugin('environment')?.getEnvironment()?.getRegion();
-
-  const fetchBetaAcknowledged = async () => {
-    if (betaAcknowledged) return true;
-
-    if (!isUS) {
-    return v6
-      .get<boolean>(`/me/preferences/manager/${BETA_ACKNOWLEDGED_STORAGE_KEY}`)
-      .then((response) => {
-        const data: any = response.data;
-        return JSON.parse(data.value) as boolean;
-      })
-      .catch((error) => {
-        if (error.response.status === 404) {
-          return false;
-        }
-        throw error;
-      });
+  const fetchFeatureAvailability = async () => {
+    interface CurrentContextAvailability {
+      pnr: boolean;
+      livechat: boolean;
     }
+    const getBetaVersion = (value: CurrentContextAvailability) => {
+      if (value.pnr) {
+        return BETA;
+      }
+      return null;
+    };
 
-    return availability['pnr'];
+    return fetchFeatureAvailabilityData(['livechat', 'pnr'])
+      .then((value) => ({
+        version: getBetaVersion(value),
+        livechat: !!value.livechat,
+      }))
+      .catch(() => ({
+        version: '',
+        livechat: undefined,
+      }));
   };
 
-  const acknowledgeBeta = (value = true) => {
-    v6.post('/me/preferences/manager', {
-      key: BETA_ACKNOWLEDGED_STORAGE_KEY,
-      value: JSON.stringify(value),
-    }).then(() => {
-      setBetaAcknowledged(value);
-    });
-  };
+  const fetchBetaChoice = async () => {
+    const betaValue = getBetaAvailabilityFromLocalStorage();
+    const fetchPromise = betaValue
+      ? Promise.resolve({ value: betaValue })
+      : (reketInstance.get(
+          `/me/preferences/manager/${preferenceKey}`,
+        ) as Promise<{ value: string }>);
 
-  /**
-   * Function group to update the PNR beta status
-   * We don't use useQuery here, since the window.location.reload() clears the cache
-   */
-  const fetchBetaChoice = async () =>
-    v6
-      .get<boolean>(
-        `/me/preferences/manager/${NAV_RESHUFFLE_BETA_ACCESS_PREFERENCE_KEY}`,
-      )
-      .then((response) => {
-        const data: any = response.data;
-        setUseBeta(JSON.parse(data.value) as boolean);
+    return fetchPromise
+      .then(({ value }) => {
+        setUseBeta(value === 'true');
       })
       .catch((error) => {
-        if (error.response.status !== 404) {
-          // if not set, create with value false (legacy navigation)
-          // to be removed after MANAGER-16732 / PR #15391
-          createBetaChoice(false);
-        }
-      });
-
-  // to be removed after MANAGER-16732 / PR #15391
-  const createBetaChoice = async (accept = false) =>
-    v6
-      .post(
-        `/me/preferences/manager`,
-        {
-          key: NAV_RESHUFFLE_BETA_ACCESS_PREFERENCE_KEY,
-          value: JSON.stringify(accept),
-        },
-      )
-      .catch((error) => {
-        throw error;
-      });
-
-  const updateBetaChoice = async (accept = false) =>
-    v6
-      .put(
-        `/me/preferences/manager/${NAV_RESHUFFLE_BETA_ACCESS_PREFERENCE_KEY}`,
-        {
-          key: NAV_RESHUFFLE_BETA_ACCESS_PREFERENCE_KEY,
-          value: JSON.stringify(accept),
-        },
-      ).catch(async (error) => {
-        if (error.response.status === 404) {
-          await createBetaChoice(accept);
+        if (error?.status === 404) {
+          setAskBeta(true);
         } else {
           throw error;
         }
-      })
-      .finally(() => {
-        window.location.reload();
       });
+  };
+
+  const updateBetaChoice = async (accept = false) => {
+    const updatePromise = isBetaForced()
+      ? Promise.resolve(setBetaAvailabilityToLocalStorage(accept))
+      : reketInstance.put(`/me/preferences/manager/${preferenceKey}`, {
+          key: preferenceKey,
+          value: accept.toString(),
+        });
+
+    return updatePromise.then(() => {
+      if (!accept) {
+        // @TODO open new tab for survey
+      }
+      window.location.reload();
+    });
+  };
+
+  const createBetaChoice = async (accept = false) => {
+    const createPromise = isBetaForced()
+      ? Promise.resolve(setBetaAvailabilityToLocalStorage(accept))
+      : reketInstance.post(`/me/preferences/manager`, {
+          key: preferenceKey,
+          value: accept.toString(),
+        });
+
+    return createPromise.then(() => {
+      window.location.reload();
+    });
+  };
 
   /**
    * Initialisation is done here, we check if the user is a beta tester,
@@ -129,15 +114,19 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
    * to provide him the choice.
    */
   useEffect(() => {
-    if (availability) {
-      setIsLivechatEnabled(availability.livechat);
+    fetchFeatureAvailability()
+      .then(({ version, livechat }) => {
+        setBetaVersion(version);
+        setIsLivechatEnabled(livechat);
 
-      if (availability.pnr) {
-        setBetaVersion(BETA_VERSION);
-        fetchBetaChoice();
-      }
-    }
-  }, [availability]);
+        if (version) {
+          return fetchBetaChoice();
+        }
+
+        return null;
+      })
+      .finally(() => setIsLoading(false));
+  }, []);
 
   useEffect(() => {
     uxPlugin.onChatbotVisibilityChange(async () => {
@@ -159,20 +148,16 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
   }, [application]);
 
   useEffect(() => {
-    fetchBetaAcknowledged().then((acknowledged) => {
-      setBetaAcknowledged(acknowledged);
-    });
-
     shell.getPlugin('environment').onUniverseChange((universe: string) => {
       setUniverse(universe);
     });
   }, []);
 
-  const containerContext: ContainerContextType = {
+  const containerContext = {
+    createBetaChoice,
+    askBeta,
     betaVersion,
     useBeta,
-    betaAcknowledged,
-    acknowledgeBeta,
     isLivechatEnabled,
     isLoading,
     updateBetaChoice,
