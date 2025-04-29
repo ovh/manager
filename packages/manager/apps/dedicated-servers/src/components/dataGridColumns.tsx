@@ -52,7 +52,7 @@ export function getColumns(
       type: FilterTypeCategories.String,
       label: t('server_display_name'),
       cell: (server: DedicatedServer) => (
-        <NameCell server={server} navigate={goToServer} t={t} />
+        <NameCell server={server} navigate={goToServer} />
       ),
     },
     {
@@ -106,7 +106,7 @@ export function getColumns(
       enableHiding: true,
       type: FilterTypeCategories.String,
       label: t('server_display_renew'),
-      cell: (server: DedicatedServer) => <RenewCell server={server} t={t} />,
+      cell: (server: DedicatedServer) => <RenewCell server={server} />,
     },
     {
       id: 'expiration',
@@ -124,9 +124,7 @@ export function getColumns(
       enableHiding: true,
       type: FilterTypeCategories.String,
       label: t('server_display_engagement'),
-      cell: (server: DedicatedServer) => (
-        <EngagementCell server={server} t={t} />
-      ),
+      cell: (server: DedicatedServer) => <EngagementCell server={server} />,
     },
     {
       id: 'price',

@@ -8,10 +8,10 @@ import { DedicatedServer } from '@/data/types/server.type';
 type NameCellProps = {
   server: DedicatedServer;
   navigate: (name: string) => void;
-  t: (name: string) => string;
 };
 
-export const NameCell: React.FC<NameCellProps> = ({ server, navigate, t }) => {
+export const NameCell: React.FC<NameCellProps> = ({ server, navigate }) => {
+  const { t } = useTranslation('dedicated-servers');
   return (
     <DataGridTextCell>
       <OdsLink
