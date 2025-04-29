@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
-import { useQueryImmediateRefetch } from '@/hooks/api/useImmediateRefetch';
-import { getProject } from '@/data/api/project/project.api';
+import { useQueryImmediateRefetch } from '@/hooks/useImmediateRefetch';
+import { getProject } from '@/data/project/project.api';
 
 const usePciProject = () => {
   const { projectId } = useParams();

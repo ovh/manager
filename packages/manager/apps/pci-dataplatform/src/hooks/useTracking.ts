@@ -2,7 +2,7 @@ import { useLocation, useMatches, useParams } from 'react-router-dom';
 import { useContext, useEffect, useRef } from 'react';
 
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import usePciProject from '@/data/hooks/usePciProject.hook';
+import usePciProject from '@/hooks/api/project/usePciProject.hook';
 import {
   APP_TRACKING_PREFIX,
   PCI_LEVEL2,
