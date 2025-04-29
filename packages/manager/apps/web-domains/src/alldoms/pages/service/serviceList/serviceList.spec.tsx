@@ -29,7 +29,7 @@ describe('AllDom datagrid', () => {
 
   it('display the datagrid data', async () => {
     (useGetDatagridServiceInfoList as jest.Mock).mockReturnValue({
-      data: serviceInfoDetail,
+      data: [serviceInfoDetail],
       listLoading: false,
     });
     const { getByTestId } = render(<ServiceList />, { wrapper });
