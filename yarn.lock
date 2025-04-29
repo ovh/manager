@@ -7079,7 +7079,7 @@
     tailwindcss "^3.4.4"
     uuid "^9.0.1"
 
-"@ovh-ux/manager-react-components@^1.44.0", "@ovh-ux/manager-react-components@^1.46.0":
+"@ovh-ux/manager-react-components@^1.46.0":
   version "1.46.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-components/-/manager-react-components-1.46.0.tgz#8c868c4098e210918de90041dbffdc0dabea82d5"
   integrity sha512-Xd5NdcpG0J21tfEyGOwnKAaP4xU0V6wa8mbypaR0dPOZb1zMkqJobUSW92usWHAHhK+vkNZROZ+n171W1gAByQ==
