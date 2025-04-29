@@ -88,3 +88,8 @@ export const getDedicatedServerOrderableIp = (
   serverName: string,
 ): Promise<ApiResponse<OrderableIpResponse>> =>
   apiClient.v6.get(`/dedicated/server/${serverName}/orderable/ip`);
+
+export const getDedicatedServerAvailableCountries = (
+  serviceName: string,
+): Promise<ApiResponse<string[]>> =>
+  apiClient.v6.get(`/dedicated/server/${serviceName}/ipCountryAvailable`);
