@@ -1,9 +1,19 @@
 import { useTranslation } from 'react-i18next';
 
 import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
+import { useNavigate } from 'react-router-dom';
+import { TVolume } from '@ovh-ux/manager-pci-common';
 
-export default function DetachVolumeStep() {
+export default function DetachVolumeStep({
+  volume,
+  resetForm,
+}: {
+  volume?: TVolume;
+  resetForm: () => void;
+}) {
   const { t } = useTranslation('create');
+
+  const navigate = useNavigate();
 
   return (
     <div className="flex flex-col gap-5">
@@ -26,6 +36,12 @@ export default function DetachVolumeStep() {
         )}
         icon="arrow-right"
         iconAlignment="right"
+        onClick={() => {
+          navigate(
+            `./detach-volume?volumeId=${volume?.id}&instanceId=${volume?.attachedTo[0]}`,
+          );
+          resetForm();
+        }}
       ></OdsButton>
     </div>
   );

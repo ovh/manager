@@ -91,14 +91,14 @@ export default function BackupOptionStep({
 
     return backupOptions.map((volumeOption) => {
       // Find matching addons for this volume option
-      const matchingAddons = catalog.addons.filter((addon) =>
-        addon.planCode.startsWith(volumeOption.planCode),
+      const matchingAddons = catalog.addons.filter((addonItem) =>
+        addonItem.planCode.startsWith(volumeOption.planCode),
       );
 
       // If no specific volume is selected, use the exact plan code match
       if (!selectedVolume) {
         const addon = matchingAddons.find(
-          (addon) => addon.planCode === volumeOption.planCode,
+          (addonItem) => addonItem.planCode === volumeOption.planCode,
         );
         const price = formatVolumePrice(addon);
         return { ...volumeOption, price };
@@ -117,11 +117,11 @@ export default function BackupOptionStep({
         ) || [];
 
       // Find the addon that matches an available plan
-      const addon = matchingAddons.find((addon) =>
-        availablePlans.some((plan) => plan.code === addon.planCode),
+      const matchedAddon = matchingAddons.find((addonItem) =>
+        availablePlans.some((plan) => plan.code === addonItem.planCode),
       );
 
-      const price = formatVolumePrice(addon);
+      const price = formatVolumePrice(matchedAddon);
       return { ...volumeOption, price };
     });
   }, [

@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import { TVolume, useVolumes } from '@ovh-ux/manager-pci-common';
+import { TVolume } from '@ovh-ux/manager-pci-common';
 import {
   OdsSelectChangeEventDetail,
   OdsSelectCustomEvent,
@@ -10,23 +10,21 @@ import {
   OdsSelect,
   OdsText,
 } from '@ovhcloud/ods-components/react';
-import { useParams } from 'react-router-dom';
 
 type VolumeSelectStepProps = {
-  selectedVolume: TVolume | undefined;
+  volumes: TVolume[] | undefined;
+  selectedVolumeId: string;
   onVolumeChange: (
     event: OdsSelectCustomEvent<OdsSelectChangeEventDetail>,
   ) => void;
 };
 
 export default function VolumeSelectStep({
-  selectedVolume,
+  volumes,
+  selectedVolumeId,
   onVolumeChange,
 }: VolumeSelectStepProps) {
   const { t } = useTranslation('create');
-
-  const { projectId } = useParams();
-  const { data: volumes } = useVolumes(projectId || '');
 
   return (
     <div className="flex flex-col">
@@ -42,7 +40,7 @@ export default function VolumeSelectStep({
         </OdsText>
         <OdsSelect
           name="block-storage-volume"
-          value={selectedVolume?.id}
+          value={selectedVolumeId}
           onOdsChange={onVolumeChange}
           placeholder={t(
             'pci_projects_project_storages_volume_backup_create_step_1_select_placeholder',

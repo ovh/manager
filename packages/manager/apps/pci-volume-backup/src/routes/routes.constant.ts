@@ -6,4 +6,5 @@ export const urls = {
   restore: 'restore-volume',
   deleteBackup: 'delete',
   createVolumeBackup: 'create',
+  detachVolume: 'detach-volume',
 };

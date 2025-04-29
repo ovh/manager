@@ -28,3 +28,18 @@ export async function createVolumeFromBackup(
 
   return data;
 }
+
+export const detachVolume = async (
+  projectId: string,
+  volumeId: string,
+  instanceId: string,
+): Promise<TVolume> => {
+  const { data } = await v6.post(
+    `/cloud/project/${projectId}/volume/${volumeId}/detach`,
+    {
+      instanceId,
+    },
+  );
+
+  return data;
+};

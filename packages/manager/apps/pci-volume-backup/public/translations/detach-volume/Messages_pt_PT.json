@@ -1,0 +1,8 @@
+{
+  "pci_projects_project_storages_volume_backup_create_detach_volume_title": "Desassociar o seu volume",
+  "pci_projects_project_storages_volume_backup_create_detach_volume_description": "Deseja desassociar o seu volume {{ volumeName }} da instância {{ instanceName }}?",
+  "pci_projects_project_storages_volume_backup_create_detach_volume_action_cancel": "Anular",
+  "pci_projects_project_storages_volume_backup_create_detach_volume_action_detach": "Confirmar",
+  "pci_projects_project_storages_volume_backup_create_detach_volume_action_success": "O seu volume {{ volumeName }} foi desassociado da instância {{ instanceName }}.",
+  "pci_projects_project_storages_volume_backup_create_detach_volume_action_fail": "Ocorreu um erro aquando da atualização do seu volume: {{ errorMessage }}"
+}

@@ -47,7 +47,7 @@ export const useVolume = ({
   volumeId,
 }: {
   projectId: string | undefined;
-  volumeId: string | undefined;
+  volumeId: string | undefined | null;
 }) =>
   useQuery({
     queryKey: [

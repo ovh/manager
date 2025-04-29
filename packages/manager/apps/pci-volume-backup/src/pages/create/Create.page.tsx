@@ -6,21 +6,9 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 
-import {
-  BACKUP_NAME_PREFIX,
-  VOLUME_OPTION_BACKUP,
-  VOLUME_OPTION_SNAPSHOT,
-} from '@/constants';
-import {
-  useCreateVolumeBackup,
-  useCreateVolumeSnapshot,
-} from '@/data/hooks/useVolumeBackup';
-import { useNotifications } from '@/hooks/notifications/useNotifications';
-import { VOLUME_BACKUP_TRACKING } from '@/tracking.constant';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import {
   PciDiscoveryBanner,
-  TVolume,
   useProject,
   useVolumes,
 } from '@ovh-ux/manager-pci-common';
@@ -44,12 +32,23 @@ import {
   OdsText,
 } from '@ovhcloud/ods-components/react';
 import { formatISO } from 'date-fns';
-import { useContext, useMemo, useState } from 'react';
-import { useHref, useNavigate, useParams } from 'react-router-dom';
+import { Suspense, useCallback, useContext, useMemo, useState } from 'react';
+import { Outlet, useHref, useNavigate, useParams } from 'react-router-dom';
+import { VOLUME_BACKUP_TRACKING } from '@/tracking.constant';
+import { useNotifications } from '@/hooks/notifications/useNotifications';
+import {
+  useCreateVolumeBackup,
+  useCreateVolumeSnapshot,
+} from '@/data/hooks/useVolumeBackup';
+import {
+  BACKUP_NAME_PREFIX,
+  VOLUME_OPTION_BACKUP,
+  VOLUME_OPTION_SNAPSHOT,
+} from '@/constants';
 import BackupNameStep from './steps/BackupNameStep';
 import BackupOptionStep, { TBackupOption } from './steps/BackupOptionStep';
-import VolumeSelectStep from './steps/VolumeSelectStep';
 import DetachVolumeStep from './steps/DetachVolumeStep';
+import VolumeSelectStep from './steps/VolumeSelectStep';
 
 const DEFAULT_BACKUP_OPTIONS: TBackupOption[] = [
   {
@@ -73,21 +72,27 @@ export default function CreateVolumeBackup() {
 
   const { projectId } = useParams();
   const navigate = useNavigate();
-  const hrefProject = useProjectUrl('public-cloud');
   const { trackClick, trackPage } = useOvhTracking();
-
   const { shell } = useContext(ShellContext);
+
+  const hrefProject = useProjectUrl('public-cloud');
+  const blockStorageUrl = `${hrefProject}/storages/blocks`;
 
   const { addSuccessMessage, addErrorMessage } = useNotifications({
     ns: 'create',
   });
 
-  const { data: project } = useProject();
-  const { data: volumes } = useVolumes(projectId || '');
+  const [selectedVolumeId, setSelectedVolumeId] = useState<string>('');
+  const [selectedBackup, setSelectedBackup] = useState<TBackupOption>();
+  const [backupName, setBackupName] = useState('');
+  const [backupOptions, setBackupOptions] = useState<TBackupOption[]>(
+    DEFAULT_BACKUP_OPTIONS,
+  );
 
   const goBack = () => navigate('..');
 
-  const blockStorageUrl = `${hrefProject}/storages/blocks`;
+  const { data: project } = useProject();
+  const { data: volumes } = useVolumes(projectId || '');
 
   const {
     createVolumeBackup,
@@ -171,12 +176,9 @@ export default function CreateVolumeBackup() {
     },
   });
 
-  const [selectedVolume, setSelectedVolume] = useState<TVolume>();
-  const [selectedBackup, setSelectedBackup] = useState<TBackupOption>();
-  const [backupName, setBackupName] = useState('');
-  const [backupOptions, setVolumeOptions] = useState<TBackupOption[]>(
-    DEFAULT_BACKUP_OPTIONS,
-  );
+  const selectedVolume = useMemo(() => {
+    return volumes?.find(({ id }) => id === selectedVolumeId);
+  }, [volumes, selectedVolumeId]);
 
   const isSelectedVolumeNeedToDetach = useMemo(
     () =>
@@ -187,28 +189,20 @@ export default function CreateVolumeBackup() {
     [selectedVolume, selectedBackup],
   );
 
-  const handleVolumeSelect = (
+  const handleVolumeChange = (
     event: OdsSelectCustomEvent<OdsSelectChangeEventDetail>,
   ) => {
     const volumeId = event?.detail?.value;
 
     if (volumeId) {
-      const selectedVolume = volumes?.find((v) => v.id === volumeId);
-      setSelectedVolume(selectedVolume);
-      setVolumeOptions((prevState) =>
+      setSelectedVolumeId(volumeId);
+      setBackupOptions((prevState) =>
         prevState.map((volumeOption) => ({
           ...volumeOption,
           isDisabled: false,
         })),
       );
     }
-  };
-
-  const handleBackupNameChange = (
-    event: OdsInputCustomEvent<OdsInputChangeEventDetail>,
-  ) => {
-    const backupName = `${event?.detail?.value}`;
-    setBackupName(backupName);
   };
 
   const handleBackupOptionChange = (option: TBackupOption) => {
@@ -222,13 +216,16 @@ export default function CreateVolumeBackup() {
     }
   };
 
-  const isFormValid = () =>
-    selectedVolume &&
-    selectedBackup &&
-    backupName &&
-    (selectedBackup.type === VOLUME_OPTION_SNAPSHOT ||
-      (selectedBackup.type === VOLUME_OPTION_BACKUP &&
-        selectedVolume.attachedTo.length === 0));
+  const isFormValid = useCallback(
+    () =>
+      selectedVolume &&
+      selectedBackup &&
+      backupName &&
+      (selectedBackup.type === VOLUME_OPTION_SNAPSHOT ||
+        (selectedBackup.type === VOLUME_OPTION_BACKUP &&
+          selectedVolume.attachedTo?.length === 0)),
+    [selectedVolume, selectedBackup, backupName],
+  );
 
   const handleCreateBackupClick = () => {
     trackClick({
@@ -242,17 +239,19 @@ export default function CreateVolumeBackup() {
       backupName &&
       selectedBackup?.type
     ) {
-      selectedBackup.type === VOLUME_OPTION_SNAPSHOT
-        ? createVolumeSnapshot({
-            regionName: selectedVolume?.region,
-            volumeId: selectedVolume?.id,
-            backupName: backupName,
-          })
-        : createVolumeBackup({
-            regionName: selectedVolume?.region,
-            volumeId: selectedVolume?.id,
-            backupName: backupName,
-          });
+      if (selectedBackup.type === VOLUME_OPTION_SNAPSHOT) {
+        createVolumeSnapshot({
+          regionName: selectedVolume?.region,
+          volumeId: selectedVolume?.id,
+          backupName,
+        });
+      } else {
+        createVolumeBackup({
+          regionName: selectedVolume?.region,
+          volumeId: selectedVolume?.id,
+          backupName,
+        });
+      }
     }
   };
 
@@ -314,8 +313,9 @@ export default function CreateVolumeBackup() {
 
       <div className="flex flex-col gap-10 md:max-w-[70%]">
         <VolumeSelectStep
-          selectedVolume={selectedVolume}
-          onVolumeChange={handleVolumeSelect}
+          volumes={volumes}
+          selectedVolumeId={selectedVolumeId}
+          onVolumeChange={handleVolumeChange}
         />
 
         <BackupOptionStep
@@ -325,11 +325,18 @@ export default function CreateVolumeBackup() {
           backupOptions={backupOptions}
         />
 
-        {isSelectedVolumeNeedToDetach && <DetachVolumeStep />}
+        {isSelectedVolumeNeedToDetach && (
+          <DetachVolumeStep
+            volume={selectedVolume}
+            resetForm={() => setSelectedBackup(undefined)}
+          />
+        )}
 
         <BackupNameStep
           backupName={backupName}
-          onBackupNameChange={handleBackupNameChange}
+          onBackupNameChange={(
+            event: OdsInputCustomEvent<OdsInputChangeEventDetail>,
+          ) => setBackupName(`${event?.detail?.value}`)}
         />
 
         <OdsButton
@@ -344,6 +351,10 @@ export default function CreateVolumeBackup() {
           onClick={handleCreateBackupClick}
         />
       </div>
+
+      <Suspense>
+        <Outlet />
+      </Suspense>
     </BaseLayout>
   );
 }

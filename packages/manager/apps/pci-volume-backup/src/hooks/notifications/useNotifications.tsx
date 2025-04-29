@@ -14,7 +14,7 @@ export const useNotifications = ({ ns }: { ns: string }) => {
     }: {
       i18nKey: string;
       error?: ApiError;
-      values?: Record<string, string>;
+      values?: Record<string, string | undefined>;
     }) =>
       addError(
         <Translation ns={ns}>
@@ -41,7 +41,7 @@ export const useNotifications = ({ ns }: { ns: string }) => {
       values,
     }: {
       i18nKey: string;
-      values?: Record<string, string>;
+      values?: Record<string, string | undefined>;
     }) =>
       addSuccess(
         <Translation ns={ns}>
