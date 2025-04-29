@@ -120,6 +120,7 @@ const DatagridComponent = ({
       });
 
       if (!instance.pendingTask) {
+        clearNotifications();
         addSuccess(
           t(`actions:pci_instances_actions_instance_success_message`, {
             name: instance.name,
@@ -128,7 +129,7 @@ const DatagridComponent = ({
         );
       }
     },
-    [projectId, queryClient, addSuccess, t],
+    [queryClient, projectId, clearNotifications, addSuccess, t],
   );
 
   const handlePollingError = useCallback(

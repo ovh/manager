@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+osds-tile {
+  border-width: var(--ods-size-input-md-border-width);
+  border-color: var(--ods-color-primary-200);
+}
