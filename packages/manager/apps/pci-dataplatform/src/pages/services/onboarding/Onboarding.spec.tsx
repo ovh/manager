@@ -9,7 +9,6 @@ import {
   mockedPciProject,
   mockedPciDiscoveryProject,
 } from '@/__tests__/helpers/mocks/project';
-import * as ProjectAPI from '@/data/project/project.api';
 
 describe('Onboarding page', () => {
   beforeEach(() => {
@@ -20,6 +19,7 @@ describe('Onboarding page', () => {
       useTranslation: () => ({
         t: (key: string) => key,
       }),
+      Trans: ({ children }: { children: React.ReactNode }) => children,
     }));
     vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
       const mod = await importOriginal<
@@ -46,14 +46,16 @@ describe('Onboarding page', () => {
       expect(
         screen.getByTestId('onboarding-container-test'),
       ).toBeInTheDocument();
-      expect(screen.getByTestId('onboarding-card')).toBeInTheDocument();
+      const onboardingCards = screen.getAllByTestId('onboarding-card');
+      expect(onboardingCards.length).toBeGreaterThan(0);
+      expect(onboardingCards[0]).toBeInTheDocument();
     });
   });
 
   it('renders discovery banner when it is discovery mode', async () => {
-    vi.mocked(ProjectAPI.getProject).mockResolvedValue(
-      mockedPciDiscoveryProject,
-    );
+    vi.mock('@/data/project/project.api', () => ({
+      getProject: vi.fn(() => mockedPciDiscoveryProject),
+    }));
     render(<Onboarding />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
       expect(screen.getByTestId('discovery-container')).toBeInTheDocument();
@@ -61,10 +63,14 @@ describe('Onboarding page', () => {
   });
 
   it('does not render discovery banner when it is  not discovery mode', async () => {
-    vi.mocked(ProjectAPI.getProject).mockResolvedValue(mockedPciProject);
+    vi.mock('@/data/project/project.api', () => ({
+      getProject: vi.fn(() => mockedPciProject),
+    }));
     render(<Onboarding />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByTestId('discovery-container')).toBe(null);
+      expect(
+        screen.queryByTestId('discovery-container'),
+      ).not.toBeInTheDocument();
     });
   });
 });
