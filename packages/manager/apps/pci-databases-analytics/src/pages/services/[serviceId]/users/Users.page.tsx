@@ -38,17 +38,24 @@ const Users = () => {
   });
   const aclsEnabled = !!('aclsEnabled' in service && service.aclsEnabled);
 
+  const displayRolesCol = [
+    database.EngineEnum.mongodb,
+    database.EngineEnum.postgresql,
+  ].includes(service.engine);
+
+  const displayRedisCols = [
+    database.EngineEnum.redis,
+    database.EngineEnum.valkey,
+  ].includes(service.engine);
+
   const columns: ColumnDef<GenericUser>[] = getColumns({
     displayGroupCol: service.engine === database.EngineEnum.m3db,
     displayACLSCol: aclsEnabled,
-    displayRolesCol: [
-      database.EngineEnum.mongodb,
-      database.EngineEnum.postgresql,
-    ].includes(service.engine),
-    displayKeysCols: service.engine === database.EngineEnum.redis,
-    displayCategoriesCol: service.engine === database.EngineEnum.redis,
-    displayCommandsCol: service.engine === database.EngineEnum.redis,
-    displayChannelsCol: service.engine === database.EngineEnum.redis,
+    displayRolesCol,
+    displayKeysCols: displayRedisCols,
+    displayCategoriesCol: displayRedisCols,
+    displayCommandsCol: displayRedisCols,
+    displayChannelsCol: displayRedisCols,
     onDeleteClicked: (user: GenericUser) => {
       navigate(`./delete/${user.id}`);
     },
