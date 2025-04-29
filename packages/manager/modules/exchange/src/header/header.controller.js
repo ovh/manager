@@ -11,7 +11,6 @@ export default class HeaderController {
     exchangeServiceInfrastructure,
     messaging,
     navigation,
-    officeAttach,
   ) {
     this.$q = $q;
     this.$rootScope = $rootScope;
@@ -24,7 +23,6 @@ export default class HeaderController {
     this.exchangeServiceInfrastructure = exchangeServiceInfrastructure;
     this.messaging = messaging;
     this.navigation = navigation;
-    this.officeAttach = officeAttach;
   }
 
   $onInit() {
@@ -34,7 +32,6 @@ export default class HeaderController {
     this.remoteDisplayName = this.exchangeService.displayName;
     this.displayNameToUpdate = this.remoteDisplayName;
     this.fetchingCanActivateSharepoint();
-    this.fetchingCanActivateOfficeAttach();
 
     this.URLS = this.coreURLBuilder.buildURLs({
       AUTORENEW: {
@@ -43,10 +40,6 @@ export default class HeaderController {
         params: {
           searchText: this.exchangeService.domain,
         },
-      },
-      ORDER_OFFICE_LICENCE: {
-        application: 'web',
-        path: '#/configuration/microsoft/office/license/order',
       },
     });
   }
@@ -68,16 +61,6 @@ export default class HeaderController {
       .catch(() => {
         this.canSubscribeToSharepoint =
           infrastructureAllowsSharepoint && subsidiaryAllowsSharepoint;
-      });
-  }
-
-  fetchingCanActivateOfficeAttach() {
-    return this.officeAttach
-      .retrievingIfUserAlreadyHasSubscribed(this.exchangeService.domain)
-      .then((userHasAlreadySubscribedToOfficeAttach) => {
-        this.canUserSubscribeToOfficeAttach =
-          !userHasAlreadySubscribedToOfficeAttach &&
-          this.constants.target === 'EU';
       });
   }
 

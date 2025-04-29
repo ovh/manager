@@ -38,7 +38,6 @@ export default class ExchangeAccountHomeController {
     exchangeStates,
     messaging,
     navigation,
-    officeAttach,
     OvhApiMe,
     ovhUserPref,
     ouiDatagridService,
@@ -59,7 +58,6 @@ export default class ExchangeAccountHomeController {
     this.exchangeStates = exchangeStates;
     this.messaging = messaging;
     this.navigation = navigation;
-    this.officeAttach = officeAttach;
     this.OvhApiMe = OvhApiMe;
     this.ovhUserPref = ovhUserPref;
     this.ouiDatagridService = ouiDatagridService;
@@ -133,7 +131,6 @@ export default class ExchangeAccountHomeController {
     this.initialLoading = true;
 
     return this.fetchingGridColumnsLastSavedParameters()
-      .then(() => this.fetchingCanUserSubscribeToOfficeAttach())
       .then(() => this.fetchingAccountCreationOptions())
       .then(() =>
         this.Exchange.getExchangeServer(this.organization, this.productId),
@@ -169,31 +166,6 @@ export default class ExchangeAccountHomeController {
         }
       })
       .catch(() => null); // not a big deal;
-  }
-
-  fetchingCanUserSubscribeToOfficeAttach() {
-    return this.OvhApiMe.v6()
-      .get()
-      .$promise.then(({ ovhSubsidiary }) => {
-        if (['CA'].includes(ovhSubsidiary)) {
-          return this.$q.when(true);
-        }
-
-        return this.officeAttach.retrievingIfUserAlreadyHasSubscribed(
-          this.productId,
-        );
-      })
-      .then((officeAttachIsNotAvailable) => {
-        this.userCanSubscribeToOfficeAttach = !officeAttachIsNotAvailable;
-      })
-      .catch((error) => {
-        this.messaging.writeError(
-          this.$translate.instant(
-            'exchange_accounts_fetchOfficeAttachError_error',
-          ),
-          error,
-        );
-      });
   }
 
   fetchingAccountCreationOptions() {
