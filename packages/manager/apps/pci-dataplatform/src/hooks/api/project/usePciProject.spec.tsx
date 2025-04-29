@@ -5,7 +5,7 @@ import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrap
 import usePciProject from '@/hooks/api/project/usePciProject.hook';
 import { mockedPciProject } from '@/__tests__/helpers/mocks/project';
 
-vi.mock('@/data/api/project/project.api', () => ({
+vi.mock('@/data/project/project.api', () => ({
   getProject: vi.fn(),
 }));
 
