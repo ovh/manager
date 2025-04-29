@@ -7,6 +7,9 @@ export interface TServiceDetail {
   domainAttached: string[];
   serviceInfo: TServiceInfo;
   allDomProperty: TServiceProperty;
+  nicAdmin: string;
+  nicBilling: string;
+  nicTechnical: string;
 }
 
 export interface TServiceInfo {
@@ -16,6 +19,11 @@ export interface TServiceInfo {
     renew: {
       current: {
         mode: ServiceInfoRenewMode | null;
+      };
+    } | null;
+    lifecycle: {
+      current: {
+        creationDate: string | null;
       };
     } | null;
   };
@@ -41,7 +49,7 @@ export interface ModalStepsProps {
   domainAttached?: string[];
   domainAttachedChecked?: string[];
   domainTerminateList?: string[];
-  serviceInfoDetail?: TServiceDetail;
+  serviceName?: string;
   checkAllDomain?: boolean;
   changeStep: () => void;
   handleDomainAttached?: (domainSelected: string[]) => void;
