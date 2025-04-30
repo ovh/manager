@@ -14,7 +14,7 @@
     "build": "tsc && vite build",
     "coverage": "vitest run --coverage",
     "start": "vite",
-    "test": "vitest run"
+    "testo": "TZ=UTC vitest run"
   },
   "dependencies": {
     "@ovh-ux/manager-common-translations": "^0.9.1",

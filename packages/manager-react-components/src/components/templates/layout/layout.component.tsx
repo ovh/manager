@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const PageLayout: React.FC<React.PropsWithChildren> = ({ children }) => (
-  <div className="py-8 px-4 md:py-9 md:px-10 md:mt-2">{children}</div>
+  <div className="pt-1">{children}</div>
 );
 
 export const DashboardGridLayout: React.FC<React.PropsWithChildren> = ({
