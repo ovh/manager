@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.36.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.36.0...@ovh-ux/manager-new-billing@0.36.1) (2025-04-30)
+
+
+### Bug Fixes
+
+* **billing:** added language property used for contact creation ([0793424](https://github.com/ovh/manager/commit/07934247f5cb57eb79b95a6ec081738f8b52d2db)), closes [#MANAGER-18136](https://github.com/ovh/manager/issues/MANAGER-18136) [#INC0126805](https://github.com/ovh/manager/issues/INC0126805)
+
+
+
+
+
 # [0.36.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.35.1...@ovh-ux/manager-new-billing@0.36.0) (2025-04-28)
 
 
