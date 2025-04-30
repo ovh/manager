@@ -55,7 +55,6 @@ export const features = [
   'key-management-service',
   'pci-savings-plan',
   'pci-ai-endpoints',
-  'pci-ai-endpoints:create-token'
 ];
 
 export function getPciProjectMenu(
@@ -438,9 +437,7 @@ export function getPciProjectMenu(
         isFeaturesAvailable('pci-ai-endpoints') && {
           id: 'pci-ai-endpoints',
           title: 'AI Endpoints',
-          badge: isFeaturesAvailable('pci-ai-endpoints:create-token')
-            ? 'new'
-            : 'beta',
+          badge: 'new',
           href: getURL(
             'public-cloud',
             `#/pci/projects/${projectId}/ai/endpoints`,
