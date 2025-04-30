@@ -13,8 +13,8 @@
   "scripts": {
     "build": "tsc && vite build",
     "start": "tsc && vite",
-    "test": "vitest run --reporter=verbose",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "testo": "vitest run --reporter=verbose"
   },
   "dependencies": {
     "@ovh-ux/billing-informations": "^1.1.0",

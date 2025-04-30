@@ -9,7 +9,7 @@
     "coverage": "vitest run --coverage",
     "lint": "eslint ./src",
     "start": "vite",
-    "test": "vitest run --pool=threads"
+    "testo": "vitest run --pool=threads"
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^8.3.1",

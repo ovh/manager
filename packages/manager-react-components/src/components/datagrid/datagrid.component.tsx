@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useMemo, useRef } from 'react';
+import React, { Fragment, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   ColumnDef,
@@ -24,6 +24,7 @@ import {
   OdsSkeleton,
   OdsTable,
 } from '@ovhcloud/ods-components/react';
+
 import {
   FilterCategories,
   FilterComparator,
@@ -35,6 +36,8 @@ import { FilterWithLabel } from '../filters/interface';
 import { DataGridTextCell } from './text-cell.component';
 import { defaultNumberOfLoadingRows } from './datagrid.constants';
 import { DatagridTopbar } from './datagrid-topbar.component';
+import DatagridVirtualized from './datagrid-virtualized.component';
+import DatagridHeader from './datagrid-header.component';
 import './translations';
 
 export type ColumnSort = TanstackColumnSort;
@@ -149,6 +152,7 @@ export interface DatagridProps<T> {
   resetExpandedRowsOnItemsChange?: boolean;
   /** When true, will fix the columns size by column definition size */
   tableLayoutFixed?: boolean;
+  isFetchAll?: boolean;
 }
 
 export const Datagrid = <T,>({
@@ -160,6 +164,7 @@ export const Datagrid = <T,>({
   search,
   topbar,
   totalItems,
+  isFetchAll,
   pagination,
   sorting,
   className,
@@ -188,6 +193,7 @@ export const Datagrid = <T,>({
   const headerRefs = useRef({});
 
   const table = useReactTable({
+    debugTable: true,
     columns: [
       ...(getRowCanExpand && renderSubComponent
         ? [
@@ -324,147 +330,14 @@ export const Datagrid = <T,>({
         search={search}
         topbar={topbar}
       />
-      <div className={`contents px-[1px] ${className || ''}`}>
-        <OdsTable className="overflow-x-visible">
-          <table
-            className="w-full border-collapse"
-            style={
-              { '--expander-column-width': '2.5rem' } as React.CSSProperties
-            }
-          >
-            {!hideHeader && (
-              <thead>
-                {table.getHeaderGroups().map((headerGroup) => (
-                  <tr key={headerGroup.id}>
-                    {headerGroup.headers.map((header) => (
-                      <th
-                        key={header.id}
-                        ref={(el) => {
-                          headerRefs.current[header.id] = el;
-                        }}
-                        className={`${
-                          contentAlignLeft ? 'text-left pl-4' : 'text-center'
-                        } h-11 whitespace-nowrap `}
-                      >
-                        {header.isPlaceholder ? null : (
-                          <div
-                            {...{
-                              className:
-                                onSortChange && header.column.getCanSort()
-                                  ? 'cursor-pointer select-none'
-                                  : '',
-                              ...(onSortChange && {
-                                onClick:
-                                  header.column.getToggleSortingHandler(),
-                              }),
-                            }}
-                            data-testid={`header-${header.id}`}
-                          >
-                            <span>
-                              <>
-                                {flexRender(
-                                  header.column.columnDef.header,
-                                  header.getContext(),
-                                )}
-                              </>
-                            </span>
-                            <span
-                              className={`align-middle inline-block h-4 -mt-6`}
-                            >
-                              <OdsIcon
-                                className={
-                                  header.column.getIsSorted() ? '' : 'invisible'
-                                }
-                                name={
-                                  (header.column.getIsSorted() as string) ===
-                                  'asc'
-                                    ? ODS_ICON_NAME.arrowUp
-                                    : ODS_ICON_NAME.arrowDown
-                                }
-                              />
-                            </span>
-                          </div>
-                        )}
-                      </th>
-                    ))}
-                  </tr>
-                ))}
-              </thead>
-            )}
-            <tbody>
-              {table.getRowModel().rows.map((row) => (
-                <Fragment key={row.id}>
-                  <tr className="border-solid border-[1px] h-[3.25rem] border-[--ods-color-blue-200]">
-                    {row.getVisibleCells().map((cell) => (
-                      <td
-                        key={cell.id}
-                        className={clsx(
-                          contentAlignLeft ? 'text-left pl-4' : 'text-center',
-                          {
-                            'w-[2.5rem]': cell.id.indexOf('expander') !== -1,
-                          },
-                        )}
-                        style={{
-                          width: tableLayoutFixed
-                            ? `${cell.column.getSize()}px`
-                            : null,
-                        }}
-                      >
-                        {flexRender(
-                          cell.column.columnDef.cell,
-                          cell.getContext(),
-                        )}
-                      </td>
-                    ))}
-                  </tr>
-                  {row.getIsExpanded() && !!renderSubComponent && (
-                    <tr className="sub-row">
-                      {/* 2nd row is a custom 1 cell row */}
-                      <td colSpan={row.getVisibleCells().length}>
-                        {renderSubComponent(row, headerRefs)}
-                      </td>
-                    </tr>
-                  )}
-                </Fragment>
-              ))}
-              {table.getRowModel().rows.length === 0 && !isLoading && (
-                <tr
-                  className={
-                    'border-solid border-[1px] h-[3.25rem] border-[--ods-color-blue-200]'
-                  }
-                >
-                  <td className="text-center" colSpan={columns.length}>
-                    <DataGridTextCell>
-                      {noResultLabel ?? t('common_pagination_no_results')}
-                    </DataGridTextCell>
-                  </td>
-                </tr>
-              )}
-              {isLoading &&
-                Array.from({
-                  length:
-                    numberOfLoadingRows ||
-                    pagination?.pageSize ||
-                    defaultNumberOfLoadingRows,
-                }).map((_, idx) => (
-                  <tr
-                    key={`loading-row-${idx})`}
-                    className="h-[3.25rem]"
-                    data-testid="loading-row"
-                  >
-                    {table.getAllColumns().map((col) =>
-                      col.getIsVisible() ? (
-                        <td key={`loading-cell-${idx}-${col.id}`}>
-                          <OdsSkeleton />
-                        </td>
-                      ) : null,
-                    )}
-                  </tr>
-                ))}
-            </tbody>
-          </table>
-        </OdsTable>
-      </div>
+      <DatagridVirtualized
+        tableLayoutFixed={tableLayoutFixed}
+        className={className}
+        table={table}
+        contentAlignLeft={contentAlignLeft}
+        onSortChange={onSortChange}
+      />
+      {/* voir pour decouper le datagrid bottombar */}
       {!onFetchNextPage && items?.length > 0 && pagination ? (
         <OdsPagination
           defaultCurrentPage={pagination.pageIndex + 1}
@@ -500,6 +373,7 @@ export const Datagrid = <T,>({
       ) : (
         <></>
       )}
+      {/* voir pour decouper le datagrid bottombar */}
       {hasNextPage ? (
         <div className="flex justify-center gap-5 my-5">
           <OdsButton
@@ -514,7 +388,9 @@ export const Datagrid = <T,>({
               data-testid="load-all-btn"
               variant={ODS_BUTTON_VARIANT.outline}
               label={t('common_pagination_load_all')}
-              onClick={onFetchAllPages}
+              onClick={(event) => {
+                onFetchAllPages(event);
+              }}
               isLoading={isLoading}
             />
           )}
@@ -522,4 +398,219 @@ export const Datagrid = <T,>({
       ) : null}
     </div>
   );
+
+  // return (
+  //   <div>
+  //     {/* voir pour decouper le datagrid topbar */}
+  //     <DatagridTopbar
+  //       columnsVisibility={columnsVisibility}
+  //       filtersColumns={filtersColumns}
+  //       isSearchable={!!searchColumns}
+  //       filters={filters}
+  //       search={search}
+  //       topbar={topbar}
+  //     />
+  //     <div className={`contents px-[1px] ${className || ''}`}>
+  //       <OdsTable className="overflow-x-visible">
+  //         <table
+  //           className="w-full border-collapse"
+  //           style={
+  //             { '--expander-column-width': '2.5rem' } as React.CSSProperties
+  //           }
+  //         >
+  //           {/* voir pour decouper le datagrid header */}
+  //           {!hideHeader && (
+  //             <thead>
+  //               {table.getHeaderGroups().map((headerGroup) => (
+  //                 <tr key={headerGroup.id}>
+  //                   {headerGroup.headers.map((header) => (
+  //                     <th
+  //                       key={header.id}
+  //                       ref={(el) => {
+  //                         headerRefs.current[header.id] = el;
+  //                       }}
+  //                       className={`${
+  //                         contentAlignLeft ? 'text-left pl-4' : 'text-center'
+  //                       } h-11 whitespace-nowrap `}
+  //                     >
+  //                       {header.isPlaceholder ? null : (
+  //                         <div
+  //                           {...{
+  //                             className:
+  //                               onSortChange && header.column.getCanSort()
+  //                                 ? 'cursor-pointer select-none'
+  //                                 : '',
+  //                             ...(onSortChange && {
+  //                               onClick:
+  //                                 header.column.getToggleSortingHandler(),
+  //                             }),
+  //                           }}
+  //                           data-testid={`header-${header.id}`}
+  //                         >
+  //                           <span>
+  //                             <>
+  //                               {flexRender(
+  //                                 header.column.columnDef.header,
+  //                                 header.getContext(),
+  //                               )}
+  //                             </>
+  //                           </span>
+  //                           <span
+  //                             className={`align-middle inline-block h-4 -mt-6`}
+  //                           >
+  //                             <OdsIcon
+  //                               className={
+  //                                 header.column.getIsSorted() ? '' : 'invisible'
+  //                               }
+  //                               name={
+  //                                 (header.column.getIsSorted() as string) ===
+  //                                 'asc'
+  //                                   ? ODS_ICON_NAME.arrowUp
+  //                                   : ODS_ICON_NAME.arrowDown
+  //                               }
+  //                             />
+  //                           </span>
+  //                         </div>
+  //                       )}
+  //                     </th>
+  //                   ))}
+  //                 </tr>
+  //               ))}
+  //             </thead>
+  //           )}
+  //           <tbody>
+  //             {table.getRowModel().rows.map((row) => (
+  //               <Fragment key={row.id}>
+  //                 <tr className="border-solid border-[1px] h-[3.25rem] border-[--ods-color-blue-200]">
+  //                   {row.getVisibleCells().map((cell) => (
+  //                     <td
+  //                       key={cell.id}
+  //                       className={clsx(
+  //                         contentAlignLeft ? 'text-left pl-4' : 'text-center',
+  //                         {
+  //                           'w-[2.5rem]': cell.id.indexOf('expander') !== -1,
+  //                         },
+  //                       )}
+  //                       style={{
+  //                         width: tableLayoutFixed
+  //                           ? `${cell.column.getSize()}px`
+  //                           : null,
+  //                       }}
+  //                     >
+  //                       {flexRender(
+  //                         cell.column.columnDef.cell,
+  //                         cell.getContext(),
+  //                       )}
+  //                     </td>
+  //                   ))}
+  //                 </tr>
+  //                 {row.getIsExpanded() && !!renderSubComponent && (
+  //                   <tr className="sub-row">
+  //                     {/* 2nd row is a custom 1 cell row */}
+  //                     <td colSpan={row.getVisibleCells().length}>
+  //                       {renderSubComponent(row, headerRefs)}
+  //                     </td>
+  //                   </tr>
+  //                 )}
+  //               </Fragment>
+  //             ))}
+  //             {table.getRowModel().rows.length === 0 && !isLoading && (
+  //               <tr
+  //                 className={
+  //                   'border-solid border-[1px] h-[3.25rem] border-[--ods-color-blue-200]'
+  //                 }
+  //               >
+  //                 <td className="text-center" colSpan={columns.length}>
+  //                   <DataGridTextCell>
+  //                     {noResultLabel ?? t('common_pagination_no_results')}
+  //                   </DataGridTextCell>
+  //                 </td>
+  //               </tr>
+  //             )}
+  //             {isLoading &&
+  //               Array.from({
+  //                 length:
+  //                   numberOfLoadingRows ||
+  //                   pagination?.pageSize ||
+  //                   defaultNumberOfLoadingRows,
+  //               }).map((_, idx) => (
+  //                 <tr
+  //                   key={`loading-row-${idx})`}
+  //                   className="h-[3.25rem]"
+  //                   data-testid="loading-row"
+  //                 >
+  //                   {table.getAllColumns().map((col) =>
+  //                     col.getIsVisible() ? (
+  //                       <td key={`loading-cell-${idx}-${col.id}`}>
+  //                         <OdsSkeleton />
+  //                       </td>
+  //                     ) : null,
+  //                   )}
+  //                 </tr>
+  //               ))}
+  //           </tbody>
+  //         </table>
+  //       </OdsTable>
+  //     </div>
+  //     {/* voir pour decouper le datagrid bottombar */}
+  //     {!onFetchNextPage && items?.length > 0 && pagination ? (
+  //       <OdsPagination
+  //         defaultCurrentPage={pagination.pageIndex + 1}
+  //         className="flex xs:justify-start md:justify-end my-8"
+  //         total-items={totalItems}
+  //         total-pages={pageCount}
+  //         default-items-per-page={pagination.pageSize}
+  //         onOdsChange={({ detail }) => {
+  //           if (detail.current !== detail.oldCurrent) {
+  //             onPaginationChange({
+  //               ...pagination,
+  //               pageIndex: detail.current - 1,
+  //               pageSize: detail.itemPerPage,
+  //             });
+  //           }
+  //         }}
+  //         onOdsItemPerPageChange={({ detail }) => {
+  //           if (detail.current !== pagination.pageSize)
+  //             onPaginationChange({
+  //               ...pagination,
+  //               pageSize: detail.current,
+  //               pageIndex: 0,
+  //             });
+  //         }}
+  //       >
+  //         <span slot="before-total-items" className="mr-3">
+  //           {t('common_pagination_of')}
+  //         </span>
+  //         <span slot="after-total-items" className="ml-3">
+  //           {t('common_pagination_results')}
+  //         </span>
+  //       </OdsPagination>
+  //     ) : (
+  //       <></>
+  //     )}
+  //     {/* voir pour decouper le datagrid bottombar */}
+  //     {hasNextPage ? (
+  //       <div className="flex justify-center gap-5 my-5">
+  //         <OdsButton
+  //           data-testid="load-more-btn"
+  //           variant={ODS_BUTTON_VARIANT.outline}
+  //           label={t('common_pagination_load_more')}
+  //           onClick={onFetchNextPage}
+  //           isLoading={isLoading}
+  //         />
+  //         {onFetchAllPages && (
+  //           <OdsButton
+  //             data-testid="load-all-btn"
+  //             variant={ODS_BUTTON_VARIANT.outline}
+  //             label={t('common_pagination_load_all')}
+  //             onClick={(event) => {
+  //               onFetchAllPages(event);
+  //             }}
+  //             isLoading={isLoading}
+  //           />
+  //         )}
+  //       </div>
+  //     ) : null}
+  //   </div>
+  // );
 };

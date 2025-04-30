@@ -13,8 +13,8 @@
   "scripts": {
     "build": "tsc && vite build",
     "start": "tsc && vite",
-    "test": "vitest run",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "testo": "vitest run"
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^8.3.1",

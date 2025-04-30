@@ -9,8 +9,8 @@
   "main": "./src/index.ts",
   "scripts": {
     "dev": "tsc",
-    "test": "vitest run",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "testo": "vitest run"
   },
   "dependencies": {
     "@tanstack/react-virtual": "^3.10.9",
