@@ -73,7 +73,7 @@ export function useVolumeBackups<T extends Record<string, unknown>>({
   const [searchInput, setSearchInput] = useState('');
   const [searchFilter, setSearchFilter] = useState<Filter[]>([]);
   const { data, isError, isLoading, error, status } = useQuery({
-    queryKey: [queryKey],
+    queryKey,
     queryFn: queryFn || (() => fetchIcebergV6<T>({ route })),
     refetchInterval: refetchInterval || false,
     retry: false,
