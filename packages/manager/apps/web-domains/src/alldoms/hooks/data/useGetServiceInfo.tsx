@@ -3,6 +3,7 @@ import {
   getAllDomainAttachedToAllDom,
   getAllDomProperty,
   getallDomService,
+  getDomainDetailInformation,
 } from '@/alldoms/data/api/web-domains';
 
 interface UseGetDatagridServiceInfoProps {
@@ -24,7 +25,7 @@ export const useGetServiceInfo = ({
       },
       {
         queryKey: ['domainAttached', serviceName],
-        queryFn: () => getAllDomainAttachedToAllDom(serviceName),
+        queryFn: () => getDomainDetailInformation(serviceName),
       },
     ],
     combine: (results) => {

@@ -3,6 +3,7 @@ import {
   getAllDomainAttachedToAllDom,
   getAllDomProperty,
   getallDomService,
+  getDomainDetailInformation,
 } from '@/alldoms/data/api/web-domains';
 import { TServiceDetail, TServiceProperty } from '@/alldoms/types';
 
@@ -24,7 +25,7 @@ export const useGetDatagridServiceInfoList = ({
         ] = await Promise.all([
           getAllDomProperty(serviceName.name),
           getallDomService(serviceName.name),
-          getAllDomainAttachedToAllDom(serviceName.name),
+          getDomainDetailInformation(serviceName.name),
         ]);
         return { allDomProperty, serviceInfo, domainAttached };
       },

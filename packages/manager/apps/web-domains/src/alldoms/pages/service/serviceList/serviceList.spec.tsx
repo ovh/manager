@@ -5,8 +5,8 @@ import { vi } from 'vitest';
 import { fireEvent, render, waitFor, screen } from '@testing-library/react';
 import ServiceList from './serviceList';
 import { wrapper } from '@/alldoms/utils/test.provider';
-import { serviceInfoDetail } from '@/alldoms/__mocks__/serviceInfoDetail';
 import { useGetDatagridServiceInfoList } from '@/alldoms/hooks/data/useGetDatagridServiceInfoList';
+import { serviceInfoDetail } from '@/alldoms/__mocks__/serviceInfoDetail';
 
 vi.mock('@/alldoms/hooks/data/useGetDatagridServiceInfoList', () => ({
   useGetDatagridServiceInfoList: vi.fn(),
@@ -29,7 +29,7 @@ describe('AllDom datagrid', () => {
 
   it('display the datagrid data', async () => {
     (useGetDatagridServiceInfoList as jest.Mock).mockReturnValue({
-      data: serviceInfoDetail,
+      data: [serviceInfoDetail],
       listLoading: false,
     });
     const { getByTestId } = render(<ServiceList />, { wrapper });
@@ -55,7 +55,7 @@ describe('AllDom datagrid', () => {
       expect(renewAction).toBeInTheDocument();
       expect(renewAction).toHaveAttribute(
         'href',
-        'https://www.ovh.com/cgi-bin/order/renew.cgi?domainChooser=1111111',
+        'https://www.ovh.com/cgi-bin/order/renew.cgi?domainChooser=testdomain',
       );
     });
   });
