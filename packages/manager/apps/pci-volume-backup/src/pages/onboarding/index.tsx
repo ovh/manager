@@ -57,7 +57,7 @@ export default function Onboarding() {
   );
 
   const shouldRedirectToListing =
-    !isLoading && !!allVolumeBackup && allVolumeBackup.length > 0;
+    !isLoading && !!allVolumeBackup?.data && allVolumeBackup?.data.length > 0;
 
   if (error) {
     throw new Error(error.message);
