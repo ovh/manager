@@ -20,7 +20,8 @@
     "jsx": "react",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@sms/*": ["./src/modules/sms/*"]
     }
   },
   "include": ["src"],
