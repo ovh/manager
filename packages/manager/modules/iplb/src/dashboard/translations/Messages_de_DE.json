@@ -1,8 +1,5 @@
 {
   "iplb_back_home": "Zurück",
-  "iplb_guides": "Anleitungen",
-  "iplb_guides_title": "Loadbalancing-IP",
-  "iplb_guide_footer": "Alle Anleitungen von OVHcloud",
   "iplb_tab_home": "Start",
   "iplb_tab_frontends": "Frontends",
   "iplb_tab_server_farm": "Serverfarmen",

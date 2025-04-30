@@ -2,17 +2,12 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   OdsText,
-  OdsInput,
   OdsMessage,
   OdsModal,
   OdsButton,
-  OdsFormField,
 } from '@ovhcloud/ods-components/react';
 import {
-  OdsInputCustomEvent,
-  OdsInputChangeEventDetail,
   ODS_BUTTON_VARIANT,
-  ODS_INPUT_TYPE,
   ODS_BUTTON_COLOR,
   ODS_MESSAGE_COLOR,
   ODS_MODAL_COLOR,
@@ -24,15 +19,37 @@ import './translations/translations';
 export const defaultDeleteModalTerminateValue = 'TERMINATE';
 
 export type DeleteModalProps = {
-  headline: string;
+  /**
+   * @deprecated use serviceTypeName instead. Headline of modal will have a fixed text
+   */
+  headline?: string;
+  // serviceType: enum;
+  serviceTypeName?: string;
+  /**
+   * Description of modal will have a fixed text
+   * @deprecated use children instead
+   */
   description?: string;
-  deleteInputLabel: string;
+  /**
+   * @deprecated input field has been removed
+   */
+  deleteInputLabel?: string;
   closeModal: () => void;
   isLoading?: boolean;
   onConfirmDelete: () => void;
   error?: string;
+  /**
+   * @deprecated the button label is now fixed
+   */
   cancelButtonLabel?: string;
+  /**
+   * @deprecated the button label is now fixed
+   */
   confirmButtonLabel?: string;
+  children?: React.ReactNode;
+  /**
+   * @deprecated input field has been removed
+   */
   terminateValue?: string;
   isOpen?: boolean;
 };
@@ -42,20 +59,19 @@ export const DeleteModal: React.FC<DeleteModalProps> = ({
   description,
   isOpen = false,
   deleteInputLabel,
+  serviceTypeName,
   closeModal,
   isLoading,
   onConfirmDelete,
   error,
+  children,
   cancelButtonLabel,
   confirmButtonLabel,
   terminateValue = defaultDeleteModalTerminateValue,
 }) => {
   const { t } = useTranslation('delete-modal');
-  const [deleteInput, setDeleteInput] = React.useState('');
-  const isDisabled = isLoading || deleteInput !== terminateValue || undefined;
 
   const close = React.useCallback(() => {
-    setDeleteInput('');
     closeModal();
   }, []);
 
@@ -66,32 +82,23 @@ export const DeleteModal: React.FC<DeleteModalProps> = ({
       isOpen={isOpen}
     >
       <div className="flex flex-col gap-4">
-        <OdsText preset={ODS_TEXT_PRESET.heading3}>{headline}</OdsText>
+        <OdsText preset={ODS_TEXT_PRESET.heading3}>
+          {t('deleteModalHeadline', {
+            serviceType: serviceTypeName || t('deleteModalHeadlineService'),
+          })}
+        </OdsText>
         {!!error && (
           <OdsMessage color={ODS_MESSAGE_COLOR.warning}>
             {t('deleteModalError', { error })}
           </OdsMessage>
         )}
-        {description && (
-          <OdsText preset={ODS_TEXT_PRESET.paragraph}>{description}</OdsText>
-        )}
-        <OdsFormField>
-          <label htmlFor="delete-input" slot="label">
-            {deleteInputLabel}
-          </label>
-          <OdsInput
-            className="block"
-            id="delete-input"
-            name="delete-input"
-            aria-label="delete-input"
-            isDisabled={isLoading || undefined}
-            type={ODS_INPUT_TYPE.text}
-            value={deleteInput}
-            onOdsChange={(e: OdsInputCustomEvent<OdsInputChangeEventDetail>) =>
-              setDeleteInput(e.detail.value as string)
-            }
-          />
-        </OdsFormField>
+        <OdsText
+          preset={ODS_TEXT_PRESET.paragraph}
+          data-testid="manager-delete-modal-description"
+        >
+          {t('deleteModalDescription')}
+        </OdsText>
+        {children}
         <div className="flex justify-end gap-2">
           <OdsButton
             slot="actions"
@@ -99,18 +106,16 @@ export const DeleteModal: React.FC<DeleteModalProps> = ({
             variant={ODS_BUTTON_VARIANT.ghost}
             color={ODS_BUTTON_COLOR.primary}
             {...handleClick(close)}
-            label={cancelButtonLabel || t('deleteModalCancelButton')}
+            label={t('deleteModalCancelButton')}
           />
           <OdsButton
-            isDisabled={isDisabled}
             slot="actions"
             isLoading={isLoading}
             data-testid="manager-delete-modal-confirm"
             {...handleClick(() => {
-              setDeleteInput('');
               onConfirmDelete();
             })}
-            label={confirmButtonLabel || t('deleteModalDeleteButton')}
+            label={t('deleteModalDeleteButton')}
           />
         </div>
       </div>

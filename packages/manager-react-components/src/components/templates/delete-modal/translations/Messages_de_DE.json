@@ -1,5 +1,8 @@
 {
   "deleteModalError": "Der folgende Fehler ist aufgetreten: {{error}}.",
-  "deleteModalCancelButton": "Abbrechen",
-  "deleteModalDeleteButton": "Kündigen"
+  "deleteModalCancelButton": "Nein, ablehnen",
+  "deleteModalDeleteButton": "Ja, kündigen",
+  "deleteModalDescription": "Bei der Kündigung Ihres Dienstes werden alle zugehörigen Daten unwiderruflich gelöscht. Möchten Sie Ihre Dienstleistung kündigen?",
+  "deleteModalHeadline": "{{serviceType}} kündigen?",
+  "deleteModalHeadlineService": "Die Dienstleistung"
 }

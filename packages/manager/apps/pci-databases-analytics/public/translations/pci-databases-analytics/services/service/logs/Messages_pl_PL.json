@@ -6,6 +6,6 @@
   "streamsTitle": "Strumień danych",
   "streamsBreadcrumb": "Strumień",
   "streamsBackLink": "Powrót do poprzedniej strony",
-  "streamsDescription": "Po zasubskrybowaniu logów Twojej usługi, zostaną one przeniesione do Logs Data Platform i będziesz mógł je scentralizować za pomocą innych logów, przeprowadzać zaawansowane wyszukiwanie, zarządzać ich retencją, definiować alerty oraz pulpity nawigacyjne, które pozwolą Ci łatwo obserwować klastry.",
+  "streamsDescription": "Po włączeniu subskrypcji logów audytowych dla danej usługi trafiają one do Logs Data Platform. Możesz zbierać wszystkie logi w jednym miejscu, uruchamiać zaawansowane wyszukiwanie, zarządzać retencją, ustawiać alerty i tworzyć dashboardy umożlwiające wygodne monitorowanie klastrów.",
   "streamsAdd": "Dodaj strumień danych"
 }

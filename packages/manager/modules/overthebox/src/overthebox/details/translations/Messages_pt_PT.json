@@ -98,7 +98,7 @@
   "overTheBox_unlink_device_success": "O dispositivo foi dissociado com sucesso.",
   "overTheBox_change_offer": "Mudar de oferta",
   "overTheBox_release_channel_deprecated": "Versão obsoleta {{version}}",
-  "overTheBox_detail_ips": "IPs",
+  "overTheBox_detail_ips": "IP",
   "overTheBox_detail_ip_v4": "IPv4",
   "overTheBox_detail_ip_v6": "IPv6",
   "overTheBox_model_ips_unknown": "IP não encontrados"

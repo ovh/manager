@@ -125,5 +125,7 @@
   "dedicatedCloud_manage_nsx_choice_description_XLARGE": "If you need to set up numerous BGP peers with the Edge node, opt for the largest format. Suitable when the total throughput required is several Gbps for L7 Load Balancer and VPN.",
   "dedicatedCloud_nsx_task_progress": "In progress",
   "dedicatedCloud_datacenter_nsx_resize_error": "An error has occurred",
-  "dedicatedCloud_tab_datacenter_global_information": "By default, all NSX virtual datacentres (VDC) have an NSX Edge cluster made up of 2 NSX Edge clusters. You can then resize the Edges. You must have the necessary resources to resize them, or change their quantity."
+  "dedicatedCloud_tab_datacenter_global_information": "By default, all NSX virtual datacentres (VDC) have an NSX Edge cluster made up of 2 NSX Edge clusters. You can then resize the Edges. You must have the necessary resources to resize them, or change their quantity.",
+  "dedicatedCloud_manage_nsx_vcpu_price": "from {{ price }} ex. VAT/vCPU/month*",
+  "dedicatedCloud_manage_nsx_additionnal_price_informations": "* 2 x 4 vCPU included in the standard offer"
 }

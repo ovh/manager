@@ -1,19 +1,9 @@
 {
   "hosting_multisite": "Multisite",
   "hosting_multisite_actions": "Aktionen",
-  "hosting_multisite_statistics": "CDN Statistiken",
-  "hosting_multisite_statistics_domain": "Domain",
-  "hosting_multisite_statistics_period": "Zeitraum",
-  "hosting_multisite_statistics_period_day": "Tag",
-  "hosting_multisite_statistics_period_week": "Woche",
-  "hosting_multisite_statistics_period_month": "Monate",
-  "hosting_multisite_statistics_period_year": "Jahr",
   "hosting_multisite_dialog_title": "Überprüfung der DNS-Server",
   "hosting_multisite_dialog_edit_record_description": "Ändern Sie das Feld vom Typ {{ recordType }} mit der IP {{ ip }} in der DNS-Zone der Domain {{ domain }}.",
   "hosting_multisite_dialog_edit_record_link": "Ändern Sie das Feld vom Typ {{ recordType }}.",
   "hosting_multisite_dialog_edit_record_other_nic": "Die Änderung muss vom Administrator der DNS-Zone vorgenommen werden: {{ nic }}.",
-  "hosting_multisite_dialog_add_record_description": "Fügen Sie in der DNS-Zone der Domain {{ domain }} ein Feld vom Typ {{ recordType }} mit der IP {{ ip }} hinzu.",
-  "hosting_multisite_statistics_loading_error": "Beim Abrufen der Statistiken ist ein Fehler aufgetreten.",
-  "hosting_multisite_statistics_upgrade_info": "Aktualisieren Sie Ihre CDN-Option, um die Statistiken Ihres CDN einzusehen.",
-  "hosting_multisite_statistics_changing_datavis_tool": "Das Tool zur Visualisierung der Statistiken Ihres CDN hat sich verändert. Sie finden Ihre Daten zum Verfolgen und Steuern des Traffics Ihrer Websites jetzt <b>auf der Seite OVHcloud Web Statistics</b>."
+  "hosting_multisite_dialog_add_record_description": "Fügen Sie in der DNS-Zone der Domain {{ domain }} ein Feld vom Typ {{ recordType }} mit der IP {{ ip }} hinzu."
 }

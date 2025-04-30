@@ -1,19 +1,9 @@
 {
   "hosting_multisite": "Multisitio",
   "hosting_multisite_actions": "Acciones",
-  "hosting_multisite_statistics": "Estadísticas de la CDN",
-  "hosting_multisite_statistics_domain": "Dominio",
-  "hosting_multisite_statistics_period": "Período",
-  "hosting_multisite_statistics_period_day": "Día",
-  "hosting_multisite_statistics_period_week": "Semana",
-  "hosting_multisite_statistics_period_month": "Mes",
-  "hosting_multisite_statistics_period_year": "Año",
   "hosting_multisite_dialog_title": "Verificación de los servidores DNS",
   "hosting_multisite_dialog_edit_record_description": "Modifique el registro de tipo {{ recordType }} con la dirección IP {{ ip }} en la zona DNS del dominio {{ domain }}.",
   "hosting_multisite_dialog_edit_record_link": "Modificar el registro de tipo {{ recordType }}.",
   "hosting_multisite_dialog_edit_record_other_nic": "El cambio debe realizarse por el administrador de la zona DNS: {{ nic }}.",
-  "hosting_multisite_dialog_add_record_description": "Agregue un registro de tipo {{ recordType }} con la dirección IP {{ ip }} en la zona DNS del dominio {{ domain }}.",
-  "hosting_multisite_statistics_loading_error": "Se ha producido un error al cargar las estadísticas.",
-  "hosting_multisite_statistics_upgrade_info": "Actualice la opción CDN para consultar las estadísticas de su CDN",
-  "hosting_multisite_statistics_changing_datavis_tool": "La herramienta de visualización de estadísticas de su CDN se actualiza. A partir de ahora puede consultar sus datos <b>en la página OVHcloud Web Statistics</b>, desde donde podrá monitorizar y controlar el tráfico en sus sitios web."
+  "hosting_multisite_dialog_add_record_description": "Agregue un registro de tipo {{ recordType }} con la dirección IP {{ ip }} en la zona DNS del dominio {{ domain }}."
 }

@@ -1,0 +1,7 @@
+{
+  "manager_components_delete_modal_cancel_button": "No, cancelar",
+  "manager_components_delete_modal_delete_button": "Sí, dar de baja",
+  "manager_components_delete_modal_description": "Al dar de baja el servicio, se borrarán definitivamente todos los datos correspondientes. ¿Quiere dar de baja el servicio?",
+  "manager_components_delete_modal_headline": "¿Dar de baja {{serviceType}}?",
+  "manager_components_delete_modal_headline_service": "Servicio"
+}
