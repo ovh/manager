@@ -10,7 +10,7 @@ import { OrderLabel } from '@/types/orderFunnel';
 
 const Labels = () => {
   const { job, jobQuery, projectId } = useJobData();
-  const { t } = useTranslation('components/labels');
+  const { t } = useTranslation('ai-tools/components/labels');
   const toast = useToast();
 
   const configuredLabel: OrderLabel[] = useMemo(
