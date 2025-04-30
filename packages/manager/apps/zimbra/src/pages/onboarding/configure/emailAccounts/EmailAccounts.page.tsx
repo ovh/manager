@@ -30,7 +30,11 @@ import {
   formatAccountPayload,
   postZimbraPlatformAccount,
 } from '@/data/api';
-import { addEmailAccountsSchema, AddEmailAccountsSchema } from '@/utils';
+import {
+  addEmailAccountsSchema,
+  AddEmailAccountsSchema,
+  allSettledSequential,
+} from '@/utils';
 import {
   CONFIRM,
   ONBOARDING_CONFIGURE_EMAIL_ACCOUNTS,
@@ -104,13 +108,13 @@ export const ConfigureEmailAccounts: React.FC = () => {
 
   const { mutate: addEmailAccounts, isPending: isSending } = useMutation({
     mutationFn: (payload: AddEmailAccountsSchema) => {
-      return Promise.allSettled(
+      // run post requests sequentially to avoid
+      // concurrency bug on backend side
+      return allSettledSequential(
         payload.accounts.map((acc) => {
           acc.displayName = `${acc.firstName} ${acc.lastName}`.trim();
-          return postZimbraPlatformAccount(
-            platformId,
-            formatAccountPayload(acc),
-          );
+          return () =>
+            postZimbraPlatformAccount(platformId, formatAccountPayload(acc));
         }),
       );
     },
