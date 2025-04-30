@@ -28,7 +28,6 @@
     "@ovh-ux/manager-react-core-application": "*",
     "@ovh-ux/manager-react-shell-client": "*",
     "@ovh-ux/request-tagger": "*",
-    "@ovhcloud/ods-common-core": "^18.3.0",
     "@ovhcloud/ods-components": "^18.3.0",
     "@ovhcloud/ods-themes": "^18.3.0",
     "@tanstack/react-query": "^5.51.21",
