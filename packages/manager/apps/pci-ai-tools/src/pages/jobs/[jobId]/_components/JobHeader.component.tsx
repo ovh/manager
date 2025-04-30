@@ -84,7 +84,7 @@ export const JobHeader = ({ job }: { job: ai.job.Job }) => {
           job={job}
           onSuccess={(newJob) => {
             setIsRestartOpen(false);
-            naviage(`../training/${newJob.id}`);
+            naviage(`../${newJob.id}`);
           }}
           onClose={() => setIsRestartOpen(false)}
         />
