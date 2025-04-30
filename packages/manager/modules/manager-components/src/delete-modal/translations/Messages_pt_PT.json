@@ -1,0 +1,7 @@
+{
+  "manager_components_delete_modal_cancel_button": "Não, recusar",
+  "manager_components_delete_modal_delete_button": "Sim, rescindir",
+  "manager_components_delete_modal_description": "A rescisão do serviço eliminará definitivamente todos os dados correspondentes. Pretende proceder à rescisão do seu serviço?",
+  "manager_components_delete_modal_headline": "Rescindir {{serviceType}}?",
+  "manager_components_delete_modal_headline_service": "Serviço"
+}
