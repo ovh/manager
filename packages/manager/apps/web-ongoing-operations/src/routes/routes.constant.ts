@@ -3,6 +3,6 @@ export const urls = {
   domain: 'domain',
   dns: 'dns',
   track: 'tracking/:id',
-  update: 'update/:id',
+  upload: 'upload/:id',
   error404: '404',
 };
