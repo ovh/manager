@@ -48,10 +48,10 @@ const UpdateScaling = () => {
   const schema = z.object({
     scaling: z.object({
       autoScaling: z.boolean(),
-      replicas: z.number(),
-      averageUsageTarget: z.number(),
-      replicasMax: z.number(),
-      replicasMin: z.number(),
+      replicas: z.coerce.number(),
+      averageUsageTarget: z.coerce.number(),
+      replicasMax: z.coerce.number(),
+      replicasMin: z.coerce.number(),
       resourceType: z.nativeEnum(
         ai.app.ScalingAutomaticStrategyResourceTypeEnum,
       ),

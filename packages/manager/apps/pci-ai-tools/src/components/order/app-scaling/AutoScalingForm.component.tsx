@@ -39,16 +39,16 @@ export const AutoScalingForm = React.forwardRef<
 
   const scalingSchema = z
     .object({
-      minRep: z
+      minRep: z.coerce
         .number()
         .min(1)
         .max(100),
-      maxRep: z
+      maxRep: z.coerce
         .number()
         .min(1)
         .max(100),
       resType: z.nativeEnum(ai.app.ScalingAutomaticStrategyResourceTypeEnum),
-      averageUsage: z
+      averageUsage: z.coerce
         .number()
         .min(1)
         .max(100),
