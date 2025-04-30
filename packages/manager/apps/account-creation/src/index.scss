@@ -5,3 +5,43 @@
 html {
   font-family: var(--ods-font-family-default);
 }
+
+.sidebar {
+  // background: url("./assets/account_background_full.png");
+  // background-size: cover;
+  position: relative;
+  overflow: hidden;
+}
+
+.sidebar-background-image {
+  position: absolute;
+  mix-blend-mode: hard-light;
+
+  top: 50%;
+  right: 0;
+
+  z-index: 1;
+}
+
+.reassurance-wording {
+  position: absolute;
+  width: calc(2 / 3 * 100%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  animation: appear 1s ease-in 0s 1;
+
+  @keyframes appear {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  ods-text::part(text) {
+    color: white;
+  }
+}
