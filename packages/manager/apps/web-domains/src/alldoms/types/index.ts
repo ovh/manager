@@ -1,4 +1,6 @@
 import {
+  DomainStateEnum,
+  DomainTransferLockStatusEnum,
   ServiceInfoRenewMode,
   ServiceInfoType,
 } from '@/alldoms/enum/service.enum';
@@ -59,4 +61,11 @@ export interface UpdateAllDomServiceProps {
   renew: {
     mode: ServiceInfoRenewMode;
   };
+}
+
+export interface TDomainDetail {
+  dnssecSupported: boolean;
+  expirationDate: string;
+  transferLockStatus: DomainTransferLockStatusEnum;
+  state: DomainStateEnum;
 }

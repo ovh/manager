@@ -7,7 +7,7 @@ import {
 import { OdsCard, OdsDivider, OdsText } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { DateFormat, useFormattedDate } from '@ovh-ux/manager-react-components';
+import { DateFormat, useFormatDate } from '@ovh-ux/manager-react-components';
 import DatagridColumnActionMenu from '../DatagridColumns/DatagridColumnActionMenu';
 import { TServiceDetail } from '@/alldoms/types';
 import { findContact } from '@/alldoms/utils/utils';
@@ -23,6 +23,7 @@ export default function ServiceDetailSubscribing({
   openModal,
 }: ServiceDetailSubscribingProps) {
   const { t } = useTranslation('allDom');
+  const formatDate = useFormatDate();
   const { billing, serviceId } = serviceInfoDetail.serviceInfo;
   const nicAdmin = findContact(
     serviceInfoDetail,
@@ -53,9 +54,9 @@ export default function ServiceDetailSubscribing({
             {t('allDom_page_detail_subscribing_automatic_renew')}
           </OdsText>
           <OdsText>
-            {useFormattedDate({
-              dateString: billing.expirationDate,
-              format: DateFormat.display,
+            {formatDate({
+              date: billing.expirationDate,
+              format: 'P',
             })}
           </OdsText>
         </div>
@@ -107,9 +108,9 @@ export default function ServiceDetailSubscribing({
           {t('allDom_page_detail_subscribing_contact_creation_date')}
         </OdsText>
         <OdsText preset={ODS_TEXT_PRESET.span}>
-          {useFormattedDate({
-            dateString: billing.lifecycle.current.creationDate,
-            format: DateFormat.display,
+          {formatDate({
+            date: billing.lifecycle.current.creationDate,
+            format: 'P',
           })}
         </OdsText>
       </div>

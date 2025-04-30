@@ -2,7 +2,7 @@ import { BaseLayout, Breadcrumb } from '@ovh-ux/manager-react-components';
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import appConfig from '@/web-domains.config';
-import ServiceDetailDomains from '@/alldoms/components/ServiceDetail/ServiceDetailDomains';
+import ServiceDetailDomains from '@/alldoms/components/ServiceDetail/ServiceDetailDomains/ServiceDetailDomains';
 import ServiceDetailInformation from '@/alldoms/components/ServiceDetail/ServiceDetailInformation';
 import ServiceDetailSubscribing from '@/alldoms/components/ServiceDetail/ServiceDetailSubscribing';
 import { useGetServiceInfo } from '@/alldoms/hooks/data/useGetServiceInfo';

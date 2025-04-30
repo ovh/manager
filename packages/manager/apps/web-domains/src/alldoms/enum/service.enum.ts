@@ -25,6 +25,31 @@ export enum ServiceInfoUpdateEnum {
   TerminateAtExpirationDate = 'terminateAtExpirationDate',
 }
 
+export enum DomainTransferLockStatusEnum {
+  Locked = 'locked',
+  Locking = 'locking',
+  Unavailable = 'unavailable',
+  Unlocked = 'unlocked',
+  Unlocking = 'unlocking',
+}
+
+export enum DomainStateEnum {
+  autorenew_in_progress = 'autorenew_in_progress',
+  autorenew_registry_in_progress = 'autorenew_registry_in_progress',
+  deleted = 'deleted',
+  dispute = 'dispute',
+  expired = 'expired',
+  ok = 'ok',
+  outgoing_transfer = 'outgoing_transfer',
+  pending_create = 'pending_create',
+  pending_delete = 'pending_delete',
+  pending_incoming_transfer = 'pending_incoming_transfer',
+  pending_installation = 'pending_installation',
+  registry_suspended = 'registry_suspended',
+  restorable = 'restorable',
+  technical_suspended = 'technical_suspended',
+}
+
 export enum ServiceInfoContactEnum {
   Administrator = 'administrator',
   Technical = 'technical',
