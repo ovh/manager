@@ -13,7 +13,7 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { ROUTES_URLS } from '@/routes/routes.constants';
+import { KMS_ROUTES_URIS } from '@/routes/routes.constants';
 import { validateCredentialName } from '@/utils/credential/validateCredentialName';
 import { validateCredentialDescription } from '@/utils/credential/validateCredentialDescription';
 
@@ -110,7 +110,9 @@ const CreateGeneralInformations = ({
                   actionType: 'action',
                   actions: ['cancel'],
                 });
-                navigate(`/${okmsId}/${ROUTES_URLS.credentials}`);
+                navigate(
+                  `/${KMS_ROUTES_URIS.root}/${okmsId}/${KMS_ROUTES_URIS.credentials}`,
+                );
               }}
               label={t('key_management_service_credential_create_cta_cancel')}
             />

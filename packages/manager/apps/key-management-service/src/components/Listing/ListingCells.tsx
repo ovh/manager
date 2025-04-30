@@ -46,7 +46,7 @@ export const DatagridCellName = (props: OKMS) => {
           actionType: 'navigation',
           actions: ['go-to-kms'],
         });
-        navigate(`/${props?.id}`);
+        navigate(`${props?.id}`);
       }}
       label={props?.iam.displayName}
     />
