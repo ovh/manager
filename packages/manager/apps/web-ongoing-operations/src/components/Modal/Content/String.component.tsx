@@ -3,17 +3,17 @@ import { OdsFormField, OdsInput } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { ODS_INPUT_TYPE } from '@ovhcloud/ods-components';
 
-interface UpdateStringComponentProps {
+interface StringComponentProps {
   readonly argumentKey: string;
   readonly value: string;
   readonly onChange: (key: string, value: string) => void;
 }
 
-export default function UpdateStringComponent({
+export default function StringComponent({
   argumentKey,
   value,
   onChange,
-}: UpdateStringComponentProps) {
+}: StringComponentProps) {
   const { t } = useTranslation('dashboard');
   const [inputValue, setInputValue] = useState(value);
   return (

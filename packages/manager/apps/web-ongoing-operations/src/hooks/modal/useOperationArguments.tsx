@@ -17,7 +17,11 @@ const getMeTaskArguments = async (
 
   const data = (await Promise.all(promiseArray)) || [];
 
-  return { data };
+  const index = data.findIndex((arg) =>
+    ['/me/contact', 'string', '/me'].includes(arg.type),
+  );
+  const actions = data.length === 0 || index >= 0;
+  return { data, actions };
 };
 
 export function useOperationArguments(id: number) {
