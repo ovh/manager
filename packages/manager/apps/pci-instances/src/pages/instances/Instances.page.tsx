@@ -17,7 +17,6 @@ import {
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
   ODS_SPINNER_SIZE,
-  OsdsSearchBarCustomEvent,
 } from '@ovhcloud/ods-components';
 import {
   OsdsButton,
@@ -25,10 +24,19 @@ import {
   OsdsIcon,
   OsdsPopover,
   OsdsPopoverContent,
-  OsdsSearchBar,
   OsdsSpinner,
 } from '@ovhcloud/ods-components/react';
-import { FC, useCallback, useMemo, useRef, useState } from 'react';
+import { Button, Input } from '@datatr-ux/uxlib';
+import { Search, X } from 'lucide-react';
+
+import {
+  FC,
+  useCallback,
+  useDeferredValue,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Navigate,
@@ -51,13 +59,54 @@ const initialSorting = {
   desc: false,
 };
 
+const SearchBar = ({
+  onSearchSubmit,
+  isDisabled,
+}: {
+  onSearchSubmit: (value: string) => void;
+  isDisabled: boolean;
+}) => {
+  const [searchField, setSearchField] = useState('');
+  const deferredSearchField = useDeferredValue(searchField);
+
+  const onSearchHandler = () => {
+    onSearchSubmit(deferredSearchField);
+    setSearchField('');
+  };
+
+  return (
+    <div className="flex justify-end w-full relative">
+      <Input
+        value={searchField}
+        disabled={isDisabled}
+        onChange={(e) => setSearchField(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') {
+            onSearchHandler();
+          }
+        }}
+        className="focus:bg-[#bef1ff] max-w-full sm:max-w-72 rounded-r-none focus-visible:ring-transparent focus-visible:bg-primary-300 text-primary-100 pr-8"
+      />
+      <X
+        onClick={() => setSearchField('')}
+        className="absolute right-[55px] top-[8px] text-blue-500 cursor-pointer"
+      />
+      <Button
+        className="rounded-l-none"
+        onClick={onSearchHandler}
+        disabled={isDisabled}
+      >
+        <Search />
+      </Button>
+    </div>
+  );
+};
 const Instances: FC = () => {
   const { t } = useTranslation(['list', 'common']);
 
   const project = useRouteLoaderData('root') as TProject;
   const createInstanceHref = useHref('./new');
   const [sorting, setSorting] = useState(initialSorting);
-  const [searchField, setSearchField] = useState('');
   const { filters, addFilter, removeFilter } = useColumnFilters();
 
   const filterPopoverRef = useRef<HTMLOsdsPopoverElement>(null);
@@ -111,20 +160,14 @@ const Instances: FC = () => {
     resetSortAndFilters();
   }, [refresh, resetSortAndFilters]);
 
-  const handleOdsSearchSubmit = useCallback(
-    (
-      event: OsdsSearchBarCustomEvent<{
-        optionValue: string;
-        inputValue: string;
-      }>,
-    ) => {
+  const handleSearchSubmit = useCallback(
+    (value: string) => {
       addFilter({
         key: 'search',
-        value: event.detail.inputValue,
+        value,
         comparator: FilterComparator.Includes,
         label: 'name',
       });
-      setSearchField('');
     },
     [addFilter],
   );
@@ -195,11 +238,9 @@ const Instances: FC = () => {
                   </OsdsButton>
                 )}
               </div>
-              <OsdsSearchBar
-                className={'w-auto'}
-                value={searchField}
-                disabled={filters.length > 0 || isFetching}
-                onOdsSearchSubmit={handleOdsSearchSubmit}
+              <SearchBar
+                onSearchSubmit={handleSearchSubmit}
+                isDisabled={filters.length > 0 || isFetching}
               />
               <OsdsPopover ref={filterPopoverRef}>
                 <OsdsButton
