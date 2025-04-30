@@ -222,7 +222,7 @@
   "logs_home_status_DISABLED": "Disabled",
   "logs_home_status_INIT": "Installing...",
   "logs_home_status_TO_CONFIG": "To be configured",
-  "logs_home_resiliate": "Terminate",
+  "logs_home_resiliate": "Cancel",
   "logs_kibana_title": "OpenSearch Dashboards instances",
   "logs_kibana_description": "OpenSearch Dashboards is a user interface for OpenSearch. It is very well-adapted to data analytics, and offers a range of visualisation options, making it a perfect tool to graphically exploit the data for your aliases or indexes.",
   "logs_kibana_name_text": "Name",
