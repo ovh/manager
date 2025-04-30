@@ -1,5 +1,4 @@
 import {
-  ChevronRightSquare,
   Cpu,
   Globe,
   HardDrive,
@@ -80,7 +79,7 @@ const RegionDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
 const FlavorDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
   const { t } = useTranslation('ai-tools/apps/create');
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col">
       <div className="flex items-center gap-2">
         <Button
           data-testid="flavor-section-button"
@@ -155,7 +154,7 @@ const FlavorDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
 const ImageDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
   const { t } = useTranslation('ai-tools/apps/create');
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col">
       {order.image && (
         <div className="flex items-center gap-2">
           <Button
@@ -185,7 +184,7 @@ const ImageDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
 const ScalingStrategy = ({ order, onSectionClicked }: OrderSummaryProps) => {
   const { t } = useTranslation('ai-tools/apps/create');
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col">
       <div className="flex items-center gap-2">
         <Button
           data-testid="scaling-section-button"
@@ -252,7 +251,7 @@ const ScalingStrategy = ({ order, onSectionClicked }: OrderSummaryProps) => {
 const HttpPortDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
   const { t } = useTranslation('ai-tools/apps/create');
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col">
       <div className="flex items-center gap-2">
         <Button
           data-testid="port-http-section-button"
@@ -271,7 +270,7 @@ const HttpPortDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
 const PrivacyDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
   const { t } = useTranslation('ai-tools/apps/create');
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col">
       <div className="flex items-center gap-2">
         <Button
           data-testid="access-section-button"
@@ -303,7 +302,7 @@ const DockerCommandDetails = ({
 }: OrderSummaryProps) => {
   const { t } = useTranslation('ai-tools/apps/create');
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col">
       <div className="flex items-center gap-2">
         <Button
           data-testid="dockerCommand-section-button"
@@ -314,15 +313,12 @@ const DockerCommandDetails = ({
           {t('fieldDockerCommandLabel')}
         </Button>
       </div>
-      <div className="flex items-center pl-4 gap-2">
-        <ChevronRightSquare className="size-4" />
-        <span>
-          {t(`summaryFieldDockerCommand`, {
-            count: order.dockerCommand.length,
-            context: `${order.dockerCommand.length}`,
-          })}
-        </span>
-      </div>
+      <span className="ml-4">
+        {t(`summaryFieldDockerCommand`, {
+          count: order.dockerCommand.length,
+          context: `${order.dockerCommand.length}`,
+        })}
+      </span>
     </div>
   );
 };
@@ -330,7 +326,7 @@ const DockerCommandDetails = ({
 const VolumesDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
   const { t } = useTranslation('ai-tools/apps/create');
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col">
       <div className="flex items-center gap-2">
         <Button
           data-testid="volumes-section-button"
@@ -376,8 +372,8 @@ const LabelsDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
 const ProbeDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
   const { t } = useTranslation('ai-tools/apps/create');
   return (
-    <div className="flex flex-col gap-2">
-      <div className="flex items-center gap-2">
+    <div className="flex flex-col">
+      <div className="flex items-center">
         <Button
           data-testid="probe-section-button"
           type="button"
@@ -386,9 +382,9 @@ const ProbeDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
         >
           {t('fieldConfigurationProbeLabel')}
         </Button>
-        <MonitorCheck className="size-4" />
       </div>
       <div className="flex items-center pl-4 gap-2">
+        <MonitorCheck className="size-4" />
         <span>
           {order.probe.path}:{order.probe.port}
         </span>
@@ -399,7 +395,7 @@ const ProbeDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
 
 const OrderSummary = ({ order, onSectionClicked }: OrderSummaryProps) => {
   return (
-    <div className="grid grid-cols-1 gap-2">
+    <div className="grid grid-cols-1">
       <NameDetails order={order} onSectionClicked={onSectionClicked} />
       <RegionDetails order={order} onSectionClicked={onSectionClicked} />
       <FlavorDetails order={order} onSectionClicked={onSectionClicked} />

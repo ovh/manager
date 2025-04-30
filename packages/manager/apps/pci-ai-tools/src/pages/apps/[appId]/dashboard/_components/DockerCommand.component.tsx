@@ -12,23 +12,29 @@ const DockerCommand = () => {
     <>
       <h5>{t('dockerCommandTitle')}</h5>
       <div className="flex flex-row justify-between gap-2 mt-4">
-        <ul
-          data-testid="docker-command-list"
-          className="list-disc break-words w-1/2"
-        >
-          {app.spec?.command?.map((command, index) => (
-            <li key={index} className="ml-8 text-sm">
-              {command}
-            </li>
-          ))}
-        </ul>
+        {app.spec?.command.length > 0 && (
+          <ul
+            data-testid="docker-command-list"
+            className="list-disc break-words w-1/2"
+          >
+            {app.spec?.command?.map((command, index) => (
+              <li key={index} className="ml-8 text-sm">
+                {command}
+              </li>
+            ))}
+          </ul>
+        )}
         <Button
           data-testid="update-docker-command-button"
           size="sm"
           mode="outline"
           onClick={() => navigate('./update-docker-command')}
         >
-          <span>{t('modifyLabel')}</span>
+          {app.spec?.command.length > 0 ? (
+            <span>{t('modifyLabel')}</span>
+          ) : (
+            <span>{t('addLabel')}</span>
+          )}
           <Pen className="ml-2 size-4" />
         </Button>
       </div>

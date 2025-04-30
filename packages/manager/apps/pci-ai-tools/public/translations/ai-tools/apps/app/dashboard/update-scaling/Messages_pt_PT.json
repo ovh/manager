@@ -1,0 +1,8 @@
+{
+  "updateScalingTitle": "Atualizar o dimensionamento da aplicação",
+  "updateScalingButtonCancel": "Anular",
+  "updateScalingButtonConfirm": "Modificar",
+  "updateScalingStratToastErrorTitle": "Erro",
+  "updateScalingStratToastSuccessTitle": "Sucesso",
+  "updateScalingStratToastSuccessDescription": "A política de dimensionamento da aplicação foi atualizada"
+}

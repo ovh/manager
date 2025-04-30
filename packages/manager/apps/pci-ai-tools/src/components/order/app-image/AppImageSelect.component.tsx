@@ -14,35 +14,48 @@ interface AppImageSelectProps {
     newVersion?: string,
     contractChecked?: boolean,
   ) => void;
-  className?: string;
 }
 
 const AppImagesSelect = React.forwardRef<HTMLInputElement, AppImageSelectProps>(
-  ({ appImages, value, version, onChange, className }, ref) => {
+  ({ appImages, value, version, onChange }, ref) => {
     const { t } = useTranslation('ai-tools/components/app-image');
     return (
       <Tabs defaultValue="customerImage">
-        <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="customerImage" data-testid="custom-image-trigger">
-            {t('customImageTabsLabel')}
-          </TabsTrigger>
-          <TabsTrigger value="partnerImage" data-testid="partner-image-trigger">
-            {t('partnerAppTabsLabel')}
-          </TabsTrigger>
-        </TabsList>
-        <TabsContent value="customerImage">
-          <DockerCustomImageInput value={value} onChange={onChange} ref={ref} />
-        </TabsContent>
-        <TabsContent value="partnerImage">
-          <PartnerImageSelect
+        {appImages.length > 0 && (
+          <TabsList className="grid w-full grid-cols-2">
+            <TabsTrigger
+              value="customerImage"
+              data-testid="custom-image-trigger"
+            >
+              {t('customImageTabsLabel')}
+            </TabsTrigger>
+            <TabsTrigger
+              value="partnerImage"
+              data-testid="partner-image-trigger"
+            >
+              {t('partnerAppTabsLabel')}
+            </TabsTrigger>
+          </TabsList>
+        )}
+        <TabsContent value="customerImage" className="mt-0">
+          <DockerCustomImageInput
             value={value}
-            version={version}
-            images={appImages}
-            className={className}
             onChange={onChange}
             ref={ref}
+            appImages={appImages}
           />
         </TabsContent>
+        {appImages.length > 0 && (
+          <TabsContent value="partnerImage" className="mt-0">
+            <PartnerImageSelect
+              value={value}
+              version={version}
+              images={appImages}
+              onChange={onChange}
+              ref={ref}
+            />
+          </TabsContent>
+        )}
       </Tabs>
     );
   },

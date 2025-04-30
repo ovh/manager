@@ -6,6 +6,7 @@ import {
   Button,
   Card,
   CardContent,
+  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -16,12 +17,10 @@ import {
   FormLabel,
   FormMessage,
   Input,
-  Label,
+  Separator,
   Table,
   TableBody,
   TableCell,
-  TableHead,
-  TableHeader,
   TableRow,
   useToast,
 } from '@datatr-ux/uxlib';
@@ -142,7 +141,7 @@ const OrderFunnel = ({
   };
 
   const throwErrorContract = () => {
-    scrollToDiv('image');
+    scrollToDiv('partner-version');
     model.form.setError('image.name', {
       type: 'custom',
       message: t('formErrorPartnerContractNotSign'),
@@ -210,231 +209,286 @@ const OrderFunnel = ({
         >
           <div
             data-testid="order-funnel-container"
-            className="col-span-1 md:col-span-3 divide-y-[24px] divide-transparent"
+            className="col-span-1 md:col-span-3"
           >
-            <section id="name" data-testid="name-section">
-              <Label className="mb-2 text-xl font-semibold">
-                {t('fieldDimensionLabel')}
-              </Label>
-              <FormField
-                control={model.form.control}
-                name="appName"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className={classNameLabel}>
-                      {t('fieldConfigurationNameLabel')}
-                    </FormLabel>
-                    <FormControl>
-                      <Input placeholder={field.value} {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </section>
-
-            <section id="region" data-testid="region-section">
-              <FormField
-                control={model.form.control}
-                name="region"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className={classNameLabel}>
-                      {t('fieldRegionLabel')}
-                    </FormLabel>
-                    <FormControl>
-                      <RegionsSelect
-                        {...field}
-                        regions={model.lists.regions}
-                        value={field.value}
-                        onChange={(newRegion) => {
-                          model.form.setValue('region', newRegion);
-                          model.form.setValue('volumes', []);
-                        }}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </section>
-
-            <section id="flavor" data-testid="flavor-section">
-              <FormField
-                control={model.form.control}
-                name="flavorWithQuantity.flavor"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormControl>
-                      <FlavorsSelect
-                        {...field}
-                        flavors={model.lists.flavors}
-                        value={field.value}
-                        resourcesQuantity={model.result.resourcesQuantity}
-                        onChange={(newFlavor) => {
-                          model.form.setValue(
-                            'flavorWithQuantity.flavor',
-                            newFlavor,
-                          );
-                          model.form.setValue('flavorWithQuantity.quantity', 1);
-                        }}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={model.form.control}
-                defaultValue={1}
-                name="flavorWithQuantity.quantity"
-                render={({ field }) => (
-                  <FormItem>
-                    <p className="mt-2 text-sm">
-                      {t('fieldFlavorQuantityDescription')}
-                    </p>
-                    <FormControl>
-                      <Input
-                        type="number"
-                        max={model.result?.flavor?.max}
-                        min={1}
-                        value={field.value}
-                        {...field}
-                      />
-                    </FormControl>
-                    <div className="flex flex-row justify-between">
-                      <FormMessage />
-                      {model.result.flavor && (
-                        <div className="inline-block text-xs">
-                          <span>{t('fieldFlavorQuantityInformation')}</span>{' '}
-                          <span className="capitalize font-bold">
-                            {model.result?.flavor?.id}
-                          </span>
-                          {': '}
-                          <span>{model.result?.flavor?.max}</span>
-                        </div>
-                      )}
-                    </div>
-                  </FormItem>
-                )}
-              />
-            </section>
-
-            <section id="image" data-testid="image-section">
-              <FormField
-                control={model.form.control}
-                name="image.name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className={classNameLabel}>
-                      {t('fieldImageLabel')}
-                    </FormLabel>
-                    <FormControl>
-                      <AppImagesSelect
-                        {...field}
-                        appImages={model.lists.appImages}
-                        version={model.form.getValues('image.version')}
-                        value={field.value}
-                        onChange={(newImage, newVersion, contractChecked) => {
-                          model.form.setValue('image.name', newImage);
-                          model.form.setValue('image.version', newVersion);
-                          // ContractChecked is set to true for customImage
-                          model.form.setValue(
-                            'image.contractChecked',
-                            contractChecked ?? true,
-                          );
-                          // remove errors onChange
-                          model.form.trigger('image.name');
-
-                          if (newVersion) {
-                            model.form.setValue('volumes', []);
-                            model.form.setValue('httpPort', 8080);
-                            model.form.setValue('dockerCommand', []);
-                            setIsPartnerSelected(true);
-                          } else {
-                            setIsPartnerSelected(false);
-                          }
-                        }}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </section>
-
-            <section id="scaling">
-              <FormField
-                control={model.form.control}
-                name="scaling"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className={classNameLabel}>
-                      {t('fielddScalingLabel')}
-                    </FormLabel>
-                    <FormControl>
-                      <ScalingStrategy
-                        {...field}
-                        scaling={field.value}
-                        onChange={(newScaling) =>
-                          model.form.setValue('scaling', newScaling)
-                        }
-                        onNonValidForm={(val) => setInvalidScalingInput(val)}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </section>
-
-            {!isPartnerSelected && (
-              <section id="httpPort">
+            <Card
+              id="name"
+              data-testid="name-section"
+              className="shadow-sm mt-4"
+            >
+              <CardHeader>
+                <CardTitle>{t('fieldConfigurationNameLabel')}</CardTitle>
+              </CardHeader>
+              <CardContent>
                 <FormField
                   control={model.form.control}
-                  name="httpPort"
+                  name="appName"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className={classNameLabel}>
-                        {t('fieldHttpPortLabel')}
-                      </FormLabel>
-                      <p className="text-sm">{t('fieldHttpPortDescription')}</p>
                       <FormControl>
-                        <Input
-                          type="number"
-                          max={APP_CONFIG.port.max}
-                          min={APP_CONFIG.port.min}
-                          value={field.value}
+                        <Input placeholder={field.value} {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </CardContent>
+            </Card>
+
+            <Card
+              id="region"
+              data-testid="region-section"
+              className="shadow-sm mt-4"
+            >
+              <CardHeader>
+                <CardTitle>{t('fieldRegionLabel')}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <FormField
+                  control={model.form.control}
+                  name="region"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <RegionsSelect
                           {...field}
+                          regions={model.lists.regions}
+                          value={field.value}
+                          onChange={(newRegion) => {
+                            model.form.setValue('region', newRegion);
+                            model.form.setValue('volumes', []);
+                          }}
                         />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-              </section>
+              </CardContent>
+            </Card>
+
+            <Card
+              id="flavor"
+              data-testid="flavor-section"
+              className="shadow-sm mt-4"
+            >
+              <CardHeader>
+                <CardTitle>{t('fieldFlavorLabel')}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription className="mb-2">
+                  {t('fieldFlavorDescription')}
+                </CardDescription>
+                <FormField
+                  control={model.form.control}
+                  name="flavorWithQuantity.flavor"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <FlavorsSelect
+                          {...field}
+                          flavors={model.lists.flavors}
+                          value={field.value}
+                          resourcesQuantity={model.result.resourcesQuantity}
+                          onChange={(newFlavor) => {
+                            model.form.setValue(
+                              'flavorWithQuantity.flavor',
+                              newFlavor,
+                            );
+                            model.form.setValue(
+                              'flavorWithQuantity.quantity',
+                              1,
+                            );
+                          }}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </CardContent>
+              <CardContent>
+                <CardDescription className="mb-2">
+                  {t('fieldFlavorQuantityDescription')}
+                </CardDescription>
+                <FormField
+                  control={model.form.control}
+                  defaultValue={1}
+                  name="flavorWithQuantity.quantity"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <Input
+                          type="number"
+                          max={model.result?.flavor?.max}
+                          min={1}
+                          value={field.value}
+                          {...field}
+                        />
+                      </FormControl>
+                      <div className="flex flex-row justify-between">
+                        <FormMessage />
+                        {model.result.flavor && (
+                          <div className="inline-block text-xs">
+                            <span>{t('fieldFlavorQuantityInformation')}</span>{' '}
+                            <span className="capitalize font-bold">
+                              {model.result?.flavor?.id}
+                            </span>
+                            {': '}
+                            <span>{model.result?.flavor?.max}</span>
+                          </div>
+                        )}
+                      </div>
+                    </FormItem>
+                  )}
+                />
+              </CardContent>
+            </Card>
+
+            <Card
+              id="image"
+              data-testid="image-section"
+              className="shadow-sm mt-4"
+            >
+              <CardHeader>
+                <CardTitle>{t('fieldImageLabel')}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <FormField
+                  control={model.form.control}
+                  name="image.name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <AppImagesSelect
+                          {...field}
+                          appImages={model.lists.appImages}
+                          version={model.form.getValues('image.version')}
+                          value={field.value}
+                          onChange={(newImage, newVersion, contractChecked) => {
+                            model.form.setValue('image.name', newImage);
+                            model.form.setValue('image.version', newVersion);
+                            // ContractChecked is set to true for customImage
+                            model.form.setValue(
+                              'image.contractChecked',
+                              contractChecked ?? true,
+                            );
+                            // remove errors onChange
+                            model.form.trigger('image.name');
+
+                            if (newVersion) {
+                              model.form.setValue('volumes', []);
+                              model.form.setValue('httpPort', 8080);
+                              model.form.setValue('dockerCommand', []);
+                              setIsPartnerSelected(true);
+                            } else {
+                              setIsPartnerSelected(false);
+                            }
+                          }}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </CardContent>
+            </Card>
+
+            <Card
+              id="scaling"
+              data-testid="scaling-section"
+              className="shadow-sm mt-4"
+            >
+              <CardHeader>
+                <CardTitle>{t('fielddScalingLabel')}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <FormField
+                  control={model.form.control}
+                  name="scaling"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <ScalingStrategy
+                          {...field}
+                          scaling={field.value}
+                          onChange={(newScaling) =>
+                            model.form.setValue('scaling', newScaling)
+                          }
+                          onNonValidForm={(val) => setInvalidScalingInput(val)}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </CardContent>
+            </Card>
+
+            {!isPartnerSelected && (
+              <Card
+                id="httpPort"
+                data-testid="http-port-section"
+                className="shadow-sm mt-4"
+              >
+                <CardHeader>
+                  <CardTitle>{t('fieldHttpPortLabel')}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="mb-2">
+                    {t('fieldHttpPortDescription')}
+                  </CardDescription>
+                  <FormField
+                    control={model.form.control}
+                    name="httpPort"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <Input
+                            type="number"
+                            max={APP_CONFIG.port.max}
+                            min={APP_CONFIG.port.min}
+                            value={field.value}
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </CardContent>
+              </Card>
             )}
-            <section id="access" data-testid="access-section">
-              <FormField
-                control={model.form.control}
-                name="privacy"
-                render={({ field }) => (
-                  <FormItem className="flex flex-col gap-1">
-                    <PrivacyRadioInput
-                      value={field.value}
-                      onChange={(newPrivacyValue: PrivacyEnum) =>
-                        model.form.setValue('privacy', newPrivacyValue)
-                      }
-                      className={classNameLabel}
-                    />
-                  </FormItem>
-                )}
-              />
-            </section>
+
+            <Card
+              id="access"
+              data-testid="access-section"
+              className="shadow-sm mt-4"
+            >
+              <CardHeader>
+                <CardTitle>{t('fieldConfigurationPrivacyLabel')}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <FormField
+                  control={model.form.control}
+                  name="privacy"
+                  render={({ field }) => (
+                    <FormItem className="flex flex-col gap-1">
+                      <PrivacyRadioInput
+                        value={field.value}
+                        onChange={(newPrivacyValue: PrivacyEnum) =>
+                          model.form.setValue('privacy', newPrivacyValue)
+                        }
+                      />
+                    </FormItem>
+                  )}
+                />
+              </CardContent>
+            </Card>
 
             {/* Advanced configuration */}
             <section id="advancedConfig" data-testid="advance-config-section">
-              <Card>
+              <Card className="mt-4">
                 <CardHeader>
                   <Button
                     data-testid="advanced-config-button"
@@ -586,24 +640,16 @@ const OrderFunnel = ({
                   scrollToDiv(target);
                 }}
               />
+              <Separator className="my-2" />
+              <p>{t('pricingLabel')}</p>
               <Table>
-                <TableHeader>
-                  <TableRow className="text-sm">
-                    <TableHead className="h-10 px-2">
-                      {t('priceDetailsLabel')}
-                    </TableHead>
-                    <TableHead className="h-10 px-2">
-                      {t('priceUnitLabel')}
-                    </TableHead>
-                  </TableRow>
-                </TableHeader>
                 <TableBody>
                   {model.result.pricing?.resourcePricing && (
                     <TableRow className="text-sm">
                       <TableCell className="py-1 px-2">
                         {t('priceRessourceLabel')}
                       </TableCell>
-                      <TableCell className="py-1 px-2">
+                      <TableCell className="py-1 px-2 text-right">
                         <Price
                           decimals={2}
                           priceInUcents={
@@ -622,7 +668,7 @@ const OrderFunnel = ({
                       <TableCell className="py-1 px-2">
                         {t('priceScalingLabel')}
                       </TableCell>
-                      <TableCell className="py-1 px-2">
+                      <TableCell className="py-1 px-2 text-right">
                         <Price
                           decimals={2}
                           priceInUcents={
@@ -639,7 +685,7 @@ const OrderFunnel = ({
                       <TableCell className="py-1 px-2">
                         {t('priceLicenceLabel')}
                       </TableCell>
-                      <TableCell className="py-1 px-2">
+                      <TableCell className="py-1 px-2 text-right">
                         <Price
                           decimals={2}
                           priceInUcents={
@@ -656,7 +702,7 @@ const OrderFunnel = ({
                       <TableCell className="py-1 px-2 font-bold">
                         {t('priceTotalLabel')}
                       </TableCell>
-                      <TableCell className="py-1 px-2">
+                      <TableCell className="py-1 px-2 text-right">
                         <Price
                           decimals={2}
                           priceInUcents={
