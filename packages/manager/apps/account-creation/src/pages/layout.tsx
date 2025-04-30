@@ -7,6 +7,7 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import UserProvider from '@/context/user/user.provider';
 import ovhCloudLogo from '@/assets/logo-ovhcloud.png';
+import sideBackground from '@/assets/side_background.svg';
 
 export default function Layout() {
   const location = useLocation();
@@ -39,7 +40,12 @@ export default function Layout() {
               <Outlet />
             </div>
           </div>
-          <div className="flex justify-center app-content lg:w-5/12 mx-auto min-h-[500px] bg-red-50">
+          <div className="flex justify-center sidebar lg:w-5/12 mx-auto min-h-[500px] bg-gradient-to-br from-[#011B67] to-[#110BF5]">
+            <img
+              src={sideBackground}
+              alt="reassuring wording background"
+              className="sidebar-background-image"
+            />
             <div className="md:p-8 w-full">Blabla</div>
           </div>
         </div>
