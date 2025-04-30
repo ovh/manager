@@ -1,6 +1,6 @@
 {
   "manager_billing_subscription": "My offer",
-  "manager_billing_subscription_creation": "Subscription date",
+  "manager_billing_subscription_creation": "Commitment date",
   "manager_billing_subscription_next_due_date": "Next payment date",
   "manager_billing_subscription_engagement": "Commitment",
   "manager_billing_subscription_engagement_status_none": "No commitment",
@@ -29,7 +29,7 @@
   "manager_billing_subscription_autorenew_title": "Automatic renewal",
   "manager_billing_subscription_configure_renew": "Configure renewal",
   "manager_billing_subscription_configure_renew_frequency": "Configure renewal frequency",
-  "manager_billing_subscription_resiliate": "Terminate",
+  "manager_billing_subscription_resiliate": "Cancel",
   "manager_billing_subscription_resiliate_my_engagement": "Cancel subscription",
   "manager_billing_subscription_pay_bill": "Pay",
   "manager_billing_subscription_pay_bill_renew": "Renew",
