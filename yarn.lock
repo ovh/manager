@@ -6389,15 +6389,6 @@
   resolved "https://registry.yarnpkg.com/@orchidjs/unicode-variants/-/unicode-variants-1.1.2.tgz#1fd71791a67fdd1591ebe0dcaadd3964537a824e"
   integrity sha512-5DobW1CHgnBROOEpFlEXytED5OosEWESFvg/VYmH0143oXcijYTprRYJTs+55HzGM4IqxiLFSuqEzu9mPNwVsA==
 
-"@ovh-ux/manager-core-api@^0.10.1":
-  version "0.10.1"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core-api/-/manager-core-api-0.10.1.tgz#139b02351d8bd72479fbc5a6861dae17a875108e"
-  integrity sha512-rDoN7OHsqeRoW4iepD1FrFApOkN/RBkIwxT7dqZmPQfnq0J+a1szoXPRzDiN2g/SXRSsTqUEhSPdoGvhooapvg==
-  dependencies:
-    "@ovh-ux/manager-core-sso" "^0.3.0"
-    "@ovh-ux/request-tagger" "^0.4.0"
-    axios "^1.1.2"
-
 "@ovh-ux/manager-pci-common@^0.16.4":
   version "0.16.4"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-pci-common/-/manager-pci-common-0.16.4.tgz#0d9f4efd0140cd4f2eb0f9b508f3e53a8120e5c2"
@@ -6467,7 +6458,7 @@
     tailwindcss "^3.4.4"
     uuid "^9.0.1"
 
-"@ovh-ux/manager-react-shell-client@*":
+"@ovh-ux/manager-react-shell-client@^0.8.5":
   version "0.8.5"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-shell-client/-/manager-react-shell-client-0.8.5.tgz#b391298e455dd79b0d29a2cfff38a677c8472ef6"
   integrity sha512-e5L8F6ZciX1gDacWCR67zkKXT1R9iNTag1atL+NFnx2MpB4NJBWq5ro6tUVg3q5DBkToYNsdiz1MGG6HxhSfiw==
