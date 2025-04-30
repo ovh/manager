@@ -36,7 +36,7 @@ const OnboardingTile = ({
           {description}
         </CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="flex-1">
         <Trans
           t={t}
           i18nKey={content}
