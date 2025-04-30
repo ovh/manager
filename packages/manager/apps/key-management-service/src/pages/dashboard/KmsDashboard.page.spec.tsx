@@ -8,7 +8,7 @@ import {
 import { renderTestApp } from '@/utils/tests/renderTestApp';
 import { labels } from '@/utils/tests/init.i18n';
 import { okmsMock } from '@/mocks/kms/okms.mock';
-import { FEATURES } from '@/utils/feature-availability/feature-availability.constants';
+import { KMS_FEATURES } from '@/utils/feature-availability/feature-availability.constants';
 import { SERVICE_KEYS_LABEL } from '@/constants';
 import { KMS_ROUTES_URLS } from '@/routes/routes.constants';
 
@@ -26,7 +26,7 @@ describe('KMS dashboard test suite', () => {
 
   it('should display the kms dashboard page', async () => {
     await renderTestApp(KMS_ROUTES_URLS.kmsDashboard(okmsMock[0].id), {
-      feature: FEATURES.LOGS,
+      feature: KMS_FEATURES.LOGS,
     });
 
     await waitFor(

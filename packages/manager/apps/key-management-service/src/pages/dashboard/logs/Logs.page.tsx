@@ -6,17 +6,19 @@ import {
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useOKMSById } from '@/data/hooks/useOKMS';
-import { FEATURES } from '@/utils/feature-availability/feature-availability.constants';
+import { KMS_FEATURES } from '@/utils/feature-availability/feature-availability.constants';
 
 export default function KmsLogs() {
   const { okmsId } = useParams();
   const { data: okms } = useOKMSById(okmsId);
 
-  const { data: features, isLoading } = useFeatureAvailability([FEATURES.LOGS]);
+  const { data: features, isLoading } = useFeatureAvailability([
+    KMS_FEATURES.LOGS,
+  ]);
 
   return (
     <RedirectionGuard
-      condition={features && !features[FEATURES.LOGS]}
+      condition={features && !features[KMS_FEATURES.LOGS]}
       isLoading={isLoading}
       route={`/${okmsId}`}
     >
