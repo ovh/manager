@@ -1,0 +1,7 @@
+{
+  "manager_components_delete_modal_cancel_button": "Non, refuser",
+  "manager_components_delete_modal_delete_button": "Oui, résilier",
+  "manager_components_delete_modal_description": "La résiliation de votre service effacera définitivement toutes les données correspondantes. Souhaitez-vous procéder à la résiliation de votre service ?",
+  "manager_components_delete_modal_headline": "Résilier {{serviceType}} ?",
+  "manager_components_delete_modal_headline_service": "Service"
+}
