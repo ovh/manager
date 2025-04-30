@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-object-storage-app",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "private": true,
   "description": "PCI Object Storage react app",
   "type": "module",
@@ -16,8 +16,8 @@
     "@ovh-ux/manager-config": "^8.3.1",
     "@ovh-ux/manager-core-api": "^0.11.1",
     "@ovh-ux/manager-core-utils": "*",
-    "@ovh-ux/manager-pci-common": "^2.4.8",
-    "@ovh-ux/manager-react-components": "^2.21.1",
+    "@ovh-ux/manager-pci-common": "^2.4.9",
+    "@ovh-ux/manager-react-components": "^2.22.0",
     "@ovh-ux/manager-react-core-application": "^0.11.21",
     "@ovh-ux/manager-react-shell-client": "^0.8.7",
     "@ovh-ux/manager-tailwind-config": "^0.3.0",

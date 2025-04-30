@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.22.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.22.0...@ovh-ux/manager-iplb@1.22.1) (2025-04-30)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([d4f4eeb](https://github.com/ovh/manager/commit/d4f4eebba660f1f4c6185898db356ac5c66b11e1))
+
+
+
+
+
 # [1.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.21.0...@ovh-ux/manager-iplb@1.22.0) (2025-04-22)
 
 
