@@ -25,6 +25,7 @@ export default [
     children: [
       {
         path: '',
+        id: 'onboarding',
         ...lazyRouteConfig(() =>
           import('@/pages/services/onboarding/Onboarding.page'),
         ),
