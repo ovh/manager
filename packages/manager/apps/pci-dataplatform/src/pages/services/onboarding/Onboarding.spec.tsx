@@ -3,6 +3,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 
 import Onboarding from '@/pages/services/onboarding/Onboarding.page';
 
+import { getProject } from '@/data/project/project.api';
 import { Locale } from '@/hooks/useLocale';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import {
@@ -36,6 +37,9 @@ describe('Onboarding page', () => {
         })),
       };
     });
+    vi.mock('@/data/project/project.api', () => ({
+      getProject: vi.fn(() => mockedPciProject),
+    }));
   });
   afterEach(() => {
     vi.clearAllMocks();
@@ -53,9 +57,7 @@ describe('Onboarding page', () => {
   });
 
   it('renders discovery banner when it is discovery mode', async () => {
-    vi.mock('@/data/project/project.api', () => ({
-      getProject: vi.fn(() => mockedPciDiscoveryProject),
-    }));
+    vi.mocked(getProject).mockResolvedValue(mockedPciDiscoveryProject);
     render(<Onboarding />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
       expect(screen.getByTestId('discovery-container')).toBeInTheDocument();
@@ -63,9 +65,6 @@ describe('Onboarding page', () => {
   });
 
   it('does not render discovery banner when it is  not discovery mode', async () => {
-    vi.mock('@/data/project/project.api', () => ({
-      getProject: vi.fn(() => mockedPciProject),
-    }));
     render(<Onboarding />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
       expect(
