@@ -11,12 +11,7 @@ import Link from '@/components/links/Link.component';
 const Onboarding = () => {
   const { t } = useTranslation('dataplatform/services');
   const params = useParams();
-  const DATA_PLATFORM_CONFIG_URL =
-    'https://hq-api.eu.dataplatform.ovh.net/iam/v4/login?authentication_provider=ovh&project={projectId}&app_id=forepaas&&response_type=token&redirect_uri=https%3A%2F%2Feu.dataplatform.ovh.net&authorize_bypass=true&token_mode=cookie&force_auth=false';
-  const replacedDataplatformUrl = DATA_PLATFORM_CONFIG_URL.replace(
-    '{projectId}',
-    `${params?.projectId}`,
-  );
+  const DATA_PLATFORM_CONFIG_URL = `https://hq-api.eu.dataplatform.ovh.net/iam/v4/login?authentication_provider=ovh&project=${params?.projectId}&app_id=forepaas&&response_type=token&redirect_uri=https%3A%2F%2Feu.dataplatform.ovh.net&authorize_bypass=true&token_mode=cookie&force_auth=false`;
   const projectData = usePciProject();
   const isProjectDiscoveryMode =
     projectData.data?.planCode === PlanCode.DISCOVERY;
@@ -75,7 +70,7 @@ const Onboarding = () => {
         </Alert>
       )}
       <Button className="mt-2" disabled={isProjectDiscoveryMode}>
-        <a href={replacedDataplatformUrl} target="blank">
+        <a href={DATA_PLATFORM_CONFIG_URL} target="blank">
           {t('button_text')}
         </a>
       </Button>
