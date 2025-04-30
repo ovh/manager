@@ -19,7 +19,7 @@ export const mockedPartnerImagePerApp: ImagePartnerApp = {
   id: 'sentiment-analysis-app',
   licensing: ai.capabilities.LicensingTypeEnum['per-app'],
   logoUrl: 'logoUrl',
-  name: 'sentiment-analysis',
+  name: 'sentiment-analysis-app',
   partnerId: 'lettria',
   partnerName: 'Lettria',
   versions: ['1'],
