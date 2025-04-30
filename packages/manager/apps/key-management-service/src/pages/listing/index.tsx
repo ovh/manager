@@ -88,6 +88,8 @@ export default function Listing() {
     },
   ];
 
+  const [fetchAll, setFetchAll] = useState<boolean>(false);
+
   const {
     data,
     flattenData,
@@ -98,7 +100,20 @@ export default function Listing() {
     status,
   } = useOKMSList({
     pageSize: 10,
+    shouldFetchAll: fetchAll,
   });
+
+  console.info('*************************');
+  console.info('data : ', data);
+  console.info('flattenData : ', flattenData);
+
+  const test =
+    flattenData?.map((item, index) => ({
+      ...item,
+      id: `${item.id}-${index}-coucou`,
+    })) || [];
+
+  console.info('test 1111111 : ', test);
 
   useAutoRefetch({
     queryKey: getOkmsServicesResourceListQueryKey,
@@ -149,10 +164,41 @@ export default function Listing() {
           {flattenData && (
             <Datagrid
               columns={columns}
-              items={flattenData}
+              items={
+                fetchAll
+                  ? [
+                      ...test,
+                      ...test,
+                      ...test,
+                      ...test,
+                      ...test,
+                      ...test,
+                      ...test,
+                      ...test,
+                      ...test,
+                      ...test,
+                      ...test,
+                      ...test,
+                      ...test,
+                      ...test,
+                      ...test,
+                      ...test,
+                      ...test,
+                      ...test,
+                      ...test,
+                      ...test,
+                      ...test,
+                      ...test,
+                      ...test,
+                      ...test,
+                    ]
+                  : flattenData
+              }
               totalItems={flattenData.length || 0}
               hasNextPage={hasNextPage}
               onFetchNextPage={() => fetchNextPage()}
+              onFetchAllPages={() => setFetchAll(true)}
+              isFetchAll={fetchAll}
               contentAlignLeft
             />
           )}

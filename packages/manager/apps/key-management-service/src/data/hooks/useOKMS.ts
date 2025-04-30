@@ -26,9 +26,40 @@ export const useOKMSById = (okmsId: string) => {
   });
 };
 
-export const useOKMSList = ({ pageSize }: { pageSize?: number }) =>
-  useResourcesIcebergV2<OKMS>({
+export const useOKMSList = ({
+  pageSize,
+  shouldFetchAll,
+}: {
+  pageSize?: number;
+  shouldFetchAll?: boolean;
+}) => {
+  // return useResourcesIcebergV2<OKMS>({
+  //   route: '/okms/resource',
+  //   queryKey: getOkmsServicesResourceListQueryKey,
+  //   pageSize,
+  //   shouldFetchAll,
+  // });
+  const { data, ...rest } = useResourcesIcebergV2<OKMS>({
     route: '/okms/resource',
     queryKey: getOkmsServicesResourceListQueryKey,
     pageSize,
+    shouldFetchAll,
   });
+
+  console.info('data', data);
+  const tmp = [...(data?.pages[0].data || []), ...(data?.pages[0].data || [])];
+
+  console.info('tmp', tmp);
+  const test = tmp.map((item, index) => ({
+    ...item,
+    id: `${item.id}-${index}-coucou`,
+  }));
+
+  console.info('test condition 1', test);
+
+  return {
+    flattenData: test,
+    data: { pages: [{ data: test }] },
+    ...rest,
+  };
+};

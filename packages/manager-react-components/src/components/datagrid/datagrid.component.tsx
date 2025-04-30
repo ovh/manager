@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useMemo, useRef } from 'react';
+import React, { Fragment, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   ColumnDef,
@@ -24,6 +24,7 @@ import {
   OdsSkeleton,
   OdsTable,
 } from '@ovhcloud/ods-components/react';
+
 import {
   FilterCategories,
   FilterComparator,
@@ -35,6 +36,8 @@ import { FilterWithLabel } from '../filters/interface';
 import { DataGridTextCell } from './text-cell.component';
 import { defaultNumberOfLoadingRows } from './datagrid.contants';
 import { DatagridTopbar } from './datagrid-topbar.component';
+import DatagridVirtualized from './datagrid-virtualized.component';
+import DatagridHeader from './datagrid-header.component';
 import './translations';
 
 export type ColumnSort = TanstackColumnSort;
@@ -149,6 +152,7 @@ export interface DatagridProps<T> {
   resetExpandedRowsOnItemsChange?: boolean;
   /** When true, will fix the columns size by column definition size */
   tableLayoutFixed?: boolean;
+  isFetchAll?: boolean;
 }
 
 export const Datagrid = <T,>({
@@ -160,6 +164,7 @@ export const Datagrid = <T,>({
   search,
   topbar,
   totalItems,
+  isFetchAll,
   pagination,
   sorting,
   className,
@@ -186,6 +191,8 @@ export const Datagrid = <T,>({
     : 1;
 
   const headerRefs = useRef({});
+
+  console.info('Items : ', items);
 
   const table = useReactTable({
     columns: [
@@ -311,8 +318,24 @@ export const Datagrid = <T,>({
     [columns],
   );
 
+  console.info('isFetchAll : ', isFetchAll);
+  if (isFetchAll) {
+    console.info('CONDITION 2');
+    return (
+      <>
+        <div>virtualized</div>
+        <DatagridVirtualized
+          table={table}
+          contentAlignLeft={contentAlignLeft}
+          onSortChange={onSortChange}
+        />
+      </>
+    );
+  }
+
   return (
     <div>
+      {/* voir pour decouper le datagrid topbar */}
       <DatagridTopbar
         columnsVisibility={columnsVisibility}
         filtersColumns={filtersColumns}
@@ -329,6 +352,7 @@ export const Datagrid = <T,>({
               { '--expander-column-width': '2.5rem' } as React.CSSProperties
             }
           >
+            {/* voir pour decouper le datagrid header */}
             {!hideHeader && (
               <thead>
                 {table.getHeaderGroups().map((headerGroup) => (
@@ -462,6 +486,7 @@ export const Datagrid = <T,>({
           </table>
         </OdsTable>
       </div>
+      {/* voir pour decouper le datagrid bottombar */}
       {!onFetchNextPage && items?.length > 0 && pagination ? (
         <OdsPagination
           defaultCurrentPage={pagination.pageIndex + 1}
@@ -497,6 +522,7 @@ export const Datagrid = <T,>({
       ) : (
         <></>
       )}
+      {/* voir pour decouper le datagrid bottombar */}
       {hasNextPage ? (
         <div className="flex justify-center gap-5 my-5">
           <OdsButton
@@ -511,7 +537,9 @@ export const Datagrid = <T,>({
               data-testid="load-all-btn"
               variant={ODS_BUTTON_VARIANT.outline}
               label={t('common_pagination_load_all')}
-              onClick={onFetchAllPages}
+              onClick={(event) => {
+                onFetchAllPages(event);
+              }}
               isLoading={isLoading}
             />
           )}
