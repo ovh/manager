@@ -1,6 +1,7 @@
 import { FilterComparator } from '@ovh-ux/manager-core-api';
 import { TProject } from '@ovh-ux/manager-pci-common';
 import {
+  ChangelogButton,
   FilterAdd,
   FilterList,
   Notifications,
@@ -43,6 +44,7 @@ import { Spinner } from '@/components/spinner/Spinner.component';
 import { SECTIONS } from '@/routes/routes';
 import { SearchNotifications } from '@/components/SearchNotifications/SearchNotifications';
 import { useActionSection } from '@/hooks/instance/action/useActionSection';
+import { CHANGELOG_LINKS } from '@/constants';
 
 const initialSorting = {
   id: 'name',
@@ -141,7 +143,10 @@ const Instances: FC = () => {
         <div className="header mb-6 mt-8">
           <div className="flex items-center justify-between">
             <Title>{t('common:pci_instances_common_instances_title')}</Title>
-            <PciGuidesHeader category="instances"></PciGuidesHeader>
+            <div className="flex items-center flex-wrap">
+              <ChangelogButton links={CHANGELOG_LINKS} />
+              <PciGuidesHeader category="instances" />
+            </div>
           </div>
         </div>
         <div>
