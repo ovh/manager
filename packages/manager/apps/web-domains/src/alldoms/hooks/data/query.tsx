@@ -4,10 +4,16 @@ import {
   getallDomList,
   getAllDomProperty,
   getallDomService,
+  getDomainDetail,
+  getDomainDetailInformation,
   updateAllDomService,
   updateDomainServiceInfo,
 } from '@/alldoms/data/api/web-domains';
-import { UpdateAllDomServiceProps } from '@/alldoms/types';
+import {
+  TAllDomDomains,
+  TDomainDetail,
+  UpdateAllDomServiceProps,
+} from '@/alldoms/types';
 
 export const useGetAllDomServiceList = () => {
   return useQuery<string[]>({
@@ -56,5 +62,19 @@ export const useUpdateDomainServiceInfo = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['alldom'] });
     },
+  });
+};
+
+export const useGetDomainDetail = (domainName: string) => {
+  return useQuery<TDomainDetail>({
+    queryKey: ['domain', 'name', domainName],
+    queryFn: () => getDomainDetail(domainName),
+  });
+};
+
+export const useGetDomainDetailInfo = ({ serviceName }) => {
+  return useQuery<TAllDomDomains>({
+    queryKey: ['domain', 'information', serviceName],
+    queryFn: () => getDomainDetailInformation(serviceName),
   });
 };

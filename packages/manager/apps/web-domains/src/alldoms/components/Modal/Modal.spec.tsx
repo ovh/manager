@@ -3,17 +3,17 @@ import React from 'react';
 import { render, waitFor, screen, fireEvent } from '@testing-library/react';
 import { wrapper } from '@/alldoms/utils/test.provider';
 import Modal from './Modal';
-import { serviceInfoDetailObject } from '@/alldoms/__mocks__/serviceInfoDetail';
+import { serviceInfoDetail } from '@/alldoms/__mocks__/serviceInfoDetail';
 
 describe('Modal', () => {
-  const domains = serviceInfoDetailObject.domainAttached;
+  const { domains } = serviceInfoDetail.domainAttached.currentState;
 
   it('display the modal', async () => {
     render(
       <Modal
         modalOpen={true}
         closeModal={null}
-        serviceDetail={serviceInfoDetailObject}
+        serviceDetail={serviceInfoDetail}
       />,
       { wrapper },
     );
@@ -30,17 +30,17 @@ describe('Modal', () => {
   });
 
   domains.forEach((domain) => {
-    it(`should render ${domain} checkbox`, async () => {
+    it(`should render ${domain.name} checkbox`, async () => {
       render(
         <Modal
           modalOpen={true}
           closeModal={null}
-          serviceDetail={serviceInfoDetailObject}
+          serviceDetail={serviceInfoDetail}
         />,
         { wrapper },
       );
       await waitFor(async () => {
-        const checkbox = await screen.findByTestId(`checkbox-${domain}`);
+        const checkbox = await screen.findByTestId(`checkbox-${domain.name}`);
         const input = checkbox.querySelector('input');
         expect(input).toBeInTheDocument();
         expect(input?.checked).toBe(false);
@@ -55,7 +55,7 @@ describe('Modal', () => {
       <Modal
         modalOpen={true}
         closeModal={null}
-        serviceDetail={serviceInfoDetailObject}
+        serviceDetail={serviceInfoDetail}
       />,
       { wrapper },
     );
@@ -69,7 +69,7 @@ describe('Modal', () => {
     await waitFor(async () => {
       await Promise.all(
         domains.map(async (domain) => {
-          const checkbox = await screen.findByTestId(`checkbox-${domain}`);
+          const checkbox = await screen.findByTestId(`checkbox-${domain.name}`);
           const input = checkbox.querySelector('input');
           expect(input?.checked).toBe(true);
         }),

@@ -18,9 +18,7 @@ export default function Modal({
   closeModal,
 }: Readonly<ModalProps>) {
   const { t } = useTranslation('allDom');
-  const [domainAttachedChecked, setDomainAttachedChecked] = useState<string[]>(
-    [],
-  );
+  const [domainAttachedChecked, setDomainAttachedChecked] = useState<[]>([]);
   const [isAllDomainChecked, setIsAllDomainChecked] = useState<boolean>(false);
   const [isStepOne, setIsStepOne] = useState<boolean>(true);
 
@@ -28,7 +26,7 @@ export default function Modal({
     setIsStepOne(!isStepOne);
   };
 
-  const handleDomainAttached = (domainsChecked: string[]) => {
+  const handleDomainAttached = (domainsChecked: []) => {
     setDomainAttachedChecked(domainsChecked);
   };
 
@@ -44,7 +42,7 @@ export default function Modal({
         closeModal();
         setIsStepOne(true);
       }}
-      color={ODS_MODAL_COLOR.warning}
+      color={isStepOne ? ODS_MODAL_COLOR.information : ODS_MODAL_COLOR.critical}
       data-testid="modal"
     >
       <hgroup className="mb-4">
@@ -60,7 +58,7 @@ export default function Modal({
 
       {isStepOne ? (
         <ModalStepOne
-          domainAttached={serviceDetail.domainAttached}
+          domains={serviceDetail.domainAttached.currentState.domains}
           checkAllDomain={isAllDomainChecked}
           changeStep={changeStep}
           domainAttachedChecked={domainAttachedChecked}
