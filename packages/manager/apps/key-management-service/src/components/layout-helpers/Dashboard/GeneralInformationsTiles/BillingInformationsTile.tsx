@@ -31,7 +31,7 @@ import {
   DISPLAY_CONTACTS_MANAGEMENT_KEY,
   dateFormat,
 } from './BillingInformationsTile.constants';
-import { ROUTES_URLS } from '@/routes/routes.constants';
+import { KMS_ROUTES_URIS } from '@/routes/routes.constants';
 
 type BillingInformationsTileProps = {
   okmsService?: ServiceDetails;
@@ -68,7 +68,7 @@ const BillingInformationsTile = ({
           actionType: 'navigation',
           actions: ['delete_kms'],
         });
-        navigate(ROUTES_URLS.terminateOkms);
+        navigate(KMS_ROUTES_URIS.terminateOkms);
       },
     },
   ];

@@ -10,10 +10,11 @@ import { labels } from '@/utils/tests/init.i18n';
 import { okmsMock } from '@/mocks/kms/okms.mock';
 import { FEATURES } from '@/utils/feature-availability/feature-availability.constants';
 import { SERVICE_KEYS_LABEL } from '@/constants';
+import { KMS_ROUTES_URLS } from '@/routes/routes.constants';
 
 describe('KMS dashboard test suite', () => {
   it('should display an error if the API is KO', async () => {
-    await renderTestApp(`/${okmsMock[0].id}`, {
+    await renderTestApp(KMS_ROUTES_URLS.kmsDashboard(okmsMock[0].id), {
       isOkmsKO: true,
     });
 
@@ -24,7 +25,7 @@ describe('KMS dashboard test suite', () => {
   });
 
   it('should display the kms dashboard page', async () => {
-    await renderTestApp(`/${okmsMock[0].id}`, {
+    await renderTestApp(KMS_ROUTES_URLS.kmsDashboard(okmsMock[0].id), {
       feature: FEATURES.LOGS,
     });
 
@@ -47,7 +48,9 @@ describe('KMS dashboard test suite', () => {
   });
 
   it(`should navigate back to the kms list on click on ${labels.dashboard.key_management_service_dashboard_back_link}`, async () => {
-    const { container } = await renderTestApp(`/${okmsMock[0].id}`);
+    const { container } = await renderTestApp(
+      KMS_ROUTES_URLS.kmsDashboard(okmsMock[0].id),
+    );
 
     const backLink = await getOdsButtonByLabel({
       container,
@@ -64,7 +67,7 @@ describe('KMS dashboard test suite', () => {
   });
 
   it(`should navigate to the service key page on click on ${SERVICE_KEYS_LABEL} `, async () => {
-    await renderTestApp(`/${okmsMock[0].id}`);
+    await renderTestApp(KMS_ROUTES_URLS.kmsDashboard(okmsMock[0].id));
 
     await waitFor(
       () => expect(screen.getByText(SERVICE_KEYS_LABEL)).toBeEnabled(),
@@ -85,7 +88,7 @@ describe('KMS dashboard test suite', () => {
   });
 
   it(`should navigate to the credential page on click on ${labels.dashboard.access_certificates} `, async () => {
-    await renderTestApp(`/${okmsMock[0].id}`);
+    await renderTestApp(KMS_ROUTES_URLS.kmsDashboard(okmsMock[0].id));
 
     await waitFor(
       () =>
@@ -111,7 +114,7 @@ describe('KMS dashboard test suite', () => {
   });
 
   it('should navigate to the rename modal on click on rename button', async () => {
-    await renderTestApp(`/${okmsMock[0].id}`);
+    await renderTestApp(KMS_ROUTES_URLS.kmsDashboard(okmsMock[0].id));
 
     await waitFor(
       () => expect(screen.getByLabelText('edit')).toBeEnabled(),

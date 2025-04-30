@@ -8,6 +8,7 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { KMS_ROUTES_URIS } from '@/routes/routes.constants';
 
 export type KmsTabProps = {
   url: string;
@@ -30,7 +31,10 @@ const KmsTabs: React.FC<KmsTabsProps> = ({ tabs }) => {
   useEffect(() => {
     const activeTab = tabs.find(
       (tab) =>
-        tab.url !== '' && location.pathname.startsWith(`/${okmsId}/${tab.url}`),
+        tab.url !== '' &&
+        location.pathname.startsWith(
+          `/${KMS_ROUTES_URIS.root}/${okmsId}/${tab.url}`,
+        ),
     );
     setActivePanel(activeTab?.url || '');
   }, [location]);
@@ -40,7 +44,6 @@ const KmsTabs: React.FC<KmsTabsProps> = ({ tabs }) => {
       <OdsTabs
         onOdsTabsSelected={(event) => {
           const { id } = event.detail.target as HTMLElement;
-          const url = `/${okmsId}/${id}`;
 
           const trackingTag = id ?? 'general-informations';
 
@@ -52,7 +55,7 @@ const KmsTabs: React.FC<KmsTabsProps> = ({ tabs }) => {
           });
 
           setActivePanel(id);
-          navigate(url);
+          navigate(id);
         }}
       >
         {tabs.map((tab: KmsTabProps) => (

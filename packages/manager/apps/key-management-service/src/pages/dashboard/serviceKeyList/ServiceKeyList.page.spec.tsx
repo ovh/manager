@@ -8,10 +8,11 @@ import { okmsMock } from '@/mocks/kms/okms.mock';
 import { serviceKeyMock } from '@/mocks/serviceKeys/serviceKeys.mock';
 import { CREATE_KEY_TEST_IDS } from '@/pages/serviceKey/CreateKey.constants';
 import { SERVICE_KEY_LIST_TEST_IDS } from './ServiceKeyList.constants';
+import { KMS_ROUTES_URLS } from '@/routes/routes.constants';
 
 describe('Service Key list test suite', () => {
   it('should display an error if the API is KO', async () => {
-    await renderTestApp(`/${okmsMock[0].id}/keys`, {
+    await renderTestApp(KMS_ROUTES_URLS.serviceKeyListing(okmsMock[0].id), {
       isServiceKeyKO: true,
     });
 
@@ -22,7 +23,7 @@ describe('Service Key list test suite', () => {
   });
 
   it('should display the kms keys listing page', async () => {
-    await renderTestApp(`/${okmsMock[0].id}/keys`);
+    await renderTestApp(KMS_ROUTES_URLS.serviceKeyListing(okmsMock[0].id));
 
     await waitFor(
       () =>
@@ -39,7 +40,7 @@ describe('Service Key list test suite', () => {
 
   it.skip(`should navigate to the service key page creation on click on ${labels.serviceKeys['key_management_service_service-keys_cta_create']} and then create a key `, async () => {
     const user = userEvent.setup();
-    await renderTestApp(`/${okmsMock[0].id}/keys`);
+    await renderTestApp(KMS_ROUTES_URLS.serviceKeyListing(okmsMock[0].id));
 
     await waitFor(
       () =>
@@ -124,7 +125,7 @@ describe('Service Key list test suite', () => {
   });
 
   it('should navigate to the service key dashboard page after clicking on a key from the listing', async () => {
-    await renderTestApp(`/${okmsMock[0].id}/keys`);
+    await renderTestApp(KMS_ROUTES_URLS.serviceKeyListing(okmsMock[0].id));
 
     await waitFor(
       () =>

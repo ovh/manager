@@ -3,7 +3,7 @@ import { OdsText } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { Title } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import { ROUTES_URLS } from '@/routes/routes.constants';
+import { KMS_ROUTES_URIS } from '@/routes/routes.constants';
 import RegionSelector from '@/components/layout-helpers/Create/RegionSelector';
 import OrderConfirmation from '@/components/layout-helpers/Create/OrderConfirmation';
 import KmsGuidesHeader from '@/components/Guide/KmsGuidesHeader';
@@ -19,9 +19,9 @@ export default function Create() {
       <Breadcrumb
         items={[
           {
-            id: ROUTES_URLS.createKeyManagementService,
+            id: KMS_ROUTES_URIS.createKeyManagementService,
             label: t('key_management_service_create_title'),
-            navigateTo: ROUTES_URLS.createKeyManagementService,
+            navigateTo: `/${KMS_ROUTES_URIS.createKeyManagementService}`,
           },
         ]}
       />

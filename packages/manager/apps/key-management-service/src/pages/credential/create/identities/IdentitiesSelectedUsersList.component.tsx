@@ -2,7 +2,7 @@ import React from 'react';
 import { DatagridColumn } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { ROUTES_URLS } from '@/routes/routes.constants';
+import { KMS_ROUTES_URIS } from '@/routes/routes.constants';
 import { useIdentityData } from '@/hooks/credential/useIdentityData';
 import { IdentityUser } from '@/types/identity.type';
 import IdentitiesSelectedBase from './IdentitiesSelectedBase.component';
@@ -53,7 +53,7 @@ const IdentitiesSelectedUsersList = ({
       title={t(
         'key_management_service_credential_create_identities_users_list_title',
       )}
-      addCallback={() => navigate(ROUTES_URLS.createCredentialAddUserModal)}
+      addCallback={() => navigate(KMS_ROUTES_URIS.createCredentialAddUserModal)}
       addButtonLabel={t(
         'key_management_service_credential_create_identities_users_list_button_add_label',
       )}

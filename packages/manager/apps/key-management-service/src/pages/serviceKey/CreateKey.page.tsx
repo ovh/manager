@@ -18,7 +18,7 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { ROUTES_URLS } from '@/routes/routes.constants';
+import { KMS_ROUTES_URIS, KMS_ROUTES_URLS } from '@/routes/routes.constants';
 import { OkmsServiceKeyReference } from '@/types/okmsServiceKeyReference.type';
 import {
   OkmsKeyTypes,
@@ -78,7 +78,7 @@ export default function CreateKey() {
   const { createKmsServiceKey, isPending } = useCreateOkmsServiceKey({
     okmsId,
     onSuccess: () => {
-      navigate(`/${okmsId}/${ROUTES_URLS.keys}`);
+      navigate(`/${KMS_ROUTES_URIS.root}/${okmsId}/${KMS_ROUTES_URIS.keys}`);
       trackPage({
         pageType: PageType.bannerSuccess,
         pageName: 'create_encryption_key',
@@ -117,19 +117,26 @@ export default function CreateKey() {
 
   const breadcrumbItems: BreadcrumbItem[] = [
     {
+      id: KMS_ROUTES_URIS.root,
+      label: t(
+        'key-management-service/listing:key_management_service_listing_title',
+      ),
+      navigateTo: `/${KMS_ROUTES_URIS.root}`,
+    },
+    {
       id: okmsId,
       label: okms?.data?.iam?.displayName,
       navigateTo: `/${okmsId}`,
     },
     {
-      id: ROUTES_URLS.keys,
+      id: KMS_ROUTES_URIS.keys,
       label: SERVICE_KEYS_LABEL,
-      navigateTo: `/${okmsId}/${ROUTES_URLS.keys}`,
+      navigateTo: `/${okmsId}/${KMS_ROUTES_URIS.keys}`,
     },
     {
-      id: ROUTES_URLS.createKmsServiceKey,
+      id: KMS_ROUTES_URIS.createKmsServiceKey,
       label: t('key_management_service_service-keys_create_title'),
-      navigateTo: `/${okmsId}/${ROUTES_URLS.keys}/${ROUTES_URLS.createKmsServiceKey}`,
+      navigateTo: `/${okmsId}/${KMS_ROUTES_URIS.keys}/${KMS_ROUTES_URIS.createKmsServiceKey}`,
     },
   ];
 
@@ -141,7 +148,7 @@ export default function CreateKey() {
     return (
       <ErrorBanner
         error={okmsError.response}
-        onRedirectHome={() => navigate(ROUTES_URLS.listing)}
+        onRedirectHome={() => navigate(KMS_ROUTES_URLS.kmsListing)}
         onReloadPage={refetchOkms}
       />
     );
@@ -151,7 +158,7 @@ export default function CreateKey() {
     return (
       <ErrorBanner
         error={serviceKeyReferenceError.response}
-        onRedirectHome={() => navigate(ROUTES_URLS.listing)}
+        onRedirectHome={() => navigate(KMS_ROUTES_URLS.kmsListing)}
         onReloadPage={refetchServiceKeyReference}
       />
     );
@@ -207,7 +214,9 @@ export default function CreateKey() {
                       actionType: 'action',
                       actions: ['cancel'],
                     });
-                    navigate(`/${okmsId}/${ROUTES_URLS.keys}`);
+                    navigate(
+                      `/${KMS_ROUTES_URIS.root}/${okmsId}/${KMS_ROUTES_URIS.keys}`,
+                    );
                   }}
                   label={t(
                     'key_management_service_service-keys_create_cta_cancel',

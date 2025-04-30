@@ -10,8 +10,8 @@ import { useTranslation } from 'react-i18next';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import KmsGuidesHeader from '@/components/Guide/KmsGuidesHeader';
 import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
-import { ROUTES_URLS } from '@/routes/routes.constants';
 import { useOkmsById } from '@/data/hooks/useOkms';
+import { KMS_ROUTES_URIS, KMS_ROUTES_URLS } from '@/routes/routes.constants';
 import Loading from '@/components/Loading/Loading';
 import { IdentityDataProvider } from '@/hooks/credential/useIdentityData';
 import { useCreateOkmsCredential } from '@/data/hooks/useCreateOkmsCredential';
@@ -55,17 +55,17 @@ const CreateCredential = () => {
     {
       id: okmsId,
       label: okms?.data?.iam?.displayName,
-      navigateTo: `/${okmsId}`,
+      navigateTo: `/${KMS_ROUTES_URIS.root}/${okmsId}`,
     },
     {
-      id: ROUTES_URLS.credentials,
+      id: KMS_ROUTES_URIS.credentials,
       label: t('key_management_service_credential'),
-      navigateTo: `/${okmsId}/${ROUTES_URLS.credentials}`,
+      navigateTo: `/${KMS_ROUTES_URIS.root}/${okmsId}/${KMS_ROUTES_URIS.credentials}`,
     },
     {
-      id: ROUTES_URLS.createKmsServiceKey,
+      id: KMS_ROUTES_URIS.createKmsServiceKey,
       label: t('key_management_service_credential_create_title'),
-      navigateTo: `/${okmsId}/${ROUTES_URLS.credentials}/${ROUTES_URLS.createCredential}`,
+      navigateTo: `/${KMS_ROUTES_URIS.root}/${okmsId}/${KMS_ROUTES_URIS.credentials}/${KMS_ROUTES_URIS.createCredential}`,
     },
   ];
 
@@ -74,7 +74,7 @@ const CreateCredential = () => {
       if (!okmsCredential.fromCSR) {
         setStep(3);
       } else {
-        navigate(`/${okmsId}/${ROUTES_URLS.credentials}`);
+        navigate(`/${okmsId}/${KMS_ROUTES_URIS.credentials}`);
       }
     }
   }, [okmsCredential]);
@@ -85,7 +85,7 @@ const CreateCredential = () => {
     return (
       <ErrorBanner
         error={error.response}
-        onRedirectHome={() => navigate(ROUTES_URLS.listing)}
+        onRedirectHome={() => navigate(KMS_ROUTES_URLS.kmsListing)}
       />
     );
 
