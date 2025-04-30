@@ -6,6 +6,8 @@ import { OdsText } from '@ovhcloud/ods-components/react';
 import { urls } from '@/routes/routes.constant';
 import { Breadcrumb } from '@/components/Breadcrumb/Breadcrumb';
 import { useHeader } from '@/components/Header/Header';
+import { ByoipOrder } from './ByoipOrder.component';
+import { ByoipContextProvider } from './Byoip.context';
 
 export const ByoipPage: React.FC = () => {
   const { t: tByoip } = useTranslation('byoip');
@@ -23,6 +25,9 @@ export const ByoipPage: React.FC = () => {
       <div>
         <OdsText>{tByoip('description')}</OdsText>
       </div>
+      <ByoipContextProvider>
+        <ByoipOrder />
+      </ByoipContextProvider>
     </BaseLayout>
   );
 };
