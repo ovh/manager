@@ -1,5 +1,5 @@
 import { ActionMenu } from '@ovh-ux/manager-react-components';
-import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
@@ -20,6 +20,7 @@ export default function DatagridColumnActionMenu({
   const { t } = useTranslation('allDom');
   const { mode } = serviceInfoDetail.serviceInfo.billing.renew.current;
   const { data: billingUrl } = useNavigationGetUrl(['manager', '/billing', {}]);
+  const { name } = serviceInfoDetail.allDomProperty;
   const renewAction =
     mode === ServiceInfoRenewMode.Automatic ? 'disable' : 'enable';
 
@@ -32,20 +33,21 @@ export default function DatagridColumnActionMenu({
         {
           id: 1,
           label: t('allDom_table_action_renew'),
-          href: `https://www.ovh.com/cgi-bin/order/renew.cgi?domainChooser=${serviceId}`,
+          href: `https://www.ovh.com/cgi-bin/order/renew.cgi?domainChooser=${name}`,
           target: '_blank',
           'data-testid': 'renew-button',
         },
         {
           id: 2,
-          label: t('allDom_table_action_terminate'),
-          onClick: () => openModal(serviceInfoDetail),
+          label: t(`allDom_table_action_${renewAction}_renewal`),
+          href: `${billingUrl}/autorenew/${renewAction}?selectedType=ALL_DOMsearchText=${name}&services=${serviceId}`,
+          target: '_blank',
         },
         {
           id: 3,
-          label: t(`allDom_table_action_${renewAction}_renewal`),
-          href: `${billingUrl}/autorenew/${renewAction}?selectedType=ALL_DOMsearchText=${serviceInfoDetail.allDomProperty.name}&services=${serviceId}`,
-          target: '_blank',
+          label: t('allDom_table_action_terminate'),
+          onClick: () => openModal(serviceInfoDetail),
+          color: ODS_BUTTON_COLOR.critical,
         },
       ]}
     />

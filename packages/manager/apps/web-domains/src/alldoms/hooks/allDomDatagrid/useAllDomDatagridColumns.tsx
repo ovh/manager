@@ -2,14 +2,17 @@ import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TServiceDetail } from '@/alldoms/types';
-import DatagridColumnDomainNumber from '@/alldoms/components/DatagridColumns/DatagridColumnDomainNumber';
-import DatagridColumnServiceName from '@/alldoms/components/DatagridColumns/DatagridColumnServiceName';
-import { DatagridColumnDate } from '@/alldoms/components/DatagridColumns/DatagridColumnDate';
-import DatagridColumnActionMenu from '@/alldoms/components/DatagridColumns/DatagridColumnActionMenu';
-import DatagridColumnContact from '@/alldoms/components/DatagridColumns/DatagridColumnContact';
-import { ServiceInfoContactEnum } from '@/alldoms/enum/service.enum';
-import DatagridColumnRenewMode from '@/alldoms/components/DatagridColumns/DatagridColumnRenewMode';
-import { findContact } from '../utils/utils';
+import DatagridColumnDomainNumber from '@/alldoms/components/AllDomDatagridColumns/DatagridColumnDomainNumber';
+import DatagridColumnServiceName from '@/alldoms/components/AllDomDatagridColumns/DatagridColumnServiceName';
+import { DatagridColumnDate } from '@/alldoms/components/AllDomDatagridColumns/DatagridColumnDate';
+import DatagridColumnActionMenu from '@/alldoms/components/AllDomDatagridColumns/DatagridColumnActionMenu';
+import DatagridColumnContact from '@/alldoms/components/AllDomDatagridColumns/DatagridColumnContact';
+import {
+  DomainRegistrationStateEnum,
+  ServiceInfoContactEnum,
+} from '@/alldoms/enum/service.enum';
+import DatagridColumnRenewMode from '@/alldoms/components/AllDomDatagridColumns/DatagridColumnRenewMode';
+import { findContact } from '../../utils/utils';
 
 export const useAllDomDatagridColumns = (
   openModal: (serviceInfoDetail: TServiceDetail) => void,
@@ -46,7 +49,15 @@ export const useAllDomDatagridColumns = (
       {
         id: 'register_domain',
         cell: (props: TServiceDetail) => (
-          <DataGridTextCell>{props.domainAttached.length}</DataGridTextCell>
+          <DataGridTextCell>
+            {
+              props.domainAttached.currentState.domains.filter(
+                (domain) =>
+                  domain.registrationStatus ===
+                  DomainRegistrationStateEnum.Registered,
+              ).length
+            }
+          </DataGridTextCell>
         ),
         label: t('allDom_table_header_register_domain'),
       },

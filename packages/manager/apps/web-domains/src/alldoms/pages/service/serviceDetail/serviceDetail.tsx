@@ -1,13 +1,14 @@
 import { BaseLayout, Breadcrumb } from '@ovh-ux/manager-react-components';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import appConfig from '@/web-domains.config';
-import ServiceDetailDomains from '@/alldoms/components/ServiceDetail/ServiceDetailDomains';
 import ServiceDetailInformation from '@/alldoms/components/ServiceDetail/ServiceDetailInformation';
 import ServiceDetailSubscribing from '@/alldoms/components/ServiceDetail/ServiceDetailSubscribing';
 import { useGetServiceInfo } from '@/alldoms/hooks/data/useGetServiceInfo';
 import Loading from '@/alldoms/components/Loading/Loading';
 import Modal from '@/alldoms/components/Modal/Modal';
+import ServiceDetailDomains from '@/alldoms/components/ServiceDetail/ServiceDetailDomains';
+import { useGetDomainDetailInfo } from '@/alldoms/hooks/data/query';
 
 export default function ServiceDetail() {
   const { serviceName } = useParams<{ serviceName: string }>();
@@ -48,20 +49,23 @@ export default function ServiceDetail() {
         />
       )}
       <React.Suspense>
-        <section className="grid grid-cols-1 gap-6 items-start lg:grid-cols-2">
-          <div className="flex flex-col gap-6">
+        <section>
+          <div className="grid grid-cols-1 gap-6 items-start mb-8 lg:grid-cols-2">
             <ServiceDetailInformation
               allDomProperty={serviceInfoDetail.allDomProperty}
-              domainsAttached={serviceInfoDetail.domainAttached}
+              extensionsList={
+                serviceInfoDetail.domainAttached.currentState.extensions
+              }
               status={serviceInfoDetail.serviceInfo.billing.renew.current.mode}
             />
-            <ServiceDetailDomains
-              domainsAttached={serviceInfoDetail.domainAttached}
+            <ServiceDetailSubscribing
+              serviceInfoDetail={serviceInfoDetail}
+              openModal={openModal}
             />
           </div>
-          <ServiceDetailSubscribing
-            serviceInfoDetail={serviceInfoDetail}
-            openModal={openModal}
+
+          <ServiceDetailDomains
+            items={serviceInfoDetail.domainAttached.currentState.domains}
           />
         </section>
       </React.Suspense>

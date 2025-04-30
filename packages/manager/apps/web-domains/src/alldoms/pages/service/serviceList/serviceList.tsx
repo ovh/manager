@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Breadcrumb,
@@ -12,7 +12,7 @@ import {
 import Loading from '@/alldoms/components/Loading/Loading';
 
 import appConfig from '@/web-domains.config';
-import { useAllDomDatagridColumns } from '@/alldoms/hooks/useAllDomDatagridColumns';
+import { useAllDomDatagridColumns } from '@/alldoms/hooks/allDomDatagrid/useAllDomDatagridColumns';
 import { useGetDatagridServiceInfoList } from '@/alldoms/hooks/data/useGetDatagridServiceInfoList';
 import { TServiceDetail, TServiceProperty } from '@/alldoms/types';
 import Modal from '@/alldoms/components/Modal/Modal';
@@ -42,6 +42,10 @@ export default function ServiceList() {
   const { data: serviceInfoList, listLoading } = useGetDatagridServiceInfoList({
     allDomList,
   });
+
+  useEffect(() => {
+    console.log(serviceInfoList);
+  }, [serviceInfoList]);
 
   const openModal = (serviceInfoFilter: TServiceDetail) => {
     setIsModalOpen(true);
