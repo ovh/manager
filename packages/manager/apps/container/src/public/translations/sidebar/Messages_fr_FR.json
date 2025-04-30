@@ -170,6 +170,7 @@
   "sidebar_security_identity_operations": "Identité, Sécurité & Opérations",
   "sidebar_security_identity_operations_short": "ISO",
   "sidebar_security_identity_operations_kms": "Key Management Service",
+  "sidebar_security_identity_operations_sms": "Secret Management Service",
   "sidebar_security_identity_operations_iam": "Identity & Access Management",
   "sidebar_security_identity_operations_logs": "Logs Data Platform",
   "sidebar_marketplace": "Marketplace",
