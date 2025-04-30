@@ -46,7 +46,8 @@ export const getColumns = (engine: database.EngineEnum) => {
             {t('tableQueryStatisticsHeadMinTime')}
           </DataTable.SortableHeader>
         ),
-        accessorFn: (row) => row.minTime.toFixed(2),
+        accessorFn: (row) => row.minTime,
+        cell: ({ row }) => row.original.minTime.toFixed(2),
       },
       {
         id: 'maxTime',
@@ -55,7 +56,8 @@ export const getColumns = (engine: database.EngineEnum) => {
             {t('tableQueryStatisticsHeadMaxTime')}
           </DataTable.SortableHeader>
         ),
-        accessorFn: (row) => row.maxTime.toFixed(2),
+        accessorFn: (row) => row.maxTime,
+        cell: ({ row }) => row.original.maxTime.toFixed(2),
       },
       {
         id: 'meanTime',
@@ -64,7 +66,8 @@ export const getColumns = (engine: database.EngineEnum) => {
             {t('tableQueryStatisticsHeadMeanTime')}
           </DataTable.SortableHeader>
         ),
-        accessorFn: (row) => row.meanTime.toFixed(2),
+        accessorFn: (row) => row.meanTime,
+        cell: ({ row }) => row.original.meanTime.toFixed(2),
       },
       {
         id: 'stdDevTime',
@@ -73,7 +76,8 @@ export const getColumns = (engine: database.EngineEnum) => {
             {t('tableQueryStatisticsHeadStdDevTime')}
           </DataTable.SortableHeader>
         ),
-        accessorFn: (row) => row.stddevTime.toFixed(2),
+        accessorFn: (row) => row.stddevTime,
+        cell: ({ row }) => row.original.stddevTime.toFixed(2),
       },
       {
         id: 'totalTime',
@@ -82,7 +86,8 @@ export const getColumns = (engine: database.EngineEnum) => {
             {t('tableQueryStatisticsHeadTotalTime')}
           </DataTable.SortableHeader>
         ),
-        accessorFn: (row) => row.totalTime.toFixed(2),
+        accessorFn: (row) => row.totalTime,
+        cell: ({ row }) => row.original.totalTime.toFixed(2),
       },
     ] as ColumnDef<database.postgresql.querystatistics.Query>[];
   }
@@ -126,7 +131,8 @@ export const getColumns = (engine: database.EngineEnum) => {
           {t('tableQueryStatisticsHeadMinTime')}
         </DataTable.SortableHeader>
       ),
-      accessorFn: (row) => row.minTimerWait.toFixed(2),
+      accessorFn: (row) => row.minTimerWait,
+      cell: ({ row }) => row.original.minTimerWait.toFixed(2),
     },
     {
       id: 'maxTimerWait',
@@ -135,7 +141,8 @@ export const getColumns = (engine: database.EngineEnum) => {
           {t('tableQueryStatisticsHeadMaxTime')}
         </DataTable.SortableHeader>
       ),
-      accessorFn: (row) => row.maxTimerWait.toFixed(2),
+      accessorFn: (row) => row.maxTimerWait,
+      cell: ({ row }) => row.original.maxTimerWait.toFixed(2),
     },
     {
       id: 'meanTime',
@@ -144,7 +151,9 @@ export const getColumns = (engine: database.EngineEnum) => {
           {t('tableQueryStatisticsHeadMeanTime')}
         </DataTable.SortableHeader>
       ),
-      accessorFn: (row) => (row.sumTimerWait / row.countStar).toFixed(2),
+      accessorFn: (row) => row.sumTimerWait / row.countStar,
+      cell: ({ row }) =>
+        (row.original.sumTimerWait / row.original.countStar).toFixed(2),
     },
     {
       id: 'sumTimerWait',
@@ -153,7 +162,8 @@ export const getColumns = (engine: database.EngineEnum) => {
           {t('tableQueryStatisticsHeadTotalTime')}
         </DataTable.SortableHeader>
       ),
-      accessorFn: (row) => row.sumTimerWait.toFixed(2),
+      accessorFn: (row) => row.sumTimerWait,
+      cell: ({ row }) => row.original.sumTimerWait.toFixed(2),
     },
   ] as ColumnDef<database.mysql.querystatistics.Query>[];
 };
