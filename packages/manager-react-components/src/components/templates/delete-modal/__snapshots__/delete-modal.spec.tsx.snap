@@ -67,3 +67,283 @@ exports[`Delete Modal component > renders loading modal 1`] = `
   </osds-modal>
 </DocumentFragment>
 `;
+
+exports[`Delete Modal component > renders loading modal 2`] = `
+<DocumentFragment>
+  <osds-modal
+    color="warning"
+    dismissible=""
+    headline="Résilier mon serviceType ?"
+  >
+    <osds-text
+      class="block my-4"
+      color="text"
+      hue="500"
+      level="body"
+      size="100"
+      style="--osds-text-color-specific-hue: var(--ods-color-text-500);"
+    >
+      La résiliation de votre service effacera définitivement toutes les données correspondantes. Souhaitez-vous procéder à la résiliation de votre service ?
+    </osds-text>
+    <div
+      class="flex justify-center"
+    >
+      <osds-spinner
+        inline=""
+        mode="INDETERMINATE"
+        role="progressbar"
+        size="md"
+      />
+    </div>
+    <osds-button
+      color="primary"
+      disabled=""
+      size="md"
+      slot="actions"
+      tabindex="-1"
+      text-align="center"
+      type="button"
+      variant="ghost"
+    >
+      deleteModalCancelButton
+    </osds-button>
+    <osds-button
+      color="primary"
+      disabled=""
+      size="md"
+      slot="actions"
+      tabindex="-1"
+      text-align="center"
+      type="button"
+      variant="flat"
+    >
+      deleteModalDeleteButton
+    </osds-button>
+  </osds-modal>
+</DocumentFragment>
+`;
+
+exports[`Delete Modal component > renders loading modal 3`] = `
+<DocumentFragment>
+  <osds-modal
+    color="warning"
+    dismissible=""
+    headline="Résilier mon serviceType ?"
+  >
+    <osds-text
+      class="block my-4"
+      color="text"
+      hue="500"
+      level="body"
+      size="100"
+      style="--osds-text-color-specific-hue: var(--ods-color-text-500);"
+    >
+      La résiliation de votre service effacera définitivement toutes les données correspondantes. Souhaitez-vous procéder à la résiliation de votre service ?
+    </osds-text>
+    <div
+      class="flex justify-center"
+    >
+      <osds-spinner
+        inline=""
+        mode="INDETERMINATE"
+        role="progressbar"
+        size="md"
+      />
+    </div>
+    <osds-button
+      color="primary"
+      disabled=""
+      size="md"
+      slot="actions"
+      tabindex="-1"
+      text-align="center"
+      type="button"
+      variant="ghost"
+    >
+      Non, refuser
+    </osds-button>
+    <osds-button
+      color="primary"
+      disabled=""
+      size="md"
+      slot="actions"
+      tabindex="-1"
+      text-align="center"
+      type="button"
+      variant="flat"
+    >
+      Oui, résilier
+    </osds-button>
+  </osds-modal>
+</DocumentFragment>
+`;
+
+exports[`Delete Modal component > renders loading modal 4`] = `
+<DocumentFragment>
+  <osds-modal
+    color="warning"
+    dismissible=""
+    headline="Résilier serviceType ?"
+  >
+    <osds-text
+      class="block my-4"
+      color="text"
+      hue="500"
+      level="body"
+      size="100"
+      style="--osds-text-color-specific-hue: var(--ods-color-text-500);"
+    >
+      La résiliation de votre service effacera définitivement toutes les données correspondantes. Souhaitez-vous procéder à la résiliation de votre service ?
+    </osds-text>
+    <div
+      class="flex justify-center"
+    >
+      <osds-spinner
+        inline=""
+        mode="INDETERMINATE"
+        role="progressbar"
+        size="md"
+      />
+    </div>
+    <osds-button
+      color="primary"
+      disabled=""
+      size="md"
+      slot="actions"
+      tabindex="-1"
+      text-align="center"
+      type="button"
+      variant="ghost"
+    >
+      Non, refuser
+    </osds-button>
+    <osds-button
+      color="primary"
+      disabled=""
+      size="md"
+      slot="actions"
+      tabindex="-1"
+      text-align="center"
+      type="button"
+      variant="flat"
+    >
+      Oui, résilier
+    </osds-button>
+  </osds-modal>
+</DocumentFragment>
+`;
+
+exports[`Delete Modal component > renders loading modal 5`] = `
+<DocumentFragment>
+  <osds-modal
+    color="warning"
+    dismissible=""
+    headline="Résilier serviceType ?"
+  >
+    <osds-text
+      class="block my-4"
+      color="text"
+      hue="500"
+      level="body"
+      size="100"
+      style="--osds-text-color-specific-hue: var(--ods-color-text-500);"
+    >
+      La résiliation de votre service effacera définitivement toutes les données correspondantes. Souhaitez-vous procéder à la résiliation de votre service ?
+    </osds-text>
+    <div
+      class="flex justify-center"
+    >
+      <osds-spinner
+        inline=""
+        mode="INDETERMINATE"
+        role="progressbar"
+        size="md"
+      />
+    </div>
+    <osds-button
+      color="primary"
+      data-testid="manager-delete-modal-cancel"
+      disabled=""
+      size="md"
+      slot="actions"
+      tabindex="-1"
+      text-align="center"
+      type="button"
+      variant="ghost"
+    >
+      Non, refuser
+    </osds-button>
+    <osds-button
+      color="primary"
+      data-testid="manager-delete-modal-confirm"
+      disabled=""
+      size="md"
+      slot="actions"
+      tabindex="-1"
+      text-align="center"
+      type="button"
+      variant="flat"
+    >
+      Oui, résilier
+    </osds-button>
+  </osds-modal>
+</DocumentFragment>
+`;
+
+exports[`Delete Modal component > renders loading modal 6`] = `
+<DocumentFragment>
+  <osds-modal
+    color="warning"
+    dismissible=""
+    headline="Résilier serviceType ?"
+  >
+    <osds-text
+      class="block my-4"
+      color="text"
+      data-testid="manager-delete-modal-description"
+      hue="500"
+      level="body"
+      size="100"
+      style="--osds-text-color-specific-hue: var(--ods-color-text-500);"
+    >
+      La résiliation de votre service effacera définitivement toutes les données correspondantes. Souhaitez-vous procéder à la résiliation de votre service ?
+    </osds-text>
+    <div
+      class="flex justify-center"
+    >
+      <osds-spinner
+        inline=""
+        mode="INDETERMINATE"
+        role="progressbar"
+        size="md"
+      />
+    </div>
+    <osds-button
+      color="primary"
+      data-testid="manager-delete-modal-cancel"
+      disabled=""
+      size="md"
+      slot="actions"
+      tabindex="-1"
+      text-align="center"
+      type="button"
+      variant="ghost"
+    >
+      Non, refuser
+    </osds-button>
+    <osds-button
+      color="primary"
+      data-testid="manager-delete-modal-confirm"
+      disabled=""
+      size="md"
+      slot="actions"
+      tabindex="-1"
+      text-align="center"
+      type="button"
+      variant="flat"
+    >
+      Oui, résilier
+    </osds-button>
+  </osds-modal>
+</DocumentFragment>
+`;
