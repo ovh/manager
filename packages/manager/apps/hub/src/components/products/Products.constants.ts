@@ -84,7 +84,7 @@ export const productListingPages: Record<
   },
   KEY_MANAGEMENT_SERVICE: {
     application: 'key-management-service',
-    hash: '#',
+    hash: '#/key-management-service',
   },
   LICENSE_CPANEL: {
     application: 'dedicated',
