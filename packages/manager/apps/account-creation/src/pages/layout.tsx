@@ -5,6 +5,7 @@ import {
   useOvhTracking,
   useRouteSynchro,
 } from '@ovh-ux/manager-react-shell-client';
+import UserProvider from '@/context/user/user.provider';
 import ovhCloudLogo from '@/assets/logo-ovhcloud.png';
 
 export default function Layout() {
@@ -24,19 +25,25 @@ export default function Layout() {
 
   return (
     <Suspense>
-      <div className="flex h-screen w-screen sm:container mx-auto">
-        <div className="flex justify-center app-content lg:w-7/12 mx-auto min-h-[500px]">
-          <div className="inline-block p-0 pt-4 pl-6">
-            <img src={ovhCloudLogo} alt="ovh-cloud-logo" className="app-logo" />
+      <UserProvider>
+        <div className="flex h-screen w-screen sm:container mx-auto">
+          <div className="flex justify-center app-content lg:w-7/12 mx-auto min-h-[500px]">
+            <div className="inline-block p-0 pt-4 pl-6">
+              <img
+                src={ovhCloudLogo}
+                alt="ovh-cloud-logo"
+                className="app-logo"
+              />
+            </div>
+            <div className="md:p-8 w-full">
+              <Outlet />
+            </div>
           </div>
-          <div className="md:p-8 w-full">
-            <Outlet />
+          <div className="flex justify-center app-content lg:w-5/12 mx-auto min-h-[500px] bg-red-50">
+            <div className="md:p-8 w-full">Blabla</div>
           </div>
         </div>
-        <div className="flex justify-center app-content lg:w-5/12 mx-auto min-h-[500px] bg-red-50">
-          <div className="md:p-8 w-full">Blabla</div>
-        </div>
-      </div>
+      </UserProvider>
     </Suspense>
   );
 }
