@@ -1,5 +1,4 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import {
   OdsBreadcrumb,
   OdsBreadcrumbItem,
@@ -14,10 +13,7 @@ export interface BreadcrumbProps {
 }
 
 function Breadcrumb({ items }: Readonly<BreadcrumbProps>): JSX.Element {
-  const { t } = useTranslation('key-management-service/listing');
-
   const breadcrumbItems = useBreadcrumb({
-    rootLabel: t('key_management_service_listing_title'),
     items,
   });
 

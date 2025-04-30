@@ -2,7 +2,6 @@ import { describe, expect, it, vi } from 'vitest';
 import { renderHook } from '@testing-library/react';
 import { useLocation } from 'react-router-dom';
 import { BreadcrumbItem, useBreadcrumb } from './useBreadcrumb';
-import { ROUTES_URLS } from '@/routes/routes.constants';
 
 const useNavigateMock = vi.fn();
 
@@ -15,8 +14,6 @@ vi.mock(`react-router-dom`, async (reactRouterDom) => {
     useLocation: vi.fn(),
   };
 });
-
-const rootLabel = 'root-label';
 
 const locationPaths = ['123123', 'path', '234234'];
 
@@ -44,47 +41,28 @@ vi.mocked(useLocation).mockReturnValue({
 });
 
 describe('useBreadcumb test suite', () => {
-  it('should set the root item label', () => {
-    // given rootlabel and items, when
-    const { result } = renderHook(() => useBreadcrumb({ rootLabel, items }));
-
-    // then
-    expect(result.current[0].label).toEqual(rootLabel);
-  });
-
-  it('should redirect to root path on root item onClick call', () => {
-    // given rootlabel and items
-    const { result } = renderHook(() => useBreadcrumb({ rootLabel, items }));
-
-    // when
-    result.current[0].onOdsClick();
-
-    // then
-    expect(useNavigateMock).toHaveBeenCalledWith(ROUTES_URLS.root);
-  });
-
   it('should replace url path value with given item label', () => {
     // given rootlabel and items, when
-    const { result } = renderHook(() => useBreadcrumb({ rootLabel, items }));
+    const { result } = renderHook(() => useBreadcrumb({ items }));
 
     // then
-    expect(result.current[1].label).toEqual(items[0].label);
+    expect(result.current[0].label).toEqual(items[0].label);
   });
 
   it('should fallback to display url path value when no corresponding given item is found', () => {
     // given rootlabel and items, when
-    const { result } = renderHook(() => useBreadcrumb({ rootLabel, items }));
+    const { result } = renderHook(() => useBreadcrumb({ items }));
 
     // then
-    expect(result.current[3].label).toEqual(locationPaths[2]);
+    expect(result.current[2].label).toEqual(locationPaths[2]);
   });
 
   it('should navigate to specified location item onClick call', () => {
     // given rootlabel and items
-    const { result } = renderHook(() => useBreadcrumb({ rootLabel, items }));
+    const { result } = renderHook(() => useBreadcrumb({ items }));
 
     // when
-    result.current[2].onOdsClick();
+    result.current[1].onOdsClick();
 
     // then
     expect(useNavigateMock).toHaveBeenCalledWith(items[1].navigateTo);
@@ -92,9 +70,9 @@ describe('useBreadcumb test suite', () => {
 
   it('should not have an onClick method when no corresponding given item is found ', () => {
     // given rootlabel and items, when
-    const { result } = renderHook(() => useBreadcrumb({ rootLabel, items }));
+    const { result } = renderHook(() => useBreadcrumb({ items }));
 
     // then
-    expect(result.current[3].onOdsClick).not.toBeDefined();
+    expect(result.current[2].onOdsClick).not.toBeDefined();
   });
 });

@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { OdsBreadcrumbItem as OdsBreadcrumbItemType } from '@ovhcloud/ods-components';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { ROUTES_URLS } from '@/routes/routes.constants';
+import { KMS_ROUTES_URIS } from '@/routes/routes.constants';
 
 export type BreadcrumbItem = {
   id: string;
@@ -10,7 +11,6 @@ export type BreadcrumbItem = {
 };
 
 export interface BreadcrumbProps {
-  rootLabel: string;
   items?: BreadcrumbItem[];
 }
 
@@ -18,16 +18,22 @@ export interface KmsBreadcrumbItemType extends OdsBreadcrumbItemType {
   onOdsClick: () => void;
 }
 
-export const useBreadcrumb = ({ rootLabel, items }: BreadcrumbProps) => {
+export const useBreadcrumb = ({ items }: BreadcrumbProps) => {
   const [pathItems, setPathItems] = useState<KmsBreadcrumbItemType[]>([]);
   const location = useLocation();
   const navigate = useNavigate();
+  const { t } = useTranslation('key-management-service/listing');
   const pathnames = location.pathname.split('/').filter((x) => x);
 
-  const rootItem = ({
-    label: rootLabel,
-    onOdsClick: () => navigate(ROUTES_URLS.root),
-  } as unknown) as KmsBreadcrumbItemType;
+  const rootItem: BreadcrumbItem = {
+    id: KMS_ROUTES_URIS.root,
+    label: t(
+      'key-management-service/listing:key_management_service_listing_title',
+    ),
+    navigateTo: `/${KMS_ROUTES_URIS.root}`,
+  };
+
+  items.push(rootItem);
 
   useEffect(() => {
     const pathNamesItems = pathnames.map((value) => {
@@ -48,5 +54,5 @@ export const useBreadcrumb = ({ rootLabel, items }: BreadcrumbProps) => {
     setPathItems(pathNamesItems as KmsBreadcrumbItemType[]);
   }, [location, items]);
 
-  return [rootItem, ...pathItems];
+  return [...pathItems];
 };
