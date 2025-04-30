@@ -67,7 +67,6 @@ const Dashboard: React.FC = () => {
       <OdsText preset="span" className="inline-block mb-4 w-[750px]">
         {t('dashboard_description')}
       </OdsText>
-
       {projectId && <TabsDashboard projectId={projectId} />}
       {!isConsumptionLoading && flavorOptions.length === 0 && (
         <OdsMessage color="information" className="inline-block mb-4 w-[750px]">

@@ -1,4 +1,3 @@
-import { CurrencyCode } from '@ovh-ux/manager-react-components';
 import { SavingsPlanConsumption } from '@/types/savingsPlanConsumption.type';
 
 export const savingsPlanConsumptionMocked: SavingsPlanConsumption = {

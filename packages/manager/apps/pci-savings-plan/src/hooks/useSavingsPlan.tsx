@@ -1,11 +1,6 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
 import { useServices } from './useService';
 import {
   UseSavingsPlanParams,
@@ -13,7 +8,7 @@ import {
   SavingsPlanPlanedChangeStatus,
   SavingsPlanService,
 } from '@/types/api.type';
-import { getSavingsPlansUrl } from '@/utils/routes';
+import { getSavingsPlansListingUrl } from '@/utils/routes';
 
 export const getSubscribedSavingsPlan = async (
   serviceId: number,
@@ -177,7 +172,7 @@ export const useSavingsPlanCreate = (
         if (foundPlan) {
           onSuccess(foundPlan);
         }
-        navigate(getSavingsPlansUrl(projectId));
+        navigate(getSavingsPlansListingUrl(projectId));
       }
     },
     mutationKey: getMutationKeyCreateSavingsPlan(serviceId),

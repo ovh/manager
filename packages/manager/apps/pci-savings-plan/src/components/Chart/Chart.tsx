@@ -63,7 +63,7 @@ const GenericChart: React.FC<ChartProps> = ({
 
   return (
     <div className="border border-gray-100 p-4 my-8 rounded-sm">
-      <OdsText preset="heading-4" className="my-8">
+      <OdsText preset="heading-4" className="my-8 ml-4">
         {chartTitle}
       </OdsText>
       <ResponsiveContainer width="100%" height={400} className="ods-font">

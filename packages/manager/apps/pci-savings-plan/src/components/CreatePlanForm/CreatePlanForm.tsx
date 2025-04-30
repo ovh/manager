@@ -374,7 +374,6 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
             });
           }}
         />
-
         <OdsButton
           data-testid="cta-plan-button"
           label={t('cta_plan')}

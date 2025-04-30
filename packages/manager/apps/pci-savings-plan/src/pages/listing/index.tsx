@@ -3,13 +3,11 @@ import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 
 import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
+import { OdsButton } from '@ovhcloud/ods-components/react';
 
 import {
   Notifications,
-  Title,
   useNotifications,
-  ChangelogButton,
 } from '@ovh-ux/manager-react-components';
 
 import {
@@ -74,12 +72,8 @@ const ListingTablePage: React.FC<ListingTablePageProps> = ({
   };
   return (
     <>
-      <div className="flex justify-between items-center">
-        <Header title={t('title')} />
-        <div className="flex flex-wrap justify-end gap-1">
-          <ChangelogButton links={CHANGELOG_LINKS} />
-        </div>
-      </div>
+      <Header title={t('title')} />
+      {projectId && <TabsDashboard projectId={projectId} />}
       <div className="py-5">
         <OdsButton
           icon="plus"

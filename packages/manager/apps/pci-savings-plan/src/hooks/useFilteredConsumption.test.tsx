@@ -4,7 +4,7 @@ import { getLastXMonths } from '@/utils/formatter/date';
 import { isInstanceFlavor } from '@/utils/savingsPlan';
 import { useFilteredConsumption } from './useFilteredConsumption';
 import { useSavingsPlanConsumption } from './useSavingsPlanConsumption';
-import { savingsPlanConsumptionMocked } from '@/_mock_/savingsPlanConsumption';
+import { savingsPlanConsumptionMocked } from '@/__mocks__/savingsPlanConsumption';
 
 vi.mock('./useSavingsPlanConsumption');
 vi.mock('@/utils/formatter/date');
