@@ -436,23 +436,6 @@ class DedicatedCloudService {
 
   /* ------- SUB DATACENTER HOSTS -------*/
 
-  getPaginatedHosts(serviceName, datacenterId, elementsByPage, elementsToSkip) {
-    return this.OvhHttp.get(
-      '/sws/dedicatedCloud/{serviceName}/datacenters/{datacenterId}/hosts',
-      {
-        rootPath: '2api',
-        urlParams: {
-          serviceName,
-          datacenterId,
-        },
-        params: {
-          count: elementsByPage,
-          offset: elementsToSkip,
-        },
-      },
-    );
-  }
-
   getHosts(serviceName, datacenterId) {
     return this.OvhHttp.get(
       '/dedicatedCloud/{serviceName}/datacenter/{datacenterId}/host',
