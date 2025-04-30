@@ -1,0 +1,17 @@
+{
+  "title": "AI Training",
+  "description1": "Addestrare algoritmi di Machine Learning da container Docker non è mai stato così semplice.",
+  "description2": "Specificare i dati da utilizzare e l'immagine Docker da avviare. e indica la quantità di risorse desiderata (RAM, CPU, GPU).",
+  "description3": "OVHcloud pianificherà automaticamente il job sull’hardware appropriato e si occuperà di tutto.",
+  "description4": "Continuando, autorizzi il servizio AI Training di OVHcloud ad accedere al contenuto dei container di oggetti all’interno del tuo progetto. Questo accesso verrà utilizzato esclusivamente per sincronizzare i dati.",
+  "createJobButton": "Crea il tuo primo job",
+  "cardTutotitle": "Tutorial",
+  "cardGuidetitle": "Guide",
+  "cardLink": "Scopri di più",
+  "cardTuto1Description": "Documentazione completa AI Training",
+  "cardTuto1Content": "Consulta tutta la documentazione di AI Training.",
+  "cardTuto2Description": "Caratteristiche, capacità e limiti",
+  "cardTuto2Content": "Scopri cos'è AI Training in OVHcloud.",
+  "cardTuto3Description": "Iniziare a utilizzare AI Training",
+  "cardTuto3Content": "Questa guida ti mostra come avviare rapidamente il Job dallo Spazio Cliente, dalla riga di comando o tramite API."
+}

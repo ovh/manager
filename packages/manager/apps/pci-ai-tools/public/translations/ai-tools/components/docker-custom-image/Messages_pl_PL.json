@@ -1,0 +1,11 @@
+{
+  "customImageTitle": "Spersonalizowany obraz Docker",
+  "privateImageDesc": "Użyj obrazu Docker, wprowadzając poniżej jego ścieżkę. Może pochodzić z publicznego rejestru (Github, Gitlab, Dockerhub) jako prywatnego.",
+  "privateImageDesc1": "Jeśli Twój obraz Docker znajduje się w prywatnym rejestrze, dodaj go wcześniej jako autoryzowany rejestr.",
+  "privateImageDesc2": "Pamiętaj, że Twój obraz musi zostać zbudowany na platformie Docker \"linux/\". Użycie docker-compose nie jest możliwe.",
+  "privateImageDesc3": "Upewnij się, czy użytkownik OVHcloud (42420:42420) ma uprawnienia niezbędne do uruchomienia procesów na Twoim obrazie.",
+  "privateImageDesc4": "Więcej informacji znajdziesz w naszej dokumentacji",
+  "privateImageLink": "Utwórz spersonalizowany obraz",
+  "priaveImageInputLabel": "Ścieżka dostępu do obrazu Docker",
+  "formDatastoreErrorMinLength": "To pole jest obowiązkowe"
+}

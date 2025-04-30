@@ -1,0 +1,15 @@
+{
+  "status-DONE": "Zakończone",
+  "status-ERROR": "Błąd",
+  "status-FAILED": "Niepowodzenie",
+  "status-FINALIZING": "Zakończenie",
+  "status-INITIALIZING": "Utwórz klaster",
+  "status-INTERRUPTED": "Przerwano",
+  "status-INTERRUPTING": "Przerwa",
+  "status-PENDING": "Uruchamianie",
+  "status-QUEUED": "Oczekujące",
+  "status-RUNNING": "W trakcie",
+  "status-RESTARTING": "Trwa restart",
+  "status-TIMEOUT": "Timeout",
+  "status-SYNC_FAILED": "Synchronizacja się nie powiodła"
+}
