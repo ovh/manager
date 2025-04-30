@@ -9,8 +9,8 @@ import {
   useProductAvailability,
 } from '@ovh-ux/manager-pci-common';
 import { OdsDivider, OdsLink, OdsText } from '@ovhcloud/ods-components/react';
-import { useMemo } from 'react';
-import { useParams } from 'react-router-dom';
+import { useEffect, useMemo } from 'react';
+import { useParams, useSearchParams } from 'react-router-dom';
 import { useMedia } from 'react-use';
 import { convertUcentsToCurrency } from '@/hooks/currency';
 import {
@@ -30,6 +30,7 @@ export type TBackupOption = {
 
 type BackupOptionStepProps = {
   selectedBackup: TBackupOption | undefined;
+  setSelectedBackup: (backup: TBackupOption) => void;
   selectedVolume: TVolume | undefined;
   onBackupChange: (option: TBackupOption) => void;
   backupOptions: TBackupOption[];
@@ -37,6 +38,7 @@ type BackupOptionStepProps = {
 
 export default function BackupOptionStep({
   selectedBackup,
+  setSelectedBackup,
   selectedVolume,
   onBackupChange,
   backupOptions,
@@ -47,6 +49,9 @@ export default function BackupOptionStep({
   const isMobileView = useMedia(`(max-width: 36em)`);
 
   const { projectId } = useParams();
+
+  const [searchParams] = useSearchParams();
+  const volumeOptionParam = searchParams.get('volumeOption');
 
   const { data: catalog } = useCatalog();
 
@@ -131,6 +136,12 @@ export default function BackupOptionStep({
     backupAvailabilityData,
     backupOptions,
   ]);
+
+  useEffect(() => {
+    if (volumeOptionParam === 'volume_snapshot') {
+      setSelectedBackup(volumeOptionsWihPrice[0]);
+    }
+  }, [searchParams, volumeOptionsWihPrice]);
 
   return (
     <div className="flex flex-col">

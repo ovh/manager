@@ -320,6 +320,7 @@ export default function CreateVolumeBackup() {
 
         <BackupOptionStep
           selectedVolume={selectedVolume}
+          setSelectedBackup={setSelectedBackup}
           selectedBackup={selectedBackup}
           onBackupChange={handleBackupOptionChange}
           backupOptions={backupOptions}
