@@ -7,11 +7,8 @@
   "scripts": {
     "build": "tsc --project tsconfig.build.json && vite build",
     "coverage": "vitest run --coverage",
-    "dev": "vite",
     "lint": "eslint ./src",
-    "start": "lerna exec --stream --scope='@ovh-ux/manager-pci-volume-snapshot-app' --include-dependencies -- npm run build --if-present",
-    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-pci-volume-snapshot-app' --include-dependencies -- npm run dev --if-present",
-    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-pci-volume-snapshot-app' --include-dependencies -- npm run dev:watch --if-present",
+    "start": "vite",
     "test": "vitest run --pool=threads"
   },
   "dependencies": {
