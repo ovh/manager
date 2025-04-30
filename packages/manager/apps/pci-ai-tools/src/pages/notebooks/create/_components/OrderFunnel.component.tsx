@@ -489,7 +489,6 @@ const OrderFunnel = ({
                         onChange={(newPrivacyValue: PrivacyEnum) =>
                           model.form.setValue('privacy', newPrivacyValue)
                         }
-                        className={classNameLabel}
                       />
                     </FormItem>
                   )}
