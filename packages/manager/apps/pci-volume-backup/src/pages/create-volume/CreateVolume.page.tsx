@@ -48,7 +48,9 @@ export default function CreateVolumePage() {
     projectId,
   );
   const backup = useMemo(() => {
-    const matchingBackup = (allBackups || []).find((d) => d.id === backupId);
+    const matchingBackup = (allBackups?.data || []).find(
+      (d) => d.id === backupId,
+    );
     return matchingBackup || null;
   }, [allBackups, backupId]);
   const { data: volume, isLoading: isVolumeLoading } = useVolume(

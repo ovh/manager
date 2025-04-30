@@ -1,12 +1,11 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { v6 } from '@ovh-ux/manager-core-api';
 import { Query } from '@tanstack/react-query';
-import { TBackup, TVolumeBackup } from './api.types';
+import { TVolumeBackup } from './api.types';
 import {
   isVolumeBackupPending,
   refetchInterval,
   getVolumeBackups,
-  getBackups,
   getVolumeBackup,
 } from './pci-volume-backup';
 import { ApiData } from '../hooks/useVolumeBackups';
@@ -202,38 +201,6 @@ describe('pci-volume-backup', () => {
       expect(result).toEqual({
         data: mockBackups,
       });
-    });
-  });
-
-  describe('getBackups', () => {
-    it('should return backups for a project', async () => {
-      const mockBackups: TBackup[] = [
-        {
-          id: '123',
-          creationDate: '2023-01-01',
-          name: 'backup-1',
-          size: 50,
-          volumeId: 'vol-1',
-          region: 'GRA',
-          status: 'ok',
-        },
-      ];
-
-      const mockResponse = {
-        data: {
-          resources: mockBackups,
-        },
-      };
-
-      vi.mocked(v6.get).mockResolvedValueOnce(mockResponse);
-
-      const projectId = 'project-123';
-      const result = await getBackups(projectId);
-
-      expect(v6.get).toHaveBeenCalledWith(
-        `/cloud/project/${projectId}/aggregated/volumeBackup`,
-      );
-      expect(result).toEqual(mockBackups);
     });
   });
 
