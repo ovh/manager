@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { generateCsv, mkConfig, download } from 'export-to-csv';
 import {
@@ -16,6 +16,7 @@ import {
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
   ODS_LINK_ICON_ALIGNMENT,
+  ODS_POPOVER_POSITION,
 } from '@ovhcloud/ods-components';
 import { OdsButton, OdsLink, OdsPopover } from '@ovhcloud/ods-components/react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
@@ -29,6 +30,8 @@ import { getAllWebHostingAttachedDomain } from '@/data/api/AttachedDomain';
 export default function Websites() {
   const { t } = useTranslation('common');
   const [isExportPopoverOpen, setIsExportPopoverOpen] = useState(false);
+  const [isCSVLoading, setIsCSVLoading] = useState(false);
+  const csvPopoverRef = useRef<HTMLOdsPopoverElement>(null);
   const {
     data,
     fetchNextPage,
@@ -274,12 +277,9 @@ export default function Websites() {
     },
   ];
 
-  const handleExportPopoverToggle = () => {
-    setIsExportPopoverOpen(!isExportPopoverOpen);
-  };
-
   const handleExportWithExportToCsv = (dataCsv: WebsiteType[]) => {
-    setIsExportPopoverOpen(false);
+    csvPopoverRef.current?.hide();
+    setIsCSVLoading(true);
     const csvConfig = mkConfig({
       filename: t('websites'),
       fieldSeparator: ',',
@@ -316,10 +316,12 @@ export default function Websites() {
     );
     addSuccess(successMessage);
     download(csvConfig)(csv);
+    setIsCSVLoading(false);
   };
 
   const handleExportAllWithExportToCsv = async () => {
-    setIsExportPopoverOpen(false);
+    csvPopoverRef.current?.hide();
+    setIsCSVLoading(true);
     const result = await getAllWebHostingAttachedDomain();
     if (result?.data && result.data.length > 0) {
       handleExportWithExportToCsv(result.data);
@@ -387,8 +389,8 @@ export default function Websites() {
               id="export-popover-trigger"
               label={t('web_hosting_export_action_label')}
               variant={ODS_BUTTON_VARIANT.outline}
-              onClick={handleExportPopoverToggle}
               data-testid="websites-page-export-button"
+              isLoading={isCSVLoading}
               icon={
                 isExportPopoverOpen
                   ? ODS_ICON_NAME.chevronUp
@@ -399,6 +401,10 @@ export default function Websites() {
             <OdsPopover
               className="py-[8px] px-0 w-max"
               triggerId="export-popover-trigger"
+              ref={csvPopoverRef}
+              onOdsHide={() => setIsExportPopoverOpen(false)}
+              onOdsShow={() => setIsExportPopoverOpen(true)}
+              position={ODS_POPOVER_POSITION.bottomStart}
               with-arrow
             >
               <div className="flex flex-col">
@@ -409,7 +415,7 @@ export default function Websites() {
                     onClick={action.onClick}
                     variant={ODS_BUTTON_VARIANT.ghost}
                     data-testid={`websites-page-export-button-${action.id}`}
-                    className="w-full"
+                    className="menu-item-button w-full"
                   />
                 ))}
               </div>
