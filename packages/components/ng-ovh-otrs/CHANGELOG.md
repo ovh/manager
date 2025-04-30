@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.6.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-otrs@9.6.0...@ovh-ux/ng-ovh-otrs@9.6.1) (2025-04-30)
+
+**Note:** Version bump only for package @ovh-ux/ng-ovh-otrs
+
+
+
+
+
 # [9.6.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-otrs@9.5.1...@ovh-ux/ng-ovh-otrs@9.6.0) (2025-03-25)
 
 
