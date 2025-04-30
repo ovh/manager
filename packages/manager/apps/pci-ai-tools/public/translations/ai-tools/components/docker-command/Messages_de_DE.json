@@ -1,0 +1,14 @@
+{
+  "fieldDockerCommandLabel": "Bestellungen",
+  "fieldDockedCommandDescription": "Geben Sie den Docker-Befehl ein, der im Container gestartet werden soll.",
+  "commandInputLabel": "Docker-Befehle",
+  "commandInputHelper": "Geben Sie die Argumente (durch Leerzeichen getrennt) ein, die an den Docker-Befehl übergeben werden. Einfache Apostrophe (`) werden nicht unterstützt und durch Anführungszeichen ersetzt.",
+  "commandSumupTitle": "Spezifischer Befehl",
+  "formDockerCommandErrorPattern": "Einfache Apostrophe (`) werden nicht unterstützt und durch Anführungszeichen ersetzt.",
+  "updateDockerCommandTitle": "Docker-Befehle aktualisieren",
+  "updateDockerCommandButtonCancel": "Abbrechen",
+  "updateDockerCommandButtonConfirm": "Bestätigen",
+  "updateDockerToastErrorTitle": "Fehler",
+  "updateDockerToastSuccessTitle": "Erfolg",
+  "updateDockerToastSuccessDescription": "Die Anwendung wurde aktualisiert"
+}

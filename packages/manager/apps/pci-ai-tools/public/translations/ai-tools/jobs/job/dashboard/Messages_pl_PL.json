@@ -1,0 +1,20 @@
+{
+  "dashboardTitle": "Schowek",
+  "accessLinkTitle": "Dostęp",
+  "httpAccess": "Dostęp do kontenera",
+  "labelsTitle": "Etykiety",
+  "resourcesTitle": "Zasoby",
+  "lifeCycleTitle": "Cykl życia",
+  "configurationTitle": "Konfiguracja",
+  "cliTitle": "CLI",
+  "cliCodeTitle": "Możesz uruchomić ponownie to samo zadanie, używając tych wierszy poleceń w CLI.",
+  "cliEquivalentToastMessage": "Skopiowano zamówienie",
+  "durationTitle": "Czas działania",
+  "jobIdLabel": "Id zadania",
+  "jobIdCopyToast": "Skopiowano identyfikator zadania",
+  "deleteJobButton": "Usuń zadanie",
+  "accessTitle": "Dostęp Http",
+  "accessTooltip": "Dostęp HTTP umożliwia przekierowanie z przeglądarki do portu 80 kontenera, jeśli nadal trwa jego wykonywanie. Zaloguj się, aby uzyskać dostęp do interfejsu WWW.",
+  "grafanaTitle": "Monitorowanie zużycia",
+  "grafanaButton": "Dashboard grafana"
+}
