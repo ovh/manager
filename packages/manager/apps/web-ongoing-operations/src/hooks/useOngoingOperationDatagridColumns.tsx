@@ -14,6 +14,7 @@ import { DNS_OPERATIONS_TABLE_HEADER_DOMAIN } from '@/pages/dashboard/Dashboard'
 export const useOngoingOperationDatagridColumns = (
   parent: ParentEnum.DOMAIN | ParentEnum.ZONE,
   data: TOngoingOperations[],
+  openModal: (id: number) => void,
 ) => {
   const { t } = useTranslation('dashboard');
   const l = getI18n();
@@ -92,8 +93,8 @@ export const useOngoingOperationDatagridColumns = (
                 className: `${!props.canAccelerate &&
                   !props.canRelaunch &&
                   !props.canCancel &&
-                  'hidden'} menu-item-button`,
-                onClick: () => navigate(`/update/${props.id}`),
+                  'hidden'} openModal menu-item-button`,
+                onClick: () => openModal(props.id),
               },
               {
                 id: 2,

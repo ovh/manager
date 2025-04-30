@@ -15,8 +15,16 @@ html {
   color: var(--ods-color-primary-800);
 }
 
+.modal::part(dialog) {
+  max-height: 70vh;
+}
+
 td > ods-text > ods-link {
   line-height: 1.2rem;
+}
+
+.modal-link::part(label) {
+  white-space: wrap;
 }
 
 .menu-item-button {

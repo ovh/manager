@@ -8,7 +8,7 @@ import { useNichandle } from '@/hooks/nichandle/useNichandle';
 import { useGetDomainInformation } from '@/hooks/data/query';
 import Loading from '@/components/Loading/Loading';
 
-interface ActionMeContactComponentProps {
+interface MeContactComponentProps {
   readonly argumentKey: string;
   readonly value: string;
   readonly domainName: string;
@@ -16,13 +16,13 @@ interface ActionMeContactComponentProps {
   readonly fields: string[];
 }
 
-export default function ActionMeContactComponent({
+export default function MeContactComponent({
   argumentKey,
   value,
   domainName,
   operationName,
   fields,
-}: ActionMeContactComponentProps) {
+}: MeContactComponentProps) {
   const { t } = useTranslation('dashboard');
   const { data: webUrl } = useNavigationGetUrl(['web', '', {}]);
   const { data: dedicatedUrl } = useNavigationGetUrl(['dedicated', '', {}]);
@@ -33,17 +33,20 @@ export default function ActionMeContactComponent({
     return <Loading />;
   }
 
-  if (serviceInfo && nichandle !== serviceInfo.contactAdmin.id) {
-    return (
-      <OdsText>{t('domain_operations_update_contact_administrator')}</OdsText>
-    );
-  }
-
   let url = `${webUrl}/domain/${domainName}/contact-management/edit-contact/${value}/`;
-  if ([domainIncomingTransfer, domainCreate].includes(operationName)) {
+  if (
+    !serviceInfo &&
+    [domainIncomingTransfer, domainCreate].includes(operationName)
+  ) {
     url = `${dedicatedUrl}/contact/${value}/${
       fields.length ? getNicParams(fields) : ''
     }`;
+  }
+
+  if (nichandle !== serviceInfo?.contactAdmin.id) {
+    return (
+      <OdsText>{t('domain_operations_update_contact_administrator')}</OdsText>
+    );
   }
 
   return (
@@ -58,7 +61,7 @@ export default function ActionMeContactComponent({
       className="block"
       target="_blank"
       icon="external-link"
-      data-testid="contactupdate"
+      data-testid="contactModal"
       isDisabled={!url}
     />
   );
