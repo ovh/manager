@@ -1,0 +1,20 @@
+{
+  "dashboardTitle": "Dashboard",
+  "accessLinkTitle": "Zugang ",
+  "httpAccess": "Zugang zum Container",
+  "labelsTitle": "Labels",
+  "resourcesTitle": "Ressourcen",
+  "lifeCycleTitle": "Lebenszyklus",
+  "configurationTitle": "Konfiguration",
+  "cliTitle": "CLI ",
+  "cliCodeTitle": "Sie können denselben Auftrag über diese Befehlszeilen in Ihrem OVHAI CLI neu starten.",
+  "cliEquivalentToastMessage": "Auftrag kopiert",
+  "durationTitle": "Betriebsdauer",
+  "jobIdLabel": "Job-ID",
+  "jobIdCopyToast": "Die Job-ID wurde kopiert",
+  "deleteJobButton": "Auftrag löschen",
+  "accessTitle": "HTTP Zugang",
+  "accessTooltip": "Der HTTP-Zugang erlaubt die Weiterleitung vom Browser auf den Port 80 des Containers, wenn dieser noch läuft. Um auf das Webinterface zuzugreifen, müssen Sie sich anmelden.",
+  "grafanaTitle": "Überwachung des Verbrauchs",
+  "grafanaButton": "Grafana Dashboard"
+}

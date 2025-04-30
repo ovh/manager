@@ -1,0 +1,14 @@
+{
+  "fieldDockerCommandLabel": "Zamówienia",
+  "fieldDockedCommandDescription": "Wpisz polecenie Docker, które chcesz uruchomić w kontenerze.",
+  "commandInputLabel": "Polecenia Docker",
+  "commandInputHelper": "Wpisz argumenty (oddzielone spacją), które zostaną przekazane do polecenia Docker. Cudzysłowy pojedyncze (`) nie są wspierane, należy je zastąpić cudzysłowami podwójnymi.",
+  "commandSumupTitle": "Określone polecenie",
+  "formDockerCommandErrorPattern": "Cudzysłowy pojedyncze (`) nie są wspierane, należy je zastąpić cudzysłowami podwójnymi.",
+  "updateDockerCommandTitle": "Aktualizacja zamówień Docker",
+  "updateDockerCommandButtonCancel": "Anuluj",
+  "updateDockerCommandButtonConfirm": "Zatwierdź",
+  "updateDockerToastErrorTitle": "Błąd",
+  "updateDockerToastSuccessTitle": "Sukcesy",
+  "updateDockerToastSuccessDescription": "Aplikacja została zaktualizowana"
+}
