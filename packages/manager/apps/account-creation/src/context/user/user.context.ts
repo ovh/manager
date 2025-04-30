@@ -1,8 +1,12 @@
 import { createContext } from 'react';
-import { User } from '@ovh-ux/manager-config';
 
-export type UserContext = User | null;
+export type UserContext =
+  | undefined
+  | {
+      legalForm?: string;
+      setLegalForm: (legalForm: string) => void;
+    };
 
-const userContext = createContext<UserContext>(null);
+const userContext = createContext<UserContext>(undefined);
 
 export default userContext;
