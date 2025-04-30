@@ -26,6 +26,7 @@ import {
   refetchInterval,
 } from '@/data/api/pci-volume-backup';
 import config from '@/pci-volume-backup.config';
+import { backupsQueryKey } from '@/data/hooks/useVolumeBackup';
 
 type ProjectParams = {
   projectId: string;
@@ -80,10 +81,7 @@ export default function Listing() {
         };
       }),
     refetchInterval,
-    queryKey: [
-      'pci-volume-backup',
-      `/cloud/project/${projectId}/aggregated/volumeBackup`,
-    ],
+    queryKey: backupsQueryKey(projectId),
     pageSize: 10,
     defaultSorting: {
       id: 'creationDate',

@@ -114,9 +114,7 @@ describe('Actions Component', () => {
     'should remove restore item from the actions list when the backup status is %s',
     (status) => {
       const backup = { ...mockBackup, status };
-      const { getAllByTestId, debug, container } = render(
-        <Actions backup={backup} />,
-      );
+      const { getAllByTestId, debug } = render(<Actions backup={backup} />);
 
       const menuItems = getAllByTestId(/^menu-item-/);
       debug(menuItems);

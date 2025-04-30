@@ -2,7 +2,7 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import {
-  getBackups,
+  getVolumeBackups,
   getVolume,
   restoreVolume,
 } from '@/data/api/pci-volume-backup';
@@ -16,7 +16,7 @@ export const backupsQueryKey = (projectId: string | undefined) => [
 export const useBackups = (projectId: string | undefined) =>
   useQuery({
     queryKey: backupsQueryKey(projectId),
-    queryFn: () => getBackups(projectId as NonNullable<typeof projectId>),
+    queryFn: getVolumeBackups(projectId as NonNullable<typeof projectId>),
     enabled: !!projectId,
   });
 
@@ -31,11 +31,11 @@ export const useBackup = ({
 
   return useMemo(
     () => ({
-      data: backups?.find((backup) => backup.volumeId === volumeId),
+      data: backups?.data?.find((backup) => backup.volumeId === volumeId),
       isLoading,
       error,
     }),
-    [backups, volumeId, isLoading, error],
+    [backups?.data, volumeId, isLoading, error],
   );
 };
 

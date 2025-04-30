@@ -148,7 +148,7 @@ describe('CreateVolumePage', () => {
       isLoading: loading,
     } as ReturnType<typeof useVolume>);
     vi.mocked(useBackups).mockReturnValue({
-      data: loading ? undefined : [MOCK_BACKUP],
+      data: loading ? undefined : { data: [MOCK_BACKUP] },
       isLoading: loading,
     } as ReturnType<typeof useBackups>);
   };
