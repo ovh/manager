@@ -17,7 +17,7 @@ export const RouterWithQueryClientWrapper = ({
       userLocale: 'en-GB',
       version: '1',
       user: mockedUser,
-      applicationName: 'pci-databases-analytics',
+      applicationName: 'pci-dataplatform',
       universe: 'pci',
       applicationURLs: {},
       message: {
