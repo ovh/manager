@@ -7,7 +7,7 @@ export const Title: React.FC<
 > = ({ children, className = '' }) => {
   return (
     <div
-      className={`${className} m-0 p-0 text-[--ods-color-heading] text-[36px] leading-[45px] font-bold mb-[24px]`}
+      className={`${className} m-0 p-0 text-[--ods-color-heading] text-[36px] leading-[45px] font-bold mb-[14px]`}
     >
       {children}
     </div>
