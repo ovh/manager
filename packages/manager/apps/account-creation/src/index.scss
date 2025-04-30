@@ -5,3 +5,19 @@
 html {
   font-family: var(--ods-font-family-default);
 }
+
+.sidebar {
+  overflow: hidden;
+  position: relative;
+}
+
+.sidebar-background-image {
+  position: absolute;
+
+  mix-blend-mode: hard-light;
+
+  left: 58px;
+  top: 202.74px;
+
+  z-index: 1;
+}
