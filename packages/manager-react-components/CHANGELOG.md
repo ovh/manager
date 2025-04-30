@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.48.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.47.1...@ovh-ux/manager-react-components@1.48.0) (2025-04-30)
+
+### Features
+
+- **mrc:** update delete-modal to FTC requests [#16454](https://github.com/ovh/manager/issues/16454) ([131b91f](https://github.com/ovh/manager/commit/131b91fd0803bf04bafd6e735f071c6eeb4c4c2e)), closes [#MANAGER-17707](https://github.com/ovh/manager/issues/MANAGER-17707)
+
 ## [1.47.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.47.0...@ovh-ux/manager-react-components@1.47.1) (2025-04-05)
 
 ### Bug Fixes
