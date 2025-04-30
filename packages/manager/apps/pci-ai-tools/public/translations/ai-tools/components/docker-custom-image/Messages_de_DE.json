@@ -1,0 +1,11 @@
+{
+  "customImageTitle": "Personalisiertes Docker Image",
+  "privateImageDesc": "Verwenden Sie Ihr Docker-Image, indem Sie unten seinen Pfad angeben. Sie kann aus einem öffentlichen Register (Github, Gitlab, Dockerhub) als privat stammen.",
+  "privateImageDesc1": "Wenn sich Ihr Docker Image in einer privaten Registry befindet, stellen Sie sicher, dass Sie es zuerst als autorisierte Registry hinzufügen.",
+  "privateImageDesc2": "Bitte beachten Sie, dass Ihr Image mit der Docker-Plattform „Linux/AMD64“ erstellt werden muss. Die Verwendung von Docker-Compose ist nicht möglich.",
+  "privateImageDesc3": "Stellen Sie sicher, dass der OVHcloud-Benutzer (42420:42420) über die erforderlichen Berechtigungen verfügt, um die Prozesse für Ihr Image zu starten.",
+  "privateImageDesc4": "Weitere Informationen finden Sie in unserer Dokumentation",
+  "privateImageLink": "Benutzerdefiniertes Image erstellen",
+  "priaveImageInputLabel": "Pfad zu Ihrem Docker Image",
+  "formDatastoreErrorMinLength": "Dieses Feld muss ausgefüllt werden"
+}
