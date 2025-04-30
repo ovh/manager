@@ -50,7 +50,7 @@ export const OptionCard: React.FC<OptionCardProps> = ({
       {description && (
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>{description}</OdsText>
       )}
-      <OdsDivider className="block -ml-3 -mr-3 mt-auto mb-2" />
+      {children && <OdsDivider className="block -ml-3 -mr-3 mt-auto mb-2" />}
       {children}
     </OdsCard>
   );

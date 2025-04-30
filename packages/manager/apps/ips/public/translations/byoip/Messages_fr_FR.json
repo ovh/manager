@@ -1,4 +1,25 @@
 {
   "title": "Bring Your Own IP (BYOIP)",
-  "description": "Importez vos propres adresses IP publiques et utilisez les sur les services OVHcloud éligibles."
+  "description": "Importez vos propres adresses IP publiques et utilisez les sur les services OVHcloud éligibles.",
+  "rir_selection_title": "Sélectionnez votre RIR - Regional Internet Registry",
+  "rir_selection_description": "Sélectionnez le RIR qui gère vos adresses IP publiques.",
+  "region_selection_title": "Séléctionnez votre campus",
+  "region_selection_description": "Un campus est l'ensemble de datacentres sur lesquels vous pourrez déplacer vos adresses IP. La liste des datacentres composant un campus est affichée ci-dessous. Vous devez sélectionner le campus ou seront situés vos services.",
+  "ip_range_selection_title": "Séléctionnez votre plage d'IP",
+  "ip_range_selection_description": "Indiquez la plage d'adresses IP que vous voulez importer (la taille de la plage doit être comprise entre /19 et /24). Si la taille de la plage est supérieure à /24, la plage d'adresse sera segmentée en un ensemble contigu de plages de taille /24",
+  "ip_range_selection_input_label": "Indiquez votre plage d'adresses IP",
+  "as_selection_title": "Séléctionnez votre AS",
+  "as_selection_description": "Choisissez l'AS avec lequel annoncer votre bloc d'adresses IP sur Internet",
+  "as_selection_input_label": "Indiquez votre numéro d'AS",
+  "as_selection_input_placeholder": "1234567890",
+  "as_selection_input_error": "Veuillez entrer un numéro d'AS valide",
+  "as_selection_input_error_message": "Le numéro d'AS doit être un nombre entier positif",
+  "order_button_title": "Passer à la commande",
+  "order_button_description": "Passer à la commande",
+  "order_button_error": "Une erreur s'est produite lors de la commande",
+  "order_button_error_message": "Veuillez réessayer",
+  "order_button_success": "La commande a été passée avec succès",
+  "order_button_success_message": "La commande a été passée avec succès",
+  "order_button_loading": "En cours de traitement...",
+  "order_button_loading_message": "Veuillez patienter..."
 }
