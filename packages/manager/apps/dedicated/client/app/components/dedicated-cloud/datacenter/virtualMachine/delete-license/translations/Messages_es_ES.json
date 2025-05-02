@@ -1,0 +1,8 @@
+{
+  "delete_license_modal_title": "Eliminar la licencia",
+  "delete_license_modal_content": "¿Seguro que quiere eliminar la licencia de esta máquina virtual?",
+  "delete_license_modal_confirm": "Confirmar",
+  "delete_license_modal_cancel": "Cancelar",
+  "delete_license_error_api": "Se ha producido un error al eliminar la licencia",
+  "delete_license_success_api": "La solicitud de eliminación de la licencia se ha enviado correctamente"
+}
