@@ -28,4 +28,7 @@ export enum CapabilityEnum {
   'userCredentialsReset' = 'userCredentialsReset',
   'userAcls' = 'userAcls',
   'users' = 'users',
+  'restApi' = 'restApi',
+  'schemaRegistry' = 'schemaRegistry',
+  'topics' = 'topics',
 }
