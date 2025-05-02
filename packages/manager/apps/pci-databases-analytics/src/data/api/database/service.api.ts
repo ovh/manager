@@ -29,6 +29,32 @@ export const getService = async <
       `/cloud/project/${projectId}/database/${serviceInfo.engine}/${serviceId}`,
     )
     .then((res) => res.data);
+  // TODO: remove once capabilities are added in API
+  if (serviceData.engine === database.EngineEnum.kafka) {
+    serviceData.capabilities = {
+      ...serviceData.capabilities,
+      topicAcls: {
+        create: database.service.capability.StateEnum.enabled,
+        read: database.service.capability.StateEnum.enabled,
+        update: database.service.capability.StateEnum.enabled,
+        delete: database.service.capability.StateEnum.enabled,
+      },
+      topics: {
+        create: database.service.capability.StateEnum.enabled,
+        read: database.service.capability.StateEnum.enabled,
+        update: database.service.capability.StateEnum.enabled,
+        delete: database.service.capability.StateEnum.enabled,
+      },
+      restApi: {
+        read: database.service.capability.StateEnum.enabled,
+        update: database.service.capability.StateEnum.enabled,
+      },
+      schemaRegistry: {
+        read: database.service.capability.StateEnum.enabled,
+        update: database.service.capability.StateEnum.enabled,
+      },
+    };
+  }
   return serviceData;
 };
 
@@ -61,6 +87,10 @@ export interface EditService extends ServiceData {
       backups?: Pick<database.service.Backup, 'time'>;
     } & {
       aclsEnabled?: boolean;
+    } & {
+      restApi?: boolean;
+    } & {
+      schemaRegistry?: boolean;
     }
   >;
 }

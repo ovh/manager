@@ -1,4 +1,3 @@
-import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import * as database from '@/types/cloud/project/database';
 import { useUserActivityContext } from '@/contexts/UserActivityContext';
@@ -12,12 +11,15 @@ import { useGetIntegrations } from '@/hooks/api/database/integration/useGetInteg
 import { useGetNamespaces } from '@/hooks/api/database/namespace/useGetNamespaces.hook';
 import { useGetCurrentQueries } from '@/hooks/api/database/query/useGetCurrentQueries.hook';
 import { useGetPatterns } from '@/hooks/api/database/pattern/useGetPatterns.hook';
+import { useGetTopics } from '@/hooks/api/database/topic/useGetTopics.hook';
+import { useGetTopicAcls } from '@/hooks/api/database/topicAcl/useGetTopicAcls.hook';
+import { useServiceData } from '../Service.context';
 
 interface ServiceTabsProps {
   service: database.Service;
 }
 const ServiceTabs = ({ service }: ServiceTabsProps) => {
-  const { projectId } = useParams();
+  const { projectId } = useServiceData();
   const { t } = useTranslation('pci-databases-analytics/services/service');
   const { isUserActive } = useUserActivityContext();
 
@@ -88,6 +90,19 @@ const ServiceTabs = ({ service }: ServiceTabsProps) => {
       enabled: !!service.capabilities.patterns?.read,
     },
   );
+  const { data: topics } = useGetTopics(projectId, service.engine, service.id, {
+    refetchInterval: isUserActive && POLLING.TOPICS,
+    enabled: !!service.capabilities.topics?.read,
+  });
+  const { data: topicAcls } = useGetTopicAcls(
+    projectId,
+    service.engine,
+    service.id,
+    {
+      refetchInterval: isUserActive && POLLING.TOPIC_ACL,
+      enabled: !!service.capabilities.topicAcls?.read,
+    },
+  );
 
   const tabs = [
     { href: '', label: t('DashboardTab'), end: true },
@@ -96,6 +111,12 @@ const ServiceTabs = ({ service }: ServiceTabsProps) => {
       label: t('UsersTab'),
       count: users?.length,
       disabled: !service.capabilities.users.read,
+    },
+    service.capabilities.topicAcls && {
+      href: 'topicAcls',
+      label: t('TopicAclsTab'),
+      count: topicAcls?.length,
+      disabled: !service.capabilities.topicAcls.read,
     },
     service.capabilities.backups && {
       href: 'backups',
@@ -138,6 +159,12 @@ const ServiceTabs = ({ service }: ServiceTabsProps) => {
       label: t('IndexPatternsTab'),
       count: patterns?.length,
       disabled: !service.capabilities.patterns.read,
+    },
+    service.capabilities.topics && {
+      href: 'topics',
+      label: t('TopicsTab'),
+      count: topics?.length,
+      disabled: !service.capabilities.topics.read,
     },
     { href: 'metrics', label: t('MetricsTab') },
     { href: 'logs', label: t('LogsTab') },
