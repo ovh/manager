@@ -29,7 +29,7 @@
   "scripts": {
     "build": "yarn run build:turbo",
     "build:turbo": "turbo run build --concurrency=5",
-    "clean": "lerna clean -y && yarn run clean:dist && rimraf node_modules",
+    "clean": "yarn run clean:dist && rimraf node_modules",
     "clean:dist": "rimraf \"packages/**/dist\"",
     "dev": "turbo run dev",
     "format": "run-p format:*",
@@ -49,12 +49,10 @@
     "packages:publish": "scripts/publish.js",
     "prepare": "husky install",
     "release": "scripts/release/release.sh",
-    "routes-migrate": "yarn workspace @ovh-ux/manager-cli run routes-migrate",
     "start": "node scripts/start-application.mjs",
-    "test": "yarn lint",
+    "test": "turbo run test --concurrency=1",
     "test:jest": "jest --runInBand",
-    "test:scripts": "make test",
-    "test:turbo": "turbo run test --concurrency=1"
+    "test:scripts": "make test"
   },
   "resolutions": {
     "@babel/runtime": "^7.22.15",
@@ -127,10 +125,11 @@
     "stylelint-config-standard": "^20.0.0",
     "stylelint-prettier": "^1.1.2",
     "stylelint-scss": "^3.18.0",
-    "turbo": "^1.4.3",
+    "turbo": "^2.5.2",
     "vite": "^5.4.18",
     "whatwg-fetch": "^3.6.2"
   },
+  "packageManager": "yarn@1.22.22",
   "engines": {
     "node": "^22",
     "yarn": ">=1.21.1"

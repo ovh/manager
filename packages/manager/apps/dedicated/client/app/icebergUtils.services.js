@@ -1,7 +1,7 @@
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
 const moduleName = 'ovhManagerDedicatedIcebergUtilsServices';
-export const name = 'icerbergUtils';
+export const name = 'icebergUtils';
 
 class IcebergUtilsServices {
   /* @ngInject */
@@ -30,10 +30,7 @@ class IcebergUtilsServices {
       .sort(sort || defaultFilterColumn, sortOrder);
 
     if (filters?.length > 0) {
-      request = IcebergUtilsServices.constructor.filterIceberg(
-        request,
-        filters,
-      );
+      request = IcebergUtilsServices.filterIceberg(request, filters);
     }
 
     return this.$q

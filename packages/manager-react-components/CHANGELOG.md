@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.21.1...@ovh-ux/manager-react-components@2.22.0) (2025-04-30)
+
+### Bug Fixes
+
+- **i18n:** add missing translations [CDS 3922] ([96f0bc8](https://github.com/ovh/manager/commit/96f0bc8b69a9417002becd19ffa74537b2a0c9a3))
+- **i18n:** add missing translations [CDS 3933] ([871f275](https://github.com/ovh/manager/commit/871f275545cfae92aaa166412a2eac6b5f15b05b))
+- **mrc:** adjust modal headline to adress fem/masc service names ([ad9ecc7](https://github.com/ovh/manager/commit/ad9ecc73b33c84056b45d51e376914f11a012f8f)), closes [#MANAGER-17707](https://github.com/ovh/manager/issues/MANAGER-17707)
+
+### Features
+
+- **mrc:** add use format date hook ([00045aa](https://github.com/ovh/manager/commit/00045aa997f3145f9101a6c103d5cb7d8ebac8fa)), closes [#16372](https://github.com/ovh/manager/issues/16372) [#16716](https://github.com/ovh/manager/issues/16716)
+- **mrc:** propagate type from column ([1e45b9f](https://github.com/ovh/manager/commit/1e45b9f2b0074016901b122efe959c43ad1e6e44)), closes [#16712](https://github.com/ovh/manager/issues/16712)
+- **mrc:** update delete-modal to FTC requests [#16454](https://github.com/ovh/manager/issues/16454) ([1aed4bb](https://github.com/ovh/manager/commit/1aed4bb777001824fa5ec87b6a7b55f8ba7a8b40)), closes [#MANAGER-17707](https://github.com/ovh/manager/issues/MANAGER-17707)
+
+## [2.21.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.21.0...@ovh-ux/manager-react-components@2.21.1) (2025-04-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-react-components
+
+# [2.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.20.0...@ovh-ux/manager-react-components@2.21.0) (2025-04-29)
+
+### Features
+
+- **vrack-services:** bump ods 18 ([#16123](https://github.com/ovh/manager/issues/16123)) ([c082be3](https://github.com/ovh/manager/commit/c082be33ef1cd4efd7b6534052dbad72695e0b39)), closes [#MANAGER-16777](https://github.com/ovh/manager/issues/MANAGER-16777)
+
 # [2.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.19.0...@ovh-ux/manager-react-components@2.20.0) (2025-04-24)
 
 ### Bug Fixes

@@ -24,6 +24,9 @@ export type FormattedDateProps = {
   format?: DateFormat;
 };
 
+/**
+ * @deprecated Use useFormatDate with date fns format instead
+ */
 export const useFormattedDate = ({
   dateString,
   defaultLocale = 'FR-fr',

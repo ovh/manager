@@ -38,6 +38,9 @@ import { useDatagridColumns } from './useDatagridColumns';
 import { getNodesQueryKey, usePaginatedNodes } from '@/api/hooks/nodes';
 import queryClient from '@/queryClient';
 import LoadingSkeleton from '@/components/LoadingSkeleton.component';
+import { isMultiDeploymentZones } from '@/helpers';
+import { useRegionInformations } from '@/api/hooks/useRegionInformations';
+import { useKubernetesCluster } from '@/api/hooks/useKubernetes';
 
 export default function NodesPage(): JSX.Element {
   const { projectId, kubeId, poolId } = useParams();
@@ -75,6 +78,12 @@ export default function NodesPage(): JSX.Element {
       queryKey: getNodesQueryKey(projectId, kubeId, poolId),
     });
   };
+  const { data: cluster } = useKubernetesCluster(projectId, kubeId);
+
+  const {
+    data: regionInformations,
+    isPending: isPendingRegionInfo,
+  } = useRegionInformations(projectId, cluster?.region);
 
   return (
     <>
@@ -206,10 +215,17 @@ export default function NodesPage(): JSX.Element {
         <FilterList filters={filters} onRemoveFilter={removeFilter} />
       </div>
 
-      <LoadingSkeleton when={!isNodesPending} spinner={{ centered: true }}>
+      <LoadingSkeleton
+        when={!isNodesPending || !isPendingRegionInfo}
+        spinner={{ centered: true }}
+      >
         <div>
           <Datagrid
-            columns={columns}
+            columns={
+              isMultiDeploymentZones(regionInformations?.type)
+                ? columns.filter((column) => column.id !== 'actions')
+                : columns
+            }
             items={nodes?.rows || []}
             totalItems={nodes?.totalRows || 0}
             pagination={pagination}

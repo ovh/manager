@@ -8,15 +8,19 @@ import NetworkClusterStep, {
   TNetworkFormState,
 } from './NetworkClusterStep.component';
 import { ModeEnum } from '@/components/network/GatewayModeSelector.component';
+import { DeploymentMode } from '@/types';
+import { isMonoDeploymentZone, isMultiDeploymentZones } from '@/helpers';
 
 export interface NetworkStepProps {
   region: string;
+  type: DeploymentMode;
   onSubmit: (networkForm: TNetworkFormState) => void;
   step: StepState;
 }
 
 export function NetworkStep({
   region,
+  type,
   onSubmit,
   step,
 }: Readonly<NetworkStepProps>) {
@@ -26,11 +30,16 @@ export function NetworkStep({
     !state.gateway?.isEnabled ||
     state.gateway?.mode === ModeEnum.AUTO ||
     state.gateway?.ip;
-  const isValid = !state.privateNetwork || isGatewayValid;
+  const hasPrivateNetwork = state.privateNetwork;
+  const isValid =
+    (isMonoDeploymentZone(type) && (!hasPrivateNetwork || isGatewayValid)) ||
+    (isMultiDeploymentZones(type) &&
+      hasPrivateNetwork &&
+      state.gateway?.isEnabled);
 
   return (
     <>
-      <NetworkClusterStep region={region} onChange={setState} />
+      <NetworkClusterStep region={region} type={type} onChange={setState} />
       {!step.isLocked && (
         <OsdsButton
           className="mt-8 w-fit"

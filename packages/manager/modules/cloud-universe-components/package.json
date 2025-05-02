@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-cloud-universe-components",
-  "version": "2.17.0",
+  "version": "2.17.1",
   "private": true,
   "description": "Collection of components for the Cloud control panel.",
   "keywords": [
@@ -27,11 +27,8 @@
   "scripts": {
     "build": "rollup -c --environment BUILD:production --bundleConfigAsCjs",
     "dev": "rollup -c --environment BUILD:development --bundleConfigAsCjs",
-    "dev:watch": "yarn run dev --watch",
-    "prepare": "yarn run build",
-    "start": "lerna exec --stream --scope='@ovh-ux/ng-ovh-cloud-universe-components' --include-dependencies -- yarn run build",
-    "start:dev": "lerna exec --stream --scope='@ovh-ux/ng-ovh-cloud-universe-components' --include-dependencies -- yarn run dev",
-    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/ng-ovh-cloud-universe-components' --include-dependencies -- yarn run dev:watch"
+    "dev:watch": "rollup -c --environment BUILD:development --bundleConfigAsCjs --watch",
+    "prepare": "rollup -c --environment BUILD:production --bundleConfigAsCjs"
   },
   "dependencies": {
     "@ovh-ux/ui-kit": "^6.10.5",

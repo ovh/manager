@@ -1,0 +1,7 @@
+{
+  "manager_components_delete_modal_cancel_button": "No, annulla",
+  "manager_components_delete_modal_delete_button": "Sì, disattiva",
+  "manager_components_delete_modal_description": "La disattivazione del servizio comporta la cancellazione definitiva di tutti i dati associati. Vuoi procedere alla disattivazione del servizio?",
+  "manager_components_delete_modal_headline": "Disattivare {{serviceType}}?",
+  "manager_components_delete_modal_headline_service": "Servizio"
+}

@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.6.2...@ovh-ux/manager-pci-object-storage-app@0.6.3) (2025-04-30)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3914] ([efac77f](https://github.com/ovh/manager/commit/efac77fba9f7fcfab46eb3316f2451285ca902df))
+
+
+
+
+
+## [0.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.6.1...@ovh-ux/manager-pci-object-storage-app@0.6.2) (2025-04-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app
+
+
+
+
+
+## [0.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.6.0...@ovh-ux/manager-pci-object-storage-app@0.6.1) (2025-04-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app
+
+
+
+
+
+# [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.5.3...@ovh-ux/manager-pci-object-storage-app@0.6.0) (2025-04-28)
+
+
+### Features
+
+* **pci-object-storage:** add datagrid sort ([#16719](https://github.com/ovh/manager/issues/16719)) ([792283c](https://github.com/ovh/manager/commit/792283cd00b4ff82e9ec6ce24be61ffe4acea3d0)), closes [#TAPC-3387](https://github.com/ovh/manager/issues/TAPC-3387)
+
+
+
+
+
 ## [0.5.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.5.2...@ovh-ux/manager-pci-object-storage-app@0.5.3) (2025-04-28)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app

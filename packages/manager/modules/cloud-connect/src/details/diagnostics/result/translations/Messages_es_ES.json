@@ -4,6 +4,6 @@
   "cloud_connect_diagnostics_result_id": "ID del diagnóstico",
   "cloud_connect_diagnostics_result_date": "Fecha",
   "cloud_connect_diagnostics_result_name": "Apellido",
-  "cloud_connect_diagnostics_result_source_setting": "Configuración de origen",
+  "cloud_connect_diagnostics_result_source_setting": "Scope",
   "cloud_connect_diagnostics_result_no_log": "El diagnóstico se ha ejecutado correctamente. No hay ningún valor para mostrar"
 }

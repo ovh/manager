@@ -3,6 +3,60 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.125.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.125.1...@ovh-ux/manager-container-app@0.125.2) (2025-04-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+## [0.125.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.125.0...@ovh-ux/manager-container-app@0.125.1) (2025-04-29)
+
+
+### Reverts
+
+* Revert "feat(container): update beta modal (#15199)" ([cfd43b1](https://github.com/ovh/manager/commit/cfd43b1b4102da4e6b08d3af951917c659565f6f)), closes [#15199](https://github.com/ovh/manager/issues/15199)
+* Revert "feat(pnr): remove switchback from pnr eu ca (#16589)" ([746d8f9](https://github.com/ovh/manager/commit/746d8f9573d40c8a1558e7591aee79e10022acd1)), closes [#16589](https://github.com/ovh/manager/issues/16589)
+* Revert "fix(pnr): fix release issues (#16755)" ([dcacd7a](https://github.com/ovh/manager/commit/dcacd7af4ba39d76ba267bcf365231347b770f9d)), closes [#16755](https://github.com/ovh/manager/issues/16755)
+
+
+
+
+
+# [0.125.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.124.0...@ovh-ux/manager-container-app@0.125.0) (2025-04-29)
+
+
+### Bug Fixes
+
+* **pnr:** fix release issues ([#16755](https://github.com/ovh/manager/issues/16755)) ([1cbd112](https://github.com/ovh/manager/commit/1cbd11245238640ff90a6ba60c50e503b1e56428)), closes [#MANAGER-18065](https://github.com/ovh/manager/issues/MANAGER-18065)
+
+
+### Features
+
+* **container:** update beta modal ([#15199](https://github.com/ovh/manager/issues/15199)) ([0b5f59d](https://github.com/ovh/manager/commit/0b5f59dfa451a66b4a3768258caf0d6ce099f595)), closes [#MANAGER-16786](https://github.com/ovh/manager/issues/MANAGER-16786)
+* **pnr:** remove switchback from pnr eu ca ([#16589](https://github.com/ovh/manager/issues/16589)) ([017b49c](https://github.com/ovh/manager/commit/017b49cb0c91beeb9ea8ee5ce331a5ecb9535782)), closes [#MANAGER-16732](https://github.com/ovh/manager/issues/MANAGER-16732)
+
+
+
+
+
+# [0.124.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.123.0...@ovh-ux/manager-container-app@0.124.0) (2025-04-28)
+
+
+### Bug Fixes
+
+* **pci-ai-endpoint:** add feature-flipping on tag ([#16798](https://github.com/ovh/manager/issues/16798)) ([c5e5233](https://github.com/ovh/manager/commit/c5e5233104c6ec84b78ccb1b63f7ffc47575169d)), closes [#AIS-1211](https://github.com/ovh/manager/issues/AIS-1211)
+
+
+### Features
+
+* **pci-ai-tools:** fix new react link for notebooks ([#16705](https://github.com/ovh/manager/issues/16705)) ([008ec0d](https://github.com/ovh/manager/commit/008ec0da445406192ef2a5735bd89622902e8680)), closes [#DATATR-2194](https://github.com/ovh/manager/issues/DATATR-2194)
+
+
+
+
+
 # [0.123.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.122.1...@ovh-ux/manager-container-app@0.123.0) (2025-04-28)
 
 

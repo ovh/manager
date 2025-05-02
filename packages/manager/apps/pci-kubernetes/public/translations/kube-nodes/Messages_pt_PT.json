@@ -49,5 +49,6 @@
   "kube_nodes_delete_nodes": "Eliminar nós",
   "kube_nodes_status_REDEPLOYING": "Aplicação das alterações",
   "kube_nodes_status_UPSCALING": "Upscaling",
-  "kube_nodes_status_DOWNSCALING": "Downscaling"
+  "kube_nodes_status_DOWNSCALING": "Downscaling",
+  "kube_nodes_status_UNKNOWN": "Desconhecido"
 }

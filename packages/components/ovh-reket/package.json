@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ovh-reket",
-  "version": "2.1.7",
+  "version": "2.1.8",
   "description": "Expose a way to get a predefined Reket instance",
   "repository": {
     "type": "git",
@@ -19,14 +19,11 @@
   "scripts": {
     "build": "rollup -c --environment BUILD:production",
     "dev": "rollup -c --environment BUILD:development",
-    "dev:watch": "yarn run dev --watch",
-    "prepare": "yarn run build",
-    "start": "lerna exec --stream --scope='@ovh-ux/ovh-reket' --include-dependencies -- yarn run build",
-    "start:dev": "lerna exec --stream --scope='@ovh-ux/ovh-reket' --include-dependencies -- yarn run dev",
-    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/ovh-reket' --include-dependencies -- yarn run dev:watch"
+    "dev:watch": "rollup -c --environment BUILD:development --watch",
+    "prepare": "rollup -c --environment BUILD:production"
   },
   "dependencies": {
-    "@ovh-ux/manager-core-sso": "^0.3.0",
+    "@ovh-ux/manager-core-sso": "^0.3.1",
     "@ovhcloud/reket-axios-client": "^0.2.1",
     "@ovhcloud/reket-core": "^0.2.1"
   },

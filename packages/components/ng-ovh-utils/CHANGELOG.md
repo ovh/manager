@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [14.5.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-utils@14.5.0...@ovh-ux/ng-ovh-utils@14.5.1) (2025-04-30)
+
+**Note:** Version bump only for package @ovh-ux/ng-ovh-utils
+
+
+
+
+
 # [14.5.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-utils@14.4.2...@ovh-ux/ng-ovh-utils@14.5.0) (2024-12-12)
 
 

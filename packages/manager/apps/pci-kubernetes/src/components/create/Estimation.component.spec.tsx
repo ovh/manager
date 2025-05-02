@@ -12,6 +12,9 @@ vi.mock('react-i18next', () => ({
       params ? `${key} ${JSON.stringify(params)}` : key,
   }),
 }));
+vi.mock('@/hooks/use3azPlanAvaible', () => ({
+  default: vi.fn(),
+}));
 
 vi.mock('@ovh-ux/manager-react-components', () => ({
   useCatalogPrice: vi.fn(),
@@ -45,10 +48,9 @@ describe('Estimation Component', () => {
       getByText('kube_common_node_pool_estimation_text'),
     ).toBeInTheDocument();
     expect(
-      getByText(
-        'kube_common_node_pool_estimation_price {"estimation":"0.00 €"}',
-      ),
+      getByText('kube_common_node_pool_estimation_price'),
     ).toBeInTheDocument();
+    expect(getByText('0.00 €')).toBeInTheDocument();
     expect(
       getByText('kube_common_node_pool_estimation_text_end'),
     ).toBeInTheDocument();
@@ -74,10 +76,9 @@ describe('Estimation Component', () => {
 
     expect(getFormattedMonthlyCatalogPriceMock).toHaveBeenCalledWith(30);
     expect(
-      getByText(
-        'kube_common_node_pool_estimation_price {"estimation":"30.00 €"}',
-      ),
+      getByText('kube_common_node_pool_estimation_price'),
     ).toBeInTheDocument();
+    expect(getByText('30.00 €')).toBeInTheDocument();
   });
 
   it('should display default price when nodePools is undefined', () => {
@@ -93,9 +94,8 @@ describe('Estimation Component', () => {
 
     expect(getFormattedMonthlyCatalogPriceMock).toHaveBeenCalledWith(0);
     expect(
-      getByText(
-        'kube_common_node_pool_estimation_price {"estimation":"x.xx €"}',
-      ),
+      getByText('kube_common_node_pool_estimation_price'),
     ).toBeInTheDocument();
+    expect(getByText('x.xx €')).toBeInTheDocument();
   });
 });

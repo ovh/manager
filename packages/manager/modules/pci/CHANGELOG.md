@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.89.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.88.0...@ovh-ux/manager-pci@6.89.0) (2025-04-28)
+
+
+### Bug Fixes
+
+* **pci-instances:** change instance details price wording ([#16555](https://github.com/ovh/manager/issues/16555)) ([a037afe](https://github.com/ovh/manager/commit/a037afeef55a827f1409386e2f699280d5e55f6e)), closes [#TAPC-3745](https://github.com/ovh/manager/issues/TAPC-3745)
+
+
+### Features
+
+* **pci-instances:** add 3az bulk create help ([#16270](https://github.com/ovh/manager/issues/16270)) ([489dd57](https://github.com/ovh/manager/commit/489dd5767eacd81750977888b930f3cffff40717)), closes [#TAPC-3388](https://github.com/ovh/manager/issues/TAPC-3388)
+
+
+
+
+
 # [6.88.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.87.0...@ovh-ux/manager-pci@6.88.0) (2025-04-23)
 
 

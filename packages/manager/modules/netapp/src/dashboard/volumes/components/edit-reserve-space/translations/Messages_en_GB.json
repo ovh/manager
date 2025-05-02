@@ -1,0 +1,9 @@
+{
+  "netapp_volumes_edit_reserve_space_title": "Edit snapshot reserve",
+  "netapp_volumes_edit_reserve_space_submit": "Edit space",
+  "netapp_volumes_edit_reserve_space_cancel": "Cancel",
+  "netapp_volumes_edit_reserve_space_label": "Reserve space",
+  "netapp_volumes_edit_reserve_space_rules": "Size limit: min {{min}}%, max {{max}}%",
+  "netapp_volumes_edit_reserve_space_success": "The snapshot reserve space will be edited shortly",
+  "netapp_volumes_edit_reserve_space_error": "An error has occurred <br> {{message}} <br> request_id: {{requestId}}"
+}

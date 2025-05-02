@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-network-common@0.4.1...@ovh-ux/manager-network-common@0.4.2) (2025-04-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-network-common
+
+
+
+
+
+## [0.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-network-common@0.4.0...@ovh-ux/manager-network-common@0.4.1) (2025-04-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-network-common
+
+
+
+
+
+# [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-network-common@0.3.2...@ovh-ux/manager-network-common@0.4.0) (2025-04-29)
+
+
+### Features
+
+* **vrack-services:** bump ods 18 ([#16123](https://github.com/ovh/manager/issues/16123)) ([c082be3](https://github.com/ovh/manager/commit/c082be33ef1cd4efd7b6534052dbad72695e0b39)), closes [#MANAGER-16777](https://github.com/ovh/manager/issues/MANAGER-16777)
+
+
+
+
+
 ## [0.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-network-common@0.3.1...@ovh-ux/manager-network-common@0.3.2) (2025-04-24)
 
 **Note:** Version bump only for package @ovh-ux/manager-network-common

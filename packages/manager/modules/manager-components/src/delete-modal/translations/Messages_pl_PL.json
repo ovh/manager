@@ -1,0 +1,7 @@
+{
+  "manager_components_delete_modal_cancel_button": "Nie, nie chcę",
+  "manager_components_delete_modal_delete_button": "Tak, chcę",
+  "manager_components_delete_modal_description": "Rezygnacja z usługi spowoduje trwałe usunięcie wszystkich powiązanych z nią danych. Czy chcesz  zrezygnować z usługi?",
+  "manager_components_delete_modal_headline": "Zakończyć {{serviceType}}?",
+  "manager_components_delete_modal_headline_service": "Usługa"
+}

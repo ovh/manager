@@ -13,26 +13,21 @@ import {
   TrackingClickParams,
 } from '@ovh-ux/manager-react-shell-client';
 import { useTranslation } from 'react-i18next';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
-  ODS_BUTTON_TYPE,
+  ODS_MESSAGE_COLOR,
   ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
+  ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
 import {
-  OsdsModal,
-  OsdsButton,
-  OsdsText,
-  OsdsMessage,
+  OdsModal,
+  OdsButton,
+  OdsText,
+  OdsMessage,
 } from '@ovhcloud/ods-components/react';
-import { handleClick } from '@ovh-ux/manager-react-components';
 import { useCreateVrackServicesCart } from '@ovh-ux/manager-network-common';
 import { LoadingText } from '@/components/LoadingText.component';
 import { OrderSubmitModalContent } from '@/components/OrderSubmitModalContent.component';
 import { urls } from '@/routes/routes.constants';
-import { useSendOrder } from '@/data/hooks/useSendOrder';
 
 const trackingParams: TrackingClickParams = {
   buttonType: ButtonType.button,
@@ -60,7 +55,7 @@ export default function CreateConfirmModal() {
     sendOrderError,
     isSendOrderPending,
     isSendOrderError,
-  } = useCreateVrackServicesCart(useSendOrder);
+  } = useCreateVrackServicesCart();
 
   const cancel = () => {
     trackClick({
@@ -71,99 +66,62 @@ export default function CreateConfirmModal() {
   };
 
   return (
-    <OsdsModal
-      dismissible
-      headline={t('modalHeadline')}
-      onOdsModalClose={cancel}
-    >
+    <OdsModal isOpen isDismissible onOdsClose={cancel}>
+      <OdsText preset={ODS_TEXT_PRESET.heading4}>{t('modalHeadline')}</OdsText>
       {hasVrackOrderAsked &&
         !isPending &&
         !isSendOrderPending &&
         !isSendOrderError && (
-          <OsdsText
-            className="block mb-4"
-            level={ODS_TEXT_LEVEL.body}
-            size={ODS_TEXT_SIZE._400}
-            color={ODS_THEME_COLOR_INTENT.text}
-          >
+          <OdsText className="block mb-4" preset={ODS_TEXT_PRESET.paragraph}>
             {t('modalDescriptionLine4')}
-          </OsdsText>
+          </OdsText>
         )}
       {hasVrackServiceOrderAsked &&
         !isPending &&
         !isSendOrderPending &&
         !isSendOrderError && (
-          <OsdsText
-            className="block mb-4"
-            level={ODS_TEXT_LEVEL.body}
-            size={ODS_TEXT_SIZE._400}
-            color={ODS_THEME_COLOR_INTENT.text}
-          >
+          <OdsText className="block mb-4" preset={ODS_TEXT_PRESET.paragraph}>
             {t('modalDescriptionLine5')}
-          </OsdsText>
+          </OdsText>
         )}
       {(!hasVrackServiceOrderAsked || isPending || isSendOrderPending) && (
         <>
-          <OsdsText
-            className="block mb-4"
-            level={ODS_TEXT_LEVEL.body}
-            size={ODS_TEXT_SIZE._400}
-            color={ODS_THEME_COLOR_INTENT.text}
-          >
+          <OdsText className="block mb-4" preset={ODS_TEXT_PRESET.paragraph}>
             {t('modalDescriptionLine1')}
-          </OsdsText>
-          <OsdsText
-            className="block mb-4"
-            level={ODS_TEXT_LEVEL.body}
-            size={ODS_TEXT_SIZE._400}
-            color={ODS_THEME_COLOR_INTENT.text}
-          >
+          </OdsText>
+          <OdsText className="block mb-4" preset={ODS_TEXT_PRESET.paragraph}>
             {t('modalDescriptionLine2')}
-          </OsdsText>
+          </OdsText>
         </>
       )}
       {isError && (
-        <OsdsMessage
-          color={ODS_THEME_COLOR_INTENT.error}
-          icon={ODS_ICON_NAME.ERROR_CIRCLE}
-          className="mb-6"
+        <OdsMessage
+          isDismissible={false}
+          color={ODS_MESSAGE_COLOR.critical}
+          className="block mb-6"
         >
-          <OsdsText
-            level={ODS_TEXT_LEVEL.body}
-            size={ODS_TEXT_SIZE._400}
-            color={ODS_THEME_COLOR_INTENT.text}
-          >
-            {error?.response?.data?.message}
-          </OsdsText>
-        </OsdsMessage>
+          {error?.response?.data?.message}
+        </OdsMessage>
       )}
       {isSendOrderError && !isSendOrderError && (
-        <OsdsMessage
-          color={ODS_THEME_COLOR_INTENT.error}
-          icon={ODS_ICON_NAME.ERROR_CIRCLE}
-          className="mb-6"
+        <OdsMessage
+          isDismissible={false}
+          color={ODS_MESSAGE_COLOR.critical}
+          className="block mb-6"
         >
-          <OsdsText
-            level={ODS_TEXT_LEVEL.body}
-            size={ODS_TEXT_SIZE._400}
-            color={ODS_THEME_COLOR_INTENT.text}
-          >
-            {sendOrderError?.response?.data?.message}
-          </OsdsText>
-        </OsdsMessage>
+          {sendOrderError?.response?.data?.message}
+        </OdsMessage>
       )}
       {(isPending || isSendOrderPending) && (
         <LoadingText title={t('modalCreateOrderWaitMessage')} />
       )}
-      <OsdsButton
+      <OdsButton
         slot="actions"
-        type={ODS_BUTTON_TYPE.button}
+        type="button"
         variant={ODS_BUTTON_VARIANT.ghost}
-        color={ODS_THEME_COLOR_INTENT.primary}
-        {...handleClick(cancel)}
-      >
-        {t('modalCancelButtonLabel')}
-      </OsdsButton>
+        label={t('modalCancelButtonLabel')}
+        onClick={cancel}
+      />
       {data?.contractList?.length > 0 ? (
         <OrderSubmitModalContent
           submitButtonLabel={t('modalSubmitOrderButtonLabel')}
@@ -185,13 +143,12 @@ export default function CreateConfirmModal() {
         />
       ) : (
         <>
-          <OsdsButton
+          <OdsButton
             slot="actions"
-            type={ODS_BUTTON_TYPE.button}
-            variant={ODS_BUTTON_VARIANT.stroked}
-            color={ODS_THEME_COLOR_INTENT.primary}
-            disabled={isPending || isSendOrderPending || undefined}
-            {...handleClick(() => {
+            type="button"
+            variant={ODS_BUTTON_VARIANT.outline}
+            isDisabled={isPending || isSendOrderPending}
+            onClick={() => {
               setHasVrackServiceOrderAsked(true);
               trackClick({
                 ...trackingParams,
@@ -202,17 +159,15 @@ export default function CreateConfirmModal() {
                 hasVrack: false,
                 ovhSubsidiary: environment.user.ovhSubsidiary,
               });
-            })}
-          >
-            {t('modalNoVrackButtonLabel')}
-          </OsdsButton>
-          <OsdsButton
+            }}
+            label={t('modalNoVrackButtonLabel')}
+          />
+          <OdsButton
             slot="actions"
-            type={ODS_BUTTON_TYPE.button}
-            variant={ODS_BUTTON_VARIANT.flat}
-            color={ODS_THEME_COLOR_INTENT.primary}
-            disabled={isPending || isSendOrderPending || undefined}
-            {...handleClick(() => {
+            type="button"
+            isDisabled={isPending || isSendOrderPending}
+            label={t('modalConfirmVrackButtonLabel')}
+            onClick={() => {
               setHasVrackOrderAsked(true);
               setHasVrackServiceOrderAsked(true);
               trackClick({
@@ -224,12 +179,10 @@ export default function CreateConfirmModal() {
                 hasVrack: true,
                 ovhSubsidiary: environment.user.ovhSubsidiary,
               });
-            })}
-          >
-            {t('modalConfirmVrackButtonLabel')}
-          </OsdsButton>
+            }}
+          />
         </>
       )}
-    </OsdsModal>
+    </OdsModal>
   );
 }

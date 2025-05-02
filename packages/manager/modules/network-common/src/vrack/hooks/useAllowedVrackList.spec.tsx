@@ -2,12 +2,12 @@ import { render, screen, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useAllowedVrackList } from './useAllowedVrackList';
-import { getVrackList, getVrackAllowedServices } from '../index';
-import { vrackListMocks } from '../mocks';
+import { getVrackList, getVrackAllowedServices } from '../api';
+import { vrackListMocks } from '../../mocks';
 import '@testing-library/jest-dom';
 
-vi.mock('../index', async () => {
-  const actual = await vi.importActual<typeof import('../index')>('../index');
+vi.mock('../api', async () => {
+  const actual = await vi.importActual<typeof import('../api')>('../api');
   return {
     ...actual,
     getVrackList: vi.fn(),

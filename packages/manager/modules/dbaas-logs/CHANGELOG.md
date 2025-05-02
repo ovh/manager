@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.27.0...@ovh-ux/manager-dbaas-logs@1.28.0) (2025-04-29)
+
+
+### Features
+
+* **ldp:** unique coldstorage option ([#16444](https://github.com/ovh/manager/issues/16444)) ([957a252](https://github.com/ovh/manager/commit/957a252528bebb915cfa09ee560bd994c26a48e7)), closes [#OB-5628](https://github.com/ovh/manager/issues/OB-5628)
+
+
+
+
+
 # [1.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.26.3...@ovh-ux/manager-dbaas-logs@1.27.0) (2025-01-16)
 
 

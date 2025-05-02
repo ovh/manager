@@ -3,6 +3,40 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [20.30.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.30.4...@ovh-ux/manager-dedicated@20.30.5) (2025-04-30)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3914] ([efac77f](https://github.com/ovh/manager/commit/efac77fba9f7fcfab46eb3316f2451285ca902df))
+* **i18n:** add missing translations [CDS 3919] ([1a6f394](https://github.com/ovh/manager/commit/1a6f39495d2e744632c4c27d5fc136213d8bb24e))
+* **i18n:** add missing translations [CDS 3925] ([e0a834a](https://github.com/ovh/manager/commit/e0a834ace76779988e79c2f14b8b8648b42dee23))
+* remove unused translations [CDS] ([d4f4eeb](https://github.com/ovh/manager/commit/d4f4eebba660f1f4c6185898db356ac5c66b11e1))
+
+
+
+
+
+## [20.30.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.30.3...@ovh-ux/manager-dedicated@20.30.4) (2025-04-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [20.30.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.30.2...@ovh-ux/manager-dedicated@20.30.3) (2025-04-29)
+
+
+### Bug Fixes
+
+* **dedicated:** fix typo ip button ([#16346](https://github.com/ovh/manager/issues/16346)) ([795549c](https://github.com/ovh/manager/commit/795549cad6510291cc1b0e1db107f8352e866d73)), closes [#SCTASK0021933](https://github.com/ovh/manager/issues/SCTASK0021933)
+* **license:** add missing license translations ([#16349](https://github.com/ovh/manager/issues/16349)) ([7245f70](https://github.com/ovh/manager/commit/7245f706f2d37ba5a9b68331a2162f5f2d15a361)), closes [#MANAGER-17210](https://github.com/ovh/manager/issues/MANAGER-17210)
+
+
+
+
+
 ## [20.30.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.30.1...@ovh-ux/manager-dedicated@20.30.2) (2025-04-28)
 
 

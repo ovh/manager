@@ -38,10 +38,8 @@ export const useKubeNetwork = ({
     () =>
       isPending
         ? null
-        : availablePrivateNetworks.find((network) =>
-            network.regions.some(
-              (region) => region.openstackId === kubeDetail.privateNetworkId,
-            ),
+        : availablePrivateNetworks.find(
+            (network) => network.id === kubeDetail.privateNetworkId,
           ),
     [isPending],
   );

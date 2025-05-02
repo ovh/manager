@@ -99,5 +99,6 @@
   "kube_service_etcd_quota_error": "Dieser Cluster verwendet mehr als 80% des zugewiesenen ETCD-Speicherplatzes.",
   "kube_service_etcd_quota_error_link": "Wie verwalte ich meine ETCD-Ressourcen?",
   "kube_service_show_optional": "Weitere Parameter anzeigen",
-  "kube_service_hide_optional": "Weniger Parameter anzeigen"
+  "kube_service_hide_optional": "Weniger Einstellungen anzeigen",
+  "kube_service_cluster_status_MULTI_ZONES": "Das Angebot MKS Premium befindet sich derzeit in der Betaphase. Einige Funktionen sind noch nicht verfügbar, werden aber in Kürze hinzugefügt."
 }

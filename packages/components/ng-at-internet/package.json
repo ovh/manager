@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-at-internet",
-  "version": "6.0.13",
+  "version": "6.0.14",
   "private": true,
   "description": "ATInternet tracking library wrapper for AngularJS",
   "keywords": [
@@ -29,14 +29,11 @@
   "scripts": {
     "build": "rollup -c --environment BUILD:production",
     "dev": "rollup -c --environment BUILD:development",
-    "dev:watch": "yarn run dev --watch",
-    "prepare": "yarn run build",
-    "start": "lerna exec --stream --scope='@ovh-ux/ng-at-internet' --include-dependencies -- yarn run build",
-    "start:dev": "lerna exec --stream --scope='@ovh-ux/ng-at-internet' --include-dependencies -- yarn run dev",
-    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/ng-at-internet' --include-dependencies -- yarn run dev:watch"
+    "dev:watch": "rollup -c --environment BUILD:development --watch",
+    "prepare": "rollup -c --environment BUILD:production"
   },
   "dependencies": {
-    "@ovh-ux/ovh-at-internet": "^0.21.7"
+    "@ovh-ux/ovh-at-internet": "^0.21.8"
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^13.0.2"
