@@ -3,15 +3,15 @@ import './sshkeySwitch.css';
 const SSH_REGEX = [
   {
     name: 'RSA',
-    regex: /\b(ssh-rsa)\s+(A{4}[0-9A-Za-z +/]+[=]{0,3})(\s+.*)?$/,
+    regex: /\b(ssh-rsa)\s+(A{4}[0-9A-Za-z+/]+[=]{0,3})/,
   },
   {
     name: 'ECDSA',
-    regex: /\b(ecdsa-sha2-nistp[0-9]+)\s+(A{4}[0-9A-Za-z +/]+[=]{0,3})(\s+.*)?$/,
+    regex: /\b(ecdsa-sha2-nistp[0-9]+)\s+(A{4}[0-9A-Za-z+/]+[=]{0,3})/,
   },
   {
     name: 'ED25519',
-    regex: /\b(ssh-ed25519)\s+(A{4}[0-9A-Za-z +/]+[=]{0,3})(\s+.*)?$/,
+    regex: /\b(ssh-ed25519)\s+(A{4}[0-9A-Za-z+/]+[=]{0,3})/,
   },
 ];
 
