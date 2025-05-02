@@ -50,6 +50,7 @@
     "packages:publish": "scripts/publish.js",
     "prepare": "husky install",
     "release": "scripts/release/release.sh",
+    "routes-migrate": "yarn workspace @ovh-ux/manager-cli run routes-migrate",
     "start": "node scripts/start-application.mjs",
     "test": "turbo run test --concurrency=1",
     "test:jest": "jest --runInBand",
