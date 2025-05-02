@@ -131,7 +131,7 @@
             <oui-checkbox
                 id="stream_enable_compression"
                 name="stream_enable_compression"
-                data-description="{{:: 'logs_streams_enable_archieve_description' | translate}}"
+                data-description="{{ ctrl.getColdStoragePrice() }}"
                 data-model="ctrl.stream.data.coldStorageEnabled"
                 ><span data-translate="logs_streams_enable_archieve"></span>
             </oui-checkbox>
@@ -169,27 +169,6 @@
                         id="stream_archive_duration"
                         data-ng-model="ctrl.stream.data.coldStorageRetention"
                         data-ng-options="duration.value as duration.name for duration in ctrl.storageDurations"
-                    >
-                    </select>
-                    <i
-                        class="oui-icon oui-icon-chevron-down"
-                        aria-hidden="true"
-                    ></i>
-                </div>
-            </oui-field>
-
-            <oui-field
-                label="{{:: 'logs_streams_select_archieve_target' | translate }}"
-                size="xl"
-                help-text="{{ ctrl.getColdStoragePrice() }}"
-            >
-                <div class="oui-select">
-                    <select
-                        class="oui-select__input"
-                        name="stream_archive_target"
-                        id="stream_archive_target"
-                        data-ng-model="ctrl.stream.data.coldStorageTarget"
-                        data-ng-options="target.value as target.name for target in ctrl.storageTargets"
                     >
                     </select>
                     <i

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-otrs",
-  "version": "9.6.0",
+  "version": "9.6.1",
   "description": "Manage OTRS tickets",
   "keywords": [
     "angularjs",
@@ -29,11 +29,8 @@
   "scripts": {
     "build": "rollup -c --environment BUILD:production",
     "dev": "rollup -c --environment BUILD:development",
-    "dev:watch": "yarn run dev --watch",
-    "prepare": "yarn run build",
-    "start": "lerna exec --stream --scope='@ovh-ux/ng-ovh-otrs' --include-dependencies -- yarn run build",
-    "start:dev": "lerna exec --stream --scope='@ovh-ux/ng-ovh-otrs' --include-dependencies -- yarn run dev",
-    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/ng-ovh-otrs' --include-dependencies -- yarn run dev:watch"
+    "dev:watch": "rollup -c --environment BUILD:development --watch",
+    "prepare": "rollup -c --environment BUILD:production"
   },
   "dependencies": {
     "draggable": "^4.2.0",

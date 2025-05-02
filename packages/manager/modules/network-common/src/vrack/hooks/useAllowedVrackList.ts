@@ -5,8 +5,8 @@ import {
   getVrackAllowedServicesQueryKey,
   getVrackList,
   getVrackListQueryKey,
-  AllowedServicesResponse,
-} from '../index';
+} from '../api';
+import { AllowedServicesResponse } from '../../types';
 
 /**
  * @returns List of allowed vRack to be associated to a vRack Services
@@ -25,7 +25,7 @@ export const useAllowedVrackList = (vrackServicesId?: string) => {
     enabled: !!vrackServicesId,
     staleTime: Infinity,
   });
-  
+
   return useQueries({
     queries:
       isFetched && vrackListResponse?.data && vrackListResponse.data.length > 0

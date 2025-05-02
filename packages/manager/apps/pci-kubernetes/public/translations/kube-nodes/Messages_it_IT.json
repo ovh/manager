@@ -49,5 +49,6 @@
   "kube_nodes_delete_nodes": "Elimina nodi",
   "kube_nodes_status_REDEPLOYING": "Applicazione delle modifiche",
   "kube_nodes_status_UPSCALING": "Upscaling",
-  "kube_nodes_status_DOWNSCALING": "Downscaling"
+  "kube_nodes_status_DOWNSCALING": "Downscaling",
+  "kube_nodes_status_UNKNOWN": "Sconosciuto"
 }

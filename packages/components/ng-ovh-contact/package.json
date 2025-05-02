@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-contact",
-  "version": "5.2.6",
+  "version": "5.2.7",
   "description": "Helps you dealing with OVHcloud contacts from /me/contact API.",
   "keywords": [
     "angularjs",
@@ -29,11 +29,8 @@
   "scripts": {
     "build": "rollup -c --environment BUILD:production",
     "dev": "rollup -c --environment BUILD:development",
-    "dev:watch": "yarn run dev --watch",
-    "prepare": "yarn run build",
-    "start": "lerna exec --stream --scope='@ovh-ux/ng-ovh-contact' --include-dependencies -- yarn run build",
-    "start:dev": "lerna exec --stream --scope='@ovh-ux/ng-ovh-contact' --include-dependencies -- yarn run dev",
-    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/ng-ovh-contact' --include-dependencies -- yarn run dev:watch"
+    "dev:watch": "rollup -c --environment BUILD:development --watch",
+    "prepare": "rollup -c --environment BUILD:production"
   },
   "dependencies": {
     "intl-tel-input": "^17.0.13",

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-network-common",
-  "version": "0.3.2",
+  "version": "0.4.2",
   "private": true,
   "description": "OVHcloud manager module common network",
   "repository": {
@@ -20,17 +20,17 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc",
-    "start:watch": "tsc -w",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "@ovh-ux/manager-react-components": "^1.46.0"
+    "@ovh-ux/manager-react-components": "^2.22.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-core-api": "^0.11.0",
-    "@ovh-ux/manager-core-test-utils": "^0.4.3",
-    "@ovh-ux/manager-module-order": "^0.9.7",
+    "@ovh-ux/manager-core-api": "^0.11.1",
+    "@ovh-ux/manager-core-test-utils": "^0.4.4",
+    "@ovh-ux/manager-module-common-api": "^0.3.8",
+    "@ovh-ux/manager-module-order": "^0.9.8",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.0.1",
     "@testing-library/react-hooks": "^8.0.1",

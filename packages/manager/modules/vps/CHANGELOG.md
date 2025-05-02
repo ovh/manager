@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.46.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.46.4...@ovh-ux/manager-vps@2.46.5) (2025-04-29)
+
+
+### Bug Fixes
+
+* **dedicated.vps:** change some 2api call by iceberg call ([#16436](https://github.com/ovh/manager/issues/16436)) ([f96dc86](https://github.com/ovh/manager/commit/f96dc86d653c57947460e2d9f51ec13f957c0bb1)), closes [#MANAGER-17550](https://github.com/ovh/manager/issues/MANAGER-17550)
+
+
+
+
+
 ## [2.46.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.46.3...@ovh-ux/manager-vps@2.46.4) (2025-04-22)
 
 

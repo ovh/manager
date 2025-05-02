@@ -23,14 +23,14 @@ export const useVrackMenuItems = ({
   const { trackClick } = useOvhTracking();
   const editable = isEditable(vs);
   const navigate = useNavigate();
-  const disabled = !editable;
+  const isDisabled = !editable;
   const vrackId = vs?.currentState?.vrackId;
 
   return [
     !vrackId && {
       id: 4,
       label: t('associateVrackButtonLabel'),
-      disabled,
+      isDisabled,
       onClick: () => {
         trackClick({
           location: isListing ? PageLocation.datagrid : PageLocation.tile,
@@ -49,7 +49,7 @@ export const useVrackMenuItems = ({
     vrackId && {
       id: 5,
       label: t('vrackActionAssociateToAnother'),
-      disabled,
+      isDisabled,
       onClick: () => {
         trackClick({
           location: isListing ? PageLocation.datagrid : PageLocation.tile,
@@ -70,7 +70,7 @@ export const useVrackMenuItems = ({
     vrackId && {
       id: 6,
       label: t('vrackActionDissociate'),
-      disabled,
+      isDisabled,
       onClick: () => {
         trackClick({
           location: isListing ? PageLocation.datagrid : PageLocation.tile,

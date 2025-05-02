@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-load-balancer-app@0.11.0...@ovh-ux/manager-pci-load-balancer-app@0.11.1) (2025-04-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-load-balancer-app
+
+
+
+
+
+# [0.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-load-balancer-app@0.10.2...@ovh-ux/manager-pci-load-balancer-app@0.11.0) (2025-04-28)
+
+
+### Features
+
+* **pci-public-ip:** add guide link for 3az region ([c33a4db](https://github.com/ovh/manager/commit/c33a4dbeb37b9645120ec34d6f5b02f615e7de75)), closes [#TAPC-3598](https://github.com/ovh/manager/issues/TAPC-3598) [#TAPC-3320](https://github.com/ovh/manager/issues/TAPC-3320) [#TAPC-3480](https://github.com/ovh/manager/issues/TAPC-3480) [#TAPC-2667](https://github.com/ovh/manager/issues/TAPC-2667) [#TAPC-3605](https://github.com/ovh/manager/issues/TAPC-3605) [#TAPC-3610](https://github.com/ovh/manager/issues/TAPC-3610)
+
+
+
+
+
 ## [0.10.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-load-balancer-app@0.10.1...@ovh-ux/manager-pci-load-balancer-app@0.10.2) (2025-04-28)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-load-balancer-app

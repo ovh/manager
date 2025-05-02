@@ -2,11 +2,12 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
-import { OsdsSelect, OsdsSelectOption } from '@ovhcloud/ods-components/react';
 import {
-  ODS_SELECT_SIZE,
-  OdsSelectValueChangeEvent,
-} from '@ovhcloud/ods-components';
+  OdsSelect,
+  OdsFormField,
+  OdsSpinner,
+} from '@ovhcloud/ods-components/react';
+import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { ErrorBanner } from '@ovh-ux/manager-react-components';
 import {
@@ -15,13 +16,7 @@ import {
   useUpdateVrackServices,
   useVrackService,
 } from '@ovh-ux/manager-network-common';
-import { FormField } from '@/components/FormField.component';
 import { CreatePageLayout } from '@/components/layout-helpers';
-import {
-  subnetSelectName,
-  serviceTypeSelectName,
-  serviceNameSelectName,
-} from './endpointCreate.constants';
 import { urls } from '@/routes/routes.constants';
 import { PageName } from '@/utils/tracking';
 import { MessagesContext } from '@/components/feedback-messages/Messages.context';
@@ -123,86 +118,85 @@ export default function EndpointCreatePage() {
         !vrackServices?.isLoading && !!cidr && !!managedServiceURN && !isPending
       }
     >
-      <FormField label={t('serviceTypeLabel')} isLoading={isServiceListLoading}>
-        <OsdsSelect
-          inline
-          disabled={isPending || isServiceListLoading || undefined}
-          id={serviceTypeSelectName}
-          value={serviceType}
-          onOdsValueChange={(e: OdsSelectValueChangeEvent) =>
-            setServiceType(e?.detail.value as string)
-          }
-          size={ODS_SELECT_SIZE.md}
-        >
-          <span slot="placeholder">{t('serviceTypePlaceholder')}</span>
-          {serviceListResponse?.data?.map((service) => (
-            <OsdsSelectOption
-              key={service.managedServiceType}
-              value={service.managedServiceType}
-            >
-              {t(service.managedServiceType)}
-            </OsdsSelectOption>
-          ))}
-        </OsdsSelect>
-      </FormField>
+      <OdsFormField className="block mb-4 max-w-md">
+        <label htmlFor="service-type-select" slot="label">
+          {t('serviceTypeLabel')}
+        </label>
+        {isServiceListLoading ? (
+          <OdsSpinner size={ODS_SPINNER_SIZE.md} />
+        ) : (
+          <OdsSelect
+            id="service-type-select"
+            name="service-type-select"
+            isDisabled={isPending}
+            value={serviceType}
+            onOdsChange={(e) => setServiceType(e?.detail.value as string)}
+            placeholder={t('serviceTypePlaceholder')}
+          >
+            {serviceListResponse?.data?.map((service) => (
+              <option
+                key={service.managedServiceType}
+                value={service.managedServiceType}
+              >
+                {t(service.managedServiceType)}
+              </option>
+            ))}
+          </OdsSelect>
+        )}
+      </OdsFormField>
 
-      <FormField
-        label={t('serviceNameLabel')}
-        isLoading={isIamResourcesLoading}
-      >
-        <OsdsSelect
-          inline
-          disabled={
-            isPending ||
-            isServiceListLoading ||
-            isIamResourcesLoading ||
-            !serviceType ||
-            undefined
-          }
-          id={serviceNameSelectName}
-          onOdsValueChange={(e: OdsSelectValueChangeEvent) =>
-            setManagedServiceURN(e?.detail.value as string)
-          }
-          size={ODS_SELECT_SIZE.md}
-        >
-          <span slot="placeholder">{t('serviceNamePlaceholder')}</span>
-          {serviceListResponse?.data
-            ?.find((service) => service.managedServiceType === serviceType)
-            ?.managedServiceURNs.map((serviceURN: string) => {
-              const resource = iamResources?.data?.find(
-                ({ urn }) => urn === serviceURN,
-              );
-              const label =
-                resource?.displayName || resource?.name || resource?.id;
-              return (
-                <OsdsSelectOption key={serviceURN} value={serviceURN}>
-                  {label}
-                </OsdsSelectOption>
-              );
-            })}
-        </OsdsSelect>
-      </FormField>
+      <OdsFormField className="block mb-4 max-w-md">
+        <label htmlFor="service-name" slot="label">
+          {t('serviceNameLabel')}
+        </label>
+        {isServiceListLoading || isIamResourcesLoading ? (
+          <OdsSpinner size={ODS_SPINNER_SIZE.md} />
+        ) : (
+          <OdsSelect
+            id="service-name"
+            name="service-name"
+            isDisabled={isPending || !serviceType}
+            onOdsChange={(e) => setManagedServiceURN(e?.detail.value as string)}
+            placeholder={t('serviceNamePlaceholder')}
+          >
+            {serviceListResponse?.data
+              ?.find((service) => service.managedServiceType === serviceType)
+              ?.managedServiceURNs.map((serviceURN: string) => {
+                const resource = iamResources?.data?.find(
+                  ({ urn }) => urn === serviceURN,
+                );
+                const label =
+                  resource?.displayName || resource?.name || resource?.id;
+                return (
+                  <option key={serviceURN} value={serviceURN}>
+                    {label}
+                  </option>
+                );
+              })}
+          </OdsSelect>
+        )}
+      </OdsFormField>
 
-      <FormField label={t('subnetLabel')}>
-        <OsdsSelect
-          inline
-          disabled={isPending || undefined}
-          id={subnetSelectName}
-          onOdsValueChange={(e: OdsSelectValueChangeEvent) =>
-            setCidr(e?.detail.value as string)
-          }
-          size={ODS_SELECT_SIZE.md}
+      <OdsFormField className="block mb-4 max-w-md">
+        <label htmlFor="subnet" slot="label">
+          {t('subnetLabel')}
+        </label>
+        <OdsSelect
+          id="subnet"
+          name="subnet"
+          isDisabled={isPending}
+          onOdsChange={(e) => setCidr(e?.detail.value as string)}
+          placeholder={t('subnetPlaceholder')}
         >
-          <span slot="placeholder">{t('subnetPlaceholder')}</span>
           {vrackServices?.data?.currentState.subnets.map((subnet) => (
-            <OsdsSelectOption key={subnet.cidr} value={subnet.cidr}>
+            <option key={subnet.cidr} value={subnet.cidr}>
               {subnet.displayName
                 ? `${subnet.displayName} - ${subnet.cidr}`
                 : subnet.cidr}
-            </OsdsSelectOption>
+            </option>
           ))}
-        </OsdsSelect>
-      </FormField>
+        </OdsSelect>
+      </OdsFormField>
     </CreatePageLayout>
   );
 }

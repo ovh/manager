@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.6.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-contracts@4.6.1...@ovh-ux/ng-ovh-contracts@4.6.2) (2025-04-30)
+
+**Note:** Version bump only for package @ovh-ux/ng-ovh-contracts
+
+
+
+
+
 ## [4.6.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-contracts@4.6.0...@ovh-ux/ng-ovh-contracts@4.6.1) (2024-11-28)
 
 **Note:** Version bump only for package @ovh-ux/ng-ovh-contracts

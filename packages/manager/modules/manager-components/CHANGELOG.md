@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.24.2...@ovh-ux/manager-components@1.25.0) (2025-04-30)
+
+
+### Bug Fixes
+
+* add transclusion in the generic delet modal ([50acf63](https://github.com/ovh/manager/commit/50acf63ffdf4a55fc69d41127c9d9195063b3563)), closes [#MANAGER-17727](https://github.com/ovh/manager/issues/MANAGER-17727)
+* fix the transclusion of the generic delete modal ([75625c7](https://github.com/ovh/manager/commit/75625c7ece0d62db9ffc8178702e9ee6e7ed80e3)), closes [#MANAGER-17727](https://github.com/ovh/manager/issues/MANAGER-17727)
+* **i18n:** add missing translations [CDS 3947] ([652b3c2](https://github.com/ovh/manager/commit/652b3c20068f25727e11698169efe1f6e4e4c3fa))
+
+
+### Features
+
+* add a transclusion slot ([f08d627](https://github.com/ovh/manager/commit/f08d62796b64f6ecd05857e74ac23416703ba2cf)), closes [#MANAGER-17727](https://github.com/ovh/manager/issues/MANAGER-17727)
+* add generic angular delete modal ([7a0d1d8](https://github.com/ovh/manager/commit/7a0d1d8045a181471ecb332542d863f2a11db91a)), closes [#MANAGER-17727](https://github.com/ovh/manager/issues/MANAGER-17727)
+* fix generic delete modal ([dec3ba1](https://github.com/ovh/manager/commit/dec3ba1bc500969a52a05df342376ad670f43949)), closes [#MANAGER-17727](https://github.com/ovh/manager/issues/MANAGER-17727)
+* fix translation file delete modal ([9d84c23](https://github.com/ovh/manager/commit/9d84c23e514fa1b80edc04888f10e79231559a61)), closes [#MANAGER-17727](https://github.com/ovh/manager/issues/MANAGER-17727)
+
+
+
+
+
 ## [1.24.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.24.1...@ovh-ux/manager-components@1.24.2) (2025-04-17)
 
 

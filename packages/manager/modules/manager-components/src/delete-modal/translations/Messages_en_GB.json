@@ -1,0 +1,7 @@
+{
+  "manager_components_delete_modal_cancel_button": "No, dismiss",
+  "manager_components_delete_modal_delete_button": "Yes, cancel",
+  "manager_components_delete_modal_description": "Cancelling your service will irretrievably erase all related data. Do you wish to cancel your service?",
+  "manager_components_delete_modal_headline": "Cancel {{serviceType}}?",
+  "manager_components_delete_modal_headline_service": "Service"
+}

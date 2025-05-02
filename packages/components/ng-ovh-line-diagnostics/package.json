@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-line-diagnostics",
-  "version": "5.3.2",
+  "version": "5.3.3",
   "description": "Module to diagnose OVH telecoms lines.",
   "keywords": [
     "angularjs",
@@ -31,11 +31,8 @@
   "scripts": {
     "build": "rollup -c --environment BUILD:production",
     "dev": "rollup -c --environment BUILD:development",
-    "dev:watch": "yarn run dev --watch",
-    "prepare": "yarn run build",
-    "start": "lerna exec --stream --scope='@ovh-ux/ng-ovh-line-diagnostics' --include-dependencies -- yarn run build",
-    "start:dev": "lerna exec --stream --scope='@ovh-ux/ng-ovh-line-diagnostics' --include-dependencies -- yarn run dev",
-    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/ng-ovh-line-diagnostics' --include-dependencies -- yarn run dev:watch"
+    "dev:watch": "rollup -c --environment BUILD:development --watch",
+    "prepare": "rollup -c --environment BUILD:production"
   },
   "dependencies": {
     "lodash": "^4.17.15"

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-timeline",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "description": "An Angular.js directive that generates a responsive, data-driven vertical timeline to tell a story, show history or describe a sequence of events.",
   "keywords": [
     "angular",
@@ -31,11 +31,8 @@
   "scripts": {
     "build": "rollup -c --environment BUILD:production",
     "dev": "rollup -c --environment BUILD:development",
-    "dev:watch": "yarn run dev --watch",
-    "prepare": "yarn run build",
-    "start": "lerna exec --stream --scope='@ovh-ux/ng-ovh-timeline' --include-dependencies -- yarn run build",
-    "start:dev": "lerna exec --stream --scope='@ovh-ux/ng-ovh-timeline' --include-dependencies -- yarn run dev",
-    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/ng-ovh-timeline' --include-dependencies -- yarn run dev:watch"
+    "dev:watch": "rollup -c --environment BUILD:development --watch",
+    "prepare": "rollup -c --environment BUILD:production"
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^13.0.2"

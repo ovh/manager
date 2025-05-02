@@ -3,7 +3,7 @@
   "pci_projects_project_kubernetes_service_reset_common_confirm": "Confirmar",
   "pci_projects_project_kubernetes_service_reset_common_cancel": "Anular",
   "pci_projects_project_kubernetes_service_reset_common_delete": "Eliminar os nós",
-  "pci_projects_project_kubernetes_service_reset_common_reinstall": "Manter e reinstalar os nós",
+  "pci_projects_project_kubernetes_service_reset_common_reinstall": "Reinstalar os nós",
   "pci_projects_project_kubernetes_service_reset_message": "O seu cluster Kubernetes será reiniciado no seu estado original. Isto eliminará todos os seus serviços, respetiva configuração, etc. <i>Esta operação é irreversível</i>.",
   "pci_projects_project_kubernetes_service_reset_success": "O seu cluster Kubernetes está a ser reiniciado.",
   "pci_projects_project_kubernetes_service_reset_error": "Ocorreu um erro ao reiniciar o seu cluster: {{ message }}",

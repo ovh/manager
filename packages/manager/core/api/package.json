@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-core-api",
-  "version": "0.11.0",
+  "version": "0.11.1",
   "description": "",
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
@@ -14,12 +14,11 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc",
-    "prepare": "tsc",
-    "start:watch": "tsc -w"
+    "prepare": "tsc"
   },
   "dependencies": {
-    "@ovh-ux/manager-core-sso": "^0.3.0",
-    "@ovh-ux/request-tagger": "^0.4.0",
+    "@ovh-ux/manager-core-sso": "^0.3.1",
+    "@ovh-ux/request-tagger": "^0.4.1",
     "axios": "^1.1.2"
   },
   "devDependencies": {

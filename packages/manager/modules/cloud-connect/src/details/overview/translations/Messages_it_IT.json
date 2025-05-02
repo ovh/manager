@@ -80,9 +80,9 @@
   "cloud_connect_product_name": "Nome commerciale",
   "cloud_connect_change_bandwidth": "Modificare la banda passante",
   "cloud_connect_pop_diagnostic": "Diagnostica POP",
-  "cloud_connect_pop_diagnostic_link": "Visualizzare i risultati </br> delle mie diagnostiche",
-  "cloud_connect_pop_diagnostic_check": "Test BGP Peering",
-  "cloud_connect_pop_get_mac_list": "Visualizzare la lista dei miei indirizzi MAC",
+  "cloud_connect_pop_diagnostic_link": "Visualizzare i risultati",
+  "cloud_connect_pop_diagnostic_check": "Verificare il Peering BGP",
+  "cloud_connect_pop_get_mac_list": "Recuperare la lista dei MAC",
   "cloud_connect_region_type": "Tipo",
   "cloud_connect_region_eu-west-par": "Europa (Francia - Parigi)",
   "cloud_connect_region_eu-west-gra": "Europa (Francia - Gravelines)",
@@ -114,5 +114,6 @@
   "cloud_connect_region_us-west-lz-pao": "Nord America (Stati Uniti - Ovest - Palo Alto)",
   "cloud_connect_region_us-west-lz-den": "Nord America (Stati Uniti - Ovest - Denver)",
   "cloud_connect_region_us-east-lz-atl": "Nord America (Stati Uniti - Est - Atlanta)",
-  "cloud_connect_region_eu-west-lz-mrs": "Europa (Francia - Marsiglia)"
+  "cloud_connect_region_eu-west-lz-mrs": "Europa (Francia - Marsiglia)",
+  "cloud_connect_region_AZ_type": "Region {{regionType}}"
 }

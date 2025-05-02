@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.20.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.20.0...@ovh-ux/manager-pci-kubernetes-app@0.20.1) (2025-04-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app
+
+
+
+
+
+# [0.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.19.7...@ovh-ux/manager-pci-kubernetes-app@0.20.0) (2025-04-30)
+
+
+### Features
+
+* **pci-kubernetes:** enable K8S 3AZ ([4b6223b](https://github.com/ovh/manager/commit/4b6223b9b4820d17ea9803070f268352d63865aa)), closes [#TAPC-2199](https://github.com/ovh/manager/issues/TAPC-2199)
+
+
+
+
+
 ## [0.19.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.19.6...@ovh-ux/manager-pci-kubernetes-app@0.19.7) (2025-04-28)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app

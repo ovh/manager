@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.9.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.9.5...@ovh-ux/manager-bm-server-components@2.9.6) (2025-04-30)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3914] ([efac77f](https://github.com/ovh/manager/commit/efac77fba9f7fcfab46eb3316f2451285ca902df))
+* **i18n:** add missing translations [CDS 3919] ([1a6f394](https://github.com/ovh/manager/commit/1a6f39495d2e744632c4c27d5fc136213d8bb24e))
+
+
+
+
+
+## [2.9.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.9.4...@ovh-ux/manager-bm-server-components@2.9.5) (2025-04-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-bm-server-components
+
+
+
+
+
+## [2.9.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.9.3...@ovh-ux/manager-bm-server-components@2.9.4) (2025-04-29)
+
+
+### Bug Fixes
+
+* **dedicated:** number of disks in os reinstallation ([#16674](https://github.com/ovh/manager/issues/16674)) ([8fa8686](https://github.com/ovh/manager/commit/8fa868645fc17a04d40680c161e3b1ce0ed04325)), closes [#MANAGER-18029](https://github.com/ovh/manager/issues/MANAGER-18029)
+* **dedicated:** size of partition that fills remaining size of disk(s) ([#16726](https://github.com/ovh/manager/issues/16726)) ([38a8d49](https://github.com/ovh/manager/commit/38a8d496fd85616e75e036756de72974bf79a58f)), closes [#MANAGER-18058](https://github.com/ovh/manager/issues/MANAGER-18058)
+
+
+
+
+
 ## [2.9.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.9.2...@ovh-ux/manager-bm-server-components@2.9.3) (2025-04-28)
 
 **Note:** Version bump only for package @ovh-ux/manager-bm-server-components

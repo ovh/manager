@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-toaster",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "description": "Show a hot toast for user",
   "keywords": [
     "angularjs",
@@ -29,11 +29,8 @@
   "scripts": {
     "build": "rollup -c --environment BUILD:production",
     "dev": "rollup -c --environment BUILD:development",
-    "dev:watch": "yarn run dev --watch",
-    "prepare": "yarn run build",
-    "start": "lerna exec --stream --scope='@ovh-ux/ng-ovh-toaster' --include-dependencies -- yarn run build",
-    "start:dev": "lerna exec --stream --scope='@ovh-ux/ng-ovh-toaster' --include-dependencies -- yarn run dev",
-    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/ng-ovh-toaster' --include-dependencies -- yarn run dev:watch"
+    "dev:watch": "rollup -c --environment BUILD:development --watch",
+    "prepare": "rollup -c --environment BUILD:production"
   },
   "resolutions": {
     "set-value": "^2.0.1"
