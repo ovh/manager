@@ -1,9 +1,11 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { OdsText, OdsTable } from '@ovhcloud/ods-components/react';
+import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { Links } from '@ovh-ux/manager-react-components';
 import { PriceDescription } from '@/components/PriceDescription/PriceDescription';
 import { useCatalogLowestPrice } from '@/data/hooks/catalog';
-import useGuideUtils from '@/pages/onboarding/useGuideUtils';
+import { useGuideUtils } from '@/utils';
 
 interface IpOptionRowProps {
   feature: string;
@@ -21,11 +23,11 @@ const BulletPointList = ({ content, feature }: BulletPointListProps) => {
     .map((line: string) => <div key={`${feature}-${line}`}>{`• ${line}`}</div>);
 };
 
-export function IpOptionRow() {
+export function IpOptionTable() {
   const { t } = useTranslation('onboarding');
   const { t: tOrder } = useTranslation('order');
   const { ipv4LowestPrice, ipv6LowestPrice } = useCatalogLowestPrice();
-  const link = useGuideUtils();
+  const { links } = useGuideUtils();
   const optionList = [
     {
       feature: t('optionsAddressTypes'),
@@ -96,7 +98,7 @@ export function IpOptionRow() {
         <>
           {t('optionsAvailabilityCheck')}{' '}
           <Links
-            href={link?.presentationLink}
+            href={links?.presentationLink}
             label={t('optionsAvailabilityHere')}
           />
         </>
@@ -110,18 +112,38 @@ export function IpOptionRow() {
   ];
   return (
     <>
-      {optionList.map((option: IpOptionRowProps) => (
-        <tr
-          key={`${option.feature}`}
-          className="border-solid border-[1px] border-[--ods-color-blue-200]"
-        >
-          <td className="text-left pl-4">{option.feature}</td>
-          <td className="text-left pl-4 whitespace-pre-line">{option.ipv4}</td>
-          <td className="text-left pl-4 whitespace-pre-line">{option.ipv6}</td>
-        </tr>
-      ))}
+      <OdsText preset={ODS_TEXT_PRESET.heading3} className="mb-4">
+        {t('optionsTitle')}
+      </OdsText>
+      <OdsTable className="w-full">
+        <table className="w-full border-collapse">
+          <thead>
+            <tr>
+              <th className="text-left pl-4">{t('optionsColumnFeature')}</th>
+              <th className="text-left pl-4">{t('optionsColumnIpv4')}</th>
+              <th className="text-left pl-4">{t('optionsColumnIpv6')}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {optionList.map((option: IpOptionRowProps) => (
+              <tr
+                key={`${option.feature}`}
+                className="border-solid border-[1px] border-[--ods-color-blue-200]"
+              >
+                <td className="text-left pl-4">{option.feature}</td>
+                <td className="text-left pl-4 whitespace-pre-line">
+                  {option.ipv4}
+                </td>
+                <td className="text-left pl-4 whitespace-pre-line">
+                  {option.ipv6}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </OdsTable>
     </>
   );
 }
 
-export default IpOptionRow;
+export default IpOptionTable;
