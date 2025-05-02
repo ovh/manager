@@ -13,22 +13,25 @@ import { useTranslation } from 'react-i18next';
 import { isCustomUrlSection, replaceToSnakeCase } from '@/utils';
 import { DeepReadonly } from '@/types/utils.type';
 import { TSectionType } from '@/types/instance/action/action.type';
+import { TInstanceDto } from '@/types/instance/api.type';
 
 type TActionModalProps = DeepReadonly<
   React.PropsWithChildren<{
     type: TSectionType;
-    instanceName?: string;
+    instance?: TInstanceDto;
     isLoading: boolean;
   }>
 >;
 
 export const ActionModalContent: FC<TActionModalProps> = ({
   type,
-  instanceName,
+  instance,
   children,
   isLoading,
 }) => {
   const { t } = useTranslation('actions');
+
+  const { name, isImageDeprecated } = instance ?? {};
 
   const labels = useMemo((): string[] => {
     const sectionSnakeCase = isCustomUrlSection(type)
@@ -37,7 +40,7 @@ export const ActionModalContent: FC<TActionModalProps> = ({
     const confirmationMessage = t(
       `pci_instances_actions_${sectionSnakeCase}_instance_confirmation_message`,
       {
-        name: instanceName,
+        name,
       },
     );
     const notaMessage = t(
@@ -51,16 +54,23 @@ export const ActionModalContent: FC<TActionModalProps> = ({
       case 'unshelve':
       case 'soft-reboot':
       case 'hard-reboot':
-      case 'reinstall':
       case 'rescue/start':
       case 'rescue/end':
         return [confirmationMessage];
+      case 'reinstall':
+        return isImageDeprecated
+          ? [
+              t(
+                'pci_instances_actions_new_image_reinstall_instance_confirmation_message',
+              ),
+            ]
+          : [confirmationMessage];
       case 'shelve':
         return [confirmationMessage, notaMessage];
       default:
         return [];
     }
-  }, [instanceName, t, type]);
+  }, [name, isImageDeprecated, t, type]);
 
   const warningMessage = useMemo(() => {
     if (

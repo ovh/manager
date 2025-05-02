@@ -20,14 +20,14 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
 const Modal = ({
   title,
-  handleModalClose,
+  onModalClose,
   children,
   isPending,
   handleInstanceAction,
   variant = 'primary',
 }: {
   title: string;
-  handleModalClose: () => void;
+  onModalClose: () => void;
   children: React.ReactNode;
   isPending: boolean;
   handleInstanceAction: () => void;
@@ -37,7 +37,7 @@ const Modal = ({
   const id = useId();
 
   return (
-    <Dialog defaultOpen onOpenChange={handleModalClose}>
+    <Dialog defaultOpen onOpenChange={onModalClose}>
       <DialogContent
         aria-describedby={id}
         className="p-0 !rounded-[--ods-border-radius-md] [&_button:focus-visible]:outline-none [&_button:focus-visible]:ring-0 [&_button:focus-visible]:ring-offset-0 [&_button]:text-[--ods-color-info-500] [&_button]:top-3.5 [&_button_svg]:w-8 [&_button_svg]:h-8"

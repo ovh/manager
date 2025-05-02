@@ -70,6 +70,7 @@ const getPlaceHolderData = (count: number): TInstance[] =>
     actions: new Map(),
     availabilityZone: null,
     taskState: null,
+    isImageDeprecated: false,
   }));
 
 const DatagridComponent = ({

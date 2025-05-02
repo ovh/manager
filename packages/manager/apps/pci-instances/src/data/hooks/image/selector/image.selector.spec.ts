@@ -21,9 +21,9 @@ describe('imagesRescueSelector', () => {
     const result = imagesRescueSelector(images, t);
 
     expect(result).toEqual([
-      { id: '1', name: 'Rescue Image' },
-      { id: '2', name: 'CentOS' },
-      { id: '3', name: 'Ubuntu' },
+      { value: '1', label: 'Rescue Image' },
+      { value: '2', label: 'CentOS' },
+      { value: '3', label: 'Ubuntu' },
     ]);
   });
 
@@ -37,10 +37,10 @@ describe('imagesRescueSelector', () => {
 
     expect(result).toEqual([
       {
-        id: '1',
-        name: 'pci_instances_actions_rescue_start_instance_rescue_image_label',
+        value: '1',
+        label: 'pci_instances_actions_rescue_start_instance_rescue_image_label',
       },
-      { id: '2', name: 'Rescue Image' },
+      { value: '2', label: 'Rescue Image' },
     ]);
   });
 
@@ -53,8 +53,8 @@ describe('imagesRescueSelector', () => {
     const result = imagesRescueSelector(images, t);
 
     expect(result).toEqual([
-      { id: '2', name: 'CentOS' },
-      { id: '3', name: 'Ubuntu' },
+      { value: '2', label: 'CentOS' },
+      { value: '3', label: 'Ubuntu' },
     ]);
   });
 });

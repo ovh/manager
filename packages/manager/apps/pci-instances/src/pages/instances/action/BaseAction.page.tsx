@@ -20,7 +20,7 @@ export type TBaseInstanceActionPageProps = {
   projectId: string;
   onError: (error: unknown) => void;
   onSuccess: () => void;
-  handleModalClose: () => void;
+  onModalClose: () => void;
   instance?: TInstanceDto;
   isLoading: boolean;
 };
@@ -31,7 +31,7 @@ const BaseInstanceActionPage: FC<TBaseInstanceActionPageProps> = ({
   projectId,
   onError,
   onSuccess,
-  handleModalClose,
+  onModalClose,
   instance,
   isLoading,
 }) => {
@@ -53,8 +53,8 @@ const BaseInstanceActionPage: FC<TBaseInstanceActionPageProps> = ({
       title={title}
       isPending={isPending}
       handleInstanceAction={handleInstanceAction}
-      handleModalClose={handleModalClose}
-      instanceName={instance?.name}
+      onModalClose={onModalClose}
+      instance={instance}
       section={section}
       variant={section === 'delete' ? 'warning' : 'primary'}
       isLoading={isLoading}

@@ -18,6 +18,7 @@ export const mockedInstance: TInstance = {
   pendingTask: false,
   availabilityZone: null,
   taskState: null,
+  isImageDeprecated: false,
 };
 
 export const mockedInstanceWithEmptyRegion: TInstance = {

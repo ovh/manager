@@ -12,7 +12,7 @@ type TBackupActionPageProps = Omit<TRescueActionPageProps, 'section'> & {
 
 const BackupActionPage = ({
   title,
-  handleModalClose,
+  onModalClose,
   section,
   instance,
   projectId,
@@ -53,8 +53,8 @@ const BackupActionPage = ({
       title={title}
       isPending={isPending}
       handleInstanceAction={handleInstanceAction}
-      handleModalClose={handleModalClose}
-      instanceName={instance?.name}
+      onModalClose={onModalClose}
+      instance={instance}
       section={section}
       isLoading={isLoading}
     >

@@ -54,6 +54,7 @@ const fakeInstancesDto: TInstanceDto[] = [
     pendingTask: false,
     availabilityZone: null,
     taskState: '',
+    isImageDeprecated: false,
   },
   {
     id: `fake-id-2`,
@@ -70,6 +71,7 @@ const fakeInstancesDto: TInstanceDto[] = [
     actions: [],
     availabilityZone: null,
     taskState: '',
+    isImageDeprecated: false,
   },
 ];
 
