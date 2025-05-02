@@ -8,7 +8,7 @@ export function useGetCatalog(
   options: Omit<QueryObserverOptions, 'queryKey'> = {},
 ) {
   const user = useUser();
-  const product = 'cloud';
+  const product = 'databases';
   const subsidiary = user?.ovhSubsidiary ?? 'FR';
   const queryKey = ['order/catalog/public/cloud', subsidiary, product];
   return useQueryImmediateRefetch({

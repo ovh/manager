@@ -9,5 +9,6 @@
   "versionTag-new": "Nowość",
   "versionTag-soonDeprecated": "Wkrótce wersja przestarzała",
   "selectAVersion": "Wybierz wersję",
-  "noVersionFound": "Nie znaleziono żadnej wersji"
+  "noVersionFound": "Nie znaleziono żadnej wersji",
+  "description-valkey": "System przechowywania danych klucz-wartość w pamięci"
 }

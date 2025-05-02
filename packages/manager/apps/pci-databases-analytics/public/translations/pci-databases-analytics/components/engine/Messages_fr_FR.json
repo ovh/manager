@@ -3,6 +3,7 @@
   "description-mysql": "Système de gestion de base de données relationnelle",
   "description-postgresql": "Système de gestion de base de données relationnelle et objet",
   "description-redis": "Système de stockage de données clé-valeur en mémoire",
+  "description-valkey": "Système de stockage de données clé-valeur en mémoire",
   "description-cassandra": "Système de stockage de données NoSQL distribué",
   "description-m3db": "Système de stockage de séries temporelles",
   "description-m3aggregator": "Système d'agrégation et de ré-échantillonnage de séries temporelles",

@@ -26,6 +26,8 @@ export function humanizeEngine(engine: database.EngineEnum) {
       return 'PostgreSQL';
     case database.EngineEnum.redis:
       return 'Caching';
+    case database.EngineEnum.valkey:
+      return 'Valkey';
     default:
       return engine;
   }
