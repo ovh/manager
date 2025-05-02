@@ -39,7 +39,10 @@ import {
   LOCAL_PRIVATE_NETWORK_MODE,
 } from './add.constants';
 
-import { INSTANCE_PRICING_LINKS } from '../instances.constants';
+import {
+  INSTANCE_PRICING_LINKS,
+  INSTANCE_RESILIENCE_3AZ,
+} from '../instances.constants';
 import { useURLModel } from '../../project.utils';
 
 export default class PciInstancesAddController {
@@ -92,6 +95,10 @@ export default class PciInstancesAddController {
       INSTANCE_PRICING_LINKS[this.user.ovhSubsidiary] ||
       INSTANCE_PRICING_LINKS.DEFAULT;
     this.OvhApiCloudProjectRegion = OvhApiCloudProjectRegion;
+
+    this.resilience3azLink =
+      INSTANCE_RESILIENCE_3AZ[this.user.ovhSubsidiary] ||
+      INSTANCE_RESILIENCE_3AZ.DEFAULT;
 
     $scope.$watch(
       () => this.model.number,
