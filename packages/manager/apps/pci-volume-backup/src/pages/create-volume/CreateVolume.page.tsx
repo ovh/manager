@@ -1,7 +1,9 @@
-import { useContext, useMemo } from 'react';
+import React, { useContext, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   BaseLayout,
+  ChangelogButton,
+  PciGuidesHeader,
   useNotifications,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
@@ -22,6 +24,7 @@ import {
   useVolume,
 } from '@/data/hooks/useVolume';
 import { useBackups } from '@/data/hooks/useVolumeBackup';
+import config from '@/pci-volume-backup.config';
 
 function useParam(param: string): string {
   const { [param]: paramValue } = useParams();
@@ -110,6 +113,17 @@ export default function CreateVolumePage() {
     goBack();
   };
 
+  const header = {
+    title: t('pci_projects_project_storages_volume_backup_list_header', {
+      ns: 'listing',
+    }),
+    subtitle: t(
+      'pci_projects_project_storages_volume_backup_list_create_volume_title',
+    ),
+    headerButton: <PciGuidesHeader category="volumeBackup" />,
+    changelogButton: <ChangelogButton links={config.changeLogLinks} />,
+  };
+
   return (
     <BaseLayout
       breadcrumb={
@@ -132,11 +146,7 @@ export default function CreateVolumePage() {
           />
         </OdsBreadcrumb>
       }
-      header={{
-        title: t(
-          'pci_projects_project_storages_volume_backup_list_create_volume_title',
-        ),
-      }}
+      header={header}
     >
       {!backup?.volumeId || !volume || isPending ? (
         <OdsSpinner />
