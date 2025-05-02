@@ -12,6 +12,7 @@ import { useGetIntegrations } from '@/hooks/api/database/integration/useGetInteg
 import { useGetNamespaces } from '@/hooks/api/database/namespace/useGetNamespaces.hook';
 import { useGetCurrentQueries } from '@/hooks/api/database/query/useGetCurrentQueries.hook';
 import { useGetPatterns } from '@/hooks/api/database/pattern/useGetPatterns.hook';
+import { useGetTopics } from '@/hooks/api/database/topic/useGetTopics.hook';
 
 interface ServiceTabsProps {
   service: database.Service;
@@ -88,6 +89,10 @@ const ServiceTabs = ({ service }: ServiceTabsProps) => {
       enabled: !!service.capabilities.patterns?.read,
     },
   );
+  const { data: topics } = useGetTopics(projectId, service.engine, service.id, {
+    refetchInterval: isUserActive && POLLING.TOPICS,
+    enabled: !!service.capabilities.topics?.read,
+  });
 
   const tabs = [
     { href: '', label: t('DashboardTab'), end: true },
@@ -138,6 +143,12 @@ const ServiceTabs = ({ service }: ServiceTabsProps) => {
       label: t('IndexPatternsTab'),
       count: patterns?.length,
       disabled: !service.capabilities.patterns.read,
+    },
+    service.capabilities.topics && {
+      href: 'topics',
+      label: t('TopicsTab'),
+      count: topics?.length,
+      disabled: !service.capabilities.topics.read,
     },
     { href: 'metrics', label: t('MetricsTab') },
     { href: 'logs', label: t('LogsTab') },

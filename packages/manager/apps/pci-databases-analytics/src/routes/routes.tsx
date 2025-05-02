@@ -302,7 +302,42 @@ export default [
               },
             ],
           },
-
+          {
+            path: 'topics',
+            id: 'service.{service.engine}.topics',
+            ...lazyRouteConfig(() =>
+              import('@/pages/services/[serviceId]/topics/Topics.page'),
+            ),
+            children: [
+              {
+                id: 'service.{service.engine}.topics.add',
+                path: 'add',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/services/[serviceId]/topics/add/AddTopic.modal'
+                  ),
+                ),
+              },
+              {
+                id: 'service.{service.engine}.topics.edit',
+                path: 'edit/:topicId',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/services/[serviceId]/topics/edit/EditTopic.modal'
+                  ),
+                ),
+              },
+              {
+                id: 'service.{service.engine}.topics.delete',
+                path: 'delete/:topicId',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/services/[serviceId]/topics/delete/DeleteTopic.modal'
+                  ),
+                ),
+              },
+            ],
+          },
           {
             path: 'integrations',
             id: 'service.{service.engine}.integrations',

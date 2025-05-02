@@ -9,6 +9,7 @@
   "IntegrationsTab": "Intégrations",
   "MetricsTab": "Métriques",
   "LogsTab": "Logs",
+  "TopicsTab": "Topics",
   "SettingsTab": "Configuration",
   "IndexPatternsTab": "Index patterns",
   "renameServiceToastErrorTitle": "Erreur lors du changement de nom de votre service",
