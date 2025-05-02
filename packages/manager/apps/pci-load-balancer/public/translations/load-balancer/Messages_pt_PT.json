@@ -18,7 +18,7 @@
   "octavia_load_balancer_creation_date": "Data de criação",
   "octavia_load_balancer_operating_status": "Estado da operação",
   "octavia_load_balancer_actions_detail": "Detalhes do Load Balancer",
-  "octavia_load_balancer_actions_delete": "Eliminar",
+  "octavia_load_balancer_actions_delete": "Rescindir",
   "octavia_load_balancer_operating_status_online": "online",
   "octavia_load_balancer_operating_status_offline": "offline",
   "octavia_load_balancer_operating_status_degraded": "degradado",
