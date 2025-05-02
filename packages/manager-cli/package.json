@@ -15,15 +15,18 @@
   "author": "OVH SAS",
   "main": "index.js",
   "scripts": {
-    "json-to-component-route-migration": "node ./routes/json-to-component-route-migration.mjs",
-    "manager-cli": "node ./manager-cli.mjs",
+    "routes-migrate": "node ./routes/routes-migrate.mjs",
+    "test": "vitest run",
+    "test:cov": "vitest run --coverage",
+    "test:watch": "vitest",
     "transform-routes": "node ./routes/transform-routes-cli.mjs",
     "update-routers-init": "node ./routes/update-routers-init-cli.mjs"
   },
   "dependencies": {
     "@babel/parser": "^7.27.0",
     "@babel/traverse": "^7.27.0",
-    "@babel/types": "^7.27.0"
+    "@babel/types": "^7.27.0",
+    "shelljs": "^0.9.2"
   },
   "devDependencies": {
     "prettier": "^3.5.3",

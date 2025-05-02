@@ -119,13 +119,9 @@ const updateRouterInitialization = (code) => {
     },
   );
 
-  transformed = transformed.replace(
-    /import\s+\{\s*Routes\s*\}\s+from\s+['"](@\/|(\.{1,2}\/)+)routes\/routes['"];?\n?/g,
-    ''
-  );
-
   // Add `import Routes from './routes/routes'` if missing
-  if (!/import\s+Routes\s+from\s+['"][^'"]+routes['"]/.test(transformed)) {
+  if (!/import\s+Routes\s+from\s+['"][^'"]+routes['"]/.test(transformed)
+        && !transformed.includes('/routes/routes')) {
     transformed = `import Routes from '@/routes/routes';\n` + transformed;
   }
 
