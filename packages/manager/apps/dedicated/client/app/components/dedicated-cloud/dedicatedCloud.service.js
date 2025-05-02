@@ -339,14 +339,14 @@ class DedicatedCloudService {
   }
 
   getDatacenterInfoVm(serviceName, datacenterId, params = {}) {
-    return this.icebergQuery(
+    return this.icebergUtils.icebergQuery(
       `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/vm`,
       params,
     );
   }
 
   getDatacenterInfoVmLicensed(serviceName, datacenterId, params = {}) {
-    return this.icebergQuery(
+    return this.icebergUtils.icebergQuery(
       `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/vmLicensed`,
       params,
     );
