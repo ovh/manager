@@ -7,48 +7,50 @@ import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import * as database from '@/types/cloud/project/database';
 import { useServiceData } from '../Service.context';
 import DataTable from '@/components/data-table';
-import { getColumns } from './_components/TopicsTableColumns.component';
 import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import { POLLING } from '@/configuration/polling.constants';
-import { useGetTopics } from '@/hooks/api/database/topic/useGetTopics.hook';
+import { getColumns } from './_components/TopicAclsTableColumns.component';
+import { useGetTopicAcls } from '@/hooks/api/database/topicAcl/useGetTopicAcls.hook';
 
 export function breadcrumb() {
   return (
     <BreadcrumbItem
       translationKey="breadcrumb"
-      namespace="pci-databases-analytics/services/service/topics"
+      namespace="pci-databases-analytics/services/service/topicAcl"
     />
   );
 }
 
-const Topics = () => {
+const TopicAcls = () => {
   const { t } = useTranslation(
-    'pci-databases-analytics/services/service/topics',
+    'pci-databases-analytics/services/service/topicAcls',
   );
   const navigate = useNavigate();
   const { projectId, service } = useServiceData();
   const { isUserActive } = useUserActivityContext();
-  const topicsQuery = useGetTopics(projectId, service.engine, service.id, {
-    refetchInterval: isUserActive && POLLING.DATABASES,
+  const topicAclsQuery = useGetTopicAcls(
+    projectId,
+    service.engine,
+    service.id,
+    {
+      refetchInterval: isUserActive && POLLING.TOPIC_ACL,
+    },
+  );
+  const columns: ColumnDef<database.kafka.TopicAcl>[] = getColumns({
+    onDeleteClick: (topicAcl: database.kafka.TopicAcl) =>
+      navigate(`./delete/${topicAcl.id}`),
   });
-  const columns: ColumnDef<database.kafka.Topic>[] = getColumns({
-    onDeleteClick: (topic: database.kafka.Topic) =>
-      navigate(`./delete/${topic.id}`),
-    onEditClick: (topic: database.kafka.Topic) =>
-      navigate(`./edit/${topic.id}`),
-  });
-
   return (
     <>
       <h2>{t('title')}</h2>
-      {service.capabilities.topics?.create && (
+      {service.capabilities.topicAcls?.create && (
         <Button
-          mode="outline"
+          mode={'outline'}
           size="sm"
           className="text-base"
           data-testid="add-button"
           disabled={
-            service.capabilities.topics?.create ===
+            service.capabilities.topicAcls?.create ===
             database.service.capability.StateEnum.disabled
           }
           onClick={() => navigate('./add')}
@@ -58,20 +60,21 @@ const Topics = () => {
         </Button>
       )}
 
-      {topicsQuery.isSuccess ? (
+      {topicAclsQuery.isSuccess ? (
         <DataTable.Provider
           columns={columns}
-          data={topicsQuery.data}
-          pageSize={25}
+          data={topicAclsQuery.data}
+          pageSize={10}
         />
       ) : (
         <div data-testid="table-skeleton">
           <DataTable.Skeleton columns={3} rows={5} width={100} height={16} />
         </div>
       )}
+
       <Outlet />
     </>
   );
 };
 
-export default Topics;
+export default TopicAcls;

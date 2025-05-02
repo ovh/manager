@@ -13,14 +13,14 @@ import { useServiceData } from '../../Service.context';
 import { MENU_COLUMN_ID } from '@/components/data-table/DataTable.component';
 import DataTable from '@/components/data-table';
 
-interface DatabasesTableColumnsProps {
+interface TopicsTableColumnsProps {
   onDeleteClick: (topic: database.kafka.Topic) => void;
   onEditClick: (topic: database.kafka.Topic) => void;
 }
 export const getColumns = ({
   onDeleteClick,
   onEditClick,
-}: DatabasesTableColumnsProps) => {
+}: TopicsTableColumnsProps) => {
   const { service } = useServiceData();
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/topics',
