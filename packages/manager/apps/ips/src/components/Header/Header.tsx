@@ -1,12 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import {
   ChangelogButton,
   GuideButton,
   GuideItem,
 } from '@ovh-ux/manager-react-components';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { useTranslation } from 'react-i18next';
-import { CHANGELOG_LINKS, GUIDES_LIST } from '@/utils/links.constants';
+import { CHANGELOG_LINKS, useGuideUtils } from '@/utils';
 
 export type Header = {
   title: string;
@@ -15,18 +13,14 @@ export type Header = {
 };
 
 export const useHeader = (title: string): Header => {
-  const context = useContext(ShellContext);
-  const { ovhSubsidiary } = context.environment.getUser();
-  const { t: tCommon } = useTranslation('common');
-  const guideItems: GuideItem[] = [
-    {
-      id: 1,
-      href: (GUIDES_LIST.documentation_link.url[ovhSubsidiary] ||
-        GUIDES_LIST.documentation_link.url.DEFAULT) as string,
-      target: '_blank',
-      label: tCommon('ips_dashboard_guide'),
-    },
-  ];
+  const { guides } = useGuideUtils();
+
+  const guideItems: GuideItem[] = guides.map((guide, index) => ({
+    id: index,
+    href: guide.href,
+    target: '_blank',
+    label: guide.texts.title,
+  }));
 
   return {
     title,
