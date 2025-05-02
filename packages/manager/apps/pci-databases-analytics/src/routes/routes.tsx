@@ -339,6 +339,33 @@ export default [
             ],
           },
           {
+            path: 'topicAcls',
+            id: 'service.{service.engine}.topicAcls',
+            ...lazyRouteConfig(() =>
+              import('@/pages/services/[serviceId]/topicAcls/TopicAcls.page'),
+            ),
+            children: [
+              {
+                id: 'service.{service.engine}.topicAcls.add',
+                path: 'add',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/services/[serviceId]/topicAcls/add/AddTopicAcl.modal'
+                  ),
+                ),
+              },
+              {
+                id: 'service.{service.engine}.topicAcls.delete',
+                path: 'delete/:topicAclId',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/services/[serviceId]/topicAcls/delete/DeleteTopicAcl.modal'
+                  ),
+                ),
+              },
+            ],
+          },
+          {
             path: 'integrations',
             id: 'service.{service.engine}.integrations',
             ...lazyRouteConfig(() =>

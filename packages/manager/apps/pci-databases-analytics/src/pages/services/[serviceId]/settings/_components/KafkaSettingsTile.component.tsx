@@ -32,9 +32,9 @@ const KafkaSettingsTile = () => {
         variant: 'destructive',
         description: err.response.data.message,
       });
-      if ('restApi' in variables.data) {
+      if (variables && 'restApi' in variables.data) {
         setRestApiState(restApiEnabled);
-      } else if ('schemaRegistry' in variables.data) {
+      } else if (variables && 'schemaRegistry' in variables.data) {
         setSchemaRegistryState(schemaRegistryEnabled);
       }
     },

@@ -33,6 +33,12 @@ export const getService = async <
   if (serviceData.engine === database.EngineEnum.kafka) {
     serviceData.capabilities = {
       ...serviceData.capabilities,
+      topicAcls: {
+        create: database.service.capability.StateEnum.enabled,
+        read: database.service.capability.StateEnum.enabled,
+        update: database.service.capability.StateEnum.enabled,
+        delete: database.service.capability.StateEnum.enabled,
+      },
       topics: {
         create: database.service.capability.StateEnum.enabled,
         read: database.service.capability.StateEnum.enabled,
