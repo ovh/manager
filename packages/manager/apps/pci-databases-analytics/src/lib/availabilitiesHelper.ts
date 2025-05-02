@@ -342,6 +342,7 @@ export function createTree(
     const engineSuggestion = suggestions.find((s) => s.engine === curr.engine);
     // Map engine
     const treeEngine = mapEngine(acc, curr, capabilities, engineSuggestion);
+    acc.sort((a, b) => a.order - b.order);
     // Map version
     const treeVersion = mapVersion(
       treeEngine,
@@ -349,8 +350,10 @@ export function createTree(
       capabilities,
       engineSuggestion,
     );
+    treeEngine.versions.sort((a, b) => a.order - b.order);
     // Map plan
     const treePlan = mapPlan(treeVersion, curr, capabilities, engineSuggestion);
+    treeVersion.plans.sort((a, b) => a.order - b.order);
     // Map region
     const treeRegion = mapRegion(
       treePlan,
@@ -358,6 +361,7 @@ export function createTree(
       capabilities,
       engineSuggestion,
     );
+    treePlan.regions.sort((a, b) => a.order - b.order);
     // Map flavor
     const treeFlavor = mapFlavor(
       treeRegion,
@@ -365,6 +369,7 @@ export function createTree(
       capabilities,
       engineSuggestion,
     );
+    treeRegion.flavors.sort((a, b) => a.order - b.order);
     // Set prices
     setPrices(curr, catalog, treePlan, treeFlavor);
     return acc;

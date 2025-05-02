@@ -24,17 +24,10 @@ export const getUsers = async ({
   // Returned data type depends of service's engine
   let userReturnType: GenericUser[];
   switch (engine) {
-    case database.EngineEnum.mysql:
-    case database.EngineEnum.postgresql:
-    case database.EngineEnum.kafka:
-    case database.EngineEnum.cassandra:
-    case database.EngineEnum.kafkaConnect:
-    case database.EngineEnum.grafana:
-      userReturnType = response.data as database.service.User[];
-      break;
     case database.EngineEnum.mongodb:
       userReturnType = response.data as database.service.UserWithRoles[];
       break;
+    case database.EngineEnum.valkey:
     case database.EngineEnum.redis:
       userReturnType = response.data as database.redis.User[];
       break;
@@ -45,9 +38,7 @@ export const getUsers = async ({
       userReturnType = response.data as database.m3db.User[];
       break;
     default:
-      throw new Error(
-        `The engine ${engine} does not implement the resource ${resource}`,
-      );
+      userReturnType = response.data as database.service.User[];
   }
   return userReturnType;
 };
