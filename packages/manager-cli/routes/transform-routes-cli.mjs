@@ -5,9 +5,9 @@ import path from 'path';
 import prettier from 'prettier';
 import parser from '@babel/parser';
 import traverseModule from '@babel/traverse';
-import { buildUniqueComponentName } from '../utils/StringUtils.mjs';
 import { traverseRoutesExportNodes } from '../utils/ASTUtils.mjs';
 import {
+  buildUniqueComponentName,
   extractPreservedBlocks,
   injectNamedImport,
   isCodeFileExists,

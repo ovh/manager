@@ -1,5 +1,9 @@
 import { access } from 'fs/promises';
 import { constants } from 'fs';
+import { dedupeWords, normalizeName, toPascalCase } from './StringUtils.mjs';
+
+const importPathToComponent = new Map();
+const usedComponentNames = new Set();
 
 /**
  * Check if a code file exists and is readable.
@@ -156,4 +160,87 @@ export const splitImportsAndBody = (
     importBlocks: filteredImports,
     body,
   };
+};
+
+/**
+ * Remove redundant name candidates
+ * @param candidates
+ * @returns {*}
+ */
+const removeRedundantNameCandidates = (candidates) => {
+  const lower = candidates.map((c) => c.toLowerCase());
+  return candidates.filter((candidate, i) => {
+    const rest = lower.filter((_, j) => j !== i);
+    return !rest.some((r) => r.includes(candidate.toLowerCase()) && r !== candidate.toLowerCase());
+  });
+};
+
+/**
+ * Generate a unique and descriptive component name for a lazy route import.
+ */
+/**
+ * Generate a unique and descriptive component name for a lazy route import.
+ */
+export const buildUniqueComponentName = (importPath, metadata = {}) => {
+  if (typeof importPath !== 'string' || !importPath.trim()) {
+    console.warn('⚠️ buildUniqueComponentName: invalid importPath');
+    return '';
+  }
+
+  if (importPathToComponent.has(importPath)) {
+    return importPathToComponent.get(importPath);
+  }
+
+  const candidates = [];
+
+  // 1. From breadcrumb label like 'common:add_organization'
+  if (metadata.breadcrumb && metadata.breadcrumb.startsWith('common:')) {
+    candidates.push(metadata.breadcrumb.split(':')[1]);
+  }
+
+  // 2. From tracking.pageName like 'delete_veeam-backup'
+  if (metadata.pageName) {
+    candidates.push(metadata.pageName.replace(/[-_]+/g, ' '));
+  }
+
+  // 3. From route ID
+  if (metadata.id) {
+    candidates.push(metadata.id.replace(/[-_]+/g, ' '));
+  }
+
+  // 4. Fallback to path parts
+  if (candidates.length === 0) {
+    const pathParts = importPath
+      .replace(/^@\/|\.\/|\.tsx?$|\.jsx?$/g, '')
+      .split('/')
+      .filter(Boolean);
+
+    if (pathParts[0] === 'pages') pathParts.shift();
+
+    const rawFileName = pathParts.at(-1) || '';
+    const suffixMatch = rawFileName.match(/\.(page|layout|modal)$/i);
+    const typeSuffix = suffixMatch ? toPascalCase(suffixMatch[1]) : 'Page';
+    const baseFileName = normalizeName(rawFileName.replace(/\.(page|layout|modal)$/i, ''));
+
+    const folders = pathParts.slice(0, -1).map(normalizeName);
+    const filteredFolders = folders.filter((f) => f && f !== baseFileName);
+
+    candidates.push(...filteredFolders.slice(-2), baseFileName, typeSuffix);
+  }
+
+  // Final name composition
+  const cleanedCandidates = removeRedundantNameCandidates([...(candidates || [])]);
+  let name = dedupeWords(toPascalCase(cleanedCandidates.join(' '))) + 'Page';
+
+  // Deduplicate
+  let finalName = name;
+  let counter = 1;
+  while (usedComponentNames.has(finalName)) {
+    finalName = `${name}_${counter++}`;
+  }
+
+  usedComponentNames.add(finalName);
+  importPathToComponent.set(importPath, finalName);
+
+  return finalName;
 };
