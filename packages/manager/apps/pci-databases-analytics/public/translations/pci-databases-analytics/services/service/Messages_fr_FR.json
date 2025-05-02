@@ -9,6 +9,8 @@
   "IntegrationsTab": "Intégrations",
   "MetricsTab": "Métriques",
   "LogsTab": "Logs",
+  "TopicsTab": "Topics",
+  "TopicAclsTab": "ACL",
   "SettingsTab": "Configuration",
   "IndexPatternsTab": "Index patterns",
   "ConnectorsTab": "Connectors",
