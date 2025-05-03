@@ -36,13 +36,16 @@
     "@tanstack/react-query-devtools": "^5.51.21",
     "axios": "^1.1.2",
     "clsx": "^1.2.1",
+    "element-internals-polyfill": "^3.0.2",
     "i18next": "^23.8.2",
     "i18next-http-backend": "^2.4.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.56.1",
     "react-i18next": "^14.0.5",
     "react-router-dom": "^6.3.0",
-    "tailwindcss": "^3.3.3"
+    "tailwindcss": "^3.3.3",
+    "zod": "^3.24.3"
   },
   "devDependencies": {
     "@ovh-ux/manager-core-test-utils": "^0.4.4",

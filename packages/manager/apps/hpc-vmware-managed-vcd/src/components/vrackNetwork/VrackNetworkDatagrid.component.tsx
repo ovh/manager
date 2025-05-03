@@ -34,7 +34,7 @@ export default function VrackNetworkDatagrid({
   id,
   vdcId,
 }: VrackNetworkDatagridProps) {
-  const { t } = useTranslation('datacentres/vrack-network');
+  const { t } = useTranslation('datacentres/vrack-segment');
   const [sorting, setSorting] = useState<ColumnSort>();
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const [searchInput, setSearchInput] = useState('');
@@ -61,13 +61,13 @@ export default function VrackNetworkDatagrid({
   });
 
   const hrefEdit = useHref(
-    urls.vrackSegmentsEditVlanId
+    urls.vrackSegmentEditVlanId
       .replace(subRoutes.dashboard, id)
       .replace(subRoutes.vdcId, vdcId),
   );
 
   const hrefAddNetwork = useHref(
-    urls.vrackSegmentsAddNetwork
+    urls.vrackSegmentAddNetwork
       .replace(subRoutes.dashboard, id)
       .replace(subRoutes.vdcId, vdcId),
   );
@@ -107,7 +107,7 @@ export default function VrackNetworkDatagrid({
             items={[
               {
                 id: 1,
-                href: hrefEdit,
+                href: hrefEdit.replace(subRoutes.vrackSegmentId, item.id),
                 label: t('managed_vcd_dashboard_vrack_network_edit_vlan'),
               },
               {
