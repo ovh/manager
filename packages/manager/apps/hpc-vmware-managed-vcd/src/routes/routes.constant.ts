@@ -9,7 +9,8 @@ export const subRoutes = {
   datacentreStorage: 'storage',
   datacentreCompute: 'compute',
   resetPassword: 'reset-password',
-  vrackNetwork: 'vrack-network',
+  vrackSegment: 'vrack-segments',
+  vrackSegmentId: ':vrackSegmentId',
 } as const;
 
 export const urls = {
@@ -27,7 +28,8 @@ export const urls = {
   datacentreStorageOrder: `/${subRoutes.dashboard}/${subRoutes.virtualDatacenters}/${subRoutes.vdcId}/${subRoutes.datacentreStorage}/${subRoutes.order}`,
   datacentreCompute: `/${subRoutes.dashboard}/${subRoutes.virtualDatacenters}/${subRoutes.vdcId}/${subRoutes.datacentreCompute}`,
   datacentreComputeOrder: `/${subRoutes.dashboard}/${subRoutes.virtualDatacenters}/${subRoutes.vdcId}/${subRoutes.datacentreCompute}/${subRoutes.order}`,
-  vrackNetwork: `/${subRoutes.dashboard}/${subRoutes.virtualDatacenters}/${subRoutes.vdcId}/${subRoutes.vrackNetwork}`,
+  vrackSegment: `/${subRoutes.dashboard}/${subRoutes.virtualDatacenters}/${subRoutes.vdcId}/${subRoutes.vrackSegment}`,
+  vrackSegmentEditVlanId: `/${subRoutes.dashboard}/${subRoutes.virtualDatacenters}/${subRoutes.vdcId}/${subRoutes.vrackSegment}/${subRoutes.vrackSegmentId}/edit`,
 } as const;
 
 export const veeamBackupAppName = 'veeam-backup';

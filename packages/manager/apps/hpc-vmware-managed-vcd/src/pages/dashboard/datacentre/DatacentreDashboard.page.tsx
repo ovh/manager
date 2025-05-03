@@ -85,7 +85,7 @@ function DatacentreDashboardPage() {
       label: serviceName,
     },
     {
-      id: subRoutes.vrackNetwork,
+      id: subRoutes.vrackSegment,
       label: t('managed_vcd_dashboard_vrack_network_segments'),
     },
   ];
