@@ -56,7 +56,7 @@ export default function VcdDashboardLayout({
                   trackClick(getTabTrackingParams(tab.trackingActions))
                 }
               >
-                <OdsTab isSelected={tab.name === activeTab.name}>
+                <OdsTab isSelected={tab?.name === activeTab?.name}>
                   {tab.title}
                 </OdsTab>
               </NavLink>

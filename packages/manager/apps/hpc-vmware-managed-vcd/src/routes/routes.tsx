@@ -68,8 +68,14 @@ const DatacentreComputeOrderPage = React.lazy(() =>
   ),
 );
 
-const DatacenterVrackNetworkPage = React.lazy(() =>
-  import('@/pages/dashboard/datacentre/vrack-network/VrackNetwork.page'),
+const DatacenterVrackSegmentPage = React.lazy(() =>
+  import('@/pages/dashboard/datacentre/vrack-segment/VrackNetwork.page'),
+);
+
+const EditVrackSegmentIdPage = React.lazy(() =>
+  import(
+    '@/pages/dashboard/datacentre/vrack-segment/edit/EditVrackSegmentId.page'
+  ),
 );
 
 export default (
@@ -210,10 +216,16 @@ export default (
         }}
       />
       <Route
-        id={'vrack-network'}
-        path={urls.vrackNetwork}
-        Component={DatacenterVrackNetworkPage}
-      />
+        id={'vrack-segment'}
+        path={urls.vrackSegments}
+        Component={DatacenterVrackSegmentPage}
+      >
+        <Route
+          id={'edit-vlan-id'}
+          path={urls.vrackSegmentEditVlanId}
+          Component={EditVrackSegmentIdPage}
+        />
+      </Route>
       <Route
         id={'vDcCompute'}
         path={urls.datacentreCompute}
