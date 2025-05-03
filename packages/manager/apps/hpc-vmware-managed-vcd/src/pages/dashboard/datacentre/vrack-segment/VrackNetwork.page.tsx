@@ -6,7 +6,7 @@ import Errors from '@/components/error/Error.component';
 import VrackNetworkDatagrid from '@/components/vrackNetwork/VrackNetworkDatagrid.component';
 
 export default function VrackNetworkPage() {
-  const { id, vcdId } = useParams();
+  const { id, vdcId } = useParams();
 
   const { isError, error } = useVcdOrganization({
     id,
@@ -19,7 +19,7 @@ export default function VrackNetworkPage() {
   return (
     <React.Suspense fallback={<Loading />}>
       <div className="px-10">
-        <VrackNetworkDatagrid id={id} vdcId={vcdId} />
+        <VrackNetworkDatagrid id={id} vdcId={vdcId} />
       </div>
       <Outlet />
     </React.Suspense>
