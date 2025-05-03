@@ -21,7 +21,9 @@ import {
   VrackSegment,
 } from '@ovh-ux/manager-module-vcd-api';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import { useHref } from 'react-router-dom';
 import VrackNetworkDatagridSubDatagrid from './VrackNetworkDatagridSubDatagrid.component';
+import { subRoutes, urls } from '@/routes/routes.constant';
 
 export type VrackNetworkDatagridProps = {
   id: string;
@@ -58,6 +60,12 @@ export default function VrackNetworkDatagrid({
       })),
   });
 
+  const hrefEdit = useHref(
+    urls.vrackNetworkEditVlanId
+      .replace(subRoutes.dashboard, id)
+      .replace(subRoutes.vdcId, vdcId),
+  );
+
   const columns = [
     {
       id: 'searchableValue',
@@ -93,19 +101,19 @@ export default function VrackNetworkDatagrid({
             items={[
               {
                 id: 1,
-                target: '_blank',
+                href: hrefEdit.replace(subRoutes.vrackSegmentId, item.id),
                 label: t('managed_vcd_dashboard_vrack_network_edit_vlan'),
               },
               {
                 id: 2,
-                target: '_blank',
+                href: '_blank',
                 label: t('managed_vcd_dashboard_vrack_network_add_subnet'),
               },
               ...(vrackNetworks?.length ?? 0 > 5
                 ? [
                     {
                       id: 3,
-                      target: '_blank',
+                      href: '_blank',
                       label: t(
                         'managed_vcd_dashboard_vrack_network_delete_segment',
                       ),
