@@ -35,7 +35,7 @@ export default function VrackNetworkDatagridSubDatagrid({
   networks: string[];
   headerRefs?: React.RefObject<HTMLTableCellElement>;
 }) {
-  const { t } = useTranslation('datacentres/vrack-network');
+  const { t } = useTranslation('datacentres/vrack-segment');
   return (
     <>
       <style>{CSS}</style>

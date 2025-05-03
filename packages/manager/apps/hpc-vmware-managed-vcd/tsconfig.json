@@ -19,7 +19,8 @@
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@ovh-ux/manager-module-vcd-api": ["../../modules/vcd-api/src"]
     }
   },
   "include": ["src"],

@@ -40,19 +40,19 @@ function DatacentreDashboardPage() {
     {
       name: 'compute',
       title: COMPUTE_LABEL,
-      to: useResolvedPath('compute').pathname,
+      to: useResolvedPath(subRoutes.datacentreCompute).pathname,
       trackingActions: TRACKING_TABS_ACTIONS.compute,
     },
     {
       name: 'storage',
       title: STORAGE_LABEL,
-      to: useResolvedPath('storage').pathname,
+      to: useResolvedPath(subRoutes.datacentreStorage).pathname,
       trackingActions: TRACKING_TABS_ACTIONS.storage,
     },
     {
       name: 'vrack-segments',
       title: t('managed_vcd_dashboard_vrack_network_title'),
-      to: useResolvedPath('vrack-network').pathname,
+      to: useResolvedPath(subRoutes.vrackSegments).pathname,
       trackingActions: TRACKING_TABS_ACTIONS.vrackNetwork,
     },
   ];

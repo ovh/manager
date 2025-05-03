@@ -224,12 +224,23 @@ export const Routes: any = [
           },
           {
             id: 'vrack-network',
-            path: urls.vrackNetwork,
+            path: urls.vrackSegments,
             ...lazyRouteConfig(() =>
               import(
-                '@/pages/dashboard/datacentre/vrack-network/VrackNetwork.page'
+                '@/pages/dashboard/datacentre/vrack-segment/VrackNetwork.page'
               ),
             ),
+            children: [
+              {
+                id: 'edit-vlan-id',
+                path: urls.vrackSegmentEditVlanId,
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/dashboard/datacentre/vrack-segment/edit/EditVrackSegmentId.page'
+                  ),
+                ),
+              },
+            ],
           },
         ],
       },
