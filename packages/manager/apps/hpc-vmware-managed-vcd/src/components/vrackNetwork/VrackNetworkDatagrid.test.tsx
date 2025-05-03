@@ -6,7 +6,7 @@ import {
   VrackSegment,
 } from '@ovh-ux/manager-module-vcd-api';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
-import fr_FR from '../../../public/translations/datacentres/vrack-network/Messages_fr_FR.json';
+import fr_FR from '../../../public/translations/datacentres/vrack-segment/Messages_fr_FR.json';
 import VrackNetworkDatagrid from './VrackNetworkDatagrid.component';
 
 vi.mock('react-i18next', () => ({
@@ -23,6 +23,14 @@ vi.mock('react-i18next', () => ({
     },
   }),
 }));
+
+vi.mock('react-router-dom', async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...(actual as Record<string, unknown>),
+    useHref: vi.fn(() => '/test-edit-url'),
+  };
+});
 
 vi.mock('@ovh-ux/manager-module-vcd-api', async (importOriginal) => {
   const actual = await importOriginal();
