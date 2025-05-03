@@ -6304,6 +6304,11 @@
   resolved "https://registry.yarnpkg.com/@orchidjs/unicode-variants/-/unicode-variants-1.1.2.tgz#1fd71791a67fdd1591ebe0dcaadd3964537a824e"
   integrity sha512-5DobW1CHgnBROOEpFlEXytED5OosEWESFvg/VYmH0143oXcijYTprRYJTs+55HzGM4IqxiLFSuqEzu9mPNwVsA==
 
+"@ovh-ux/manager-common-translations@~0.5.3":
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-common-translations/-/manager-common-translations-0.5.3.tgz#3dcb779e67ab035c84cccbd5e378d19533115e90"
+  integrity sha512-h3bscckVssRx3lrIJg+YJtj9i2FEQc1SAJUt0WE0gILp0ruuWWlRfn9KEKTtMexEne9K4PNhTTYISG5G9h0n+w==
+
 "@ovh-ux/manager-pci-common@^0.16.4":
   version "0.16.4"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-pci-common/-/manager-pci-common-0.16.4.tgz#0d9f4efd0140cd4f2eb0f9b508f3e53a8120e5c2"
@@ -15367,6 +15372,11 @@ element-internals-polyfill@^3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/element-internals-polyfill/-/element-internals-polyfill-3.0.1.tgz#46e69c38c87313d9863fa4ec949517c26ca3beb5"
   integrity sha512-gHt0mrRy/y7VIymHIcq1U/IZOci3Z8qUy/YyMBSoSIfMHqO4v6Sm6igGpoFeljroo0Q2wjkInUafB79M6WAocQ==
+
+element-internals-polyfill@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/element-internals-polyfill/-/element-internals-polyfill-3.0.2.tgz#df7a0dcd5e39f64d46115efc61e497359edc3e8e"
+  integrity sha512-uB0/Qube3lkwh8SmkTnGIyUgJ9YdqVSzIoHMRCEQjAbD4Y5UzsVbch1tIxjTgUe5k3gy1U0ZMKMJ90A81lqwig==
 
 email-addresses@^5.0.0:
   version "5.0.0"
@@ -24879,6 +24889,11 @@ react-hook-form@^7.55.0:
   resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.55.0.tgz#df3c80a20a68f6811f49bec3406defaefb6dce80"
   integrity sha512-XRnjsH3GVMQz1moZTW53MxfoWN7aDpUg/GpVNc4A3eXRVNdGXfbzJ4vM4aLQ8g6XCUh1nIbx70aaNCl7kxnjog==
 
+react-hook-form@^7.56.1:
+  version "7.56.1"
+  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.56.1.tgz#45b2040fef997b873d656959d2e7f864f35bf95d"
+  integrity sha512-qWAVokhSpshhcEuQDSANHx3jiAEFzu2HAaaQIzi/r9FNPm1ioAvuJSD4EuZzWd7Al7nTRKcKPnBKO7sRn+zavQ==
+
 react-i18next@^11.18.1:
   version "11.18.6"
   resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-11.18.6.tgz#e159c2960c718c1314f1e8fcaa282d1c8b167887"
@@ -30880,6 +30895,11 @@ zod@^3.24.2:
   version "3.24.2"
   resolved "https://registry.yarnpkg.com/zod/-/zod-3.24.2.tgz#8efa74126287c675e92f46871cfc8d15c34372b3"
   integrity sha512-lY7CDW43ECgW9u1TcT3IoXHflywfVqDYze4waEz812jR/bZ8FHDsl7pFQoSZTz5N+2NqRXs8GBwnAwo3ZNxqhQ==
+
+zod@^3.24.3:
+  version "3.24.3"
+  resolved "https://registry.yarnpkg.com/zod/-/zod-3.24.3.tgz#1f40f750a05e477396da64438e0e1c0995dafd87"
+  integrity sha512-HhY1oqzWCQWuUqvBFnsyrtZRhyPeR7SUGv+C4+MsisMuVfSPx8HpwWqH8tRahSlt6M3PiFAcoeFhZAqIXTxoSg==
 
 zustand@^4.5.5:
   version "4.5.5"
