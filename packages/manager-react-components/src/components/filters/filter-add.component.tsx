@@ -12,9 +12,13 @@ import {
   OdsFormField,
   OdsInput,
   OdsSelect,
+  OdsCombobox,
+  OdsComboboxItem,
+  OdsSkeleton,
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import './translations';
+import { useGetResourceTags } from '../../hooks';
 
 export type Option = {
   label: string;
@@ -31,10 +35,15 @@ export type ColumnFilter = {
 
 export type FilterAddProps = {
   columns: ColumnFilter[];
+  resourceType?: string;
   onAddFilter: (filter: Filter, column: ColumnFilter) => void;
 };
 
-export function FilterAdd({ columns, onAddFilter }: Readonly<FilterAddProps>) {
+export function FilterAdd({
+  columns,
+  onAddFilter,
+  resourceType,
+}: Readonly<FilterAddProps>) {
   const { t } = useTranslation('filters');
 
   const [selectedId, setSelectedId] = useState(columns?.[0]?.id || '');
@@ -43,11 +52,21 @@ export function FilterAdd({ columns, onAddFilter }: Readonly<FilterAddProps>) {
   );
   const [value, setValue] = useState('');
   const [dateValue, setDateValue] = useState<Date | null>(null);
+  const [tagKey, setTagKey] = useState('');
 
   const selectedColumn = useMemo(
     () => columns.find(({ id }) => selectedId === id),
     [columns, selectedId],
   );
+
+  const {
+    data: tags,
+    isError: getTagsError,
+    isLoading: isTagsLoading,
+  } = useGetResourceTags({
+    resourceType,
+    enabled: selectedColumn?.type === FilterTypeCategories.Tags,
+  });
 
   const isInputValid = useMemo(() => {
     if (selectedColumn?.type === FilterTypeCategories.Date) {
@@ -58,8 +77,19 @@ export function FilterAdd({ columns, onAddFilter }: Readonly<FilterAddProps>) {
       // Empty string is not a valid number (though Number('') === 0)
       return !Number.isNaN(Number(value)) && value !== '';
     }
+
+    if (selectedColumn?.type === FilterTypeCategories.Tags) {
+      return (
+        (!!tagKey && !!value) ||
+        (!!tagKey &&
+          [FilterComparator.TagExists, FilterComparator.TagNotExists].includes(
+            selectedComparator,
+          ))
+      );
+    }
+
     return value !== '';
-  }, [selectedColumn, dateValue, value]);
+  }, [selectedColumn, dateValue, value, tagKey, selectedComparator]);
 
   const submitAddFilter = () => {
     if (!isInputValid) {
@@ -74,6 +104,7 @@ export function FilterAdd({ columns, onAddFilter }: Readonly<FilterAddProps>) {
             ? dateValue.toISOString()
             : value,
         type: selectedColumn.type,
+        tagKey,
       },
       selectedColumn,
     );
@@ -197,16 +228,73 @@ export function FilterAdd({ columns, onAddFilter }: Readonly<FilterAddProps>) {
           )}
         </OdsFormField>
       </div>
-      <div>
-        <OdsFormField className="mt-2 w-full">
-          <div slot="label">
-            <span className="text-[--ods-color-heading] leading-[22px]">
-              {t('common_criteria_adder_value_label')}
-            </span>
-          </div>
-          {inputComponent}
-        </OdsFormField>
-      </div>
+      {selectedColumn?.type !== FilterTypeCategories.Tags && (
+        <div>
+          <OdsFormField className="mt-2 w-full">
+            <div slot="label">
+              <span className="text-[--ods-color-heading] leading-[22px]">
+                {t('common_criteria_adder_value_label')}
+              </span>
+            </div>
+            {inputComponent}
+          </OdsFormField>
+        </div>
+      )}
+      {selectedColumn?.type === FilterTypeCategories.Tags && (
+        <div>
+          <OdsFormField className="mt-2 w-full">
+            <div slot="label">
+              <span className="text-[--ods-color-heading] leading-[22px]">
+                {t('common_criteria_adder_key_label')}
+              </span>
+            </div>
+            {isTagsLoading && <OdsSkeleton />}
+            {!isTagsLoading && (
+              <OdsCombobox
+                name="tag-key"
+                allowNewElement={false}
+                onOdsChange={(event) => {
+                  setTagKey(event.detail.value);
+                  setValue('');
+                }}
+              >
+                {!getTagsError &&
+                  tags?.map((tag) => (
+                    <OdsComboboxItem key={tag.key} value={tag.key}>
+                      {tag.key}
+                    </OdsComboboxItem>
+                  ))}
+              </OdsCombobox>
+            )}
+          </OdsFormField>
+          <OdsFormField className="mt-2 w-full">
+            <div slot="label">
+              <span className="text-[--ods-color-heading] leading-[22px]">
+                {t('common_criteria_adder_value_label')}
+              </span>
+            </div>
+            {isTagsLoading && <OdsSkeleton />}
+            {!isTagsLoading && (
+              <OdsCombobox
+                name="tag-value"
+                isDisabled={!tagKey}
+                allowNewElement={false}
+                onOdsChange={(event) => {
+                  setValue(event.detail.value);
+                }}
+              >
+                {tags
+                  ?.find((tag) => tag.key === tagKey)
+                  ?.values?.map((value) => (
+                    <OdsComboboxItem key={value} value={value}>
+                      {value}
+                    </OdsComboboxItem>
+                  ))}
+              </OdsCombobox>
+            )}
+          </OdsFormField>
+        </div>
+      )}
       <div>
         <OdsButton
           className="mt-4 w-full filter-add-button-submit"
