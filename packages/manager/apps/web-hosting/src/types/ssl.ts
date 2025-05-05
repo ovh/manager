@@ -22,3 +22,12 @@ export type DomainDetails = {
   expirationDate: string;
   setMessage?: ({ status, label }: { status: string; label: string }) => void;
 };
+
+export type TCertificate = {
+  isReportable: boolean;
+  provider: string;
+  regenerable: boolean;
+  status: string;
+  taskId?: number;
+  type: string;
+};
