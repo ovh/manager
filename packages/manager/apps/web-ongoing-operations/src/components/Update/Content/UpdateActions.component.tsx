@@ -21,7 +21,8 @@ interface UpdateActionsProps {
   readonly data: TOngoingOperations;
   readonly actionName: ActionNameEnum;
   readonly disabled: boolean;
-  readonly onValidate: (operationId?: number, type?: ActionNameEnum) => void;
+  readonly isActionLoading: boolean;
+  readonly onValidate: () => void;
   readonly updateActionName: (label: ActionNameEnum) => void;
 }
 
@@ -29,6 +30,7 @@ export default function UpdateActions({
   data,
   actionName,
   disabled,
+  isActionLoading,
   onValidate,
   updateActionName,
 }: UpdateActionsProps) {
@@ -111,8 +113,9 @@ export default function UpdateActions({
           <OdsButton
             label={t('wizard_confirm')}
             slot="actions"
-            onClick={() => onValidate(data.id, actionName)}
+            onClick={() => onValidate()}
             isDisabled={disabled}
+            isLoading={isActionLoading}
           />
         </div>
       </div>

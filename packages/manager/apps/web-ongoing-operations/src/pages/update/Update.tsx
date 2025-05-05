@@ -4,11 +4,11 @@ import {
   useNotifications,
 } from '@ovh-ux/manager-react-components';
 import React, { useMemo, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_PRESET, OdsFile } from '@ovhcloud/ods-components';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import pLimit from 'p-limit';
 import { updateTask } from '@/data/api/web-ongoing-operations';
 import SubHeader from '@/components/SubHeader/SubHeader';
@@ -27,15 +27,18 @@ import { urls } from '@/routes/routes.constant';
 export default function Update() {
   const { t } = useTranslation('dashboard');
   const { id } = useParams<{ id: string }>();
+  const { product } = useParams<{ product: string }>();
   const [actionName, setActionName] = useState<ActionNameEnum>(null);
   const [uploadedFiles, setUploadedFiles] = useState<TFiles[]>([]);
   const [operationArgumentsUpdated, setOperationArgumentsUpdated] = useState<
     Record<string, string>
   >();
+  const [isActionLoading, setIsActionLoading] = useState<boolean>(false);
   const navigate = useNavigate();
   const paramId = Number(id);
   const limit = pLimit(1);
   const updateTaskLimit = pLimit(1);
+  const queryClient = useQueryClient();
 
   const { data: domain, isLoading: domainLoading } = useDomain(paramId);
   const {
@@ -43,7 +46,7 @@ export default function Update() {
     isLoading: argumentLoading,
   } = useOperationArguments(paramId);
   const { notifications, clearNotifications } = useNotifications();
-  const { addError, addSuccess, addInfo } = useNotifications();
+  const { addError, addSuccess } = useNotifications();
 
   const addFileUpload = (key: string, data: OdsFile[]) => {
     setUploadedFiles((prevFiles) => [...prevFiles, { key, data } as TFiles]);
@@ -70,15 +73,26 @@ export default function Update() {
   };
 
   const { mutate: executeActionOnOperation } = useMutation({
-    mutationFn: (operationID: number) =>
-      updateOperationStatus(ParentEnum.DOMAIN, operationID, actionName),
-    onSuccess: () => {
+    mutationFn: async (operationID: number) => {
+      clearNotifications();
+      await updateOperationStatus(ParentEnum.DOMAIN, operationID, actionName);
+    },
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: ['me', 'task'],
+      });
+      setIsActionLoading(false);
+      clearNotifications();
       addSuccess(
-        <OdsText>{t(`domain_operations_update_${actionName}`)}</OdsText>,
+        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+          {t(`domain_operations_${actionName}_success`)}
+        </OdsText>,
       );
+      navigate(`${urls.root}${product}`);
     },
     onError: () => {
-      addError(<OdsText>{t('domain_operations_upload_error')}</OdsText>);
+      setIsActionLoading(false);
+      addError(<OdsText>{t('domain_operations_update_error')}</OdsText>);
     },
   });
 
@@ -110,33 +124,26 @@ export default function Update() {
   };
 
   const { mutate: onValidate } = useMutation({
-    mutationFn: async (operationID: number) => {
-      addInfo(<OdsText>{t('domain_operations_upload_doing')}</OdsText>);
-      await processUploadedFiles(operationID);
+    mutationFn: async () => {
+      setIsActionLoading(true);
+      if (uploadedFiles) {
+        await processUploadedFiles(paramId);
+      }
       if (operationArgumentsUpdated) {
         const promises = Object.entries(
           operationArgumentsUpdated,
         ).map(([key, value]) =>
-          updateTaskLimit(() => updateTask(operationID, key, { value })),
+          updateTaskLimit(() => updateTask(paramId, key, { value })),
         );
         await Promise.all(promises);
       }
-      return { operationID };
     },
-    onSuccess: (data) => {
-      const { operationID } = data;
-      clearNotifications();
-      addSuccess(<OdsText>{t('domain_operations_upload_success')}</OdsText>);
-      executeActionOnOperation(operationID);
+    onSuccess: async () => {
+      executeActionOnOperation(paramId);
     },
     onError: () => {
-      addError(<OdsText>{t('domain_operations_upload_error')}</OdsText>);
-    },
-    onSettled: () => {
-      setTimeout(() => {
-        navigate(urls.root);
-        clearNotifications();
-      }, 4000);
+      setIsActionLoading(false);
+      addError(<OdsText>{t('domain_operations_update_error')}</OdsText>);
     },
   });
 
@@ -204,14 +211,24 @@ export default function Update() {
       <section>
         <div className="flex flex-col gap-y-1 mb-6">
           <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-            {t('domain_operation_comment')}
-            <strong>{domain.comment}</strong>
+            <Trans
+              t={t}
+              i18nKey="domain_operation_comment"
+              values={{
+                t0: domain.comment,
+              }}
+              components={{ strong: <strong /> }}
+            />
           </OdsText>
           <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-            {t('domain_operation_data')}
-            <strong>
-              "{t(`domain_operations_nicOperation_${domain.function}`)}"
-            </strong>
+            <Trans
+              t={t}
+              i18nKey="domain_operation_data"
+              values={{
+                t0: t(`domain_operations_nicOperation_${domain.function}`),
+              }}
+              components={{ strong: <strong /> }}
+            />
           </OdsText>
         </div>
 
@@ -235,8 +252,9 @@ export default function Update() {
           data={domain}
           actionName={actionName}
           disabled={isButtonDisabled}
-          onValidate={(operationId) => onValidate(operationId)}
+          onValidate={onValidate}
           updateActionName={updateActionName}
+          isActionLoading={isActionLoading}
         />
       </section>
     </BaseLayout>

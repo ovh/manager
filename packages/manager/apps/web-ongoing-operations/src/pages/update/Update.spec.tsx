@@ -1,13 +1,13 @@
 import '@/setupTests';
-import React, { PropsWithChildren } from 'react';
+import React from 'react';
 import { vi } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import { OdsFileUpload } from '@ovhcloud/ods-components/react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import {
   OdsFileChangeEventDetail,
   OdsFileUploadCustomEvent,
 } from '@ovhcloud/ods-components';
+import { wrapper } from '@/utils/test.provider';
 import {
   uploadDomain,
   updateContactArgument,
@@ -20,7 +20,7 @@ import { useGetDomainInformation } from '@/hooks/data/query';
 import { serviceInfo } from '@/__mocks__/serviceInfo';
 
 vi.mock('react-router-dom', () => ({
-  useNavigate: vi.fn(),
+  useNavigate: () => vi.fn(() => null),
   useParams: () => {
     return {
       id: '1',
@@ -43,11 +43,6 @@ vi.mock('@/hooks/update/useOperationArguments', () => ({
 }));
 
 describe('Update page', () => {
-  const queryClient = new QueryClient();
-  const wrapper = ({ children }: PropsWithChildren) => (
-    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-  );
-
   it('display the correct data related to the domain', async () => {
     (useOperationArguments as jest.Mock).mockReturnValue({
       data: updateContactArgument,
@@ -61,11 +56,6 @@ describe('Update page', () => {
         screen.getByText('domain_operations_update_title'),
       ).toBeInTheDocument();
 
-      expect(
-        screen.getByText(
-          '"Domain is scheduled for deletion on 2026-08-24 12:58:23"',
-        ),
-      );
       expect(screen.getByText('domain_operation_comment'));
     });
   });

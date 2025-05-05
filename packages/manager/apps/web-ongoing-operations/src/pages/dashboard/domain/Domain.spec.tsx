@@ -1,17 +1,18 @@
 import '@/setupTests';
-import React, { PropsWithChildren } from 'react';
+import React from 'react';
 import '@testing-library/jest-dom';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { vi } from 'vitest';
 import { useResourcesIcebergV6 } from '@ovh-ux/manager-react-components';
 import { render, waitFor, screen } from '@testing-library/react';
 import { domain } from '@/__mocks__/domain';
 import Domain from '@/pages/dashboard/domain/Domain';
 import { taskMeDomain } from '@/constants';
+import { wrapper } from '@/utils/test.provider';
 
 vi.mock('react-router-dom', () => ({
   useNavigate: () => vi.fn(() => null),
   Navigate: vi.fn(() => null),
+  useLocation: vi.fn(),
 }));
 
 vi.mock('@/data/api/web-ongoing-operations', () => ({
@@ -20,11 +21,6 @@ vi.mock('@/data/api/web-ongoing-operations', () => ({
     .fn()
     .mockImplementation(() => Promise.resolve(['nic1', 'nic2'])),
 }));
-
-const queryClient = new QueryClient();
-const wrapper = ({ children }: PropsWithChildren) => (
-  <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-);
 
 describe('Domain datagrid', () => {
   it('displays loading spinner while main request are loading', async () => {
@@ -47,7 +43,7 @@ describe('Domain datagrid', () => {
     expect(useResourcesIcebergV6).toHaveBeenCalledWith(
       expect.objectContaining({
         pageSize: 30,
-        route: taskMeDomain,
+        route: taskMeDomain.join('/'),
       }),
     );
   });

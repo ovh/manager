@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Datagrid,
   ErrorBanner,
+  useNotifications,
   useResourcesIcebergV6,
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
@@ -13,6 +14,7 @@ import { ParentEnum } from '@/enum/parent.enum';
 
 export default function Domain() {
   const { t: tError } = useTranslation('web-ongoing-operations/error');
+  const { notifications } = useNotifications();
 
   const {
     flattenData: domainList,
@@ -25,9 +27,10 @@ export default function Domain() {
     setSorting,
     filters,
   } = useResourcesIcebergV6<TOngoingOperations>({
-    route: taskMeDomain,
-    queryKey: [taskMeDomain],
+    route: taskMeDomain.join('/'),
+    queryKey: taskMeDomain,
     pageSize: 30,
+    disableCache: !!notifications.length,
   });
 
   const columns = useOngoingOperationDatagridColumns(
