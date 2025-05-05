@@ -7,5 +7,10 @@
   "iam_policies_datagrid_column_description": "Description",
   "iam_policies_datagrid_column_name": "Name",
   "iam_policies_datagrid_topbar_create_policy": "Create a policy",
-  "iam_policies_description": "Manage the identities of your users and applications, as well as their access permissions, in a single interface for all your services. With OVHcloud IAM, you can precisely manage all of the authorisations for OVHcloud products, and get a higher level of security with a centralised view of your access."
+  "iam_policies_description": "Manage the identities of your users and applications, as well as their access permissions, in a single interface for all your services. With OVHcloud IAM, you can precisely manage all of the authorisations for OVHcloud products, and get a higher level of security with a centralised view of your access.",
+  "iam_policies": "Policies",
+  "iam_policies_my_policies": "My policies",
+  "iam_policies_ovh": "OVHcloud policies",
+  "iam_policies_resource_groups": "Resource groups",
+  "iam_policies_header_guide_text": "Guides"
 }
