@@ -16,7 +16,7 @@
   "listingColumnsIpAntiDDos": "Anti-DDoS",
   "listingColumnsIpEdgeFirewall": "Edge Firewall",
   "listingColumnsIpGameFirewall": "Game Firewall",
-  "listingColumnsIpAlerts": "Alertes",
+  "listingColumnsIpAlerts": "Alerte IP",
   "listingColumnsIpAntiDDosPermanent": "Permanent",
   "listingColumnsIpAntiDDosAutomatic": "Automatique",
   "listingColumnsIpAntiDDosInAction": "Actif",
