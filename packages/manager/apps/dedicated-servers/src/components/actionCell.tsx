@@ -12,7 +12,7 @@ import {
 } from '@ovhcloud/ods-components';
 import { DedicatedServer } from '@/data/types/server.type';
 
-export const ActionCell: React.FC<DedicatedServer> = (vs) => {
+export const ActionCell = (server: DedicatedServer) => {
   const { shell } = React.useContext(ShellContext);
   const { t } = useTranslation('dedicated-servers');
   const { trackClick } = useOvhTracking();
@@ -21,19 +21,23 @@ export const ActionCell: React.FC<DedicatedServer> = (vs) => {
     <div className="w-min">
       <OdsButton
         icon={ODS_ICON_NAME.ellipsisVertical}
-        id={`service-key-actions-${vs.name}`}
-        variant={ODS_BUTTON_VARIANT.outline}
+        id={`service-key-actions-${server.name}`}
+        variant={ODS_BUTTON_VARIANT.ghost}
         label=""
       />
       <OdsPopover
-        triggerId={`service-key-actions-${vs.name}`}
+        triggerId={`service-key-actions-${server.name}`}
         position={ODS_POPOVER_POSITION.bottomStart}
       >
         <OdsButton
           variant="ghost"
           label={t('action-goDetails')}
           onClick={() => {
-            shell.navigation.navigateTo('dedicated', `#/server/${vs.name}`, {});
+            shell.navigation.navigateTo(
+              'dedicated',
+              `#/server/${server.name}`,
+              {},
+            );
           }}
         />
       </OdsPopover>
