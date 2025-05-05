@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.23.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.23.4...@ovh-ux/manager-zimbra-app@0.23.5) (2025-05-05)
+
+
+### Bug Fixes
+
+* **zimbra:** accounts POST in sequence ([#16858](https://github.com/ovh/manager/issues/16858)) ([1771c8e](https://github.com/ovh/manager/commit/1771c8e240481738b4f8b49e5b161222a2b35858)), closes [#MANAGER-18180](https://github.com/ovh/manager/issues/MANAGER-18180)
+
+
+
+
+
 ## [0.23.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.23.3...@ovh-ux/manager-zimbra-app@0.23.4) (2025-04-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-zimbra-app
