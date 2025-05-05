@@ -1,18 +1,27 @@
-import { useMemo } from 'react';
+import { useContext, useMemo } from 'react';
+import {
+  ShellContext,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { StepComponent } from '@ovh-ux/manager-react-components';
 import { TileInputChoice } from '@ovh-ux/manager-pci-common';
 import { useTranslation } from 'react-i18next';
-import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-import { OBJECT_CONTAINER_OFFERS } from '@/constants';
+import { OdsLink, OdsText } from '@ovhcloud/ods-components/react';
+import { OBJECT_CONTAINER_OFFERS, STORAGE_PRICES_LINK } from '@/constants';
 
 import { useColumnsCount } from '@/hooks/useColumnsCount';
 import { SolutionStepTileComponent } from './SolutionStepTile.component';
 import { useContainerCreationStore } from '../useContainerCreationStore';
+import UseStandardInfrequentAccessAvailability from '@/hooks/useStandardInfrequentAccessAvailability';
 
 export function SolutionStepComponent() {
   const { t } = useTranslation(['containers/add', 'pci-common']);
   const { trackClick } = useOvhTracking();
   const columnsCount = useColumnsCount();
+  const context = useContext(ShellContext);
+  const { ovhSubsidiary } = context.environment.getUser();
+  const storagePricesLink =
+    STORAGE_PRICES_LINK[ovhSubsidiary] || STORAGE_PRICES_LINK.DEFAULT;
   const {
     form,
     stepper,
@@ -40,6 +49,8 @@ export function SolutionStepComponent() {
       })),
     [OBJECT_CONTAINER_OFFERS],
   );
+
+  const hasStandardInfrequentAccess = UseStandardInfrequentAccessAvailability();
 
   return (
     <StepComponent
@@ -78,9 +89,28 @@ export function SolutionStepComponent() {
           <SolutionStepTileComponent
             item={item.id}
             isItemSelected={isSelected}
+            hasStandardInfrequentAccess={hasStandardInfrequentAccess}
           />
         )}
       </TileInputChoice>
+
+      {hasStandardInfrequentAccess && (
+        <OdsText preset="caption" className="mt-8 block">
+          {t(
+            'pci_projects_project_storages_containers_add_offers_estimated_price_explanation',
+          )}
+          <OdsLink
+            className="mt-4"
+            color="primary"
+            href={storagePricesLink}
+            target="_blank"
+            icon="external-link"
+            label={t(
+              'pci_projects_project_storages_containers_add_offers_estimated_price_explanation_link',
+            )}
+          />
+        </OdsText>
+      )}
     </StepComponent>
   );
 }

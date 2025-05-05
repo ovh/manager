@@ -1,8 +1,8 @@
 {
   "pci_projects_project_storages_containers_container_back_label": "Powrót",
   "pci_projects_project_storages_containers_container_archive_info_storedObjects": "Archiwa: {{ count }}",
-  "pci_projects_project_storages_containers_container_object_info_storedObjects": "Obiekty: {{objects}}",
-  "pci_projects_project_storages_containers_container_info_storedBytes": "Wykorzystywana przestrzeń : {{ bytes }}",
+  "pci_projects_project_storages_containers_container_object_info_storedObjects": "Obiekty: <strong>{{ objects }}</strong> ",
+  "pci_projects_project_storages_containers_container_info_storedBytes": "Wykorzystana przestrzeń: <strong> {{ bytes }}</strong> ",
   "pci_projects_project_storages_containers_container_info_publicUrl": "EndPoint",
   "pci_projects_project_storages_containers_container_info_publicUrl_help": "Ta informacja jest niezbędna do pobierania obiektów lub ich obsługi za pośrednictwem API. Więcej informacji znajdziesz w naszych przewodnikach.",
   "pci_projects_project_storages_containers_container_archive_info_staticUrl": "Adres serwera dla rsync/sftp/scp",
@@ -44,7 +44,7 @@
   "pci_projects_project_storages_containers_container_storage_class_STANDARD": "Standard",
   "pci_projects_project_storages_containers_container_storage_class_HIGH_PERF": "High Performance",
   "pci_projects_project_storages_containers_container_maintenance_message": "Aktualnie prowadzimy prace konserwacyjne mające na celu połączenie punktów końcowych kompatybilnych z S3. Dodawanie obiektów jest tymczasowo zawieszone.",
-  "pci_projects_project_storages_containers_container_region": "Lokalizacja: {{region}}",
+  "pci_projects_project_storages_containers_container_region": "Lokalizacja: <strong> {{ region }} </strong> ",
   "pci_projects_project_storages_containers_container_add_replication_rules_info": "Pamiętaj, że Twój kontener nie obejmuje replikacji danych poza lokalizacją. Jeśli Twój przypadek użycia wymaga dodatkowej warstwy ochrony, rozważ skorzystanie z replikacji asynchronicznej w jednym lub kilku regionach (aktualnie dostępna tylko przez API).",
   "pci_projects_project_storages_containers_container_offsite_replication_title": "Replikacja:",
   "pci_projects_project_storages_containers_container_offsite_replication_enabled": "Skonfigurowana",
@@ -55,6 +55,14 @@
   "pci_projects_project_storages_containers_container_delete_marker": "Znacznik usunięcia",
   "pci_projects_project_storages_containers_container_show_versions": "Wyświetl wersje",
   "pci_projects_project_storages_containers_container_back_to_versions": "Powrót do moich przedmiotów",
+<<<<<<< HEAD
   "pci_projects_project_storages_containers_container_objects": "Moje obiekty",
   "pci_projects_project_storages_containers_container_objects_sort_warining": "Sortowanie listy obiektów dotyczy tylko aktualnie wyświetlanych wyników. Aby poszerzyć zakres sortowania, kliknij „Załaduj więcej”."
+=======
+  "pci_projects_project_storages_containers_container_objects": "Moje przedmioty",
+  "pci_projects_project_storages_containers_container_objects_sort_warining": "Operacje sortowania na liście obiektów są wykonywane tylko na aktualnie wyświetlanych wynikach. Użyj polecenia \"Załaduj więcej\", aby rozszerzyć sortowanie na więcej wyników.",
+  "pci_projects_project_storages_containers_container_storage_class_standard_infrequent_access_STANDARD": "Standard",
+  "pci_projects_project_storages_containers_container_storage_class_standard_infrequent_access_HIGH_PERF": "High Performance",
+  "pci_projects_project_storages_containers_container_storage_class_standard_infrequent_access_STANDARD_IA": "Standard Infrequent Access"
+>>>>>>> a0f76734de (feat(pci-object-storage): add new standard infrequent access)
 }
