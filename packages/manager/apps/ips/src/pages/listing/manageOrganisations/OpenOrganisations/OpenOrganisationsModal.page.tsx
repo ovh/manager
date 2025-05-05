@@ -164,7 +164,7 @@ export const OpenOrganisationsModal: React.FC<{ isOpen: boolean }> = ({
                     name={name}
                     value={value}
                     hasError={!!errors[name]}
-                    isDisabled={isLoading}
+                    isDisabled={isLoading || isEditMode}
                     isRequired
                     onOdsChange={onChange}
                     onOdsBlur={onBlur}
