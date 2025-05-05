@@ -62,6 +62,6 @@
     "US"
   ],
   "universes": [
-    "PublicCloud"
+    "@ovh-ux/manager-public-cloud"
   ]
 }
