@@ -71,6 +71,7 @@ export default function EndpointsDeleteModal() {
     <DeleteModal
       isOpen
       closeModal={onClose}
+      serviceTypeName={t('modalDeleteEndpointServiceTypeName')}
       onConfirmDelete={() => {
         trackClick({
           location: PageLocation.popup,
