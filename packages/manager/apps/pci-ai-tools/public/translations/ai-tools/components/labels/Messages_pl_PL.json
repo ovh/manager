@@ -6,6 +6,5 @@
   "numberOfConfiguredLabels_one": "{{count}} etykieta skonfigurowana na {{max}}",
   "numberOfConfiguredLabels_other": "{{count}} etykiet skonfigurowanych na {{max}}",
   "labelToastErrorTitle": "Błąd",
-  "labelToastSuccessTitle": "Sukcesy",
-  "labelToastSuccessDescription": "Etykieta została dodana"
+  "labelToastSuccessTitle": "Sukcesy"
 }

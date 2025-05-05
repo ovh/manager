@@ -42,6 +42,7 @@ const Resources = () => {
       </div>
       <div className="flex flex-col gap-1 mt-3 mr-4">
         <Slider
+          className="[&_[role=slider]]:hidden"
           data-testid="storage-slider"
           id="storage-slider"
           name="storage-slider"
@@ -50,7 +51,6 @@ const Resources = () => {
           value={[notebook.status.workspace.storageUsed]}
           min={0}
           max={notebook.status.workspace.storageFree}
-          // hideThumb={true}
         />
         <span className="text-sm">
           {t('sliderInfo', {

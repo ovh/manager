@@ -6,6 +6,5 @@
   "numberOfConfiguredLabels_one": "{{count}} label configuré sur {{max}}",
   "numberOfConfiguredLabels_other": "{{count}} labels configurés sur {{max}}",
   "labelToastErrorTitle": "Erreur",
-  "labelToastSuccessTitle": "Succés",
-  "labelToastSuccessDescription": "Le label a été ajouté"
+  "labelToastSuccessTitle": "Succés"
 }
