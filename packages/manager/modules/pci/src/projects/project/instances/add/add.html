@@ -355,26 +355,27 @@
                 ></h5>
                 <p
                     data-translate="pci_project_instances_instance_add_3_az_region_select_description"
-                    data-translate-values="{guideLink: $ctrl.resilience3azLink}"
                 ></p>
                 <oui-radio-group
                     data-model="$ctrl.model.threeAzRegion.auto"
                     data-on-change="$ctrl.on3AzRegionChange(modelValue)"
-                    class="mb-3"
+                    class="mb-3 three-az-region-auto"
                 >
                     <oui-radio data-value="true" class="mb-3">
-                        <oui-radio-label
+                        <p
                             data-translate="pci_project_instances_instance_add_3_az_region_select_auto_title"
-                        ></oui-radio-label>
-                        <oui-radio-description
+                            class="m-0"
+                        ></p>
+                        <p
                             data-translate="pci_project_instances_instance_add_3_az_region_select_auto_description"
-                        ></oui-radio-description>
+                            class="three-az-region-auto__info"
+                        ></p>
                     </oui-radio>
 
-                    <oui-radio data-value="false">
-                        <oui-radio-label
+                    <oui-radio data-value="false" class="mt-3">
+                        <span
                             data-translate="pci_project_instances_instance_add_3_az_region_select_manual_title"
-                        ></oui-radio-label>
+                        ></span>
                     </oui-radio>
                     <div class="row auto-clear">
                         <oui-select-picker
