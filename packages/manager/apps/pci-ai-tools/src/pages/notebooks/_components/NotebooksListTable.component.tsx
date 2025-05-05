@@ -41,9 +41,7 @@ export default function NotebooksList({ notebooks }: NotebooksListProps) {
         <DataTable.Action>
           <Button
             data-testid="create-notebook-button"
-            onClick={() => {
-              navigate('./new');
-            }}
+            onClick={() => navigate('./new')}
           >
             <Plus className="size-6" />
             {t('createNewNotebook')}

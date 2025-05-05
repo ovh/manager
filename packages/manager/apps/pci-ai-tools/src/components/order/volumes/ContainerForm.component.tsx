@@ -52,6 +52,10 @@ interface ContainerFormProps {
 const ContainerForm = React.forwardRef<HTMLInputElement, ContainerFormProps>(
   ({ configuredVolumesList, selectedVolumesList, onChange, disabled }, ref) => {
     const { t } = useTranslation('ai-tools/components/volumes');
+    // Manage datastore combobox
+    const [openDsCb, setOpenDsCb] = useState(false);
+    // Manage container combobox
+    const [openCtCb, setOpenCtCb] = useState(false);
     const [inputValue, setInputValue] = useState('');
     const [selectedVolume, setSelectedVolume] = useState<
       DataStoresWithContainers
@@ -88,6 +92,7 @@ const ContainerForm = React.forwardRef<HTMLInputElement, ContainerFormProps>(
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
       if (e.key === 'Enter') {
         containerForm.setValue('container', inputValue);
+        setOpenCtCb(false);
       }
     };
 
@@ -107,7 +112,6 @@ const ContainerForm = React.forwardRef<HTMLInputElement, ContainerFormProps>(
                   <FormItem>
                     <div className="inline space-x-2">
                       <FormLabel>{t('datastoreFieldLabel')}</FormLabel>
-
                       <Popover>
                         <PopoverTrigger>
                           <HelpCircle className="size-4" />
@@ -117,7 +121,7 @@ const ContainerForm = React.forwardRef<HTMLInputElement, ContainerFormProps>(
                         </PopoverContent>
                       </Popover>
                     </div>
-                    <Popover>
+                    <Popover open={openDsCb} onOpenChange={setOpenDsCb}>
                       <PopoverTrigger asChild>
                         <FormControl>
                           <Button
@@ -160,6 +164,7 @@ const ContainerForm = React.forwardRef<HTMLInputElement, ContainerFormProps>(
                                           (vol) => vol.id === datastore.id,
                                         ),
                                       );
+                                      setOpenDsCb(false);
                                     }}
                                   >
                                     {datastore.id}
@@ -211,7 +216,7 @@ const ContainerForm = React.forwardRef<HTMLInputElement, ContainerFormProps>(
 
                     <FormControl>
                       {selectedVolume?.container?.length > 0 ? (
-                        <Popover>
+                        <Popover open={openCtCb} onOpenChange={setOpenCtCb}>
                           <PopoverTrigger asChild>
                             <FormControl>
                               <Button
@@ -245,6 +250,7 @@ const ContainerForm = React.forwardRef<HTMLInputElement, ContainerFormProps>(
                                             'container',
                                             container,
                                           );
+                                          setOpenCtCb(false);
                                         }}
                                       >
                                         {container}

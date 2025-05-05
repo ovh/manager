@@ -61,6 +61,10 @@ const AddVolume = () => {
     DataStoresWithContainers
   >();
   const [inputValue, setInputValue] = useState('');
+  // Manage datastore combobox
+  const [openDsCb, setOpenDsCb] = useState(false);
+  // Manage container combobox
+  const [openCtCb, setOpenCtCb] = useState(false);
   const { t } = useTranslation('ai-tools/components/volumes');
   const navigate = useNavigate();
   const toast = useToast();
@@ -162,6 +166,7 @@ const AddVolume = () => {
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       form.setValue('container', inputValue);
+      setOpenCtCb(false);
     }
   };
 
@@ -184,7 +189,6 @@ const AddVolume = () => {
                 <FormItem>
                   <div className="inline space-x-2">
                     <FormLabel>{t('datastoreFieldLabel')}</FormLabel>
-
                     <Popover>
                       <PopoverTrigger>
                         <HelpCircle className="size-4" />
@@ -194,7 +198,7 @@ const AddVolume = () => {
                       </PopoverContent>
                     </Popover>
                   </div>
-                  <Popover>
+                  <Popover open={openDsCb} onOpenChange={setOpenDsCb}>
                     <PopoverTrigger asChild>
                       <FormControl>
                         <Button
@@ -233,6 +237,7 @@ const AddVolume = () => {
                                       (vol) => vol.id === datastore.id,
                                     ),
                                   );
+                                  setOpenDsCb(false);
                                 }}
                               >
                                 {datastore.id}
@@ -283,7 +288,7 @@ const AddVolume = () => {
 
                   <FormControl>
                     {selectedVolume?.container?.length > 0 ? (
-                      <Popover>
+                      <Popover open={openCtCb} onOpenChange={setOpenCtCb}>
                         <PopoverTrigger asChild>
                           <FormControl>
                             <Button
@@ -314,6 +319,7 @@ const AddVolume = () => {
                                       key={container}
                                       onSelect={() => {
                                         form.setValue('container', container);
+                                        setOpenCtCb(false);
                                       }}
                                     >
                                       {container}

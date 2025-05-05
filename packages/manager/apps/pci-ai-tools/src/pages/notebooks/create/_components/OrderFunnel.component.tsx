@@ -78,6 +78,8 @@ const OrderFunnel = ({
   const model = useOrderFunnel(regions, catalog, suggestions);
   const { t } = useTranslation('ai-tools/notebooks/create');
   const { projectId } = useParams();
+  // Manage datastore combobox
+  const [openVersionCb, setOpenVersionCb] = useState(false);
   const [showAdvancedConfiguration, setShowAdvancedConfiguration] = useState(
     false,
   );
@@ -358,7 +360,10 @@ const OrderFunnel = ({
                     render={({ field }) => (
                       <FormItem>
                         <FormControl>
-                          <Popover>
+                          <Popover
+                            open={openVersionCb}
+                            onOpenChange={setOpenVersionCb}
+                          >
                             <div
                               data-testid="fmk-tile-version-container"
                               className="hidden"
@@ -410,6 +415,7 @@ const OrderFunnel = ({
                                               'frameworkWithVersion.version',
                                               value,
                                             );
+                                            setOpenVersionCb(false);
                                           }}
                                         >
                                           <Check

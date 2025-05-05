@@ -154,13 +154,16 @@ export const getColumns = ({
     },
     {
       id: 'Operating time',
-      accessorFn: (row) =>
-        convertSecondsToTimeString(row.status.duration, true),
+      accessorFn: (row) => row.status.duration,
       header: ({ column }) => (
         <DataTable.SortableHeader column={column}>
           {t('tableHeaderDuration')}
         </DataTable.SortableHeader>
       ),
+      cell: ({ row }) => {
+        const nbDuration = row.original.status?.duration || 0;
+        return <span>{convertSecondsToTimeString(nbDuration, true)}</span>;
+      },
     },
     {
       id: 'Privacy',
