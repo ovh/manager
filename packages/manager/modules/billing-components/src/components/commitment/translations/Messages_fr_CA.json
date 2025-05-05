@@ -11,7 +11,7 @@
   "billing_commitment_service_storage_netapp": "espace de stockage Enterprise File Storage",
   "billing_commitment_service_dedicated_nasha": "service de stockage NAS-HA",
   "billing_commitment_service_vps": "Serveurs privés virtuels",
-  "billing_commitment_duration": "Sélectionnez une durée d'engagement",
+  "billing_commitment_duration": "Sélectionner un engagement",
   "billing_commitment_duration_current_price": "Tarif actuel par défaut {{ price }}/mois",
   "billing_commitment_payment": "Sélectionnez une modalité de paiement",
   "billing_commitment_payment_method": "Sélectionnez un moyen de paiement",
