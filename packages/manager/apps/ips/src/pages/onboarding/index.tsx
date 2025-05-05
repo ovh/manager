@@ -72,13 +72,10 @@ export default function Onboarding() {
                 <ul className="list-disc pl-6 space-y-4">
                   <OnboardingIpOptions />
                   <li>
-                    <OdsText
-                      preset={ODS_TEXT_PRESET.heading5}
-                      className="inline"
-                    >
+                    <OdsText preset={ODS_TEXT_PRESET.heading5}>
                       {t('advantage5Title')}:
                     </OdsText>
-                    <OdsText className="inline">
+                    <OdsText>
                       {t('advantage5Description')}{' '}
                       <Links
                         href={link?.byoipLink}
