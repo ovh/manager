@@ -34,9 +34,9 @@ export default class CloudConnectOverviewCtrl {
     this.loadMessages();
     this.loadServiceInfo();
     this.getMacLoading = false;
+    this.loadInterfaces();
     if (this.cloudConnect.isVrackAssociated()) {
       this.loadVrackDetails(this.cloudConnect.vrack);
-      this.loadInterfaces();
       this.loadPopConfigurations().then(() => {
         if (this.cloudConnect.isPopConfigurationExists()) {
           this.loadDatacenterConfigurations();
