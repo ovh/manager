@@ -1,7 +1,11 @@
 import React, { useMemo } from 'react';
 import { useTranslation, getI18n } from 'react-i18next';
-import { ActionMenu, DataGridTextCell } from '@ovh-ux/manager-react-components';
-import { useNavigate } from 'react-router-dom';
+import {
+  ActionMenu,
+  DataGridTextCell,
+  useNotifications,
+} from '@ovh-ux/manager-react-components';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { TOngoingOperations } from 'src/types';
 import { FilterCategories } from '@ovh-ux/manager-core-api';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
@@ -16,8 +20,10 @@ export const useOngoingOperationDatagridColumns = (
   data: TOngoingOperations[],
 ) => {
   const { t } = useTranslation('dashboard');
+  const { clearNotifications } = useNotifications();
   const l = getI18n();
   const navigate = useNavigate();
+  const location = useLocation();
 
   return useMemo(
     () => [
@@ -93,7 +99,10 @@ export const useOngoingOperationDatagridColumns = (
                   !props.canRelaunch &&
                   !props.canCancel &&
                   'hidden'} menu-item-button`,
-                onClick: () => navigate(`/update/${props.id}`),
+                onClick: () => {
+                  navigate(`${location.pathname}/update/${props.id}`);
+                  clearNotifications();
+                },
               },
               {
                 id: 2,

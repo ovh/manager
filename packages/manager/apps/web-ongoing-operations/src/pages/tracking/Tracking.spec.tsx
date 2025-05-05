@@ -1,14 +1,12 @@
 import '@/setupTests';
-import React, { PropsWithChildren } from 'react';
+import React from 'react';
 import '@testing-library/jest-dom';
-import {
-  QueryClient,
-  QueryClientProvider,
-  useQuery,
-} from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { vi } from 'vitest';
 import { render, waitFor } from '@testing-library/react';
 import TrackingTranfert from '@/pages/tracking/Tracking';
+import { wrapper } from '@/utils/test.provider';
+
 import {
   trackingAuthError,
   trackingContactConfirmation,
@@ -30,11 +28,6 @@ vi.mock('react-router-dom', () => ({
 vi.mock('@ovh-ux/manager-core-utils', () => ({
   getDateFnsLocale: vi.fn(),
 }));
-
-const queryClient = new QueryClient();
-const wrapper = ({ children }: PropsWithChildren) => (
-  <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-);
 
 describe('Tracking page', () => {
   it('display the tracking first step', async () => {
