@@ -82,6 +82,8 @@ export function IFrameAppRouter({
       delete newConfiguration['octavia-load-balancer'];
     }
 
+    delete newConfiguration['pci-volume-snapshot'];
+
     return newConfiguration;
   }, [configuration]);
 
