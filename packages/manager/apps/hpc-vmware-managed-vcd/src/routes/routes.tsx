@@ -84,6 +84,12 @@ const DeleteVrackNetworkPage = React.lazy(() =>
   ),
 );
 
+const AddNetworkInVrackSegmentPage = React.lazy(() =>
+  import(
+    '@/pages/dashboard/datacentre/vrack-segment/add-network/AddNetworkInVrackSegment.page'
+  ),
+);
+
 export default (
   <Route
     path={urls.root}
@@ -235,6 +241,11 @@ export default (
           id={'delete-network'}
           path={urls.vrackSegmentDeleteNetwork}
           Component={DeleteVrackNetworkPage}
+        />
+        <Route
+          id={'add-network'}
+          path={urls.vrackSegmentAddNetwork}
+          Component={AddNetworkInVrackSegmentPage}
         />
       </Route>
       <Route
