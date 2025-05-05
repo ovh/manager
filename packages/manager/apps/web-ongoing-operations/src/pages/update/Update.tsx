@@ -4,7 +4,7 @@ import {
   useNotifications,
 } from '@ovh-ux/manager-react-components';
 import React, { useMemo, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_PRESET, OdsFile } from '@ovhcloud/ods-components';
@@ -27,6 +27,7 @@ import { urls } from '@/routes/routes.constant';
 export default function Update() {
   const { t } = useTranslation('dashboard');
   const { id } = useParams<{ id: string }>();
+  const { product } = useParams<{ product: string }>();
   const [actionName, setActionName] = useState<ActionNameEnum>(null);
   const [uploadedFiles, setUploadedFiles] = useState<TFiles[]>([]);
   const [operationArgumentsUpdated, setOperationArgumentsUpdated] = useState<
@@ -72,11 +73,6 @@ export default function Update() {
   const { mutate: executeActionOnOperation } = useMutation({
     mutationFn: (operationID: number) =>
       updateOperationStatus(ParentEnum.DOMAIN, operationID, actionName),
-    onSuccess: () => {
-      addSuccess(
-        <OdsText>{t(`domain_operations_update_${actionName}`)}</OdsText>,
-      );
-    },
     onError: () => {
       addError(<OdsText>{t('domain_operations_upload_error')}</OdsText>);
     },
@@ -112,6 +108,7 @@ export default function Update() {
   const { mutate: onValidate } = useMutation({
     mutationFn: async (operationID: number) => {
       addInfo(<OdsText>{t('domain_operations_upload_doing')}</OdsText>);
+      globalThis.scrollTo({ top: 0 });
       await processUploadedFiles(operationID);
       if (operationArgumentsUpdated) {
         const promises = Object.entries(
@@ -128,15 +125,10 @@ export default function Update() {
       clearNotifications();
       addSuccess(<OdsText>{t('domain_operations_upload_success')}</OdsText>);
       executeActionOnOperation(operationID);
+      navigate(`${urls.root}${product}`);
     },
     onError: () => {
       addError(<OdsText>{t('domain_operations_upload_error')}</OdsText>);
-    },
-    onSettled: () => {
-      setTimeout(() => {
-        navigate(urls.root);
-        clearNotifications();
-      }, 4000);
     },
   });
 
@@ -204,14 +196,24 @@ export default function Update() {
       <section>
         <div className="flex flex-col gap-y-1 mb-6">
           <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-            {t('domain_operation_comment')}
-            <strong>{domain.comment}</strong>
+            <Trans
+              t={t}
+              i18nKey="domain_operation_comment"
+              values={{
+                t0: domain.comment,
+              }}
+              components={{ strong: <strong /> }}
+            />
           </OdsText>
           <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-            {t('domain_operation_data')}
-            <strong>
-              "{t(`domain_operations_nicOperation_${domain.function}`)}"
-            </strong>
+            <Trans
+              t={t}
+              i18nKey="domain_operation_data"
+              values={{
+                t0: t(`domain_operations_nicOperation_${domain.function}`),
+              }}
+              components={{ strong: <strong /> }}
+            />
           </OdsText>
         </div>
 
