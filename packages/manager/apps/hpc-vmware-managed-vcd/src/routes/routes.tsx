@@ -1,4 +1,3 @@
-import React from 'react';
 import { RouteObject } from 'react-router-dom';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 import NotFound from '@/pages/404';
@@ -246,6 +245,15 @@ export const Routes: any = [
                 ...lazyRouteConfig(() =>
                   import(
                     '@/pages/dashboard/datacentre/vrack-segment/delete-network/DeleteVrackNetwork.page'
+                  ),
+                ),
+              },
+              {
+                id: 'add-network',
+                path: urls.vrackSegmentAddNetwork,
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/dashboard/datacentre/vrack-segment/add-network/AddNetworkInVrackSegment.page'
                   ),
                 ),
               },
