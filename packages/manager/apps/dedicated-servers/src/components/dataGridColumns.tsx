@@ -197,6 +197,16 @@ export function getColumns(
       cell: PriceCell,
     },
     {
+      id: 'tags',
+      isFilterable: true,
+      enableHiding: true,
+      type: FilterTypeCategories.Tags,
+      label: 'Tags',
+      cell: (server: DedicatedServer) => (
+        <DataGridTextCell>{JSON.stringify(server.iam?.tags)}</DataGridTextCell>
+      ),
+    },
+    {
       id: 'actions',
       isSearchable: false,
       enableHiding: false,
