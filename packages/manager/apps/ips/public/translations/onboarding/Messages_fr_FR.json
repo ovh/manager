@@ -60,7 +60,7 @@
   "optionsByoipIpv4": "Oui",
   "optionsByoipIpv6": "N/A (prochainement)",
 
-  "optionsFootnote": "* La disponibilité d'un type ou d'un mode d'IP particulier peut varier et est liée à un service donné auquel cette Additional IP sera liée.",
+  "optionsFootnote": "La disponibilité d'un type ou d'un mode d'IP particulier peut varier et est liée à un service donné auquel cette Additional IP sera liée.",
   "geolocationNote": "La fonction de géolocalisation IP correspond au mappage d'une adresse IP à l'emplacement géographique réel (pays) et est indépendante de l'endroit où le service est réellement hébergé (région).",
 
   "moreInfoText": "Vous pouvez trouver plus d'informations sur les Additional IP sur notre",
