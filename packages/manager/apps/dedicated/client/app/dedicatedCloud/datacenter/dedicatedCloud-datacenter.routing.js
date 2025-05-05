@@ -81,6 +81,12 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go(networkState),
       goToAddNsx: /* @ngInject */ ($state, addNsxState) => () =>
         $state.go(addNsxState),
+      virtualMachinesState: () =>
+        'app.dedicatedCloud.details.datacenter.details.virtualMachines',
+      goToVirtualMachines: /* @ngInject */ ($state) => () =>
+        $state.go(
+          'app.dedicatedCloud.details.datacenter.details.virtualMachines',
+        ),
       goToDrpSummary: /* @ngInject */ ($state, currentDrp) => () =>
         $state.go('app.dedicatedCloud.details.datacenter.details.drp.summary', {
           drpInformations: currentDrp,
