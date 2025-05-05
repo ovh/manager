@@ -107,8 +107,8 @@ export default class ServicesActionsCtrl {
           this.service.serviceType === this.SERVICE_TYPE.EXCHANGE;
         this.canDisplayXdslSpecificResiliationMenuEntry =
           this.service.serviceType === this.SERVICE_TYPE.PACK_XDSL &&
-          (!this.service.shouldDeleteAtExpiration() ||
-            !this.service.isResiliated()) &&
+          !this.service.shouldDeleteAtExpiration() &&
+          !this.service.isResiliated() &&
           !this.service.hasDebt() &&
           !this.service.hasPendingResiliation();
         this.canDisplayXdslResiliationMenuEntry =
@@ -116,14 +116,16 @@ export default class ServicesActionsCtrl {
           this.service.hasAdminRights(this.user.auth.account);
         this.canDisplayResiliationMenuEntries =
           this.canResiliate() &&
-          (!this.service.shouldDeleteAtExpiration() ||
-            !this.service.isResiliated()) &&
+          !this.service.shouldDeleteAtExpiration() &&
+          (!this.service.isResiliated() ||
+            this.service.isSuspendedHostingWeb()) &&
           !this.service.hasDebt() &&
           !this.service.hasPendingResiliation();
         this.canDisplayResiliationMenuEntry =
           (this.resiliateLink || this.isCustomResiliationHandled) &&
           (this.service.hasAdminRights(this.user.auth.account) ||
-            this.service.hasAdminRights(this.user.nichandle));
+            this.service.hasAdminRights(this.user.nichandle)) &&
+          !this.service.isResiliated();
         this.canDisplayDeleteMenuEntry =
           this.autorenewLink &&
           (this.service.canBeDeleted() || this.service.isSuspendedHostingWeb());
