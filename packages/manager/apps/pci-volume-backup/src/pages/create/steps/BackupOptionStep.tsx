@@ -9,9 +9,10 @@ import {
   useProductAvailability,
 } from '@ovh-ux/manager-pci-common';
 import { OdsDivider, OdsLink, OdsText } from '@ovhcloud/ods-components/react';
-import { useEffect, useMemo } from 'react';
+import { useContext, useEffect, useMemo } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
 import { useMedia } from 'react-use';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { convertUcentsToCurrency } from '@/hooks/currency';
 import {
   GUIDES,
@@ -44,7 +45,9 @@ export default function BackupOptionStep({
   backupOptions,
 }: BackupOptionStepProps) {
   const { t } = useTranslation(['create', 'pci-volume-backup']);
-  const { me } = useMe();
+  const { currency, ovhSubsidiary } = useContext(
+    ShellContext,
+  ).environment.getUser();
 
   const isMobileView = useMedia(`(max-width: 36em)`);
 
@@ -74,11 +77,11 @@ export default function BackupOptionStep({
       ({ id }) => id === GUIDES_STORAGES_VOLUME_BACKUP_OVERVIEW,
     );
     return (
-      guide?.links[me?.ovhSubsidiary as keyof typeof guide.links] ||
+      guide?.links[ovhSubsidiary as keyof typeof guide.links] ||
       guide?.links.DEFAULT ||
       ''
     );
-  }, [me?.ovhSubsidiary]);
+  }, [ovhSubsidiary]);
 
   const formatVolumePrice = (addon: TAddon | undefined) => {
     const price = addon?.pricings[0]?.price;
@@ -86,7 +89,7 @@ export default function BackupOptionStep({
     if (typeof price !== 'number') return null;
 
     const convertPrice = convertUcentsToCurrency(price * 730);
-    return `${convertPrice}${me?.currency?.symbol}`;
+    return `${convertPrice}${currency?.symbol}`;
   };
 
   const volumeOptionsWihPrice = useMemo(() => {
