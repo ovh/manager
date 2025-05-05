@@ -236,7 +236,7 @@ export const Routes: any = [
                 path: urls.vrackNetworkEditVlanId,
                 ...lazyRouteConfig(() =>
                   import(
-                    '@/pages/dashboard/datacentre/vrack-network/edit/EditVrackNetworkId.page'
+                    '@/pages/dashboard/datacentre/vrack-network/edit/EditVrackSegmentId.page'
                   ),
                 ),
               },
