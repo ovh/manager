@@ -118,6 +118,8 @@
   "sidebar_domain_operations": "Opérations en cours",
   "sidebar_domain": "Noms de domaine",
   "sidebar_domain_list": "Mes noms de domaine",
+  "sidebar_alldom": "Alldoms",
+  "sidebar_alldom_list": "Mes alldoms",
   "sidebar_dns": "Zones DNS",
   "sidebar_web_hosting": "Web",
   "sidebar_hosting": "Hébergements",

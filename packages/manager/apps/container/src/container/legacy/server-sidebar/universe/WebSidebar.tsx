@@ -13,6 +13,7 @@ import getIcon from './GetIcon';
 export const webFeatures = [
   'web:domains',
   'web:domains:all-dom',
+  'web-domains:alldoms',
   'web:domains:zone',
   'web:domains:operations',
   'web-ongoing-operations',
@@ -72,6 +73,14 @@ export default function WebSidebar() {
               id: 'domain_list',
               label: t('sidebar_domain_list'),
               href: navigation.getURL('web', '#/domain'),
+              icon: getIcon('oui-icon oui-icon-list'),
+              ignoreSearch: true,
+            },
+            features['web-domains:alldoms'] && {
+              id: 'alldom',
+              label: t('sidebar_alldom_list'),
+              href: navigation.getURL('web-domains', '#/alldoms'),
+              routeMatcher: new RegExp('/'),
               icon: getIcon('oui-icon oui-icon-list'),
               ignoreSearch: true,
             },
