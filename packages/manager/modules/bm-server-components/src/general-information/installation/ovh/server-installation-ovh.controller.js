@@ -8,6 +8,8 @@ import {
   MOUNT_POINTS,
   MAX_MOUNT_POINTS,
   TEMPLATE_OS_SOFTWARE_RAID_LIST,
+  REINSTALL_API_CONSOLE_LINK,
+  API_OS_INSTALLATION_DOCUMENTATION_LINK,
   EOL_PERSONAL_INSTALLATION_TEMPLATES_DOCUMENTATION_LINK,
 } from './server-installation-ovh.constants';
 
@@ -38,17 +40,24 @@ export default class ServerInstallationOvhCtrl {
     this.atInternet = atInternet;
     this.$filter = $filter;
     this.Alerter = Alerter;
-    this.coreConfig = coreConfig;
+    this.ovhSubsidiary = coreConfig.getUser().ovhSubsidiary;
+    this.ovhPlate = coreConfig.getRegion();
     this.ovhFeatureFlipping = ovhFeatureFlipping;
     this.coreURLBuilder = coreURLBuilder;
   }
 
   $onInit() {
     this.doc = {
+      apiOsInstallation:
+        API_OS_INSTALLATION_DOCUMENTATION_LINK[this.ovhSubsidiary] ||
+        API_OS_INSTALLATION_DOCUMENTATION_LINK.DEFAULT,
       eolPersonalInstallationTemplates:
         EOL_PERSONAL_INSTALLATION_TEMPLATES_DOCUMENTATION_LINK[
-          this.coreConfig.getUser().ovhSubsidiary
+          this.ovhSubsidiary
         ] || EOL_PERSONAL_INSTALLATION_TEMPLATES_DOCUMENTATION_LINK.DEFAULT,
+      consoleForClipboard:
+        REINSTALL_API_CONSOLE_LINK[this.ovhPlate] ||
+        REINSTALL_API_CONSOLE_LINK.EU,
     };
 
     this.statePrefix = this.statePrefix || 'app.dedicated-server.server';
@@ -193,6 +202,7 @@ export default class ServerInstallationOvhCtrl {
       },
       remainingSize: 0,
       showAllDisk: false,
+      showClipboardMessage: false,
       diskGroups: [],
       softRaidOnlyMirroring: null,
     };
@@ -250,6 +260,7 @@ export default class ServerInstallationOvhCtrl {
       ws: false,
       wsinstall: false,
       gabaritName: false,
+      copyInstallToClipboard: false,
     };
 
     this.$scope.configError = {
@@ -2263,6 +2274,25 @@ export default class ServerInstallationOvhCtrl {
     this.getCustomizations();
     this.setStorage();
     this.startInstall();
+  }
+
+  copyInstallToClipboard() {
+    this.getCustomizations();
+    this.setStorage();
+    this.$scope.informations.showClipboardMessage = true;
+    const data = {
+      operatingSystem: this.$scope.informations.gabaritName,
+      storage: this.$scope.installation.storage,
+      customizations: this.$scope.installation.customizations,
+    };
+    navigator.clipboard
+      .writeText(JSON.stringify(data, null, 2))
+      .then(() => {
+        this.$scope.errorInst.copyInstallToClipboard = false;
+      })
+      .catch(() => {
+        this.$scope.errorInst.copyInstallToClipboard = true;
+      });
   }
 
   hasLicencedOs() {
