@@ -4,6 +4,26 @@ import { render } from '@testing-library/react';
 import { DeploymentModeStep } from './DeploymentModeStep.component';
 import { wrapperShow } from '@/wrapperRenders';
 
+vi.mock('@/hooks/useFeatureAvailability', () => ({
+  useFeatureAvailability: vi.fn(() => ({
+    data: {
+      'storage:standard-infrequent-access': true,
+    },
+  })),
+}));
+
+vi.mock('@/hooks/useStandardInfrequentAccessAvailability', () => ({
+  default: vi.fn(() => true),
+}));
+
+vi.mock('@/constants', async () => {
+  const actual = await vi.importActual('@/constants');
+  return {
+    ...actual,
+    standardInfrequentAcess: 'storage:standard-infrequent-access',
+  };
+});
+
 vi.mock('@ovh-ux/manager-react-shell-client', async () => {
   const actual = await vi.importActual('@ovh-ux/manager-react-shell-client');
   return {

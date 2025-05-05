@@ -7,8 +7,6 @@ import { vi } from 'vitest';
 import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 import React from 'react';
 
-import React from 'react';
-
 export const shellContext = {
   environment: {
     getUser: () => ({ ovhSubsidiary: 'mocked_ovhSubsidiary' }),
