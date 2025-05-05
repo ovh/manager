@@ -3,7 +3,7 @@ import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import NotFound from '@/pages/404';
 import { urls } from '@/routes/routes.constants';
-import { ONBOARDING, WEBSITES } from '@/utils/tracking.constants';
+import { ONBOARDING, WEBSITE } from '@/utils/tracking.constants';
 
 const lazyRouteConfig = (importFn: CallableFunction) => {
   return {
@@ -29,12 +29,11 @@ export default [
     },
     children: [
       {
-        id: WEBSITES,
+        id: WEBSITE,
         path: urls.websites,
         ...lazyRouteConfig(() => import('@/pages/websites/Websites.page')),
         handle: {
           tracking: {
-            pageName: WEBSITES,
             pageType: PageType.listing,
           },
           breadcrumb: {
@@ -48,7 +47,6 @@ export default [
         ...lazyRouteConfig(() => import('@/pages/onboarding/Onboarding.page')),
         handle: {
           tracking: {
-            pageName: ONBOARDING,
             pageType: PageType.onboarding,
           },
         },

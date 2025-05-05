@@ -10,7 +10,7 @@ import {
 import { OdsText } from '@ovhcloud/ods-components/react';
 import useGuides from '@/hooks/useGuides';
 import onboardingImgSrc from './onboarding.svg';
-import { GO_TO, ONBOARDING_ORDER_CTA } from '@/utils/tracking.constants';
+import { GO_TO, ORDER_CTA } from '@/utils/tracking.constants';
 import { ORDER_LINK } from './onboarding.constants';
 
 export default function Onboarding() {
@@ -40,7 +40,7 @@ export default function Onboarding() {
           category: t(guides?.guideLink2?.category),
         },
         href: guides?.guideLink2?.href,
-        tracking: guides?.guideLink1?.tracking,
+        tracking: guides?.guideLink2?.tracking,
       },
       {
         id: 3,
@@ -50,7 +50,7 @@ export default function Onboarding() {
           category: t(guides?.guideLink3.category),
         },
         href: guides?.guideLink3?.href,
-        tracking: guides?.guideLink1?.tracking,
+        tracking: guides?.guideLink3?.tracking,
       },
     ],
     [guides],
@@ -74,7 +74,7 @@ export default function Onboarding() {
           location: PageLocation.page,
           buttonType: ButtonType.button,
           actionType: 'navigation',
-          actions: [ONBOARDING_ORDER_CTA],
+          actions: [ORDER_CTA],
         });
 
         window.open(orderLink, '_blank', 'noopener');
@@ -88,7 +88,7 @@ export default function Onboarding() {
           onClick={() => {
             trackClick({
               location: PageLocation.tile,
-              buttonType: ButtonType.externalLink,
+              buttonType: ButtonType.link,
               actionType: 'navigation',
               actions: [GO_TO(tile.tracking)],
             });
