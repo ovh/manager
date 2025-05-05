@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.10.18](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.10.17...@ovh-ux/manager-web@19.10.18) (2025-05-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
 ## [19.10.17](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.10.16...@ovh-ux/manager-web@19.10.17) (2025-04-30)
 
 
