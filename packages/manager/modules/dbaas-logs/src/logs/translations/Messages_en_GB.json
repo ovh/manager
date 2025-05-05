@@ -769,7 +769,7 @@
   "logs_role_member_remove_success": "The {{name}} member has been deleted.",
   "logs_role_member_remove_error": "An error has occurred deleting the member: {{message}}",
   "logs_save": "Save",
-  "logs_resiliate": "Terminate",
+  "logs_resiliate": "Cancel",
   "logs_cancel": "Cancel",
   "logs_yes": "Yes",
   "logs_actions": "Actions",

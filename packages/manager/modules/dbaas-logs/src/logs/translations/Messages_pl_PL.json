@@ -769,7 +769,7 @@
   "logs_role_member_remove_success": "Użytkownik został {{name}} usunięty.",
   "logs_role_member_remove_error": "Wystąpił błąd podczas usuwania użytkownika: {{message}}.",
   "logs_save": "Zapisz",
-  "logs_resiliate": "Rezygnacja",
+  "logs_resiliate": "Zrezygnuj",
   "logs_cancel": "Anuluj",
   "logs_yes": "Tak",
   "logs_actions": "Operacje",
