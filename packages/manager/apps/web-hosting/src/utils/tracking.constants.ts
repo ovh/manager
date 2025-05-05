@@ -40,7 +40,7 @@ export const DASHBOARD = 'dashboard';
 export const WEBSITES = 'websites';
 export const SSL = 'ssl';
 export const DISABLE_SSL = 'disable-ssl';
-
+export const REGENERATE_SSL = 'regenerate-ssl';
 export const GUIDE_GETTING_STARTED = 'getting-started-guide';
 export const GUIDE_PUBLISHING = 'publishing-guide';
 export const GUIDE_EDIT_DNS_ZONE = 'edit-dns-zone-guide';
