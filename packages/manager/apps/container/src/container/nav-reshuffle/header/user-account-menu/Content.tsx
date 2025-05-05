@@ -101,35 +101,11 @@ const UserAccountMenu = ({
       }
 
       setAllLinks([
-        ...links.map((link: UserLink) => {
-          if (
-            [
-              'user-account-menu-profile',
-              'myCommunications',
-              'myContacts',
-            ].includes(link.key)
-          ) {
-            link.app = isNewAccountAvailable ? 'new-account' : 'dedicated';
-          }
-          if (
-            [
-              'myInvoices',
-              'myServices',
-              'myPaymentMethods',
-              'myCommands',
-            ].includes(link.key)
-          ) {
-            link.app = isNewBillingAvailable ? 'new-billing' : 'dedicated';
-            if (isNewBillingAvailable) {
-              link.hash = link.hash.replace('/billing', '');
-            }
-          }
-          return link;
-        }),
+        ...links,
         ...(isIdentityDocumentsAvailable
           ? [
               {
-                app: isNewAccountAvailable ? 'new-account' : 'dedicated',
+                app: 'account',
                 key: 'myIdentityDocuments',
                 hash: '#/identity-documents',
                 i18nKey: 'user_account_menu_my_identity_documents',
@@ -139,13 +115,21 @@ const UserAccountMenu = ({
         ...(region === 'US'
           ? [
               {
-                app: isNewAccountAvailable ? 'new-account' : 'dedicated',
+                app: 'account',
                 key: 'myAssistanceTickets',
                 hash: '#/ticket',
                 i18nKey: 'user_account_menu_my_assistance_tickets',
               },
             ]
-          : []),
+          : [
+            {
+              app: 'billing',
+              key: 'myContracts',
+              hash: 'autorenew/agreements',
+              i18nKey: 'user_account_menu_my_contracts',
+              trackingHit: tracking.contracts,
+            },
+          ]),
       ]);
     },
     [isNewAccountAvailable],
