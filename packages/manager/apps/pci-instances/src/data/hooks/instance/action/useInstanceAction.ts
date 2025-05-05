@@ -117,6 +117,26 @@ export const useInstanceRescueAction = (
     callbacks,
   });
 
+type TReinstallMutationFnVariables = {
+  instance: TInstanceDto;
+  imageId: string;
+};
+
+export const useInstanceReinstallAction = (
+  projectId: string,
+  callbacks: TUseInstanceActionCallbacks = {},
+) =>
+  useInstanceAction<TReinstallMutationFnVariables, null>({
+    projectId,
+    mutationKeySuffix: 'reinstall',
+    mutationFn: useCallback(
+      ({ instance, imageId }) =>
+        reinstallInstance(projectId, instance.id, imageId),
+      [projectId],
+    ),
+    callbacks,
+  });
+
 export const useBaseInstanceAction = (
   type: TMutationFnType | null,
   projectId: string,

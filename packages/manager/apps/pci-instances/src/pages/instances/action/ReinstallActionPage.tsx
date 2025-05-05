@@ -1,17 +1,15 @@
 import { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import ActionModal from '@/components/actionModal/ActionModal.component';
-import { useImages } from '@/data/hooks/image/useImages';
-import { useInstanceRescueAction } from '@/data/hooks/instance/action/useInstanceAction';
+import { useInstanceReinstallAction } from '@/data/hooks/instance/action/useInstanceAction';
 import { TInstanceDto } from '@/types/instance/api.type';
-import { imagesRescueSelector } from '@/data/hooks/image/selector/image.selector';
+import ActionModal from '@/components/actionModal/ActionModal.component';
 import ImageSelector from '@/components/imageSelector/ImageSelector.component';
+import { imagesRescueSelector } from '@/data/hooks/image/selector/image.selector';
+import { useImages } from '@/data/hooks/image/useImages';
 
-type TRescueActionSection = 'rescue/start' | 'rescue/end';
-
-export type TRescueActionPageProps = {
+export type TReinstallActionPageProps = {
   title: string;
-  section: TRescueActionSection;
+  section: 'reinstall';
   projectId: string;
   onError: (error: unknown) => void;
   onSuccess: () => void;
@@ -20,7 +18,7 @@ export type TRescueActionPageProps = {
   isLoading: boolean;
 };
 
-export const RescueActionPage: FC<TRescueActionPageProps> = ({
+const ReinstallActionPage: FC<TReinstallActionPageProps> = ({
   title,
   section,
   projectId,
@@ -31,6 +29,7 @@ export const RescueActionPage: FC<TRescueActionPageProps> = ({
   isLoading,
 }) => {
   const { t } = useTranslation('actions');
+  const [imageId, setImageId] = useState<string>('');
   const { data: images, isLoading: isImageLoading } = useImages({
     projectId,
     region: instance?.region ?? '',
@@ -40,7 +39,10 @@ export const RescueActionPage: FC<TRescueActionPageProps> = ({
     selectFn: (data) => imagesRescueSelector(data, t),
   });
 
-  const [imageId, setImageId] = useState<string>('');
+  const { mutationHandler, isPending } = useInstanceReinstallAction(projectId, {
+    onError,
+    onSuccess,
+  });
 
   useEffect(() => {
     if (images && images.length > 0) {
@@ -48,16 +50,8 @@ export const RescueActionPage: FC<TRescueActionPageProps> = ({
     }
   }, [images]);
 
-  const isRescueMode = section === 'rescue/start';
-
-  const { mutationHandler, isPending } = useInstanceRescueAction(projectId, {
-    onError,
-    onSuccess,
-  });
-
   const handleInstanceAction = () => {
-    if (instance)
-      mutationHandler({ instance, imageId, isRescue: isRescueMode });
+    if (instance) mutationHandler({ instance, imageId });
   };
 
   return (
@@ -68,16 +62,17 @@ export const RescueActionPage: FC<TRescueActionPageProps> = ({
       onModalClose={onModalClose}
       instance={instance}
       section={section}
+      variant="primary"
       isLoading={isLoading}
     >
-      {isRescueMode && (
-        <ImageSelector
-          imageId={imageId}
-          setImageId={setImageId}
-          isImageLoading={isImageLoading}
-          imageOptions={images ?? []}
-        />
-      )}
+      <ImageSelector
+        imageId={imageId}
+        setImageId={setImageId}
+        isImageLoading={isImageLoading}
+        imageOptions={images ?? []}
+      />
     </ActionModal>
   );
 };
+
+export default ReinstallActionPage;

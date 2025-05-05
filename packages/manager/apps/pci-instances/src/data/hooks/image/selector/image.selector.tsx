@@ -10,10 +10,19 @@ const imageMapper = (image: TImageDto): TImage => ({
 const RESCUE_TYPE = 'rescue';
 const RESCUE_IMAGE_NAME = 'rescue-ovh';
 
+export const imagesOptionsSelector = (data: TImage[]) => {
+  return (
+    data?.map((image) => ({
+      label: image.name,
+      value: image.id,
+    })) ?? []
+  );
+};
+
 export const imagesRescueSelector = (
   data: TImageDto[],
   t: TFunction,
-): TImage[] => {
+): { label: string; value: string }[] => {
   const rescueImages = data
     .filter((image) => image.type === RESCUE_TYPE)
     .map((image) => ({
@@ -28,8 +37,10 @@ export const imagesRescueSelector = (
     .filter((image) => image.type !== RESCUE_TYPE)
     .map(imageMapper);
 
-  return [
+  const images = [
     ...rescueImages.sort((a, b) => a.name.localeCompare(b.name)),
     ...otherImages.sort((a, b) => a.name.localeCompare(b.name)),
   ];
+
+  return imagesOptionsSelector(images);
 };

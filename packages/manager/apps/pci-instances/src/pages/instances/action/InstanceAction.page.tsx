@@ -17,6 +17,7 @@ import BackupActionPage from './BackupActionPage';
 import { RescueActionPage } from './RescueAction.page';
 import BillingMonthlyActionPage from './BillingMonthlyActionPage';
 import { useActionSection } from '@/hooks/instance/action/useActionSection';
+import ReinstallActionPage from './ReinstallActionPage';
 
 const InstanceAction: FC = () => {
   const { t } = useTranslation(['actions', 'common']);
@@ -42,7 +43,7 @@ const InstanceAction: FC = () => {
     });
   }, [instance, projectId]);
 
-  const handleModalClose = () => navigate('..');
+  const onModalClose = () => navigate('..');
 
   const onSuccess = () => {
     executeSuccessCallback();
@@ -106,7 +107,7 @@ const InstanceAction: FC = () => {
       );
     }
 
-    handleModalClose();
+    onModalClose();
   };
 
   const onError = (rawError: unknown) => {
@@ -120,7 +121,7 @@ const InstanceAction: FC = () => {
       }),
       true,
     );
-    handleModalClose();
+    onModalClose();
   };
 
   if (!instanceId || !section) return <NotFound />;
@@ -132,7 +133,7 @@ const InstanceAction: FC = () => {
     projectId,
     onError,
     onSuccess,
-    handleModalClose,
+    onModalClose,
     instance,
     isLoading,
   };
@@ -152,6 +153,10 @@ const InstanceAction: FC = () => {
         section={'billing/monthly/activate'}
       />
     );
+  }
+
+  if (section === 'reinstall' && instance?.isImageDeprecated) {
+    return <ReinstallActionPage {...modalProps} section="reinstall" />;
   }
 
   return <BaseInstanceActionPage {...modalProps} section={section} />;

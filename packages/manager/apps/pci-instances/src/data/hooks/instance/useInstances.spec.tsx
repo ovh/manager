@@ -30,6 +30,7 @@ const instanceDtoBuilder = (
   pendingTask: false,
   availabilityZone: null,
   taskState: '',
+  isImageDeprecated: false,
 });
 
 const instanceBuilder = (

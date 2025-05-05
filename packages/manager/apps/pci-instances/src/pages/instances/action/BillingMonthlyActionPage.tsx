@@ -21,7 +21,7 @@ type TBillingMonthlyActionPageProps = Omit<
 
 const BillingMonthlyActionPage: FC<TBillingMonthlyActionPageProps> = ({
   title,
-  handleModalClose,
+  onModalClose,
   section,
   instance,
   projectId,
@@ -58,8 +58,8 @@ const BillingMonthlyActionPage: FC<TBillingMonthlyActionPageProps> = ({
       title={title}
       isPending={isPending}
       handleInstanceAction={handleInstanceAction}
-      handleModalClose={handleModalClose}
-      instanceName={instance?.name}
+      onModalClose={onModalClose}
+      instance={instance}
       section={section}
     >
       <div>
