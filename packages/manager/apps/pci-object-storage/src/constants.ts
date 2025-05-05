@@ -451,3 +451,7 @@ export const CHANGELOG_LINKS = {
     'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
 };
 export const ITEMS_PER_PAGE = 999;
+
+export const UNIVERSE = 'PublicCloud';
+export const SUB_UNIVERSE = 'storages';
+export const APP_NAME = 'objects_storage_container';

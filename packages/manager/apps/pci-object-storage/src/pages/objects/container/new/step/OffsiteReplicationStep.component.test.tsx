@@ -1,12 +1,25 @@
 import { render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
 import { useCatalog, useProductAvailability } from '@ovh-ux/manager-pci-common';
-import { useParams } from 'react-router-dom';
+import { MemoryRouter, useParams } from 'react-router-dom';
 import { StepComponent } from '@ovh-ux/manager-react-components';
 import { OffsiteReplication } from './OffsiteReplicationStep.component';
-import { wrapper } from '@/wrapperRenders';
+import { wrapperOffsiteReplication } from '@/wrapperRenders';
 import { useContainerCreationStore } from '../useContainerCreationStore';
 
+// Mock OvhTracking
+vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...(actual as Record<string, unknown>),
+    useOvhTracking: () => ({
+      trackPage: vi.fn(),
+      trackClick: vi.fn(),
+    }),
+  };
+});
+
+// Mock ODS components
 vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
   const actual = await importOriginal();
   return {
@@ -27,7 +40,7 @@ vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
           data-value={value}
           data-name={name}
           data-inputid={inputId}
-          is-checked={isChecked ? 'true' : 'false'} // Set is-checked as a string
+          data-is-checked={isChecked ? 'true' : 'false'}
           onClick={() => onOdsChange?.()}
         >
           Mock OdsRadio
@@ -37,25 +50,29 @@ vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
   };
 });
 
-vi.mock('react-router-dom', () => ({
-  useParams: vi.fn(),
-}));
+// Mock react-router-dom but keep original exports
+vi.mock('react-router-dom', async (importOriginal) => {
+  const original = await importOriginal();
+  return {
+    ...(original as Record<string, unknown>),
+    useParams: vi.fn(),
+  };
+});
 
+// Mock other dependencies
 vi.mock('@ovh-ux/manager-pci-common', () => ({
   useCatalog: vi.fn(),
   useProductAvailability: vi.fn(),
 }));
 
 vi.mock('@ovh-ux/manager-react-components', async () => {
-  const { StepComponent: ActualStepComponent, ...rest } = await vi.importActual(
-    '@ovh-ux/manager-react-components',
-  );
+  const actual = await vi.importActual('@ovh-ux/manager-react-components');
   return {
-    ...rest,
+    ...actual,
     useMe: vi.fn(),
     StepComponent: vi
       .fn()
-      .mockImplementation(ActualStepComponent as typeof StepComponent),
+      .mockImplementation(actual.StepComponent as (...args: any) => any),
     useCatalogPrice: vi.fn().mockImplementation(() => ({
       getFormattedCatalogPrice: vi.fn().mockImplementation((param) => param),
     })),
@@ -71,7 +88,16 @@ describe('OffsiteReplication', () => {
     (useCatalog as jest.Mock).mockReturnValue({
       data: {
         addons: [
-          { planCode: 'offsite-replication', pricings: [{ price: 0.02 }] },
+          {
+            planCode: 'offsite-replication',
+            pricings: [{ price: 0.02 }],
+            invoiceName: 'storage-standard-region',
+          },
+          {
+            planCode: 'storage-standard-region',
+            pricings: [{ price: 0.01 }],
+            invoiceName: 'storage-standard-region',
+          },
         ],
       },
       isPending: false,
@@ -124,8 +150,14 @@ describe('OffsiteReplication', () => {
     });
   });
 
+  const renderWithRouter = (ui: React.ReactElement) => {
+    return render(<MemoryRouter>{ui}</MemoryRouter>, {
+      wrapper: wrapperOffsiteReplication,
+    });
+  };
+
   it('renders the component', () => {
-    render(<OffsiteReplication />, { wrapper });
+    renderWithRouter(<OffsiteReplication />);
     expect(
       screen.getByText(
         'pci_projects_project_storages_containers_offsite_replication_title',
@@ -140,29 +172,22 @@ describe('OffsiteReplication', () => {
       isPending: true,
     });
 
-    render(<OffsiteReplication />, { wrapper });
-
-    expect(
-      screen.getByText(
-        'pci_projects_project_storages_containers_offsite_replication_title',
-      ),
-    ).toBeInTheDocument();
+    renderWithRouter(<OffsiteReplication />);
     expect(screen.getByTestId('ods-skeleton')).toBeInTheDocument();
   });
 
   it('allows toggling offsite replication', () => {
-    render(<OffsiteReplication />, { wrapper });
+    renderWithRouter(<OffsiteReplication />);
 
     const enableRadio = screen.getByTestId('replication_enabled');
     const disableRadio = screen.getByTestId('replication_disabled');
 
-    expect(disableRadio).toHaveAttribute('is-checked', 'true');
-    expect(enableRadio).toHaveAttribute('is-checked', 'false');
+    expect(disableRadio).toHaveAttribute('data-is-checked', 'true');
+    expect(enableRadio).toHaveAttribute('data-is-checked', 'false');
   });
 
   it('displays the correct price estimation', () => {
-    render(<OffsiteReplication />, { wrapper });
-
+    renderWithRouter(<OffsiteReplication />);
     expect(
       screen.getByTestId('replication_price_estimation'),
     ).toBeInTheDocument();

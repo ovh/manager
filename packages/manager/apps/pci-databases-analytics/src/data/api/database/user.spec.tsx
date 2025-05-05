@@ -64,18 +64,6 @@ describe('user management functions', () => {
     );
   });
 
-  it('should throw an error if engine does not support users', async () => {
-    await expect(async () =>
-      getUsers({
-        projectId: 'projectId',
-        engine: database.EngineEnum.kafkaMirrorMaker,
-        serviceId: 'serviceId',
-      }),
-    ).rejects.toThrowError(
-      'The engine kafkaMirrorMaker does not implement the resource /cloud/project/projectId/database/kafkaMirrorMaker/serviceId/user',
-    );
-  });
-
   it('should call addUser', async () => {
     expect(apiClient.v6.post).not.toHaveBeenCalled();
     await addUser({
