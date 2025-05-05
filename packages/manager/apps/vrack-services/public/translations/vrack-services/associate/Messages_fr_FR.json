@@ -8,7 +8,6 @@
   "addVrackServicesToVrack": "Association en cours...",
   "vrackSelectPlaceholder": "Sélectionner un vRack",
   "modalConfirmVrackAssociationButtonLabel": "Associer mon vRack",
-  "modalAssociateCancelButton": "Annuler",
   "modalVrackAssociationError": "L'erreur suivante est survenue : {{error}}.",
   "modalAssociateAnotherVrackTitle": "Associer un autre vRack à vRack Services",
   "modalAssociateAnotherVrackDescription": "Pour que vRack Services fonctionne, vous devez l'associer à l'un de vos vRacks existants.",
