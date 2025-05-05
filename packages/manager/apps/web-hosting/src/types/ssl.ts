@@ -15,7 +15,7 @@ export const SERVICE_INFOS_STATUS = {
 
 export type DomainDetails = {
   domain: string;
-  additional: string[];
+  additional: string;
   type: string;
   state: string;
   creationDate: string;
