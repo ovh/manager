@@ -7,6 +7,7 @@ import datastore from './datastore';
 import drp from './drp';
 import host from './host';
 import network from './network';
+import virtualMachine from './virtualMachine';
 import routing from './dedicatedCloud-datacenter.routing';
 
 const moduleName = 'ovhManagerDedicatedCloudDatacenter';
@@ -20,6 +21,7 @@ angular
     drp,
     host,
     network,
+    virtualMachine,
   ])
   .config(routing);
 

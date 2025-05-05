@@ -1,0 +1,29 @@
+<oui-modal
+    data-heading="{{ 'set_license_modal_title' | translate }}"
+    data-primary-action="$ctrl.setLicense()"
+    data-primary-label="{{:: 'set_license_modal_confirm' | translate }}"
+    data-primary-disabled="!$ctrl.selectedLicense || $ctrl.loading"
+    data-secondary-action="$ctrl.onCancel()"
+    data-secondary-label="{{:: 'set_license_modal_cancel' | translate }}"
+    data-loading="$ctrl.loading"
+    data-on-dismiss="$ctrl.goBack()"
+>
+    <div class="form-group">
+        <oui-field
+            data-label="{{:: 'set_license_modal_select_label'  | translate }}"
+            data-size="xl"
+        >
+            <oui-select
+                name="license"
+                id="license-select"
+                data-model="$ctrl.selectedLicense"
+                data-items="$ctrl.licenseEnums"
+                data-match="::item"
+                data-placeholder="{{:: 'set_license_modal_select_placeholder' | translate }}"
+                data-disabled="$ctrl.loading"
+                required
+            >
+            </oui-select>
+        </oui-field>
+    </div>
+</oui-modal>

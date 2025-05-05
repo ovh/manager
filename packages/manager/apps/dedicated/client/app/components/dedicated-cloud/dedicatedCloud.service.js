@@ -32,7 +32,7 @@ class DedicatedCloudService {
     $q,
     $cacheFactory,
     $rootScope,
-    icerbergUtils,
+    icebergUtils,
     OvhApiDedicatedCloud,
     OvhHttp,
     Poll,
@@ -43,7 +43,7 @@ class DedicatedCloudService {
     this.$http = $http;
     this.$q = $q;
     this.$rootScope = $rootScope;
-    this.icerbergUtils = icerbergUtils;
+    this.icebergUtils = icebergUtils;
     this.OvhApiDedicatedCloud = OvhApiDedicatedCloud;
     this.OvhHttp = OvhHttp;
     this.Poll = Poll;
@@ -338,8 +338,22 @@ class DedicatedCloudService {
     );
   }
 
+  getDatacenterInfoVm(serviceName, datacenterId, params = {}) {
+    return this.icebergUtils.icebergQuery(
+      `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/vm`,
+      params,
+    );
+  }
+
+  getDatacenterInfoVmLicensed(serviceName, datacenterId, params = {}) {
+    return this.icebergUtils.icebergQuery(
+      `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/vmLicensed`,
+      params,
+    );
+  }
+
   getDatacenterInfoNsxt(serviceName, datacenterId, params = {}) {
-    return this.icerbergUtils
+    return this.icebergUtils
       .icebergQuery(
         `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/nsxtEdge`,
         params,
@@ -357,7 +371,7 @@ class DedicatedCloudService {
   }
 
   getDatacenterPendingResizeNsxTask(serviceName, datacenterId, params = {}) {
-    return this.icerbergUtils
+    return this.icebergUtils
       .icebergQuery(
         `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/task`,
         params,
@@ -376,7 +390,7 @@ class DedicatedCloudService {
   }
 
   getDatacenterPendingRemoveNsxTask(serviceName, datacenterId, params = {}) {
-    return this.icerbergUtils
+    return this.icebergUtils
       .icebergQuery(
         `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/task`,
         params,
@@ -610,7 +624,7 @@ class DedicatedCloudService {
   /* ------- USER -------*/
 
   getUserDetails(serviceName, params = {}) {
-    return this.icerbergUtils.icebergQuery(
+    return this.icebergUtils.icebergQuery(
       `/dedicatedCloud/${serviceName}/user`,
       params,
     );
@@ -1485,7 +1499,7 @@ class DedicatedCloudService {
   /* ------- Operations -------*/
 
   getOperations(serviceName, paginationParams, urlParams) {
-    return this.icerbergUtils.icebergQuery(
+    return this.icebergUtils.icebergQuery(
       `/dedicatedCloud/${serviceName}/task`,
       paginationParams,
       urlParams,
