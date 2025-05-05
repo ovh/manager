@@ -32,13 +32,7 @@ export const useUpdateVcdVrackNetworkVrackSegment = ({
       vcdId,
       vrackSegmentId,
     }),
-    mutationFn: (payload: VrackSegmentNetworkSpec) =>
-      updateNetworkVrackSegment({
-        id,
-        vcdId,
-        vrackSegmentId,
-        payload,
-      }),
+    mutationFn: () => Promise.resolve({}),
     onSuccess: (...params) => {
       queryClient.invalidateQueries({
         queryKey: getVcdVrackNetworkQueryKey(id, vcdId),

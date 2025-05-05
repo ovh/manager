@@ -30,6 +30,7 @@ export const urls = {
   datacentreComputeOrder: `/${subRoutes.dashboard}/${subRoutes.virtualDatacenters}/${subRoutes.vdcId}/${subRoutes.datacentreCompute}/${subRoutes.order}`,
   vrackNetwork: `/${subRoutes.dashboard}/${subRoutes.virtualDatacenters}/${subRoutes.vdcId}/${subRoutes.vrackNetwork}`,
   vrackNetworkEditVlanId: `/${subRoutes.dashboard}/${subRoutes.virtualDatacenters}/${subRoutes.vdcId}/${subRoutes.vrackNetwork}/edit/${subRoutes.vrackSegmentId}`,
+  vrackNetworkAddNetwork: `/${subRoutes.dashboard}/${subRoutes.virtualDatacenters}/${subRoutes.vdcId}/${subRoutes.vrackNetwork}/add-network/${subRoutes.vrackSegmentId}`,
 } as const;
 
 export const veeamBackupAppName = 'veeam-backup';
