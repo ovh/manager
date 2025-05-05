@@ -18,12 +18,18 @@ import {
   ODS_LINK_ICON_ALIGNMENT,
 } from '@ovhcloud/ods-components';
 import { OdsButton, OdsLink } from '@ovhcloud/ods-components/react';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  ButtonType,
+  PageLocation,
+  ShellContext,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useWebHostingAttachedDomain } from '@/data/hooks/webHostingAttachedDomain/useWebHostingAttachedDomain';
 import { WebsiteType, ServiceStatus } from '@/data/type';
 import ActionButtonStatistics from './ActionButtonStatistics.component';
 import { BadgeStatusCell, DiagnosticCell, LinkCell } from './Cells.component';
 import { GUIDE_URL, ORDER_URL } from './websites.constants';
+import { EXPORT_CSV, ORDER_CTA, WEBSITE } from '@/utils/tracking.constants';
 
 export default function Websites() {
   const { t } = useTranslation('common');
@@ -36,6 +42,7 @@ export default function Websites() {
     fetchAllPages,
   } = useWebHostingAttachedDomain();
   const { notifications, addSuccess } = useNotifications();
+  const { trackClick } = useOvhTracking();
 
   const items = data ? data.map((website: WebsiteType) => website) : [];
 
@@ -47,6 +54,7 @@ export default function Websites() {
         <LinkCell
           webSiteItem={webSiteItem}
           label={webSiteItem?.currentState.fqdn}
+          tracking="fqdn"
           withMultisite
         />
       ),
@@ -67,6 +75,7 @@ export default function Websites() {
         <LinkCell
           webSiteItem={webSiteItem}
           label={webSiteItem?.currentState.path}
+          tracking="path"
           withMultisite
         />
       ),
@@ -78,6 +87,7 @@ export default function Websites() {
         <LinkCell
           webSiteItem={webSiteItem}
           label={webSiteItem?.currentState.hosting.serviceName}
+          tracking="serviceName"
         />
       ),
     },
@@ -88,6 +98,7 @@ export default function Websites() {
         <LinkCell
           webSiteItem={webSiteItem}
           label={webSiteItem?.currentState.hosting.displayName}
+          tracking="displayName"
         />
       ),
     },
@@ -101,6 +112,7 @@ export default function Websites() {
             `web_hosting_dashboard_offer_${webSiteItem?.currentState.hosting.offer}`,
             webSiteItem?.currentState.hosting.offer,
           ])}
+          tracking="offer"
         />
       ),
     },
@@ -111,6 +123,7 @@ export default function Websites() {
         <BadgeStatusCell
           webSiteItem={webSiteItem}
           status={webSiteItem?.currentState.git?.status}
+          tracking="git"
           withMultisite
         />
       ),
@@ -126,6 +139,7 @@ export default function Websites() {
               ? ServiceStatus.ACTIVE
               : ServiceStatus.NONE
           }
+          tracking="ownLog"
           withMultisite
         />
       ),
@@ -137,6 +151,7 @@ export default function Websites() {
         <BadgeStatusCell
           webSiteItem={webSiteItem}
           status={webSiteItem?.currentState.cdn.status}
+          tracking="cdn"
           withMultisite
         />
       ),
@@ -148,6 +163,7 @@ export default function Websites() {
         <BadgeStatusCell
           webSiteItem={webSiteItem}
           status={webSiteItem?.currentState.ssl.status}
+          tracking="ssl"
           withMultisite
         />
       ),
@@ -159,6 +175,7 @@ export default function Websites() {
         <BadgeStatusCell
           webSiteItem={webSiteItem}
           status={webSiteItem?.currentState.firewall.status}
+          tracking="firewall"
           withMultisite
         />
       ),
@@ -174,6 +191,7 @@ export default function Websites() {
               ? ServiceStatus.ACTIVE
               : ServiceStatus.NONE
           }
+          tracking="boostOffer"
           withBoost
         />
       ),
@@ -265,6 +283,12 @@ export default function Websites() {
   ];
 
   const handleExportWithExportToCsv = () => {
+    trackClick({
+      location: PageLocation.page,
+      buttonType: ButtonType.button,
+      actionType: 'navigation',
+      actions: [`${EXPORT_CSV}_${WEBSITE}`],
+    });
     const csvConfig = mkConfig({
       filename: t('websites'),
       fieldSeparator: ',',
@@ -308,6 +332,12 @@ export default function Websites() {
 
   const goToOrder = () => {
     const url = ORDER_URL[ovhSubsidiary as OvhSubsidiary] || ORDER_URL.DEFAULT;
+    trackClick({
+      location: PageLocation.page,
+      buttonType: ButtonType.button,
+      actionType: 'navigation',
+      actions: [ORDER_CTA],
+    });
     window.open(url, '_blank');
   };
 

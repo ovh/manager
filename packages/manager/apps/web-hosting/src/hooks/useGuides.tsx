@@ -110,7 +110,7 @@ export const useGuides = () => {
   return Object.entries(GUIDE_LIST).reduce((list, [key, value]) => {
     list[key] = {
       ...value,
-      href: value.urls[ovhSubsidiary] || value.urls.DEFAULT || 'to_be_defined',
+      href: value.urls[ovhSubsidiary] || value.urls.DEFAULT,
     };
     return list;
   }, {} as Record<string, Guide>);
