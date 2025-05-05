@@ -90,7 +90,7 @@ describe('Listing Component', () => {
     // Should redirect to onboarding
     const redirectionGuard = screen.getByTestId('redirected');
     expect(redirectionGuard).toBeInTheDocument();
-    expect(redirectionGuard).toHaveAttribute('data-route', './onboarding');
+    expect(redirectionGuard).toHaveAttribute('data-route', '../onboarding');
   });
 
   it('should not redirect to onboarding when still loading', () => {

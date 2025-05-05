@@ -103,6 +103,8 @@ export default function Listing() {
       <OdsButton
         icon={ODS_ICON_NAME.plus}
         size={ODS_BUTTON_SIZE.sm}
+        color="primary"
+        variant="outline"
         label={t(
           'pci_projects_project_storages_volume_backup_list_datagrid_menu_topbar_action_create',
         )}
@@ -113,7 +115,7 @@ export default function Listing() {
   return (
     <RedirectionGuard
       isLoading={isLoading}
-      route="./onboarding"
+      route="../onboarding"
       condition={shouldRedirectToOnboarding}
     >
       <BaseLayout
