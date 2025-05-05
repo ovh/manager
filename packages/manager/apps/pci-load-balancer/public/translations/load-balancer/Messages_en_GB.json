@@ -32,5 +32,5 @@
   "octavia_load_balancer_provisioning_status_deleting": "deleting",
   "octavia_load_balancer_provisioning_status_updating": "Updating...",
   "octavia_load_balancer_provisioning_status_error": "error",
-  "octavia_load_balancer_actions_delete": "Cancel"
+  "octavia_load_balancer_actions_delete": "Delete"
 }
