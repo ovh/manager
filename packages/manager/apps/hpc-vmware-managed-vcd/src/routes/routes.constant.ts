@@ -34,6 +34,7 @@ export const urls = {
   vrackSegment: `/${subRoutes.dashboard}/${subRoutes.virtualDatacenters}/${subRoutes.vdcId}/${subRoutes.vrackSegment}`,
   vrackSegmentEditVlanId: `/${subRoutes.dashboard}/${subRoutes.virtualDatacenters}/${subRoutes.vdcId}/${subRoutes.vrackSegment}/${subRoutes.vrackSegmentId}/edit`,
   vrackSegmentDeleteNetwork: `/${subRoutes.dashboard}/${subRoutes.virtualDatacenters}/${subRoutes.vdcId}/${subRoutes.vrackSegment}/${subRoutes.vrackSegmentId}/${subRoutes.vrackNetwork}/${subRoutes.vrackNetworkId}/delete`,
+  vrackSegmentAddNetwork: `/${subRoutes.dashboard}/${subRoutes.virtualDatacenters}/${subRoutes.vdcId}/${subRoutes.vrackSegment}/${subRoutes.vrackSegmentId}/add-network`,
 } as const;
 
 export const veeamBackupAppName = 'veeam-backup';
