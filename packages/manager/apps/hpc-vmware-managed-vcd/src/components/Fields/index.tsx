@@ -7,6 +7,7 @@ import {
 } from 'react-hook-form';
 import { RhfFieldContext, useRhfFieldContext } from './RhfField.context';
 import { RhfQuantity } from './RhfQuantity.component';
+import { RhfInput } from './RhfInput.component';
 
 type RhfFieldProps = React.ComponentProps<typeof OdsFormField> & {
   controllerParams: UseControllerProps<FieldValues, string>;
@@ -73,13 +74,20 @@ export const RhfHelper = ({
   );
 };
 
-export const RhfHelperAuto = (
-  props: Readonly<Omit<React.ComponentProps<typeof OdsText>, 'children'>>,
-) => {
+export const RhfHelperAuto = ({
+  helperMessage: customHelperMessage,
+  ...rest
+}: Readonly<
+  Omit<React.ComponentProps<typeof OdsText>, 'children'> & {
+    helperMessage?: string;
+  }
+>) => {
   const { helperMessage, controller } = useRhfFieldContext();
 
   if (!controller.fieldState.error) {
-    return <RhfHelper {...props}>{helperMessage}</RhfHelper>;
+    return (
+      <RhfHelper {...rest}>{customHelperMessage ?? helperMessage}</RhfHelper>
+    );
   }
 
   return <></>;
@@ -108,3 +116,4 @@ RhfField.VisualHintCounter = RhfVisualHintCounter;
 RhfField.Helper = RhfHelper;
 RhfField.HelperAuto = RhfHelperAuto;
 RhfField.Quantity = RhfQuantity;
+RhfField.Input = RhfInput;
