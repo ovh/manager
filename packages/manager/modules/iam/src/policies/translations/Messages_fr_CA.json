@@ -1,4 +1,9 @@
 {
+  "iam_policies": "Politiques",
+  "iam_policies_my_policies": "Mes politiques",
+  "iam_policies_ovh": "Politiques OVHcloud",
+  "iam_policies_resource_groups": "Groupes de ressources",
+  "iam_policies_header_guide_text": "Guides",
   "iam_policies_datagrid_action_delete_policy": "Supprimer la politique",
   "iam_policies_datagrid_action_edit_policy": "Modifier la politique",
   "iam_policies_datagrid_action_read_policy": "Voir la politique",

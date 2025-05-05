@@ -7,5 +7,10 @@
   "iam_policies_datagrid_column_description": "Opis",
   "iam_policies_datagrid_column_name": "Nazwa",
   "iam_policies_datagrid_topbar_create_policy": "Tworzenie polityki",
-  "iam_policies_description": "Zarządzaj tożsamością swoich użytkowników i aplikacji oraz ich prawami dostępu w jednym interfejsie dla wszystkich usług. OVHcloud IAM umożliwia precyzyjne zarządzanie wszystkimi uprawnieniami do usług OVHcloud i uzyskanie wyższego poziomu bezpieczeństwa dzięki zcentralizowaniu zarządzania dostępami."
+  "iam_policies_description": "Zarządzaj tożsamością swoich użytkowników i aplikacji oraz ich prawami dostępu w jednym interfejsie dla wszystkich usług. OVHcloud IAM umożliwia precyzyjne zarządzanie wszystkimi uprawnieniami do usług OVHcloud i uzyskanie wyższego poziomu bezpieczeństwa dzięki zcentralizowaniu zarządzania dostępami.",
+  "iam_policies": "Polityka",
+  "iam_policies_my_policies": "Moje zasady",
+  "iam_policies_ovh": "Polityka OVHcloud",
+  "iam_policies_resource_groups": "Grupy zasobów",
+  "iam_policies_header_guide_text": "Przewodniki"
 }
