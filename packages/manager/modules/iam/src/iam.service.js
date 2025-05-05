@@ -1,4 +1,4 @@
-import { API_ERROR, GUIDE, PREFERENCES_KEY } from './iam.constants';
+import { API_ERROR, GUIDE } from './iam.constants';
 
 export const URL = {
   ACTION: '/engine/api/v2/iam/reference/action',
@@ -11,14 +11,15 @@ export const URL = {
   RESOURCE_GROUP: '/engine/api/v2/iam/resourceGroup',
   RESOURCE_TYPE: '/engine/api/v2/iam/reference/resource/type',
   PERMISSIONS_GROUPS: '/engine/api/v2/iam/permissionsGroup',
-  APPLICATIONS: '/me/api/application',
+  API_KEY: '/me/api/application',
 };
 
 export default class IAMService {
   /* @ngInject */
-  constructor($http, $q, $translate, coreConfig, Apiv2Service) {
+  constructor($http, $q, $translate, coreConfig, Apiv2Service, iceberg) {
     this.$http = $http;
     this.$q = $q;
+    this.iceberg = iceberg;
     this.$translate = $translate;
     this.coreConfig = coreConfig;
     this.Apiv2Service = Apiv2Service;
@@ -324,62 +325,6 @@ export default class IAMService {
   }
 
   // **********************************************************************************************
-  // Preferences
-
-  /**
-   * Disable the AdvancedMode
-   * @returns {Promise<null>}
-   */
-  disableAdvancedMode() {
-    return this.registerAdvancedMode().then(() =>
-      this.$http.put(`${URL.PREFERENCES}/${PREFERENCES_KEY.ADVANCED_MODE}`, {
-        value: 'false',
-      }),
-    );
-  }
-
-  /**
-   * Enable the AdvancedMode
-   * @returns {Promise<null>}
-   */
-  enableAdvancedMode() {
-    return this.registerAdvancedMode().then(() =>
-      this.$http.put(`${URL.PREFERENCES}/${PREFERENCES_KEY.ADVANCED_MODE}`, {
-        value: 'true',
-      }),
-    );
-  }
-
-  /**
-   * Whether the advanced mode is enabled
-   * @returns {Promise<boolean>}
-   */
-  isAdvancedModeEnabled() {
-    return this.registerAdvancedMode().then(() =>
-      this.$http
-        .get(`${URL.PREFERENCES}/${PREFERENCES_KEY.ADVANCED_MODE}`)
-        .then(({ data: { value } }) => value === 'true'),
-    );
-  }
-
-  /**
-   * Register the IAM_ADVANCED_MODE key is in the preferences
-   * If no preferences is set yet, set it to false ('false' as only string are allowed)
-   * @returns {Promise<boolean>}
-   */
-  registerAdvancedMode() {
-    return this.$http.get(URL.PREFERENCES).then(({ data: preferencesKeys }) => {
-      if (!preferencesKeys.includes(PREFERENCES_KEY.ADVANCED_MODE)) {
-        return this.$http.post(URL.PREFERENCES, {
-          key: PREFERENCES_KEY.ADVANCED_MODE,
-          value: 'false',
-        });
-      }
-      return null;
-    });
-  }
-
-  // **********************************************************************************************
   // Reference
 
   /**
@@ -492,36 +437,32 @@ export default class IAMService {
   }
 
   /**
-   * Retrieves a list of all applications.
-   * @returns {Promise<Object[]>} A Promise that resolves to an array of application objects, or null if an application fetch fails.
+   * Retrieves a list of all api keys.
+   * @returns {Promise<Object[]>} A Promise that resolves to an array of api key objects, or null if an api key fetch fails.
    */
-  getApplications() {
-    return this.$http
-      .get(URL.APPLICATIONS)
-      .then(({ data }) =>
-        this.$q.all(
-          data
-            .map((id) => this.getApplication(id).catch(() => null))
-            .filter((application) => application !== null),
-        ),
-      );
+  getApiKeys() {
+    return this.iceberg(URL.API_KEY, {})
+      .query()
+      .expand('CachedObjectList-Pages')
+      .execute(null, true)
+      .$promise.then(({ data }) => data);
   }
 
   /**
-   * Retrieves the details of a specific application.
-   * @param {string} id The unique identifier of the application.
-   * @returns {Promise<Object>} A Promise that resolves to the application object.
+   * Retrieves the details of a specific api key.
+   * @param {string} id The unique identifier of the api key.
+   * @returns {Promise<Object>} A Promise that resolves to the api key object.
    */
-  getApplication(id) {
-    return this.$http.get(`${URL.APPLICATIONS}/${id}`).then(({ data }) => data);
+  getApiKey(id) {
+    return this.$http.get(`${URL.API_KEY}/${id}`).then(({ data }) => data);
   }
 
   /**
-   * Deletes an application.
-   * @param {string} id The unique identifier of the application to be deleted.
+   * Deletes an api key.
+   * @param {string} id The unique identifier of the api key to be deleted.
    * @returns {Promise} A Promise that resolves when the deletion is complete.
    */
-  deleteApplication(id) {
-    return this.$http.delete(`${URL.APPLICATIONS}/${id}`);
+  deleteApiKey(id) {
+    return this.$http.delete(`${URL.API_KEY}/${id}`);
   }
 }

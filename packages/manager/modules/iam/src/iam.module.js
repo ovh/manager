@@ -4,18 +4,23 @@ import uiRouter from '@uirouter/angularjs';
 
 import { OnboardingLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 import { ApiV2ListHelper } from '@ovh-ux/manager-ng-apiv2-helper';
+import ngUiRouterLayout from '@ovh-ux/ng-ui-router-layout';
 
 import managerAtInternetConfiguration from '@ovh-ux/manager-at-internet-configuration';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
 import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
+import ngOvhApiWrapper from '@ovh-ux/ng-ovh-api-wrappers';
 
 import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
 import uiKit from '@ovh-ux/ui-kit';
 
 import dashboard from './dashboard';
-import onboarding from './onboarding';
 import policy from './policy';
+import policies from './policies';
+import identities from './identities';
+import apiKeys from './api-keys';
+import logs from './logs';
 import resourceGroup from './resourceGroup';
 
 import filters from './iam.filters';
@@ -49,13 +54,18 @@ angular
     managerAtInternetConfiguration,
     ngAtInternet,
     ngAtInternetUiRouterPlugin,
+    ngOvhApiWrapper,
     ngOvhFeatureFlipping,
     ngOvhUtils,
     uiKit,
     dashboard,
-    onboarding,
     policy,
+    policies,
+    identities,
+    apiKeys,
+    logs,
     resourceGroup,
+    ngUiRouterLayout,
   ])
   .config(routing)
   .config(registerTypes)
