@@ -50,8 +50,7 @@ const sharedTrackingParams = {
 export default function EditSubnetModal() {
   const { id, cidr } = useParams();
   const subnetCidr = cidr?.replace('_', '/');
-  const { t } = useTranslation('vrack-services/subnets');
-  const { t: tActions } = useTranslation(NAMESPACES.ACTIONS);
+  const { t } = useTranslation(['vrack-services/subnets', NAMESPACES.ACTIONS]);
   const { addSuccessMessage } = React.useContext(MessagesContext);
   const { trackClick, trackPage } = useOvhTracking();
   const [newCidr, setNewCidr] = React.useState('');
@@ -215,7 +214,7 @@ export default function EditSubnetModal() {
         slot="actions"
         type="button"
         variant={ODS_BUTTON_VARIANT.ghost}
-        label={tActions('cancel')}
+        label={t('cancel', { ns: NAMESPACES.ACTIONS })}
         onClick={onClose}
       />
       <OdsButton
@@ -227,7 +226,7 @@ export default function EditSubnetModal() {
         }
         slot="actions"
         type="button"
-        label={tActions('modify')}
+        label={t('modify', { ns: NAMESPACES.ACTIONS })}
         onClick={() => {
           trackClick({
             ...sharedTrackingParams,

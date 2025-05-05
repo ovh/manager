@@ -24,6 +24,7 @@ import {
   OdsText,
   OdsMessage,
 } from '@ovhcloud/ods-components/react';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useCreateVrackServicesCart } from '@ovh-ux/manager-network-common';
 import { LoadingText } from '@/components/LoadingText.component';
 import { OrderSubmitModalContent } from '@/components/OrderSubmitModalContent.component';
@@ -39,7 +40,7 @@ export default function CreateConfirmModal() {
     boolean
   >(false);
   const [hasVrackOrderAsked, setHasVrackOrderAsked] = useState<boolean>(false);
-  const { t } = useTranslation('vrack-services/create');
+  const { t } = useTranslation(['vrack-services/create', NAMESPACES.ACTIONS]);
   const { trackClick } = useOvhTracking();
   const { region } = useParams();
   const { environment } = React.useContext(ShellContext);
@@ -119,12 +120,12 @@ export default function CreateConfirmModal() {
         slot="actions"
         type="button"
         variant={ODS_BUTTON_VARIANT.ghost}
-        label={t('modalCancelButtonLabel')}
+        label={t('cancel', { ns: NAMESPACES.ACTIONS })}
         onClick={cancel}
       />
       {data?.contractList?.length > 0 ? (
         <OrderSubmitModalContent
-          submitButtonLabel={t('modalSubmitOrderButtonLabel')}
+          submitButtonLabel={t('confirm', { ns: NAMESPACES.ACTIONS })}
           cartId={data?.cartId}
           contractList={data?.contractList}
           onSuccess={async () => {

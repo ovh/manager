@@ -73,6 +73,7 @@ export default function SubnetDeleteModal() {
     <DeleteModal
       isOpen
       closeModal={onClose}
+      serviceTypeName={t('modalDeleteSubnetServiceTypeName')}
       onConfirmDelete={() => {
         trackClick({
           ...sharedTrackingParams,

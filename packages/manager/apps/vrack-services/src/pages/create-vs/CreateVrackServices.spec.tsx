@@ -83,7 +83,7 @@ describe('Vrack Services create page test suite', () => {
 
     const cancelButton = await getButtonByLabel({
       container,
-      value: labels.create.modalCancelButtonLabel,
+      value: labels.actions.cancel,
     });
 
     await waitFor(() => userEvent.click(cancelButton));

@@ -4,7 +4,5 @@
   "removeVrackServicesFromVrack": "Dissociation en cours...",
   "modalDissociateHeadline": "Dissocier le vRack Services de votre vRack",
   "modalDissociateDescription": "Etes-vous sûr de vouloir dissocier ce vRack Services de votre vRack ?",
-  "modalDissociateCancelButton": "Annuler",
-  "modalDissociateConfirmButton": "Confirmer",
   "modalDissociateError": "L'erreur suivante est survenue : {{error}}."
 }

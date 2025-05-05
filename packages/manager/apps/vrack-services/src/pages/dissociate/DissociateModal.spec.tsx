@@ -47,7 +47,7 @@ describe('Vrack Services dissociate vrack test suite', () => {
 
     const dissociateButton = await getButtonByLabel({
       container,
-      value: labels.dissociate.modalDissociateConfirmButton,
+      value: labels.actions.confirm,
     });
 
     await waitFor(() => userEvent.click(dissociateButton));
@@ -68,7 +68,7 @@ describe('Vrack Services dissociate vrack test suite', () => {
 
     const dissociateButton = await getButtonByLabel({
       container,
-      value: labels.dissociate.modalDissociateConfirmButton,
+      value: labels.actions.confirm,
     });
 
     await waitFor(() => userEvent.click(dissociateButton));
