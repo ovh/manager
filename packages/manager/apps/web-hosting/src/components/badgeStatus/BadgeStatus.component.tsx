@@ -3,15 +3,22 @@ import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
 import { Badge } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
+import {
   ResourceStatus,
   ServiceStatus,
   GitStatus,
   DnsStatus,
 } from '@/data/type';
+import { DATAGRID_LINK, WEBSITE } from '@/utils/tracking.constants';
 
 export type BadgeStatusProps = {
   itemStatus: string;
   'data-testid'?: string;
+  tracking?: string;
   href?: string;
   isLoading?: boolean;
   label?: string;
@@ -45,14 +52,24 @@ const getStatusColor = (status: string) => {
 export const BadgeStatus: React.FC<BadgeStatusProps> = ({
   itemStatus,
   href,
+  tracking,
   label,
   isLoading,
 }) => {
   const { t } = useTranslation('common');
+  const { trackClick } = useOvhTracking();
   const statusColor = useMemo(() => getStatusColor(itemStatus), [itemStatus]);
   return (
     <Badge
       onClick={() => {
+        if (tracking) {
+          trackClick({
+            location: PageLocation.datagrid,
+            buttonType: ButtonType.link,
+            actionType: 'navigation',
+            actions: [`${DATAGRID_LINK}${tracking}_${WEBSITE}`],
+          });
+        }
         window.open(href, '_blank');
       }}
       data-testid={`badge-status-${itemStatus}`}
