@@ -7,7 +7,7 @@ module.exports = {
   transformIgnorePatterns: ['node_modules/(?!lodash-es|@ovhcloud|@stencil)'],
   testMatch: ['**/__tests__/**/*.spec.js'],
   transform: {
-    '\\.html$': '<rootDir>/client/__tests__/jest-html.loader.js',
+    '\\.html$': '<rootDir>/__tests__/jest-html.loader.js',
     '^.+\\.js$': 'babel-jest',
   },
   moduleNameMapper: {
@@ -16,6 +16,6 @@ module.exports = {
     '^@ovh-ux/ng-(.*)$': '<rootDir>/../../../components/ng-$1/src/index.js',
   },
   collectCoverage: false,
-  collectCoverageFrom: ['client/app/**/*.js', '!client/__tests__/**/*'],
+  collectCoverageFrom: ['src/**/*.js', '!<rootDir>/__tests__/**/*'],
   coverageReporters: ['text-summary'],
 };
