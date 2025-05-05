@@ -2,8 +2,14 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActionMenu } from '@ovh-ux/manager-react-components';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { WebsiteType } from '@/data/type';
 import { useHostingUrl } from '@/hooks';
+import { STATISTICS, WEBSITE } from '@/utils/tracking.constants';
 
 interface ActionButtonStatisticsProps {
   webSiteItem: WebsiteType;
@@ -13,11 +19,18 @@ const ActionButtonStatistics: React.FC<ActionButtonStatisticsProps> = ({
   webSiteItem,
 }) => {
   const { t } = useTranslation('common');
+  const { trackClick } = useOvhTracking();
   const urlPromise = useHostingUrl(
     webSiteItem?.currentState.hosting.serviceName,
     'user-logs',
   );
   const handleStatisticsVisitClick = () => {
+    trackClick({
+      location: PageLocation.datagrid,
+      buttonType: ButtonType.button,
+      actionType: 'navigation',
+      actions: [`${STATISTICS}_${WEBSITE}`],
+    });
     window.open(urlPromise, '_blank');
   };
 

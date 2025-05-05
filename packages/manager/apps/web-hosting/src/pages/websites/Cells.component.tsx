@@ -7,10 +7,16 @@ import {
   ODS_ICON_NAME,
 } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useWebHostingAttachedDomaindigStatus } from '@/data/hooks/webHostingAttachedDomaindigStatus/useWebHostingAttachedDomaindigStatus';
 import { BadgeStatus } from '@/components/badgeStatus/BadgeStatus.component';
 import { ServiceStatus, WebsiteType, DnsStatus, GitStatus } from '@/data/type';
 import { useHostingUrl } from '@/hooks/useHostingUrl';
+import { DATAGRID_LINK, DIAGNOSTIC, WEBSITE } from '@/utils/tracking.constants';
 
 const useHostingUrlWithOptions = (
   serviceName: string,
@@ -105,6 +111,7 @@ export const DiagnosticCell = ({
         key={type}
         itemStatus={status}
         label={type}
+        tracking={`${DATAGRID_LINK}${DIAGNOSTIC}`}
         isLoading={isLoading}
         href={hostingUrl}
       />
@@ -115,6 +122,7 @@ export const DiagnosticCell = ({
 interface BadgeStatusCellProps {
   webSiteItem: WebsiteType;
   status: ServiceStatus | GitStatus;
+  tracking?: string;
   withMultisite?: boolean;
   withBoost?: boolean;
 }
@@ -122,6 +130,7 @@ interface BadgeStatusCellProps {
 export const BadgeStatusCell = ({
   webSiteItem,
   status,
+  tracking,
   withMultisite = false,
   withBoost = false,
 }: BadgeStatusCellProps) => {
@@ -131,25 +140,44 @@ export const BadgeStatusCell = ({
     withBoost,
   );
 
-  return <BadgeStatus itemStatus={status} href={hostingUrl} />;
+  return (
+    <BadgeStatus itemStatus={status} tracking={tracking} href={hostingUrl} />
+  );
 };
 
 interface LinkCellProps {
   webSiteItem: WebsiteType;
   label: string;
+  tracking?: string;
   withMultisite?: boolean;
 }
 
 export const LinkCell = ({
   webSiteItem,
   label,
+  tracking,
   withMultisite = false,
 }: LinkCellProps) => {
+  const { trackClick } = useOvhTracking();
   const hostingUrl = useHostingUrlWithOptions(
     webSiteItem?.currentState.hosting.serviceName,
     withMultisite,
     false,
   );
 
-  return <Links label={label} href={hostingUrl} target="_blank" />;
+  return (
+    <Links
+      label={label}
+      href={hostingUrl}
+      onClickReturn={() =>
+        trackClick({
+          location: PageLocation.datagrid,
+          buttonType: ButtonType.link,
+          actionType: 'navigation',
+          actions: [`${DATAGRID_LINK}${tracking}_${WEBSITE}`],
+        })
+      }
+      target="_blank"
+    />
+  );
 };
