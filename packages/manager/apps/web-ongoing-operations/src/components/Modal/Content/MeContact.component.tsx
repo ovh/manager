@@ -59,7 +59,6 @@ export default function MeContactComponent({
         }`,
       )}
       className="block"
-      target="_blank"
       icon="external-link"
       data-testid="contactModal"
       isDisabled={!url}
