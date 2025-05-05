@@ -68,6 +68,7 @@ export interface Region {
   tags: database.capabilities.TagEnum[];
   default: boolean;
   flavors: Flavor[];
+  type: string;
 }
 
 export interface Flavor {

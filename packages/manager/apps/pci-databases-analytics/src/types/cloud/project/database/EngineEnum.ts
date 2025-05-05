@@ -12,4 +12,5 @@ export enum EngineEnum {
   'opensearch' = 'opensearch',
   'postgresql' = 'postgresql',
   'redis' = 'redis',
+  'valkey' = 'valkey',
 }

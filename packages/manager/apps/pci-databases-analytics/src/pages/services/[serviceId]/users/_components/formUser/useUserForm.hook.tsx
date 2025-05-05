@@ -204,6 +204,7 @@ export const useUserForm = ({
         roles: (editedUser as database.service.UserWithRoles)?.roles || [],
       };
       break;
+    case database.EngineEnum.valkey:
     case database.EngineEnum.redis:
       schema = redisSchema;
       defaultValues = {

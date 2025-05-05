@@ -57,6 +57,7 @@ export const mockedOrderFunnelRegion: Region = {
   name: 'regionName',
   order: 1,
   tags: [database.capabilities.TagEnum.current],
+  type: '?',
   default: true,
   flavors: [mockedBasicOrderFunnelFlavor],
 };
@@ -64,6 +65,7 @@ export const mockedOrderFunnelRegion: Region = {
 export const mockedOrderFunnelRegionBis: Region = {
   name: 'region2Name',
   order: 2,
+  type: '?',
   tags: [database.capabilities.TagEnum.current],
   default: false,
   flavors: [mockedBasicOrderFunnelFlavor],

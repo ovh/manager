@@ -35,6 +35,7 @@ export const getUsers = async ({
     case database.EngineEnum.mongodb:
       userReturnType = response.data as database.service.UserWithRoles[];
       break;
+    case database.EngineEnum.valkey:
     case database.EngineEnum.redis:
       userReturnType = response.data as database.redis.User[];
       break;

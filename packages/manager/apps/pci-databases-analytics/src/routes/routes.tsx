@@ -59,6 +59,11 @@ export default [
         ...lazyRouteConfig(() => import('@/pages/services/create/Create.page')),
       },
       {
+        path: 'new2',
+        id: 'create2',
+        ...lazyRouteConfig(() => import('@/pages/services/create/Createv2.page')),
+      },
+      {
         path: ':serviceId',
         ...lazyRouteConfig(() =>
           import('@/pages/services/[serviceId]/Service.layout'),

@@ -50,7 +50,7 @@ export default function ServicesList({ services }: ServicesListProps) {
             data-testid="create-service-button"
             onClick={() => {
               track(TRACKING.servicesList.createDatabaseClick());
-              navigate('./new');
+              navigate('./new2');
             }}
           >
             <Plus className="size-6 mr-2 text-primary-foreground" />
