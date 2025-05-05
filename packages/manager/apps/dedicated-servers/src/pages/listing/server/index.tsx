@@ -26,6 +26,7 @@ export default function ServerListing() {
     'region',
     'status',
     'actions',
+    'tags',
   ]);
   const { t } = useTranslation('dedicated-servers');
   const { sorting, setSorting } = useDataGrid({
@@ -99,6 +100,7 @@ export default function ServerListing() {
                   search={search}
                   className="server-data-grid"
                   topbar={<OrderMenu />}
+                  resourceType="dedicatedServer"
                 />
               </div>
             )}
