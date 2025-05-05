@@ -44,6 +44,26 @@ vi.mock('@ovh-ux/manager-react-shell-client', async () => {
   };
 });
 
+vi.mock('@/hooks/useFeatureAvailability', () => ({
+  useFeatureAvailability: vi.fn(() => ({
+    data: {
+      'storage:standard-infrequent-access': true,
+    },
+  })),
+}));
+
+vi.mock('@/hooks/useStandardInfrequentAccessAvailability', () => ({
+  default: vi.fn(() => true),
+}));
+
+vi.mock('@/constants', async () => {
+  const actual = await vi.importActual('@/constants');
+  return {
+    ...actual,
+    standardInfrequentAcess: 'storage:standard-infrequent-access',
+  };
+});
+
 describe('Show page', () => {
   it('should display spinner', () => {
     vi.fn(useProductMaintenance).mockReturnValue({
