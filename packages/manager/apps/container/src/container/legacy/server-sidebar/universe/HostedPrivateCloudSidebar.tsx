@@ -359,7 +359,7 @@ export default function HostedPrivateCloudSidebar() {
       );
       menu.push({
         id: 'identity-security-operations',
-        label: t('sidebar_identity_security_operations'),
+        label: t('sidebar_security_identity_operations'),
         icon: (
           <OsdsIcon
             name={ODS_ICON_NAME.CLOUD_EYE_CONCEPT}

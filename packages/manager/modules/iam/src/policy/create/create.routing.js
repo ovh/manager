@@ -1,4 +1,5 @@
-import { TAG } from '../../iam.constants';
+import { GUIDE } from '../../iam.constants';
+import { MY_POLICIES_TRACKING_HITS } from '../../policies/myPolicies/myPolicies.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('iam.policy.create', {
@@ -13,9 +14,12 @@ export default /* @ngInject */ ($stateProvider) => {
        */
       permissionsGroups: /* @ngInject */ (IAMService) =>
         IAMService.getPermissionsGroups(),
+      policiesGuides: /* @ngInject */ (IAMService) => {
+        return IAMService.formatGuides(GUIDE.IAM);
+      },
     },
     atInternet: {
-      rename: TAG.ADD_POLICY,
+      rename: MY_POLICIES_TRACKING_HITS.CREATE_POLICY_PAGE,
     },
   });
 };

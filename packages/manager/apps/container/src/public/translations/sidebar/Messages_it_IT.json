@@ -188,7 +188,7 @@
   "sidebar_security_identity_operations": "Identità, sicurezza e operazioni",
   "sidebar_security_identity_operations_short": "ISO",
   "sidebar_security_identity_operations_kms": "Key Management Service",
-  "sidebar_security_identity_operations_iam": "Identity &amp; Access Management",
+  "sidebar_security_identity_operations_iam": "Gestione delle identità e degli accessi",
   "sidebar_security_identity_operations_logs": "Logs Data Platform",
   "sidebar_assistance_carbon_calculator": "Il mio bilancio del carbonio",
   "sidebar_back_menu": "Torna al menu",
@@ -197,7 +197,7 @@
   "sidebar_zimbra": "Zimbra Mail",
   "sidebar_pci_ai_dashboard": "AI Dashboard",
   "sidebar_security_operations": "Operazioni",
-  "sidebar_security_identity": "Identità e sicurezza",
+  "sidebar_security_identity": "Sicurezza",
   "sidebar_reduce": "Riduci",
   "sidebar_pci_savings_plan": "Savings Plan",
   "sidebar_hycu": "HYCU",
@@ -210,5 +210,9 @@
   "sidebar_hosting_and_collab_changelog": "Hosting &amp; Collab Changelog",
   "sidebar_roadmap_changelog": "Roadmap e Changelog",
   "sidebar_license_office_list": "I miei account Microsoft 365",
-  "sidebar_create_ticket": "Creare un ticket"
+  "sidebar_create_ticket": "Creare un ticket",
+  "sidebar_security_identity_operations_iam_identities": "Identità",
+  "sidebar_security_identity_operations_iam_policies": "Policy",
+  "sidebar_security_identity_operations_iam_api-keys": "Chiavi API",
+  "sidebar_security_identity_operations_iam_logs": "Log dell'account:"
 }

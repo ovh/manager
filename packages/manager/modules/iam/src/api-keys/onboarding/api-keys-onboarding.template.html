@@ -1,0 +1,31 @@
+<manager-on-boarding-layout data-on-guide-click="$ctrl.onGuideClick(guide.key)">
+    <onboarding-title>
+        <p data-translate="iam_api_keys"></p>
+    </onboarding-title>
+    <onboarding-description>
+        <p data-translate="iam_api_keys_onboarding_description"></p>
+        <p data-translate="iam_api_keys_onboarding_description_bis"></p>
+        <a
+            class="mt-3 oui-button oui-button_primary oui-button_l text-light"
+            rel="noopener"
+            target="_blank"
+            data-ng-href="{{:: $ctrl.API_KEY_URL}}"
+        >
+            <span data-translate="iam_api_keys_create_api_key"></span>
+        </a>
+        <a
+            class="mt-3 ml-2 oui-button oui-button_secondary oui-button_l"
+            rel="noopener"
+            target="_blank"
+            data-ng-href="{{:: $ctrl.API_KEY_GUIDE}}"
+        >
+            <span
+                data-translate="iam_api_keys_onboarding_more_information"
+            ></span>
+            <span
+                class="oui-icon oui-icon-external-link"
+                aria-hidden="true"
+            ></span>
+        </a>
+    </onboarding-description>
+</manager-on-boarding-layout>

@@ -226,7 +226,10 @@ export default class CreatePolicyController {
    */
   cancelCreation() {
     this.trackClick(this.tag?.cancel);
-    return this.goTo({ name: 'iam.dashboard.policies' });
+    const returnTo = this.policy?.readOnly
+      ? 'iam.policies.ovhPolicies'
+      : 'iam.policies.myPolicies';
+    return this.goTo({ name: returnTo });
   }
 
   /**
@@ -368,7 +371,7 @@ export default class CreatePolicyController {
       .then(() => {
         this.error = {};
         return this.goTo({
-          name: 'iam.dashboard.policies',
+          name: 'iam.policies.myPolicies',
           reload: true,
           success: {
             key: this.translations.success,

@@ -1,5 +1,0 @@
-{
-  "iam_advanced_mode_switch_toggle_label": "Tryb zaawansowany",
-  "iam_advanced_mode_switch_popover": "Tryb zaawansowany pozwala na wyświetlanie polityki w trybie \"read-only\". Polityka ta nie jest ani edytowalna, ani nie może zostać usunięta.",
-  "iam_advanced_mode_switch_error": "Wystąpił błąd: {{ message }}"
-}

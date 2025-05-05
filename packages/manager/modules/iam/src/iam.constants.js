@@ -28,6 +28,9 @@ const ACTION_DESCRIPTION_UNDEFINED = 'missing description';
 
 const FEATURE = {
   MAIN: 'iam',
+  IDENTITIES: 'identity-access-management:identities',
+  POLICIES: 'identity-access-management:policies',
+  APIKEYS: 'identity-access-management:api-keys',
 };
 
 const ENTITY = {
@@ -35,7 +38,7 @@ const ENTITY = {
   IDENTITY: 'identity',
   RESOURCE_GROUP: 'resourceGroup',
   RESOURCE_TYPE: 'resourceType',
-  APPLICATION: 'application',
+  API_KEY: 'apiKey',
 };
 
 const ENTITY_NAME_PATTERN = /^[a-zA-Z0-9-/_+]*$/;
@@ -159,125 +162,99 @@ const GUIDE = {
     WS:
       'https://help.ovhcloud.com/csm/es-customer-connect-saml-sso?id=kb_article_view&sysparm_article=KB0043009',
   },
+  APIKEY: {
+    ASIA:
+      'https://help.ovhcloud.com/csm/asia-api-getting-started-ovhcloud-api?id=kb_article_view&sysparm_article=KB0042776',
+    AU:
+      'https://help.ovhcloud.com/csm/en-au-api-getting-started-ovhcloud-api?id=kb_article_view&sysparm_article=KB0042780',
+    CA:
+      'https://help.ovhcloud.com/csm/en-ca-api-getting-started-ovhcloud-api?id=kb_article_view&sysparm_article=KB0029722',
+    DE:
+      'https://help.ovhcloud.com/csm/de-api-getting-started-ovhcloud-api?id=kb_article_view&sysparm_article=KB0042781',
+    ES:
+      'https://help.ovhcloud.com/csm/es-es-api-getting-started-ovhcloud-api?id=kb_article_view&sysparm_article=KB0042785',
+    FR:
+      'https://help.ovhcloud.com/csm/fr-api-getting-started-ovhcloud-api?id=kb_article_view&sysparm_article=KB0042789',
+    GB:
+      'https://help.ovhcloud.com/csm/en-gb-api-getting-started-ovhcloud-api?id=kb_article_view&sysparm_article=KB0042784',
+    IN:
+      'https://help.ovhcloud.com/csm/asia-api-getting-started-ovhcloud-api?id=kb_article_view&sysparm_article=KB0042776',
+    IT:
+      'https://help.ovhcloud.com/csm/it-api-getting-started-ovhcloud-api?id=kb_article_view&sysparm_article=KB0042788',
+    MA:
+      'https://help.ovhcloud.com/csm/fr-api-getting-started-ovhcloud-api?id=kb_article_view&sysparm_article=KB0042789',
+    PL:
+      'https://help.ovhcloud.com/csm/pl-api-getting-started-ovhcloud-api?id=kb_article_view&sysparm_article=KB0042799',
+    PT:
+      'https://help.ovhcloud.com/csm/pt-api-getting-started-ovhcloud-api?id=kb_article_view&sysparm_article=KB0042798',
+    QC:
+      'https://help.ovhcloud.com/csm/fr-ca-api-getting-started-ovhcloud-api?id=kb_article_view&sysparm_article=KB0042783',
+    SG:
+      'https://help.ovhcloud.com/csm/en-sg-api-getting-started-ovhcloud-api?id=kb_article_view&sysparm_article=KB0042779',
+    SN:
+      'https://help.ovhcloud.com/csm/fr-api-getting-started-ovhcloud-api?id=kb_article_view&sysparm_article=KB0042789',
+    TN:
+      'https://help.ovhcloud.com/csm/fr-api-getting-started-ovhcloud-api?id=kb_article_view&sysparm_article=KB0042789',
+    US:
+      'https://help.ovhcloud.com/csm/en-api-getting-started-ovhcloud-api?id=kb_article_view&sysparm_article=KB0042777',
+    WE:
+      'https://help.ovhcloud.com/csm/en-api-getting-started-ovhcloud-api?id=kb_article_view&sysparm_article=KB0042777',
+    WS:
+      'https://help.ovhcloud.com/csm/es-api-getting-started-ovhcloud-api?id=kb_article_view&sysparm_article=KB0042793',
+  },
+  LOGS: {
+    FR:
+      'https://help.ovhcloud.com/csm/fr-iam-logs-forwarding?id=kb_article_view&sysparm_article=KB0060437',
+    DE:
+      'https://help.ovhcloud.com/csm/de-iam-logs-forwarding?id=kb_article_view&sysparm_article=KB0060440',
+    ES:
+      'https://help.ovhcloud.com/csm/es-es-iam-logs-forwarding?id=kb_article_view&sysparm_article=KB0060443',
+    WE:
+      'https://help.ovhcloud.com/csm/en-iam-logs-forwarding?id=kb_article_view&sysparm_article=KB0060439',
+    IE:
+      'https://help.ovhcloud.com/csm/en-ie-iam-logs-forwarding?id=kb_article_view&sysparm_article=KB0060446',
+    IT:
+      'https://help.ovhcloud.com/csm/it-iam-logs-forwarding?id=kb_article_view&sysparm_article=KB0060433',
+    PL:
+      'https://help.ovhcloud.com/csm/pl-iam-logs-forwarding?id=kb_article_view&sysparm_article=KB0060448',
+    PT:
+      'https://help.ovhcloud.com/csm/pt-iam-logs-forwarding?id=kb_article_view&sysparm_article=KB0060438',
+    GB:
+      'https://help.ovhcloud.com/csm/en-gb-iam-logs-forwarding?id=kb_article_view&sysparm_article=KB0060447',
+    CA:
+      'https://help.ovhcloud.com/csm/en-ca-iam-logs-forwarding?id=kb_article_view&sysparm_article=KB0060445',
+    QC:
+      'https://help.ovhcloud.com/csm/fr-ca-iam-logs-forwarding?id=kb_article_view&sysparm_article=KB0060436',
+    WS:
+      'https://help.ovhcloud.com/csm/es-iam-logs-forwarding?id=kb_article_view&sysparm_article=KB0060434',
+    AU:
+      'https://help.ovhcloud.com/csm/en-au-iam-logs-forwarding?id=kb_article_view&sysparm_article=KB0060442',
+    SG:
+      'https://help.ovhcloud.com/csm/en-sg-iam-logs-forwarding?id=kb_article_view&sysparm_article=KB0060444',
+    ASIA:
+      'https://help.ovhcloud.com/csm/asia-iam-logs-forwarding?id=kb_article_view&sysparm_article=KB0060435',
+  },
+};
+
+GUIDE.LOGS.SN = GUIDE.LOGS.FR;
+GUIDE.LOGS.TN = GUIDE.LOGS.FR;
+GUIDE.LOGS.MA = GUIDE.LOGS.FR;
+
+const API_KEY_URL = {
+  EU: 'https://www.ovh.com/auth/api/createToken',
+  CA: 'https://ca.ovh.com/auth/api/createToken',
+  US: 'https://us.ovhcloud.com/auth/api/createToken',
 };
 
 const PAGE_SIZE = 25;
 
-const PREFERENCES_KEY = {
-  ADVANCED_MODE: 'IAM_ADVANCED_MODE',
-};
-
 const TAG = {
-  // Policy creation
-  ADD_POLICY: 'dedicated::account::iam::add-policy',
-  ADD_POLICY__CANCEL: 'dedicated::account::iam::add-policy::cancel',
-  ADD_POLICY__CONFIRM: 'dedicated::account::iam::add-policy::confirm',
-  ADD_POLICY__REMOVE_PRODUCT_TYPE:
-    'dedicated::account::iam::add-policy::remove-product-type',
-
-  // Resource group creation
-  ADD_RESOURCE_GROUP: 'dedicated::account::iam::add-group-ressources',
-  ADD_RESOURCE_GROUP__CANCEL:
-    'dedicated::account::iam::add-group-ressources::cancel',
-  ADD_RESOURCE_GROUP__CONFIRM:
-    'dedicated::account::iam::add-group-ressources::confirm',
-  ADD_RESOURCE_GROUP__REMOVE_PRODUCT_TYPE:
-    'dedicated::account::iam::add-group-ressources::remove-product-type',
-
-  // Entities deletion
-  DELETE_POLICY: 'dedicated::account::iam::delete-policy',
-  DELETE_POLICY__CANCEL: 'dedicated::account::iam::delete-policy::cancel',
-  DELETE_POLICY__CONFIRM: 'dedicated::account::iam::delete-policy::confirm',
-  DELETE_RESOURCE_GROUP: 'dedicated::account::iam::delete-group-ressources',
-  DELETE_RESOURCE_GROUP__CANCEL:
-    'dedicated::account::iam::delete-group-ressources::cancel',
-  DELETE_RESOURCE_GROUP__CONFIRM:
-    'dedicated::account::iam::delete-group-ressources::confirm',
-  DELETE_APPLICATION: 'dedicated::account::iam::delete-application',
-  DELETE_APPLICATION__CANCEL:
-    'dedicated::account::iam::delete-application::cancel',
-  DELETE_APPLICATION__CONFIRM:
-    'dedicated::account::iam::delete-application::confirm',
-
-  // Policy edition
-  EDIT_POLICY: 'dedicated::account::iam::edit-policy',
-  EDIT_POLICY__CANCEL: 'dedicated::account::iam::edit-policy::cancel',
-  EDIT_POLICY__CONFIRM: 'dedicated::account::iam::edit-policy::confirm',
-  EDIT_POLICY__REMOVE_PRODUCT_TYPE:
-    'dedicated::account::iam::edit-policy::remove-product-type',
-
-  // Resource group edition
-  EDIT_RESOURCE_GROUP: 'dedicated::account::iam::edit-group-ressources',
-  EDIT_RESOURCE_GROUP__CANCEL:
-    'dedicated::account::iam::edit-group-ressources::cancel',
-  EDIT_RESOURCE_GROUP__CONFIRM:
-    'dedicated::account::iam::edit-group-ressources::confirm',
-  EDIT_RESOURCE_GROUP__REMOVE_PRODUCT_TYPE:
-    'dedicated::account::iam::edit-group-ressources::remove-product-type',
-
-  // Onboarding
-  ONBOARDING: 'dedicated::account::iam::onboarding',
-  ONBOARDING__ADD_POLICY: 'dedicated::account::iam::onboarding::add-policy',
-  ONBOARDING__ADD_USER: 'dedicated::account::iam::onboarding::add-user',
-
-  // List of policies
-  POLICIES: 'dedicated::account::iam::policies',
-  POLICIES__ADD: 'dedicated::account::iam::policies::add',
-  POLICIES__DELETE: 'dedicated::account::iam::policies::delete',
-  POLICIES__EDIT: 'dedicated::account::iam::policies::edit',
-
-  // List of policies - banners
-  POLICIES__CREATE_POLICY_CONFIRM_BANNER__ERROR:
-    'iam::policies::create-policy-confirm-banner::error',
-  POLICIES__CREATE_POLICY_CONFIRM_BANNER__SUCCESS:
-    'iam::policies::create-policy-confirm-banner::success',
-  POLICIES__DELETE_POLICY_CONFIRM_BANNER__ERROR:
-    'iam::policies::delete-policy-confirm-banner::error',
-  POLICIES__DELETE_POLICY_CONFIRM_BANNER__SUCCESS:
-    'iam::policies::delete-policy-confirm-banner::success',
-  POLICIES__EDIT_POLICY_CONFIRM_BANNER__ERROR:
-    'iam::policies::edit-policy-confirm-banner::error',
-  POLICIES__EDIT_POLICY_CONFIRM_BANNER__SUCCESS:
-    'iam::policies::edit-policy-confirm-banner::success',
-
-  // List of resource groups
-  RESOURCE_GROUPS: 'dedicated::account::iam::group-ressources',
-  RESOURCE_GROUPS__ADD: 'dedicated::account::iam::group-ressources::add',
-  RESOURCE_GROUPS__DELETE: 'dedicated::account::iam::group-ressources::delete',
-  RESOURCE_GROUPS__EDIT: 'dedicated::account::iam::group-ressources::edit',
-
-  // List of resource groups - banners
-  RESOURCE_GROUPS__ADD_GROUP_CONFIRM_BANNER__ERROR:
-    'iam::group-ressources::add-group-confirm-banner::error',
-  RESOURCE_GROUPS__ADD_GROUP_CONFIRM_BANNER__SUCCESS:
-    'iam::group-ressources::add-group-confirm-banner::success',
-  RESOURCE_GROUPS__DELETE_GROUP_CONFIRM_BANNER__ERROR:
-    'iam::group-ressources::delete-group-confirm-banner::error',
-  RESOURCE_GROUPS__DELETE_GROUP_CONFIRM_BANNER__SUCCESS:
-    'iam::group-ressources::delete-group-confirm-banner::success',
-  RESOURCE_GROUPS__EDIT_GROUP_CONFIRM_BANNER__ERROR:
-    'iam::group-ressources::edit-group-confirm-banner::error',
-  RESOURCE_GROUPS__EDIT_GROUP_CONFIRM_BANNER__SUCCESS:
-    'iam::group-ressources::edit-group-confirm-banner::success',
-
-  // List of applications
-  APPLICATIONS: 'dedicated::account::iam::applications',
-  APPLICATIONS__DELETE: 'dedicated::account::iam::applications::delete',
-
-  // List of applications - banners
-  APPLICATIONS__DELETE_APPLICATION_CONFIRM_BANNER__ERROR:
-    'dedicated::account::iam::applications::delete-application::confirm-banner::error',
-  APPLICATIONS__DELETE_APPLICATION_CONFIRM_BANNER__SUCCESS:
-    'dedicated::account::iam::applications::delete-application::confirm-banner::success',
-
   // Commons
   ADD_ACTION_MANUALLY_SUCCESS: 'add-manually-success',
   ADD_ACTION_MANUALLY: 'add-manually',
-  DISABLE_ADVANCED_MODE: 'dedicated::account::iam::disable-advanced-mode',
   DISABLE_ALLOW_ALL_ACTIONS: 'disable-allow-all-actions',
-  ENABLE_ADVANCED_MODE: 'dedicated::account::iam::enable-advanced-mode',
   ENABLE_ALLOW_ALL_ACTIONS: 'enable-allow-all-actions',
-  GUIDE: (guideKey) => `dedicated::account::iam::guide-${guideKey}`,
+  GUIDE: (guideKey) => `identity-security-operation::guide-${guideKey}`,
   REMOVE_PRODUCT_TYPE_CANCEL: 'remove-product-type-cancel',
   REMOVE_PRODUCT_TYPE_CONFIRM: 'remove-product-type-confirm',
 };
@@ -304,10 +281,10 @@ export {
   GUIDE,
   OVH_MANAGED_PERMISSIONS_GROUP,
   PAGE_SIZE,
-  PREFERENCES_KEY,
   TAG,
   UNAVAILABLE_STATE_NAME,
   URN_VERSION,
   WILDCARD,
   ACTION_DESCRIPTION_UNDEFINED,
+  API_KEY_URL,
 };
