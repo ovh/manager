@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { odsSetup } from '@ovhcloud/ods-common-core';
 import {
   HOSTNAME_REGIONS,
   useDefaultLanguage,
@@ -17,12 +16,11 @@ const region = HOSTNAME_REGIONS[window.location.hostname] || 'EU';
 
 import(`./config-${region}.js`)
   .catch(() => {})
-  .then(() => {
+  .then(async () => {
     useDefaultLanguage('en_GB');
     const locale = findAvailableLocale(detectUserLocale());
 
-    initI18n(locale);
-    odsSetup();
+    await initI18n(locale);
 
     ReactDOM.createRoot(document.getElementById('root')!).render(
       <React.StrictMode>
