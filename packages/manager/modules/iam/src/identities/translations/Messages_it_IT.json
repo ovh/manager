@@ -7,5 +7,10 @@
   "iam_identities_field_users_button_add": "Aggiungi",
   "iam_identities_error_load_users": "Si è verificato un errore durante il recupero degli utenti: {{ message }}",
   "iam_identities_add_identity_error": "Il formato dell'identità aggiunta non è valido: {{ message }}",
-  "iam_identities_add_identity_success": "L'identità è associata alla tua policy"
+  "iam_identities_add_identity_success": "L'identità è associata alla tua policy",
+  "iam_identities": "Identità",
+  "iam_identities_header_guide_text": "Guide",
+  "iam_identities_users": "Utenti locali",
+  "iam_identities_user_groups": "Gruppi di utenti",
+  "iam_identities_sso": "SSO"
 }

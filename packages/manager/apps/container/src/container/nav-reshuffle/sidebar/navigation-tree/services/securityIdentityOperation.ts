@@ -1,6 +1,6 @@
 import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
 import illustration from '@/assets/images/sidebar/security-identity-operations.png';
-import { Node } from '../node';
+import { Node, NodeTag } from '../node';
 
 const sioUniverse: Node = {
   id: 'security-identity-operation',
@@ -13,28 +13,71 @@ const sioUniverse: Node = {
     application: 'iam',
   },
   hasService: false,
-  features: ['iam', 'key-management-service', 'logs-data-platform'],
+  features: ['key-management-service', 'logs-data-platform', 'identity-access-management'],
 };
 
 sioUniverse.children = [
+  {
+    id: 'iam',
+    idAttr: 'iam-link',
+    translation: 'sidebar_security_identity_operations_iam',
+    universe: sioUniverse.id,
+    features: ['identity-access-management'],
+    children: [
+      {
+        id: 'iam-identities',
+        idAttr: 'iam-identities-link',
+        translation: 'sidebar_security_identity_operations_iam_identities',
+        universe: sioUniverse.id,
+        features: ['identity-access-management:identities'],
+        routing: {
+          application: 'iam',
+          hash: '#/identities',
+        },
+      },
+      {
+        id: 'iam-policies',
+        idAttr: 'iam-policies-link',
+        translation: 'sidebar_security_identity_operations_iam_policies',
+        universe: sioUniverse.id,
+        features: ['identity-access-management:policies'],
+        routing: {
+          application: 'iam',
+          hash: '#/policies',
+        },
+      },
+      {
+        id: 'iam-api-keys',
+        idAttr: 'iam-api-keys-link',
+        translation: 'sidebar_security_identity_operations_iam_api-keys',
+        universe: sioUniverse.id,
+        features: ['identity-access-management:api-keys'],
+        routing: {
+          application: 'iam',
+          hash: '#/api-keys',
+        },
+      },
+      {
+        id: 'iam-logs',
+        idAttr: 'iam-logs-link',
+        translation: 'sidebar_security_identity_operations_iam_logs',
+        universe: sioUniverse.id,
+        tag: NodeTag.BETA,
+        features: ['identity-access-management:logs'],
+        routing: {
+          application: 'iam',
+          hash: '#/logs',
+        },
+      },
+    ]
+  },
   {
     id: 'security-identity',
     idAttr: 'security-identity-link',
     translation: 'sidebar_security_identity',
     universe: sioUniverse.id,
-    features: ['iam', 'key-management-service'],
+    features: ['key-management-service'],
     children: [
-      {
-        id: 'security-identity-operation-iam',
-        idAttr: 'security-identity-operation-iam-link',
-        translation: 'sidebar_security_identity_operations_iam',
-        universe: sioUniverse.id,
-        features: ['iam'],
-        routing: {
-          application: 'iam',
-          hash: '#/',
-        },
-      },
       {
         id: 'security-identity-operations-kms',
         idAttr: 'security-identity-operations-kms-link',

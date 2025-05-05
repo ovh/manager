@@ -87,8 +87,8 @@ export default class DeleteEntityController {
       promise = this.deletePolicy();
     } else if (this.entity.type === ENTITY.RESOURCE_GROUP) {
       promise = this.deleteResourceGroup();
-    } else if (this.entity.type === ENTITY.APPLICATION) {
-      promise = this.deleteApplication();
+    } else if (this.entity.type === ENTITY.API_KEY) {
+      promise = this.deleteApiKey();
     } else if (this.entity.type === ENTITY.RESOURCE_TYPE) {
       promise = this.$q.when(true);
     } else {
@@ -141,8 +141,8 @@ export default class DeleteEntityController {
    * Delete the entity using the IAMService
    * @returns {Promise}
    */
-  deleteApplication() {
-    return this.IAMService.deleteApplication(this.entity.data.applicationId);
+  deleteApiKey() {
+    return this.IAMService.deleteApiKey(this.entity.data.applicationId);
   }
 
   /**
@@ -152,7 +152,7 @@ export default class DeleteEntityController {
   trackDeleteEntityClick(tagKey) {
     const tag = this.tag?.[tagKey];
     if (tag) {
-      this.trackClick([this.tagPrefix, tag].filter(Boolean).join('::'));
+      this.trackClick([this.tagPrefix, tag].filter(Boolean).join(''));
     }
   }
 }

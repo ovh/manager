@@ -1,0 +1,3 @@
+{
+  "iam_logs_data_streams_description_default": "Al suscribirse a los logs de seguridad de su cuenta de cliente, estos serán transferidos a la Logs Data Platform. Esta plataforma le permite acceder a funcionalidades avanzadas como la gestión de las alertas, la ejecución de las búsquedas o la gestión de las retenciones."
+}

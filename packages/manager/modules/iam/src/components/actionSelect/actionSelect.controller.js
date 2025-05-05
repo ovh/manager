@@ -380,7 +380,7 @@ export default class ActionSelectController {
    * @param {string} tag
    */
   trackActionSelectClick(tag) {
-    this.trackClick([this.tagPrefix, tag].filter(Boolean).join('::'));
+    this.trackClick([this.tagPrefix, tag].filter(Boolean).join(''));
   }
 
   /**
@@ -388,7 +388,7 @@ export default class ActionSelectController {
    * @param {string} tag
    */
   trackActionSelectPage(tag) {
-    this.trackPage([this.tagPrefix, tag].filter(Boolean).join('::'));
+    this.trackPage([this.tagPrefix, tag].filter(Boolean).join(''));
   }
 
   /*
