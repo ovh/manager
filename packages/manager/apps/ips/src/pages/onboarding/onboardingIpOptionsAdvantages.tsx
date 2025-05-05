@@ -25,7 +25,7 @@ export function OnboardingIpOptions() {
   ];
 
   return (
-    <div>
+    <>
       {ADVANTAGES.map((advantage) => (
         <li key={advantage.title}>
           <OdsText preset={ODS_TEXT_PRESET.heading5}>
@@ -34,7 +34,7 @@ export function OnboardingIpOptions() {
           <OdsText>{advantage.description}</OdsText>
         </li>
       ))}
-    </div>
+    </>
   );
 }
 
