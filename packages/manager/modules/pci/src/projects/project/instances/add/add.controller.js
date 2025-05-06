@@ -953,6 +953,12 @@ export default class PciInstancesAddController {
     this.model.flavorGroup.prices = this.model.flavorGroup.getPriceBasedOnFlavorId(
       this.instance.flavorId,
     );
+
+    // Legacy code : FlavorGroup prices seems to contains the valid price based on 3AZ, 1AZ or LocalZone
+    // In a recent PR we use flavor instead of flavorGroup to display Windows Gen 3 Licence but it's introduce a regression on LocalZone Price (https://github.com/ovh/manager/pull/16314/files#r2073015373)
+    // Patch the issue by setting the valid flavorGroup Prices to the current flavor
+    this.flavor.prices = { ...this.model.flavorGroup.prices };
+
     this.flavorGroup = { ...this.model.flavorGroup };
   }
 
