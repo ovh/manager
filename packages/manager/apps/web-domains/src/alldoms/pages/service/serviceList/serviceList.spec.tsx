@@ -2,7 +2,7 @@ import '@/alldoms/setupTests';
 import { useResourcesIcebergV6 } from '@ovh-ux/manager-react-components';
 import React from 'react';
 import { vi } from 'vitest';
-import { render, waitFor } from '@testing-library/react';
+import { fireEvent, render, waitFor, screen } from '@testing-library/react';
 import ServiceList from './serviceList';
 import { wrapper } from '@/alldoms/utils/test.provider';
 import { serviceInfoDetail } from '@/alldoms/__mocks__/serviceInfoDetail';
@@ -43,10 +43,20 @@ describe('AllDom datagrid', () => {
         'https://ovh.test/#/web-domains/alldoms/testdomain',
       );
 
+      // We test the status
       const status = getByTestId('status');
       expect(status).toBeInTheDocument();
       expect(status).toHaveAttribute('color', 'success');
       expect(status).toHaveAttribute('label', 'allDom_table_status_automatic');
+
+      // We test the actions
+      fireEvent.click(screen.getByTestId('navigation-action-trigger-action'));
+      const renewAction = screen.getByTestId('renew-button');
+      expect(renewAction).toBeInTheDocument();
+      expect(renewAction).toHaveAttribute(
+        'href',
+        'https://www.ovh.com/cgi-bin/order/renew.cgi?domainChooser=1111111',
+      );
     });
   });
 });
