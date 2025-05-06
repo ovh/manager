@@ -1,0 +1,11 @@
+{
+  "virtualmachine_grid_name": "Nome",
+  "virtualmachine_grid_license": "Licença",
+  "virtualmachine_error_loading": "Erro ao carregar informação relativa às máquinas virtuais.",
+  "virtualmachine_license": "Licença",
+  "virtualmachine_unavailable": "Indisponível",
+  "virtualmachine_deactivated": "Désactivée",
+  "virtualmachine_action_activate_license": "Ativar a licença",
+  "virtualmachine_action_deactivate_license": "Eliminar a licença",
+  "vitualmachine_unavailable_tooltip": "A licença não pode ser ativada num guest OS que não seja Windows"
+}

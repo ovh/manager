@@ -84,5 +84,9 @@
   "dedicatedCloud_datacenters_commercial_name_NSX-T-DEFAULT": "NSX",
   "dedicatedCloud_datacenters_commercial_name_NSX-T-WITHOUT-NSX": "NSX",
   "dedicatedCloud_datacenters_commercial_name_NSX-T-VROPS-WITHOUT-NSX": "NSX mit vROps",
-  "dedicatedCloud_datacenters_migration_banner": "End-of-Life der VMware NSX-V-Komponente: Weitere Informationen finden Sie <a href=\"{{href}}\" target=\"_blank\">in unseren Migrationsanleitungen</a>."
+  "dedicatedCloud_datacenters_migration_banner": "End-of-Life der VMware NSX-V-Komponente: Weitere Informationen finden Sie <a href=\"{{href}}\" target=\"_blank\">in unseren Migrationsanleitungen</a>.",
+  "dedicatedCloud_datacenters_number_vm": "VM",
+  "dedicatedCloud_datacenters_number_vm_windows": "Windows-VM",
+  "dedicatedCloud_datacenters_number_vm_licensed": "Lizenzierte Windows-VM",
+  "dedicatedCloud_datacenters_error": "Fehler"
 }
