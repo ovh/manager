@@ -1452,7 +1452,7 @@
   "license_designation_PLESK_version_PLESK_VPS_WEB_HOST_CLNX": "Plesk - Web Host Edition for VPS with CloudLinux",
   "license_designation_PLESK_version_PLESK_VPS_WEB_PRO_CLNX": "Plesk - Web Pro Edition for VPS with CloudLinux",
   "license_delete_confirm": "Yes, cancel",
-  "license_delete_cancel": "No, don’t cancel",
+  "license_delete_cancel": "No, dismiss",
   "license_designation_WINDOWS_version_windows-server-2025-license-datacenter-edition-8-cores": "Windows Server 2025 Datacenter Edition license - 8 cores",
   "license_designation_WINDOWS_version_windows-server-2025-license-datacenter-edition-10-cores": "Windows Server 2025 Datacenter Edition license - 10 cores",
   "license_designation_WINDOWS_version_windows-server-2025-license-datacenter-edition-12-cores": "Windows Server 2025 Datacenter Edition license - 12 cores",
