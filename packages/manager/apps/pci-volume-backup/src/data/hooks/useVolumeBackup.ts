@@ -125,6 +125,7 @@ export const useDeleteBackup = ({
 
   return {
     deleteBackup: (backupId: string) => mutation.mutate(backupId),
+    ...mutation,
   };
 };
 
