@@ -19,7 +19,7 @@ describe('Datagrid columns', () => {
   const { result } = renderHook(() => useAllDomDatagridColumns());
   const columns = result.current;
   it('should return the correct number of column', () => {
-    expect(columns).toHaveLength(9);
+    expect(columns).toHaveLength(10);
   });
 
   it('should return the good labels', () => {
