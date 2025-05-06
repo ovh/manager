@@ -10,11 +10,11 @@ import { ApiError } from '@ovh-ux/manager-core-api';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
-  DeleteServiceModal,
-  defaultDeleteModalTerminateValue,
+  DeleteModal,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
 import { getOkmsServicesResourceListQueryKey } from '@/data/api/okms';
+import { useDeleteOkmsService } from '@/data/hooks/useDeleteOkmsService';
 
 export default function TerminateKms() {
   const navigate = useNavigate();
@@ -33,12 +33,14 @@ export default function TerminateKms() {
     });
     closeModal();
     clearNotifications();
+
     addSuccess(
       t('key_management_service_terminate_success_banner', {
         ServiceName: okmsId,
       }),
       true,
     );
+
     trackPage({
       pageType: PageType.bannerSuccess,
       pageName: 'delete_kms_success',
@@ -60,15 +62,21 @@ export default function TerminateKms() {
     });
   };
 
+  const {
+    mutate: terminateService,
+    isPending,
+    error,
+    isError,
+  } = useDeleteOkmsService({
+    onSuccess,
+    onError,
+  });
+
   return (
-    <DeleteServiceModal
+    <DeleteModal
       isOpen
-      headline={t('key_management_service_terminate_heading')}
-      deleteInputLabel={t('key_management_service_terminate_description', {
-        terminateKeyword: defaultDeleteModalTerminateValue,
-      })}
-      onSuccess={onSuccess}
-      onError={onError}
+      isLoading={isPending}
+      error={isError ? error?.message : null}
       closeModal={() => {
         trackClick({
           location: PageLocation.popup,
@@ -78,7 +86,6 @@ export default function TerminateKms() {
         });
         closeModal();
       }}
-      resourceName={okmsId}
       onConfirmDelete={() => {
         trackClick({
           location: PageLocation.popup,
@@ -86,6 +93,7 @@ export default function TerminateKms() {
           actionType: 'navigation',
           actions: ['delete_kms', 'confirm'],
         });
+        terminateService({ resourceName: okmsId });
       }}
     />
   );
