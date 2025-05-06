@@ -51,6 +51,61 @@ export default (
         }}
       />
       <Route
+        path={urls.datacenters}
+        id="datacenters"
+        Component={GeneralInfosPage}
+        handle={{
+          tracking: {
+            pageName: 'datacenters',
+            pageType: PageType.dashboard,
+          },
+        }}
+      ></Route>
+      <Route
+        path={urls.users}
+        id="users"
+        Component={GeneralInfosPage}
+        handle={{
+          tracking: {
+            pageName: 'users',
+            pageType: PageType.dashboard,
+          },
+        }}
+      ></Route>
+      <Route
+        path={urls.security}
+        id="security"
+        Component={GeneralInfosPage}
+        handle={{
+          tracking: {
+            pageName: 'security',
+            pageType: PageType.dashboard,
+          },
+        }}
+      ></Route>
+      <Route
+        path={urls.operations}
+        id="operations"
+        Component={GeneralInfosPage}
+        handle={{
+          tracking: {
+            pageName: 'operations',
+            pageType: PageType.dashboard,
+          },
+        }}
+      ></Route>
+      <Route
+        path={urls.license}
+        id="license"
+        Component={GeneralInfosPage}
+        handle={{
+          tracking: {
+            pageName: 'license',
+            pageType: PageType.dashboard,
+          },
+        }}
+      ></Route>
+      <Route
         path={urls.logs}
         id="logs"
         Component={LogsPage}
