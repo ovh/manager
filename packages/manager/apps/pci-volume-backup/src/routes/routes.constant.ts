@@ -3,6 +3,6 @@ export const urls = {
   onboarding: 'onboarding',
   listing: 'list',
   createVolume: 'list/:backupId/create-volume',
-  restore: 'restore-volume/:volumeId',
-  deleteBackup: 'delete/:backupId',
+  restore: 'restore-volume',
+  deleteBackup: 'delete',
 };
