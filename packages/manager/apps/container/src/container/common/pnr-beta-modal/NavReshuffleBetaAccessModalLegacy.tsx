@@ -14,24 +14,26 @@ function NavReshuffleBetaAccessModal(): JSX.Element {
   const { t } = useTranslation('beta-modal');
   const shell = useShell();
   const trackingPlugin = shell.getPlugin('tracking');
-  const { betaAcknowledged, acknowledgeBeta } = useContainer();
+  const { betaAcknowledged, acknowledgeBeta, createBetaChoice } = useContainer();
   const [submitting, setSubmitting] = useState(false);
 
-  async function onAccept() {
+  function onAccept() {
     setSubmitting(true);
     trackingPlugin.trackClick({
       name: 'switch_versionpopin_V3::product-navigation-reshuffle::go_to_new_version',
       type: 'action',
     });
-    return acknowledgeBeta();
+    acknowledgeBeta();
+    createBetaChoice(true).then(() => window.location.reload());
   }
 
-  async function onDecline() {
+  function onDecline() {
     setSubmitting(false);
     trackingPlugin.trackClick({
       name: 'switch_versionpopin_V3::product-navigation-reshuffle:::decline_new_version',
       type: 'action',
     });
+    acknowledgeBeta();
   }
 
   useEffect(() => {
@@ -40,8 +42,10 @@ function NavReshuffleBetaAccessModal(): JSX.Element {
     }
   }, [betaAcknowledged]);
 
+  if (betaAcknowledged) return null;
+
   return (
-    <div className={`${style.backdrop} ${betaAcknowledged ? '' : style.hidden}`}>
+    <div className={`${style.backdrop}`}>
       <div
         className={`${style.modal} ${submitting ? style.hidden : ''}`}
         style={{ backgroundImage: `url(${backgroundImage})` }}
