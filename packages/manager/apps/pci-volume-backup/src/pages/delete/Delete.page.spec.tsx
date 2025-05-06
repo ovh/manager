@@ -1,6 +1,6 @@
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { act, fireEvent, render } from '@testing-library/react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { PciModal, DeletionModalProps } from '@ovh-ux/manager-pci-common';
 import { useNotifications } from '@/hooks/notifications/useNotifications';
@@ -66,8 +66,10 @@ describe('DeleteBackup Modal', () => {
     vi.mocked(useNavigate).mockReturnValue(mockNavigate);
     vi.mocked(useParams).mockReturnValue({
       projectId: 'project-id',
-      backupId: 'backup-id',
     });
+    vi.mocked(useSearchParams).mockReturnValue(([
+      { get: () => 'backup-id' },
+    ] as unknown) as ReturnType<typeof useSearchParams>);
 
     vi.mocked(useBackups).mockReturnValue(({
       data: withData ? { data: [MOCK_BACKUP] } : undefined,

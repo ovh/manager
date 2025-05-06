@@ -1,6 +1,6 @@
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { fireEvent, render } from '@testing-library/react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { useNotifications } from '@/hooks/notifications/useNotifications';
 import {
@@ -24,6 +24,7 @@ vi.mock('@/hooks/notifications/useNotifications', () => ({
 vi.mock('react-router-dom', () => ({
   useNavigate: vi.fn(),
   useParams: vi.fn(),
+  useSearchParams: vi.fn(),
 }));
 
 describe('RestoreVolume Page', () => {
@@ -55,8 +56,10 @@ describe('RestoreVolume Page', () => {
     vi.mocked(useNavigate).mockReturnValue(mockNavigate);
     vi.mocked(useParams).mockReturnValue({
       projectId: 'project-id',
-      volumeId: 'volume-id',
     });
+    vi.mocked(useSearchParams).mockReturnValue(([
+      { get: () => 'volume-id' },
+    ] as unknown) as ReturnType<typeof useSearchParams>);
 
     vi.mocked(useBackup).mockReturnValue({
       data: withData ? mockBackupData : undefined,
