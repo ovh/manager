@@ -40,6 +40,7 @@ function Header({
   const navigationPlugin = shell.getPlugin('navigation');
   const logoLink = navigationPlugin.getURL('hub', '#/');
   const { isMobile } = useProductNavReshuffle();
+  const isUS = shell?.getPlugin('environment')?.getEnvironment()?.getRegion() === 'US';
 
   return (
     <ApplicationContext.Consumer>
@@ -69,10 +70,8 @@ function Header({
             <div
               className={`oui-navbar-list oui-navbar-list_aside oui-navbar-list_end ${style.navbarList}`}
             >
-              {!isSmallDevice && (
-                <div
-                  className={`oui-navbar-list__item ${style.navbarListItem}`}
-                >
+              {!isSmallDevice && isUS && (
+                <div className={`oui-navbar-list__item ${style.navbarListItem}`}>
                   <NavReshuffleSwitchBack />
                 </div>
               )}
@@ -99,7 +98,7 @@ function Header({
               </div>
             </div>
           </div>
-          {isSmallDevice && (
+          {isSmallDevice && isUS && (
             <div className={style['small-device-pnr-switch']}>
               <NavReshuffleSwitchBack />
             </div>
