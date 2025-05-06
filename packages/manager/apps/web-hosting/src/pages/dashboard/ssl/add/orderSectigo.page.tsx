@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
 import { OdsMessage, OdsSelect, OdsText } from '@ovhcloud/ods-components/react';
@@ -21,7 +22,7 @@ export default function SectigoModal() {
 
   const { ovhSubsidiary } = context.environment.getUser();
   const [selectedDomain, setSelectedDomain] = useState('');
-  const { t } = useTranslation('ssl');
+  const { t } = useTranslation(['ssl', NAMESPACES.ACTIONS]);
 
   const rawOrderFormURL =
     DOMAIN_ORDER_OPTIONS_SERVICE[
@@ -41,8 +42,8 @@ export default function SectigoModal() {
       onOdsClose={closeModal}
       isOpen
       heading={t('order_ssl_certificate')}
-      primaryLabel={t('buttons_validate')}
-      secondaryLabel={t('buttons_cancel')}
+      primaryLabel={t(`${NAMESPACES.ACTIONS}:validate`)}
+      secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
       onPrimaryButtonClick={onConfirm}
       onSecondaryButtonClick={closeModal}
     >
