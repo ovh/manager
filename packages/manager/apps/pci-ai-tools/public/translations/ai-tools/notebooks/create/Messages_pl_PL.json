@@ -50,5 +50,6 @@
   "fieldFlavorLabel": "Zasoby",
   "fieldFlavorDescription": "Wybierz typ zasobów",
   "fieldFrameworkVersionDescription": "Wybierz wersję",
-  "fieldConfigurationPrivacyLabel": "Poufność"
+  "fieldConfigurationPrivacyLabel": "Poufność",
+  "sshKeyConfigurationHelperBis": "Użyj poniższej listy rozwijanej, aby powiązać klucze SSH z Twoim notebookiem"
 }

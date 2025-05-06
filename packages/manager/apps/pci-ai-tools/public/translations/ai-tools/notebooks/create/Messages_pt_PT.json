@@ -50,5 +50,6 @@
   "fieldFlavorLabel": "Recursos",
   "fieldFlavorDescription": "Selecionar o tipo de recursos",
   "fieldFrameworkVersionDescription": "Selecionar a versão",
-  "fieldConfigurationPrivacyLabel": "Confidencialidade"
+  "fieldConfigurationPrivacyLabel": "Confidencialidade",
+  "sshKeyConfigurationHelperBis": "Utilize a lista pendente abaixo para associar chaves SSH ao seu notebook"
 }

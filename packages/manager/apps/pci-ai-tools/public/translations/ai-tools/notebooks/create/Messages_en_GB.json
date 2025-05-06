@@ -50,5 +50,6 @@
   "fieldFlavorLabel": "Resources",
   "fieldFlavorDescription": "Select Resource Type",
   "fieldFrameworkVersionDescription": "Select version",
-  "fieldConfigurationPrivacyLabel": "Confidentiality"
+  "fieldConfigurationPrivacyLabel": "Confidentiality",
+  "sshKeyConfigurationHelperBis": "Use the dropdown list below to link SSH keys to your notebook"
 }

@@ -50,5 +50,6 @@
   "fieldFlavorLabel": "Ressourcen",
   "fieldFlavorDescription": "Ressourcentyp auswählen",
   "fieldFrameworkVersionDescription": "Version auswählen",
-  "fieldConfigurationPrivacyLabel": "Vertraulichkeit"
+  "fieldConfigurationPrivacyLabel": "Vertraulichkeit",
+  "sshKeyConfigurationHelperBis": "Verwenden Sie die Dropdown-Liste unten, um SSH-Schlüssel mit Ihrem Notebook zu verbinden"
 }
