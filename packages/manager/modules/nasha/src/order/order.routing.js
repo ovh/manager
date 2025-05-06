@@ -17,7 +17,7 @@ export default /* @ngInject */ ($stateProvider) => {
               alias: 'order_fm',
               type: 'module',
               entry:
-                'https://ovhcloudcomdev.static.ovh.net/order/configos/assets/remoteEntry.js',
+                'https://www.ovhcloud.com/order/configos/assets/remoteEntry.js',
             },
           ],
         });
