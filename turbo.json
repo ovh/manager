@@ -16,7 +16,13 @@
     "start": {
       "persistent": true,
       "cache": false,
-      "env": ["VITE_CONTAINER_APP", "CONTAINER"],
+      "env": [
+        "VITE_CONTAINER_APP",
+        "CONTAINER",
+        "REGION",
+        "LABEU",
+        "local2API"
+      ],
       "dependsOn": ["^dev"]
     }
   }
