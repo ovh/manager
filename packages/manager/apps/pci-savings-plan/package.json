@@ -20,6 +20,9 @@
     "test": "vitest run"
   },
   "dependencies": {
+    "@datatr-ux/ods-tailwind-config": "1.0.3",
+    "@datatr-ux/ovhcloud-types": "1.0.8",
+    "@datatr-ux/uxlib": "0.0.10",
     "@ovh-ux/manager-config": "^8.3.0",
     "@ovh-ux/manager-core-api": "^0.11.0",
     "@ovh-ux/manager-core-utils": "*",
@@ -45,6 +48,8 @@
     "react-dom": "^18.2.0",
     "react-i18next": "^15.1.0",
     "react-router-dom": "^6.25.1",
+    "recharts": "^2.13.3",
+    "tailwind-merge": "^2.2.1",
     "tailwindcss": "^3.4.6",
     "zod": "^3.23.8"
   },
