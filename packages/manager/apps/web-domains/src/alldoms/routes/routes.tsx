@@ -22,9 +22,11 @@ export const Routes: any = [
     ...lazyRouteConfig(() => import('@/alldoms/pages/layout')),
     children: [
       {
-        id: 'listing',
-        path: urls.alldomsListing,
-        ...lazyRouteConfig(() => import('@/alldoms/pages/listing')),
+        id: 'allDomListing',
+        path: urls.alldomsRoot,
+        ...lazyRouteConfig(() =>
+          import('@/alldoms/pages/service/serviceList/serviceList'),
+        ),
         handle: {
           tracking: {
             pageName: 'listing',
@@ -33,22 +35,17 @@ export const Routes: any = [
         },
       },
       {
-        path: urls.alldomsDashboard,
-        ...lazyRouteConfig(() => import('@/alldoms/pages/dashboard')),
-        children: [
-          {
-            id: 'dashboard',
-            path: '',
-            ...lazyRouteConfig(
-              () => import('@/alldoms/pages/dashboard/general-informations')),
-            handle: {
-              tracking: {
-                pageName: 'dashboard',
-                pageType: PageType.dashboard,
-              },
-            },
-          }
-        ],
+        id: 'allDomDetail',
+        path: urls.alldomsDetail,
+        ...lazyRouteConfig(() =>
+          import('@/alldoms/pages/service/serviceDetail/serviceDetail'),
+        ),
+        handle: {
+          tracking: {
+            pageName: 'listing',
+            pageType: PageType.listing,
+          },
+        },
       },
       {
         id: 'onboarding',
