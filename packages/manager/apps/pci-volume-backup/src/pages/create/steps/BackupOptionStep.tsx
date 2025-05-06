@@ -1,4 +1,3 @@
-import { useMe } from '@ovh-ux/manager-react-components';
 import { Trans, useTranslation } from 'react-i18next';
 
 import {
