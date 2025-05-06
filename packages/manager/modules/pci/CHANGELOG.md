@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.89.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.89.0...@ovh-ux/manager-pci@6.89.1) (2025-05-06)
+
+
+### Bug Fixes
+
+* **instance:** use flavorGroup prices ([#16914](https://github.com/ovh/manager/issues/16914)) ([#16930](https://github.com/ovh/manager/issues/16930)) ([f6e356c](https://github.com/ovh/manager/commit/f6e356c90ec7f41dcb1b4641827185ed0cf5329b)), closes [#INC0128395](https://github.com/ovh/manager/issues/INC0128395)
+
+
+
+
+
 # [6.89.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.88.0...@ovh-ux/manager-pci@6.89.0) (2025-04-28)
 
 
