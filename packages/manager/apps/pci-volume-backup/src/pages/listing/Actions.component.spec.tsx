@@ -69,22 +69,33 @@ describe('Actions Component', () => {
     const { getByTestId } = render(<Actions backup={mockBackup} />);
 
     // Check first menu item (restore volume)
-    const createVolumeItem = getByTestId('menu-item-1');
-    expect(createVolumeItem).toBeInTheDocument();
-    expect(createVolumeItem).toHaveAttribute(
+    const restoreVolumeItem = getByTestId('menu-item-1');
+    expect(restoreVolumeItem).toBeInTheDocument();
+    expect(restoreVolumeItem).toHaveAttribute(
       'href',
       `./restore-volume/${mockBackup.volume?.id}`,
     );
-    expect(createVolumeItem).toHaveTextContent(
+    expect(restoreVolumeItem).toHaveTextContent(
       'pci_projects_project_storages_volume_backup_list_datagrid_menu_action_restore',
     );
 
     // Check second menu item (create volume)
-    const deleteItem = getByTestId('menu-item-2');
-    expect(deleteItem).toBeInTheDocument();
-    expect(deleteItem).toHaveAttribute('href', './backup-123/create-volume');
-    expect(deleteItem).toHaveTextContent(
+    const createVolumeItem = getByTestId('menu-item-2');
+    expect(createVolumeItem).toBeInTheDocument();
+    expect(createVolumeItem).toHaveAttribute(
+      'href',
+      './backup-123/create-volume',
+    );
+    expect(createVolumeItem).toHaveTextContent(
       'pci_projects_project_storages_volume_backup_list_datagrid_menu_action_create_volume',
+    );
+
+    // Check third menu item (delete volume)
+    const deleteItem = getByTestId('menu-item-3');
+    expect(deleteItem).toBeInTheDocument();
+    expect(deleteItem).toHaveAttribute('href', './delete/backup-123');
+    expect(deleteItem).toHaveTextContent(
+      'pci_projects_project_storages_volume_backup_list_datagrid_menu_action_delete',
     );
   });
 
@@ -111,19 +122,47 @@ describe('Actions Component', () => {
     VOLUME_BACKUP_STATUS.ERROR,
     VOLUME_BACKUP_STATUS.RESTORING,
   ])(
-    'should remove restore item from the actions list when the backup status is %s',
+    "should remove 'restore backup' item from the actions list when the backup status is %s",
     (status) => {
       const backup = { ...mockBackup, status };
-      const { getAllByTestId, debug } = render(<Actions backup={backup} />);
-
-      const menuItems = getAllByTestId(/^menu-item-/);
-      debug(menuItems);
-      expect(menuItems.length).toBe(2);
-      expect(menuItems[0]).toHaveAttribute(
-        'href',
-        './backup-123/create-volume',
+      const { queryByText } = render(<Actions backup={backup} />);
+      const menuItem = queryByText(
+        'pci_projects_project_storages_volume_backup_list_datagrid_menu_action_restore',
       );
-      expect(menuItems[1]).toHaveAttribute('href', './delete/backup-123');
+      expect(menuItem).toBeNull();
+    },
+  );
+
+  it.each([
+    VOLUME_BACKUP_STATUS.CREATING,
+    VOLUME_BACKUP_STATUS.DELETING,
+    VOLUME_BACKUP_STATUS.ERROR,
+    VOLUME_BACKUP_STATUS.RESTORING,
+  ])(
+    "should remove 'create volume' item from the actions list when the backup status is %s",
+    (status) => {
+      const backup = { ...mockBackup, status };
+      const { queryByText } = render(<Actions backup={backup} />);
+      const menuItem = queryByText(
+        'pci_projects_project_storages_volume_backup_list_datagrid_menu_action_create_volume',
+      );
+      expect(menuItem).toBeNull();
+    },
+  );
+
+  it.each([
+    VOLUME_BACKUP_STATUS.CREATING,
+    VOLUME_BACKUP_STATUS.DELETING,
+    VOLUME_BACKUP_STATUS.RESTORING,
+  ])(
+    "should remove 'delete backup' item from the actions list when the backup status is %s",
+    (status) => {
+      const backup = { ...mockBackup, status };
+      const { queryByText } = render(<Actions backup={backup} />);
+      const menuItem = queryByText(
+        'pci_projects_project_storages_volume_backup_list_datagrid_menu_action_delete',
+      );
+      expect(menuItem).toBeNull();
     },
   );
 });
