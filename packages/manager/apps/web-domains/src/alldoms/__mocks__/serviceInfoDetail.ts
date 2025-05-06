@@ -30,7 +30,7 @@ export const serviceInfoDetail: TServiceDetail[] = [
       status: ServiceInfoStatus.Ok,
       renewalType: ServiceInfoRenewEnum.Automatic2016,
       contactTech: 'aa00001-ovh',
-      serviceId: 106781411,
+      serviceId: 1111111,
       contactBilling: 'aa00002-ovh',
       expiration: '2026-02-01',
       engagedUpTo: null,
