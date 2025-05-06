@@ -166,9 +166,7 @@ export default function VrackNetworkDatagrid({
           contentAlignLeft
           getRowCanExpand={(row) => row.original.targetSpec.networks.length > 0}
           renderSubComponent={(row) => (
-            <VrackNetworkDatagridSubDatagrid
-              networks={row.original.targetSpec.networks}
-            />
+            <VrackNetworkDatagridSubDatagrid vrackSegment={row.original} />
           )}
           sorting={sorting}
           onSortChange={setSorting}
