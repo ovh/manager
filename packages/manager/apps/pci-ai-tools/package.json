@@ -61,7 +61,7 @@
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.49",
     "typescript": "^5.3.3",
-    "vite": "4.5.13",
+    "vite": "4.5.14",
     "vitest": "^2.1.9"
   },
   "regions": [
