@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.31.0...@ovh-ux/manager-dedicated@20.32.0) (2025-05-06)
+
+
+### Features
+
+* **dedicated:** microsoft license managment for windows vm ([81d8fb8](https://github.com/ovh/manager/commit/81d8fb851905a6674de407ff8a2819494873a730)), closes [#MANAGER-15380](https://github.com/ovh/manager/issues/MANAGER-15380)
+
+
+
+
+
 # [20.31.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.30.5...@ovh-ux/manager-dedicated@20.31.0) (2025-05-06)
 
 
