@@ -6,12 +6,9 @@ import { OdsText } from '@ovhcloud/ods-components/react';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { useNotifications } from '@/hooks/notifications/useNotifications';
-import {
-  useBackup,
-  useRestoreVolume,
-  useVolume,
-} from '@/data/hooks/useVolumeBackup';
+import { useBackup, useRestoreVolume } from '@/data/hooks/useVolumeBackup';
 import { VOLUME_BACKUP_TRACKING } from '@/tracking.constant';
+import { useVolume } from '@/data/hooks/useVolume';
 
 export default function Restore() {
   const { t } = useTranslation(['restore']);
@@ -26,10 +23,10 @@ export default function Restore() {
     ns: 'restore',
   });
 
-  const { data: volume, isLoading: isVolumeLoading } = useVolume({
+  const { data: volume, isLoading: isVolumeLoading } = useVolume(
     projectId,
     volumeId,
-  });
+  );
 
   const { data: backup, isLoading: isBackupLoading } = useBackup({
     projectId,
