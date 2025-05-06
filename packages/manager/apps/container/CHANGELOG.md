@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.125.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.125.2...@ovh-ux/manager-container-app@0.125.3) (2025-05-06)
+
+
+### Bug Fixes
+
+* **pci-ai-endpoints:** remove pci-ai-endpoints:create-token from pci-menu ([#16853](https://github.com/ovh/manager/issues/16853)) ([e1e7f6d](https://github.com/ovh/manager/commit/e1e7f6d620ee84576acc69887a9db93dccacaa3c)), closes [#AIS-1219](https://github.com/ovh/manager/issues/AIS-1219)
+
+
+
+
+
 ## [0.125.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.125.1...@ovh-ux/manager-container-app@0.125.2) (2025-04-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app

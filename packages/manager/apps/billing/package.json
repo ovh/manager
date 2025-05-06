@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-billing-app",
-  "version": "0.2.51",
+  "version": "0.2.52",
   "private": true,
   "description": "OVHcloud Billing app",
   "repository": {
@@ -23,7 +23,7 @@
     "@ovh-ux/manager-error-page": "^2.4.3",
     "@ovh-ux/manager-exchange": "^4.14.0",
     "@ovh-ux/manager-models": "^2.4.4",
-    "@ovh-ux/manager-new-billing": "^0.36.1",
+    "@ovh-ux/manager-new-billing": "^0.37.0",
     "@ovh-ux/manager-ng-layout-helpers": "^2.11.2",
     "@ovh-ux/ng-at-internet": "^6.0.14",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.5.2",
