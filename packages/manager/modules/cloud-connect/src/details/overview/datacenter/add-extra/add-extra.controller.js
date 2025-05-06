@@ -57,14 +57,12 @@ export default class CloudConnectDacenterAddExtraCtrl {
             });
         }
         return this.goBack(
-          {
-            textHtml: this.$translate.instant(
-              'cloud_connect_datacenter_add_routing_success',
-              {
-                tasksUrl: this.tasksHref,
-              },
-            ),
-          },
+          this.$translate.instant(
+            'cloud_connect_datacenter_add_routing_success',
+            {
+              tasksUrl: this.tasksHref,
+            },
+          ),
           'success',
           false,
         );
