@@ -1,7 +1,7 @@
 import { describe, expect, vi, beforeEach } from 'vitest';
 import '@testing-library/jest-dom';
 import { renderHook, waitFor } from '@testing-library/react';
-import { attachedDomainDigStatusMock } from '@/data/_mock_';
+import { attachedDomainDigStatusMock } from '@/data/__mocks__';
 import { useWebHostingAttachedDomaindigStatus } from './useWebHostingAttachedDomaindigStatus';
 import { wrapper } from '@/utils/test.provider';
 

@@ -3,7 +3,6 @@ import {
   useInfiniteQuery,
   UseInfiniteQueryResult,
 } from '@tanstack/react-query';
-import { useCallback, useEffect, useState } from 'react';
 import {
   getWebHostingAttachedDomain,
   getWebHostingAttachedDomainQueryKey,
@@ -13,29 +12,24 @@ import { WebsiteType } from '@/data/type';
 type UseWebsitesListParams = Omit<
   UseInfiniteQueryOptions,
   'queryKey' | 'queryFn' | 'select' | 'getNextPageParam' | 'initialPageParam'
-> & {
-  shouldFetchAll?: boolean;
-};
+>;
 
 export const useWebHostingAttachedDomain = (
   props: UseWebsitesListParams = {},
 ) => {
-  const { shouldFetchAll, ...options } = props;
-  const [allPages, setAllPages] = useState(!!shouldFetchAll);
-
   const query = useInfiniteQuery({
-    ...options,
+    ...props,
     initialPageParam: null,
-    queryKey: getWebHostingAttachedDomainQueryKey(allPages),
+    queryKey: getWebHostingAttachedDomainQueryKey(false),
     queryFn: ({ pageParam }) =>
       getWebHostingAttachedDomain({
         pageParam: pageParam as string,
-        ...(allPages ? { pageSize: 500 } : {}),
+        pageSize: 15,
       }),
     enabled: (q) =>
-      typeof options.enabled === 'function'
-        ? options.enabled(q)
-        : typeof options.enabled !== 'boolean' || options.enabled,
+      typeof props.enabled === 'function'
+        ? props.enabled(q)
+        : typeof props.enabled !== 'boolean' || props.enabled,
     getNextPageParam: (lastPage: { cursorNext?: string }) =>
       lastPage.cursorNext,
     select: (data) =>
@@ -44,23 +38,5 @@ export const useWebHostingAttachedDomain = (
       ),
   });
 
-  const fetchAllPages = useCallback(() => {
-    if (!allPages) {
-      setAllPages(true);
-    }
-  }, [allPages, setAllPages]);
-  useEffect(() => {
-    if (allPages && query.hasNextPage && !query.isFetchingNextPage) {
-      query.fetchNextPage();
-    }
-  }, [query.data]);
-  useEffect(() => {
-    if (!shouldFetchAll) {
-      setAllPages(false);
-    }
-  }, []);
-
-  return Object.assign(query, {
-    fetchAllPages,
-  });
+  return query;
 };

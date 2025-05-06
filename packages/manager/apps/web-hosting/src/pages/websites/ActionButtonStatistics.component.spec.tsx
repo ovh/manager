@@ -2,7 +2,7 @@ import React from 'react';
 import { describe, expect } from 'vitest';
 import { render } from '@/utils/test.provider';
 import ActionButtonStatistics from './ActionButtonStatistics.component';
-import { websitesMocks } from '@/data/_mock_';
+import { websitesMocks } from '@/data/__mocks__';
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
 
 describe('ActionButtonStatistics component', () => {

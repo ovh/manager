@@ -3,7 +3,7 @@ import { describe, expect, vi } from 'vitest';
 import { download } from 'export-to-csv';
 import Websites from './Websites.page';
 import { render, screen } from '@/utils/test.provider';
-import { attachedDomainDigStatusMock, websitesMocks } from '@/data/_mock_';
+import { attachedDomainDigStatusMock, websitesMocks } from '@/data/__mocks__';
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
 
 const hoistedMock = vi.hoisted(() => ({
@@ -144,9 +144,15 @@ describe('Websites page', () => {
 
   it('should trigger export when clicking export button', async () => {
     render(<Websites />);
-    const exportButton = screen.getByTestId('websites-page-export-button');
 
+    const exportButton = screen.getByTestId('websites-page-export-button');
     await exportButton.click();
+
+    const exportDisplayedButton = screen.getByTestId(
+      'websites-page-export-button-1',
+    );
+
+    await exportDisplayedButton.click();
 
     expect(hoistedMock.createObjectURL).toHaveBeenCalled();
     expect(download).toHaveBeenCalled();

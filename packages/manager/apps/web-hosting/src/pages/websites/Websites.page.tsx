@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { generateCsv, mkConfig, download } from 'export-to-csv';
 import {
@@ -16,25 +16,30 @@ import {
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
   ODS_LINK_ICON_ALIGNMENT,
+  ODS_POPOVER_POSITION,
 } from '@ovhcloud/ods-components';
-import { OdsButton, OdsLink } from '@ovhcloud/ods-components/react';
+import { OdsButton, OdsLink, OdsPopover } from '@ovhcloud/ods-components/react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useWebHostingAttachedDomain } from '@/data/hooks/webHostingAttachedDomain/useWebHostingAttachedDomain';
 import { WebsiteType, ServiceStatus } from '@/data/type';
 import ActionButtonStatistics from './ActionButtonStatistics.component';
 import { BadgeStatusCell, DiagnosticCell, LinkCell } from './Cells.component';
 import { GUIDE_URL, ORDER_URL } from './websites.constants';
+import { getAllWebHostingAttachedDomain } from '@/data/api/AttachedDomain';
 
 export default function Websites() {
   const { t } = useTranslation('common');
+  const [isExportPopoverOpen, setIsExportPopoverOpen] = useState(false);
+  const [isCSVLoading, setIsCSVLoading] = useState(false);
+  const csvPopoverRef = useRef<HTMLOdsPopoverElement>(null);
   const {
     data,
     fetchNextPage,
     hasNextPage,
     isLoading,
     isFetchingNextPage,
-    fetchAllPages,
   } = useWebHostingAttachedDomain();
+
   const { notifications, addSuccess } = useNotifications();
 
   const items = data ? data.map((website: WebsiteType) => website) : [];
@@ -231,8 +236,13 @@ export default function Websites() {
     {
       id: 'ownLog',
       label: t('web_hosting_status_header_ownlog'),
-      getValue: (item) =>
-        item?.currentState.ownLog ? ServiceStatus.ACTIVE : ServiceStatus.NONE,
+      getValue: (item: WebsiteType) =>
+        t(
+          `web_hosting_status_${(item?.currentState.ownLog
+            ? ServiceStatus.ACTIVE
+            : ServiceStatus.NONE
+          ).toLowerCase()}`,
+        ),
     },
     {
       id: 'CDN',
@@ -257,14 +267,19 @@ export default function Websites() {
     {
       id: 'boostOffer',
       label: t('web_hosting_status_header_boostOffer'),
-      getValue: (item) =>
-        item?.currentState.hosting.boostOffer
-          ? ServiceStatus.ACTIVE
-          : ServiceStatus.NONE,
+      getValue: (item: WebsiteType) =>
+        t(
+          `web_hosting_status_${(item?.currentState.hosting.boostOffer
+            ? ServiceStatus.ACTIVE
+            : ServiceStatus.NONE
+          ).toLowerCase()}`,
+        ),
     },
   ];
 
-  const handleExportWithExportToCsv = () => {
+  const handleExportWithExportToCsv = (dataCsv: WebsiteType[]) => {
+    csvPopoverRef.current?.hide();
+    setIsCSVLoading(true);
     const csvConfig = mkConfig({
       filename: t('websites'),
       fieldSeparator: ',',
@@ -272,7 +287,7 @@ export default function Websites() {
       useKeysAsHeaders: true,
     });
 
-    const csvData = items.map((item) =>
+    const csvData = dataCsv.map((item) =>
       exportColumns.reduce(
         (acc, column) => ({
           ...acc,
@@ -301,6 +316,16 @@ export default function Websites() {
     );
     addSuccess(successMessage);
     download(csvConfig)(csv);
+    setIsCSVLoading(false);
+  };
+
+  const handleExportAllWithExportToCsv = async () => {
+    csvPopoverRef.current?.hide();
+    setIsCSVLoading(true);
+    const result = await getAllWebHostingAttachedDomain();
+    if (result?.data && result.data.length > 0) {
+      handleExportWithExportToCsv(result.data);
+    }
   };
 
   const context = useContext(ShellContext);
@@ -320,6 +345,19 @@ export default function Websites() {
     },
   ];
 
+  const actionItems = [
+    {
+      id: 1,
+      onClick: () => data && handleExportWithExportToCsv(data),
+      label: t('web_hosting_export_label_displayed'),
+    },
+    {
+      id: 2,
+      onClick: handleExportAllWithExportToCsv,
+      label: t('web_hosting_export_label_all'),
+    },
+  ];
+
   return (
     <BaseLayout
       header={{
@@ -335,7 +373,6 @@ export default function Websites() {
         totalItems={items.length}
         hasNextPage={!isFetchingNextPage && hasNextPage}
         onFetchNextPage={fetchNextPage}
-        onFetchAllPages={fetchAllPages}
         isLoading={isFetchingNextPage || isLoading}
         topbar={
           <div className="flex items-center gap-4">
@@ -349,14 +386,40 @@ export default function Websites() {
               data-testid="websites-page-order-button"
             />
             <OdsButton
-              label={t('web_hosting_export_label')}
+              id="export-popover-trigger"
+              label={t('web_hosting_export_action_label')}
               variant={ODS_BUTTON_VARIANT.outline}
-              color={ODS_BUTTON_COLOR.primary}
-              icon={ODS_ICON_NAME.download}
-              iconAlignment={ODS_LINK_ICON_ALIGNMENT.right}
-              onClick={handleExportWithExportToCsv}
               data-testid="websites-page-export-button"
+              isLoading={isCSVLoading}
+              icon={
+                isExportPopoverOpen
+                  ? ODS_ICON_NAME.chevronUp
+                  : ODS_ICON_NAME.chevronDown
+              }
             />
+
+            <OdsPopover
+              className="py-[8px] px-0 w-max"
+              triggerId="export-popover-trigger"
+              ref={csvPopoverRef}
+              onOdsHide={() => setIsExportPopoverOpen(false)}
+              onOdsShow={() => setIsExportPopoverOpen(true)}
+              position={ODS_POPOVER_POSITION.bottomStart}
+              with-arrow
+            >
+              <div className="flex flex-col">
+                {actionItems.map((action) => (
+                  <OdsButton
+                    key={action.id}
+                    label={action.label}
+                    onClick={action.onClick}
+                    variant={ODS_BUTTON_VARIANT.ghost}
+                    data-testid={`websites-page-export-button-${action.id}`}
+                    className="menu-item-button w-full"
+                  />
+                ))}
+              </div>
+            </OdsPopover>
           </div>
         }
       />
