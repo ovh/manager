@@ -6,11 +6,15 @@
   "managed_vcd_dashboard_vrack_network_edit_vlan": "Modifier l'ID VLAN",
   "managed_vcd_dashboard_vrack_network_add_subnet": "Ajouter un sous-réseau",
   "managed_vcd_dashboard_vrack_network_delete_segment": "Supprimer un segment",
-  "managed_vcd_dashboard_vrack_network_delete_network": "Supprimer un réseau",
+  "managed_vcd_dashboard_vrack_network_delete_subnet": "Supprimer le sous-réseau",
+  "managed_vcd_dashboard_vrack_network_delete_subnet_content1": "Souhaitez-vous vraiment supprimer ce sous-réseau ?",
+  "managed_vcd_dashboard_vrack_network_delete_subnet_content2": "Attention : un sous-réseau contenant des VM ne peut pas être supprimé. Veuillez d'abord supprimer les VM associées.",
   "managed_vcd_dashboard_vrack_network_vlan_id": "ID VLAN",
   "managed_vcd_dashboard_vrack_network_edit_vlan_title": "Modifier l'ID VLAN",
   "managed_vcd_dashboard_vrack_network_vlan_id_helper": "L'ID VLAN doit être compris entre 1 et 4095",
   "managed_vcd_dashboard_vrack_network_form_vlan_id_description": "Pour faciliter vos déploiements cloud hybride, vous pourriez avoir besoin d'utiliser le même identifiant VLAN à la fois sur votre serveur dédié et sur votre projet Public Cloud.",
   "managed_vcd_dashboard_vrack_network_edit_success": "La demande de modification de l'ID VLAN a été prise en compte.",
-  "managed_vcd_dashboard_vrack_network_edit_error": "Une erreur est survenue lors de la modification de l'ID VLAN : {{errorApi}}"
+  "managed_vcd_dashboard_vrack_network_edit_error": "Une erreur est survenue lors de la modification de l'ID VLAN : {{errorApi}}",
+  "managed_vcd_dashboard_vrack_network_delete_subnet_success": "La demande de suppression du sous-réseau a été prise en compte.",
+  "managed_vcd_dashboard_vrack_network_delete_subnet_error": "Une erreur est survenue lors de la suppression du sous-réseau : {{errorApi}}"
 }
