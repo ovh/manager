@@ -4,12 +4,14 @@ import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import NotFound from '@/pages/404';
 import { urls } from '@/routes/routes.constants';
 import {
+  ADD_DOMAIN,
   DASHBOARD,
   IMPORT_SSL,
   DISABLE_SSL,
   ONBOARDING,
   ORDER_SECTIGO,
   REGENERATE_SSL,
+  ORDER_DOMAIN,
   SSL,
   WEBSITE,
 } from '@/utils/tracking.constants';
@@ -134,6 +136,28 @@ export default [
         handle: {
           tracking: {
             pageName: REGENERATE_SSL,
+            pageType: PageType.popup,
+          },
+        },
+      },
+      {
+        id: ADD_DOMAIN,
+        path: urls.addDomain,
+        ...lazyRouteConfig(() => import('@/pages/dashboard/AddDomain.page')),
+        handle: {
+          tracking: {
+            pageName: ADD_DOMAIN,
+            pageType: PageType.popup,
+          },
+        },
+      },
+      {
+        id: ORDER_DOMAIN,
+        path: urls.orderDomain,
+        ...lazyRouteConfig(() => import('@/pages/dashboard/OrderDomain.page')),
+        handle: {
+          tracking: {
+            pageName: ORDER_DOMAIN,
             pageType: PageType.popup,
           },
         },

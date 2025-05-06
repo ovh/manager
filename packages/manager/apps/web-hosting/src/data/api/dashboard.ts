@@ -2,6 +2,8 @@ import { v6 } from '@ovh-ux/manager-core-api';
 import {
   DomainServiceType,
   ServiceInfosType,
+  TAttachedDomain,
+  TCreateAttachedDomain,
   WebHostingType,
 } from '@/data/type';
 
@@ -9,6 +11,11 @@ export const getHostingService = async (
   serviceName: string,
 ): Promise<WebHostingType> => {
   const { data } = await v6.get<WebHostingType>(`/hosting/web/${serviceName}`);
+  return data;
+};
+
+export const getDomainZone = async (): Promise<string[]> => {
+  const { data } = await v6.get<string[]>('/domain/zone');
   return data;
 };
 
@@ -35,3 +42,81 @@ export const updateHostingService = async (
   v6.put(`/hosting/web/${serviceName}`, {
     displayName,
   });
+
+export const createAttachedDomainService = async ({
+  serviceName,
+  domain,
+  cdn,
+  firewall,
+  ownLog,
+  path,
+  runtimeId,
+  ssl,
+  bypassDNSConfiguration,
+  ipLocation,
+}: TCreateAttachedDomain): Promise<TAttachedDomain> => {
+  const { data } = await v6.post(`/hosting/web/${serviceName}/attachedDomain`, {
+    domain,
+    cdn,
+    firewall,
+    ownLog,
+    path,
+    runtimeId,
+    ssl,
+    bypassDNSConfiguration,
+    ipLocation,
+  });
+  return data;
+};
+
+export const createAttachedDomainsService = async ({
+  serviceName,
+  domain,
+  cdn,
+  firewall,
+  ownLog,
+  path,
+  runtimeId,
+  ssl,
+  bypassDNSConfiguration,
+  ipLocation,
+  wwwNeeded,
+}: TCreateAttachedDomain): Promise<PromiseSettledResult<TAttachedDomain>[]> => {
+  const promises = [
+    createAttachedDomainService({
+      serviceName,
+      domain,
+      cdn,
+      firewall,
+      ownLog,
+      path,
+      runtimeId,
+      ssl,
+      bypassDNSConfiguration,
+      ipLocation,
+    }),
+  ];
+
+  if (wwwNeeded) {
+    promises.push(
+      createAttachedDomainService({
+        serviceName,
+        domain: `www.${domain}`,
+        cdn,
+        firewall,
+        ownLog,
+        path,
+        runtimeId,
+        ssl,
+        bypassDNSConfiguration,
+        ipLocation,
+      }),
+    );
+  }
+  const results = await Promise.allSettled(promises);
+  const failed = results?.find((r) => r.status === 'rejected');
+  if (failed) {
+    throw failed.reason ?? new Error('Domain certificate creation failed');
+  }
+  return results;
+};
