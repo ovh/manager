@@ -2,7 +2,10 @@ import { Datagrid } from '@ovh-ux/manager-react-components';
 import { OdsButton } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate, useParams } from 'react-router-dom';
+import { VrackSegment } from '@ovh-ux/manager-module-vcd-api';
 import { LABELS } from '../../utils/labels.constants';
+import { subRoutes, urls } from '@/routes/routes.constant';
 
 const CSS = `
       .sub-row > td {
@@ -30,12 +33,20 @@ const CSS = `
 `;
 
 export default function VrackNetworkDatagridSubDatagrid({
-  networks,
+  vrackSegment,
 }: {
-  networks: string[];
+  vrackSegment: VrackSegment;
   headerRefs?: React.RefObject<HTMLTableCellElement>;
 }) {
   const { t } = useTranslation('datacentres/vrack-segment');
+  const navigate = useNavigate();
+  const { id, vdcId } = useParams();
+  const {
+    id: vrackSegmentId,
+    resourceStatus: vrackSegmentStatus,
+    targetSpec: { networks },
+  } = vrackSegment;
+
   return (
     <>
       <style>{CSS}</style>
@@ -44,16 +55,18 @@ export default function VrackNetworkDatagridSubDatagrid({
           {
             id: 'network',
             label: LABELS.network,
-            cell: (item: string) => (
-              <>
-                {LABELS.network} {item}
-              </>
-            ),
+            cell: (network: string) => {
+              return (
+                <>
+                  {LABELS.network} {network}
+                </>
+              );
+            },
           },
           {
             id: 'actions',
             label: '',
-            cell: () => (
+            cell: (network: string) => (
               <div className="flex items-center justify-end">
                 <OdsButton
                   aria-hidden="true"
@@ -63,6 +76,17 @@ export default function VrackNetworkDatagridSubDatagrid({
                   )}
                   icon="trash"
                   variant="ghost"
+                  isDisabled={vrackSegmentStatus === 'deleting'}
+                  onClick={() => {
+                    const networkIp = network.split('/')[0];
+                    navigate(
+                      urls.vrackSegmentDeleteNetwork
+                        .replace(subRoutes.dashboard, id)
+                        .replace(subRoutes.vdcId, vdcId)
+                        .replace(subRoutes.vrackSegmentId, vrackSegmentId)
+                        .replace(subRoutes.vrackNetworkId, networkIp),
+                    );
+                  }}
                 />
               </div>
             ),
