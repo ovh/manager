@@ -57,7 +57,6 @@ const SshKeyForm = React.forwardRef<HTMLInputElement, SshKeyFormProps>(
     const onSubmit: SubmitHandler<OrderSshKey> = (data: OrderSshKey) => {
       const newSSHKeys = [...sshKeyList, data];
       onChange(newSSHKeys);
-      form.reset();
     };
 
     const removeSSHKey = (indexToRemove: number) => {

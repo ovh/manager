@@ -1,11 +1,11 @@
 import { useTranslation } from 'react-i18next';
 import { SshKey } from '@datatr-ux/ovhcloud-types/cloud/sshkey/index';
 import {
+  AlertCircle,
   Check,
   ChevronDown,
   ChevronUp,
   ChevronsUpDown,
-  HelpCircle,
   Plus,
   TerminalSquare,
 } from 'lucide-react';
@@ -587,27 +587,22 @@ const OrderFunnel = ({
                                 {t('fieldConfigurationSSHKeysLabel')}
                               </FormLabel>
                             </div>
-                            <div className="flex flex-row gap-2">
-                              <Button
-                                data-testid="sshkey-add-button"
-                                mode="outline"
-                                size="sm"
-                                className="text-base"
-                                type="button"
-                                onClick={() => navigate('./add-sshkey')}
-                              >
-                                <Plus className="size-4 mr-2" />
-                                {t('sshkeyAddButtonLabel')}
-                              </Button>
-                              <Popover>
-                                <PopoverTrigger>
-                                  <HelpCircle className="size-4" />
-                                </PopoverTrigger>
-                                <PopoverContent className="text-sm">
-                                  <p>{t('sshKeyConfigurationHelper')}</p>
-                                </PopoverContent>
-                              </Popover>
-                            </div>
+                            <p>{t('sshKeyConfigurationHelper')}</p>
+                            <p>
+                              <AlertCircle className="inline size-4 shrink-0 mr-1 mb-1 text-amber-500" />
+                              {t('sshKeyConfigurationHelperBis')}
+                            </p>
+                            <Button
+                              data-testid="sshkey-add-button"
+                              mode="outline"
+                              size="sm"
+                              className="text-base"
+                              type="button"
+                              onClick={() => navigate('./add-sshkey')}
+                            >
+                              <Plus className="size-4 mr-2" />
+                              {t('sshkeyAddButtonLabel')}
+                            </Button>
                             <FormControl>
                               <SshKeyForm
                                 {...field}

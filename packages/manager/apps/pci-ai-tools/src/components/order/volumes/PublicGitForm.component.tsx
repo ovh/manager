@@ -49,7 +49,11 @@ const PublicGitForm = React.forwardRef<HTMLInputElement, PublicGitFormProps>(
       };
 
       const newVolumesList = [...selectedVolumesList, newPublicGit];
-      publicGitForm.reset();
+      publicGitForm.reset({
+        gitUrl: '',
+        mountDirectory: '',
+        permission: ai.VolumePermissionEnum.RO,
+      });
       onChange(newVolumesList);
     };
 

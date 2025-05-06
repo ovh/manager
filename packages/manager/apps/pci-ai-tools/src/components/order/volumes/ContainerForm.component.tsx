@@ -78,7 +78,13 @@ const ContainerForm = React.forwardRef<HTMLInputElement, ContainerFormProps>(
       };
 
       const newVolumesList = [...selectedVolumesList, newContainer];
-      containerForm.reset();
+      containerForm.reset({
+        datastore: '',
+        container: '',
+        mountDirectory: '',
+        cache: false,
+        permission: ai.VolumePermissionEnum.RO,
+      });
       onChange(newVolumesList);
     };
 

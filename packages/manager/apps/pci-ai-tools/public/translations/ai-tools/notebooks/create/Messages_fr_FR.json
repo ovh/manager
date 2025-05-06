@@ -37,6 +37,7 @@
   "fieldConfigurationSSHKeysLabel": "Clés publiques SSH",
   "sshkeyAddButtonLabel": "Configurer une clé SSH",
   "sshKeyConfigurationHelper": "Configurer une clé SSH que vous pourrez utiliser sur tout l'univers Public Cloud d'OVHcloud.",
+  "sshKeyConfigurationHelperBis": "Utilisez la liste déroulante ci-dessous pour lier des clés SSH à votre notebook",
   "summaryFieldSSHLabel": "Clés SSH:",
   "summaryFieldSshKey_one": "{{count}} clé configurée",
   "summaryFieldSshKey_other": "{{count}} clés configurées",
