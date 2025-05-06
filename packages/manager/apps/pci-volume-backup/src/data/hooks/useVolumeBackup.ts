@@ -1,14 +1,13 @@
+import { ApiError } from '@ovh-ux/manager-core-api';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
-import { ApiError } from '@ovh-ux/manager-core-api';
 import {
-  getVolumeBackups,
   createVolumeBackup,
   createVolumeSnapshot,
-  getVolume,
-  restoreVolume,
   deleteBackup,
-} from '@/data/api/pci-volume-backup';
+  getVolumeBackups,
+  restoreVolume,
+} from '@/data/api/volumeBackup';
 import queryClient from '@/queryClient';
 
 export const backupsQueryKey = (projectId: string | undefined) => [
@@ -41,26 +40,6 @@ export const useBackup = ({
     [backups?.data, volumeId, isLoading, error],
   );
 };
-
-export const useVolume = ({
-  projectId,
-  volumeId,
-}: {
-  projectId: string | undefined;
-  volumeId: string | undefined | null;
-}) =>
-  useQuery({
-    queryKey: [
-      'pci-volume-backup',
-      `/cloud/project/${projectId}/volume/${volumeId}`,
-    ],
-    queryFn: () =>
-      getVolume({
-        projectId: projectId as NonNullable<typeof projectId>,
-        volumeId: volumeId as NonNullable<typeof volumeId>,
-      }),
-    enabled: !!projectId && !!volumeId,
-  });
 
 export const useRestoreVolume = ({
   projectId,

@@ -77,6 +77,7 @@ export default function CreateVolumeBackup() {
 
   const hrefProject = useProjectUrl('public-cloud');
   const blockStorageUrl = `${hrefProject}/storages/blocks`;
+  const backupsHref = useHref('..');
 
   const { addSuccessMessage, addErrorMessage } = useNotifications({
     ns: 'create',
@@ -270,7 +271,7 @@ export default function CreateVolumeBackup() {
         <OdsBreadcrumb>
           <OdsBreadcrumbItem href={hrefProject} label={project?.description} />
           <OdsBreadcrumbItem
-            href={useHref('..')}
+            href={backupsHref}
             label={t('pci_projects_project_storages_volume_backup_breadcrumb', {
               ns: 'pci-volume-backup',
             })}

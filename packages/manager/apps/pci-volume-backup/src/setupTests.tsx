@@ -9,7 +9,7 @@ vi.mock('react-router-dom', async () => {
   return {
     ...mod,
     useSearchParams: () => [
-      new URLSearchParams({ snapshotId: 'test-snapshot-id' }),
+      new URLSearchParams({ volumeId: 'volume-id', instanceId: 'instance-id' }),
     ],
     useParams: () => ({
       projectId: 'project-id',

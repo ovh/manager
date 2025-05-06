@@ -1,7 +1,7 @@
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useNotifications as useMRCNotifications } from '@ovh-ux/manager-react-components';
 import { useCallback } from 'react';
-import { Translation } from 'react-i18next';
+import { Trans, Translation } from 'react-i18next';
 
 export const useNotifications = ({ ns }: { ns: string }) => {
   const { addSuccess, addError } = useMRCNotifications();
@@ -17,19 +17,21 @@ export const useNotifications = ({ ns }: { ns: string }) => {
       values?: Record<string, string | undefined>;
     }) =>
       addError(
-        <Translation ns={ns}>
-          {(_t) => (
-            <span
-              dangerouslySetInnerHTML={{
-                __html: _t(i18nKey, {
+        <div>
+          <Translation ns={ns}>
+            {(t) => (
+              <Trans
+                t={t}
+                i18nKey={i18nKey}
+                values={{
                   ...values,
                   message:
                     error?.response?.data?.message || error?.message || null,
-                }),
-              }}
-            />
-          )}
-        </Translation>,
+                }}
+              />
+            )}
+          </Translation>
+        </div>,
         true,
       ),
     [addError, ns],
@@ -44,17 +46,19 @@ export const useNotifications = ({ ns }: { ns: string }) => {
       values?: Record<string, string | undefined>;
     }) =>
       addSuccess(
-        <Translation ns={ns}>
-          {(_t) => (
-            <span
-              dangerouslySetInnerHTML={{
-                __html: _t(i18nKey, {
+        <div>
+          <Translation ns={ns}>
+            {(t) => (
+              <Trans
+                t={t}
+                i18nKey={i18nKey}
+                values={{
                   ...values,
-                }),
-              }}
-            />
-          )}
-        </Translation>,
+                }}
+              />
+            )}
+          </Translation>
+        </div>,
         true,
       ),
     [addSuccess, ns],

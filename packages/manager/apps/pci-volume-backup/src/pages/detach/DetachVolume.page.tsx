@@ -3,8 +3,7 @@ import { Trans, useTranslation } from 'react-i18next';
 import { PciModal, useInstance } from '@ovh-ux/manager-pci-common';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import { useVolume } from '@/data/hooks/useVolumeBackup';
-import { useDetachVolume } from '@/data/hooks/useVolume';
+import { useDetachVolume, useVolume } from '@/data/hooks/useVolume';
 import { useNotifications } from '@/hooks/notifications/useNotifications';
 
 export default function DetachVolume() {
@@ -18,10 +17,10 @@ export default function DetachVolume() {
     ns: 'detach-volume',
   });
 
-  const { data: volume, isLoading: isVolumeLoading } = useVolume({
+  const { data: volume, isLoading: isVolumeLoading } = useVolume(
     projectId,
     volumeId,
-  });
+  );
 
   const { data: instance, isLoading: isInstanceLoading } = useInstance(
     projectId || '',
