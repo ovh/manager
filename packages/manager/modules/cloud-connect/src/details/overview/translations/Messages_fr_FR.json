@@ -75,11 +75,11 @@
   "cloud_connect_pop_port_unblocked": "Débloqué",
   "cloud_connect_vrack_associate": "Associer un vRack",
   "cloud_connect_vrack_remove": "Supprimer un vRack",
-  "cloud_connect_extra_type": "Type",
+  "cloud_connect_extra_type": "Type extra configuration",
   "cloud_connect_extra_type_bgp": "BGP",
   "cloud_connect_extra_type_network": "Static",
   "cloud_connect_extra_bgp_neighbor_area": "ASN client",
-  "cloud_connect_extra_ip_neighbor": "IP Neighbor",
+  "cloud_connect_extra_ip_neighbor": "IP Neighbour",
   "cloud_connect_extra_next_hop": "Next Hop",
   "cloud_connect_extra_title": "Configuration de routage",
   "cloud_connect_vrack_associate_cloud_connect": "Vous avez déjà une option OVHcloud Connect associé sur ce vRack. Sachez que vos configuration AZ seront liées et chaque modification entrainera des répercussions sur les options liées.",
@@ -123,5 +123,7 @@
   "cloud_connect_pop_link_status": "Statut du lien",
   "cloud_connect_pop_bgp_status": "Statut BGP",
   "cloud_connect_status_up": "Up",
-  "cloud_connect_status_down": "Down"
+  "cloud_connect_status_down": "Down",
+  "cloud_connect_dc_status": "État de la configuration",
+  "cloud_connect_dc_config_title": "Configuration"
 }
