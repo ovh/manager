@@ -22,10 +22,7 @@ import {
 import { useDatagridColumn } from '@/pages/listing/useDatagridColumn';
 import { TVolumeBackup } from '@/data/api/api.types';
 import { useVolumeBackups } from '@/data/hooks/useVolumeBackups';
-import {
-  getVolumeBackups,
-  refetchInterval,
-} from '@/data/api/pci-volume-backup';
+import { getVolumeBackups, refetchInterval } from '@/data/api/volumeBackup';
 import config from '@/pci-volume-backup.config';
 import { backupsQueryKey } from '@/data/hooks/useVolumeBackup';
 
