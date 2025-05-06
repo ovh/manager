@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.37.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.36.1...@ovh-ux/manager-new-billing@0.37.0) (2025-05-06)
+
+
+### Features
+
+* **billing:** simplify sshkey truncate filter and switch ([#16338](https://github.com/ovh/manager/issues/16338)) ([11cbaed](https://github.com/ovh/manager/commit/11cbaedbb456a006d603407330955796c338caf9)), closes [#MANAGER-17511](https://github.com/ovh/manager/issues/MANAGER-17511)
+
+
+
+
+
 ## [0.36.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.36.0...@ovh-ux/manager-new-billing@0.36.1) (2025-04-30)
 
 
