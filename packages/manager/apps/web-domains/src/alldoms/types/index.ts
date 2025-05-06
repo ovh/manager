@@ -42,3 +42,15 @@ export interface TServiceProperty {
   type: ServiceInfoType;
   offer: string;
 }
+
+export interface ModalStepsProps {
+  domainAttached?: string[];
+  domainAttachedChecked?: string[];
+  domainTerminateList?: string[];
+  serviceInfoDetail?: TServiceDetail;
+  checkAllDomain?: boolean;
+  changeStep: () => void;
+  handleDomainAttached?: (domainSelected: string[]) => void;
+  handleCheckAllDomain?: (checked: boolean) => void;
+  closeModal?: () => void;
+}

@@ -16,7 +16,7 @@ vi.mock('react-router-dom', async (importOriginal) => {
 });
 
 describe('Datagrid columns', () => {
-  const { result } = renderHook(() => useAllDomDatagridColumns());
+  const { result } = renderHook(() => useAllDomDatagridColumns(null));
   const columns = result.current;
   it('should return the correct number of column', () => {
     expect(columns).toHaveLength(10);
