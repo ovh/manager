@@ -25,7 +25,6 @@
   "modalDeleteSubnetInputLabel": "Veuillez entrer le mot « TERMINATE » pour confirmer la suppression de votre sous-réseau.",
   "modalDeleteSubnetHeadline": "Supprimer le sous-réseau",
   "modalDeleteSubnetDescription": "Pour être supprimé, un sous-réseau ne doit pas contenir de Service Endpoint associé.",
-  "copiedSuccessMessage": "Copié",
   "action-editSubnet": "Modifier le sous-réseau",
   "action-deleteSubnet": "Supprimer le sous-réseau",
   "modalSubnetUpdateHeadline": "Modifier le sous-réseau",
@@ -36,7 +35,5 @@
   "subnetUpdateSuccess": "Votre sous-réseau a bien été modifié sur le vRack Services {{id}}.",
   "subnetDeleteSuccess": "Votre sous-réseau {{cidr}} a bien été supprimé du vRack Services {{id}}.",
   "subnetUpdateError": "Une erreur est survenue lors de la mise-à-jour de votre sous-réseau : {{error}}.",
-  "subnetUpdatePending": "Votre sous-réseau est en cours de modification",
-  "modalSubnetUpdateCancelButton": "Annuler",
-  "modalSubnetUpdateConfirmButton": "Modifier"
+  "subnetUpdatePending": "Votre sous-réseau est en cours de modification"
 }

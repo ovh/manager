@@ -22,7 +22,7 @@
   "kube_common_node_pool_configure_false": " Criar um cluster sem pool de nós",
   "kube_common_node_pool_estimated_cost": "Estimativa do custo mensal do cluster:",
   "kube_common_node_pool_estimation_text": "Esta estimativa não inclui uma eventual redução relacionada com os planos de poupança.",
-  "kube_common_node_pool_estimation_price": "Pools de nós:",
+  "kube_common_node_pool_estimation_price": "Pools de nós: {{estimation}}",
   "kube_common_node_pool_estimation_text_end": "O custo exato depende da utilização real dos recursos, que não pode ser estimada com precisão antes da criação de um cluster.",
   "kube_common_node_pool_size_title": "Tamanho do pool de nós",
   "kube_common_node_pool_desired_node": "Número de nós",
