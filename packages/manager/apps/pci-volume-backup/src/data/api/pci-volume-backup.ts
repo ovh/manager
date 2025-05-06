@@ -89,5 +89,5 @@ export const deleteBackup = async ({
     `/cloud/project/${projectId}/region/${regionName}/volumeBackup/${backupId}`,
   );
 
-  return { backupId };
+  return data;
 };

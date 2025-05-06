@@ -8,7 +8,6 @@ import {
   deleteBackup,
 } from '@/data/api/pci-volume-backup';
 import queryClient from '@/queryClient';
-import { TVolumeBackup } from '@/data/api/api.types';
 
 export const backupsQueryKey = (projectId: string | undefined) => [
   'pci-volume-backup',
@@ -114,14 +113,10 @@ export const useDeleteBackup = ({
         backupId,
       }),
     onError,
-    onSuccess: ({ backupId }: { backupId: string }) => {
-      const previousBackups = queryClient.getQueryData(
-        backupsQueryKey(projectId),
-      ) as { data: TVolumeBackup[] };
-      const updatedBackups = {
-        data: previousBackups.data.filter((d) => d.id !== backupId),
-      };
-      queryClient.setQueryData(backupsQueryKey(projectId), updatedBackups);
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: backupsQueryKey(projectId),
+      });
       onSuccess();
     },
   });
