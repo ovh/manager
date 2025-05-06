@@ -3,7 +3,7 @@ import { Trans, useTranslation } from 'react-i18next';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { PciModal } from '@ovh-ux/manager-pci-common';
 import { OdsText } from '@ovhcloud/ods-components/react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { useNotifications } from '@/hooks/notifications/useNotifications';
 import {
@@ -17,7 +17,9 @@ export default function Restore() {
   const { t } = useTranslation(['restore']);
 
   const navigate = useNavigate();
-  const { projectId, volumeId } = useParams();
+  const { projectId } = useParams();
+  const [searchParams] = useSearchParams();
+  const volumeId = searchParams.get('volumeId') || '';
   const { trackClick, trackPage } = useOvhTracking();
 
   const { addSuccessMessage, addErrorMessage } = useNotifications({

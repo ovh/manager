@@ -73,7 +73,7 @@ describe('Actions Component', () => {
     expect(restoreVolumeItem).toBeInTheDocument();
     expect(restoreVolumeItem).toHaveAttribute(
       'href',
-      `./restore-volume/${mockBackup.volume?.id}`,
+      `./restore-volume?volumeId=${mockBackup.volume?.id}`,
     );
     expect(restoreVolumeItem).toHaveTextContent(
       'pci_projects_project_storages_volume_backup_list_datagrid_menu_action_restore',
@@ -93,7 +93,7 @@ describe('Actions Component', () => {
     // Check third menu item (delete volume)
     const deleteItem = getByTestId('menu-item-3');
     expect(deleteItem).toBeInTheDocument();
-    expect(deleteItem).toHaveAttribute('href', './delete/backup-123');
+    expect(deleteItem).toHaveAttribute('href', './delete?backupId=backup-123');
     expect(deleteItem).toHaveTextContent(
       'pci_projects_project_storages_volume_backup_list_datagrid_menu_action_delete',
     );
