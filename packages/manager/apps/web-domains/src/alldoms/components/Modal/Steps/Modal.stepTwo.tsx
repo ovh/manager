@@ -12,6 +12,7 @@ import {
   useUpdateAllDomService,
   useUpdateDomainServiceInfo,
 } from '@/alldoms/hooks/data/query';
+import { ServiceInfoRenewMode } from '@/alldoms/enum/service.enum';
 
 export default function ModalStepTwo({
   domainTerminateList,
@@ -27,7 +28,12 @@ export default function ModalStepTwo({
 
   const handleTerminate = async () => {
     try {
-      await updateAllDomServiceMutation.mutateAsync(serviceName);
+      await updateAllDomServiceMutation.mutateAsync({
+        serviceName: serviceInfoDetail.allDomProperty.name,
+        renew: {
+          mode: ServiceInfoRenewMode.Manual,
+        },
+      });
 
       await Promise.all(
         domainTerminateList.map((domainName) =>
