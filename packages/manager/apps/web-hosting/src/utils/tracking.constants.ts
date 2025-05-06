@@ -31,6 +31,8 @@ export const CANCEL = 'cancel';
 export const CONFIRM = 'confirm';
 export const BACK_PREVIOUS_PAGE = 'back_previous-page';
 
+export const ADD_DOMAIN = 'add-domain';
+export const ORDER_DOMAIN = 'order-domain';
 export const ONBOARDING = 'onboarding';
 export const ORDER_CTA = 'order_website';
 export const EXPORT_CSV = 'export_csv';
