@@ -13,5 +13,6 @@
   "allDom_table_status_manual": "Renouvellement manuel",
   "allDom_table_type_french": "FR",
   "allDom_table_type_french+international": "FR + International",
-  "allDom_table_type_international": "International"
+  "allDom_table_type_international": "International",
+  "allDom_table_action_renew": "Renouveler"
 }
