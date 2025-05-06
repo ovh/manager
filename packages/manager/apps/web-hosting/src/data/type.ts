@@ -137,12 +137,61 @@ export enum HostingCountries {
   UK = 'UK',
 }
 
+export enum HostingDomainStatus {
+  ACTIVE = 'active',
+  NONE = 'none',
+}
+
 export enum PhpVersionsSupport {
   BETA = 'BETA',
   END_OF_LIFE = 'END_OF_LIFE',
   SECURITY_FIXES = 'SECURITY_FIXES',
   SUPPORTED = 'SUPPORTED',
 }
+
+export enum DomainStatus {
+  cancelled = 'cancelled',
+  doing = 'doing',
+  done = 'done',
+  init = 'init',
+  todo = 'todo',
+}
+
+export type TAttachedDomain = {
+  doneDate?: string;
+  function: string;
+  id?: number;
+  lastUpdate?: string;
+  objectId?: string;
+  objectType?: string;
+  startDate: string;
+  status: DomainStatus;
+};
+
+export type TCreateAttachedDomain = {
+  serviceName?: string;
+  domain?: string;
+  cdn?: HostingDomainStatus;
+  firewall?: HostingDomainStatus;
+  ownLog?: string;
+  path?: string;
+  runtimeId?: number;
+  ssl?: boolean;
+  bypassDNSConfiguration?: boolean;
+  ipLocation?: HostingCountries;
+  wwwNeeded?: boolean;
+};
+
+export type TExistingDomain = {
+  domain?: string;
+  existingDomains?: string[];
+  list?: string;
+  listwww?: string[];
+  state?: string;
+  subdomain?: string;
+  token?: string;
+  tokenSubdomain?: string;
+};
 
 export type WebHostingType = {
   availableBoostOffer: {
