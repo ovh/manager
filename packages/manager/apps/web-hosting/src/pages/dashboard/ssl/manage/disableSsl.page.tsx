@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 import { ODS_MODAL_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
@@ -16,7 +17,8 @@ export default function DisableSslModal() {
   const navigate = useNavigate();
   const closeModal = () =>
     navigate(urls.ssl.replace(subRoutes.serviceName, serviceName));
-  const { t } = useTranslation('ssl');
+  const { t } = useTranslation(['ssl', NAMESPACES.ACTIONS]);
+
   const { deleteDomainCertificate } = useDeleteDomainCertificate(
     serviceName,
     () => {
@@ -43,8 +45,8 @@ export default function DisableSslModal() {
       isOpen
       type={ODS_MODAL_COLOR.critical}
       heading={t('delete_ssl')}
-      primaryLabel={t('buttons_validate')}
-      secondaryLabel={t('buttons_cancel')}
+      primaryLabel={t(`${NAMESPACES.ACTIONS}:validate`)}
+      secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
       onPrimaryButtonClick={onConfirm}
       onSecondaryButtonClick={closeModal}
     >
