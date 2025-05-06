@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
@@ -15,7 +16,7 @@ export default function RegenerateSslModal() {
   const navigate = useNavigate();
   const closeModal = () =>
     navigate(urls.ssl.replace(subRoutes.serviceName, serviceName));
-  const { t } = useTranslation('ssl');
+  const { t } = useTranslation(['ssl', NAMESPACES.ACTIONS]);
 
   const { regenerateDomainCertificate } = useRegenerateDomainCertificate(
     serviceName,
@@ -37,8 +38,8 @@ export default function RegenerateSslModal() {
       onOdsClose={closeModal}
       isOpen
       heading={t('regenerate_ssl')}
-      primaryLabel={t('buttons_validate')}
-      secondaryLabel={t('buttons_cancel')}
+      primaryLabel={t(`${NAMESPACES.ACTIONS}:validate`)}
+      secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
       onPrimaryButtonClick={onConfirm}
       onSecondaryButtonClick={closeModal}
     >

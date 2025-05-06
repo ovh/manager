@@ -155,10 +155,12 @@ export default function useDatagridColumn() {
       id: 'expirationDate',
       cell: (props: SslCertificate) => (
         <DataGridTextCell>
-          {useFormattedDate({
-            dateString: props?.currentState?.expiredAt,
-            format: DateFormat.compact,
-          })}
+          {props?.currentState?.expiredAt
+            ? useFormattedDate({
+                dateString: props?.currentState?.expiredAt,
+                format: DateFormat.compact,
+              })
+            : '-'}
         </DataGridTextCell>
       ),
       label: t('cell_expiration_date'),
