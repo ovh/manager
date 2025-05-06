@@ -515,6 +515,7 @@
                                             'oui-badge_success': $pop.isBgpStatusUp(),
                                             'oui-badge_error': $pop.isBgpStatusDown(),
                                         }"
+                                        data-ng-if="$pop.bgpStatus"
                                         data-ng-bind="'cloud_connect_status_' +  $pop.bgpStatus | translate"
                                         data-ng-if="$pop"
                                     ></div>
