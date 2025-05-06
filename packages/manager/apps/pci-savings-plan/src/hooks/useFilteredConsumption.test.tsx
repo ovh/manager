@@ -1,4 +1,4 @@
-import { act, renderHook } from '@testing-library/react-hooks';
+import { act, renderHook } from '@testing-library/react';
 import { vi } from 'vitest';
 import { getLastXMonths } from '@/utils/formatter/date';
 import { isInstanceFlavor } from '@/utils/savingsPlan';

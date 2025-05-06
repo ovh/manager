@@ -1,6 +1,8 @@
-@tailwind base;
-@tailwind utilities;
+@import '@datatr-ux/ods-tailwind-config/style.css';
 @import '@ovhcloud/ods-themes/default';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 html {
   font-family: var(--ods-font-family-default);

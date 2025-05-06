@@ -12,7 +12,7 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-} from '@/components/Select/Select';
+} from '@datatr-ux/uxlib';
 
 import { InstanceTechnicalName } from '@/types/CreatePlan.type';
 import { toMonthYear } from '@/utils/formatter/date';
