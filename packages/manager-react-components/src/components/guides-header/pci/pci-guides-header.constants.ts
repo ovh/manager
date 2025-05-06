@@ -524,6 +524,27 @@ export const EXPORTING_A_TENSORFLOW_MODEL: GuideLinks = {
   IN: 'https://docs.ovh.com/asia/en/ml-serving/export-tensorflow-models/',
 };
 
+export const SAVINGS_PLANS: GuideLinks = {
+  FR: 'https://help.ovhcloud.com/csm/fr-public-cloud-compute-savings-plan?id=kb_article_view&sysparm_article=KB0066650',
+  GB: 'https://help.ovhcloud.com/csm/en-gb-public-cloud-compute-savings-plan?id=kb_article_view&sysparm_article=KB0066656',
+  DE: 'https://help.ovhcloud.com/csm/de-public-cloud-compute-savings-plan?id=kb_article_view&sysparm_article=KB0066645',
+  ES: 'https://help.ovhcloud.com/csm/es-es-public-cloud-compute-savings-plan?id=kb_article_view&sysparm_article=KB0066648',
+  IT: 'https://help.ovhcloud.com/csm/it-public-cloud-compute-savings-plan?id=kb_article_view&sysparm_article=KB0066654',
+  PL: 'https://help.ovhcloud.com/csm/pl-public-cloud-compute-savings-plan?id=kb_article_view&sysparm_article=KB0066653',
+  PT: 'https://help.ovhcloud.com/csm/pt-public-cloud-compute-savings-plan?id=kb_article_view&sysparm_article=KB0066652',
+  IE: 'https://help.ovhcloud.com/csm/en-ie-public-cloud-compute-savings-plan?id=kb_article_view&sysparm_article=KB0066655',
+  DEFAULT:
+    'https://help.ovhcloud.com/csm/en-public-cloud-compute-savings-plan?id=kb_article_view&sysparm_article=KB0066650',
+  ASIA: 'https://help.ovhcloud.com/csm/asia-public-cloud-compute-savings-plan?id=kb_article_view&sysparm_article=KB0066657',
+  AU: 'https://help.ovhcloud.com/csm/en-au-public-cloud-compute-savings-plan?id=kb_article_view&sysparm_article=KB0066658',
+  CA: 'https://help.ovhcloud.com/csm/en-ca-public-cloud-compute-savings-plan?id=kb_article_view&sysparm_article=KB0066651',
+  QC: 'https://help.ovhcloud.com/csm/fr-ca-public-cloud-compute-savings-plan?id=kb_article_view&sysparm_article=KB0066644',
+  SG: 'https://help.ovhcloud.com/csm/en-sg-public-cloud-compute-savings-plan?id=kb_article_view&sysparm_article=KB0066655',
+  WE: 'https://us.ovhcloud.com/support/',
+  WS: 'https://help.ovhcloud.com/csm/es-public-cloud-compute-savings-plan?id=kb_article_view&sysparm_article=KB0066649',
+  IN: 'https://help.ovhcloud.com/csm/en-ie-public-cloud-compute-savings-plan?id=kb_article_view&sysparm_article=KB0066655',
+};
+
 export const PREFIX_UNIVERSE_NAME = 'public-cloud';
 
 export const DEFAULT_GUIDES = {
@@ -743,5 +764,13 @@ export const GUIDES_LIST: Record<string, Record<string, Guide>> = {
   },
   private_network: {
     ...DEFAULT_GUIDES,
+  },
+  savings_plans: {
+    ...DEFAULT_GUIDES,
+    savings_plans: {
+      url: SAVINGS_PLANS,
+      key: 'savings_plans',
+      tracking: '::guides::go_to_savings_plans',
+    },
   },
 };
