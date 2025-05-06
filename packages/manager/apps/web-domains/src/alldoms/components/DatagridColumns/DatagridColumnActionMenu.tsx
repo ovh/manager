@@ -9,7 +9,7 @@ import { ServiceInfoRenewMode } from '@/alldoms/enum/service.enum';
 interface DatagridColumnActionMenuProps {
   readonly serviceId: string;
   readonly serviceInfoDetail: TServiceDetail;
-  readonly openModal: (serviceInfoDetail: TServiceDetail) => void;
+  readonly openModal?: (serviceInfoDetail: TServiceDetail) => void;
 }
 
 export default function DatagridColumnActionMenu({

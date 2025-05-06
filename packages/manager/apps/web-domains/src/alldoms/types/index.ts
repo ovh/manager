@@ -18,6 +18,11 @@ export interface TServiceInfo {
         mode: ServiceInfoRenewMode | null;
       };
     } | null;
+    lifecycle: {
+      current: {
+        creationDate: string | null;
+      };
+    } | null;
   };
   customer: {
     contacts: {
