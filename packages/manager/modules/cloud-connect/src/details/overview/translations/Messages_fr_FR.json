@@ -78,7 +78,7 @@
   "cloud_connect_extra_type": "Type",
   "cloud_connect_extra_type_bgp": "BGP",
   "cloud_connect_extra_type_network": "Static",
-  "cloud_connect_extra_bgp_neighbor_area": "ASN client",
+  "cloud_connect_extra_bgp_neighbor_area": "ASN utilisateur",
   "cloud_connect_extra_ip_neighbor": "IP Neighbor",
   "cloud_connect_extra_next_hop": "Next Hop",
   "cloud_connect_extra_title": "Configuration de routage",
@@ -129,5 +129,7 @@
   "cloud_connect_pop_status_toDelete": "Suppression en cours",
   "cloud_connect_light_value": "{{lightValue}} dB {{type}}",
   "cloud_connect_old_48_h_status": "Ce statut a plus de 48 heures et peut ne plus être exact.",
-  "cloud_connect_pop_add_button": "Configurer le port"
+  "cloud_connect_pop_add_button": "Configurer le port",
+  "cloud_connect_dc_status": "État de la configuration",
+  "cloud_connect_dc_config_title": "Configuration {{dcName}}"
 }

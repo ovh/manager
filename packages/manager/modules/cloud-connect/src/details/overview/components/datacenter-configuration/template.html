@@ -1,7 +1,8 @@
 <div class="d-flex flex-row border-bottom">
     <h4
         class="oui-heading_4 oui-tile__title"
-        data-ng-bind="$ctrl.datacenter.dcName"
+        data-translate="cloud_connect_dc_config_title"
+        data-translate-values="{ dcName: $ctrl.datacenter.dcName }"
     ></h4>
 </div>
 <!-- Datacenter details -->
@@ -21,6 +22,7 @@
                     </th>
                     <th
                         class="oui-datagrid__header"
+                        style="width: 590px"
                         data-ng-if="$ctrl.cloudConnect.isL3PopType()"
                     >
                         <span
@@ -31,9 +33,10 @@
                     <th class="oui-datagrid__header">
                         <span
                             class="oui-tile__term"
-                            data-translate="cloud_connect_status"
+                            data-translate="cloud_connect_dc_status"
                         ></span>
                     </th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -58,7 +61,7 @@
                             'oui-badge_error': $ctrl.datacenter.isError(),
                             'oui-badge_warning': $ctrl.datacenter.isInProcess()
                         }"
-                            data-ng-bind="'cloud_connect_status_' +  $ctrl.datacenter.status | translate"
+                            data-ng-bind="'cloud_connect_pop_status_' +  $ctrl.datacenter.status | translate"
                         ></span>
                     </td>
                     <td class="oui-datagrid__cell">
