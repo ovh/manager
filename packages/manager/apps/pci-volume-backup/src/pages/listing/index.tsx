@@ -17,6 +17,7 @@ import {
   PciGuidesHeader,
   ChangelogButton,
   Notifications,
+  useNotifications,
 } from '@ovh-ux/manager-react-components';
 import { useDatagridColumn } from '@/pages/listing/useDatagridColumn';
 import { TVolumeBackup } from '@/data/api/api.types';
@@ -39,6 +40,7 @@ export default function Listing() {
   const hrefProject = useProjectUrl('public-cloud');
   const { data: project } = useProject();
   const navigate = useNavigate();
+  const { clearNotifications } = useNotifications();
 
   const columnsWithSearchable = useMemo(() => {
     return [
@@ -100,18 +102,19 @@ export default function Listing() {
   };
 
   const TopbarCTA = () => (
-    <div>
-      <OdsButton
-        icon={ODS_ICON_NAME.plus}
-        size={ODS_BUTTON_SIZE.sm}
-        color="primary"
-        variant="outline"
-        label={t(
-          'pci_projects_project_storages_volume_backup_list_datagrid_menu_topbar_action_create',
-        )}
-        onClick={() => navigate('../create')}
-      />
-    </div>
+    <OdsButton
+      icon={ODS_ICON_NAME.plus}
+      size={ODS_BUTTON_SIZE.sm}
+      color="primary"
+      variant="outline"
+      label={t(
+        'pci_projects_project_storages_volume_backup_list_datagrid_menu_topbar_action_create',
+      )}
+      onClick={() => {
+        clearNotifications();
+        navigate('../create');
+      }}
+    />
   );
 
   return (

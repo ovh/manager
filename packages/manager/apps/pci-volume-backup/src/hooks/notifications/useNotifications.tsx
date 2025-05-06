@@ -1,7 +1,7 @@
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useNotifications as useMRCNotifications } from '@ovh-ux/manager-react-components';
 import { useCallback } from 'react';
-import { Trans, Translation } from 'react-i18next';
+import { Translation } from 'react-i18next';
 
 export const useNotifications = ({ ns }: { ns: string }) => {
   const { addSuccess, addError } = useMRCNotifications();
@@ -18,14 +18,14 @@ export const useNotifications = ({ ns }: { ns: string }) => {
     }) =>
       addError(
         <Translation ns={ns}>
-          {(t) => (
-            <Trans
-              t={t}
-              i18nKey={i18nKey}
-              values={{
-                ...values,
-                message:
-                  error?.response?.data?.message || error?.message || null,
+          {(_t) => (
+            <span
+              dangerouslySetInnerHTML={{
+                __html: _t(i18nKey, {
+                  ...values,
+                  message:
+                    error?.response?.data?.message || error?.message || null,
+                }),
               }}
             />
           )}
@@ -45,12 +45,12 @@ export const useNotifications = ({ ns }: { ns: string }) => {
     }) =>
       addSuccess(
         <Translation ns={ns}>
-          {(t) => (
-            <Trans
-              t={t}
-              i18nKey={i18nKey}
-              values={{
-                ...values,
+          {(_t) => (
+            <span
+              dangerouslySetInnerHTML={{
+                __html: _t(i18nKey, {
+                  ...values,
+                }),
               }}
             />
           )}

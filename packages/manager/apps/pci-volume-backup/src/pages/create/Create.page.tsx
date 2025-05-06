@@ -1,17 +1,16 @@
-import {
-  BaseLayout,
-  Notifications,
-  PciGuidesHeader,
-  useProjectUrl,
-} from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
-
 import { ApiError } from '@ovh-ux/manager-core-api';
 import {
   PciDiscoveryBanner,
   useProject,
   useVolumes,
 } from '@ovh-ux/manager-pci-common';
+import {
+  BaseLayout,
+  Notifications,
+  PciGuidesHeader,
+  useNotifications as useMRCNotifications,
+  useProjectUrl,
+} from '@ovh-ux/manager-react-components';
 import {
   PageType,
   ShellContext,
@@ -33,6 +32,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { formatISO } from 'date-fns';
 import { Suspense, useCallback, useContext, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Outlet, useHref, useNavigate, useParams } from 'react-router-dom';
 import { VOLUME_BACKUP_TRACKING } from '@/tracking.constant';
 import { useNotifications } from '@/hooks/notifications/useNotifications';
@@ -81,6 +81,7 @@ export default function CreateVolumeBackup() {
   const { addSuccessMessage, addErrorMessage } = useNotifications({
     ns: 'create',
   });
+  const { clearNotifications } = useMRCNotifications();
 
   const [selectedVolumeId, setSelectedVolumeId] = useState<string>('');
   const [selectedBackup, setSelectedBackup] = useState<TBackupOption>();
@@ -228,6 +229,7 @@ export default function CreateVolumeBackup() {
   );
 
   const handleCreateBackupClick = () => {
+    clearNotifications();
     trackClick({
       actionType: 'action',
       actions: [VOLUME_BACKUP_TRACKING.CREATE.CTA_CONFIRM],
@@ -295,7 +297,7 @@ export default function CreateVolumeBackup() {
                 target="_blank"
                 href={blockStorageUrl}
                 label={t(
-                  'pci_projects_project_storages_volume_backup_create_step_2_description_link',
+                  'pci_projects_project_storages_volume_backup_create_banner_no_volumes_link',
                 )}
               />
             </div>
