@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { DeletionModal } from '@ovh-ux/manager-pci-common';
 import { OdsText } from '@ovhcloud/ods-components/react';
@@ -12,7 +12,9 @@ import { VOLUME_BACKUP_TRACKING } from '@/tracking.constant';
 export default function DeletePage() {
   const { t } = useTranslation('delete');
   const { trackClick, trackPage } = useOvhTracking();
-  const { projectId, backupId } = useParams();
+  const { projectId } = useParams();
+  const [searchParams] = useSearchParams();
+  const backupId = searchParams.get('backupId') || '';
   const { data: allBackupsData, isLoading: isBackupsLoading } = useBackups(
     projectId,
   );

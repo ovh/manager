@@ -13,7 +13,7 @@ export default function Actions({ backup }: Readonly<ActionsProps>) {
 
   const restoreBackupItem = {
     id: 1,
-    href: useHref(`./restore-volume/${backup.volumeId}`),
+    href: useHref(`./restore-volume?volumeId=${backup.volumeId}`),
     label: t(
       'pci_projects_project_storages_volume_backup_list_datagrid_menu_action_restore',
     ),
@@ -27,7 +27,7 @@ export default function Actions({ backup }: Readonly<ActionsProps>) {
   };
   const deleteVolumeItem = {
     id: 3,
-    href: useHref(`./delete/${backup.id}`),
+    href: useHref(`./delete?backupId=${backup.id}`),
     label: t(
       'pci_projects_project_storages_volume_backup_list_datagrid_menu_action_delete',
     ),
