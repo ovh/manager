@@ -37,6 +37,7 @@ export default function BackupNameStep({
         </OdsText>
 
         <OdsInput
+          data-testid="BackupNameStep-input"
           name="backup-name"
           value={backupName}
           onOdsChange={onBackupNameChange}
