@@ -1,9 +1,10 @@
-import { TERMINATE_OPTIONS } from './vps-terminate.constants';
+import { SERVICE_TYPE, TERMINATE_OPTIONS } from './vps-terminate.constants';
 
 export default class {
   /* @ngInject */
   constructor(atInternet) {
     this.atInternet = atInternet;
+    this.serviceType = SERVICE_TYPE.VPS;
   }
 
   static getDegressivityMonthDetails(degressivityInformation) {
@@ -16,7 +17,7 @@ export default class {
     return option.value === TERMINATE_OPTIONS.TERMINATE_NOW;
   }
 
-  terminate() {
+  onConfirm() {
     this.atInternet.trackClick({
       name: 'vps::detail::dashboard::terminate::confirm',
       type: 'action',

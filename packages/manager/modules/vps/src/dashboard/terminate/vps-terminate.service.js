@@ -1,12 +1,15 @@
 export default class VpsTerminate {
   /* @ngInject */
-  constructor(OvhApiVps) {
+  constructor($http, OvhApiVps) {
+    this.$http = $http;
     this.OvhApiVps = OvhApiVps;
   }
 
-  confirm(serviceName) {
-    return this.OvhApiVps.v6().terminate({
-      serviceName,
-    }).$promise;
+  confirm(service, hasMailConfirmation = true) {
+    return hasMailConfirmation
+      ? this.OvhApiVps.v6().terminate({
+        serviceName: service.serviceName,
+      }).$promise
+      : this.$http.delete(`/services/${service.serviceId}`);
   }
 }
