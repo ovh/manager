@@ -6,12 +6,14 @@ import { Route } from 'react-router-dom';
 import NotFound from '@/pages/404';
 import { urls } from '@/routes/routes.constants';
 import {
+  ADD_DOMAIN,
   DASHBOARD,
   IMPORT_SSL,
   DISABLE_SSL,
   ONBOARDING,
   ORDER_SECTIGO,
   REGENERATE_SSL,
+  ORDER_DOMAIN,
   SSL,
   WEBSITE,
   SAN_SSL,
@@ -38,6 +40,12 @@ const RegenerateSslPage = React.lazy(() =>
 );
 const SanSslPage = React.lazy(() =>
   import('@/pages/dashboard/ssl/manage/sanSsl.page'),
+);
+const AddDomainPage = React.lazy(() =>
+  import('@/pages/dashboard/AddDomain.page'),
+);
+const OrderDomainPage = React.lazy(() =>
+  import('@/pages/dashboard/OrderDomain.page'),
 );
 
 export default (
@@ -154,6 +162,28 @@ export default (
         handle={{
           tracking: {
             pageName: SAN_SSL,
+            pageType: PageType.popup,
+          },
+        }}
+      />
+      <Route
+        id={ADD_DOMAIN}
+        path={urls.addDomain}
+        Component={AddDomainPage}
+        handle={{
+          tracking: {
+            pageName: ADD_DOMAIN,
+            pageType: PageType.popup,
+          },
+        }}
+      />
+      <Route
+        id={ORDER_DOMAIN}
+        path={urls.orderDomain}
+        Component={OrderDomainPage}
+        handle={{
+          tracking: {
+            pageName: ORDER_DOMAIN,
             pageType: PageType.popup,
           },
         }}

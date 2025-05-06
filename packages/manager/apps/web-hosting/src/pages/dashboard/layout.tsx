@@ -3,6 +3,7 @@ import {
   Outlet,
   useLocation,
   useParams,
+  useNavigate,
   useResolvedPath,
 } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -45,9 +46,11 @@ import Breadcrumb from '@/components/breadcrumb/Breadcrumb.component';
 import { CHANGELOG_LINKS } from '@/utils/changelog.constants';
 import ExpirationDate from '@/components/expirationDate/ExpirationDate.component';
 import Tabs from '@/components/tabs/Tabs.component';
+import { subRoutes, urls } from '@/routes/routes.constants';
 
 export default function Layout() {
   const { shell } = useContext(ShellContext);
+  const navigate = useNavigate();
   const { serviceName } = useParams();
   const { t } = useTranslation('dashboard');
 
@@ -222,7 +225,13 @@ export default function Layout() {
               {
                 id: 1,
                 label: t('hosting_action_add_domain'),
-                onClick: () => {},
+                onClick: () =>
+                  navigate(
+                    urls.orderDomain.replace(
+                      subRoutes.serviceName,
+                      serviceName,
+                    ),
+                  ),
               },
             ]}
           />

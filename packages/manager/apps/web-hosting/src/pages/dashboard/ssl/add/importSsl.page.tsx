@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 import {
   OdsFormField,
@@ -22,7 +23,8 @@ export default function ImportModal() {
   const [certificate, setCertificate] = useState('');
   const [key, setKey] = useState('');
   const [chain, setChain] = useState('');
-  const { t } = useTranslation('ssl');
+  const { t } = useTranslation(['ssl', NAMESPACES.ACTIONS]);
+
   const { createCertificate } = useCreateCertificate(
     serviceName,
     () => {
@@ -49,8 +51,8 @@ export default function ImportModal() {
       isOpen
       isPrimaryButtonDisabled={Boolean(!certificate || !key)}
       heading={t('import_ssl_certificate')}
-      primaryLabel={t('buttons_validate')}
-      secondaryLabel={t('buttons_cancel')}
+      primaryLabel={t(`${NAMESPACES.ACTIONS}:validate`)}
+      secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
       onPrimaryButtonClick={onConfirm}
       onSecondaryButtonClick={closeModal}
     >
