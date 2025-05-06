@@ -43,7 +43,7 @@
   "pci_projects_project_instances_view_label": "Instanz-Details",
   "pci_projects_project_instances_edit_label": "Bearbeiten",
   "pci_projects_project_instances_assign_floating_ip_label": "Eine Floating IP zuweisen",
-  "pci_projects_project_instances_activeMonthlyBilling_label": "Auf monatliche Vertragsbindung umstellen",
+  "pci_projects_project_instances_activeMonthlyBilling_label": "Zu einem Angebot ohne Vertragsbindung wechseln",
   "pci_projects_project_instances_createBackup_label": "Backup erstellen",
   "pci_projects_project_instances_start_label": "Starten",
   "pci_projects_project_instances_stop_label": "Anhalten",

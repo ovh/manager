@@ -43,7 +43,7 @@
   "pci_projects_project_instances_view_label": "Dettagli dell'istanza",
   "pci_projects_project_instances_edit_label": "Modifica",
   "pci_projects_project_instances_assign_floating_ip_label": "Assegnare un Floating IP",
-  "pci_projects_project_instances_activeMonthlyBilling_label": "Passare a un impegno mensile",
+  "pci_projects_project_instances_activeMonthlyBilling_label": "Passare alla modalità senza impegno",
   "pci_projects_project_instances_createBackup_label": "Crea un backup",
   "pci_projects_project_instances_start_label": "Comincia ora",
   "pci_projects_project_instances_stop_label": "Arrestare",
