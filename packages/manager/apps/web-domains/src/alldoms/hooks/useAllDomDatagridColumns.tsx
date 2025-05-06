@@ -6,6 +6,7 @@ import DatagridColumnBadge from '@/alldoms/components/DatagridColumns/DatagridCo
 import DatagridColumnDomainNumber from '@/alldoms/components/DatagridColumns/DatagridColumnDomainNumber';
 import DatagridColumnServiceName from '@/alldoms/components/DatagridColumns/DatagridColumnServiceName';
 import { DatagridColumnDate } from '@/alldoms/components/DatagridColumns/DatagridColumnDate';
+import DatagridColumnActionMenu from '@/alldoms/components/DatagridColumns/DatagridColumnActionMenu';
 
 export const useAllDomDatagridColumns = () => {
   const { t } = useTranslation('allDom');
@@ -80,6 +81,15 @@ export const useAllDomDatagridColumns = () => {
           </DataGridTextCell>
         ),
         label: t('allDom_table_header_nicBilling'),
+      },
+      {
+        id: 'actions',
+        cell: (props: TServiceDetail) => (
+          <DatagridColumnActionMenu
+            serviceId={`${props.serviceInfo.serviceId}`}
+          />
+        ),
+        label: '',
       },
     ],
     [],
