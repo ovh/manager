@@ -34,6 +34,8 @@ export const CONFIRM = 'confirm';
 export const BACK_PREVIOUS_PAGE = 'back_previous-page';
 export const TO_BE_DEFINED = 'to-be-defined';
 
+export const ADD_DOMAIN = 'add-domain';
+export const ORDER_DOMAIN = 'order-domain';
 export const ONBOARDING = 'onboarding';
 export const ONBOARDING_ORDER_CTA = 'onboarding_order_cta';
 export const DASHBOARD = 'dashboard';
