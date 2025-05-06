@@ -16,7 +16,7 @@ vi.mock('@/data/hooks/useVolumeBackups', () => ({
   useVolumeBackups: vi.fn(),
 }));
 
-vi.mock('@/data/api/pci-volume-backup', () => ({
+vi.mock('@/data/api/volumeBackup', () => ({
   getVolumeBackups: () => () => Promise.resolve({ data: [] }),
   refetchInterval: 30000,
 }));

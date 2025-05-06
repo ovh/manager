@@ -19,18 +19,9 @@ export default defineConfig({
         'src/i18n.ts',
         'src/main.tsx',
         'src/routes.tsx',
+        'src/**/*.{spec,test}.{tsx,ts}',
+        'src/**/*.types.ts',
       ],
-    },
-    testTimeout: 60_000,
-    fileParallelism: false,
-    maxWorkers: 1,
-    pollOptions: {
-      forks: {
-        singleFork: true,
-      },
-      threads: {
-        singleThread: true,
-      },
     },
   },
   resolve: {

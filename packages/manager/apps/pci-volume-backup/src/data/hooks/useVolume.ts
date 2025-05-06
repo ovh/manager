@@ -20,11 +20,18 @@ export type TCreateVolumeFromBackupArguments = {
   onError: (err: Error, newVolumeData: TNewVolumeFromBackupData) => void;
 };
 
-export const useVolume = (projectId: string, volumeId: string) =>
+export const useVolume = (
+  projectId: string | undefined,
+  volumeId?: string | null,
+) =>
   useQuery({
     queryKey: ['project', projectId, 'volume', volumeId],
     enabled: !!projectId && !!volumeId,
-    queryFn: () => getVolume(projectId, volumeId),
+    queryFn: () =>
+      getVolume(
+        projectId as NonNullable<string>,
+        volumeId as NonNullable<string>,
+      ),
   });
 
 export const useCreateVolumeFromBackup = ({
