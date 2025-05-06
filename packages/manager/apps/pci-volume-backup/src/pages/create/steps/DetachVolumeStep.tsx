@@ -30,6 +30,7 @@ export default function DetachVolumeStep({
       </OdsText>
 
       <OdsButton
+        data-testid="DetachVolumeStep-button"
         variant="ghost"
         label={t(
           'pci_projects_project_storages_volume_backup_create_step_3_detach_volume_from_instance_action_detach',
