@@ -14,8 +14,10 @@
   "allDom_table_type_french": "FR",
   "allDom_table_type_french+international": "FR + International",
   "allDom_table_type_international": "International",
-  "allDom_table_action_renew": "Renouveler"
+  "allDom_table_action_renew": "Renouveler",
   "allDom_table_action_terminate": "Résilier",
+  "allDom_table_action_enable_renewal": "Activer le renouvellement automatique",
+  "allDom_table_action_disable_renewal": "Désactiver le renouvellement automatique",
   "allDom_modal_title": "Résiliation du pack {{t0}}",
   "allDom_modal_subtitle": "Vous avez la possibilité de résilier tous vos services ou d'en conserver en gestion individuelle.",
   "allDom_modal_all_my_domains": "Tous mes domaines",
