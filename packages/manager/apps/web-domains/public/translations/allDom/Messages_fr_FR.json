@@ -15,4 +15,16 @@
   "allDom_table_type_french+international": "FR + International",
   "allDom_table_type_international": "International",
   "allDom_table_action_renew": "Renouveler"
+  "allDom_table_action_terminate": "Résilier",
+  "allDom_modal_title": "Résiliation du pack {{t0}}",
+  "allDom_modal_subtitle": "Vous avez la possibilité de résilier tous vos services ou d'en conserver en gestion individuelle.",
+  "allDom_modal_all_my_domains": "Tous mes domaines",
+  "allDom_modal_choice": "Je souhaite supprimer :",
+  "allDom_modal_step_one_message": "Les domaines non supprimés ne seront plus rattachés au pack, vous ne bénéficierez plus du tarif préférentiel. Les futurs renouvellements seront effectués au prix standard.",
+  "allDom_modal_next_step": "Suivant",
+  "allDom_modal_step_two_warning": "Attention, les services suivants seront résiliés :",
+  "allDom_modal_step_previous": "Précédent",
+  "allDom_modal_step_terminate": "Résilier",
+  "allDom_modal_success_message": "Le service {{t0}} et le(s) domaine(s) {{t1}} ont bien été mis à jour",
+  "allDom_modal_error_message": "Une erreur est survenue : {{t0}}"
 }
