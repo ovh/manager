@@ -1,5 +1,6 @@
 import {
   ServiceInfoRenewEnum,
+  ServiceInfoRenewMode,
   ServiceInfoStatus,
   ServiceInfoType,
 } from '@/alldoms/enum/service.enum';
@@ -53,4 +54,11 @@ export interface ModalStepsProps {
   handleDomainAttached?: (domainSelected: string[]) => void;
   handleCheckAllDomain?: (checked: boolean) => void;
   closeModal?: () => void;
+}
+
+export interface UpdateAllDomServiceProps {
+  serviceName: string;
+  renew: {
+    mode: ServiceInfoRenewMode;
+  };
 }

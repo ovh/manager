@@ -7,7 +7,7 @@ import {
   updateAllDomService,
   updateDomainServiceInfo,
 } from '@/alldoms/data/api/web-domains';
-import { ServiceInfoRenewMode } from '@/alldoms/enum/service.enum';
+import { UpdateAllDomServiceProps } from '@/alldoms/types';
 
 export const useGetAllDomServiceList = () => {
   return useQuery<string[]>({
@@ -40,12 +40,8 @@ export const useGetAllDomainAttachedToAllDom = (serviceName: string) => {
 export const useUpdateAllDomService = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (serviceName: string) =>
-      updateAllDomService(serviceName, {
-        renew: {
-          mode: ServiceInfoRenewMode.Manual,
-        },
-      }),
+    mutationFn: ({ serviceName, renew }: UpdateAllDomServiceProps) =>
+      updateAllDomService(serviceName, renew),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['alldom'] });
     },
