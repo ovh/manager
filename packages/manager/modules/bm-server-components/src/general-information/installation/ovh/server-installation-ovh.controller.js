@@ -8,6 +8,7 @@ import {
   MOUNT_POINTS,
   MAX_MOUNT_POINTS,
   TEMPLATE_OS_SOFTWARE_RAID_LIST,
+  EOL_PERSONAL_INSTALLATION_TEMPLATES_DOCUMENTATION_LINK,
 } from './server-installation-ovh.constants';
 
 export default class ServerInstallationOvhCtrl {
@@ -23,6 +24,7 @@ export default class ServerInstallationOvhCtrl {
     Server,
     $filter,
     Alerter,
+    coreConfig,
     ovhFeatureFlipping,
     coreURLBuilder,
   ) {
@@ -36,11 +38,19 @@ export default class ServerInstallationOvhCtrl {
     this.atInternet = atInternet;
     this.$filter = $filter;
     this.Alerter = Alerter;
+    this.coreConfig = coreConfig;
     this.ovhFeatureFlipping = ovhFeatureFlipping;
     this.coreURLBuilder = coreURLBuilder;
   }
 
   $onInit() {
+    this.doc = {
+      eolPersonalInstallationTemplates:
+        EOL_PERSONAL_INSTALLATION_TEMPLATES_DOCUMENTATION_LINK[
+          this.coreConfig.getUser().ovhSubsidiary
+        ] || EOL_PERSONAL_INSTALLATION_TEMPLATES_DOCUMENTATION_LINK.DEFAULT,
+    };
+
     this.statePrefix = this.statePrefix || 'app.dedicated-server.server';
     this.$scope.inputRules = INPUTS_RULES;
 
@@ -373,6 +383,16 @@ export default class ServerInstallationOvhCtrl {
   loadStep1() {
     this.$scope.loader.loading = true;
 
+    const hasSomePersonalTemplates = this.Server.getPersonalTemplatesList()
+      .then((templateList) => {
+        this.$scope.informations.hasSomePersonalTemplates =
+          templateList.length > 0;
+      })
+      .catch(() => {
+        // when migration is finished, API call will be removed
+        // In the meantime manager-ovh to be deployed WW with the removal of this banner, we will hide the message
+        this.$scope.informations.hasSomePersonalTemplates = false;
+      });
     const getHardRaid = this.getHardwareRaid();
     const getOvhTemplates = this.Server.getOvhTemplates(
       this.$stateParams.productId,
@@ -434,9 +454,11 @@ export default class ServerInstallationOvhCtrl {
         );
       });
 
-    this.$q.all([getHardRaid, getOvhTemplates]).finally(() => {
-      this.$scope.loader.loading = false;
-    });
+    this.$q
+      .all([hasSomePersonalTemplates, getHardRaid, getOvhTemplates])
+      .finally(() => {
+        this.$scope.loader.loading = false;
+      });
   }
 
   getCountFilter(itemFamily) {
