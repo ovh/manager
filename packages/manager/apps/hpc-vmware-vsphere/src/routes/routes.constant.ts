@@ -4,4 +4,9 @@ export const urls = {
   listing: '',
   dashboard: ':serviceName',
   logs: 'logs',
+  datacenters: 'datacenters',
+  users: 'users',
+  security: 'security',
+  operations: 'operation',
+  license: 'license',
 };
