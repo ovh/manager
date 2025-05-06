@@ -2,6 +2,7 @@ export const subRoutes = {
   onboarding: 'onboarding',
   dashboard: ':id',
   order: 'order',
+  delete: 'delete',
   editName: 'edit-name',
   editDescription: 'edit-description',
   vdcId: ':vdcId',
@@ -11,6 +12,8 @@ export const subRoutes = {
   resetPassword: 'reset-password',
   vrackSegments: 'vrack-segments',
   vrackSegmentId: ':vrackSegmentId',
+  vrackNetwork: 'vrack-networks',
+  vrackNetworkId: ':vrackNetworkId',
 } as const;
 
 export const urls = {
@@ -30,6 +33,7 @@ export const urls = {
   datacentreComputeOrder: `/${subRoutes.dashboard}/${subRoutes.virtualDatacenters}/${subRoutes.vdcId}/${subRoutes.datacentreCompute}/${subRoutes.order}`,
   vrackSegments: `/${subRoutes.dashboard}/${subRoutes.virtualDatacenters}/${subRoutes.vdcId}/${subRoutes.vrackSegments}`,
   vrackSegmentEditVlanId: `/${subRoutes.dashboard}/${subRoutes.virtualDatacenters}/${subRoutes.vdcId}/${subRoutes.vrackSegments}/${subRoutes.vrackSegmentId}/edit`,
+  vrackSegmentDeleteNetwork: `/${subRoutes.dashboard}/${subRoutes.virtualDatacenters}/${subRoutes.vdcId}/${subRoutes.vrackSegments}/${subRoutes.vrackSegmentId}/${subRoutes.vrackNetwork}/${subRoutes.vrackNetworkId}/delete`,
 } as const;
 
 export const veeamBackupAppName = 'veeam-backup';
