@@ -7,9 +7,10 @@ export const getVolume = async (
   projectId: string,
   volumeId: string,
 ): Promise<TVolume> => {
-  const { data } = await v6.get(
+  const { data } = await v6.get<TVolume>(
     `/cloud/project/${projectId}/volume/${volumeId}`,
   );
+
   return data;
 };
 
