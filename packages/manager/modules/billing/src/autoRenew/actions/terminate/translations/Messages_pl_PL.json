@@ -1,4 +1,9 @@
 {
   "autorenew_service_terminate": "Zatwierdź",
-  "autorenew_service_terminate_cancel": "Anuluj"
+  "autorenew_service_terminate_cancel": "Anuluj",
+  "billing_terminate_cancel_button": "Nie, nie chcę",
+  "billing_terminate_delete_button": "Tak, chcę",
+  "billing_terminate_description": "Rezygnacja z usługi spowoduje trwałe usunięcie wszystkich powiązanych z nią danych. Czy chcesz  zrezygnować z usługi?",
+  "billing_terminate_headline": "Zakończyć {{serviceType}}?",
+  "billing_terminate_headline_service": "Usługa"
 }
