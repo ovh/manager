@@ -98,7 +98,7 @@ webCloudUniverse.children = [
         features: ['hosting'],
       },
       {
-        id: 'web-hosting',
+        id: 'website',
         idAttr: 'hosting-link',
         universe: webCloudUniverse.id,
         translation: 'sidebar_web_hosting_websites',
