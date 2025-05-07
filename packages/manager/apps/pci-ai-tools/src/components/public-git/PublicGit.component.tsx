@@ -13,6 +13,7 @@ import ai from '@/types/AI';
 
 interface PublicGitProps {
   gitVolumes: ai.volume.Volume[];
+  status: string;
   onDelete?: (volume: ai.volume.Volume) => void;
   updateMode: boolean;
   disabled?: boolean;
@@ -20,6 +21,7 @@ interface PublicGitProps {
 
 const PublicGit = ({
   gitVolumes,
+  status,
   onDelete,
   updateMode,
   disabled,
@@ -60,6 +62,7 @@ const PublicGit = ({
       )}
       <GitList
         git={gitVolumes}
+        volStatus={status}
         deleteVol={(volume) => onDeleteVolume(volume)}
         allowUpdate={updateMode}
       />

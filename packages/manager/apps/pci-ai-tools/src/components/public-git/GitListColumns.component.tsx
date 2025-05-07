@@ -7,6 +7,10 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
   useToast,
 } from '@datatr-ux/uxlib';
 import DataTable from '@/components/data-table';
@@ -15,11 +19,13 @@ import ai from '@/types/AI';
 interface GitColumnListProps {
   updateMode: boolean;
   onDeletVolume?: (volume: ai.volume.Volume) => void;
+  status: string;
 }
 
 export const getColumns = ({
   onDeletVolume,
   updateMode,
+  status,
 }: GitColumnListProps) => {
   const { t } = useTranslation('ai-tools/components/public-git');
   const toast = useToast();
@@ -97,15 +103,31 @@ export const getColumns = ({
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              <DropdownMenuItem
-                data-testid="public-git-action-delete-button"
-                variant="destructive"
-                onClick={() => {
-                  onDeletVolume(row.original);
-                }}
-              >
-                {t('tableActionDelete')}
-              </DropdownMenuItem>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <span className="inline-block" tabIndex={0}>
+                      <DropdownMenuItem
+                        data-testid="public-git-action-delete-button"
+                        variant="destructive"
+                        onClick={() => {
+                          onDeletVolume(row.original);
+                        }}
+                        disabled={
+                          status !== ai.notebook.NotebookStateEnum.STOPPED
+                        }
+                      >
+                        {t('tableActionDelete')}
+                      </DropdownMenuItem>
+                    </span>
+                  </TooltipTrigger>
+                  {status !== ai.notebook.NotebookStateEnum.STOPPED && (
+                    <TooltipContent>
+                      {t('disabledButtonTooltip')}
+                    </TooltipContent>
+                  )}
+                </Tooltip>
+              </TooltipProvider>
             </DropdownMenuContent>
           </DropdownMenu>
         );

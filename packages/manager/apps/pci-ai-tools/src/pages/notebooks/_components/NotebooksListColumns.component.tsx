@@ -17,6 +17,10 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
 } from '@datatr-ux/uxlib';
 import ai from '@/types/AI';
 
@@ -263,19 +267,30 @@ export const getColumns = ({
                 {t('tableActionStop')}
               </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem
-                data-testid="notebook-action-delete-button"
-                variant="destructive"
-                disabled={
-                  !isStoppedNotebook(notebook.status.state) ||
-                  isDeletingNotebook(notebook.status.state)
-                }
-                onClick={() => {
-                  onDeleteClicked(row.original);
-                }}
-              >
-                {t('tableActionDelete')}
-              </DropdownMenuItem>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <span className="inline-block w-full" tabIndex={0}>
+                      <DropdownMenuItem
+                        data-testid="notebook-action-delete-button"
+                        variant="destructive"
+                        disabled={
+                          !isStoppedNotebook(notebook.status.state) ||
+                          isDeletingNotebook(notebook.status.state)
+                        }
+                        onClick={() => {
+                          onDeleteClicked(row.original);
+                        }}
+                      >
+                        {t('tableActionDelete')}
+                      </DropdownMenuItem>
+                    </span>
+                  </TooltipTrigger>
+                  {!isStoppedNotebook(notebook.status.state) && (
+                    <TooltipContent>{t('deleteTableTooltip')}</TooltipContent>
+                  )}
+                </Tooltip>
+              </TooltipProvider>
             </DropdownMenuContent>
           </DropdownMenu>
         );

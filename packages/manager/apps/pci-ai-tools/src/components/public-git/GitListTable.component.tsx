@@ -5,12 +5,14 @@ import ai from '@/types/AI';
 
 interface GitListProps {
   git: ai.volume.Volume[];
+  volStatus: string;
   allowUpdate: boolean;
   deleteVol?: (volume: ai.volume.Volume) => void;
 }
 
 export default function GitList({
   git,
+  volStatus,
   allowUpdate,
   deleteVol,
 }: Readonly<GitListProps>) {
@@ -18,6 +20,7 @@ export default function GitList({
     onDeletVolume: (volume: ai.volume.Volume) => {
       deleteVol(volume);
     },
+    status: volStatus,
     updateMode: allowUpdate,
   });
 

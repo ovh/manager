@@ -11,6 +11,7 @@ import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/Route
 import { mockedPublicGitVolume } from '@/__tests__/helpers/mocks/volume/volume';
 import PublicGit from './PublicGit.component';
 import { openButtonInMenu } from '@/__tests__/helpers/unitTestHelper';
+import ai from '@/types/AI';
 
 const onDelete = vi.fn();
 describe('Public Git Component', () => {
@@ -29,7 +30,11 @@ describe('Public Git Component', () => {
 
   it('renders Public Git page', async () => {
     render(
-      <PublicGit gitVolumes={[mockedPublicGitVolume]} updateMode={false} />,
+      <PublicGit
+        gitVolumes={[mockedPublicGitVolume]}
+        updateMode={false}
+        status={ai.notebook.NotebookStateEnum.STOPPED}
+      />,
       {
         wrapper: RouterWithQueryClientWrapper,
       },
@@ -44,7 +49,11 @@ describe('Public Git Component', () => {
       },
     });
     render(
-      <PublicGit gitVolumes={[mockedPublicGitVolume]} updateMode={false} />,
+      <PublicGit
+        gitVolumes={[mockedPublicGitVolume]}
+        updateMode={false}
+        status={ai.notebook.NotebookStateEnum.STOPPED}
+      />,
       {
         wrapper: RouterWithQueryClientWrapper,
       },
@@ -71,6 +80,7 @@ describe('Public Git Component', () => {
         gitVolumes={[mockedPublicGitVolume]}
         updateMode={true}
         onDelete={onDelete}
+        status={ai.notebook.NotebookStateEnum.STOPPED}
       />,
       { wrapper: RouterWithQueryClientWrapper },
     );
@@ -88,6 +98,7 @@ describe('Public Git Component', () => {
         gitVolumes={[mockedPublicGitVolume]}
         updateMode={true}
         onDelete={onDelete}
+        status={ai.notebook.NotebookStateEnum.STOPPED}
       />,
       { wrapper: RouterWithQueryClientWrapper },
     );

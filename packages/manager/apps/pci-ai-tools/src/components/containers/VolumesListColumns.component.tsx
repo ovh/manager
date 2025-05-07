@@ -8,6 +8,10 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuTrigger,
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
   useToast,
 } from '@datatr-ux/uxlib';
 import ai from '@/types/AI';
@@ -140,15 +144,31 @@ export const getColumns = ({
                 {t('tableActionSyncData')}
               </DropdownMenuItem>
               {updateMode && (
-                <DropdownMenuItem
-                  data-testid="container-action-delete-button"
-                  variant="destructive"
-                  onClick={() => {
-                    onDeletVolume(row.original);
-                  }}
-                >
-                  {t('deleteAction')}
-                </DropdownMenuItem>
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <span className="inline-block" tabIndex={0}>
+                        <DropdownMenuItem
+                          data-testid="container-action-delete-button"
+                          variant="destructive"
+                          onClick={() => {
+                            onDeletVolume(row.original);
+                          }}
+                          disabled={
+                            status !== ai.notebook.NotebookStateEnum.STOPPED
+                          }
+                        >
+                          {t('deleteAction')}
+                        </DropdownMenuItem>
+                      </span>
+                    </TooltipTrigger>
+                    {status !== ai.notebook.NotebookStateEnum.STOPPED && (
+                      <TooltipContent>
+                        {t('disabledButtonTooltip')}
+                      </TooltipContent>
+                    )}
+                  </Tooltip>
+                </TooltipProvider>
               )}
             </DropdownMenuContent>
           </DropdownMenu>
