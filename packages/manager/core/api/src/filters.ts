@@ -129,13 +129,13 @@ export function transformTagsFiltersToQuery(filters: Filter[] = []): string {
     Array<{ operator: string; value?: string }>
   > = {};
 
-  const filteredFilters = filters.filter(
+  const tagFilters = filters.filter(
     ({ type }) => type === FilterTypeCategories.Tags,
   );
 
-  if (!filteredFilters.length) return '';
+  if (!tagFilters.length) return '';
 
-  filteredFilters.forEach(({ comparator: operator, tagKey, value }) => {
+  tagFilters.forEach(({ comparator: operator, tagKey, value }) => {
     if (!queryObject[tagKey]) {
       queryObject[tagKey] = [];
     }

@@ -1,5 +1,5 @@
 import { FilterTypeCategories } from '@ovh-ux/manager-core-api';
-import { FilterWithLabel } from '../components/filters/interface';
+import { FilterWithLabel } from './interface';
 
 export function formatFilter(filter: FilterWithLabel, locale?: string): string {
   if (!filter) return '';

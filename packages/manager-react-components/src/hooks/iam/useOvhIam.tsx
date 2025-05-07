@@ -68,45 +68,11 @@ export function useAuthorizationIam(
   };
 }
 
-// export const fetchResourceTags = async ({
-//   resourceType,
-//   primaryResourceUrn,
-// }: {
-//   resourceType?: string;
-//   primaryResourceUrn: string;
-// }) => {
-//   let url = '/iam/resource';
-
-//   if (resourceType) {
-//     url = `${url}?resourceType=${resourceType}`;
-//   }
-
-//   let { data: resources, cursorNext } = await fetchIcebergV2<IamObject>({
-//     route: url,
-//     pageSize: 5000,
-//   });
-
-//   /* eslint-disable no-await-in-loop */
-//   while (cursorNext) {
-//     const { data, cursorNext: nextCursor } = await fetchIcebergV2<IamObject>({
-//       route: url,
-//       pageSize: 500,
-//       cursor: cursorNext,
-//     });
-//     resources = resources.concat(data);
-//     cursorNext = nextCursor;
-//   }
-//   /* eslint-enable no-await-in-loop */
-//   return formatIamTagsFromResources(resources);
-// };
-
 export function useGetResourceTags({
   resourceType,
-  primaryResourceUrn,
   enabled = true,
 }: {
   resourceType?: string;
-  primaryResourceUrn?: string;
   enabled?: boolean;
 }) {
   let route = '/iam/resource';
@@ -123,9 +89,13 @@ export function useGetResourceTags({
     route,
     queryKey: ['iam/resource', resourceType],
     enabled,
+    shouldFetchAll: true,
   });
 
   const tags = useMemo(() => {
+    if (!resources) {
+      return [];
+    }
     return formatIamTagsFromResources(resources);
   }, [resources]);
 
@@ -134,10 +104,4 @@ export function useGetResourceTags({
     isError: isTagsError,
     isLoading: isTagsLoading,
   };
-
-  // return useQuery({
-  //   queryKey: ['iam/resource', resourceType, primaryResourceUrn],
-  //   queryFn: () => fetchResourceTags({ resourceType, primaryResourceUrn }),
-  //   enabled,
-  // });
 }

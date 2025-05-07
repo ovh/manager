@@ -4,7 +4,7 @@ import { ODS_TAG_COLOR } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import { FilterWithLabel } from './interface';
 import './translations';
-import { formatFilter } from '../../utils/format-filter';
+import { formatFilter } from './format-filter';
 
 export type FilterListProps = {
   filters: FilterWithLabel[];

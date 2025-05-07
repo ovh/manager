@@ -133,9 +133,15 @@ export async function fetchIcebergV6<T>({
     requestHeaders.Pragma = 'no-cache';
   }
 
-  const routeWithParmas = params.size ? `${route}?${params.toString()}` : route;
+  let routeWithParams = route;
+  if (params.size) {
+    routeWithParams =
+      route.indexOf('?') > -1
+        ? `${route}&${params.toString()}`
+        : `${route}?${params.toString()}`;
+  }
 
-  const { data, headers, status } = await apiClient.v6.get(routeWithParmas, {
+  const { data, headers, status } = await apiClient.v6.get(routeWithParams, {
     headers: requestHeaders,
   });
   const totalCount = parseInt(headers['x-pagination-elements'], 10) || 0;
