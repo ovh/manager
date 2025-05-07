@@ -1,10 +1,15 @@
 import { render, screen, waitFor } from '@testing-library/react';
+import { UseQueryResult } from '@tanstack/react-query';
 import { describe, it, expect, vi } from 'vitest';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import ClusterInformation from '@/components/service/ClusterInformation.component';
 import { wrapper } from '@/wrapperRenders';
-import { TKube } from '@/types';
+import { DeploymentMode, TKube } from '@/types';
 import * as ApiKube from '@/api/data/kubernetes';
+import { useRegionInformations } from '@/api/hooks/useRegionInformations';
+import { TRegionInformations } from '@/types/region';
+
+vi.mock('@/api/hooks/useRegionInformations');
 
 const renderClusterInformation = (kubeDetail) =>
   render(<ClusterInformation kubeDetail={kubeDetail} />, { wrapper });
@@ -41,6 +46,9 @@ describe('ClusterInformation', () => {
   } as TKube;
 
   it('renders cluster information correctly', async () => {
+    vi.mocked(useRegionInformations).mockReturnValue({
+      data: { type: DeploymentMode.MONO_ZONE },
+    } as UseQueryResult<TRegionInformations>);
     renderClusterInformation(kubeDetail);
 
     await waitFor(() => {
@@ -61,6 +69,9 @@ describe('ClusterInformation', () => {
         screen.getByTestId('admission-plugin-chip NodeRestriction'),
       ).toHaveProperty('color', ODS_THEME_COLOR_INTENT.warning);
       expect(screen.getByText('Region1')).toBeInTheDocument();
+      expect(
+        screen.getByText('pci_project_flavors_zone_globalregions_tooltip'),
+      ).toBeInTheDocument();
       expect(
         screen.getByText('kube_service_cluster_etcd_quota'),
       ).toBeInTheDocument();

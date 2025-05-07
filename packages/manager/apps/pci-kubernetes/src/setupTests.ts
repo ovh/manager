@@ -2,6 +2,10 @@ import '@testing-library/jest-dom';
 import 'element-internals-polyfill';
 import { vi } from 'vitest';
 
+vi.mock('@/hooks/use3azPlanAvaible', () => ({
+  default: vi.fn().mockReturnValue(true),
+}));
+
 vi.mock('@/hooks/useSavingPlanAvailable', () => ({
   default: vi.fn().mockReturnValue(true),
 }));
