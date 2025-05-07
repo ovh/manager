@@ -2,7 +2,6 @@ import { useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import {
   useCatalog,
-  useProjectQuota,
   useProductAvailability,
   TFlavor,
   TQuota,
@@ -11,6 +10,7 @@ import {
 
 import { getKubeFlavors } from '@/api/data/flavors';
 import { DeploymentMode } from '@/types';
+import { useProjectQuotaByRegion } from './useProjectQuota';
 
 export const FLAVOR_CATEGORIES = [
   {
@@ -106,9 +106,9 @@ export const useMergedKubeFlavors = (projectId: string, region: string) => {
     isPending: isAvailabilityPending,
   } = useProductAvailability(projectId);
 
-  const { data: quota, isPending: isQuotaPending } = useProjectQuota(
+  const { data: quota, isPending: isQuotaPending } = useProjectQuotaByRegion(
     projectId,
-    { region },
+    region,
   );
 
   const isPending =
@@ -175,7 +175,7 @@ export const useMergedKubeFlavors = (projectId: string, region: string) => {
           )?.category,
           isFlex: /flex$/.test(flavor.name),
           isLegacy: /eg|sp|hg|vps-ssd/.test(flavor.name),
-          hasEnoughQuota: hasEnoughQuota(flavor, quota[0]),
+          hasEnoughQuota: hasEnoughQuota(flavor, quota),
         };
       })
       .sort((a, b) => {
