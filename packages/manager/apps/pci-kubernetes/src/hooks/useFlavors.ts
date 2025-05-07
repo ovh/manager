@@ -11,6 +11,7 @@ import {
 
 import { getKubeFlavors } from '@/api/data/flavors';
 import { DeploymentMode } from '@/types';
+import { useProjectQuotaByRegion } from './useProjectQuota';
 
 export const FLAVOR_CATEGORIES = [
   {
@@ -106,9 +107,9 @@ export const useMergedKubeFlavors = (projectId: string, region: string) => {
     isPending: isAvailabilityPending,
   } = useProductAvailability(projectId);
 
-  const { data: quota, isPending: isQuotaPending } = useProjectQuota(
+  const { data: quota, isPending: isQuotaPending } = useProjectQuotaByRegion(
     projectId,
-    { region },
+    region,
   );
 
   const isPending =
