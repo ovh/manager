@@ -34,7 +34,7 @@ const DeleteVolume = () => {
     },
     onUpdateSuccess: () => {
       toast.toast({
-        title: t('containerToastErrorTitle'),
+        title: t('containerToastSuccessTitle'),
         description: t('deleteContainerToastSuccessDescription'),
       });
       navigate('../');

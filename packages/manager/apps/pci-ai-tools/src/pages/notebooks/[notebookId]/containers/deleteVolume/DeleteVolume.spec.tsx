@@ -79,7 +79,7 @@ describe('Delete Volume', () => {
     await waitFor(() => {
       expect(notebookAPI.updateNotebook).toHaveBeenCalled();
       expect(useToast().toast).toHaveBeenCalledWith({
-        title: 'containerToastErrorTitle',
+        title: 'containerToastSuccessTitle',
         description: 'deleteContainerToastSuccessDescription',
       });
     });
