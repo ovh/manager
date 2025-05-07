@@ -41,7 +41,7 @@ const checkVlanValue = (container: HTMLElement, vlanId: string) => {
   expect(input).toBeInTheDocument();
 };
 
-const validForm = (container: HTMLElement) => {
+const submitForm = (container: HTMLElement) => {
   return act(() =>
     userEvent.click(container.querySelector('[label="modify"]') as Element),
   );
@@ -79,7 +79,7 @@ describe('Edit Vrack Segment Id Page', () => {
       { timeout: 2000 },
     );
 
-    await validForm(container);
+    await submitForm(container);
 
     await waitFor(
       () => {
@@ -108,7 +108,7 @@ describe('Edit Vrack Segment Id Page', () => {
       { timeout: 2000 },
     );
 
-    await validForm(container);
+    await submitForm(container);
 
     await waitFor(
       () => {
