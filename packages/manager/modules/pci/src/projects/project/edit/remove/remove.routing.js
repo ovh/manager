@@ -9,10 +9,27 @@ export default /* @ngInject */ ($stateProvider) => {
     layout: 'modal',
     resolve: {
       breadcrumb: () => null,
-      delete: /* @ngInject */ (OvhApiCloudProject, projectId) => () =>
-        OvhApiCloudProject.v6().delete({
+      isUs: /* @ngInject */ (coreConfig) => coreConfig.isRegion('US'),
+      serviceInfo: /* @ngInject */ (OvhApiCloudProject, projectId) =>
+        OvhApiCloudProject.ServiceInfos()
+          .v6()
+          .get({
+            serviceName: projectId,
+          }),
+      delete: /* @ngInject */ (
+        $http,
+        isUs,
+        OvhApiCloudProject,
+        projectId,
+        serviceInfo,
+      ) => () => {
+        if (isUs) {
+          return $http.delete(`/services/${serviceInfo.serviceId}`);
+        }
+        return OvhApiCloudProject.v6().delete({
           serviceName: projectId,
-        }).$promise,
+        }).$promise;
+      },
       goBack: /* @ngInject */ ($state) => () => $state.go('^'),
     },
   });
