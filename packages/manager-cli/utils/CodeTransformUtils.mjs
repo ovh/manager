@@ -1,9 +1,26 @@
 import { access } from 'fs/promises';
-import { constants } from 'fs';
+import { accessSync, constants } from 'fs';
 import { dedupeWords, normalizeName, toPascalCase } from './StringUtils.mjs';
 
 const importPathToComponent = new Map();
 const usedComponentNames = new Set();
+
+/**
+ * Check if a code file exists and is readable.
+ */
+export const isCodeFileExistsSync = (filePath) => {
+  if (!filePath || typeof filePath !== 'string') {
+    console.warn('⚠️ Invalid file path provided to isCodeFileExists');
+    return false;
+  }
+
+  try {
+    accessSync(filePath, constants.R_OK);
+    return true;
+  } catch {
+    return false;
+  }
+};
 
 /**
  * Check if a code file exists and is readable.
@@ -175,9 +192,6 @@ const removeRedundantNameCandidates = (candidates) => {
   });
 };
 
-/**
- * Generate a unique and descriptive component name for a lazy route import.
- */
 /**
  * Generate a unique and descriptive component name for a lazy route import.
  */
