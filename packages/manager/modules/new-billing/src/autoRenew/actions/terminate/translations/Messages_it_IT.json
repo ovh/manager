@@ -1,4 +1,9 @@
 {
   "autorenew_service_terminate": "Conferma",
-  "autorenew_service_terminate_cancel": "Annulla"
+  "autorenew_service_terminate_cancel": "Annulla",
+  "billing_terminate_cancel_button": "No, annulla",
+  "billing_terminate_delete_button": "Sì, disattiva",
+  "billing_terminate_description": "La disattivazione del servizio comporta la cancellazione definitiva di tutti i dati associati. Vuoi procedere alla disattivazione del servizio?",
+  "billing_terminate_headline": "Disattivare {{serviceType}}?",
+  "billing_terminate_headline_service": "Servizio"
 }

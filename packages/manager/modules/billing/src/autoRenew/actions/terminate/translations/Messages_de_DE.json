@@ -1,4 +1,9 @@
 {
   "autorenew_service_terminate": "Bestätigen",
-  "autorenew_service_terminate_cancel": "Abbrechen"
+  "autorenew_service_terminate_cancel": "Abbrechen",
+  "billing_terminate_cancel_button": "Nein, ablehnen",
+  "billing_terminate_delete_button": "Ja, kündigen",
+  "billing_terminate_description": "Bei der Kündigung Ihres Dienstes werden alle zugehörigen Daten unwiderruflich gelöscht. Möchten Sie Ihren Dienst kündigen?",
+  "billing_terminate_headline": "{{serviceType}} kündigen?",
+  "billing_terminate_headline_service": "Dienst"
 }
