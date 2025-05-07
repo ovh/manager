@@ -1,0 +1,15 @@
+{
+  "status-DONE": "Completed",
+  "status-ERROR": "Error",
+  "status-FAILED": "Failed",
+  "status-FINALIZING": "Finalizing",
+  "status-INITIALIZING": "Startup",
+  "status-INTERRUPTED": "Interrupted",
+  "status-INTERRUPTING": "Interrupt",
+  "status-PENDING": "Starting",
+  "status-QUEUED": "Pending",
+  "status-RUNNING": "In progress",
+  "status-RESTARTING": "Restarting",
+  "status-TIMEOUT": "Timeout",
+  "status-SYNC_FAILED": "Synchronization failed"
+}

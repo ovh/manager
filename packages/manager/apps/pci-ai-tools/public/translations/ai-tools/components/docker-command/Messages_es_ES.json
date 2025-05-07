@@ -1,0 +1,14 @@
+{
+  "fieldDockerCommandLabel": "Pedidos",
+  "fieldDockedCommandDescription": "Introduzca el comando Docker que quiera ejecutar en el contenedor.",
+  "commandInputLabel": "Comandos Docker",
+  "commandInputHelper": "Introduzca los argumentos (separados por espacios) que se pasarán al comando Docker. Las comillas simples (`) no son compatibles y deben sustituirse por comillas.",
+  "commandSumupTitle": "Pedido específico",
+  "formDockerCommandErrorPattern": "Las comillas simples (`) no son compatibles y deben sustituirse por comillas.",
+  "updateDockerCommandTitle": "Actualizar los pedidos Docker",
+  "updateDockerCommandButtonCancel": "Cancelar",
+  "updateDockerCommandButtonConfirm": "Confirmar",
+  "updateDockerToastErrorTitle": "Error",
+  "updateDockerToastSuccessTitle": "Superados",
+  "updateDockerToastSuccessDescription": "Se ha actualizado la aplicación"
+}
