@@ -20,6 +20,7 @@
     "@ovh-ux/logs-to-customer": "^1.2.5",
     "@ovh-ux/manager-config": "^8.3.1",
     "@ovh-ux/manager-core-api": "^0.11.1",
+    "@ovh-ux/billing-informations": "^1.0.0",
     "@ovh-ux/manager-core-utils": "*",
     "@ovh-ux/manager-module-common-api": "^0.3.8",
     "@ovh-ux/manager-module-order": "^0.9.8",
