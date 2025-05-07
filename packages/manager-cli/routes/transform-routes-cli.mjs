@@ -25,7 +25,7 @@ const filePath = path.join(basePath, appName, 'src/routes/routes.tsx');
 const outputFilePath = path.join(basePath, appName, 'src/routes/routes.tsx');
 
 /**
- * Fine routes export start line
+ * Find routes export start line
  * @param lines
  * @returns {*}
  */
