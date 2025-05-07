@@ -56,7 +56,7 @@ const migrateRoutes = async () => {
         '',
         'Please check the logs above for more details.',
         'You can refer to the documentation for guidance:',
-        '📘 https://manager.pages.ovhcloud.tools/technical-documentation/manager/development-guidelines/update-react-routes/',
+        '📘 Manager Technical documentation: /development-guidelines/update-react-routes/',
         '',
         'If the issue persists, contact the Control Tower Team.',
       ].join('\n'),
@@ -100,7 +100,7 @@ const migrateRoutes = async () => {
         '  - For V2: "@ovh-ux/manager-react-components" ≥ 2.17.0',
         '',
         'Documentation:',
-        '📘 https://manager.pages.ovhcloud.tools/technical-documentation/manager/development-guidelines/update-react-routes/',
+        '📘 Manager Technical documentation: /development-guidelines/update-react-routes/',
         'Or contact the Control Tower Team.',
       ].join('\n'),
     );
