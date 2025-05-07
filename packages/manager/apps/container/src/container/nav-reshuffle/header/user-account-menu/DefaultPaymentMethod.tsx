@@ -20,7 +20,7 @@ const UserDefaultPaymentMethod = ({
   const shell = useShell();
   const paymentMethodUrl = shell
     .getPlugin('navigation')
-    .getURL('billing', '#/payment/method');
+    .getURL('new-billing', '#/payment/method');
 
   const getChipColor = () => {
     return ODS_THEME_COLOR_INTENT[
