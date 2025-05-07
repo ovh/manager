@@ -91,7 +91,7 @@ const UserAccountMenu = ({
         ...(isIdentityDocumentsAvailable
           ? [
               {
-                app: 'account',
+                app: 'new-account',
                 key: 'myIdentityDocuments',
                 hash: '#/identity-documents',
                 i18nKey: 'user_account_menu_my_identity_documents',
@@ -101,7 +101,7 @@ const UserAccountMenu = ({
         ...(region === 'US'
           ? [
               {
-                app: 'account',
+                app: 'new-account',
                 key: 'myAssistanceTickets',
                 hash: '#/ticket',
                 i18nKey: 'user_account_menu_my_assistance_tickets',
@@ -109,7 +109,7 @@ const UserAccountMenu = ({
             ]
           : [
               {
-                app: 'billing',
+                app: 'new-billing',
                 key: 'myContracts',
                 hash: '#/autorenew/agreements',
                 i18nKey: 'user_account_menu_my_contracts',
@@ -183,7 +183,7 @@ const UserAccountMenu = ({
             >
               <span>{t('user_account_menu_support')}</span>
               <a
-                href={getUrl('account', '#/useraccount/support/level')}
+                href={getUrl('new-account', '#/useraccount/support/level')}
                 onClick={() => onTrackNavigation(tracking.supportLevel)}
               >
                 <OsdsChip
@@ -225,7 +225,7 @@ const UserAccountMenu = ({
               id={'account_kyc_documents'}
               onClick={() =>
                 onLinkClick({
-                  app: 'account',
+                  app: 'new-account',
                   key: 'account_kyc_documents',
                   hash: '#/documents',
                   i18nKey: 'sidebar_account_kyc_documents',
@@ -234,7 +234,7 @@ const UserAccountMenu = ({
               className="d-block"
               aria-label={sidebarTranslation.t('sidebar_account_kyc_documents')}
               title={sidebarTranslation.t('sidebar_account_kyc_documents')}
-              href={getUrl('account', '#/documents')}
+              href={getUrl('new-account', '#/documents')}
               target="_top"
             >
               {sidebarTranslation.t('sidebar_account_kyc_documents')}
