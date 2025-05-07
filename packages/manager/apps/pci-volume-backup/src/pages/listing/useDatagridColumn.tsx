@@ -1,10 +1,12 @@
 import {
   DataGridTextCell,
   DatagridColumn,
+  useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { useBytes } from '@ovh-ux/manager-pci-common';
 import { FilterTypeCategories } from '@ovh-ux/manager-core-api';
+import { OdsLink } from '@ovhcloud/ods-components/react';
 import { TVolumeBackup } from '@/data/api/api.types';
 import { useFormattedDate } from '@/hooks/useFormattedDate';
 import StatusComponent from './Status.component';
@@ -20,6 +22,8 @@ export const useDatagridColumn = () => {
   const { t } = useTranslation('listing');
 
   const { formatBytes } = useBytes();
+  const hrefProject = useProjectUrl('public-cloud');
+  const hrefBlockStorage = `${hrefProject}/storages/blocks`;
 
   const columns: DatagridColumn<TVolumeBackup>[] = [
     {
@@ -67,7 +71,7 @@ export const useDatagridColumn = () => {
         'pci_projects_project_storages_volume_backup_list_datagrid_column_volume',
       ),
       cell: (props: TVolumeBackup) => (
-        <DataGridTextCell>{props.volumeId}</DataGridTextCell>
+        <OdsLink label={props.volumeId} href={hrefBlockStorage} />
       ),
       isSearchable: false,
       isSortable: true,
