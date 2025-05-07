@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.28.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.28.0...@ovh-ux/manager-dbaas-logs@1.28.1) (2025-05-07)
+
+
+### Bug Fixes
+
+* **ldp:** nan undefined on consumption chart ([#16653](https://github.com/ovh/manager/issues/16653)) ([ae416c0](https://github.com/ovh/manager/commit/ae416c0cacb6b783f975d224b82a38da69b9a8bb)), closes [#OB-5642](https://github.com/ovh/manager/issues/OB-5642)
+
+
+
+
+
 # [1.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.27.0...@ovh-ux/manager-dbaas-logs@1.28.0) (2025-04-29)
 
 
