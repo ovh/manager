@@ -14,5 +14,6 @@
   "tableActionManage": "Gestionar",
   "tableActionStart": "Empezar",
   "tableActionStop": "Detener",
-  "tableActionDelete": "Eliminar"
+  "tableActionDelete": "Eliminar",
+  "deleteTableTooltip": "El notebook debe estar en estado detenido"
 }

@@ -14,5 +14,6 @@
   "tableActionManage": "Manage",
   "tableActionStart": "Get started",
   "tableActionStop": "Stop",
-  "tableActionDelete": "Delete"
+  "tableActionDelete": "Delete",
+  "deleteTableTooltip": "Notebook must be in stopped status"
 }

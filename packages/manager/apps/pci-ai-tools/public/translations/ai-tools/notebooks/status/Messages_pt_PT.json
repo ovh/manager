@@ -3,7 +3,7 @@
   "status-RESTARTING": "Reinicialização em curso",
   "status-STARTING": "Arranque",
   "status-STOPPING": "Em curso de extinção",
-  "status-FAILED": "Erro",
+  "status-FAILED": "Falha",
   "status-ERROR": "Erro",
   "status-STOPPED": "Parado",
   "status-SYNC_FAILED": "Falha de sincronização",

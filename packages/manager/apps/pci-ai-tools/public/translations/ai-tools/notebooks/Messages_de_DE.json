@@ -14,5 +14,6 @@
   "tableActionManage": "Verwaltung der ",
   "tableActionStart": "Jetzt loslegen",
   "tableActionStop": "Anhalten",
-  "tableActionDelete": "Löschen"
+  "tableActionDelete": "Löschen",
+  "deleteTableTooltip": "Das Notebook muss sich im Status „Beendet“ befinden"
 }

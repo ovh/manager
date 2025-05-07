@@ -14,5 +14,6 @@
   "tableActionManage": "Gerir",
   "tableActionStart": "Começar",
   "tableActionStop": "Parar",
-  "tableActionDelete": "Suprimir"
+  "tableActionDelete": "Suprimir",
+  "deleteTableTooltip": "O notebook deve estar em estado parado"
 }

@@ -14,5 +14,6 @@
   "tableActionManage": "Amministrare",
   "tableActionStart": "Comincia ora",
   "tableActionStop": "Fermare",
-  "tableActionDelete": "Eliminare"
+  "tableActionDelete": "Eliminare",
+  "deleteTableTooltip": "Il notebook deve essere in stato interrotto"
 }

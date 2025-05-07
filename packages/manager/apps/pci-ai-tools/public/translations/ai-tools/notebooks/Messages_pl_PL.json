@@ -14,5 +14,6 @@
   "tableActionManage": "Administracja",
   "tableActionStart": "Pierwsze kroki",
   "tableActionStop": "Zatrzymaj",
-  "tableActionDelete": "Usuń"
+  "tableActionDelete": "Usuń",
+  "deleteTableTooltip": "Notebook musi być w stanie zatrzymania"
 }
