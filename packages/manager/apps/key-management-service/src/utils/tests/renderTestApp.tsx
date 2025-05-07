@@ -30,6 +30,8 @@ import {
 import {
   getCredentialsMock,
   GetCredentialsMockParams,
+  deleteCredentialMock,
+  DeleteCredentialsMockParams,
 } from '@/mocks/credentials/credentials.handler';
 import { kmsServicesMock } from '@/mocks/services/services.mock';
 import {
@@ -57,7 +59,8 @@ export const renderTestApp = async (
     GetFeatureAvailabilityMocksParams &
     GetCatalogKmsMocksParams &
     GetReferenceMockParams &
-    GetIamAuthorizationMockParams = {},
+    GetIamAuthorizationMockParams &
+    DeleteCredentialsMockParams = {},
 ) => {
   global.server?.resetHandlers(
     ...toMswHandlers([
@@ -70,6 +73,7 @@ export const renderTestApp = async (
       ...getFeatureAvailabilityMocks(mockParams),
       ...getCatalogKmsMocks(mockParams),
       ...getReferenceMock(mockParams),
+      ...deleteCredentialMock(mockParams),
     ]),
   );
 

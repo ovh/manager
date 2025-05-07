@@ -60,5 +60,8 @@
   "key_management_service_dashboard_back_link": "Voltar à lista dos KMS",
   "key_management_service_dashboard_field_label_kmip_count": "Número de objetos KMIP",
   "key_management_service_dashboard_field_label_service-keys_count": "Número de Service Keys",
-  "logs": "Logs"
+  "logs": "Logs",
+  "key_management_service_dashboard_button_label_download_ca": "Descarregar CA",
+  "key_management_service_dashboard_button_label_download_rsa_ca": "Descarregar CA RSA",
+  "key_management_service_dashboard_error_download_ca": "Não é possível descarregar o certificado"
 }

@@ -23,7 +23,7 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { useNavigate } from 'react-router-dom';
 import { ErrorBanner, Region } from '@ovh-ux/manager-react-components';
-import { useOrderCatalogOKMS } from '@/data/hooks/useOrderCatalogOKMS';
+import { useOrderCatalogOkms } from '@/data/hooks/useOrderCatalogOkms';
 import { ROUTES_URLS } from '@/routes/routes.constants';
 import { CREATE_KMS_TEST_IDS } from '@/pages/create/createKms.constants';
 
@@ -46,7 +46,7 @@ const RegionSelector = ({
     isError,
     error,
     isLoading,
-  } = useOrderCatalogOKMS(environment.getUser().ovhSubsidiary);
+  } = useOrderCatalogOkms(environment.getUser().ovhSubsidiary);
   const navigate = useNavigate();
 
   if (isError && error) {
@@ -73,7 +73,7 @@ const RegionSelector = ({
         )}
         {orderCatalogOKMS && !isLoading && (
           <OdsSelect
-            className="md:w-[250px] sm:w-full"
+            className="md:w-[400px] sm:w-full"
             name="select-region"
             placeholder={t('key_management_service_create_select_placeholder')}
             data-testid={CREATE_KMS_TEST_IDS.selectRegion}
