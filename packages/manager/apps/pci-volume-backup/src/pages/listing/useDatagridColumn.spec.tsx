@@ -5,8 +5,15 @@ import { useDatagridColumn } from './useDatagridColumn';
 import { TVolumeBackup } from '@/data/api/api.types';
 
 vi.mock('@ovh-ux/manager-react-components', () => ({
+  useProjectUrl: vi.fn().mockReturnValue('/project-url'),
   DataGridTextCell: ({ children }: { children: React.ReactNode }) => (
     <div>{children}</div>
+  ),
+}));
+
+vi.mock('@ovhcloud/ods-components/react', () => ({
+  OdsLink: ({ label, href }: { label: string; href: string }) => (
+    <a href={href}>{label}</a>
   ),
 }));
 
