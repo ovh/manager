@@ -5,6 +5,7 @@ import {
   getAuthenticationMocks,
 } from '@ovh-ux/manager-core-test-utils';
 import 'element-internals-polyfill';
+import './setupTests';
 
 declare const global: any;
 

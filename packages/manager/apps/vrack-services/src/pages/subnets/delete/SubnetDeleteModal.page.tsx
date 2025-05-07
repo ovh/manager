@@ -76,7 +76,7 @@ export default function SubnetDeleteModal() {
       isOpen
       closeModal={onClose}
       deleteInputLabel={t('modalDeleteSubnetInputLabel')}
-      headline={t('modalDeleteSubnetHeadline')}
+      serviceTypeName={t('modalDeleteSubnetHeadline')}
       description={t('modalDeleteSubnetDescription')}
       onConfirmDelete={() => {
         trackClick({

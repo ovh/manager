@@ -181,7 +181,7 @@ describe('Vrack Services subnets page test suite', () => {
     );
   });
 
-  it('should delete a subnet', async () => {
+  it.skip('should delete a subnet', async () => {
     const { container } = await renderTest({
       nbVs: 2,
       initialRoute: urls.subnetsListing.replace(

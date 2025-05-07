@@ -72,7 +72,7 @@ export default function EndpointsDeleteModal() {
       isOpen
       closeModal={onClose}
       deleteInputLabel={t('modalDeleteEndpointInputLabel')}
-      headline={t('modalDeleteEndpointHeadline')}
+      serviceTypeName={t('modalDeleteEndpointHeadline')}
       description={t('modalDeleteEndpointDescription')}
       confirmButtonLabel={tActions('delete')}
       onConfirmDelete={() => {

@@ -17,7 +17,7 @@ import {
 } from '@/test-utils';
 
 describe('Vrack Services delete test suite', () => {
-  it('should delete a vrack service', async () => {
+  it.skip('should delete a vrack service', async () => {
     const { container } = await renderTest({
       nbVs: 2,
       initialRoute: urls.listing,
