@@ -19,7 +19,8 @@
     "jsx": "react",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@secrets/*": ["./src/modules/secrets/*"]
     }
   },
   "include": ["src"],
