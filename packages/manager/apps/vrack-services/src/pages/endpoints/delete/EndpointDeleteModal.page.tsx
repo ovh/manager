@@ -2,6 +2,8 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
+import { OdsMessage } from '@ovhcloud/ods-components/react';
+import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
 import {
   ButtonType,
   PageLocation,
@@ -14,13 +16,11 @@ import {
   useVrackService,
   useUpdateVrackServices,
 } from '@ovh-ux/manager-network-common';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { PageName } from '@/utils/tracking';
 import { MessagesContext } from '@/components/feedback-messages/Messages.context';
 
 export default function EndpointsDeleteModal() {
   const { t } = useTranslation('vrack-services/endpoints');
-  const { t: tActions } = useTranslation(NAMESPACES.ACTIONS);
   const { id, urn } = useParams();
   const urnToDelete = urn.replace('_', '/');
   const navigate = useNavigate();
@@ -71,10 +71,6 @@ export default function EndpointsDeleteModal() {
     <DeleteModal
       isOpen
       closeModal={onClose}
-      deleteInputLabel={t('modalDeleteEndpointInputLabel')}
-      headline={t('modalDeleteEndpointHeadline')}
-      description={t('modalDeleteEndpointDescription')}
-      confirmButtonLabel={tActions('delete')}
       onConfirmDelete={() => {
         trackClick({
           location: PageLocation.popup,
@@ -86,6 +82,10 @@ export default function EndpointsDeleteModal() {
       }}
       error={isError ? updateError?.response?.data?.message : null}
       isLoading={isPending}
-    />
+    >
+      <OdsMessage color={ODS_MESSAGE_COLOR.information} isDismissible={false}>
+        {t('modalDeleteEndpointDescription')}
+      </OdsMessage>
+    </DeleteModal>
   );
 }
