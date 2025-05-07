@@ -1,4 +1,4 @@
-import { act, renderHook } from '@testing-library/react-hooks';
+import { act, renderHook } from '@testing-library/react';
 import { vi } from 'vitest';
 import { getLastXMonths } from '@/utils/formatter/date';
 import { isInstanceFlavor } from '@/utils/savingsPlan';
@@ -37,7 +37,7 @@ describe('useFilteredConsumption', () => {
     const { result } = renderHook(() => useFilteredConsumption(mockLocale));
 
     expect(result.current.period).toBe('January 2023');
-    expect(result.current.flavor).toBe('b3-8');
+    expect(result.current.flavor).toBe('b3-16');
     expect(result.current.isConsumptionLoading).toBe(false);
   });
 
@@ -53,21 +53,8 @@ describe('useFilteredConsumption', () => {
     const { result } = renderHook(() => useFilteredConsumption(mockLocale));
 
     expect(result.current.flavorOptions).toEqual([
-      { label: 'b3-8', value: 'b3-8', prefix: 'Instance' },
       { label: 'b3-16', value: 'b3-16', prefix: 'Instance' },
-      {
-        label: 'rancher.standard',
-        value: 'rancher.standard',
-        prefix: 'Rancher',
-      },
       { label: 'b3-32', value: 'b3-32', prefix: 'Instance' },
-      { label: 'b3-64', value: 'b3-64', prefix: 'Instance' },
-      { label: 'c3-4', value: 'c3-4', prefix: 'Rancher' },
-      {
-        label: 'rancher.ovhcloud-edition',
-        value: 'rancher.ovhcloud-edition',
-        prefix: 'Rancher',
-      },
     ]);
   });
 

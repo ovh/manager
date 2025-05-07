@@ -6,7 +6,6 @@ import {
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import '@ovhcloud/ods-theme-blue-jeans';
 import './index.scss';
 import './vite-hmr';
 import '@ovh-ux/manager-pci-common/dist/style.css';

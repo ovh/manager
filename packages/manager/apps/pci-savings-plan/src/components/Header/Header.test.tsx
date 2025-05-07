@@ -18,23 +18,18 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
       <div data-testid="changelog-button-wrapper">{changelogButton}</div>
     </div>
   ),
-  PciGuidesHeader: ({ category }: { category: string }) => (
-    <div data-testid="pci-guides-header">{category}</div>
-  ),
   ChangelogButton: () => (
     <button data-testid="changelog-button">Change-log</button>
   ),
 }));
 
 describe('Header', () => {
-  it('should show title, category and changelog button', () => {
+  it('should show title and changelog button', () => {
     const title = 'Titre de test';
-    const category = 'savings_plans_test';
 
-    render(<Header title={title} category={category} />);
+    render(<Header title={title} />);
 
     expect(screen.getByTestId('headers')).toHaveTextContent(title);
-    expect(screen.getByTestId('pci-guides-header')).toHaveTextContent(category);
     expect(screen.getByTestId('changelog-button')).toBeInTheDocument();
   });
 });

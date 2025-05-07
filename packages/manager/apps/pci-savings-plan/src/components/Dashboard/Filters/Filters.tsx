@@ -12,7 +12,7 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-} from '@/components/Select/Select';
+} from '@datatr-ux/uxlib';
 
 import { InstanceTechnicalName } from '@/types/CreatePlan.type';
 import { toMonthYear } from '@/utils/formatter/date';
@@ -77,7 +77,7 @@ const SelectWithLabel = <T extends string>({
         >
           {getSelectText(formatter ? formatter(value) : value, options, t)}
         </SelectTrigger>
-        <SelectContent>
+        <SelectContent className="bg-white">
           {options.map((option) => (
             <SelectItem key={option.value} value={option.value}>
               <div className="flex flex-col items-start">
