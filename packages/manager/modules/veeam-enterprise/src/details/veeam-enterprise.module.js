@@ -13,7 +13,6 @@ import VeeamEnterpriseCtrl from './controller';
 import VeeamEnterpriseService from './service';
 import VeeamEnterpriseDashboardComponent from '../dashboard/component';
 import VeeamEnterpriseLicenseComponent from '../dashboard/license/license.component';
-import VeeamEnterpriseLicenseTerminateComponent from '../dashboard/terminate/terminate.component';
 
 import routing from './routing';
 
@@ -37,10 +36,6 @@ angular
   .controller('VeeamEnterpriseCtrl', VeeamEnterpriseCtrl)
   .component('veeamEnterpriseDashboard', VeeamEnterpriseDashboardComponent)
   .component('veeamEnterpriseLicense', VeeamEnterpriseLicenseComponent)
-  .component(
-    'veeamEnterpriseLicenseTerminate',
-    VeeamEnterpriseLicenseTerminateComponent,
-  )
   .service('VeeamEnterpriseService', VeeamEnterpriseService)
   .run(/* @ngTranslationsInject:json ./translations */);
 
