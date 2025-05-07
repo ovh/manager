@@ -573,7 +573,7 @@
   "ip_order_finish_error": "Si è verificato un errore nell'ordine di IP aggiuntivi.",
   "ip_order_free_activation_fee": "Attenzione: gli IP aggiuntivi dei server dedicati OVH comportano solo le spese di attivazione, non sono previsti costi di rinnovo mensile",
   "ip_organisation_title": "Gestisci le mie organizzazioni",
-  "ip_organisation_button": "Gestisci le mie organizzazioni",
+  "ip_organisation_button": "Gestire le organizzazioni",
   "ip_organisation_table_organisation": "Organizzazione",
   "ip_organisation_table_type": "Tipo",
   "ip_organisation_table_lastname": "Cognome",
