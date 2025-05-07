@@ -1,11 +1,13 @@
 import { FilterCategories } from '@ovh-ux/manager-core-api';
 import { DataGridTextCell } from './text-cell.component';
 import { DatagridColumn, DatagridColumnTypes } from './datagrid.component';
+import { IamObject } from '../../hooks';
 
 export interface Item {
   label: string;
   price: number;
   status: string;
+  iam: IamObject;
 }
 
 export const columns = [
@@ -44,10 +46,33 @@ export const columnsFilters: DatagridColumn<unknown>[] = [
     isFilterable: true,
     comparator: FilterCategories.String,
   },
+];
+
+export const columnsFiltersWithTags: DatagridColumn<unknown>[] = [
+  {
+    id: 'label',
+    cell: (item: Item) => {
+      return <DataGridTextCell>{item.label}</DataGridTextCell>;
+    },
+    label: 'Label',
+    isFilterable: true,
+    comparator: FilterCategories.String,
+  },
+  {
+    id: 'price',
+    cell: (item: Item) => {
+      return <DataGridTextCell>{item.price} €</DataGridTextCell>;
+    },
+    label: 'Price',
+    isFilterable: true,
+    comparator: FilterCategories.String,
+  },
   {
     id: 'Tags',
     cell: (item: Item) => {
-      return <DataGridTextCell>{item.price} €</DataGridTextCell>;
+      return (
+        <DataGridTextCell>{JSON.stringify(item.iam?.tags)} €</DataGridTextCell>
+      );
     },
     label: 'Tags',
     isFilterable: true,

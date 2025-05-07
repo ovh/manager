@@ -12,13 +12,10 @@ import {
   OdsFormField,
   OdsInput,
   OdsSelect,
-  OdsCombobox,
-  OdsComboboxItem,
-  OdsSkeleton,
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import './translations';
-import { useGetResourceTags } from '../../hooks';
+import { FilterTagValue } from './filter-tag-value.component';
 
 export type Option = {
   label: string;
@@ -59,15 +56,6 @@ export function FilterAdd({
     [columns, selectedId],
   );
 
-  const {
-    data: tags,
-    isError: getTagsError,
-    isLoading: isTagsLoading,
-  } = useGetResourceTags({
-    resourceType,
-    enabled: selectedColumn?.type === FilterTypeCategories.Tags,
-  });
-
   const isInputValid = useMemo(() => {
     if (selectedColumn?.type === FilterTypeCategories.Date) {
       return dateValue !== null;
@@ -78,6 +66,8 @@ export function FilterAdd({
       return !Number.isNaN(Number(value)) && value !== '';
     }
 
+    // If filter is a tag filter, we need to check if the tag key and value are valid
+    // If comparator is TagExists or TagNotExists, we need to only check for tagKey
     if (selectedColumn?.type === FilterTypeCategories.Tags) {
       return (
         (!!tagKey && !!value) ||
@@ -241,59 +231,15 @@ export function FilterAdd({
         </div>
       )}
       {selectedColumn?.type === FilterTypeCategories.Tags && (
-        <div>
-          <OdsFormField className="mt-2 w-full">
-            <div slot="label">
-              <span className="text-[--ods-color-heading] leading-[22px]">
-                {t('common_criteria_adder_key_label')}
-              </span>
-            </div>
-            {isTagsLoading && <OdsSkeleton />}
-            {!isTagsLoading && (
-              <OdsCombobox
-                name="tag-key"
-                allowNewElement={false}
-                onOdsChange={(event) => {
-                  setTagKey(event.detail.value);
-                  setValue('');
-                }}
-              >
-                {!getTagsError &&
-                  tags?.map((tag) => (
-                    <OdsComboboxItem key={tag.key} value={tag.key}>
-                      {tag.key}
-                    </OdsComboboxItem>
-                  ))}
-              </OdsCombobox>
-            )}
-          </OdsFormField>
-          <OdsFormField className="mt-2 w-full">
-            <div slot="label">
-              <span className="text-[--ods-color-heading] leading-[22px]">
-                {t('common_criteria_adder_value_label')}
-              </span>
-            </div>
-            {isTagsLoading && <OdsSkeleton />}
-            {!isTagsLoading && (
-              <OdsCombobox
-                name="tag-value"
-                isDisabled={!tagKey}
-                allowNewElement={false}
-                onOdsChange={(event) => {
-                  setValue(event.detail.value);
-                }}
-              >
-                {tags
-                  ?.find((tag) => tag.key === tagKey)
-                  ?.values?.map((value) => (
-                    <OdsComboboxItem key={value} value={value}>
-                      {value}
-                    </OdsComboboxItem>
-                  ))}
-              </OdsCombobox>
-            )}
-          </OdsFormField>
-        </div>
+        <FilterTagValue
+          resourceType={resourceType}
+          onTagInputChange={(tag) => {
+            setTagKey(tag.tagKey);
+            if (tag.value) {
+              setValue(tag.value);
+            }
+          }}
+        />
       )}
       <div>
         <OdsButton

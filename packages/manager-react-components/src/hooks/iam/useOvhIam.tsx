@@ -2,6 +2,8 @@ import { apiClient, fetchIcebergV2 } from '@ovh-ux/manager-core-api';
 import { useQuery, keepPreviousData } from '@tanstack/react-query';
 import { IamCheckResponse, IamInterface, IamObject } from './iam.interface';
 import { formatIamTagsFromResources } from '../../utils/format-tags';
+import { useResourcesIcebergV2 } from '..';
+import { useMemo } from 'react';
 
 export const fetchAuthorizationsCheck = async ({
   actions,
@@ -66,49 +68,76 @@ export function useAuthorizationIam(
   };
 }
 
-export const fetchResourceTags = async ({
-  resourceType,
-  primaryResourceUrn,
-}: {
-  resourceType?: string;
-  primaryResourceUrn: string;
-}) => {
-  let url = '/iam/resource';
+// export const fetchResourceTags = async ({
+//   resourceType,
+//   primaryResourceUrn,
+// }: {
+//   resourceType?: string;
+//   primaryResourceUrn: string;
+// }) => {
+//   let url = '/iam/resource';
 
-  if (!!resourceType) {
-    url = `${url}?resourceType=${resourceType}`;
-  }
+//   if (resourceType) {
+//     url = `${url}?resourceType=${resourceType}`;
+//   }
 
-  let { data: resources, cursorNext } = await fetchIcebergV2<IamObject>({
-    route: url,
-    pageSize: 5000,
-  });
+//   let { data: resources, cursorNext } = await fetchIcebergV2<IamObject>({
+//     route: url,
+//     pageSize: 5000,
+//   });
 
-  while (!!cursorNext) {
-    const { data, cursorNext: nextCursor } = await fetchIcebergV2<IamObject>({
-      route: url,
-      pageSize: 500,
-      cursor: cursorNext,
-    });
-    resources = resources.concat(data);
-    cursorNext = nextCursor;
-  }
-
-  return formatIamTagsFromResources(resources);
-};
+//   /* eslint-disable no-await-in-loop */
+//   while (cursorNext) {
+//     const { data, cursorNext: nextCursor } = await fetchIcebergV2<IamObject>({
+//       route: url,
+//       pageSize: 500,
+//       cursor: cursorNext,
+//     });
+//     resources = resources.concat(data);
+//     cursorNext = nextCursor;
+//   }
+//   /* eslint-enable no-await-in-loop */
+//   return formatIamTagsFromResources(resources);
+// };
 
 export function useGetResourceTags({
   resourceType,
   primaryResourceUrn,
-  enabled,
+  enabled = true,
 }: {
   resourceType?: string;
   primaryResourceUrn?: string;
-  enabled: boolean;
+  enabled?: boolean;
 }) {
-  return useQuery({
-    queryKey: ['iam/resource', resourceType, primaryResourceUrn],
-    queryFn: () => fetchResourceTags({ resourceType, primaryResourceUrn }),
+  let route = '/iam/resource';
+
+  if (resourceType) {
+    route = `${route}?resourceType=${resourceType}`;
+  }
+
+  const {
+    flattenData: resources,
+    isError: isTagsError,
+    isLoading: isTagsLoading,
+  } = useResourcesIcebergV2<IamObject>({
+    route,
+    queryKey: ['iam/resource', resourceType],
     enabled,
   });
+
+  const tags = useMemo(() => {
+    return formatIamTagsFromResources(resources);
+  }, [resources]);
+
+  return {
+    tags,
+    isError: isTagsError,
+    isLoading: isTagsLoading,
+  };
+
+  // return useQuery({
+  //   queryKey: ['iam/resource', resourceType, primaryResourceUrn],
+  //   queryFn: () => fetchResourceTags({ resourceType, primaryResourceUrn }),
+  //   enabled,
+  // });
 }

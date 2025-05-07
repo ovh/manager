@@ -149,7 +149,7 @@ export interface DatagridProps<T> {
   resetExpandedRowsOnItemsChange?: boolean;
   /** When true, will fix the columns size by column definition size */
   tableLayoutFixed?: boolean;
-  /** Resource type */
+  /** To use if tag column is present and filter is enabled. This allows to fetch all tags from iam only for this resource type */
   resourceType?: string;
 }
 
