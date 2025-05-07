@@ -40,5 +40,6 @@
   "pci_projects_project_public_gateways_add_region_activate_line1": "Questa Region non è ancora attiva. È possibile attivarla sulla scheda ",
   "pci_projects_project_public_gateways_add_region_activate_line2": "Quota e localizzazione ",
   "pci_projects_project_public_gateways_add_region_activate_line3": "e poi creare il tuo Gateway.",
-  "pci_projects_project_public_gateways_3az_guide_description": "Per maggiori informazioni sulle caratteristiche dei servizi 3-AZ e su come utilizzarli per progettare un'infrastruttura resiliente, <Link>clicca qui</Link>"
+  "pci_projects_project_public_gateways_3az_guide_description": "Per maggiori informazioni sulle caratteristiche dei servizi 3-AZ e su come utilizzarli per progettare un'infrastruttura resiliente, <Link>clicca qui</Link>",
+  "pci_projects_project_public_price_from": "A partire da {{price}}"
 }
