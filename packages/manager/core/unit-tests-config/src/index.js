@@ -1,7 +1,15 @@
-import { coverageConfigDefaults, defineConfig } from 'vitest/config';
+// Hexagonal Architecture-style boundary:
+// enforcing clear isolation boundaries between the framework (Vitest) and the application domain
+import {
+  defineConfig as createConfig,
+  mergeConfig,
+  coverageConfigDefaults as defaultCoverageConfig,
+} from 'vitest/config';
 import react from '@vitejs/plugin-react';
 
-export default defineConfig({
+export { createConfig, mergeConfig, defaultCoverageConfig };
+
+export const sharedConfig = createConfig({
   plugins: [react()],
   test: {
     globals: true,
@@ -13,7 +21,7 @@ export default defineConfig({
     coverage: {
       include: ['src'],
       exclude: [
-        ...coverageConfigDefaults.exclude,
+        ...defaultCoverageConfig.exclude,
         'src/__tests__',
         'src/vite-*.ts',
         'src/App.tsx',
