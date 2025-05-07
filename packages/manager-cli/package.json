@@ -15,7 +15,8 @@
   "author": "OVH SAS",
   "main": "index.js",
   "scripts": {
-    "routes-migrate": "node ./routes/routes-migrate.mjs",
+    "json-to-component-route-migration": "node ./routes/json-to-component-route-migration.mjs",
+    "manager-cli": "node ./manager-cli.mjs",
     "test": "vitest run",
     "test:cov": "vitest run --coverage",
     "test:watch": "vitest",
