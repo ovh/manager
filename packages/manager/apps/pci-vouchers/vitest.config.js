@@ -27,6 +27,9 @@ export default defineConfig({
         // This files will be deleted while refactoring sprint, it's the rease we exclude files
         'src/components/error-page/ErrorPage.tsx',
       ],
+      reporter: ['text', 'lcov'],
+      reportsDirectory: './coverage', // Directory where the coverage reports will be stored
+      reportOnFailure: true,
     },
   },
   resolve: {

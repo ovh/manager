@@ -13,6 +13,7 @@
   "type": "module",
   "scripts": {
     "build": "tsc && vite build",
+    "coverage": "vitest run --coverage",
     "start": "tsc && vite",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage"

@@ -22,6 +22,9 @@ export default defineConfig({
         'src/index.tsx',
         'src/tracking.constant.ts',
       ],
+      reporter: ['text', 'lcov'],
+      reportsDirectory: './coverage', // Directory where the coverage reports will be stored
+      reportOnFailure: true,
     },
     dangerouslyIgnoreUnhandledErrors: true,
     testTimeout: 60000,

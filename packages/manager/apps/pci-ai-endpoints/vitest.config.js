@@ -18,6 +18,9 @@ export default defineConfig({
         'src/configuration',
         'src/index.tsx',
       ],
+      reporter: ['text', 'lcov'],
+      reportsDirectory: './coverage', // Directory where the coverage reports will be stored
+      reportOnFailure: true,
     },
   },
   resolve: {

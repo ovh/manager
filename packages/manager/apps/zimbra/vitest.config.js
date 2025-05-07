@@ -22,6 +22,9 @@ export default defineConfig({
         'src/**/*constants.ts',
         ...coverageConfigDefaults.exclude,
       ],
+      reporter: ['text', 'lcov'],
+      reportsDirectory: './coverage', // Directory where the coverage reports will be stored
+      reportOnFailure: true,
     },
     setupFiles: ['src/utils/test.setup.tsx'],
   },

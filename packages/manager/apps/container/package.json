@@ -12,6 +12,7 @@
   "author": "OVH SAS",
   "scripts": {
     "build": "tsc && vite build",
+    "coverage": "vitest run --coverage",
     "lint": "eslint ./src",
     "start": "vite",
     "test": "vitest run",

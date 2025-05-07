@@ -14,6 +14,7 @@
     "beta-test:e2e": "tsc && node ../../../../scripts/run-playwright-bdd.js",
     "beta-test:e2e:ci": "tsc && node ../../../../scripts/run-playwright-bdd.js --ci",
     "build": "tsc && vite build",
+    "coverage": "vitest run --coverage",
     "start": "vite",
     "test": "vitest run",
     "test:watch": "vitest watch"

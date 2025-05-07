@@ -21,6 +21,9 @@ export default defineConfig({
         'src/main.tsx',
         'src/routes.tsx',
       ],
+      reporter: ['text', 'lcov'],
+      reportsDirectory: './coverage', // Directory where the coverage reports will be stored
+      reportOnFailure: true,
     },
   },
   resolve: {

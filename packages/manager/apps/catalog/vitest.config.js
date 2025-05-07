@@ -11,6 +11,9 @@ export default defineConfig({
     coverage: {
       include: ['src'],
     },
+    reporter: ['text', 'lcov'],
+    reportsDirectory: './coverage', // Directory where the coverage reports will be stored
+    reportOnFailure: true,
   },
   resolve: {
     alias: {

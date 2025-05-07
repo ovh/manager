@@ -11,7 +11,6 @@ export default defineConfig({
     setupFiles: ['./src/setupTests.tsx'],
     coverage: {
       provider: 'v8',
-      reporter: ['text'],
       include: ['src'],
       exclude: [
         'src/mocks',
@@ -21,6 +20,9 @@ export default defineConfig({
         'src/vite-hmr.ts',
         'src/utils/downloadTextAsFile.ts',
       ],
+      reporter: ['text', 'lcov'],
+      reportsDirectory: './coverage', // Directory where the coverage reports will be stored
+      reportOnFailure: true,
     },
     testTimeout: 60000,
     fileParallelism: false,
