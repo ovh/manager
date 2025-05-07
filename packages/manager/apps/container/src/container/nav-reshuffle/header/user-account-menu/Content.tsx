@@ -35,9 +35,6 @@ const UserAccountMenu = ({
   const [isKycDocumentsVisible, setIsDocumentsVisible] = useState<boolean>(
     false,
   );
-  const [isNewAccountAvailable, setIsNewAccountAvailable] = useState<boolean>(
-    false,
-  );
   const user = shell
     .getPlugin('environment')
     .getEnvironment()
@@ -72,16 +69,11 @@ const UserAccountMenu = ({
   const getUrl = (key: string, hash: string) =>
     shell.getPlugin('navigation').getURL(key, hash);
   const ssoLink = getUrl('iam', '#/dashboard/users');
-  const [supportLink, setSupportLink] = useState(
-    getUrl('dedicated', '#/useraccount/support/level'),
-  );
 
-  const getAllLinks = useMemo(
-    () => async () => {
+  useEffect(() => {
+    const fetchData = async () => {
       let isIdentityDocumentsAvailable = false;
       const featureAvailability = await fetchFeatureAvailabilityData([
-        'new-billing',
-        'new-account',
         'identity-documents',
         'procedures:fraud',
       ]);
@@ -92,12 +84,6 @@ const UserAccountMenu = ({
       if (featureAvailability['procedures:fraud']) {
         const { status } = await reketInstance.get(`/me/procedure/fraud`);
         setIsDocumentsVisible(['required', 'open'].includes(status));
-      }
-
-      setIsNewAccountAvailable(!!featureAvailability['new-account']);
-      const isNewBillingAvailable = !!featureAvailability['new-billing'];
-      if (isNewAccountAvailable) {
-        setSupportLink(getUrl('new-account', '#/useraccount/support/level'));
       }
 
       setAllLinks([
@@ -122,22 +108,19 @@ const UserAccountMenu = ({
               },
             ]
           : [
-            {
-              app: 'billing',
-              key: 'myContracts',
-              hash: 'autorenew/agreements',
-              i18nKey: 'user_account_menu_my_contracts',
-              trackingHit: tracking.contracts,
-            },
-          ]),
+              {
+                app: 'billing',
+                key: 'myContracts',
+                hash: '#/autorenew/agreements',
+                i18nKey: 'user_account_menu_my_contracts',
+                trackingHit: tracking.contracts,
+              },
+            ]),
       ]);
-    },
-    [isNewAccountAvailable],
-  );
+    };
 
-  useEffect(() => {
-    getAllLinks();
-  }, [getAllLinks]);
+    fetchData();
+  }, []);
 
   return (
     <div className={`${style.menuContent} oui-navbar-menu__wrapper`}>
@@ -200,7 +183,7 @@ const UserAccountMenu = ({
             >
               <span>{t('user_account_menu_support')}</span>
               <a
-                href={supportLink}
+                href={getUrl('account', '#/useraccount/support/level')}
                 onClick={() => onTrackNavigation(tracking.supportLevel)}
               >
                 <OsdsChip
@@ -242,7 +225,7 @@ const UserAccountMenu = ({
               id={'account_kyc_documents'}
               onClick={() =>
                 onLinkClick({
-                  app: isNewAccountAvailable ? 'new-account' : 'dedicated',
+                  app: 'account',
                   key: 'account_kyc_documents',
                   hash: '#/documents',
                   i18nKey: 'sidebar_account_kyc_documents',
@@ -251,10 +234,7 @@ const UserAccountMenu = ({
               className="d-block"
               aria-label={sidebarTranslation.t('sidebar_account_kyc_documents')}
               title={sidebarTranslation.t('sidebar_account_kyc_documents')}
-              href={getUrl(
-                isNewAccountAvailable ? 'new-account' : 'dedicated',
-                '#/documents',
-              )}
+              href={getUrl('account', '#/documents')}
               target="_top"
             >
               {sidebarTranslation.t('sidebar_account_kyc_documents')}
