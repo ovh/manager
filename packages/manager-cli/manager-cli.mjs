@@ -80,6 +80,7 @@ Examples:
   yarn manager-cli routes-migrate --app pci-ai-tools
   yarn manager-cli routes-migrate --app pci-ai-tools --dry-run
   yarn manager-cli --list
+  yarn manager-cli --help
 `);
 };
 
