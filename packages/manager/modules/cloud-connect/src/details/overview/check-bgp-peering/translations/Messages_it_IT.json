@@ -1,5 +1,5 @@
 {
-  "cloud_connect_bgp_peering": "Verificare il Peering BGP",
+  "cloud_connect_bgp_peering": "Test di connessione BGP",
   "cloud_connect_bgp_peering_description": "Seleziona una diagnostica da effettuare",
   "cloud_connect_bgp_peering_choice_default": "<b>Default</b>",
   "cloud_connect_bgp_peering_choice_routes": "<b>Routes</b>",
@@ -11,5 +11,5 @@
   "cloud_connect_bgp_peering_denied": "È stato raggiunto il numero massimo di diagnostica per questo servizio. Ti consigliamo di riprovare tra 24 ore.",
   "cloud_connect_bgp_peering_faild": "Impossibile avviare la diagnostica.",
   "cloud_connect_bgp_peering_error": "Impossibile avviare la diagnostica: <br> {{ message }} <br> request_id: {{requestId}}",
-  "cloud_connect_run_diagnostic": "Avviare la diagnostica"
+  "cloud_connect_run_diagnostic": "avviare la diagnostica"
 }

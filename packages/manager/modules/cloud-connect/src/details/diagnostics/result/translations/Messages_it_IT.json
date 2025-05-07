@@ -4,6 +4,6 @@
   "cloud_connect_diagnostics_result_id": "ID Diagnostica",
   "cloud_connect_diagnostics_result_date": "Data",
   "cloud_connect_diagnostics_result_name": "Cognome",
-  "cloud_connect_diagnostics_result_source_setting": "Scope",
+  "cloud_connect_diagnostics_result_source_setting": "Configurazione sorgente",
   "cloud_connect_diagnostics_result_no_log": "La diagnostica è stata eseguita correttamente. Nessun valore da visualizzare"
 }
