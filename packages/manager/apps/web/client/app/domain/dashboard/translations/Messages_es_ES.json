@@ -644,7 +644,7 @@
   "domain_tab_TASKS_status_CANCELLED": "Cancelado",
   "domain_tab_TASKS_status_DOING": "En proceso",
   "domain_tab_TASKS_status_DONE": "Finalizada",
-  "domain_tab_TASKS_status_ERROR": "Por tratar",
+  "domain_tab_TASKS_status_ERROR": "Pendiente",
   "domain_tab_TASKS_status_TODO": "Planificada",
   "domain_order_start10M_choose_duration": "Elija la duración del Start10M.",
   "domain_order_start10M_duration_choosed": "Haga clic en «Siguiente» para continuar.",
