@@ -11,7 +11,10 @@ export default class VrackOrderCtrl {
   }
 
   orderVrack() {
-    this.VrackOrderService.order(this.cart.cartId)
+    this.VrackOrderService.order(
+      this.cart.cartId,
+      this.isVrackOrderAutoPayAvailable,
+    )
       .then((data) => {
         this.navigate(data.url);
       })
