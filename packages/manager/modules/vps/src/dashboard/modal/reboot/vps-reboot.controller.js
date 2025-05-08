@@ -31,9 +31,11 @@ export default class VpsRebootCtrl {
         .then((data) => {
           this.model = data;
         })
-        .catch(() =>
+        .catch((err) =>
           this.CucCloudMessage.error(
-            this.$translate.instant('vps_configuration_reboot_fail'),
+            this.$translate.instant('vps_configuration_reboot_fail', {
+              error: err?.message,
+            }),
           ),
         )
         .finally(() => {
@@ -62,9 +64,11 @@ export default class VpsRebootCtrl {
               }),
             ),
           )
-          .catch(() =>
+          .catch((err) =>
             this.CucCloudMessage.error(
-              this.$translate.instant('vps_configuration_reboot_fail'),
+              this.$translate.instant('vps_configuration_reboot_fail', {
+                error: err?.message,
+              }),
             ),
           )
           .finally(() => this.cancel()),
