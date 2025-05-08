@@ -17,27 +17,22 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       cancel: /* @ngInject */ ($state) => () => $state.go('^'),
       confirm: /* @ngInject */ (
-        $http,
         $translate,
         displayErrorMessage,
         displaySuccessMessage,
-        serviceInfo,
         serviceName,
-        vps,
         vpsTerminate,
+        coreConfig,
       ) => () =>
         vpsTerminate
-          .confirm(serviceName)
+          .confirm(serviceName, !coreConfig.isRegion('US'))
           .then(() =>
             displaySuccessMessage($translate.instant('vps_terminate_success')),
           )
           .catch(() =>
             displayErrorMessage($translate.instant('vps_terminate_error')),
           ),
-      degressivityInformation: /* @ngInject */ (
-        serviceName,
-        availableUpgrades,
-      ) =>
+      degressivityInformation: /* @ngInject */ (availableUpgrades) =>
         availableUpgrades.find(({ prices }) =>
           prices[0].pricingMode.includes(PRICING_MODES.DEGRESSIVITY),
         ),
@@ -90,21 +85,18 @@ export default /* @ngInject */ ($stateProvider) => {
       supportTicketLink: /* @ngInject */ (coreURLBuilder) =>
         coreURLBuilder.buildURL('dedicated', '#ticket'),
       terminateOptions: ($translate, serviceInfo) =>
-        Object.values(TERMINATE_OPTIONS)
-          .filter((option) => {
-            if (serviceInfo.renew.deleteAtExpiration) {
-              return option !== TERMINATE_OPTIONS.TERMINATE_AT_EXPIRATION;
-            }
-
-            return option !== TERMINATE_OPTIONS.CANCEL_TERMINATE_AT_EXPIRATION;
-          })
-          .map((option) => ({
-            label: $translate.instant(
-              `vps_terminate_option_${option.toLowerCase()}`,
-            ),
-            value: option,
-          })),
-
+        (serviceInfo.renew.deleteAtExpiration
+          ? [TERMINATE_OPTIONS.TERMINATE_NOW]
+          : [
+              TERMINATE_OPTIONS.TERMINATE_AT_EXPIRATION,
+              TERMINATE_OPTIONS.TERMINATE_NOW,
+            ]
+        ).map((option) => ({
+          label: $translate.instant(
+            `vps_terminate_option_${option.toLowerCase()}`,
+          ),
+          value: option,
+        })),
       validateTermination: (confirm, setExpirationDateTermination) => (
         terminateChoice,
       ) =>
