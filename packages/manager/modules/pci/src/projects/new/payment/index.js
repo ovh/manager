@@ -12,6 +12,7 @@ import credit from './credit';
 import routing from './routing';
 import component from './component';
 import paymentService from './service';
+import projectNewservice from '../service';
 
 const moduleName = 'pciProjectNewPayment';
 
@@ -29,6 +30,7 @@ angular
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */)
   .component(component.name, component)
-  .service('pciProjectNewPayment', paymentService);
+  .service('pciProjectNewPayment', paymentService)
+  .service('pciProjectNew', projectNewservice);
 
 export default moduleName;
