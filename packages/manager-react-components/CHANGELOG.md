@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.22.0...@ovh-ux/manager-react-components@2.23.0) (2025-05-08)
+
+### Bug Fixes
+
+- **i18n:** add missing translations [CDS 3966] ([db15830](https://github.com/ovh/manager/commit/db158309d6532d9b37f2d2c1f6f1efc53d418fc0))
+- **mrc:** fix review request by team ([ccccec4](https://github.com/ovh/manager/commit/ccccec4ccd30cbff568fd88b0fbc3afb96215136)), closes [#MANAGER-17732](https://github.com/ovh/manager/issues/MANAGER-17732)
+- **mrc:** fix the issue on count visibility columns ([ecbc239](https://github.com/ovh/manager/commit/ecbc2391d2cee620ca679fb23b8554ed8596e34d)), closes [#MANAGER-17732](https://github.com/ovh/manager/issues/MANAGER-17732)
+- **mrc:** guide button and changelog menu default open position ([6b4c5e2](https://github.com/ovh/manager/commit/6b4c5e2c590be90df1182dbe9a37b0651e7b454f)), closes [#ISSUE-16878](https://github.com/ovh/manager/issues/ISSUE-16878)
+- **mrc:** move array excluded columns in constant file ([aec56cf](https://github.com/ovh/manager/commit/aec56cf3f7dacb1a1956c8242c92780b8817fc9f)), closes [#MANAGER-17732](https://github.com/ovh/manager/issues/MANAGER-17732)
+
+### Features
+
+- **mrc:** add disable more info prop to onboarding ([583a59d](https://github.com/ovh/manager/commit/583a59d20bc363aeca32f28a8d8e0ca2dc1dc0e3)), closes [#ISSUE-16382](https://github.com/ovh/manager/issues/ISSUE-16382)
+- **mrc:** add savings plan guide link ([#16875](https://github.com/ovh/manager/issues/16875)) ([7c1e063](https://github.com/ovh/manager/commit/7c1e063d541cda7abefaa6992c27c2754684b888)), closes [#TAPC-2692](https://github.com/ovh/manager/issues/TAPC-2692)
+- **mrc:** add volume backup guides ([122a674](https://github.com/ovh/manager/commit/122a6749515829b0b2b6b5b39e5c5a5f6736823a)), closes [#16714](https://github.com/ovh/manager/issues/16714)
+
 # [2.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.21.1...@ovh-ux/manager-react-components@2.22.0) (2025-04-30)
 
 ### Bug Fixes
