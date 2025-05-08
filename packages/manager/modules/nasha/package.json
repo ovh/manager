@@ -16,6 +16,7 @@
     "lodash": "^4.17.15"
   },
   "peerDependencies": {
+    "@module-federation/runtime": "^0.8.11",
     "@ovh-ux/manager-billing-components": "^2.0.0 || ^3.0.0",
     "@ovh-ux/manager-catalog-price": "^1.4.1",
     "@ovh-ux/manager-components": "^1.0.0",

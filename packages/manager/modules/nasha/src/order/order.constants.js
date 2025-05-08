@@ -1,13 +1,4 @@
-export const PRODUCT_ID = 'nasha';
-
 export const PREFIX_TRACKING_ORDER = 'order';
-
-export const PREFIX_TRACKING_ORDER_NEXT_STEP = {
-  diskType: 'add_type',
-  capacity: 'add_size',
-  datacenter: 'add_region',
-  commitment: 'add_commitment',
-};
 
 export const FORMAT_DURATION_TRACKING_ORDER = {
   interval: {
@@ -28,6 +19,4 @@ export default {
   FORMAT_DURATION_TRACKING_ORDER,
   FORMAT_UNIT_CAPACITY_TRACKING_ORDER,
   PREFIX_TRACKING_ORDER,
-  PREFIX_TRACKING_ORDER_NEXT_STEP,
-  PRODUCT_ID,
 };
