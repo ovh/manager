@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.26.0...@ovh-ux/manager-key-management-service-app@0.27.0) (2025-05-08)
+
+
+### Features
+
+* add manager billing information module ([d1f6cff](https://github.com/ovh/manager/commit/d1f6cff9d57f8694cc662fbdd3af876721ab51cf)), closes [#MANAGER-16907](https://github.com/ovh/manager/issues/MANAGER-16907)
+
+
+
+
+
 # [0.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.25.5...@ovh-ux/manager-key-management-service-app@0.26.0) (2025-05-07)
 
 
