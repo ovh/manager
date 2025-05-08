@@ -1,4 +1,9 @@
 {
   "autorenew_service_terminate": "Confirm",
-  "autorenew_service_terminate_cancel": "Cancel"
+  "autorenew_service_terminate_cancel": "Cancel",
+  "billing_terminate_cancel_button": "No, dismiss",
+  "billing_terminate_delete_button": "Yes, cancel",
+  "billing_terminate_description": "Cancelling your service will irretrievably erase all related data. Do you wish to cancel your service?",
+  "billing_terminate_headline": "Cancel {{serviceType}}?",
+  "billing_terminate_headline_service": "Service"
 }

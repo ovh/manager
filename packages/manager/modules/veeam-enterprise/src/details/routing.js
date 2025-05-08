@@ -1,5 +1,5 @@
 import template from './template.html';
-import { TRACKING_PREFIX } from './constants';
+import { SERVICE_TYPE, TRACKING_PREFIX } from './constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
@@ -82,12 +82,37 @@ export default /* @ngInject */ ($stateProvider) => {
       url: '/terminate',
       views: {
         modal: {
-          component: 'veeamEnterpriseLicenseTerminate',
+          component: 'billingAutorenewTerminateAgoraService',
         },
       },
       layout: 'modal',
       resolve: {
         breadcrumb: () => null,
+        serviceType: () => SERVICE_TYPE,
+        subscriptionInfo: /* @ngInject */ (
+          serviceName,
+          VeeamEnterpriseService,
+        ) => VeeamEnterpriseService.getSubscriptionInfos(serviceName),
+        id: /* @ngInject */ (subscriptionInfo) =>
+          subscriptionInfo.data.serviceId,
+        goBack: /* @ngInject */ (
+          $state,
+          serviceName,
+          VeeamEnterpriseService,
+        ) => (message, type) => {
+          const promise = $state.go('veeam-enterprise.details', {
+            serviceName,
+          });
+
+          if (message) {
+            VeeamEnterpriseService.unitOfWork.messages.push({
+              text: message,
+              type: type.replace('danger', 'error'),
+            });
+          }
+
+          return promise;
+        },
       },
     });
 };
