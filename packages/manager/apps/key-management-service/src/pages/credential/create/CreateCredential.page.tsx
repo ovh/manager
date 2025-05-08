@@ -11,7 +11,7 @@ import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import KmsGuidesHeader from '@/components/Guide/KmsGuidesHeader';
 import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
 import { ROUTES_URLS } from '@/routes/routes.constants';
-import { useOKMSById } from '@/data/hooks/useOKMS';
+import { useOkmsById } from '@/data/hooks/useOkms';
 import Loading from '@/components/Loading/Loading';
 import { IdentityDataProvider } from '@/hooks/credential/useIdentityData';
 import { useCreateOkmsCredential } from '@/data/hooks/useCreateOkmsCredential';
@@ -24,7 +24,7 @@ const CreateCredential = () => {
   const navigate = useNavigate();
   const { trackPage } = useOvhTracking();
   const { okmsId } = useParams();
-  const { data: okms, isLoading, error } = useOKMSById(okmsId);
+  const { data: okms, isLoading, error } = useOkmsById(okmsId);
   const { t } = useTranslation('key-management-service/credential');
   const [step, setStep] = useState<number>(1);
   const [name, setName] = useState<string>(null);
