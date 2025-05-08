@@ -64,6 +64,7 @@ export const INSTANCE_PRICING_LINKS = {
   PL: 'https://www.ovhcloud.com/pl/public-cloud/prices',
   DE: 'https://www.ovhcloud.com/de/public-cloud/prices',
   NL: 'https://www.ovhcloud.com/nl/public-cloud/prices',
+  US: 'https://us.ovhcloud.com/public-cloud/prices',
 };
 
 export const OPENSTACK_INSTANCE_STATUS = {
