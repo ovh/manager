@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci",
-  "version": "6.89.1",
+  "version": "6.89.2",
   "private": true,
   "description": "Public Cloud Instance product.",
   "repository": {
