@@ -36,7 +36,8 @@ import { useNewGatewayStore } from '@/pages/add/useStore';
 import { PUBLIC_GATEWAYS_READ_MORE_GUIDE } from '@/constants';
 import { ACTION_PREFIX } from '@/tracking.constants';
 import HidePreloader from '@/core/HidePreloader';
-import { useGatewayHourlyAddons } from '@/api/hooks/useGateways/useGateways';
+import { useAddons } from '@/api/hooks/useAddons/useAddons';
+import { GATEWAY_ADDON_FAMILY } from '@/api/hooks/useAddons/useAddons.constant';
 
 export default function AddGatewayPage(): JSX.Element {
   const { t } = useTranslation('common');
@@ -54,10 +55,11 @@ export default function AddGatewayPage(): JSX.Element {
     PUBLIC_GATEWAYS_READ_MORE_GUIDE.ALL_GUIDE[ovhSubsidiary] ||
     PUBLIC_GATEWAYS_READ_MORE_GUIDE.ALL_GUIDE.DEFAULT;
 
-  const { addons, isFetching: isAddonsFetching } = useGatewayHourlyAddons(
+  const { addons, isFetching: isAddonsFetching } = useAddons({
     ovhSubsidiary,
     projectId,
-  );
+    addonFamily: GATEWAY_ADDON_FAMILY,
+  });
 
   const regions = useMemo(
     () => addons.flatMap((addon) => addon.regions || []),

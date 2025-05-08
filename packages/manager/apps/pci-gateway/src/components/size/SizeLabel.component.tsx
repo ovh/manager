@@ -9,7 +9,7 @@ import {
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
-import { TProductAddonDetail } from '@/types/addon.type';
+import { TProductAddonDetail } from '@/types/product.type';
 
 export default function SizeLabel({
   size,
