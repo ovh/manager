@@ -1,13 +1,16 @@
-export const DEPLOYMENT_MODES_TYPES = ['region', 'region-3-az', 'localzone'];
+export const DEPLOYMENT_MODES_TYPES = ['region-3-az', 'region', 'localzone'];
 
 export const getDeploymentBetaKey = (name) =>
   `public-cloud:deployment-beta-${name}`;
 export const getDeploymentComingSoonKey = (name) =>
   `public-cloud:deployment-coming-soon-${name}`;
+export const getDeploymentNewKey = (name) =>
+  `public-cloud:deployment-new-${name}`;
 
 export const DEPLOYMENT_FEATURES = DEPLOYMENT_MODES_TYPES.flatMap((d) => [
   getDeploymentBetaKey(d),
   getDeploymentComingSoonKey(d),
+  getDeploymentNewKey(d),
 ]);
 
 export const DEPLOYMENT_MODE_CHIP_CLASS = {
