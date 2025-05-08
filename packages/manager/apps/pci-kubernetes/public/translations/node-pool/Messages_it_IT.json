@@ -22,7 +22,7 @@
   "kube_common_node_pool_configure_false": " Crea un cluster senza pool di nodi",
   "kube_common_node_pool_estimated_cost": "Costo mensile stimato del cluster:",
   "kube_common_node_pool_estimation_text": "Tale stima non include un'eventuale riduzione legata ai Savings Plans.",
-  "kube_common_node_pool_estimation_price": "Pool di nodi:",
+  "kube_common_node_pool_estimation_price": "Pool di nodi: {{estimation}}",
   "kube_common_node_pool_estimation_text_end": "Il costo esatto dipende dall'utilizzo reale delle risorse, che non può essere stimato con precisione prima della creazione di un cluster.",
   "kube_common_node_pool_size_title": "Dimensione del pool di nodi",
   "kube_common_node_pool_desired_node": "Numero di nodi",

@@ -41,9 +41,6 @@ describe('Credential general informations test suite', () => {
 
     const deleteButtonLabel =
       labels.credentials.key_management_service_credential_delete;
-    const deleteModalTitleLabel =
-      labels.credentials
-        .key_management_service_credential_delete_modal_headline;
 
     // Check modal is closed
     await waitFor(async () => {
@@ -70,7 +67,6 @@ describe('Credential general informations test suite', () => {
     // Check modal is opened
     await waitFor(() => {
       assertOdsModalVisibility({ container, isVisible: true });
-      expect(screen.getByText(deleteModalTitleLabel)).toBeVisible();
     }, WAIT_FOR_DEFAULT_OPTIONS);
   });
 });

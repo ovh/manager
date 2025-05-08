@@ -13,7 +13,6 @@ import {
   useVrackService,
   useUpdateVrackServices,
 } from '@ovh-ux/manager-network-common';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { PageName } from '@/utils/tracking';
 import { MessagesContext } from '@/components/feedback-messages/Messages.context';
 import { getDisplayName } from '@/utils/vrack-services';
@@ -25,7 +24,6 @@ const sharedTrackingParams: TrackingClickParams = {
 
 export default function SubnetDeleteModal() {
   const { t } = useTranslation('vrack-services/subnets');
-  const { t: tActions } = useTranslation(NAMESPACES.ACTIONS);
   const { id, cidr } = useParams();
   const cidrToDelete = cidr.replace('_', '/');
   const { addSuccessMessage } = React.useContext(MessagesContext);
@@ -75,9 +73,6 @@ export default function SubnetDeleteModal() {
     <DeleteModal
       isOpen
       closeModal={onClose}
-      deleteInputLabel={t('modalDeleteSubnetInputLabel')}
-      headline={t('modalDeleteSubnetHeadline')}
-      description={t('modalDeleteSubnetDescription')}
       onConfirmDelete={() => {
         trackClick({
           ...sharedTrackingParams,
@@ -88,7 +83,6 @@ export default function SubnetDeleteModal() {
       }}
       error={isError ? updateError?.response?.data?.message : null}
       isLoading={isPending}
-      confirmButtonLabel={tActions('delete')}
     />
   );
 }

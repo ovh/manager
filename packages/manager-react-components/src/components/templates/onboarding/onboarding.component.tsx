@@ -14,18 +14,22 @@ import placeholderSrc from '../../../../public/assets/placeholder.png';
 type OnboardingLayoutButtonProps = {
   orderButtonLabel?: string;
   orderHref?: string;
-  moreInfoHref?: string;
-  moreInfoIcon?: ODS_ICON_NAME;
-  moreInfoButtonLabel?: string;
   onOrderButtonClick?: () => void;
-  onmoreInfoButtonClick?: () => void;
   isActionDisabled?: boolean;
   orderIam?: {
     urn: string;
     iamActions: string[];
     displayTooltip?: boolean;
   };
-  isMoreInfoDisabled?: boolean;
+  moreInfoHref?: string;
+  moreInfoButtonIcon?: ODS_ICON_NAME;
+  moreInfoButtonLabel?: string;
+  /**
+   * @deprecated use onMoreInfoButtonClick
+   */
+  onmoreInfoButtonClick?: () => void;
+  onMoreInfoButtonClick?: () => void;
+  isMoreInfoButtonDisabled?: boolean;
 };
 
 export type OnboardingLayoutProps = OnboardingLayoutButtonProps &
@@ -39,14 +43,18 @@ export type OnboardingLayoutProps = OnboardingLayoutButtonProps &
 const OnboardingLayoutButton: React.FC<OnboardingLayoutButtonProps> = ({
   orderButtonLabel,
   orderHref,
-  moreInfoHref,
-  moreInfoButtonLabel,
-  moreInfoIcon = ODS_ICON_NAME.externalLink,
   onOrderButtonClick,
-  onmoreInfoButtonClick,
   isActionDisabled,
   orderIam,
-  isMoreInfoDisabled,
+  moreInfoHref,
+  moreInfoButtonLabel,
+  moreInfoButtonIcon = ODS_ICON_NAME.externalLink,
+  /**
+   * @deprecated use onMoreInfoButtonClick
+   */
+  onmoreInfoButtonClick,
+  onMoreInfoButtonClick,
+  isMoreInfoButtonDisabled,
 }) => {
   if (!orderButtonLabel && !moreInfoButtonLabel) {
     return <></>;
@@ -69,25 +77,28 @@ const OnboardingLayoutButton: React.FC<OnboardingLayoutButtonProps> = ({
           {...(orderIam || {})}
         />
       )}
-      {moreInfoButtonLabel && (onmoreInfoButtonClick || moreInfoHref) && (
-        <OdsButton
-          className="[&::part(button)]:w-full sm:w-auto"
-          size={ODS_BUTTON_SIZE.md}
-          variant={ODS_BUTTON_VARIANT.outline}
-          onClick={() => {
-            if (!isMoreInfoDisabled) {
-              onmoreInfoButtonClick?.();
-              if (moreInfoHref) {
-                window.open(moreInfoHref, '_blank');
+      {moreInfoButtonLabel &&
+        (onmoreInfoButtonClick || onMoreInfoButtonClick || moreInfoHref) && (
+          <OdsButton
+            className="[&::part(button)]:w-full sm:w-auto"
+            size={ODS_BUTTON_SIZE.md}
+            variant={ODS_BUTTON_VARIANT.outline}
+            onClick={() => {
+              if (!isMoreInfoButtonDisabled) {
+                // TODO: to delete on next major version
+                onmoreInfoButtonClick?.();
+                onMoreInfoButtonClick?.();
+                if (moreInfoHref) {
+                  window.open(moreInfoHref, '_blank');
+                }
               }
-            }
-          }}
-          label={moreInfoButtonLabel}
-          icon={moreInfoIcon}
-          iconAlignment={ODS_BUTTON_ICON_ALIGNMENT.right}
-          isDisabled={isMoreInfoDisabled}
-        />
-      )}
+            }}
+            label={moreInfoButtonLabel}
+            icon={moreInfoButtonIcon}
+            iconAlignment={ODS_BUTTON_ICON_ALIGNMENT.right}
+            isDisabled={isMoreInfoButtonDisabled}
+          />
+        )}
     </div>
   );
 };
@@ -98,16 +109,20 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
   description,
   orderButtonLabel,
   orderHref,
-  moreInfoHref,
-  moreInfoButtonLabel,
-  moreInfoIcon,
-  isMoreInfoDisabled,
-  children,
-  onOrderButtonClick,
-  onmoreInfoButtonClick,
-  img = {},
   isActionDisabled,
   orderIam,
+  onOrderButtonClick,
+  moreInfoHref,
+  moreInfoButtonLabel,
+  moreInfoButtonIcon,
+  isMoreInfoButtonDisabled,
+  /**
+   * @deprecated use onMoreInfoButtonClick
+   */
+  onmoreInfoButtonClick,
+  onMoreInfoButtonClick,
+  img = {},
+  children,
 }) => {
   const { className: imgClassName, alt: altText, ...imgProps } = img;
   return (
@@ -136,12 +151,13 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
             orderHref={orderHref}
             onOrderButtonClick={onOrderButtonClick}
             onmoreInfoButtonClick={onmoreInfoButtonClick}
+            onMoreInfoButtonClick={onMoreInfoButtonClick}
             orderButtonLabel={orderButtonLabel}
             moreInfoHref={moreInfoHref}
             moreInfoButtonLabel={moreInfoButtonLabel}
             orderIam={orderIam}
-            moreInfoIcon={moreInfoIcon}
-            isMoreInfoDisabled={isMoreInfoDisabled}
+            moreInfoButtonIcon={moreInfoButtonIcon}
+            isMoreInfoButtonDisabled={isMoreInfoButtonDisabled}
           />
         </section>
       )}

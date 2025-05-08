@@ -4,10 +4,10 @@ import {
   DashboardGridLayout,
   useServiceDetails,
 } from '@ovh-ux/manager-react-components';
+import { BillingInformationsTileStandard } from '@ovh-ux/billing-informations';
 import { useOkmsById } from '@/data/hooks/useOkms';
 import { ROUTES_URLS } from '@/routes/routes.constants';
 import InformationsTile from '@/components/layout-helpers/Dashboard/GeneralInformationsTiles/InformationsTile';
-import BillingInformationsTile from '@/components/layout-helpers/Dashboard/GeneralInformationsTiles/BillingInformationsTile';
 import Loading from '@/components/Loading/Loading';
 import KmipTile from '@/components/layout-helpers/Dashboard/GeneralInformationsTiles/KmipTile';
 import RestApiTile from '@/components/layout-helpers/Dashboard/GeneralInformationsTiles/RestApiTile';
@@ -44,7 +44,9 @@ function GeneralInformationsTab() {
         <KmipTile okmsData={okms.data} />
         <RestApiTile okmsData={okms.data} />
       </div>
-      <BillingInformationsTile okmsService={okmsService.data} />
+      <BillingInformationsTileStandard
+        resourceName={okmsService.data.resource.name}
+      />
     </DashboardGridLayout>
   );
 }

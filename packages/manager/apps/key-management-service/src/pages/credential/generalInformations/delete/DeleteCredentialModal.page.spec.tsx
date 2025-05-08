@@ -3,7 +3,6 @@ import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {
   getOdsButtonByLabel,
-  changeOdsInputValue,
   assertOdsModalVisibility,
   WAIT_FOR_DEFAULT_OPTIONS,
 } from '@ovh-ux/manager-core-test-utils';
@@ -16,9 +15,6 @@ import { labels } from '@/utils/tests/init.i18n';
 const mockCredentialItem = credentialMock[0];
 const mockPageUrl = `/${okmsMock[0].id}/credentials/${mockCredentialItem.id}/delete`;
 const mockCredentialListPageUrl = `/${okmsMock[0].id}/credentials`;
-
-const deleteModalTitleLabel =
-  labels.credentials.key_management_service_credential_delete_modal_headline;
 
 describe('Credential delete modal test suite', () => {
   const mockNavigate = vi.fn();
@@ -34,7 +30,6 @@ describe('Credential delete modal test suite', () => {
     // Check modal is opened
     await waitFor(() => {
       assertOdsModalVisibility({ container, isVisible: true });
-      expect(screen.getByText(deleteModalTitleLabel)).toBeVisible();
     }, WAIT_FOR_DEFAULT_OPTIONS);
   });
 
@@ -44,19 +39,12 @@ describe('Credential delete modal test suite', () => {
 
     // Wait for modal to open
     await waitFor(() => {
-      expect(screen.getByText(deleteModalTitleLabel)).toBeVisible();
+      assertOdsModalVisibility({ container, isVisible: true });
     }, WAIT_FOR_DEFAULT_OPTIONS);
-
-    await changeOdsInputValue({
-      inputLabel:
-        labels.credentials
-          .key_management_service_credential_delete_modal_input_label,
-      inputValue: 'TERMINATE',
-    });
 
     const submitButton = await getOdsButtonByLabel({
       container,
-      label: 'Résilier', // Label from MRC
+      label: 'Oui, résilier', // Label from MRC
       disabled: false,
     });
 
@@ -87,19 +75,12 @@ describe('Credential delete modal test suite', () => {
 
     // Wait for modal to open
     await waitFor(() => {
-      expect(screen.getByText(deleteModalTitleLabel)).toBeVisible();
+      assertOdsModalVisibility({ container, isVisible: true });
     }, WAIT_FOR_DEFAULT_OPTIONS);
-
-    await changeOdsInputValue({
-      inputLabel:
-        labels.credentials
-          .key_management_service_credential_delete_modal_input_label,
-      inputValue: 'TERMINATE',
-    });
 
     const submitButton = await getOdsButtonByLabel({
       container,
-      label: 'Résilier', // Label from MRC
+      label: 'Oui, résilier', // Label from MRC
       timeout: WAIT_FOR_DEFAULT_OPTIONS.timeout,
       disabled: false,
     });

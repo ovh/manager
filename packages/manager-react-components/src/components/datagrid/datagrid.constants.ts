@@ -9,3 +9,5 @@ export const DEFAULT_PAGINATION: PaginationState = {
 };
 
 export const defaultNumberOfLoadingRows = 5;
+
+export const INTERNAL_COLUMNS = ['expander', 'actions'];

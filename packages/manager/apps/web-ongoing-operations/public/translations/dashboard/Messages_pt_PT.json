@@ -97,7 +97,7 @@
   "domain_operations_upload_file_label": "Procurar os ficheiros",
   "domain_operations_upload_dropzone_label": "Arrastar e soltar um ficheiro",
   "domain_operations_upload_accepted_file_types": "São aceites ficheiros nos seguintes formatos: {{t0}}",
-  "domain_operations_upload_success": "O upload foi bem-sucedido",
+  "domain_operations_upload_success": "O upload foi um sucesso, vai ser reencaminhado para o painel de controlo",
   "domain_operations_upload_error": "O upload do documento não foi bem-sucedido",
   "domain_operations_upload_error_with_value": "O upload do documento não foi bem-sucedido: {{t0}}",
   "domain_operations_upload_doing": "Upload em curso...",
@@ -132,5 +132,7 @@
   "domain_operations_update_key_legitimacyAfnic": "Justificar a utilização do domínio",
   "domain_operations_update_contact_administrator": "Contacte o administrador para resolver este problema.",
   "domain_operations_nicOperation_ZoneRestore": "Restauro da zona DNS",
-  "wizard_close": "Fechar"
+  "wizard_close": "Fechar",
+  "domain_operations_upload_error_wrong-format": "Formato do ficheiro não autorizado",
+  "domain_operations_update_title": "Atualização da operação para o domínio {{t0}}"
 }
