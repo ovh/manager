@@ -52,10 +52,11 @@ export default class ServicesActionsCtrl {
         this.warningLink = links.warningLink;
         this.updateLink = links.updateLink;
         this.deleteLink = links.deleteLink;
+        this.deleteLinkSkipRetentionPeriod =
+          links.deleteLinkSkipRetentionPeriod;
         this.resiliateLink = links.resiliateLink;
         this.buyingLink = links.buyingLink;
         this.renewLink = links.renewLink;
-
         this.canDisplayMenu =
           !this.isLoading &&
           ((links.billingManagementAvailabilityAndHaveAutorenewLink &&
@@ -106,8 +107,8 @@ export default class ServicesActionsCtrl {
           this.service.serviceType === this.SERVICE_TYPE.EXCHANGE;
         this.canDisplayXdslSpecificResiliationMenuEntry =
           this.service.serviceType === this.SERVICE_TYPE.PACK_XDSL &&
-          (!this.service.shouldDeleteAtExpiration() ||
-            !this.service.isResiliated()) &&
+          !this.service.shouldDeleteAtExpiration() &&
+          !this.service.isResiliated() &&
           !this.service.hasDebt() &&
           !this.service.hasPendingResiliation();
         this.canDisplayXdslResiliationMenuEntry =
@@ -115,16 +116,19 @@ export default class ServicesActionsCtrl {
           this.service.hasAdminRights(this.user.auth.account);
         this.canDisplayResiliationMenuEntries =
           this.canResiliate() &&
-          (!this.service.shouldDeleteAtExpiration() ||
-            !this.service.isResiliated()) &&
+          !this.service.shouldDeleteAtExpiration() &&
+          (!this.service.isResiliated() ||
+            this.service.isSuspendedHostingWeb()) &&
           !this.service.hasDebt() &&
           !this.service.hasPendingResiliation();
         this.canDisplayResiliationMenuEntry =
           (this.resiliateLink || this.isCustomResiliationHandled) &&
           (this.service.hasAdminRights(this.user.auth.account) ||
-            this.service.hasAdminRights(this.user.nichandle));
+            this.service.hasAdminRights(this.user.nichandle)) &&
+          !this.service.isResiliated();
         this.canDisplayDeleteMenuEntry =
-          this.autorenewLink && this.service.canBeDeleted();
+          this.autorenewLink &&
+          (this.service.canBeDeleted() || this.service.isSuspendedHostingWeb());
         this.canDisplaySmsSpecificMenuEntries =
           this.service.serviceType === this.SERVICE_TYPE.SMS;
         this.canDisplayCancelResiliationMenuEntry =
@@ -147,6 +151,13 @@ export default class ServicesActionsCtrl {
     return `${RENEW_URL[this.user.ovhSubsidiary] || RENEW_URL.default}${
       this.service.serviceId
     }`;
+  }
+
+  getDeleteLink() {
+    if (this.service.isSuspendedHostingWeb()) {
+      return this.deleteLinkSkipRetentionPeriod;
+    }
+    return this.deleteLink;
   }
 
   canResiliate() {

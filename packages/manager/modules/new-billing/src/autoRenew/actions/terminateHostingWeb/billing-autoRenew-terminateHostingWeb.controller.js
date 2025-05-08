@@ -1,5 +1,3 @@
-import get from 'lodash/get';
-
 export default class {
   /* @ngInject */
   constructor($translate) {
@@ -8,9 +6,13 @@ export default class {
 
   onSuccess() {
     this.goBack(
-      this.$translate.instant(
-        'autorenew_hosting_dashboard_close_service_success',
-      ),
+      this.skipRetentionPeriod
+        ? this.$translate.instant(
+            'autorenew_hosting_dashboard_close_service_success_skip_retention_period',
+          )
+        : this.$translate.instant(
+            'autorenew_hosting_dashboard_close_service_success',
+          ),
     );
   }
 
@@ -18,7 +20,7 @@ export default class {
     this.goBack(
       `${this.$translate.instant(
         'autorenew_hosting_dashboard_close_service_error',
-      )} ${get(error, 'data.message')}`,
+      )} ${error?.data?.message}`,
       'danger',
     );
   }
