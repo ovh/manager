@@ -23,7 +23,7 @@ export default /* @ngInject */ function UserAccountSshDedicatedAddController(
       })
       .catch((err) => {
         Alerter.error(
-          `${this.$translate.instant('user_ssh_add_error_message')} ${get(
+          `${$translate.instant('user_ssh_add_error_message')} ${get(
             err,
             'message',
           ) || err}`,
