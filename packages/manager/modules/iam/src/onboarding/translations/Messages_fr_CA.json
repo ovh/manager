@@ -1,7 +1,0 @@
-{
-  "iam_onboarding_title": "Gestion des identités et des accès (IAM)",
-  "iam_onboarding_description": "Gérez les identités de vos utilisateurs et de vos applications, ainsi que leurs droits d’accès dans une interface unique pour tous vos services.",
-  "iam_onboarding_description_2": "OVHcloud IAM permet de gérer finement l’ensemble des autorisations des produits OVHcloud et d’obtenir un meilleur niveau de sécurité avec une vision centralisée de vos accès.",
-  "iam_onboarding_cta_1": "Créer une politique",
-  "iam_onboarding_cta_2": "Créer des utilisateurs"
-}
