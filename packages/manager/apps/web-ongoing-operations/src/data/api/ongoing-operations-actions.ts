@@ -1,6 +1,6 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 import { AxiosResponse } from 'axios';
-import { OperationName } from '@/enum/operationName.enum';
+import { OperationName } from '@/enum/actionName.enum';
 //  Actions
 export const updateOperationStatus = async (
   universe: string,
