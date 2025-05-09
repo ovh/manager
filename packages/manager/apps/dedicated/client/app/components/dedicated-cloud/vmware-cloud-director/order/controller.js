@@ -2,11 +2,19 @@ import { VCD_PLAN_CODE } from '../../dedicatedCloud.constant';
 
 export default class VdcOrderController {
   /* @ngInject */
-  constructor($q, $window, $translate, DedicatedCloud, RedirectionService) {
+  constructor(
+    $q,
+    $window,
+    $translate,
+    DedicatedCloud,
+    dedicatedCloudDataCenterHostService,
+    RedirectionService,
+  ) {
     this.$q = $q;
     this.$window = $window;
     this.$translate = $translate;
     this.DedicatedCloud = DedicatedCloud;
+    this.dedicatedCloudDataCenterHostService = dedicatedCloudDataCenterHostService;
     this.expressOrderURL = RedirectionService.getURL('expressOrder');
   }
 
@@ -20,17 +28,14 @@ export default class VdcOrderController {
     return this.$q
       .all(
         this.datacenters.map(({ datacenterId }) =>
-          this.DedicatedCloud.getPaginatedHosts(
+          this.dedicatedCloudDataCenterHostService.getPaginatedHosts(
             this.productId,
             datacenterId,
-          ).then(({ list: { results } }) => results),
+            { pageSize: 100, offset: 0 },
+          ),
         ),
       )
-      .then((hosts) =>
-        hosts
-          .flat()
-          .map(({ hostId, profile, name }) => ({ name, profile, hostId })),
-      );
+      .then((results) => results.map(({ data }) => data).flat());
   }
 
   loadData() {
