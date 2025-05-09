@@ -55,7 +55,7 @@ const Commitment = ({
   return (
     <OdsCard
       className={clsx(
-        'flex flex-row items-center mr-5 my-4 p-5 justify-between w-full cursor-pointer',
+        'flex flex-row items-center mr-5 my-4 p-5 justify-between w-full cursor-pointer border',
         {
           'border-[--ods-color-primary-500] border-2': isActive,
           'hover:border-2': !isActive,
