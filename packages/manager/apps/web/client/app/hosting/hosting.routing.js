@@ -32,7 +32,24 @@ export default /* @ngInject */ ($stateProvider) => {
           offer: offerName,
         };
       },
-      defaultFilterColumn: () => 'serviceName',
+      defaultFilterColumn: () => 'displayName',
+      columnConfig: /* @ngInject */ () => ({
+        data: [
+          {
+            label: 'Display Name',
+            property: 'displayName',
+            serviceLink: true,
+            hidden: false,
+          },
+          { label: 'Offer', property: 'offer', hidden: false },
+          { label: 'State', property: 'state', hidden: false },
+          { label: 'Resource Type', property: 'resourceType', hidden: false },
+          { label: 'Datacenter', property: 'datacenter', hidden: false },
+          { label: 'Service Name', property: 'serviceName', hidden: false },
+        ],
+      }),
+      description: ($translate) =>
+        $translate.instant('hosting_datagrid_description'),
       header: /* @ngInject */ ($translate) =>
         $translate.instant('hostings_title'),
       changelog: () => 'hosting_plan',
