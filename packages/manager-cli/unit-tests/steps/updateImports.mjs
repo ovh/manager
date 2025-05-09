@@ -5,7 +5,7 @@ import glob from 'fast-glob';
 import prettier from 'prettier';
 
 /**
- * Updates test imports from 'vitest' to '@ovh-ux/manager-unit-tests-config'.
+ * Adds ESLint disable comment above vitest imports in test files.
  * @param {string} appPath - Absolute path to the app directory.
  * @param {boolean} dryRun - If true, do not write changes to disk.
  */
@@ -21,31 +21,39 @@ export const updateImports = async (appPath, dryRun = false) => {
 
   for (const file of files) {
     const original = fs.readFileSync(file, 'utf-8');
+    const lines = original.split('\n');
 
-    // Only rewrite test imports, not config ones
-    const replaced = original.replace(
-      /import\s*\{([^}]+)\}\s*from\s*['"]vitest['"]/g,
-      (_, imports) => {
-        const names = imports
-          .split(',')
-          .map((name) => name.trim())
-          .filter(Boolean)
-          .join(', ');
-        return `import { ${names} } from '@ovh-ux/manager-unit-tests-config'`;
+    let modified = false;
+    const newLines = [];
+
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i];
+
+      if (/^\s*import\s+\{[^}]*\}\s+from\s+['"]vitest['"]/.test(line)) {
+        const previous = lines[i - 1]?.trim();
+        const isAlreadyCommented =
+          previous === '// eslint-disable-next-line import/no-extraneous-dependencies';
+
+        if (!isAlreadyCommented) {
+          newLines.push('// eslint-disable-next-line import/no-extraneous-dependencies');
+          modified = true;
+        }
       }
-    );
 
-    if (replaced === original) continue;
+      newLines.push(line);
+    }
 
-    const formatted = await prettier.format(replaced, {
+    if (!modified) continue;
+
+    const formatted = await prettier.format(newLines.join('\n'), {
       parser: file.endsWith('.ts') || file.endsWith('.tsx') ? 'babel-ts' : 'babel',
     });
 
     if (dryRun) {
-      console.log(`🧪 [dry-run] Would update imports in: ${file}`);
+      console.log(`🧪 [dry-run] Would add lint comment to: ${file}`);
     } else {
       fs.writeFileSync(file, formatted, 'utf-8');
-      console.log(`✅ Updated imports in: ${file}`);
+      console.log(`✅ Added ESLint comment to: ${file}`);
     }
   }
 };
