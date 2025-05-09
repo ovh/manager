@@ -10,15 +10,9 @@
   "pci_projects_project_storages_containers_container_object_add_archive_error_delete": "Si è verificato un errore durante l’importazione degli archivi: {{message}}",
   "pci_projects_project_storages_containers_container_object_add_object_error_delete": "Si è verificato un errore durante l’importazione degli oggetti {{ object }}: {{ message }}.",
   "pci_projects_project_storages_containers_container_object_add_storage_class_label": "Seleziona la classe di storage",
-  "pci_projects_project_storages_containers_container_object_add_storage_class_label_description": "Per saperne di più",
+  "pci_projects_project_storages_containers_container_object_add_storage_class_label_description": "Più informazioni sulle classi di storage e le tariffe. ",
   "pci_projects_project_storages_containers_container_object_add_storage_class_label_description_link": "Visualizza i prezzi",
   "pci_projects_project_storages_containers_container_object_add_storage_class_standard": "Standard",
   "pci_projects_project_storages_containers_container_object_add_storage_class_high_perf": "High Performance",
-  "pci_projects_project_storages_containers_container_object_add_storage_class_info_banner": "Solo le classi di archiviazione Standard e Standard Infrequent Access sono disponibili per gli oggetti in questa modalità di distribuzione.",
-  "pci_projects_project_storages_containers_container_object_add_storage_class_label_description_link_storage_class": "classi di storage",
-  "pci_projects_project_storages_containers_container_object_add_storage_class_label_description_part_2": "e le",
-  "pci_projects_project_storages_containers_container_object_add_storage_class_label_description_link_price": "tariffe.",
-  "pci_projects_project_storages_containers_container_object_add_storage_class_label_description_link_price_text": "Visualizza i prezzi",
-  "pci_projects_project_storages_containers_container_object_add_storage_class_standard_infrequent_access": "Standard Infrequent Access",
-  "pci_projects_project_storages_containers_container_object_add_storage_class_info_banner_lz": "Solo la classe di storage standard è disponibile per gli oggetti in un contenitore creato con questa modalità di distribuzione."
+  "pci_projects_project_storages_containers_container_object_add_storage_class_info_banner": "Solo la classe di storage standard è disponibile per gli oggetti di un container creato con questa modalità di deploy."
 }

@@ -8,6 +8,10 @@ import {
 } from 'react-router-dom';
 import {
   BaseLayout,
+  Clipboard,
+  Datagrid,
+  FilterAdd,
+  FilterList,
   Links,
   LinkType,
   Notifications,
@@ -28,11 +32,18 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
 import {
+  OdsBadge,
   OdsBreadcrumb,
   OdsBreadcrumbItem,
+  OdsButton,
+  OdsFormField,
+  OdsIcon,
+  OdsInput,
   OdsMessage,
+  OdsPopover,
   OdsSpinner,
   OdsText,
+  OdsToggle,
 } from '@ovhcloud/ods-components/react';
 
 import { ColumnSort } from '@tanstack/react-table';
@@ -48,6 +59,7 @@ import {
   OBJECT_CONTAINER_MODE_LOCAL_ZONE,
   OBJECT_CONTAINER_MODE_MONO_ZONE,
   OBJECT_CONTAINER_MODE_MULTI_ZONES,
+  OBJECT_CONTAINER_S3_STATIC_URL_INFO,
   STORAGE_ASYNC_REPLICATION_LINK,
   TRACKING,
   MUMBAI_REGION_NAME,
@@ -62,14 +74,12 @@ import { useGetRegion } from '@/api/hooks/useRegion';
 import { useStorage, useStorageEndpoint } from '@/api/hooks/useStorages';
 import { TServerContainer } from '@/api/data/container';
 import { useGetEncriptionAvailability } from '@/api/hooks/useGetEncriptionAvailability';
+import LabelComponent from '@/components/Label.component';
 import { TRegion } from '@/api/data/region';
 
 import { useServerContainerObjects } from '@/api/hooks/useContainerObjects';
 import './style.scss';
 import { useSortedObjects } from './useSortedObjectsWithIndex';
-import { ContainerDatagrid } from './ContainerDataGrid';
-import { ContainerInfoPanel } from './ContainerInfoPanel';
-import UseStandardInfrequentAccessAvailability from '@/hooks/useStandardInfrequentAccessAvailability';
 
 export type TContainer = {
   id: string;
@@ -133,8 +143,9 @@ export default function ObjectPage() {
   const { t: tObjects } = useTranslation('objects');
   const { t: tContainer } = useTranslation('container');
   const { t: tCommon } = useTranslation('pci-common');
-
+  const { t: tVersioning } = useTranslation('containers/enable-versioning');
   const { t: tAdd } = useTranslation('containers/add');
+  const { t: tDataEncryption } = useTranslation('containers/data-encryption');
 
   const objectStorageHref = useHref('..');
   const enableVersioningHref = useHref(
@@ -238,8 +249,6 @@ export default function ObjectPage() {
     return !container?.tags?.[BACKUP_KEY];
   }, [container]);
 
-  const hasStandardInfrequentAccess = UseStandardInfrequentAccessAvailability();
-
   const is = {
     localZone: useMemo(
       () => region?.type === OBJECT_CONTAINER_MODE_LOCAL_ZONE,
@@ -317,6 +326,8 @@ export default function ObjectPage() {
   const navigate = useNavigate();
   const { clearNotifications } = useNotifications();
 
+  const { t: tFilter } = useTranslation('filters');
+
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const [searchField, setSearchField] = useState('');
 
@@ -357,11 +368,6 @@ export default function ObjectPage() {
   if (!container || !url) {
     return <OdsSpinner size="md" />;
   }
-
-  const handleAddObjectClick = () => {
-    clearNotifications();
-    navigate(`./new?region=${searchParams.get('region')}`);
-  };
 
   return (
     <BaseLayout
@@ -418,59 +424,416 @@ export default function ObjectPage() {
 
       {container && (
         <>
-          <ContainerInfoPanel
-            container={container}
-            isLocalZone={is.localZone}
-            isRightOffer={is.rightOffer}
-            isEncrypted={is.encrypted}
-            displayEncryptionData={displayEncryptionData}
-            isReplicationRulesBannerShown={is.replicationRulesBannerShown}
-            region={region}
-            enableEncryptionHref={enableEncryptionHref}
-            enableVersioningHref={enableVersioningHref}
-            tracking={tracking}
-            trackClick={trackClick}
-            trackAction={trackAction}
-          />
+          <div className="grid grid-cols-12 gap-4 border border-solid border-[#bef1ff] bg-[#f5feff] rounded-md mt-6 py-8 px-12">
+            <div className="grid gap-2 col-span-12 md:col-span-4">
+              <div className="mb-4">
+                <OdsText>
+                  <span
+                    dangerouslySetInnerHTML={{
+                      __html: tContainer(
+                        'pci_projects_project_storages_containers_container_region',
+                        { region: `<strong> ${container?.region}</strong>` },
+                      ),
+                    }}
+                  ></span>
+                </OdsText>
+              </div>
 
-          <ContainerDatagrid
-            isS3StorageType={!!container?.s3StorageType}
-            isRightOffer={is.rightOffer}
-            isLocalZone={!!is.localZone}
-            versioningStatus={container.versioning?.status}
-            handleAddObjectClick={handleAddObjectClick}
-            enableVersionsToggle={enableVersionsToggle}
-            setEnableVersionsToggle={setEnableVersionsToggle}
-            objectsColumns={objectsColumns}
-            sortingDatagrid={sortingDatagrid}
-            setSortingDatagrid={setSortingDatagrid}
-            hasNextPage={hasNextPage}
-            isObjectsLoading={isObjectsLoading}
-            containerObjectsWithIndex={containerObjectsWithIndex}
-            containerObjects={containerObjects}
-            handleFetchNextPage={handleFetchNextPage}
-            search={search}
-            setSearch={setSearch}
-            handlePrefixChange={handlePrefixChange}
-            filterColumns={filterColumns}
-            searchField={searchField}
-            setSearchField={setSearchField}
-            handleSearch={handleSearch}
-            filters={filters}
-            removeFilter={removeFilter}
-            isPending={isPending}
-            columns={columns}
-            paginatedObjects={paginatedObjects}
-            pagination={pagination}
-            setPagination={setPagination}
-            sorting={sorting}
-            setSorting={setSorting}
-            addFilter={addFilter}
-            shouldHideButton={shouldHideButton}
-            hasStandardInfrequentAccess={hasStandardInfrequentAccess}
-            trackClick={trackClick}
-            trackAction={trackAction}
-          />
+              {!is.localZone && (
+                <div className="mb-4">
+                  <OdsText>
+                    <span
+                      dangerouslySetInnerHTML={{
+                        __html: tContainer(
+                          'pci_projects_project_storages_containers_container_object_info_storedObjects',
+                          {
+                            objects: `<strong>${container?.objectsCount}</strong>`,
+                          },
+                        ),
+                      }}
+                    ></span>
+                  </OdsText>
+                </div>
+              )}
+
+              {!is.localZone && (
+                <div className="mb-4">
+                  <OdsText>
+                    <span
+                      dangerouslySetInnerHTML={{
+                        __html: tContainer(
+                          'pci_projects_project_storages_containers_container_info_storedBytes',
+                          {
+                            bytes: `<strong>${container?.usedSpace}</strong>`,
+                          },
+                        ),
+                      }}
+                    ></span>
+                  </OdsText>
+                </div>
+              )}
+
+              {displayEncryptionData && !is.encrypted && !is.localZone && (
+                <div className="mb-4">
+                  <OdsText>
+                    <span
+                      dangerouslySetInnerHTML={{
+                        __html: tContainer(
+                          'pci_projects_project_storages_containers_container_info_data_encryption_disabled',
+                        ),
+                      }}
+                    ></span>
+                  </OdsText>
+
+                  {is.rightOffer &&
+                    !is.localZone &&
+                    !is.encrypted &&
+                    region?.name !== MUMBAI_REGION_NAME && (
+                      <div>
+                        <Links
+                          label={tContainer(
+                            'pci_projects_project_storages_containers_container_enable_encryption',
+                          )}
+                          type={LinkType.next}
+                          href={enableEncryptionHref}
+                        />
+                      </div>
+                    )}
+                </div>
+              )}
+
+              {displayEncryptionData && is.encrypted && (
+                <div className="mb-4">
+                  <OdsText>
+                    <span
+                      dangerouslySetInnerHTML={{
+                        __html: tContainer(
+                          'pci_projects_project_storages_containers_container_info_data_encryption_enabled',
+                        ),
+                      }}
+                    ></span>
+                  </OdsText>
+                  <OdsIcon
+                    id="aesPopoverTrigger"
+                    name="circle-question"
+                    className="ml-4"
+                    onClick={() => {
+                      const name = TRACKING.STORAGE_ENCRYPTION.TOOLTIP_AES256;
+                      if (name) {
+                        tracking?.trackClick({
+                          name,
+                          type: 'action',
+                        });
+                      }
+                    }}
+                  />
+                  <OdsPopover triggerId="aesPopoverTrigger">
+                    <OdsText>
+                      {tDataEncryption(
+                        'pci_projects_project_storages_containers_data_encryption_aes256_tooltip',
+                      )}
+                    </OdsText>
+                  </OdsPopover>
+                </div>
+              )}
+              {is.rightOffer && !is.localZone && (
+                <div className="flex gap-4">
+                  <OdsText>
+                    {tVersioning(
+                      'pci_projects_project_storages_containers_update_versioning_versioning',
+                    )}
+                  </OdsText>
+                  <OdsBadge
+                    size="sm"
+                    label={tVersioning(
+                      `pci_projects_project_storages_containers_update_versioning_${container.versioning.status}_label`,
+                    )}
+                    color={(() => {
+                      if (container.versioning.status === STATUS_ENABLED)
+                        return 'success';
+                      if (container.versioning.status === STATUS_DISABLED)
+                        return 'critical';
+                      if (container.versioning.status === STATUS_SUSPENDED)
+                        return 'warning';
+                      return 'information';
+                    })()}
+                  ></OdsBadge>
+                </div>
+              )}
+              {is.rightOffer &&
+                !is.localZone &&
+                (container.versioning?.status === STATUS_SUSPENDED ||
+                  container.versioning?.status === STATUS_DISABLED) && (
+                  <Links
+                    label={tVersioning(
+                      'pci_projects_project_storages_containers_update_versioning_title',
+                    )}
+                    type={LinkType.next}
+                    href={enableVersioningHref}
+                    onClickReturn={() => {
+                      trackClick(
+                        trackAction('page', 'object_activate_versioning'),
+                      );
+                    }}
+                  />
+                )}
+
+              {is.rightOffer &&
+                !is.localZone &&
+                container.regionDetails?.type ===
+                  OBJECT_CONTAINER_MODE_MULTI_ZONES && (
+                  <div className="flex gap-4 mb-4 mt-4">
+                    <OdsText>
+                      {tContainer(
+                        'pci_projects_project_storages_containers_container_offsite_replication_title',
+                      )}
+                    </OdsText>
+
+                    <OdsBadge
+                      size="sm"
+                      label={tContainer(
+                        is.replicationRulesBannerShown
+                          ? 'pci_projects_project_storages_containers_container_offsite_replication_disabled'
+                          : 'pci_projects_project_storages_containers_container_offsite_replication_enabled',
+                      )}
+                      color={
+                        !is.replicationRulesBannerShown ? 'success' : 'critical'
+                      }
+                    ></OdsBadge>
+                    <div>
+                      <OdsIcon
+                        id="trigger-popover"
+                        name="circle-question"
+                        className="text-[var(--ods-color-information-500)]"
+                      />
+                      <OdsPopover triggerId="trigger-popover">
+                        <OdsText preset="caption">
+                          {tContainer(
+                            'pci_projects_project_storages_containers_container_offsite_replication_tooltip',
+                          )}
+                        </OdsText>
+                      </OdsPopover>
+                    </div>
+                  </div>
+                )}
+            </div>
+            <div className="grid col-span-12 md:col-span-8 gap-4">
+              <OdsFormField>
+                <LabelComponent
+                  text={tContainer(
+                    'pci_projects_project_storages_containers_container_info_id',
+                  )}
+                />
+                <Clipboard
+                  className="w-[100%]"
+                  value={container?.id || container?.name}
+                />
+              </OdsFormField>
+
+              <OdsFormField>
+                <LabelComponent
+                  triggerId="public-url-popover"
+                  text={tContainer(
+                    'pci_projects_project_storages_containers_container_info_publicUrl',
+                  )}
+                  helpText={tContainer(
+                    'pci_projects_project_storages_containers_container_info_publicUrl_help',
+                  )}
+                />
+                <Clipboard className="w-[100%]" value={container?.publicUrl} />
+              </OdsFormField>
+
+              <OdsFormField>
+                <LabelComponent
+                  triggerId="virtual-host-popover"
+                  text={
+                    container.s3StorageType
+                      ? OBJECT_CONTAINER_S3_STATIC_URL_INFO
+                      : tContainer(
+                          'pci_projects_project_storages_containers_container_object_info_staticUrl',
+                        )
+                  }
+                  helpText={tContainer(
+                    `pci_projects_project_storages_containers_container_object_info_${
+                      container.s3StorageType
+                        ? 's3_staticUrl_help'
+                        : 'staticUrl_help'
+                    }`,
+                  )}
+                />
+                <Clipboard
+                  className="w-[100%]"
+                  value={container?.staticUrl || container?.virtualHost}
+                />
+              </OdsFormField>
+            </div>
+          </div>
+
+          {container?.s3StorageType && (
+            <div className="mt-[32px] container-data-grid">
+              <OdsText preset="heading-4" className="mt-6 block">
+                {tContainer(
+                  'pci_projects_project_storages_containers_container_objects',
+                )}
+              </OdsText>
+              <OdsText preset="paragraph" className="mt-4 block mb-6">
+                {tContainer(
+                  'pci_projects_project_storages_containers_container_objects_sort_warining',
+                )}
+              </OdsText>
+              <Datagrid
+                topbar={
+                  <div className="flex w-full justisfy-between items-center">
+                    {shouldHideButton && (
+                      <OdsButton
+                        onClick={() => {
+                          clearNotifications();
+                          navigate(
+                            `./new?region=${searchParams.get('region')}`,
+                          );
+                        }}
+                        label={tContainer(
+                          `pci_projects_project_storages_containers_container_add_object_label`,
+                        )}
+                        icon="plus"
+                        size="sm"
+                      />
+                    )}
+                    <div className="flex justify-center gap-4 ml-auto mr-0 md:mr-5">
+                      {is.rightOffer &&
+                        !is.localZone &&
+                        container.versioning.status !== STATUS_DISABLED && (
+                          <>
+                            <OdsText>
+                              {tContainer(
+                                'pci_projects_project_storages_containers_container_show_versions',
+                              )}
+                            </OdsText>
+                            <OdsToggle
+                              class="my-toggle"
+                              name="enableVersionsToggle"
+                              onOdsChange={({ detail }) => {
+                                setEnableVersionsToggle(
+                                  detail.value as boolean,
+                                );
+                                trackClick(
+                                  trackAction(
+                                    'page',
+                                    'switch-to-see-versioning',
+                                  ),
+                                );
+                              }}
+                            />
+                          </>
+                        )}
+                    </div>
+                  </div>
+                }
+                columns={objectsColumns}
+                sorting={sortingDatagrid}
+                onSortChange={setSortingDatagrid}
+                hasNextPage={hasNextPage}
+                items={isObjectsLoading ? [] : containerObjectsWithIndex}
+                onFetchNextPage={handleFetchNextPage}
+                totalItems={containerObjects?.length}
+                isLoading={isObjectsLoading}
+                search={{
+                  searchInput: search,
+                  setSearchInput: setSearch,
+                  onSearch: handlePrefixChange,
+                }}
+              />
+            </div>
+          )}
+
+          {!container?.s3StorageType && (
+            <>
+              <div className="sm:flex items-center justify-between mt-8">
+                {shouldHideButton && (
+                  <OdsButton
+                    onClick={() => {
+                      clearNotifications();
+                      navigate(`./new?region=${searchParams.get('region')}`);
+                    }}
+                    label={tContainer(
+                      `pci_projects_project_storages_containers_container_add_object_label`,
+                    )}
+                    icon="plus"
+                    size="sm"
+                  />
+                )}
+
+                <div className="flex justify-center gap-4 ml-auto">
+                  {!container?.s3StorageType && (
+                    <>
+                      <OdsInput
+                        name="searchField"
+                        className="min-w-[15rem]"
+                        value={searchField}
+                        onOdsChange={({ detail }) =>
+                          setSearchField(detail.value as string)
+                        }
+                        onKeyDown={(event) => {
+                          if (event.key === 'Enter') {
+                            handleSearch();
+                          }
+                        }}
+                      />
+                      <OdsButton
+                        label=""
+                        icon="magnifying-glass"
+                        size="sm"
+                        onClick={handleSearch}
+                      />
+                      <OdsButton
+                        id="filterPopoverTrigger"
+                        size="sm"
+                        color="primary"
+                        label={tFilter('common_criteria_adder_filter_label')}
+                        variant="outline"
+                        icon="filter"
+                      />
+                      <OdsPopover triggerId="filterPopoverTrigger">
+                        <FilterAdd
+                          columns={filterColumns}
+                          onAddFilter={(addedFilter, column) => {
+                            setPagination({
+                              pageIndex: 0,
+                              pageSize: pagination.pageSize,
+                            });
+                            addFilter({
+                              ...addedFilter,
+                              label: column.label,
+                            });
+                          }}
+                        />
+                      </OdsPopover>
+                    </>
+                  )}
+                </div>
+              </div>
+
+              <div className="mt-8">
+                <FilterList filters={filters} onRemoveFilter={removeFilter} />
+              </div>
+              <div className="mt-8">
+                {isPending ? (
+                  <OdsSpinner />
+                ) : (
+                  <Datagrid
+                    columns={columns}
+                    items={paginatedObjects?.rows || []}
+                    totalItems={paginatedObjects?.totalRows || 0}
+                    pagination={pagination}
+                    onPaginationChange={setPagination}
+                    sorting={sorting}
+                    onSortChange={setSorting}
+                    className="overflow-x-visible"
+                  />
+                )}
+              </div>
+            </>
+          )}
         </>
       )}
       <Suspense>

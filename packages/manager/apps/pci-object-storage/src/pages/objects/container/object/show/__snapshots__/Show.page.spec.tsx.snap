@@ -54,19 +54,31 @@ exports[`Show page > should display datagrid 1`] = `
         class="grid gap-2 col-span-12 md:col-span-4"
       >
         <div
-          class="mb-4 "
+          class="mb-4"
         >
-          <ods-text />
+          <ods-text>
+            <span>
+              pci_projects_project_storages_containers_container_region
+            </span>
+          </ods-text>
         </div>
         <div
-          class="mb-4 "
+          class="mb-4"
         >
-          <ods-text />
+          <ods-text>
+            <span>
+              pci_projects_project_storages_containers_container_object_info_storedObjects
+            </span>
+          </ods-text>
         </div>
         <div
-          class="mb-4 "
+          class="mb-4"
         >
-          <ods-text />
+          <ods-text>
+            <span>
+              pci_projects_project_storages_containers_container_info_storedBytes
+            </span>
+          </ods-text>
         </div>
       </div>
       <div
@@ -81,11 +93,11 @@ exports[`Show page > should display datagrid 1`] = `
               class="font-bold-class"
               preset="caption"
             >
-              container:pci_projects_project_storages_containers_container_info_id
+              pci_projects_project_storages_containers_container_info_id
             </ods-text>
           </div>
           <ods-clipboard
-            class="w-full"
+            class="w-[100%]"
             data-testid="clipboard"
             label-copy="clipboard_copy"
             label-copy-success="clipboard_copy_success"
@@ -101,7 +113,7 @@ exports[`Show page > should display datagrid 1`] = `
               class="font-bold-class"
               preset="caption"
             >
-              container:pci_projects_project_storages_containers_container_info_publicUrl
+              pci_projects_project_storages_containers_container_info_publicUrl
             </ods-text>
             <div>
               <ods-icon
@@ -115,13 +127,13 @@ exports[`Show page > should display datagrid 1`] = `
                 <ods-text
                   preset="caption"
                 >
-                  container:pci_projects_project_storages_containers_container_info_publicUrl_help
+                  pci_projects_project_storages_containers_container_info_publicUrl_help
                 </ods-text>
               </ods-popover>
             </div>
           </div>
           <ods-clipboard
-            class="w-full"
+            class="w-[100%]"
             data-testid="clipboard"
             label-copy="clipboard_copy"
             label-copy-success="clipboard_copy_success"
@@ -151,13 +163,13 @@ exports[`Show page > should display datagrid 1`] = `
                 <ods-text
                   preset="caption"
                 >
-                  container:pci_projects_project_storages_containers_container_object_info_staticUrl_help
+                  pci_projects_project_storages_containers_container_object_info_staticUrl_help
                 </ods-text>
               </ods-popover>
             </div>
           </div>
           <ods-clipboard
-            class="w-full"
+            class="w-[100%]"
             data-testid="clipboard"
             label-copy="clipboard_copy"
             label-copy-success="clipboard_copy_success"
@@ -170,7 +182,7 @@ exports[`Show page > should display datagrid 1`] = `
     >
       <ods-button
         icon="plus"
-        label="container:pci_projects_project_storages_containers_container_add_object_label"
+        label="pci_projects_project_storages_containers_container_add_object_label"
         size="sm"
       />
       <div
@@ -190,7 +202,7 @@ exports[`Show page > should display datagrid 1`] = `
           color="primary"
           icon="filter"
           id="filterPopoverTrigger"
-          label="filters:common_criteria_adder_filter_label"
+          label="common_criteria_adder_filter_label"
           size="sm"
           variant="outline"
         />

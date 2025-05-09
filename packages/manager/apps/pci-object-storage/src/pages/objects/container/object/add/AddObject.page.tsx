@@ -17,11 +17,7 @@ import {
   OdsText,
 } from '@ovhcloud/ods-components/react';
 import {
-  OBJECT_CONTAINER_MODE_LOCAL_ZONE,
-  OBJECT_CONTAINER_MODE_MONO_ZONE,
-  OBJECT_CONTAINER_MODE_MULTI_ZONES,
   OBJECT_CONTAINER_STORAGE_CLASS,
-  STORAGE_CLASSES_LINK,
   STORAGE_PRICES_LINK,
   TRACKING_PREFIX,
 } from '@/constants';
@@ -31,7 +27,6 @@ import { useStorage } from '@/api/hooks/useStorages';
 import { useAddObjects } from '@/api/hooks/useObject';
 import { useAddObjectForm } from './useAddObjectsForm';
 import { useGetRegion } from '@/api/hooks/useRegion';
-import UseStandardInfrequentAccessAvailability from '@/hooks/useStandardInfrequentAccessAvailability';
 
 export default function AddObjectPage() {
   const { t } = useTranslation(['objects/add', 'pci-common']);
@@ -50,9 +45,6 @@ export default function AddObjectPage() {
 
   const PRICE_LINK =
     STORAGE_PRICES_LINK[ovhSubsidiary] || STORAGE_PRICES_LINK.DEFAULT;
-
-  const CLASSES_LINK =
-    STORAGE_CLASSES_LINK[ovhSubsidiary] || STORAGE_CLASSES_LINK.DEFAULT;
 
   const {
     formState,
@@ -120,16 +112,7 @@ export default function AddObjectPage() {
     region,
   );
 
-  const is = useMemo(
-    () => ({
-      localZone: containerRegion?.type === OBJECT_CONTAINER_MODE_LOCAL_ZONE,
-      oneAZ: containerRegion?.type === OBJECT_CONTAINER_MODE_MONO_ZONE,
-      multiAZ: containerRegion?.type === OBJECT_CONTAINER_MODE_MULTI_ZONES,
-    }),
-    [region],
-  );
-
-  const showHeighPerfStorageClass = useMemo(
+  const showStorageClass = useMemo(
     () =>
       containerRegion?.services?.some(
         (item) => item.name === 'storage-s3-high-perf' && item.status === 'UP',
@@ -154,8 +137,6 @@ export default function AddObjectPage() {
     goBack();
   };
 
-  const hasStandardInfrequentAccess = UseStandardInfrequentAccessAvailability();
-
   return (
     <PciModal
       title={t(
@@ -175,78 +156,32 @@ export default function AddObjectPage() {
       )}
       isDisabled={!isFormValid}
     >
-      {container?.s3StorageType && !showHeighPerfStorageClass && (
+      {container?.s3StorageType && !showStorageClass && (
         <OdsMessage className="my-6" isDismissible={false}>
           {t(
-            is.localZone || !hasStandardInfrequentAccess
-              ? 'pci_projects_project_storages_containers_container_object_add_storage_class_info_banner_lz'
-              : 'pci_projects_project_storages_containers_container_object_add_storage_class_info_banner',
+            'pci_projects_project_storages_containers_container_object_add_storage_class_info_banner',
           )}
         </OdsMessage>
       )}
-      {hasStandardInfrequentAccess
-        ? container?.s3StorageType && (
-            <div>
-              <OdsText>
-                {t(
-                  'pci_projects_project_storages_containers_container_object_add_storage_class_label_description',
-                )}
-              </OdsText>
-              <Links
-                className="ml-3"
-                href={CLASSES_LINK}
-                target={LinkType.external}
-                label={t(
-                  'pci_projects_project_storages_containers_container_object_add_storage_class_label_description_link_storage_class',
-                )}
-              />
-              &nbsp;
-              <OdsText>
-                {t(
-                  'pci_projects_project_storages_containers_container_object_add_storage_class_label_description_part_2',
-                )}
-              </OdsText>
-              <Links
-                className="ml-3"
-                href={PRICE_LINK}
-                target={LinkType.external}
-                label={t(
-                  'pci_projects_project_storages_containers_container_object_add_storage_class_label_description_link_price',
-                )}
-              />
-            </div>
-          )
-        : container?.s3StorageType && (
-            <div>
-              <OdsText>
-                {t(
-                  'pci_projects_project_storages_containers_container_object_add_storage_class_label_description',
-                )}
-                &nbsp;
-                {t(
-                  'pci_projects_project_storages_containers_container_object_add_storage_class_label_description_link_storage_class',
-                )}
-                &nbsp;
-                {t(
-                  'pci_projects_project_storages_containers_container_object_add_storage_class_label_description_part_2',
-                )}
-                &nbsp;
-                {t(
-                  'pci_projects_project_storages_containers_container_object_add_storage_class_label_description_link_price',
-                )}
-              </OdsText>
 
-              <Links
-                className="ml-3"
-                href={PRICE_LINK}
-                type={LinkType.next}
-                target={LinkType.external}
-                label={t(
-                  'pci_projects_project_storages_containers_container_object_add_storage_class_label_description_link_price_text',
-                )}
-              />
-            </div>
-          )}
+      {container?.s3StorageType && (
+        <div>
+          <OdsText>
+            {t(
+              'pci_projects_project_storages_containers_container_object_add_storage_class_label_description',
+            )}
+          </OdsText>
+          <Links
+            className="ml-3"
+            href={PRICE_LINK}
+            type={LinkType.next}
+            target={LinkType.external}
+            label={t(
+              'pci_projects_project_storages_containers_container_object_add_storage_class_label_description_link',
+            )}
+          />
+        </div>
+      )}
 
       <OdsFormField
         className="w-full my-4"
@@ -255,7 +190,6 @@ export default function AddObjectPage() {
         }
       >
         <LabelComponent
-          className="label-upload"
           text={t(
             'pci_projects_project_storages_containers_container_object_add_prefix_label',
           )}
@@ -272,143 +206,56 @@ export default function AddObjectPage() {
         />
       </OdsFormField>
 
-      {hasStandardInfrequentAccess
-        ? container?.s3StorageType &&
-          !is.localZone && (
-            <div className="my-6">
-              <LabelComponent
-                text={t(
-                  'pci_projects_project_storages_containers_container_object_add_storage_class_label',
-                )}
+      {container?.s3StorageType && showStorageClass && (
+        <div className="my-6">
+          <LabelComponent
+            text={t(
+              'pci_projects_project_storages_containers_container_object_add_storage_class_label',
+            )}
+          />
+          <div className="flex flex-col gap-4">
+            <div className="flex items-center gap-4">
+              <OdsRadio
+                value={OBJECT_CONTAINER_STORAGE_CLASS.STANDARD}
+                name="swiftFileType"
+                inputId="swiftFileType"
+                isChecked={
+                  formState.storageClass ===
+                  OBJECT_CONTAINER_STORAGE_CLASS.STANDARD
+                }
+                onOdsChange={(event) => updateStorageClass(event.detail.value)}
               />
-              <div className="flex flex-col gap-4">
-                {showHeighPerfStorageClass && (
-                  <div className="flex items-center gap-4">
-                    <OdsRadio
-                      value={OBJECT_CONTAINER_STORAGE_CLASS.HIGH_PERFORMANCE}
-                      name="s3FileType"
-                      inputId="s3FileType"
-                      isChecked={
-                        formState.storageClass ===
-                        OBJECT_CONTAINER_STORAGE_CLASS.HIGH_PERFORMANCE
-                      }
-                      onOdsChange={(event) =>
-                        updateStorageClass(event.detail.value)
-                      }
-                    />
-                    <label htmlFor="s3FileType">
-                      <OdsText preset="span">
-                        {t(
-                          'pci_projects_project_storages_containers_container_object_add_storage_class_high_perf',
-                        )}
-                      </OdsText>
-                    </label>
-                  </div>
-                )}
-
-                <div className="flex items-center gap-4">
-                  <OdsRadio
-                    value={OBJECT_CONTAINER_STORAGE_CLASS.STANDARD}
-                    name="swiftFileType"
-                    inputId="swiftFileType"
-                    isChecked={
-                      formState.storageClass ===
-                      OBJECT_CONTAINER_STORAGE_CLASS.STANDARD
-                    }
-                    onOdsChange={(event) =>
-                      updateStorageClass(event.detail.value)
-                    }
-                  />
-                  <label htmlFor="swiftFileType">
-                    <OdsText preset="span">
-                      {t(
-                        'pci_projects_project_storages_containers_container_object_add_storage_class_standard',
-                      )}
-                    </OdsText>
-                  </label>
-                </div>
-
-                <div className="flex items-center gap-4">
-                  <OdsRadio
-                    value={
-                      OBJECT_CONTAINER_STORAGE_CLASS.STANDARD_INFREQUENT_ACCESS
-                    }
-                    name="standardInfrequentAccess"
-                    inputId="standardInfrequentAccess"
-                    isChecked={
-                      formState.storageClass ===
-                      OBJECT_CONTAINER_STORAGE_CLASS.STANDARD_INFREQUENT_ACCESS
-                    }
-                    onOdsChange={(event) =>
-                      updateStorageClass(event.detail.value)
-                    }
-                  />
-                  <label htmlFor="standardInfrequentAccess">
-                    <OdsText preset="span">
-                      {t(
-                        'pci_projects_project_storages_containers_container_object_add_storage_class_standard_infrequent_access',
-                      )}
-                    </OdsText>
-                  </label>
-                </div>
-              </div>
+              <label htmlFor="swiftFileType">
+                <OdsText preset="span">
+                  {t(
+                    'pci_projects_project_storages_containers_container_object_add_storage_class_standard',
+                  )}
+                </OdsText>
+              </label>
             </div>
-          )
-        : container?.s3StorageType &&
-          showHeighPerfStorageClass && (
-            <div className="my-6">
-              <LabelComponent
-                text={t(
-                  'pci_projects_project_storages_containers_container_object_add_storage_class_label',
-                )}
+
+            <div className="flex items-center gap-4">
+              <OdsRadio
+                value={OBJECT_CONTAINER_STORAGE_CLASS.HIGH_PERFORMANCE}
+                name="s3FileType"
+                inputId="s3FileType"
+                isChecked={
+                  formState.storageClass ===
+                  OBJECT_CONTAINER_STORAGE_CLASS.HIGH_PERFORMANCE
+                }
+                onOdsChange={(event) => updateStorageClass(event.detail.value)}
               />
-              <div className="flex flex-col gap-4">
-                <div className="flex items-center gap-4">
-                  <OdsRadio
-                    value={OBJECT_CONTAINER_STORAGE_CLASS.STANDARD}
-                    name="swiftFileType"
-                    inputId="swiftFileType"
-                    isChecked={
-                      formState.storageClass ===
-                      OBJECT_CONTAINER_STORAGE_CLASS.STANDARD
-                    }
-                    onOdsChange={(event) =>
-                      updateStorageClass(event.detail.value)
-                    }
-                  />
-                  <label htmlFor="swiftFileType">
-                    <OdsText preset="span">
-                      {t(
-                        'pci_projects_project_storages_containers_container_object_add_storage_class_standard',
-                      )}
-                    </OdsText>
-                  </label>
-                </div>
-
-                <div className="flex items-center gap-4">
-                  <OdsRadio
-                    value={OBJECT_CONTAINER_STORAGE_CLASS.HIGH_PERFORMANCE}
-                    name="s3FileType"
-                    inputId="s3FileType"
-                    isChecked={
-                      formState.storageClass ===
-                      OBJECT_CONTAINER_STORAGE_CLASS.HIGH_PERFORMANCE
-                    }
-                    onOdsChange={(event) =>
-                      updateStorageClass(event.detail.value)
-                    }
-                  />
-                  <label htmlFor="s3FileType">
-                    <OdsText preset="span">
-                      {t(
-                        'pci_projects_project_storages_containers_container_object_add_storage_class_high_perf',
-                      )}
-                    </OdsText>
-                  </label>
-                </div>
-              </div>
+              <label htmlFor="s3FileType">
+                <OdsText preset="span">
+                  {t(
+                    'pci_projects_project_storages_containers_container_object_add_storage_class_high_perf',
+                  )}
+                </OdsText>
+              </label>
             </div>
-          )}
+          </div>
+        </div>
+      )}
 
       <OdsFormField className="w-full my-4">
         <FileInputComponent

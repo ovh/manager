@@ -19,7 +19,6 @@ import { useColumnsCount } from '@/hooks/useColumnsCount';
 import { DeploymentModeStepTile } from './DeploymentModeStepTile.component';
 import { useContainerCreationStore } from '../useContainerCreationStore';
 import { useStorageFeatures } from '@/hooks/useStorageFeatures';
-import UseStandardInfrequentAccessAvailability from '@/hooks/useStandardInfrequentAccessAvailability';
 
 export function DeploymentModeStep() {
   const { t } = useTranslation(['containers/add', 'pci-common']);
@@ -80,7 +79,6 @@ export function DeploymentModeStep() {
 
     trackClick({ actions });
   };
-  const hasStandardInfrequentAccess = UseStandardInfrequentAccessAvailability();
 
   return (
     <StepComponent
@@ -153,11 +151,9 @@ export function DeploymentModeStep() {
       )}
 
       {!stepper.deployment.isLocked && (
-        <OdsText preset="caption" className="mt-8 block">
+        <OdsText preset="paragraph" className="mt-8 block">
           {t(
-            hasStandardInfrequentAccess
-              ? 'pci_projects_project_storages_containers_add_deployment_mode_price_explanation_standard_infrequent_access'
-              : 'pci_projects_project_storages_containers_add_deployment_mode_price_explanation',
+            'pci_projects_project_storages_containers_add_deployment_mode_price_explanation',
           )}
           <OdsLink
             className="mt-4"
@@ -166,9 +162,7 @@ export function DeploymentModeStep() {
             target="_blank"
             icon="external-link"
             label={t(
-              hasStandardInfrequentAccess
-                ? 'pci_projects_project_storages_containers_add_deployment_mode_price_explanation_link_standard_infrequent_access'
-                : 'pci_projects_project_storages_containers_add_deployment_mode_price_explanation_link',
+              'pci_projects_project_storages_containers_add_deployment_mode_price_explanation_link',
             )}
           />
         </OdsText>

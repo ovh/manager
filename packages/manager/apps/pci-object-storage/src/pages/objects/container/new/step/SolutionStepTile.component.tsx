@@ -12,11 +12,7 @@ import {
   PLAN_CODES,
 } from '@/constants';
 
-export function SolutionStepTileComponent({
-  item,
-  isItemSelected,
-  hasStandardInfrequentAccess,
-}) {
+export function SolutionStepTileComponent({ item, isItemSelected }) {
   const { t } = useTranslation('containers/add');
   const { data: catalog, isPending } = useCatalog('cloud');
   const { getTextPrice } = useCatalogPrice();
@@ -64,38 +60,21 @@ export function SolutionStepTileComponent({
       <p>
         <OdsText preset="caption">
           {t(
-            hasStandardInfrequentAccess
-              ? `pci_projects_project_storages_containers_add_offer_${item}_description_standard_infrequent_access`
-              : `pci_projects_project_storages_containers_add_offer_${item}_description`,
+            `pci_projects_project_storages_containers_add_offer_${item}_description`,
           )}
         </OdsText>
       </p>
       <p>
         {isPending && <OdsSkeleton />}
         {!isPending && (
-          <>
-            <OdsText preset="caption" className="caption-price">
-              {t(
-                hasStandardInfrequentAccess
-                  ? 'pci_projects_project_storages_containers_add_offers_estimated_price_standard_infrequent_access'
-                  : 'pci_projects_project_storages_containers_add_offers_estimated_price',
-                {
-                  price: getTextPrice(hourlyPrice) || '?',
-                },
-              )}
-            </OdsText>
-            &nbsp;
-            {hasStandardInfrequentAccess && (
-              <OdsText preset="caption">
-                {t(
-                  'pci_projects_project_storages_containers_add_offers_estimated_price_brackets',
-                  {
-                    price: getTextPrice(hourlyPrice) || '?',
-                  },
-                )}
-              </OdsText>
+          <OdsText preset="caption" className="caption-price">
+            {t(
+              'pci_projects_project_storages_containers_add_offers_estimated_price',
+              {
+                price: getTextPrice(hourlyPrice) || '?',
+              },
             )}
-          </>
+          </OdsText>
         )}
       </p>
     </div>

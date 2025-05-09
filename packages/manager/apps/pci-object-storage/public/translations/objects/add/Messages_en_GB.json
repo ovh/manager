@@ -10,15 +10,9 @@
   "pci_projects_project_storages_containers_container_object_add_archive_error_delete": "An error has occurred importing the archives: {{message}}.",
   "pci_projects_project_storages_containers_container_object_add_object_error_delete": "An error has occurred importing the {{ object }} objects: {{ message }}.",
   "pci_projects_project_storages_containers_container_object_add_storage_class_label": "Select storage class",
-  "pci_projects_project_storages_containers_container_object_add_storage_class_label_description": "Find out more about",
+  "pci_projects_project_storages_containers_container_object_add_storage_class_label_description": "Learn more about storage classes and pricing. ",
   "pci_projects_project_storages_containers_container_object_add_storage_class_label_description_link": "View prices",
   "pci_projects_project_storages_containers_container_object_add_storage_class_standard": "Standard",
   "pci_projects_project_storages_containers_container_object_add_storage_class_high_perf": "High Performance",
-  "pci_projects_project_storages_containers_container_object_add_storage_class_info_banner": "Only Standard and Standard Infrequent Access storage classes are available for objects in this deployment mode.",
-  "pci_projects_project_storages_containers_container_object_add_storage_class_label_description_link_storage_class": "storage classes",
-  "pci_projects_project_storages_containers_container_object_add_storage_class_label_description_part_2": "and the",
-  "pci_projects_project_storages_containers_container_object_add_storage_class_label_description_link_price": "prices.",
-  "pci_projects_project_storages_containers_container_object_add_storage_class_label_description_link_price_text": "View prices",
-  "pci_projects_project_storages_containers_container_object_add_storage_class_standard_infrequent_access": "Standard Infrequent Access",
-  "pci_projects_project_storages_containers_container_object_add_storage_class_info_banner_lz": "Only the standard storage class is available for objects in a container created with this deployment mode."
+  "pci_projects_project_storages_containers_container_object_add_storage_class_info_banner": "Only the standard storage class is available for container objects created with this deployment mode."
 }
