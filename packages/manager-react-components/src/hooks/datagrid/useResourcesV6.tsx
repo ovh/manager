@@ -5,7 +5,6 @@ import {
   fetchIcebergV6,
   applyFilters,
   FilterTypeCategories,
-  FilterComparator,
 } from '@ovh-ux/manager-core-api';
 import { useQuery } from '@tanstack/react-query';
 import { useColumnFilters, ColumnSort } from '../../components';
@@ -60,13 +59,20 @@ function sortColumn(type: string, a: any, b: any, desc: boolean) {
   }
 }
 
-function applySearch(items, filters) {
-  if (!filters?.length) return items;
-  return items.filter((item) =>
-    filters.some(
-      ({ key, value }) =>
-        item[key]?.toString()?.toLowerCase().includes(value.toLowerCase()),
-    ),
+function applySearch(items, filters, searchInput) {
+  if (!searchInput || searchInput.length === 0 || !filters?.length)
+    return items;
+
+  return items?.filter(
+    (item) =>
+      filters?.some((columnId) => {
+        const value = item[columnId];
+        if (value === null || value === undefined) return false;
+        return value
+          ?.toString()
+          ?.toLowerCase()
+          ?.includes(searchInput?.toLowerCase());
+      }),
   );
 }
 
@@ -81,8 +87,8 @@ export function useResourcesV6<T = unknown>({
   pageSize = 10,
   columns = [],
 }: IcebergFetchParamsV6 & ResourcesV6Hook) {
-  const [searchInput, setSearchInput] = useState('');
-  const [searchFilter, setSearchFilter] = useState<any>(null);
+  const [searchSubmitted, setSearchSubmitted] = useState<string>('');
+  const [searchInput, setSearchInput] = useState<string>('');
   const { data, isError, isLoading, error, status } = useQuery({
     queryKey: [queryKey],
     queryFn: () => fetchIcebergV6<T>({ route }),
@@ -94,17 +100,28 @@ export function useResourcesV6<T = unknown>({
   const [flattenData, setFlattenData] = useState<T[]>([]);
   const { filters, addFilter, removeFilter } = useColumnFilters();
 
+  const searchableColumns = useMemo(() => {
+    return columns
+      .filter((col: ColumnDatagrid) => col.isSearchable)
+      .map((filter) => filter?.id);
+  }, [columns]);
+
   const searchedData = useMemo(() => {
     if (!data?.data) return [];
     let processedData = data?.data;
-    if (searchFilter) {
-      processedData = applySearch(data?.data, searchFilter);
+
+    if (searchSubmitted) {
+      processedData = applySearch(
+        data?.data,
+        searchableColumns,
+        searchSubmitted,
+      );
     }
     if (filters) {
       processedData = applyFilters(processedData, filters);
     }
     return processedData;
-  }, [searchFilter, data?.data, filters]);
+  }, [searchableColumns, searchSubmitted, data?.data, filters]);
 
   const sortedData = useMemo(() => {
     if (sorting) {
@@ -114,7 +131,7 @@ export function useResourcesV6<T = unknown>({
         sortColumn(columnType, a?.[sorting.id], b?.[sorting.id], sorting.desc),
       );
     }
-    return searchedData.length > 0 ? searchedData : data?.data;
+    return searchedData.length > 0 ? searchedData : [];
   }, [sorting, searchedData]);
 
   useEffect(() => {
@@ -131,21 +148,8 @@ export function useResourcesV6<T = unknown>({
 
   const fetchNextPage = useCallback(() => setPageIndex((prev) => prev + 1), []);
 
-  const searchableColumns = useMemo(
-    () => columns.filter((col: ColumnDatagrid) => col.isSearchable),
-    [columns],
-  );
-
   const onSearch = useCallback((search) => {
-    setSearchFilter(
-      !search
-        ? null
-        : searchableColumns.map(({ id }) => ({
-            key: id,
-            value: search,
-            comparator: FilterComparator.Includes,
-          })),
-    );
+    setSearchSubmitted(search.trim());
   }, []);
 
   return {
