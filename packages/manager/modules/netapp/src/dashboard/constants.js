@@ -24,7 +24,7 @@ export const VOLUME_TRACKING_PREFIX =
 
 export const VOLUME_TRACKING_CONTEXT = {
   page: {
-    name: `${VOLUME_TRACKING_PREFIX}netapp::listing::volumes`,
+    name: `${VOLUME_TRACKING_PREFIX}netapp::volumes::listing`,
   },
   page_theme: 'Storage_backup',
   page_category: 'listing',
