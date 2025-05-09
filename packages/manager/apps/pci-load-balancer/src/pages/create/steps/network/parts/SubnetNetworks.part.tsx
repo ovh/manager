@@ -17,8 +17,10 @@ import { useParams } from 'react-router-dom';
 import { useCreateStore } from '@/pages/create/store';
 import { useSubnetGateways } from '@/api/hook/useGateways/useGateways';
 import { FloatingIpSelectionId } from '@/types/floating.type';
-import { useRegionAddons } from '@/api/hook/useAddons/useAddons';
-import { GATEWAY_ADDON_FAMILY } from '@/api/hook/useGateways/useGateways.constant';
+import { useAddons } from '@/api/hook/useAddons/useAddons';
+import { GATEWAY_ADDON_FAMILY } from '@/api/hook/useAddons/useAddons.constant';
+import { TProductAddonDetail } from '@/types/product.type';
+import { filterProductRegionBySize } from '@/api/hook/useAddons/useAddons.select';
 
 export const SubnetNetworksPart = (): JSX.Element => {
   const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
@@ -36,11 +38,12 @@ export const SubnetNetworksPart = (): JSX.Element => {
     isFetching: isSubnetGatewaysFetching,
   } = useSubnetGateways(projectId, region, store.subnet?.id);
 
-  const { addons } = useRegionAddons({
+  const { addons } = useAddons({
     ovhSubsidiary,
     projectId,
-    region,
     addonFamily: GATEWAY_ADDON_FAMILY,
+    select: (products: TProductAddonDetail[]) =>
+      filterProductRegionBySize(products, region),
   });
 
   // the smallest gateway is always the first because it is already sorted by size
