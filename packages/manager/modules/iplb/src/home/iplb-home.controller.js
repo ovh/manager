@@ -8,7 +8,6 @@ import map from 'lodash/map';
 import 'moment';
 
 import IplbHomeUpdateQuotaTemplate from './updateQuota/iplb-update-quota.html';
-import IpLoadBalancerTerminateTemplate from '../modal/terminate/terminate.html';
 import {
   INFO_LINK,
   MESSAGE_DISPLAY_DATE,
@@ -252,15 +251,8 @@ export default class IpLoadBalancerHomeCtrl {
       },
       deleteService: {
         callback: () =>
-          this.CucControllerHelper.modal.showModal({
-            modalConfig: {
-              template: IpLoadBalancerTerminateTemplate,
-              controller: 'IpLoadBalancerTerminateCtrl',
-              controllerAs: '$ctrl',
-              resolve: {
-                service: () => this,
-              },
-            },
+          this.$state.go('iplb.detail.home.terminate', {
+            id: this.serviceName,
           }),
         text: this.$translate.instant('iplb_delete'),
         isAvailable: () =>
