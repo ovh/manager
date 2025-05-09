@@ -1,13 +1,41 @@
-// Hexagonal Architecture-style boundary:
-// enforcing clear isolation boundaries between the framework (Vitest) and the application domain
+// Hexagonal Architecture-style boundary
+// Enforcing clean separation between framework and test domain
+import {
+  describe,
+  it,
+  expect,
+  beforeEach,
+  afterEach,
+  afterAll,
+  beforeAll,
+  vi,
+} from 'vitest';
+
 import {
   defineConfig as createConfig,
   mergeConfig,
   coverageConfigDefaults as defaultCoverageConfig,
 } from 'vitest/config';
+
 import react from '@vitejs/plugin-react';
 
-export { createConfig, mergeConfig, defaultCoverageConfig };
+export {
+  // vi is intentionally exposed to ensure devs don’t feel boxed in
+  // keep this for flexibility and dev experience, so it'll be easy to find documentation and community support
+  vi,
+  // Common test functions
+  describe,
+  it,
+  expect,
+  beforeEach,
+  afterEach,
+  afterAll,
+  beforeAll,
+  // Config helpers
+  createConfig,
+  mergeConfig,
+  defaultCoverageConfig,
+};
 
 export const sharedConfig = createConfig({
   plugins: [react()],
