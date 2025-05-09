@@ -1,17 +1,6 @@
 // Hexagonal Architecture-style boundary
 // Enforcing clean separation between framework and test domain
 import {
-  describe,
-  it,
-  expect,
-  beforeEach,
-  afterEach,
-  afterAll,
-  beforeAll,
-  vi,
-} from 'vitest';
-
-import {
   defineConfig as createConfig,
   mergeConfig,
   coverageConfigDefaults as defaultCoverageConfig,
@@ -19,23 +8,7 @@ import {
 
 import react from '@vitejs/plugin-react';
 
-export {
-  // vi is intentionally exposed to ensure devs don’t feel boxed in
-  // keep this for flexibility and dev experience, so it'll be easy to find documentation and community support
-  vi,
-  // Common test functions
-  describe,
-  it,
-  expect,
-  beforeEach,
-  afterEach,
-  afterAll,
-  beforeAll,
-  // Config helpers
-  createConfig,
-  mergeConfig,
-  defaultCoverageConfig,
-};
+export { createConfig, mergeConfig, defaultCoverageConfig };
 
 export const sharedConfig = createConfig({
   plugins: [react()],
