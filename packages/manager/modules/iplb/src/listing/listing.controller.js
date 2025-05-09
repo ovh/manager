@@ -1,5 +1,4 @@
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
-import template from '../modal/terminate/terminate.html';
 
 export default class iplbListingCtrl extends ListLayoutHelper.ListLayoutCtrl {
   /* @ngInject */
@@ -16,15 +15,6 @@ export default class iplbListingCtrl extends ListLayoutHelper.ListLayoutCtrl {
   }
 
   deleteIplb(service) {
-    this.CucControllerHelper.modal.showModal({
-      modalConfig: {
-        template,
-        controller: 'IpLoadBalancerTerminateCtrl',
-        controllerAs: '$ctrl',
-        resolve: {
-          service: () => service,
-        },
-      },
-    });
+    this.$state.go('iplb.index.terminate', { id: service.serviceName });
   }
 }
