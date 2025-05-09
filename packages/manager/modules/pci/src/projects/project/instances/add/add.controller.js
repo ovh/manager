@@ -1447,7 +1447,7 @@ export default class PciInstancesAddController {
             this.getSmallestGatewayInfo();
           }
         }),
-        this.isSavingsPlanAvailable && this.getSavingsPlanPrice(),
+        this.getSavingsPlanPrice(),
       ])
       .finally(() => {
         this.isLoadBillingStep = false;
