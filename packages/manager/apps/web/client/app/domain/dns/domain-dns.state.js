@@ -11,6 +11,11 @@ export default /* @ngInject */ ($stateProvider) => {
         controllerAs: '$ctrl',
         template,
       },
+      dnsZoneView: {
+        template,
+        controller,
+        controllerAs: '$ctrl',
+      },
     },
     params: {
       /**
@@ -30,5 +35,6 @@ export default /* @ngInject */ ($stateProvider) => {
   };
 
   $stateProvider.state('app.domain.product.dns', { ...state });
+  $stateProvider.state('app.zone.details.dns', { ...state });
   $stateProvider.state('app.alldom.domain.dns', { ...state });
 };
