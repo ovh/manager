@@ -7,6 +7,7 @@ export default class HeaderController {
     constants,
     coreURLBuilder,
     wucExchange,
+    EXCHANGE_CONFIG,
     exchangeHeader,
     exchangeServiceInfrastructure,
     messaging,
@@ -19,6 +20,7 @@ export default class HeaderController {
     this.constants = constants;
     this.coreURLBuilder = coreURLBuilder;
     this.wucExchange = wucExchange;
+    this.EXCHANGE_CONFIG = EXCHANGE_CONFIG;
     this.exchangeHeader = exchangeHeader;
     this.exchangeServiceInfrastructure = exchangeServiceInfrastructure;
     this.messaging = messaging;
@@ -41,6 +43,27 @@ export default class HeaderController {
         },
       },
     });
+
+    this.getCanOrderOffice365();
+    this.OFFICE_365_ORDER_URL = this.EXCHANGE_CONFIG.URLS.OFFICE_365_ORDER.DEFAULT;
+
+    this.exchangeHeader.getUserSubsidiary().then((subsidiary) => {
+      this.OFFICE_365_ORDER_URL =
+        this.EXCHANGE_CONFIG.URLS.OFFICE_365_ORDER[subsidiary] ||
+        this.OFFICE_365_ORDER_URL;
+    });
+  }
+
+  getCanOrderOffice365() {
+    return this.exchangeHeader
+      .getOfficeTenantServiceName(
+        this.exchangeService.domain,
+        this.constants.target,
+      )
+      .then((officeTenantServiceName) => {
+        this.canOrderOffice365 =
+          !officeTenantServiceName && this.constants.target === 'EU';
+      });
   }
 
   cancelEdition() {
