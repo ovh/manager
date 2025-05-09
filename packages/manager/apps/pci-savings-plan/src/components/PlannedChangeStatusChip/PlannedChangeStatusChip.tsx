@@ -10,7 +10,7 @@ const PlannedChangeStatusChip = ({ label }: { label: string }) => {
     [key in SavingsPlanPlanedChangeStatus]: ODS_BADGE_COLOR;
   } = {
     [SavingsPlanPlanedChangeStatus.REACTIVATE]: ODS_BADGE_COLOR.success,
-    [SavingsPlanPlanedChangeStatus.TERMINATE]: ODS_BADGE_COLOR.neutral,
+    [SavingsPlanPlanedChangeStatus.TERMINATE]: ODS_BADGE_COLOR.critical,
   };
 
   return label ? (

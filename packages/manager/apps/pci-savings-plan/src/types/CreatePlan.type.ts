@@ -17,9 +17,8 @@ export type InstanceInfo = {
   category: ResourceType;
   technicalName: InstanceTechnicalName;
   label: string;
+  technical: ReturnType<typeof formatTechnicalInfo>[];
 };
-
-export type TechnicalInfo = ReturnType<typeof formatTechnicalInfo>;
 
 export type Resource = {
   value: ResourceType;

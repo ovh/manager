@@ -22,9 +22,11 @@ describe('SelectQuantity', () => {
   describe('when isInstance is true', () => {
     it('should render the quantity_banner_instance', () => {
       const screen = setupSpecTest();
-
-      const instanceBanner = screen.getByText(/quantity_banner_instance/i);
-      expect(instanceBanner).toBeInTheDocument();
+      expect(
+        screen.getByText(
+          "Indiquez le nombre d'instances à inclure dans votre Savings Plan.",
+        ),
+      ).not.toBeNull();
     });
   });
 });

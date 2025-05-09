@@ -19,7 +19,6 @@ import {
   SavingsPlanStatus,
 } from '@/types/api.type';
 import './ActionCell.scss';
-import { isInstanceFlavor } from '@/utils/savingsPlan';
 
 interface SavingsPlanActionsCell {
   onClickEditName: (path: string) => void;
@@ -50,7 +49,10 @@ const MenuItems = ({
   const { t } = useTranslation('listing');
   const { trackClick } = useOvhTracking();
 
-  const isInstance = useMemo(() => isInstanceFlavor(flavor), [flavor]);
+  const navigate = useNavigate();
+  // We don't have a better way to check that, api return only a specific code and not an id related to scope (instance, rancher),
+  // So if we have number in the flavor (b3-8, c3-16) it's an instance else it's a Rancher
+  const isInstance = useMemo(() => /\d/.test(flavor), [flavor]);
 
   return (
     <OdsPopover triggerId={`popover-trigger-${id}`}>

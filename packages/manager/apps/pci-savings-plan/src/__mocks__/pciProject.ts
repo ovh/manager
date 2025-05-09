@@ -2,7 +2,7 @@ import { PciProject, PciProjectPlanCode } from '@/types';
 
 export const pciProjectMocked: PciProject = {
   serviceId: 89098,
-  projectId: '1234',
+  project_id: '1234',
   projectName: 'projectName',
   description: 'Test Project',
   planCode: PciProjectPlanCode.STANDARD,

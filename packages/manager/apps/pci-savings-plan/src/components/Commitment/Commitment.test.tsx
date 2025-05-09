@@ -53,7 +53,7 @@ const setupSpecTest = async (props = defaultProps) =>
 describe('Commitment', () => {
   it('should render the commitment duration', async () => {
     await setupSpecTest();
-    expect(screen.getByText('commitment_month')).toBeInTheDocument();
+    expect(screen.getByText('1 mois')).toBeInTheDocument();
   });
 
   it('should render the commitment price', async () => {

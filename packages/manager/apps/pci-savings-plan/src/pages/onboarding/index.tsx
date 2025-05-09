@@ -1,4 +1,4 @@
-import React, { Suspense, useContext } from 'react';
+import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { OnboardingLayout } from '@ovh-ux/manager-react-components';
 import { useNavigate } from 'react-router-dom';
@@ -24,34 +24,32 @@ export default function Onboarding() {
     ] || SAVINGS_PLAN_INFO_URL.DEFAULT;
 
   return (
-    <Suspense fallback={<div />}>
-      <OnboardingLayout
-        title={t('title')}
-        img={{
-          src: onboardingImgSrc,
-        }}
-        description={t('description')}
-        orderButtonLabel={t('orderButtonLabel')}
-        onOrderButtonClick={() => {
-          navigate('../new');
-          trackClick({
-            location: PageLocation.page,
-            buttonType: ButtonType.button,
-            actionType: 'navigation',
-            actions: ['add_savings_plan'],
-          });
-        }}
-        moreInfoButtonLabel={t('moreInfoButtonLabel')}
-        moreInfoHref={savingsPlanUrl}
-        onmoreInfoButtonClick={() => {
-          trackClick({
-            location: PageLocation.page,
-            buttonType: ButtonType.button,
-            actionType: 'navigation',
-            actions: ['go-to-savings-plan'],
-          });
-        }}
-      />
-    </Suspense>
+    <OnboardingLayout
+      title={t('title')}
+      img={{
+        src: onboardingImgSrc,
+      }}
+      description={t('description')}
+      orderButtonLabel={t('orderButtonLabel')}
+      onOrderButtonClick={() => {
+        navigate('../new');
+        trackClick({
+          location: PageLocation.page,
+          buttonType: ButtonType.button,
+          actionType: 'navigation',
+          actions: ['add_savings_plan'],
+        });
+      }}
+      moreInfoButtonLabel={t('moreInfoButtonLabel')}
+      moreInfoHref={savingsPlanUrl}
+      onmoreInfoButtonClick={() => {
+        trackClick({
+          location: PageLocation.page,
+          buttonType: ButtonType.button,
+          actionType: 'navigation',
+          actions: ['go-to-savings-plan'],
+        });
+      }}
+    />
   );
 }

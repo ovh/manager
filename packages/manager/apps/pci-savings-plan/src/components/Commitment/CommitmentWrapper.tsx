@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { OdsSpinner } from '@ovhcloud/ods-components/react';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { PricingByDurationType } from '@/hooks/planCreation/useDefaultOffer';
-import { InstanceInfo, TechnicalInfo } from '@/types/CreatePlan.type';
+import { InstanceInfo } from '@/types/CreatePlan.type';
 import Commitment from './Commitment';
 import { DescriptionWrapper } from '../CreatePlanForm/CreatePlanForm';
 import { Block } from '../SimpleTile/SimpleTile';
@@ -16,7 +16,7 @@ type CommitmentWrapperProps = {
   setOfferIdSelected: (id: string) => void;
   offerIdSelected: string;
   quantity: number;
-  activeInstance: TechnicalInfo;
+  activeInstance: InstanceInfo['technical'][number];
 };
 
 const CommitmentWrapper = ({
