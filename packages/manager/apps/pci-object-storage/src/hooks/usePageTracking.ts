@@ -24,9 +24,9 @@ export default function usePageTracking() {
 
   useEffect(() => {
     const pageId = location.pathname.split('/').pop();
-    const pageKey = pageId === 'objects' ? '' : `${pageId}`;
+    const pageKey = pageId === 'objects' ? '' : `::${pageId}`;
     trackPage({
-      name: `${PAGE_PREFIX}${pageKey}`,
+      name: `${PAGE_PREFIX}::${pageKey}`,
       level2: PCI_LEVEL2,
     });
   }, [location]);

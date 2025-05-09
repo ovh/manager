@@ -1,10 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { StepComponent } from '@ovh-ux/manager-react-components';
 import { useContext, useMemo, useState } from 'react';
-import {
-  ShellContext,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useNavigate } from 'react-router-dom';
 import {
   OdsFormField,
@@ -40,8 +37,6 @@ export function ContainerNameStep({
 }: Readonly<ContainerNameStepProps>) {
   const { t } = useTranslation(['containers/add', 'pci-common']);
 
-  const { trackClick } = useOvhTracking();
-
   const context = useContext(ShellContext);
   const { tracking } = context.shell;
   const navigate = useNavigate();
@@ -75,22 +70,6 @@ export function ContainerNameStep({
     STORAGE_ASYNC_REPLICATION_LINK[ovhSubsidiary] ||
     STORAGE_ASYNC_REPLICATION_LINK.DEFAULT;
 
-  const trackContainerAction = (actionType: 'confirm' | 'cancel') => {
-    trackClick({
-      actions: [
-        'funnel',
-        'button',
-        'add_objects_storage_container',
-        actionType,
-        `object_container_added_${form.offer}_${form.deploymentMode}_${
-          form.region.name
-        }${form.containerType ? `_${form.containerType}` : ''}_${
-          form.versioning ? 'activate' : 'deactivate'
-        }_${form.encryption}`,
-      ],
-    });
-  };
-
   return (
     <StepComponent
       title={t('pci_projects_project_storages_containers_add_name_title')}
@@ -100,7 +79,6 @@ export function ContainerNameStep({
       order={order}
       next={{
         action: () => {
-          trackContainerAction('confirm');
           onSubmit(form);
         },
         label: t('pci_projects_project_storages_containers_add_submit_label'),
@@ -108,7 +86,10 @@ export function ContainerNameStep({
       }}
       skip={{
         action: () => {
-          trackContainerAction('cancel');
+          tracking?.trackClick({
+            name: 'storage_container_cancel_creation',
+            type: 'action',
+          });
           navigate('..');
         },
         label: t('pci_projects_project_storages_containers_add_cancel_label'),

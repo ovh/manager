@@ -35,9 +35,7 @@ exports[`Show page > should display datagrid 1`] = `
         <div
           class="flex flex-wrap justify-end"
         >
-          <span>
-            <div />
-          </span>
+          <div />
         </div>
       </div>
     </div>
@@ -188,6 +186,7 @@ exports[`Show page > should display datagrid 1`] = `
       <div
         class="flex justify-center gap-4 ml-auto"
       >
+         
         <ods-input
           class="min-w-[15rem]"
           name="searchField"
@@ -524,7 +523,7 @@ exports[`Show page > should display datagrid 1`] = `
                           is-loading="false"
                           size="sm"
                           slot="menu-title"
-                          variant="ghost"
+                          variant="outline"
                         />
                       </div>
                       <ods-popover

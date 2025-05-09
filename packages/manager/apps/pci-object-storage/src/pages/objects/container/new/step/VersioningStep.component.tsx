@@ -7,7 +7,6 @@ import {
   OdsText,
 } from '@ovhcloud/ods-components/react';
 import clsx from 'clsx';
-import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { useContainerCreationStore } from '../useContainerCreationStore';
 import { OBJECT_CONTAINER_MODE_MULTI_ZONES } from '@/constants';
 
@@ -18,8 +17,6 @@ export function VersioningStep() {
     'pci-common',
   ]);
 
-  const { trackClick } = useOvhTracking();
-
   const {
     form,
     setVersioning,
@@ -27,42 +24,6 @@ export function VersioningStep() {
     submitVersioning,
     editVersioning,
   } = useContainerCreationStore();
-
-  const trackVersioningAction = (actionType, versioningState) => {
-    trackClick({
-      actions: [
-        'funnel',
-        'button',
-        'add_objects_storage_container',
-        actionType,
-        versioningState,
-      ],
-    });
-  };
-
-  const handleVersioningChange = (enabled) => {
-    trackVersioningAction(
-      'select_versioning',
-      enabled ? 'activate' : 'desactivate',
-    );
-    setVersioning(enabled);
-  };
-
-  const handleNext = () => {
-    trackVersioningAction(
-      'select_versioning',
-      form.versioning ? 'activate' : 'desactivate',
-    );
-    submitVersioning();
-  };
-
-  const handleEdit = () => {
-    trackVersioningAction(
-      'edit_step_select_versioning',
-      form.versioning ? 'activate' : 'desactivate',
-    );
-    editVersioning();
-  };
 
   return (
     <StepComponent
@@ -74,12 +35,12 @@ export function VersioningStep() {
       isLocked={stepper.versioning.isLocked}
       order={form.deploymentMode === OBJECT_CONTAINER_MODE_MULTI_ZONES ? 5 : 4}
       next={{
-        action: handleNext,
+        action: submitVersioning,
         label: t('pci-common:common_stepper_next_button_label'),
         isDisabled: false,
       }}
       edit={{
-        action: handleEdit,
+        action: editVersioning,
         label: t('pci-common:common_stepper_modify_this_step'),
       }}
     >
@@ -97,7 +58,7 @@ export function VersioningStep() {
               isChecked={!form.versioning || undefined}
               name="versioning"
               inputId="versioning-false"
-              onOdsChange={() => handleVersioningChange(false)}
+              onOdsChange={() => setVersioning(false)}
               isDisabled={form.offsiteReplication}
             />
             <label htmlFor="versioning-false">
@@ -134,7 +95,7 @@ export function VersioningStep() {
             <OdsRadio
               value="true"
               name="versioning"
-              onOdsChange={() => handleVersioningChange(true)}
+              onOdsChange={() => setVersioning(true)}
               inputId="versioning-true"
               isChecked={
                 form.offsiteReplication || form.versioning || undefined
