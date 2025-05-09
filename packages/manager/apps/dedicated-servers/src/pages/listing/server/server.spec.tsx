@@ -5,12 +5,13 @@ import { useResourcesIcebergV6 } from '@ovh-ux/manager-react-components';
 import { useNavigate } from 'react-router-dom';
 import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import { screen, waitFor } from '@testing-library/react';
+import { apiClient } from '@ovh-ux/manager-core-api';
 import { urls } from '@/routes/routes.constant';
 import { labels, renderTest } from '@/test-utils';
 import serverFixture from '@/data/fixtures/server.json';
 
-describe.only('server listing page', () => {
-  it.skip('should redirect to the onboarding page when the list is empty', async () => {
+describe('server listing page', () => {
+  it('should redirect to the onboarding page when the list is empty', async () => {
     (useResourcesIcebergV6 as ReturnType<typeof vi.fn>).mockReturnValue({
       flattenData: [],
       isLoading: false,
@@ -23,6 +24,9 @@ describe.only('server listing page', () => {
       filters: [],
       search: vi.fn(),
     });
+    ((apiClient.v6.get as unknown) as ReturnType<
+      typeof vi.fn
+    >).mockReturnValue({ data: [] });
 
     (useNavigate as ReturnType<typeof vi.fn>).mockReturnValue(vi.fn());
 
