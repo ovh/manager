@@ -69,7 +69,11 @@ const Dashboard: React.FC = () => {
       </OdsText>
       {projectId && <TabsDashboard projectId={projectId} />}
       {!isConsumptionLoading && flavorOptions.length === 0 && (
-        <OdsMessage color="information" className="inline-block mb-4 w-[750px]">
+        <OdsMessage
+          color="information"
+          className="inline-block mb-4 w-[750px]"
+          isDismissible={false}
+        >
           {t('dashboard_banner_no_savings_plan')}
         </OdsMessage>
       )}
