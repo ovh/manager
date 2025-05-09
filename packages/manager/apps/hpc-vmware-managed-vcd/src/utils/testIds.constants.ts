@@ -7,6 +7,7 @@ const TEST_IDS = {
   activateLicenseCta: 'activate-license-cta',
   editButton: 'edit-button',
   modalSubmitCta: 'modal-submit-cta',
+  modalDeleteError: 'modal-delete-error',
   cellDeleteCta: 'cell-delete-cta',
   cellDeleteTooltip: 'cell-delete-tooltip',
   computeOrderCta: 'compute-order-cta',

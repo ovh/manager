@@ -222,6 +222,35 @@ export const Routes: any = [
               },
             },
           },
+          {
+            id: 'vrack-network',
+            path: urls.vrackSegment,
+            ...lazyRouteConfig(() =>
+              import(
+                '@/pages/dashboard/datacentre/vrack-segment/VrackNetwork.page'
+              ),
+            ),
+            children: [
+              {
+                id: 'edit-vlan-id',
+                path: urls.vrackSegmentEditVlanId,
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/dashboard/datacentre/vrack-segment/edit/EditVrackSegmentId.page'
+                  ),
+                ),
+              },
+              {
+                id: 'delete-network',
+                path: urls.vrackSegmentDeleteNetwork,
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/dashboard/datacentre/vrack-segment/delete/DeleteVrackNetwork.page'
+                  ),
+                ),
+              },
+            ],
+          },
         ],
       },
       {
