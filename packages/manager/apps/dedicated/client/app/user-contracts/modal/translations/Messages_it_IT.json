@@ -1,12 +1,14 @@
 {
-  "user_contracts_modal_title": "Termini e condizioni",
-  "user_contracts_modal_term_of_service_updated_text": "I nostri termini e condizioni sono cambiati.",
-  "user_contracts_modal_term_of_service_updated_explanation": "Per utilizzare i nostri servizi e accedere allo Spazio Cliente di OVHcloud, è necessario accettare l'aggiornamento dei seguenti termini e condizioni:",
+  "user_contracts_modal_title": "Condizioni di utilizzo",
+  "user_contracts_modal_term_of_service_updated_text": "I nostri termini di utilizzo sono stati aggiornati.",
+  "user_contracts_modal_term_of_service_updated_explanation": "Per continuare a utilizzare i servizi OVHcloud, incluso l’accesso allo Spazio Cliente, è necessario accettare le nuove condizioni di servizio e i documenti allegati.",
   "user_contracts_modal_checkbox_label_both": "Accetto l'aggiornamento delle condizioni di utilizzo e della politica sulla privacy",
   "user_contracts_modal_checkbox_label_tos": "Accetto l'aggiornamento delle condizioni di utilizzo",
   "user_contracts_modal_checkbox_label_pp": "Accetto l'aggiornamento delle condizioni sulla privacy",
   "user_contracts_modal_submit_button": "Continua",
   "user_contracts_modal_submit_error": "Si è verificato un errore, ti preghiamo di riprovare.",
-  "user_contracts_modal_display_text_tos": "Termini contrattuali di servizio",
-  "user_contracts_modal_display_text_pp": "Policy sulla privacy"
+  "user_contracts_modal_display_text_tos": "Condizioni di utilizzo",
+  "user_contracts_modal_display_text_pp": "Policy sulla privacy",
+  "user_contracts_modal_checkbox_label_multiple_documents": "Accetto le modifiche apportate ai documenti di cui sopra.",
+  "user_contracts_modal_checkbox_label_one_document": "Accetto le modifiche apportate al documento di cui sopra."
 }

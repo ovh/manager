@@ -55,11 +55,11 @@ export default class UserContractsAcceptModalCtrl {
     const codes = map(this.contracts.data, 'code');
     if (size(codes) > 1) {
       return this.$translate.instant(
-        'user_contracts_modal_checkbox_label_both',
+        'user_contracts_modal_checkbox_label_multiple_documents',
       );
     }
     return this.$translate.instant(
-      `user_contracts_modal_checkbox_label_${codes[0]}`,
+      'user_contracts_modal_checkbox_label_one_document',
     );
   }
 }

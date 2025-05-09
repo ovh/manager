@@ -1,5 +1,6 @@
 {
   "iplb_back_home": "Retour",
+
   "iplb_tab_home": "Accueil",
   "iplb_tab_frontends": "Frontends",
   "iplb_tab_server_farm": "Fermes de serveurs",
@@ -74,7 +75,7 @@
   "iplb_delete": "Supprimer",
   "iplb_remove": "Retirer",
   "iplb_modal_ok": "OK",
-  "iplb_tile_subscription": "Abonnement",
+  "iplb_tile_subscription": "Engagement",
   "iplb_tile_subscription_offer": "Offre",
   "iplb_tile_subscription_contact": "Contacts",
   "iplb_tile_subscription_contact_admin": "Administrateur",

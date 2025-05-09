@@ -258,7 +258,7 @@
   "vps_configuration_kvm_new_window": "In einem neuen Fenster öffnen",
   "vps_configuration_kvm_cloud_mapping_keyboard_warning": "Bitte beachten Sie: Die Eingabe von Zahlen nur über den Nummernblock Ihrer Tastatur möglich. Wenn Sie von einem tragbaren Computer ohne Nummernblock auf dieses Interface zugreifen, können Sie wahrscheinlich ein Sekundärblock über eine Tastenkombination nutzen (in der Regel ist das \"fn + ...\").",
   "vps_configuration_kvm_fail": "Beim Aufruf des KVM ist ein Fehler aufgetreten.",
-  "vps_configuration_terminate": "VPS löschen",
+  "vps_configuration_terminate": "VPS kündigen",
   "vps_configuration_veeam_order_title_button": "Automatisches Backup aktivieren",
   "vps_configuration_veeam_umount_title_button": "Backup unmounten",
   "vps_configuration_veeam_umount_title": "Backup unmounten",

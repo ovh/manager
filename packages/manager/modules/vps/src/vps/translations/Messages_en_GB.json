@@ -258,7 +258,7 @@
   "vps_configuration_kvm_new_window": "Open in a new window",
   "vps_configuration_kvm_cloud_mapping_keyboard_warning": "Please note: you can only enter numeric characters by using the number keypad on your keyboard. If you are accessing this interface from a laptop that does not have a number keypad, you can most likely use a secondary keypad by using a key combination (usually in the form \"fn + ...\").",
   "vps_configuration_kvm_fail": "An error has occurred opening the KVM.",
-  "vps_configuration_terminate": "Delete VPS",
+  "vps_configuration_terminate": "Cancel VPS",
   "vps_configuration_veeam_order_title_button": "Enable Automated backup",
   "vps_configuration_veeam_umount_title_button": "Unmount the backup",
   "vps_configuration_veeam_umount_title": "Unmount the backup",

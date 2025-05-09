@@ -68,10 +68,12 @@ export default class ServicesActionsCtrl {
         this.canDisplayWarnPayBillMenuEntry =
           this.autorenewLink &&
           this.service.hasDebt() &&
-          !this.service.hasBillingRights(this.user.nichandle);
+          !this.service.hasBillingRights(this.user.nichandle) &&
+          !this.service.hasBillingRights(this.user.auth.account);
         this.canDisplayPayBillMenuEntry =
           this.service.hasDebt() &&
-          this.service.hasBillingRights(this.user.nichandle);
+          (this.service.hasBillingRights(this.user.nichandle) ||
+            this.service.hasBillingRights(this.user.auth.account));
         this.canDisplayRenewManagementMenuEntries =
           links.billingManagementAvailabilityAndHaveAutorenewLink &&
           !this.service.hasParticularRenew() &&
@@ -134,6 +136,7 @@ export default class ServicesActionsCtrl {
           ].includes(this.service.serviceType) &&
           this.cancelResiliationLink &&
           (this.service.canBeUnresiliated(this.user.nichandle) ||
+            this.service.canBeUnresiliated(this.user.auth.account) ||
             this.service.canCancelResiliationByEndRule());
         this.canDisplayViewServiceMenuEntry =
           this.service.url && !this.service.isByoipService();

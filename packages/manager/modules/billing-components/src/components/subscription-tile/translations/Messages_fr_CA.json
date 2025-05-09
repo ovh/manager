@@ -1,6 +1,6 @@
 {
   "manager_billing_subscription": "Mon offre",
-  "manager_billing_subscription_creation": "Date de souscription",
+  "manager_billing_subscription_creation": "Date d'engagement",
   "manager_billing_subscription_statut": "Statut",
   "manager_billing_subscription_next_due_date": "Prochaine échéance",
   "manager_billing_subscription_engagement": "Engagement",
@@ -33,7 +33,7 @@
   "manager_billing_subscription_configure_renew_frequency": "Configurer la fréquence de renouvellement",
 
   "manager_billing_subscription_resiliate": "Résilier",
-  "manager_billing_subscription_resiliate_my_engagement": "Résilier mon engagement",
+  "manager_billing_subscription_resiliate_my_engagement": "Résilier l'engagement",
 
   "manager_billing_subscription_pay_bill": "Régulariser",
   "manager_billing_subscription_pay_bill_renew": "Renouveler"
