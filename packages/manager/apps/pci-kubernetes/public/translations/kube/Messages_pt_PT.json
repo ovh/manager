@@ -77,6 +77,6 @@
   "kube_service_cluster_network_vrack_customer_gateway": "Gateway: {{ vRackGatewayIp }}",
   "pci_project_flavors_zone_global_region": "1-AZ",
   "pci_project_flavors_zone_3az": "3-AZ",
-  "pci_project_flavors_zone_3az_tooltip": "A 3-AZ região compreendida three availability zones located in the same metropolitan area, separated by a few miles. It meets the highest resilience requirements while guaranteeing extremely low latency between AZs.",
-  "pci_project_flavors_zone_globalregions_tooltip": "A 1-AZ (availability zone) região groups together one or more datacenters located on the same site."
+  "pci_project_flavors_zone_3az_tooltip": "Uma região 3-AZ compreende três Availability Zones localizadas na mesma área metropolitana, separadas por alguns quilómetros. Cumpre os mais elevados requisitos de resiliência, garantindo uma latência extremamente baixa entre AZ.",
+  "pci_project_flavors_zone_globalregions_tooltip": "Uma região 1-AZ (Availability Zone) agrupa um ou mais datacenters situados no mesmo local."
 }
