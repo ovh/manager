@@ -4,21 +4,18 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { DedicatedServer } from '@/data/types/server.type';
+import useGoToServer from '@/hooks/useGoToServer';
 
-type NameCellProps = {
-  server: DedicatedServer;
-  navigate: (name: string) => void;
-};
-
-export const NameCell: React.FC<NameCellProps> = ({ server, navigate }) => {
+export const NameCell = (server: DedicatedServer) => {
   const { t } = useTranslation('dedicated-servers');
+  const navigate = useGoToServer(server);
   return (
     <DataGridTextCell>
       <OdsLink
         color="primary"
         href={`#/server/${server.name}`}
         onClick={() => {
-          navigate(server.name);
+          navigate();
         }}
         label={t(server?.iam?.displayName)}
       />

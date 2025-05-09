@@ -75,7 +75,7 @@ export default function Listing() {
       id: 'name',
       isSearchable: true,
       isFilterable: true,
-      enableHiding: true,
+      enableHiding: false,
       type: FilterTypeCategories.String,
       label: t('dedicated_clusters_name'),
       cell: (item: Cluster) => (
