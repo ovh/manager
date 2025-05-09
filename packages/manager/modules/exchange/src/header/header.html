@@ -111,6 +111,18 @@
                             data-text="{{:: 'common_actions' | translate }}"
                         >
                             <oui-action-menu-item
+                                data-ng-if="$ctrl.canOrderOffice365"
+                                href="{{:: $ctrl.OFFICE_365_ORDER_URL }}"
+                                external="true"
+                            >
+                                <span
+                                    data-translate="exchange_tab_INFORMATIONS_order_office"
+                                ></span>
+                            </oui-action-menu-item>
+                            <oui-action-menu-divider
+                                data-ng-if="$ctrl.canOrderOffice365"
+                            ></oui-action-menu-divider>
+                            <oui-action-menu-item
                                 data-on-click="$ctrl.navigation.setAction('exchange/header/license/service-license-history', $ctrl.exchangeService)"
                             >
                                 <span
