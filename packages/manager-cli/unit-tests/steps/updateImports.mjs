@@ -5,7 +5,7 @@ import glob from 'fast-glob';
 import prettier from 'prettier';
 
 /**
- * Updates test imports from 'vitest' to '@ovh-ux/manager-unit-tests-config'.
+ * Updates test imports from 'vitest' to '@ovh-ux/manager-unit-tests-config/unit-tests-api'.
  * @param {string} appPath - Absolute path to the app directory.
  * @param {boolean} dryRun - If true, do not write changes to disk.
  */
@@ -22,6 +22,7 @@ export const updateImports = async (appPath, dryRun = false) => {
   for (const file of files) {
     const original = fs.readFileSync(file, 'utf-8');
 
+    // Only rewrite test imports, not config ones
     const replaced = original.replace(
       /import\s*\{([^}]+)\}\s*from\s*['"]vitest['"]/g,
       (_, imports) => {
@@ -30,7 +31,7 @@ export const updateImports = async (appPath, dryRun = false) => {
           .map((name) => name.trim())
           .filter(Boolean)
           .join(', ');
-        return `import { ${names} } from '@ovh-ux/manager-unit-tests-config'`;
+        return `import { ${names} } from '@ovh-ux/manager-unit-tests-config/unit-tests-api'`;
       }
     );
 
