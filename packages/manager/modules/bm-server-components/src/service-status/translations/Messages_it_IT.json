@@ -9,7 +9,7 @@
   "dedicated_server_dashboard_remove_hack_button": "Sblocca",
   "dedicated_server_dashboard_remove_hack_success": "La richiesta di risoluzione hack è stata presa in carico. ",
   "dedicated_server_dashboard_remove_hack_fail": "Si è verificato un errore durante la richiesta di sblocco del tuo server. ",
-  "dedicated_server_dashboard_close_service": "Elimina il tuo servizio",
+  "dedicated_server_dashboard_close_service": "Disattivare il servizio",
   "dedicated_server_dashboard_monitoring": "Monitoraggio",
   "dedicated_server_dashboard_monitoring_activated": "Attivato",
   "dedicated_server_dashboard_monitoring_disabled": "Disattivato",
