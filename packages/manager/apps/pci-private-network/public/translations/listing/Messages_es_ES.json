@@ -19,7 +19,7 @@
   "pci_projects_project_network_private_delete_cancel": "Cancelar",
   "pci_projects_project_network_private_delete_confirmation": "¿Seguro/a que quiere eliminar la red privada {{name}}?",
   "pci_projects_project_network_private_delete_success": "Eliminando la red privada {{ name }}...",
-  "pci_projects_project_network_private_delete_error": "Se ha producido un error al eliminar la red privada: {{ message }}.",
+  "pci_projects_project_network_private_delete_error": "Se ha producido un error al eliminar la red privada {{ message }}",
   "pci_projects_project_network_private_back_to_list": "Ver todas las redes privadas",
   "pci_projects_project_network_private_subnet_create": "Crear una subred",
   "pci_projects_project_network_private_ip_version": "Versión IP",
