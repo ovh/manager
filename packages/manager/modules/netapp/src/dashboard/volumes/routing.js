@@ -167,7 +167,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     onEnter: /* @ngInject */ (atInternet) => {
       atInternet.trackPage({
-        name: `${VOLUME_TRACKING_PREFIX}netapp::listing::volumes`,
+        name: `${VOLUME_TRACKING_PREFIX}netapp::volumes::listing`,
         ...VOLUME_TRACKING_CONTEXT,
       });
     },

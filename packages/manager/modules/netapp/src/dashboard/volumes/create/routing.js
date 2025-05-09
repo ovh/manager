@@ -15,12 +15,12 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       trackClick: /* @ngInject */ (atInternet) => (tracker) =>
         atInternet.trackClick({
-          name: `${VOLUME_TRACKING_PREFIX}${tracker}`,
+          name: `${VOLUME_TRACKING_PREFIX}button::add_volume::${tracker}`,
           ...VOLUME_TRACKING_CONTEXT,
           type: 'action',
           page_category: 'popup',
           page: {
-            name: `${VOLUME_TRACKING_PREFIX}netapp::popup::add::volumes`,
+            name: `${VOLUME_TRACKING_PREFIX}netapp::popup::add::volume`,
           },
         }),
       goToVolumeDetails: /* @ngInject */ ($state, $translate, Alerter) => (
@@ -51,7 +51,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     onEnter: /* @ngInject */ (atInternet) => {
       atInternet.trackPage({
-        name: `${VOLUME_TRACKING_PREFIX}netapp::popup::add::volumes`,
+        name: `${VOLUME_TRACKING_PREFIX}netapp::popup::add::volume`,
         ...VOLUME_TRACKING_CONTEXT,
         page_category: 'popup',
       });
