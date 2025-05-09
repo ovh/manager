@@ -1,0 +1,13 @@
+.banner {
+  position: relative;
+  margin-top: -1.5rem;
+  border-radius: 0 0 1rem 1rem;
+  background-color: var(--ods-color-primary-500);
+  padding: 1.25rem;
+  min-height: 5rem;
+  color: var(--ods-color-primary-000);
+}
+
+.banner h1 {
+  color: white !important;
+}

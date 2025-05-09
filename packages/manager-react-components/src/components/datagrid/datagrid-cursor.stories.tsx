@@ -332,7 +332,7 @@ WithDatagridSubComponent.args = {
 };
 
 export default {
-  title: 'Components/Datagrid Cursor',
+  title: 'Core/Manager React Components/Components/Datagrid Cursor',
   component: Datagrid,
   decorators: [withRouter],
 };

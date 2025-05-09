@@ -10,7 +10,7 @@ import {
 } from '../../../__mocks__/tiles-input';
 
 export default {
-  title: 'Components/TilesInput',
+  title: 'Core/Manager React Components/Components/TilesInput',
   component: TilesInputComponent,
   parameters: {
     docs: {
