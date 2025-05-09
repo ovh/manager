@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.89.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.89.1...@ovh-ux/manager-pci@6.89.2) (2025-05-08)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3961] ([65225e1](https://github.com/ovh/manager/commit/65225e1393af8dcd96359bfcc075f705b29dc663))
+* **i18n:** add missing translations [CDS 3966] ([db15830](https://github.com/ovh/manager/commit/db158309d6532d9b37f2d2c1f6f1efc53d418fc0))
+
+
+
+
+
+## [6.89.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.89.0...@ovh-ux/manager-pci@6.89.1) (2025-05-06)
+
+
+### Bug Fixes
+
+* **instance:** use flavorGroup prices ([#16914](https://github.com/ovh/manager/issues/16914)) ([#16930](https://github.com/ovh/manager/issues/16930)) ([f6e356c](https://github.com/ovh/manager/commit/f6e356c90ec7f41dcb1b4641827185ed0cf5329b)), closes [#INC0128395](https://github.com/ovh/manager/issues/INC0128395)
+
+
+
+
+
 # [6.89.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.88.0...@ovh-ux/manager-pci@6.89.0) (2025-04-28)
 
 

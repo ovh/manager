@@ -835,7 +835,7 @@
   "domain_dashboard_general_information_alldom_termination_warning_close": "fechar",
   "domain_tab_contact": "Gerir os contactos",
   "domain_tab_TASKS_status_PROBLEM": "Falhou",
-  "domain_dashboard_general_information_suspended_by_procedure_message": "O seu nome de domínio é suspenso no âmbito de um procedimento de verificação dos dados de contacto. Consulte as operações em curso para determinar se é necessária uma ação da sua parte. ",
+  "domain_dashboard_general_information_suspended_by_procedure_message": "O seu nome de domínio está suspenso no âmbito de um procedimento de verificação dos dados de contacto. Consulte as operações em curso para determinar se é necessária uma ação da sua parte. ",
   "domain_dashboard_general_information_being_suspended_by_procedure_message": "O seu nome de domínio está sujeito a um procedimento de verificação dos dados de contacto. Consulte as operações em curso para determinar se é necessária uma ação da sua parte. ",
   "domain_dashboard_general_information_see_operations": "Ver operações em curso"
 }

@@ -18,16 +18,21 @@ import {
   TRegionAvailability,
 } from '@ovh-ux/manager-pci-common';
 import { useMemo, useCallback } from 'react';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { useContainerCreationStore } from '../useContainerCreationStore';
 import {
   OBJECT_CONTAINER_MODE_MULTI_ZONES,
   STORAGE_STANDARD_REGION_PLANCODE,
   MEGA_BYTES,
   OFFSITE_REPLICATION_CODE,
+  UNIVERSE,
+  SUB_UNIVERSE,
+  APP_NAME,
 } from '@/constants';
 
 export function OffsiteReplication() {
   const { t } = useTranslation(['containers/add', 'pci-common']);
+  const { trackClick } = useOvhTracking();
   const { projectId } = useParams<{ projectId: string }>();
 
   const { data: catalog, isPending: isCatalogPending } = useCatalog('cloud');
@@ -109,11 +114,44 @@ export function OffsiteReplication() {
       isLocked={stepper.offsiteReplication.isLocked}
       order={4}
       next={{
-        action: submitOffsiteReplication,
+        action: () => {
+          const replicationAction = form.offsiteReplication
+            ? 'activate_offsite_replication'
+            : 'desactivate_offsite_replication';
+
+          trackClick({
+            actions: [
+              UNIVERSE,
+              SUB_UNIVERSE,
+              APP_NAME,
+              'funnel',
+              'button',
+              'add_objects_storage_container',
+              'select_offsite_replication',
+              replicationAction,
+            ],
+          });
+
+          submitOffsiteReplication();
+        },
         label: t('pci-common:common_stepper_next_button_label'),
       }}
       edit={{
-        action: editOffsiteReplication,
+        action: () => {
+          trackClick({
+            actions: [
+              UNIVERSE,
+              SUB_UNIVERSE,
+              APP_NAME,
+              'funnel',
+              'button',
+              'add_objects_storage_container',
+              'edit_step_select_offsite_replication',
+            ],
+          });
+
+          editOffsiteReplication();
+        },
         label: t('pci-common:common_stepper_modify_this_step'),
       }}
     >

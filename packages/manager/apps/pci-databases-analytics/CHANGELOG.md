@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.20.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.20.0...@ovh-ux/manager-pci-databases-analytics-app@1.20.1) (2025-05-08)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3961] ([65225e1](https://github.com/ovh/manager/commit/65225e1393af8dcd96359bfcc075f705b29dc663))
+* **i18n:** add missing translations [CDS 3966] ([db15830](https://github.com/ovh/manager/commit/db158309d6532d9b37f2d2c1f6f1efc53d418fc0))
+
+
+
+
+
+# [1.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.19.4...@ovh-ux/manager-pci-databases-analytics-app@1.20.0) (2025-05-05)
+
+
+### Bug Fixes
+
+* **pci-db-analytics:** fixing user connection string for mongodb ([2122dee](https://github.com/ovh/manager/commit/2122dee13e81260b9115ec998da2c97a7f15fbd4)), closes [#DATATR-2199](https://github.com/ovh/manager/issues/DATATR-2199)
+* **pci-db:** correctly sort numeric values for queries ([d0914c9](https://github.com/ovh/manager/commit/d0914c93928de36a5cd99d2efadfc842fbf3303e)), closes [#DATATR-2184](https://github.com/ovh/manager/issues/DATATR-2184)
+
+
+### Features
+
+* **pci-db:** add Valkey engine ([#16832](https://github.com/ovh/manager/issues/16832)) ([0c52c71](https://github.com/ovh/manager/commit/0c52c71564877a41a41eb0889c907737b0f9cbb7)), closes [#DATATR-2206](https://github.com/ovh/manager/issues/DATATR-2206)
+
+
+
+
+
 ## [1.19.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.19.3...@ovh-ux/manager-pci-databases-analytics-app@1.19.4) (2025-04-30)
 
 

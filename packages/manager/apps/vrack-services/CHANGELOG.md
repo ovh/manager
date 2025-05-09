@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.17.2...@ovh-ux/manager-vrack-services-app@0.18.0) (2025-05-08)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3961] ([65225e1](https://github.com/ovh/manager/commit/65225e1393af8dcd96359bfcc075f705b29dc663))
+
+
+### Features
+
+* **mrc:** add disable more info prop to onboarding ([583a59d](https://github.com/ovh/manager/commit/583a59d20bc363aeca32f28a8d8e0ca2dc1dc0e3)), closes [#ISSUE-16382](https://github.com/ovh/manager/issues/ISSUE-16382)
+
+
+
+
+
 ## [0.17.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.17.1...@ovh-ux/manager-vrack-services-app@0.17.2) (2025-04-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-vrack-services-app

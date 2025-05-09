@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.17.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.17.2...@ovh-ux/manager-emailpro@3.17.3) (2025-05-05)
+
+
+### Bug Fixes
+
+* **web.mxplan:** hide migration banner if migrated ([#16817](https://github.com/ovh/manager/issues/16817)) ([4d6718d](https://github.com/ovh/manager/commit/4d6718d4479472743c033a599739b8e7cd679f65)), closes [#MANAGER-18144](https://github.com/ovh/manager/issues/MANAGER-18144)
+
+
+
+
+
 ## [3.17.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.17.1...@ovh-ux/manager-emailpro@3.17.2) (2025-04-10)
 
 

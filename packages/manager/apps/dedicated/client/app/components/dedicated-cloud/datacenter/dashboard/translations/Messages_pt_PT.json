@@ -125,5 +125,7 @@
   "dedicatedCloud_manage_nsx_choice_description_XLARGE": "Utilize o formato muito grande se pretender configurar um grande número de homólogos BGP com o nó Edge. Adequado quando a velocidade total necessária for de vários Gbps para o Load Balancer L7 e o VPN.",
   "dedicatedCloud_nsx_task_progress": "Em curso",
   "dedicatedCloud_datacenter_nsx_resize_error": "Ocorreu um erro",
-  "dedicatedCloud_tab_datacenter_global_information": "Por predefinição, todos os datacenters virtuais (VDC) NSX dispõem de um cluster NSX Edge composto por 2 NSX Edge. Para modificar o tamanho ou o número dos Edges, deverá dispor dos recursos necessários."
+  "dedicatedCloud_tab_datacenter_global_information": "Por predefinição, todos os datacenters virtuais (VDC) NSX dispõem de um cluster NSX Edge composto por 2 NSX Edge. Para modificar o tamanho ou o número dos Edges, deverá dispor dos recursos necessários.",
+  "dedicatedCloud_manage_nsx_vcpu_price": "a partir de {{ price }} por vCPU/mês + IVA",
+  "dedicatedCloud_manage_nsx_additionnal_price_informations": "* 2x4 vCPU incluídos na oferta standard"
 }

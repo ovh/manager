@@ -35,7 +35,7 @@ import { ServiceKeyType } from '@/components/serviceKey/serviceKeyType/serviceKe
 import { ROUTES_URLS } from '@/routes/routes.constants';
 import { getOkmsServiceKeyResourceQueryKey } from '@/data/api/okmsServiceKey';
 import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
-import { useOKMSById } from '@/data/hooks/useOKMS';
+import { useOkmsById } from '@/data/hooks/useOkms';
 import ServiceKeyStateActions from '@/components/serviceKey/serviceKeyStateActions/ServiceKeyStateActions.component';
 import { getOkmsResourceQueryKey } from '@/data/api/okms';
 import { kmsIamActions } from '@/utils/iam/iam.constants';
@@ -53,7 +53,7 @@ export default function Key() {
     data: okms,
     isLoading: isLoadingOkms,
     error: okmsError,
-  } = useOKMSById(okmsId);
+  } = useOkmsById(okmsId);
 
   const {
     data: serviceKey,

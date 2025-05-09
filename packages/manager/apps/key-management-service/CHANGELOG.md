@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.26.0...@ovh-ux/manager-key-management-service-app@0.27.0) (2025-05-08)
+
+
+### Features
+
+* add manager billing information module ([d1f6cff](https://github.com/ovh/manager/commit/d1f6cff9d57f8694cc662fbdd3af876721ab51cf)), closes [#MANAGER-16907](https://github.com/ovh/manager/issues/MANAGER-16907)
+
+
+
+
+
+# [0.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.25.5...@ovh-ux/manager-key-management-service-app@0.26.0) (2025-05-07)
+
+
+### Bug Fixes
+
+* **kms:** increase select witdh to get regions on one line ([5177266](https://github.com/ovh/manager/commit/5177266dec70d75e2316cbe227c7a809e3be232e)), closes [#MANAGER-16661](https://github.com/ovh/manager/issues/MANAGER-16661)
+
+
+### Features
+
+* **kms:** add buttons for downloading public CA certificates ([851cfae](https://github.com/ovh/manager/commit/851cfae239308c8a126587a3d81aac181fb0ee4b)), closes [#MANAGER-17309](https://github.com/ovh/manager/issues/MANAGER-17309)
+
+
+
+
+
 ## [0.25.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.25.4...@ovh-ux/manager-key-management-service-app@0.25.5) (2025-04-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-key-management-service-app

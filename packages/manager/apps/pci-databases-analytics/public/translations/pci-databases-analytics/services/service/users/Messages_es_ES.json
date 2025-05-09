@@ -83,7 +83,7 @@
   "formUserInvalidPermission": "Seleccione un permiso válido de la siguiente lista: {values}",
   "formUserAclDuplicate": "Una ACL similar ya está configurada",
   "resetUserPasswordCode": "Contraseña del usuario",
-  "resetUserConnectionTitle": "URI que se usará para una conexión rápida",
+  "resetUserConnectionTitle": "URI para usar una conexión rápida",
   "resetUserConnectionCode": "Cadena de conexión",
-  "resetUserConnectionCodeCopy": "URI de conexión copiado al portapapeles"
+  "resetUserConnectionCodeCopy": "Se ha copiado la URI de conexión al portapapeles"
 }

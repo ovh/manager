@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.7.0...@ovh-ux/manager-pci-object-storage-app@0.7.1) (2025-05-08)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app
+
+
+
+
+
+# [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.6.3...@ovh-ux/manager-pci-object-storage-app@0.7.0) (2025-05-05)
+
+
+### Features
+
+* **pci-object-storage:** tracking offsite replication ([ce77ec1](https://github.com/ovh/manager/commit/ce77ec13b44ceeb9afa450b1d34b9f88e195b9b6)), closes [#TAPC-2973](https://github.com/ovh/manager/issues/TAPC-2973)
+
+
+
+
+
 ## [0.6.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.6.2...@ovh-ux/manager-pci-object-storage-app@0.6.3) (2025-04-30)
 
 

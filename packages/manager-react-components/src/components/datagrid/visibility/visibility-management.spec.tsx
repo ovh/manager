@@ -54,7 +54,7 @@ describe('visibility management button part', () => {
 
     expect(visibilityElement).toHaveAttribute(
       'label',
-      'common_topbar_columns (0)',
+      'common_topbar_columns (1)',
     );
   });
 
