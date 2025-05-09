@@ -18,10 +18,6 @@
   "bin": {
     "manager-test": "./bin/manager-unit-tests-cli.js"
   },
-  "exports": {
-    ".": "./src/index.js",
-    "./unit-tests-api": "./src/unit-tests-api.mjs"
-  },
   "scripts": {
     "test": "vitest run --config src/test-shared-config/vite.config.mjs"
   },
