@@ -30,7 +30,7 @@
   "manager_billing_subscription_configure_renew": "Configure renewal",
   "manager_billing_subscription_configure_renew_frequency": "Configure renewal frequency",
   "manager_billing_subscription_resiliate": "Cancel",
-  "manager_billing_subscription_resiliate_my_engagement": "Cancel subscription",
+  "manager_billing_subscription_resiliate_my_engagement": "Cancel commitment",
   "manager_billing_subscription_pay_bill": "Pay",
   "manager_billing_subscription_pay_bill_renew": "Renew",
   "manager_billing_subscription_engagement_commit_cancel": "Cancel subscription request"
