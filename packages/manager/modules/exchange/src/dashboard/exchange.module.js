@@ -15,7 +15,6 @@ import ExchangeAccountMfaDelete from '../account/mfa/delete';
 
 import components from './exchangeComponents.module';
 import controllers from './exchangeControllers.module';
-import directives from './exchangeDirectives.module';
 import services from './exchangeServices.module';
 import routing from './exchange.routes';
 import cacheTemplate from './exchange.template';
@@ -54,7 +53,6 @@ angular
     'ngOvhWebUniverseComponents',
     components,
     controllers,
-    directives,
     ovhManagerCore,
     services,
     ExchangeAccountMfaCreate,
