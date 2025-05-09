@@ -88,6 +88,4 @@ export const deleteBackup = async ({
   await v6.delete(
     `/cloud/project/${projectId}/region/${regionName}/volumeBackup/${backupId}`,
   );
-
-  return data;
 };
