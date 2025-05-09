@@ -5,7 +5,7 @@ import glob from 'fast-glob';
 import prettier from 'prettier';
 
 /**
- * Updates test imports from 'vitest' to '@ovh-ux/manager-unit-tests-config/unit-tests-api'.
+ * Updates test imports from 'vitest' to '@ovh-ux/manager-unit-tests-config'.
  * @param {string} appPath - Absolute path to the app directory.
  * @param {boolean} dryRun - If true, do not write changes to disk.
  */
@@ -31,7 +31,7 @@ export const updateImports = async (appPath, dryRun = false) => {
           .map((name) => name.trim())
           .filter(Boolean)
           .join(', ');
-        return `import { ${names} } from '@ovh-ux/manager-unit-tests-config/unit-tests-api'`;
+        return `import { ${names} } from '@ovh-ux/manager-unit-tests-config'`;
       }
     );
 
