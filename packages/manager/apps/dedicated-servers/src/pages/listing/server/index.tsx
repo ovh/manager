@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import './index.scss';
 import {
   Datagrid,
-  ErrorBanner,
   useResourcesIcebergV6,
   useDataGrid,
   ColumnSort,
@@ -16,7 +15,7 @@ import OrderMenu from '@/components/orderMenu';
 import { getColumns } from '@/components/dataGridColumns';
 import { useDedicatedServer } from '@/hooks/useDedicatedServer';
 import { urls } from '@/routes/routes.constant';
-import { ErrorComponent, ErrorProps } from '@/components/errorComponent';
+import { ErrorComponent } from '@/components/errorComponent';
 
 export default function ServerListing() {
   const [columns] = useState([]);
@@ -29,7 +28,6 @@ export default function ServerListing() {
     'actions',
   ]);
   const { t } = useTranslation('dedicated-servers');
-  const { shell } = React.useContext(ShellContext);
   const { sorting, setSorting } = useDataGrid({
     id: 'displayName',
     desc: false,
@@ -85,13 +83,7 @@ export default function ServerListing() {
             {flattenData && (
               <div>
                 <Datagrid
-                  columns={getColumns(t, (name: string) =>
-                    shell.navigation.navigateTo(
-                      'dedicated',
-                      `#/server/${name}`,
-                      {},
-                    ),
-                  )}
+                  columns={getColumns(t)}
                   items={sortServersListing(
                     sorting,
                     (flattenData as unknown) as DedicatedServer[],
