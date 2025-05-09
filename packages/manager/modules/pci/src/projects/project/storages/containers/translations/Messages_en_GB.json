@@ -19,7 +19,7 @@
   "pci_projects_project_storages_containers_view_archive_label": "View archives",
   "pci_projects_project_storages_containers_view_object_label": "Display objects",
   "pci_projects_project_storages_containers_view_add_user_label": "Add a user to a container",
-  "pci_projects_project_storages_containers_delete_label": "Delete",
+  "pci_projects_project_storages_containers_delete_label": "Cancel",
   "pci_projects_project_storages_blocks_add_archive_label": "Create an archive container",
   "pci_projects_project_storages_blocks_add_object_label": "Create an object container ",
   "pci_projects_project_storages_containers_offer_s3": "S3-compatible",
