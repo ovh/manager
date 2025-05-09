@@ -17,7 +17,6 @@ export default class OverTheBoxDetailsCtrl {
     $q,
     ChartFactory,
     DATEFNS_LOCALE,
-    OVER_THE_BOX,
     OVERTHEBOX_DETAILS,
     OvhApiOverTheBox,
     OvhApiIp,
@@ -28,7 +27,6 @@ export default class OverTheBoxDetailsCtrl {
     this.$filter = $filter;
     this.$translate = $translate;
     this.$q = $q;
-    this.OVER_THE_BOX = OVER_THE_BOX;
     this.OVERTHEBOX_DETAILS = OVERTHEBOX_DETAILS;
     this.OvhApiOverTheBox = OvhApiOverTheBox;
     this.OvhApiIp = OvhApiIp;
