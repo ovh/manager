@@ -5,11 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { DedicatedServer } from '@/data/types/server.type';
 import { DSBilling } from '../billingCell';
 
-type EngagementCellProps = {
-  server: DedicatedServer;
-};
-
-export const EngagementCell: React.FC<EngagementCellProps> = ({ server }) => {
+export const EngagementCell = (server: DedicatedServer) => {
   const { t } = useTranslation('dedicated-servers');
   return (
     <DSBilling server={server.name}>
