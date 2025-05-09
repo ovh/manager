@@ -38,7 +38,7 @@
   "kube_service_upgrade_policy_success": "Polityka aktualizacji została zmieniona",
   "kube_service_upgrade_policy_error": "Wystąpił błąd podczas zmiany polityki aktualizacji: {{ message }}.",
   "kube_service_reset": "Zresetuj klaster",
-  "kube_service_terminate": "Usuń",
+  "kube_service_terminate": "Zrezygnuj",
   "kube_service_common_edit": "Zmień nazwę klastra",
   "kube_service_common_update": "Przeprowadź teraz aktualizację dotyczącą bezpieczeństwa (wersja poprawki)",
   "kube_service_common_confirm": "Potwierdź",

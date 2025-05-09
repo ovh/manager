@@ -38,7 +38,7 @@
   "kube_service_upgrade_policy_success": "Se ha cambiado la política de actualizaciones.",
   "kube_service_upgrade_policy_error": "No se ha podido cambiar la política de actualizaciones: {{ message }}.",
   "kube_service_reset": "Reiniciar el cluster",
-  "kube_service_terminate": "Eliminar",
+  "kube_service_terminate": "Dar de baja",
   "kube_service_common_edit": "Renombrar el cluster",
   "kube_service_common_update": "Forzar la actualización de seguridad (patch)",
   "kube_service_common_confirm": "Confirmar",

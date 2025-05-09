@@ -38,7 +38,7 @@
   "kube_service_upgrade_policy_success": "A “política de atualização” foi alterada",
   "kube_service_upgrade_policy_error": "A alteração da “política de atualização” falhou: {{ message }}",
   "kube_service_reset": "Reinicializar o cluster",
-  "kube_service_terminate": "Eliminar",
+  "kube_service_terminate": "Rescindir",
   "kube_service_common_edit": "Mudar o nome do cluster",
   "kube_service_common_update": "Forçar a atualização de segurança (patch)",
   "kube_service_common_confirm": "Confirmar",

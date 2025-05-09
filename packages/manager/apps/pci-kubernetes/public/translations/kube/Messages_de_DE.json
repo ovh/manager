@@ -38,7 +38,7 @@
   "kube_service_upgrade_policy_success": "Die Upgrade-Policy wurde geändert",
   "kube_service_upgrade_policy_error": "Bei der Änderung der Upgrade-Policy ist ein Fehler aufgetreten: {{ message }}",
   "kube_service_reset": "Cluster zurücksetzen",
-  "kube_service_terminate": "Löschen",
+  "kube_service_terminate": "Kündigen",
   "kube_service_common_edit": "Cluster umbenennen",
   "kube_service_common_update": "Sicherheitsupdate (Patch) erzwingen",
   "kube_service_common_confirm": "Bestätigen",
