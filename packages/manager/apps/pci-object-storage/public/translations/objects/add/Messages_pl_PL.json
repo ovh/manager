@@ -10,9 +10,15 @@
   "pci_projects_project_storages_containers_container_object_add_archive_error_delete": "Wystąpił błąd podczas importu archiwów: {{message}}.",
   "pci_projects_project_storages_containers_container_object_add_object_error_delete": "Wystąpił błąd podczas importu obiektów {{object}}: {{message}}.",
   "pci_projects_project_storages_containers_container_object_add_storage_class_label": "Wybierz klasę przestrzeni dyskowej",
-  "pci_projects_project_storages_containers_container_object_add_storage_class_label_description": "Dowiedz się więcej o klasach przestrzeni dyskowej i sprawdź cennik. ",
+  "pci_projects_project_storages_containers_container_object_add_storage_class_label_description": "Więcej informacji o",
   "pci_projects_project_storages_containers_container_object_add_storage_class_label_description_link": "Sprawdź ceny",
   "pci_projects_project_storages_containers_container_object_add_storage_class_standard": "Standard",
   "pci_projects_project_storages_containers_container_object_add_storage_class_high_perf": "High Performance",
-  "pci_projects_project_storages_containers_container_object_add_storage_class_info_banner": "Tylko standardowa klasa przestrzeni dyskowej jest dostępna dla obiektów w kontenerze utworzonym przy użyciu tego trybu wdrażania."
+  "pci_projects_project_storages_containers_container_object_add_storage_class_info_banner": "Dla obiektów w tym trybie wdrożenia dostępne są tylko klasy magazynu Standard i Standard Infrequent Access.",
+  "pci_projects_project_storages_containers_container_object_add_storage_class_label_description_link_storage_class": "Klasy magazynowania",
+  "pci_projects_project_storages_containers_container_object_add_storage_class_label_description_part_2": "i",
+  "pci_projects_project_storages_containers_container_object_add_storage_class_label_description_link_price": "cennik.",
+  "pci_projects_project_storages_containers_container_object_add_storage_class_label_description_link_price_text": "Sprawdź ceny",
+  "pci_projects_project_storages_containers_container_object_add_storage_class_standard_infrequent_access": "Standard Infrequent Access",
+  "pci_projects_project_storages_containers_container_object_add_storage_class_info_banner_lz": "Dla obiektów w kontenerze utworzonym przy użyciu tego trybu wdrażania dostępna jest tylko standardowa klasa przestrzeni dyskowej."
 }

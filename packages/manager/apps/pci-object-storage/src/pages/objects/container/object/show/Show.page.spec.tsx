@@ -8,8 +8,9 @@ import {
   useServerContainer,
 } from '@/api/hooks/useContainer';
 import ShowPage from './Show.page';
-import { wrapper } from '@/wrapperRenders';
+
 import { useStorageEndpoint } from '@/api/hooks/useStorages';
+import { wrapperShow } from '@/wrapperRenders';
 
 vi.mock('@/api/hooks/useContainer', () => {
   return {
@@ -32,6 +33,36 @@ vi.mock('date-fns', () => {
     format: formatMock,
   };
 });
+vi.mock('@ovh-ux/manager-react-shell-client', async () => {
+  const mod = await vi.importActual('@ovh-ux/manager-react-shell-client');
+  return {
+    ...mod,
+    useOvhTracking: vi.fn().mockReturnValue({
+      trackPage: vi.fn(),
+      trackClick: vi.fn(),
+    }),
+  };
+});
+
+vi.mock('@/hooks/useFeatureAvailability', () => ({
+  useFeatureAvailability: vi.fn(() => ({
+    data: {
+      'storage:standard-infrequent-access': true,
+    },
+  })),
+}));
+
+vi.mock('@/hooks/useStandardInfrequentAccessAvailability', () => ({
+  default: vi.fn(() => true),
+}));
+
+vi.mock('@/constants', async () => {
+  const actual = await vi.importActual('@/constants');
+  return {
+    ...actual,
+    standardInfrequentAcess: 'storage:standard-infrequent-access',
+  };
+});
 
 describe('Show page', () => {
   it('should display spinner', () => {
@@ -48,7 +79,7 @@ describe('Show page', () => {
     vi.mocked(useStorageEndpoint).mockReturnValue({
       isPending: true,
     } as never);
-    const { container } = render(<ShowPage />, { wrapper });
+    const { container } = render(<ShowPage />, { wrapper: wrapperShow });
     expect(container).toMatchSnapshot();
   });
 
@@ -84,7 +115,7 @@ describe('Show page', () => {
       url: 'https://api.ovh.com',
       isPending: false,
     } as never);
-    const { container } = render(<ShowPage />, { wrapper });
+    const { container } = render(<ShowPage />, { wrapper: wrapperShow });
     expect(container).toMatchSnapshot();
   });
 });

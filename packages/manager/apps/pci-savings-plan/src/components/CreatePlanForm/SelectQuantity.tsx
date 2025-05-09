@@ -53,7 +53,7 @@ const SelectQuantity = ({
           )}
         </OdsText>
       </OdsMessage>
-      <OdsCard className="flex flex-row items-center mr-5 p-4 text-center justify-between w-full mb-[32px] mt-[16px]">
+      <OdsCard className="flex flex-row items-center mr-5 p-4 text-center justify-between w-full mb-[32px] mt-[16px] border">
         <OdsText>
           {t(`quantity_label_${isInstance ? 'instance' : 'rancher'}`)}
         </OdsText>

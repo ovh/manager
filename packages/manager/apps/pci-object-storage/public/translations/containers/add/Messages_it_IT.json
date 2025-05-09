@@ -67,5 +67,17 @@
   "pci_projects_project_storages_containers_offsite_replication_price_estimation": "~{{price}} +IVA/mese/TB",
   "pci_projects_project_storages_containers_offsite_replication_final_price_estimation": "Stima totale: ",
   "pci_projects_project_storages_containers_offsite_replication_final_price_estimation_value": "~{{price}} +IVA/mese/TB",
-  "pci_projects_project_storages_containers_offsite_replication_versionning_warning": "Attivando l'Offsite Replication, si attiva anche il versioning. "
+  "pci_projects_project_storages_containers_offsite_replication_versionning_warning": "Attivando l'Offsite Replication, si attiva anche il versioning. ",
+  "pci_projects_project_storages_containers_add_offers_estimated_price_brackets": "(per la classe di storage Standard)",
+  "pci_projects_project_storages_containers_add_offers_estimated_price_explanation": "**Il prezzo visualizzato è una stima per 1 TB di Object Storage Standard per 730 ore. Per maggiori informazioni, ",
+  "pci_projects_project_storages_containers_add_offers_estimated_price_explanation_link": "visualizza la pagina dei prezzi.",
+  "pci_projects_project_storages_containers_add_deployment_mode_classes": "Classi disponibili: ",
+  "pci_projects_project_storages_containers_add_deployment_mode_region-3-az_classes": "Standard - Standard Infrequent Access",
+  "pci_projects_project_storages_containers_add_deployment_mode_region_classes": "High Performance - Standard - Standard Infrequent Access",
+  "pci_projects_project_storages_containers_add_deployment_mode_localzone_classes": "Standard",
+  "pci_projects_project_storages_containers_add_offer_storage-s3-standard_description_standard_infrequent_access": "Un'ampia gamma di funzionalità compatibili con S3. Disponibile in 1-AZ, 3-AZ e Local Zones attraverso diverse classi di storage.",
+  "pci_projects_project_storages_containers_add_offer_storage_description_standard_infrequent_access": "Soluzione base per lo storage, senza particolari esigenze in termini di performance. Si tratta dell’object storage nativo di OpenStack, con le API Swift.",
+  "pci_projects_project_storages_containers_add_offers_estimated_price_standard_infrequent_access": "A partire da {{price}} +IVA/mese/TB** ",
+  "pci_projects_project_storages_containers_add_deployment_mode_price_explanation_standard_infrequent_access": "Per ottenere informazioni dettagliate sui prezzi per ogni tipo di storage e metodo di installazione, ",
+  "pci_projects_project_storages_containers_add_deployment_mode_price_explanation_link_standard_infrequent_access": "visualizza la pagina dei prezzi."
 }
