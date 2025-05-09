@@ -26,10 +26,9 @@
     "@vitejs/plugin-react": "^4.2.1",
     "@vitest/coverage-v8": "^2.1.9",
     "@vitest/ui": "^2.1.9",
-    "sort-package-json": "^3.1.0"
+    "vitest": "^2.1.9"
   },
   "peerDependencies": {
-    "vite": "^6.0.7",
-    "vitest": "^2.1.9"
+    "vite": "^6.0.7"
   }
 }
