@@ -5,7 +5,7 @@ import {
   OdsBreadcrumb,
   OdsBreadcrumbItem,
 } from '@ovhcloud/ods-components/react';
-import { Outlet, useParams } from 'react-router-dom';
+import { Outlet, useParams, useNavigate } from 'react-router-dom';
 import { ODS_BUTTON_SIZE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { useProject } from '@ovh-ux/manager-pci-common';
 import { FilterTypeCategories } from '@ovh-ux/manager-core-api';
@@ -17,14 +17,12 @@ import {
   PciGuidesHeader,
   ChangelogButton,
   Notifications,
+  useNotifications,
 } from '@ovh-ux/manager-react-components';
 import { useDatagridColumn } from '@/pages/listing/useDatagridColumn';
 import { TVolumeBackup } from '@/data/api/api.types';
 import { useVolumeBackups } from '@/data/hooks/useVolumeBackups';
-import {
-  getVolumeBackups,
-  refetchInterval,
-} from '@/data/api/pci-volume-backup';
+import { getVolumeBackups, refetchInterval } from '@/data/api/volumeBackup';
 import config from '@/pci-volume-backup.config';
 import { backupsQueryKey } from '@/data/hooks/useVolumeBackup';
 
@@ -38,6 +36,8 @@ export default function Listing() {
   const { projectId } = useParams() as ProjectParams;
   const hrefProject = useProjectUrl('public-cloud');
   const { data: project } = useProject();
+  const navigate = useNavigate();
+  const { clearNotifications } = useNotifications();
 
   const columnsWithSearchable = useMemo(() => {
     return [
@@ -99,17 +99,19 @@ export default function Listing() {
   };
 
   const TopbarCTA = () => (
-    <div>
-      <OdsButton
-        icon={ODS_ICON_NAME.plus}
-        size={ODS_BUTTON_SIZE.sm}
-        color="primary"
-        variant="outline"
-        label={t(
-          'pci_projects_project_storages_volume_backup_list_datagrid_menu_topbar_action_create',
-        )}
-      />
-    </div>
+    <OdsButton
+      icon={ODS_ICON_NAME.plus}
+      size={ODS_BUTTON_SIZE.sm}
+      color="primary"
+      variant="outline"
+      label={t(
+        'pci_projects_project_storages_volume_backup_list_datagrid_menu_topbar_action_create',
+      )}
+      onClick={() => {
+        clearNotifications();
+        navigate('../create');
+      }}
+    />
   );
 
   return (

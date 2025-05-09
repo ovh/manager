@@ -5,4 +5,6 @@ export const urls = {
   createVolume: 'list/:backupId/create-volume',
   restore: 'restore-volume',
   deleteBackup: 'delete',
+  createVolumeBackup: 'create',
+  detachVolume: 'detach-volume',
 };

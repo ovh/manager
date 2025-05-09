@@ -1,7 +1,7 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 import { Query } from '@tanstack/react-query';
+import { TVolumeBackup } from '@/data/api/api.types';
 import { ApiData } from '@/data/hooks/useVolumeBackups';
-import { TVolume, TVolumeBackup } from '@/data/api/api.types';
 
 const REFETCH_INTERVAL = 3500;
 
@@ -41,15 +41,17 @@ export const getVolumeBackup = async (
   return data.data;
 };
 
-export const getVolume = async ({
-  projectId,
-  volumeId,
-}: {
-  projectId: string;
-  volumeId: string;
-}) => {
-  const { data } = await v6.get<TVolume>(
-    `/cloud/project/${projectId}/volume/${volumeId}`,
+export const createVolumeBackup = async (
+  projectId: string,
+  volumeId: string,
+  regionName: string,
+  backupName: string,
+): Promise<TVolumeBackup> => {
+  const {
+    data,
+  } = await v6.post(
+    `/cloud/project/${projectId}/region/${regionName}/volumeBackup`,
+    { name: backupName, volumeId },
   );
 
   return data;
@@ -88,4 +90,19 @@ export const deleteBackup = async ({
   await v6.delete(
     `/cloud/project/${projectId}/region/${regionName}/volumeBackup/${backupId}`,
   );
+};
+
+export const createVolumeSnapshot = async (
+  projectId: string,
+  volumeId: string,
+  backupName: string,
+) => {
+  const { data } = await v6.post(
+    `/cloud/project/${projectId}/volume/${volumeId}/snapshot`,
+    {
+      name: backupName,
+    },
+  );
+
+  return data;
 };

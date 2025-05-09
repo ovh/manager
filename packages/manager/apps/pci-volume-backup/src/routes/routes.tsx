@@ -12,6 +12,8 @@ const OnboardingPage = lazy(() => import('@/pages/onboarding'));
 const CreateVolumePage = lazy(() =>
   import('@/pages/create-volume/CreateVolume.page'),
 );
+const CreateVolumeBackupPage = lazy(() => import('@/pages/create/Create.page'));
+const DetachVolumePage = lazy(() => import('@/pages/detach/DetachVolume.page'));
 
 export default (
   <Route
@@ -76,5 +78,26 @@ export default (
         },
       }}
     />
+    <Route
+      path={urls.createVolumeBackup}
+      Component={CreateVolumeBackupPage}
+      handle={{
+        tracking: {
+          pageName: 'create',
+          pageType: PageType.dashboard,
+        },
+      }}
+    >
+      <Route
+        path={urls.detachVolume}
+        Component={DetachVolumePage}
+        handle={{
+          tracking: {
+            pageName: 'detach-volume',
+            pageType: PageType.popup,
+          },
+        }}
+      />
+    </Route>
   </Route>
 );

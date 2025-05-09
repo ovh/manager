@@ -7,9 +7,10 @@ export const getVolume = async (
   projectId: string,
   volumeId: string,
 ): Promise<TVolume> => {
-  const { data } = await v6.get(
+  const { data } = await v6.get<TVolume>(
     `/cloud/project/${projectId}/volume/${volumeId}`,
   );
+
   return data;
 };
 
@@ -28,3 +29,18 @@ export async function createVolumeFromBackup(
 
   return data;
 }
+
+export const detachVolume = async (
+  projectId: string,
+  volumeId: string,
+  instanceId: string,
+): Promise<TVolume> => {
+  const { data } = await v6.post(
+    `/cloud/project/${projectId}/volume/${volumeId}/detach`,
+    {
+      instanceId,
+    },
+  );
+
+  return data;
+};

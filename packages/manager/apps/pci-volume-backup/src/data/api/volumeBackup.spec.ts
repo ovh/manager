@@ -7,7 +7,7 @@ import {
   refetchInterval,
   getVolumeBackups,
   getVolumeBackup,
-} from './pci-volume-backup';
+} from './volumeBackup';
 import { ApiData } from '../hooks/useVolumeBackups';
 
 describe('pci-volume-backup', () => {

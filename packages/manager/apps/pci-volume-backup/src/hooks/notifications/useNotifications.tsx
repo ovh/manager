@@ -14,22 +14,24 @@ export const useNotifications = ({ ns }: { ns: string }) => {
     }: {
       i18nKey: string;
       error?: ApiError;
-      values?: Record<string, string>;
+      values?: Record<string, string | undefined>;
     }) =>
       addError(
-        <Translation ns={ns}>
-          {(t) => (
-            <Trans
-              t={t}
-              i18nKey={i18nKey}
-              values={{
-                ...values,
-                message:
-                  error?.response?.data?.message || error?.message || null,
-              }}
-            />
-          )}
-        </Translation>,
+        <div>
+          <Translation ns={ns}>
+            {(t) => (
+              <Trans
+                t={t}
+                i18nKey={i18nKey}
+                values={{
+                  ...values,
+                  message:
+                    error?.response?.data?.message || error?.message || null,
+                }}
+              />
+            )}
+          </Translation>
+        </div>,
         true,
       ),
     [addError, ns],
@@ -41,20 +43,22 @@ export const useNotifications = ({ ns }: { ns: string }) => {
       values,
     }: {
       i18nKey: string;
-      values?: Record<string, string>;
+      values?: Record<string, string | undefined>;
     }) =>
       addSuccess(
-        <Translation ns={ns}>
-          {(t) => (
-            <Trans
-              t={t}
-              i18nKey={i18nKey}
-              values={{
-                ...values,
-              }}
-            />
-          )}
-        </Translation>,
+        <div>
+          <Translation ns={ns}>
+            {(t) => (
+              <Trans
+                t={t}
+                i18nKey={i18nKey}
+                values={{
+                  ...values,
+                }}
+              />
+            )}
+          </Translation>
+        </div>,
         true,
       ),
     [addSuccess, ns],

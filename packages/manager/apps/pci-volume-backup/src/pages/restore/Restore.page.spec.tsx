@@ -3,18 +3,18 @@ import { fireEvent, render } from '@testing-library/react';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { useNotifications } from '@/hooks/notifications/useNotifications';
-import {
-  useBackup,
-  useRestoreVolume,
-  useVolume,
-} from '@/data/hooks/useVolumeBackup';
+import { useBackup, useRestoreVolume } from '@/data/hooks/useVolumeBackup';
 import { TBackup, TVolume } from '@/data/api/api.types';
 import Restore from './Restore.page';
+import { useVolume } from '@/data/hooks/useVolume';
 
 vi.mock('@/data/hooks/useVolumeBackup', () => ({
   useBackup: vi.fn(),
-  useVolume: vi.fn(),
   useRestoreVolume: vi.fn(),
+}));
+
+vi.mock('@/data/hooks/useVolume', () => ({
+  useVolume: vi.fn(),
 }));
 
 vi.mock('@/hooks/notifications/useNotifications', () => ({
