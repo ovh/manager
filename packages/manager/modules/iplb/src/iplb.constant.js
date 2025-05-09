@@ -137,6 +137,9 @@ export const IPLB_GUIDES = {
   },
 };
 
+export const SERVICE_TYPE = 'IPLB';
+
 export default {
   IPLB_GUIDES,
+  SERVICE_TYPE,
 };
