@@ -9,6 +9,7 @@ import {
 import { ActionMenu } from '@ovh-ux/manager-react-components';
 import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { VrackServicesWithIAM } from '@ovh-ux/manager-network-common';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { urls } from '@/routes/routes.constants';
 import { useVrackMenuItems } from '@/components/vrack-id/useVrackMenuItems.hook';
 import { isEditable } from '@/utils/vrack-services';
@@ -65,7 +66,7 @@ export const ActionCell: React.FC<VrackServicesWithIAM> = (vs) => {
         ...vrackActionsMenuItems,
         {
           id: 2,
-          label: t('action-deleteVrackServices'),
+          label: t('delete', { ns: NAMESPACES.ACTIONS }),
           isDisabled: isDisabled || isVrackserviceAlreadyAssociated,
           color: ODS_BUTTON_COLOR.critical,
           onClick: () => {

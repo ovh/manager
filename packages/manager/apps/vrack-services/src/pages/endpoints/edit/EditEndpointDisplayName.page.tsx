@@ -26,8 +26,10 @@ const sharedTrackingParams: TrackingClickParams = {
 export default function EditEndpointDisplayName() {
   const { id, urn } = useParams();
   const { addSuccessMessage } = React.useContext(MessagesContext);
-  const { t } = useTranslation('vrack-services/endpoints');
-  const { t: tActions } = useTranslation(NAMESPACES.ACTIONS);
+  const { t } = useTranslation([
+    'vrack-services/endpoints',
+    NAMESPACES.ACTIONS,
+  ]);
   const { trackClick, trackPage } = useOvhTracking();
   const navigate = useNavigate();
   const { iamResources, refetchIamResources } = useServiceList(id, {
@@ -57,7 +59,7 @@ export default function EditEndpointDisplayName() {
       description={t('modalEndpointUpdateDescription')}
       defaultValue={resource?.displayName}
       resourceName={resource?.name}
-      confirmButtonLabel={tActions('modify')}
+      confirmButtonLabel={t('modify', { ns: NAMESPACES.ACTIONS })}
       onConfirm={() => {
         trackClick({
           ...sharedTrackingParams,
