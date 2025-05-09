@@ -58,7 +58,11 @@ export default /* @ngInject */ ($stateProvider) => {
       resolve: {
         breadcrumb: () => null,
         serviceType: () => SERVICE_TYPE,
-        id: /* @ngInject */ ($transition$) => $transition$.params().id,
+        subscriptionInfo: /* @ngInject */ (
+          $transition$,
+          IpLoadBalancerService,
+        ) => IpLoadBalancerService.getSubscription($transition$.params().id),
+        id: /* @ngInject */ (subscriptionInfo) => subscriptionInfo.serviceId,
         goBack: /* @ngInject */ ($state, Alerter) => (message, type) => {
           const promise = $state.go('iplb.index');
           if (message) {
