@@ -50,7 +50,7 @@ import {
   CONFIRM,
   EDIT_EMAIL_ACCOUNT,
 } from '@/tracking.constants';
-import { Loading } from '@/components';
+import { Loading, GeneratePasswordButton } from '@/components';
 
 export const EmailAccountForm = () => {
   const { trackClick, trackPage } = useOvhTracking();
@@ -161,6 +161,7 @@ export const EmailAccountForm = () => {
     handleSubmit,
     reset,
     formState: { isDirty, isValid, errors },
+    setValue,
   } = useForm({
     defaultValues: {
       account: emailAccount?.currentState?.email?.split('@')[0] || '',
@@ -388,21 +389,29 @@ export const EmailAccountForm = () => {
                 {t('zimbra_account_add_input_password_label')}
                 {!emailAccount && ' *'}
               </label>
-              <OdsPassword
-                data-testid="input-password"
-                isMasked
-                className="w-full"
-                id={name}
-                name={name}
-                hasError={!!errors[name]}
-                value={value}
-                onOdsBlur={onBlur}
-                onOdsChange={(e) => {
-                  // this is necessary because OdsPassword returns
-                  // value as null somehow
-                  onChange(e?.detail?.value || '');
-                }}
-              />
+              <div className="flex flex-1 gap-4">
+                <OdsPassword
+                  data-testid="input-password"
+                  isMasked
+                  className="w-full"
+                  id={name}
+                  name={name}
+                  hasError={!!errors[name]}
+                  value={value}
+                  onOdsBlur={onBlur}
+                  onOdsChange={(e) => {
+                    // this is necessary because OdsPassword returns
+                    // value as null somehow
+                    onChange(e?.detail?.value || '');
+                  }}
+                />
+                <GeneratePasswordButton
+                  id="generate-password-btn"
+                  onGenerate={(password) => {
+                    setValue('password', password);
+                  }}
+                />
+              </div>
             </OdsFormField>
           )}
         />
@@ -417,7 +426,6 @@ export const EmailAccountForm = () => {
           </span>
         ))}
       </OdsText>
-
       <OdsButton
         slot="actions"
         type="submit"

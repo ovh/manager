@@ -4,8 +4,13 @@ const state = {
     domainView: {
       component: 'domainAnycastTerminate',
     },
+    dnsZoneView: {
+      component: 'domainAnycastTerminate',
+    },
   },
   resolve: {
+    domainName: /* @ngInject */ ($transition$) =>
+      $transition$.params().productId,
     previousState: /* @ngInject */ ($transition$) => $transition$.$from(),
     dnsAnycastDetails: /* @ngInject */ (Domain, domainName) =>
       Domain.getDnsAnycastDetails(domainName),
@@ -25,5 +30,6 @@ const state = {
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.domain.product.terminate_anycast', { ...state });
+  $stateProvider.state('app.zone.details.terminate_anycast', { ...state });
   $stateProvider.state('app.alldom.domain.terminate_anycast', { ...state });
 };

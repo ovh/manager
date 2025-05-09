@@ -29,6 +29,8 @@
   "ovh_contact_edit_label_address_cityName": "Ville",
   "ovh_contact_edit_label_address_zipCode": "Code postal",
   "ovh_contact_edit_label_address_city": "Ville",
+  "ovh_contact_edit_label_city_name": "Ville",
+  "ovh_contact_edit_label_zip_code": "Code postal",
   "ovh_contact_edit_label_birth_day": "Date d'anniversaire",
   "ovh_contact_edit_label_phone": "Téléphone",
   "ovh_contact_edit_label_fax": "Fax",

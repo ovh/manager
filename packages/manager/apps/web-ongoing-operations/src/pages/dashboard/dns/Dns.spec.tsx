@@ -79,7 +79,6 @@ describe('Dns datagrid', () => {
         'href',
         'https://ovh.test/#/web/domain/testpuwebdomain.us/information',
       );
-      expect(dnsName).toHaveAttribute('target', '_blank');
     });
   });
 
@@ -102,7 +101,6 @@ describe('Dns datagrid', () => {
         'href',
         'https://ovh.test/#/web/zone/testpuwebdomain.us',
       );
-      expect(dnsName).toHaveAttribute('target', '_blank');
     });
   });
 });

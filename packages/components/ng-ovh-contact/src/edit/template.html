@@ -336,7 +336,7 @@
             type="submit"
             class="btn btn-primary"
             data-translate="{{ $ctrl.ovhContactCtrl.contact.id ? 'ovh_contact_edit_action_edit' : 'ovh_contact_edit_action_create' }}"
-            data-ng-disabled="$ctrl.ovhContactEdit.$invalid || !$ctrl.ovhContactCtrl.contact.hasChange()"
+            data-ng-disabled="$ctrl.ovhContactEdit.$invalid || !$ctrl.ovhContactEdit.$dirty"
         ></button>
         <button
             type="button"

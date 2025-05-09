@@ -82,7 +82,6 @@ describe('Domain datagrid', () => {
         'href',
         'https://ovh.test/#/web/domain/case-where-modal-cant-be-open.ovh/information',
       );
-      expect(domainName).toHaveAttribute('target', '_blank');
 
       // We test the status
       const statusCancelled = getByTestId('status-1');

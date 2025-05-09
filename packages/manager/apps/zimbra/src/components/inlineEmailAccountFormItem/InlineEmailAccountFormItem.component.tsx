@@ -14,6 +14,7 @@ import {
 } from '@ovhcloud/ods-components';
 import { Controller, useFormContext } from 'react-hook-form';
 import { AddEmailAccountsSchema } from '@/utils';
+import { GeneratePasswordButton } from '@/components';
 
 export const InlineEmailAccountFormItem = ({
   index,
@@ -27,6 +28,7 @@ export const InlineEmailAccountFormItem = ({
     control,
     watch,
     formState: { errors },
+    setValue,
   } = useFormContext<AddEmailAccountsSchema>();
 
   const domain = watch(`accounts.${index}.domain`);
@@ -128,21 +130,29 @@ export const InlineEmailAccountFormItem = ({
               <label htmlFor={name} slot="label">
                 {t('zimbra_account_add_input_password_label')} *
               </label>
-              <OdsPassword
-                data-testid="input-password"
-                isMasked
-                className="w-full"
-                id={name}
-                name={name}
-                hasError={!!errors.accounts?.[index]?.password}
-                value={value}
-                onOdsBlur={onBlur}
-                onOdsChange={(e) => {
-                  // this is necessary because OdsPassword returns
-                  // value as null somehow
-                  onChange(e?.detail?.value || '');
-                }}
-              />
+              <div className="flex flex-1 gap-4 min-w-[240px]">
+                <OdsPassword
+                  data-testid="input-password"
+                  isMasked
+                  className="w-full"
+                  id={name}
+                  name={name}
+                  hasError={!!errors.accounts?.[index]?.password}
+                  value={value}
+                  onOdsBlur={onBlur}
+                  onOdsChange={(e) => {
+                    // this is necessary because OdsPassword returns
+                    // value as null somehow
+                    onChange(e?.detail?.value || '');
+                  }}
+                />
+                <GeneratePasswordButton
+                  id={`generate-password-btn-${index}`}
+                  onGenerate={(password) => {
+                    setValue(`accounts.${index}.password`, password);
+                  }}
+                />
+              </div>
             </OdsFormField>
           )}
         />

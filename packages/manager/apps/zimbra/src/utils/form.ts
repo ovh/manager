@@ -44,6 +44,7 @@ export const OWNER_REGEX = /^[A-Za-z0-9]+$/;
 
 export const DOMAIN_REGEX = /^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
+export const containsLowercase = (s: string) => !!(s && /[a-z]/.test(s));
 export const containsUppercase = (s: string) => !!(s && /[A-Z]/.test(s));
 export const containsDigit = (s: string) => !!(s && /\d/.test(s));
 export const containsSpecial = (s: string) =>

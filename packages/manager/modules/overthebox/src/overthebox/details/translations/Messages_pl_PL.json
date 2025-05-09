@@ -99,7 +99,5 @@
   "overTheBox_change_offer": "Zmień ofertę",
   "overTheBox_release_channel_deprecated": "Wersja przestarzała {{version}}",
   "overTheBox_detail_ips": "Adresy IP ",
-  "overTheBox_detail_ip_v4": "IPv4",
-  "overTheBox_detail_ip_v6": "IPv6",
   "overTheBox_model_ips_unknown": "Nie znaleziono adresów IP"
 }

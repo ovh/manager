@@ -20,7 +20,6 @@ export default function OngoingOperationDatagridDomain({
       <OdsLink
         href={url}
         label={value}
-        target="_blank"
         data-testid={value}
         isDisabled={
           !url ||
