@@ -17,7 +17,8 @@ import {
   TileBlock as TileLine,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
-import { TKube } from '@/types';
+import { RegionChipByType } from '@ovh-ux/manager-pci-common';
+import { DeploymentMode, TKube } from '@/types';
 import ClusterStatus from './ClusterStatus.component';
 import ClusterETCD from './ClusterETCD.component';
 import TileLineLegacy from './TileLine.component';
@@ -103,14 +104,22 @@ export default function ClusterInformation({
           </TileLine>
         )}
         <TileLine label={t('kube_service_cluster_region')}>
-          <OsdsText
-            className="mb-4"
-            size={ODS_TEXT_SIZE._400}
-            level={ODS_TEXT_LEVEL.body}
-            color={ODS_THEME_COLOR_INTENT.text}
-          >
-            {kubeDetail.region}
-          </OsdsText>
+          <div className="flex gap-2 items-baseline">
+            <OsdsText
+              className="mb-4"
+              size={ODS_TEXT_SIZE._400}
+              level={ODS_TEXT_LEVEL.body}
+              color={ODS_THEME_COLOR_INTENT.text}
+            >
+              {kubeDetail.region}
+            </OsdsText>
+
+            <RegionChipByType
+              data-testId={regionInformations?.type}
+              showTooltip
+              type={regionInformations?.type as DeploymentMode}
+            />
+          </div>
         </TileLine>
 
         {!isMultiDeploymentZones(regionInformations?.type) && (
