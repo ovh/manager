@@ -1,21 +1,12 @@
 export default class OverTheBoxCtrl {
   /* @ngInject */
-  constructor(
-    $scope,
-    $translate,
-    $q,
-    OvhApiOverTheBox,
-    TucToast,
-    CORE_URLS,
-    OVER_THE_BOX,
-  ) {
+  constructor($scope, $translate, $q, OvhApiOverTheBox, TucToast, CORE_URLS) {
     this.$scope = $scope;
     this.$translate = $translate;
     this.$q = $q;
     this.OvhApiOverTheBox = OvhApiOverTheBox;
     this.TucToast = TucToast;
     this.CORE_URLS = CORE_URLS;
-    this.OVER_THE_BOX = OVER_THE_BOX;
   }
 
   $onInit() {
