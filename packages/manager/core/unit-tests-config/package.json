@@ -20,7 +20,7 @@
   },
   "exports": {
     ".": "./src/index.js",
-    "./unit-tests-api": "./src/unit-tests-api.js"
+    "./unit-tests-api": "./src/unit-tests-api.mjs"
   },
   "scripts": {
     "test": "vitest run --config src/test-shared-config/vite.config.mjs"
