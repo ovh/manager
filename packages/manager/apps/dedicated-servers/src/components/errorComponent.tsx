@@ -11,16 +11,9 @@ export type ErrorBannerProps = {
 export type ErrorProps = { error: ApiError } | { error: ErrorBannerProps };
 
 export const ErrorComponent = ({ error }: ErrorProps) => {
-  let errorObj: ErrorBannerProps;
-  if ('response' in error) {
-    const { response }: any = error;
-    errorObj = {
-      data: error,
-      headers: response?.headers,
-      status: response?.status,
-    };
-  } else {
-    errorObj = error;
-  }
-  return <ErrorBanner error={errorObj} />;
+  return (
+    <ErrorBanner
+      error={'response' in error ? { ...error.response, data: error } : error}
+    />
+  );
 };

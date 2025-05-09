@@ -4,11 +4,7 @@ import { DedicatedServer } from '@/data/types/server.type';
 import { DSBilling } from '../billingCell';
 import useDateFormat from '@/hooks/useDateFormat';
 
-type ExpirationCellProps = {
-  server: DedicatedServer;
-};
-
-export const ExpirationCell: React.FC<ExpirationCellProps> = ({ server }) => {
+export const ExpirationCell = (server: DedicatedServer) => {
   const { format } = useDateFormat({
     options: {
       hourCycle: 'h23',

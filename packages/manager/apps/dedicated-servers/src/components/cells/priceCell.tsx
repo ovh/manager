@@ -3,11 +3,7 @@ import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { DedicatedServer } from '@/data/types/server.type';
 import { DSBilling } from '../billingCell';
 
-type PriceCellProps = {
-  server: DedicatedServer;
-};
-
-export const PriceCell: React.FC<PriceCellProps> = ({ server }) => {
+export const PriceCell = (server: DedicatedServer) => {
   return (
     <DSBilling server={server.name}>
       {(billingInfo) => (
