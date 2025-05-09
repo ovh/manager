@@ -20,7 +20,6 @@
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "@ovh-ux/logs-to-customer": "^1.1.1",
     "@ovh-ux/manager-common-translations": "^0.5.2",
     "@ovh-ux/manager-config": "^8.1.0",
     "@ovh-ux/manager-core-api": "^0.11.0",
