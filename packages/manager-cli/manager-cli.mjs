@@ -16,6 +16,10 @@ const knownCommands = {
     script: 'json-to-component-route-migration',
     description: 'Migrate React Router config from JSON to JSX components',
   },
+  'unit-tests-migrate': {
+    script: 'unit-tests-migration',
+    description: 'Migrate unit test config (Vitest, Jest...) to shared package',
+  },
 };
 
 /**
@@ -60,7 +64,7 @@ const getAvailableApps = () => {
  */
 const printHelp = () => {
   const commandsList = Object.entries(knownCommands)
-    .map(([cmd, meta]) => `  ${cmd.padEnd(16)} ${meta.description}`)
+    .map(([cmd, meta]) => `  ${cmd.padEnd(20)} ${meta.description}`)
     .join('\n');
 
   console.log(`
@@ -70,8 +74,8 @@ Usage:
   yarn manager-cli <command> --app <app-name> [--dry-run]
 
 Options:
-  --list         List available app names
-  --help, -h     Show this help message
+  --list                  List available app names
+  --help, -h              Show this help message
 
 Commands:
 ${commandsList}
@@ -79,6 +83,16 @@ ${commandsList}
 Examples:
   yarn manager-cli routes-migrate --app pci-ai-tools
   yarn manager-cli routes-migrate --app pci-ai-tools --dry-run
+
+  # Default (vitest)
+  yarn manager-cli unit-tests-migrate --app pci-ai-tools
+
+  # Explicit vitest
+  yarn manager-cli unit-tests-migrate --app pci-ai-tools --framework vitest
+
+  # Jest
+  yarn manager-cli unit-tests-migrate --app zimbra --framework jest --dry-run
+
   yarn manager-cli --list
   yarn manager-cli --help
 `);
@@ -139,13 +153,31 @@ if (!appName || appName.startsWith('--')) {
 // Validate app existence
 const availableApps = getAvailableApps();
 if (!availableApps.includes(appName)) {
-  console.error(`❌ App "${appName}" not found in ${basePath}\n`);
-  listApps();
+  console.error([
+    `❌ App "${appName}" not found in:`,
+    `   ${basePath}`,
+    ``,
+    `🔍 Possible causes:`,
+    `  - Typo in the app name`,
+    `  - App was not cloned or generated properly`,
+    `  - Wrong working directory (should be at the root of the monorepo)`,
+    ``,
+    `📦 Available apps:`,
+    ...availableApps.map((app) => `  - ${app}`),
+    ``,
+    `💡 Tip: Use "yarn manager-cli --list" to see all app names`,
+  ].join('\n'));
   process.exit(1);
 }
 
 // Build and run final command
 const extraFlags = [];
+
+const frameworkArgIndex = restArgs.findIndex((arg) => arg === '--framework');
+if (frameworkArgIndex !== -1 && restArgs[frameworkArgIndex + 1]) {
+  extraFlags.push('--framework', restArgs[frameworkArgIndex + 1]);
+}
+
 if (hasDryRun) extraFlags.push('--dry-run');
 
 /**
