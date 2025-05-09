@@ -258,7 +258,7 @@
   "vps_configuration_kvm_new_window": "Abrir numa nova janela",
   "vps_configuration_kvm_cloud_mapping_keyboard_warning": "Atenção: a introdução de caracteres numéricos só é possível através da utilização do teclado digital. Se aceder a esta interface a partir de um computador portátil cujo teclado não possui teclado numérico, é provável que um teclado secundário seja acessível graças a uma combinação de teclas (geralmente da forma \"fn + ...\").",
   "vps_configuration_kvm_fail": "Ocorreu um erro aquando da abertura do KVM.",
-  "vps_configuration_terminate": "Eliminar o meu VPS",
+  "vps_configuration_terminate": "Cancelar o meu VPS",
   "vps_configuration_veeam_order_title_button": "Ativar o Backup Automatizado",
   "vps_configuration_veeam_umount_title_button": "Remover o backup",
   "vps_configuration_veeam_umount_title": "Remover o backup",
