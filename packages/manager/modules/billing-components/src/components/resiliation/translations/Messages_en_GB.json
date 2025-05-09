@@ -1,9 +1,9 @@
 {
-  "billing_resiliation_title": "Cancel your subscription",
+  "billing_resiliation_title": "Cancel my commitment",
   "billing_resiliation_service_name": "Service name",
   "billing_resiliation_choice": "Select an option:",
-  "billing_resiliation_choice_STOP_ENGAGEMENT_FALLBACK_DEFAULT_PRICE": "Cancel your current subscription and switch to a commitment-free subscription.",
-  "billing_resiliation_choice_CANCEL_SERVICE": "Cancel your subscription and end your service on the expiry date.",
+  "billing_resiliation_choice_STOP_ENGAGEMENT_FALLBACK_DEFAULT_PRICE": "Cancel your current commitment and switch to a commitment-free subscription.",
+  "billing_resiliation_choice_CANCEL_SERVICE": "Cancel your commitment and end your service on the expiry date.",
   "billing_resiliation_commitment_end_date": "Commitment end date:",
   "billing_resiliation_details_STOP_ENGAGEMENT_FALLBACK_DEFAULT_PRICE": "After this date, your {{serviceName}} service will remain active and you will be charged the default monthly price. You will no longer be subscribed, and you can delete your service at any time.",
   "billing_resiliation_details_CANCEL_SERVICE": "After this date your service will be terminated. If you change your mind, you can reverse the cancellation up to 24 hours before the commitment end date.",
