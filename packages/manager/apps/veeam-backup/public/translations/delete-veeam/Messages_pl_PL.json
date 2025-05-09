@@ -1,5 +1,6 @@
 {
   "headline": "Rezygnuję z usługi",
   "delete_input_label": "Wpisz słowo „TERMINATE”, aby potwierdzić rezygnację z usługi.",
-  "terminate_veeam_backup_success": "Dyspozycja rezygnacji została przyjęta. Otrzymasz e-mail z opisem dalszej procedury."
+  "terminate_veeam_backup_success": "Dyspozycja rezygnacji została przyjęta. Otrzymasz e-mail z opisem dalszej procedury.",
+  "terminate_veeam_backup_success_us": "Dyspozycja rezygnacji została przyjęta. Wiadomość z potwierdzeniem została wysłana na Twój adres e-mail."
 }
