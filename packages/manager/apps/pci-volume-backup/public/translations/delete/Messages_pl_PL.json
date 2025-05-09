@@ -1,0 +1,10 @@
+{
+  "pci_projects_project_storages_volume_backup_list_delete_title": "Usuń kopię zapasową",
+  "pci_projects_project_storages_volume_backup_list_delete_description": "Usuń trwale kopię zapasową {{volumeBackupName}}?",
+  "pci_projects_project_storages_volume_backup_list_delete_warn": "Wszystkie dane przechowywane na kopii zapasowej zostaną utracone.",
+  "pci_projects_project_storages_volume_backup_list_delete_enter": "Aby potwierdzić, wprowadź \"DELETE\" w poniższym polu",
+  "pci_projects_project_storages_volume_backup_list_delete_action_confirm": "Zatwierdź",
+  "pci_projects_project_storages_volume_backup_list_delete_action_cancel": "Anuluj",
+  "pci_projects_project_storages_volume_backup_list_delete_success": "Trwa usuwanie kopii zapasowej {{volumeBackupName}}.",
+  "pci_projects_project_storages_volume_backup_list_delete_error": "Wystąpił błąd podczas usuwania kopii zapasowej {{volumeBackupName}}: {{message}}"
+}
