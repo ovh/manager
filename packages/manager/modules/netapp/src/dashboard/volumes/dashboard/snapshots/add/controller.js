@@ -11,7 +11,7 @@ export default class NetAppVolumesDashboardSnapshotsAddController {
 
   addSnapshot() {
     this.isLoading = true;
-    this.trackClick('create::confirm');
+    this.trackClick('confirm');
     return this.$http
       .post(
         `/storage/netapp/${this.serviceName}/share/${this.volumeId}/snapshot`,
@@ -39,7 +39,7 @@ export default class NetAppVolumesDashboardSnapshotsAddController {
   }
 
   goBack() {
-    this.trackClick('create::cancel');
+    this.trackClick('cancel');
     return this.goToSnapshots();
   }
 }

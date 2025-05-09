@@ -16,6 +16,7 @@ export default {
     currentPolicy: '<',
     applyPolicy: '<',
     trackClick: '<',
+    trackCreate: '<',
     goToRestoreSnapshot: '<',
     goToSnapshots: '<',
     isCreateVolumeAvailable: '<',

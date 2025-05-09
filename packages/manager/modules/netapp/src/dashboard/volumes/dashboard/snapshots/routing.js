@@ -10,11 +10,21 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/snapshots',
     component: 'ovhManagerNetAppVolumesDashboardSnapshots',
     resolve: {
+      trackCreate: /* @ngInject */ (atInternet) => () =>
+        atInternet.trackClick({
+          ...SNAPSHOT_LISTING_TRACKING_CONTEXT,
+          type: 'action',
+          name: `${SNAPSHOT_TRACKING_PREFIX}page::button::add-snapshot`,
+        }),
       trackClick: /* @ngInject */ (atInternet) => (tracker) =>
         atInternet.trackClick({
-          type: 'action',
-          name: `${SNAPSHOT_TRACKING_PREFIX}pop-up::button::${tracker}`,
           ...SNAPSHOT_LISTING_TRACKING_CONTEXT,
+          type: 'action',
+          page_category: 'popup',
+          name: `${SNAPSHOT_TRACKING_PREFIX}button::add_snapshot::${tracker}`,
+          page: {
+            name: `${SNAPSHOT_TRACKING_PREFIX}netapp::popup::add::snapshot`,
+          },
         }),
       addSnapshotLink: /* @ngInject */ ($state, $transition$) =>
         $state.href(
@@ -159,6 +169,12 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     atInternet: {
       ignore: true,
+    },
+    onEnter: /* @ngInject */ (atInternet) => {
+      atInternet.trackPage({
+        name: `${SNAPSHOT_TRACKING_PREFIX}netapp::volumes::listing::snapshots`,
+        ...SNAPSHOT_LISTING_TRACKING_CONTEXT,
+      });
     },
   });
 };
