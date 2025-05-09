@@ -12,7 +12,7 @@
   "kubernetes_network_form_gateway_vrack_field_ip_error_pattern": "Introduza um endereço IP válido",
   "kubernetes_network_form_label": "Rede privada associada",
   "kubernetes_network_form_none": "Nenhum (IP públicos)",
-  "kubernetes_network_form_description": "Por predefinição, os seus nós de trabalho dispõem de um IPv4 público. Se escolher uma rede privada, os IP públicos destes nós serão utilizados exclusivamente para a sua administração/ligação ao painel de controlo Kubernetes, e os seus nós receberão um IP na vLAN da rede privada escolhida.",
+  "kubernetes_network_form_description": "Os seus nós receberão um IP na vLAN da rede privada escolhida.",
   "kubernetes_network_form_add": "Criar uma rede privada",
   "kubernetes_network_form_subnet": "Escolha uma sub-rede para o seu cluster",
   "kubernetes_network_form_subnet_description": "Selecione a sub-rede a utilizar para o seu cluster Managed Kubernetes Service. Certifique-se de que este cumpre os requisitos de rede do serviço gerido Managed Kubernetes Service.",
@@ -29,8 +29,8 @@
   "kubernetes_network_form_gateway_mode_custom": "Gateway predefinido sobrecarregado de forma estática",
   "kubernetes_network_form_gateway_mode_custom_placeholder": "Endereço IP do gateway predefinido",
   "kubernetes_network_form_rebuild": "Atenção: alterar a estratégia de roteamento de saída implica uma reimplementação dos nós do seu cluster em rolling update.",
-  "kubernetes_network_form_notify_users": "Para implementar o Managed Kubernetes Service numa região com 3 zonas de disponibilidade (3-AZ), é obrigatória uma sub-rede com uma gateway associada. Certifique-se de que a sua rede privada cumpre estes requisitos para garantir a melhor operação possível.",
-  "kubernetes_network_form_select_private_option": "Selecione uma rede privada",
-  "kubernetes_network_form_no_associated_gateway": "Durante a fase beta, um Gateway gerido deve ser associado à rede privada.",
-  "kubernetes_network_form_no_private_network": "É necessária uma rede privada associada para configurar a sua rede para o seu Kubernetes. Sugerimos que crie uma rede privada se ainda não tiver uma."
+  "kubernetes_network_form_notify_users": "Para implementar o Managed Kubernetes Service numa região com 3 Availability Zones (3-AZ), é obrigatória uma sub-rede com uma gateway associada. Certifique-se de que a sua rede privada cumpre estes requisitos para garantir o melhor funcionamento possível.",
+  "kubernetes_network_form_select_private_option": "Escolha uma rede privada",
+  "kubernetes_network_form_no_associated_gateway": "Durante a fase beta, deve ser associada à rede privada uma gateway gerida.",
+  "kubernetes_network_form_no_private_network": "É necessária uma rede privada associada para configurar a sua rede para o Kubernetes. Sugerimos que crie uma rede privada se ainda não tiver uma."
 }
