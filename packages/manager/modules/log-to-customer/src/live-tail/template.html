@@ -1,14 +1,3 @@
-<div class="my-2" data-ng-if="$ctrl.logKindsList.length > 1">
-    <oui-radio-toggle-group dense data-model="$ctrl.kind" direction="row">
-        <oui-radio
-            data-ng-repeat="kind in $ctrl.logKindsList"
-            value="kind.name"
-        >
-            <span data-ng-bind="kind.displayName"></span>
-        </oui-radio>
-    </oui-radio-toggle-group>
-</div>
-
 <log-live-tail
     data-log-keys="$ctrl.logKeys"
     data-log-api-url="$ctrl.logApiUrl"
@@ -28,7 +17,14 @@
             <i class="oui-icon oui-icon-external-link" aria-hidden="true"></i>
         </a>
     </description>
-
+    <kinds data-ng-if="$ctrl.logKindsList.length > 1">
+        <log-select-kinds
+            class="row"
+            data-kinds="$ctrl.logKindsList"
+            data-ng-model="$ctrl.kind"
+        >
+        </log-select-kinds>
+    </kinds>
     <tile>
         <log-tile
             data-log-subscription-url="$ctrl.logSubscriptionUrl"
