@@ -318,6 +318,9 @@ export const Datagrid = <T,>({
     <div>
       <DatagridTopbar
         columnsVisibility={columnsVisibility}
+        toggleAllColumnsVisible={table.toggleAllColumnsVisible}
+        getIsAllColumnsVisible={table.getIsAllColumnsVisible}
+        getIsSomeColumnsVisible={table.getIsSomeColumnsVisible}
         filtersColumns={filtersColumns}
         isSearchable={!!searchColumns}
         filters={filters}

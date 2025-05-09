@@ -26,10 +26,16 @@ export type ColumnsVisibility = {
 
 export type ColumnsVisibilityProps = {
   columnsVisibility: ColumnsVisibility[];
+  toggleAllColumnsVisible: (a: boolean) => void;
+  getIsAllColumnsVisible: () => boolean;
+  getIsSomeColumnsVisible: () => boolean;
 };
 
 export function VisibilityManagement({
   columnsVisibility,
+  toggleAllColumnsVisible,
+  getIsAllColumnsVisible,
+  getIsSomeColumnsVisible,
 }: Readonly<ColumnsVisibilityProps>) {
   const { t } = useTranslation('datagrid');
   const visibilityPopoverRef = useRef(null);
@@ -40,6 +46,9 @@ export function VisibilityManagement({
   const visibleColumnsCount = eligibleColumns.filter((column) =>
     column.isVisible(),
   ).length;
+
+  const isAllColumnsVisible = getIsAllColumnsVisible();
+  const isSomeColumnsVisible = getIsSomeColumnsVisible();
 
   return (
     <>
@@ -63,9 +72,24 @@ export function VisibilityManagement({
         with-arrow
       >
         <div className="flex flex-col">
+          <div className="pr-5 flex flex-row items-center gap-x-2">
+            <OdsCheckbox
+              name={'toggle-all-columns-visibility'}
+              inputId={'toggle-all-columns-visibility'}
+              isChecked={isAllColumnsVisible}
+              onOdsChange={() => toggleAllColumnsVisible(!isAllColumnsVisible)}
+              ariaLabel={t('common_topbar_columns_select_all')}
+              isIndeterminate={!isAllColumnsVisible && isSomeColumnsVisible}
+            />
+            <label slot="label" htmlFor={'toggle-all-columns-visibility'}>
+              <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                {t('common_topbar_columns_select_all')}
+              </OdsText>
+            </label>
+          </div>
           {eligibleColumns.map((column) => (
             <OdsFormField key={column.id}>
-              <div className="flex flex-row items-center gap-x-2">
+              <div className="px-5 flex flex-row items-center gap-x-2">
                 <OdsCheckbox
                   name={column.id}
                   inputId={column.id}

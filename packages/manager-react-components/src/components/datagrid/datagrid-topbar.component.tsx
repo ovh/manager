@@ -43,6 +43,9 @@ export interface FilterProps {
 
 export interface DatagridTopbarProps {
   columnsVisibility?: ColumnsVisibility[];
+  toggleAllColumnsVisible?: (a: boolean) => void;
+  getIsAllColumnsVisible?: () => boolean;
+  getIsSomeColumnsVisible?: () => boolean;
   filtersColumns?: ColumnFilter[];
   isSearchable?: boolean;
   filters?: FilterProps;
@@ -52,6 +55,9 @@ export interface DatagridTopbarProps {
 
 export const DatagridTopbar = <T,>({
   columnsVisibility,
+  toggleAllColumnsVisible,
+  getIsAllColumnsVisible,
+  getIsSomeColumnsVisible,
   filters,
   filtersColumns,
   isSearchable,
@@ -142,7 +148,12 @@ export const DatagridTopbar = <T,>({
               )}
               {hasVisibilityFeature && (
                 <div className={filtersColumns?.length > 0 ? 'ml-[10px]' : ''}>
-                  <VisibilityManagement columnsVisibility={columnsVisibility} />
+                  <VisibilityManagement
+                    columnsVisibility={columnsVisibility}
+                    toggleAllColumnsVisible={toggleAllColumnsVisible}
+                    getIsAllColumnsVisible={getIsAllColumnsVisible}
+                    getIsSomeColumnsVisible={getIsSomeColumnsVisible}
+                  />
                 </div>
               )}
             </div>
