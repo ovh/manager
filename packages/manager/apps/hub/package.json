@@ -11,8 +11,6 @@
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "scripts": {
-    "beta-test:e2e": "tsc && node ../../../../scripts/run-playwright-bdd.js",
-    "beta-test:e2e:ci": "tsc && node ../../../../scripts/run-playwright-bdd.js --ci",
     "build": "tsc && vite build",
     "start": "vite",
     "test": "vitest run",
@@ -42,10 +40,8 @@
     "react-router-dom": "^6.3.0"
   },
   "devDependencies": {
-    "@cucumber/cucumber": "^10.3.1",
     "@ovh-ux/manager-tailwind-config": "^0.3.0",
     "@ovh-ux/manager-vite-config": "^0.9.3",
-    "@playwright/test": "^1.49.1",
     "@tanstack/react-query-devtools": "^5.51.21",
     "@testing-library/jest-dom": "^6.4.6",
     "@testing-library/react": "^14.1.2",
