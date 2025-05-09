@@ -17,7 +17,7 @@
   "octavia_load_balancer_ip": "Private IP address",
   "octavia_load_balancer_creation_date": "Created on",
   "octavia_load_balancer_actions_detail": "Load Balancer details",
-  "octavia_load_balancer_delete_success": "Your Load Balancer has been deleted",
+  "octavia_load_balancer_delete_success": "Your Load Balancer has been cancelled",
   "octavia_load_balancer_operating_status": "Operation status",
   "octavia_load_balancer_operating_status_online": "online",
   "octavia_load_balancer_operating_status_offline": "offline",
@@ -28,9 +28,9 @@
   "octavia_load_balancer_provisioning_status": "Provisioning status",
   "octavia_load_balancer_provisioning_status_active": "enabled",
   "octavia_load_balancer_provisioning_status_creating": "creating...",
-  "octavia_load_balancer_provisioning_status_deleted": "Deleted",
-  "octavia_load_balancer_provisioning_status_deleting": "deleting",
+  "octavia_load_balancer_provisioning_status_deleted": "cancelled",
+  "octavia_load_balancer_provisioning_status_deleting": "cancelling...",
   "octavia_load_balancer_provisioning_status_updating": "Updating...",
   "octavia_load_balancer_provisioning_status_error": "error",
-  "octavia_load_balancer_actions_delete": "Delete"
+  "octavia_load_balancer_actions_delete": "Cancel"
 }
