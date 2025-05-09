@@ -1,6 +1,9 @@
+import React, { useMemo } from 'react';
 import { apiClient } from '@ovh-ux/manager-core-api';
 import { useQuery, keepPreviousData } from '@tanstack/react-query';
-import { IamCheckResponse, IamInterface } from './iam.interface';
+import { IamCheckResponse, IamInterface, IamObject } from './iam.interface';
+import { formatIamTagsFromResources } from '../../utils/format-tags';
+import { useResourcesIcebergV2 } from '..';
 
 export const fetchAuthorizationsCheck = async ({
   actions,
@@ -62,5 +65,43 @@ export function useAuthorizationIam(
       actions.every((action) => data?.authorizedActions?.includes(action)),
     data,
     ...query,
+  };
+}
+
+export function useGetResourceTags({
+  resourceType,
+  enabled = true,
+}: {
+  resourceType?: string;
+  enabled?: boolean;
+}) {
+  let route = '/iam/resource';
+
+  if (resourceType) {
+    route = `${route}?resourceType=${resourceType}`;
+  }
+
+  const {
+    flattenData: resources,
+    isError: isTagsError,
+    isLoading: isTagsLoading,
+  } = useResourcesIcebergV2<IamObject>({
+    route,
+    queryKey: ['iam/resource', resourceType],
+    enabled,
+    shouldFetchAll: true,
+  });
+
+  const tags = useMemo(() => {
+    if (!resources) {
+      return [];
+    }
+    return formatIamTagsFromResources(resources);
+  }, [resources]);
+
+  return {
+    tags,
+    isError: isTagsError,
+    isLoading: isTagsLoading,
   };
 }

@@ -1,8 +1,14 @@
 import React from 'react';
-import { vitest } from 'vitest';
+import { vi, vitest } from 'vitest';
 import { act, fireEvent, waitFor } from '@testing-library/react';
 import { FilterAdd, FilterAddProps } from './filter-add.component';
 import { render } from '../../utils/test.provider';
+
+vi.mock('./filter-tag-value.component', () => {
+  return {
+    FilterTagValue: () => <div data-testid="filter-tag-inputs" />,
+  };
+});
 
 const renderComponent = (props: FilterAddProps) => {
   return render(<FilterAdd {...props} />);
@@ -199,4 +205,44 @@ it('should set the select option', () => {
 
   const idSelect = getByTestId('filter-add_value-select');
   expect(idSelect).toBeDefined();
+});
+
+it('should display key and value input if the filter is a tag', () => {
+  const mockOnAddFilter = vitest.fn();
+  const props = {
+    columns: [
+      {
+        id: 'tags',
+        label: 'Tags',
+        type: 'Tags',
+        comparators: ['EQ', 'NEQ', 'EXISTS', 'NOT_EXISTS'],
+      },
+    ],
+    onAddFilter: mockOnAddFilter,
+  } as FilterAddProps;
+
+  const { getByTestId } = renderComponent(props);
+
+  const tagInputs = getByTestId('filter-tag-inputs');
+  expect(tagInputs).toBeDefined();
+});
+
+it('should display tags inputs if the filter is a tag', () => {
+  const mockOnAddFilter = vitest.fn();
+  const props = {
+    columns: [
+      {
+        id: 'tags',
+        label: 'Tags',
+        type: 'Tags',
+        comparators: ['EQ', 'NEQ', 'EXISTS', 'NOT_EXISTS'],
+      },
+    ],
+    onAddFilter: mockOnAddFilter,
+  } as FilterAddProps;
+
+  const { getByTestId } = renderComponent(props);
+
+  const tagInputs = getByTestId('filter-tag-inputs');
+  expect(tagInputs).toBeDefined();
 });
