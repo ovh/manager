@@ -702,7 +702,7 @@
   "server_dashboard_change_price_click_here": "click here",
   "server_dashboard_change_price_more": "for more information.",
   "server_configuration_reverse_not_configured": "Not configured",
-  "server_close_service": "Cancel my subscription",
+  "server_close_service": "Cancel my service",
   "server_close_service_form_label": "Select the action you wish to carry out",
   "server_close_service_form_option_terminate": "Cancel service immediately",
   "server_close_service_form_option_delete_at_expiration": "Cancel service on its expiry date",
