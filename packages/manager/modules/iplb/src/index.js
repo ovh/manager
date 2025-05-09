@@ -6,6 +6,7 @@ import '@ovh-ux/ui-kit/dist/css/oui.css';
 
 import onboarding from './onboarding';
 import listing from './listing';
+import IpLoadBalancerService from './iplb.service';
 
 const moduleName = 'ovhManagerIplbLazyLoading';
 
@@ -56,6 +57,7 @@ angular
       });
     },
   )
+  .service('IpLoadBalancerService', IpLoadBalancerService)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
