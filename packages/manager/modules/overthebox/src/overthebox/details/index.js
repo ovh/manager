@@ -5,6 +5,7 @@ import angularTranslate from 'angular-translate';
 import bandwidth from '@ovh-ux/manager-filters';
 
 import ovhManagerOtbWarning from '../warning';
+import ovhManagerOtbIpDisplay from '../ip-display';
 
 import component from './overTheBox-details.component';
 import constant from './overTheBox-details.constant';
@@ -20,6 +21,7 @@ angular
     angularTranslate,
     ovhManagerOtbWarning,
     bandwidth,
+    ovhManagerOtbIpDisplay,
   ])
   .component('overTheBoxDetails', component)
   .constant('OVERTHEBOX_DETAILS', constant)
