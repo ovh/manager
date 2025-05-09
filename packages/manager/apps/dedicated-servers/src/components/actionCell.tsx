@@ -18,7 +18,7 @@ export const ActionCell = (server: DedicatedServer) => {
   const { trackClick } = useOvhTracking();
 
   return (
-    <div className="w-min">
+    <div className="action-menu">
       <OdsButton
         icon={ODS_ICON_NAME.ellipsisVertical}
         id={`service-key-actions-${server.name}`}
