@@ -2,18 +2,13 @@ import React from 'react';
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
 import { OdsBadge } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
+import { DedicatedServer } from '@/data/types/server.type';
 
-type MonitoringStatusProps = {
-  monitoring: boolean;
-  noIntervention: boolean;
-};
-
-export const MonitoringStatusChip: React.FC<MonitoringStatusProps> = ({
-  monitoring,
-  noIntervention,
-}) => {
+export const MonitoringStatusChip = (server: DedicatedServer) => {
   const { t } = useTranslation('dedicated-servers');
-  const color = !monitoring ? ODS_BADGE_COLOR.warning : ODS_BADGE_COLOR.success;
+  const color = !server.monitoring
+    ? ODS_BADGE_COLOR.warning
+    : ODS_BADGE_COLOR.success;
   const getMonitoringStatusLabel = (
     _monitoring: boolean,
     _noIntervention: boolean,
@@ -26,8 +21,8 @@ export const MonitoringStatusChip: React.FC<MonitoringStatusProps> = ({
     <OdsBadge
       label={t(
         `server_configuration_monitoring_status_${getMonitoringStatusLabel(
-          monitoring,
-          noIntervention,
+          server.monitoring,
+          server.noIntervention,
         )}`,
       )}
       color={color}
