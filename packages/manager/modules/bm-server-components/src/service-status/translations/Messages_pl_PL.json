@@ -9,7 +9,7 @@
   "dedicated_server_dashboard_remove_hack_button": "Odblokuj",
   "dedicated_server_dashboard_remove_hack_success": "Zlecenie odblokowania zostało przyjęte.",
   "dedicated_server_dashboard_remove_hack_fail": "Wystąpił błąd podczas odblokowywania serwera.",
-  "dedicated_server_dashboard_close_service": "Rezygnuję z serwera",
+  "dedicated_server_dashboard_close_service": "Rezygnuję z usługi",
   "dedicated_server_dashboard_monitoring": "Monitoring",
   "dedicated_server_dashboard_monitoring_activated": "Włączone",
   "dedicated_server_dashboard_monitoring_disabled": "Wyłączone",
