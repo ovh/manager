@@ -258,7 +258,7 @@
   "vps_configuration_kvm_new_window": "Otwórz w nowym oknie",
   "vps_configuration_kvm_cloud_mapping_keyboard_warning": "Uwaga: wpisywanie znaków numerycznych jest możliwe tylko za pomocą klawiatury numerycznej. Jeśli logujesz się do tego interfejsu z poziomu komputera przenośnego, który nie posiada klawiatury numerycznej, klawiatura zapasowa powinna być dostępna dzięki kombinacji klawiszy (zazwyczaj \"fn + ...\").",
   "vps_configuration_kvm_fail": "Wystąpił błąd podczas otwierania usługi KVM.",
-  "vps_configuration_terminate": "Usuń serwer VPS",
+  "vps_configuration_terminate": "Rezygnacja z serwera VPS",
   "vps_configuration_veeam_order_title_button": "Włącz zautomatyzowany backup",
   "vps_configuration_veeam_umount_title_button": "Odmontuj backup",
   "vps_configuration_veeam_umount_title": "Odmontuj backup",
