@@ -10,7 +10,13 @@ import prettier from 'prettier';
  * @param {boolean} dryRun - If true, do not write changes to disk.
  */
 export const updateImports = async (appPath, dryRun = false) => {
-  const pattern = `${appPath}/src/**/*.{test,spec}.{ts,tsx}`;
+  const pattern = [
+    `${appPath}/src/**/*.{test,spec}.{ts,tsx}`,
+    `${appPath}/src/**/test.setup.{ts,tsx}`,
+    `${appPath}/src/**/setupTests.{ts,tsx}`,
+    `${appPath}/src/**/test-setup.{ts,tsx}`,
+    `${appPath}/src/**/testUtils.{ts,tsx}`,
+  ];
   const files = await glob(pattern, { absolute: true });
 
   for (const file of files) {
