@@ -1,27 +1,66 @@
 <div class="dedicatedCloud-datacenter-virtualmachines">
-    <h2 ng-bind=":: $ctrl.virtualMachinesTitle"></h2>
+    <h2 data-translate="dedicatedCloud_tab_virtualmachine"></h2>
     <div class="text-center" data-ng-if="$ctrl.loading">
         <oui-skeleton size="m"></oui-skeleton>
     </div>
     <div data-ng-if="!$ctrl.loading">
         <oui-datagrid
+            class="table-striped"
             data-rows-loader="$ctrl.loadVirtualMachines($config)"
             data-on-criteria-change="$ctrl.onCriteriaChange($criteria)"
             data-criteria="$ctrl.criteria"
+            data-customizable
         >
+            <oui-datagrid-column
+                data-sortable
+                data-title=":: $ctrl.virtualMachinesId"
+                data-property="vmId"
+                data-filterable
+                data-hidden
+            >
+            </oui-datagrid-column>
+
             <oui-datagrid-column
                 data-sortable
                 data-title=":: 'virtualmachine_grid_name' | translate"
                 data-property="name"
                 data-searchable
                 data-filterable
+                data-prevent-customization
             >
             </oui-datagrid-column>
 
             <oui-datagrid-column
                 data-sortable
-                data-title=":: $ctrl.virtualMachinesGuesOS"
-                data-property="guestOsFamily"
+                data-title=":: $ctrl.virtualMachinesVcpu"
+                data-property="cpuNum"
+            >
+            </oui-datagrid-column>
+
+            <oui-datagrid-column
+                data-sortable
+                data-title=":: 'virtualmachine_memory' | translate"
+                data-property="memoryMax"
+            >
+                <span
+                    data-ng-bind=":: ($row.memoryMax / 1024) | bytes:0:false:'GB'"
+                ></span>
+            </oui-datagrid-column>
+
+            <oui-datagrid-column
+                data-sortable
+                data-title=":: 'virtualmachine_storage' | translate"
+                data-property="disksSize"
+            >
+                <span
+                    data-ng-bind=":: ($row.disksSize / 1024) | bytes:0:false:'GB'"
+                ></span>
+            </oui-datagrid-column>
+
+            <oui-datagrid-column
+                data-sortable
+                data-title=":: 'virtualmachine_guest_os' | translate"
+                data-property="guestOs"
                 data-filterable
             >
             </oui-datagrid-column>
@@ -42,6 +81,40 @@
                     data-ng-if="!$row.license"
                     class="oui-badge oui-badge_sold-out"
                     data-translate="virtualmachine_deactivated"
+                >
+                </span>
+            </oui-datagrid-column>
+
+            <oui-datagrid-column
+                data-sortable
+                data-title=":: 'virtualmachine_backup' | translate"
+                data-property="backupState"
+                data-filterable
+            >
+                <span
+                    data-ng-if="!$row.backupState"
+                    class="oui-badge oui-badge_sold-out"
+                    data-translate="{{ 'virtualmachine_backup_state_none' }}"
+                >
+                </span>
+                <span
+                    data-ng-if="$row.backupState && $row.backupState === 'delivered'"
+                    class="oui-badge oui-badge_success"
+                >
+                    <span
+                        data-translate="{{ 'virtualmachine_backup_state_' + $row.backupState }}"
+                    >
+                    </span>
+                    (<span
+                        data-translate="virtualmachine_backup_restore_points"
+                        data-translate-values="{ retention: $row.backup.restorePoints.length }"
+                    ></span
+                    >)
+                </span>
+                <span
+                    data-ng-if="$row.backupState && $row.backupState !== 'delivered'"
+                    class="oui-badge oui-badge_sold-out"
+                    data-translate="{{ 'virtualmachine_backup_state_' + $row.backupState }}"
                 >
                 </span>
             </oui-datagrid-column>
