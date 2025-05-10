@@ -1,5 +1,3 @@
-import { VIRTUAL_MACHINES_TITLE } from '../../../components/dedicated-cloud/datacenter/virtualMachine/constants';
-
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
     'app.dedicatedCloud.details.datacenter.details.virtualMachines',
@@ -13,7 +11,10 @@ export default /* @ngInject */ ($stateProvider) => {
         serviceId: /* @ngInject */ (currentService) =>
           currentService.serviceInfos.serviceId,
 
-        breadcrumb: () => VIRTUAL_MACHINES_TITLE,
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant(
+            'dedicated_cloud_datacenters_datacenter_virtual_machines',
+          ),
         goToDeleteLicense: /* @ngInject */ (
           $state,
           currentService,
