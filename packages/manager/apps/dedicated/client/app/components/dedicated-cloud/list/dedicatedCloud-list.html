@@ -30,8 +30,9 @@
     data-customizable
 >
     <oui-datagrid-column
-        data-title=":: 'dedicatedCloud_list_serviceName' | translate"
+        data-title=":: 'dedicatedCloud_list_description' | translate"
         data-property="description"
+        data-searchable
         data-filterable
         data-sortable
         data-type="string"
@@ -40,6 +41,15 @@
         <a data-ng-href="{{ $ctrl.getServiceNameLink($row) }}"
             >{{ $row.description || $row.serviceName }}</a
         >
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'dedicatedCloud_list_serviceName' | translate"
+        data-property="serviceName"
+        data-searchable
+        data-filterable
+        data-sortable
+        data-type="string"
+    >
     </oui-datagrid-column>
     <oui-datagrid-column
         data-title=":: 'dedicatedCloud_list_softwareSolution' | translate"
@@ -70,10 +80,16 @@
     <oui-datagrid-column
         title=":: 'dedicatedCloud_list_regionLocation' | translate"
         data-property="regionLocation"
+        data-searchable
         data-filterable
         data-sortable
         data-type="string"
     >
+        <span
+            class="oui-flag oui-flag_{{ $row.countryCode.toLowerCase() }} mr-1"
+            aria-hidden="true"
+        ></span>
+        <span data-ng-bind="$row.regionLocation"></span>
     </oui-datagrid-column>
     <oui-datagrid-column
         title=":: 'dedicatedCloud_list_region' | translate"
