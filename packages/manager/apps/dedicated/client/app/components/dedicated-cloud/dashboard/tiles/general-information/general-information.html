@@ -112,7 +112,15 @@
     <oui-tile-definition
         data-term="{{:: 'ovhManagerPccDashboardGeneralInformation_location_region_location' | translate }}"
         data-description="{{:: $ctrl.locationInfo.regionLocation }}"
-    ></oui-tile-definition>
+    >
+        <oui-tile-description>
+            <span
+                class="oui-flag oui-flag_{{ $ctrl.locationInfo.countryCode.toLowerCase() }} mr-1"
+                aria-hidden="true"
+            ></span>
+            <span data-ng-bind="$ctrl.locationInfo.regionLocation"></span>
+        </oui-tile-description>
+    </oui-tile-definition>
 
     <oui-tile-definition
         data-term="{{:: 'ovhManagerPccDashboardGeneralInformation_location_region' | translate }}"

@@ -34,6 +34,9 @@ export default class extends ListLayoutHelper.ListLayoutCtrl {
       })
       .catch((error) => {
         const errorMessage = error.data?.message || error.data;
+        if (errorMessage === 'This service is expired') {
+          return this.buildRow($row);
+        }
         this.Alerter.error(
           [
             this.$translate.instant('dedicatedCloud_list_loadLocation_error'),
@@ -50,6 +53,7 @@ export default class extends ListLayoutHelper.ListLayoutCtrl {
       ...$row,
       regionLocation: this.buildLocationInfo($row, 'regionLocation'),
       region: this.buildLocationInfo($row, 'region'),
+      countryCode: this.buildLocationInfo($row, 'countryCode'),
       softwareSolution: this.buildSoftwareSolution($row),
     };
   }
