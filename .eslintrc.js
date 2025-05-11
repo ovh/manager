@@ -117,15 +117,14 @@ module.exports = {
     },
     {
       files: [
-        'App.tsx',
-        'test.provider.tsx',
-        'test.setup.tsx',
-        'vitest.config.js',
-        '*.test.ts',
-        '*.step.ts',
-        '*.spec.ts',
-        '*.spec.tsx',
-        '**/unit-tests-config/src/index.js'
+        '**/App.tsx',
+        '**/test.{setup,provider}.tsx',
+        '**/vitest.config.{js,ts,mjs}',
+        '**/unit-tests-config/src/index.js',
+        '**/__tests__/**/*.{ts,tsx}',
+        '**/*.{test,spec,step}.{ts,tsx}',
+        '**/*.{mock,Mock,MOCK,Mocked,Mocking}*.{ts,tsx}',
+        '**/*Test*.{ts,tsx}',
       ],
       rules: {
         'import/no-extraneous-dependencies': 'off',
