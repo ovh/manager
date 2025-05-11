@@ -17,7 +17,23 @@ module.exports = {
     'no-bitwise': ['error', { allow: ['~'] }],
     'import/no-extraneous-dependencies': [
       'error',
-      { devDependencies: true, peerDependencies: true },
+      {
+        // This is required to avoid unwanted lint issues in unit test files
+        // due to dependencies like vitest or @testing-library being dev-only.
+        devDependencies: [
+          '**/*.test.{js,ts,tsx}',
+          '**/*.spec.{js,ts,tsx}',
+          '**/test-setup.{js,ts,tsx}',
+          '**/test.setup.{js,ts,tsx}',
+          '**/setupTests.{js,ts,tsx}',
+          '**/testUtils.{js,ts,tsx}',
+          '**/*.config.{js,ts}',
+          '**/scripts/**/*.{js,ts}',
+          '**/cli/**/*.{js,ts}',
+          '**/tools/**/*.{js,ts}',
+        ],
+        peerDependencies: true,
+      },
     ],
     'import/no-unresolved': 0,
     'prettier/prettier': 'warn',
