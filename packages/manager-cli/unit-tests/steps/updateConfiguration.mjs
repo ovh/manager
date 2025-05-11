@@ -101,7 +101,7 @@ export const updateConfiguration = async (appPath, dryRun = false) => {
 
   const lines = [
     `import path from 'path';`,
-    `import { sharedConfig, mergeConfig, createConfig, defaultCoverageConfig, testEnvConfig } from '@ovh-ux/manager-unit-tests-config';`,
+    `import { sharedConfig, mergeConfig, createConfig, defaultCoverageConfig } from '@ovh-ux/manager-unit-tests-config';`,
     ``,
     `export default mergeConfig(`,
     `  sharedConfig,`,
@@ -114,7 +114,6 @@ export const updateConfiguration = async (appPath, dryRun = false) => {
     `          ...defaultCoverageConfig.exclude,`,
     `        ],`,
     `      },`,
-    `      ...testEnvConfig,`,
     `    },`,
     `    resolve: {`,
     `      alias: {`,

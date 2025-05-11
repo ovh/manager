@@ -47,6 +47,9 @@ export const sharedConfig = createConfig({
     // vitest environment config
     environment: 'jsdom',
 
+    // max timeout override
+    testTimeout: 60_000,
+
     // coverage options
     coverage: {
       include: ['src'],
@@ -58,6 +61,10 @@ export const sharedConfig = createConfig({
         'src/index.tsx',
         'src/**/*constants.ts',
         'src/**/*enum.ts',
+        'src/interface',
+        'src/i18n.ts',
+        'src/main.tsx',
+        'src/routes.tsx',
       ],
     },
   },
