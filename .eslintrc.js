@@ -15,26 +15,6 @@ module.exports = {
   },
   rules: {
     'no-bitwise': ['error', { allow: ['~'] }],
-    'import/no-extraneous-dependencies': [
-      'error',
-      {
-        // This is required to avoid unwanted lint issues in unit test files
-        // due to dependencies like vitest or @testing-library being dev-only.
-        devDependencies: [
-          '**/*.test.{js,ts,tsx}',
-          '**/*.spec.{js,ts,tsx}',
-          '**/test-setup.{js,ts,tsx}',
-          '**/test.setup.{js,ts,tsx}',
-          '**/setupTests.{js,ts,tsx}',
-          '**/testUtils.{js,ts,tsx}',
-          '**/*.config.{js,ts}',
-          '**/scripts/**/*.{js,ts}',
-          '**/cli/**/*.{js,ts}',
-          '**/tools/**/*.{js,ts}',
-        ],
-        peerDependencies: true,
-      },
-    ],
     'import/no-unresolved': 0,
     'prettier/prettier': 'warn',
     'import/extensions': 'off',
@@ -133,14 +113,15 @@ module.exports = {
     },
     {
       files: [
-        '**/App.tsx',
-        '**/test.{setup,provider}.tsx',
-        '**/vitest.config.{js,ts,mjs}',
-        '**/tests-setup/src/index.js',
-        '**/__tests__/**/*.{ts,tsx}',
-        '**/*.{test,spec,step}.{ts,tsx}',
-        '**/*.{mock,Mock,MOCK,Mocked,Mocking}*.{ts,tsx}',
-        '**/*Test*.{ts,tsx}',
+        'App.tsx',
+        'test.provider.tsx',
+        'test.setup.tsx',
+        'vitest.config.js',
+        '*.test.ts',
+        '*.step.ts',
+        '*.spec.ts',
+        '*.spec.tsx',
+        '**/unit-tests-config/src/index.js'
       ],
       rules: {
         'import/no-extraneous-dependencies': 'off',
