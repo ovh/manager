@@ -10,17 +10,17 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ErrorBoundary, Modal } from '@ovh-ux/manager-react-components';
-import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { ApiResponse } from '@ovh-ux/manager-core-api';
-import { useMemo } from 'react';
+import { Suspense, useEffect, useMemo } from 'react';
 import { RhfField } from '@/components/Fields';
 import { subRoutes } from '@/routes/routes.constant';
 import { useMessageContext } from '@/context/Message.context';
 import { hasIpv4CIDRConflict } from '@/utils/hasIpv4CIDRConflict';
 
-export default function EditVdcDescription() {
+function AddNetworkVrackSegmentLoaded() {
   const { id, vdcId, vrackSegmentId } = useParams();
   const { t } = useTranslation('datacentres/vrack-segment');
   const { t: tActions } = useTranslation(NAMESPACES.ACTIONS);
@@ -35,6 +35,8 @@ export default function EditVdcDescription() {
 
   const options = {
     ...defaultOptions,
+    refetchOnWindowFocus: false,
+    refetchOnMount: true,
     queryFn: () =>
       new Promise((resolve) => {
         setTimeout(() => {
@@ -52,7 +54,34 @@ export default function EditVdcDescription() {
     }),
   };
 
-  const { data: vrackSegment, isError } = useQuery(options);
+  const { data: vrackSegmentTargetSpec, isError } = useSuspenseQuery(options);
+
+  const ADD_NETWORK_FORM_SCHEMA = useMemo(
+    () =>
+      z.object({
+        network: z
+          .string()
+          .trim()
+          .cidr({
+            version: 'v4',
+            message: t(
+              'managed_vcd_dashboard_vrack_segment_add_network_input_helper',
+            ),
+          })
+          .refine(
+            (network) =>
+              !vrackSegmentTargetSpec.networks.some((networkB) =>
+                hasIpv4CIDRConflict(network, networkB),
+              ),
+            {
+              message: t(
+                'managed_vcd_dashboard_vrack_segment_add_network_input_error',
+              ),
+            },
+          ),
+      }),
+    [t, vrackSegmentTargetSpec],
+  );
 
   const {
     mutate: updateVrackSegment,
@@ -75,42 +104,22 @@ export default function EditVdcDescription() {
     },
   });
 
-  const ADD_NETWORK_FORM_SCHEMA = useMemo(
-    () =>
-      z.object({
-        network: z
-          .string()
-          .trim()
-          .cidr({
-            version: 'v4',
-            message: t(
-              'managed_vcd_dashboard_vrack_segment_add_network_input_helper',
-            ),
-          })
-          .refine(
-            (network) =>
-              !vrackSegment.networks.some((networkB) =>
-                hasIpv4CIDRConflict(network, networkB),
-              ),
-            {
-              message: t(
-                'managed_vcd_dashboard_vrack_segment_add_network_input_error',
-              ),
-            },
-          ),
-      }),
-    [t, vrackSegment],
-  );
-
-  const { register, formState, handleSubmit, ...restForm } = useForm<
+  const { register, formState, handleSubmit, control, reset } = useForm<
     z.infer<typeof ADD_NETWORK_FORM_SCHEMA>
   >({
-    mode: 'onBlur',
+    mode: 'onChange',
     resolver: zodResolver(ADD_NETWORK_FORM_SCHEMA),
     values: {
       network: '',
     },
   });
+
+  // Necessary because the schema changes during the first rendering
+  // So we need reset the form after schema change is done
+  // And as the form validation is async, we put the reset job in the end of task queue of JS
+  useEffect(() => {
+    setTimeout(reset);
+  }, [ADD_NETWORK_FORM_SCHEMA, reset]);
 
   if (isError) {
     return (
@@ -124,59 +133,72 @@ export default function EditVdcDescription() {
     network,
   }) => {
     updateVrackSegment({
-      ...vrackSegment,
-      networks: [...vrackSegment.networks, network],
+      ...vrackSegmentTargetSpec,
+      networks: [...vrackSegmentTargetSpec.networks, network],
     });
   };
 
+  const { isValid } = formState;
+
   return (
-    <FormProvider
-      register={register}
-      formState={formState}
-      handleSubmit={handleSubmit}
-      {...restForm}
-    >
-      <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <Modal
+        isOpen
+        heading={t('managed_vcd_dashboard_vrack_segment_add_network_title')}
+        primaryLabel={t(
+          'managed_vcd_dashboard_vrack_segment_add_network_title',
+        )}
+        isPrimaryButtonLoading={isUpdatePending}
+        isPrimaryButtonDisabled={isUpdatePending || !isValid}
+        onPrimaryButtonClick={handleSubmit(onSubmit)}
+        secondaryLabel={tActions('cancel')}
+        onSecondaryButtonClick={closeModal}
+        onDismiss={closeModal}
+      >
+        <div className="flex flex-col gap-2">
+          {updateError && (
+            <OdsMessage color="critical" isDismissible={false}>
+              {t('managed_vcd_dashboard_vrack_segment_add_network_error', {
+                errorApi: updateError.message,
+              })}
+            </OdsMessage>
+          )}
+          <OdsText>
+            {t(
+              'managed_vcd_dashboard_vrack_segment_form_add_network_description',
+            )}
+          </OdsText>
+          <RhfField controllerParams={register('network')} control={control}>
+            <RhfField.Label>
+              {t('managed_vcd_dashboard_vrack_segment_add_network_title')}
+            </RhfField.Label>
+            <RhfField.HelperAuto
+              helperMessage={t(
+                'managed_vcd_dashboard_vrack_segment_add_network_input_helper',
+              )}
+            />
+            <RhfField.Input />
+          </RhfField>
+        </div>
+      </Modal>
+    </form>
+  );
+}
+
+export default function AddNetworkVrackSegment() {
+  const { t } = useTranslation('datacentres/vrack-segment');
+
+  return (
+    <Suspense
+      fallback={
         <Modal
           isOpen
           heading={t('managed_vcd_dashboard_vrack_segment_add_network_title')}
-          primaryLabel={t(
-            'managed_vcd_dashboard_vrack_segment_add_network_cta',
-          )}
-          isPrimaryButtonLoading={isUpdatePending}
-          isPrimaryButtonDisabled={isUpdatePending}
-          onPrimaryButtonClick={handleSubmit(onSubmit)}
-          secondaryLabel={tActions('cancel')}
-          onSecondaryButtonClick={closeModal}
-          onDismiss={closeModal}
-        >
-          <div className="flex flex-col gap-2">
-            {updateError && (
-              <OdsMessage color="critical">
-                {t('managed_vcd_dashboard_vrack_segment_add_network_error', {
-                  errorApi: updateError.message,
-                })}
-              </OdsMessage>
-            )}
-            <OdsText>
-              {t(
-                'managed_vcd_dashboard_vrack_segment_form_add_network_description',
-              )}
-            </OdsText>
-            <RhfField controllerParams={register('network')}>
-              <RhfField.Label>
-                {t('managed_vcd_dashboard_vrack_segment_add_network_title')}
-              </RhfField.Label>
-              <RhfField.HelperAuto
-                helperMessage={t(
-                  'managed_vcd_dashboard_vrack_segment_add_network_input_helper',
-                )}
-              />
-              <RhfField.Input />
-            </RhfField>
-          </div>
-        </Modal>
-      </form>
-    </FormProvider>
+          isLoading
+        ></Modal>
+      }
+    >
+      <AddNetworkVrackSegmentLoaded />;
+    </Suspense>
   );
 }

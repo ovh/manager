@@ -16,13 +16,6 @@ const checkTitleIsVisible = () =>
     )[0],
   ).toBeVisible();
 
-const checkTitleIsNotVisible = () =>
-  expect(
-    screen.queryByText(
-      fr_FR.managed_vcd_dashboard_vrack_segment_add_network_title,
-    ),
-  ).not.toBeInTheDocument();
-
 const checkFormInputAndCta = (container: HTMLElement) => {
   expect(
     screen.queryAllByText(
@@ -31,7 +24,7 @@ const checkFormInputAndCta = (container: HTMLElement) => {
   ).toBeVisible();
   expect(
     container.querySelector(
-      `[label="${fr_FR.managed_vcd_dashboard_vrack_segment_add_network_cta}"]`,
+      `[label="${fr_FR.managed_vcd_dashboard_vrack_segment_add_network_title}"]`,
     ),
   ).toBeVisible();
   expect(container.querySelector('[label="cancel"]')).toBeVisible();
@@ -49,11 +42,11 @@ const checkNetworkValue = (container: HTMLElement, vlanId: string) => {
   expect(input).toBeInTheDocument();
 };
 
-const validForm = (container: HTMLElement) => {
+const submitForm = (container: HTMLElement) => {
   return act(() =>
     userEvent.click(
       container.querySelector(
-        `[label="${fr_FR.managed_vcd_dashboard_vrack_segment_add_network_cta}"]`,
+        `[label="${fr_FR.managed_vcd_dashboard_vrack_segment_add_network_title}"]`,
       ) as Element,
     ),
   );
@@ -87,7 +80,7 @@ describe('Edit Vrack Segment Id Page', () => {
       { timeout: 2000 },
     );
 
-    await validForm(container);
+    await submitForm(container);
   });
 
   it('The form is displayed and can be submitted and we show error', async () => {
@@ -108,7 +101,7 @@ describe('Edit Vrack Segment Id Page', () => {
       { timeout: 2000 },
     );
 
-    await validForm(container);
+    await submitForm(container);
 
     await waitFor(
       () => {
