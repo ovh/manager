@@ -86,7 +86,7 @@ export default function EditVrackSegmentId() {
     },
   });
 
-  const { control, register, handleSubmit, getValues } = useForm<
+  const { control, register, handleSubmit, watch, formState } = useForm<
     z.infer<typeof VLAN_ID_FORM_SCHEMA>
   >({
     mode: 'onChange',
@@ -95,6 +95,8 @@ export default function EditVrackSegmentId() {
       vlanId: vrackSegment?.vlanId,
     },
   });
+
+  const { isValid } = formState;
 
   if (isError) {
     return (
@@ -117,11 +119,15 @@ export default function EditVrackSegmentId() {
     <form onSubmit={handleSubmit(onSubmit)}>
       <Modal
         isOpen
-        heading={t('managed_vcd_dashboard_vrack_network_edit_vlan_title')}
+        heading={t('managed_vcd_dashboard_vrack_network_edit_vlan')}
         isLoading={isLoading}
         primaryLabel={tActions('modify')}
         isPrimaryButtonLoading={isUpdatePending}
-        isPrimaryButtonDisabled={isUpdatePending}
+        isPrimaryButtonDisabled={
+          isUpdatePending ||
+          !isValid ||
+          watch('vlanId') === vrackSegment?.vlanId
+        }
         onPrimaryButtonClick={handleSubmit(onSubmit)}
         secondaryLabel={tActions('cancel')}
         onSecondaryButtonClick={closeModal}
@@ -129,7 +135,7 @@ export default function EditVrackSegmentId() {
       >
         <div className="flex flex-col gap-2">
           {updateError && (
-            <OdsMessage color="critical">
+            <OdsMessage color="critical" isDismissible={false}>
               {t('managed_vcd_dashboard_vrack_network_edit_error', {
                 errorApi: updateError.message,
               })}
@@ -138,7 +144,7 @@ export default function EditVrackSegmentId() {
           <OdsText>
             {t('managed_vcd_dashboard_vrack_network_form_vlan_id_description')}
           </OdsText>
-          {getValues('vlanId') && (
+          {watch('vlanId') !== undefined && (
             <RhfField
               control={control}
               controllerParams={register('vlanId')}
@@ -154,6 +160,12 @@ export default function EditVrackSegmentId() {
             </RhfField>
           )}
         </div>
+        {JSON.stringify({
+          isUpdatePending,
+          isValid,
+          vlanIdSame: () => watch('vlanId') === vrackSegment?.vlanId,
+          vlanId: watch('vlanId'),
+        })}
       </Modal>
     </form>
   );

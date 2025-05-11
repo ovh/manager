@@ -9,17 +9,13 @@ import userEvent from '@testing-library/user-event';
 import { renderTest } from '../../../../../test-utils';
 import fr_FR from '../../../../../../public/translations/datacentres/vrack-segment/Messages_fr_FR.json';
 
-const checkTitleIsVisible = () =>
+const expectTitle = () =>
   expect(
-    screen.getByText(fr_FR.managed_vcd_dashboard_vrack_network_edit_vlan_title),
-  ).toBeVisible();
-
-const checkTitleIsNotVisible = () =>
-  expect(
-    screen.queryByText(
-      fr_FR.managed_vcd_dashboard_vrack_network_edit_vlan_title,
-    ),
-  ).not.toBeInTheDocument();
+    screen.queryByRole('heading', {
+      level: 4,
+      name: fr_FR.managed_vcd_dashboard_vrack_network_edit_vlan,
+    }),
+  );
 
 const checkFormInputAndCta = (container: HTMLElement) => {
   expect(
@@ -41,10 +37,37 @@ const checkVlanValue = (container: HTMLElement, vlanId: string) => {
   expect(input).toBeInTheDocument();
 };
 
+const expectSubmitButton = (container) =>
+  expect(container.querySelector('ods-button[label="modify"]'));
+
 const submitForm = (container: HTMLElement) => {
   return act(() =>
-    userEvent.click(container.querySelector('[label="modify"]') as Element),
+    userEvent.click(
+      container.querySelector('ods-button[label="modify"]') as Element,
+    ),
   );
+};
+
+const editVlanValue = (newValue: string | number) => {
+  const odsQuantity = document.querySelector(
+    'ods-quantity[name="vlanId"]',
+  ) as HTMLElement & { value?: number };
+
+  if (!odsQuantity) throw new Error('ods-quantity not found');
+
+  return act(() => {
+    // Set value explicitly via custom element setter
+    odsQuantity.value = Number(newValue);
+
+    // Dispatch the custom event expected by the component
+    odsQuantity.dispatchEvent(
+      new CustomEvent('odsChange', {
+        detail: { value: Number(newValue) },
+        bubbles: true,
+        composed: true,
+      }),
+    );
+  });
 };
 
 const checkSuccessBannerIsVisible = () => {
@@ -68,7 +91,7 @@ describe('Edit Vrack Segment Id Page', () => {
     });
 
     await waitFor(() => {
-      checkTitleIsVisible();
+      expectTitle().toBeInTheDocument();
     });
 
     await waitFor(
@@ -79,11 +102,19 @@ describe('Edit Vrack Segment Id Page', () => {
       { timeout: 2000 },
     );
 
+    expectSubmitButton(container).toBeDisabled();
+
+    await editVlanValue(430);
+
+    await waitFor(() => expectSubmitButton(container).not.toBeDisabled(), {
+      timeout: 2000,
+    });
+
     await submitForm(container);
 
     await waitFor(
       () => {
-        checkTitleIsNotVisible();
+        expectTitle().not.toBeInTheDocument();
         checkSuccessBannerIsVisible();
       },
       { timeout: 2000 },
@@ -97,7 +128,7 @@ describe('Edit Vrack Segment Id Page', () => {
     });
 
     await waitFor(() => {
-      checkTitleIsVisible();
+      expectTitle().toBeInTheDocument();
     });
 
     await waitFor(
@@ -112,7 +143,7 @@ describe('Edit Vrack Segment Id Page', () => {
 
     await waitFor(
       () => {
-        checkTitleIsVisible();
+        expectTitle().toBeInTheDocument();
         checkErrorBannerIsVisible();
       },
       { timeout: 2000 },
@@ -127,7 +158,7 @@ describe('Edit Vrack Segment Id Page', () => {
     });
 
     await waitFor(() => {
-      checkTitleIsVisible();
+      expectTitle().toBeInTheDocument();
     });
 
     await waitFor(() => expect(screen.getByText('Oops …!')).toBeVisible(), {
