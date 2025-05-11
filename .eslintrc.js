@@ -15,26 +15,6 @@ module.exports = {
   },
   rules: {
     'no-bitwise': ['error', { allow: ['~'] }],
-    'import/no-extraneous-dependencies': [
-      'error',
-      {
-        // This is required to avoid unwanted lint issues in unit test files
-        // due to dependencies like vitest or @testing-library being dev-only.
-        devDependencies: [
-          '**/*.test.{js,ts,tsx}',
-          '**/*.spec.{js,ts,tsx}',
-          '**/test-setup.{js,ts,tsx}',
-          '**/test.setup.{js,ts,tsx}',
-          '**/setupTests.{js,ts,tsx}',
-          '**/testUtils.{js,ts,tsx}',
-          '**/*.config.{js,ts}',
-          '**/scripts/**/*.{js,ts}',
-          '**/cli/**/*.{js,ts}',
-          '**/tools/**/*.{js,ts}',
-        ],
-        peerDependencies: true,
-      },
-    ],
     'import/no-unresolved': 0,
     'prettier/prettier': 'warn',
     'import/extensions': 'off',
@@ -124,6 +104,27 @@ module.exports = {
       ],
       rules: {
         'func-names': 'off',
+      },
+      env: {
+        mocha: true,
+        node: true,
+        jest: true,
+      },
+    },
+    {
+      files: [
+        'App.tsx',
+        'test.provider.tsx',
+        'test.setup.tsx',
+        'vitest.config.js',
+        '*.test.ts',
+        '*.step.ts',
+        '*.spec.ts',
+        '*.spec.tsx',
+        '**/unit-tests-config/src/index.js'
+      ],
+      rules: {
+        'import/no-extraneous-dependencies': 'off',
       },
       env: {
         mocha: true,

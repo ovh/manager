@@ -4,7 +4,7 @@ import path from 'path';
 /**
  * Updates the `package.json` test scripts of a given app:
  * - Replaces all occurrences of `vitest` with `manager-test`
- * - Adds a `test:browser` script with `vitest --browser` if missing
+ * - Future tasks
  *
  * This script supports dry-run mode to preview changes without writing to disk.
  *
@@ -32,12 +32,6 @@ export const updateTestScripts = async (appPath, dryRun) => {
       scripts[key] = val.replace(/\bvitest\b/g, 'manager-test');
       updatedKeys.push(key);
     }
-  }
-
-  // Add "test:browser" script if not already present
-  if (!scripts['test:browser']) {
-    scripts['test:browser'] = 'BROWSER_ENV=firefox vitest --browser';
-    updatedKeys.push('test:browser');
   }
 
   if (updatedKeys.length === 0) {

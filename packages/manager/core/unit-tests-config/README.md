@@ -11,7 +11,7 @@
 `@ovh-ux/manager-unit-tests-config` centralizes unit test configuration for all OVHcloud Manager apps. It provides:
 
 - A reusable, opinionated `sharedConfig`
-- Exports (`createConfig`, `mergeConfig`, `defaultCoverageConfig`, `testEnvConfig`) to **decouple applications from test runner internals**
+- Exports (`createConfig`, `mergeConfig`, `defaultCoverageConfig`) to **decouple applications from test runner internals**
 - A CLI tool (`manager-test`) for seamless test execution across apps—no need to locally install or configure the test runner
 
 The configuration is designed around **Hexagonal Architecture principles**, ensuring test runner logic remains isolated and does not leak into application code.
@@ -41,7 +41,6 @@ import {
   createConfig,
   mergeConfig,
   defaultCoverageConfig,
-  testEnvConfig,
 } from '@ovh-ux/manager-unit-tests-config';
 
 export default mergeConfig(
@@ -52,7 +51,6 @@ export default mergeConfig(
       coverage: {
         exclude: ['src/specific/setup.ts', ...defaultCoverageConfig.exclude],
       },
-      ...testEnvConfig,
     },
     resolve: {
       alias: {
@@ -62,8 +60,6 @@ export default mergeConfig(
   }),
 );
 ```
-
-> `testEnvConfig` dynamically enables `jsdom` or browser mode based on CLI flags (`--browser`) and the `BROWSER_ENV` environment variable (e.g., `BROWSER_ENV=chrome`).
 
 ---
 
@@ -80,7 +76,6 @@ Supported flags:
 ```bash
 yarn manager-test run --coverage
 yarn manager-test --ui
-yarn manager-test --browser
 ```
 
 > ✅ Applications do **not** need to install `vitest`, `@vitejs/plugin-react`, or `@vitest/coverage-v8` individually.
@@ -95,7 +90,6 @@ yarn manager-test --browser
 | `createConfig()`         | Factory to create custom config fragments (wraps `defineConfig`)           |
 | `mergeConfig()`          | Merges shared and local config (wraps `mergeConfig` from Vitest)           |
 | `defaultCoverageConfig`  | Shared defaults for coverage settings (excludes, reporters, etc.)          |
-| `testEnvConfig`          | Dynamically injects browser or node environment config                     |
 
 ---
 
@@ -119,7 +113,7 @@ manager-unit-tests-config/
 
 This package follows **Hexagonal Architecture**:
 
-- **Ports**: `createConfig`, `mergeConfig`, `defaultCoverageConfig`, `testEnvConfig`
+- **Ports**: `createConfig`, `mergeConfig`, `defaultCoverageConfig`
 - **Adapters**: Vitest, Vite, React plugin
 - **Applications remain independent** of the underlying testing technology
 
