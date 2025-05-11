@@ -1,12 +1,11 @@
-import { mergeConfig } from 'vite';
-import { defineConfig } from 'vitest/config';
-import sharedConfig from '../index';
+import { sharedConfig, createConfig, mergeConfig, testEnvConfig } from '../index.js';
 
 export default mergeConfig(
   sharedConfig,
-  defineConfig({
+  createConfig({
     test: {
-      setupFiles: './src/test-shared-config/setupTests.js'
+      setupFiles: './src/test-shared-config/setupTests.js',
+      ...testEnvConfig,
     },
   }),
 );

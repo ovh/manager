@@ -19,14 +19,17 @@
     "manager-test": "./bin/manager-unit-tests-cli.js"
   },
   "scripts": {
-    "test": "vitest run --config src/test-shared-config/vite.config.mjs"
+    "test": "vitest run --config src/test-shared-config/vite.config.mjs",
+    "test:browser": "BROWSER_ENV=chrome vitest --browser --config src/test-shared-config/vite.config.mjs"
   },
   "dependencies": {},
   "devDependencies": {
     "@vitejs/plugin-react": "^4.2.1",
+    "@vitest/browser": "^3.1.3",
     "@vitest/coverage-v8": "^2.1.9",
     "@vitest/ui": "^2.1.9",
-    "vitest": "^2.1.9"
+    "vitest": "^3.1.3",
+    "webdriverio": "^9.12.7"
   },
   "peerDependencies": {
     "vite": "^6.0.7"
