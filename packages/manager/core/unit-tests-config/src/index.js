@@ -23,10 +23,27 @@ export { createConfig };
 export { mergeConfig };
 
 /**
- * Provides default exclusions for test coverage collection.
+ * Provides framework default exclusions for test coverage collection.
  * Can be extended or overridden in consuming apps.
  */
 export { defaultCoverageConfig };
+
+/**
+ * Manager default excluded files.
+ */
+export const defaultExcludedFiles = [
+  ...defaultCoverageConfig.exclude,
+  'src/__tests__',
+  'src/vite-*.ts',
+  'src/App.tsx',
+  'src/index.tsx',
+  'src/**/*constants.ts',
+  'src/**/*enum.ts',
+  'src/interface',
+  'src/i18n.ts',
+  'src/main.tsx',
+  'src/routes.tsx',
+];
 
 /**
  * Shared test configuration applied across all frontend apps.
@@ -53,19 +70,6 @@ export const sharedConfig = createConfig({
     // coverage options
     coverage: {
       include: ['src'],
-      exclude: [
-        ...defaultCoverageConfig.exclude,
-        'src/__tests__',
-        'src/vite-*.ts',
-        'src/App.tsx',
-        'src/index.tsx',
-        'src/**/*constants.ts',
-        'src/**/*enum.ts',
-        'src/interface',
-        'src/i18n.ts',
-        'src/main.tsx',
-        'src/routes.tsx',
-      ],
     },
   },
 

@@ -4,6 +4,7 @@ import prettier from 'prettier';
 import { parse } from '@babel/parser';
 import traverseModule from '@babel/traverse';
 import * as t from '@babel/types';
+import { defaultExcludedFiles } from '@ovh-ux/manager-unit-tests-config';
 
 const traverse = traverseModule.default;
 
@@ -99,9 +100,11 @@ export const updateConfiguration = async (appPath, dryRun = false) => {
     },
   });
 
+  coverageExclude = coverageExclude.filter(value => !defaultExcludedFiles.includes(value));
+
   const lines = [
     `import path from 'path';`,
-    `import { sharedConfig, mergeConfig, createConfig, defaultCoverageConfig } from '@ovh-ux/manager-unit-tests-config';`,
+    `import { sharedConfig, mergeConfig, createConfig, defaultExcludedFiles } from '@ovh-ux/manager-unit-tests-config';`,
     ``,
     `export default mergeConfig(`,
     `  sharedConfig,`,
@@ -110,8 +113,13 @@ export const updateConfiguration = async (appPath, dryRun = false) => {
     ...(setupFiles ? [`      setupFiles: ${JSON.stringify(setupFiles)},`] : []),
     `      coverage: {`,
     `        exclude: [`,
-    ...coverageExclude.map((e) => `          ${JSON.stringify(e)},`),
-    `          ...defaultCoverageConfig.exclude,`,
+    `          ...defaultExcludedFiles,`,
+    ...(coverageExclude.length > 0
+      ? [
+        `          // App-specific exclusions (not in shared config):`,
+        ...coverageExclude.map((e) => `          ${JSON.stringify(e)},`),
+      ]
+      : []),
     `        ],`,
     `      },`,
     `    },`,
