@@ -6,6 +6,10 @@ const VITEST_DEPS = [
   '@vitest/ui',
   '@vitest/coverage-v8',
   '@vitejs/plugin-react',
+  '@testing-library/jest-dom  ',
+  '@testing-library/dom  ',
+  '@testing-library/react  ',
+  '@testing-library/user-event  '
 ];
 
 const UNIT_TEST_CONFIG_PKG = '@ovh-ux/manager-unit-tests-config';
