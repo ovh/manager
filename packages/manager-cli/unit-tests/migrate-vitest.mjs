@@ -4,7 +4,6 @@ import { existsSync } from 'fs';
 import { updateDependencies } from './steps/updateDependencies.mjs';
 import { updateTestScripts } from './steps/updateScripts.mjs';
 import { updateConfiguration } from './steps/updateConfiguration.mjs';
-import { updateImports } from './steps/updateImports.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -33,7 +32,6 @@ if (dryRun) console.log('🧪 Running in dry-run mode');
   await updateDependencies(appPath, dryRun);
   await updateTestScripts(appPath, dryRun);
   await updateConfiguration(appPath, dryRun);
-  await updateImports(appPath, dryRun);
 
   console.log(`✅ Finished Vitest migration for: ${appName}`);
 })();
