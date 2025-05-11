@@ -1,25 +1,21 @@
-import path from 'path';
+import path from 'node:path';
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 import {
   sharedConfig,
   mergeConfig,
-  createConfig,
-} from '@ovh-ux/manager-tests-setup';
+} from '@ovh-ux/manager-unit-tests-config'; // Update path if local
 
 export default mergeConfig(
   sharedConfig,
-  createConfig({
+  defineConfig({
+    plugins: [react()], // Optional: only needed if you're adding more plugins
     test: {
-      setupFiles: './src/setupTests.ts',
-      fileParallelism: false,
-      maxWorkers: 1,
-      pollOptions: {
-        forks: { singleFork: true },
-        threads: { singleThread: true },
-      },
+      setupFiles: './src/setupTests.ts', // ✅ App-specific
     },
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, 'src'),
+        '@': path.resolve(__dirname, 'src'), // ✅ App-specific
       },
     },
   })
