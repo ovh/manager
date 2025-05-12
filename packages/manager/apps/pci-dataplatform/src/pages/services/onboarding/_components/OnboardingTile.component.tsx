@@ -8,6 +8,7 @@ import {
 } from '@datatr-ux/uxlib';
 import { ExternalLink } from 'lucide-react';
 import { Trans, useTranslation } from 'react-i18next';
+import A from '@/components/links/A.component';
 
 interface OnboardingTileProps {
   title: string;
@@ -31,7 +32,7 @@ const OnboardingTile = ({
       data-testid="onboarding-card"
     >
       <CardHeader>
-        <CardTitle className="text-xl text-primary">{title}</CardTitle>
+        <CardTitle className="text-xl">{title}</CardTitle>
         <CardDescription className="text-2xl text-heading font-semibold text-[#00185e]">
           {description}
         </CardDescription>
@@ -46,12 +47,12 @@ const OnboardingTile = ({
         ></Trans>
       </CardContent>
       <CardFooter>
-        <a href={href} target="_blank" rel="noopener noreferrer">
-          <div className="inline-flex items-center gap-2 text-primary">
-            <span>{linkName}</span>
-            <ExternalLink className="size-4" />
+        <A href={href} target="_blank" rel="noopener noreferrer">
+          <div className="inline-flex items-center gap-2">
+            <span className="text-primary-500">{linkName}</span>
+            <ExternalLink className="size-4 text-primary-500" />
           </div>
-        </a>
+        </A>
       </CardFooter>
     </Card>
   );
