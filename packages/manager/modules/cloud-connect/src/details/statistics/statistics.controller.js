@@ -7,8 +7,9 @@ import {
   PERIOD_ENUM,
   STATISTICS,
   TYPE,
-  TYPE_ENUM,
   TYPE_LABELS,
+  OCC_OTHER_TYPE_ENUM,
+  OCC_DIRECT_TYPE_ENUM,
 } from './statistics.constant';
 
 export default class CloudConnectStatisticsCtrl {
@@ -27,7 +28,14 @@ export default class CloudConnectStatisticsCtrl {
 
   $onInit() {
     this.periodOptions = PERIOD_ENUM;
-    this.typeOptions = TYPE_ENUM;
+    this.loadPopConfigurations();
+
+    // Check OCC product type to build the corresponding statistics list
+    if (this.cloudConnect.isDirectService()) {
+      this.typeOptions = OCC_DIRECT_TYPE_ENUM;
+    } else {
+      this.typeOptions = OCC_OTHER_TYPE_ENUM;
+    }
 
     this.graphType = this.TYPE.TRAFFIC;
     this.graphPeriod = this.PERIOD.DAILY;
@@ -57,11 +65,27 @@ export default class CloudConnectStatisticsCtrl {
         this.loadErrorGraph();
         this.displayedGraph = this.TYPE.ERROR;
         break;
+      case this.TYPE.BGP_ROAD:
+        this.loadBgpGraph();
+        this.displayedGraph = this.TYPE.BGP_ROAD;
+        break;
       default:
         this.loadTrafficGraph();
         this.displayedGraph = this.TYPE.TRAFFIC;
         break;
     }
+  }
+
+  loadPopConfigurations() {
+    return this.cloudConnectService
+      .loadPopConfigurations(this.cloudConnect)
+      .catch((error) =>
+        this.CucCloudMessage.error(
+          this.$translate.instant('cloud_connect_pop_get_configuration_error', {
+            message: get(error, 'data.message', error.message),
+          }),
+        ),
+      );
   }
 
   loadInterfacesStatistics(type) {
@@ -143,27 +167,70 @@ export default class CloudConnectStatisticsCtrl {
     this.loadInterfacesStatistics(this.TYPE.TRAFFIC);
   }
 
-  updateStats(type, interfaceId, stats) {
+  // Load BGP road statistics
+  loadBgpGraph() {
+    this.isNoData = false;
+    this.series = [];
+    this.data = [];
+    this.isLoading = true;
+
+    // Update options
+    this.chart.options.scales.y.title.text = '';
+
+    this.cloudConnect.interfaceList.forEach((interfaceId) => {
+      const pop = this.cloudConnect.getPopConfiguration(interfaceId);
+
+      return this.$q
+        .all({
+          accepted: this.loadPopStatistics(this.cloudConnect.id, pop, {
+            period: this.graphPeriod,
+            type: this.TYPE.BGP_ROAD_ACCEPTED,
+          }),
+          limit: this.loadPopStatistics(this.cloudConnect.id, pop, {
+            period: this.graphPeriod,
+            type: this.TYPE.BGP_ROAD_LIMIT,
+          }),
+        })
+        .then((stats) => {
+          if (stats.accepted.length > 0) {
+            this.updateStats(interfaceId, stats, pop.id);
+          }
+          this.isLoading = false;
+        });
+    });
+  }
+
+  updateStats(type, interfaceId, stats, popId) {
     let serieLabels = null;
-    const dataProperties = [this.TYPE_LABELS.down, this.TYPE_LABELS.up];
+    let dataProperties = null;
     switch (type) {
       case this.TYPE.LIGHT:
         serieLabels = [
           `${this.LABELS.id_port} ${interfaceId} - ${this.LABELS.in}`,
           `${this.LABELS.id_port} ${interfaceId} - ${this.LABELS.out}`,
         ];
+        dataProperties = [this.TYPE_LABELS.down, this.TYPE_LABELS.up];
         break;
       case this.TYPE.ERROR:
         serieLabels = [
           `${this.LABELS.id_port} ${interfaceId} - ${this.LABELS.download}`,
           `${this.LABELS.id_port} ${interfaceId} - ${this.LABELS.upload}`,
         ];
+        dataProperties = [this.TYPE_LABELS.down, this.TYPE_LABELS.up];
+        break;
+      case this.TYPE.BGP_ROAD:
+        serieLabels = [
+          `${this.LABELS.id_port} ${interfaceId} ${popId} - ${this.LABELS.accepted}`,
+          `${this.LABELS.id_port} ${interfaceId} ${popId} - ${this.LABELS.limit}`,
+        ];
+        dataProperties = [this.TYPE_LABELS.accepted, this.TYPE_LABELS.limit];
         break;
       default:
         serieLabels = [
           `${this.LABELS.id_port} ${interfaceId} - ${this.LABELS.download}`,
           `${this.LABELS.id_port} ${interfaceId} - ${this.LABELS.upload}`,
         ];
+        dataProperties = [this.TYPE_LABELS.down, this.TYPE_LABELS.up];
         break;
     }
     this.chart.data.labels = map(
@@ -187,6 +254,15 @@ export default class CloudConnectStatisticsCtrl {
     return this.cloudConnectService.loadStatistics(
       connectId,
       interfaceId,
+      type,
+      period,
+    );
+  }
+
+  loadPopStatistics(connectId, pop, type, period) {
+    return this.cloudConnectService.loadPopStatistics(
+      connectId,
+      pop,
       type,
       period,
     );
