@@ -1,0 +1,106 @@
+import {
+  StoryBookBanner,
+  StorybookHeading,
+  StorybookBestPractices,
+  StorybookIdentityCard,
+  StorybookTable,
+} from '../../../../manager-wiki/components/';
+import { Meta, Canvas, Source } from '@storybook/blocks';
+
+import Links from '../../../../manager-wiki/components/external-links';
+
+<Meta title="Core/sso/Overview" />
+
+# Manager SSO
+
+The Manager SSO (Single Sign-On) module provides authentication functionality for the OVHcloud Manager ecosystem. It handles user authentication flows, including login and logout processes, with support for different regions and environments.
+
+<StorybookHeading label="Overview" level={2} />
+
+The SSO module provides a standardized way to handle authentication in the OVHcloud Manager:
+
+- **Authentication URLs**: Pre-configured URLs for login and logout processes
+- **Region Support**: Automatic handling of different regions (EU, Telecom)
+- **Redirect Management**: Smart handling of success URLs and referrers
+- **URL Building**: Utility functions for building authentication URLs with parameters
+
+<StorybookHeading label="Key Features" level={2} />
+
+- **Login Management**: Handle user login flows
+- **Logout Management**: Handle user logout processes
+- **Region Detection**: Automatic detection of OVH Telecom region
+- **URL Parameter Handling**: Smart handling of URL parameters
+- **TypeScript Support**: Full typing for better development experience
+
+<StorybookHeading label="Usage" level={2} />
+
+### Installation
+
+```bash
+yarn add @ovh-ux/manager-core-sso
+```
+
+### Basic Setup
+
+```typescript
+import { 
+  redirectToLoginPage,
+  redirectToLogoutPage 
+} from '@ovh-ux/manager-core-sso';
+
+// Redirect to login page
+redirectToLoginPage('https://your-success-url.com');
+
+// Redirect to logout page
+redirectToLogoutPage('https://your-success-url.com');
+```
+
+### Default Configuration
+
+The module comes with default authentication URLs:
+
+```typescript
+const DEFAULT_SSO_AUTH_URL = {
+  loginUrl: '/auth/',
+  logoutUrl: '/auth/?action=disconnect',
+  euLoginUrl: 'https://www.ovh.com/auth/',
+  euLogoutUrl: 'https://www.ovh.com/auth/?action=disconnect',
+};
+```
+
+<StorybookHeading label="Best Practices" level={2} />
+
+1. **Success URL Handling**:
+   - Always provide a success URL for better user experience
+   - Use the current page URL as fallback
+   ```typescript
+   redirectToLoginPage(window.location.href);
+   ```
+
+2. **Region Detection**:
+   - The module automatically detects OVH Telecom region
+   - No additional configuration needed for region-specific URLs
+
+3. **URL Parameters**:
+   - Success URLs are automatically encoded
+   - Referrer information is included when available
+   ```typescript
+   // The module automatically handles:
+   // - onsuccess parameter
+   // - from parameter (when document.referrer is available)
+   redirectToLogoutPage();
+   ```
+
+4. **Error Handling**:
+   - Ensure proper error handling for authentication failures
+   - Implement fallback mechanisms for failed redirects
+
+5. **Security Considerations**:
+   - Always use HTTPS for authentication URLs
+   - Validate success URLs to prevent open redirect vulnerabilities
+   - Handle authentication state properly
+
+6. **Integration with Other Modules**:
+   - Works seamlessly with the Request Tagger
+   - Compatible with the Core API module
+   - Can be integrated with custom authentication flows

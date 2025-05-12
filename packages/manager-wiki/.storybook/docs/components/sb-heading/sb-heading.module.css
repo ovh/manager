@@ -1,0 +1,12 @@
+.heading-1,
+.heading-2,
+.heading-3,
+.heading-4,
+.heading-5,
+.heading-6 {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  margin-bottom: 0;
+  color: var(--ods-color-primary-800);
+}
