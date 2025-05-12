@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-nasha-app",
-  "version": "4.0.56",
+  "version": "4.0.57",
   "private": true,
   "description": "NAS-HA standalone application.",
   "repository": {
@@ -24,7 +24,7 @@
     "@ovh-ux/manager-models": "^2.4.4",
     "@ovh-ux/manager-nasha": "^2.20.0",
     "@ovh-ux/manager-ng-layout-helpers": "^2.11.2",
-    "@ovh-ux/ng-at-internet": "^6.0.14",
+    "@ovh-ux/ng-at-internet": "^6.0.15",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.5.2",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.17.1",
