@@ -7,8 +7,8 @@ import {
   mockVrackSegmentList,
 } from '@ovh-ux/manager-module-vcd-api';
 import { labels, renderTest } from '../../../../../test-utils';
+import { encodeVrackNetwork } from '../../../../../utils/encodeVrackNetwork';
 import { urls, subRoutes } from '../../../../../routes/routes.constant';
-import TEST_IDS from '../../../../../utils/testIds.constants';
 
 const testVrack = mockVrackSegmentList[0];
 const initialRoute = urls.vrackSegmentDeleteNetwork
@@ -17,7 +17,7 @@ const initialRoute = urls.vrackSegmentDeleteNetwork
   .replace(subRoutes.vrackSegmentId, testVrack.id)
   .replace(
     subRoutes.vrackNetworkId,
-    testVrack.targetSpec.networks[0].split('/')[0],
+    encodeVrackNetwork(testVrack.targetSpec.networks[0]),
   );
 
 const {
@@ -40,6 +40,7 @@ describe('Delete Vrack Network Page', () => {
 
     // check modal content
     await waitFor(() => checkModalContent(), { timeout: 10_000 });
+    const modal = screen.getByTestId('modal');
 
     // submit modal
     const submitCta = screen.getByTestId('primary-button');
@@ -47,7 +48,6 @@ describe('Delete Vrack Network Page', () => {
     await act(() => userEvent.click(submitCta));
 
     // check modal visibility
-    const modal = screen.getByTestId('modal');
     await waitFor(() => expect(modal).not.toBeInTheDocument(), {
       timeout: 10_000,
     });
@@ -65,6 +65,7 @@ describe('Delete Vrack Network Page', () => {
 
     // check modal content
     await waitFor(() => checkModalContent(), { timeout: 10_000 });
+    const modal = screen.getByTestId('modal');
 
     // submit modal
     const submitCta = screen.getByTestId('primary-button');
@@ -78,16 +79,12 @@ describe('Delete Vrack Network Page', () => {
     );
 
     // check modal visibility
-    await waitFor(() => expect(screen.getByTestId('modal')).toBeVisible(), {
+    await waitFor(() => expect(modal).not.toBeInTheDocument(), {
       timeout: 10_000,
     });
 
-    // check error message
-    await waitFor(
-      () => expect(screen.getByTestId(TEST_IDS.modalDeleteError)).toBeVisible(),
-      {
-        interval: 10_000,
-      },
-    );
+    // check error banner
+    const testError = error.replace('{{errorApi}}', '');
+    expect(screen.getByText(testError)).toBeVisible();
   });
 });

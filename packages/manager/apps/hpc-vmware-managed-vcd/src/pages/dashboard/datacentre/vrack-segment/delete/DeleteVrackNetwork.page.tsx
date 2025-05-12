@@ -13,7 +13,7 @@ import { ErrorBoundary, Modal } from '@ovh-ux/manager-react-components';
 import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 import { subRoutes } from '@/routes/routes.constant';
 import { useMessageContext } from '@/context/Message.context';
-import TEST_IDS from '@/utils/testIds.constants';
+import { decodeVrackNetwork } from '@/utils/encodeVrackNetwork';
 
 export default function DeleteVrackNetwork() {
   const { id, vdcId, vrackSegmentId, vrackNetworkId } = useParams();
@@ -21,7 +21,7 @@ export default function DeleteVrackNetwork() {
   const { t: tActions } = useTranslation(NAMESPACES.ACTIONS);
   const navigate = useNavigate();
   const closeModal = () => navigate('..');
-  const { addSuccess } = useMessageContext();
+  const { addSuccess, addError } = useMessageContext();
   const defaultQueryOptions = useVcdVrackNetworkSegmentOptions({
     id,
     vcdId: vdcId,
@@ -50,7 +50,6 @@ export default function DeleteVrackNetwork() {
 
   const {
     mutate: updateVrackSegment,
-    error: updateError,
     isPending: isUpdatePending,
   } = useUpdateVcdVrackNetworkVrackSegment({
     id,
@@ -59,6 +58,19 @@ export default function DeleteVrackNetwork() {
     onSuccess: () => {
       addSuccess({
         content: t('managed_vcd_dashboard_vrack_network_delete_subnet_success'),
+        includedSubRoutes: [vdcId],
+        excludedSubRoutes: [
+          subRoutes.datacentreCompute,
+          subRoutes.datacentreStorage,
+        ],
+      });
+      closeModal();
+    },
+    onError: (error) => {
+      addError({
+        content: t('managed_vcd_dashboard_vrack_network_delete_subnet_error', {
+          errorApi: error.message,
+        }),
         includedSubRoutes: [vdcId],
         excludedSubRoutes: [
           subRoutes.datacentreCompute,
@@ -79,7 +91,7 @@ export default function DeleteVrackNetwork() {
 
   const handleSubmit = () => {
     const filtered = vrackSegment.targetSpec.networks.filter(
-      (network) => !network.includes(vrackNetworkId),
+      (network) => network !== decodeVrackNetwork(vrackNetworkId),
     );
     updateVrackSegment({ ...vrackSegment.targetSpec, networks: filtered });
   };
@@ -104,13 +116,6 @@ export default function DeleteVrackNetwork() {
         <OdsMessage color="warning" isDismissible={false}>
           {t('managed_vcd_dashboard_vrack_network_delete_subnet_content2')}
         </OdsMessage>
-        {updateError && (
-          <OdsMessage color="critical" data-testid={TEST_IDS.modalDeleteError}>
-            {t('managed_vcd_dashboard_vrack_network_delete_subnet_error', {
-              errorApi: updateError.message,
-            })}
-          </OdsMessage>
-        )}
       </div>
     </Modal>
   );
