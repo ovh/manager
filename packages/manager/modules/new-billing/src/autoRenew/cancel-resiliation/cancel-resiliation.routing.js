@@ -4,7 +4,12 @@ import { EngagementConfiguration } from '@ovh-ux/manager-models';
 import { SERVICE_TYPES_USING_V6_SERVICES } from '../autorenew.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('billing.autorenew.cancel-resiliation', {
+  $stateProvider.state('billing.autorenew.cancel-resiliationRedirection', {
+    url: '/cancel-resiliation?serviceId&serviceType',
+    redirectTo: 'billing.autorenew.services.cancel-resiliation',
+  });
+
+  $stateProvider.state('billing.autorenew.services.cancel-resiliation', {
     url: '/cancel-resiliation?serviceId&serviceType',
     views: {
       modal: {
@@ -63,6 +68,14 @@ export default /* @ngInject */ ($stateProvider) => {
               .catch({ engagement: null })
           : Promise.resolve({ engagement: null })
         ).then(({ engagement }) => engagement),
+      endStrategies: /* @ngInject */ (endStrategyEnum) =>
+        endStrategyEnum.reduce(
+          (object, strategy) => ({
+            ...object,
+            [strategy]: strategy,
+          }),
+          {},
+        ),
       hasEndRuleStrategies: /* @ngInject */ (engagement, endStrategies) =>
         engagement &&
         engagement.endRule &&

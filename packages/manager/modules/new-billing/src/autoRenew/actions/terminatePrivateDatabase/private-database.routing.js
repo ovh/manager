@@ -1,5 +1,13 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('billing.autorenew.terminatePrivateDatabase', {
+  $stateProvider.state(
+    'billing.autorenew.terminatePrivateDatabaseRedirection',
+    {
+      url: '/delete-hosting-private-database?serviceId',
+      redirectTo: 'billing.autorenew.services.terminatePrivateDatabase',
+    },
+  );
+
+  $stateProvider.state('billing.autorenew.services.terminatePrivateDatabase', {
     url: '/delete-hosting-private-database?serviceId',
     views: {
       modal: {
