@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.12.13...@ovh-ux/manager-pci-savings-plan-app@1.13.0) (2025-05-12)
+
+
+### Bug Fixes
+
+* **svp:** border on card ([#17012](https://github.com/ovh/manager/issues/17012)) ([12602ce](https://github.com/ovh/manager/commit/12602ceab87898514774b9389ccee78448ac64a6)), closes [#TAPC-4073](https://github.com/ovh/manager/issues/TAPC-4073)
+
+
+### Features
+
+* **svp:** dashboard page - EPIC ([#15014](https://github.com/ovh/manager/issues/15014)) ([8fdc51d](https://github.com/ovh/manager/commit/8fdc51df28f753838c0122fd607a38814e1c1e4d)), closes [#TAPC-2358](https://github.com/ovh/manager/issues/TAPC-2358) [#TAPC-1775](https://github.com/ovh/manager/issues/TAPC-1775)
+
+
+
+
+
 ## [1.12.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.12.12...@ovh-ux/manager-pci-savings-plan-app@1.12.13) (2025-05-12)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app
