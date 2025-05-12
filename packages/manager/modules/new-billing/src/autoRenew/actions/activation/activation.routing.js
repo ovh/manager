@@ -1,7 +1,12 @@
 import head from 'lodash/head';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('billing.autorenew.activation', {
+  $stateProvider.state('billing.autorenew.activationRedirection', {
+    url: '/activate',
+    redirectTo: 'billing.autorenew.services.activation',
+  });
+
+  $stateProvider.state('billing.autorenew.services.activation', {
     url: '/activate',
     views: {
       modal: {

@@ -1,5 +1,10 @@
 export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
-  $stateProvider.state('billing.autorenew.terminateEmail', {
+  $stateProvider.state('billing.autorenew.terminateEmailRedirection', {
+    url: '/delete-email?serviceId&name',
+    redirectTo: 'billing.autorenew.services.terminateEmail',
+  });
+
+  $stateProvider.state('billing.autorenew.services.terminateEmail', {
     url: '/delete-email?serviceId&name',
     views: {
       modal: {
@@ -39,7 +44,7 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
 
   $urlRouterProvider.when(/\/delete-email-domain$/, ($location, $state) => {
     const { name, serviceId } = $location.search();
-    $state.go('billing.autorenew.terminateEmail', {
+    $state.go('billing.autorenew.services.terminateEmail', {
       name,
       serviceId,
     });
