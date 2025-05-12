@@ -436,7 +436,10 @@ export const Datagrid = <T,>({
                     'border-solid border-[1px] h-[3.25rem] border-[--ods-color-blue-200]'
                   }
                 >
-                  <td className="text-center" colSpan={columns.length}>
+                  <td
+                    className="text-center"
+                    colSpan={columns.length + (!renderSubComponent ? 0 : 1)}
+                  >
                     <DataGridTextCell>
                       {noResultLabel ?? t('common_pagination_no_results')}
                     </DataGridTextCell>
