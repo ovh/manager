@@ -160,12 +160,6 @@ export default function EditVrackSegmentId() {
             </RhfField>
           )}
         </div>
-        {JSON.stringify({
-          isUpdatePending,
-          isValid,
-          vlanIdSame: () => watch('vlanId') === vrackSegment?.vlanId,
-          vlanId: watch('vlanId'),
-        })}
       </Modal>
     </form>
   );

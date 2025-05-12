@@ -9,14 +9,13 @@ import userEvent from '@testing-library/user-event';
 import { renderTest } from '../../../../../test-utils';
 import fr_FR from '../../../../../../public/translations/datacentres/vrack-segment/Messages_fr_FR.json';
 
-const expectTitle = () => {
-  const heading = screen.queryByText(
+const queryModalTitle = () => {
+  return screen.queryByText(
     (content, element) =>
       element?.tagName === 'ODS-TEXT' &&
       element?.getAttribute('preset') === 'heading-4' &&
       content === fr_FR.managed_vcd_dashboard_vrack_network_edit_vlan,
   );
-  return expect(heading);
 };
 
 const checkFormInputAndCta = (container: HTMLElement) => {
@@ -93,7 +92,7 @@ describe('Edit Vrack Segment Id Page', () => {
     });
 
     await waitFor(() => {
-      expectTitle().toBeInTheDocument();
+      expect(queryModalTitle()).toBeInTheDocument();
     });
 
     await waitFor(
@@ -116,7 +115,7 @@ describe('Edit Vrack Segment Id Page', () => {
 
     await waitFor(
       () => {
-        expectTitle().not.toBeInTheDocument();
+        expect(queryModalTitle()).not.toBeInTheDocument();
         checkSuccessBannerIsVisible();
       },
       { timeout: 2000 },
@@ -130,7 +129,7 @@ describe('Edit Vrack Segment Id Page', () => {
     });
 
     await waitFor(() => {
-      expectTitle().toBeInTheDocument();
+      expect(queryModalTitle()).toBeInTheDocument();
     });
 
     await waitFor(
@@ -145,7 +144,7 @@ describe('Edit Vrack Segment Id Page', () => {
 
     await waitFor(
       () => {
-        expectTitle().toBeInTheDocument();
+        expect(queryModalTitle()).toBeInTheDocument();
         checkErrorBannerIsVisible();
       },
       { timeout: 2000 },
@@ -160,7 +159,7 @@ describe('Edit Vrack Segment Id Page', () => {
     });
 
     await waitFor(() => {
-      expectTitle().toBeInTheDocument();
+      expect(queryModalTitle()).toBeInTheDocument();
     });
 
     await waitFor(() => expect(screen.getByText('Oops …!')).toBeVisible(), {
