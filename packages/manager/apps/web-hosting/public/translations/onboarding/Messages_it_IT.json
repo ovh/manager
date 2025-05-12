@@ -1,12 +1,12 @@
 {
-  "title": "Scegli l'hosting Web più adatto alla tua attività digitale",
-  "description": "Con OVHcloud, crei il tuo primo sito Web in pochi minuti. e pubblica il tuo blog, sito professionale o e-commerce.",
-  "order_btn": "Ordina",
+  "title": "Scegli l'hosting web più adatto alla tua attività digitale",
+  "description": "Con OVHcloud, crei il tuo primo sito web in pochi minuti. Pubblica blog, siti Web professionali o e-commerce.",
+  "order_btn": "Ordinare",
   "guide_category": "Tutorial",
-  "guide_1_title": "Come iniziare a utilizzare un hosting Web in pochi step",
-  "guide_1_description": "Come eseguire le prime operazioni sul nuovo hosting Web OVH.",
-  "guide_2_title": "Mettere online un sito Internet su un hosting Web",
-  "guide_2_description": "Questa guida ti mostra come pubblicare un sito Internet su un hosting Web OVHcloud.",
+  "guide_1_title": "Come iniziare a utilizzare un hosting web in pochi step",
+  "guide_1_description": "Scopri come eseguire le prime operazioni sul nuovo hosting web.",
+  "guide_2_title": "Pubblicare online un sito Internet sul proprio hosting web",
+  "guide_2_description": "Impara a pubblicare online un sito Internet sul tuo hosting web OVHcloud.",
   "guide_3_title": "Modificare una zona DNS in OVHcloud",
-  "guide_3_description": "Questa guida ti mostra come modificare la zona DNS OVHcloud dallo Spazio Cliente."
+  "guide_3_description": "Scopri come modificare la tua zona DNS OVHcloud dallo Spazio Cliente."
 }
