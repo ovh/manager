@@ -1,12 +1,12 @@
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { TInstance, useInstance } from '@ovh-ux/manager-pci-common';
+import { TInstance, TVolume, useInstance } from '@ovh-ux/manager-pci-common';
 import { UseQueryResult } from '@tanstack/react-query';
 import { fireEvent, render } from '@testing-library/react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { MOCKED_VOLUME } from '@/__tests__/mocks';
 import { useNotifications } from '@/hooks/notifications/useNotifications';
 import { useDetachVolume, useVolume } from '@/data/hooks/useVolume';
-import { TVolume } from '@/data/api/api.types';
 import DetachVolume from './DetachVolume.page';
 
 vi.mock('@ovh-ux/manager-pci-common', async () => {
@@ -38,12 +38,6 @@ describe('DetachVolume Page', () => {
   const addSuccessMessage = vi.fn();
   const addErrorMessage = vi.fn();
   const mockNavigate = vi.fn();
-  const mockVolumeData = {
-    id: 'volume-id',
-    name: 'TestVolume',
-    region: 'test-region',
-  } as TVolume;
-
   const mockInstance = { id: 'instance-id', name: 'TestInstance' } as TInstance;
   const mockedDetachVolume = vi.fn();
 
@@ -73,7 +67,7 @@ describe('DetachVolume Page', () => {
     } as UseQueryResult<TInstance, Error>);
 
     vi.mocked(useVolume).mockReturnValue({
-      data: withData ? mockVolumeData : undefined,
+      data: withData ? MOCKED_VOLUME : undefined,
       isLoading: volumeLoading,
     } as ReturnType<typeof useVolume>);
 
@@ -141,7 +135,7 @@ describe('DetachVolume Page', () => {
     expect(mockedDetachVolume).toHaveBeenCalled();
 
     if (successCallback) {
-      successCallback(mockVolumeData);
+      successCallback(MOCKED_VOLUME);
     }
 
     expect(addSuccessMessage).toHaveBeenCalledWith({
@@ -149,7 +143,7 @@ describe('DetachVolume Page', () => {
         'pci_projects_project_storages_volume_backup_create_detach_volume_action_success',
       values: {
         instanceName: 'TestInstance',
-        volumeName: 'TestVolume',
+        volumeName: 'volume-name',
       },
     });
     expect(mockNavigate).toHaveBeenCalledWith('..');

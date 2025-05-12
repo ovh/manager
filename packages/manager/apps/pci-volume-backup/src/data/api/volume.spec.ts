@@ -1,24 +1,17 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { createVolumeFromBackup, detachVolume, getVolume } from './volume';
+import {
+  MOCKED_INSTANCE_ID,
+  MOCKED_PROJECT_ID,
+  MOCKED_REGION_NAME,
+  MOCKED_VOLUME,
+  MOCKED_VOLUME_BACKUP_ID,
+  MOCKED_VOLUME_ID,
+  MOCKED_VOLUME_NAME,
+} from '@/__tests__/mocks';
 
 describe('Volume API Service', () => {
-  const mockProjectId = 'project-123';
-  const mockVolumeId = 'volume-456';
-  const mockInstanceId = 'instance-789';
-  const mockRegionName = 'GRA7';
-  const mockVolumeBackupId = 'backup-xyz';
-  const mockVolumeName = 'test-volume';
-
-  const sampleVolumeData = {
-    id: mockVolumeId,
-    name: mockVolumeName,
-    description: 'Test volume',
-    size: 50,
-    status: 'available',
-    region: mockRegionName,
-  };
-
   beforeEach(() => {
     vi.clearAllMocks();
   });
@@ -26,26 +19,26 @@ describe('Volume API Service', () => {
   describe('getVolume', () => {
     it('should fetch a volume by ID', async () => {
       vi.mocked(v6.get).mockResolvedValueOnce({
-        data: sampleVolumeData,
+        data: MOCKED_VOLUME,
       });
 
-      const result = await getVolume(mockProjectId, mockVolumeId);
+      const result = await getVolume(MOCKED_PROJECT_ID, MOCKED_VOLUME_ID);
 
       expect(v6.get).toHaveBeenCalledTimes(1);
       expect(v6.get).toHaveBeenCalledWith(
-        `/cloud/project/${mockProjectId}/volume/${mockVolumeId}`,
+        `/cloud/project/${MOCKED_PROJECT_ID}/volume/${MOCKED_VOLUME_ID}`,
       );
 
-      expect(result).toEqual(sampleVolumeData);
+      expect(result).toEqual(MOCKED_VOLUME);
     });
 
     it('should propagate errors from the API', async () => {
       const mockError = new Error('API Error');
       vi.mocked(v6.get).mockRejectedValueOnce(mockError);
 
-      await expect(getVolume(mockProjectId, mockVolumeId)).rejects.toThrow(
-        'API Error',
-      );
+      await expect(
+        getVolume(MOCKED_PROJECT_ID, MOCKED_VOLUME_ID),
+      ).rejects.toThrow('API Error');
       expect(v6.get).toHaveBeenCalledTimes(1);
     });
   });
@@ -54,7 +47,7 @@ describe('Volume API Service', () => {
     it('should create a volume from a backup', async () => {
       const mockResponse = {
         id: 'new-volume-id',
-        name: mockVolumeName,
+        name: MOCKED_VOLUME_NAME,
         status: 'creating',
       };
 
@@ -63,34 +56,33 @@ describe('Volume API Service', () => {
       });
 
       const result = await createVolumeFromBackup(
-        mockProjectId,
-        mockRegionName,
-        mockVolumeBackupId,
-        mockVolumeName,
+        MOCKED_PROJECT_ID,
+        MOCKED_REGION_NAME,
+        MOCKED_VOLUME_BACKUP_ID,
+        MOCKED_VOLUME_NAME,
       );
 
       expect(v6.post).toHaveBeenCalledTimes(1);
       expect(
         v6.post,
       ).toHaveBeenCalledWith(
-        `/cloud/project/${mockProjectId}/region/${mockRegionName}/volumeBackup/${mockVolumeBackupId}/volume`,
-        { name: mockVolumeName },
+        `/cloud/project/${MOCKED_PROJECT_ID}/region/${MOCKED_REGION_NAME}/volumeBackup/${MOCKED_VOLUME_BACKUP_ID}/volume`,
+        { name: MOCKED_VOLUME_NAME },
       );
 
       expect(result).toEqual(mockResponse);
     });
 
     it('should propagate errors when creating volume from backup', async () => {
-      // Mock API error
       const mockError = new Error('Backup not found');
       vi.mocked(v6.post).mockRejectedValueOnce(mockError);
 
       await expect(
         createVolumeFromBackup(
-          mockProjectId,
-          mockRegionName,
-          mockVolumeBackupId,
-          mockVolumeName,
+          MOCKED_PROJECT_ID,
+          MOCKED_REGION_NAME,
+          MOCKED_VOLUME_BACKUP_ID,
+          MOCKED_VOLUME_NAME,
         ),
       ).rejects.toThrow('Backup not found');
 
@@ -102,27 +94,27 @@ describe('Volume API Service', () => {
     it('should detach a volume from an instance', async () => {
       vi.mocked(v6.post).mockResolvedValueOnce({
         data: {
-          ...sampleVolumeData,
+          ...MOCKED_VOLUME,
           status: 'detaching',
         },
       });
 
       const result = await detachVolume(
-        mockProjectId,
-        mockVolumeId,
-        mockInstanceId,
+        MOCKED_PROJECT_ID,
+        MOCKED_VOLUME_ID,
+        MOCKED_INSTANCE_ID,
       );
 
       expect(v6.post).toHaveBeenCalledTimes(1);
       expect(
         v6.post,
       ).toHaveBeenCalledWith(
-        `/cloud/project/${mockProjectId}/volume/${mockVolumeId}/detach`,
-        { instanceId: mockInstanceId },
+        `/cloud/project/${MOCKED_PROJECT_ID}/volume/${MOCKED_VOLUME_ID}/detach`,
+        { instanceId: MOCKED_INSTANCE_ID },
       );
 
       expect(result).toEqual({
-        ...sampleVolumeData,
+        ...MOCKED_VOLUME,
         status: 'detaching',
       });
     });
@@ -133,7 +125,7 @@ describe('Volume API Service', () => {
       vi.mocked(v6.post).mockRejectedValueOnce(mockError);
 
       await expect(
-        detachVolume(mockProjectId, mockVolumeId, mockInstanceId),
+        detachVolume(MOCKED_PROJECT_ID, MOCKED_VOLUME_ID, MOCKED_INSTANCE_ID),
       ).rejects.toThrow(errorMessage);
 
       expect(v6.post).toHaveBeenCalledTimes(1);

@@ -1,7 +1,7 @@
-import { TVolume } from '@ovh-ux/manager-pci-common';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { useNavigate } from 'react-router-dom';
 import { describe, expect, it, vi } from 'vitest';
+import { MOCKED_VOLUME } from '@/__tests__/mocks';
 import DetachVolumeStep from './DetachVolumeStep';
 
 vi.mock('react-router-dom', () => ({
@@ -13,7 +13,7 @@ describe('DetachVolumeStep', () => {
   const mockNavigate = vi.fn();
 
   const defaultProps = {
-    volume: { id: 'volume-id', attachedTo: ['instance-id'] } as TVolume,
+    volume: MOCKED_VOLUME,
     resetForm: mockResetForm,
   };
 
@@ -28,7 +28,7 @@ describe('DetachVolumeStep', () => {
 
     expect(mockResetForm).toHaveBeenCalledTimes(1);
     expect(mockNavigate).toHaveBeenCalledWith(
-      './detach-volume?volumeId=volume-id&instanceId=instance-id',
+      `./detach-volume?volumeId=${MOCKED_VOLUME.id}&instanceId=${MOCKED_VOLUME.attachedTo[0]}`,
     );
   });
 });
