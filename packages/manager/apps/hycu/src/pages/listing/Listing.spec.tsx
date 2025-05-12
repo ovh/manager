@@ -64,33 +64,32 @@ describe('License Hycu listing test suite', () => {
 
   it('open terminate modal on click on resiliate', async () => {
     const user = userEvent.setup();
-    await renderTestApp(`/`);
-
-    const resiliateButton = await screen.getAllByText(
-      labels.terminate.hycu_terminate_confirm_label,
-      {
-        exact: true,
-      },
-    );
+    await renderTestApp(`/${licensesHycu[0].serviceName}`);
 
     await waitFor(
       () => {
         expect(
-          screen.getAllByText(licensesHycu[0].serviceName)[0],
+          screen.getAllByText(
+            labels.dashboard.hycu_dashboard_subscription_title,
+          )[0],
         ).toBeVisible();
-        expect(resiliateButton[resiliateButton.length - 1]).not.toHaveAttribute(
-          'disabled',
-        );
+        expect(
+          screen.getByText(labels.dashboard.hycu_dashboard_link_terminate),
+        ).not.toHaveAttribute('disabled');
       },
       { timeout: 30_000 },
     );
 
-    await act(() => user.click(resiliateButton[resiliateButton.length - 1]));
+    const resiliateButton = await screen.getByText(
+      labels.dashboard.hycu_dashboard_link_terminate,
+    );
+
+    await act(() => user.click(resiliateButton));
 
     await waitFor(
       () =>
         expect(
-          screen.getByText(labels.terminate.hycu_terminate_description),
+          screen.getByTestId('manager-delete-modal-description'),
         ).toBeVisible(),
       { timeout: 10_000 },
     );
@@ -98,43 +97,25 @@ describe('License Hycu listing test suite', () => {
 
   it('See success message after terminate service', async () => {
     const user = userEvent.setup();
-    await renderTestApp(`/terminate/${licensesHycu[0].serviceName}`);
+    await renderTestApp(`/${licensesHycu[0].serviceName}/terminate`);
 
     await waitFor(
       () =>
         expect(
-          screen.getByText(labels.terminate.hycu_terminate_description),
+          screen.getByTestId('manager-delete-modal-description'),
         ).toBeVisible(),
       { timeout: 10_000 },
     );
 
-    await act(() =>
-      fireEvent.change(screen.getByLabelText('delete-input'), {
-        target: { value: 'TERMINATE' },
-      }),
+    const resiliateButton = await screen.findByTestId(
+      'manager-delete-modal-confirm',
     );
-
-    const resiliateButton = await screen.getAllByText(
-      labels.terminate.hycu_terminate_confirm_label,
-      {
-        exact: true,
-      },
-    );
-
-    await waitFor(
-      () =>
-        expect(resiliateButton[resiliateButton.length - 1]).not.toHaveAttribute(
-          'disabled',
-        ),
-      { timeout: 10_000 },
-    );
-
-    await act(() => user.click(resiliateButton[resiliateButton.length - 1]));
+    await act(() => user.click(resiliateButton));
 
     await waitFor(
       () => {
         expect(
-          screen.queryByText(labels.terminate.hycu_terminate_description),
+          screen.queryByText(labels.terminate.hycu_terminate_success_message),
         ).not.toBeInTheDocument();
       },
       { timeout: 10_000 },
