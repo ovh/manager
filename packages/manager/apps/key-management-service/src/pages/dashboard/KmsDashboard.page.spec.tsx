@@ -128,7 +128,7 @@ describe('KMS dashboard test suite', () => {
               'key_management_service_service-keys_dashboard_field_name'
             ],
           ),
-        ).toHaveLength(1),
+        ).toHaveLength(2),
       WAIT_FOR_DEFAULT_OPTIONS,
     );
   });
