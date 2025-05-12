@@ -24,7 +24,8 @@
       "packages/manager/modules/*",
       "packages/manager/tools/*",
       "packages/manager-cli",
-      "packages/manager-react-components"
+      "packages/manager-react-components",
+      "packages/manager-wiki"
     ]
   },
   "scripts": {

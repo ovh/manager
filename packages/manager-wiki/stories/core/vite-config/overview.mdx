@@ -1,0 +1,148 @@
+import {
+  StoryBookBanner,
+  StorybookHeading,
+  StorybookBestPractices,
+  StorybookIdentityCard,
+  StorybookTable,
+} from '../../../../manager-wiki/components/';
+import { Meta, Canvas, Source } from '@storybook/blocks';
+
+import Links from '../../../../manager-wiki/components/external-links';
+
+<Meta title="Core/vite-config/Overview" />
+
+# Vite Configuration
+
+The Vite Configuration module provides a standardized build and development setup for OVHcloud Manager applications. It includes pre-configured plugins, development server settings, and build optimizations specifically designed for the OVHcloud ecosystem.
+
+<StorybookHeading label="Overview" level={2} />
+
+The configuration provides a comprehensive setup for OVHcloud applications:
+
+- **Development Server**: Pre-configured development server with proxy settings
+- **Build Optimization**: Optimized production builds with legacy support
+- **Plugin Integration**: Essential plugins for React, SVG, and static assets
+- **Environment Support**: Support for different environments (EU, LABEU)
+- **Container Support**: Special handling for container applications
+
+<StorybookHeading label="Key Features" level={2} />
+
+- **React Support**: Built-in React plugin configuration
+- **Legacy Browser Support**: Automatic legacy browser compatibility
+- **Development Server**: Integrated proxy and SSO support
+- **Asset Handling**: SVG and static file handling
+- **Environment Configuration**: Flexible environment-specific settings
+- **Hot Module Replacement**: Enhanced HMR with iframe support
+
+<StorybookHeading label="Usage" level={2} />
+
+### Installation
+
+```bash
+yarn add @ovh-ux/manager-vite-config
+```
+
+### Basic Setup
+
+```javascript
+// vite.config.js
+import { getBaseConfig } from '@ovh-ux/manager-vite-config';
+
+export default getBaseConfig({
+  // Optional configuration
+  isLABEU: false,
+  local2API: false,
+});
+```
+
+### Available Configuration Options
+
+```typescript
+interface ViteConfig {
+  local2API?: boolean;      // Enable local API proxy
+  isLABEU?: boolean;        // Enable LABEU environment
+  host?: string;           // Custom host configuration
+  devLoginUrl?: string;    // Custom login URL
+  baseUrl?: string;        // Custom base URL
+  authURL?: string;        // Custom auth URL
+  proxy?: {
+    host: string;         // Proxy host configuration
+  };
+}
+```
+
+### Development Server Features
+
+The development server includes:
+
+- **SSO Integration**: Automatic SSO authentication handling
+- **API Proxying**: Proxy configuration for API endpoints
+- **Container Support**: Special handling for container applications
+- **Custom Proxy**: Support for custom proxy configurations
+
+```javascript
+// dev.proxy.config.mjs
+export default {
+  context: '/api',
+  target: 'http://localhost:3000',
+  changeOrigin: true,
+};
+```
+
+<StorybookHeading label="Best Practices" level={2} />
+
+1. **Environment Configuration**:
+   - Use appropriate environment settings
+   - Configure LABEU environment when needed
+   ```javascript
+   export default getBaseConfig({
+     isLABEU: process.env.LABEU === 'true',
+   });
+   ```
+
+2. **Development Server**:
+   - Use the built-in proxy for API calls
+   - Configure custom proxies when needed
+   - Handle SSO authentication properly
+
+3. **Build Optimization**:
+   - Enable source maps in development
+   - Use production optimizations in builds
+   ```javascript
+   export default getBaseConfig({
+     build: {
+       sourcemap: process.env.NODE_ENV === 'development',
+     },
+   });
+   ```
+
+4. **Asset Management**:
+   - Use the built-in SVG plugin
+   - Configure static file copying
+   - Handle translations properly
+
+5. **Container Applications**:
+   - Set appropriate base URL
+   - Configure container-specific settings
+   ```javascript
+   export default getBaseConfig({
+     base: process.env.CONTAINER ? '/app/' : './',
+   });
+   ```
+
+6. **Performance**:
+   - Use appropriate build settings
+   - Configure proper caching
+   - Optimize for production
+   ```javascript
+   export default getBaseConfig({
+     build: {
+       minify: 'terser',
+       terserOptions: {
+         compress: {
+           drop_console: true,
+         },
+       },
+     },
+   });
+   ```

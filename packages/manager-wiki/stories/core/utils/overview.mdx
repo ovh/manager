@@ -1,0 +1,133 @@
+import {
+  StoryBookBanner,
+  StorybookHeading,
+  StorybookBestPractices,
+  StorybookIdentityCard,
+  StorybookTable,
+} from '../../../../manager-wiki/components/';
+import { Meta, Canvas, Source } from '@storybook/blocks';
+
+import Links from '../../../../manager-wiki/components/external-links';
+
+<Meta title="Core/utils/Overview" />
+
+# Manager Core Utils
+
+The Manager Core Utils module provides a collection of utility functions and helpers commonly used across OVHcloud Manager applications. It includes tools for date formatting, React component formatting, and other shared functionality.
+
+<StorybookHeading label="Overview" level={2} />
+
+The Core Utils module provides essential utilities for OVHcloud applications:
+
+- **Date Formatting**: Utilities for handling date-fns locale conversions
+- **React Formatting**: Helper for rendering React components in table cells
+- **TypeScript Support**: Full TypeScript support with type definitions
+- **React Integration**: Seamless integration with React applications
+
+<StorybookHeading label="Key Features" level={2} />
+
+- **Date-fns Locale Conversion**: Convert OVH locales to date-fns format
+- **React Table Formatter**: Custom formatter for React components in tables
+- **Type Safety**: Full TypeScript support
+- **React 18 Support**: Compatible with React 18 and React Router 6
+- **Modular Design**: Easy to import and use individual utilities
+
+<StorybookHeading label="Usage" level={2} />
+
+### Installation
+
+```bash
+yarn add @ovh-ux/manager-core-utils
+```
+
+### Date-fns Locale Conversion
+
+```typescript
+import { getDateFnsLocale } from '@ovh-ux/manager-core-utils';
+
+// Convert OVH locale to date-fns locale
+const dateFnsLocale = getDateFnsLocale('fr_FR'); // Returns 'fr'
+const dateFnsLocaleGB = getDateFnsLocale('en_GB'); // Returns 'enGB'
+const dateFnsLocaleCA = getDateFnsLocale('fr_CA'); // Returns 'frCA'
+```
+
+### React Table Formatter
+
+```typescript
+import { ReactFormatter } from '@ovh-ux/manager-core-utils';
+import React from 'react';
+
+// Create a custom formatter for a table cell
+const CustomCell = ({ cellData, rowData }) => (
+  <div>
+    <span>{cellData}</span>
+    <button onClick={() => handleClick(rowData)}>Action</button>
+  </div>
+);
+
+// Use the formatter in your table configuration
+const columns = [
+  {
+    title: 'Custom Column',
+    field: 'data',
+    formatter: ReactFormatter(<CustomCell />),
+  },
+];
+```
+
+<StorybookHeading label="Best Practices" level={2} />
+
+1. **Date-fns Locale Usage**:
+   - Always use the locale converter for date formatting
+   - Handle fallback cases appropriately
+   ```typescript
+   const locale = getDateFnsLocale(userLocale) || 'enGB';
+   ```
+
+2. **React Formatter Implementation**:
+   - Keep formatter components simple and focused
+   - Handle cell updates properly
+   - Use TypeScript for better type safety
+   ```typescript
+   interface CellProps {
+     cellData: any;
+     rowData: any;
+   }
+
+   const CustomCell: React.FC<CellProps> = ({ cellData, rowData }) => {
+     // Component implementation
+   };
+   ```
+
+3. **Performance Considerations**:
+   - Memoize formatter components when possible
+   - Avoid unnecessary re-renders
+   - Use proper cleanup in formatters
+   ```typescript
+   const MemoizedCell = React.memo(CustomCell);
+   const formatter = ReactFormatter(<MemoizedCell />);
+   ```
+
+4. **TypeScript Usage**:
+   - Use proper type definitions
+   - Leverage TypeScript features for better development experience
+   - Export types when creating custom formatters
+
+5. **Error Handling**:
+   - Implement proper error boundaries
+   - Handle edge cases in locale conversion
+   - Provide fallback values when needed
+
+6. **Testing**:
+   - Write unit tests for utility functions
+   - Test formatter components in isolation
+   - Mock React DOM rendering in tests
+   ```typescript
+   describe('getDateFnsLocale', () => {
+     it('should convert fr_FR to fr', () => {
+       expect(getDateFnsLocale('fr_FR')).toBe('fr');
+     });
+   });
+   ```
+
+
