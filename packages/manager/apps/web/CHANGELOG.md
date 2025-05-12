@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.10.20...@ovh-ux/manager-web@19.11.0) (2025-05-12)
+
+
+### Bug Fixes
+
+* **web:** removing target blank on ongoing-operation links ([#16893](https://github.com/ovh/manager/issues/16893)) ([6b90753](https://github.com/ovh/manager/commit/6b9075385f74a1db7f740b584f0ef3d5d5d2f2d4)), closes [#MANAGER-18123](https://github.com/ovh/manager/issues/MANAGER-18123)
+
+
+### Features
+
+* **web.zone:** add dns server section for zone standalone ([#16859](https://github.com/ovh/manager/issues/16859)) ([af21e8f](https://github.com/ovh/manager/commit/af21e8fb176bf3d0a3c44ff96866eb99b6182793)), closes [#MANAGER-13869](https://github.com/ovh/manager/issues/MANAGER-13869)
+
+
+
+
+
 ## [19.10.20](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.10.19...@ovh-ux/manager-web@19.10.20) (2025-05-12)
 
 **Note:** Version bump only for package @ovh-ux/manager-web
