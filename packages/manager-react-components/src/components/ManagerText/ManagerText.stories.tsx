@@ -9,7 +9,7 @@ export const Default = {
 };
 
 const managerText: Meta<ManagerTextProps> = {
-  title: 'Components/Manager Text',
+  title: 'Core/manager-react-components/Components/Manager Text',
   component: ManagerText,
 };
 

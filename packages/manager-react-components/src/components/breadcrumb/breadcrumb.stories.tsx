@@ -32,7 +32,7 @@ HideRootLabel.args = {
 };
 
 export default {
-  title: 'Components/Breadcrumb',
+  title: 'Core/manager-react-components/Components/Breadcrumb',
   component: Breadcrumb,
   decorators: [withRouter],
   parameters: {
