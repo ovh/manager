@@ -96,7 +96,11 @@ const Onboarding: FC = () => {
               title: t(`pci_instances_onboarding_${guide.id}_title`),
               description: t(
                 `pci_instances_onboarding_${guide.id}_description`,
+                {
+                  defaultValue: '',
+                },
               ),
+
               category: t('pci_instances_onboarding_guide_title'),
             }}
           />

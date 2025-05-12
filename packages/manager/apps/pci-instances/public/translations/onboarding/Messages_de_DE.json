@@ -1,0 +1,13 @@
+{
+  "pci_instances_onboarding_not_created_message": "Sie haben noch keine Instanz erstellt.",
+  "pci_instances_onboarding_content_message_1": "Deployen Sie Instanzen aus einer breiten Palette von Modellen und nutzen Sie die Flexibilität der Cloud, um nach Ihren Bedürfnissen zu wachsen.",
+  "pci_instances_onboarding_content_message_2": "Wählen Sie aus unserem Katalog das für Sie passende Instanz-Modell aus: Sandbox mit geteilten Ressourcen, Guaranteed Resources mit konstanter Performance für anspruchsvolle Applikationen, GPU für parallele Rechenoperationen und IOPS für Datenbanken und Big Data.",
+  "pci_instances_onboarding_advice_message": "Sie können die Kapazität Ihrer Instanzen jederzeit nach Bedarf erhöhen. Sie können sich auch für Instanzen vom Typ flex entscheiden, die diese Kapazität ebenfalls reduzieren.",
+  "pci_instances_onboarding_guide_title": "Anleitung",
+  "pci_instances_onboarding_create_instance_title": "Instanz über das Kundencenter erstellen",
+  "pci_instances_onboarding_post_install_script_title": "Skript bei der Erstellung einer Instanz ausführen",
+  "pci_instances_onboarding_back_up_instance_title": "Eine Instanz sichern",
+  "pci_instances_onboarding_instance_introduction_title": "Einführung in Instanzen und andere Cloud-Konzepte",
+  "pci_instances_onboarding_create_instance_description": "In dieser Anleitung erfahren Sie, wie Sie eine Public Cloud Instanz erstellen",
+  "pci_instances_onboarding_back_up_instance_description": "Hier erfahren Sie, wie Sie mit nur wenigen Klicks eine Public Cloud Instanz sichern"
+}

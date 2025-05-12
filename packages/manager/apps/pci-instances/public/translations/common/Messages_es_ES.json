@@ -1,0 +1,11 @@
+{
+  "pci_instances_common_instances_title": "Instancias",
+  "pci_instances_common_create_instance": "Cree una instancia",
+  "pci_instances_common_new": "Novedad",
+  "pci_instances_common_go_back": "Volver a la página anterior",
+  "pci_instances_common_filter": "Filtrar",
+  "pci_instances_common_cancel": "Cancelar",
+  "pci_instances_common_confirm": "Confirmar",
+  "pci_instances_common_404_error_message": "Se ha producido un error 404 «File Not Found».",
+  "pci_instances_common_pending": "En curso..."
+}

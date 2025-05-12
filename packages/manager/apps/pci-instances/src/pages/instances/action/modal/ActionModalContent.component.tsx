@@ -113,7 +113,7 @@ export const ActionModalContent: FC<TActionModalProps> = ({
         <OsdsMessage type={ODS_MESSAGE_TYPE.warning} className="mt-6">
           <OsdsText
             level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-            color={ODS_THEME_COLOR_INTENT.warning}
+            color={ODS_THEME_COLOR_INTENT.default}
           >
             {warningMessage}
           </OsdsText>

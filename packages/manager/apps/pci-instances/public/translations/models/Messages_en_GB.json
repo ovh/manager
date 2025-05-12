@@ -1,0 +1,21 @@
+{
+  "pci_instances_models_select_template": "Select a model",
+  "pci_instances_models_category_balanced_title": "General Purpose",
+  "pci_instances_models_category_compute_title": "Compute Optimised",
+  "pci_instances_models_category_ram_title": "Memory Optimised",
+  "pci_instances_models_category_accelerated_title": "GPU",
+  "pci_instances_models_category_discovery_title": "Discovery",
+  "pci_instances_models_category_iops_title": "Storage Optimised",
+  "pci_instances_models_category_baremetal_title": "Metal",
+  "pci_instances_models_category_balanced_description": "General purpose instances offer a balance of RAM and performance.",
+  "pci_instances_models_category_compute_description": "Instances with optimized computing are perfect for applications that require high computing frequencies or parallel task processing.",
+  "pci_instances_models_category_ram_description": "Instances with optimized memory are recommended for your databases, analyzes and in-memory calculations, as well as other RAM-intensive applications.",
+  "pci_instances_models_category_accelerated_description": "Instances with accelerated computing (GPU, FPGA) are up to 1,000 times faster than a CPU on certain applications (rendering, video transcoding, bioinformatics, Big Data, deep learning, etc.)",
+  "pci_instances_models_category_discovery_description": "Instances with shared resources (Discovery) are suitable for tests, recipes and development environments. Their performance may vary slightly over time.",
+  "pci_instances_models_category_iops_description": "IOPS instances deliver the fastest disk transactions in the Public Cloud range.",
+  "pci_instances_models_category_baremetal_description": "Metal instances offer physical servers on demand, delivered in minutes and billed by the hour or month.",
+  "pci_instances_models_chosen_model_message": "Model chosen: {{ model }}",
+  "pci_instances_models_monthly_price_excl_vat": "from {{ price }} ex. VAT/month",
+  "pci_instances_models_error_message1": "We're sorry, an error has occurred and the request could not be processed. You can try again to <Link>Refresh</Link> the query.",
+  "pci_instances_models_error_message2": "If the problem persists, please contact technical support."
+}
