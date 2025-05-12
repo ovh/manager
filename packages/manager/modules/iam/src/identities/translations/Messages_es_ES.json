@@ -7,5 +7,10 @@
   "iam_identities_field_users_button_add": "Añadir",
   "iam_identities_error_load_users": "Se ha producido un error al cargar los usuarios: {{ message }}",
   "iam_identities_add_identity_error": "El formato de la identidad agregada no es válido: {{ message }}",
-  "iam_identities_add_identity_success": "La identidad está asociada a su política"
+  "iam_identities_add_identity_success": "La identidad está asociada a su política",
+  "iam_identities": "Identidades",
+  "iam_identities_header_guide_text": "Guías",
+  "iam_identities_users": "Usuarios locales",
+  "iam_identities_user_groups": "Grupos de usuarios",
+  "iam_identities_sso": "SSO"
 }
