@@ -9,7 +9,8 @@ import {
   OdsQuantity,
 } from '@ovhcloud/ods-components/react';
 import { useTranslatedMicroRegions } from '@ovh-ux/manager-react-components';
-import { TRegion, TVolume, TVolumePricing } from '@/data/api/api.types';
+import { TVolume } from '@ovh-ux/manager-pci-common';
+import { TRegion, TVolumePricing } from '@/data/api/api.types';
 import PriceEstimate from './PriceEstimate.component';
 import BadgeRegionType from './BadgeRegionType.component';
 import { useVolumeCatalog } from '@/data/hooks/useCatalog';

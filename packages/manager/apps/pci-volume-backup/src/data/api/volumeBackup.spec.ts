@@ -9,6 +9,12 @@ import {
   getVolumeBackup,
 } from './volumeBackup';
 import { ApiData } from '../hooks/useVolumeBackups';
+import {
+  MOCKED_BACKUP,
+  MOCKED_PROJECT_ID,
+  MOCKED_REGION_NAME,
+  MOCKED_VOLUME_BACKUP_ID,
+} from '@/__tests__/mocks';
 
 describe('pci-volume-backup', () => {
   beforeEach(() => {
@@ -17,78 +23,43 @@ describe('pci-volume-backup', () => {
 
   describe('isVolumeBackupPending', () => {
     it('should return true for creating status', () => {
-      const backup: TVolumeBackup = {
-        id: '123',
-        creationDate: '2023-01-01',
-        name: 'backup-1',
-        size: 50,
-        volumeId: 'vol-1',
-        region: 'GRA',
+      const backupWithStatusCreating = {
+        ...MOCKED_BACKUP,
         status: 'creating',
-        search: 'backup-1 123 GRA',
       };
 
-      expect(isVolumeBackupPending(backup)).toBe(true);
+      expect(isVolumeBackupPending(backupWithStatusCreating)).toBe(true);
     });
 
     it('should return true for deleting status', () => {
-      const backup: TVolumeBackup = {
-        id: '123',
-        creationDate: '2023-01-01',
-        name: 'backup-1',
-        size: 50,
-        volumeId: 'vol-1',
-        region: 'GRA',
+      const backupWithStatusDeleting = {
+        ...MOCKED_BACKUP,
         status: 'deleting',
-        search: 'backup-1 123 GRA',
       };
 
-      expect(isVolumeBackupPending(backup)).toBe(true);
+      expect(isVolumeBackupPending(backupWithStatusDeleting)).toBe(true);
     });
 
     it('should return true for restoring status', () => {
-      const backup: TVolumeBackup = {
-        id: '123',
-        creationDate: '2023-01-01',
-        name: 'backup-1',
-        size: 50,
-        volumeId: 'vol-1',
-        region: 'GRA',
+      const backupWithStatusRestoring = {
+        ...MOCKED_BACKUP,
         status: 'restoring',
-        search: 'backup-1 123 GRA',
       };
 
-      expect(isVolumeBackupPending(backup)).toBe(true);
+      expect(isVolumeBackupPending(backupWithStatusRestoring)).toBe(true);
     });
 
     it('should return false for ok status', () => {
-      const backup: TVolumeBackup = {
-        id: '123',
-        creationDate: '2023-01-01',
-        name: 'backup-1',
-        size: 50,
-        volumeId: 'vol-1',
-        region: 'GRA',
-        status: 'ok',
-        search: 'backup-1 123 GRA',
-      };
-
-      expect(isVolumeBackupPending(backup)).toBe(false);
+      expect(isVolumeBackupPending(MOCKED_BACKUP)).toBe(false);
     });
 
     it('should return false for error status', () => {
-      const backup: TVolumeBackup = {
-        id: '123',
-        creationDate: '2023-01-01',
-        name: 'backup-1',
-        size: 50,
-        volumeId: 'vol-1',
-        region: 'GRA',
+      const backupWithStatusError = {
+        ...MOCKED_BACKUP,
         status: 'error',
-        search: 'backup-1 123 GRA',
       };
 
-      expect(isVolumeBackupPending(backup)).toBe(false);
+      expect(isVolumeBackupPending(backupWithStatusError)).toBe(false);
     });
   });
 
@@ -111,22 +82,13 @@ describe('pci-volume-backup', () => {
           data: {
             data: [
               {
-                id: '123',
-                creationDate: '2023-01-01',
-                name: 'backup-1',
-                size: 50,
-                volumeId: 'vol-1',
-                region: 'GRA',
+                ...MOCKED_BACKUP,
+                id: 'backup-id-1',
                 status: 'creating',
               },
               {
-                id: '456',
-                creationDate: '2023-01-02',
-                name: 'backup-2',
-                size: 100,
-                volumeId: 'vol-2',
-                region: 'GRA',
-                status: 'ok',
+                ...MOCKED_BACKUP,
+                id: 'backup-id-2',
               },
             ],
           },
@@ -142,22 +104,13 @@ describe('pci-volume-backup', () => {
           data: {
             data: [
               {
-                id: '123',
-                creationDate: '2023-01-01',
-                name: 'backup-1',
-                size: 50,
-                volumeId: 'vol-1',
-                region: 'GRA',
-                status: 'ok',
+                ...MOCKED_BACKUP,
+                id: 'backup-id-1',
+                status: 'error',
               },
               {
-                id: '456',
-                creationDate: '2023-01-02',
-                name: 'backup-2',
-                size: 100,
-                volumeId: 'vol-2',
-                region: 'GRA',
-                status: 'error',
+                ...MOCKED_BACKUP,
+                id: 'backup-id-2',
               },
             ],
           },
@@ -171,68 +124,43 @@ describe('pci-volume-backup', () => {
 
   describe('getVolumeBackups', () => {
     it('should return volume backups for a project', async () => {
-      const mockBackups: TVolumeBackup[] = [
-        {
-          id: '123',
-          creationDate: '2023-01-01',
-          name: 'backup-1',
-          size: 50,
-          volumeId: 'vol-1',
-          region: 'GRA',
-          status: 'ok',
-          search: 'backup-1 123 GRA',
-        },
-      ];
-
       const mockResponse = {
         data: {
-          resources: mockBackups,
+          resources: MOCKED_BACKUP,
         },
       };
 
       vi.mocked(v6.get).mockResolvedValueOnce(mockResponse);
 
-      const projectId = 'project-123';
-      const result = await getVolumeBackups(projectId)();
+      const result = await getVolumeBackups(MOCKED_PROJECT_ID)();
 
       expect(v6.get).toHaveBeenCalledWith(
-        `/cloud/project/${projectId}/aggregated/volumeBackup`,
+        `/cloud/project/${MOCKED_PROJECT_ID}/aggregated/volumeBackup`,
       );
       expect(result).toEqual({
-        data: mockBackups,
+        data: MOCKED_BACKUP,
       });
     });
   });
 
   describe('getVolumeBackup', () => {
     it('should return a specific volume backup', async () => {
-      const mockBackup: TVolumeBackup = {
-        id: '123',
-        creationDate: '2023-01-01',
-        name: 'backup-1',
-        size: 50,
-        volumeId: 'vol-1',
-        region: 'GRA',
-        status: 'ok',
-        search: 'backup-1 123 GRA',
-      };
-
       const mockResponse = {
-        data: mockBackup,
+        data: MOCKED_BACKUP,
       };
 
       vi.mocked(v6.get).mockResolvedValueOnce(mockResponse);
 
-      const projectId = 'project-123';
-      const regionName = 'GRA';
-      const backupId = '123';
-
-      const result = await getVolumeBackup(projectId, regionName, backupId);
+      const result = await getVolumeBackup(
+        MOCKED_PROJECT_ID,
+        MOCKED_REGION_NAME,
+        MOCKED_VOLUME_BACKUP_ID,
+      );
 
       expect(v6.get).toHaveBeenCalledWith(
-        `/cloud/project/${projectId}/region/${regionName}/volumeBackup/${backupId}`,
+        `/cloud/project/${MOCKED_PROJECT_ID}/region/${MOCKED_REGION_NAME}/volumeBackup/${MOCKED_VOLUME_BACKUP_ID}`,
       );
-      expect(result).toEqual(mockBackup);
+      expect(result).toEqual(MOCKED_BACKUP);
     });
   });
 });

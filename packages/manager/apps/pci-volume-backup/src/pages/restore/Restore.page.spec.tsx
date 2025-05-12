@@ -2,11 +2,12 @@ import { ApiError } from '@ovh-ux/manager-core-api';
 import { fireEvent, render } from '@testing-library/react';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { useNotifications } from '@/hooks/notifications/useNotifications';
-import { useBackup, useRestoreVolume } from '@/data/hooks/useVolumeBackup';
-import { TBackup, TVolume } from '@/data/api/api.types';
-import Restore from './Restore.page';
+import { TBackup } from '@/data/api/api.types';
 import { useVolume } from '@/data/hooks/useVolume';
+import { useBackup, useRestoreVolume } from '@/data/hooks/useVolumeBackup';
+import { useNotifications } from '@/hooks/notifications/useNotifications';
+import { MOCKED_VOLUME } from '@/__tests__/mocks';
+import Restore from './Restore.page';
 
 vi.mock('@/data/hooks/useVolumeBackup', () => ({
   useBackup: vi.fn(),
@@ -31,11 +32,6 @@ describe('RestoreVolume Page', () => {
   const addSuccessMessage = vi.fn();
   const addErrorMessage = vi.fn();
   const mockNavigate = vi.fn();
-  const mockVolumeData = {
-    id: 'volume-id',
-    name: 'TestVolume',
-    region: 'test-region',
-  } as TVolume;
   const mockBackupData = { id: 'backup-id', name: 'TestBackup' } as TBackup;
   const mockedRestoreVolume = vi.fn();
 
@@ -68,7 +64,7 @@ describe('RestoreVolume Page', () => {
     });
 
     vi.mocked(useVolume).mockReturnValue({
-      data: withData ? mockVolumeData : undefined,
+      data: withData ? MOCKED_VOLUME : undefined,
       isLoading: volumeLoading,
     } as ReturnType<typeof useVolume>);
 
@@ -124,7 +120,7 @@ describe('RestoreVolume Page', () => {
     fireEvent.click(confirmButton);
 
     expect(mockedRestoreVolume).toHaveBeenCalledWith({
-      volumeId: mockVolumeData.id,
+      volumeId: MOCKED_VOLUME.id,
       backupId: mockBackupData.id,
     });
   });
@@ -149,7 +145,7 @@ describe('RestoreVolume Page', () => {
     fireEvent.click(confirmButton);
 
     expect(mockedRestoreVolume).toHaveBeenCalledWith({
-      volumeId: mockVolumeData.id,
+      volumeId: MOCKED_VOLUME.id,
       backupId: mockBackupData.id,
     });
 
@@ -162,7 +158,7 @@ describe('RestoreVolume Page', () => {
       i18nKey:
         'pci_projects_project_storages_volume_backup_list_restore_volume_action_request_success',
       values: {
-        volumeName: `<strong>${mockVolumeData.name}</strong>`,
+        volumeName: `<strong>${MOCKED_VOLUME.name}</strong>`,
       },
     });
     expect(mockNavigate).toHaveBeenCalledWith('..');
@@ -189,7 +185,7 @@ describe('RestoreVolume Page', () => {
     fireEvent.click(confirmButton);
 
     expect(mockedRestoreVolume).toHaveBeenCalledWith({
-      volumeId: mockVolumeData.id,
+      volumeId: MOCKED_VOLUME.id,
       backupId: mockBackupData.id,
     });
 
@@ -203,7 +199,7 @@ describe('RestoreVolume Page', () => {
         'pci_projects_project_storages_volume_backup_list_restore_volume_action_request_error',
       error: mockError,
       values: {
-        volumeName: `<strong>${mockVolumeData.name}</strong>`,
+        volumeName: `<strong>${MOCKED_VOLUME.name}</strong>`,
       },
     });
     expect(mockNavigate).toHaveBeenCalledWith('..');
