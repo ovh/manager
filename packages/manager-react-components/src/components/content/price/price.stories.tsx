@@ -5,7 +5,7 @@ import Price from './price.component';
 import { OvhSubsidiary } from '../../../enumTypes';
 
 const meta = {
-  title: 'Components/Price',
+  title: 'Core/manager-react-components/Components/Price',
   component: Price,
   parameters: {
     docs: {

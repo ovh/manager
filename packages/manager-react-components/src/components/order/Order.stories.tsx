@@ -46,7 +46,7 @@ export const DemoOrder: Story = {
 };
 
 const meta: Meta = {
-  title: 'Components/Order',
+  title: 'Core/manager-react-components/Components/Order',
   component: Order,
   subcomponents: {
     'Order.Summary': Order.Summary as ComponentType<unknown>,

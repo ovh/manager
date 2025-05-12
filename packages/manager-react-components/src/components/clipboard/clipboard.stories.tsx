@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { Clipboard } from './clipboard.component';
 
 const meta: Meta<typeof Clipboard> = {
-  title: 'Components/Clipboard',
+  title: 'Core/manager-react-components/Components/Clipboard',
   component: Clipboard,
 };
 

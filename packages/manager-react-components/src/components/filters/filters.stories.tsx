@@ -101,7 +101,7 @@ export const DefaultProps = {
 };
 
 const meta = {
-  title: 'Components/Filters',
+  title: 'Core/manager-react-components/Components/Filters',
   component: FiltersStory,
   decorators: [withRouter],
 };
