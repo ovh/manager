@@ -24,6 +24,7 @@ export default defineConfig({
         'src/pages/404.tsx',
         'src/pages/layout.tsx',
         'src/queryClient.ts',
+        'src/utils/index.ts',
         ...coverageConfigDefaults.exclude,
       ],
     },
