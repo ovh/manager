@@ -1,5 +1,10 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('billing.autorenew.payDebt', {
+  $stateProvider.state('billing.autorenew.payDebtRedirection', {
+    url: '/pay-debt?serviceName',
+    redirectTo: 'billing.autorenew.services.payDebt',
+  });
+
+  $stateProvider.state('billing.autorenew.services.payDebt', {
     url: '/pay-debt?serviceName',
     views: {
       modal: {

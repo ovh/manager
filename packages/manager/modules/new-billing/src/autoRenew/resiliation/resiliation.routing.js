@@ -3,11 +3,16 @@ import kebabCase from 'lodash/kebabCase';
 import { BillingService as Service } from '@ovh-ux/manager-models';
 
 export default /* @ngInject */ ($stateProvider) => {
+  $stateProvider.state('billing.autorenew.resiliationRedirection', {
+    url: '/resiliation?serviceId&serviceName&serviceType',
+    redirectTo: 'billing.autorenew.services.resiliation',
+  });
+
   $stateProvider.state('billing.autorenew.resiliation', {
     url: '/resiliation?serviceId&serviceName&serviceType',
     component: 'ovhManagerBillingResiliation',
     resolve: {
-      availableStrategies: /* @ngInjecgt */ (endStrategyEnum, service) =>
+      availableStrategies: /* @ngInject */ (endStrategyEnum, service) =>
         endStrategyEnum
           .filter((strategy) =>
             service.billing.engagement?.endRule.possibleStrategies.includes(
@@ -19,7 +24,7 @@ export default /* @ngInject */ ($stateProvider) => {
           })),
       displayErrorMessage: /* @ngInject */ (Alerter) => (message) =>
         Alerter.set('alert-danger', message),
-      goBack: /* @ngInject */ ($state) => () => $state.go('^'),
+      goBack: /* @ngInject */ (goToAutorenew) => goToAutorenew,
       onSuccess: /* @ngInject */ (Alerter, goBack) => (successMessage) =>
         goBack().then(() => {
           Alerter.success(successMessage);
