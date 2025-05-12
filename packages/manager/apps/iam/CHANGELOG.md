@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam-app@3.1.0...@ovh-ux/manager-iam-app@3.1.1) (2025-05-12)
+
+
+### Bug Fixes
+
+* **iam:** fix missing dependency log to customer ([c050764](https://github.com/ovh/manager/commit/c0507640fed7b313279d57e4572707dddd9a1e82)), closes [#MANAGER-16249](https://github.com/ovh/manager/issues/MANAGER-16249)
+* **iam:** fix missing dependency ui-router-layout ([b100a04](https://github.com/ovh/manager/commit/b100a048dda857607758c3c5a06a22852bf9a9a8)), closes [#MANAGER-16233](https://github.com/ovh/manager/issues/MANAGER-16233)
+
+
+
+
+
 # [3.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam-app@3.0.36...@ovh-ux/manager-iam-app@3.1.0) (2025-05-12)
 
 
