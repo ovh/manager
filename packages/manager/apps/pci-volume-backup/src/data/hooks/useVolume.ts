@@ -1,7 +1,7 @@
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { ApiError } from '@ovh-ux/manager-core-api';
+import { TVolume } from '@ovh-ux/manager-pci-common';
 import queryClient from '@/queryClient';
-import { TVolume } from '@/data/api/api.types';
 import {
   createVolumeFromBackup,
   detachVolume,

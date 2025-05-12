@@ -45,8 +45,9 @@ const mockBackup: TVolumeBackup = {
     planCode: 'test-plan-code',
     attachedTo: [],
     bootable: false,
-    availabilityZone: null,
     type: 'classic',
+    regionName: 'region-name',
+    statusGroup: 'status-group',
   },
   search: 'Test Backup backup-123 us-east-1',
 };
