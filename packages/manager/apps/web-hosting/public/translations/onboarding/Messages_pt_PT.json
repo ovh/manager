@@ -1,12 +1,12 @@
 {
-  "title": "Escolha o alojamento web que melhor se adapta à sua atividade digital",
-  "description": "Com a OVHcloud, crie o seu primeiro website em apenas alguns minutos. Publique o seu blogue, o seu site profissional ou ainda a sua loja online.",
+  "title": "Escolha o alojamento web mais adequado à sua atividade digital",
+  "description": "Com a OVHcloud, crie o seu primeiro website em apenas alguns minutos. Crie um blogue, um site profissional ou uma loja online.",
   "order_btn": "Encomendar",
   "guide_category": "Tutorial",
-  "guide_1_title": "Como começar a usar e a gerir o seu alojamento web em poucos passos",
+  "guide_1_title": "Como começar a usar o seu alojamento web, passo a passo",
   "guide_1_description": "Saiba como utilizar o seu novo alojamento web.",
-  "guide_2_title": "Colocar um site no alojamento web",
-  "guide_2_description": "Saiba como publicar um site no seu alojamento web da OVHcloud.",
+  "guide_2_title": "Publicar um website num alojamento web",
+  "guide_2_description": "Saiba como publicar um site num alojamento web OVHcloud.",
   "guide_3_title": "Editar uma zona DNS da OVHcloud",
-  "guide_3_description": "Saiba como editar a zona DNS da OVHcloud através da Área de Cliente OVHcloud."
+  "guide_3_description": "Saiba como editar a sua zona DNS através da Área de Cliente OVHcloud."
 }
