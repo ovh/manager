@@ -13,10 +13,9 @@ import {
   OdsSpinner,
 } from '@ovhcloud/ods-components/react';
 import { useParams, useHref, useNavigate } from 'react-router-dom';
-import { useProject } from '@ovh-ux/manager-pci-common';
+import { TVolume, useProject } from '@ovh-ux/manager-pci-common';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import VolumeEdit from './VolumeEdit.component';
-import { TVolume } from '@/data/api/api.types';
 import { VOLUME_BACKUP_TRACKING } from '@/tracking.constant';
 import {
   TNewVolumeFromBackupData,
