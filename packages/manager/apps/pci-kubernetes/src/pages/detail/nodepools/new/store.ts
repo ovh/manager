@@ -3,7 +3,7 @@ import { TFlavor } from '@ovh-ux/manager-pci-common';
 import { createRef, MutableRefObject } from 'react';
 import { StepsEnum } from '@/pages/detail/nodepools/new/steps.enum';
 import { AutoscalingState } from '@/components/Autoscaling.component';
-import { NAME_INPUT_CONSTRAINTS } from '@/constants';
+import { isNodePoolNameValid } from '@/helpers/matchers/matchers';
 
 type TStep = {
   isOpen: boolean;
@@ -112,9 +112,7 @@ export const useNewPoolStore = create<TFormStore>()((set, get) => ({
           name: {
             value: val,
             isTouched: true,
-            hasError:
-              val.length > NAME_INPUT_CONSTRAINTS.MAX_LENGTH ||
-              !NAME_INPUT_CONSTRAINTS.PATTERN.exec(val),
+            hasError: !isNodePoolNameValid(val),
           },
         });
       }
