@@ -18,9 +18,12 @@
   },
   "dependencies": {
 <<<<<<< HEAD
+<<<<<<< HEAD
     "@ovh-ux/logs-to-customer": "^1.2.5",
 =======
     "@ovh-ux/billing-informations": "^1.1.0",
+=======
+>>>>>>> 6a9babb9ea (revert(kms): revert billing tile informations module integration)
     "@ovh-ux/logs-to-customer": "^1.2.6",
 >>>>>>> 447b51e4c9 (release(*): dysprosium-cod-5)
     "@ovh-ux/manager-config": "^8.3.1",
