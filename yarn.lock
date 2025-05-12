@@ -5861,6 +5861,35 @@
   resolved "https://registry.yarnpkg.com/@microsoft/tsdoc/-/tsdoc-0.14.2.tgz#c3ec604a0b54b9a9b87e9735dfc59e1a5da6a5fb"
   integrity sha512-9b8mPpKrfeGRuhFH5iO1iwCLeIIsV6+H1sRfxbkoGXIyQE2BTsPd9zqSqQJ+pv5sJ/hT5M1zvOFL02MnEezFug==
 
+"@module-federation/error-codes@0.8.12":
+  version "0.8.12"
+  resolved "https://registry.yarnpkg.com/@module-federation/error-codes/-/error-codes-0.8.12.tgz#b9f3b6de8760c3db1b8b33bf0c47bc7d775fa344"
+  integrity sha512-K+F4iiV62KY+IpjK6ggn3vI5Yt/T/LUb6xuazY78bhAGwLaHe1DYr7BfSutKMpiB+Dcs6U4dYOBogSMnnl0j4Q==
+
+"@module-federation/runtime-core@0.6.20":
+  version "0.6.20"
+  resolved "https://registry.yarnpkg.com/@module-federation/runtime-core/-/runtime-core-0.6.20.tgz#cd03756b1d46faae87a1f65d2ea37e0eded3dcdf"
+  integrity sha512-rX7sd/i7tpkAbfMD4TtFt/57SWNC/iv7UYS8g+ad7mnCJggWE1YEKsKSFgcvp4zU3thwR+j2y+kOCwd1sQvxEA==
+  dependencies:
+    "@module-federation/error-codes" "0.8.12"
+    "@module-federation/sdk" "0.8.12"
+
+"@module-federation/runtime@^0.8.11":
+  version "0.8.12"
+  resolved "https://registry.yarnpkg.com/@module-federation/runtime/-/runtime-0.8.12.tgz#ce3b4f04b6e523c809244745381982e085b494aa"
+  integrity sha512-eYohRfambj/qzxz6tEakDn459ROcixWO4zL5gmTEOmwG+jCDnxGR14j1guopyrrpjb6EKFNrPVWtYZTPPfGdQQ==
+  dependencies:
+    "@module-federation/error-codes" "0.8.12"
+    "@module-federation/runtime-core" "0.6.20"
+    "@module-federation/sdk" "0.8.12"
+
+"@module-federation/sdk@0.8.12":
+  version "0.8.12"
+  resolved "https://registry.yarnpkg.com/@module-federation/sdk/-/sdk-0.8.12.tgz#3822d3bb03ed4826ac31648a40df6d18cb943e37"
+  integrity sha512-zFgXYBHbzwIqlrLfn6ewIRXDZCctDDQT2nFhbsZr29yWQgpmW1fm2kJCxQsG0DENGGN1KpzfDoxjjvSKJS/ZHA==
+  dependencies:
+    isomorphic-rslog "0.0.7"
+
 "@microsoft/tsdoc@0.15.1", "@microsoft/tsdoc@~0.15.1":
   version "0.15.1"
   resolved "https://registry.yarnpkg.com/@microsoft/tsdoc/-/tsdoc-0.15.1.tgz#d4f6937353bc4568292654efb0a0e0532adbcba2"
@@ -19761,6 +19790,11 @@ isobject@^3.0.0, isobject@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/isobject/-/isobject-3.0.1.tgz#4e431e92b11a9731636aa1f9c8d1ccbcfdab78df"
   integrity sha512-WhB9zCku7EGTj/HQQRz5aUQEUeoQZH2bWcltRErOpymJ4boYE6wL9Tbr23krRPSZ+C5zqNSrSw+Cc7sZZ4b7vg==
+
+isomorphic-rslog@0.0.7:
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/isomorphic-rslog/-/isomorphic-rslog-0.0.7.tgz#e4e618b511a32f505e91ef28d9d5fb457ea1d45e"
+  integrity sha512-n6/XnKnZ5eLEj6VllG4XmamXG7/F69nls8dcynHyhcTpsPUYgcgx4ifEaCo4lQJ2uzwfmIT+F0KBGwBcMKmt5g==
 
 isstream@~0.1.2:
   version "0.1.2"
