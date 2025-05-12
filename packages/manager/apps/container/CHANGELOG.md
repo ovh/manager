@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.126.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.125.4...@ovh-ux/manager-container-app@0.126.0) (2025-05-12)
+
+
+### Features
+
+* revamp IAM navigation ([3208cb2](https://github.com/ovh/manager/commit/3208cb2c2433988c6b0cf8604014e66b59d70df5)), closes [#MANAGER-16233](https://github.com/ovh/manager/issues/MANAGER-16233) [#MANAGER-16249](https://github.com/ovh/manager/issues/MANAGER-16249) [#MANAGER-16250](https://github.com/ovh/manager/issues/MANAGER-16250)
+
+
+
+
+
 ## [0.125.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.125.3...@ovh-ux/manager-container-app@0.125.4) (2025-05-08)
 
 

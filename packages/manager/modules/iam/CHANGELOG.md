@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.14.6...@ovh-ux/manager-iam@1.15.0) (2025-05-12)
+
+
+### Features
+
+* revamp IAM navigation ([3208cb2](https://github.com/ovh/manager/commit/3208cb2c2433988c6b0cf8604014e66b59d70df5)), closes [#MANAGER-16233](https://github.com/ovh/manager/issues/MANAGER-16233) [#MANAGER-16249](https://github.com/ovh/manager/issues/MANAGER-16249) [#MANAGER-16250](https://github.com/ovh/manager/issues/MANAGER-16250)
+
+
+
+
+
 ## [1.14.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.14.5...@ovh-ux/manager-iam@1.14.6) (2025-04-14)
 
 
