@@ -1,5 +1,10 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('billing.autorenew.disableDomainsBulk', {
+  $stateProvider.state('billing.autorenew.disableDomainsBulkRedirection', {
+    url: '/disable-domains-bulk',
+    redirectTo: 'billing.autorenew.services.disableDomainsBulk',
+  });
+
+  $stateProvider.state('billing.autorenew.services.disableDomainsBulk', {
     url: '/disable-domains-bulk',
     views: {
       modal: {
