@@ -131,6 +131,20 @@ const routes: RouteObject[] = [
         ...lazyRouteConfig(() =>
           import('@/pages/instances/instance/Instance.page'),
         ),
+        children: [
+          {
+            path: '',
+            ...lazyRouteConfig(() =>
+              import('@/pages/instances/instance/dashboard/Dashboard.page'),
+            ),
+          },
+          {
+            path: 'vnc',
+            ...lazyRouteConfig(() =>
+              import('@/pages/instances/instance/vnc/VNC.page'),
+            ),
+          },
+        ],
       },
       {
         path: SECTIONS.edit,
