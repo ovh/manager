@@ -21,7 +21,6 @@ import InstanceImageSrc from '../../../../public/assets/instance.png';
 import { GUIDES } from './onboarding.constants';
 import { useInstances } from '@/data/hooks/instance/useInstances';
 import { Spinner } from '@/components/spinner/Spinner.component';
-import { safeTranslate } from '@/utils';
 
 const Onboarding: FC = () => {
   const { t } = useTranslation(['onboarding', 'common']);
@@ -95,9 +94,11 @@ const Onboarding: FC = () => {
             href={guide.links[ovhSubsidiary] ?? (guide.links.DEFAULT as string)}
             texts={{
               title: t(`pci_instances_onboarding_${guide.id}_title`),
-              description: safeTranslate(
+              description: t(
                 `pci_instances_onboarding_${guide.id}_description`,
-                t,
+                {
+                  defaultValue: '',
+                },
               ),
 
               category: t('pci_instances_onboarding_guide_title'),

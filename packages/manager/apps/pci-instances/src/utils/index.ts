@@ -2,7 +2,6 @@ import { ErrorBannerProps } from '@ovh-ux/manager-react-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { ErrorResponse, isRouteErrorResponse } from 'react-router-dom';
 import { AxiosError, isAxiosError } from 'axios';
-import { TFunction } from 'i18next';
 
 type RouterErrorResponse = Pick<
   ErrorResponse,
@@ -56,9 +55,4 @@ export const getPathMatch = <T extends string>(
 ): T | null => {
   const match = pathname.match(regex);
   return match ? (match[0] as T) : null;
-};
-
-export const safeTranslate = (key: string, t: TFunction) => {
-  const translation = t(key);
-  return translation === key ? '' : translation;
 };
