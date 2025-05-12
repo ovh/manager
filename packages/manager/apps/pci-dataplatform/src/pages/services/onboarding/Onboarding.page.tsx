@@ -3,7 +3,7 @@ import { AlertCircle, ArrowRight } from 'lucide-react';
 import { useParams } from 'react-router-dom';
 import { Trans, useTranslation } from 'react-i18next';
 import onboardingImgSrc from '@/../public/assets/onboarding-image.png';
-import OnboardingTile from './OnboardingTile.component';
+import OnboardingTile from './_components/OnboardingTile.component';
 import usePciProject from '@/hooks/api/project/usePciProject.hook';
 import { PlanCode } from '@/types/cloud/Project';
 import Link from '@/components/links/Link.component';
@@ -21,30 +21,6 @@ const Onboarding = () => {
       data-testid="onboarding-container-test"
       className="flex flex-col items-center gap-4"
     >
-      <img
-        src={onboardingImgSrc}
-        className="max-w-[500px]"
-        alt="dataplatform-image"
-      />
-      <h2>{t('title')}</h2>
-      <div>
-        <Trans
-          t={t}
-          i18nKey={'description_top'}
-          components={{
-            b: <b className="font-bold"></b>,
-          }}
-        ></Trans>
-      </div>
-      <div>
-        <Trans
-          t={t}
-          i18nKey={'description_bottom'}
-          components={{
-            b: <b className="font-bold"></b>,
-          }}
-        ></Trans>
-      </div>
       {isProjectDiscoveryMode && (
         <Alert variant="warning">
           <AlertDescription className="text-base">
@@ -69,6 +45,30 @@ const Onboarding = () => {
           </AlertDescription>
         </Alert>
       )}
+      <img
+        src={onboardingImgSrc}
+        className="max-w-[500px]"
+        alt="dataplatform-image"
+      />
+      <h2>{t('title')}</h2>
+      <div>
+        <Trans
+          t={t}
+          i18nKey={'description_top'}
+          components={{
+            b: <b className="font-bold"></b>,
+          }}
+        ></Trans>
+      </div>
+      <div>
+        <Trans
+          t={t}
+          i18nKey={'description_bottom'}
+          components={{
+            b: <b className="font-bold"></b>,
+          }}
+        ></Trans>
+      </div>
       <Button className="mt-2" disabled={isProjectDiscoveryMode}>
         <a href={DATA_PLATFORM_CONFIG_URL} target="blank">
           {t('button_text')}
