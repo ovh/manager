@@ -1,11 +1,22 @@
-import { apiClient } from '@ovh-ux/manager-core-api';
+import { v6 } from '@ovh-ux/manager-core-api';
 
 export type DeleteServiceParams = {
   serviceId: number;
 };
 
+const US_SUBSIDIARY = 'US';
 /**
- * Terminiate a service
+ * Delete service
  */
-export const deleteService = async ({ serviceId }: DeleteServiceParams) =>
-  apiClient.v6.post<{ message: string }>(`/services/${serviceId}/terminate`);
+export type DeleteServiceResponse = {
+  message: string;
+};
+
+export const deleteService = async (
+  { serviceId }: DeleteServiceParams,
+  ovhSubsidiary?: string,
+) => {
+  return ovhSubsidiary === US_SUBSIDIARY
+    ? v6.delete<DeleteServiceResponse>(`/services/${serviceId}`)
+    : v6.post<DeleteServiceResponse>(`/services/${serviceId}/terminate`);
+};
