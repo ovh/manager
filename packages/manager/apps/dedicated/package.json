@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-dedicated",
-  "version": "20.33.0",
+  "version": "20.34.0",
   "private": true,
   "description": "OVHcloud Dedicated control panel.",
   "repository": {
@@ -41,7 +41,7 @@
     "@ovh-ux/manager-iplb": "^1.22.1",
     "@ovh-ux/manager-metrics": "^1.6.1",
     "@ovh-ux/manager-models": "^2.4.4",
-    "@ovh-ux/manager-nasha": "^2.19.1",
+    "@ovh-ux/manager-nasha": "^2.20.0",
     "@ovh-ux/manager-netapp": "^2.12.1",
     "@ovh-ux/manager-ng-layout-helpers": "^2.11.2",
     "@ovh-ux/manager-nutanix": "^2.7.11",
