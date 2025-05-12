@@ -3,7 +3,7 @@
 exports[`Delete Modal component > renders loading modal 1`] = `
 <DocumentFragment>
   <ods-modal
-    color="warning"
+    color="critical"
     is-open="true"
   >
     <div
@@ -24,13 +24,14 @@ exports[`Delete Modal component > renders loading modal 1`] = `
         class="flex justify-end gap-2"
       >
         <ods-button
-          color="primary"
+          color="critical"
           data-testid="manager-delete-modal-cancel"
           label="Non, refuser"
           slot="actions"
           variant="ghost"
         />
         <ods-button
+          color="critical"
           data-testid="manager-delete-modal-confirm"
           is-loading="true"
           label="Oui, résilier"
