@@ -21,6 +21,6 @@
   "managed_vcd_dashboard_vrack_segment_add_network_input_helper": "L'adresse du sous-réseau doit être renseignée au format CIDR.",
   "managed_vcd_dashboard_vrack_segment_add_network_input_error": "Cette adresse sous-réseau existe déjà.",
   "managed_vcd_dashboard_vrack_segment_add_network_title": "Ajouter un sous-réseau",
-  "managed_vcd_dashboard_vrack_segment_add_network_success": "Le sous-réseau a été ajouté avec succés",
+  "managed_vcd_dashboard_vrack_segment_add_network_success": "Le sous-réseau a été ajouté avec succès",
   "managed_vcd_dashboard_vrack_segment_add_network_error": "Une erreur est survenue lors de l'ajout du sous-réseau : {{errorApi}}"
 }
