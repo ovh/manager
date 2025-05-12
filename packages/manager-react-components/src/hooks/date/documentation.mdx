@@ -1,33 +1,20 @@
-import { Meta, Source, ArgTypes } from '@storybook/blocks';
-import useFormatDateStories from './useFormatDate.stories.tsx'
+import {
+  StoryBookBanner,
+  StorybookHeading,
+  StorybookBestPractices,
+  StorybookIdentityCard,
+  StorybookTable,
+} from '../../../../manager-wiki/components/';
+import meta, { Default } from './useFormatDate.stories';
+import { Meta, Source } from '@storybook/blocks';
 
-<Meta of={useFormatDateStories}
-/>
+<Meta title="Core/Manager React Components/Hooks/useFormatDate/Documentation" />
 
-
-## useFormatDate (date-fns)
+<StoryBookBanner of={meta} />
 
 The useFormatDate hook leverages date-fns for formatting dates in a localized and customizable way.
 
-## Usage
-
-<Source
-code={`const formatDate = useFormatDate();
-formatDate({ date: '2024-09-14T09:21:21.943Z' });
-// → "14 Sept 2024" (default format)
-`}
-language="ts"
-/>
-
-## Parameters
-
-<ArgTypes include={['defaultUnknownLabel']} />
-
-## Parameters of formatDate
-
-<ArgTypes include={['date', 'format', 'unknownDateLabel']} />
-
-## Output examples
+<StorybookHeading label="Output examples" level={2} />
 
 <Source
 code={`
@@ -52,7 +39,7 @@ formatDate({ date: '2024-09-14T09:21:21.943Z', format: 'PPPPpppp' });
 language="ts"
 />
 
-## Handling invalid or missing dates
+<StorybookHeading label="Handling invalid or missing dates" level={2} />
 
 <Source
 code={`formatDate({ date: undefined });
@@ -64,10 +51,10 @@ formatDate({ date: '', unknownDateLabel: 'Unknown' });
 language="ts"
 />
 
-## Localization
+
+<StorybookHeading label="Localization" level={2} />
 
 The locale is automatically determined from the current i18n.language. Only 8 OVH locale are supported : en_GB, fr_FR, fr_CA, de_DE, es_ES, it_IT, pl_PL, pt_PT. If the locale is unsupported or undefined, it defaults to enGB.
-
 
 If you need use locales for another function of date fns you can use useDateFnsLocale
 
@@ -76,4 +63,3 @@ This allow easy use and optimize bundle size to import only necessay locale.
 ```tsx
 const localeFns = useDateFnsLocale();
 ```
-

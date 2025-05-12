@@ -1,0 +1,153 @@
+import {
+  StoryBookBanner,
+  StorybookHeading,
+  StorybookBestPractices,
+  StorybookIdentityCard,
+  StorybookTable,
+} from '../../../manager-wiki/components/';
+import { Meta, Canvas, Source } from '@storybook/blocks';
+
+import Links from '../../../manager-wiki/components/external-links';
+
+<Meta title="Core/OVH AT Internet/Overview" />
+
+# OVH AT Internet
+
+The OVH AT Internet tracking component is a TypeScript library that provides integration with AT Internet analytics for OVH applications. It handles user tracking, page views, clicks, events, and impressions across OVH services.
+
+<StorybookHeading label="Overview" level={2} />
+
+This component provides a unified interface for tracking user interactions with OVH services. It supports multiple tracking types including page views, clicks, events, impressions, and A/B testing. The component is designed to work with AT Internet's Tag Management System (TMS) and can be configured to work with different regions and environments.
+
+<StorybookHeading label="Key Features" level={2} />
+
+- **Multiple Tracking Types**: Supports page views, clicks, events, impressions, and A/B testing
+- **Region Support**: Configurable for different OVH regions
+- **Consent Management**: Handles user consent for tracking
+- **Debug Mode**: Includes debugging capabilities for development
+- **Mix Commander Integration**: Optional integration with Mix Commander for enhanced tracking
+- **Piano Analytics Support**: Optional integration with Piano Analytics
+
+<StorybookHeading label="Component Structure" level={2} />
+
+The component is organized into several key files:
+
+### Core Files
+
+- **ovh-at-internet.ts**: The main class that implements the tracking functionality
+- **index.ts**: Exports the main component and related interfaces
+- **track.ts**: Defines tracking data interfaces and types
+- **config.ts**: Provides configuration options for the tracking component
+- **constants.ts**: Contains constant values used throughout the component
+- **utils.ts**: Utility functions for the component
+- **manager-tms.ts**: Handles integration with AT Internet's Tag Management System
+- **mix-commander.ts**: Provides integration with Mix Commander for enhanced tracking
+
+<StorybookHeading label="Usage" level={2} />
+
+### Basic Implementation
+
+```typescript
+import OvhAtInternet from '@ovh-ux/ovh-at-internet';
+
+// Initialize the tracking component
+const atInternet = new OvhAtInternet();
+
+// Set default tracking data
+atInternet.setDefaults({
+  level2: 'Manager',
+  country: 'FR',
+});
+
+// Initialize tracking with user consent
+atInternet.init(true);
+
+// Track a page view
+atInternet.trackPage({
+  name: 'dashboard',
+  level2: 'Manager',
+});
+
+// Track a click
+atInternet.trackClick({
+  name: 'button',
+  chapter1: 'dashboard',
+  chapter2: 'actions',
+});
+```
+
+### Tracking Types
+
+The component supports several tracking types:
+
+- **Page Tracking**: Track page views with hierarchical navigation structure
+- **Click Tracking**: Track user clicks on elements
+- **Event Tracking**: Track custom events
+- **Impression Tracking**: Track ad impressions
+- **A/B Testing**: Track A/B test variations
+- **Mix Commander S3**: Track specific Mix Commander S3 events
+
+### Configuration Options
+
+The component can be configured with various options:
+
+- **Region**: Set the OVH region for tracking
+- **Enabled/Disabled**: Enable or disable tracking
+- **Default Values**: Set default values for all tracking calls
+- **Debug Mode**: Enable debug mode for development
+
+<StorybookHeading label="Constants" level={2} />
+
+The component includes several predefined constants:
+
+- **AT_INTERNET_LEVEL2**: Mapping of level2 values for different OVH services
+- **AT_INTERNET_WEBSITE**: Mapping of website values for different regions
+- **AT_INTERNET_CUSTOM_PROPS**: Custom properties for tracking
+- **PCI_PROJECT_MODE_VALUES**: Values for PCI project modes
+
+<StorybookHeading label="Integration with AT Internet TMS" level={2} />
+
+The component integrates with AT Internet's Tag Management System (TMS) to provide tracking functionality. It loads the TMS script in an iframe and provides methods to interact with it.
+
+<StorybookHeading label="Debugging" level={2} />
+
+Debug mode can be enabled by setting the `MANAGER_TRACKING_DEBUG` item in localStorage. When enabled, debug messages will be logged to the console.
+
+```javascript
+// Enable debug mode
+localStorage.setItem('MANAGER_TRACKING_DEBUG', 'true');
+```
+
+<StorybookHeading label="Advanced Usage" level={2} />
+
+<StorybookHeading label="Mix Commander Integration" level={3} />
+
+The component can be integrated with Mix Commander for enhanced tracking capabilities. This is enabled by setting the appropriate configuration.
+
+<StorybookHeading label="Piano Analytics Integration" level={3} />
+
+
+The component can be integrated with Piano Analytics for additional tracking capabilities. This is enabled by setting the appropriate configuration.
+
+
+<StorybookHeading label="Custom Tracking Data" level={3} />
+
+Custom tracking data can be added to any tracking call:
+
+```typescript
+atInternet.trackPage({
+  name: 'dashboard',
+  level2: 'Manager',
+  customProperty: 'value',
+});
+```
+
+<StorybookHeading label="Best Practices" level={2} />
+
+1. Always initialize the component before using it
+2. Set appropriate default values for your application
+3. Use consistent naming conventions for tracking data
+4. Enable debug mode during development
+5. Handle user consent appropriately
+
+

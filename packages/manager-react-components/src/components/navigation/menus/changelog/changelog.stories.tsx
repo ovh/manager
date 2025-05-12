@@ -23,7 +23,7 @@ export const changelogButton: ChangelogButtonProps = {
 };
 
 const meta: Meta<ChangelogButtonProps> = {
-  title: 'Navigation/Menus',
+  title: 'Core/Manager React Components/Navigation/Menus',
   decorators: [withRouter],
   component: ChangelogButton,
   argTypes: {},

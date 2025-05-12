@@ -9,6 +9,7 @@ const config: StorybookConfig = {
     '../../components/**/*.stories.tsx',
     '../../components/**/*.mdx',
     '../introduction.mdx',
+    '../introduction.mdx',
   ],
   addons: [
     '@storybook/addon-links',

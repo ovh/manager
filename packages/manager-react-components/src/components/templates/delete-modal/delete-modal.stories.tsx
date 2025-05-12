@@ -10,7 +10,7 @@ export const DeleteModal = (props: DeleteModalProps) => (
 );
 
 const meta: Meta = {
-  title: 'Templates/Delete Modal',
+  title: 'Core/Manager React Components/Templates/Delete Modal',
   component: DeleteModalComponent,
   argTypes: {
     isOpen: { control: 'boolean' },
