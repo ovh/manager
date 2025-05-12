@@ -5,5 +5,6 @@
   "hycu_terminate_cancel_label": "Anular",
   "hycu_terminate_confirm_label": "Rescindir",
   "hycu_terminate_success_message": "O seu pedido de rescisão do {{serviceName}} foi registado. Irá receber um e-mail para a validar.",
-  "hycu_terminate_error_message": "Ocorreu um erro: {{error}}."
+  "hycu_terminate_error_message": "Ocorreu um erro: {{error}}.",
+  "hycu_terminate_success_message_us": "O seu pedido de rescisão foi registado com êxito. Foi-lhe enviado um e-mail de confirmação."
 }
