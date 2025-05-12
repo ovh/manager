@@ -32,21 +32,29 @@ import { BadgeStatusCell, DiagnosticCell, LinkCell } from './Cells.component';
 import { GUIDE_URL, ORDER_URL } from './websites.constants';
 import { getAllWebHostingAttachedDomain } from '@/data/api/AttachedDomain';
 import { EXPORT_CSV, ORDER_CTA, WEBSITE } from '@/utils/tracking.constants';
+import { useDebouncedValue } from '@/hooks/debouncedValue/useDebouncedValue';
+import { buildURLSearchParams } from '@/utils/url';
 
 export default function Websites() {
   const { t } = useTranslation('common');
   const [isExportPopoverOpen, setIsExportPopoverOpen] = useState(false);
   const [isCSVLoading, setIsCSVLoading] = useState(false);
   const csvPopoverRef = useRef<HTMLOdsPopoverElement>(null);
+
+  const [
+    searchInput,
+    setSearchInput,
+    debouncedSearchInput,
+    setDebouncedSearchInput,
+  ] = useDebouncedValue('');
+  const { notifications, addSuccess } = useNotifications();
   const {
     data,
     fetchNextPage,
     hasNextPage,
     isLoading,
     isFetchingNextPage,
-  } = useWebHostingAttachedDomain();
-
-  const { notifications, addSuccess } = useNotifications();
+  } = useWebHostingAttachedDomain({ domain: debouncedSearchInput });
   const { trackClick } = useOvhTracking();
 
   const items = data ? data.map((website: WebsiteType) => website) : [];
@@ -64,6 +72,7 @@ export default function Websites() {
         />
       ),
       enableHiding: false,
+      isSearchable: true,
     },
     {
       id: 'diagnostic',
@@ -346,7 +355,8 @@ export default function Websites() {
   const handleExportAllWithExportToCsv = async () => {
     csvPopoverRef.current?.hide();
     setIsCSVLoading(true);
-    const result = await getAllWebHostingAttachedDomain();
+    const searchParams = buildURLSearchParams({ domain: debouncedSearchInput });
+    const result = await getAllWebHostingAttachedDomain(searchParams);
     if (result?.data && result.data.length > 0) {
       handleExportWithExportToCsv(result.data);
     }
@@ -452,6 +462,11 @@ export default function Websites() {
             </OdsPopover>
           </div>
         }
+        search={{
+          searchInput,
+          setSearchInput,
+          onSearch: (search) => setDebouncedSearchInput(search),
+        }}
       />
     </BaseLayout>
   );
