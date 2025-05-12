@@ -12,6 +12,12 @@ import {
   useDetachVolume,
   useVolume,
 } from './useVolume';
+import {
+  MOCKED_INSTANCE_ID,
+  MOCKED_PROJECT_ID,
+  MOCKED_VOLUME,
+  MOCKED_VOLUME_ID,
+} from '@/__tests__/mocks';
 
 vi.mock('@/data/api/volume', () => ({
   getVolume: vi.fn(),
@@ -19,51 +25,37 @@ vi.mock('@/data/api/volume', () => ({
   detachVolume: vi.fn(),
 }));
 
-const mockVolume = {
-  id: 'volume-1',
-  attachedTo: [],
-  creationDate: '2025-04-15T10:30:45Z',
-  name: 'test-volume',
-  description: 'Test volume for unit tests',
-  size: 50,
-  status: 'available',
-  region: 'GRA7',
-  bootable: false,
-  planCode: 'volume.classic',
-  availabilityZone: 'nova',
-  type: 'classic',
-};
-
-const projectId = 'project-1';
-const volumeId = 'volume-1';
-const instanceId = 'instance-1';
-
 describe('useVolume', () => {
   beforeEach(() => {
     vi.resetAllMocks();
   });
 
   it('should call getVolume with the correct parameters', async () => {
-    vi.mocked(getVolume).mockResolvedValue(mockVolume);
+    vi.mocked(getVolume).mockResolvedValue(MOCKED_VOLUME);
 
-    const { result } = renderHook(() => useVolume(projectId, volumeId), {
-      wrapper: createWrapper(),
-    });
+    const { result } = renderHook(
+      () => useVolume(MOCKED_PROJECT_ID, MOCKED_VOLUME_ID),
+      {
+        wrapper: createWrapper(),
+      },
+    );
 
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
 
-    expect(getVolume).toHaveBeenCalledWith(projectId, volumeId);
-    expect(result.current.data).toEqual(mockVolume);
+    expect(getVolume).toHaveBeenCalledWith(MOCKED_PROJECT_ID, MOCKED_VOLUME_ID);
+    expect(result.current.data).toEqual(MOCKED_VOLUME);
   });
 
-  it('should not call getVolume if projectId or volumeId is undefined', async () => {
-    renderHook(() => useVolume(undefined, volumeId), {
+  it('should not call getVolume if MOCKED_PROJECT_ID or MOCKED_VOLUME_ID is undefined', async () => {
+    renderHook(() => useVolume(undefined, MOCKED_VOLUME_ID), {
       wrapper: createWrapper(),
     });
-    renderHook(() => useVolume(projectId, undefined), {
+    renderHook(() => useVolume(MOCKED_PROJECT_ID, undefined), {
       wrapper: createWrapper(),
     });
-    renderHook(() => useVolume(projectId, null), { wrapper: createWrapper() });
+    renderHook(() => useVolume(MOCKED_PROJECT_ID, null), {
+      wrapper: createWrapper(),
+    });
 
     expect(getVolume).not.toHaveBeenCalled();
   });
@@ -84,10 +76,15 @@ describe('useCreateVolumeFromBackup', () => {
   });
 
   it('should create a volume from backup successfully', async () => {
-    vi.mocked(createVolumeFromBackup).mockResolvedValue(mockVolume);
+    vi.mocked(createVolumeFromBackup).mockResolvedValue(MOCKED_VOLUME);
 
     const { result } = renderHook(
-      () => useCreateVolumeFromBackup({ projectId, onSuccess, onError }),
+      () =>
+        useCreateVolumeFromBackup({
+          projectId: MOCKED_PROJECT_ID,
+          onSuccess,
+          onError,
+        }),
       { wrapper: createWrapper() },
     );
 
@@ -96,12 +93,12 @@ describe('useCreateVolumeFromBackup', () => {
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
 
     expect(createVolumeFromBackup).toHaveBeenCalledWith(
-      projectId,
+      MOCKED_PROJECT_ID,
       newVolumeData.regionName,
       newVolumeData.volumeBackupId,
       newVolumeData.volumeName,
     );
-    expect(onSuccess).toHaveBeenCalledWith(mockVolume);
+    expect(onSuccess).toHaveBeenCalledWith(MOCKED_VOLUME);
   });
 
   it('should handle errors when creating a volume', async () => {
@@ -110,7 +107,12 @@ describe('useCreateVolumeFromBackup', () => {
     vi.mocked(createVolumeFromBackup).mockRejectedValue(error);
 
     const { result } = renderHook(
-      () => useCreateVolumeFromBackup({ projectId, onSuccess, onError }),
+      () =>
+        useCreateVolumeFromBackup({
+          projectId: MOCKED_PROJECT_ID,
+          onSuccess,
+          onError,
+        }),
       { wrapper: createWrapper() },
     );
 
@@ -132,14 +134,14 @@ describe('useDetachVolume', () => {
   });
 
   it('should detach a volume successfully', async () => {
-    vi.mocked(detachVolume).mockResolvedValue(mockVolume);
+    vi.mocked(detachVolume).mockResolvedValue(MOCKED_VOLUME);
 
     const { result } = renderHook(
       () =>
         useDetachVolume({
-          projectId,
-          volumeId,
-          instanceId,
+          projectId: MOCKED_PROJECT_ID,
+          volumeId: MOCKED_VOLUME_ID,
+          instanceId: MOCKED_INSTANCE_ID,
           onSuccess,
           onError,
         }),
@@ -150,8 +152,12 @@ describe('useDetachVolume', () => {
 
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
 
-    expect(detachVolume).toHaveBeenCalledWith(projectId, volumeId, instanceId);
-    expect(onSuccess).toHaveBeenCalledWith(mockVolume);
+    expect(detachVolume).toHaveBeenCalledWith(
+      MOCKED_PROJECT_ID,
+      MOCKED_VOLUME_ID,
+      MOCKED_INSTANCE_ID,
+    );
+    expect(onSuccess).toHaveBeenCalledWith(MOCKED_VOLUME);
   });
 
   it('should handle errors when detaching a volume', async () => {
@@ -162,9 +168,9 @@ describe('useDetachVolume', () => {
     const { result } = renderHook(
       () =>
         useDetachVolume({
-          projectId,
-          volumeId,
-          instanceId,
+          projectId: MOCKED_PROJECT_ID,
+          volumeId: MOCKED_VOLUME_ID,
+          instanceId: MOCKED_INSTANCE_ID,
           onSuccess,
           onError,
         }),

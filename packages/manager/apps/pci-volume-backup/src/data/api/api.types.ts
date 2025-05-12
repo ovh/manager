@@ -1,4 +1,4 @@
-import { TAddon } from '@ovh-ux/manager-pci-common';
+import { TAddon, TVolume } from '@ovh-ux/manager-pci-common';
 
 export type TVolumeType =
   | 'classic'
@@ -47,21 +47,6 @@ export type TBackup = {
   volumeId: string;
   region: string;
   status: TBackupStatus;
-};
-
-export type TVolume = {
-  id: string;
-  attachedTo: string[];
-  creationDate: string;
-  name: string;
-  description: string;
-  size: number;
-  status: TVolumeStatus;
-  region: string;
-  bootable: boolean;
-  planCode: string | null;
-  availabilityZone: string | null;
-  type: TVolumeType;
 };
 
 export type TVolumeBackup = TBackup & {
