@@ -56,5 +56,7 @@
   "ovh_contact_edit_invalid_email": "Der Wert muss eine gültige E-Mail-Adresse sein.",
   "ovh_contact_edit_invalid_phone": "Bitte überprüfen Sie das Format der Telefonnummer.",
   "ovh_contact_edit_label_address_cityName": "Stadt",
-  "ovh_contact_edit_label_address_zipCode": "Postleitzahl"
+  "ovh_contact_edit_label_address_zipCode": "Postleitzahl",
+  "ovh_contact_edit_label_city_name": "Stadt",
+  "ovh_contact_edit_label_zip_code": "Postleitzahl"
 }

@@ -43,7 +43,6 @@ export default function MeComponent({
         color="primary"
         label={t(`domain_operations_update_${argumentKey}_click`)}
         className="block modal-link"
-        target="_blank"
         icon="external-link"
         isDisabled={!url}
       />

@@ -72,6 +72,8 @@
   "form_email_helper_rule_1": "Elle doit se terminer par une lettre ou un numéro",
   "form_email_helper_rule_2": "Les caractères spéciaux autorisés sont \".\", \"+\", \"-\" et \"_\"",
   "form_email_helper_rule_3": "Les caractères spéciaux ne peuvent pas être placés côte à côte",
+  "generate_password_tooltip": "Générer un mot de passe",
+  "generated_password_tooltip": "Mot de passe copié dans le presse-papier !",
   "from": "Du",
   "until": "Jusqu'au",
   "name": "Nom",

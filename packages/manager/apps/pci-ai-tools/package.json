@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-ai-tools-app",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "private": true,
   "description": "pci-ai-tools",
   "repository": {
@@ -27,7 +27,7 @@
     "@ovh-ux/manager-core-api": "^0.11.1",
     "@ovh-ux/manager-react-shell-client": "^0.8.7",
     "@ovh-ux/request-tagger": "^0.4.1",
-    "@ovh-ux/shell": "^4.4.2",
+    "@ovh-ux/shell": "^4.4.3",
     "@tanstack/react-query": "^5.51.21",
     "@tanstack/react-table": "^8.20.1",
     "clsx": "^2.1.0",

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-iam",
-  "version": "1.14.6",
+  "version": "1.15.0",
   "private": true,
   "description": "IAM product.",
   "repository": {
@@ -14,7 +14,7 @@
   "peerDependencies": {
     "@ovh-ux/manager-at-internet-configuration": "^1.5.0",
     "@ovh-ux/manager-core": "^12.16.1",
-    "@ovh-ux/manager-log-to-customer": "^2.3.4",
+    "@ovh-ux/manager-log-to-customer": "^2.5.0",
     "@ovh-ux/manager-ng-apiv2-helper": "^0.1.0",
     "@ovh-ux/manager-ng-layout-helpers": "^2.6.2",
     "@ovh-ux/ng-at-internet": "^5.10.2",
@@ -25,7 +25,7 @@
     "@ovh-ux/ng-ovh-utils": "^14.3.0",
     "@ovh-ux/ng-pagination-front": "^10.3.0",
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.8",
-    "@ovh-ux/ng-ui-router-layout": "^4.3.2",
+    "@ovh-ux/ng-ui-router-layout": "^4.3.3",
     "@ovh-ux/ui-kit": "^6.10.0",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",

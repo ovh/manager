@@ -13,7 +13,7 @@ const SimpleTile: React.FC<React.PropsWithChildren<{
 }>> = ({ children, onClick, isActive, className }) => (
   <OdsCard
     className={clsx(
-      'flex  items-center flex-col justify-center min-w-[50%] max-w-[50%]  md:min-w-[25%] md:max-w-[25%]  text-center p-6',
+      'flex  items-center flex-col justify-center min-w-[50%] max-w-[50%]  md:min-w-[25%] md:max-w-[25%]  text-center p-6 border',
       {
         'cursor-pointer': onClick,
         'cursor-default': !onClick,
