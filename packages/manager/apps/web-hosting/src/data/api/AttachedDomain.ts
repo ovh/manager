@@ -1,19 +1,28 @@
 import { fetchIcebergV2 } from '@ovh-ux/manager-core-api';
 import { WebsiteType } from '@/data/type';
 
-export const getWebHostingAttachedDomainQueryKey = (shouldFetchAll?: boolean) =>
-  ['get', 'webhosting', 'attachedDomain', shouldFetchAll ? 'all' : ''].filter(
-    Boolean,
-  );
+export const getWebHostingAttachedDomainQueryKey = (
+  searchParams: string,
+  shouldFetchAll?: boolean,
+) =>
+  [
+    'get',
+    'webhosting',
+    'attachedDomain',
+    searchParams,
+    shouldFetchAll ? 'all' : '',
+  ].filter(Boolean);
 export const getWebHostingAttachedDomain = async ({
   pageParam,
+  searchParams,
   pageSize = 15,
 }: {
   pageParam?: string;
+  searchParams?: string;
   pageSize?: number;
 }) => {
   const response = await fetchIcebergV2<WebsiteType>({
-    route: '/webhosting/attachedDomain',
+    route: `/webhosting/attachedDomain${searchParams}`,
     pageSize,
     cursor: pageParam,
   });

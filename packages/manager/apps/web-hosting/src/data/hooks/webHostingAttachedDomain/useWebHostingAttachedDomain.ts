@@ -8,22 +8,33 @@ import {
   getWebHostingAttachedDomainQueryKey,
 } from '@/data/api/AttachedDomain';
 import { WebsiteType } from '@/data/type';
+import { buildURLSearchParams } from '@/utils';
 
 type UseWebsitesListParams = Omit<
   UseInfiniteQueryOptions,
   'queryKey' | 'queryFn' | 'select' | 'getNextPageParam' | 'initialPageParam'
->;
+> & {
+  domain?: string;
+  shouldFetchAll?: boolean;
+};
 
 export const useWebHostingAttachedDomain = (
   props: UseWebsitesListParams = {},
 ) => {
+  const { domain, ...options } = props;
+  const searchParams = buildURLSearchParams({
+    domain,
+  });
+
   const query = useInfiniteQuery({
-    ...props,
+    ...options,
     initialPageParam: null,
-    queryKey: getWebHostingAttachedDomainQueryKey(false),
+
+    queryKey: getWebHostingAttachedDomainQueryKey(searchParams),
     queryFn: ({ pageParam }) =>
       getWebHostingAttachedDomain({
         pageParam: pageParam as string,
+        searchParams,
         pageSize: 15,
       }),
     enabled: (q) =>
