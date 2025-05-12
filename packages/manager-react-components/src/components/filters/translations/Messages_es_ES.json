@@ -14,5 +14,10 @@
   "common_criteria_adder_true_label": "Sí",
   "common_criteria_adder_false_label": "No",
   "common_criteria_adder_value_label": "Valor",
-  "common_criteria_adder_submit_label": "Añadir"
+  "common_criteria_adder_submit_label": "Añadir",
+  "common_criteria_adder_operator_EQ": "es igual a",
+  "common_criteria_adder_operator_NEQ": "es diferente de",
+  "common_criteria_adder_operator_EXISTS": "existe",
+  "common_criteria_adder_operator_NEXISTS": "no existe",
+  "common_criteria_adder_key_label": "Clave"
 }
