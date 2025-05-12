@@ -54,7 +54,7 @@ describe('RenameClusterPage', () => {
     });
     expect(getByTestId('renameCluster-formfield')).toHaveAttribute(
       'error',
-      'pci_projects_project_kubernetes_details_service_name_input_pattern_validation_error common_field_error_maxlength',
+      'pci_projects_project_kubernetes_details_service_name_input_pattern_validation_error',
     );
   });
 
