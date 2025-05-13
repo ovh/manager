@@ -1,0 +1,176 @@
+import {
+  StoryBookBanner,
+  StorybookHeading,
+  StorybookBestPractices,
+  StorybookIdentityCard,
+  StorybookTable,
+} from '../../../manager-wiki/components/';
+import { Meta, Canvas, Source } from '@storybook/blocks';
+
+import Links from '../../../manager-wiki/components/external-links';
+
+<Meta title="Core/shell/Overview" />
+
+# OVH Shell Component
+
+The OVH Shell component is a TypeScript library that facilitates communication and interaction between applications in the OVH ecosystem. It provides a robust messaging system, plugin architecture, and client-server communication framework for building modular, interconnected applications.
+
+## Overview
+
+OVH Shell serves as the backbone for OVH's micro-frontend architecture, enabling different applications to communicate with each other seamlessly. It provides a standardized way for applications to share functionality, exchange data, and coordinate user experiences across the OVH platform.
+
+## Key Features
+
+- **Message Bus System**: Facilitates communication between different parts of the application
+- **Plugin Architecture**: Extensible system for adding functionality to the shell
+- **Client-Server Communication**: Enables iframe-based applications to communicate with the shell
+- **Environment Management**: Handles application environment configuration
+- **Authentication Integration**: Provides authentication services to applications
+- **Navigation Control**: Manages application navigation and routing
+- **Internationalization (i18n)**: Supports multiple languages
+- **User Experience Components**: Includes UI components like modals
+- **Tracking Integration**: Integrates with OVH AT Internet for analytics
+
+## Component Structure
+
+The OVH Shell component is organized into several key modules:
+
+### Core Modules
+
+- **Shell**: The main class that manages plugins and message handling
+- **Client**: Provides APIs for applications to interact with the shell
+- **Message Bus**: Handles communication between different parts of the application
+- **Plugin System**: Extensible architecture for adding functionality
+
+### Plugins
+
+The shell includes several built-in plugins:
+
+- **Auth**: Handles authentication and user management
+- **Environment**: Manages application environment configuration
+- **i18n**: Provides internationalization support
+- **Navigation**: Controls application navigation
+- **Routing**: Manages application routing
+- **Tracking**: Integrates with OVH AT Internet for analytics
+- **UX**: Provides user experience components like modals
+- **Logger**: Handles logging functionality
+
+## Usage
+
+### Basic Implementation
+
+```typescript
+import { initShellClient, ShellClientApi } from '@ovh-ux/shell';
+
+// Initialize the shell client
+const shellClient = initShellClient();
+
+// Use the shell client API
+shellClient.environment.getEnvironment().then((environment) => {
+  console.log('Current environment:', environment);
+});
+
+// Navigate to a different application
+shellClient.navigation.navigateTo('public-cloud', 'pci/projects/new');
+```
+
+### Plugin Usage
+
+```typescript
+import { plugin } from '@ovh-ux/shell';
+
+// Register a custom plugin
+plugin.register('my-plugin', {
+  myMethod: (arg1, arg2) => {
+    // Plugin implementation
+    return Promise.resolve({ result: arg1 + arg2 });
+  },
+});
+
+// Use the plugin from another application
+shellClient.invokePluginMethod({
+  plugin: 'my-plugin',
+  method: 'myMethod',
+  args: [1, 2],
+}).then((result) => {
+  console.log('Plugin result:', result);
+});
+```
+
+### Message Bus
+
+```typescript
+import { DirectClientMessageBus, IFrameMessageBus } from '@ovh-ux/shell';
+
+// Create a direct client message bus
+const messageBus = new DirectClientMessageBus();
+
+// Send a message
+messageBus.send({
+  type: 'event',
+  message: {
+    eventId: 'my-event',
+    data: { foo: 'bar' },
+  },
+});
+
+// Receive messages
+messageBus.onReceive((message) => {
+  console.log('Received message:', message);
+});
+```
+
+## Architecture
+
+The OVH Shell follows a client-server architecture:
+
+1. **Shell**: The central component that manages plugins and handles messages
+2. **Client**: Applications that communicate with the shell
+3. **Message Bus**: The communication channel between the shell and clients
+4. **Plugins**: Extensions that provide functionality to the shell
+
+### Communication Flow
+
+1. A client sends a message to the shell via the message bus
+2. The shell receives the message and routes it to the appropriate plugin
+3. The plugin processes the message and returns a result
+4. The shell sends the result back to the client via the message bus
+
+## Integration with OVH AT Internet
+
+The OVH Shell integrates with OVH AT Internet for analytics tracking. It provides a standardized way for applications to track user interactions, page views, and events.
+
+```typescript
+// Track a page view
+shellClient.tracking.trackPage({
+  name: 'dashboard',
+  level2: 'Manager',
+});
+
+// Track a click
+shellClient.tracking.trackClick({
+  name: 'button',
+  chapter1: 'dashboard',
+  chapter2: 'actions',
+});
+```
+
+## Best Practices
+
+1. **Use the Plugin System**: Extend functionality through plugins rather than modifying the core
+2. **Handle Errors Gracefully**: Always handle errors in plugin methods and client calls
+3. **Use TypeScript**: Leverage TypeScript for type safety and better developer experience
+4. **Follow the Message Protocol**: Adhere to the defined message protocol for communication
+5. **Keep Plugins Focused**: Each plugin should have a single responsibility
+
+## Dependencies
+
+The OVH Shell component has the following key dependencies:
+
+- `@ovh-ux/manager-config`: Configuration management
+- `@ovh-ux/ovh-at-internet`: Analytics tracking
+- `@ovh-ux/ovh-reket`: HTTP client
+- `@ovh-ux/request-tagger`: Request tagging
+- `@ovh-ux/url-builder`: URL building
+- `dompurify`: DOM sanitization
+- `nanoid`: ID generation

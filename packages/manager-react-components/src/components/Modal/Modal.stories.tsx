@@ -117,6 +117,6 @@ Full.args = {
 };
 
 export default {
-  title: 'Core/Manager React Components/Components/Modal',
+  title: 'Core/manager-react-components/Components/Modal',
   component: Modal,
 };

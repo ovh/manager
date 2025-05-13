@@ -2,8 +2,22 @@ import { StorybookConfig } from '@storybook/react-vite';
 
 const config: StorybookConfig = {
   stories: [
-    '../../manager-react-components/**/*.stories.tsx',
-    '../../manager-react-components/**/*.mdx',
+    '../../manager-react-components/src/**/*.stories.tsx',
+    '../../manager-react-components/src/**/*.mdx',
+    '../../manager/modules/common-api/docs/**/*.mdx',
+    '../../manager/modules/common-translations/docs/**/*.mdx',
+    '../../manager/modules/manager-pci-common/docs/**/*.mdx',
+    '../../manager/modules/vcd-api/docs/**/*.mdx',
+    '../../manager/core/api/docs/**/*.mdx',
+    '../../manager/core/generator/docs/**/*.mdx',
+    '../../manager/core/request-tagger/docs/**/*.mdx',
+    '../../manager/core/shell-client/docs/**/*.mdx',
+    '../../manager/core/sso/docs/**/*.mdx',
+    '../../manager/core/tailwind-config/docs/***/*.mdx',
+    '../../manager/core/utils/docs/**/*.mdx',
+    '../../manager/core/vite-config/docs/***/*.mdx',
+    '../../components/ovh-at-internet/docs/***/*.mdx',
+    '../../components/ovh-shell/docs**/*.mdx',
     '../introduction.mdx',
   ],
   addons: [
@@ -28,7 +42,11 @@ const config: StorybookConfig = {
     defaultName: 'Technical information',
   },
   typescript: {
-    reactDocgen: 'react-docgen-typescript', // Necessary for extracting TypeScript types
+    reactDocgen: 'react-docgen-typescript',
+    check: false,
+  },
+  core: {
+    disableTelemetry: true,
   },
   managerHead: (head) => `
     ${head}

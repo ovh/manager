@@ -1,0 +1,208 @@
+import {
+  StoryBookBanner,
+  StorybookHeading,
+  StorybookBestPractices,
+  StorybookIdentityCard,
+  StorybookTable,
+} from '../../../../manager-wiki/components';
+import { Meta, Canvas, Source } from '@storybook/blocks';
+
+import Links from '../../../../manager-wiki/components/external-links';
+
+<Meta title="Features/pci-common/Overview" />
+
+# Manager PCI Common Module
+
+The Manager PCI Common module is a collection of reusable components, hooks, and utilities for OVH Public Cloud Infrastructure (PCI) applications. It provides a standardized set of UI components, data handling utilities, and common functionality that can be shared across different PCI applications.
+
+<StorybookHeading label="Overview" level={2} />
+
+This module serves as a foundation for building consistent and maintainable PCI applications within the OVH ecosystem. It encapsulates common patterns, UI components, and data handling logic to ensure a cohesive user experience across different PCI services.
+
+<StorybookHeading label="Key Features" level={2} />
+
+- **Reusable UI Components**: A collection of standardized UI components for PCI applications
+- **Data Handling Hooks**: Custom React hooks for common data operations
+- **API Integration**: Utilities for interacting with PCI APIs
+- **Constants and Configuration**: Shared constants and configuration values
+- **Testing Utilities**: Tools for testing PCI applications
+
+<StorybookHeading label="Module Structure" level={2} />
+
+The module is organized into several key directories:
+
+### Components
+
+The module includes a variety of UI components:
+
+- **Accordion**: Collapsible content sections
+- **Banner**: Notification banners
+- **Region Selector**: Component for selecting cloud regions
+- **Logs**: Components for displaying logs
+- **Modal**: Dialog boxes and popups
+- **Flavor Selector**: Component for selecting instance flavors
+- **Tabs Panel**: Tabbed interface components
+- **Quantity Selector**: Component for selecting quantities
+- **Pricing**: Components for displaying pricing information
+- **Rclone Download**: Components for Rclone downloads
+- **Shape Input**: Components for inputting shape configurations
+- **Tiles Input Choice**: Tile-based selection components
+
+### Hooks
+
+The module provides several custom React hooks:
+
+- **useBytes**: Hook for handling byte conversions
+- **usePciUrl**: Hook for generating PCI URLs
+- **usePricing**: Hook for handling pricing calculations
+
+### API
+
+The module includes utilities for interacting with PCI APIs:
+
+- **API Schema**: Type definitions for API responses
+- **Availability**: Utilities for checking service availability
+- **Catalog**: Utilities for accessing service catalogs
+- **Dbaas Logs**: Utilities for database-as-a-service logs
+- **Flavors**: Utilities for instance flavors
+- **Instance**: Utilities for managing instances
+- **Operation**: Utilities for tracking operations
+- **Project**: Utilities for managing projects
+- **Regions**: Utilities for working with regions
+- **Image**: Utilities for managing images
+- **Volume**: Utilities for managing volumes
+
+### Constants
+
+The module includes various constants:
+
+- **URLs**: Predefined URLs for different regions and services
+- **Styles**: Common style constants
+
+<StorybookHeading label="Usage" level={2} />
+
+### Basic Component Usage
+
+```tsx
+import { Accordion } from '@ovh-ux/manager-pci-common';
+
+function MyComponent() {
+  return (
+    <Accordion>
+      <Accordion.Item title="Section 1">
+        <p>Content for section 1</p>
+      </Accordion.Item>
+      <Accordion.Item title="Section 2">
+        <p>Content for section 2</p>
+      </Accordion.Item>
+    </Accordion>
+  );
+}
+```
+
+### Using Hooks
+
+```tsx
+import { usePricing, useBytes } from '@ovh-ux/manager-pci-common';
+
+function PricingComponent() {
+  const { pricing } = usePricing({
+    serviceName: 'compute',
+    region: 'GRA7',
+    instanceName: 's1-2',
+    quantity: 1,
+  });
+
+  const formattedBytes = useBytes(1024 * 1024); // 1MB
+
+  return (
+    <div>
+      <p>Price: {pricing.price.text}</p>
+      <p>Size: {formattedBytes.text}</p>
+    </div>
+  );
+}
+```
+
+### API Integration
+
+```tsx
+import { useQuery } from '@tanstack/react-query';
+import { getRegions } from '@ovh-ux/manager-pci-common';
+
+function RegionsComponent() {
+  const { data: regions, isLoading } = useQuery({
+    queryKey: ['regions'],
+    queryFn: () => getRegions(),
+  });
+
+  if (isLoading) return <div>Loading...</div>;
+
+  return (
+    <ul>
+      {regions.map((region) => (
+        <li key={region.name}>{region.name}</li>
+      ))}
+    </ul>
+  );
+}
+```
+
+<StorybookHeading label="Best Practices" level={2} />
+
+1. **Use the Provided Components**: Leverage the standardized components for consistent UI
+2. **Utilize Custom Hooks**: Use the provided hooks for common data operations
+3. **Follow API Patterns**: Adhere to the established patterns for API interactions
+4. **Maintain Consistency**: Ensure your application follows the same patterns as other PCI applications
+5. **Write Tests**: Use the provided testing utilities to ensure your components work correctly
+
+<StorybookHeading label="Integration with OVH Shell" level={2} />
+
+The module integrates with the OVH Shell for navigation, authentication, and other shell services:
+
+```tsx
+import { useShell } from '@ovh-ux/manager-react-shell-client';
+import { usePciUrl } from '@ovh-ux/manager-pci-common';
+
+function NavigationComponent() {
+  const shell = useShell();
+  const { getProjectUrl } = usePciUrl();
+
+  const handleNavigate = () => {
+    const url = getProjectUrl('my-project-id');
+    shell.navigation.navigateTo(url);
+  };
+
+  return <button onClick={handleNavigate}>Go to Project</button>;
+}
+```
+
+<StorybookHeading label="Dos & Don'ts" level={2} />
+
+<StorybookBestPractices
+  dos={[
+    'Do implement proper error handling for API calls',
+    'Do provide clear documentation for API endpoints',
+    'Do implement rate limiting to prevent abuse',
+    'Do validate all input parameters',
+  ]}
+  donts={[
+    'Do not expose sensitive credentials in API responses',
+    'Do not bypass authentication mechanisms',
+    'Do not make unnecessary API calls',
+  ]}
+/>
+
+<StorybookHeading label="Behavior" level={2} />
+
+**States**
+
+- **Default**:
+  - Provides access to VCD API endpoints
+- **Authentication**:
+  - Handles API authentication and authorization
+- **Resource Management**:
+  - Manages VCD resource operations
+- **Error Handling**:
+  - Provides appropriate error responses
+

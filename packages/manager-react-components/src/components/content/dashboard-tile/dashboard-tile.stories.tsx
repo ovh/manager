@@ -70,7 +70,7 @@ export const WithTitle = () => <DashboardTile title="Title" items={items} />;
 export const NoTitle = () => <DashboardTile items={items} />;
 
 const meta: Meta = {
-  title: 'Core/Manager React Components/Content/Dashboard Tile',
+  title: 'Core/manager-react-components/Content/Dashboard Tile',
   component: DashboardTile,
   argTypes: {},
   args: {

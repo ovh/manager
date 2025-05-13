@@ -1,0 +1,175 @@
+import {
+  StoryBookBanner,
+  StorybookHeading,
+  StorybookBestPractices,
+  StorybookIdentityCard,
+  StorybookTable,
+} from '../../../../manager-wiki/components';
+import { Meta, Canvas, Source } from '@storybook/blocks';
+
+import Links from '../../../../manager-wiki/components/external-links';
+
+<Meta title="Core/generator/Overview" />
+
+# Manager Generator
+
+<StorybookHeading label="Overview" level={2} />
+
+The Manager Generator is a powerful code generation tool designed to streamline the development of OVHcloud Manager applications. It provides a set of templates and utilities to quickly scaffold new applications, components, and API integrations while maintaining consistency with OVHcloud's development standards.
+
+<StorybookHeading label="Key Features" level={2} />
+
+- **Application Scaffolding**: 
+  - Generate complete React applications
+  - Configure TypeScript, Vite, and Tailwind
+  - Set up testing infrastructure
+- **API Integration**:
+  - Generate API client code
+  - Create TypeScript types from API schemas
+  - Support for both v2 and v6 API versions
+- **Component Generation**:
+  - Create reusable React components
+  - Generate component tests
+  - Set up component documentation
+- **Internationalization**:
+  - Generate translation files
+  - Support for multiple regions
+  - Configure i18n setup
+- **Project Configuration**:
+  - Package.json generation
+  - Vite configuration
+  - Tailwind setup
+  - TypeScript configuration
+
+<StorybookHeading label="Usage" level={2} />
+
+### Creating a New Application
+
+```bash
+# Install the generator globally
+npm install -g @ovh-ux/manager-generator
+
+# Generate a new application
+omg app
+```
+
+The generator will prompt you for:
+- Application name
+- Package name
+- Description
+- Target regions
+- API paths
+- Universe and subuniverse for tracking
+
+### Generated Application Structure
+
+```
+my-app/
+├── src/
+│   ├── api/
+│   │   └── generated/
+│   ├── components/
+│   ├── hooks/
+│   ├── pages/
+│   └── translations/
+├── tests/
+├── package.json
+├── tsconfig.json
+├── vite.config.mjs
+└── tailwind.config.mjs
+```
+
+### API Integration
+
+The generator automatically creates API client code:
+
+```typescript
+// Generated API client
+import { apiClient } from '@ovh-ux/manager-core-api';
+
+export const getResource = async (params: GetResourceParams) =>
+  apiClient.v6.get(`/api/resource/${params.id}`);
+
+export const updateResource = async (params: UpdateResourceParams) =>
+  apiClient.v6.put(`/api/resource/${params.id}`, {
+    data: params.data,
+  });
+```
+
+<StorybookHeading label="Templates" level={2} />
+
+The generator includes several template types:
+
+### Application Templates
+- Basic React application
+- PCI-specific application
+- Custom application with specific features
+
+### Component Templates
+- React components with TypeScript
+- Component tests
+- Component documentation
+
+### API Templates
+- API client generation
+- Type definitions
+- Query hooks
+
+<StorybookHeading label="Best Practices" level={2} />
+
+1. **Use Consistent Naming**: Follow the established naming conventions
+2. **Type Safety**: Always use TypeScript for better development experience
+3. **Testing**: Write tests for generated components and API clients
+4. **Documentation**: Document any custom modifications to generated code
+5. **Version Control**: Commit generated files to version control
+6. **Code Review**: Review generated code before using in production
+7. **Customization**: Extend generated code rather than modifying it directly
+
+<StorybookHeading label="Customization" level={2} />
+
+You can customize the generator by:
+
+1. Creating custom templates
+2. Modifying existing templates
+3. Adding new generators
+4. Extending the configuration
+
+Example of custom template:
+
+```handlebars
+// custom-template.hbs
+import React from 'react';
+
+export const {{pascalCase name}} = () => {
+  return (
+    <div>
+      {{description}}
+    </div>
+  );
+};
+```
+
+<StorybookHeading label="Dos & Don'ts" level={2} />
+
+<StorybookBestPractices
+  dos={[
+    'Do use the generator for new applications',
+    'Do follow the established project structure',
+    'Do maintain generated code quality',
+    'Do update templates when standards change',
+  ]}
+  donts={[
+    'Do not modify generated files directly',
+    'Do not skip code generation steps',
+    'Do not ignore generated tests',
+    'Do not bypass type checking',
+  ]}
+/>
+
+<StorybookHeading label="Support" level={2} />
+
+For issues, feature requests, or contributions:
+- Create an issue in the [GitHub repository](https://github.com/ovh/manager)
+- Follow the contribution guidelines in the repository
+- Ensure all changes are properly tested
+- Update documentation for any new features
