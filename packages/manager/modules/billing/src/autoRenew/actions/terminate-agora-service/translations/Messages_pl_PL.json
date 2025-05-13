@@ -27,5 +27,15 @@
   "autorenew_agora_terminate_service_NUTANIX_NODE": "Zrezygnuj z tego węzła",
   "autorenew_agora_terminate_service_warning_NUTANIX_NODE": "Chcesz zrezygnować z subskrypcji węzła „{{serviceName}}”.",
   "autorenew_agora_terminate_service_success_NUTANIX_NODE": "Rezygnacja z węzła „{{serviceName}}” została zarejestrowana. Otrzymasz e-mail ze szczegółami procedury.",
-  "autorenew_agora_terminate_service_error_NUTANIX_NODE": "Dyspozycja rezygnacji nie została zarejestrowana: {{error}}"
+  "autorenew_agora_terminate_service_error_NUTANIX_NODE": "Dyspozycja rezygnacji nie została zarejestrowana: {{error}}",
+  "autorenew_agora_terminate_service_success_ftc_LICENSE_HYCU": "Dyspozycja rezygnacji z licencji HYCU została przyjęta. E-mail potwierdzający złożenie zamówienia został wysłany na Twój adres e-mail.",
+  "autorenew_agora_terminate_service_success_ftc_OKMS_RESOURCE": "Zlecenie rezygnacji z usługi KMS zostało zarejestrowane. E-mail potwierdzający złożenie zamówienia został wysłany na Twój adres e-mail.",
+  "autorenew_agora_terminate_service_success_ftc_VRACK_SERVICES_RESOURCE": "Zlecenie rezygnacji z usług vRAck zostało zarejestrowane. E-mail potwierdzający złożenie zamówienia został wysłany na Twój adres e-mail.",
+  "autorenew_agora_terminate_service_success_ftc_VMWARE_CLOUD_DIRECTOR_BACKUP": "Zlecenie rezygnacji z usługi Managed Veeam for VCD zostało przyjęte. E-mail potwierdzający złożenie zamówienia został wysłany na Twój adres e-mail.",
+  "autorenew_agora_terminate_service_success_ftc_DBAAS_LOGS": "Rezygnacja z usługi LDP została zarejestrowana. E-mail potwierdzający złożenie zamówienia został wysłany na Twój adres e-mail.",
+  "autorenew_agora_terminate_service_success_ftc_NUTANIX": "Zlecenie rezygnacji z usługi Nutanix zostało zarejestrowane. E-mail potwierdzający złożenie zamówienia został wysłany na Twój adres e-mail.",
+  "autorenew_agora_terminate_service_success_ftc_NUTANIX_NODE": "Rezygnacja z węzła \"{{serviceName}}\" została zarejestrowana. E-mail potwierdzający złożenie zamówienia został wysłany na Twój adres e-mail.",
+  "autorenew_agora_terminate_service_success_ftc_VEEAM_ENTERPRISE": "Rezygnacja z licencji \"{{serviceName}}\" została zarejestrowana. E-mail potwierdzający złożenie zamówienia został wysłany na Twój adres e-mail.",
+  "autorenew_agora_terminate_service_success_VEEAM_ENTERPRISE": "Rezygnacja z licencji \"{{serviceName}}\" została zarejestrowana. Otrzymasz e-mail ze szczegółami procedury.",
+  "autorenew_agora_terminate_service_error_VEEAM_ENTERPRISE": "Rezygnacja nie została zarejestrowana: {{error}}"
 }
