@@ -1,14 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, fireEvent, act, waitFor } from '@testing-library/react';
 import { useNavigate } from 'react-router-dom';
-import {
-  TBackup,
-  TRegion,
-  TRegionQuota,
-  TVolume,
-  TVolumeCatalog,
-  TVolumePricing,
-} from '@/data/api/api.types';
+import { TVolume } from '@ovh-ux/manager-pci-common';
 import { createWrapper, shellContext } from '@/wrapperRenders';
 import CreateVolumePage from '@/pages/create-volume/CreateVolume.page';
 import {
@@ -19,98 +12,13 @@ import {
 import { useVolumeCatalog } from '@/data/hooks/useCatalog';
 import { useRegionsQuota } from '@/data/hooks/useQuota';
 import { useBackups } from '@/data/hooks/useVolumeBackup';
+import {
+  MOCK_CATALOG,
+  MOCK_QUOTA,
+  MOCKED_BACKUP,
+  MOCKED_VOLUME,
+} from '@/__tests__/mocks';
 
-const MOCK_REGION: TRegion = {
-  name: 'AF-NORTH-LZ-RBA-A',
-  type: 'localzone',
-  availabilityZones: [],
-  isInMaintenance: false,
-  country: 'ma',
-  isActivated: true,
-  datacenter: 'RBA',
-  filters: { deployment: ['localzone'], region: ['north_africa'] },
-};
-
-const MOCK_PRICING: TVolumePricing = {
-  regions: ['AF-NORTH-LZ-RBA-A'],
-  price: 11510,
-  interval: 'none',
-  showAvailabilityZones: false,
-  areIOPSDynamic: false,
-  specs: {
-    name: 'classic',
-    gpu: { memory: {} },
-    volume: {
-      capacity: { max: 4000 },
-      iops: {
-        guaranteed: true,
-        level: 250,
-        max: 250,
-        maxUnit: 'IOPS',
-        unit: 'IOPS',
-      },
-    },
-  },
-};
-
-const MOCK_CATALOG: TVolumeCatalog = {
-  filters: {
-    deployment: [
-      { name: 'region', tags: [] },
-      { name: 'region-3-az', tags: ['is_new'] },
-      { name: 'localzone', tags: [] },
-    ],
-    region: [],
-  },
-  regions: [MOCK_REGION],
-  models: [
-    {
-      name: 'classic',
-      tags: [],
-      filters: {
-        deployment: ['region', 'region-3-az', 'localzone'],
-      },
-      pricings: [MOCK_PRICING],
-    },
-  ],
-};
-
-const MOCK_QUOTA: TRegionQuota = {
-  region: 'AF-NORTH-LZ-RBA-A',
-  volume: {
-    maxGigabytes: 320000,
-    usedGigabytes: 80,
-    volumeCount: 6,
-    maxVolumeCount: 8000,
-  },
-};
-
-const MOCK_VOLUME: TVolume = {
-  id: 'fake-volume-id',
-  attachedTo: [],
-  creationDate: '2024-12-17T15:51:05Z',
-  name: 'test',
-  description: '',
-  size: 10,
-  status: 'available',
-  region: 'AF-NORTH-LZ-RBA-A',
-  bootable: false,
-  planCode: 'volume.classic.consumption.LZ.AF',
-  availabilityZone: null,
-  type: 'classic',
-};
-
-const MOCK_BACKUP: TBackup = {
-  id: 'backup-id',
-  creationDate: '2024-12-17T15:51:05Z',
-  name: 'Mock backup',
-  size: 10,
-  volumeId: 'fake-volume-id',
-  region: 'AF-NORTH-LZ-RBA-A',
-  status: 'ok',
-};
-
-// Mock hooks and dependencies
 vi.mock('@/data/hooks/useCatalog', () => ({
   useVolumeCatalog: vi.fn(),
 }));
@@ -144,11 +52,11 @@ describe('CreateVolumePage', () => {
       data: MOCK_QUOTA,
     } as ReturnType<typeof useRegionsQuota>);
     vi.mocked(useVolume).mockReturnValue({
-      data: loading ? undefined : MOCK_VOLUME,
+      data: loading ? undefined : MOCKED_VOLUME,
       isLoading: loading,
     } as ReturnType<typeof useVolume>);
     vi.mocked(useBackups).mockReturnValue({
-      data: loading ? undefined : { data: [MOCK_BACKUP] },
+      data: loading ? undefined : { data: [MOCKED_BACKUP] },
       isLoading: loading,
     } as ReturnType<typeof useBackups>);
   };
