@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   ButtonType,
   PageLocation,
   PageType,
   useOvhTracking,
+  ShellContext,
 } from '@ovh-ux/manager-react-shell-client';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
 import { ApiError } from '@ovh-ux/manager-core-api';
@@ -22,6 +23,7 @@ export default function TerminateKms() {
   const { okmsId } = useParams();
   const { trackPage, trackClick } = useOvhTracking();
   const { addError, addSuccess, clearNotifications } = useNotifications();
+  const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
 
   const closeModal = () => {
     navigate('..');
@@ -33,14 +35,17 @@ export default function TerminateKms() {
     });
     closeModal();
     clearNotifications();
-
     addSuccess(
-      t('key_management_service_terminate_success_banner', {
-        ServiceName: okmsId,
-      }),
+      t(
+        ovhSubsidiary === 'US'
+          ? 'key_management_service_terminate_success_banner_us'
+          : 'key_management_service_terminate_success_banner',
+        {
+          ServiceName: okmsId,
+        },
+      ),
       true,
     );
-
     trackPage({
       pageType: PageType.bannerSuccess,
       pageName: 'delete_kms_success',
