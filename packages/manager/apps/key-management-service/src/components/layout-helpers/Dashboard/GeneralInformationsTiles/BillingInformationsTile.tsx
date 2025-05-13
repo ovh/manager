@@ -27,11 +27,9 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { OkmsServiceState } from '../okmsServiceState/OkmsServiceState.component';
 import { TileValueDate } from '@/components/dashboard/tile-value-date/tileValueDate.component';
-import {
-  DISPLAY_CONTACTS_MANAGEMENT_KEY,
-  dateFormat,
-} from './BillingInformationsTile.constants';
+import { dateFormat } from './BillingInformationsTile.constants';
 import { KMS_ROUTES_URIS } from '@/routes/routes.constants';
+import { KMS_FEATURES } from '@/utils/feature-availability/feature-availability.constants';
 
 type BillingInformationsTileProps = {
   okmsService?: ServiceDetails;
@@ -45,7 +43,7 @@ const BillingInformationsTile = ({
   const [contactUrl, setContactUrl] = React.useState('#');
   const { trackClick } = useOvhTracking();
   const { data: availability } = useFeatureAvailability([
-    DISPLAY_CONTACTS_MANAGEMENT_KEY,
+    KMS_FEATURES.DISPLAY_CONTACTS,
   ]);
   const {
     shell: { navigation },
@@ -140,7 +138,7 @@ const BillingInformationsTile = ({
               </span>
             ),
           },
-          availability?.[DISPLAY_CONTACTS_MANAGEMENT_KEY] && {
+          availability?.[KMS_FEATURES.DISPLAY_CONTACTS] && {
             id: 'contacts',
             label: t('key_management_service_dashboard_field_label_contacts'),
             value: (
